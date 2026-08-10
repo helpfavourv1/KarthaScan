@@ -1,1 +1,28 @@
+# This file configures the static analysis results for this project.
+#
+# Enabled via the flutter_lints package (dev_dependency in pubspec.yaml).
+# See: https://dart.dev/lints for individual lint descriptions.
+include: package:flutter_lints/flutter.yaml
 
+linter:
+  rules:
+    # Repository-specific overrides go here as they're needed. None yet —
+    # keep flutter_lints' defaults intact rather than silencing rules to
+    # make a phase "pass" faster.
+
+analyzer:
+  exclude:
+    - '**/*.g.dart'
+    - '**/*.freezed.dart'
+
+# ---------------------------------------------------------------------------
+# CI ENFORCEMENT (Section 5 / Section 16 files #55, #56):
+# `flutter analyze` must pass after every phase (per the blueprint's Debug
+# protocol). In addition to `flutter analyze`, both CI workflows run:
+#
+#   grep -r "throw UnimplementedError" lib/ && exit 1 || exit 0
+#
+# This fails the build if any generated file contains a stub. No file in
+# this codebase should ever contain TODO, FIXME, or throw
+# UnimplementedError() — see Section 21's final checklist.
+# ---------------------------------------------------------------------------
