@@ -1,1 +1,121 @@
+name: katharscan
+description: >
+  Scan documents with free unlimited OCR, no watermarks, no account
+  required, and no ads.
+publish_to: 'none'
+version: 1.0.0+1
 
+# Flutter SDK itself is pinned to 3.24.0 exactly in CI (see Section 6's
+# GitHub Actions job and Section 9's codemagic.yaml — both use
+# flutter-version/environment.flutter: "3.24.0", never a floating
+# "stable" tag). That pin lives in the CI tool configs, not here; this
+# `sdk:` constraint below just needs to be compatible with the Dart
+# version Flutter 3.24.0 ships (Dart ~3.5.x).
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+
+  # --- Scanning & OCR ---
+  flutter_doc_scanner: ^0.0.21 # ML Kit Document Scanner (Android) + VisionKit (iOS). See Section 14 for required UNSUPPORTED fallback handling.
+  google_mlkit_text_recognition: ^0.15.0 # On-device OCR. Latin bundled free; CJK/Devanagari are Pro-gated per Section 19.
+
+  # --- Storage ---
+  sqflite: ^2.4.1
+  path_provider: ^2.1.5
+  path: ^1.9.0
+  # NOT in the blueprint's original locked list, but named explicitly, twice,
+  # in the blueprint's own prose: Section 1 ("persists to SharedPreferences")
+  # and Section 15 ("SharedPreferences for settings"). Same category of gap
+  # as url_launcher above — the blueprint names the exact mechanism by name,
+  # it just didn't make it into the dependency table. No alternative to
+  # weigh; adding it.
+  shared_preferences: ^2.3.3
+
+  # --- Sharing & export ---
+  # v12.x uses SharePlus.instance.share(ShareParams(...)) — the static
+  # Share.shareXFiles()/Share.share() methods this project's original
+  # locked-list era would have used are now deprecated (still callable,
+  # but there's no reason to write new deprecated code). Verified against
+  # the package's own changelog/docs, not assumed from training memory.
+  share_plus: ^12.0.0
+  cross_file: ^0.3.4+2 # XFile — needed as a direct import alongside share_plus, not just a transitive dependency
+  pdf: ^3.11.1 # PDF generation (core/services/export_service.dart)
+  archive: ^3.6.1
+  image: ^4.3.0
+  # NOT in the blueprint's original locked list. export_service.dart needs
+  # to produce real JPG and PNG output regardless of what format the
+  # scanner actually saved a page in — decode-then-re-encode is the only
+  # correct way to do that (a raw byte copy only works when source and
+  # target format already match). `image` is the standard Dart library for
+  # this, from the same author/ecosystem as `archive`. Same low-risk,
+  # single-obvious-choice category as url_launcher/shared_preferences
+  # above, not a docx-style fork.
+  # NOTE: The blueprint's original locked list named a package called
+  # `docx` for DOCX export. No such package exists on pub.dev (confirmed
+  # via search — see conversation record). Resolved by using `archive`
+  # (zip) to hand-build a minimal OOXML .docx for raw-text export
+  # instead of depending on an unproven or wrong-shaped third-party
+  # docx library. `archive` also backs the AES-256 "Device Migration"
+  # export archive in Section 19/file #39 — one dependency, two features.
+
+  # --- Permissions ---
+  permission_handler: ^11.3.1
+
+  # --- Monetization ---
+  in_app_purchase: ^3.2.1
+
+  # --- Locale ---
+  intl: ^0.19.0 # Version is constrained by flutter_localizations' own pin for this Flutter SDK — do not bump independently without checking flutter_localizations' pubspec.
+
+  # --- State management / DI ---
+  # `provider` is used strictly for Provider.value dependency injection of
+  # existing ValueNotifier instances down the widget tree. It is NEVER
+  # used for reactivity. See the MANDATORY comment block in
+  # lib/core/utils/constants.dart and Section 15 of the blueprint.
+  provider: ^6.1.2
+
+  # --- Navigation ---
+  go_router: ^14.6.2
+
+  # --- Native app polish ---
+  flutter_native_splash: ^2.4.3
+  flutter_launcher_icons: ^0.14.2
+
+  # --- Security ---
+  encrypt: ^5.0.3 # AES-256 for Device Migration export archive (Section 19/file #39)
+
+  # --- Opening external links ---
+  # NOT in the blueprint's original locked list. Added because Section 15
+  # requires a "Report issue" email link in the error fallback screen, and
+  # Section 16 file #37 (settings_screen.dart) must open the Privacy
+  # Policy and Support URLs from Section 1a. There is no ambiguity in this
+  # choice the way there was for docx — url_launcher is the official
+  # Flutter-team package and the only real option for this job.
+  url_launcher: ^6.3.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/logo.svg
+
+# ---------------------------------------------------------------------------
+# VERSION-PIN CAVEAT (read before first `flutter pub get`):
+# This sandbox has no network access, so none of the above versions could be
+# resolved against pub.dev's dependency solver or checked against Flutter
+# 3.24.0's exact Dart SDK compatibility window. They are chosen to be
+# consistent with the Flutter 3.24.0 / Dart ~3.5 timeframe based on known
+# release history, not verified via `flutter pub get`. Before the first real
+# CI run: run `flutter pub get` locally or in a scratch Codemagic build,
+# resolve any version conflicts flutter reports, and update this file with
+# the exact resolved versions. Do not treat these as final without that step.
+# ---------------------------------------------------------------------------
