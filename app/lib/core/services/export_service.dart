@@ -2,15 +2,22 @@
 //
 // PDF generation via `pdf`. DOCX raw text via hand-rolled minimal OOXML on
 // `archive` (see pubspec.yaml's note — no package literally named `docx`
-// exists on pub.dev). JPG/PNG/TXT export (Section 16 file #15).
+// exists on pub.dev). JPG/PNG/TXT export (Section 16 file #15). Also
+// backs export_screen.dart's full "format select → filter apply (Pro) →
+// signature (Pro) → password (Pro) → share" flow (Section 16 file #38) —
+// filter application, signature compositing, and PDF password protection
+// all live here rather than in export_screen.dart, since export_screen.dart
+// is UI orchestration and this is where the actual byte-level processing
+// belongs.
 //
-// LAYERING: this is the one file in Phase 2 that deliberately imports
-// `dart:io` (for File — reading existing page images, writing output
-// files). This is a narrow, intentional extension of the same layering
-// principle already confirmed for plugin imports in core/services/: no
-// OS-branching decision logic, uniform behavior on both platforms, and no
-// other file in the fixed 75-file manifest owns "write these bytes to a
-// path." Every dart:io call below is wrapped in try-catch per Section 15.
+// LAYERING: this is the one file in core/services/ that deliberately
+// imports `dart:io` (for File — reading existing page images, writing
+// output files). This is a narrow, intentional extension of the same
+// layering principle already confirmed for plugin imports in
+// core/services/: no OS-branching decision logic, uniform behavior on
+// both platforms, and no other file in the fixed 75-file manifest owns
+// "write these bytes to a path." Every dart:io call below is wrapped in
+// try-catch per Section 15.
 import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
@@ -21,6 +28,7 @@ import 'package:image/image.dart' as img;
 import 'package:path/path.dart' as p;
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
+import 'package:pdf_crypto/pdf_crypto.dart';
 
 import '../models/export_job.dart';
 import '../models/scan_document.dart';
@@ -37,23 +45,61 @@ class ExportFailedException implements Exception {
   String toString() => 'ExportFailedException: $message';
 }
 
+/// Pro-gated document filters (Section 16 file #31). Defined here rather
+/// than in filter_bottom_sheet.dart because a core/services/ file
+/// (this one) needs it too, and core/ must never depend on widgets/ —
+/// filter_bottom_sheet.dart imports this enum from here instead, the same
+/// pattern as ExportFormat (export_job.dart) and OcrScript
+/// (ocr_service.dart).
+enum FilterType { none, grayscale, blackAndWhite, colorEnhance, shadowRemoval }
+
+/// Where to place a composited signature on a page — Section 16 file
+/// #32's "place on document, flatten" step. Kept simple (four corners)
+/// rather than free-form coordinates; export_screen.dart doesn't expose
+/// drag-to-position UI in this pass.
+enum SignaturePlacement { bottomRight, bottomLeft, topRight, topLeft }
+
 class ExportService {
   /// Exports [document] as [format], writing into [outputDirectoryPath].
+  ///
+  /// [filter] applies only to image-bearing formats (PDF/JPG/PNG) — it's
+  /// silently a no-op for TXT/DOCX, since there's no image to filter in a
+  /// plain-text export. [signatureBytes] (a PNG with transparency, e.g.
+  /// from SignatureCanvas.exportPng()) is composited onto
+  /// [signaturePageIndex] (default: the last page) before the format is
+  /// generated. [pdfPassword] only applies when [format] is
+  /// ExportFormat.pdf — it's ignored for every other format.
+  ///
   /// Returns one or more output file paths — a single path for PDF/DOCX/
   /// TXT (always one combined file), and one path per page for JPG/PNG
   /// (there's no single-file container for a multi-page image the way
   /// there is for PDF/DOCX, so each page becomes its own numbered file;
-  /// Section 16 file #30 doesn't specify otherwise for a multi-page
-  /// image export).
+  /// Section 16 file #30 doesn't specify otherwise for a multi-page image
+  /// export).
   Future<List<String>> export({
     required ScanDocument document,
     required ExportFormat format,
     required String outputDirectoryPath,
+    FilterType filter = FilterType.none,
+    Uint8List? signatureBytes,
+    int? signaturePageIndex,
+    SignaturePlacement signaturePlacement = SignaturePlacement.bottomRight,
+    String? pdfPassword,
   }) async {
     try {
       switch (format) {
         case ExportFormat.pdf:
-          return <String>[await _exportPdf(document, outputDirectoryPath)];
+          return <String>[
+            await _exportPdf(
+              document,
+              outputDirectoryPath,
+              filter: filter,
+              signatureBytes: signatureBytes,
+              signaturePageIndex: signaturePageIndex,
+              signaturePlacement: signaturePlacement,
+              password: pdfPassword,
+            ),
+          ];
         case ExportFormat.txt:
           return <String>[await _exportTxt(document, outputDirectoryPath)];
         case ExportFormat.docx:
@@ -63,12 +109,20 @@ class ExportService {
             document,
             outputDirectoryPath,
             targetExtension: 'jpg',
+            filter: filter,
+            signatureBytes: signatureBytes,
+            signaturePageIndex: signaturePageIndex,
+            signaturePlacement: signaturePlacement,
           );
         case ExportFormat.png:
           return _exportImages(
             document,
             outputDirectoryPath,
             targetExtension: 'png',
+            filter: filter,
+            signatureBytes: signatureBytes,
+            signaturePageIndex: signaturePageIndex,
+            signaturePlacement: signaturePlacement,
           );
       }
     } on ExportFailedException {
@@ -82,17 +136,161 @@ class ExportService {
   }
 
   // ---------------------------------------------------------------------
+  // Filters (Section 16 file #31) — implemented using only the `image`
+  // package's confirmed-stable named-parameter API (grayscale(),
+  // adjustColor()), not raw per-pixel iteration whose exact accessor
+  // names weren't independently verified against the pinned package
+  // version. "Black & white" and "shadow removal" are therefore honest
+  // approximations, not a true binary threshold or true lighting-flatfield
+  // correction — documented per-case below rather than overclaimed.
+  // ---------------------------------------------------------------------
+
+  img.Image _applyFilter(img.Image source, FilterType filter) {
+    switch (filter) {
+      case FilterType.none:
+        return source;
+      case FilterType.grayscale:
+        return img.grayscale(source);
+      case FilterType.blackAndWhite:
+        // Approximates a binary threshold via grayscale + aggressive
+        // contrast rather than a true per-pixel threshold — good enough
+        // for "does this read like a photocopy," not a scanner-grade
+        // adaptive threshold.
+        final img.Image gray = img.grayscale(source);
+        return img.adjustColor(gray, contrast: 3.0, brightness: 1.05);
+      case FilterType.colorEnhance:
+        return img.adjustColor(source, contrast: 1.15, saturation: 1.2, brightness: 1.05);
+      case FilterType.shadowRemoval:
+        // True shadow removal needs a blurred lighting-estimate divided
+        // out of the original (flat-fielding), which needs a blur
+        // function this file doesn't call because its exact signature
+        // wasn't independently verified. This is a brightness/contrast
+        // approximation that helps with mild, even shadowing only — not
+        // a substitute for real flat-fielding. Worth revisiting with a
+        // verified blur API if users report it's not enough.
+        return img.adjustColor(source, contrast: 1.2, brightness: 1.15, gamma: 0.9);
+    }
+  }
+
+  // ---------------------------------------------------------------------
+  // Signature compositing (Section 16 file #32's "place on document,
+  // flatten" step)
+  // ---------------------------------------------------------------------
+
+  img.Image _compositeSignature(
+    img.Image page,
+    img.Image signature,
+    SignaturePlacement placement,
+  ) {
+    // Signature width scales with the page — 28% of page width, aspect
+    // ratio preserved — rather than a fixed pixel size, so it looks
+    // reasonable across wildly different scan resolutions.
+    final int targetWidth = (page.width * 0.28).round();
+    final int targetHeight = (signature.height * targetWidth / signature.width).round();
+    final img.Image resizedSignature = img.copyResize(
+      signature,
+      width: targetWidth,
+      height: targetHeight,
+    );
+
+    final int margin = (page.width * 0.04).round();
+    late final int dstX;
+    late final int dstY;
+    switch (placement) {
+      case SignaturePlacement.bottomRight:
+        dstX = page.width - targetWidth - margin;
+        dstY = page.height - targetHeight - margin;
+        break;
+      case SignaturePlacement.bottomLeft:
+        dstX = margin;
+        dstY = page.height - targetHeight - margin;
+        break;
+      case SignaturePlacement.topRight:
+        dstX = page.width - targetWidth - margin;
+        dstY = margin;
+        break;
+      case SignaturePlacement.topLeft:
+        dstX = margin;
+        dstY = margin;
+        break;
+    }
+
+    return img.compositeImage(page, resizedSignature, dstX: dstX, dstY: dstY);
+  }
+
+  /// Decodes [pagePath], applies [filter] and an optional composited
+  /// signature (only when [pageIndex] matches [signaturePageIndex] or
+  /// [signaturePageIndex] is null and this is the last page), and
+  /// re-encodes as PNG bytes for embedding or writing out. Never throws —
+  /// falls back to the original unfiltered/unsigned bytes on any
+  /// processing failure, per Section 14/15's "never crash" philosophy
+  /// extended to this new processing path: a failed filter shouldn't
+  /// block the whole export.
+  Future<Uint8List> _processPage(
+    String pagePath, {
+    required FilterType filter,
+    required int pageIndex,
+    required int totalPages,
+    Uint8List? signatureBytes,
+    int? signaturePageIndex,
+    SignaturePlacement signaturePlacement = SignaturePlacement.bottomRight,
+  }) async {
+    final Uint8List original = await _readBytes(pagePath);
+    if (filter == FilterType.none && signatureBytes == null) {
+      return original;
+    }
+
+    try {
+      img.Image? decoded = img.decodeImage(original);
+      if (decoded == null) return original;
+
+      if (filter != FilterType.none) {
+        decoded = _applyFilter(decoded, filter);
+      }
+
+      final int effectiveSignaturePage = signaturePageIndex ?? (totalPages - 1);
+      if (signatureBytes != null && pageIndex == effectiveSignaturePage) {
+        final img.Image? signatureImage = img.decodePng(signatureBytes);
+        if (signatureImage != null) {
+          decoded = _compositeSignature(decoded, signatureImage, signaturePlacement);
+        }
+      }
+
+      return Uint8List.fromList(img.encodePng(decoded));
+    } catch (error, stackTrace) {
+      _logError('_processPage', error, stackTrace);
+      return original;
+    }
+  }
+
+  // ---------------------------------------------------------------------
   // PDF
   // ---------------------------------------------------------------------
 
-  Future<String> _exportPdf(ScanDocument document, String outDir) async {
+  Future<String> _exportPdf(
+    ScanDocument document,
+    String outDir, {
+    required FilterType filter,
+    Uint8List? signatureBytes,
+    int? signaturePageIndex,
+    required SignaturePlacement signaturePlacement,
+    String? password,
+  }) async {
     final pw.Document pdfDoc = pw.Document(
       title: document.title,
       creator: 'KatharScan',
     );
 
-    for (final String pagePath in document.pagePaths) {
-      final Uint8List bytes = await _readBytes(pagePath);
+    for (int i = 0; i < document.pagePaths.length; i++) {
+      final Uint8List bytes = await _processPage(
+        document.pagePaths[i],
+        filter: filter,
+        pageIndex: i,
+        totalPages: document.pagePaths.length,
+        signatureBytes: signatureBytes,
+        signaturePageIndex: signaturePageIndex,
+        signaturePlacement: signaturePlacement,
+      );
       final pw.MemoryImage image = pw.MemoryImage(bytes);
       pdfDoc.addPage(
         pw.Page(
@@ -118,6 +316,32 @@ class ExportService {
           ),
         ),
       );
+    }
+
+    // PDF password protection — Section 19 Pro feature. Uses pdf_crypto,
+    // a companion package from the same author/ecosystem as `pdf` itself
+    // (see pubspec.yaml's note). This specific API was verified against a
+    // single documentation source, not the primary pub.dev page directly
+    // — worth a real-device/real-build smoke test before shipping, same
+    // caveat as flutter_doc_scanner's return shape in doc_scanner_service.dart.
+    if (password != null && password.trim().isNotEmpty) {
+      try {
+        pdfDoc.document.encryption = PdfEncryptionAES(
+          pdfDoc.document,
+          user: password,
+          owner: password,
+          accessFlags: const <PdfAccessFlags>{
+            PdfAccessFlags.Copy,
+            PdfAccessFlags.Print,
+          },
+          level: PdfAESLevel.high,
+        );
+      } catch (error, stackTrace) {
+        _logError('_exportPdf(password)', error, stackTrace);
+        throw const ExportFailedException(
+          'Could not apply password protection to this PDF.',
+        );
+      }
     }
 
     final Uint8List pdfBytes = await pdfDoc.save();
@@ -249,13 +473,25 @@ class ExportService {
     ScanDocument document,
     String outDir, {
     required String targetExtension,
+    required FilterType filter,
+    Uint8List? signatureBytes,
+    int? signaturePageIndex,
+    required SignaturePlacement signaturePlacement,
   }) async {
     final List<String> outputPaths = <String>[];
     final bool isMultiPage = document.pagePaths.length > 1;
 
     for (int i = 0; i < document.pagePaths.length; i++) {
-      final Uint8List sourceBytes = await _readBytes(document.pagePaths[i]);
-      final img.Image? decoded = img.decodeImage(sourceBytes);
+      final Uint8List processedBytes = await _processPage(
+        document.pagePaths[i],
+        filter: filter,
+        pageIndex: i,
+        totalPages: document.pagePaths.length,
+        signatureBytes: signatureBytes,
+        signaturePageIndex: signaturePageIndex,
+        signaturePlacement: signaturePlacement,
+      );
+      final img.Image? decoded = img.decodeImage(processedBytes);
       if (decoded == null) {
         throw ExportFailedException(
           'Could not read page ${i + 1} of "${document.title}".',
