@@ -45,6 +45,7 @@ dependencies:
   share_plus: ^12.0.0
   cross_file: ^0.3.4+2 # XFile — needed as a direct import alongside share_plus, not just a transitive dependency
   pdf: ^3.11.1 # PDF generation (core/services/export_service.dart)
+  pdf_crypto: ^0.1.4 # PDF password protection (PdfEncryptionAES) for Section 19's Pro "PDF password protection" feature — same author/ecosystem as `pdf`, purpose-built companion package, not a separate fork-worthy choice like docx was
   archive: ^3.6.1
   image: ^4.3.0
   # NOT in the blueprint's original locked list. export_service.dart needs
@@ -88,6 +89,8 @@ dependencies:
 
   # --- Security ---
   encrypt: ^5.0.3 # AES-256 for Device Migration export archive (Section 19/file #39)
+  crypto: ^3.0.6 # SHA-256 key derivation from the user's migration password — official dart-lang/crypto package, not a separate fork-worthy choice
+  file_picker: ^8.1.4 # Picking a .katharscan-backup file to import in migration_screen.dart — no locked-list alternative exists for arbitrary-file selection
 
   # --- Opening external links ---
   # NOT in the blueprint's original locked list. Added because Section 15
