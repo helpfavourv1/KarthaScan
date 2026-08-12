@@ -187,6 +187,27 @@ class ScanProvider {
   Future<List<ScanDocument>> search(String query) =>
       _storage.searchDocuments(query);
 
+  /// Saves an already-fully-formed ScanDocument directly — used by
+  /// migration_screen.dart when reconstructing documents from a backup
+  /// archive, where the document (including its original id, so any
+  /// folder that referenced it stays associated) already exists rather
+  /// than being freshly captured. Not part of the normal scan flow.
+  Future<bool> importDocument(ScanDocument document) async {
+    final bool success = await _storage.saveDocument(document);
+    if (success) {
+      final bool alreadyPresent =
+          documents.value.any((ScanDocument d) => d.id == document.id);
+      documents.value = alreadyPresent
+          ? documents.value
+              .map((ScanDocument d) => d.id == document.id ? document : d)
+              .toList()
+          : <ScanDocument>[document, ...documents.value];
+    } else {
+      lastError.value = 'Could not import "${document.title}".';
+    }
+    return success;
+  }
+
   void setActiveScan(String? id) {
     activeScan.value = id == null ? null : _findById(id);
   }

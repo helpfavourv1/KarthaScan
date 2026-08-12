@@ -112,6 +112,25 @@ class FolderProvider {
     }
   }
 
+  /// Saves an already-fully-formed Folder directly — used by
+  /// migration_screen.dart when reconstructing folders from a backup
+  /// archive, where the folder (including its original id, so its
+  /// documentIds still point at the right imported documents) already
+  /// exists rather than being freshly created. Not part of the normal
+  /// create-folder flow.
+  Future<bool> importFolder(Folder folder) async {
+    final bool success = await _storage.saveFolder(folder);
+    if (success) {
+      final bool alreadyPresent = folders.value.any((Folder f) => f.id == folder.id);
+      folders.value = alreadyPresent
+          ? folders.value.map((Folder f) => f.id == folder.id ? folder : f).toList()
+          : <Folder>[...folders.value, folder];
+    } else {
+      lastError.value = 'Could not import "${folder.name}".';
+    }
+    return success;
+  }
+
   void setActiveFolder(String? id) {
     activeFolder.value = id == null ? null : _findById(id);
   }
