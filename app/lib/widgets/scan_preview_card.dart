@@ -12,6 +12,7 @@ import 'dart:io' show File;
 import 'package:flutter/material.dart';
 
 import '../core/utils/constants.dart';
+import '../l10n/app_localizations.dart';
 
 class ScanPreviewCard extends StatefulWidget {
   const ScanPreviewCard({
@@ -59,6 +60,7 @@ class _ScanPreviewCardState extends State<ScanPreviewCard> {
 
   @override
   Widget build(BuildContext context) {
+    final AppLocalizations l10n = AppLocalizations.of(context)!;
     final bool isDark = Theme.of(context).brightness == Brightness.dark;
     final Color bg = isDark ? AppColors.bgPrimaryDark : AppColors.bgPrimaryLight;
     final Color surface = isDark ? AppColors.bgSecondaryDark : AppColors.bgSecondaryLight;
@@ -70,7 +72,7 @@ class _ScanPreviewCardState extends State<ScanPreviewCard> {
         color: bg,
         child: Center(
           child: Text(
-            'No pages to show.',
+            l10n.scanPreviewNoPages,
             style: TextStyle(color: textSecondary, fontSize: AppTypography.bodySize),
           ),
         ),
@@ -130,7 +132,7 @@ class _ScanPreviewCardState extends State<ScanPreviewCard> {
                   IconButton(
                     onPressed: widget.onShare,
                     icon: Icon(Icons.ios_share, color: accent),
-                    tooltip: 'Share',
+                    tooltip: l10n.shareTooltip,
                   ),
               ],
             ),

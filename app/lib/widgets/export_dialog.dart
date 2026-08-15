@@ -11,10 +11,17 @@
 // signature, password) are separate widgets/screens per file #38's
 // "format select → filter apply (Pro) → signature (Pro) → password (Pro)
 // → share" sequence.
+//
+// LOCALIZATION: the format option list was originally a top-level `const`
+// with labels/descriptions baked in at compile time. AppLocalizations
+// needs a BuildContext, which isn't available for a compile-time const —
+// so this is now a function computed inside build(), where context (and
+// therefore l10n) is available.
 import 'package:flutter/material.dart';
 
 import '../core/models/export_job.dart';
 import '../core/utils/constants.dart';
+import '../l10n/app_localizations.dart';
 
 class ExportFormatOption {
   const ExportFormatOption({
@@ -30,38 +37,40 @@ class ExportFormatOption {
   final IconData icon;
 }
 
-const List<ExportFormatOption> kExportFormatOptions = <ExportFormatOption>[
-  ExportFormatOption(
-    format: ExportFormat.pdf,
-    label: 'PDF',
-    description: 'Best for sharing and printing',
-    icon: Icons.picture_as_pdf_outlined,
-  ),
-  ExportFormatOption(
-    format: ExportFormat.docx,
-    label: 'Word (.docx)',
-    description: 'Editable text document',
-    icon: Icons.description_outlined,
-  ),
-  ExportFormatOption(
-    format: ExportFormat.txt,
-    label: 'Text (.txt)',
-    description: 'Plain OCR text only',
-    icon: Icons.notes_outlined,
-  ),
-  ExportFormatOption(
-    format: ExportFormat.jpg,
-    label: 'JPG',
-    description: 'One image per page',
-    icon: Icons.image_outlined,
-  ),
-  ExportFormatOption(
-    format: ExportFormat.png,
-    label: 'PNG',
-    description: 'One image per page, lossless',
-    icon: Icons.image_outlined,
-  ),
-];
+List<ExportFormatOption> _exportFormatOptions(AppLocalizations l10n) {
+  return <ExportFormatOption>[
+    ExportFormatOption(
+      format: ExportFormat.pdf,
+      label: l10n.exportFormatPdfLabel,
+      description: l10n.exportFormatPdfDescription,
+      icon: Icons.picture_as_pdf_outlined,
+    ),
+    ExportFormatOption(
+      format: ExportFormat.docx,
+      label: l10n.exportFormatDocxLabel,
+      description: l10n.exportFormatDocxDescription,
+      icon: Icons.description_outlined,
+    ),
+    ExportFormatOption(
+      format: ExportFormat.txt,
+      label: l10n.exportFormatTxtLabel,
+      description: l10n.exportFormatTxtDescription,
+      icon: Icons.notes_outlined,
+    ),
+    ExportFormatOption(
+      format: ExportFormat.jpg,
+      label: l10n.exportFormatJpgLabel,
+      description: l10n.exportFormatJpgDescription,
+      icon: Icons.image_outlined,
+    ),
+    ExportFormatOption(
+      format: ExportFormat.png,
+      label: l10n.exportFormatPngLabel,
+      description: l10n.exportFormatPngDescription,
+      icon: Icons.image_outlined,
+    ),
+  ];
+}
 
 /// Shows the format picker as a modal bottom sheet and resolves with the
 /// chosen [ExportFormat], or null if dismissed without a choice.
@@ -78,6 +87,7 @@ class ExportDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final AppLocalizations l10n = AppLocalizations.of(context)!;
     final bool isDark = Theme.of(context).brightness == Brightness.dark;
     final Color bg = isDark ? AppColors.bgPrimaryDark : AppColors.bgPrimaryLight;
     final Color textPrimary = isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight;
@@ -116,7 +126,7 @@ class ExportDialog extends StatelessWidget {
               ),
             ),
             Text(
-              'Export as',
+              l10n.exportFormatSheetTitle,
               style: TextStyle(
                 color: textPrimary,
                 fontSize: AppTypography.title1Size,
@@ -124,7 +134,7 @@ class ExportDialog extends StatelessWidget {
               ),
             ),
             const SizedBox(height: AppSpacing.sm),
-            ...kExportFormatOptions.map(
+            ..._exportFormatOptions(l10n).map(
               (ExportFormatOption option) => _FormatTile(
                 option: option,
                 accent: accent,

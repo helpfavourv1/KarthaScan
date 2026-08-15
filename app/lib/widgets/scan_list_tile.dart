@@ -13,6 +13,7 @@ import 'package:flutter/material.dart';
 import '../core/models/scan_document.dart';
 import '../core/utils/constants.dart';
 import '../core/utils/date_formatter.dart';
+import '../l10n/app_localizations.dart';
 
 class ScanListTile extends StatelessWidget {
   const ScanListTile({
@@ -41,6 +42,7 @@ class ScanListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final AppLocalizations l10n = AppLocalizations.of(context)!;
     final bool isDark = Theme.of(context).brightness == Brightness.dark;
     final Color bg = isDark ? AppColors.bgSecondaryDark : AppColors.bgSecondaryLight;
     final Color accent = isDark ? AppColors.accentDark : AppColors.accentLight;
@@ -51,8 +53,7 @@ class ScanListTile extends StatelessWidget {
     final Color tileBg = isSelected ? accent.withOpacity(0.08) : bg;
     final Color tileBorder = isSelected ? accent : border;
 
-    final String pageLabel =
-        document.pageCount == 1 ? '1 page' : '${document.pageCount} pages';
+    final String pageLabel = l10n.scanListPageCount(document.pageCount);
     final String dateLabel =
         AppDateFormatter.formatSmartDate(document.updatedAt, localeCode: localeCode);
     final String? preview = document.ocrText.trim().isEmpty

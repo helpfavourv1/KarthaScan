@@ -22,6 +22,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart' show RenderRepaintBoundary;
 
 import '../core/utils/constants.dart';
+import '../l10n/app_localizations.dart';
 
 class SignatureCanvas extends StatefulWidget {
   const SignatureCanvas({
@@ -81,6 +82,7 @@ class SignatureCanvasState extends State<SignatureCanvas> {
 
   @override
   Widget build(BuildContext context) {
+    final AppLocalizations l10n = AppLocalizations.of(context)!;
     final bool isDark = Theme.of(context).brightness == Brightness.dark;
     final Color border = isDark ? AppColors.borderSubtleDark : AppColors.borderSubtleLight;
     final Color surface = isDark ? AppColors.bgSecondaryDark : AppColors.bgSecondaryLight;
@@ -115,7 +117,7 @@ class SignatureCanvasState extends State<SignatureCanvas> {
               child: IgnorePointer(
                 child: Center(
                   child: Text(
-                    'Sign here',
+                    l10n.signatureCanvasHint,
                     style: TextStyle(color: hint, fontSize: AppTypography.bodySize),
                   ),
                 ),

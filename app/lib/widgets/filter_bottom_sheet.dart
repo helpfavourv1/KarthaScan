@@ -12,10 +12,16 @@
 // (Phase 5) orchestrates the full "format → filter → signature →
 // password → share" flow — this widget doesn't perform image processing
 // itself.
+//
+// LOCALIZATION: the option list was originally a top-level `const` with
+// labels baked in at compile time. AppLocalizations needs a BuildContext,
+// unavailable for a compile-time const — so this is now a function
+// computed inside build(), where l10n is available.
 import 'package:flutter/material.dart';
 
 import '../core/services/export_service.dart' show FilterType;
 import '../core/utils/constants.dart';
+import '../l10n/app_localizations.dart';
 import 'pro_badge.dart';
 
 class FilterOption {
@@ -26,13 +32,15 @@ class FilterOption {
   final IconData icon;
 }
 
-const List<FilterOption> kFilterOptions = <FilterOption>[
-  FilterOption(type: FilterType.none, label: 'Original', icon: Icons.crop_original),
-  FilterOption(type: FilterType.grayscale, label: 'Grayscale', icon: Icons.filter_b_and_w),
-  FilterOption(type: FilterType.blackAndWhite, label: 'B&W', icon: Icons.contrast),
-  FilterOption(type: FilterType.colorEnhance, label: 'Color enhance', icon: Icons.auto_awesome),
-  FilterOption(type: FilterType.shadowRemoval, label: 'Shadow removal', icon: Icons.wb_shade),
-];
+List<FilterOption> _filterOptions(AppLocalizations l10n) {
+  return <FilterOption>[
+    FilterOption(type: FilterType.none, label: l10n.filterOriginal, icon: Icons.crop_original),
+    FilterOption(type: FilterType.grayscale, label: l10n.filterGrayscale, icon: Icons.filter_b_and_w),
+    FilterOption(type: FilterType.blackAndWhite, label: l10n.filterBlackAndWhite, icon: Icons.contrast),
+    FilterOption(type: FilterType.colorEnhance, label: l10n.filterColorEnhance, icon: Icons.auto_awesome),
+    FilterOption(type: FilterType.shadowRemoval, label: l10n.filterShadowRemoval, icon: Icons.wb_shade),
+  ];
+}
 
 /// Shows the filter picker as a modal bottom sheet. [current] pre-selects
 /// the active filter (checkmark). When [isPro] is false, every option
@@ -69,6 +77,7 @@ class FilterBottomSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final AppLocalizations l10n = AppLocalizations.of(context)!;
     final bool isDark = Theme.of(context).brightness == Brightness.dark;
     final Color bg = isDark ? AppColors.bgPrimaryDark : AppColors.bgPrimaryLight;
     final Color textPrimary = isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight;
@@ -109,7 +118,7 @@ class FilterBottomSheet extends StatelessWidget {
             Row(
               children: <Widget>[
                 Text(
-                  'Filters',
+                  l10n.filterSheetTitle,
                   style: TextStyle(
                     color: textPrimary,
                     fontSize: AppTypography.title1Size,
@@ -123,7 +132,7 @@ class FilterBottomSheet extends StatelessWidget {
               ],
             ),
             const SizedBox(height: AppSpacing.sm),
-            ...kFilterOptions.map((FilterOption option) {
+            ..._filterOptions(l10n).map((FilterOption option) {
               final bool locked = !isPro && option.type != FilterType.none;
               final bool selected = option.type == current;
               return Material(

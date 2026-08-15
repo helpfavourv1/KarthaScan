@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 import '../core/models/folder.dart';
 import '../core/utils/constants.dart';
+import '../l10n/app_localizations.dart';
 
 class FolderListTile extends StatelessWidget {
   const FolderListTile({
@@ -22,6 +23,7 @@ class FolderListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final AppLocalizations l10n = AppLocalizations.of(context)!;
     final bool isDark = Theme.of(context).brightness == Brightness.dark;
     final Color bg = isDark ? AppColors.bgSecondaryDark : AppColors.bgSecondaryLight;
     final Color accent = isDark ? AppColors.accentDark : AppColors.accentLight;
@@ -31,8 +33,7 @@ class FolderListTile extends StatelessWidget {
     final Color tileBg = isSelected ? accent.withOpacity(0.08) : bg;
     final Color tileBorder = isSelected ? accent : border;
 
-    final int count = folder.documentIds.length;
-    final String countLabel = count == 1 ? '1 document' : '$count documents';
+    final String countLabel = l10n.folderDocumentCount(folder.documentIds.length);
 
     return Material(
       color: Colors.transparent,

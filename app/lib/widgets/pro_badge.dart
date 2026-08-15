@@ -4,6 +4,7 @@
 import 'package:flutter/material.dart';
 
 import '../core/utils/constants.dart';
+import '../l10n/app_localizations.dart';
 
 class ProBadge extends StatelessWidget {
   const ProBadge({super.key, this.onTap});
@@ -14,6 +15,7 @@ class ProBadge extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final AppLocalizations l10n = AppLocalizations.of(context)!;
     final bool isDark = Theme.of(context).brightness == Brightness.dark;
     final Color accent = isDark ? AppColors.accentDark : AppColors.accentLight;
 
@@ -23,9 +25,9 @@ class ProBadge extends StatelessWidget {
         color: accent,
         borderRadius: BorderRadius.circular(AppShape.textInputRadius),
       ),
-      child: const Text(
-        'PRO',
-        style: TextStyle(
+      child: Text(
+        l10n.proBadgeLabel,
+        style: const TextStyle(
           color: Colors.white,
           fontSize: AppTypography.captionSize,
           fontWeight: FontWeight.w700,
