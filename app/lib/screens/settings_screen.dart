@@ -11,6 +11,7 @@ import '../core/providers/settings_provider.dart';
 import '../core/providers/subscription_provider.dart';
 import '../core/providers/theme_provider.dart';
 import '../core/utils/constants.dart';
+import '../l10n/app_localizations.dart';
 import '../widgets/pro_badge.dart';
 
 class SettingsScreen extends StatefulWidget {
@@ -33,7 +34,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     _subscriptionProvider = Provider.of<SubscriptionProvider>(context, listen: false);
   }
 
-  Future<void> _openUrl(String url) async {
+  Future<void> _openUrl(String url, AppLocalizations l10n) async {
     final Uri uri = Uri.parse(url);
     bool launched = false;
     try {
@@ -43,17 +44,17 @@ class _SettingsScreenState extends State<SettingsScreen> {
     }
     if (!launched && mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Could not open link.')),
+        SnackBar(content: Text(l10n.couldNotOpenLinkError)),
       );
     }
   }
 
-  Future<void> _restorePurchases() async {
+  Future<void> _restorePurchases(AppLocalizations l10n) async {
     await _subscriptionProvider.restore();
     if (!mounted) return;
     final String? error = _subscriptionProvider.lastError.value;
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text(error ?? 'Restore complete.')),
+      SnackBar(content: Text(error ?? l10n.restoreCompleteMessage)),
     );
   }
 
@@ -88,6 +89,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final AppLocalizations l10n = AppLocalizations.of(context)!;
     final bool isDark = Theme.of(context).brightness == Brightness.dark;
     final Color bg = isDark ? AppColors.bgPrimaryDark : AppColors.bgPrimaryLight;
     final Color textPrimary = isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight;
@@ -99,27 +101,27 @@ class _SettingsScreenState extends State<SettingsScreen> {
       appBar: AppBar(
         backgroundColor: bg,
         elevation: 0,
-        title: Text('Settings', style: TextStyle(color: textPrimary)),
+        title: Text(l10n.settingsTitle, style: TextStyle(color: textPrimary)),
       ),
       body: SafeArea(
         child: ListView(
           padding: const EdgeInsets.all(AppSpacing.md),
           children: <Widget>[
-            _sectionLabel('Appearance', textSecondary),
+            _sectionLabel(l10n.appearanceSectionLabel, textSecondary),
             ListenableBuilder(
               listenable: _themeProvider.themeMode,
               builder: (BuildContext context, Widget? _) => _settingsTile(
-                title: 'Theme',
+                title: l10n.themeLabel,
                 trailing: DropdownButton<ThemeMode>(
                   value: _themeProvider.themeMode.value,
                   underline: const SizedBox.shrink(),
                   onChanged: (ThemeMode? mode) {
                     if (mode != null) _themeProvider.setThemeMode(mode);
                   },
-                  items: const <DropdownMenuItem<ThemeMode>>[
-                    DropdownMenuItem<ThemeMode>(value: ThemeMode.system, child: Text('System')),
-                    DropdownMenuItem<ThemeMode>(value: ThemeMode.light, child: Text('Light')),
-                    DropdownMenuItem<ThemeMode>(value: ThemeMode.dark, child: Text('Dark')),
+                  items: <DropdownMenuItem<ThemeMode>>[
+                    DropdownMenuItem<ThemeMode>(value: ThemeMode.system, child: Text(l10n.systemThemeOption)),
+                    DropdownMenuItem<ThemeMode>(value: ThemeMode.light, child: Text(l10n.lightThemeOption)),
+                    DropdownMenuItem<ThemeMode>(value: ThemeMode.dark, child: Text(l10n.darkThemeOption)),
                   ],
                 ),
                 textPrimary: textPrimary,
@@ -127,13 +129,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
               ),
             ),
             const SizedBox(height: AppSpacing.md),
-            _sectionLabel('Language', textSecondary),
+            _sectionLabel(l10n.languageSectionLabel, textSecondary),
             ListenableBuilder(
               listenable: Listenable.merge(<Listenable>[_settingsProvider.settings, _subscriptionProvider.isPro]),
               builder: (BuildContext context, Widget? _) => Column(
                 children: <Widget>[
                   _settingsTile(
-                    title: 'App language',
+                    title: l10n.appLanguageLabel,
                     trailing: Text(
                       _settingsProvider.settings.value.language.toUpperCase(),
                       style: TextStyle(color: textSecondary),
@@ -144,7 +146,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   ),
                   const SizedBox(height: AppSpacing.xs),
                   _settingsTile(
-                    title: 'OCR language',
+                    title: l10n.ocrLanguageLabel,
                     trailing: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
@@ -161,22 +163,22 @@ class _SettingsScreenState extends State<SettingsScreen> {
               ),
             ),
             const SizedBox(height: AppSpacing.md),
-            _sectionLabel('Storage', textSecondary),
+            _sectionLabel(l10n.storageSectionLabel, textSecondary),
             _settingsTile(
-              title: 'Device Migration',
+              title: l10n.deviceMigrationLabel,
               trailing: Icon(Icons.chevron_right, color: textSecondary),
               onTap: () => context.push('/migration'),
               textPrimary: textPrimary,
               border: border,
             ),
             const SizedBox(height: AppSpacing.md),
-            _sectionLabel('Subscription', textSecondary),
+            _sectionLabel(l10n.subscriptionSectionLabel, textSecondary),
             ListenableBuilder(
               listenable: _subscriptionProvider.isPro,
               builder: (BuildContext context, Widget? _) => Column(
                 children: <Widget>[
                   _settingsTile(
-                    title: _subscriptionProvider.isPro.value ? 'KatharScan Pro' : 'Upgrade to Pro',
+                    title: _subscriptionProvider.isPro.value ? l10n.katharscanProLabel : l10n.upgradeToProLabel,
                     trailing: Icon(Icons.chevron_right, color: textSecondary),
                     onTap: () => context.push('/paywall'),
                     textPrimary: textPrimary,
@@ -184,9 +186,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   ),
                   const SizedBox(height: AppSpacing.xs),
                   _settingsTile(
-                    title: 'Restore purchases',
+                    title: l10n.restorePurchasesButton,
                     trailing: const SizedBox.shrink(),
-                    onTap: _restorePurchases,
+                    onTap: () => _restorePurchases(l10n),
                     textPrimary: textPrimary,
                     border: border,
                   ),
@@ -194,19 +196,19 @@ class _SettingsScreenState extends State<SettingsScreen> {
               ),
             ),
             const SizedBox(height: AppSpacing.md),
-            _sectionLabel('About', textSecondary),
+            _sectionLabel(l10n.aboutSectionLabel, textSecondary),
             _settingsTile(
-              title: 'Privacy policy',
+              title: l10n.privacyPolicyLabel,
               trailing: Icon(Icons.open_in_new, color: textSecondary, size: 16),
-              onTap: () => _openUrl(AppSupportContact.privacyPolicyUrl),
+              onTap: () => _openUrl(AppSupportContact.privacyPolicyUrl, l10n),
               textPrimary: textPrimary,
               border: border,
             ),
             const SizedBox(height: AppSpacing.xs),
             _settingsTile(
-              title: 'Support',
+              title: l10n.supportLabel,
               trailing: Icon(Icons.open_in_new, color: textSecondary, size: 16),
-              onTap: () => _openUrl(AppSupportContact.supportUrl),
+              onTap: () => _openUrl(AppSupportContact.supportUrl, l10n),
               textPrimary: textPrimary,
               border: border,
             ),
@@ -268,6 +270,11 @@ class _LanguagePickerSheet extends StatelessWidget {
 
   final String current;
 
+  // Endonyms — each language's name for itself. Deliberately NOT routed
+  // through AppLocalizations: a language picker conventionally shows
+  // "Español" as "Español" regardless of the app's current UI language,
+  // since the person selecting it may not read the current language yet.
+  // Translating these would be actively wrong, not just unnecessary.
   static const Map<String, String> _labels = <String, String>{
     'en': 'English',
     'es': 'Español',
@@ -284,6 +291,7 @@ class _LanguagePickerSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final AppLocalizations l10n = AppLocalizations.of(context)!;
     final bool isDark = Theme.of(context).brightness == Brightness.dark;
     final Color bg = isDark ? AppColors.bgPrimaryDark : AppColors.bgPrimaryLight;
     final Color textPrimary = isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight;
@@ -304,7 +312,7 @@ class _LanguagePickerSheet extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Text(
-              'App language',
+              l10n.appLanguageLabel,
               style: TextStyle(
                 color: textPrimary,
                 fontSize: AppTypography.title1Size,
@@ -348,16 +356,19 @@ class _OcrLanguagePickerSheet extends StatelessWidget {
   // doesn't support those scripts at all (verified against the package's
   // docs in Phase 2) — they remain RTL interface languages only, not OCR
   // options. See ocr_service.dart's file header for the full reasoning.
-  static const List<_OcrLangOption> _options = <_OcrLangOption>[
-    _OcrLangOption('latin', 'Latin (default)'),
-    _OcrLangOption('chinese', 'Chinese'),
-    _OcrLangOption('devanagari', 'Devanagari (Hindi)'),
-    _OcrLangOption('japanese', 'Japanese'),
-    _OcrLangOption('korean', 'Korean'),
-  ];
+  static List<_OcrLangOption> _options(AppLocalizations l10n) {
+    return <_OcrLangOption>[
+      _OcrLangOption('latin', l10n.ocrLanguageLatinOption),
+      _OcrLangOption('chinese', l10n.ocrLanguageChineseOption),
+      _OcrLangOption('devanagari', l10n.ocrLanguageDevanagariOption),
+      _OcrLangOption('japanese', l10n.ocrLanguageJapaneseOption),
+      _OcrLangOption('korean', l10n.ocrLanguageKoreanOption),
+    ];
+  }
 
   @override
   Widget build(BuildContext context) {
+    final AppLocalizations l10n = AppLocalizations.of(context)!;
     final bool isDark = Theme.of(context).brightness == Brightness.dark;
     final Color bg = isDark ? AppColors.bgPrimaryDark : AppColors.bgPrimaryLight;
     final Color textPrimary = isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight;
@@ -379,7 +390,7 @@ class _OcrLanguagePickerSheet extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Text(
-              'OCR language',
+              l10n.ocrLanguageLabel,
               style: TextStyle(
                 color: textPrimary,
                 fontSize: AppTypography.title1Size,
@@ -387,7 +398,7 @@ class _OcrLanguagePickerSheet extends StatelessWidget {
               ),
             ),
             const SizedBox(height: AppSpacing.sm),
-            ..._options.map((_OcrLangOption opt) {
+            ..._options(l10n).map((_OcrLangOption opt) {
               final bool locked = !isPro && opt.value != 'latin';
               return ListTile(
                 title: Text(opt.label, style: TextStyle(color: locked ? textSecondary : textPrimary)),

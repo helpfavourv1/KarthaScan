@@ -39,6 +39,7 @@ import '../core/providers/folder_provider.dart';
 import '../core/providers/scan_provider.dart';
 import '../core/services/share_service.dart';
 import '../core/utils/constants.dart';
+import '../l10n/app_localizations.dart';
 
 class MigrationScreen extends StatefulWidget {
   const MigrationScreen({super.key});
@@ -66,16 +67,16 @@ class _MigrationScreenState extends State<MigrationScreen> {
   // Export
   // ---------------------------------------------------------------------
 
-  Future<void> _exportBackup() async {
+  Future<void> _exportBackup(AppLocalizations l10n) async {
     final String? password = await _promptPassword(
-      title: 'Set a backup password',
-      confirmLabel: 'Export',
+      title: l10n.setBackupPasswordTitle,
+      confirmLabel: l10n.commonExport,
     );
     if (password == null) return;
 
     setState(() {
       _isBusy = true;
-      _statusMessage = 'Building backup…';
+      _statusMessage = l10n.buildingBackupStatus;
     });
 
     try {
@@ -146,7 +147,7 @@ class _MigrationScreenState extends State<MigrationScreen> {
       if (!mounted) return;
       setState(() {
         _isBusy = false;
-        _statusMessage = 'Backup ready.';
+        _statusMessage = l10n.backupReadyStatus;
       });
 
       try {
@@ -160,7 +161,7 @@ class _MigrationScreenState extends State<MigrationScreen> {
       if (!mounted) return;
       setState(() {
         _isBusy = false;
-        _statusMessage = 'Could not create the backup.';
+        _statusMessage = l10n.couldNotCreateBackupError;
       });
     }
   }
@@ -169,21 +170,21 @@ class _MigrationScreenState extends State<MigrationScreen> {
   // Import
   // ---------------------------------------------------------------------
 
-  Future<void> _importBackup() async {
+  Future<void> _importBackup(AppLocalizations l10n) async {
     final FilePickerResult? picked = await FilePicker.platform.pickFiles(type: FileType.any);
     final String? pickedPath = picked?.files.single.path;
     if (pickedPath == null) return;
 
     if (!mounted) return;
     final String? password = await _promptPassword(
-      title: 'Enter backup password',
-      confirmLabel: 'Import',
+      title: l10n.enterBackupPasswordTitle,
+      confirmLabel: l10n.commonImport,
     );
     if (password == null) return;
 
     setState(() {
       _isBusy = true;
-      _statusMessage = 'Importing…';
+      _statusMessage = l10n.importingStatus;
     });
 
     try {
@@ -193,7 +194,7 @@ class _MigrationScreenState extends State<MigrationScreen> {
 
       final ArchiveFile? manifestFile = archive.findFile('manifest.json');
       if (manifestFile == null) {
-        throw Exception('This backup file looks corrupted.');
+        throw Exception(l10n.backupCorruptedError);
       }
       final Map<String, dynamic> manifest =
           jsonDecode(utf8.decode(manifestFile.content as List<int>)) as Map<String, dynamic>;
@@ -241,15 +242,14 @@ class _MigrationScreenState extends State<MigrationScreen> {
       if (!mounted) return;
       setState(() {
         _isBusy = false;
-        _statusMessage =
-            '$importedCount document${importedCount == 1 ? '' : 's'} imported.';
+        _statusMessage = l10n.importedCount(importedCount);
       });
     } catch (error, stackTrace) {
       debugPrint('[MigrationScreen] import failed: $error\n$stackTrace');
       if (!mounted) return;
       setState(() {
         _isBusy = false;
-        _statusMessage = 'Could not import this backup. Check the password and try again.';
+        _statusMessage = l10n.couldNotImportBackupError;
       });
     }
   }
@@ -286,6 +286,7 @@ class _MigrationScreenState extends State<MigrationScreen> {
   }
 
   Future<String?> _promptPassword({required String title, required String confirmLabel}) async {
+    final AppLocalizations l10n = AppLocalizations.of(context)!;
     final TextEditingController controller = TextEditingController();
     final String? password = await showDialog<String>(
       context: context,
@@ -293,7 +294,7 @@ class _MigrationScreenState extends State<MigrationScreen> {
         title: Text(title),
         content: TextField(controller: controller, obscureText: true, autofocus: true),
         actions: <Widget>[
-          TextButton(onPressed: () => Navigator.of(context).pop(), child: const Text('Cancel')),
+          TextButton(onPressed: () => Navigator.of(context).pop(), child: Text(l10n.commonCancel)),
           TextButton(onPressed: () => Navigator.of(context).pop(controller.text), child: Text(confirmLabel)),
         ],
       ),
@@ -305,6 +306,7 @@ class _MigrationScreenState extends State<MigrationScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final AppLocalizations l10n = AppLocalizations.of(context)!;
     final bool isDark = Theme.of(context).brightness == Brightness.dark;
     final Color bg = isDark ? AppColors.bgPrimaryDark : AppColors.bgPrimaryLight;
     final Color textPrimary = isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight;
@@ -316,7 +318,7 @@ class _MigrationScreenState extends State<MigrationScreen> {
       appBar: AppBar(
         backgroundColor: bg,
         elevation: 0,
-        title: Text('Device Migration', style: TextStyle(color: textPrimary)),
+        title: Text(l10n.migrationTitle, style: TextStyle(color: textPrimary)),
       ),
       body: SafeArea(
         child: Padding(
@@ -327,9 +329,7 @@ class _MigrationScreenState extends State<MigrationScreen> {
               // Honest label per Section 16 file #39 — this is a one-time
               // export/import a user runs manually, not background sync.
               Text(
-                "This isn't automatic sync. Export creates a single "
-                'encrypted backup file you move to your new device '
-                'yourself, then import there.',
+                l10n.migrationExplainer,
                 style: TextStyle(
                   color: textSecondary,
                   fontSize: AppTypography.bodySize,
@@ -340,9 +340,9 @@ class _MigrationScreenState extends State<MigrationScreen> {
               SizedBox(
                 height: AppShape.buttonMinHeight,
                 child: ElevatedButton.icon(
-                  onPressed: _isBusy ? null : _exportBackup,
+                  onPressed: _isBusy ? null : () => _exportBackup(l10n),
                   icon: const Icon(Icons.upload_outlined),
-                  label: const Text('Export encrypted backup'),
+                  label: Text(l10n.exportBackupButton),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: accent,
                     foregroundColor: Colors.white,
@@ -356,9 +356,9 @@ class _MigrationScreenState extends State<MigrationScreen> {
               SizedBox(
                 height: AppShape.buttonMinHeight,
                 child: OutlinedButton.icon(
-                  onPressed: _isBusy ? null : _importBackup,
+                  onPressed: _isBusy ? null : () => _importBackup(l10n),
                   icon: const Icon(Icons.download_outlined),
-                  label: const Text('Import from backup'),
+                  label: Text(l10n.importBackupButton),
                   style: OutlinedButton.styleFrom(
                     foregroundColor: accent,
                     shape: RoundedRectangleBorder(

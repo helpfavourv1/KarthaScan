@@ -22,6 +22,7 @@ import 'package:provider/provider.dart';
 
 import '../core/providers/subscription_provider.dart';
 import '../core/utils/constants.dart';
+import '../l10n/app_localizations.dart';
 
 class PaywallScreen extends StatefulWidget {
   const PaywallScreen({super.key});
@@ -34,24 +35,24 @@ class _PaywallScreenState extends State<PaywallScreen> {
   late final SubscriptionProvider _subscriptionProvider;
   bool _yearlySelected = true;
 
-  static const List<String> _freeFeatures = <String>[
-    'Unlimited scanning',
-    'Unlimited on-device OCR (Latin)',
-    'No watermark, no account, no ads',
-    'Folders & search',
-    '5 export formats',
-    'Dark mode',
-  ];
+  static List<String> _freeFeatures(AppLocalizations l10n) => <String>[
+        l10n.freeFeatureScanning,
+        l10n.freeFeatureOcr,
+        l10n.freeFeatureNoAds,
+        l10n.freeFeatureFolders,
+        l10n.freeFeatureFormats,
+        l10n.freeFeatureDarkMode,
+      ];
 
-  static const List<String> _proFeatures = <String>[
-    'Advanced filters',
-    'PDF password protection',
-    'Signature overlay',
-    'Custom tags & smart folders',
-    'Batch export',
-    'Device Migration',
-    'Extra OCR languages (CJK, Hindi)',
-  ];
+  static List<String> _proFeatures(AppLocalizations l10n) => <String>[
+        l10n.proFeatureFilters,
+        l10n.proFeaturePassword,
+        l10n.proFeatureSignature,
+        l10n.proFeatureTags,
+        l10n.proFeatureBatch,
+        l10n.proFeatureMigration,
+        l10n.proFeatureOcrLanguages,
+      ];
 
   @override
   void initState() {
@@ -59,13 +60,13 @@ class _PaywallScreenState extends State<PaywallScreen> {
     _subscriptionProvider = Provider.of<SubscriptionProvider>(context, listen: false);
   }
 
-  Future<void> _purchase() async {
+  Future<void> _purchase(AppLocalizations l10n) async {
     final ProductDetails? product = _yearlySelected
         ? _subscriptionProvider.yearlyProduct
         : _subscriptionProvider.monthlyProduct;
     if (product == null) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Pricing is still loading — try again in a moment.')),
+        SnackBar(content: Text(l10n.pricingLoadingError)),
       );
       return;
     }
@@ -74,6 +75,7 @@ class _PaywallScreenState extends State<PaywallScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final AppLocalizations l10n = AppLocalizations.of(context)!;
     final bool isDark = Theme.of(context).brightness == Brightness.dark;
     final Color bg = isDark ? AppColors.bgPrimaryDark : AppColors.bgPrimaryLight;
     final Color surface = isDark ? AppColors.bgSecondaryDark : AppColors.bgSecondaryLight;
@@ -100,7 +102,7 @@ class _PaywallScreenState extends State<PaywallScreen> {
           ]),
           builder: (BuildContext context, Widget? _) {
             if (_subscriptionProvider.isPro.value) {
-              return _buildAlreadyProContent(textPrimary, textSecondary, success);
+              return _buildAlreadyProContent(l10n, textPrimary, textSecondary, success);
             }
 
             final bool purchasing =
@@ -110,7 +112,7 @@ class _PaywallScreenState extends State<PaywallScreen> {
               padding: const EdgeInsets.all(AppSpacing.md),
               children: <Widget>[
                 Text(
-                  'KatharScan Pro',
+                  l10n.paywallTitle,
                   style: TextStyle(
                     color: textPrimary,
                     fontSize: AppTypography.displaySize,
@@ -119,13 +121,13 @@ class _PaywallScreenState extends State<PaywallScreen> {
                 ),
                 const SizedBox(height: AppSpacing.xs),
                 Text(
-                  'Core scanning and OCR are free forever. Pro unlocks power tools.',
+                  l10n.paywallSubtitle,
                   style: TextStyle(color: textSecondary, fontSize: AppTypography.bodySize),
                 ),
                 const SizedBox(height: AppSpacing.lg),
-                _comparisonTable(surface, textPrimary, textSecondary, accent),
+                _comparisonTable(l10n, surface, textPrimary, textSecondary, accent),
                 const SizedBox(height: AppSpacing.lg),
-                _planPicker(surface, textPrimary, textSecondary, accent),
+                _planPicker(l10n, surface, textPrimary, textSecondary, accent),
                 const SizedBox(height: AppSpacing.md),
                 if (_subscriptionProvider.purchaseFlowState.value == PurchaseFlowState.error &&
                     _subscriptionProvider.lastError.value != null)
@@ -140,7 +142,7 @@ class _PaywallScreenState extends State<PaywallScreen> {
                 SizedBox(
                   height: AppShape.buttonMinHeight,
                   child: ElevatedButton(
-                    onPressed: purchasing ? null : _purchase,
+                    onPressed: purchasing ? null : () => _purchase(l10n),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: accent,
                       foregroundColor: Colors.white,
@@ -154,20 +156,19 @@ class _PaywallScreenState extends State<PaywallScreen> {
                             height: 20,
                             child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white),
                           )
-                        : const Text('Continue'),
+                        : Text(l10n.continueButton),
                   ),
                 ),
                 const SizedBox(height: AppSpacing.sm),
                 Center(
                   child: TextButton(
                     onPressed: purchasing ? null : () => _subscriptionProvider.restore(),
-                    child: const Text('Restore purchases'),
+                    child: Text(l10n.restorePurchasesButton),
                   ),
                 ),
                 const SizedBox(height: AppSpacing.md),
                 Text(
-                  'Cancel anytime. We will never show you an ad, and we will '
-                  'never lock a free feature behind a paywall.',
+                  l10n.trustPromise,
                   textAlign: TextAlign.center,
                   style: TextStyle(color: textSecondary, fontSize: AppTypography.footnoteSize),
                 ),
@@ -179,7 +180,12 @@ class _PaywallScreenState extends State<PaywallScreen> {
     );
   }
 
-  Widget _buildAlreadyProContent(Color textPrimary, Color textSecondary, Color success) {
+  Widget _buildAlreadyProContent(
+    AppLocalizations l10n,
+    Color textPrimary,
+    Color textSecondary,
+    Color success,
+  ) {
     return Center(
       child: Padding(
         padding: const EdgeInsets.all(AppSpacing.xl),
@@ -189,7 +195,7 @@ class _PaywallScreenState extends State<PaywallScreen> {
             Icon(Icons.check_circle, color: success, size: 48),
             const SizedBox(height: AppSpacing.md),
             Text(
-              "You're on KatharScan Pro",
+              l10n.alreadyProTitle,
               style: TextStyle(
                 color: textPrimary,
                 fontSize: AppTypography.title1Size,
@@ -198,7 +204,7 @@ class _PaywallScreenState extends State<PaywallScreen> {
             ),
             const SizedBox(height: AppSpacing.xs),
             Text(
-              'All power tools are unlocked. Thank you for supporting KatharScan.',
+              l10n.alreadyProMessage,
               textAlign: TextAlign.center,
               style: TextStyle(color: textSecondary),
             ),
@@ -208,7 +214,13 @@ class _PaywallScreenState extends State<PaywallScreen> {
     );
   }
 
-  Widget _comparisonTable(Color surface, Color textPrimary, Color textSecondary, Color accent) {
+  Widget _comparisonTable(
+    AppLocalizations l10n,
+    Color surface,
+    Color textPrimary,
+    Color textSecondary,
+    Color accent,
+  ) {
     return Container(
       padding: const EdgeInsets.all(AppSpacing.sm),
       decoration: BoxDecoration(color: surface, borderRadius: BorderRadius.circular(AppShape.cardRadius)),
@@ -216,20 +228,20 @@ class _PaywallScreenState extends State<PaywallScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text(
-            'Free',
+            l10n.freeTierLabel,
             style: TextStyle(color: textPrimary, fontWeight: FontWeight.w700, fontSize: AppTypography.title2Size),
           ),
           const SizedBox(height: AppSpacing.xs),
-          ..._freeFeatures.map((String f) => _featureRow(f, textSecondary, Icons.check, textSecondary)),
+          ..._freeFeatures(l10n).map((String f) => _featureRow(f, textSecondary, Icons.check, textSecondary)),
           const SizedBox(height: AppSpacing.sm),
           Divider(color: textSecondary.withOpacity(0.2)),
           const SizedBox(height: AppSpacing.sm),
           Text(
-            'Pro',
+            l10n.proTierLabel,
             style: TextStyle(color: accent, fontWeight: FontWeight.w700, fontSize: AppTypography.title2Size),
           ),
           const SizedBox(height: AppSpacing.xs),
-          ..._proFeatures.map((String f) => _featureRow(f, textPrimary, Icons.star, accent)),
+          ..._proFeatures(l10n).map((String f) => _featureRow(f, textPrimary, Icons.star, accent)),
         ],
       ),
     );
@@ -248,12 +260,18 @@ class _PaywallScreenState extends State<PaywallScreen> {
     );
   }
 
-  Widget _planPicker(Color surface, Color textPrimary, Color textSecondary, Color accent) {
+  Widget _planPicker(
+    AppLocalizations l10n,
+    Color surface,
+    Color textPrimary,
+    Color textSecondary,
+    Color accent,
+  ) {
     return Row(
       children: <Widget>[
         Expanded(
           child: _planCard(
-            label: 'Monthly',
+            label: l10n.monthlyLabel,
             price: _subscriptionProvider.monthlyProduct?.price ?? '\$0.99/mo',
             selected: !_yearlySelected,
             onTap: () => setState(() => _yearlySelected = false),
@@ -266,9 +284,9 @@ class _PaywallScreenState extends State<PaywallScreen> {
         const SizedBox(width: AppSpacing.sm),
         Expanded(
           child: _planCard(
-            label: 'Yearly',
+            label: l10n.yearlyLabel,
             price: _subscriptionProvider.yearlyProduct?.price ?? '\$9.99/yr',
-            badge: 'Save ~15%',
+            badge: l10n.yearlySaveBadge,
             selected: _yearlySelected,
             onTap: () => setState(() => _yearlySelected = true),
             surface: surface,

@@ -20,6 +20,7 @@ import '../core/providers/subscription_provider.dart';
 import '../core/services/export_service.dart';
 import '../core/services/share_service.dart';
 import '../core/utils/constants.dart';
+import '../l10n/app_localizations.dart';
 import '../widgets/export_dialog.dart';
 import '../widgets/filter_bottom_sheet.dart';
 import '../widgets/signature_canvas.dart';
@@ -68,20 +69,18 @@ class _ExportScreenState extends State<ExportScreen> {
     if (_started) return;
     _started = true;
 
+    final AppLocalizations l10n = AppLocalizations.of(context)!;
     final bool isPro = _subscriptionProvider.isPro.value;
 
     if (widget.documentIds.length > 1 && !isPro) {
       final bool? goToPaywall = await showDialog<bool>(
         context: context,
         builder: (BuildContext context) => AlertDialog(
-          title: const Text('Batch export is a Pro feature'),
-          content: const Text(
-            'Exporting several scans at once needs KatharScan Pro. You can '
-            'still export one at a time for free.',
-          ),
+          title: Text(l10n.exportBatchProTitle),
+          content: Text(l10n.exportBatchProMessage),
           actions: <Widget>[
-            TextButton(onPressed: () => Navigator.of(context).pop(false), child: const Text('Cancel')),
-            TextButton(onPressed: () => Navigator.of(context).pop(true), child: const Text('Upgrade')),
+            TextButton(onPressed: () => Navigator.of(context).pop(false), child: Text(l10n.commonCancel)),
+            TextButton(onPressed: () => Navigator.of(context).pop(true), child: Text(l10n.commonUpgrade)),
           ],
         ),
       );
@@ -114,16 +113,16 @@ class _ExportScreenState extends State<ExportScreen> {
       if (chosenFilter != null) filter = chosenFilter;
       if (!mounted) return;
 
-      final bool wantsSignature = await _confirmStep('Add a signature?');
+      final bool wantsSignature = await _confirmStep(l10n.addSignatureQuestion, l10n);
       if (wantsSignature && mounted) {
         signatureBytes = await _captureSignature();
         if (!mounted) return;
       }
 
       if (format == ExportFormat.pdf) {
-        final bool wantsPassword = await _confirmStep('Password-protect this PDF?');
+        final bool wantsPassword = await _confirmStep(l10n.passwordProtectQuestion, l10n);
         if (wantsPassword && mounted) {
-          password = await _promptPassword();
+          password = await _promptPassword(l10n);
           if (!mounted) return;
         }
       }
@@ -137,14 +136,14 @@ class _ExportScreenState extends State<ExportScreen> {
     );
   }
 
-  Future<bool> _confirmStep(String question) async {
+  Future<bool> _confirmStep(String question, AppLocalizations l10n) async {
     final bool? result = await showDialog<bool>(
       context: context,
       builder: (BuildContext context) => AlertDialog(
         title: Text(question),
         actions: <Widget>[
-          TextButton(onPressed: () => Navigator.of(context).pop(false), child: const Text('Skip')),
-          TextButton(onPressed: () => Navigator.of(context).pop(true), child: const Text('Yes')),
+          TextButton(onPressed: () => Navigator.of(context).pop(false), child: Text(l10n.commonSkip)),
+          TextButton(onPressed: () => Navigator.of(context).pop(true), child: Text(l10n.commonYes)),
         ],
       ),
     );
@@ -160,16 +159,16 @@ class _ExportScreenState extends State<ExportScreen> {
     );
   }
 
-  Future<String?> _promptPassword() async {
+  Future<String?> _promptPassword(AppLocalizations l10n) async {
     final TextEditingController controller = TextEditingController();
     final String? password = await showDialog<String>(
       context: context,
       builder: (BuildContext context) => AlertDialog(
-        title: const Text('Set a password'),
+        title: Text(l10n.setPasswordTitle),
         content: TextField(controller: controller, obscureText: true, autofocus: true),
         actions: <Widget>[
-          TextButton(onPressed: () => Navigator.of(context).pop(), child: const Text('Cancel')),
-          TextButton(onPressed: () => Navigator.of(context).pop(controller.text), child: const Text('Set')),
+          TextButton(onPressed: () => Navigator.of(context).pop(), child: Text(l10n.commonCancel)),
+          TextButton(onPressed: () => Navigator.of(context).pop(controller.text), child: Text(l10n.commonSet)),
         ],
       ),
     );
@@ -184,9 +183,10 @@ class _ExportScreenState extends State<ExportScreen> {
     Uint8List? signatureBytes,
     String? password,
   }) async {
+    final AppLocalizations l10n = AppLocalizations.of(context)!;
     setState(() {
       _isRunning = true;
-      _statusMessage = 'Exporting…';
+      _statusMessage = l10n.exportingStatus;
     });
 
     final List<ScanDocument> documents = _documents;
@@ -209,7 +209,7 @@ class _ExportScreenState extends State<ExportScreen> {
     } on ExportFailedException catch (error) {
       errorMessage = error.message;
     } catch (_) {
-      errorMessage = 'Something went wrong while exporting.';
+      errorMessage = l10n.exportGenericError;
     }
 
     if (!mounted) return;
@@ -224,7 +224,7 @@ class _ExportScreenState extends State<ExportScreen> {
 
     setState(() {
       _isRunning = false;
-      _statusMessage = 'Done';
+      _statusMessage = l10n.exportDoneStatus;
     });
 
     try {
@@ -291,6 +291,7 @@ class _SignatureSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final AppLocalizations l10n = AppLocalizations.of(context)!;
     final bool isDark = Theme.of(context).brightness == Brightness.dark;
     final Color bg = isDark ? AppColors.bgPrimaryDark : AppColors.bgPrimaryLight;
     final Color textPrimary = isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight;
@@ -313,7 +314,7 @@ class _SignatureSheet extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               Text(
-                'Sign',
+                l10n.signSheetTitle,
                 style: TextStyle(
                   color: textPrimary,
                   fontSize: AppTypography.title1Size,
@@ -327,12 +328,12 @@ class _SignatureSheet extends StatelessWidget {
                 children: <Widget>[
                   TextButton(
                     onPressed: () => signatureKey.currentState?.clear(),
-                    child: const Text('Clear'),
+                    child: Text(l10n.commonClear),
                   ),
                   const Spacer(),
                   TextButton(
                     onPressed: () => Navigator.of(context).pop(),
-                    child: const Text('Skip'),
+                    child: Text(l10n.commonSkip),
                   ),
                   const SizedBox(width: AppSpacing.xs),
                   ElevatedButton(
@@ -344,7 +345,7 @@ class _SignatureSheet extends StatelessWidget {
                       final Uint8List? bytes = await signatureKey.currentState?.exportPng();
                       if (context.mounted) Navigator.of(context).pop(bytes);
                     },
-                    child: const Text('Use signature'),
+                    child: Text(l10n.useSignatureButton),
                   ),
                 ],
               ),

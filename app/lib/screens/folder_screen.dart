@@ -12,6 +12,7 @@ import '../core/providers/folder_provider.dart';
 import '../core/providers/scan_provider.dart';
 import '../core/providers/settings_provider.dart';
 import '../core/utils/constants.dart';
+import '../l10n/app_localizations.dart';
 import '../widgets/empty_state.dart';
 import '../widgets/scan_list_tile.dart';
 
@@ -47,16 +48,16 @@ class _FolderScreenState extends State<FolderScreen> {
     return null;
   }
 
-  Future<void> _rename(Folder folder) async {
+  Future<void> _rename(Folder folder, AppLocalizations l10n) async {
     final TextEditingController controller = TextEditingController(text: folder.name);
     final String? newName = await showDialog<String>(
       context: context,
       builder: (BuildContext context) => AlertDialog(
-        title: const Text('Rename folder'),
+        title: Text(l10n.renameFolderTitle),
         content: TextField(controller: controller, autofocus: true),
         actions: <Widget>[
-          TextButton(onPressed: () => Navigator.of(context).pop(), child: const Text('Cancel')),
-          TextButton(onPressed: () => Navigator.of(context).pop(controller.text), child: const Text('Save')),
+          TextButton(onPressed: () => Navigator.of(context).pop(), child: Text(l10n.commonCancel)),
+          TextButton(onPressed: () => Navigator.of(context).pop(controller.text), child: Text(l10n.commonSave)),
         ],
       ),
     );
@@ -66,15 +67,15 @@ class _FolderScreenState extends State<FolderScreen> {
     }
   }
 
-  Future<void> _deleteFolder(Folder folder) async {
+  Future<void> _deleteFolder(Folder folder, AppLocalizations l10n) async {
     final bool? confirmed = await showDialog<bool>(
       context: context,
       builder: (BuildContext context) => AlertDialog(
-        title: const Text('Delete this folder?'),
-        content: const Text('Documents inside will not be deleted.'),
+        title: Text(l10n.deleteFolderTitle),
+        content: Text(l10n.deleteFolderMessage),
         actions: <Widget>[
-          TextButton(onPressed: () => Navigator.of(context).pop(false), child: const Text('Cancel')),
-          TextButton(onPressed: () => Navigator.of(context).pop(true), child: const Text('Delete')),
+          TextButton(onPressed: () => Navigator.of(context).pop(false), child: Text(l10n.commonCancel)),
+          TextButton(onPressed: () => Navigator.of(context).pop(true), child: Text(l10n.commonDelete)),
         ],
       ),
     );
@@ -114,6 +115,7 @@ class _FolderScreenState extends State<FolderScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final AppLocalizations l10n = AppLocalizations.of(context)!;
     final bool isDark = Theme.of(context).brightness == Brightness.dark;
     final Color bg = isDark ? AppColors.bgPrimaryDark : AppColors.bgPrimaryLight;
     final Color textPrimary = isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight;
@@ -131,8 +133,8 @@ class _FolderScreenState extends State<FolderScreen> {
               child: Column(
                 children: <Widget>[
                   AppBar(backgroundColor: bg, elevation: 0),
-                  const Expanded(
-                    child: Center(child: Text('This folder is no longer available.')),
+                  Expanded(
+                    child: Center(child: Text(l10n.folderUnavailable)),
                   ),
                 ],
               ),
@@ -157,11 +159,11 @@ class _FolderScreenState extends State<FolderScreen> {
                             _selectedIds.clear();
                           }),
                         ),
-                        title: Text('${_selectedIds.length} selected'),
+                        title: Text(l10n.selectedCount(_selectedIds.length)),
                         actions: <Widget>[
                           IconButton(
                             icon: const Icon(Icons.remove_circle_outline),
-                            tooltip: 'Remove from folder',
+                            tooltip: l10n.removeFromFolderTooltip,
                             onPressed: _selectedIds.isEmpty
                                 ? null
                                 : () => _removeSelectedFromFolder(folder),
@@ -172,22 +174,22 @@ class _FolderScreenState extends State<FolderScreen> {
                         backgroundColor: bg,
                         elevation: 0,
                         title: GestureDetector(
-                          onTap: () => _rename(folder),
+                          onTap: () => _rename(folder, l10n),
                           child: Text(folder.name, style: TextStyle(color: textPrimary)),
                         ),
                         actions: <Widget>[
                           IconButton(
                             icon: Icon(Icons.delete_outline, color: textSecondary),
-                            tooltip: 'Delete folder',
-                            onPressed: () => _deleteFolder(folder),
+                            tooltip: l10n.deleteFolderTooltip,
+                            onPressed: () => _deleteFolder(folder, l10n),
                           ),
                         ],
                       ),
                 Expanded(
                   child: documentsInFolder.isEmpty
-                      ? const EmptyState(
+                      ? EmptyState(
                           icon: Icons.folder_open_outlined,
-                          message: 'No documents in this folder yet.',
+                          message: l10n.noDocumentsInFolder,
                         )
                       : ListView.separated(
                           padding: const EdgeInsets.all(AppSpacing.md),

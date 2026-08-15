@@ -26,6 +26,7 @@ import '../core/providers/scan_provider.dart';
 import '../core/providers/settings_provider.dart';
 import '../core/services/ocr_service.dart' show OcrScript;
 import '../core/utils/constants.dart';
+import '../l10n/app_localizations.dart';
 import '../widgets/empty_state.dart';
 import '../widgets/folder_list_tile.dart';
 import '../widgets/scan_list_tile.dart';
@@ -122,6 +123,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final AppLocalizations l10n = AppLocalizations.of(context)!;
     final bool isDark = Theme.of(context).brightness == Brightness.dark;
     final Color bg = isDark ? AppColors.bgPrimaryDark : AppColors.bgPrimaryLight;
     final Color surface = isDark ? AppColors.bgSecondaryDark : AppColors.bgSecondaryLight;
@@ -132,7 +134,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return Scaffold(
       backgroundColor: bg,
-      appBar: _selectionMode ? _buildSelectionAppBar(bg) : _buildDefaultAppBar(bg, textPrimary, textSecondary),
+      appBar: _selectionMode
+          ? _buildSelectionAppBar(bg, l10n)
+          : _buildDefaultAppBar(bg, textPrimary, textSecondary, l10n),
       body: SafeArea(
         child: Column(
           children: <Widget>[
@@ -145,7 +149,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 controller: _searchController,
                 onChanged: _onSearchChanged,
                 decoration: InputDecoration(
-                  hintText: 'Search your scans',
+                  hintText: l10n.searchHint,
                   prefixIcon: const Icon(Icons.search),
                   filled: true,
                   fillColor: surface,
@@ -158,8 +162,8 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             Expanded(
               child: _searchResults != null
-                  ? _buildSearchResults(localeCode)
-                  : _buildDefaultContent(localeCode),
+                  ? _buildSearchResults(localeCode, l10n)
+                  : _buildDefaultContent(localeCode, l10n),
             ),
           ],
         ),
@@ -174,12 +178,17 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  PreferredSizeWidget _buildDefaultAppBar(Color bg, Color textPrimary, Color textSecondary) {
+  PreferredSizeWidget _buildDefaultAppBar(
+    Color bg,
+    Color textPrimary,
+    Color textSecondary,
+    AppLocalizations l10n,
+  ) {
     return AppBar(
       backgroundColor: bg,
       elevation: 0,
       title: Text(
-        'KatharScan',
+        l10n.appTitle,
         style: TextStyle(
           color: textPrimary,
           fontSize: AppTypography.title1Size,
@@ -189,14 +198,14 @@ class _HomeScreenState extends State<HomeScreen> {
       actions: <Widget>[
         IconButton(
           icon: Icon(Icons.settings_outlined, color: textSecondary),
-          tooltip: 'Settings',
+          tooltip: l10n.settingsTooltip,
           onPressed: () => context.push('/settings'),
         ),
       ],
     );
   }
 
-  PreferredSizeWidget _buildSelectionAppBar(Color bg) {
+  PreferredSizeWidget _buildSelectionAppBar(Color bg, AppLocalizations l10n) {
     return AppBar(
       backgroundColor: bg,
       elevation: 0,
@@ -204,11 +213,11 @@ class _HomeScreenState extends State<HomeScreen> {
         icon: const Icon(Icons.close),
         onPressed: _exitSelectionMode,
       ),
-      title: Text('${_selectedIds.length} selected'),
+      title: Text(l10n.selectedCount(_selectedIds.length)),
       actions: <Widget>[
         IconButton(
           icon: const Icon(Icons.ios_share),
-          tooltip: 'Batch export',
+          tooltip: l10n.batchExportTooltip,
           onPressed: _selectedIds.isEmpty
               ? null
               // Batch export is Pro-gated per Section 19 — the actual
@@ -219,19 +228,19 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         IconButton(
           icon: const Icon(Icons.delete_outline),
-          tooltip: 'Delete',
+          tooltip: l10n.deleteTooltip,
           onPressed: _selectedIds.isEmpty ? null : _deleteSelected,
         ),
       ],
     );
   }
 
-  Widget _buildSearchResults(String localeCode) {
+  Widget _buildSearchResults(String localeCode, AppLocalizations l10n) {
     final List<ScanDocument> results = _searchResults!;
     if (results.isEmpty) {
-      return const EmptyState(
+      return EmptyState(
         icon: Icons.search_off,
-        message: 'No scans match your search.',
+        message: l10n.noSearchResults,
       );
     }
     return ListView.separated(
@@ -242,7 +251,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget _buildDefaultContent(String localeCode) {
+  Widget _buildDefaultContent(String localeCode, AppLocalizations l10n) {
     return ListenableBuilder(
       listenable: Listenable.merge(<Listenable>[
         _scanProvider.documents,
@@ -264,7 +273,7 @@ class _HomeScreenState extends State<HomeScreen> {
           padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md, vertical: AppSpacing.xs),
           children: <Widget>[
             if (folders.isNotEmpty) ...<Widget>[
-              _sectionHeader('Folders'),
+              _sectionHeader(l10n.foldersSectionHeader),
               ...folders.map(
                 (Folder folder) => Padding(
                   padding: const EdgeInsets.only(bottom: AppSpacing.xs),
@@ -278,7 +287,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ],
             if (documents.isNotEmpty)
               ...<Widget>[
-                _sectionHeader('Documents'),
+                _sectionHeader(l10n.documentsSectionHeader),
                 ...documents.map(
                   (ScanDocument doc) => Padding(
                     padding: const EdgeInsets.only(bottom: AppSpacing.xs),

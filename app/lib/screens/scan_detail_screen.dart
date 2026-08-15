@@ -16,6 +16,7 @@ import '../core/providers/folder_provider.dart';
 import '../core/providers/scan_provider.dart';
 import '../core/services/share_service.dart';
 import '../core/utils/constants.dart';
+import '../l10n/app_localizations.dart';
 import '../widgets/scan_preview_card.dart';
 import '../widgets/tag_chip.dart';
 
@@ -49,18 +50,18 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> {
     return null;
   }
 
-  Future<void> _editTitle(ScanDocument document) async {
+  Future<void> _editTitle(ScanDocument document, AppLocalizations l10n) async {
     final TextEditingController controller = TextEditingController(text: document.title);
     final String? newTitle = await showDialog<String>(
       context: context,
       builder: (BuildContext context) => AlertDialog(
-        title: const Text('Rename document'),
+        title: Text(l10n.renameDocumentTitle),
         content: TextField(controller: controller, autofocus: true),
         actions: <Widget>[
-          TextButton(onPressed: () => Navigator.of(context).pop(), child: const Text('Cancel')),
+          TextButton(onPressed: () => Navigator.of(context).pop(), child: Text(l10n.commonCancel)),
           TextButton(
             onPressed: () => Navigator.of(context).pop(controller.text),
-            child: const Text('Save'),
+            child: Text(l10n.commonSave),
           ),
         ],
       ),
@@ -71,16 +72,16 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> {
     }
   }
 
-  Future<void> _addTag(ScanDocument document) async {
+  Future<void> _addTag(ScanDocument document, AppLocalizations l10n) async {
     final TextEditingController controller = TextEditingController();
     final String? tag = await showDialog<String>(
       context: context,
       builder: (BuildContext context) => AlertDialog(
-        title: const Text('Add tag'),
+        title: Text(l10n.addTagTitle),
         content: TextField(controller: controller, autofocus: true),
         actions: <Widget>[
-          TextButton(onPressed: () => Navigator.of(context).pop(), child: const Text('Cancel')),
-          TextButton(onPressed: () => Navigator.of(context).pop(controller.text), child: const Text('Add')),
+          TextButton(onPressed: () => Navigator.of(context).pop(), child: Text(l10n.commonCancel)),
+          TextButton(onPressed: () => Navigator.of(context).pop(controller.text), child: Text(l10n.commonAdd)),
         ],
       ),
     );
@@ -96,7 +97,7 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> {
     await _scanProvider.updateTags(document.id, updated);
   }
 
-  Future<void> _moveToFolder(ScanDocument document) async {
+  Future<void> _moveToFolder(ScanDocument document, AppLocalizations l10n) async {
     final List<Folder> folders = _folderProvider.folders.value;
     final String? chosenFolderId = await showModalBottomSheet<String>(
       context: context,
@@ -106,19 +107,19 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> {
     await _folderProvider.addDocumentToFolder(chosenFolderId, document.id);
     if (!mounted) return;
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Moved to folder.')),
+      SnackBar(content: Text(l10n.movedToFolderMessage)),
     );
   }
 
-  Future<void> _delete(ScanDocument document) async {
+  Future<void> _delete(ScanDocument document, AppLocalizations l10n) async {
     final bool? confirmed = await showDialog<bool>(
       context: context,
       builder: (BuildContext context) => AlertDialog(
-        title: const Text('Delete this scan?'),
-        content: const Text("This can't be undone."),
+        title: Text(l10n.deleteScanTitle),
+        content: Text(l10n.deleteScanMessage),
         actions: <Widget>[
-          TextButton(onPressed: () => Navigator.of(context).pop(false), child: const Text('Cancel')),
-          TextButton(onPressed: () => Navigator.of(context).pop(true), child: const Text('Delete')),
+          TextButton(onPressed: () => Navigator.of(context).pop(false), child: Text(l10n.commonCancel)),
+          TextButton(onPressed: () => Navigator.of(context).pop(true), child: Text(l10n.commonDelete)),
         ],
       ),
     );
@@ -140,6 +141,7 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final AppLocalizations l10n = AppLocalizations.of(context)!;
     final bool isDark = Theme.of(context).brightness == Brightness.dark;
     final Color bg = isDark ? AppColors.bgPrimaryDark : AppColors.bgPrimaryLight;
     final Color textPrimary = isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight;
@@ -156,8 +158,8 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> {
               child: Column(
                 children: <Widget>[
                   AppBar(backgroundColor: bg, elevation: 0),
-                  const Expanded(
-                    child: Center(child: Text('This scan is no longer available.')),
+                  Expanded(
+                    child: Center(child: Text(l10n.scanUnavailable)),
                   ),
                 ],
               ),
@@ -171,7 +173,7 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> {
                   backgroundColor: bg,
                   elevation: 0,
                   title: GestureDetector(
-                    onTap: () => _editTitle(document),
+                    onTap: () => _editTitle(document, l10n),
                     child: Text(
                       document.title,
                       style: TextStyle(color: textPrimary, fontSize: AppTypography.title2Size),
@@ -180,18 +182,18 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> {
                   actions: <Widget>[
                     IconButton(
                       icon: Icon(Icons.drive_file_move_outlined, color: textSecondary),
-                      tooltip: 'Move to folder',
-                      onPressed: () => _moveToFolder(document),
+                      tooltip: l10n.moveToFolderTooltip,
+                      onPressed: () => _moveToFolder(document, l10n),
                     ),
                     IconButton(
                       icon: Icon(Icons.file_download_outlined, color: textSecondary),
-                      tooltip: 'Export',
+                      tooltip: l10n.exportTooltip,
                       onPressed: () => context.push('/export', extra: <String>[document.id]),
                     ),
                     IconButton(
                       icon: Icon(Icons.delete_outline, color: textSecondary),
-                      tooltip: 'Delete',
-                      onPressed: () => _delete(document),
+                      tooltip: l10n.deleteTooltip,
+                      onPressed: () => _delete(document, l10n),
                     ),
                   ],
                 ),
@@ -217,7 +219,7 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> {
                           onDeleted: () => _removeTag(document, tag),
                         ),
                       ),
-                      TagChip(label: '+ Add tag', onTap: () => _addTag(document)),
+                      TagChip(label: l10n.addTagChipLabel, onTap: () => _addTag(document, l10n)),
                     ],
                   ),
                 ),
@@ -231,7 +233,7 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> {
                     child: Row(
                       children: <Widget>[
                         Text(
-                          'OCR text',
+                          l10n.ocrTextLabel,
                           style: TextStyle(color: textPrimary, fontWeight: FontWeight.w600),
                         ),
                         const Spacer(),
@@ -249,7 +251,7 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> {
                     padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md),
                     child: SingleChildScrollView(
                       child: SelectableText(
-                        document.ocrText.isEmpty ? 'No text recognized.' : document.ocrText,
+                        document.ocrText.isEmpty ? l10n.noTextRecognized : document.ocrText,
                         style: TextStyle(color: textSecondary, fontSize: AppTypography.bodySize),
                       ),
                     ),
@@ -271,6 +273,7 @@ class _FolderPickerSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final AppLocalizations l10n = AppLocalizations.of(context)!;
     final bool isDark = Theme.of(context).brightness == Brightness.dark;
     final Color bg = isDark ? AppColors.bgPrimaryDark : AppColors.bgPrimaryLight;
     final Color textPrimary = isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight;
@@ -290,7 +293,7 @@ class _FolderPickerSheet extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Text(
-              'Move to folder',
+              l10n.moveToFolderTooltip,
               style: TextStyle(
                 color: textPrimary,
                 fontSize: AppTypography.title1Size,
@@ -302,7 +305,7 @@ class _FolderPickerSheet extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: AppSpacing.md),
                 child: Text(
-                  'No folders yet. Create one from the home screen.',
+                  l10n.noFoldersYetMessage,
                   style: TextStyle(color: textPrimary),
                 ),
               )
