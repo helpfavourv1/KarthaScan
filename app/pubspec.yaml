@@ -108,6 +108,9 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  # Runs `flutter gen-l10n` automatically on `flutter pub get`, producing
+  # lib/l10n/app_localizations.dart from the ARB files per l10n.yaml.
+  generate: true
   assets:
     - assets/logo.svg
 
