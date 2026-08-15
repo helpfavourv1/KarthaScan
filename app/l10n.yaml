@@ -1,1 +1,22 @@
-
+# l10n.yaml — configuration for Flutter's built-in localization code
+# generator. Running `flutter pub get` (with pubspec.yaml's
+# flutter: generate: true set below) automatically runs `flutter
+# gen-l10n`, which reads the ARB files in this directory and produces
+# lib/l10n/app_localizations.dart — the AppLocalizations class and its
+# per-locale subclasses. That generated file is NOT hand-written and is
+# NOT one of Section 16's 75 manifest files (the manifest only lists the
+# 11 source .arb files) — it's reproducible build output, so it's
+# excluded via .gitignore rather than committed, the same treatment as
+# any other generated *.g.dart file in this project.
+#
+# synthetic-package: false places the generated file directly in this
+# app's own lib/l10n/ tree (imported as
+# package:katharscan/l10n/app_localizations.dart) rather than in a
+# separate synthetic flutter_gen package — the modern, recommended
+# approach as of recent Flutter tooling.
+arb-dir: lib/l10n
+template-arb-file: app_en.arb
+output-localization-file: app_localizations.dart
+output-class: AppLocalizations
+synthetic-package: false
+nullable-getter: false
