@@ -17,7 +17,7 @@ import '../services/doc_scanner_service.dart';
 import '../services/local_storage.dart';
 import '../services/ocr_service.dart';
 
-enum ScanFlowState { idle, scanning, recognizingText, saving, error }
+enum ScanFlowState { idle, scanning, recognizingText, saving, error, unsupported }
 
 class ScanProvider {
   ScanProvider({
@@ -67,11 +67,12 @@ class ScanProvider {
   ///
   /// Returns the new document on success, or null if either the user
   /// cancelled the scan (not an error — [scanFlowState] returns to
-  /// [ScanFlowState.idle]) or the doc scanner reported UNSUPPORTED (an
-  /// error — [scanFlowState] becomes [ScanFlowState.error] and
-  /// [lastError] carries Section 14's exact copy). On UNSUPPORTED, the
-  /// calling screen should route to the manual crop fallback (files
-  /// #74-75) per Section 14 — never a dead end.
+  /// [ScanFlowState.idle]) or the doc scanner reported UNSUPPORTED
+  /// ([scanFlowState] becomes [ScanFlowState.unsupported], distinct from
+  /// [ScanFlowState.error], specifically so the calling screen can
+  /// distinguish "route to the manual crop fallback" from "just show an
+  /// error message" — per Section 14, UNSUPPORTED must never be a dead
+  /// end).
   Future<ScanDocument?> captureNewDocument({
     String? title,
     OcrScript ocrScript = OcrScript.latin,
@@ -111,7 +112,7 @@ class ScanProvider {
       scanFlowState.value = ScanFlowState.idle;
       return document;
     } on DocScannerUnsupportedException catch (error) {
-      scanFlowState.value = ScanFlowState.error;
+      scanFlowState.value = ScanFlowState.unsupported;
       lastError.value = error.message;
       return null;
     } on DocScannerFailedException catch (error) {
