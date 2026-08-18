@@ -6,6 +6,7 @@
 // Batch export (more than one document at once) is Pro-gated per Section
 // 19 — a single document's export flow is always free regardless of
 // format; this screen checks that before anything else.
+import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
