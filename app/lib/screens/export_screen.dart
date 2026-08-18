@@ -70,7 +70,7 @@ class _ExportScreenState extends State<ExportScreen> {
     if (_started) return;
     _started = true;
 
-    final AppLocalizations l10n = AppLocalizations.of(context)!;
+    final AppLocalizations l10n = AppLocalizations.of(context);
     final bool isPro = _subscriptionProvider.isPro.value;
 
     if (widget.documentIds.length > 1 && !isPro) {
@@ -184,7 +184,7 @@ class _ExportScreenState extends State<ExportScreen> {
     Uint8List? signatureBytes,
     String? password,
   }) async {
-    final AppLocalizations l10n = AppLocalizations.of(context)!;
+    final AppLocalizations l10n = AppLocalizations.of(context);
     setState(() {
       _isRunning = true;
       _statusMessage = l10n.exportingStatus;
@@ -296,7 +296,7 @@ class _SignatureSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final AppLocalizations l10n = AppLocalizations.of(context)!;
+    final AppLocalizations l10n = AppLocalizations.of(context);
     final bool isDark = Theme.of(context).brightness == Brightness.dark;
     final Color bg = isDark ? AppColors.bgPrimaryDark : AppColors.bgPrimaryLight;
     final Color textPrimary = isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight;

@@ -13,7 +13,7 @@
 // string — a constructor default value must be a compile-time constant,
 // and AppLocalizations.of(context) needs a BuildContext that isn't
 // available at that point. The real default is resolved in build()
-// instead, via `message ?? AppLocalizations.of(context)!.emptyStateDefaultMessage`.
+// instead, via `message ?? AppLocalizations.of(context).emptyStateDefaultMessage`.
 import 'package:flutter/material.dart';
 
 import '../core/utils/constants.dart';
@@ -40,7 +40,7 @@ class EmptyState extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final AppLocalizations l10n = AppLocalizations.of(context)!;
+    final AppLocalizations l10n = AppLocalizations.of(context);
     final bool isDark = Theme.of(context).brightness == Brightness.dark;
     final Color textSecondary = isDark ? AppColors.textSecondaryDark : AppColors.textSecondaryLight;
     final Color accent = isDark ? AppColors.accentDark : AppColors.accentLight;

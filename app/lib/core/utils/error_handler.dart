@@ -17,7 +17,6 @@
 //     wired to an actual `url_launcher.launchUrl(...)` call.
 // This is exactly the kind of core/ vs. app-shell split Section 4 asks
 // the file manifest to visibly enforce.
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'constants.dart';

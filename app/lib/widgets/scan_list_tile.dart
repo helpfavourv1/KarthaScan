@@ -42,7 +42,7 @@ class ScanListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final AppLocalizations l10n = AppLocalizations.of(context)!;
+    final AppLocalizations l10n = AppLocalizations.of(context);
     final bool isDark = Theme.of(context).brightness == Brightness.dark;
     final Color bg = isDark ? AppColors.bgSecondaryDark : AppColors.bgSecondaryLight;
     final Color accent = isDark ? AppColors.accentDark : AppColors.accentLight;

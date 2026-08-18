@@ -35,7 +35,6 @@
 // iPad to avoid a crash) is accepted as an optional parameter supplied by
 // the calling widget rather than resolved here — this file has no
 // BuildContext, by design (Section 4 layering).
-import 'package:cross_file/cross_file.dart';
 import 'package:flutter/foundation.dart' show debugPrint;
 import 'package:flutter/widgets.dart' show Rect;
 import 'package:share_plus/share_plus.dart';

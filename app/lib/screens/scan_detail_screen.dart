@@ -135,7 +135,7 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> {
       await _shareService.shareFiles(filePaths: document.pagePaths);
     } on ShareFailedException {
       if (!mounted) return;
-      final AppLocalizations l10n = AppLocalizations.of(context)!;
+      final AppLocalizations l10n = AppLocalizations.of(context);
       // ShareFailedException.message is English, set in
       // core/services/share_service.dart with no BuildContext available
       // there to localize at the source — shown here as a localized
@@ -148,7 +148,7 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final AppLocalizations l10n = AppLocalizations.of(context)!;
+    final AppLocalizations l10n = AppLocalizations.of(context);
     final bool isDark = Theme.of(context).brightness == Brightness.dark;
     final Color bg = isDark ? AppColors.bgPrimaryDark : AppColors.bgPrimaryLight;
     final Color textPrimary = isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight;
@@ -280,7 +280,7 @@ class _FolderPickerSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final AppLocalizations l10n = AppLocalizations.of(context)!;
+    final AppLocalizations l10n = AppLocalizations.of(context);
     final bool isDark = Theme.of(context).brightness == Brightness.dark;
     final Color bg = isDark ? AppColors.bgPrimaryDark : AppColors.bgPrimaryLight;
     final Color textPrimary = isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight;
