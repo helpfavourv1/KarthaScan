@@ -1,8 +1,6 @@
 {
   "@@locale": "ja",
-
   "appTitle": "KatharScan",
-
   "commonCancel": "キャンセル",
   "commonDelete": "削除",
   "commonSave": "保存",
@@ -14,9 +12,7 @@
   "commonSet": "設定",
   "commonClear": "消去",
   "commonUpgrade": "アップグレード",
-
   "emptyStateDefaultMessage": "カメラをタップして最初の書類をスキャンしましょう。",
-
   "exportFormatSheetTitle": "書き出し形式",
   "exportFormatPdfLabel": "PDF",
   "exportFormatPdfDescription": "共有や印刷に最適",
@@ -28,25 +24,18 @@
   "exportFormatJpgDescription": "1ページにつき1枚の画像",
   "exportFormatPngLabel": "PNG",
   "exportFormatPngDescription": "1ページにつき1枚の画像、非可逆圧縮なし",
-
   "filterSheetTitle": "フィルター",
   "filterOriginal": "オリジナル",
   "filterGrayscale": "グレースケール",
   "filterBlackAndWhite": "白黒",
   "filterColorEnhance": "カラー補正",
   "filterShadowRemoval": "影の除去",
-
   "proBadgeLabel": "PRO",
-
   "scanListPageCount": "{count, plural, other{{count}ページ}}",
-
   "scanPreviewNoPages": "表示するページがありません。",
   "shareTooltip": "共有",
-
   "signatureCanvasHint": "ここに署名",
-
   "folderDocumentCount": "{count, plural, other{{count}件の書類}}",
-
   "selectedCount": "{count, plural, other{{count}件選択中}}",
   "batchExportTooltip": "一括書き出し",
   "deleteTooltip": "削除",
@@ -55,7 +44,6 @@
   "noSearchResults": "検索条件に一致するスキャンがありません。",
   "foldersSectionHeader": "フォルダ",
   "documentsSectionHeader": "書類",
-
   "exportBatchProTitle": "一括書き出しはPro機能です",
   "exportBatchProMessage": "複数のスキャンを一度に書き出すにはKatharScan Proが必要です。1件ずつなら引き続き無料で書き出せます。",
   "addSignatureQuestion": "署名を追加しますか？",
@@ -66,7 +54,6 @@
   "exportingStatus": "書き出し中…",
   "exportDoneStatus": "完了",
   "exportGenericError": "書き出し中に問題が発生しました。",
-
   "deleteFolderTitle": "このフォルダを削除しますか？",
   "deleteFolderMessage": "フォルダ内の書類は削除されません。",
   "deleteFolderTooltip": "フォルダを削除",
@@ -74,7 +61,6 @@
   "removeFromFolderTooltip": "フォルダから削除",
   "noDocumentsInFolder": "このフォルダにはまだ書類がありません。",
   "folderUnavailable": "このフォルダは利用できなくなりました。",
-
   "migrationTitle": "デバイス移行",
   "migrationExplainer": "これは自動同期ではありません。書き出すと暗号化されたバックアップファイルが1つ作成されるので、それをご自身で新しいデバイスに移動し、そこで読み込んでください。",
   "exportBackupButton": "暗号化バックアップを書き出す",
@@ -88,7 +74,6 @@
   "couldNotImportBackupError": "このバックアップを読み込めませんでした。パスワードを確認してもう一度お試しください。",
   "backupCorruptedError": "このバックアップファイルは破損しているようです。",
   "importedCount": "{count, plural, other{{count}件の書類を読み込みました}}",
-
   "paywallTitle": "KatharScan Pro",
   "paywallSubtitle": "基本のスキャンとOCRは永久に無料です。Proでは強力なツールが使えます。",
   "freeTierLabel": "無料",
@@ -115,7 +100,6 @@
   "alreadyProTitle": "KatharScan Proをご利用中です",
   "alreadyProMessage": "すべての強力なツールが利用可能です。KatharScanをご支援いただきありがとうございます。",
   "pricingLoadingError": "価格を読み込み中です。しばらくしてからもう一度お試しください。",
-
   "renameDocumentTitle": "書類名を変更",
   "addTagTitle": "タグを追加",
   "addTagChipLabel": "+ タグを追加",
@@ -128,7 +112,6 @@
   "ocrTextLabel": "OCRテキスト",
   "noTextRecognized": "テキストが認識されませんでした。",
   "scanUnavailable": "このスキャンは利用できなくなりました。",
-
   "settingsTitle": "設定",
   "appearanceSectionLabel": "外観",
   "themeLabel": "テーマ",
@@ -152,5 +135,11 @@
   "ocrLanguageChineseOption": "中国語",
   "ocrLanguageDevanagariOption": "デーヴァナーガリー（ヒンディー語）",
   "ocrLanguageJapaneseOption": "日本語",
-  "ocrLanguageKoreanOption": "韓国語"
+  "ocrLanguageKoreanOption": "韓国語",
+  "genericErrorMessage": "問題が発生しました。もう一度お試しください。",
+  "docScannerUnsupportedMessage": "お使いの端末は高度な書類スキャナーに対応していません。カメラアプリで写真を撮ってから、下の「読み込み」をタップして切り抜いて保存してください。",
+  "manualCropTitle": "書類を切り抜く",
+  "manualCropInstructions": "書類の端に合わせて角をドラッグしてください",
+  "manualCropApplyGrayscale": "グレースケール",
+  "manualCropSaveButton": "保存"
 }

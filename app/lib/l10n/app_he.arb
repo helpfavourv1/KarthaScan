@@ -1,8 +1,6 @@
 {
   "@@locale": "he",
-
   "appTitle": "KatharScan",
-
   "commonCancel": "ביטול",
   "commonDelete": "מחיקה",
   "commonSave": "שמירה",
@@ -14,9 +12,7 @@
   "commonSet": "הגדרה",
   "commonClear": "ניקוי",
   "commonUpgrade": "שדרוג",
-
   "emptyStateDefaultMessage": "הקישו על המצלמה כדי לסרוק את המסמך הראשון שלכם.",
-
   "exportFormatSheetTitle": "ייצוא כ־",
   "exportFormatPdfLabel": "PDF",
   "exportFormatPdfDescription": "הכי טוב לשיתוף והדפסה",
@@ -28,25 +24,18 @@
   "exportFormatJpgDescription": "תמונה אחת לכל עמוד",
   "exportFormatPngLabel": "PNG",
   "exportFormatPngDescription": "תמונה אחת לכל עמוד, ללא אובדן איכות",
-
   "filterSheetTitle": "מסננים",
   "filterOriginal": "מקורי",
   "filterGrayscale": "גווני אפור",
   "filterBlackAndWhite": "שחור־לבן",
   "filterColorEnhance": "שיפור צבע",
   "filterShadowRemoval": "הסרת צללים",
-
   "proBadgeLabel": "PRO",
-
   "scanListPageCount": "{count, plural, =1{עמוד אחד} other{{count} עמודים}}",
-
   "scanPreviewNoPages": "אין עמודים להצגה.",
   "shareTooltip": "שיתוף",
-
   "signatureCanvasHint": "חתמו כאן",
-
   "folderDocumentCount": "{count, plural, =1{מסמך אחד} other{{count} מסמכים}}",
-
   "selectedCount": "{count, plural, =1{פריט אחד נבחר} other{{count} פריטים נבחרו}}",
   "batchExportTooltip": "ייצוא מרוכז",
   "deleteTooltip": "מחיקה",
@@ -55,7 +44,6 @@
   "noSearchResults": "לא נמצאו סריקות התואמות לחיפוש שלכם.",
   "foldersSectionHeader": "תיקיות",
   "documentsSectionHeader": "מסמכים",
-
   "exportBatchProTitle": "ייצוא מרוכז הוא תכונת Pro",
   "exportBatchProMessage": "ייצוא של כמה סריקות בבת אחת דורש את KatharScan Pro. עדיין אפשר לייצא סריקה אחת בכל פעם בחינם.",
   "addSignatureQuestion": "להוסיף חתימה?",
@@ -66,7 +54,6 @@
   "exportingStatus": "מייצא…",
   "exportDoneStatus": "בוצע",
   "exportGenericError": "משהו השתבש בזמן הייצוא.",
-
   "deleteFolderTitle": "למחוק את התיקייה הזו?",
   "deleteFolderMessage": "המסמכים שבתוכה לא יימחקו.",
   "deleteFolderTooltip": "מחיקת תיקייה",
@@ -74,7 +61,6 @@
   "removeFromFolderTooltip": "הסרה מהתיקייה",
   "noDocumentsInFolder": "אין עדיין מסמכים בתיקייה הזו.",
   "folderUnavailable": "התיקייה הזו כבר לא זמינה.",
-
   "migrationTitle": "העברת מכשיר",
   "migrationExplainer": "זו לא סנכרון אוטומטי. הייצוא יוצר קובץ גיבוי מוצפן יחיד שאתם מעבירים בעצמכם למכשיר החדש, ואז מייבאים שם.",
   "exportBackupButton": "ייצוא גיבוי מוצפן",
@@ -88,7 +74,6 @@
   "couldNotImportBackupError": "לא ניתן היה לייבא את הגיבוי הזה. בדקו את הסיסמה ונסו שוב.",
   "backupCorruptedError": "נראה שקובץ הגיבוי הזה פגום.",
   "importedCount": "{count, plural, =1{מסמך אחד יובא} other{{count} מסמכים יובאו}}",
-
   "paywallTitle": "KatharScan Pro",
   "paywallSubtitle": "סריקה ו-OCR בסיסיים חינמיים לתמיד. Pro פותח כלים מתקדמים.",
   "freeTierLabel": "חינם",
@@ -115,7 +100,6 @@
   "alreadyProTitle": "כבר יש לכם KatharScan Pro",
   "alreadyProMessage": "כל הכלים המתקדמים פתוחים. תודה שאתם תומכים ב-KatharScan.",
   "pricingLoadingError": "המחירים עדיין נטענים — נסו שוב בעוד רגע.",
-
   "renameDocumentTitle": "שינוי שם מסמך",
   "addTagTitle": "הוספת תגית",
   "addTagChipLabel": "+ הוספת תגית",
@@ -128,7 +112,6 @@
   "ocrTextLabel": "טקסט OCR",
   "noTextRecognized": "לא זוהה טקסט.",
   "scanUnavailable": "הסריקה הזו כבר לא זמינה.",
-
   "settingsTitle": "הגדרות",
   "appearanceSectionLabel": "מראה",
   "themeLabel": "ערכת נושא",
@@ -152,5 +135,11 @@
   "ocrLanguageChineseOption": "סינית",
   "ocrLanguageDevanagariOption": "דוואנגרי (הינדי)",
   "ocrLanguageJapaneseOption": "יפנית",
-  "ocrLanguageKoreanOption": "קוריאנית"
+  "ocrLanguageKoreanOption": "קוריאנית",
+  "genericErrorMessage": "משהו השתבש. נסו שוב.",
+  "docScannerUnsupportedMessage": "המכשיר שלכם לא תומך בסורק המסמכים המתקדם. צלמו תמונה באמצעות אפליקציית המצלמה, ואז הקישו על ייבוא כדי לחתוך ולשמור אותה.",
+  "manualCropTitle": "חיתוך מסמך",
+  "manualCropInstructions": "גררו את הפינות כך שיתאימו לקצוות המסמך",
+  "manualCropApplyGrayscale": "גווני אפור",
+  "manualCropSaveButton": "שמירה"
 }

@@ -1,8 +1,6 @@
 {
   "@@locale": "ar",
-
   "appTitle": "KatharScan",
-
   "commonCancel": "إلغاء",
   "commonDelete": "حذف",
   "commonSave": "حفظ",
@@ -14,9 +12,7 @@
   "commonSet": "تعيين",
   "commonClear": "مسح",
   "commonUpgrade": "ترقية",
-
   "emptyStateDefaultMessage": "اضغط على الكاميرا لمسح أول مستند لك.",
-
   "exportFormatSheetTitle": "تصدير كـ",
   "exportFormatPdfLabel": "PDF",
   "exportFormatPdfDescription": "الأفضل للمشاركة والطباعة",
@@ -28,25 +24,18 @@
   "exportFormatJpgDescription": "صورة واحدة لكل صفحة",
   "exportFormatPngLabel": "PNG",
   "exportFormatPngDescription": "صورة واحدة لكل صفحة، بلا فقدان جودة",
-
   "filterSheetTitle": "المرشحات",
   "filterOriginal": "الأصلي",
   "filterGrayscale": "تدرج رمادي",
   "filterBlackAndWhite": "أبيض وأسود",
   "filterColorEnhance": "تحسين الألوان",
   "filterShadowRemoval": "إزالة الظل",
-
   "proBadgeLabel": "برو",
-
   "scanListPageCount": "{count, plural, =1{صفحة واحدة} other{{count} صفحة}}",
-
   "scanPreviewNoPages": "لا توجد صفحات لعرضها.",
   "shareTooltip": "مشاركة",
-
   "signatureCanvasHint": "وقّع هنا",
-
   "folderDocumentCount": "{count, plural, =1{مستند واحد} other{{count} مستند}}",
-
   "selectedCount": "{count, plural, =1{تم تحديد 1} other{تم تحديد {count}}}",
   "batchExportTooltip": "تصدير مجمّع",
   "deleteTooltip": "حذف",
@@ -55,7 +44,6 @@
   "noSearchResults": "لا توجد نتائج مطابقة لبحثك.",
   "foldersSectionHeader": "المجلدات",
   "documentsSectionHeader": "المستندات",
-
   "exportBatchProTitle": "التصدير المجمّع ميزة Pro",
   "exportBatchProMessage": "يتطلب تصدير عدة مستندات ممسوحة دفعة واحدة اشتراك KatharScan Pro. يمكنك دائمًا تصدير مستند واحد في كل مرة مجانًا.",
   "addSignatureQuestion": "إضافة توقيع؟",
@@ -66,7 +54,6 @@
   "exportingStatus": "جارٍ التصدير…",
   "exportDoneStatus": "تم",
   "exportGenericError": "حدث خطأ أثناء التصدير.",
-
   "deleteFolderTitle": "حذف هذا المجلد؟",
   "deleteFolderMessage": "لن تُحذف المستندات الموجودة بداخله.",
   "deleteFolderTooltip": "حذف المجلد",
@@ -74,7 +61,6 @@
   "removeFromFolderTooltip": "إزالة من المجلد",
   "noDocumentsInFolder": "لا توجد مستندات في هذا المجلد بعد.",
   "folderUnavailable": "هذا المجلد لم يعد متاحًا.",
-
   "migrationTitle": "نقل البيانات بين الأجهزة",
   "migrationExplainer": "هذه ليست مزامنة تلقائية. يُنشئ التصدير ملف نسخة احتياطية واحدًا مشفرًا تنقله بنفسك إلى جهازك الجديد، ثم تستورده هناك.",
   "exportBackupButton": "تصدير نسخة احتياطية مشفرة",
@@ -88,7 +74,6 @@
   "couldNotImportBackupError": "تعذّر استيراد هذه النسخة الاحتياطية. تحقق من كلمة المرور وحاول مرة أخرى.",
   "backupCorruptedError": "يبدو أن ملف النسخة الاحتياطية هذا تالف.",
   "importedCount": "{count, plural, =1{تم استيراد مستند واحد} other{تم استيراد {count} مستند}}",
-
   "paywallTitle": "KatharScan Pro",
   "paywallSubtitle": "المسح الضوئي والتعرف الضوئي على الحروف الأساسيان مجانيان إلى الأبد. يفتح Pro أدوات متقدمة.",
   "freeTierLabel": "مجاني",
@@ -115,7 +100,6 @@
   "alreadyProTitle": "لديك بالفعل KatharScan Pro",
   "alreadyProMessage": "جميع الأدوات المتقدمة مفتوحة. شكرًا لدعمك KatharScan.",
   "pricingLoadingError": "الأسعار ما زالت قيد التحميل — أعد المحاولة بعد قليل.",
-
   "renameDocumentTitle": "إعادة تسمية المستند",
   "addTagTitle": "إضافة وسم",
   "addTagChipLabel": "+ إضافة وسم",
@@ -128,7 +112,6 @@
   "ocrTextLabel": "نص OCR",
   "noTextRecognized": "لم يتم التعرف على أي نص.",
   "scanUnavailable": "هذا المستند الممسوح لم يعد متاحًا.",
-
   "settingsTitle": "الإعدادات",
   "appearanceSectionLabel": "المظهر",
   "themeLabel": "السمة",
@@ -152,5 +135,11 @@
   "ocrLanguageChineseOption": "الصينية",
   "ocrLanguageDevanagariOption": "الديفاناغارية (الهندية)",
   "ocrLanguageJapaneseOption": "اليابانية",
-  "ocrLanguageKoreanOption": "الكورية"
+  "ocrLanguageKoreanOption": "الكورية",
+  "genericErrorMessage": "حدث خطأ ما. يرجى المحاولة مرة أخرى.",
+  "docScannerUnsupportedMessage": "جهازك لا يدعم ماسح المستندات المتقدم. التقط صورة باستخدام تطبيق الكاميرا، ثم اضغط على استيراد أدناه لقصها وحفظها.",
+  "manualCropTitle": "قص المستند",
+  "manualCropInstructions": "اسحب الزوايا لمطابقتها مع حواف المستند",
+  "manualCropApplyGrayscale": "تدرج رمادي",
+  "manualCropSaveButton": "حفظ"
 }

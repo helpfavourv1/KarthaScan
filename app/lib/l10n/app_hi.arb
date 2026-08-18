@@ -1,8 +1,6 @@
 {
   "@@locale": "hi",
-
   "appTitle": "KatharScan",
-
   "commonCancel": "रद्द करें",
   "commonDelete": "मिटाएं",
   "commonSave": "सहेजें",
@@ -14,9 +12,7 @@
   "commonSet": "सेट करें",
   "commonClear": "मिटाएं",
   "commonUpgrade": "अपग्रेड करें",
-
   "emptyStateDefaultMessage": "अपना पहला दस्तावेज़ स्कैन करने के लिए कैमरे पर टैप करें।",
-
   "exportFormatSheetTitle": "इस रूप में निर्यात करें",
   "exportFormatPdfLabel": "PDF",
   "exportFormatPdfDescription": "साझा करने और प्रिंट करने के लिए सबसे अच्छा",
@@ -28,25 +24,18 @@
   "exportFormatJpgDescription": "प्रति पृष्ठ एक चित्र",
   "exportFormatPngLabel": "PNG",
   "exportFormatPngDescription": "प्रति पृष्ठ एक चित्र, बिना गुणवत्ता हानि के",
-
   "filterSheetTitle": "फ़िल्टर",
   "filterOriginal": "मूल",
   "filterGrayscale": "ग्रेस्केल",
   "filterBlackAndWhite": "काला और सफ़ेद",
   "filterColorEnhance": "रंग सुधार",
   "filterShadowRemoval": "छाया हटाना",
-
   "proBadgeLabel": "PRO",
-
   "scanListPageCount": "{count, plural, =1{1 पृष्ठ} other{{count} पृष्ठ}}",
-
   "scanPreviewNoPages": "दिखाने के लिए कोई पृष्ठ नहीं है।",
   "shareTooltip": "साझा करें",
-
   "signatureCanvasHint": "यहां हस्ताक्षर करें",
-
   "folderDocumentCount": "{count, plural, =1{1 दस्तावेज़} other{{count} दस्तावेज़}}",
-
   "selectedCount": "{count, plural, =1{1 चयनित} other{{count} चयनित}}",
   "batchExportTooltip": "बैच निर्यात",
   "deleteTooltip": "मिटाएं",
@@ -55,7 +44,6 @@
   "noSearchResults": "आपकी खोज से कोई स्कैन मेल नहीं खाता।",
   "foldersSectionHeader": "फ़ोल्डर",
   "documentsSectionHeader": "दस्तावेज़",
-
   "exportBatchProTitle": "बैच निर्यात एक Pro सुविधा है",
   "exportBatchProMessage": "एक साथ कई स्कैन निर्यात करने के लिए KatharScan Pro चाहिए। आप अब भी मुफ़्त में एक बार में एक स्कैन निर्यात कर सकते हैं।",
   "addSignatureQuestion": "हस्ताक्षर जोड़ें?",
@@ -66,7 +54,6 @@
   "exportingStatus": "निर्यात हो रहा है…",
   "exportDoneStatus": "पूर्ण",
   "exportGenericError": "निर्यात के दौरान कुछ गड़बड़ हुई।",
-
   "deleteFolderTitle": "इस फ़ोल्डर को मिटाएं?",
   "deleteFolderMessage": "इसके अंदर के दस्तावेज़ नहीं मिटाए जाएंगे।",
   "deleteFolderTooltip": "फ़ोल्डर मिटाएं",
@@ -74,7 +61,6 @@
   "removeFromFolderTooltip": "फ़ोल्डर से हटाएं",
   "noDocumentsInFolder": "इस फ़ोल्डर में अभी तक कोई दस्तावेज़ नहीं है।",
   "folderUnavailable": "यह फ़ोल्डर अब उपलब्ध नहीं है।",
-
   "migrationTitle": "डिवाइस माइग्रेशन",
   "migrationExplainer": "यह स्वचालित सिंक नहीं है। निर्यात एक एन्क्रिप्टेड बैकअप फ़ाइल बनाता है जिसे आप स्वयं अपने नए डिवाइस पर ले जाते हैं, फिर वहां आयात करते हैं।",
   "exportBackupButton": "एन्क्रिप्टेड बैकअप निर्यात करें",
@@ -88,7 +74,6 @@
   "couldNotImportBackupError": "यह बैकअप आयात नहीं हो सका। पासवर्ड जांचें और फिर से कोशिश करें।",
   "backupCorruptedError": "यह बैकअप फ़ाइल खराब लगती है।",
   "importedCount": "{count, plural, =1{1 दस्तावेज़ आयात किया गया} other{{count} दस्तावेज़ आयात किए गए}}",
-
   "paywallTitle": "KatharScan Pro",
   "paywallSubtitle": "मुख्य स्कैनिंग और OCR हमेशा मुफ़्त हैं। Pro शक्तिशाली उपकरण अनलॉक करता है।",
   "freeTierLabel": "मुफ़्त",
@@ -115,7 +100,6 @@
   "alreadyProTitle": "आपके पास पहले से KatharScan Pro है",
   "alreadyProMessage": "सभी शक्तिशाली उपकरण अनलॉक हैं। KatharScan का समर्थन करने के लिए धन्यवाद।",
   "pricingLoadingError": "कीमतें अभी लोड हो रही हैं — कुछ देर में फिर कोशिश करें।",
-
   "renameDocumentTitle": "दस्तावेज़ का नाम बदलें",
   "addTagTitle": "टैग जोड़ें",
   "addTagChipLabel": "+ टैग जोड़ें",
@@ -128,7 +112,6 @@
   "ocrTextLabel": "OCR टेक्स्ट",
   "noTextRecognized": "कोई टेक्स्ट पहचाना नहीं गया।",
   "scanUnavailable": "यह स्कैन अब उपलब्ध नहीं है।",
-
   "settingsTitle": "सेटिंग्स",
   "appearanceSectionLabel": "दिखावट",
   "themeLabel": "थीम",
@@ -152,5 +135,11 @@
   "ocrLanguageChineseOption": "चीनी",
   "ocrLanguageDevanagariOption": "देवनागरी (हिंदी)",
   "ocrLanguageJapaneseOption": "जापानी",
-  "ocrLanguageKoreanOption": "कोरियाई"
+  "ocrLanguageKoreanOption": "कोरियाई",
+  "genericErrorMessage": "कुछ गड़बड़ हुई। कृपया फिर से कोशिश करें।",
+  "docScannerUnsupportedMessage": "आपका डिवाइस उन्नत दस्तावेज़ स्कैनर का समर्थन नहीं करता। कैमरा ऐप से एक फ़ोटो लें, फिर उसे क्रॉप करके सहेजने के लिए नीचे आयात करें पर टैप करें।",
+  "manualCropTitle": "दस्तावेज़ क्रॉप करें",
+  "manualCropInstructions": "दस्तावेज़ के किनारों से मिलाने के लिए कोनों को खींचें",
+  "manualCropApplyGrayscale": "ग्रेस्केल",
+  "manualCropSaveButton": "सहेजें"
 }

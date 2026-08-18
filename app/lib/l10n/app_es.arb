@@ -1,8 +1,6 @@
 {
   "@@locale": "es",
-
   "appTitle": "KatharScan",
-
   "commonCancel": "Cancelar",
   "commonDelete": "Eliminar",
   "commonSave": "Guardar",
@@ -14,9 +12,7 @@
   "commonSet": "Establecer",
   "commonClear": "Borrar",
   "commonUpgrade": "Mejorar",
-
   "emptyStateDefaultMessage": "Toca la cámara para escanear tu primer documento.",
-
   "exportFormatSheetTitle": "Exportar como",
   "exportFormatPdfLabel": "PDF",
   "exportFormatPdfDescription": "Ideal para compartir e imprimir",
@@ -28,25 +24,18 @@
   "exportFormatJpgDescription": "Una imagen por página",
   "exportFormatPngLabel": "PNG",
   "exportFormatPngDescription": "Una imagen por página, sin pérdida",
-
   "filterSheetTitle": "Filtros",
   "filterOriginal": "Original",
   "filterGrayscale": "Escala de grises",
   "filterBlackAndWhite": "Blanco y negro",
   "filterColorEnhance": "Mejora de color",
   "filterShadowRemoval": "Eliminar sombras",
-
   "proBadgeLabel": "PRO",
-
   "scanListPageCount": "{count, plural, =1{1 página} other{{count} páginas}}",
-
   "scanPreviewNoPages": "No hay páginas para mostrar.",
   "shareTooltip": "Compartir",
-
   "signatureCanvasHint": "Firma aquí",
-
   "folderDocumentCount": "{count, plural, =1{1 documento} other{{count} documentos}}",
-
   "selectedCount": "{count, plural, =1{1 seleccionado} other{{count} seleccionados}}",
   "batchExportTooltip": "Exportación por lotes",
   "deleteTooltip": "Eliminar",
@@ -55,7 +44,6 @@
   "noSearchResults": "Ningún escaneo coincide con tu búsqueda.",
   "foldersSectionHeader": "Carpetas",
   "documentsSectionHeader": "Documentos",
-
   "exportBatchProTitle": "La exportación por lotes es una función Pro",
   "exportBatchProMessage": "Exportar varios escaneos a la vez requiere KatharScan Pro. Aun puedes exportar uno a la vez gratis.",
   "addSignatureQuestion": "¿Añadir una firma?",
@@ -66,7 +54,6 @@
   "exportingStatus": "Exportando…",
   "exportDoneStatus": "Listo",
   "exportGenericError": "Algo salió mal durante la exportación.",
-
   "deleteFolderTitle": "¿Eliminar esta carpeta?",
   "deleteFolderMessage": "Los documentos que contiene no se eliminarán.",
   "deleteFolderTooltip": "Eliminar carpeta",
@@ -74,7 +61,6 @@
   "removeFromFolderTooltip": "Quitar de la carpeta",
   "noDocumentsInFolder": "Aún no hay documentos en esta carpeta.",
   "folderUnavailable": "Esta carpeta ya no está disponible.",
-
   "migrationTitle": "Migración de dispositivo",
   "migrationExplainer": "Esto no es sincronización automática. Exportar crea un único archivo de copia de seguridad cifrado que tú mismo mueves a tu nuevo dispositivo y luego importas allí.",
   "exportBackupButton": "Exportar copia de seguridad cifrada",
@@ -88,7 +74,6 @@
   "couldNotImportBackupError": "No se pudo importar esta copia. Comprueba la contraseña e inténtalo de nuevo.",
   "backupCorruptedError": "Este archivo de copia de seguridad parece dañado.",
   "importedCount": "{count, plural, =1{1 documento importado} other{{count} documentos importados}}",
-
   "paywallTitle": "KatharScan Pro",
   "paywallSubtitle": "El escaneo y el OCR principales son gratis para siempre. Pro desbloquea herramientas avanzadas.",
   "freeTierLabel": "Gratis",
@@ -115,7 +100,6 @@
   "alreadyProTitle": "Ya tienes KatharScan Pro",
   "alreadyProMessage": "Todas las herramientas avanzadas están desbloqueadas. Gracias por apoyar a KatharScan.",
   "pricingLoadingError": "Los precios aún se están cargando; inténtalo de nuevo en un momento.",
-
   "renameDocumentTitle": "Cambiar nombre del documento",
   "addTagTitle": "Añadir etiqueta",
   "addTagChipLabel": "+ Añadir etiqueta",
@@ -128,7 +112,6 @@
   "ocrTextLabel": "Texto OCR",
   "noTextRecognized": "No se reconoció texto.",
   "scanUnavailable": "Este escaneo ya no está disponible.",
-
   "settingsTitle": "Ajustes",
   "appearanceSectionLabel": "Apariencia",
   "themeLabel": "Tema",
@@ -152,5 +135,11 @@
   "ocrLanguageChineseOption": "Chino",
   "ocrLanguageDevanagariOption": "Devanagari (hindi)",
   "ocrLanguageJapaneseOption": "Japonés",
-  "ocrLanguageKoreanOption": "Coreano"
+  "ocrLanguageKoreanOption": "Coreano",
+  "genericErrorMessage": "Algo salió mal. Inténtalo de nuevo.",
+  "docScannerUnsupportedMessage": "Tu dispositivo no admite el escáner de documentos avanzado. Toma una foto con la app Cámara y luego toca Importar para recortarla y guardarla.",
+  "manualCropTitle": "Recortar documento",
+  "manualCropInstructions": "Arrastra las esquinas para ajustarlas a los bordes del documento",
+  "manualCropApplyGrayscale": "Escala de grises",
+  "manualCropSaveButton": "Guardar"
 }

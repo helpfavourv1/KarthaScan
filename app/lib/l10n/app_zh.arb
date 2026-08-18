@@ -1,8 +1,6 @@
 {
   "@@locale": "zh",
-
   "appTitle": "KatharScan",
-
   "commonCancel": "取消",
   "commonDelete": "删除",
   "commonSave": "保存",
@@ -14,9 +12,7 @@
   "commonSet": "设置",
   "commonClear": "清除",
   "commonUpgrade": "升级",
-
   "emptyStateDefaultMessage": "点击相机图标扫描你的第一份文档。",
-
   "exportFormatSheetTitle": "导出为",
   "exportFormatPdfLabel": "PDF",
   "exportFormatPdfDescription": "最适合分享和打印",
@@ -28,25 +24,18 @@
   "exportFormatJpgDescription": "每页一张图片",
   "exportFormatPngLabel": "PNG",
   "exportFormatPngDescription": "每页一张图片，无损画质",
-
   "filterSheetTitle": "滤镜",
   "filterOriginal": "原图",
   "filterGrayscale": "灰度",
   "filterBlackAndWhite": "黑白",
   "filterColorEnhance": "色彩增强",
   "filterShadowRemoval": "去除阴影",
-
   "proBadgeLabel": "PRO",
-
   "scanListPageCount": "{count, plural, other{{count} 页}}",
-
   "scanPreviewNoPages": "没有可显示的页面。",
   "shareTooltip": "分享",
-
   "signatureCanvasHint": "请在此签名",
-
   "folderDocumentCount": "{count, plural, other{{count} 份文档}}",
-
   "selectedCount": "{count, plural, other{已选择 {count} 项}}",
   "batchExportTooltip": "批量导出",
   "deleteTooltip": "删除",
@@ -55,7 +44,6 @@
   "noSearchResults": "没有与搜索匹配的扫描件。",
   "foldersSectionHeader": "文件夹",
   "documentsSectionHeader": "文档",
-
   "exportBatchProTitle": "批量导出是 Pro 功能",
   "exportBatchProMessage": "一次导出多个扫描件需要 KatharScan Pro。你仍然可以免费逐个导出。",
   "addSignatureQuestion": "要添加签名吗？",
@@ -66,7 +54,6 @@
   "exportingStatus": "正在导出…",
   "exportDoneStatus": "已完成",
   "exportGenericError": "导出过程中出了点问题。",
-
   "deleteFolderTitle": "要删除此文件夹吗？",
   "deleteFolderMessage": "文件夹内的文档不会被删除。",
   "deleteFolderTooltip": "删除文件夹",
@@ -74,7 +61,6 @@
   "removeFromFolderTooltip": "从文件夹中移除",
   "noDocumentsInFolder": "此文件夹中还没有文档。",
   "folderUnavailable": "此文件夹已不可用。",
-
   "migrationTitle": "设备迁移",
   "migrationExplainer": "这不是自动同步。导出会创建一个加密备份文件，你需要自己将它转移到新设备，然后在那里导入。",
   "exportBackupButton": "导出加密备份",
@@ -88,7 +74,6 @@
   "couldNotImportBackupError": "无法导入此备份。请检查密码后重试。",
   "backupCorruptedError": "此备份文件似乎已损坏。",
   "importedCount": "{count, plural, other{已导入 {count} 份文档}}",
-
   "paywallTitle": "KatharScan Pro",
   "paywallSubtitle": "核心扫描和 OCR 永久免费。Pro 解锁强大工具。",
   "freeTierLabel": "免费版",
@@ -115,7 +100,6 @@
   "alreadyProTitle": "你已开通 KatharScan Pro",
   "alreadyProMessage": "所有强大工具均已解锁。感谢你对 KatharScan 的支持。",
   "pricingLoadingError": "价格信息加载中，请稍后重试。",
-
   "renameDocumentTitle": "重命名文档",
   "addTagTitle": "添加标签",
   "addTagChipLabel": "+ 添加标签",
@@ -128,7 +112,6 @@
   "ocrTextLabel": "OCR 文本",
   "noTextRecognized": "未识别到文本。",
   "scanUnavailable": "此扫描件已不可用。",
-
   "settingsTitle": "设置",
   "appearanceSectionLabel": "外观",
   "themeLabel": "主题",
@@ -152,5 +135,11 @@
   "ocrLanguageChineseOption": "中文",
   "ocrLanguageDevanagariOption": "天城文（印地语）",
   "ocrLanguageJapaneseOption": "日文",
-  "ocrLanguageKoreanOption": "韩文"
+  "ocrLanguageKoreanOption": "韩文",
+  "genericErrorMessage": "出了点问题，请重试。",
+  "docScannerUnsupportedMessage": "你的设备不支持高级文档扫描仪。请使用相机应用拍照，然后点击下方的“导入”进行裁剪并保存。",
+  "manualCropTitle": "裁剪文档",
+  "manualCropInstructions": "拖动四角以对齐文档边缘",
+  "manualCropApplyGrayscale": "灰度",
+  "manualCropSaveButton": "保存"
 }

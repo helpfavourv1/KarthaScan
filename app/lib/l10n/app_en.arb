@@ -1,9 +1,9 @@
 {
   "@@locale": "en",
-
   "appTitle": "KatharScan",
-  "@appTitle": {"description": "The app's brand name, shown on the home screen app bar. Kept identical across all locales — brand names aren't translated."},
-
+  "@appTitle": {
+    "description": "The app's brand name, shown on the home screen app bar. Kept identical across all locales — brand names aren't translated."
+  },
   "commonCancel": "Cancel",
   "commonDelete": "Delete",
   "commonSave": "Save",
@@ -15,10 +15,10 @@
   "commonSet": "Set",
   "commonClear": "Clear",
   "commonUpgrade": "Upgrade",
-
   "emptyStateDefaultMessage": "Tap the camera to scan your first document.",
-  "@emptyStateDefaultMessage": {"description": "Shown on the home screen when the user has no scans yet (Section 16 file #29's exact required copy)."},
-
+  "@emptyStateDefaultMessage": {
+    "description": "Shown on the home screen when the user has no scans yet (Section 16 file #29's exact required copy)."
+  },
   "exportFormatSheetTitle": "Export as",
   "exportFormatPdfLabel": "PDF",
   "exportFormatPdfDescription": "Best for sharing and printing",
@@ -30,38 +30,45 @@
   "exportFormatJpgDescription": "One image per page",
   "exportFormatPngLabel": "PNG",
   "exportFormatPngDescription": "One image per page, lossless",
-
   "filterSheetTitle": "Filters",
   "filterOriginal": "Original",
   "filterGrayscale": "Grayscale",
   "filterBlackAndWhite": "B&W",
   "filterColorEnhance": "Color enhance",
   "filterShadowRemoval": "Shadow removal",
-
   "proBadgeLabel": "PRO",
-  "@proBadgeLabel": {"description": "Short badge label on Pro-gated UI elements. Typically kept short/uppercase across locales, but still routed through l10n for consistency."},
-
+  "@proBadgeLabel": {
+    "description": "Short badge label on Pro-gated UI elements. Typically kept short/uppercase across locales, but still routed through l10n for consistency."
+  },
   "scanListPageCount": "{count, plural, =1{1 page} other{{count} pages}}",
   "@scanListPageCount": {
     "description": "Page count on a scan's list tile.",
-    "placeholders": {"count": {"type": "int"}}
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
   },
-
   "scanPreviewNoPages": "No pages to show.",
   "shareTooltip": "Share",
-
   "signatureCanvasHint": "Sign here",
-
   "folderDocumentCount": "{count, plural, =1{1 document} other{{count} documents}}",
   "@folderDocumentCount": {
     "description": "Document count on a folder's list tile.",
-    "placeholders": {"count": {"type": "int"}}
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
   },
-
   "selectedCount": "{count, plural, =1{1 selected} other{{count} selected}}",
   "@selectedCount": {
     "description": "Selection-mode app bar title on home_screen.dart / folder_screen.dart.",
-    "placeholders": {"count": {"type": "int"}}
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
   },
   "batchExportTooltip": "Batch export",
   "deleteTooltip": "Delete",
@@ -70,7 +77,6 @@
   "noSearchResults": "No scans match your search.",
   "foldersSectionHeader": "Folders",
   "documentsSectionHeader": "Documents",
-
   "exportBatchProTitle": "Batch export is a Pro feature",
   "exportBatchProMessage": "Exporting several scans at once needs KatharScan Pro. You can still export one at a time for free.",
   "addSignatureQuestion": "Add a signature?",
@@ -81,7 +87,6 @@
   "exportingStatus": "Exporting…",
   "exportDoneStatus": "Done",
   "exportGenericError": "Something went wrong while exporting.",
-
   "deleteFolderTitle": "Delete this folder?",
   "deleteFolderMessage": "Documents inside will not be deleted.",
   "deleteFolderTooltip": "Delete folder",
@@ -89,7 +94,6 @@
   "removeFromFolderTooltip": "Remove from folder",
   "noDocumentsInFolder": "No documents in this folder yet.",
   "folderUnavailable": "This folder is no longer available.",
-
   "migrationTitle": "Device Migration",
   "migrationExplainer": "This isn't automatic sync. Export creates a single encrypted backup file you move to your new device yourself, then import there.",
   "exportBackupButton": "Export encrypted backup",
@@ -105,9 +109,12 @@
   "importedCount": "{count, plural, =1{1 document imported} other{{count} documents imported}}",
   "@importedCount": {
     "description": "Result message after a Device Migration import.",
-    "placeholders": {"count": {"type": "int"}}
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
   },
-
   "paywallTitle": "KatharScan Pro",
   "paywallSubtitle": "Core scanning and OCR are free forever. Pro unlocks power tools.",
   "freeTierLabel": "Free",
@@ -125,7 +132,9 @@
   "proFeatureBatch": "Batch export",
   "proFeatureMigration": "Device Migration",
   "proFeatureOcrLanguages": "Extra OCR languages (CJK, Hindi)",
-  "@proFeatureOcrLanguages": {"description": "Corrected from the blueprint's original 'CJK, Arabic, Hebrew, Hindi' — ML Kit Text Recognition doesn't support Arabic/Hebrew script at all (see ocr_service.dart)."},
+  "@proFeatureOcrLanguages": {
+    "description": "Corrected from the blueprint's original 'CJK, Arabic, Hebrew, Hindi' — ML Kit Text Recognition doesn't support Arabic/Hebrew script at all (see ocr_service.dart)."
+  },
   "monthlyLabel": "Monthly",
   "yearlyLabel": "Yearly",
   "yearlySaveBadge": "Save ~15%",
@@ -135,7 +144,6 @@
   "alreadyProTitle": "You're on KatharScan Pro",
   "alreadyProMessage": "All power tools are unlocked. Thank you for supporting KatharScan.",
   "pricingLoadingError": "Pricing is still loading — try again in a moment.",
-
   "renameDocumentTitle": "Rename document",
   "addTagTitle": "Add tag",
   "addTagChipLabel": "+ Add tag",
@@ -148,7 +156,6 @@
   "ocrTextLabel": "OCR text",
   "noTextRecognized": "No text recognized.",
   "scanUnavailable": "This scan is no longer available.",
-
   "settingsTitle": "Settings",
   "appearanceSectionLabel": "Appearance",
   "themeLabel": "Theme",
@@ -172,5 +179,11 @@
   "ocrLanguageChineseOption": "Chinese",
   "ocrLanguageDevanagariOption": "Devanagari (Hindi)",
   "ocrLanguageJapaneseOption": "Japanese",
-  "ocrLanguageKoreanOption": "Korean"
+  "ocrLanguageKoreanOption": "Korean",
+  "genericErrorMessage": "Something went wrong. Please try again.",
+  "docScannerUnsupportedMessage": "Your device doesn't support the advanced document scanner. Take a photo with your Camera app, then tap Import below to crop and save it.",
+  "manualCropTitle": "Crop document",
+  "manualCropInstructions": "Drag the corners to match the document's edges",
+  "manualCropApplyGrayscale": "Grayscale",
+  "manualCropSaveButton": "Save"
 }
