@@ -34,7 +34,9 @@ jobs:
 
       - name: Get Flutter packages
         working-directory: app
-        run: flutter pub get
+        run: |
+          flutter pub get
+          flutter gen-l10n
 
       - name: Static analysis
         working-directory: app
