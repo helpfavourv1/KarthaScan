@@ -15,6 +15,7 @@ import 'package:go_router/go_router.dart';
 import 'screens/export_screen.dart';
 import 'screens/folder_screen.dart';
 import 'screens/home_screen.dart';
+import 'screens/manual_crop_screen.dart';
 import 'screens/migration_screen.dart';
 import 'screens/paywall_screen.dart';
 import 'screens/scan_detail_screen.dart';
@@ -60,6 +61,10 @@ GoRouter buildRouter() {
       GoRoute(
         path: '/migration',
         builder: (BuildContext context, GoRouterState state) => const MigrationScreen(),
+      ),
+      GoRoute(
+        path: '/manual-crop',
+        builder: (BuildContext context, GoRouterState state) => const ManualCropScreen(),
       ),
       GoRoute(
         path: '/paywall',
