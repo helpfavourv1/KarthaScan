@@ -1,14 +1,11 @@
 // lib/core/services/export_service.dart
 //
 // PDF generation via `pdf`. DOCX raw text via hand-rolled minimal OOXML on
-// `archive` (see pubspec.yaml's note — no package literally named `docx`
-// exists on pub.dev). JPG/PNG/TXT export (Section 16 file #15). Also
-// backs export_screen.dart's full "format select → filter apply (Pro) →
-// signature (Pro) → password (Pro) → share" flow (Section 16 file #38) —
-// filter application, signature compositing, and PDF password protection
-// all live here rather than in export_screen.dart, since export_screen.dart
-// is UI orchestration and this is where the actual byte-level processing
-// belongs.
+// `archive`. JPG/PNG/TXT export. Also backs export_screen.dart's full
+// "format select → filter apply (Pro) → signature (Pro) → share" flow —
+// filter application and signature compositing live here rather than in
+// export_screen.dart, since export_screen.dart is UI orchestration and this
+// is where the actual byte-level processing belongs.
 //
 // LAYERING: this is the one file in core/services/ that deliberately
 // imports `dart:io` (for File — reading existing page images, writing
@@ -28,7 +25,6 @@ import 'package:image/image.dart' as img;
 import 'package:path/path.dart' as p;
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
-import 'package:pdf_crypto/pdf_crypto.dart';
 
 import '../models/export_job.dart';
 import '../models/scan_document.dart';
@@ -136,13 +132,7 @@ class ExportService {
   }
 
   // ---------------------------------------------------------------------
-  // Filters (Section 16 file #31) — implemented using only the `image`
-  // package's confirmed-stable named-parameter API (grayscale(),
-  // adjustColor()), not raw per-pixel iteration whose exact accessor
-  // names weren't independently verified against the pinned package
-  // version. "Black & white" and "shadow removal" are therefore honest
-  // approximations, not a true binary threshold or true lighting-flatfield
-  // correction — documented per-case below rather than overclaimed.
+  // Filters (Section 16 file #31)
   // ---------------------------------------------------------------------
 
   img.Image _applyFilter(img.Image source, FilterType filter) {
@@ -152,22 +142,11 @@ class ExportService {
       case FilterType.grayscale:
         return img.grayscale(source);
       case FilterType.blackAndWhite:
-        // Approximates a binary threshold via grayscale + aggressive
-        // contrast rather than a true per-pixel threshold — good enough
-        // for "does this read like a photocopy," not a scanner-grade
-        // adaptive threshold.
         final img.Image gray = img.grayscale(source);
         return img.adjustColor(gray, contrast: 3.0, brightness: 1.05);
       case FilterType.colorEnhance:
         return img.adjustColor(source, contrast: 1.15, saturation: 1.2, brightness: 1.05);
       case FilterType.shadowRemoval:
-        // True shadow removal needs a blurred lighting-estimate divided
-        // out of the original (flat-fielding), which needs a blur
-        // function this file doesn't call because its exact signature
-        // wasn't independently verified. This is a brightness/contrast
-        // approximation that helps with mild, even shadowing only — not
-        // a substitute for real flat-fielding. Worth revisiting with a
-        // verified blur API if users report it's not enough.
         return img.adjustColor(source, contrast: 1.2, brightness: 1.15, gamma: 0.9);
     }
   }
@@ -182,9 +161,6 @@ class ExportService {
     img.Image signature,
     SignaturePlacement placement,
   ) {
-    // Signature width scales with the page — 28% of page width, aspect
-    // ratio preserved — rather than a fixed pixel size, so it looks
-    // reasonable across wildly different scan resolutions.
     final int targetWidth = (page.width * 0.28).round();
     final int targetHeight = (signature.height * targetWidth / signature.width).round();
     final img.Image resizedSignature = img.copyResize(
@@ -218,14 +194,6 @@ class ExportService {
     return img.compositeImage(page, resizedSignature, dstX: dstX, dstY: dstY);
   }
 
-  /// Decodes [pagePath], applies [filter] and an optional composited
-  /// signature (only when [pageIndex] matches [signaturePageIndex] or
-  /// [signaturePageIndex] is null and this is the last page), and
-  /// re-encodes as PNG bytes for embedding or writing out. Never throws —
-  /// falls back to the original unfiltered/unsigned bytes on any
-  /// processing failure, per Section 14/15's "never crash" philosophy
-  /// extended to this new processing path: a failed filter shouldn't
-  /// block the whole export.
   Future<Uint8List> _processPage(
     String pagePath, {
     required FilterType filter,
@@ -304,9 +272,6 @@ class ExportService {
       );
     }
 
-    // A document with zero pages shouldn't happen in practice (pageCount
-    // is always >= 1 for a saved scan), but guard it anyway rather than
-    // producing a zero-page PDF, which some viewers refuse to open.
     if (document.pagePaths.isEmpty) {
       pdfDoc.addPage(
         pw.Page(
@@ -318,30 +283,10 @@ class ExportService {
       );
     }
 
-    // PDF password protection — Section 19 Pro feature. Uses pdf_crypto,
-    // a companion package from the same author/ecosystem as `pdf` itself
-    // (see pubspec.yaml's note). This specific API was verified against a
-    // single documentation source, not the primary pub.dev page directly
-    // — worth a real-device/real-build smoke test before shipping, same
-    // caveat as flutter_doc_scanner's return shape in doc_scanner_service.dart.
     if (password != null && password.trim().isNotEmpty) {
-      try {
-        pdfDoc.document.encryption = PdfEncryptionAES(
-          pdfDoc.document,
-          user: password,
-          owner: password,
-          accessFlags: const <PdfAccessFlags>{
-            PdfAccessFlags.Copy,
-            PdfAccessFlags.Print,
-          },
-          level: PdfAESLevel.high,
-        );
-      } catch (error, stackTrace) {
-        _logError('_exportPdf(password)', error, stackTrace);
-        throw const ExportFailedException(
-          'Could not apply password protection to this PDF.',
-        );
-      }
+      throw const ExportFailedException(
+        'PDF password protection is disabled in this open-source build.',
+      );
     }
 
     final Uint8List pdfBytes = await pdfDoc.save();
@@ -463,10 +408,7 @@ class ExportService {
   }
 
   // ---------------------------------------------------------------------
-  // JPG / PNG — decode then re-encode, so this is correct regardless of
-  // what format the scanner actually saved the source page in (a raw byte
-  // copy would only be correct when source and target formats already
-  // match, which this doesn't assume).
+  // JPG / PNG
   // ---------------------------------------------------------------------
 
   Future<List<String>> _exportImages(
