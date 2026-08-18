@@ -1,1 +1,44 @@
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+  <!--
+    assets/logo.svg (Section 16 file #73). App logo for launcher icon and
+    splash screen. Colors are Section 17's exact tokens: accent #6366F1,
+    white document body. Vector source — see the rasterization note in
+    flutter_native_splash.yaml and flutter_launcher_icons.yaml before
+    running either generator.
+  -->
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#818CF8"/>
+      <stop offset="100%" stop-color="#6366F1"/>
+    </linearGradient>
+  </defs>
 
+  <!-- Rounded-square background, Section 17's cardRadius proportions scaled up -->
+  <rect x="0" y="0" width="1024" height="1024" rx="224" fill="url(#bg)"/>
+
+  <!-- Document shape -->
+  <g transform="translate(292, 232)">
+    <path
+      d="M 0 24
+         C 0 10.745 10.745 0 24 0
+         L 300 0
+         L 440 140
+         L 440 536
+         C 440 549.255 429.255 560 416 560
+         L 24 560
+         C 10.745 560 0 549.255 0 536
+         Z"
+      fill="#FFFFFF"
+    />
+    <!-- Folded corner -->
+    <path d="M 300 0 L 440 140 L 340 140 C 318.909 140 300 121.091 300 100 Z" fill="#E5E5EA"/>
+
+    <!-- Scan lines (representing recognized text) -->
+    <rect x="64" y="220" width="312" height="28" rx="14" fill="#C7C9F5"/>
+    <rect x="64" y="280" width="312" height="28" rx="14" fill="#C7C9F5"/>
+    <rect x="64" y="340" width="220" height="28" rx="14" fill="#C7C9F5"/>
+
+    <!-- Scan accent line, sweeping across, indicating active OCR -->
+    <rect x="0" y="420" width="440" height="10" fill="#6366F1"/>
+  </g>
+</svg>
