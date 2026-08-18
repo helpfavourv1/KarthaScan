@@ -37,7 +37,7 @@ if (flutterVersionName == null) {
 
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
+apply plugin: "dev.flutter.flutter-gradle-plugin"
 
 // key.properties is gitignored (file #3) and never committed — it must
 // point at a real upload keystore before a release build can actually be
