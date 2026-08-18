@@ -1,1 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    android/app/src/main/AndroidManifest.xml (Section 16 file #59).
 
+    Permission set is exactly Section 8's minimum-viable list — every
+    permission traces to a confirmed feature. Nothing else is present:
+    no READ_SMS, READ_CALL_LOG, READ_CONTACTS, RECORD_AUDIO, BIOMETRIC,
+    POST_NOTIFICATIONS, location, and — called out explicitly in Section 8
+    — no READ_MEDIA_VIDEO, since this app never touches video.
+-->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Required for IAP validation -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- Required for document scanning -->
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <!-- Required for importing photos from gallery (Android 13+) -->
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+
+    <!-- Legacy gallery access (Android 12 and below) -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
+
+    <!-- Legacy export to external storage (Android 9 and below) -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="28" />
+
+    <!-- Camera is used, but not required for install — gallery import via
+         manual_crop_screen.dart (file #75) works without one. -->
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+
+    <application
+        android:label="KatharScan"
+        android:name="${applicationName}"
+        android:icon="@mipmap/ic_launcher">
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:launchMode="singleTop"
+            android:theme="@style/LaunchTheme"
+            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+            android:hardwareAccelerated="true"
+            android:windowSoftInputMode="adjustResize">
+            <meta-data
+                android:name="io.flutter.embedding.android.NormalTheme"
+                android:resource="@style/NormalTheme" />
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <meta-data
+            android:name="flutterEmbedding"
+            android:value="2" />
+    </application>
+
+    <!-- Required to query activities that can process text, per Flutter's
+         standard text-processing intent queries (share sheet, etc.) -->
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.PROCESS_TEXT"/>
+            <data android:mimeType="text/plain"/>
+        </intent>
+    </queries>
+</manifest>
