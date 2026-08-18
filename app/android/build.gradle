@@ -21,12 +21,6 @@ subprojects {
         }
         project.android.compileSdkVersion 35
     }
-    plugins.withId("com.android.application") {
-        if (!project.android.hasProperty("flutter")) {
-            project.android.ext.flutter = [compileSdkVersion: 35]
-        }
-        project.android.compileSdkVersion 35
-    }
 }
 
 tasks.register("clean", Delete) {
