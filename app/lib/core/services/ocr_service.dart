@@ -130,7 +130,7 @@ class OcrService {
       case OcrScript.chinese:
         return TextRecognitionScript.chinese;
       case OcrScript.devanagari:
-        return TextRecognitionScript.devanagari;
+        return TextRecognitionScript.latin;
       case OcrScript.japanese:
         return TextRecognitionScript.japanese;
       case OcrScript.korean:
