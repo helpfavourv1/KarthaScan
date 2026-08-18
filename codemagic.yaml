@@ -1,1 +1,65 @@
-
+# codemagic.yaml — iOS IPA, TestFlight, manual trigger (Section 16 file
+# #56).
+#
+# MANUAL ONLY: no `triggering:` block is defined below. Omitting it is
+# Codemagic's own default for manual-only execution — Section 5's
+# MANDATORY manual-trigger rule applies here exactly as it does to the
+# Android workflow (build_and_deploy.yml), for the same free-tier-minutes
+# rationale.
+#
+# SIGNING NOTE (verify before first real run): automatic iOS code signing
+# on Codemagic is normally driven by a Developer Portal integration (an
+# App Store Connect API key connected in the Codemagic UI under Team
+# settings), not by a literal Team ID variable in this file — Codemagic
+# derives the team from that integration. The `vars.TEAM_ID` entry below
+# is included for documentation/consistency with ios/ExportOptions.plist
+# (file #57), which DOES need the literal value, but confirm against
+# Codemagic's current docs/UI whether `ios_signing:` needs anything beyond
+# what's shown here once the Developer Portal integration is actually
+# connected — this was verified against several Codemagic doc pages, not
+# a single authoritative current schema reference.
+workflows:
+  ios-workflow:
+    name: "KatharScan iOS Build"
+    instance_type: mac_mini_m2
+    max_build_duration: 120
+    environment:
+      flutter: "3.24.0"   # PINNED — do not use 'stable'. Must match Section 6's Android pin exactly.
+      xcode: latest
+      cocoapods: default
+      vars:
+        BUNDLE_ID: "com.zdmgold.katharscan"
+        TEAM_ID: "[YOUR_TEAM_ID]"
+      groups:
+        # Configure this group in the Codemagic UI (Team/Application
+        # variables) with APP_STORE_CONNECT_ISSUER_ID,
+        # APP_STORE_CONNECT_KEY_IDENTIFIER, APP_STORE_CONNECT_PRIVATE_KEY —
+        # see Section 1a for where those three values come from. Never
+        # commit them directly into this file.
+        - app_store_credentials
+    ios_signing:
+      distribution_type: app_store
+      bundle_identifier: com.zdmgold.katharscan
+    scripts:
+      - name: Get Flutter packages
+        script: |
+          cd app
+          flutter pub get
+      - name: Install CocoaPods
+        script: |
+          cd app/ios
+          pod install --repo-update
+      - name: Build IPA
+        script: |
+          cd app
+          flutter build ipa --release \
+            --export-options-plist=ios/ExportOptions.plist
+    artifacts:
+      - app/build/ios/ipa/*.ipa
+    publishing:
+      app_store_connect:
+        api_key: $APP_STORE_CONNECT_KEY_IDENTIFIER
+        api_issuer: $APP_STORE_CONNECT_ISSUER_ID
+        api_private_key: $APP_STORE_CONNECT_PRIVATE_KEY
+        submit_to_testflight: true
+        submit_to_app_store: false
