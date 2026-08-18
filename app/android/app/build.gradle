@@ -1,1 +1,104 @@
+// android/app/build.gradle (Section 16 file #58).
+//
+// Only the app-level build.gradle is a manifest deliverable — the
+// project-level android/build.gradle and settings.gradle are standard
+// `flutter create` scaffolding with nothing blueprint-specific in them,
+// so they aren't separately generated here; they're expected to exist as
+// ordinary Flutter project boilerplate alongside this file.
+//
+// OBFUSCATION is two layers, both present: Flutter's own
+// --obfuscate --split-debug-info flags (passed in build_and_deploy.yml /
+// codemagic.yaml) obfuscate the compiled Dart code; minifyEnabled +
+// shrinkResources below obfuscate/shrink the Android embedding layer
+// (Java/Kotlin) via R8. Section 16 file #58's "obfuscation" requirement
+// covers this Gradle-level half.
+def localProperties = new Properties()
+def localPropertiesFile = rootProject.file('local.properties')
+if (localPropertiesFile.exists()) {
+    localPropertiesFile.withReader('UTF-8') { reader ->
+        localProperties.load(reader)
+    }
+}
 
+def flutterRoot = localProperties.getProperty('flutter.sdk')
+if (flutterRoot == null) {
+    throw new GradleException("Flutter SDK not found. Define location with flutter.sdk in the local.properties file.")
+}
+
+def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
+if (flutterVersionCode == null) {
+    flutterVersionCode = '1'
+}
+
+def flutterVersionName = localProperties.getProperty('flutter.versionName')
+if (flutterVersionName == null) {
+    flutterVersionName = '1.0'
+}
+
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
+
+// key.properties is gitignored (file #3) and never committed — it must
+// point at a real upload keystore before a release build can actually be
+// signed. CI (file #55) is expected to materialize it from a secret.
+def keystoreProperties = new Properties()
+def keystorePropertiesFile = rootProject.file('key.properties')
+if (keystorePropertiesFile.exists()) {
+    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+}
+
+android {
+    namespace "com.zdmgold.katharscan"
+    compileSdkVersion 35
+    ndkVersion flutter.ndkVersion
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
+
+    defaultConfig {
+        applicationId "com.zdmgold.katharscan"
+        // MANDATORY — never raise without renegotiating against
+        // Section 1's "Android 5.0+ (API 21)" target platform commitment.
+        minSdkVersion 21
+        targetSdkVersion 35
+        versionCode flutterVersionCode.toInteger()
+        versionName flutterVersionName
+    }
+
+    signingConfigs {
+        release {
+            if (keystorePropertiesFile.exists()) {
+                keyAlias keystoreProperties['keyAlias']
+                keyPassword keystoreProperties['keyPassword']
+                storeFile keystoreProperties['storeFile'] ? file(keystoreProperties['storeFile']) : null
+                storePassword keystoreProperties['storePassword']
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+flutter {
+    source '../..'
+}
+
+dependencies {}
