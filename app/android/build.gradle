@@ -13,6 +13,22 @@ subprojects {
     project.evaluationDependsOn(":app")
 }
 
+# Subproject hook for plugin compatibility with Flutter 3.24
+subprojects {
+    plugins.withId("com.android.library") {
+        if (!project.android.hasProperty("flutter")) {
+            project.android.ext.flutter = [compileSdkVersion: 35]
+        }
+        project.android.compileSdkVersion 35
+    }
+    plugins.withId("com.android.application") {
+        if (!project.android.hasProperty("flutter")) {
+            project.android.ext.flutter = [compileSdkVersion: 35]
+        }
+        project.android.compileSdkVersion 35
+    }
+}
+
 tasks.register("clean", Delete) {
     delete rootProject.buildDir
 }
