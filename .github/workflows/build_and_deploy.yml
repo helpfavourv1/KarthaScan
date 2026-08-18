@@ -1,1 +1,68 @@
+name: KatharScan Android Build
 
+# MANUAL ONLY — Section 5's MANDATORY rule. Never add a push:/pull_request:
+# trigger here. Rationale (Section 5): auto-triggering on every push has
+# already caused documented free-tier exhaustion (1,801 minutes burned
+# from a workflow that fired on every commit). A solo developer iterating
+# across many chat messages will push dozens of times before a build is
+# actually ready.
+on:
+  workflow_dispatch:
+
+jobs:
+  build-android:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Section 16 file #55's required CI step, verbatim. Fails the build
+      # if any generated file still contains a stub — see Section 21's
+      # "No TODO, FIXME, or throw UnimplementedError() in output".
+      - name: Fail on stub code
+        working-directory: app
+        run: grep -r "throw UnimplementedError" lib/ && exit 1 || exit 0
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - uses: subosito/flutter-action@v2
+        with:
+          # PINNED — matches Section 9's iOS pin exactly. Never 'stable'.
+          flutter-version: '3.24.0'
+
+      - name: Get Flutter packages
+        working-directory: app
+        run: flutter pub get
+
+      - name: Static analysis
+        working-directory: app
+        run: flutter analyze
+
+      - name: Build AAB (Play Store)
+        working-directory: app
+        run: |
+          flutter build appbundle --release \
+            --obfuscate --split-debug-info=symbols
+
+      - name: Build APK (direct sideload testing)
+        working-directory: app
+        run: |
+          flutter build apk --release \
+            --obfuscate --split-debug-info=symbols
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: katharscan-android-aab
+          path: app/build/app/outputs/bundle/release/*.aab
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: katharscan-android-apk
+          path: app/build/app/outputs/flutter-apk/*.apk
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: katharscan-android-debug-symbols
+          path: app/symbols/
