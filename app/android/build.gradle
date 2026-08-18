@@ -13,7 +13,7 @@ subprojects {
     project.evaluationDependsOn(":app")
 }
 
-# Subproject hook for plugin compatibility with Flutter 3.24
+// Subproject hook for plugin compatibility with Flutter 3.24
 subprojects {
     plugins.withId("com.android.library") {
         if (!project.android.hasProperty("flutter")) {
