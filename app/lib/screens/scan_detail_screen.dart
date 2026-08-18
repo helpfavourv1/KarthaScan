@@ -133,9 +133,16 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> {
   Future<void> _share(ScanDocument document) async {
     try {
       await _shareService.shareFiles(filePaths: document.pagePaths);
-    } on ShareFailedException catch (error) {
+    } on ShareFailedException {
       if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(error.message)));
+      final AppLocalizations l10n = AppLocalizations.of(context)!;
+      // ShareFailedException.message is English, set in
+      // core/services/share_service.dart with no BuildContext available
+      // there to localize at the source — shown here as a localized
+      // generic fallback per Section 18 rather than that raw string.
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(l10n.genericErrorMessage)),
+      );
     }
   }
 

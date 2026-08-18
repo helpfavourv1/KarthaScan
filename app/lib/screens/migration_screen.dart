@@ -152,9 +152,15 @@ class _MigrationScreenState extends State<MigrationScreen> {
 
       try {
         await _shareService.shareFiles(filePaths: <String>[outPath]);
-      } on ShareFailedException catch (error) {
+      } on ShareFailedException {
         if (!mounted) return;
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(error.message)));
+        // ShareFailedException.message is English, set in
+        // core/services/share_service.dart with no BuildContext available
+        // there to localize at the source — shown here as a localized
+        // generic fallback per Section 18 rather than that raw string.
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(l10n.genericErrorMessage)),
+        );
       }
     } catch (error, stackTrace) {
       debugPrint('[MigrationScreen] export failed: $error\n$stackTrace');

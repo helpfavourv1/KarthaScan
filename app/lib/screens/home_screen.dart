@@ -77,8 +77,17 @@ class _HomeScreenState extends State<HomeScreen> {
     final OcrScript script = _ocrScriptFromSettingsValue(ocrLanguage);
     final ScanDocument? document =
         await _scanProvider.captureNewDocument(ocrScript: script);
-    if (!mounted || document == null) return;
-    context.push('/scan/${document.id}');
+    if (!mounted) return;
+    if (document != null) {
+      context.push('/scan/${document.id}');
+      return;
+    }
+    // Per Section 14: UNSUPPORTED is never a dead end — route to the
+    // manual crop fallback (files #74-75) rather than just showing an
+    // error and stopping.
+    if (_scanProvider.scanFlowState.value == ScanFlowState.unsupported) {
+      context.push('/manual-crop');
+    }
   }
 
   OcrScript _ocrScriptFromSettingsValue(String value) {

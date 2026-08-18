@@ -206,8 +206,12 @@ class _ExportScreenState extends State<ExportScreen> {
         );
         allOutputPaths.addAll(paths);
       }
-    } on ExportFailedException catch (error) {
-      errorMessage = error.message;
+    } on ExportFailedException {
+      // ExportFailedException.message is English, set in
+      // core/services/export_service.dart with no BuildContext available
+      // there to localize at the source — shown here as a localized
+      // generic fallback per Section 18 rather than that raw string.
+      errorMessage = l10n.genericErrorMessage;
     } catch (_) {
       errorMessage = l10n.exportGenericError;
     }

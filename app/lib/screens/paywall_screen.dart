@@ -134,7 +134,16 @@ class _PaywallScreenState extends State<PaywallScreen> {
                   Padding(
                     padding: const EdgeInsets.only(bottom: AppSpacing.sm),
                     child: Text(
-                      _subscriptionProvider.lastError.value!,
+                      // The provider's lastError carries an English
+                      // message from platform/iap_service.dart (core/
+                      // layer, no BuildContext available there to
+                      // localize at the source) — shown here as a
+                      // localized generic fallback instead of that raw
+                      // string, per Section 18. The specific English text
+                      // is still useful for debugging via debugPrint
+                      // elsewhere in the provider, just not surfaced to
+                      // the user directly.
+                      l10n.genericErrorMessage,
                       textAlign: TextAlign.center,
                       style: TextStyle(color: error),
                     ),
