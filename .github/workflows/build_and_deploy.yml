@@ -40,7 +40,16 @@ jobs:
 
       - name: Static analysis
         working-directory: app
-        run: flutter analyze
+        run: |
+          set -o pipefail
+          flutter analyze 2>&1 | tee analyzer-log.txt
+
+      - name: Upload analyzer log on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: analyzer-error-log
+          path: app/analyzer-log.txt
 
       - name: Build AAB (Play Store)
         working-directory: app
