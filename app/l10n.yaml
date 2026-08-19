@@ -9,7 +9,6 @@
 # excluded via .gitignore rather than committed, the same treatment as
 # any other generated *.g.dart file in this project.
 #
-# synthetic-package: false places the generated file directly in this
 # app's own lib/l10n/ tree (imported as
 # package:katharscan/l10n/app_localizations.dart) rather than in a
 # separate synthetic flutter_gen package — the modern, recommended
@@ -18,5 +17,4 @@ arb-dir: lib/l10n
 template-arb-file: app_en.arb
 output-localization-file: app_localizations.dart
 output-class: AppLocalizations
-synthetic-package: false
 nullable-getter: false

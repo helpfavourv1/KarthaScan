@@ -38,7 +38,7 @@ dependencies:
   in_app_purchase: ^3.2.1
 
   # --- Locale ---
-  intl: ^0.19.0
+  intl: ^0.20.3
 
   # --- State management / DI ---
   provider: ^6.1.2
