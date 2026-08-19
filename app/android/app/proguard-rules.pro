@@ -10,3 +10,7 @@
 -keep class com.google_mlkit_text_recognition.** { *; }
 
 -ignorewarnings
+
+# Google Play Services / AdMob
+-keep class com.google.android.gms.ads.** { *; }
+-dontwarn com.google.android.gms.ads.**
