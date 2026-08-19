@@ -101,7 +101,7 @@ class ExportService {
         case ExportFormat.docx:
           return <String>[await _exportDocx(document, outputDirectoryPath)];
         case ExportFormat.jpg:
-          return _exportImages(
+          return await _exportImages(
             document,
             outputDirectoryPath,
             targetExtension: 'jpg',
@@ -111,7 +111,7 @@ class ExportService {
             signaturePlacement: signaturePlacement,
           );
         case ExportFormat.png:
-          return _exportImages(
+          return await _exportImages(
             document,
             outputDirectoryPath,
             targetExtension: 'png',
