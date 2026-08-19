@@ -1,5 +1,12 @@
--keep class com.google.mlkit.** { *; }
+# Suppress missing class warnings for unused ML Kit language packages
+-dontwarn com.google.mlkit.vision.text.chinese.**
+-dontwarn com.google.mlkit.vision.text.devanagari.**
+-dontwarn com.google.mlkit.vision.text.japanese.**
+-dontwarn com.google.mlkit.vision.text.korean.**
 -dontwarn com.google.mlkit.**
--keep class com.google_mlkit_text_recognition.** { *; }
 -dontwarn com.google_mlkit_text_recognition.**
+
+-keep class com.google.mlkit.** { *; }
+-keep class com.google_mlkit_text_recognition.** { *; }
+
 -ignorewarnings
