@@ -1,22 +1,6 @@
-// lib/screens/home_screen.dart
-//
-// Document list + folders + search bar. No ads. Clean UI. (Section 16
-// file #34).
-//
-// NAVIGATION: uses go_router's context.push(...) — not
-// Navigator.pushNamed(...), which is the plain-MaterialApp routing system
-// and isn't how a GoRouter-based app (Section 16 file #43) actually
-// navigates between top-level routes. Route paths used here
-// (/scan/:id, /folder/:id, /settings, /export, /paywall) are the
-// contract router.dart (Phase 6) must implement with matching GoRoute
-// entries.
-//
-// STATE WIRING: Provider.of(context, listen:false) for DI +
-// ListenableBuilder for reactivity — the MANDATORY pattern from
-// constants.dart. No Consumer, no context.watch, no
-// ChangeNotifierProvider.
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
 
 import '../core/models/folder.dart';
@@ -48,17 +32,42 @@ class _HomeScreenState extends State<HomeScreen> {
   late final FolderProvider _folderProvider;
   late final SettingsProvider _settingsProvider;
 
+  BannerAd? _bannerAd;
+  bool _isAdLoaded = false;
+
   @override
   void initState() {
     super.initState();
     _scanProvider = Provider.of<ScanProvider>(context, listen: false);
     _folderProvider = Provider.of<FolderProvider>(context, listen: false);
     _settingsProvider = Provider.of<SettingsProvider>(context, listen: false);
+    _initBannerAd();
+  }
+
+  void _initBannerAd() {
+    _bannerAd = BannerAd(
+      adUnitId: 'ca-app-pub-3940256099942544/6300978111',
+      size: AdSize.banner,
+      request: const AdRequest(),
+      listener: BannerAdListener(
+        onAdLoaded: (ad) {
+          debugPrint('$ad loaded.');
+          if (mounted) {
+            setState(() => _isAdLoaded = true);
+          }
+        },
+        onAdFailedToLoad: (ad, err) {
+          debugPrint('BannerAd failed to load: $err');
+          ad.dispose();
+        },
+      ),
+    )..load();
   }
 
   @override
   void dispose() {
     _searchController.dispose();
+    _bannerAd?.dispose();
     super.dispose();
   }
 
@@ -82,9 +91,6 @@ class _HomeScreenState extends State<HomeScreen> {
       context.push('/scan/${document.id}');
       return;
     }
-    // Per Section 14: UNSUPPORTED is never a dead end — route to the
-    // manual crop fallback (files #74-75) rather than just showing an
-    // error and stopping.
     if (_scanProvider.scanFlowState.value == ScanFlowState.unsupported) {
       context.push('/manual-crop');
     }
@@ -174,6 +180,12 @@ class _HomeScreenState extends State<HomeScreen> {
                   ? _buildSearchResults(localeCode, l10n)
                   : _buildDefaultContent(localeCode, l10n),
             ),
+            if (_bannerAd != null && _isAdLoaded)
+              SizedBox(
+                width: _bannerAd!.size.width.toDouble(),
+                height: _bannerAd!.size.height.toDouble(),
+                child: AdWidget(ad: _bannerAd!),
+              ),
           ],
         ),
       ),
@@ -229,10 +241,6 @@ class _HomeScreenState extends State<HomeScreen> {
           tooltip: l10n.batchExportTooltip,
           onPressed: _selectedIds.isEmpty
               ? null
-              // Batch export is Pro-gated per Section 19 — the actual
-              // entitlement check happens in export_screen.dart, which
-              // routes to paywall_screen.dart if needed. This screen just
-              // hands off the selected IDs.
               : () => context.push('/export', extra: _selectedIds.toList()),
         ),
         IconButton(
@@ -255,8 +263,10 @@ class _HomeScreenState extends State<HomeScreen> {
     return ListView.separated(
       padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md),
       itemCount: results.length,
-      separatorBuilder: (BuildContext context, int index) => const SizedBox(height: AppSpacing.xs),
-      itemBuilder: (BuildContext context, int index) => _scanTile(results[index], localeCode),
+      separatorBuilder: (BuildContext context, int index) =>
+          const SizedBox(height: AppSpacing.xs),
+      itemBuilder: (BuildContext context, int index) =>
+          _scanTile(results[index], localeCode),
     );
   }
 
@@ -279,7 +289,10 @@ class _HomeScreenState extends State<HomeScreen> {
         }
 
         return ListView(
-          padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md, vertical: AppSpacing.xs),
+          padding: const EdgeInsets.symmetric(
+            horizontal: AppSpacing.md,
+            vertical: AppSpacing.xs,
+          ),
           children: <Widget>[
             if (folders.isNotEmpty) ...<Widget>[
               _sectionHeader(l10n.foldersSectionHeader),
@@ -314,7 +327,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _sectionHeader(String label) {
     final bool isDark = Theme.of(context).brightness == Brightness.dark;
-    final Color textSecondary = isDark ? AppColors.textSecondaryDark : AppColors.textSecondaryLight;
+    final Color textSecondary =
+        isDark ? AppColors.textSecondaryDark : AppColors.textSecondaryLight;
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: AppSpacing.xxs),
       child: Text(
@@ -338,7 +352,8 @@ class _HomeScreenState extends State<HomeScreen> {
       onTap: _selectionMode
           ? () => _toggleSelection(document.id)
           : () => context.push('/scan/${document.id}'),
-      onLongPress: _selectionMode ? null : () => _enterSelectionMode(document.id),
+      onLongPress:
+          _selectionMode ? null : () => _enterSelectionMode(document.id),
     );
   }
 }

@@ -34,7 +34,7 @@ android {
 
     defaultConfig {
         applicationId "com.zdmgold.katharscan"
-        minSdk 23
+        minSdkVersion flutter.minSdkVersion
         targetSdk 36
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName

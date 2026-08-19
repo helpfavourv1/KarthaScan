@@ -6,9 +6,11 @@
 // Provider.value — the MANDATORY DI-only scope of `provider`
 // (constants.dart / Section 15). This file never uses ChangeNotifierProvider,
 // Consumer, or context.watch, matching every other file in this project.
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 import 'app.dart';
 import 'core/providers/folder_provider.dart';
@@ -25,6 +27,7 @@ import 'platform/permission_service.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  MobileAds.instance.initialize();
 
   installGlobalErrorHandling(
     onReportIssue: (Uri mailUri) async {
@@ -50,6 +53,7 @@ Future<void> main() async {
   final DocScannerService docScanner = DocScannerService();
   final OcrService ocr = OcrService();
   final PermissionService permission = PermissionService();
+
   // IAP init (Section 16 file #41's second named responsibility) happens
   // inside SubscriptionProvider's constructor, which calls
   // IapService.initialize() — constructing the provider below is what
@@ -60,11 +64,13 @@ Future<void> main() async {
   final ThemeProvider themeProvider = ThemeProvider(settingsProvider);
   final SubscriptionProvider subscriptionProvider =
       SubscriptionProvider(iap, settingsProvider);
+
   final ScanProvider scanProvider = ScanProvider(
     storage: localStorage,
     docScanner: docScanner,
     ocr: ocr,
   );
+
   final FolderProvider folderProvider = FolderProvider(localStorage);
 
   runApp(
