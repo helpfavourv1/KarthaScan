@@ -73,19 +73,17 @@ void main() {
       expect(header, '%PDF');
     });
 
-    test('applies password protection without throwing', () async {
+    test('throws ExportFailedException when password protection is requested', () async {
       final ExportService service = ExportService();
-      final List<String> outputs = await service.export(
-        document: buildTestDocument(),
-        format: ExportFormat.pdf,
-        outputDirectoryPath: tempDir.path,
-        pdfPassword: 'test-password-123',
+      expect(
+        () => service.export(
+          document: buildTestDocument(),
+          format: ExportFormat.pdf,
+          outputDirectoryPath: tempDir.path,
+          pdfPassword: 'test-password-123',
+        ),
+        throwsA(isA<ExportFailedException>()),
       );
-
-      final File outputFile = File(outputs.single);
-      expect(await outputFile.exists(), isTrue);
-      final List<int> bytes = await outputFile.readAsBytes();
-      expect(bytes, isNotEmpty);
     });
   });
 
