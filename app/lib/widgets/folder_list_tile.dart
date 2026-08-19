@@ -30,7 +30,7 @@ class FolderListTile extends StatelessWidget {
     final Color border = isDark ? AppColors.borderSubtleDark : AppColors.borderSubtleLight;
     final Color textPrimary = isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight;
     final Color textSecondary = isDark ? AppColors.textSecondaryDark : AppColors.textSecondaryLight;
-    final Color tileBg = isSelected ? accent.withOpacity(0.08) : bg;
+    final Color tileBg = isSelected ? accent.withValues(alpha: 0.08) : bg;
     final Color tileBorder = isSelected ? accent : border;
 
     final String countLabel = l10n.folderDocumentCount(folder.documentIds.length);

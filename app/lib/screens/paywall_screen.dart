@@ -243,7 +243,7 @@ class _PaywallScreenState extends State<PaywallScreen> {
           const SizedBox(height: AppSpacing.xs),
           ..._freeFeatures(l10n).map((String f) => _featureRow(f, textSecondary, Icons.check, textSecondary)),
           const SizedBox(height: AppSpacing.sm),
-          Divider(color: textSecondary.withOpacity(0.2)),
+          Divider(color: textSecondary.withValues(alpha: 0.2)),
           const SizedBox(height: AppSpacing.sm),
           Text(
             l10n.proTierLabel,

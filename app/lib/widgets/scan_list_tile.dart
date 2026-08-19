@@ -50,7 +50,7 @@ class ScanListTile extends StatelessWidget {
     final Color textPrimary = isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight;
     final Color textSecondary = isDark ? AppColors.textSecondaryDark : AppColors.textSecondaryLight;
     final Color textTertiary = isDark ? AppColors.textTertiaryDark : AppColors.textTertiaryLight;
-    final Color tileBg = isSelected ? accent.withOpacity(0.08) : bg;
+    final Color tileBg = isSelected ? accent.withValues(alpha: 0.08) : bg;
     final Color tileBorder = isSelected ? accent : border;
 
     final String pageLabel = l10n.scanListPageCount(document.pageCount);

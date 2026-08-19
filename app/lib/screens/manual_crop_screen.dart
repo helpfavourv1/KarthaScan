@@ -293,7 +293,7 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
                   children: <Widget>[
                     Switch(
                       value: _applyGrayscale,
-                      activeColor: accent,
+                      activeThumbColor: accent,
                       onChanged: (bool value) => setState(() => _applyGrayscale = value),
                     ),
                     const SizedBox(width: AppSpacing.xs),
