@@ -30,7 +30,7 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           # PINNED — matches Section 9's iOS pin exactly. Never 'stable'.
-          flutter-version: '3.24.0'
+          flutter-version: "3.29.0"
 
       - name: Get Flutter packages
         working-directory: app
