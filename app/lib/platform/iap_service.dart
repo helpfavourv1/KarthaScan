@@ -45,7 +45,7 @@ class IapService {
   /// Starts listening to the purchase stream. [onPurchaseUpdate] fires for
   /// every purchase event — new purchase, restored purchase, error, or
   /// pending — so subscription_provider.dart can update
-  /// ValueNotifier<bool> isPro accordingly. Safe to call once at app
+  /// ValueNotifier&lt;bool&gt; isPro accordingly. Safe to call once at app
   /// startup; later calls are no-ops. Never throws — returns false if
   /// billing isn't available on this device at all, which is a normal
   /// startup-time check, not a user-initiated purchase attempt. For the

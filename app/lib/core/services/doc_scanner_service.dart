@@ -42,7 +42,7 @@ import 'package:flutter_doc_scanner/flutter_doc_scanner.dart';
 
 import '../utils/constants.dart';
 
-/// Thrown specifically for the <1.7GB RAM / ML Kit module unavailable
+/// Thrown specifically for the &lt;1.7GB RAM / ML Kit module unavailable
 /// case. Callers (scan_provider.dart) must catch this and route to the
 /// manual crop fallback (files #74-75) per Section 14 — never a dead end.
 class DocScannerUnsupportedException implements Exception {
@@ -76,7 +76,7 @@ class DocScannerService {
 
   /// Launches the native document scanner UI and returns the resulting
   /// cropped page images. An empty result means the user cancelled.
-  /// Throws [DocScannerUnsupportedException] on the <1.7GB RAM / ML Kit
+  /// Throws [DocScannerUnsupportedException] on the &lt;1.7GB RAM / ML Kit
   /// module unavailable case, or [DocScannerFailedException] for any
   /// other failure. Never lets a raw platform exception or an unexpected
   /// return shape propagate uncaught.
@@ -103,7 +103,7 @@ class DocScannerService {
   }
 
   /// Normalizes flutter_doc_scanner's untyped return value to
-  /// List<String>. Defensive by design — see the file header's
+  /// List&lt;String&gt;. Defensive by design — see the file header's
   /// "RESIDUAL UNCERTAINTY" note.
   List<String> _extractPaths(dynamic raw) {
     if (raw == null) return const <String>[];
