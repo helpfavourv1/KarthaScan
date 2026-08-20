@@ -26,18 +26,16 @@ subprojects {
         if (!project.android.hasProperty("flutter")) {
             project.android.ext.flutter = [:]
         }
-        // Inject directly into the flutter map so plugins don't pull null
+        // Inject directly into the flutter map
         project.android.ext.flutter.compileSdkVersion = 36
         project.android.ext.flutter.ndkVersion = "27.0.12077973"
         
         // Fallback for direct Android assignment
         project.android.compileSdkVersion = 36
         project.android.ndkVersion = "27.0.12077973"
-    }
-    
-    // Ironclad override: force API 36 after the plugin finishes its internal evaluation
-    afterEvaluate { project ->
-        if (project.hasProperty('android')) {
+
+        // Ironclad override: safely nested inside the library check so it ignores the :app module
+        project.afterEvaluate {
             project.android.compileSdkVersion = 36
         }
     }
