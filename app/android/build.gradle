@@ -26,17 +26,19 @@ subprojects {
         if (!project.android.hasProperty("flutter")) {
             project.android.ext.flutter = [:]
         }
-        // Inject directly into the flutter map
+        
+        // Base injections
         project.android.ext.flutter.compileSdkVersion = 36
         project.android.ext.flutter.ndkVersion = "27.0.12077973"
-        
-        // Fallback for direct Android assignment
         project.android.compileSdkVersion = 36
         project.android.ndkVersion = "27.0.12077973"
 
-        // Ironclad override: safely nested inside the library check so it ignores the :app module
-        project.afterEvaluate {
-            project.android.compileSdkVersion = 36
+        // The AGP Variant API Override
+        // This safely overwrites hardcoded SDK limits from old plugins without triggering the "too late" crash.
+        project.androidComponents {
+            finalizeDsl { ext ->
+                ext.compileSdk = 36
+            }
         }
     }
 }
