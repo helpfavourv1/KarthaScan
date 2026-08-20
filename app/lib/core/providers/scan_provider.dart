@@ -1,12 +1,4 @@
 // lib/core/providers/scan_provider.dart
-//
-// ValueNotifier<List<ScanDocument>> + activeScan + CRUD operations
-// (Section 16 file #21). Orchestrates DocScannerService (capture),
-// OcrService (text extraction), and LocalStorageService (persistence)
-// into the app's core "scan a document" flow.
-//
-// REACTIVITY: ValueNotifier + ListenableBuilder only, per the MANDATORY
-// constraint in constants.dart.
 import 'dart:async' show unawaited;
 import 'dart:math' show Random;
 
@@ -43,10 +35,6 @@ class ScanProvider {
   final ValueNotifier<ScanFlowState> scanFlowState =
       ValueNotifier<ScanFlowState>(ScanFlowState.idle);
   final ValueNotifier<String?> lastError = ValueNotifier<String?>(null);
-
-  /// Set once a device-level OCR failure has been observed, so
-  /// screens/widgets can disable the OCR affordance per Section 14 rather
-  /// than waiting for the user to hit the same failure again.
   final ValueNotifier<bool> ocrUnavailable = ValueNotifier<bool>(false);
 
   Future<void> _loadAll() async {
@@ -62,27 +50,17 @@ class ScanProvider {
     documents.value = await _storage.getAllDocuments();
   }
 
-  /// Runs the full capture flow: launches the scanner UI, OCRs each
-  /// captured page, and saves the result as a new ScanDocument.
-  ///
-  /// Returns the new document on success, or null if either the user
-  /// cancelled the scan (not an error — [scanFlowState] returns to
-  /// [ScanFlowState.idle]) or the doc scanner reported UNSUPPORTED
-  /// ([scanFlowState] becomes [ScanFlowState.unsupported], distinct from
-  /// [ScanFlowState.error], specifically so the calling screen can
-  /// distinguish "route to the manual crop fallback" from "just show an
-  /// error message" — per Section 14, UNSUPPORTED must never be a dead
-  /// end).
   Future<ScanDocument?> captureNewDocument({
     String? title,
     OcrScript ocrScript = OcrScript.latin,
   }) async {
     scanFlowState.value = ScanFlowState.scanning;
     lastError.value = null;
+
     try {
       final DocScanResult scanResult = await _docScanner.scan();
+
       if (scanResult.pageImagePaths.isEmpty) {
-        // User cancelled — not an error.
         scanFlowState.value = ScanFlowState.idle;
         return null;
       }
@@ -141,10 +119,6 @@ class ScanProvider {
         combined.write(result.fullText);
       } on OcrUnavailableException {
         ocrUnavailable.value = true;
-        // Per Section 14: an OCR failure never blocks saving the scan
-        // itself. The document is still saved with whatever text was
-        // recognized on earlier pages, just without OCR text from this
-        // page onward.
         break;
       }
     }
@@ -188,11 +162,6 @@ class ScanProvider {
   Future<List<ScanDocument>> search(String query) =>
       _storage.searchDocuments(query);
 
-  /// Saves an already-fully-formed ScanDocument directly — used by
-  /// migration_screen.dart when reconstructing documents from a backup
-  /// archive, where the document (including its original id, so any
-  /// folder that referenced it stays associated) already exists rather
-  /// than being freshly captured. Not part of the normal scan flow.
   Future<bool> importDocument(ScanDocument document) async {
     final bool success = await _storage.saveDocument(document);
     if (success) {
@@ -236,10 +205,6 @@ class ScanProvider {
   }
 
   String _generateId() {
-    // Timestamp + a random suffix is sufficient for a single-device,
-    // no-backend app (Section 1/13) — there's no server to coordinate ID
-    // generation with, so cryptographic-strength uniqueness isn't needed,
-    // just collision-avoidance against other scans on this same device.
     final int ts = DateTime.now().microsecondsSinceEpoch;
     final int rand = _random.nextInt(0x7fffffff);
     return '$ts-$rand';
