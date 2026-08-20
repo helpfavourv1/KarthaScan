@@ -27,6 +27,7 @@ subprojects {
             project.android.ext.flutter = [compileSdkVersion: 35]
         }
         project.android.compileSdkVersion 35
+        project.android.ndkVersion "27.0.12077973"
     }
 }
 
