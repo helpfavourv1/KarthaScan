@@ -24,10 +24,15 @@ subprojects {
 subprojects {
     plugins.withId("com.android.library") {
         if (!project.android.hasProperty("flutter")) {
-            project.android.ext.flutter = [compileSdkVersion: 35]
+            project.android.ext.flutter = [:]
         }
-        project.android.compileSdkVersion 35
-        project.android.ndkVersion "27.0.12077973"
+        // Inject directly into the flutter map so plugins don't pull null
+        project.android.ext.flutter.compileSdkVersion = 35
+        project.android.ext.flutter.ndkVersion = "27.0.12077973"
+        
+        // Fallback for direct Android assignment
+        project.android.compileSdkVersion = 35
+        project.android.ndkVersion = "27.0.12077973"
     }
 }
 
