@@ -20,19 +20,26 @@ subprojects {
     project.evaluationDependsOn(":app")
 }
 
-// Subproject hook for plugin compatibility with Flutter 3.24
+// Subproject hook for plugin compatibility
 subprojects {
     plugins.withId("com.android.library") {
         if (!project.android.hasProperty("flutter")) {
             project.android.ext.flutter = [:]
         }
         // Inject directly into the flutter map so plugins don't pull null
-        project.android.ext.flutter.compileSdkVersion = 35
+        project.android.ext.flutter.compileSdkVersion = 36
         project.android.ext.flutter.ndkVersion = "27.0.12077973"
         
         // Fallback for direct Android assignment
-        project.android.compileSdkVersion = 35
+        project.android.compileSdkVersion = 36
         project.android.ndkVersion = "27.0.12077973"
+    }
+    
+    // Ironclad override: force API 36 after the plugin finishes its internal evaluation
+    afterEvaluate { project ->
+        if (project.hasProperty('android')) {
+            project.android.compileSdkVersion = 36
+        }
     }
 }
 
