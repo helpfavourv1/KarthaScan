@@ -162,13 +162,29 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
       } else {
         setState(() => _stage = _Stage.crop);
       }
-    } catch (_) {
+    } catch (e, stackTrace) {
       if (!mounted) return;
-      final AppLocalizations l10n = AppLocalizations.of(context);
+      
+      // Print to Termux console
+      debugPrint('CROP CRASH: $e\n$stackTrace'); 
+      
+      // Show exact error on the phone screen
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(l10n.genericErrorMessage)),
+        SnackBar(
+          content: Text("Crash details: $e"),
+          backgroundColor: Colors.red,
+          duration: const Duration(seconds: 8),
+        ),
       );
-      setState(() => _stage = _Stage.crop);
+    } finally {
+      // Guarantee the spinner stops no matter what happens
+      if (mounted) {
+        setState(() {
+          if (_stage == _Stage.saving) {
+            _stage = _Stage.crop;
+          }
+        });
+      }
     }
   }
 
