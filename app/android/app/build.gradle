@@ -39,7 +39,6 @@ android {
         targetSdk 36
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
-        
         // Required to handle large method counts from ML Kit and AdMob
         multiDexEnabled true
     }
@@ -47,9 +46,9 @@ android {
     buildTypes {
         release {
             signingConfig signingConfigs.debug
-            // Disabled native code shredding to prevent release-only plugin crashes
-            minifyEnabled false
-            shrinkResources false
+            // Re-enabled native code shredding/minification for optimization
+            minifyEnabled true
+            shrinkResources true
         }
     }
 }

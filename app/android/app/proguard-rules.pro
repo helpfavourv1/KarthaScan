@@ -24,3 +24,6 @@
 # --- GOOGLE PLAY SERVICES / ADMOB ---
 -keep class com.google.android.gms.ads.** { *; }
 -dontwarn com.google.android.gms.ads.**
+
+# --- IMAGE CROPPER (UCROP) ---
+-keep class com.yalantis.ucrop.** { *; }
