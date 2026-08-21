@@ -13,9 +13,6 @@ class DebugLogEntry {
   });
 }
 
-/// Singleton in-memory logger. Every subsystem writes here; the Debug Logs
-/// screen in Settings reads it. No persistence — logs survive for the
-/// current session only, which is exactly what we need for debugging.
 class DebugLogService {
   static final DebugLogService _instance = DebugLogService._internal();
   factory DebugLogService() => _instance;
