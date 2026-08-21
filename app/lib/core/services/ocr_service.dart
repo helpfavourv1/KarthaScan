@@ -1,6 +1,4 @@
 // lib/core/services/ocr_service.dart
-import 'dart:async' show TimeoutException;
-import 'package:flutter/foundation.dart' show debugPrint;
 import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
 import 'debug_log_service.dart';
 import '../models/ocr_block.dart';
