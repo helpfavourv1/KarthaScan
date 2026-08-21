@@ -2,23 +2,70 @@
 import 'dart:async' show unawaited;
 import 'dart:io' show Directory, File;
 import 'dart:typed_data';
-
 import 'package:file_picker/file_picker.dart';
+import 'package:flutter/foundation.dart' show compute;
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image/image.dart' as img;
+import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
-
 import '../core/models/scan_document.dart';
 import '../core/providers/scan_provider.dart';
+import '../core/services/debug_log_service.dart';
 import '../core/services/ocr_service.dart';
 import '../core/utils/constants.dart';
 import '../l10n/app_localizations.dart';
 import '../widgets/manual_crop_overlay.dart';
 
 enum _Stage { pickImage, crop, saving }
+
+Future<Uint8List> _warpInIsolate(Map<String, dynamic> params) async {
+  final Uint8List bytes = params['bytes'] as Uint8List;
+  final List<dynamic> cornersRaw = params['corners'] as List<dynamic>;
+  final bool applyGrayscale = params['grayscale'] as bool;
+  final double scaleX = params['scaleX'] as double;
+  final double scaleY = params['scaleY'] as double;
+
+  final img.Image? decoded = img.decodeImage(bytes);
+  if (decoded == null) throw Exception('Could not decode image');
+
+  final List<List<double>> corners = cornersRaw.map((dynamic c) {
+    return (c as List<dynamic>).map((dynamic v) => v as double).toList();
+  }).toList();
+
+  final double tlX = corners[0][0] * scaleX;
+  final double tlY = corners[0][1] * scaleY;
+  final double trX = corners[1][0] * scaleX;
+  final double trY = corners[1][1] * scaleY;
+  final double brX = corners[2][0] * scaleX;
+  final double brY = corners[2][1] * scaleY;
+  final double blX = corners[3][0] * scaleX;
+  final double blY = corners[3][1] * scaleY;
+
+  final img.Image warped = img.Image(width: 1000, height: 1400);
+  for (int y = 0; y < 1400; y++) {
+    final double t = 1400 <= 1 ? 0 : y / (1400 - 1);
+    for (int x = 0; x < 1000; x++) {
+      final double s = 1000 <= 1 ? 0 : x / (1000 - 1);
+      final double srcX = (1 - s) * (1 - t) * tlX +
+          s * (1 - t) * trX +
+          s * t * brX +
+          (1 - s) * t * blX;
+      final double srcY = (1 - s) * (1 - t) * tlY +
+          s * (1 - t) * trY +
+          s * t * brY +
+          (1 - s) * t * blY;
+      final int clampedX = srcX.round().clamp(0, decoded.width - 1);
+      final int clampedY = srcY.round().clamp(0, decoded.height - 1);
+      warped.setPixel(x, y, decoded.getPixel(clampedX, clampedY));
+    }
+  }
+
+  final img.Image finalImage = applyGrayscale ? img.grayscale(warped) : warped;
+  return img.encodeJpg(finalImage, quality: 90);
+}
 
 class ManualCropScreen extends StatefulWidget {
   const ManualCropScreen({super.key});
@@ -29,11 +76,10 @@ class ManualCropScreen extends StatefulWidget {
 
 class _ManualCropScreenState extends State<ManualCropScreen> {
   static const Size _displaySize = Size(360, 480);
-
   late final ScanProvider _scanProvider;
   final OcrService _ocrService = OcrService();
-  final GlobalKey<ManualCropOverlayState> _overlayKey =
-      GlobalKey<ManualCropOverlayState>();
+  final GlobalKey<ManualCropOverlayState> _overlayKey = GlobalKey<ManualCropOverlayState>();
+  final DebugLogService _log = DebugLogService();
 
   _Stage _stage = _Stage.pickImage;
   String? _pickedImagePath;
@@ -44,42 +90,65 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
   void initState() {
     super.initState();
     _scanProvider = Provider.of<ScanProvider>(context, listen: false);
+    _log.log('CROP', 'ManualCropScreen initialized');
+  }
+
+  Future<void> _takePhoto() async {
+    if (_isPicking) return;
+    _log.log('CROP', 'Camera button tapped');
+    setState(() => _isPicking = true);
+    try {
+      final XFile? photo = await ImagePicker().pickImage(
+        source: ImageSource.camera,
+        imageQuality: 90,
+      );
+      if (!mounted) return;
+      if (photo == null) {
+        _log.log('CROP', 'Camera returned null (user cancelled)');
+        setState(() => _isPicking = false);
+        return;
+      }
+      _log.log('CROP', 'Camera returned path: ${photo.path}');
+      setState(() {
+        _pickedImagePath = photo.path;
+        _stage = _Stage.crop;
+        _isPicking = false;
+      });
+    } catch (e) {
+      _log.log('CROP', 'Camera error: $e');
+      if (!mounted) return;
+      setState(() => _isPicking = false);
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Camera error: $e')),
+      );
+    }
   }
 
   Future<void> _pickImage() async {
     if (_isPicking) return;
-    
-    setState(() {
-      _isPicking = true;
-    });
-
+    _log.log('CROP', 'Import button tapped');
+    setState(() => _isPicking = true);
     try {
-      final FilePickerResult? result =
-          await FilePicker.platform.pickFiles(type: FileType.image);
+      final FilePickerResult? result = await FilePicker.platform.pickFiles(type: FileType.image);
       final String? path = result?.files.single.path;
-      
       if (!mounted) return;
-      
       if (path == null) {
-        // User closed the picker without selecting. Do not loop, do not pop.
-        setState(() {
-          _isPicking = false;
-        });
+        _log.log('CROP', 'FilePicker returned null (user cancelled)');
+        setState(() => _isPicking = false);
         return;
       }
-      
+      _log.log('CROP', 'FilePicker returned path: $path');
       setState(() {
         _pickedImagePath = path;
         _stage = _Stage.crop;
         _isPicking = false;
       });
     } catch (e) {
+      _log.log('CROP', 'FilePicker error: $e');
       if (!mounted) return;
-      setState(() {
-        _isPicking = false;
-      });
+      setState(() => _isPicking = false);
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("Picker error: $e")),
+        SnackBar(content: Text('Picker error: $e')),
       );
     }
   }
@@ -87,53 +156,60 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
   Future<void> _confirmCrop() async {
     final String? sourcePath = _pickedImagePath;
     final List<Offset>? corners = _overlayKey.currentState?.corners;
-    if (sourcePath == null || corners == null || corners.length != 4) return;
+    if (sourcePath == null || corners == null || corners.length != 4) {
+      _log.log('CROP', 'Confirm crop aborted: path=$sourcePath corners=$corners');
+      return;
+    }
 
+    _log.log('CROP', 'Confirm crop started');
     setState(() => _stage = _Stage.saving);
 
     try {
       final Uint8List sourceBytes = await File(sourcePath).readAsBytes();
+      _log.log('CROP', 'Source image read: ${sourceBytes.length} bytes');
+
       final img.Image? decoded = img.decodeImage(sourceBytes);
-      if (decoded == null) {
-        throw Exception('Could not decode the selected image.');
-      }
+      if (decoded == null) throw Exception('Could not decode the selected image.');
+      _log.log('CROP', 'Image decoded: ${decoded.width}x${decoded.height}');
 
       final double scaleX = decoded.width / _displaySize.width;
       final double scaleY = decoded.height / _displaySize.height;
-      final List<Offset> sourceCorners = corners
-          .map((Offset c) => Offset(c.dx * scaleX, c.dy * scaleY))
-          .toList();
+      final List<List<double>> cornerList = corners.map((Offset c) => <double>[c.dx, c.dy]).toList();
 
-      img.Image warped = _warpQuadToRectangle(
-        decoded,
-        sourceCorners,
-        outputWidth: 1000,
-        outputHeight: 1400,
+      _log.log('CROP', 'Starting warp in isolate...');
+      final Uint8List warpedBytes = await compute(
+        _warpInIsolate,
+        <String, dynamic>{
+          'bytes': sourceBytes,
+          'corners': cornerList,
+          'grayscale': _applyGrayscale,
+          'scaleX': scaleX,
+          'scaleY': scaleY,
+        },
       );
-
-      if (_applyGrayscale) {
-        warped = img.grayscale(warped);
-      }
+      _log.log('CROP', 'Warp complete: ${warpedBytes.length} bytes');
 
       final Directory appDir = await getApplicationDocumentsDirectory();
-      final Directory scansDir =
-          Directory(p.join(appDir.path, 'manual_crop_pages'));
+      final Directory scansDir = Directory(p.join(appDir.path, 'manual_crop_pages'));
       await scansDir.create(recursive: true);
       final String outPath = p.join(
         scansDir.path,
         'manual_${DateTime.now().microsecondsSinceEpoch}.jpg',
       );
-      await File(outPath).writeAsBytes(img.encodeJpg(warped, quality: 90));
+      await File(outPath).writeAsBytes(warpedBytes);
+      _log.log('CROP', 'Image saved to: $outPath');
 
       String ocrText = '';
       try {
+        _log.log('CROP', 'Starting OCR...');
         final OcrResult result = await _ocrService.recognizeText(
           imagePath: outPath,
           script: OcrScript.latin,
         );
         ocrText = result.fullText;
-      } on OcrUnavailableException {
-        // Handled silently
+        _log.log('CROP', 'OCR complete: ${ocrText.length} chars');
+      } on OcrUnavailableException catch (e) {
+        _log.log('CROP', 'OCR unavailable: $e');
       }
 
       final DateTime now = DateTime.now();
@@ -148,33 +224,30 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
         thumbnailPath: outPath,
       );
 
+      _log.log('CROP', 'Importing document...');
       final bool success = await _scanProvider.importDocument(document);
       if (!mounted) return;
+
       if (success) {
-        context.pop();
+        _log.log('CROP', 'Document imported successfully → navigating home');
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Document saved'), duration: Duration(seconds: 2)),
+        );
+        context.go('/');
       } else {
-        throw Exception(_scanProvider.lastError.value ?? "Failed to save document.");
+        throw Exception(_scanProvider.lastError.value ?? 'Failed to save document.');
       }
     } catch (e, stackTrace) {
+      _log.log('CROP', 'CRASH: $e\n$stackTrace');
       if (!mounted) return;
-      
-      debugPrint('CROP CRASH: $e\n$stackTrace'); 
-      
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text("Crash details: $e"),
+          content: Text('Crash details: $e'),
           backgroundColor: Colors.red,
           duration: const Duration(seconds: 8),
         ),
       );
-    } finally {
-      if (mounted) {
-        setState(() {
-          if (_stage == _Stage.saving) {
-            _stage = _Stage.crop;
-          }
-        });
-      }
+      setState(() => _stage = _Stage.crop);
     }
   }
 
@@ -184,43 +257,6 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
     final String time =
         '${when.hour.toString().padLeft(2, '0')}.${when.minute.toString().padLeft(2, '0')}';
     return 'Scan $date $time';
-  }
-
-  img.Image _warpQuadToRectangle(
-    img.Image source,
-    List<Offset> corners, {
-    required int outputWidth,
-    required int outputHeight,
-  }) {
-    final Offset topLeft = corners[0];
-    final Offset topRight = corners[1];
-    final Offset bottomRight = corners[2];
-    final Offset bottomLeft = corners[3];
-
-    final img.Image output = img.Image(width: outputWidth, height: outputHeight);
-
-    for (int y = 0; y < outputHeight; y++) {
-      final double t = outputHeight <= 1 ? 0 : y / (outputHeight - 1);
-      for (int x = 0; x < outputWidth; x++) {
-        final double s = outputWidth <= 1 ? 0 : x / (outputWidth - 1);
-
-        final double srcX = (1 - s) * (1 - t) * topLeft.dx +
-            s * (1 - t) * topRight.dx +
-            s * t * bottomRight.dx +
-            (1 - s) * t * bottomLeft.dx;
-        final double srcY = (1 - s) * (1 - t) * topLeft.dy +
-            s * (1 - t) * topRight.dy +
-            s * t * bottomRight.dy +
-            (1 - s) * t * bottomLeft.dy;
-
-        final int clampedX = srcX.round().clamp(0, source.width - 1);
-        final int clampedY = srcY.round().clamp(0, source.height - 1);
-
-        output.setPixel(x, y, source.getPixel(clampedX, clampedY));
-      }
-    }
-
-    return output;
   }
 
   @override
@@ -261,33 +297,58 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
                 ),
                 child: Text(
                   l10n.docScannerUnsupportedMessage,
-                  style: TextStyle(color: textSecondary, fontSize: AppTypography.footnoteSize),
+                  style: TextStyle(
+                    color: textSecondary,
+                    fontSize: AppTypography.footnoteSize,
+                  ),
                 ),
               ),
               const SizedBox(height: AppSpacing.md),
-              
-              // NEW: The manual Import button phase
               if (_stage == _Stage.pickImage)
                 Expanded(
                   child: Center(
-                    child: _isPicking 
-                      ? const CircularProgressIndicator()
-                      : ElevatedButton.icon(
-                          onPressed: _pickImage,
-                          icon: const Icon(Icons.add_photo_alternate),
-                          label: const Text('Import'),
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: accent,
-                            foregroundColor: Colors.white,
-                            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(AppShape.buttonRadius),
-                            ),
+                    child: _isPicking
+                        ? const CircularProgressIndicator()
+                        : Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: <Widget>[
+                              ElevatedButton.icon(
+                                onPressed: _takePhoto,
+                                icon: const Icon(Icons.camera_alt),
+                                label: const Text('Camera'),
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: accent,
+                                  foregroundColor: Colors.white,
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 24,
+                                    vertical: 12,
+                                  ),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(AppShape.buttonRadius),
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(height: AppSpacing.md),
+                              ElevatedButton.icon(
+                                onPressed: _pickImage,
+                                icon: const Icon(Icons.add_photo_alternate),
+                                label: const Text('Import'),
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: surface,
+                                  foregroundColor: textPrimary,
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 24,
+                                    vertical: 12,
+                                  ),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(AppShape.buttonRadius),
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
-                        ),
                   ),
                 ),
-                
               if (_stage == _Stage.crop && _pickedImagePath != null) ...<Widget>[
                 Text(
                   l10n.manualCropInstructions,
@@ -311,7 +372,7 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
                   children: <Widget>[
                     Switch(
                       value: _applyGrayscale,
-                      activeThumbColor: accent,
+                      activeColor: accent,
                       onChanged: (bool value) => setState(() => _applyGrayscale = value),
                     ),
                     const SizedBox(width: AppSpacing.xs),
