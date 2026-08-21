@@ -45,6 +45,7 @@ dependencies:
   go_router: ^14.6.2
   url_launcher: ^6.3.1
   image_picker: ^1.1.2
+  image_cropper: ^8.0.2
 
   # Native App Polish & Icons
   flutter_native_splash: ^2.4.3
