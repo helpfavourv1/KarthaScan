@@ -6,7 +6,7 @@ import 'package:flutter/services.dart' show PlatformException;
 import 'package:flutter_doc_scanner/flutter_doc_scanner.dart';
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
-import '../core/services/debug_log_service.dart';
+import 'debug_log_service.dart';
 import '../utils/constants.dart';
 
 class DocScannerUnsupportedException implements Exception {
@@ -35,7 +35,6 @@ class DocScannerService {
   Future<DocScanResult> scan({int maxPages = 20}) async {
     _log.log('SCANNER', 'Starting scan flow (maxPages=$maxPages)');
 
-    // Attempt 1
     try {
       _log.log('SCANNER', 'Attempt 1: getScannedDocumentAsImages');
       final dynamic raw = await _scanner.getScannedDocumentAsImages(page: maxPages);
@@ -46,18 +45,17 @@ class DocScannerService {
         return DocScanResult(pageImagePaths: paths);
       }
       _log.log('SCANNER', 'Attempt 1 returned empty paths');
-    } on PlatformException catch (error, stackTrace) {
+    } on PlatformException catch (error) {
       _log.log('SCANNER', 'Attempt 1 PlatformException: ${error.code} | ${error.message}');
       if (error.code == 'UNSUPPORTED') {
         throw const DocScannerUnsupportedException(
           AppPluginFailureCopy.docScannerUnsupportedMessage,
         );
       }
-    } catch (error, stackTrace) {
+    } catch (error) {
       _log.log('SCANNER', 'Attempt 1 error: $error');
     }
 
-    // Attempt 2
     try {
       _log.log('SCANNER', 'Attempt 2: getScanDocumentsUri');
       final dynamic raw = await _scanner.getScanDocumentsUri(page: maxPages);
@@ -68,11 +66,10 @@ class DocScannerService {
         return DocScanResult(pageImagePaths: paths);
       }
       _log.log('SCANNER', 'Attempt 2 returned empty paths');
-    } catch (error, stackTrace) {
+    } catch (error) {
       _log.log('SCANNER', 'Attempt 2 error: $error');
     }
 
-    // Attempt 3
     try {
       _log.log('SCANNER', 'Attempt 3: getScanDocuments');
       final dynamic raw = await _scanner.getScanDocuments(page: maxPages);
@@ -83,7 +80,7 @@ class DocScannerService {
         return DocScanResult(pageImagePaths: paths);
       }
       _log.log('SCANNER', 'Attempt 3 returned empty paths');
-    } catch (error, stackTrace) {
+    } catch (error) {
       _log.log('SCANNER', 'Attempt 3 error: $error');
     }
 
