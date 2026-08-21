@@ -131,39 +131,15 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
     setState(() => _isPicking = true);
     try {
       final FilePickerResult? result =
-          await FilePicker.platform.pickFiles(type: FileType.any);
+          await FilePicker.platform.pickFiles(type: FileType.image);
       final String? path = result?.files.single.path;
-
       if (!mounted) return;
-
       if (path == null) {
         _log.log('CROP', 'FilePicker returned null (user cancelled)');
         setState(() => _isPicking = false);
         return;
       }
-
-      // Validate: only image files can be cropped
-      final String ext = path.toLowerCase();
-      final bool isImage = ext.endsWith('.jpg') ||
-          ext.endsWith('.jpeg') ||
-          ext.endsWith('.png') ||
-          ext.endsWith('.gif') ||
-          ext.endsWith('.bmp') ||
-          ext.endsWith('.webp');
-
-      if (!isImage) {
-        _log.log('CROP', 'FilePicker returned non-image: $path');
-        setState(() => _isPicking = false);
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('Please select an image file (JPG, PNG, GIF, BMP, WEBP).'),
-            duration: Duration(seconds: 3),
-          ),
-        );
-        return;
-      }
-
-      _log.log('CROP', 'FilePicker returned image: $path');
+      _log.log('CROP', 'FilePicker returned path: $path');
       setState(() {
         _pickedImagePath = path;
         _stage = _Stage.crop;
