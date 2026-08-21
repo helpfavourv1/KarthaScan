@@ -27,13 +27,18 @@ class DocScanResult {
 class DocScannerService {
   final FlutterDocScanner _scanner = FlutterDocScanner();
 
+  /// Last raw debug output from the scanner. Read by UI when scan fails.
+  static String lastRawDebug = '';
+
   Future<DocScanResult> scan({int maxPages = 20}) async {
+    lastRawDebug = '';
     try {
       final dynamic raw =
           await _scanner.getScannedDocumentAsImages(page: maxPages);
       final List<String> paths = _extractPaths(raw);
       return DocScanResult(pageImagePaths: paths);
     } on PlatformException catch (error, stackTrace) {
+      lastRawDebug = 'PlatformException: code=${error.code} message=${error.message}';
       _logError('scan', error, stackTrace);
       if (error.code == 'UNSUPPORTED') {
         throw const DocScannerUnsupportedException(
@@ -44,13 +49,15 @@ class DocScannerService {
         error.message ?? 'Document scanning failed.',
       );
     } catch (error, stackTrace) {
+      lastRawDebug = 'Exception: $error';
       _logError('scan', error, stackTrace);
       throw const DocScannerFailedException('Document scanning failed.');
     }
   }
 
   List<String> _extractPaths(dynamic raw) {
-    debugPrint('[DocScannerService] RAW RETURN: type=${raw.runtimeType} value=$raw');
+    lastRawDebug = 'type=${raw.runtimeType} value=$raw';
+    debugPrint('[DocScannerService] RAW RETURN: $lastRawDebug');
 
     if (raw == null) return const <String>[];
 
@@ -111,6 +118,7 @@ class DocScannerService {
       return <String>[raw];
     }
 
+    lastRawDebug = 'Unrecognized return shape: ${raw.runtimeType}';
     debugPrint(
       '[DocScannerService] Unrecognized return shape from '
       'getScannedDocumentAsImages(): ${raw.runtimeType}',
