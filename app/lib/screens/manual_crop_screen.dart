@@ -56,15 +56,15 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
         setState(() => _isPicking = false);
         return;
       }
-      _log.log('CROP', 'Camera path: \${photo.path}');
+      _log.log('CROP', 'Camera path: ${photo.path}');
       setState(() => _isPicking = false);
       await _cropAndSave(photo.path);
     } catch (e) {
-      _log.log('CROP', 'Camera error: \$e');
+      _log.log('CROP', 'Camera error: $e');
       if (!mounted) return;
       setState(() => _isPicking = false);
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Camera error: \$e')),
+        SnackBar(content: Text('Camera error: $e')),
       );
     }
   }
@@ -88,7 +88,7 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
         '.jpg', '.jpeg', '.png', '.gif', '.bmp', '.webp'
       ];
       if (!validExts.contains(ext)) {
-        _log.log('CROP', 'Import rejected non-image: \$path');
+        _log.log('CROP', 'Import rejected non-image: $path');
         setState(() => _isPicking = false);
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
@@ -98,15 +98,15 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
         );
         return;
       }
-      _log.log('CROP', 'Import path: \$path');
+      _log.log('CROP', 'Import path: $path');
       setState(() => _isPicking = false);
       await _cropAndSave(path);
     } catch (e) {
-      _log.log('CROP', 'Import error: \$e');
+      _log.log('CROP', 'Import error: $e');
       if (!mounted) return;
       setState(() => _isPicking = false);
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Import error: \$e')),
+        SnackBar(content: Text('Import error: $e')),
       );
     }
   }
@@ -123,11 +123,11 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
         setState(() => _isPicking = false);
         return;
       }
-      _log.log('CROP', 'Scanner path: \${result.pageImagePaths.first}');
+      _log.log('CROP', 'Scanner path: ${result.pageImagePaths.first}');
       setState(() => _isPicking = false);
       await _cropAndSave(result.pageImagePaths.first);
-    } on DocScannerUnsupportedException catch (e) {
-      _log.log('CROP', 'Scanner unsupported: \$e');
+    } on DocScannerUnsupportedException catch (_) {
+      _log.log('CROP', 'Scanner unsupported on this device');
       if (!mounted) return;
       setState(() => _isPicking = false);
       ScaffoldMessenger.of(context).showSnackBar(
@@ -139,17 +139,17 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
         ),
       );
     } catch (e) {
-      _log.log('CROP', 'Scanner error: \$e');
+      _log.log('CROP', 'Scanner error: $e');
       if (!mounted) return;
       setState(() => _isPicking = false);
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Scanner error: \$e')),
+        SnackBar(content: Text('Scanner error: $e')),
       );
     }
   }
 
   Future<void> _cropAndSave(String sourcePath) async {
-    _log.log('CROP', 'Opening cropper: \$sourcePath');
+    _log.log('CROP', 'Opening cropper: $sourcePath');
     final CroppedFile? croppedFile = await ImageCropper().cropImage(
       sourcePath: sourcePath,
       uiSettings: <PlatformUiSettings>[
@@ -184,7 +184,7 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
       _log.log('CROP', 'Crop cancelled');
       return;
     }
-    _log.log('CROP', 'Cropped: \${croppedFile.path}');
+    _log.log('CROP', 'Cropped: ${croppedFile.path}');
 
     setState(() => _stage = _Stage.saving);
 
@@ -195,10 +195,10 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
       await scansDir.create(recursive: true);
       final String outPath = p.join(
         scansDir.path,
-        'manual_\${DateTime.now().microsecondsSinceEpoch}.jpg',
+        'manual_${DateTime.now().microsecondsSinceEpoch}.jpg',
       );
       await File(croppedFile.path).copy(outPath);
-      _log.log('CROP', 'Saved to: \$outPath');
+      _log.log('CROP', 'Saved to: $outPath');
 
       String ocrText = '';
       try {
@@ -208,14 +208,14 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
           script: OcrScript.latin,
         );
         ocrText = result.fullText;
-        _log.log('CROP', 'OCR done: \${ocrText.length} chars');
-      } on OcrUnavailableException catch (e) {
-        _log.log('CROP', 'OCR unavailable: \$e');
+        _log.log('CROP', 'OCR done: ${ocrText.length} chars');
+      } on OcrUnavailableException catch (_) {
+        _log.log('CROP', 'OCR unavailable');
       }
 
       final DateTime now = DateTime.now();
       final ScanDocument document = ScanDocument(
-        id: '\${now.microsecondsSinceEpoch}',
+        id: '${now.microsecondsSinceEpoch}',
         title: _defaultTitle(now),
         pageCount: 1,
         pagePaths: <String>[outPath],
@@ -243,12 +243,12 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
           _scanProvider.lastError.value ?? 'Failed to save document.',
         );
       }
-    } catch (e, stackTrace) {
-      _log.log('CROP', 'CRASH: \$e\n\$stackTrace');
+    } catch (e, _) {
+      _log.log('CROP', 'CRASH: $e');
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('Error: \$e'),
+          content: Text('Error: $e'),
           backgroundColor: Colors.red,
           duration: const Duration(seconds: 8),
         ),
@@ -260,10 +260,10 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
 
   String _defaultTitle(DateTime when) {
     final String date =
-        '\${when.year}-\${when.month.toString().padLeft(2, '0')}-\${when.day.toString().padLeft(2, '0')}';
+        '${when.year}-${when.month.toString().padLeft(2, '0')}-${when.day.toString().padLeft(2, '0')}';
     final String time =
-        '\${when.hour.toString().padLeft(2, '0')}.\${when.minute.toString().padLeft(2, '0')}';
-    return 'Scan \$date \$time';
+        '${when.hour.toString().padLeft(2, '0')}.${when.minute.toString().padLeft(2, '0')}';
+    return 'Scan $date $time';
   }
 
   @override
