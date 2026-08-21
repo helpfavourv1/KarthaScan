@@ -243,7 +243,7 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
           _scanProvider.lastError.value ?? 'Failed to save document.',
         );
       }
-    } catch (e, _) {
+        } catch (e) {
       _log.log('CROP', 'CRASH: $e');
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
