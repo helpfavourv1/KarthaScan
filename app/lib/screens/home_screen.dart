@@ -8,8 +8,7 @@ import '../core/models/scan_document.dart';
 import '../core/providers/folder_provider.dart';
 import '../core/providers/scan_provider.dart';
 import '../core/providers/settings_provider.dart';
-import '../core/services/doc_scanner_service.dart';
-import '../core/services/ocr_service.dart' show OcrScript;
+import '../core/services/debug_log_service.dart';
 import '../core/utils/constants.dart';
 import '../l10n/app_localizations.dart';
 import '../widgets/empty_state.dart';
@@ -83,40 +82,9 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Future<void> _onScanPressed() async {
-    final String ocrLanguage = _settingsProvider.settings.value.ocrLanguage;
-    final OcrScript script = _ocrScriptFromSettingsValue(ocrLanguage);
-    final ScanDocument? document =
-        await _scanProvider.captureNewDocument(ocrScript: script);
+    DebugLogService().log('HOME', 'FAB tapped → routing to /manual-crop');
     if (!mounted) return;
-    if (document != null) {
-      context.push('/scan/${document.id}');
-      return;
-    }
-    if (_scanProvider.scanFlowState.value == ScanFlowState.unsupported) {
-      context.push('/manual-crop');
-      return;
-    }
-    // Show on-screen debug when scan fails to return a document
-    final String debug = DocScannerService.lastRawDebug;
-    if (debug.isNotEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('DEBUG: $debug'),
-          duration: const Duration(seconds: 10),
-          action: SnackBarAction(
-            label: 'Dismiss',
-            onPressed: () {},
-          ),
-        ),
-      );
-    }
-  }
-
-  OcrScript _ocrScriptFromSettingsValue(String value) {
-    for (final OcrScript script in OcrScript.values) {
-      if (script.name == value) return script;
-    }
-    return OcrScript.latin;
+    context.push('/manual-crop');
   }
 
   void _toggleSelection(String id) {
