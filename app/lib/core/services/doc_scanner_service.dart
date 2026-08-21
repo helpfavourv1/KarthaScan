@@ -7,6 +7,7 @@ import 'package:flutter/services.dart' show PlatformException;
 import 'package:flutter_doc_scanner/flutter_doc_scanner.dart';
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
+import 'package:pdfx/pdfx.dart';
 
 import '../utils/constants.dart';
 
@@ -40,11 +41,12 @@ class DocScannerService {
 
     // Attempt 1: getScannedDocumentAsImages (preferred — returns image paths)
     try {
-      final dynamic raw = await _scanner.getScannedDocumentAsImages();
+      final dynamic raw = await _scanner.getScannedDocumentAsImages(page: maxPages);
       lastRawDebug = 'ImagesMethod: type=${raw.runtimeType} value=$raw';
       final List<String> paths = await _extractPaths(raw);
       if (paths.isNotEmpty) {
-        return DocScanResult(pageImagePaths: paths);
+        final List<String> finalPaths = await _ensureImages(paths);
+        return DocScanResult(pageImagePaths: finalPaths);
       }
     } on PlatformException catch (error, stackTrace) {
       _logError('getScannedDocumentAsImages', error, stackTrace);
@@ -53,48 +55,97 @@ class DocScannerService {
           AppPluginFailureCopy.docScannerUnsupportedMessage,
         );
       }
-      // Fall through to attempt 2
     } catch (error, stackTrace) {
       _logError('getScannedDocumentAsImages', error, stackTrace);
-      // Fall through to attempt 2
     }
 
     // Attempt 2: getScanDocumentsUri (fallback — returns URI list)
     try {
-      final dynamic raw = await _scanner.getScanDocumentsUri();
+      final dynamic raw = await _scanner.getScanDocumentsUri(page: maxPages);
       lastRawDebug = 'UriMethod: type=${raw.runtimeType} value=$raw';
       final List<String> paths = await _extractPaths(raw);
       if (paths.isNotEmpty) {
-        return DocScanResult(pageImagePaths: paths);
+        final List<String> finalPaths = await _ensureImages(paths);
+        return DocScanResult(pageImagePaths: finalPaths);
       }
     } catch (error, stackTrace) {
       _logError('getScanDocumentsUri', error, stackTrace);
-      // Fall through to attempt 3
     }
 
     // Attempt 3: getScanDocuments (last resort — may return PDF or images)
     try {
-      final dynamic raw = await _scanner.getScanDocuments();
+      final dynamic raw = await _scanner.getScanDocuments(page: maxPages);
       lastRawDebug = 'DocsMethod: type=${raw.runtimeType} value=$raw';
       final List<String> paths = await _extractPaths(raw);
       if (paths.isNotEmpty) {
-        return DocScanResult(pageImagePaths: paths);
+        final List<String> finalPaths = await _ensureImages(paths);
+        return DocScanResult(pageImagePaths: finalPaths);
       }
     } catch (error, stackTrace) {
       _logError('getScanDocuments', error, stackTrace);
     }
 
     // All attempts exhausted
-    throw DocScannerFailedException(
-      lastRawDebug.isNotEmpty
-          ? 'Scanner failed. $lastRawDebug'
-          : 'Document scanner returned no images.',
+    throw const DocScannerUnsupportedException(
+      AppPluginFailureCopy.docScannerUnsupportedMessage,
     );
   }
 
-  /// Normalizes flutter_doc_scanner's untyped return value to
-  /// `List<String>` of file paths. Also handles raw bytes by saving
-  /// them to disk.
+  /// Intercepts paths before returning them. If a path is a PDF, it routes it
+  /// through the renderer to convert its pages into JPGs. 
+  /// Standard image paths pass through untouched.
+  Future<List<String>> _ensureImages(List<String> paths) async {
+    final List<String> finalPaths = <String>[];
+    
+    for (final String path in paths) {
+      if (path.toLowerCase().endsWith('.pdf')) {
+        try {
+          finalPaths.addAll(await _convertPdfToImages(path));
+        } catch (error, stackTrace) {
+          _logError('PDF Conversion', error, stackTrace);
+        }
+      } else {
+        finalPaths.add(path);
+      }
+    }
+    return finalPaths;
+  }
+
+  /// Uses `pdfx` to crack open a PDF and render its pages to disk as JPGs.
+  Future<List<String>> _convertPdfToImages(String pdfPath) async {
+    final List<String> outputPaths = <String>[];
+    final PdfDocument document = await PdfDocument.openFile(pdfPath); //
+    
+    final Directory appDir = await getApplicationDocumentsDirectory();
+    final Directory scansDir = Directory(p.join(appDir.path, 'scanner_converted_pages'));
+    await scansDir.create(recursive: true);
+
+    // pdfx uses 1-based indexing
+    for (int i = 1; i <= document.pagesCount; i++) {
+      final PdfPage page = await document.getPage(i); //
+      
+      // Render at 2x resolution to maintain document crispness for OCR/cropping
+      final PdfPageImage? pageImage = await page.render(
+        width: page.width * 2, //
+        height: page.height * 2, //
+        format: PdfPageImageFormat.jpeg, //
+      );
+
+      if (pageImage != null) {
+        final String outPath = p.join(
+          scansDir.path,
+          'converted_${DateTime.now().microsecondsSinceEpoch}_$i.jpg',
+        );
+        await File(outPath).writeAsBytes(pageImage.bytes); //
+        outputPaths.add(outPath);
+      }
+      await page.close(); //
+    }
+    
+    await document.close(); //
+    return outputPaths;
+  }
+
   Future<List<String>> _extractPaths(dynamic raw) async {
     if (raw == null) return const <String>[];
 
@@ -102,11 +153,9 @@ class DocScannerService {
     if (raw is List) {
       if (raw.isEmpty) return const <String>[];
 
-      // List of Strings (file paths)
       final List<String> strings = raw.whereType<String>().toList();
-      if (strings.isNotEmpty) return strings;
+      if (strings.isNotEmpty) return strings.map((s) => s.replaceFirst('file://', '')).toList();
 
-      // List of Maps (each containing a path/uri key)
       final List<String> fromMaps = raw
           .whereType<Map>()
           .map((dynamic m) => _extractStringFromMap(m as Map))
@@ -115,7 +164,6 @@ class DocScannerService {
           .toList();
       if (fromMaps.isNotEmpty) return fromMaps;
 
-      // List of Uint8List (raw image bytes) — save each to disk
       final List<Uint8List> byteArrays = raw.whereType<Uint8List>().toList();
       if (byteArrays.isNotEmpty) {
         return _saveByteArrays(byteArrays);
@@ -124,26 +172,14 @@ class DocScannerService {
 
     // Map wrapper — try every known key
     if (raw is Map) {
+      // Direct check for root keys like 'pdfUri'
+      final String? directPath = _extractStringFromMap(raw);
+      if (directPath != null) return <String>[directPath];
+
       const List<String> candidateKeys = <String>[
-        'images',
-        'Images',
-        'imagePaths',
-        'scannedImages',
-        'Uri',
-        'uri',
-        'uris',
-        'paths',
-        'path',
-        'files',
-        'imageUris',
-        'result',
-        'data',
-        'pdf',
-        'PDF',
-        'document',
-        'documents',
-        'pages',
-        'image',
+        'images', 'Images', 'imagePaths', 'scannedImages', 'Uri', 'uri', 'uris',
+        'paths', 'path', 'files', 'imageUris', 'result', 'data', 'pdf', 'PDF',
+        'document', 'documents', 'pages', 'image',
       ];
 
       for (final String key in candidateKeys) {
@@ -151,12 +187,12 @@ class DocScannerService {
         if (value == null) continue;
 
         if (value is String) {
-          return <String>[value];
+          return <String>[value.replaceFirst('file://', '')];
         }
 
         if (value is List) {
           final List<String> strings = value.whereType<String>().toList();
-          if (strings.isNotEmpty) return strings;
+          if (strings.isNotEmpty) return strings.map((s) => s.replaceFirst('file://', '')).toList();
 
           final List<String> fromMaps = value
               .whereType<Map>()
@@ -166,8 +202,7 @@ class DocScannerService {
               .toList();
           if (fromMaps.isNotEmpty) return fromMaps;
 
-          final List<Uint8List> byteArrays =
-              value.whereType<Uint8List>().toList();
+          final List<Uint8List> byteArrays = value.whereType<Uint8List>().toList();
           if (byteArrays.isNotEmpty) {
             return _saveByteArrays(byteArrays);
           }
@@ -186,7 +221,7 @@ class DocScannerService {
 
     // Single String path
     if (raw is String) {
-      return <String>[raw];
+      return <String>[raw.replaceFirst('file://', '')];
     }
 
     // Single Uint8List (raw bytes)
@@ -199,18 +234,13 @@ class DocScannerService {
 
   String? _extractStringFromMap(Map map) {
     for (final String key in const <String>[
-      'uri',
-      'path',
-      'filePath',
-      'url',
-      'imagePath',
-      'imageUri',
-      'fileUri',
-      'pdfUri',
-      'pdfPath',
+      'uri', 'path', 'filePath', 'url', 'imagePath', 'imageUri', 'fileUri', 'pdfUri', 'pdfPath',
     ]) {
       final Object? value = map[key];
-      if (value is String && value.isNotEmpty) return value;
+      if (value is String && value.isNotEmpty) {
+        // Automatically strips the file:// prefix to prevent File() crashes on Android
+        return value.replaceFirst('file://', '');
+      }
     }
     return null;
   }
