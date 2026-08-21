@@ -1,7 +1,6 @@
 // lib/core/services/doc_scanner_service.dart
 import 'dart:io' show Directory, File;
 import 'dart:typed_data';
-import 'package:flutter/foundation.dart' show debugPrint;
 import 'package:flutter/services.dart' show PlatformException;
 import 'package:flutter_doc_scanner/flutter_doc_scanner.dart';
 import 'package:path/path.dart' as p;
