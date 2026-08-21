@@ -12,6 +12,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import 'screens/debug_logs_screen.dart';
 import 'screens/export_screen.dart';
 import 'screens/folder_screen.dart';
 import 'screens/home_screen.dart';
@@ -69,6 +70,10 @@ GoRouter buildRouter() {
       GoRoute(
         path: '/paywall',
         builder: (BuildContext context, GoRouterState state) => const PaywallScreen(),
+      ),
+      GoRoute(
+        path: '/debug-logs',
+        builder: (BuildContext context, GoRouterState state) => const DebugLogsScreen(),
       ),
     ],
   );
