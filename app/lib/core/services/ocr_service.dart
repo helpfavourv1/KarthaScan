@@ -2,7 +2,7 @@
 import 'dart:async' show TimeoutException;
 import 'package:flutter/foundation.dart' show debugPrint;
 import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
-import '../core/services/debug_log_service.dart';
+import 'debug_log_service.dart';
 import '../models/ocr_block.dart';
 import '../utils/constants.dart';
 
@@ -55,7 +55,7 @@ class OcrService {
       return OcrResult(fullText: recognizedText.text, blocks: blocks);
     } on OcrUnavailableException {
       rethrow;
-    } catch (error, stackTrace) {
+    } catch (error) {
       _log.log('OCR', 'Error: $error');
       throw const OcrUnavailableException(
         AppPluginFailureCopy.ocrUnavailableTooltip,
@@ -67,7 +67,7 @@ class OcrService {
     try {
       _recognizerFor(OcrScript.latin);
       return true;
-    } catch (error, stackTrace) {
+    } catch (_) {
       return false;
     }
   }
@@ -115,8 +115,8 @@ class OcrService {
     for (final TextRecognizer recognizer in _recognizers.values) {
       try {
         await recognizer.close();
-      } catch (error, stackTrace) {
-        _log.log('OCR', 'Dispose error: $error');
+      } catch (_) {
+        // Silently ignore dispose errors
       }
     }
     _recognizers.clear();
