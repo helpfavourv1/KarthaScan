@@ -8,6 +8,7 @@ import '../core/models/scan_document.dart';
 import '../core/providers/folder_provider.dart';
 import '../core/providers/scan_provider.dart';
 import '../core/providers/settings_provider.dart';
+import '../core/services/doc_scanner_service.dart';
 import '../core/services/ocr_service.dart' show OcrScript;
 import '../core/utils/constants.dart';
 import '../l10n/app_localizations.dart';
@@ -93,6 +94,21 @@ class _HomeScreenState extends State<HomeScreen> {
     }
     if (_scanProvider.scanFlowState.value == ScanFlowState.unsupported) {
       context.push('/manual-crop');
+      return;
+    }
+    // Show on-screen debug when scan fails to return a document
+    final String debug = DocScannerService.lastRawDebug;
+    if (debug.isNotEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('DEBUG: $debug'),
+          duration: const Duration(seconds: 10),
+          action: SnackBarAction(
+            label: 'Dismiss',
+            onPressed: () {},
+          ),
+        ),
+      );
     }
   }
 
