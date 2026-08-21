@@ -1,8 +1,16 @@
 // lib/core/providers/scan_provider.dart
+//
+// ValueNotifier<List<ScanDocument>> + activeScan + CRUD operations
+// (Section 16 file #21). Orchestrates DocScannerService (capture),
+// OcrService (text extraction), and LocalStorageService (persistence)
+// into the app's core "scan a document" flow.
+//
+// REACTIVITY: ValueNotifier + ListenableBuilder only, per the MANDATORY
+// constraint in constants.dart.
 import 'dart:async' show unawaited;
 import 'dart:math' show Random;
 
-import 'package:flutter/foundation.dart' show ValueNotifier;
+import 'package:flutter/foundation.dart' show ValueNotifier, debugPrint;
 
 import '../models/scan_document.dart';
 import '../services/doc_scanner_service.dart';
@@ -35,6 +43,10 @@ class ScanProvider {
   final ValueNotifier<ScanFlowState> scanFlowState =
       ValueNotifier<ScanFlowState>(ScanFlowState.idle);
   final ValueNotifier<String?> lastError = ValueNotifier<String?>(null);
+
+  /// Set once a device-level OCR failure has been observed, so
+  /// screens/widgets can disable the OCR affordance per Section 14 rather
+  /// than waiting for the user to hit the same failure again.
   final ValueNotifier<bool> ocrUnavailable = ValueNotifier<bool>(false);
 
   Future<void> _loadAll() async {
@@ -50,17 +62,18 @@ class ScanProvider {
     documents.value = await _storage.getAllDocuments();
   }
 
+  /// Runs the full capture flow: launches the scanner UI, OCRs each
+  /// captured page, and saves the result as a new ScanDocument.
   Future<ScanDocument?> captureNewDocument({
     String? title,
     OcrScript ocrScript = OcrScript.latin,
   }) async {
     scanFlowState.value = ScanFlowState.scanning;
     lastError.value = null;
-
     try {
       final DocScanResult scanResult = await _docScanner.scan();
-
       if (scanResult.pageImagePaths.isEmpty) {
+        // User cancelled — not an error.
         scanFlowState.value = ScanFlowState.idle;
         return null;
       }
@@ -90,16 +103,19 @@ class ScanProvider {
       scanFlowState.value = ScanFlowState.idle;
       return document;
     } on DocScannerUnsupportedException catch (error) {
+      debugPrint('MAIN SCANNER UNSUPPORTED: ${error.message}');
       scanFlowState.value = ScanFlowState.unsupported;
       lastError.value = error.message;
       return null;
     } on DocScannerFailedException catch (error) {
+      debugPrint('MAIN SCANNER FAILED: ${error.message}');
       scanFlowState.value = ScanFlowState.error;
       lastError.value = error.message;
       return null;
-    } catch (_) {
+    } catch (e, stackTrace) {
+      debugPrint('MAIN SCANNER UNHANDLED EXCEPTION: $e\n$stackTrace');
       scanFlowState.value = ScanFlowState.error;
-      lastError.value = 'Something went wrong while scanning.';
+      lastError.value = 'Scan crash: $e';
       return null;
     }
   }
@@ -120,6 +136,9 @@ class ScanProvider {
       } on OcrUnavailableException {
         ocrUnavailable.value = true;
         break;
+      } catch (e) {
+        debugPrint('OCR ERROR on $path: $e');
+        // Continue processing pages without blocking saving.
       }
     }
     return combined.toString();
