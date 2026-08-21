@@ -93,7 +93,7 @@ class DocScannerService {
   }
 
   /// Normalizes flutter_doc_scanner's untyped return value to
-  /// List<String> of file paths. Also handles raw bytes by saving
+  /// `List<String>` of file paths. Also handles raw bytes by saving
   /// them to disk.
   Future<List<String>> _extractPaths(dynamic raw) async {
     if (raw == null) return const <String>[];
