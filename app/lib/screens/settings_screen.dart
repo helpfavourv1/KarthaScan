@@ -10,6 +10,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../core/providers/settings_provider.dart';
 import '../core/providers/subscription_provider.dart';
 import '../core/providers/theme_provider.dart';
+import '../core/services/debug_log_service.dart';
 import '../core/utils/constants.dart';
 import '../l10n/app_localizations.dart';
 import '../widgets/pro_badge.dart';
@@ -193,6 +194,21 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     border: border,
                   ),
                 ],
+              ),
+            ),
+            const SizedBox(height: AppSpacing.md),
+            _sectionLabel('DIAGNOSTICS', textSecondary),
+            ListenableBuilder(
+              listenable: DebugLogService().logs,
+              builder: (BuildContext context, Widget? _) => _settingsTile(
+                title: 'Debug Logs',
+                trailing: Text(
+                  '${DebugLogService().count} entries',
+                  style: TextStyle(color: textSecondary),
+                ),
+                onTap: () => context.push('/debug-logs'),
+                textPrimary: textPrimary,
+                border: border,
               ),
             ),
             const SizedBox(height: AppSpacing.md),
