@@ -116,7 +116,17 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
     _log.log('CROP', 'Scan button tapped');
     setState(() => _isPicking = true);
     try {
-      final DocScanResult result = await DocScannerService().scan();
+      final DocScanResult result = await DocScannerService()
+          .scan()
+          .timeout(
+            const Duration(seconds: 45),
+            onTimeout: () {
+              _log.log('CROP', 'Scanner timed out after 45s');
+              throw const DocScannerUnsupportedException(
+                'Scanner not responding on this device. Use Camera or Import instead.',
+              );
+            },
+          );
       if (!mounted) return;
       if (result.pageImagePaths.isEmpty) {
         _log.log('CROP', 'Scanner returned empty');
@@ -178,7 +188,6 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
         ),
       ],
     );
-
     if (!mounted) return;
     if (croppedFile == null) {
       _log.log('CROP', 'Crop cancelled');
@@ -187,7 +196,6 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
     _log.log('CROP', 'Cropped: ${croppedFile.path}');
 
     setState(() => _stage = _Stage.saving);
-
     try {
       final Directory appDir = await getApplicationDocumentsDirectory();
       final Directory scansDir =
@@ -228,7 +236,6 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
       _log.log('CROP', 'Importing...');
       final bool success = await _scanProvider.importDocument(document);
       if (!mounted) return;
-
       if (success) {
         _log.log('CROP', 'Saved → home');
         ScaffoldMessenger.of(context).showSnackBar(
@@ -243,7 +250,7 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
           _scanProvider.lastError.value ?? 'Failed to save document.',
         );
       }
-        } catch (e) {
+    } catch (e) {
       _log.log('CROP', 'CRASH: $e');
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(

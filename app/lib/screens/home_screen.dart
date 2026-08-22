@@ -164,15 +164,16 @@ class _HomeScreenState extends State<HomeScreen> {
                   ? _buildSearchResults(localeCode, l10n)
                   : _buildDefaultContent(localeCode, l10n),
             ),
-            if (_bannerAd != null && _isAdLoaded)
-              SizedBox(
-                width: _bannerAd!.size.width.toDouble(),
-                height: _bannerAd!.size.height.toDouble(),
-                child: AdWidget(ad: _bannerAd!),
-              ),
           ],
         ),
       ),
+      bottomNavigationBar: _bannerAd != null && _isAdLoaded
+          ? SizedBox(
+              width: _bannerAd!.size.width.toDouble(),
+              height: _bannerAd!.size.height.toDouble(),
+              child: AdWidget(ad: _bannerAd!),
+            )
+          : null,
       floatingActionButton: _selectionMode
           ? null
           : FloatingActionButton(
