@@ -34,16 +34,16 @@ class DocScannerService {
   Future<DocScanResult> scan({int maxPages = 20}) async {
     _log.log('SCANNER', 'Starting scan flow (maxPages=$maxPages)');
 
-    // Attempt 1
     try {
       _log.log('SCANNER', 'Attempt 1: getScannedDocumentAsImages');
       final dynamic raw = await _scanner.getScannedDocumentAsImages(page: maxPages);
-      _log.log('SCANNER', 'Attempt 1 raw: type=${raw.runtimeType}');
-      final List<String> paths = await _extractPaths(raw);
-      _log.log('SCANNER', 'Attempt 1 complete: ${paths.length} paths');
-      
-      // SUCCESS: Return immediately even if empty (user canceled) to break the loop
-      return DocScanResult(pageImagePaths: paths);
+      _log.log('SCANNER', 'Attempt 1 raw: type=${raw.runtimeType} value=$raw');
+      final List<String> paths = _filterImagePaths(await _extractPaths(raw));
+      if (paths.isNotEmpty) {
+        _log.log('SCANNER', 'Attempt 1 SUCCESS: ${paths.length} paths');
+        return DocScanResult(pageImagePaths: paths);
+      }
+      _log.log('SCANNER', 'Attempt 1 returned empty or non-image paths');
     } on PlatformException catch (error) {
       _log.log('SCANNER', 'Attempt 1 PlatformException: ${error.code} | ${error.message}');
       if (error.code == 'UNSUPPORTED') {
@@ -55,26 +55,30 @@ class DocScannerService {
       _log.log('SCANNER', 'Attempt 1 error: $error');
     }
 
-    // Attempt 2
     try {
       _log.log('SCANNER', 'Attempt 2: getScanDocumentsUri');
       final dynamic raw = await _scanner.getScanDocumentsUri(page: maxPages);
-      _log.log('SCANNER', 'Attempt 2 raw: type=${raw.runtimeType}');
-      final List<String> paths = await _extractPaths(raw);
-      _log.log('SCANNER', 'Attempt 2 complete: ${paths.length} paths');
-      return DocScanResult(pageImagePaths: paths);
+      _log.log('SCANNER', 'Attempt 2 raw: type=${raw.runtimeType} value=$raw');
+      final List<String> paths = _filterImagePaths(await _extractPaths(raw));
+      if (paths.isNotEmpty) {
+        _log.log('SCANNER', 'Attempt 2 SUCCESS: ${paths.length} paths');
+        return DocScanResult(pageImagePaths: paths);
+      }
+      _log.log('SCANNER', 'Attempt 2 returned empty or non-image paths');
     } catch (error) {
       _log.log('SCANNER', 'Attempt 2 error: $error');
     }
 
-    // Attempt 3
     try {
       _log.log('SCANNER', 'Attempt 3: getScanDocuments');
       final dynamic raw = await _scanner.getScanDocuments(page: maxPages);
-      _log.log('SCANNER', 'Attempt 3 raw: type=${raw.runtimeType}');
-      final List<String> paths = await _extractPaths(raw);
-      _log.log('SCANNER', 'Attempt 3 complete: ${paths.length} paths');
-      return DocScanResult(pageImagePaths: paths);
+      _log.log('SCANNER', 'Attempt 3 raw: type=${raw.runtimeType} value=$raw');
+      final List<String> paths = _filterImagePaths(await _extractPaths(raw));
+      if (paths.isNotEmpty) {
+        _log.log('SCANNER', 'Attempt 3 SUCCESS: ${paths.length} paths');
+        return DocScanResult(pageImagePaths: paths);
+      }
+      _log.log('SCANNER', 'Attempt 3 returned empty or non-image paths');
     } catch (error) {
       _log.log('SCANNER', 'Attempt 3 error: $error');
     }
@@ -85,61 +89,53 @@ class DocScannerService {
     );
   }
 
+  List<String> _filterImagePaths(List<String> paths) {
+    const List<String> imageExts = <String>['.jpg', '.jpeg', '.png', '.gif', '.bmp', '.webp'];
+    return paths.where((String path) {
+      final String ext = p.extension(path).toLowerCase();
+      final bool isImage = imageExts.contains(ext);
+      if (!isImage) {
+        _log.log('SCANNER', 'Rejected non-image path: $path (ext: $ext)');
+      }
+      return isImage;
+    }).toList();
+  }
+
   Future<List<String>> _extractPaths(dynamic raw) async {
-    if (raw == null) {
-      _log.log('SCANNER', 'Raw data is null. User likely canceled.');
-      return const <String>[];
-    }
-    
-    // Safely handle lists without strict type-casting
+    if (raw == null) return const <String>[];
+
     if (raw is List) {
       if (raw.isEmpty) return const <String>[];
-      
-      // Extract direct strings
-      final List<String> strings = raw
-          .where((e) => e != null)
-          .map((e) => e.toString().replaceFirst('file://', ''))
-          .toList();
-          
-      if (strings.isNotEmpty) return strings;
-
-      // Extract from nested Maps
+      final List<String> strings = raw.whereType<String>().toList();
+      if (strings.isNotEmpty) {
+        return strings.map((s) => s.replaceFirst('file://', '')).toList();
+      }
       final List<String> fromMaps = raw
           .whereType<Map>()
           .map((dynamic m) => _extractStringFromMap(m as Map))
           .where((String? s) => s != null)
           .cast<String>()
           .toList();
-          
       if (fromMaps.isNotEmpty) return fromMaps;
-
-      // Extract raw byte arrays
       final List<Uint8List> byteArrays = raw.whereType<Uint8List>().toList();
       if (byteArrays.isNotEmpty) return _saveByteArrays(byteArrays);
     }
-    
+
     if (raw is Map) {
       final String? directPath = _extractStringFromMap(raw);
       if (directPath != null) return <String>[directPath];
-
       const List<String> candidateKeys = <String>[
         'images', 'Images', 'imagePaths', 'scannedImages', 'Uri', 'uri', 'uris',
         'paths', 'path', 'files', 'imageUris', 'result', 'data', 'pdf', 'PDF',
         'document', 'documents', 'pages', 'image',
       ];
-      
       for (final String key in candidateKeys) {
         final Object? value = raw[key];
         if (value == null) continue;
         if (value is String) return <String>[value.replaceFirst('file://', '')];
-        
         if (value is List) {
-          final List<String> strings = value
-              .where((e) => e != null)
-              .map((e) => e.toString().replaceFirst('file://', ''))
-              .toList();
-          if (strings.isNotEmpty) return strings;
-
+          final List<String> strings = value.whereType<String>().toList();
+          if (strings.isNotEmpty) return strings.map((s) => s.replaceFirst('file://', '')).toList();
           final List<String> fromMaps = value
               .whereType<Map>()
               .map((dynamic m) => _extractStringFromMap(m as Map))
@@ -147,29 +143,19 @@ class DocScannerService {
               .cast<String>()
               .toList();
           if (fromMaps.isNotEmpty) return fromMaps;
-
           final List<Uint8List> byteArrays = value.whereType<Uint8List>().toList();
           if (byteArrays.isNotEmpty) return _saveByteArrays(byteArrays);
         }
-        
         if (value is Map) {
           final String? nested = _extractStringFromMap(value);
           if (nested != null) return <String>[nested];
         }
-        
         if (value is Uint8List) return _saveByteArrays(<Uint8List>[value]);
       }
     }
-    
-    // Older plugins return a single comma-separated string
-    if (raw is String) {
-      if (raw.isEmpty) return const <String>[];
-      return raw.split(',').map((e) => e.trim().replaceFirst('file://', '')).toList();
-    }
-    
+
+    if (raw is String) return <String>[raw.replaceFirst('file://', '')];
     if (raw is Uint8List) return _saveByteArrays(<Uint8List>[raw]);
-    
-    _log.log('SCANNER', 'Failed to parse raw data type: ${raw.runtimeType}');
     return const <String>[];
   }
 
@@ -187,7 +173,6 @@ class DocScannerService {
     final Directory appDir = await getApplicationDocumentsDirectory();
     final Directory scansDir = Directory(p.join(appDir.path, 'scanner_fallback_pages'));
     await scansDir.create(recursive: true);
-    
     final List<String> paths = <String>[];
     for (int i = 0; i < byteArrays.length; i++) {
       final String outPath = p.join(
