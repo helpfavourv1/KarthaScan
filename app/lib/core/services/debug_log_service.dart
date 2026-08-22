@@ -1,5 +1,5 @@
 // lib/core/services/debug_log_service.dart
-import 'dart:io' show File;
+import 'dart:io' show Directory, File, FileMode;
 import 'package:flutter/foundation.dart' show ValueNotifier, debugPrint;
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart' as p;
