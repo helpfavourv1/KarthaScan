@@ -82,7 +82,7 @@ class DebugLogService {
       final List<String> lines = await _logFile!.readAsLines();
       if (lines.length > _maxLines) {
         final trimmed = lines.sublist(lines.length - _maxLines);
-        await _logFile!.writeAsString(trimmed.join('\n') + '\n');
+        await _logFile!.writeAsString('${trimmed.join('\n')}\n');
       }
     } catch (e) {
       debugPrint('DebugLogService persist error: $e');
