@@ -139,7 +139,6 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
       _log.log('CROP', 'Scanner path: ${result.pageImagePaths.first}');
 
       // CRITICAL FIX: Automatically navigate to scan detail after scan succeeds
-      final String firstPage = result.pageImagePaths.first;
       setState(() => _isPicking = false);
 
       // Save the scanned document immediately
