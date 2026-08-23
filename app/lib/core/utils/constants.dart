@@ -163,9 +163,9 @@ abstract final class AppPermissionRationale {
 }
 
 abstract final class AppSupportContact {
-  static const String supportEmail = 'support@katharscan.app';
-  static const String privacyPolicyUrl = 'https://katharscan.app/privacy.html';
-  static const String supportUrl = 'https://katharscan.app/support.html';
+  static const String supportEmail = 'accessmakr@gmail.com';
+  static const String privacyPolicyUrl = 'https://katharscan.helpfavourv1.workers.dev/privacy';
+  static const String supportUrl = 'https://katharscan.helpfavourv1.workers.dev/support';
   AppSupportContact._();
 }
 
