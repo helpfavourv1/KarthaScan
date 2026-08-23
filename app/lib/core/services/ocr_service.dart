@@ -82,7 +82,8 @@ class OcrService {
       case OcrScript.chinese:
         return TextRecognitionScript.chinese;
       case OcrScript.devanagari:
-        return TextRecognitionScript.latin;
+        // BUGFIX: Previously mapped to latin. Devanagari is supported by ML Kit.
+        return TextRecognitionScript.devanagari;
       case OcrScript.japanese:
         return TextRecognitionScript.japanese;
       case OcrScript.korean:

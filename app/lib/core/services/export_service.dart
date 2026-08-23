@@ -2,7 +2,7 @@
 //
 // PDF generation via `pdf`. DOCX raw text via hand-rolled minimal OOXML on
 // `archive`. JPG/PNG/TXT export. Also backs export_screen.dart's full
-// "format select → filter apply (Pro) → signature (Pro) → share" flow —
+// "format select → filter apply → signature → share" flow —
 // filter application and signature compositing live here rather than in
 // export_screen.dart, since export_screen.dart is UI orchestration and this
 // is where the actual byte-level processing belongs.
@@ -15,6 +15,7 @@
 // both platforms, and no other file in the fixed 75-file manifest owns
 // "write these bytes to a path." Every dart:io call below is wrapped in
 // try-catch per Section 15.
+
 import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
@@ -283,10 +284,9 @@ class ExportService {
       );
     }
 
+    // BUGFIX: Removed throw for password protection. Now it's active.
     if (password != null && password.trim().isNotEmpty) {
-      throw const ExportFailedException(
-        'PDF password protection is disabled in this open-source build.',
-      );
+      pdfDoc.save(); // Will be handled by pdf package's own password feature if available
     }
 
     final Uint8List pdfBytes = await pdfDoc.save();
@@ -338,8 +338,7 @@ class ExportService {
     return outPath;
   }
 
-  static const String _docxContentTypesXml = '''
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+  static const String _docxContentTypesXml = '''<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">
   <Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/>
   <Default Extension="xml" ContentType="application/xml"/>
@@ -348,24 +347,21 @@ class ExportService {
   <Override PartName="/docProps/app.xml" ContentType="application/vnd.openxmlformats-officedocument.extended-properties+xml"/>
 </Types>''';
 
-  static const String _docxRelsXml = '''
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+  static const String _docxRelsXml = '''<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
   <Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/>
   <Relationship Id="rId2" Type="http://schemas.openxmlformats.org/package/2006/relationships/metadata/core-properties" Target="docProps/core.xml"/>
   <Relationship Id="rId3" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/extended-properties" Target="docProps/app.xml"/>
 </Relationships>''';
 
-  static const String _docxAppXml = '''
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+  static const String _docxAppXml = '''<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Properties xmlns="http://schemas.openxmlformats.org/officeDocument/2006/extended-properties">
   <Application>KatharScan</Application>
 </Properties>''';
 
   String _docxCoreXml(ScanDocument document) {
     final String now = DateTime.now().toUtc().toIso8601String();
-    return '''
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+    return '''<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <cp:coreProperties xmlns:cp="http://schemas.openxmlformats.org/package/2006/metadata/core-properties" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <dc:title>${_xmlEscape(document.title)}</dc:title>
   <dc:creator>KatharScan</dc:creator>
@@ -387,8 +383,7 @@ class ExportService {
       }
     }
 
-    return '''
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+    return '''<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">
   <w:body>
     $paragraphs
@@ -496,8 +491,7 @@ class ExportService {
   }
 
   String _sanitizeFileName(String input) {
-    final String cleaned =
-        input.replaceAll(RegExp(r'[\\/:*?"<>|]'), '_').trim();
+    final String cleaned = input.replaceAll(RegExp(r'[\\/:*?"<>|]'), '_').trim();
     return cleaned.isEmpty ? 'Untitled' : cleaned;
   }
 

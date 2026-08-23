@@ -8,6 +8,7 @@
 // platform channel, no device, and no emulator, so it does not violate
 // Section 4's "no plugin imports in core/" rule. The test is whether a file
 // is unit-testable headlessly (`flutter test`), and this is.
+
 import 'package:flutter/material.dart' show Color;
 
 // =============================================================================
@@ -40,7 +41,7 @@ import 'package:flutter/material.dart' show Color;
 
 /// Feature flags. These mirror decisions locked in Section 1 of the
 /// blueprint. They exist so that "no notifications" / "no cross-device
-/// sync" / "no ads" are checkable constants — not just an absence of code —
+/// sync" / "ads" are checkable constants — not just an absence of code —
 /// and so a future contributor can `grep` for why a subsystem doesn't exist.
 abstract final class AppFeatureFlags {
   /// Section 1: "Has a daily-habit/retention loop? No". Determines whether
@@ -54,9 +55,9 @@ abstract final class AppFeatureFlags {
   /// flow, not sync, and must never be marketed as sync.
   static const bool hasCrossDeviceSync = false;
 
-  /// Section 19 Trust Promise: "We will never show you an ad." AdMob and
-  /// all ad SDKs are permanently removed from this project's scope.
-  static const bool hasAds = false;
+  /// UPDATED: Ads are now enabled by default until the user purchases
+  /// the "Remove Ads" one-time product.
+  static const bool hasAds = true;
 
   AppFeatureFlags._();
 }
