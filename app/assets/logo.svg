@@ -18,37 +18,35 @@
     </linearGradient>
   </defs>
 
-  <!-- Background -->
+  <!-- Background (Squircle with blue gradient) -->
   <g clip-path="url(#squircle)">
     <rect x="0" y="0" width="1024" height="1024" fill="url(#bgGradient)"/>
-
-    <!-- Subtle inner glow (iOS depth) -->
     <rect x="0" y="0" width="1024" height="1024" fill="white" opacity="0.03"/>
   </g>
 
   <!-- Document Sheet (White) -->
-  <g transform="translate(232, 192)">
-    <!-- Main body -->
-    <rect x="0" y="0" width="560" height="640" rx="48" fill="#FFFFFF"/>
-    <!-- Folded corner -->
-    <path d="M 480 0 L 560 80 L 480 80 C 468 80 460 72 460 60 L 460 0 Z" fill="url(#foldGradient)"/>
+  <g transform="translate(192, 160)">
+    <!-- Main document body -->
+    <rect x="0" y="0" width="640" height="704" rx="48" fill="#FFFFFF"/>
+    <!-- Folded corner (top-right) -->
+    <path d="M 544 0 L 640 96 L 544 96 C 528 96 512 80 512 64 L 512 0 Z" fill="url(#foldGradient)"/>
 
-    <!-- Scan Lines (OCR) -->
-    <rect x="64" y="180" width="432" height="32" rx="16" fill="#007AFF" opacity="0.15"/>
-    <rect x="64" y="240" width="432" height="32" rx="16" fill="#007AFF" opacity="0.15"/>
-    <rect x="64" y="300" width="300" height="32" rx="16" fill="#007AFF" opacity="0.15"/>
+    <!-- Scan Lines (OCR - light blue) -->
+    <rect x="80" y="200" width="480" height="40" rx="20" fill="#007AFF" opacity="0.12"/>
+    <rect x="80" y="280" width="480" height="40" rx="20" fill="#007AFF" opacity="0.12"/>
+    <rect x="80" y="360" width="320" height="40" rx="20" fill="#007AFF" opacity="0.12"/>
 
-    <!-- Accent sweep (scanning in action) -->
-    <rect x="0" y="420" width="560" height="12" fill="#0051D5" opacity="0.8"/>
-  </g>
+    <!-- Accent sweep (dark blue horizontal line) -->
+    <rect x="80" y="480" width="480" height="16" rx="8" fill="#0051D5" opacity="0.9"/>
 
-  <!-- Stylized "K" Mark (White) -->
-  <g transform="translate(256, 256)">
-    <!-- Vertical stroke -->
-    <rect x="0" y="0" width="72" height="512" rx="16" fill="#FFFFFF"/>
-    <!-- Top diagonal -->
-    <path d="M 72 0 L 72 96 L 320 512 L 248 512 L 72 96 Z" fill="#FFFFFF"/>
-    <!-- Bottom diagonal -->
-    <path d="M 72 0 L 72 96 L 320 512 L 248 512 L 72 96 Z" fill="#FFFFFF"/>
+    <!-- Stylized "K" Mark (White, bold, centered) -->
+    <g transform="translate(320, 200)">
+      <!-- Vertical stroke -->
+      <rect x="0" y="0" width="80" height="304" rx="16" fill="#FFFFFF"/>
+      <!-- Top diagonal (from top-left to middle-right) -->
+      <path d="M 80 0 L 80 80 L 280 304 L 200 304 L 80 80 Z" fill="#FFFFFF"/>
+      <!-- Bottom diagonal (from middle-right to bottom-left) -->
+      <path d="M 80 0 L 80 80 L 280 304 L 200 304 L 80 80 Z" fill="#FFFFFF"/>
+    </g>
   </g>
 </svg>
