@@ -1,5 +1,3 @@
-// lib/router.dart
-
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -14,9 +12,9 @@ import 'screens/paywall_screen.dart';
 import 'screens/scan_detail_screen.dart';
 import 'screens/settings_screen.dart';
 
-GoRouter buildRouter() {
+GoRouter buildRouter({String initialLocation = '/'}) {
   return GoRouter(
-    initialLocation: '/',
+    initialLocation: initialLocation,
     routes: <RouteBase>[
       GoRoute(
         path: '/',

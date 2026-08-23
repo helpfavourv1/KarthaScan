@@ -1,14 +1,6 @@
-// lib/main.dart
-//
-// Init: sqflite, IAP, error boundary, localization (Section 16 file #41).
-//
-// Services are constructed once here and shared across providers via
-// Provider.value — the MANDATORY DI-only scope of `provider`
-// (constants.dart / Section 15). This file never uses ChangeNotifierProvider,
-// Consumer, or context.watch, matching every other file in this project.
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
@@ -33,45 +25,27 @@ Future<void> main() async {
     onReportIssue: (Uri mailUri) async {
       try {
         await launchUrl(mailUri);
-      } catch (_) {
-        // If even the report-issue mailto: fails to launch, there's
-        // nothing further to do — the app is already showing its
-        // non-crashing fallback error screen at this point (Section 14/15
-        // "never crash" applies here too: a failed report action must not
-        // itself throw somewhere uncaught).
-      }
+      } catch (_) {}
     },
   );
 
-  // sqflite init (Section 16 file #41's first named responsibility).
-  // LocalStorageService.initialize() itself never throws — it falls back
-  // to in-memory mode internally per Section 15 — so awaiting it here is
-  // safe and doesn't need its own try-catch.
   final LocalStorageService localStorage = LocalStorageService();
   await localStorage.initialize();
 
   final DocScannerService docScanner = DocScannerService();
   final OcrService ocr = OcrService();
   final PermissionService permission = PermissionService();
-
-  // IAP init (Section 16 file #41's second named responsibility) happens
-  // inside SubscriptionProvider's constructor, which calls
-  // IapService.initialize() — constructing the provider below is what
-  // actually starts it.
   final IapService iap = IapService();
 
   final SettingsProvider settingsProvider = SettingsProvider(localStorage);
   final ThemeProvider themeProvider = ThemeProvider(settingsProvider);
-  final SubscriptionProvider subscriptionProvider =
-      SubscriptionProvider(iap, settingsProvider);
-
-  final ScanProvider scanProvider = ScanProvider(
-    storage: localStorage,
-    docScanner: docScanner,
-    ocr: ocr,
-  );
-
+  final SubscriptionProvider subscriptionProvider = SubscriptionProvider(iap, settingsProvider);
+  final ScanProvider scanProvider = ScanProvider(storage: localStorage, docScanner: docScanner, ocr: ocr);
   final FolderProvider folderProvider = FolderProvider(localStorage);
+
+  // Check onboarding status
+  final SharedPreferences prefs = await SharedPreferences.getInstance();
+  final bool hasSeenOnboarding = prefs.getBool('hasSeenOnboarding') ?? false;
 
   runApp(
     MultiProvider(

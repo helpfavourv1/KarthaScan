@@ -1,10 +1,7 @@
-// lib/app.dart
-//
-// MaterialApp, router, theme injection, Directionality.
-
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'core/providers/settings_provider.dart';
 import 'core/providers/theme_provider.dart';
@@ -21,11 +18,23 @@ class KatharScanApp extends StatefulWidget {
 
 class _KatharScanAppState extends State<KatharScanApp> {
   late final GoRouter _router;
+  bool _hasSeenOnboarding = false;
 
   @override
   void initState() {
     super.initState();
-    _router = buildRouter();
+    _loadOnboardingFlag();
+  }
+
+  Future<void> _loadOnboardingFlag() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final bool hasSeen = prefs.getBool('hasSeenOnboarding') ?? false;
+    if (mounted) {
+      setState(() {
+        _hasSeenOnboarding = hasSeen;
+        _router = buildRouter(initialLocation: hasSeen ? '/' : '/onboarding');
+      });
+    }
   }
 
   @override
@@ -72,10 +81,7 @@ class _KatharScanAppState extends State<KatharScanApp> {
       brightness: brightness,
       useMaterial3: true,
       scaffoldBackgroundColor: isDark ? AppColors.bgPrimaryDark : AppColors.bgPrimaryLight,
-      colorScheme: ColorScheme.fromSeed(
-        seedColor: accentColor,
-        brightness: brightness,
-      ),
+      colorScheme: ColorScheme.fromSeed(seedColor: accentColor, brightness: brightness),
       appBarTheme: AppBarTheme(
         elevation: 0,
         scrolledUnderElevation: 0,

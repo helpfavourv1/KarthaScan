@@ -1,10 +1,7 @@
-// lib/screens/onboarding_screen.dart
-//
-// 3-step onboarding carousel (no skip button). Shown on first launch.
-
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../core/utils/constants.dart';
 
@@ -44,13 +41,18 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     setState(() => _currentIndex = index);
   }
 
-  void _nextPage() {
+  Future<void> _nextPage() async {
     if (_currentIndex < _pages.length - 1) {
       _controller.nextPage(
         duration: const Duration(milliseconds: 300),
         curve: Curves.easeOut,
       );
     } else {
+      // Mark onboarding as complete
+      final SharedPreferences prefs = await SharedPreferences.getInstance();
+      await prefs.setBool('hasSeenOnboarding', true);
+      
+      if (!mounted) return;
       context.go('/');
     }
   }
