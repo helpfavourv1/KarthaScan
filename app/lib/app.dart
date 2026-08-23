@@ -1,15 +1,7 @@
 // lib/app.dart
 //
-// MaterialApp, router, theme injection, Directionality (Section 16 file
-// #42).
-//
-// Directionality is set explicitly from AppLocales.isRtl (Section 18)
-// rather than relying solely on MaterialApp's own automatic RTL detection
-// from the resolved Locale — MaterialApp does handle this correctly on
-// its own, but Section 16 file #42 calls out Directionality as an
-// explicit responsibility of this file, and being explicit here gives a
-// single, visible place to verify ar/he resolve to RTL rather than
-// trusting it implicitly.
+// MaterialApp, router, theme injection, Directionality.
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -83,6 +75,21 @@ class _KatharScanAppState extends State<KatharScanApp> {
       colorScheme: ColorScheme.fromSeed(
         seedColor: accentColor,
         brightness: brightness,
+      ),
+      appBarTheme: AppBarTheme(
+        elevation: 0,
+        scrolledUnderElevation: 0,
+        backgroundColor: isDark ? AppColors.bgPrimaryDark : AppColors.bgPrimaryLight,
+      ),
+      cardTheme: CardTheme(
+        elevation: 0,
+        color: isDark ? AppColors.bgSecondaryDark : AppColors.bgSecondaryLight,
+      ),
+      pageTransitionsTheme: const PageTransitionsTheme(
+        builders: {
+          TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+          TargetPlatform.android: CupertinoPageTransitionsBuilder(),
+        },
       ),
     );
   }

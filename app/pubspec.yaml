@@ -63,3 +63,5 @@ flutter:
   generate: true
   assets:
     - assets/logo.svg
+    - assets/icon_source.png
+    - assets/splash_logo.png

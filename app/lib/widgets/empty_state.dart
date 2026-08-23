@@ -1,20 +1,9 @@
 // lib/widgets/empty_state.dart
 //
-// First launch: "Tap the camera to scan your first document." (Section 16
-// file #29).
-//
-// Built as a reusable empty-state widget with that copy as the default,
-// so the same widget also serves other empty moments (empty search
-// results, an empty folder) with different copy passed in — per the
-// frontend-design skill's guidance to treat emptiness as a moment for
-// direction, not just an absence.
-//
-// LOCALIZATION: [message] is nullable rather than defaulting to a literal
-// string — a constructor default value must be a compile-time constant,
-// and AppLocalizations.of(context) needs a BuildContext that isn't
-// available at that point. The real default is resolved in build()
-// instead, via `message ?? AppLocalizations.of(context).emptyStateDefaultMessage`.
+// Reusable empty state with SVG illustration.
+
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import '../core/utils/constants.dart';
 import '../l10n/app_localizations.dart';
@@ -22,19 +11,14 @@ import '../l10n/app_localizations.dart';
 class EmptyState extends StatelessWidget {
   const EmptyState({
     super.key,
-    this.icon = Icons.document_scanner_outlined,
+    this.icon,
     this.message,
     this.actionLabel,
     this.onAction,
   });
 
-  final IconData icon;
-
-  /// When null, falls back to Section 16 file #29's exact required copy
-  /// (localized) — see the file header for why this can't be a
-  /// constructor default value directly.
+  final IconData? icon;
   final String? message;
-
   final String? actionLabel;
   final VoidCallback? onAction;
 
@@ -52,8 +36,12 @@ class EmptyState extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            Icon(icon, size: 48, color: textSecondary),
-            const SizedBox(height: AppSpacing.md),
+            SvgPicture.string(
+              _emptyStateSvg,
+              width: 160,
+              height: 160,
+            ),
+            const SizedBox(height: AppSpacing.lg),
             Text(
               resolvedMessage,
               textAlign: TextAlign.center,
@@ -86,3 +74,15 @@ class EmptyState extends StatelessWidget {
     );
   }
 }
+
+const String _emptyStateSvg = '''
+<svg width="160" height="160" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect x="30" y="15" width="100" height="130" rx="14" fill="#007AFF" fill-opacity="0.06"/>
+  <rect x="45" y="38" width="70" height="6" rx="3" fill="#007AFF" fill-opacity="0.15"/>
+  <rect x="45" y="52" width="50" height="6" rx="3" fill="#007AFF" fill-opacity="0.15"/>
+  <rect x="45" y="66" width="60" height="6" rx="3" fill="#007AFF" fill-opacity="0.15"/>
+  <rect x="45" y="86" width="70" height="40" rx="8" fill="#007AFF" fill-opacity="0.08"/>
+  <circle cx="122" cy="42" r="18" fill="#007AFF" fill-opacity="0.10"/>
+  <path d="M115 42L120 47L129 37" stroke="#007AFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="0.35"/>
+</svg>
+''';
