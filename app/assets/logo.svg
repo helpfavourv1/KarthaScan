@@ -1,52 +1,22 @@
 <svg width="1024" height="1024" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
-  <!-- iOS Superellipse Mask -->
   <defs>
-    <clipPath id="squircle">
-      <path d="M 512 0 C 760 0 860 0 1024 164 C 1024 328 1024 428 1024 512 C 1024 596 1024 696 860 860 C 696 1024 596 1024 512 1024 C 428 1024 328 1024 164 860 C 0 696 0 596 0 512 C 0 428 0 328 164 164 C 328 0 428 0 512 0 Z"/>
-    </clipPath>
-
-    <!-- iOS Blue Gradient -->
     <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#007AFF"/>
       <stop offset="100%" stop-color="#0051D5"/>
     </linearGradient>
-
-    <!-- Document Fold Shadow -->
-    <linearGradient id="foldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#F2F2F7"/>
-      <stop offset="100%" stop-color="#D1D1D6"/>
-    </linearGradient>
   </defs>
-
-  <!-- Background (Squircle with blue gradient) -->
-  <g clip-path="url(#squircle)">
-    <rect x="0" y="0" width="1024" height="1024" fill="url(#bgGradient)"/>
-    <rect x="0" y="0" width="1024" height="1024" fill="white" opacity="0.03"/>
-  </g>
-
-  <!-- Document Sheet (White) -->
+  <rect x="0" y="0" width="1024" height="1024" rx="224" fill="url(#bgGradient)"/>
   <g transform="translate(192, 160)">
-    <!-- Main document body -->
     <rect x="0" y="0" width="640" height="704" rx="48" fill="#FFFFFF"/>
-    <!-- Folded corner (top-right) -->
-    <path d="M 544 0 L 640 96 L 544 96 C 528 96 512 80 512 64 L 512 0 Z" fill="url(#foldGradient)"/>
-
-    <!-- Scan Lines (OCR - light blue) -->
-    <rect x="80" y="200" width="480" height="40" rx="20" fill="#007AFF" opacity="0.12"/>
-    <rect x="80" y="280" width="480" height="40" rx="20" fill="#007AFF" opacity="0.12"/>
-    <rect x="80" y="360" width="320" height="40" rx="20" fill="#007AFF" opacity="0.12"/>
-
-    <!-- Accent sweep (dark blue horizontal line) -->
-    <rect x="80" y="480" width="480" height="16" rx="8" fill="#0051D5" opacity="0.9"/>
-
-    <!-- Stylized "K" Mark (White, bold, centered) -->
-    <g transform="translate(320, 200)">
-      <!-- Vertical stroke -->
-      <rect x="0" y="0" width="80" height="304" rx="16" fill="#FFFFFF"/>
-      <!-- Top diagonal (from top-left to middle-right) -->
-      <path d="M 80 0 L 80 80 L 280 304 L 200 304 L 80 80 Z" fill="#FFFFFF"/>
-      <!-- Bottom diagonal (from middle-right to bottom-left) -->
-      <path d="M 80 0 L 80 80 L 280 304 L 200 304 L 80 80 Z" fill="#FFFFFF"/>
+    <path d="M 544 0 L 640 96 L 544 96 C 528 96 512 80 512 64 L 512 0 Z" fill="#D1D1D6"/>
+    <rect x="80" y="200" width="480" height="32" rx="16" fill="#007AFF" opacity="0.15"/>
+    <rect x="80" y="280" width="480" height="32" rx="16" fill="#007AFF" opacity="0.15"/>
+    <rect x="80" y="360" width="320" height="32" rx="16" fill="#007AFF" opacity="0.15"/>
+    <rect x="80" y="480" width="480" height="12" rx="6" fill="#0051D5" opacity="0.9"/>
+    <g transform="translate(320, 220)">
+      <rect x="0" y="0" width="64" height="280" rx="8" fill="#FFFFFF"/>
+      <polygon points="64,0 64,80 280,280 216,280" fill="#FFFFFF"/>
+      <polygon points="64,80 64,160 280,280 216,280" fill="#FFFFFF"/>
     </g>
   </g>
 </svg>
