@@ -18,7 +18,7 @@ class KatharScanApp extends StatefulWidget {
 
 class _KatharScanAppState extends State<KatharScanApp> {
   late final GoRouter _router;
-  bool _hasSeenOnboarding = false;
+  bool _isRouterInitialized = false;
 
   @override
   void initState() {
@@ -31,8 +31,8 @@ class _KatharScanAppState extends State<KatharScanApp> {
     final bool hasSeen = prefs.getBool('hasSeenOnboarding') ?? false;
     if (mounted) {
       setState(() {
-        _hasSeenOnboarding = hasSeen;
         _router = buildRouter(initialLocation: hasSeen ? '/' : '/onboarding');
+        _isRouterInitialized = true;
       });
     }
   }
@@ -49,6 +49,10 @@ class _KatharScanAppState extends State<KatharScanApp> {
         settingsProvider.settings,
       ]),
       builder: (BuildContext context, Widget? _) {
+        if (!_isRouterInitialized) {
+          return const Scaffold(body: Center(child: CircularProgressIndicator()));
+        }
+
         final String languageCode = settingsProvider.settings.value.language;
         final Locale locale = Locale(languageCode);
         final bool isRtl = AppLocales.isRtl(languageCode);
@@ -87,7 +91,7 @@ class _KatharScanAppState extends State<KatharScanApp> {
         scrolledUnderElevation: 0,
         backgroundColor: isDark ? AppColors.bgPrimaryDark : AppColors.bgPrimaryLight,
       ),
-      cardTheme: CardTheme(
+      cardTheme: CardThemeData(
         elevation: 0,
         color: isDark ? AppColors.bgSecondaryDark : AppColors.bgSecondaryLight,
       ),

@@ -43,10 +43,6 @@ Future<void> main() async {
   final ScanProvider scanProvider = ScanProvider(storage: localStorage, docScanner: docScanner, ocr: ocr);
   final FolderProvider folderProvider = FolderProvider(localStorage);
 
-  // Check onboarding status
-  final SharedPreferences prefs = await SharedPreferences.getInstance();
-  final bool hasSeenOnboarding = prefs.getBool('hasSeenOnboarding') ?? false;
-
   runApp(
     MultiProvider(
       providers: [
