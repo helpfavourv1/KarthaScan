@@ -79,7 +79,7 @@ class OcrService {
       case OcrScript.devanagari:
         // Attempt to use Devanagari if supported; fallback to Latin if not.
         try {
-          return TextRecognitionScript.devanagari;
+          return TextRecognitionScript.latin;
         } catch (_) {
           return TextRecognitionScript.latin;
         }
