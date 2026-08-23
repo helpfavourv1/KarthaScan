@@ -2,6 +2,7 @@
 //
 // Theme, language, OCR language, storage location, restore purchases,
 // privacy policy, support (Section 16 file #37).
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -13,7 +14,6 @@ import '../core/providers/theme_provider.dart';
 import '../core/services/debug_log_service.dart';
 import '../core/utils/constants.dart';
 import '../l10n/app_localizations.dart';
-import '../widgets/pro_badge.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -71,16 +71,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
   }
 
   Future<void> _pickOcrLanguage() async {
-    final bool isPro = _subscriptionProvider.isPro.value;
     final String? chosen = await showModalBottomSheet<String>(
       context: context,
       builder: (BuildContext context) => _OcrLanguagePickerSheet(
         current: _settingsProvider.settings.value.ocrLanguage,
-        isPro: isPro,
-        onUpgradeRequired: () {
-          Navigator.of(context).pop();
-          context.push('/paywall');
-        },
       ),
     );
     if (chosen != null) {
@@ -132,7 +126,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             const SizedBox(height: AppSpacing.md),
             _sectionLabel(l10n.languageSectionLabel, textSecondary),
             ListenableBuilder(
-              listenable: Listenable.merge(<Listenable>[_settingsProvider.settings, _subscriptionProvider.isPro]),
+              listenable: _settingsProvider.settings,
               builder: (BuildContext context, Widget? _) => Column(
                 children: <Widget>[
                   _settingsTile(
@@ -148,13 +142,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   const SizedBox(height: AppSpacing.xs),
                   _settingsTile(
                     title: l10n.ocrLanguageLabel,
-                    trailing: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: <Widget>[
-                        if (!_subscriptionProvider.isPro.value) const ProBadge(),
-                        const SizedBox(width: AppSpacing.xs),
-                        Text(_settingsProvider.settings.value.ocrLanguage, style: TextStyle(color: textSecondary)),
-                      ],
+                    trailing: Text(
+                      _settingsProvider.settings.value.ocrLanguage,
+                      style: TextStyle(color: textSecondary),
                     ),
                     onTap: _pickOcrLanguage,
                     textPrimary: textPrimary,
@@ -175,11 +165,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
             const SizedBox(height: AppSpacing.md),
             _sectionLabel(l10n.subscriptionSectionLabel, textSecondary),
             ListenableBuilder(
-              listenable: _subscriptionProvider.isPro,
+              listenable: _subscriptionProvider.adsRemoved,
               builder: (BuildContext context, Widget? _) => Column(
                 children: <Widget>[
                   _settingsTile(
-                    title: _subscriptionProvider.isPro.value ? l10n.katharscanProLabel : l10n.upgradeToProLabel,
+                    title: _subscriptionProvider.adsRemoved.value
+                        ? 'Ads Removed'
+                        : 'Remove Ads',
                     trailing: Icon(Icons.chevron_right, color: textSecondary),
                     onTap: () => context.push('/paywall'),
                     textPrimary: textPrimary,
@@ -286,11 +278,6 @@ class _LanguagePickerSheet extends StatelessWidget {
 
   final String current;
 
-  // Endonyms — each language's name for itself. Deliberately NOT routed
-  // through AppLocalizations: a language picker conventionally shows
-  // "Español" as "Español" regardless of the app's current UI language,
-  // since the person selecting it may not read the current language yet.
-  // Translating these would be actively wrong, not just unnecessary.
   static const Map<String, String> _labels = <String, String>{
     'en': 'English',
     'es': 'Español',
@@ -359,19 +346,11 @@ class _OcrLangOption {
 class _OcrLanguagePickerSheet extends StatelessWidget {
   const _OcrLanguagePickerSheet({
     required this.current,
-    required this.isPro,
-    this.onUpgradeRequired,
   });
 
   final String current;
-  final bool isPro;
-  final VoidCallback? onUpgradeRequired;
 
-  // Matches OcrScript exactly (core/services/ocr_service.dart) — Latin
-  // free, everything else Pro. No Arabic/Hebrew: ML Kit Text Recognition
-  // doesn't support those scripts at all (verified against the package's
-  // docs in Phase 2) — they remain RTL interface languages only, not OCR
-  // options. See ocr_service.dart's file header for the full reasoning.
+  // Matches OcrScript exactly (core/services/ocr_service.dart) — all scripts are free.
   static List<_OcrLangOption> _options(AppLocalizations l10n) {
     return <_OcrLangOption>[
       _OcrLangOption('latin', l10n.ocrLanguageLatinOption),
@@ -415,13 +394,11 @@ class _OcrLanguagePickerSheet extends StatelessWidget {
             ),
             const SizedBox(height: AppSpacing.sm),
             ..._options(l10n).map((_OcrLangOption opt) {
-              final bool locked = !isPro && opt.value != 'latin';
+              final bool selected = opt.value == current;
               return ListTile(
-                title: Text(opt.label, style: TextStyle(color: locked ? textSecondary : textPrimary)),
-                trailing: locked
-                    ? const ProBadge()
-                    : (opt.value == current ? Icon(Icons.check, color: accent) : null),
-                onTap: locked ? onUpgradeRequired : () => Navigator.of(context).pop(opt.value),
+                title: Text(opt.label, style: TextStyle(color: textPrimary)),
+                trailing: selected ? Icon(Icons.check, color: accent) : null,
+                onTap: () => Navigator.of(context).pop(opt.value),
               );
             }),
           ],

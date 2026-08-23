@@ -1,6 +1,6 @@
 // lib/widgets/filter_bottom_sheet.dart
 //
-// Grayscale, B&W, color enhance, shadow removal — Pro-gated (Section 16
+// Grayscale, B&W, color enhance, shadow removal — all free (Section 16
 // file #31).
 //
 // This widget is a SELECTOR only — it returns which FilterType the user
@@ -17,12 +17,12 @@
 // labels baked in at compile time. AppLocalizations needs a BuildContext,
 // unavailable for a compile-time const — so this is now a function
 // computed inside build(), where l10n is available.
+
 import 'package:flutter/material.dart';
 
 import '../core/services/export_service.dart' show FilterType;
 import '../core/utils/constants.dart';
 import '../l10n/app_localizations.dart';
-import 'pro_badge.dart';
 
 class FilterOption {
   const FilterOption({required this.type, required this.label, required this.icon});
@@ -43,22 +43,16 @@ List<FilterOption> _filterOptions(AppLocalizations l10n) {
 }
 
 /// Shows the filter picker as a modal bottom sheet. [current] pre-selects
-/// the active filter (checkmark). When [isPro] is false, every option
-/// except "Original" is shown locked — tapping a locked option calls
-/// [onUpgradeRequired] instead of resolving the sheet.
+/// the active filter (checkmark). All options are always tappable.
 Future<FilterType?> showFilterSheet(
   BuildContext context, {
-  required bool isPro,
   required FilterType current,
-  VoidCallback? onUpgradeRequired,
 }) {
   return showModalBottomSheet<FilterType>(
     context: context,
     backgroundColor: Colors.transparent,
     builder: (BuildContext context) => FilterBottomSheet(
-      isPro: isPro,
       current: current,
-      onUpgradeRequired: onUpgradeRequired,
     ),
   );
 }
@@ -66,14 +60,10 @@ Future<FilterType?> showFilterSheet(
 class FilterBottomSheet extends StatelessWidget {
   const FilterBottomSheet({
     super.key,
-    required this.isPro,
     required this.current,
-    this.onUpgradeRequired,
   });
 
-  final bool isPro;
   final FilterType current;
-  final VoidCallback? onUpgradeRequired;
 
   @override
   Widget build(BuildContext context) {
@@ -125,20 +115,15 @@ class FilterBottomSheet extends StatelessWidget {
                     fontWeight: FontWeight.w600,
                   ),
                 ),
-                if (!isPro) ...<Widget>[
-                  const SizedBox(width: AppSpacing.xs),
-                  const ProBadge(),
-                ],
               ],
             ),
             const SizedBox(height: AppSpacing.sm),
             ..._filterOptions(l10n).map((FilterOption option) {
-              final bool locked = !isPro && option.type != FilterType.none;
               final bool selected = option.type == current;
               return Material(
                 color: Colors.transparent,
                 child: InkWell(
-                  onTap: locked ? onUpgradeRequired : () => Navigator.of(context).pop(option.type),
+                  onTap: () => Navigator.of(context).pop(option.type),
                   borderRadius: BorderRadius.circular(AppShape.buttonRadius),
                   child: Container(
                     constraints: const BoxConstraints(minHeight: AppShape.minTouchTarget),
@@ -148,20 +133,19 @@ class FilterBottomSheet extends StatelessWidget {
                     ),
                     child: Row(
                       children: <Widget>[
-                        Icon(option.icon, color: locked ? textSecondary : accent, size: 22),
+                        Icon(option.icon, color: accent, size: 22),
                         const SizedBox(width: AppSpacing.sm),
                         Expanded(
                           child: Text(
                             option.label,
                             style: TextStyle(
-                              color: locked ? textSecondary : textPrimary,
+                              color: textPrimary,
                               fontSize: AppTypography.bodySize,
                               fontWeight: selected ? FontWeight.w600 : FontWeight.w400,
                             ),
                           ),
                         ),
-                        if (selected && !locked) Icon(Icons.check, color: accent, size: 20),
-                        if (locked) const ProBadge(),
+                        if (selected) Icon(Icons.check, color: accent, size: 20),
                       ],
                     ),
                   ),

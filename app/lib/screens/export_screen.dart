@@ -1,11 +1,11 @@
 // lib/screens/export_screen.dart
 //
-// Export flow: format select → filter apply (Pro) → signature (Pro) →
-// password (Pro) → share (Section 16 file #38).
+// Export flow: format select → filter apply → signature → password → share
+// (Section 16 file #38).
 //
-// Batch export (more than one document at once) is Pro-gated per Section
-// 19 — a single document's export flow is always free regardless of
-// format; this screen checks that before anything else.
+// All features are free. Batch export, filters, signature, and PDF password
+// are available to all users.
+
 import 'dart:io';
 import 'dart:typed_data';
 
@@ -17,7 +17,6 @@ import 'package:provider/provider.dart';
 import '../core/models/export_job.dart';
 import '../core/models/scan_document.dart';
 import '../core/providers/scan_provider.dart';
-import '../core/providers/subscription_provider.dart';
 import '../core/services/export_service.dart';
 import '../core/services/share_service.dart';
 import '../core/utils/constants.dart';
@@ -37,7 +36,6 @@ class ExportScreen extends StatefulWidget {
 
 class _ExportScreenState extends State<ExportScreen> {
   late final ScanProvider _scanProvider;
-  late final SubscriptionProvider _subscriptionProvider;
   final ExportService _exportService = ExportService();
   final ShareService _shareService = ShareService();
 
@@ -49,7 +47,6 @@ class _ExportScreenState extends State<ExportScreen> {
   void initState() {
     super.initState();
     _scanProvider = Provider.of<ScanProvider>(context, listen: false);
-    _subscriptionProvider = Provider.of<SubscriptionProvider>(context, listen: false);
   }
 
   List<ScanDocument> get _documents {
@@ -71,28 +68,6 @@ class _ExportScreenState extends State<ExportScreen> {
     _started = true;
 
     final AppLocalizations l10n = AppLocalizations.of(context);
-    final bool isPro = _subscriptionProvider.isPro.value;
-
-    if (widget.documentIds.length > 1 && !isPro) {
-      final bool? goToPaywall = await showDialog<bool>(
-        context: context,
-        builder: (BuildContext context) => AlertDialog(
-          title: Text(l10n.exportBatchProTitle),
-          content: Text(l10n.exportBatchProMessage),
-          actions: <Widget>[
-            TextButton(onPressed: () => Navigator.of(context).pop(false), child: Text(l10n.commonCancel)),
-            TextButton(onPressed: () => Navigator.of(context).pop(true), child: Text(l10n.commonUpgrade)),
-          ],
-        ),
-      );
-      if (!mounted) return;
-      if (goToPaywall == true) {
-        context.push('/paywall');
-      } else {
-        context.pop();
-      }
-      return;
-    }
 
     final ExportFormat? format = await showExportFormatSheet(context);
     if (!mounted) return;
@@ -105,27 +80,24 @@ class _ExportScreenState extends State<ExportScreen> {
     Uint8List? signatureBytes;
     String? password;
 
-    if (isPro) {
-      final FilterType? chosenFilter = await showFilterSheet(
-        context,
-        isPro: true,
-        current: FilterType.none,
-      );
-      if (chosenFilter != null) filter = chosenFilter;
+    final FilterType? chosenFilter = await showFilterSheet(
+      context,
+      current: FilterType.none,
+    );
+    if (chosenFilter != null) filter = chosenFilter;
+    if (!mounted) return;
+
+    final bool wantsSignature = await _confirmStep(l10n.addSignatureQuestion, l10n);
+    if (wantsSignature && mounted) {
+      signatureBytes = await _captureSignature();
       if (!mounted) return;
+    }
 
-      final bool wantsSignature = await _confirmStep(l10n.addSignatureQuestion, l10n);
-      if (wantsSignature && mounted) {
-        signatureBytes = await _captureSignature();
+    if (format == ExportFormat.pdf) {
+      final bool wantsPassword = await _confirmStep(l10n.passwordProtectQuestion, l10n);
+      if (wantsPassword && mounted) {
+        password = await _promptPassword(l10n);
         if (!mounted) return;
-      }
-
-      if (format == ExportFormat.pdf) {
-        final bool wantsPassword = await _confirmStep(l10n.passwordProtectQuestion, l10n);
-        if (wantsPassword && mounted) {
-          password = await _promptPassword(l10n);
-          if (!mounted) return;
-        }
       }
     }
 
@@ -208,10 +180,6 @@ class _ExportScreenState extends State<ExportScreen> {
         allOutputPaths.addAll(paths);
       }
     } on ExportFailedException {
-      // ExportFailedException.message is English, set in
-      // core/services/export_service.dart with no BuildContext available
-      // there to localize at the source — shown here as a localized
-      // generic fallback per Section 18 rather than that raw string.
       errorMessage = l10n.genericErrorMessage;
     } catch (_) {
       errorMessage = l10n.exportGenericError;
@@ -251,10 +219,6 @@ class _ExportScreenState extends State<ExportScreen> {
     final Color textPrimary = isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight;
     final Color textSecondary = isDark ? AppColors.textSecondaryDark : AppColors.textSecondaryLight;
 
-    // The flow is kicked off here, in build, rather than initState —
-    // showDialog/showModalBottomSheet need a fully mounted widget tree
-    // with an Overlay ancestor, which isn't guaranteed yet during
-    // initState. _started guards against re-triggering on rebuild.
     if (!_started) {
       WidgetsBinding.instance.addPostFrameCallback((Duration _) => _startFlow());
     }
