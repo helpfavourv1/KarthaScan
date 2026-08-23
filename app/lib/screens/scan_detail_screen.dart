@@ -34,8 +34,8 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> {
   late final FolderProvider _folderProvider;
   final ShareService _shareService = ShareService();
 
-  // CRITICAL FIX: Initialize ScrollController for DraggableScrollableSheet
-  final ScrollController _ocrScrollController = ScrollController();
+  // CRITICAL FIX: Use a local ScrollController in the builder, NOT a global one.
+  // DraggableScrollableSheet provides its own controller. We must NOT dispose it.
 
   @override
   void initState() {
@@ -43,12 +43,6 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> {
     _scanProvider = Provider.of<ScanProvider>(context, listen: false);
     _folderProvider = Provider.of<FolderProvider>(context, listen: false);
     _scanProvider.setActiveScan(widget.documentId);
-  }
-
-  @override
-  void dispose() {
-    _ocrScrollController.dispose();
-    super.dispose();
   }
 
   ScanDocument? get _document {
@@ -229,16 +223,8 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> {
                       initialChildSize: 0.25,
                       minChildSize: 0.12,
                       maxChildSize: 0.85,
-                      // CRITICAL FIX: Use a fixed controller for the sheet
+                      // CRITICAL FIX: Use the provided scrollController directly.
                       builder: (BuildContext context, ScrollController scrollController) {
-                        // Ensure the controller is properly connected
-                        if (_ocrScrollController.hasClients) {
-                          // If already attached, do nothing
-                        } else {
-                          // Attach the scroll controller to the sheet's scrollable
-                          _ocrScrollController.position;
-                        }
-
                         return Container(
                           decoration: BoxDecoration(
                             color: bg,

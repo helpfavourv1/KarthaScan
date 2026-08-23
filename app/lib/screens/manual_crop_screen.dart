@@ -138,16 +138,17 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
       }
       _log.log('CROP', 'Scanner path: ${result.pageImagePaths.first}');
 
-      // CRITICAL FIX: Automatically navigate to scan detail after scan succeeds
-      setState(() => _isPicking = false);
-
-      // Save the scanned document immediately
-      await _saveScannedDocument(result.pageImagePaths);
-
+      // CRITICAL FIX: Save the document FIRST, then navigate.
+      final ScanDocument? savedDoc = await _saveScannedDocument(result.pageImagePaths);
       if (!mounted) return;
-      // Navigate to the newly created scan detail screen
-      final String documentId = _scanProvider.documents.value.first.id;
-      context.go('/scan/$documentId');
+      
+      if (savedDoc != null) {
+        // Navigate to the newly created scan detail screen
+        context.go('/scan/${savedDoc.id}');
+      } else {
+        _log.log('CROP', 'Save failed, staying on crop screen');
+        setState(() => _isPicking = false);
+      }
     } on DocScannerUnsupportedException catch (_) {
       _log.log('CROP', 'Scanner unsupported on this device');
       if (!mounted) return;
@@ -170,7 +171,7 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
     }
   }
 
-  Future<void> _saveScannedDocument(List<String> pagePaths) async {
+  Future<ScanDocument?> _saveScannedDocument(List<String> pagePaths) async {
     setState(() => _stage = _Stage.saving);
     try {
       final Directory appDir = await getApplicationDocumentsDirectory();
@@ -215,10 +216,17 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
         thumbnailPath: savedPaths.first,
       );
 
-      await _scanProvider.importDocument(document);
-      _log.log('CROP', 'Document saved');
+      final bool success = await _scanProvider.importDocument(document);
+      if (success) {
+        _log.log('CROP', 'Document saved');
+        return document;
+      } else {
+        _log.log('CROP', 'Save failed: ${_scanProvider.lastError.value}');
+        return null;
+      }
     } catch (e) {
       _log.log('CROP', 'Save error: $e');
+      return null;
     } finally {
       if (mounted) setState(() => _stage = _Stage.pickImage);
     }
