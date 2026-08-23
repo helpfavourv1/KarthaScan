@@ -1,44 +1,54 @@
 <svg width="1024" height="1024" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
-  <!--
-    assets/logo.svg (Section 16 file #73). App logo for launcher icon and
-    splash screen. Colors are Section 17's exact tokens: accent #6366F1,
-    white document body. Vector source — see the rasterization note in
-    flutter_native_splash.yaml and flutter_launcher_icons.yaml before
-    running either generator.
-  -->
+  <!-- iOS Superellipse Mask -->
   <defs>
-    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#818CF8"/>
-      <stop offset="100%" stop-color="#6366F1"/>
+    <clipPath id="squircle">
+      <path d="M 512 0 C 760 0 860 0 1024 164 C 1024 328 1024 428 1024 512 C 1024 596 1024 696 860 860 C 696 1024 596 1024 512 1024 C 428 1024 328 1024 164 860 C 0 696 0 596 0 512 C 0 428 0 328 164 164 C 328 0 428 0 512 0 Z"/>
+    </clipPath>
+
+    <!-- iOS Blue Gradient -->
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#007AFF"/>
+      <stop offset="100%" stop-color="#0051D5"/>
+    </linearGradient>
+
+    <!-- Document Fold Shadow -->
+    <linearGradient id="foldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F2F2F7"/>
+      <stop offset="100%" stop-color="#D1D1D6"/>
     </linearGradient>
   </defs>
 
-  <!-- Rounded-square background, Section 17's cardRadius proportions scaled up -->
-  <rect x="0" y="0" width="1024" height="1024" rx="224" fill="url(#bg)"/>
+  <!-- Background -->
+  <g clip-path="url(#squircle)">
+    <rect x="0" y="0" width="1024" height="1024" fill="url(#bgGradient)"/>
 
-  <!-- Document shape -->
-  <g transform="translate(292, 232)">
-    <path
-      d="M 0 24
-         C 0 10.745 10.745 0 24 0
-         L 300 0
-         L 440 140
-         L 440 536
-         C 440 549.255 429.255 560 416 560
-         L 24 560
-         C 10.745 560 0 549.255 0 536
-         Z"
-      fill="#FFFFFF"
-    />
+    <!-- Subtle inner glow (iOS depth) -->
+    <rect x="0" y="0" width="1024" height="1024" fill="white" opacity="0.03"/>
+  </g>
+
+  <!-- Document Sheet (White) -->
+  <g transform="translate(232, 192)">
+    <!-- Main body -->
+    <rect x="0" y="0" width="560" height="640" rx="48" fill="#FFFFFF"/>
     <!-- Folded corner -->
-    <path d="M 300 0 L 440 140 L 340 140 C 318.909 140 300 121.091 300 100 Z" fill="#E5E5EA"/>
+    <path d="M 480 0 L 560 80 L 480 80 C 468 80 460 72 460 60 L 460 0 Z" fill="url(#foldGradient)"/>
 
-    <!-- Scan lines (representing recognized text) -->
-    <rect x="64" y="220" width="312" height="28" rx="14" fill="#C7C9F5"/>
-    <rect x="64" y="280" width="312" height="28" rx="14" fill="#C7C9F5"/>
-    <rect x="64" y="340" width="220" height="28" rx="14" fill="#C7C9F5"/>
+    <!-- Scan Lines (OCR) -->
+    <rect x="64" y="180" width="432" height="32" rx="16" fill="#007AFF" opacity="0.15"/>
+    <rect x="64" y="240" width="432" height="32" rx="16" fill="#007AFF" opacity="0.15"/>
+    <rect x="64" y="300" width="300" height="32" rx="16" fill="#007AFF" opacity="0.15"/>
 
-    <!-- Scan accent line, sweeping across, indicating active OCR -->
-    <rect x="0" y="420" width="440" height="10" fill="#6366F1"/>
+    <!-- Accent sweep (scanning in action) -->
+    <rect x="0" y="420" width="560" height="12" fill="#0051D5" opacity="0.8"/>
+  </g>
+
+  <!-- Stylized "K" Mark (White) -->
+  <g transform="translate(256, 256)">
+    <!-- Vertical stroke -->
+    <rect x="0" y="0" width="72" height="512" rx="16" fill="#FFFFFF"/>
+    <!-- Top diagonal -->
+    <path d="M 72 0 L 72 96 L 320 512 L 248 512 L 72 96 Z" fill="#FFFFFF"/>
+    <!-- Bottom diagonal -->
+    <path d="M 72 0 L 72 96 L 320 512 L 248 512 L 72 96 Z" fill="#FFFFFF"/>
   </g>
 </svg>
