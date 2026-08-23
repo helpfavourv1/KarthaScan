@@ -5,16 +5,141 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Privacy Policy — KatharScan</title>
     <meta name="description" content="No server. No cloud. Your documents stay on your device." />
-    <link rel="stylesheet" href="style.css" />
-    <link rel="icon" href="images/favicon.png" />
+    <style>
+        :root {
+            --bg-primary: #F2F2F7;
+            --surface: #FFFFFF;
+            --accent: #007AFF;
+            --accent-dim: #0051D5;
+            --text-primary: #111111;
+            --text-secondary: #3A3A3C;
+            --text-tertiary: #8E8E93;
+            --border: #E5E5EA;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --radius-card: 16px;
+            --radius-button: 14px;
+            --space-sm: 8px;
+            --space-md: 16px;
+            --space-lg: 24px;
+            --space-xl: 32px;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .site-header {
+            background: rgba(242, 242, 247, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-logo {
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: -0.6px;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            font-size: 15px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover { color: var(--accent); }
+
+        .page-content {
+            max-width: 720px;
+            margin: 40px auto;
+            padding: 0 20px;
+            background: var(--surface);
+            border-radius: var(--radius-card);
+            padding: 40px;
+            box-shadow: var(--shadow);
+        }
+
+        .page-content h1 {
+            font-size: 32px;
+            font-weight: 800;
+            letter-spacing: -0.6px;
+            margin-bottom: 8px;
+        }
+
+        .page-content .updated {
+            color: var(--text-tertiary);
+            font-size: 14px;
+            margin-bottom: 32px;
+        }
+
+        .page-content h2 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-top: 32px;
+            margin-bottom: 12px;
+        }
+
+        .page-content p, .page-content li {
+            color: var(--text-secondary);
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+
+        .page-content a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .site-footer {
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            padding: 32px 20px;
+            text-align: center;
+            color: var(--text-tertiary);
+            font-size: 14px;
+        }
+
+        .site-footer a {
+            color: var(--text-tertiary);
+            text-decoration: none;
+            margin: 0 8px;
+        }
+
+        .site-footer a:hover { color: var(--accent); }
+    </style>
 </head>
 <body>
     <header class="site-header">
-        <nav class="nav container">
-            <a class="nav-logo" href="index.html">
-                <img src="images/logo.svg" alt="" width="28" height="28" />
-                KatharScan
-            </a>
+        <nav class="nav">
+            <a class="nav-logo" href="index.html">KatharScan</a>
             <ul class="nav-links">
                 <li><a href="support.html">Support</a></li>
                 <li><a href="privacy.html">Privacy</a></li>
@@ -22,8 +147,8 @@
         </nav>
     </header>
 
-    <main class="container">
-        <article class="page-content">
+    <main class="page-content">
+        <article>
             <h1>Privacy Policy</h1>
             <p class="updated">Last updated: August 2026</p>
 
