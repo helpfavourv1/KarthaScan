@@ -18,29 +18,34 @@ class KatharScanApp extends StatefulWidget {
 
 class _KatharScanAppState extends State<KatharScanApp> {
   late final GoRouter _router;
-  bool _isRouterInitialized = false;
+  bool _isRouterReady = false;
 
   @override
   void initState() {
     super.initState();
-    _loadOnboardingFlag();
+    _initializeRouter();
   }
 
-  Future<void> _loadOnboardingFlag() async {
+  Future<void> _initializeRouter() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     final bool hasSeen = prefs.getBool('hasSeenOnboarding') ?? false;
-    if (mounted) {
-      setState(() {
-        _router = buildRouter(initialLocation: hasSeen ? '/' : '/onboarding');
-        _isRouterInitialized = true;
-      });
-    }
+
+    if (!mounted) return;
+
+    setState(() {
+      _router = buildRouter(initialLocation: hasSeen ? '/' : '/onboarding');
+      _isRouterReady = true;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     final ThemeProvider themeProvider = Provider.of<ThemeProvider>(context, listen: false);
     final SettingsProvider settingsProvider = Provider.of<SettingsProvider>(context, listen: false);
+
+    if (!_isRouterReady) {
+      return const SizedBox.shrink();
+    }
 
     return ListenableBuilder(
       listenable: Listenable.merge(<Listenable>[
@@ -49,10 +54,6 @@ class _KatharScanAppState extends State<KatharScanApp> {
         settingsProvider.settings,
       ]),
       builder: (BuildContext context, Widget? _) {
-        if (!_isRouterInitialized) {
-          return const Scaffold(body: Center(child: CircularProgressIndicator()));
-        }
-
         final String languageCode = settingsProvider.settings.value.language;
         final Locale locale = Locale(languageCode);
         final bool isRtl = AppLocales.isRtl(languageCode);
