@@ -623,7 +623,6 @@ class _OcrLanguagePickerSheet extends StatelessWidget {
     final Color accent = isDark ? AppColors.accentDark : AppColors.accentLight;
 
     final Map<String, String> labels = <String, String>{
-      'latin': 'Latin (default)', 'chinese': 'Chinese', 'devanagari': 'Devanagari (Hindi)', 'japanese': 'Japanese', 'korean': 'Korean',
     };
 
     return SafeArea(

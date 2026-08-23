@@ -356,7 +356,6 @@ class _OcrLanguagePickerSheet extends StatelessWidget {
     return <_OcrLangOption>[
       _OcrLangOption('latin', l10n.ocrLanguageLatinOption),
       _OcrLangOption('chinese', l10n.ocrLanguageChineseOption),
-      _OcrLangOption('devanagari', l10n.ocrLanguageDevanagariOption),
       _OcrLangOption('japanese', l10n.ocrLanguageJapaneseOption),
       _OcrLangOption('korean', l10n.ocrLanguageKoreanOption),
     ];

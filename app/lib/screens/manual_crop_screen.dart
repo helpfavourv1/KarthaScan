@@ -51,8 +51,6 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
     switch (selected) {
       case 'chinese':
         return OcrScript.chinese;
-      case 'devanagari':
-        return OcrScript.devanagari;
       case 'japanese':
         return OcrScript.japanese;
       case 'korean':
