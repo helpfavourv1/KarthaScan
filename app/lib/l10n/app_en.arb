@@ -2,7 +2,7 @@
   "@@locale": "en",
   "appTitle": "KatharScan",
   "@appTitle": {
-    "description": "The app's brand name, shown on the home screen app bar. Kept identical across all locales — brand names aren't translated."
+    "description": "The app's brand name, shown on the home screen app bar."
   },
   "commonCancel": "Cancel",
   "commonDelete": "Delete",
@@ -16,9 +16,6 @@
   "commonClear": "Clear",
   "commonUpgrade": "Upgrade",
   "emptyStateDefaultMessage": "Tap the camera to scan your first document.",
-  "@emptyStateDefaultMessage": {
-    "description": "Shown on the home screen when the user has no scans yet (Section 16 file #29's exact required copy)."
-  },
   "exportFormatSheetTitle": "Export as",
   "exportFormatPdfLabel": "PDF",
   "exportFormatPdfDescription": "Best for sharing and printing",
@@ -37,39 +34,12 @@
   "filterColorEnhance": "Color enhance",
   "filterShadowRemoval": "Shadow removal",
   "proBadgeLabel": "PRO",
-  "@proBadgeLabel": {
-    "description": "Short badge label on Pro-gated UI elements. Typically kept short/uppercase across locales, but still routed through l10n for consistency."
-  },
   "scanListPageCount": "{count, plural, =1{1 page} other{{count} pages}}",
-  "@scanListPageCount": {
-    "description": "Page count on a scan's list tile.",
-    "placeholders": {
-      "count": {
-        "type": "int"
-      }
-    }
-  },
   "scanPreviewNoPages": "No pages to show.",
   "shareTooltip": "Share",
   "signatureCanvasHint": "Sign here",
   "folderDocumentCount": "{count, plural, =1{1 document} other{{count} documents}}",
-  "@folderDocumentCount": {
-    "description": "Document count on a folder's list tile.",
-    "placeholders": {
-      "count": {
-        "type": "int"
-      }
-    }
-  },
   "selectedCount": "{count, plural, =1{1 selected} other{{count} selected}}",
-  "@selectedCount": {
-    "description": "Selection-mode app bar title on home_screen.dart / folder_screen.dart.",
-    "placeholders": {
-      "count": {
-        "type": "int"
-      }
-    }
-  },
   "batchExportTooltip": "Batch export",
   "deleteTooltip": "Delete",
   "searchHint": "Search your scans",
@@ -107,14 +77,6 @@
   "couldNotImportBackupError": "Could not import this backup. Check the password and try again.",
   "backupCorruptedError": "This backup file looks corrupted.",
   "importedCount": "{count, plural, =1{1 document imported} other{{count} documents imported}}",
-  "@importedCount": {
-    "description": "Result message after a Device Migration import.",
-    "placeholders": {
-      "count": {
-        "type": "int"
-      }
-    }
-  },
   "paywallTitle": "KatharScan Pro",
   "paywallSubtitle": "Core scanning and OCR are free forever. Pro unlocks power tools.",
   "freeTierLabel": "Free",
@@ -132,9 +94,6 @@
   "proFeatureBatch": "Batch export",
   "proFeatureMigration": "Device Migration",
   "proFeatureOcrLanguages": "Extra OCR languages (CJK, Hindi)",
-  "@proFeatureOcrLanguages": {
-    "description": "Corrected from the blueprint's original 'CJK, Arabic, Hebrew, Hindi' — ML Kit Text Recognition doesn't support Arabic/Hebrew script at all (see ocr_service.dart)."
-  },
   "monthlyLabel": "Monthly",
   "yearlyLabel": "Yearly",
   "yearlySaveBadge": "Save ~15%",
@@ -185,5 +144,13 @@
   "manualCropTitle": "Crop document",
   "manualCropInstructions": "Drag the corners to match the document's edges",
   "manualCropApplyGrayscale": "Grayscale",
-  "manualCropSaveButton": "Save"
+  "manualCropSaveButton": "Save",
+  "homeLanguageTooltip": "App Language",
+  "homeOcrLanguageTooltip": "OCR Language",
+  "homePasswordTooltip": "PDF Password",
+  "homeSignatureTooltip": "Signature",
+  "homeBatchExportTooltip": "Batch Export",
+  "removeAdsTitle": "Remove Ads Forever",
+  "removeAdsSubtitle": "Enjoy a clean, uninterrupted scanning experience with zero recurring fees.",
+  "removeAdsPrice": "$9.99 One-time"
 }

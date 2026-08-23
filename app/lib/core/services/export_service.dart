@@ -1,9 +1,3 @@
-// lib/core/services/export_service.dart
-//
-// PDF generation via `pdf`. DOCX raw text via hand-rolled minimal OOXML on
-// `archive`. JPG/PNG/TXT export. Also backs export_screen.dart's full
-// "format select → filter apply → signature → share" flow.
-
 import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
@@ -151,6 +145,7 @@ class ExportService {
         decoded = _applyFilter(decoded, filter);
       }
 
+      // Issue 9: Use the exact page index selected by user
       final int effectiveSignaturePage = signaturePageIndex ?? (totalPages - 1);
       if (signatureBytes != null && pageIndex == effectiveSignaturePage) {
         final img.Image? signatureImage = img.decodePng(signatureBytes);

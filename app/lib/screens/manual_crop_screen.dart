@@ -45,6 +45,7 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
     _log.log('CROP', 'ManualCropScreen initialized');
   }
 
+  // Issue 6: Get selected OCR script from settings
   OcrScript _getSelectedOcrScript() {
     final String selected = _settingsProvider.settings.value.ocrLanguage;
     switch (selected) {
@@ -131,6 +132,7 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
     }
   }
 
+  // Issue 5: Fix scan navigation
   Future<void> _scanDocument() async {
     if (_isPicking) return;
     _log.log('CROP', 'Scan button tapped');
@@ -159,10 +161,11 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
       if (!mounted) return;
 
       if (savedDoc != null) {
-        // CRITICAL FIX: Delay navigation to allow native activity to close
-        await Future.delayed(const Duration(milliseconds: 500));
-        if (!mounted) return;
-        context.pushReplacement('/scan/${savedDoc.id}');
+        // FIX: Use addPostFrameCallback to navigate after native activity closes
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          if (!mounted) return;
+          context.pushReplacement('/scan/${savedDoc.id}');
+        });
       } else {
         _log.log('CROP', 'Save failed, staying on crop screen');
         setState(() => _isPicking = false);
@@ -213,7 +216,7 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
       try {
         final OcrResult result = await _ocrService.recognizeText(
           imagePath: savedPaths.first,
-          script: _getSelectedOcrScript(),
+          script: _getSelectedOcrScript(), // Issue 6: Use selected script
         );
         ocrText = result.fullText;
       } on OcrUnavailableException catch (_) {
@@ -307,7 +310,7 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
         _log.log('CROP', 'Starting OCR...');
         final OcrResult result = await _ocrService.recognizeText(
           imagePath: outPath,
-          script: _getSelectedOcrScript(),
+          script: _getSelectedOcrScript(), // Issue 6: Use selected script
         );
         ocrText = result.fullText;
         _log.log('CROP', 'OCR done: ${ocrText.length} chars');
@@ -338,7 +341,10 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
             duration: Duration(seconds: 2),
           ),
         );
-        context.pushReplacement('/scan/${document.id}');
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          if (!mounted) return;
+          context.pushReplacement('/scan/${document.id}');
+        });
       } else {
         throw Exception(
           _scanProvider.lastError.value ?? 'Failed to save document.',

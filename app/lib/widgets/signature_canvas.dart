@@ -1,11 +1,3 @@
-// lib/widgets/signature_canvas.dart
-//
-// Draw or import signature, place on document, flatten.
-//
-// This widget handles the DRAWING capture step: recording pen strokes and
-// rendering them to a transparent-background PNG via
-// RenderRepaintBoundary.
-
 import 'dart:typed_data';
 import 'dart:ui' as ui;
 
@@ -81,19 +73,21 @@ class SignatureCanvasState extends State<SignatureCanvas> {
       clipBehavior: Clip.antiAlias,
       child: Stack(
         children: <Widget>[
-          RepaintBoundary(
-            key: _boundaryKey,
-            child: GestureDetector(
-              onPanStart: _onPanStart,
-              onPanUpdate: _onPanUpdate,
-              child: CustomPaint(
-                painter: _SignaturePainter(
-                  strokes: _strokes,
-                  color: widget.strokeColor,
-                  strokeWidth: widget.strokeWidth,
+          Positioned.fill(
+            child: RepaintBoundary(
+              key: _boundaryKey,
+              child: GestureDetector(
+                behavior: HitTestBehavior.opaque,
+                onPanStart: _onPanStart,
+                onPanUpdate: _onPanUpdate,
+                child: CustomPaint(
+                  painter: _SignaturePainter(
+                    strokes: _strokes,
+                    color: widget.strokeColor,
+                    strokeWidth: widget.strokeWidth,
+                  ),
+                  size: Size.infinite,
                 ),
-                // CRITICAL FIX: Remove Size.infinite. Let the parent control size.
-                child: const SizedBox.expand(),
               ),
             ),
           ),

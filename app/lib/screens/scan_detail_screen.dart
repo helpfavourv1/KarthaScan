@@ -1,10 +1,3 @@
-// lib/screens/scan_detail_screen.dart
-//
-// Full document viewer: pages, OCR text in DraggableScrollableSheet,
-// edit title, move to folder, delete. Tag editing included.
-// PHASE 1 REDESIGN: OCR tray is now a DraggableScrollableSheet with
-// copy-to-clipboard. Share and Export are prominent bottom buttons.
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
@@ -34,9 +27,6 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> {
   late final FolderProvider _folderProvider;
   final ShareService _shareService = ShareService();
 
-  // CRITICAL FIX: Use a local ScrollController in the builder, NOT a global one.
-  // DraggableScrollableSheet provides its own controller. We must NOT dispose it.
-
   @override
   void initState() {
     super.initState();
@@ -61,10 +51,7 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> {
         content: TextField(controller: controller, autofocus: true),
         actions: <Widget>[
           TextButton(onPressed: () => Navigator.of(context).pop(), child: Text(l10n.commonCancel)),
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(controller.text),
-            child: Text(l10n.commonSave),
-          ),
+          TextButton(onPressed: () => Navigator.of(context).pop(controller.text), child: Text(l10n.commonSave)),
         ],
       ),
     );
@@ -219,18 +206,18 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> {
                         pagePaths: document.pagePaths,
                       ),
                     ),
+                    // Issue 10: Total OCR tray overhaul
                     DraggableScrollableSheet(
-                      initialChildSize: 0.25,
-                      minChildSize: 0.12,
+                      initialChildSize: 0.30, // Increased from 0.25
+                      minChildSize: 0.15, // Increased from 0.12
                       maxChildSize: 0.85,
-                      // CRITICAL FIX: Use the provided scrollController directly.
                       builder: (BuildContext context, ScrollController scrollController) {
                         return Container(
                           decoration: BoxDecoration(
                             color: bg,
                             borderRadius: const BorderRadius.only(
-                              topLeft: Radius.circular(AppShape.bottomSheetTopRadius),
-                              topRight: Radius.circular(AppShape.bottomSheetTopRadius),
+                              topLeft: Radius.circular(24),
+                              topRight: Radius.circular(24),
                             ),
                             boxShadow: <BoxShadow>[
                               BoxShadow(
@@ -242,26 +229,26 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> {
                           ),
                           child: Column(
                             children: <Widget>[
-                              Center(
-                                child: Container(
-                                  width: 36,
-                                  height: 4,
-                                  margin: const EdgeInsets.symmetric(vertical: AppSpacing.sm),
-                                  decoration: BoxDecoration(
-                                    color: border,
-                                    borderRadius: BorderRadius.circular(2),
-                                  ),
+                              // Larger drag handle (60x6)
+                              Container(
+                                width: 60,
+                                height: 6,
+                                margin: const EdgeInsets.symmetric(vertical: 12),
+                                decoration: BoxDecoration(
+                                  color: border,
+                                  borderRadius: BorderRadius.circular(3),
                                 ),
                               ),
+                              // Header row
                               Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md),
+                                padding: const EdgeInsets.symmetric(horizontal: 16),
                                 child: Row(
                                   children: <Widget>[
                                     Text(
                                       l10n.ocrTextLabel,
                                       style: TextStyle(
                                         color: textPrimary,
-                                        fontSize: AppTypography.title2Size,
+                                        fontSize: 18,
                                         fontWeight: FontWeight.w600,
                                       ),
                                     ),
@@ -274,22 +261,23 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> {
                                   ],
                                 ),
                               ),
-                              const SizedBox(height: AppSpacing.xs),
+                              const SizedBox(height: 8),
+                              // Scrollable OCR text
                               Expanded(
                                 child: SingleChildScrollView(
                                   controller: scrollController,
-                                  padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md),
+                                  padding: const EdgeInsets.symmetric(horizontal: 16),
                                   child: SelectableText(
                                     document.ocrText.isEmpty ? l10n.noTextRecognized : document.ocrText,
                                     style: TextStyle(
                                       color: textSecondary,
-                                      fontSize: AppTypography.bodySize,
-                                      height: AppTypography.bodyLineHeight,
+                                      fontSize: 15,
+                                      height: 1.5,
                                     ),
                                   ),
                                 ),
                               ),
-                              const SizedBox(height: AppSpacing.sm),
+                              const SizedBox(height: 16),
                             ],
                           ),
                         );
@@ -300,10 +288,10 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> {
               ),
               Container(
                 color: bg,
-                padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md, vertical: AppSpacing.xs),
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                 child: Wrap(
-                  spacing: AppSpacing.xxs,
-                  runSpacing: AppSpacing.xxs,
+                  spacing: 8,
+                  runSpacing: 8,
                   children: <Widget>[
                     ...document.tags.map(
                       (String tag) => TagChip(
@@ -318,11 +306,11 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> {
               SafeArea(
                 top: false,
                 child: Container(
-                  padding: const EdgeInsets.all(AppSpacing.md),
+                  padding: const EdgeInsets.all(16),
                   decoration: BoxDecoration(
                     color: bg,
                     border: Border(
-                      top: BorderSide(color: border, width: AppShape.cardBorderWidth),
+                      top: BorderSide(color: border, width: 0.5),
                     ),
                   ),
                   child: Row(
@@ -335,14 +323,14 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> {
                           style: ElevatedButton.styleFrom(
                             backgroundColor: accent,
                             foregroundColor: Colors.white,
-                            minimumSize: const Size(double.infinity, AppShape.buttonMinHeight),
+                            minimumSize: const Size(double.infinity, 48),
                             shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(AppShape.buttonRadius),
+                              borderRadius: BorderRadius.circular(14),
                             ),
                           ),
                         ),
                       ),
-                      const SizedBox(width: AppSpacing.md),
+                      const SizedBox(width: 16),
                       Expanded(
                         child: ElevatedButton.icon(
                           onPressed: () => _export(document),
@@ -351,9 +339,9 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> {
                           style: ElevatedButton.styleFrom(
                             backgroundColor: surface,
                             foregroundColor: textPrimary,
-                            minimumSize: const Size(double.infinity, AppShape.buttonMinHeight),
+                            minimumSize: const Size(double.infinity, 48),
                             shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(AppShape.buttonRadius),
+                              borderRadius: BorderRadius.circular(14),
                             ),
                           ),
                         ),
@@ -387,11 +375,11 @@ class _FolderPickerSheet extends StatelessWidget {
         decoration: BoxDecoration(
           color: bg,
           borderRadius: const BorderRadius.only(
-            topLeft: Radius.circular(AppShape.bottomSheetTopRadius),
-            topRight: Radius.circular(AppShape.bottomSheetTopRadius),
+            topLeft: Radius.circular(24),
+            topRight: Radius.circular(24),
           ),
         ),
-        padding: const EdgeInsets.all(AppSpacing.md),
+        padding: const EdgeInsets.all(16),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -400,14 +388,14 @@ class _FolderPickerSheet extends StatelessWidget {
               l10n.moveToFolderTooltip,
               style: TextStyle(
                 color: textPrimary,
-                fontSize: AppTypography.title1Size,
+                fontSize: 22,
                 fontWeight: FontWeight.w600,
               ),
             ),
-            const SizedBox(height: AppSpacing.sm),
+            const SizedBox(height: 8),
             if (folders.isEmpty)
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: AppSpacing.md),
+                padding: const EdgeInsets.symmetric(vertical: 16),
                 child: Text(
                   l10n.noFoldersYetMessage,
                   style: TextStyle(color: textPrimary),

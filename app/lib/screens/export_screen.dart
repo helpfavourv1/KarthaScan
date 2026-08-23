@@ -1,10 +1,3 @@
-// lib/screens/export_screen.dart
-//
-// Export flow: format select → filter apply → signature → password → share
-//
-// All features are free. Batch export, filters, signature, and PDF password
-// are available to all users.
-
 import 'dart:io';
 import 'dart:typed_data';
 
@@ -77,6 +70,7 @@ class _ExportScreenState extends State<ExportScreen> {
 
     FilterType filter = FilterType.none;
     Uint8List? signatureBytes;
+    int? signaturePageIndex;
     double? signatureOffsetX;
     double? signatureOffsetY;
     String? password;
@@ -94,13 +88,15 @@ class _ExportScreenState extends State<ExportScreen> {
       if (!mounted) return;
 
       if (signatureBytes != null) {
+        // Issue 9: Allow user to choose which page to sign
         final placement = await _placeSignature(
           document: _documents.first,
-          signatureBytes: signatureBytes,
+          signatureBytes: signatureBytes!,
         );
         if (placement != null) {
-          signatureOffsetX = placement.$1;
-          signatureOffsetY = placement.$2;
+          signaturePageIndex = placement.$1;
+          signatureOffsetX = placement.$2;
+          signatureOffsetY = placement.$3;
         }
       }
     }
@@ -117,6 +113,7 @@ class _ExportScreenState extends State<ExportScreen> {
       format: format,
       filter: filter,
       signatureBytes: signatureBytes,
+      signaturePageIndex: signaturePageIndex,
       signatureOffsetX: signatureOffsetX,
       signatureOffsetY: signatureOffsetY,
       password: password,
@@ -146,15 +143,16 @@ class _ExportScreenState extends State<ExportScreen> {
     );
   }
 
-  Future<(double, double)?> _placeSignature({
+  // Issue 9: Updated to return (pageIndex, offsetX, offsetY)
+  Future<(int, double, double)?> _placeSignature({
     required ScanDocument document,
     required Uint8List signatureBytes,
   }) async {
-    return showModalBottomSheet<(double, double)>(
+    return showModalBottomSheet<(int, double, double)>(
       context: context,
       isScrollControlled: true,
       builder: (BuildContext context) => _SignaturePlacementSheet(
-        pagePath: document.pagePaths.first,
+        pagePaths: document.pagePaths,
         signatureBytes: signatureBytes,
       ),
     );
@@ -182,6 +180,7 @@ class _ExportScreenState extends State<ExportScreen> {
     required ExportFormat format,
     required FilterType filter,
     Uint8List? signatureBytes,
+    int? signaturePageIndex,
     double? signatureOffsetX,
     double? signatureOffsetY,
     String? password,
@@ -205,6 +204,7 @@ class _ExportScreenState extends State<ExportScreen> {
           outputDirectoryPath: outputDir.path,
           filter: filter,
           signatureBytes: signatureBytes,
+          signaturePageIndex: signaturePageIndex,
           signatureOffsetX: signatureOffsetX,
           signatureOffsetY: signatureOffsetY,
           pdfPassword: password,
@@ -355,12 +355,13 @@ class _SignatureSheet extends StatelessWidget {
   }
 }
 
+// Issue 9: Updated to accept pagePaths and allow page selection
 class _SignaturePlacementSheet extends StatefulWidget {
-  final String pagePath;
+  final List<String> pagePaths;
   final Uint8List signatureBytes;
 
   const _SignaturePlacementSheet({
-    required this.pagePath,
+    required this.pagePaths,
     required this.signatureBytes,
   });
 
@@ -369,10 +370,13 @@ class _SignaturePlacementSheet extends StatefulWidget {
 }
 
 class _SignaturePlacementSheetState extends State<_SignaturePlacementSheet> {
+  int _currentPageIndex = 0;
   Offset _signatureOffset = Offset(0, 0);
 
   @override
   Widget build(BuildContext context) {
+    final String currentPagePath = widget.pagePaths[_currentPageIndex];
+
     return SafeArea(
       child: Container(
         height: MediaQuery.of(context).size.height * 0.8,
@@ -387,13 +391,39 @@ class _SignaturePlacementSheetState extends State<_SignaturePlacementSheet> {
           children: <Widget>[
             Padding(
               padding: const EdgeInsets.all(16),
-              child: Text(
-                'Place signature on document',
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w600,
-                  color: Theme.of(context).colorScheme.onSurface,
-                ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Text(
+                    'Place signature on document',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                      color: Theme.of(context).colorScheme.onSurface,
+                    ),
+                  ),
+                  // Page selector
+                  Row(
+                    children: <Widget>[
+                      IconButton(
+                        icon: const Icon(Icons.chevron_left),
+                        onPressed: _currentPageIndex > 0
+                            ? () => setState(() => _currentPageIndex--)
+                            : null,
+                      ),
+                      Text(
+                        'Page ${_currentPageIndex + 1} / ${widget.pagePaths.length}',
+                        style: const TextStyle(fontSize: 14),
+                      ),
+                      IconButton(
+                        icon: const Icon(Icons.chevron_right),
+                        onPressed: _currentPageIndex < widget.pagePaths.length - 1
+                            ? () => setState(() => _currentPageIndex++)
+                            : null,
+                      ),
+                    ],
+                  ),
+                ],
               ),
             ),
             Expanded(
@@ -407,7 +437,7 @@ class _SignaturePlacementSheetState extends State<_SignaturePlacementSheet> {
                   children: <Widget>[
                     Positioned.fill(
                       child: Image.file(
-                        File(widget.pagePath),
+                        File(currentPagePath),
                         fit: BoxFit.contain,
                       ),
                     ),
@@ -439,7 +469,9 @@ class _SignaturePlacementSheetState extends State<_SignaturePlacementSheet> {
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      Navigator.of(context).pop((_signatureOffset.dx, _signatureOffset.dy));
+                      Navigator.of(context).pop(
+                        (_currentPageIndex, _signatureOffset.dx, _signatureOffset.dy),
+                      );
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Theme.of(context).colorScheme.primary,

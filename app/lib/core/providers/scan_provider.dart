@@ -60,6 +60,7 @@ class ScanProvider {
     documents.value = await _storage.getAllDocuments();
   }
 
+  // Issue 6: Accept ocrScript parameter instead of hardcoded Latin
   Future<ScanDocument?> captureNewDocument({
     String? title,
     OcrScript ocrScript = OcrScript.latin,
