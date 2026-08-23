@@ -69,16 +69,12 @@ class OcrService {
     );
   }
 
-  // Issue 6: Fix Devanagari mapping (was returning Latin)
   TextRecognitionScript _toMlKitScript(OcrScript script) {
     switch (script) {
       case OcrScript.latin:
         return TextRecognitionScript.latin;
       case OcrScript.chinese:
         return TextRecognitionScript.chinese;
-        } catch (_) {
-          return TextRecognitionScript.latin;
-        }
       case OcrScript.japanese:
         return TextRecognitionScript.japanese;
       case OcrScript.korean:
