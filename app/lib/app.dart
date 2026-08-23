@@ -95,12 +95,6 @@ class _KatharScanAppState extends State<KatharScanApp> {
         elevation: 0,
         color: isDark ? AppColors.bgSecondaryDark : AppColors.bgSecondaryLight,
       ),
-      pageTransitionsTheme: const PageTransitionsTheme(
-        builders: {
-          TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
-          TargetPlatform.android: CupertinoPageTransitionsBuilder(),
-        },
-      ),
     );
   }
 }

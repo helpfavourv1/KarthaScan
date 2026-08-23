@@ -119,17 +119,6 @@ class _HomeScreenState extends State<HomeScreen> {
     }
   }
 
-  Future<void> _pickLanguage() async {
-    final String? chosen = await showModalBottomSheet<String>(
-      context: context,
-      builder: (BuildContext context) => _LanguagePickerSheet(
-        current: _settingsProvider.settings.value.language,
-      ),
-    );
-    if (chosen != null) {
-      await _settingsProvider.setLanguage(chosen);
-    }
-  }
 
   Future<void> _pickOcrLanguage() async {
     final String? chosen = await showModalBottomSheet<String>(
