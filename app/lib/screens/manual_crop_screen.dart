@@ -138,13 +138,12 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
       }
       _log.log('CROP', 'Scanner path: ${result.pageImagePaths.first}');
 
-      // CRITICAL FIX: Save the document FIRST, then navigate.
       final ScanDocument? savedDoc = await _saveScannedDocument(result.pageImagePaths);
       if (!mounted) return;
       
       if (savedDoc != null) {
-        // Navigate to the newly created scan detail screen
-        context.go('/scan/${savedDoc.id}');
+        // CRITICAL FIX: Use pushReplacement to replace this screen entirely
+        context.pushReplacement('/scan/${savedDoc.id}');
       } else {
         _log.log('CROP', 'Save failed, staying on crop screen');
         setState(() => _isPicking = false);
@@ -179,7 +178,6 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
           Directory(p.join(appDir.path, 'manual_crop_pages'));
       await scansDir.create(recursive: true);
 
-      // Copy each page to app storage
       final List<String> savedPaths = <String>[];
       for (int i = 0; i < pagePaths.length; i++) {
         final String sourcePath = pagePaths[i];
@@ -192,7 +190,6 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
         savedPaths.add(outPath);
       }
 
-      // Run OCR on the first page
       String ocrText = '';
       try {
         final OcrResult result = await _ocrService.recognizeText(
@@ -322,8 +319,7 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
             duration: Duration(seconds: 2),
           ),
         );
-        // CRITICAL FIX: Navigate to scan detail after crop & save
-        context.go('/scan/${document.id}');
+        context.pushReplacement('/scan/${document.id}');
       } else {
         throw Exception(
           _scanProvider.lastError.value ?? 'Failed to save document.',

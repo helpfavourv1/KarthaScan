@@ -1,20 +1,11 @@
 // lib/widgets/signature_canvas.dart
 //
-// Draw or import signature, place on document, flatten — Pro-gated
-// (Section 16 file #32).
+// Draw or import signature, place on document, flatten.
 //
 // This widget handles the DRAWING capture step: recording pen strokes and
 // rendering them to a transparent-background PNG via
-// RenderRepaintBoundary. "Place on document, flatten" — positioning the
-// captured signature onto a specific page and baking it into the final
-// export bytes — is an export_screen.dart / export_service.dart
-// orchestration concern (Phase 5/2), not something this drawing widget
-// does itself. The "import" half (picking an existing signature image
-// instead of drawing) is a plain gallery-pick action the calling screen
-// handles by supplying an alternate signature image path — nothing about
-// importing needs to live in this file. Pro-gating itself (whether this
-// widget is reachable at all) is enforced by the calling screen, the same
-// pattern as filter_bottom_sheet.dart.
+// RenderRepaintBoundary.
+
 import 'dart:typed_data';
 import 'dart:ui' as ui;
 
@@ -38,11 +29,6 @@ class SignatureCanvas extends StatefulWidget {
   State<SignatureCanvas> createState() => SignatureCanvasState();
 }
 
-/// Public state so a parent screen can hold a
-/// `GlobalKey<SignatureCanvasState>` and call [clear] / [isEmpty] /
-/// [exportPng] directly — the standard Flutter pattern for exposing
-/// imperative actions on a stateful child without threading a callback
-/// through every stroke event.
 class SignatureCanvasState extends State<SignatureCanvas> {
   final GlobalKey _boundaryKey = GlobalKey();
   final List<List<Offset>> _strokes = <List<Offset>>[];
@@ -66,8 +52,6 @@ class SignatureCanvasState extends State<SignatureCanvas> {
     });
   }
 
-  /// Renders the current strokes to a transparent-background PNG. Returns
-  /// null if nothing has been drawn yet.
   Future<Uint8List?> exportPng({double pixelRatio = 3}) async {
     if (isEmpty) return null;
     final RenderRepaintBoundary? boundary =
@@ -108,7 +92,8 @@ class SignatureCanvasState extends State<SignatureCanvas> {
                   color: widget.strokeColor,
                   strokeWidth: widget.strokeWidth,
                 ),
-                size: Size.infinite,
+                // CRITICAL FIX: Remove Size.infinite. Let the parent control size.
+                child: const SizedBox.expand(),
               ),
             ),
           ),

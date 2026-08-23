@@ -1,7 +1,6 @@
 // lib/screens/export_screen.dart
 //
 // Export flow: format select → filter apply → signature → password → share
-// (Section 16 file #38).
 //
 // All features are free. Batch export, filters, signature, and PDF password
 // are available to all users.
@@ -69,7 +68,6 @@ class _ExportScreenState extends State<ExportScreen> {
 
     final AppLocalizations l10n = AppLocalizations.of(context);
 
-    // Step 1: Choose format
     final ExportFormat? format = await showExportFormatSheet(context);
     if (!mounted) return;
     if (format == null) {
@@ -79,9 +77,10 @@ class _ExportScreenState extends State<ExportScreen> {
 
     FilterType filter = FilterType.none;
     Uint8List? signatureBytes;
+    double? signatureOffsetX;
+    double? signatureOffsetY;
     String? password;
 
-    // Step 2: Choose filter (always available)
     final FilterType? chosenFilter = await showFilterSheet(
       context,
       current: FilterType.none,
@@ -89,14 +88,24 @@ class _ExportScreenState extends State<ExportScreen> {
     if (chosenFilter != null) filter = chosenFilter;
     if (!mounted) return;
 
-    // Step 3: Ask for signature (always available)
     final bool wantsSignature = await _confirmStep(l10n.addSignatureQuestion, l10n);
     if (wantsSignature && mounted) {
       signatureBytes = await _captureSignature();
       if (!mounted) return;
+
+      // CRITICAL FIX: If signature captured, show placement UI
+      if (signatureBytes != null) {
+        final placement = await _placeSignature(
+          document: _documents.first,
+          signatureBytes: signatureBytes!,
+        );
+        if (placement != null) {
+          signatureOffsetX = placement.$1;
+          signatureOffsetY = placement.$2;
+        }
+      }
     }
 
-    // Step 4: Ask for PDF password (only for PDF format)
     if (format == ExportFormat.pdf) {
       final bool wantsPassword = await _confirmStep(l10n.passwordProtectQuestion, l10n);
       if (wantsPassword && mounted) {
@@ -105,11 +114,12 @@ class _ExportScreenState extends State<ExportScreen> {
       }
     }
 
-    // Step 5: Run export
     await _runExport(
       format: format,
       filter: filter,
       signatureBytes: signatureBytes,
+      signatureOffsetX: signatureOffsetX,
+      signatureOffsetY: signatureOffsetY,
       password: password,
     );
   }
@@ -137,6 +147,20 @@ class _ExportScreenState extends State<ExportScreen> {
     );
   }
 
+  Future<(double, double)?> _placeSignature({
+    required ScanDocument document,
+    required Uint8List signatureBytes,
+  }) async {
+    return showModalBottomSheet<(double, double)>(
+      context: context,
+      isScrollControlled: true,
+      builder: (BuildContext context) => _SignaturePlacementSheet(
+        pagePath: document.pagePaths.first,
+        signatureBytes: signatureBytes,
+      ),
+    );
+  }
+
   Future<String?> _promptPassword(AppLocalizations l10n) async {
     final TextEditingController controller = TextEditingController();
     final String? password = await showDialog<String>(
@@ -159,6 +183,8 @@ class _ExportScreenState extends State<ExportScreen> {
     required ExportFormat format,
     required FilterType filter,
     Uint8List? signatureBytes,
+    double? signatureOffsetX,
+    double? signatureOffsetY,
     String? password,
   }) async {
     final AppLocalizations l10n = AppLocalizations.of(context);
@@ -180,6 +206,8 @@ class _ExportScreenState extends State<ExportScreen> {
           outputDirectoryPath: outputDir.path,
           filter: filter,
           signatureBytes: signatureBytes,
+          signatureOffsetX: signatureOffsetX,
+          signatureOffsetY: signatureOffsetY,
           pdfPassword: password,
         );
         allOutputPaths.addAll(paths);
@@ -208,10 +236,7 @@ class _ExportScreenState extends State<ExportScreen> {
     try {
       await _shareService.shareFiles(filePaths: allOutputPaths);
     } on ShareFailedException {
-      // Share sheet failing to open isn't fatal here — the export itself
-      // already succeeded and the files exist on disk; no need to
-      // re-surface an error for a share dismissal or a rare platform
-      // channel hiccup.
+      // Share sheet failing to open isn't fatal here.
     }
 
     if (mounted) context.pop();
@@ -325,6 +350,110 @@ class _SignatureSheet extends StatelessWidget {
               ),
             ],
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class _SignaturePlacementSheet extends StatefulWidget {
+  final String pagePath;
+  final Uint8List signatureBytes;
+
+  const _SignaturePlacementSheet({
+    required this.pagePath,
+    required this.signatureBytes,
+  });
+
+  @override
+  State<_SignaturePlacementSheet> createState() => _SignaturePlacementSheetState();
+}
+
+class _SignaturePlacementSheetState extends State<_SignaturePlacementSheet> {
+  Offset _signatureOffset = Offset(0, 0);
+  bool _dragging = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Container(
+        height: MediaQuery.of(context).size.height * 0.8,
+        decoration: BoxDecoration(
+          color: Theme.of(context).scaffoldBackgroundColor,
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(20),
+            topRight: Radius.circular(20),
+          ),
+        ),
+        child: Column(
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.all(16),
+              child: Text(
+                'Place signature on document',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600,
+                  color: Theme.of(context).colorScheme.onSurface,
+                ),
+              ),
+            ),
+            Expanded(
+              child: GestureDetector(
+                onPanUpdate: (details) {
+                  setState(() {
+                    _signatureOffset += details.delta;
+                    _dragging = true;
+                  });
+                },
+                child: Stack(
+                  children: <Widget>[
+                    Positioned.fill(
+                      child: Image.file(
+                        File(widget.pagePath),
+                        fit: BoxFit.contain,
+                      ),
+                    ),
+                    Positioned(
+                      left: _signatureOffset.dx,
+                      top: _signatureOffset.dy,
+                      child: Opacity(
+                        opacity: 0.8,
+                        child: Image.memory(
+                          widget.signatureBytes,
+                          width: 100,
+                          height: 50,
+                          fit: BoxFit.contain,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(16),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  TextButton(
+                    onPressed: () => Navigator.of(context).pop(),
+                    child: const Text('Cancel'),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.of(context).pop((_signatureOffset.dx, _signatureOffset.dy));
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Theme.of(context).colorScheme.primary,
+                      foregroundColor: Colors.white,
+                    ),
+                    child: const Text('Confirm Placement'),
+                  ),
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );
