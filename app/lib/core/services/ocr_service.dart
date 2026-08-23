@@ -1,14 +1,12 @@
 // lib/core/services/ocr_service.dart
+
 import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
+
 import 'debug_log_service.dart';
 import '../models/ocr_block.dart';
 import '../utils/constants.dart';
 
 enum OcrScript { latin, chinese, devanagari, japanese, korean }
-
-extension OcrScriptProGate on OcrScript {
-  bool get isProOnly => this != OcrScript.latin;
-}
 
 class OcrUnavailableException implements Exception {
   const OcrUnavailableException(this.message);

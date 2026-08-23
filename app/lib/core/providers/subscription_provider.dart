@@ -1,10 +1,10 @@
 // lib/core/providers/subscription_provider.dart
 //
-// ValueNotifier<bool isPro> + purchase/restore state (Section 16 file
+// ValueNotifier<bool adsRemoved> + purchase/restore state (Section 16 file
 // #23).
 //
-// This provider is the AUTHORITATIVE runtime source of truth for Pro
-// entitlement. UserSettings.isPro (settings_provider.dart) is only a
+// This provider is the AUTHORITATIVE runtime source of truth for ad removal
+// entitlement. UserSettings.adsRemoved (settings_provider.dart) is only a
 // cached convenience flag for instant cold-start UI, per that model's own
 // doc comment — whenever this provider determines entitlement has
 // changed (a purchase completes, a restore succeeds), it pushes the new
@@ -12,6 +12,7 @@
 //
 // REACTIVITY: ValueNotifier + ListenableBuilder only, per the MANDATORY
 // constraint in constants.dart.
+
 import 'dart:async' show unawaited;
 
 import 'package:flutter/foundation.dart' show ValueNotifier;
@@ -25,14 +26,14 @@ enum PurchaseFlowState { idle, inProgress, success, error, cancelled }
 
 class SubscriptionProvider {
   SubscriptionProvider(this._iapService, this._settingsProvider) {
-    isPro = ValueNotifier<bool>(_settingsProvider.settings.value.isPro);
+    adsRemoved = ValueNotifier<bool>(_settingsProvider.settings.value.adsRemoved);
     unawaited(_initialize());
   }
 
   final IapService _iapService;
   final SettingsProvider _settingsProvider;
 
-  late final ValueNotifier<bool> isPro;
+  late final ValueNotifier<bool> adsRemoved;
 
   final ValueNotifier<List<ProductDetails>> products =
       ValueNotifier<List<ProductDetails>>(const <ProductDetails>[]);
@@ -73,16 +74,12 @@ class SubscriptionProvider {
   }
 
   Future<void> _setEntitled(bool entitled) async {
-    isPro.value = entitled;
-    await _settingsProvider.setIsPro(entitled);
+    adsRemoved.value = entitled;
+    await _settingsProvider.setAdsRemoved(entitled);
   }
 
-  /// Product IDs match Section 1a exactly: com.zdmgold.katharscan.pro.monthly
-  /// / .pro.yearly. Looking these up from [products] rather than
-  /// hardcoding them again here keeps a single source for the ID strings
-  /// (IapService.monthlyProductId / .yearlyProductId).
-  ProductDetails? get monthlyProduct => _findProduct(IapService.monthlyProductId);
-  ProductDetails? get yearlyProduct => _findProduct(IapService.yearlyProductId);
+  /// The single Remove Ads non-consumable product, if loaded from the store.
+  ProductDetails? get removeAdsProduct => _findProduct(IapService.removeAdsProductId);
 
   ProductDetails? _findProduct(String id) {
     for (final ProductDetails product in products.value) {
@@ -93,7 +90,7 @@ class SubscriptionProvider {
 
   /// Initiates a purchase. The actual success/failure arrives
   /// asynchronously via [_handlePurchaseUpdate] and is reflected in
-  /// [purchaseFlowState] and [isPro] — paywall_screen.dart should listen
+  /// [purchaseFlowState] and [adsRemoved] — paywall_screen.dart should listen
   /// to those rather than awaiting this call for the final result.
   Future<void> purchase(ProductDetails product) async {
     purchaseFlowState.value = PurchaseFlowState.inProgress;
@@ -123,7 +120,7 @@ class SubscriptionProvider {
 
   void dispose() {
     unawaited(_iapService.dispose());
-    isPro.dispose();
+    adsRemoved.dispose();
     products.dispose();
     purchaseFlowState.dispose();
     lastError.dispose();

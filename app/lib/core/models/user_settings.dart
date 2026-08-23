@@ -1,7 +1,7 @@
 // lib/core/models/user_settings.dart
 //
 // Immutable model per Section 16 (file #12): theme mode, accent color,
-// storage path, language, isPro, ocrLanguage.
+// storage path, language, adsRemoved, ocrLanguage.
 //
 // Uses Flutter's own `ThemeMode` and `Color` types rather than reinventing
 // local equivalents — Section 15 already types theme_provider.dart's state
@@ -11,11 +11,12 @@
 // so it doesn't violate Section 4's "no plugin imports in core/" rule —
 // that rule targets dart:io and native-plugin dependencies specifically.
 //
-// `isPro` here is a cached, persisted convenience flag for instant UI on
-// cold start (avoiding a "free" flash before purchase state loads) —
+// `adsRemoved` here is a cached, persisted convenience flag for instant UI on
+// cold start (avoiding an "ad banner" flash before purchase state loads) —
 // subscription_provider.dart (file #23) via iap_service.dart (file #19) is
 // the runtime source of truth and reconciles this value against the store
 // on launch and on restore.
+
 import 'package:flutter/foundation.dart' show immutable;
 import 'package:flutter/material.dart' show Color, ThemeMode;
 
@@ -28,7 +29,7 @@ class UserSettings {
     this.accentColor = AppColors.accentLight,
     this.storagePath,
     this.language = AppLocales.defaultLanguageCode,
-    this.isPro = false,
+    this.adsRemoved = false,
     this.ocrLanguage = 'latin',
   });
 
@@ -49,11 +50,12 @@ class UserSettings {
   /// One of [AppLocales.supportedLanguageCodes].
   final String language;
 
-  final bool isPro;
+  /// True when the user has purchased the one-time "Remove Ads" product.
+  /// This is a cached convenience flag for instant cold-start UI;
+  /// subscription_provider.dart is the authoritative runtime source of truth.
+  final bool adsRemoved;
 
-  /// Selected OCR script pack. 'latin' is the free, bundled default
-  /// (Section 19 Free tier). Pro unlocks non-Latin scripts — CJK, Arabic,
-  /// Hebrew, Hindi — per Section 16 file #14's delivery-mechanism notes.
+  /// Selected OCR script pack. All scripts are free; 'latin' is the bundled default.
   final String ocrLanguage;
 
   /// Sentinel used by [copyWith] to distinguish "storagePath not passed"
@@ -67,7 +69,7 @@ class UserSettings {
     Color? accentColor,
     Object? storagePath = _unset,
     String? language,
-    bool? isPro,
+    bool? adsRemoved,
     String? ocrLanguage,
   }) {
     return UserSettings(
@@ -77,7 +79,7 @@ class UserSettings {
           ? this.storagePath
           : storagePath as String?,
       language: language ?? this.language,
-      isPro: isPro ?? this.isPro,
+      adsRemoved: adsRemoved ?? this.adsRemoved,
       ocrLanguage: ocrLanguage ?? this.ocrLanguage,
     );
   }
@@ -91,12 +93,14 @@ class UserSettings {
       'accentColorArgb': _colorToArgb(accentColor),
       'storagePath': storagePath,
       'language': language,
-      'isPro': isPro,
+      'adsRemoved': adsRemoved,
       'ocrLanguage': ocrLanguage,
     };
   }
 
   factory UserSettings.fromJson(Map<String, dynamic> json) {
+    // Backward compatibility: old installs used 'isPro' instead of 'adsRemoved'.
+    final bool adsRemovedValue = json['adsRemoved'] as bool? ?? json['isPro'] as bool? ?? false;
     return UserSettings(
       themeMode: ThemeMode.values.byName(
         json['themeMode'] as String? ?? ThemeMode.system.name,
@@ -106,7 +110,7 @@ class UserSettings {
           : _colorFromArgb(json['accentColorArgb'] as int),
       storagePath: json['storagePath'] as String?,
       language: json['language'] as String? ?? AppLocales.defaultLanguageCode,
-      isPro: json['isPro'] as bool? ?? false,
+      adsRemoved: adsRemovedValue,
       ocrLanguage: json['ocrLanguage'] as String? ?? 'latin',
     );
   }
@@ -138,7 +142,7 @@ class UserSettings {
         other.accentColor == accentColor &&
         other.storagePath == storagePath &&
         other.language == language &&
-        other.isPro == isPro &&
+        other.adsRemoved == adsRemoved &&
         other.ocrLanguage == ocrLanguage;
   }
 
@@ -148,11 +152,11 @@ class UserSettings {
         accentColor,
         storagePath,
         language,
-        isPro,
+        adsRemoved,
         ocrLanguage,
       );
 
   @override
   String toString() =>
-      'UserSettings(themeMode: $themeMode, language: $language, isPro: $isPro, ocrLanguage: $ocrLanguage)';
+      'UserSettings(themeMode: $themeMode, language: $language, adsRemoved: $adsRemoved, ocrLanguage: $ocrLanguage)';
 }

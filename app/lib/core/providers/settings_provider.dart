@@ -1,7 +1,6 @@
 // lib/core/providers/settings_provider.dart
 //
 // ValueNotifier<UserSettings> + persistence (Section 16 file #24).
-//
 // This is the ONE place in the app that calls
 // LocalStorageService.loadSettings()/saveSettings(). theme_provider.dart
 // derives its narrower ThemeMode/accent-color notifiers from this
@@ -11,6 +10,7 @@
 // REACTIVITY: ValueNotifier + ListenableBuilder only, per the MANDATORY
 // constraint in constants.dart. This class is not a ChangeNotifier
 // itself — it exposes ValueNotifier fields directly.
+
 import 'dart:async' show unawaited;
 
 import 'package:flutter/foundation.dart' show ValueNotifier;
@@ -72,12 +72,12 @@ class SettingsProvider {
       _persist(settings.value.copyWith(storagePath: path));
 
   /// Called by subscription_provider.dart when the authoritative
-  /// entitlement state changes, keeping UserSettings.isPro — a cached
+  /// entitlement state changes, keeping UserSettings.adsRemoved — a cached
   /// convenience flag for instant cold-start UI — in sync. Not meant to
   /// be called directly by UI code; subscription_provider.dart is the
-  /// source of truth for Pro status, this just mirrors it into storage.
-  Future<bool> setIsPro(bool isPro) =>
-      _persist(settings.value.copyWith(isPro: isPro));
+  /// source of truth for ad removal status, this just mirrors it into storage.
+  Future<bool> setAdsRemoved(bool adsRemoved) =>
+      _persist(settings.value.copyWith(adsRemoved: adsRemoved));
 
   void dispose() {
     settings.dispose();
