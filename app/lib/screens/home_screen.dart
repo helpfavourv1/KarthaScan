@@ -1,3 +1,5 @@
+// lib/screens/home_screen.dart
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -27,6 +29,7 @@ class _HomeScreenState extends State<HomeScreen> {
   final Set<String> _selectedIds = <String>{};
   List<ScanDocument>? _searchResults;
   bool _selectionMode = false;
+  int _selectedFilter = 0; // 0=All, 1=Folders, 2=Recent, 3=Favorites
 
   late final ScanProvider _scanProvider;
   late final FolderProvider _folderProvider;
@@ -87,6 +90,59 @@ class _HomeScreenState extends State<HomeScreen> {
     context.push('/manual-crop');
   }
 
+  Future<void> _createFolder() async {
+    final TextEditingController controller = TextEditingController();
+    final String? name = await showDialog<String>(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        title: const Text('New Folder'),
+        content: TextField(
+          controller: controller,
+          autofocus: true,
+          decoration: const InputDecoration(hintText: 'Folder name'),
+        ),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(),
+            child: const Text('Cancel'),
+          ),
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(controller.text),
+            child: const Text('Create'),
+          ),
+        ],
+      ),
+    );
+    controller.dispose();
+    if (name != null && name.trim().isNotEmpty) {
+      await _folderProvider.createFolder(name.trim());
+    }
+  }
+
+  Future<void> _pickLanguage() async {
+    final String? chosen = await showModalBottomSheet<String>(
+      context: context,
+      builder: (BuildContext context) => _LanguagePickerSheet(
+        current: _settingsProvider.settings.value.language,
+      ),
+    );
+    if (chosen != null) {
+      await _settingsProvider.setLanguage(chosen);
+    }
+  }
+
+  Future<void> _pickOcrLanguage() async {
+    final String? chosen = await showModalBottomSheet<String>(
+      context: context,
+      builder: (BuildContext context) => _OcrLanguagePickerSheet(
+        current: _settingsProvider.settings.value.ocrLanguage,
+      ),
+    );
+    if (chosen != null) {
+      await _settingsProvider.setOcrLanguage(chosen);
+    }
+  }
+
   void _toggleSelection(String id) {
     setState(() {
       if (_selectedIds.contains(id)) {
@@ -120,6 +176,108 @@ class _HomeScreenState extends State<HomeScreen> {
     _exitSelectionMode();
   }
 
+  void _handleMenuAction(String action, ScanDocument document) {
+    final AppLocalizations l10n = AppLocalizations.of(context);
+    switch (action) {
+      case 'favorite':
+        _scanProvider.toggleFavorite(document.id);
+        break;
+      case 'rename':
+        _renameDocument(document, l10n);
+        break;
+      case 'folder':
+        _moveToFolder(document, l10n);
+        break;
+      case 'tags':
+        _addTags(document, l10n);
+        break;
+      case 'export':
+        context.push('/export', extra: <String>[document.id]);
+        break;
+      case 'share':
+        _shareDocument(document);
+        break;
+      case 'delete':
+        _deleteDocument(document, l10n);
+        break;
+    }
+  }
+
+  Future<void> _renameDocument(ScanDocument document, AppLocalizations l10n) async {
+    final TextEditingController controller = TextEditingController(text: document.title);
+    final String? newTitle = await showDialog<String>(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        title: Text(l10n.renameDocumentTitle),
+        content: TextField(controller: controller, autofocus: true),
+        actions: <Widget>[
+          TextButton(onPressed: () => Navigator.of(context).pop(), child: Text(l10n.commonCancel)),
+          TextButton(onPressed: () => Navigator.of(context).pop(controller.text), child: Text(l10n.commonSave)),
+        ],
+      ),
+    );
+    controller.dispose();
+    if (newTitle != null && newTitle.trim().isNotEmpty) {
+      await _scanProvider.renameDocument(document.id, newTitle);
+    }
+  }
+
+  Future<void> _moveToFolder(ScanDocument document, AppLocalizations l10n) async {
+    final List<Folder> folders = _folderProvider.folders.value;
+    final String? chosenFolderId = await showModalBottomSheet<String>(
+      context: context,
+      builder: (BuildContext context) => _FolderPickerSheet(folders: folders),
+    );
+    if (chosenFolderId == null) return;
+    await _folderProvider.addDocumentToFolder(chosenFolderId, document.id);
+    if (!mounted) return;
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text(l10n.movedToFolderMessage)),
+    );
+  }
+
+  Future<void> _addTags(ScanDocument document, AppLocalizations l10n) async {
+    final TextEditingController controller = TextEditingController();
+    final String? tag = await showDialog<String>(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        title: Text(l10n.addTagTitle),
+        content: TextField(controller: controller, autofocus: true),
+        actions: <Widget>[
+          TextButton(onPressed: () => Navigator.of(context).pop(), child: Text(l10n.commonCancel)),
+          TextButton(onPressed: () => Navigator.of(context).pop(controller.text), child: Text(l10n.commonAdd)),
+        ],
+      ),
+    );
+    controller.dispose();
+    final String trimmed = tag?.trim() ?? '';
+    if (trimmed.isEmpty) return;
+    final List<String> updated = <String>{...document.tags, trimmed}.toList();
+    await _scanProvider.updateTags(document.id, updated);
+  }
+
+  Future<void> _shareDocument(ScanDocument document) async {
+    // Since ShareService needs a BuildContext, we'll just navigate to export/share
+    context.push('/export', extra: <String>[document.id]);
+  }
+
+  Future<void> _deleteDocument(ScanDocument document, AppLocalizations l10n) async {
+    final bool? confirmed = await showDialog<bool>(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        title: Text(l10n.deleteScanTitle),
+        content: Text(l10n.deleteScanMessage),
+        actions: <Widget>[
+          TextButton(onPressed: () => Navigator.of(context).pop(false), child: Text(l10n.commonCancel)),
+          TextButton(onPressed: () => Navigator.of(context).pop(true), child: Text(l10n.commonDelete)),
+        ],
+      ),
+    );
+    if (confirmed != true) return;
+    await _scanProvider.deleteDocument(document.id);
+    await _folderProvider.removeDocumentFromAllFolders(document.id);
+  }
+
   @override
   Widget build(BuildContext context) {
     final AppLocalizations l10n = AppLocalizations.of(context);
@@ -139,6 +297,7 @@ class _HomeScreenState extends State<HomeScreen> {
       body: SafeArea(
         child: Column(
           children: <Widget>[
+            // Search Bar
             Padding(
               padding: const EdgeInsets.symmetric(
                 horizontal: AppSpacing.md,
@@ -159,6 +318,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
             ),
+            // Filter Chips
+            _buildFilterChips(),
+            // Expanded Content
             Expanded(
               child: _searchResults != null
                   ? _buildSearchResults(localeCode, l10n)
@@ -186,6 +348,40 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
+  Widget _buildFilterChips() {
+    final List<String> filters = <String>['All', 'Folders', 'Recent', 'Favorites'];
+    return SizedBox(
+      height: 48,
+      child: ListView.separated(
+        scrollDirection: Axis.horizontal,
+        padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md),
+        itemCount: filters.length,
+        separatorBuilder: (BuildContext context, int index) => const SizedBox(width: 8),
+        itemBuilder: (BuildContext context, int index) {
+          final bool isSelected = _selectedFilter == index;
+          return GestureDetector(
+            onTap: () => setState(() => _selectedFilter = index),
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              decoration: BoxDecoration(
+                color: isSelected ? Theme.of(context).colorScheme.primary : Theme.of(context).colorScheme.surface,
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: Text(
+                filters[index],
+                style: TextStyle(
+                  color: isSelected ? Colors.white : Theme.of(context).colorScheme.onSurface,
+                  fontWeight: FontWeight.w600,
+                  fontSize: 13,
+                ),
+              ),
+            ),
+          );
+        },
+      ),
+    );
+  }
+
   PreferredSizeWidget _buildDefaultAppBar(
     Color bg,
     Color textPrimary,
@@ -204,6 +400,16 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
       actions: <Widget>[
+        IconButton(
+          icon: Icon(Icons.language_outlined, color: textSecondary),
+          tooltip: 'Language',
+          onPressed: _pickOcrLanguage,
+        ),
+        IconButton(
+          icon: Icon(Icons.create_new_folder_outlined, color: textSecondary),
+          tooltip: 'New Folder',
+          onPressed: _createFolder,
+        ),
         IconButton(
           icon: Icon(Icons.settings_outlined, color: textSecondary),
           tooltip: l10n.settingsTooltip,
@@ -250,10 +456,8 @@ class _HomeScreenState extends State<HomeScreen> {
     return ListView.separated(
       padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md),
       itemCount: results.length,
-      separatorBuilder: (BuildContext context, int index) =>
-          const SizedBox(height: AppSpacing.xs),
-      itemBuilder: (BuildContext context, int index) =>
-          _scanTile(results[index], localeCode),
+      separatorBuilder: (BuildContext context, int index) => const SizedBox(height: AppSpacing.xs),
+      itemBuilder: (BuildContext context, int index) => _scanTile(results[index], localeCode),
     );
   }
 
@@ -268,22 +472,49 @@ class _HomeScreenState extends State<HomeScreen> {
         if (_scanProvider.isLoading.value) {
           return const Center(child: CircularProgressIndicator());
         }
-        final List<ScanDocument> documents = _scanProvider.documents.value;
-        final List<Folder> folders = _folderProvider.folders.value;
+        final List<ScanDocument> allDocuments = _scanProvider.documents.value;
+        final List<Folder> allFolders = _folderProvider.folders.value;
 
-        if (documents.isEmpty && folders.isEmpty) {
+        // Filter based on selected chip
+        List<ScanDocument> documents = allDocuments;
+        if (_selectedFilter == 1) {
+          // Folders: show only folders
+          return ListView(
+            padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md, vertical: AppSpacing.xs),
+            children: <Widget>[
+              if (allFolders.isNotEmpty) ...<Widget>[
+                _sectionHeader(l10n.foldersSectionHeader),
+                ...allFolders.map(
+                  (Folder folder) => Padding(
+                    padding: const EdgeInsets.only(bottom: AppSpacing.xs),
+                    child: FolderListTile(
+                      folder: folder,
+                      onTap: () => context.push('/folder/${folder.id}'),
+                    ),
+                  ),
+                ),
+              ] else
+                const EmptyState(message: 'No folders yet. Tap the folder icon to create one.'),
+            ],
+          );
+        } else if (_selectedFilter == 2) {
+          // Recent: sort by updatedAt (already sorted by storage)
+          documents = allDocuments;
+        } else if (_selectedFilter == 3) {
+          // Favorites: filter by isFavorite
+          documents = allDocuments.where((ScanDocument d) => d.isFavorite).toList();
+        }
+
+        if (documents.isEmpty && allFolders.isEmpty) {
           return const EmptyState();
         }
 
         return ListView(
-          padding: const EdgeInsets.symmetric(
-            horizontal: AppSpacing.md,
-            vertical: AppSpacing.xs,
-          ),
+          padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md, vertical: AppSpacing.xs),
           children: <Widget>[
-            if (folders.isNotEmpty) ...<Widget>[
+            if (_selectedFilter != 1 && allFolders.isNotEmpty) ...<Widget>[
               _sectionHeader(l10n.foldersSectionHeader),
-              ...folders.map(
+              ...allFolders.map(
                 (Folder folder) => Padding(
                   padding: const EdgeInsets.only(bottom: AppSpacing.xs),
                   child: FolderListTile(
@@ -294,18 +525,17 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               const SizedBox(height: AppSpacing.sm),
             ],
-            if (documents.isNotEmpty)
-              ...<Widget>[
-                _sectionHeader(l10n.documentsSectionHeader),
-                ...documents.map(
-                  (ScanDocument doc) => Padding(
-                    padding: const EdgeInsets.only(bottom: AppSpacing.xs),
-                    child: _scanTile(doc, localeCode),
-                  ),
+            if (_selectedFilter != 1 && documents.isNotEmpty) ...<Widget>[
+              _sectionHeader(l10n.documentsSectionHeader),
+              ...documents.map(
+                (ScanDocument doc) => Padding(
+                  padding: const EdgeInsets.only(bottom: AppSpacing.xs),
+                  child: _scanTile(doc, localeCode),
                 ),
-              ]
-            else
-              const EmptyState(),
+              ),
+            ] else if (_selectedFilter == 3 && documents.isEmpty) ...<Widget>[
+              const EmptyState(message: 'No favorites yet. Tap the star icon on a document to add it.'),
+            ],
           ],
         );
       },
@@ -341,6 +571,182 @@ class _HomeScreenState extends State<HomeScreen> {
           : () => context.push('/scan/${document.id}'),
       onLongPress:
           _selectionMode ? null : () => _enterSelectionMode(document.id),
+      onMenuAction: (String action) => _handleMenuAction(action, document),
+    );
+  }
+}
+
+class _FolderPickerSheet extends StatelessWidget {
+  const _FolderPickerSheet({required this.folders});
+
+  final List<Folder> folders;
+
+  @override
+  Widget build(BuildContext context) {
+    final bool isDark = Theme.of(context).brightness == Brightness.dark;
+    final Color bg = isDark ? AppColors.bgPrimaryDark : AppColors.bgPrimaryLight;
+    final Color textPrimary = isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight;
+    final Color accent = isDark ? AppColors.accentDark : AppColors.accentLight;
+
+    return SafeArea(
+      child: Container(
+        decoration: BoxDecoration(
+          color: bg,
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(AppShape.bottomSheetTopRadius),
+            topRight: Radius.circular(AppShape.bottomSheetTopRadius),
+          ),
+        ),
+        padding: const EdgeInsets.all(AppSpacing.md),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text(
+              'Move to Folder',
+              style: TextStyle(
+                color: textPrimary,
+                fontSize: AppTypography.title1Size,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            const SizedBox(height: AppSpacing.sm),
+            if (folders.isEmpty)
+              const Padding(
+                padding: EdgeInsets.symmetric(vertical: AppSpacing.md),
+                child: Text('No folders yet. Create one from the home screen.'),
+              )
+            else
+              ...folders.map(
+                (Folder folder) => ListTile(
+                  title: Text(folder.name),
+                  trailing: Icon(Icons.folder_outlined, color: accent),
+                  onTap: () => Navigator.of(context).pop(folder.id),
+                ),
+              ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _LanguagePickerSheet extends StatelessWidget {
+  const _LanguagePickerSheet({required this.current});
+
+  final String current;
+
+  static const Map<String, String> _labels = <String, String>{
+    'en': 'English',
+    'es': 'Español',
+    'fr': 'Français',
+    'de': 'Deutsch',
+    'pt': 'Português',
+    'ar': 'العربية',
+    'hi': 'हिन्दी',
+    'ja': '日本語',
+    'ko': '한국어',
+    'zh': '中文',
+    'he': 'עברית',
+  };
+
+  @override
+  Widget build(BuildContext context) {
+    final bool isDark = Theme.of(context).brightness == Brightness.dark;
+    final Color bg = isDark ? AppColors.bgPrimaryDark : AppColors.bgPrimaryLight;
+    final Color textPrimary = isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight;
+    final Color accent = isDark ? AppColors.accentDark : AppColors.accentLight;
+
+    return SafeArea(
+      child: Container(
+        decoration: BoxDecoration(
+          color: bg,
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(AppShape.bottomSheetTopRadius),
+            topRight: Radius.circular(AppShape.bottomSheetTopRadius),
+          ),
+        ),
+        padding: const EdgeInsets.all(AppSpacing.md),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text(
+              'App Language',
+              style: TextStyle(
+                color: textPrimary,
+                fontSize: AppTypography.title1Size,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            const SizedBox(height: AppSpacing.sm),
+            ...AppLocales.supportedLanguageCodes.map(
+              (String code) => ListTile(
+                title: Text(_labels[code] ?? code, style: TextStyle(color: textPrimary)),
+                trailing: code == current ? Icon(Icons.check, color: accent) : null,
+                onTap: () => Navigator.of(context).pop(code),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _OcrLanguagePickerSheet extends StatelessWidget {
+  const _OcrLanguagePickerSheet({required this.current});
+
+  final String current;
+
+  @override
+  Widget build(BuildContext context) {
+    final bool isDark = Theme.of(context).brightness == Brightness.dark;
+    final Color bg = isDark ? AppColors.bgPrimaryDark : AppColors.bgPrimaryLight;
+    final Color textPrimary = isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight;
+    final Color accent = isDark ? AppColors.accentDark : AppColors.accentLight;
+
+    final Map<String, String> labels = <String, String>{
+      'latin': 'Latin (default)',
+      'chinese': 'Chinese',
+      'devanagari': 'Devanagari (Hindi)',
+      'japanese': 'Japanese',
+      'korean': 'Korean',
+    };
+
+    return SafeArea(
+      child: Container(
+        decoration: BoxDecoration(
+          color: bg,
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(AppShape.bottomSheetTopRadius),
+            topRight: Radius.circular(AppShape.bottomSheetTopRadius),
+          ),
+        ),
+        padding: const EdgeInsets.all(AppSpacing.md),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text(
+              'OCR Language',
+              style: TextStyle(
+                color: textPrimary,
+                fontSize: AppTypography.title1Size,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            const SizedBox(height: AppSpacing.sm),
+            ...labels.keys.map(
+              (String key) => ListTile(
+                title: Text(labels[key]!, style: TextStyle(color: textPrimary)),
+                trailing: key == current ? Icon(Icons.check, color: accent) : null,
+                onTap: () => Navigator.of(context).pop(key),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

@@ -3,19 +3,8 @@
 // Immutable model per Section 16 (file #8) and Section 15's Data Layer
 // Rules: final fields, copyWith(), toJson(), fromJson(), ==/hashCode.
 //
-// FIELD NOTE: the blueprint's manifest cell lists the defining fields as
-// "id, title, pageCount, createdAt, updatedAt, ocrText, thumbnailPath".
-// This implementation adds two fields beyond that minimum:
-//   - `pagePaths`: the actual per-page image file paths. Without this a
-//     multi-page document has a page *count* but nothing to render, export,
-//     or re-run OCR against — thumbnailPath alone only covers one page.
-//     This isn't optional for a working scanner; it's a gap in the summary
-//     table, not a deviation from it.
-//   - `tags`: supports the already-manifested tag_chip.dart (file #33) and
-//     the Pro "custom tags" feature (Section 19). Defaulted to an empty
-//     list so every existing call site stays valid; added now rather than
-//     retrofitted later to avoid a breaking constructor change once
-//     Phase 3/4 files start constructing ScanDocument instances.
+// Added `isFavorite` to support the Favorites filter chip.
+
 import 'package:flutter/foundation.dart' show immutable, listEquals;
 
 @immutable
@@ -30,30 +19,29 @@ class ScanDocument {
     required this.ocrText,
     required this.thumbnailPath,
     this.tags = const <String>[],
+    this.isFavorite = false,
   });
 
   final String id;
   final String title;
   final int pageCount;
 
-  /// Ordered file paths for each scanned page, front-to-back. Length must
-  /// equal [pageCount]; callers that mutate page order or count should go
-  /// through [copyWith] with both fields together to avoid them drifting
-  /// out of sync.
+  /// Ordered file paths for each scanned page, front-to-back.
   final List<String> pagePaths;
 
   final DateTime createdAt;
   final DateTime updatedAt;
 
-  /// Combined, searchable OCR text across all pages (Section 16 file #13:
-  /// "FTS5 search index").
+  /// Combined, searchable OCR text across all pages.
   final String ocrText;
 
   final String thumbnailPath;
 
-  /// Free-form user tags, e.g. "Receipt", "Contract" (file #33). Pro-gated
-  /// at the UI/feature level (Section 19), not enforced by the model.
+  /// Free-form user tags, e.g. "Receipt", "Contract".
   final List<String> tags;
+
+  /// Whether the user has marked this document as favorite.
+  final bool isFavorite;
 
   ScanDocument copyWith({
     String? id,
@@ -65,6 +53,7 @@ class ScanDocument {
     String? ocrText,
     String? thumbnailPath,
     List<String>? tags,
+    bool? isFavorite,
   }) {
     return ScanDocument(
       id: id ?? this.id,
@@ -76,6 +65,7 @@ class ScanDocument {
       ocrText: ocrText ?? this.ocrText,
       thumbnailPath: thumbnailPath ?? this.thumbnailPath,
       tags: tags ?? this.tags,
+      isFavorite: isFavorite ?? this.isFavorite,
     );
   }
 
@@ -90,6 +80,7 @@ class ScanDocument {
       'ocrText': ocrText,
       'thumbnailPath': thumbnailPath,
       'tags': tags,
+      'isFavorite': isFavorite,
     };
   }
 
@@ -104,6 +95,7 @@ class ScanDocument {
       ocrText: json['ocrText'] as String,
       thumbnailPath: json['thumbnailPath'] as String,
       tags: List<String>.from(json['tags'] as List<dynamic>? ?? const <dynamic>[]),
+      isFavorite: json['isFavorite'] as bool? ?? false,
     );
   }
 
@@ -119,7 +111,8 @@ class ScanDocument {
         other.updatedAt == updatedAt &&
         other.ocrText == ocrText &&
         other.thumbnailPath == thumbnailPath &&
-        listEquals(other.tags, tags);
+        listEquals(other.tags, tags) &&
+        other.isFavorite == isFavorite;
   }
 
   @override
@@ -134,10 +127,11 @@ class ScanDocument {
       ocrText,
       thumbnailPath,
       Object.hashAll(tags),
+      isFavorite,
     );
   }
 
   @override
   String toString() =>
-      'ScanDocument(id: $id, title: $title, pageCount: $pageCount)';
+      'ScanDocument(id: $id, title: $title, pageCount: $pageCount, isFavorite: $isFavorite)';
 }

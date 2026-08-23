@@ -7,6 +7,7 @@
 //
 // REACTIVITY: ValueNotifier + ListenableBuilder only, per the MANDATORY
 // constraint in constants.dart.
+
 import 'dart:async' show unawaited;
 import 'dart:math' show Random;
 
@@ -44,9 +45,6 @@ class ScanProvider {
       ValueNotifier<ScanFlowState>(ScanFlowState.idle);
   final ValueNotifier<String?> lastError = ValueNotifier<String?>(null);
 
-  /// Set once a device-level OCR failure has been observed, so
-  /// screens/widgets can disable the OCR affordance per Section 14 rather
-  /// than waiting for the user to hit the same failure again.
   final ValueNotifier<bool> ocrUnavailable = ValueNotifier<bool>(false);
 
   Future<void> _loadAll() async {
@@ -62,8 +60,6 @@ class ScanProvider {
     documents.value = await _storage.getAllDocuments();
   }
 
-  /// Runs the full capture flow: launches the scanner UI, OCRs each
-  /// captured page, and saves the result as a new ScanDocument.
   Future<ScanDocument?> captureNewDocument({
     String? title,
     OcrScript ocrScript = OcrScript.latin,
@@ -73,7 +69,6 @@ class ScanProvider {
     try {
       final DocScanResult scanResult = await _docScanner.scan();
       if (scanResult.pageImagePaths.isEmpty) {
-        // User cancelled — not an error.
         scanFlowState.value = ScanFlowState.idle;
         return null;
       }
@@ -138,7 +133,6 @@ class ScanProvider {
         break;
       } catch (e) {
         debugPrint('OCR ERROR on $path: $e');
-        // Continue processing pages without blocking saving.
       }
     }
     return combined.toString();
@@ -159,6 +153,16 @@ class ScanProvider {
     if (existing == null) return false;
     final ScanDocument updated = existing.copyWith(
       tags: tags,
+      updatedAt: DateTime.now(),
+    );
+    return _replaceAndSave(updated);
+  }
+
+  Future<bool> toggleFavorite(String id) async {
+    final ScanDocument? existing = _findById(id);
+    if (existing == null) return false;
+    final ScanDocument updated = existing.copyWith(
+      isFavorite: !existing.isFavorite,
       updatedAt: DateTime.now(),
     );
     return _replaceAndSave(updated);

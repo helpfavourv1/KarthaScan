@@ -14,6 +14,7 @@ import 'package:provider/provider.dart';
 
 import '../core/models/scan_document.dart';
 import '../core/providers/scan_provider.dart';
+import '../core/providers/settings_provider.dart';
 import '../core/services/debug_log_service.dart';
 import '../core/services/doc_scanner_service.dart';
 import '../core/services/ocr_service.dart';
@@ -31,6 +32,7 @@ class ManualCropScreen extends StatefulWidget {
 
 class _ManualCropScreenState extends State<ManualCropScreen> {
   late final ScanProvider _scanProvider;
+  late final SettingsProvider _settingsProvider;
   final OcrService _ocrService = OcrService();
   final DebugLogService _log = DebugLogService();
 
@@ -41,7 +43,24 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
   void initState() {
     super.initState();
     _scanProvider = Provider.of<ScanProvider>(context, listen: false);
+    _settingsProvider = Provider.of<SettingsProvider>(context, listen: false);
     _log.log('CROP', 'ManualCropScreen initialized');
+  }
+
+  OcrScript _getSelectedOcrScript() {
+    final String selected = _settingsProvider.settings.value.ocrLanguage;
+    switch (selected) {
+      case 'chinese':
+        return OcrScript.chinese;
+      case 'devanagari':
+        return OcrScript.devanagari;
+      case 'japanese':
+        return OcrScript.japanese;
+      case 'korean':
+        return OcrScript.korean;
+      default:
+        return OcrScript.latin;
+    }
   }
 
   Future<void> _takePhoto() async {
@@ -142,7 +161,6 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
       if (!mounted) return;
       
       if (savedDoc != null) {
-        // CRITICAL FIX: Use pushReplacement to replace this screen entirely
         context.pushReplacement('/scan/${savedDoc.id}');
       } else {
         _log.log('CROP', 'Save failed, staying on crop screen');
@@ -194,7 +212,7 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
       try {
         final OcrResult result = await _ocrService.recognizeText(
           imagePath: savedPaths.first,
-          script: OcrScript.latin,
+          script: _getSelectedOcrScript(),
         );
         ocrText = result.fullText;
       } on OcrUnavailableException catch (_) {
@@ -288,7 +306,7 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
         _log.log('CROP', 'Starting OCR...');
         final OcrResult result = await _ocrService.recognizeText(
           imagePath: outPath,
-          script: OcrScript.latin,
+          script: _getSelectedOcrScript(),
         );
         ocrText = result.fullText;
         _log.log('CROP', 'OCR done: ${ocrText.length} chars');

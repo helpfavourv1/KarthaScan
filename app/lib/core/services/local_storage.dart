@@ -1,4 +1,5 @@
 // lib/core/services/local_storage.dart
+
 import 'dart:convert';
 import 'package:flutter/foundation.dart' show debugPrint;
 import 'package:path/path.dart' as p;
@@ -43,7 +44,8 @@ class LocalStorageService {
               updated_at TEXT NOT NULL,
               ocr_text TEXT NOT NULL,
               thumbnail_path TEXT NOT NULL,
-              tags TEXT NOT NULL
+              tags TEXT NOT NULL,
+              is_favorite INTEGER NOT NULL DEFAULT 0
             )
           ''');
           await db.execute('''
@@ -262,6 +264,7 @@ class LocalStorageService {
       'ocr_text': document.ocrText,
       'thumbnail_path': document.thumbnailPath,
       'tags': jsonEncode(document.tags),
+      'is_favorite': document.isFavorite ? 1 : 0,
     };
   }
 
@@ -280,6 +283,7 @@ class LocalStorageService {
       tags: List<String>.from(
         (jsonDecode(row['tags']! as String) as List<dynamic>?) ?? <dynamic>[],
       ),
+      isFavorite: (row['is_favorite'] as int? ?? 0) == 1,
     );
   }
 

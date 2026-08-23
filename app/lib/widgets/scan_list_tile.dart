@@ -1,11 +1,8 @@
 // lib/widgets/scan_list_tile.dart
 //
-// Home screen card: thumbnail, title, page count, date, OCR text preview
-// (Section 16 file #25).
-//
-// Presentational only — takes a ScanDocument and callbacks via
-// constructor, no direct provider/service access. home_screen.dart
-// (Phase 5) wires this to scan_provider.dart via ListenableBuilder.
+// Home screen card: thumbnail, title, page count, date, OCR text preview,
+// 3-dots menu (rename, move to folder, add tags, export, share, delete, favorite).
+
 import 'dart:io' show File;
 
 import 'package:flutter/material.dart';
@@ -22,22 +19,15 @@ class ScanListTile extends StatelessWidget {
     required this.localeCode,
     this.onTap,
     this.onLongPress,
+    this.onMenuAction,
     this.isSelected = false,
   });
 
   final ScanDocument document;
-
-  /// Drives date formatting (AppDateFormatter) — passed in rather than
-  /// read from a BuildContext-bound localization lookup, keeping this
-  /// widget simple to preview/test with any locale.
   final String localeCode;
-
   final VoidCallback? onTap;
-
-  /// Used by home_screen.dart's batch-select mode (folder_screen.dart's
-  /// "batch select" per file #36).
   final VoidCallback? onLongPress;
-
+  final void Function(String action)? onMenuAction;
   final bool isSelected;
 
   @override
@@ -137,6 +127,92 @@ class ScanListTile extends StatelessWidget {
                   ],
                 ),
               ),
+              // 3-dots menu button
+              if (onMenuAction != null)
+                PopupMenuButton<String>(
+                  icon: Icon(Icons.more_vert, color: textSecondary),
+                  tooltip: 'More options',
+                  onSelected: (String action) => onMenuAction!(action),
+                  itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
+                    PopupMenuItem<String>(
+                      value: 'favorite',
+                      child: Row(
+                        children: <Widget>[
+                          Icon(
+                            document.isFavorite ? Icons.star : Icons.star_border,
+                            color: accent,
+                            size: 20,
+                          ),
+                          const SizedBox(width: 8),
+                          Text(document.isFavorite ? 'Remove from Favorites' : 'Add to Favorites'),
+                        ],
+                      ),
+                    ),
+                    const PopupMenuDivider(),
+                    PopupMenuItem<String>(
+                      value: 'rename',
+                      child: const Row(
+                        children: <Widget>[
+                          Icon(Icons.edit_outlined, size: 20),
+                          SizedBox(width: 8),
+                          Text('Rename'),
+                        ],
+                      ),
+                    ),
+                    PopupMenuItem<String>(
+                      value: 'folder',
+                      child: const Row(
+                        children: <Widget>[
+                          Icon(Icons.folder_outlined, size: 20),
+                          SizedBox(width: 8),
+                          Text('Move to Folder'),
+                        ],
+                      ),
+                    ),
+                    PopupMenuItem<String>(
+                      value: 'tags',
+                      child: const Row(
+                        children: <Widget>[
+                          Icon(Icons.label_outline, size: 20),
+                          SizedBox(width: 8),
+                          Text('Add Tags'),
+                        ],
+                      ),
+                    ),
+                    const PopupMenuDivider(),
+                    PopupMenuItem<String>(
+                      value: 'export',
+                      child: const Row(
+                        children: <Widget>[
+                          Icon(Icons.file_download_outlined, size: 20),
+                          SizedBox(width: 8),
+                          Text('Export'),
+                        ],
+                      ),
+                    ),
+                    PopupMenuItem<String>(
+                      value: 'share',
+                      child: const Row(
+                        children: <Widget>[
+                          Icon(Icons.ios_share, size: 20),
+                          SizedBox(width: 8),
+                          Text('Share'),
+                        ],
+                      ),
+                    ),
+                    const PopupMenuDivider(),
+                    PopupMenuItem<String>(
+                      value: 'delete',
+                      child: const Row(
+                        children: <Widget>[
+                          Icon(Icons.delete_outline, size: 20),
+                          SizedBox(width: 8),
+                          Text('Delete'),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
             ],
           ),
         ),
@@ -171,9 +247,6 @@ class _Thumbnail extends StatelessWidget {
   }
 }
 
-/// Small, non-interactive tag label used inline in the tile — the full
-/// removable TagChip (file #33) is for editing contexts like
-/// scan_detail_screen.dart, not for a dense list row.
 class _InlineTagLabel extends StatelessWidget {
   const _InlineTagLabel({required this.tag, required this.isDark});
 
