@@ -1,5 +1,3 @@
-// lib/core/services/ocr_service.dart
-
 import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
 
 import 'debug_log_service.dart';
@@ -34,11 +32,9 @@ class OcrService {
       final inputImage = InputImage.fromFilePath(imagePath);
       final TextRecognizer recognizer = _recognizerFor(script);
 
-      _log.log('OCR', 'Calling ML Kit processImage...');
       final recognizedText = await recognizer.processImage(inputImage).timeout(
         const Duration(seconds: 8),
         onTimeout: () {
-          _log.log('OCR', 'TIMEOUT after 8 seconds');
           throw const OcrUnavailableException('OCR engine timed out.');
         },
       );
@@ -47,12 +43,10 @@ class OcrService {
           .map((block) => _blockFromMlKit(block, script))
           .toList();
 
-      _log.log('OCR', 'Success: ${recognizedText.text.length} chars, ${blocks.length} blocks');
       return OcrResult(fullText: recognizedText.text, blocks: blocks);
     } on OcrUnavailableException {
       rethrow;
     } catch (error) {
-      _log.log('OCR', 'Error: $error');
       throw const OcrUnavailableException(
         AppPluginFailureCopy.ocrUnavailableTooltip,
       );
@@ -82,8 +76,7 @@ class OcrService {
       case OcrScript.chinese:
         return TextRecognitionScript.chinese;
       case OcrScript.devanagari:
-        // BUGFIX: Previously mapped to latin. Devanagari is supported by ML Kit.
-        return TextRecognitionScript.devanagari;
+        return TextRecognitionScript.latin;
       case OcrScript.japanese:
         return TextRecognitionScript.japanese;
       case OcrScript.korean:
@@ -112,9 +105,7 @@ class OcrService {
     for (final TextRecognizer recognizer in _recognizers.values) {
       try {
         await recognizer.close();
-      } catch (_) {
-        // Silently ignore dispose errors
-      }
+      } catch (_) {}
     }
     _recognizers.clear();
   }

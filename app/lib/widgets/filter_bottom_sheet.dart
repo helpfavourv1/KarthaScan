@@ -1,23 +1,3 @@
-// lib/widgets/filter_bottom_sheet.dart
-//
-// Grayscale, B&W, color enhance, shadow removal — all free (Section 16
-// file #31).
-//
-// This widget is a SELECTOR only — it returns which FilterType the user
-// picked. FilterType itself is defined in core/services/export_service.dart
-// (not here) because that core/ file needs it too, and core/ must never
-// depend on widgets/ — so the dependency runs the other way: this widget
-// imports the enum from there. Actually applying the filter to page
-// images is export_service.dart's job, wired up when export_screen.dart
-// (Phase 5) orchestrates the full "format → filter → signature →
-// password → share" flow — this widget doesn't perform image processing
-// itself.
-//
-// LOCALIZATION: the option list was originally a top-level `const` with
-// labels baked in at compile time. AppLocalizations needs a BuildContext,
-// unavailable for a compile-time const — so this is now a function
-// computed inside build(), where l10n is available.
-
 import 'package:flutter/material.dart';
 
 import '../core/services/export_service.dart' show FilterType;
@@ -42,8 +22,6 @@ List<FilterOption> _filterOptions(AppLocalizations l10n) {
   ];
 }
 
-/// Shows the filter picker as a modal bottom sheet. [current] pre-selects
-/// the active filter (checkmark). All options are always tappable.
 Future<FilterType?> showFilterSheet(
   BuildContext context, {
   required FilterType current,
@@ -71,7 +49,6 @@ class FilterBottomSheet extends StatelessWidget {
     final bool isDark = Theme.of(context).brightness == Brightness.dark;
     final Color bg = isDark ? AppColors.bgPrimaryDark : AppColors.bgPrimaryLight;
     final Color textPrimary = isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight;
-    final Color textSecondary = isDark ? AppColors.textSecondaryDark : AppColors.textSecondaryLight;
     final Color accent = isDark ? AppColors.accentDark : AppColors.accentLight;
     final Color border = isDark ? AppColors.borderSubtleDark : AppColors.borderSubtleLight;
 
@@ -105,17 +82,13 @@ class FilterBottomSheet extends StatelessWidget {
                 ),
               ),
             ),
-            Row(
-              children: <Widget>[
-                Text(
-                  l10n.filterSheetTitle,
-                  style: TextStyle(
-                    color: textPrimary,
-                    fontSize: AppTypography.title1Size,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              ],
+            Text(
+              l10n.filterSheetTitle,
+              style: TextStyle(
+                color: textPrimary,
+                fontSize: AppTypography.title1Size,
+                fontWeight: FontWeight.w600,
+              ),
             ),
             const SizedBox(height: AppSpacing.sm),
             ..._filterOptions(l10n).map((FilterOption option) {
