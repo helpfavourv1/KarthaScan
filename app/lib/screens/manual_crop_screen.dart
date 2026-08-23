@@ -1,6 +1,8 @@
 // lib/screens/manual_crop_screen.dart
+
 import 'dart:async' show unawaited;
 import 'dart:io' show Directory, File;
+
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -9,6 +11,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
+
 import '../core/models/scan_document.dart';
 import '../core/providers/scan_provider.dart';
 import '../core/services/debug_log_service.dart';
@@ -134,8 +137,18 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
         return;
       }
       _log.log('CROP', 'Scanner path: ${result.pageImagePaths.first}');
+
+      // CRITICAL FIX: Automatically navigate to scan detail after scan succeeds
+      final String firstPage = result.pageImagePaths.first;
       setState(() => _isPicking = false);
-      await _cropAndSave(result.pageImagePaths.first);
+
+      // Save the scanned document immediately
+      await _saveScannedDocument(result.pageImagePaths);
+
+      if (!mounted) return;
+      // Navigate to the newly created scan detail screen
+      final String documentId = _scanProvider.documents.value.first.id;
+      context.go('/scan/$documentId');
     } on DocScannerUnsupportedException catch (_) {
       _log.log('CROP', 'Scanner unsupported on this device');
       if (!mounted) return;
@@ -158,8 +171,63 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
     }
   }
 
+  Future<void> _saveScannedDocument(List<String> pagePaths) async {
+    setState(() => _stage = _Stage.saving);
+    try {
+      final Directory appDir = await getApplicationDocumentsDirectory();
+      final Directory scansDir =
+          Directory(p.join(appDir.path, 'manual_crop_pages'));
+      await scansDir.create(recursive: true);
+
+      // Copy each page to app storage
+      final List<String> savedPaths = <String>[];
+      for (int i = 0; i < pagePaths.length; i++) {
+        final String sourcePath = pagePaths[i];
+        final String ext = p.extension(sourcePath).toLowerCase();
+        final String outPath = p.join(
+          scansDir.path,
+          'manual_${DateTime.now().microsecondsSinceEpoch}_$i$ext',
+        );
+        await File(sourcePath).copy(outPath);
+        savedPaths.add(outPath);
+      }
+
+      // Run OCR on the first page
+      String ocrText = '';
+      try {
+        final OcrResult result = await _ocrService.recognizeText(
+          imagePath: savedPaths.first,
+          script: OcrScript.latin,
+        );
+        ocrText = result.fullText;
+      } on OcrUnavailableException catch (_) {
+        _log.log('CROP', 'OCR unavailable');
+      }
+
+      final DateTime now = DateTime.now();
+      final ScanDocument document = ScanDocument(
+        id: '${now.microsecondsSinceEpoch}',
+        title: _defaultTitle(now),
+        pageCount: savedPaths.length,
+        pagePaths: savedPaths,
+        createdAt: now,
+        updatedAt: now,
+        ocrText: ocrText,
+        thumbnailPath: savedPaths.first,
+      );
+
+      await _scanProvider.importDocument(document);
+      _log.log('CROP', 'Document saved');
+    } catch (e) {
+      _log.log('CROP', 'Save error: $e');
+    } finally {
+      if (mounted) setState(() => _stage = _Stage.pickImage);
+    }
+  }
+
   Future<void> _cropAndSave(String sourcePath) async {
     _log.log('CROP', 'Opening cropper: $sourcePath');
+
     final CroppedFile? croppedFile = await ImageCropper().cropImage(
       sourcePath: sourcePath,
       uiSettings: <PlatformUiSettings>[
@@ -188,11 +256,13 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
         ),
       ],
     );
+
     if (!mounted) return;
     if (croppedFile == null) {
       _log.log('CROP', 'Crop cancelled');
       return;
     }
+
     _log.log('CROP', 'Cropped: ${croppedFile.path}');
 
     setState(() => _stage = _Stage.saving);
@@ -201,6 +271,7 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
       final Directory scansDir =
           Directory(p.join(appDir.path, 'manual_crop_pages'));
       await scansDir.create(recursive: true);
+
       final String outPath = p.join(
         scansDir.path,
         'manual_${DateTime.now().microsecondsSinceEpoch}.jpg',
@@ -233,9 +304,9 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
         thumbnailPath: outPath,
       );
 
-      _log.log('CROP', 'Importing...');
       final bool success = await _scanProvider.importDocument(document);
       if (!mounted) return;
+
       if (success) {
         _log.log('CROP', 'Saved → home');
         ScaffoldMessenger.of(context).showSnackBar(
@@ -244,7 +315,8 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
             duration: Duration(seconds: 2),
           ),
         );
-        context.go('/');
+        // CRITICAL FIX: Navigate to scan detail after crop & save
+        context.go('/scan/${document.id}');
       } else {
         throw Exception(
           _scanProvider.lastError.value ?? 'Failed to save document.',

@@ -69,6 +69,7 @@ class _ExportScreenState extends State<ExportScreen> {
 
     final AppLocalizations l10n = AppLocalizations.of(context);
 
+    // Step 1: Choose format
     final ExportFormat? format = await showExportFormatSheet(context);
     if (!mounted) return;
     if (format == null) {
@@ -80,6 +81,7 @@ class _ExportScreenState extends State<ExportScreen> {
     Uint8List? signatureBytes;
     String? password;
 
+    // Step 2: Choose filter (always available)
     final FilterType? chosenFilter = await showFilterSheet(
       context,
       current: FilterType.none,
@@ -87,12 +89,14 @@ class _ExportScreenState extends State<ExportScreen> {
     if (chosenFilter != null) filter = chosenFilter;
     if (!mounted) return;
 
+    // Step 3: Ask for signature (always available)
     final bool wantsSignature = await _confirmStep(l10n.addSignatureQuestion, l10n);
     if (wantsSignature && mounted) {
       signatureBytes = await _captureSignature();
       if (!mounted) return;
     }
 
+    // Step 4: Ask for PDF password (only for PDF format)
     if (format == ExportFormat.pdf) {
       final bool wantsPassword = await _confirmStep(l10n.passwordProtectQuestion, l10n);
       if (wantsPassword && mounted) {
@@ -101,6 +105,7 @@ class _ExportScreenState extends State<ExportScreen> {
       }
     }
 
+    // Step 5: Run export
     await _runExport(
       format: format,
       filter: filter,
