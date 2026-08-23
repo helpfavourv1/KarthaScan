@@ -1,11 +1,6 @@
 name: KatharScan Android Build
 
-# MANUAL ONLY — Section 5's MANDATORY rule. Never add a push:/pull_request:
-# trigger here. Rationale (Section 5): auto-triggering on every push has
-# already caused documented free-tier exhaustion (1,801 minutes burned
-# from a workflow that fired on every commit). A solo developer iterating
-# across many chat messages will push dozens of times before a build is
-# actually ready.
+# MANUAL ONLY — Section 5's MANDATORY rule.
 on:
   workflow_dispatch:
 
@@ -15,9 +10,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # Section 16 file #55's required CI step, verbatim. Fails the build
-      # if any generated file still contains a stub — see Section 21's
-      # "No TODO, FIXME, or throw UnimplementedError() in output".
       - name: Fail on stub code
         working-directory: app
         run: grep -r "throw UnimplementedError" lib/ && exit 1 || exit 0
@@ -29,7 +21,6 @@ jobs:
 
       - uses: subosito/flutter-action@v2
         with:
-          # PINNED — matches Section 9's iOS pin exactly. Never 'stable'.
           channel: 'stable'
 
       - name: Get Flutter packages
@@ -37,6 +28,13 @@ jobs:
         run: |
           flutter pub get
           flutter gen-l10n
+
+      # ✅ GENERATE ICON + SPLASH (Both)
+      - name: Generate app icon and splash
+        working-directory: app
+        run: |
+          flutter pub run flutter_launcher_icons
+          flutter pub run flutter_native_splash:create
 
       - name: Static analysis
         working-directory: app
