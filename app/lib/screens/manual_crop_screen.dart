@@ -1,5 +1,3 @@
-// lib/screens/manual_crop_screen.dart
-
 import 'dart:async' show unawaited;
 import 'dart:io' show Directory, File;
 
@@ -159,8 +157,11 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
 
       final ScanDocument? savedDoc = await _saveScannedDocument(result.pageImagePaths);
       if (!mounted) return;
-      
+
       if (savedDoc != null) {
+        // CRITICAL FIX: Delay navigation to allow native activity to close
+        await Future.delayed(const Duration(milliseconds: 500));
+        if (!mounted) return;
         context.pushReplacement('/scan/${savedDoc.id}');
       } else {
         _log.log('CROP', 'Save failed, staying on crop screen');
