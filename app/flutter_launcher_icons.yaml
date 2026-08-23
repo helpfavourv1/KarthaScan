@@ -1,23 +1,14 @@
-# flutter_launcher_icons.yaml (Section 16 file #62). Custom launcher icon
-# at all densities, generated via
-# `flutter pub run flutter_launcher_icons`.
-#
-# ASSET NOTE: same rasterization requirement as flutter_native_splash.yaml
-# — this package needs a raster (PNG) source, not assets/logo.svg's
-# vector format. Export the SVG to assets/icon_source.png at 1024x1024
-# before running the generate command. Use a version with no transparency
-# for adaptive_icon_background if the logo itself has transparent areas
-# that shouldn't show through on Android's adaptive icon mask.
+# flutter_launcher_icons.yaml
+# iOS-grade launcher icon using new brand colors.
+
 flutter_launcher_icons:
   android: "launcher_icon"
   ios: true
   image_path: "assets/icon_source.png"
   min_sdk_android: 21
 
-  # Android adaptive icon (API 26+) — foreground is the logo, background
-  # is Section 17's accent token so the icon reads consistently with the
-  # in-app accent color across launcher styles.
-  adaptive_icon_background: "#6366F1"
+  # Android adaptive icon (API 26+)
+  adaptive_icon_background: "#007AFF"
   adaptive_icon_foreground: "assets/icon_source.png"
 
   remove_alpha_ios: true

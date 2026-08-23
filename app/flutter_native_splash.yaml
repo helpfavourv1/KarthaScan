@@ -1,24 +1,15 @@
-# flutter_native_splash.yaml (Section 16 file #61). Branded splash
-# screen, generated via `flutter pub run flutter_native_splash:create`.
-#
-# ASSET NOTE: this package's `image:` key needs a raster (PNG) source —
-# assets/logo.svg (file #73) is vector. Before running the generate
-# command, export the SVG to a PNG at a reasonably large fixed size (e.g.
-# 1024x1024, transparent background) as assets/splash_logo.png; this file
-# references that expected path. Flutter's splash/icon tooling doesn't
-# rasterize SVG for you — that step happens once, outside this repo, with
-# any vector tool (Figma, Inkscape, an online converter).
-#
-# Colors match Section 17's bgPrimary token exactly, light and dark.
+# flutter_native_splash.yaml
+# iOS-grade splash screen using new brand colors.
+
 flutter_native_splash:
-  color: "#FFFFFF"
+  color: "#F2F2F7"
   image: assets/splash_logo.png
-  color_dark: "#0F0F11"
+  color_dark: "#000000"
   image_dark: assets/splash_logo.png
 
   android_12:
-    color: "#FFFFFF"
-    color_dark: "#0F0F11"
+    color: "#F2F2F7"
+    color_dark: "#000000"
     image: assets/splash_logo.png
     image_dark: assets/splash_logo.png
 
