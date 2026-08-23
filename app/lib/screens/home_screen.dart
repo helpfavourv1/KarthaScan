@@ -620,68 +620,6 @@ class _FolderPickerSheet extends StatelessWidget {
   }
 }
 
-class _LanguagePickerSheet extends StatelessWidget {
-  const _LanguagePickerSheet({required this.current});
-
-  final String current;
-
-  static const Map<String, String> _labels = <String, String>{
-    'en': 'English',
-    'es': 'Español',
-    'fr': 'Français',
-    'de': 'Deutsch',
-    'pt': 'Português',
-    'ar': 'العربية',
-    'hi': 'हिन्दी',
-    'ja': '日本語',
-    'ko': '한국어',
-    'zh': '中文',
-    'he': 'עברית',
-  };
-
-  @override
-  Widget build(BuildContext context) {
-    final bool isDark = Theme.of(context).brightness == Brightness.dark;
-    final Color bg = isDark ? AppColors.bgPrimaryDark : AppColors.bgPrimaryLight;
-    final Color textPrimary = isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight;
-    final Color accent = isDark ? AppColors.accentDark : AppColors.accentLight;
-
-    return SafeArea(
-      child: Container(
-        decoration: BoxDecoration(
-          color: bg,
-          borderRadius: const BorderRadius.only(
-            topLeft: Radius.circular(AppShape.bottomSheetTopRadius),
-            topRight: Radius.circular(AppShape.bottomSheetTopRadius),
-          ),
-        ),
-        padding: const EdgeInsets.all(AppSpacing.md),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Text(
-              'App Language',
-              style: TextStyle(
-                color: textPrimary,
-                fontSize: AppTypography.title1Size,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-            const SizedBox(height: AppSpacing.sm),
-            ...AppLocales.supportedLanguageCodes.map(
-              (String code) => ListTile(
-                title: Text(_labels[code] ?? code, style: TextStyle(color: textPrimary)),
-                trailing: code == current ? Icon(Icons.check, color: accent) : null,
-                onTap: () => Navigator.of(context).pop(code),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
 
 class _OcrLanguagePickerSheet extends StatelessWidget {
   const _OcrLanguagePickerSheet({required this.current});

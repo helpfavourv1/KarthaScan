@@ -51,7 +51,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       // Mark onboarding as complete
       final SharedPreferences prefs = await SharedPreferences.getInstance();
       await prefs.setBool('hasSeenOnboarding', true);
-      
+
       if (!mounted) return;
       context.go('/');
     }
@@ -98,7 +98,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         decoration: BoxDecoration(
                           color: _currentIndex == index
                               ? accent
-                              : textSecondary.withOpacity(0.3),
+                              : textSecondary.withValues(alpha: 0.3),
                           borderRadius: BorderRadius.circular(4),
                         ),
                       ),
@@ -161,6 +161,7 @@ class _OnboardingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bool isDark = Theme.of(context).brightness == Brightness.dark;
+    final Color textPrimary = isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight;
     final Color textSecondary = isDark ? AppColors.textSecondaryDark : AppColors.textSecondaryLight;
     final Color accent = isDark ? AppColors.accentDark : AppColors.accentLight;
 
@@ -177,7 +178,7 @@ class _OnboardingPage extends StatelessWidget {
               width: 120,
               height: 120,
               decoration: BoxDecoration(
-                color: accent.withOpacity(0.10),
+                color: accent.withValues(alpha: 0.10),
                 shape: BoxShape.circle,
               ),
               child: Icon(
