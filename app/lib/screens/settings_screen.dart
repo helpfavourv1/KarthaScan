@@ -90,6 +90,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     final Color textPrimary = isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight;
 
     final Color border = isDark ? AppColors.borderSubtleDark : AppColors.borderSubtleLight;
+    final Color textSecondary = isDark ? AppColors.textSecondaryDark : AppColors.textSecondaryLight;
 
     return Scaffold(
       backgroundColor: bg,
