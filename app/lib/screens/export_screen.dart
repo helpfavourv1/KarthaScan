@@ -91,7 +91,7 @@ class _ExportScreenState extends State<ExportScreen> {
         // Issue 9: Allow user to choose which page to sign
         final placement = await _placeSignature(
           document: _documents.first,
-          signatureBytes: signatureBytes!,
+          signatureBytes: signatureBytes,
         );
         if (placement != null) {
           signaturePageIndex = placement.$1;
