@@ -50,7 +50,7 @@ dependencies:
   # Native App Polish & Icons
   flutter_native_splash: ^2.4.3
   flutter_launcher_icons: ^0.14.2
-  phosphor_flutter: ^2.1.0
+  phosphoricons_flutter: ^1.0.0
   flutter_svg: ^2.0.10
 
 dev_dependencies:
