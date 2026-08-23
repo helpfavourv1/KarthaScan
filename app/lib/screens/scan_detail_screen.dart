@@ -1,12 +1,12 @@
 // lib/screens/scan_detail_screen.dart
 //
-// Full document viewer: pages, OCR text, edit title, move to folder,
-// delete (Section 16 file #35). Tag editing is included too — not
-// explicitly listed in file #35's purpose text, but tag_chip.dart (file
-// #33) was documented from the start as being for "editing contexts like
-// scan_detail_screen.dart's tag editor," so this is completing that
-// already-declared intent rather than adding new scope.
+// Full document viewer: pages, OCR text in DraggableScrollableSheet,
+// edit title, move to folder, delete. Tag editing included.
+// PHASE 1 REDESIGN: OCR tray is now a DraggableScrollableSheet with
+// copy-to-clipboard. Share and Export are prominent bottom buttons.
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
@@ -33,7 +33,6 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> {
   late final ScanProvider _scanProvider;
   late final FolderProvider _folderProvider;
   final ShareService _shareService = ShareService();
-  bool _showOcrText = false;
 
   @override
   void initState() {
@@ -136,14 +135,22 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> {
     } on ShareFailedException {
       if (!mounted) return;
       final AppLocalizations l10n = AppLocalizations.of(context);
-      // ShareFailedException.message is English, set in
-      // core/services/share_service.dart with no BuildContext available
-      // there to localize at the source — shown here as a localized
-      // generic fallback per Section 18 rather than that raw string.
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text(l10n.genericErrorMessage)),
       );
     }
+  }
+
+  Future<void> _export(ScanDocument document) async {
+    if (!mounted) return;
+    context.push('/export', extra: <String>[document.id]);
+  }
+
+  void _copyOcrToClipboard(String text, AppLocalizations l10n) {
+    Clipboard.setData(ClipboardData(text: text));
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('Copied to clipboard'), duration: Duration(seconds: 2)),
+    );
   }
 
   @override
@@ -151,8 +158,11 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> {
     final AppLocalizations l10n = AppLocalizations.of(context);
     final bool isDark = Theme.of(context).brightness == Brightness.dark;
     final Color bg = isDark ? AppColors.bgPrimaryDark : AppColors.bgPrimaryLight;
+    final Color surface = isDark ? AppColors.bgSecondaryDark : AppColors.bgSecondaryLight;
     final Color textPrimary = isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight;
     final Color textSecondary = isDark ? AppColors.textSecondaryDark : AppColors.textSecondaryLight;
+    final Color accent = isDark ? AppColors.accentDark : AppColors.accentLight;
+    final Color border = isDark ? AppColors.borderSubtleDark : AppColors.borderSubtleLight;
 
     return Scaffold(
       backgroundColor: bg,
@@ -173,99 +183,182 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> {
             );
           }
 
-          return SafeArea(
-            child: Column(
-              children: <Widget>[
-                AppBar(
-                  backgroundColor: bg,
-                  elevation: 0,
-                  title: GestureDetector(
-                    onTap: () => _editTitle(document, l10n),
-                    child: Text(
-                      document.title,
-                      style: TextStyle(color: textPrimary, fontSize: AppTypography.title2Size),
-                    ),
+          return Column(
+            children: <Widget>[
+              AppBar(
+                backgroundColor: bg,
+                elevation: 0,
+                title: GestureDetector(
+                  onTap: () => _editTitle(document, l10n),
+                  child: Text(
+                    document.title,
+                    style: TextStyle(color: textPrimary, fontSize: AppTypography.title2Size),
                   ),
-                  actions: <Widget>[
-                    IconButton(
-                      icon: Icon(Icons.drive_file_move_outlined, color: textSecondary),
-                      tooltip: l10n.moveToFolderTooltip,
-                      onPressed: () => _moveToFolder(document, l10n),
+                ),
+                actions: <Widget>[
+                  IconButton(
+                    icon: Icon(Icons.drive_file_move_outlined, color: textSecondary),
+                    tooltip: l10n.moveToFolderTooltip,
+                    onPressed: () => _moveToFolder(document, l10n),
+                  ),
+                  IconButton(
+                    icon: Icon(Icons.delete_outline, color: textSecondary),
+                    tooltip: l10n.deleteTooltip,
+                    onPressed: () => _delete(document, l10n),
+                  ),
+                ],
+              ),
+              Expanded(
+                child: Stack(
+                  children: <Widget>[
+                    Positioned.fill(
+                      child: ScanPreviewCard(
+                        pagePaths: document.pagePaths,
+                      ),
                     ),
-                    IconButton(
-                      icon: Icon(Icons.file_download_outlined, color: textSecondary),
-                      tooltip: l10n.exportTooltip,
-                      onPressed: () => context.push('/export', extra: <String>[document.id]),
-                    ),
-                    IconButton(
-                      icon: Icon(Icons.delete_outline, color: textSecondary),
-                      tooltip: l10n.deleteTooltip,
-                      onPressed: () => _delete(document, l10n),
+                    DraggableScrollableSheet(
+                      initialChildSize: 0.25,
+                      minChildSize: 0.12,
+                      maxChildSize: 0.85,
+                      builder: (BuildContext context, ScrollController scrollController) {
+                        return Container(
+                          decoration: BoxDecoration(
+                            color: bg,
+                            borderRadius: const BorderRadius.only(
+                              topLeft: Radius.circular(AppShape.bottomSheetTopRadius),
+                              topRight: Radius.circular(AppShape.bottomSheetTopRadius),
+                            ),
+                            boxShadow: <BoxShadow>[
+                              BoxShadow(
+                                color: Colors.black.withValues(alpha: 0.15),
+                                blurRadius: 10,
+                                offset: const Offset(0, -2),
+                              ),
+                            ],
+                          ),
+                          child: Column(
+                            children: <Widget>[
+                              Center(
+                                child: Container(
+                                  width: 36,
+                                  height: 4,
+                                  margin: const EdgeInsets.symmetric(vertical: AppSpacing.sm),
+                                  decoration: BoxDecoration(
+                                    color: border,
+                                    borderRadius: BorderRadius.circular(2),
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md),
+                                child: Row(
+                                  children: <Widget>[
+                                    Text(
+                                      l10n.ocrTextLabel,
+                                      style: TextStyle(
+                                        color: textPrimary,
+                                        fontSize: AppTypography.title2Size,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                    const Spacer(),
+                                    IconButton(
+                                      icon: Icon(Icons.copy_outlined, color: textSecondary),
+                                      tooltip: 'Copy',
+                                      onPressed: () => _copyOcrToClipboard(document.ocrText, l10n),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              const SizedBox(height: AppSpacing.xs),
+                              Expanded(
+                                child: SingleChildScrollView(
+                                  controller: scrollController,
+                                  padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md),
+                                  child: SelectableText(
+                                    document.ocrText.isEmpty ? l10n.noTextRecognized : document.ocrText,
+                                    style: TextStyle(
+                                      color: textSecondary,
+                                      fontSize: AppTypography.bodySize,
+                                      height: AppTypography.bodyLineHeight,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(height: AppSpacing.sm),
+                            ],
+                          ),
+                        );
+                      },
                     ),
                   ],
                 ),
-                Expanded(
-                  flex: 3,
-                  child: ScanPreviewCard(
-                    pagePaths: document.pagePaths,
-                    onShare: () => _share(document),
-                  ),
+              ),
+              Container(
+                color: bg,
+                padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md, vertical: AppSpacing.xs),
+                child: Wrap(
+                  spacing: AppSpacing.xxs,
+                  runSpacing: AppSpacing.xxs,
+                  children: <Widget>[
+                    ...document.tags.map(
+                      (String tag) => TagChip(
+                        label: tag,
+                        onDeleted: () => _removeTag(document, tag),
+                      ),
+                    ),
+                    TagChip(label: l10n.addTagChipLabel, onTap: () => _addTag(document, l10n)),
+                  ],
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: AppSpacing.md,
-                    vertical: AppSpacing.xs,
+              ),
+              SafeArea(
+                top: false,
+                child: Container(
+                  padding: const EdgeInsets.all(AppSpacing.md),
+                  decoration: BoxDecoration(
+                    color: bg,
+                    border: Border(
+                      top: BorderSide(color: border, width: AppShape.cardBorderWidth),
+                    ),
                   ),
-                  child: Wrap(
-                    spacing: AppSpacing.xxs,
-                    runSpacing: AppSpacing.xxs,
+                  child: Row(
                     children: <Widget>[
-                      ...document.tags.map(
-                        (String tag) => TagChip(
-                          label: tag,
-                          onDeleted: () => _removeTag(document, tag),
+                      Expanded(
+                        child: ElevatedButton.icon(
+                          onPressed: () => _share(document),
+                          icon: const Icon(Icons.ios_share),
+                          label: Text(l10n.shareTooltip),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: accent,
+                            foregroundColor: Colors.white,
+                            minimumSize: const Size(double.infinity, AppShape.buttonMinHeight),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(AppShape.buttonRadius),
+                            ),
+                          ),
                         ),
                       ),
-                      TagChip(label: l10n.addTagChipLabel, onTap: () => _addTag(document, l10n)),
+                      const SizedBox(width: AppSpacing.md),
+                      Expanded(
+                        child: ElevatedButton.icon(
+                          onPressed: () => _export(document),
+                          icon: const Icon(Icons.file_download_outlined),
+                          label: Text(l10n.exportTooltip),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: surface,
+                            foregroundColor: textPrimary,
+                            minimumSize: const Size(double.infinity, AppShape.buttonMinHeight),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(AppShape.buttonRadius),
+                            ),
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),
-                InkWell(
-                  onTap: () => setState(() => _showOcrText = !_showOcrText),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: AppSpacing.md,
-                      vertical: AppSpacing.sm,
-                    ),
-                    child: Row(
-                      children: <Widget>[
-                        Text(
-                          l10n.ocrTextLabel,
-                          style: TextStyle(color: textPrimary, fontWeight: FontWeight.w600),
-                        ),
-                        const Spacer(),
-                        Icon(
-                          _showOcrText ? Icons.expand_less : Icons.expand_more,
-                          color: textSecondary,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                if (_showOcrText)
-                  Container(
-                    constraints: const BoxConstraints(maxHeight: 200),
-                    padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md),
-                    child: SingleChildScrollView(
-                      child: SelectableText(
-                        document.ocrText.isEmpty ? l10n.noTextRecognized : document.ocrText,
-                        style: TextStyle(color: textSecondary, fontSize: AppTypography.bodySize),
-                      ),
-                    ),
-                  ),
-                const SizedBox(height: AppSpacing.sm),
-              ],
-            ),
+              ),
+            ],
           );
         },
       ),
