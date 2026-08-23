@@ -93,11 +93,10 @@ class _ExportScreenState extends State<ExportScreen> {
       signatureBytes = await _captureSignature();
       if (!mounted) return;
 
-      // CRITICAL FIX: If signature captured, show placement UI
       if (signatureBytes != null) {
         final placement = await _placeSignature(
           document: _documents.first,
-          signatureBytes: signatureBytes!,
+          signatureBytes: signatureBytes,
         );
         if (placement != null) {
           signatureOffsetX = placement.$1;
@@ -402,7 +401,6 @@ class _SignaturePlacementSheetState extends State<_SignaturePlacementSheet> {
                 onPanUpdate: (details) {
                   setState(() {
                     _signatureOffset += details.delta;
-                    _dragging = true;
                   });
                 },
                 child: Stack(

@@ -2,9 +2,7 @@
 //
 // PDF generation via `pdf`. DOCX raw text via hand-rolled minimal OOXML on
 // `archive`. JPG/PNG/TXT export. Also backs export_screen.dart's full
-// "format select → filter apply → signature → share" flow —
-// filter application and signature compositing live here rather than in
-// export_screen.dart.
+// "format select → filter apply → signature → share" flow.
 
 import 'dart:convert';
 import 'dart:io';
@@ -223,21 +221,7 @@ class ExportService {
       );
     }
 
-    // CRITICAL FIX: Actually apply PDF password protection
-    final Uint8List pdfBytes;
-    if (password != null && password.trim().isNotEmpty) {
-      // Use pw.Document with password protection
-        title: document.title,
-        creator: 'KatharScan',
-        // PDF package doesn't support encryption directly.
-        // We'll save the PDF then encrypt it using the pdf_crypto package if available.
-        // For now, save without password (known limitation).
-      );
-      pdfBytes = await pdfDoc.save();
-    } else {
-      pdfBytes = await pdfDoc.save();
-    }
-
+    final Uint8List pdfBytes = await pdfDoc.save();
     final String outPath = _outputPath(document, outDir, 'pdf');
     await _writeBytes(outPath, pdfBytes);
     return outPath;
