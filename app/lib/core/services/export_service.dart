@@ -227,7 +227,6 @@ class ExportService {
     final Uint8List pdfBytes;
     if (password != null && password.trim().isNotEmpty) {
       // Use pw.Document with password protection
-      final pw.Document protectedDoc = pw.Document(
         title: document.title,
         creator: 'KatharScan',
         // PDF package doesn't support encryption directly.

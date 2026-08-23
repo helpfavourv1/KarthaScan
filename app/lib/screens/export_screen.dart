@@ -371,7 +371,6 @@ class _SignaturePlacementSheet extends StatefulWidget {
 
 class _SignaturePlacementSheetState extends State<_SignaturePlacementSheet> {
   Offset _signatureOffset = Offset(0, 0);
-  bool _dragging = false;
 
   @override
   Widget build(BuildContext context) {
