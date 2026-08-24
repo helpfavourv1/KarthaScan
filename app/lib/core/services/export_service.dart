@@ -112,8 +112,8 @@ class ExportService {
       width: targetWidth,
       height: targetHeight,
     );
-    final dstX = offsetX.round();
-    final dstY = offsetY.round();
+    final dstX = (offsetX * page.width).round();
+    final dstY = (offsetY * page.height).round();
     return img.compositeImage(page, resizedSignature, dstX: dstX, dstY: dstY);
   }
 
@@ -144,8 +144,8 @@ class ExportService {
           decoded = _compositeSignature(
             decoded,
             signatureImage,
-            signatureOffsetX ?? (decoded.width * 0.6),
-            signatureOffsetY ?? (decoded.height * 0.8),
+            signatureOffsetX ?? 0.6,
+            signatureOffsetY ?? 0.8,
           );
         }
       }

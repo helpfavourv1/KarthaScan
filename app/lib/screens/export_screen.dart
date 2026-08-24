@@ -302,11 +302,12 @@ class _SignaturePlacementSheet extends StatefulWidget {
 class _SignaturePlacementSheetState extends State<_SignaturePlacementSheet> {
   int _currentPageIndex = 0;
   Offset _signatureOffset = Offset.zero;
+  final GlobalKey _stackKey = GlobalKey();
+  bool _initialized = false;
 
   @override
   Widget build(BuildContext context) {
     final currentPagePath = widget.pagePaths[_currentPageIndex];
-
     return SafeArea(
       child: Container(
         height: MediaQuery.of(context).size.height * 0.8,
@@ -330,14 +331,33 @@ class _SignaturePlacementSheetState extends State<_SignaturePlacementSheet> {
               ),
             ),
             Expanded(
-              child: GestureDetector(
-                onPanUpdate: (details) => setState(() => _signatureOffset += details.delta),
-                child: Stack(
-                  children: [
-                    Positioned.fill(child: Image.file(File(currentPagePath), fit: BoxFit.contain)),
-                    Positioned(left: _signatureOffset.dx, top: _signatureOffset.dy, child: Opacity(opacity: 0.8, child: Image.memory(widget.signatureBytes, width: 100, height: 50, fit: BoxFit.contain))),
-                  ],
-                ),
+              child: LayoutBuilder(
+                builder: (context, constraints) {
+                  if (!_initialized) {
+                    _initialized = true;
+                    _signatureOffset = Offset(constraints.maxWidth * 0.6, constraints.maxHeight * 0.7);
+                  }
+                  return Stack(
+                    key: _stackKey,
+                    children: [
+                      Positioned.fill(child: Image.file(File(currentPagePath), fit: BoxFit.contain)),
+                      Positioned(
+                        left: _signatureOffset.dx,
+                        top: _signatureOffset.dy,
+                        child: GestureDetector(
+                          onPanUpdate: (details) => setState(() {
+                            _signatureOffset += details.delta;
+                            _signatureOffset = Offset(
+                              _signatureOffset.dx.clamp(0.0, constraints.maxWidth - 100).toDouble(),
+                              _signatureOffset.dy.clamp(0.0, constraints.maxHeight - 50).toDouble(),
+                            );
+                          }),
+                          child: Opacity(opacity: 0.8, child: Image.memory(widget.signatureBytes, width: 100, height: 50, fit: BoxFit.contain)),
+                        ),
+                      ),
+                    ],
+                  );
+                },
               ),
             ),
             Padding(
@@ -347,7 +367,13 @@ class _SignaturePlacementSheetState extends State<_SignaturePlacementSheet> {
                 children: [
                   TextButton(onPressed: () => Navigator.pop(context), child: const Text('Cancel')),
                   ElevatedButton(
-                    onPressed: () => Navigator.pop(context, (_currentPageIndex, _signatureOffset.dx, _signatureOffset.dy)),
+                    onPressed: () {
+                      final RenderBox? box = _stackKey.currentContext?.findRenderObject() as RenderBox?;
+                      final Size size = box?.size ?? const Size(1, 1);
+                      final double pctX = (_signatureOffset.dx / size.width).clamp(0.0, 1.0).toDouble();
+                      final double pctY = (_signatureOffset.dy / size.height).clamp(0.0, 1.0).toDouble();
+                      Navigator.pop(context, (_currentPageIndex, pctX, pctY));
+                    },
                     style: ElevatedButton.styleFrom(backgroundColor: Theme.of(context).colorScheme.primary, foregroundColor: Colors.white),
                     child: const Text('Confirm Placement'),
                   ),

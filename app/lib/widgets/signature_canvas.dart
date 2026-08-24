@@ -61,7 +61,7 @@ class SignatureCanvasState extends State<SignatureCanvas> {
     final l10n = AppLocalizations.of(context);
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final border = isDark ? AppColors.borderSubtleDark : AppColors.borderSubtleLight;
-    final surface = isDark ? AppColors.bgSecondaryDark : AppColors.bgSecondaryLight;
+    final Color surface = AppColors.bgSecondaryLight; // Always paper-white for visibility
     final hint = isDark ? AppColors.textTertiaryDark : AppColors.textTertiaryLight;
 
     return Container(
@@ -138,8 +138,6 @@ class _SignaturePainter extends CustomPainter {
 
   @override
   bool shouldRepaint(covariant _SignaturePainter oldDelegate) {
-    return oldDelegate.strokes != strokes ||
-        oldDelegate.color != color ||
-        oldDelegate.strokeWidth != strokeWidth;
+    return true;
   }
 }
