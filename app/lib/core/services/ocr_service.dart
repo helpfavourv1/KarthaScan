@@ -4,7 +4,7 @@ import 'debug_log_service.dart';
 import '../models/ocr_block.dart';
 import '../utils/constants.dart';
 
-enum OcrScript { latin, chinese, japanese, korean }
+enum OcrScript { latin }
 
 class OcrUnavailableException implements Exception {
   const OcrUnavailableException(this.message);
@@ -73,12 +73,6 @@ class OcrService {
     switch (script) {
       case OcrScript.latin:
         return TextRecognitionScript.latin;
-      case OcrScript.chinese:
-        return TextRecognitionScript.chinese;
-      case OcrScript.japanese:
-        return TextRecognitionScript.japanese;
-      case OcrScript.korean:
-        return TextRecognitionScript.korean;
     }
   }
 

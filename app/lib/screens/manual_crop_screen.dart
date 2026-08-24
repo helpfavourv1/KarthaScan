@@ -12,7 +12,6 @@ import 'package:provider/provider.dart';
 
 import '../core/models/scan_document.dart';
 import '../core/providers/scan_provider.dart';
-import '../core/providers/settings_provider.dart';
 import '../core/services/debug_log_service.dart';
 import '../core/services/doc_scanner_service.dart';
 import '../core/services/ocr_service.dart';
@@ -30,7 +29,6 @@ class ManualCropScreen extends StatefulWidget {
 
 class _ManualCropScreenState extends State<ManualCropScreen> {
   late final ScanProvider _scanProvider;
-  late final SettingsProvider _settingsProvider;
   final OcrService _ocrService = OcrService();
   final DebugLogService _log = DebugLogService();
 
@@ -41,18 +39,7 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
   void initState() {
     super.initState();
     _scanProvider = Provider.of<ScanProvider>(context, listen: false);
-    _settingsProvider = Provider.of<SettingsProvider>(context, listen: false);
     _log.log('CROP', 'ManualCropScreen initialized');
-  }
-
-  OcrScript _getSelectedOcrScript() {
-    final selected = _settingsProvider.settings.value.ocrLanguage;
-    switch (selected) {
-      case 'chinese': return OcrScript.chinese;
-      case 'japanese': return OcrScript.japanese;
-      case 'korean': return OcrScript.korean;
-      default: return OcrScript.latin;
-    }
   }
 
   Future<void> _takePhoto() async {
@@ -118,7 +105,7 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
       final result = await DocScannerService().scan().timeout(
         const Duration(seconds: 120),
         onTimeout: () {
-          _log.log('CROP', 'Scanner timed out after 45s');
+          _log.log('CROP', 'Scanner timed out after 120s');
           throw const DocScannerUnsupportedException('Scanner not responding on this device. Use Camera or Import instead.');
         },
       );
@@ -134,7 +121,6 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
       if (!mounted) return;
 
       if (savedDoc != null) {
-        // Add a small delay after native activity closes, then navigate
         await Future.delayed(const Duration(milliseconds: 300));
         if (!mounted) return;
         context.pushReplacement('/scan/${savedDoc.id}');
@@ -173,7 +159,10 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
 
       String ocrText = '';
       try {
-        final result = await _ocrService.recognizeText(imagePath: savedPaths.first, script: _getSelectedOcrScript());
+        final result = await _ocrService.recognizeText(
+          imagePath: savedPaths.first,
+          script: OcrScript.latin, // Hardcoded to Latin
+        );
         ocrText = result.fullText;
       } on OcrUnavailableException catch (_) {
         _log.log('CROP', 'OCR unavailable');
@@ -249,7 +238,10 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
       String ocrText = '';
       try {
         _log.log('CROP', 'Starting OCR...');
-        final result = await _ocrService.recognizeText(imagePath: outPath, script: _getSelectedOcrScript());
+        final result = await _ocrService.recognizeText(
+          imagePath: outPath,
+          script: OcrScript.latin, // Hardcoded to Latin
+        );
         ocrText = result.fullText;
         _log.log('CROP', 'OCR done: ${ocrText.length} chars');
       } on OcrUnavailableException catch (_) {
@@ -274,7 +266,6 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
       if (success) {
         _log.log('CROP', 'Saved → home');
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Document saved'), duration: Duration(seconds: 2)));
-        // Small delay before navigating
         await Future.delayed(const Duration(milliseconds: 300));
         if (!mounted) return;
         context.pushReplacement('/scan/${document.id}');

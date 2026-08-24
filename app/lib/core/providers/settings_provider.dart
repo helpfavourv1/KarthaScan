@@ -64,9 +64,6 @@ class SettingsProvider {
   Future<bool> setLanguage(String languageCode) =>
       _persist(settings.value.copyWith(language: languageCode));
 
-  Future<bool> setOcrLanguage(String ocrLanguage) =>
-      _persist(settings.value.copyWith(ocrLanguage: ocrLanguage));
-
   /// Pass null to clear a storage-path override back to the app default.
   Future<bool> setStoragePath(String? path) =>
       _persist(settings.value.copyWith(storagePath: path));

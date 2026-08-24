@@ -60,10 +60,9 @@ class ScanProvider {
     documents.value = await _storage.getAllDocuments();
   }
 
-  // Issue 6: Accept ocrScript parameter instead of hardcoded Latin
+  // OcrScript is now only latin; no need to expose it
   Future<ScanDocument?> captureNewDocument({
     String? title,
-    OcrScript ocrScript = OcrScript.latin,
   }) async {
     scanFlowState.value = ScanFlowState.scanning;
     lastError.value = null;
@@ -76,7 +75,7 @@ class ScanProvider {
 
       scanFlowState.value = ScanFlowState.recognizingText;
       final String ocrText =
-          await _recognizeAllPages(scanResult.pageImagePaths, ocrScript);
+          await _recognizeAllPages(scanResult.pageImagePaths, OcrScript.latin);
 
       scanFlowState.value = ScanFlowState.saving;
       final DateTime now = DateTime.now();

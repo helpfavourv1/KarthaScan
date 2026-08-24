@@ -73,7 +73,6 @@ class _ExportScreenState extends State<ExportScreen> {
     int? signaturePageIndex;
     double? signatureOffsetX;
     double? signatureOffsetY;
-    String? password;
 
     final chosenFilter = await showFilterSheet(context, current: FilterType.none);
     if (chosenFilter != null) filter = chosenFilter;
@@ -97,14 +96,6 @@ class _ExportScreenState extends State<ExportScreen> {
       }
     }
 
-    if (format == ExportFormat.pdf) {
-      final wantsPassword = await _confirmStep(l10n.passwordProtectQuestion, l10n);
-      if (wantsPassword && mounted) {
-        password = await _promptPassword(l10n);
-        if (!mounted) return;
-      }
-    }
-
     await _runExport(
       format: format,
       filter: filter,
@@ -112,7 +103,6 @@ class _ExportScreenState extends State<ExportScreen> {
       signaturePageIndex: signaturePageIndex,
       signatureOffsetX: signatureOffsetX,
       signatureOffsetY: signatureOffsetY,
-      password: password,
     );
   }
 
@@ -153,24 +143,6 @@ class _ExportScreenState extends State<ExportScreen> {
     );
   }
 
-  Future<String?> _promptPassword(AppLocalizations l10n) async {
-    final controller = TextEditingController();
-    final password = await showDialog<String>(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: Text(l10n.setPasswordTitle),
-        content: TextField(controller: controller, obscureText: true, autofocus: true),
-        actions: [
-          TextButton(onPressed: () => Navigator.pop(context), child: Text(l10n.commonCancel)),
-          TextButton(onPressed: () => Navigator.pop(context, controller.text), child: Text(l10n.commonSet)),
-        ],
-      ),
-    );
-    controller.dispose();
-    final trimmed = password?.trim() ?? '';
-    return trimmed.isEmpty ? null : trimmed;
-  }
-
   Future<void> _runExport({
     required ExportFormat format,
     required FilterType filter,
@@ -178,7 +150,6 @@ class _ExportScreenState extends State<ExportScreen> {
     int? signaturePageIndex,
     double? signatureOffsetX,
     double? signatureOffsetY,
-    String? password,
   }) async {
     final l10n = AppLocalizations.of(context);
     setState(() {
@@ -202,7 +173,6 @@ class _ExportScreenState extends State<ExportScreen> {
           signaturePageIndex: signaturePageIndex,
           signatureOffsetX: signatureOffsetX,
           signatureOffsetY: signatureOffsetY,
-          pdfPassword: password,
         );
         allOutputPaths.addAll(paths);
       }

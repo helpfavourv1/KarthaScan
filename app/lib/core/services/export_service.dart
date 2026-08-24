@@ -31,7 +31,6 @@ class ExportService {
     int? signaturePageIndex,
     double? signatureOffsetX,
     double? signatureOffsetY,
-    String? pdfPassword,
   }) async {
     try {
       switch (format) {
@@ -45,7 +44,6 @@ class ExportService {
               signaturePageIndex: signaturePageIndex,
               signatureOffsetX: signatureOffsetX,
               signatureOffsetY: signatureOffsetY,
-              password: pdfPassword,
             ),
           ];
         case ExportFormat.txt:
@@ -166,10 +164,7 @@ class ExportService {
     int? signaturePageIndex,
     double? signatureOffsetX,
     double? signatureOffsetY,
-    String? password,
   }) async {
-    // NOTE: PDF password encryption is not available in this version of the `pdf` package.
-    // The password is accepted but not applied. This is a known limitation.
     final pw.Document pdfDoc = pw.Document(
       title: document.title,
       creator: 'KatharScan',
