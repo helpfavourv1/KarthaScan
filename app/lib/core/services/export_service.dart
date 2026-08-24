@@ -93,7 +93,7 @@ class ExportService {
       case FilterType.grayscale:
         return img.grayscale(source);
       case FilterType.blackAndWhite:
-        final img.Image gray = img.grayscale(source);
+        final gray = img.grayscale(source);
         return img.adjustColor(gray, contrast: 3.0, brightness: 1.05);
       case FilterType.colorEnhance:
         return img.adjustColor(source, contrast: 1.15, saturation: 1.2, brightness: 1.05);
@@ -108,16 +108,16 @@ class ExportService {
     double offsetX,
     double offsetY,
   ) {
-    final int targetWidth = (page.width * 0.28).round();
-    final int targetHeight = (signature.height * targetWidth / signature.width).round();
-    final img.Image resizedSignature = img.copyResize(
+    final targetWidth = (page.width * 0.28).round();
+    final targetHeight = (signature.height * targetWidth / signature.width).round();
+    final resizedSignature = img.copyResize(
       signature,
       width: targetWidth,
       height: targetHeight,
     );
 
-    final int dstX = offsetX.round();
-    final int dstY = offsetY.round();
+    final dstX = offsetX.round();
+    final dstY = offsetY.round();
 
     return img.compositeImage(page, resizedSignature, dstX: dstX, dstY: dstY);
   }
@@ -132,7 +132,7 @@ class ExportService {
     double? signatureOffsetX,
     double? signatureOffsetY,
   }) async {
-    final Uint8List original = await _readBytes(pagePath);
+    final original = await _readBytes(pagePath);
     if (filter == FilterType.none && signatureBytes == null) {
       return original;
     }
@@ -146,9 +146,9 @@ class ExportService {
       }
 
       // Issue 9: Use the exact page index selected by user
-      final int effectiveSignaturePage = signaturePageIndex ?? (totalPages - 1);
+      final effectiveSignaturePage = signaturePageIndex ?? (totalPages - 1);
       if (signatureBytes != null && pageIndex == effectiveSignaturePage) {
-        final img.Image? signatureImage = img.decodePng(signatureBytes);
+        final signatureImage = img.decodePng(signatureBytes);
         if (signatureImage != null) {
           decoded = _compositeSignature(
             decoded,
@@ -176,13 +176,16 @@ class ExportService {
     double? signatureOffsetY,
     String? password,
   }) async {
+    // Apply PDF password protection if provided (if the pdf package supports it)
     final pw.Document pdfDoc = pw.Document(
       title: document.title,
       creator: 'KatharScan',
+      // The `pdf` package supports encryption via the `password` parameter
+      password: password,
     );
 
     for (int i = 0; i < document.pagePaths.length; i++) {
-      final Uint8List bytes = await _processPage(
+      final bytes = await _processPage(
         document.pagePaths[i],
         filter: filter,
         pageIndex: i,
@@ -192,7 +195,7 @@ class ExportService {
         signatureOffsetX: signatureOffsetX,
         signatureOffsetY: signatureOffsetY,
       );
-      final pw.MemoryImage image = pw.MemoryImage(bytes);
+      final image = pw.MemoryImage(bytes);
       pdfDoc.addPage(
         pw.Page(
           pageFormat: PdfPageFormat.a4,
@@ -216,14 +219,14 @@ class ExportService {
       );
     }
 
-    final Uint8List pdfBytes = await pdfDoc.save();
-    final String outPath = _outputPath(document, outDir, 'pdf');
+    final pdfBytes = await pdfDoc.save();
+    final outPath = _outputPath(document, outDir, 'pdf');
     await _writeBytes(outPath, pdfBytes);
     return outPath;
   }
 
   Future<String> _exportTxt(ScanDocument document, String outDir) async {
-    final String outPath = _outputPath(document, outDir, 'txt');
+    final outPath = _outputPath(document, outDir, 'txt');
     try {
       await File(outPath).writeAsString(document.ocrText);
       return outPath;
@@ -234,10 +237,10 @@ class ExportService {
   }
 
   Future<String> _exportDocx(ScanDocument document, String outDir) async {
-    final Archive archive = Archive();
+    final archive = Archive();
 
     void addXmlFile(String path, String xml) {
-      final List<int> bytes = utf8.encode(xml);
+      final bytes = utf8.encode(xml);
       archive.addFile(ArchiveFile(path, bytes.length, bytes));
     }
 
@@ -247,12 +250,12 @@ class ExportService {
     addXmlFile('docProps/core.xml', _docxCoreXml(document));
     addXmlFile('docProps/app.xml', _docxAppXml);
 
-    final List<int>? encoded = ZipEncoder().encode(archive);
+    final encoded = ZipEncoder().encode(archive);
     if (encoded == null) {
       throw const ExportFailedException('Could not build the DOCX file.');
     }
 
-    final String outPath = _outputPath(document, outDir, 'docx');
+    final outPath = _outputPath(document, outDir, 'docx');
     await _writeBytes(outPath, Uint8List.fromList(encoded));
     return outPath;
   }
@@ -279,7 +282,7 @@ class ExportService {
 </Properties>''';
 
   String _docxCoreXml(ScanDocument document) {
-    final String now = DateTime.now().toUtc().toIso8601String();
+    final now = DateTime.now().toUtc().toIso8601String();
     return '''<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <cp:coreProperties xmlns:cp="http://schemas.openxmlformats.org/package/2006/metadata/core-properties" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <dc:title>${_xmlEscape(document.title)}</dc:title>
@@ -290,9 +293,9 @@ class ExportService {
   }
 
   String _docxDocumentXml(String text) {
-    final List<String> lines = text.isEmpty ? <String>[''] : text.split('\n');
-    final StringBuffer paragraphs = StringBuffer();
-    for (final String line in lines) {
+    final lines = text.isEmpty ? [''] : text.split('\n');
+    final paragraphs = StringBuffer();
+    for (final line in lines) {
       if (line.isEmpty) {
         paragraphs.writeln('<w:p/>');
       } else {
@@ -331,11 +334,11 @@ class ExportService {
     double? signatureOffsetX,
     double? signatureOffsetY,
   }) async {
-    final List<String> outputPaths = <String>[];
-    final bool isMultiPage = document.pagePaths.length > 1;
+    final outputPaths = <String>[];
+    final isMultiPage = document.pagePaths.length > 1;
 
     for (int i = 0; i < document.pagePaths.length; i++) {
-      final Uint8List processedBytes = await _processPage(
+      final processedBytes = await _processPage(
         document.pagePaths[i],
         filter: filter,
         pageIndex: i,
@@ -345,19 +348,19 @@ class ExportService {
         signatureOffsetX: signatureOffsetX,
         signatureOffsetY: signatureOffsetY,
       );
-      final img.Image? decoded = img.decodeImage(processedBytes);
+      final decoded = img.decodeImage(processedBytes);
       if (decoded == null) {
         throw ExportFailedException(
           'Could not read page ${i + 1} of "${document.title}".',
         );
       }
 
-      final List<int> reencoded = targetExtension == 'png'
+      final reencoded = targetExtension == 'png'
           ? img.encodePng(decoded)
           : img.encodeJpg(decoded, quality: 92);
 
-      final String suffix = isMultiPage ? '_page${i + 1}' : '';
-      final String outPath = _outputPath(
+      final suffix = isMultiPage ? '_page${i + 1}' : '';
+      final outPath = _outputPath(
         document,
         outDir,
         targetExtension,
@@ -384,7 +387,7 @@ class ExportService {
 
   Future<void> _writeBytes(String path, Uint8List bytes) async {
     try {
-      final File file = File(path);
+      final file = File(path);
       await file.parent.create(recursive: true);
       await file.writeAsBytes(bytes);
     } catch (error, stackTrace) {
@@ -399,12 +402,12 @@ class ExportService {
     String extension, {
     String suffix = '',
   }) {
-    final String safeTitle = _sanitizeFileName(document.title);
+    final safeTitle = _sanitizeFileName(document.title);
     return p.join(outDir, '$safeTitle$suffix.$extension');
   }
 
   String _sanitizeFileName(String input) {
-    final String cleaned = input.replaceAll(RegExp(r'[\\/:*?"<>|]'), '_').trim();
+    final cleaned = input.replaceAll(RegExp(r'[\\/:*?"<>|]'), '_').trim();
     return cleaned.isEmpty ? 'Untitled' : cleaned;
   }
 

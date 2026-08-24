@@ -45,18 +45,13 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
     _log.log('CROP', 'ManualCropScreen initialized');
   }
 
-  // Issue 6: Get selected OCR script from settings
   OcrScript _getSelectedOcrScript() {
-    final String selected = _settingsProvider.settings.value.ocrLanguage;
+    final selected = _settingsProvider.settings.value.ocrLanguage;
     switch (selected) {
-      case 'chinese':
-        return OcrScript.chinese;
-      case 'japanese':
-        return OcrScript.japanese;
-      case 'korean':
-        return OcrScript.korean;
-      default:
-        return OcrScript.latin;
+      case 'chinese': return OcrScript.chinese;
+      case 'japanese': return OcrScript.japanese;
+      case 'korean': return OcrScript.korean;
+      default: return OcrScript.latin;
     }
   }
 
@@ -65,10 +60,7 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
     _log.log('CROP', 'Camera button tapped');
     setState(() => _isPicking = true);
     try {
-      final XFile? photo = await ImagePicker().pickImage(
-        source: ImageSource.camera,
-        imageQuality: 90,
-      );
+      final photo = await ImagePicker().pickImage(source: ImageSource.camera, imageQuality: 90);
       if (!mounted) return;
       if (photo == null) {
         _log.log('CROP', 'Camera cancelled');
@@ -82,9 +74,7 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
       _log.log('CROP', 'Camera error: $e');
       if (!mounted) return;
       setState(() => _isPicking = false);
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Camera error: $e')),
-      );
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Camera error: $e')));
     }
   }
 
@@ -93,28 +83,20 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
     _log.log('CROP', 'Import button tapped');
     setState(() => _isPicking = true);
     try {
-      final FilePickerResult? result =
-          await FilePicker.platform.pickFiles(type: FileType.any);
-      final String? path = result?.files.single.path;
+      final result = await FilePicker.platform.pickFiles(type: FileType.any);
+      final path = result?.files.single.path;
       if (!mounted) return;
       if (path == null) {
         _log.log('CROP', 'Import cancelled');
         setState(() => _isPicking = false);
         return;
       }
-      final String ext = p.extension(path).toLowerCase();
-      const List<String> validExts = <String>[
-        '.jpg', '.jpeg', '.png', '.gif', '.bmp', '.webp'
-      ];
+      final ext = p.extension(path).toLowerCase();
+      const validExts = ['.jpg', '.jpeg', '.png', '.gif', '.bmp', '.webp'];
       if (!validExts.contains(ext)) {
         _log.log('CROP', 'Import rejected non-image: $path');
         setState(() => _isPicking = false);
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('Please select an image file (JPG, PNG, GIF, BMP, WEBP).'),
-            duration: Duration(seconds: 3),
-          ),
-        );
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Please select an image file (JPG, PNG, GIF, BMP, WEBP).'), duration: Duration(seconds: 3)));
         return;
       }
       _log.log('CROP', 'Import path: $path');
@@ -124,29 +106,22 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
       _log.log('CROP', 'Import error: $e');
       if (!mounted) return;
       setState(() => _isPicking = false);
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Import error: $e')),
-      );
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Import error: $e')));
     }
   }
 
-  // Issue 5: Fix scan navigation
   Future<void> _scanDocument() async {
     if (_isPicking) return;
     _log.log('CROP', 'Scan button tapped');
     setState(() => _isPicking = true);
     try {
-      final DocScanResult result = await DocScannerService()
-          .scan()
-          .timeout(
-            const Duration(seconds: 45),
-            onTimeout: () {
-              _log.log('CROP', 'Scanner timed out after 45s');
-              throw const DocScannerUnsupportedException(
-                'Scanner not responding on this device. Use Camera or Import instead.',
-              );
-            },
-          );
+      final result = await DocScannerService().scan().timeout(
+        const Duration(seconds: 45),
+        onTimeout: () {
+          _log.log('CROP', 'Scanner timed out after 45s');
+          throw const DocScannerUnsupportedException('Scanner not responding on this device. Use Camera or Import instead.');
+        },
+      );
       if (!mounted) return;
       if (result.pageImagePaths.isEmpty) {
         _log.log('CROP', 'Scanner returned empty');
@@ -155,15 +130,14 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
       }
       _log.log('CROP', 'Scanner path: ${result.pageImagePaths.first}');
 
-      final ScanDocument? savedDoc = await _saveScannedDocument(result.pageImagePaths);
+      final savedDoc = await _saveScannedDocument(result.pageImagePaths);
       if (!mounted) return;
 
       if (savedDoc != null) {
-        // FIX: Use addPostFrameCallback to navigate after native activity closes
-        WidgetsBinding.instance.addPostFrameCallback((_) {
-          if (!mounted) return;
-          context.pushReplacement('/scan/${savedDoc.id}');
-        });
+        // Add a small delay after native activity closes, then navigate
+        await Future.delayed(const Duration(milliseconds: 300));
+        if (!mounted) return;
+        context.pushReplacement('/scan/${savedDoc.id}');
       } else {
         _log.log('CROP', 'Save failed, staying on crop screen');
         setState(() => _isPicking = false);
@@ -172,57 +146,41 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
       _log.log('CROP', 'Scanner unsupported on this device');
       if (!mounted) return;
       setState(() => _isPicking = false);
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text(
-            'Document scanner not available on this device. Use Camera or Import instead.',
-          ),
-          duration: Duration(seconds: 4),
-        ),
-      );
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Document scanner not available on this device. Use Camera or Import instead.'), duration: Duration(seconds: 4)));
     } catch (e) {
       _log.log('CROP', 'Scanner error: $e');
       if (!mounted) return;
       setState(() => _isPicking = false);
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Scanner error: $e')),
-      );
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Scanner error: $e')));
     }
   }
 
   Future<ScanDocument?> _saveScannedDocument(List<String> pagePaths) async {
     setState(() => _stage = _Stage.saving);
     try {
-      final Directory appDir = await getApplicationDocumentsDirectory();
-      final Directory scansDir =
-          Directory(p.join(appDir.path, 'manual_crop_pages'));
+      final appDir = await getApplicationDocumentsDirectory();
+      final scansDir = Directory(p.join(appDir.path, 'manual_crop_pages'));
       await scansDir.create(recursive: true);
 
-      final List<String> savedPaths = <String>[];
+      final savedPaths = <String>[];
       for (int i = 0; i < pagePaths.length; i++) {
-        final String sourcePath = pagePaths[i];
-        final String ext = p.extension(sourcePath).toLowerCase();
-        final String outPath = p.join(
-          scansDir.path,
-          'manual_${DateTime.now().microsecondsSinceEpoch}_$i$ext',
-        );
+        final sourcePath = pagePaths[i];
+        final ext = p.extension(sourcePath).toLowerCase();
+        final outPath = p.join(scansDir.path, 'manual_${DateTime.now().microsecondsSinceEpoch}_$i$ext');
         await File(sourcePath).copy(outPath);
         savedPaths.add(outPath);
       }
 
       String ocrText = '';
       try {
-        final OcrResult result = await _ocrService.recognizeText(
-          imagePath: savedPaths.first,
-          script: _getSelectedOcrScript(), // Issue 6: Use selected script
-        );
+        final result = await _ocrService.recognizeText(imagePath: savedPaths.first, script: _getSelectedOcrScript());
         ocrText = result.fullText;
       } on OcrUnavailableException catch (_) {
         _log.log('CROP', 'OCR unavailable');
       }
 
-      final DateTime now = DateTime.now();
-      final ScanDocument document = ScanDocument(
+      final now = DateTime.now();
+      final document = ScanDocument(
         id: '${now.microsecondsSinceEpoch}',
         title: _defaultTitle(now),
         pageCount: savedPaths.length,
@@ -233,7 +191,7 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
         thumbnailPath: savedPaths.first,
       );
 
-      final bool success = await _scanProvider.importDocument(document);
+      final success = await _scanProvider.importDocument(document);
       if (success) {
         _log.log('CROP', 'Document saved');
         return document;
@@ -252,31 +210,20 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
   Future<void> _cropAndSave(String sourcePath) async {
     _log.log('CROP', 'Opening cropper: $sourcePath');
 
-    final CroppedFile? croppedFile = await ImageCropper().cropImage(
+    final croppedFile = await ImageCropper().cropImage(
       sourcePath: sourcePath,
-      uiSettings: <PlatformUiSettings>[
+      uiSettings: [
         AndroidUiSettings(
           toolbarTitle: 'Crop Document',
           toolbarColor: Colors.black,
           toolbarWidgetColor: Colors.white,
           initAspectRatio: CropAspectRatioPreset.original,
           lockAspectRatio: false,
-          aspectRatioPresets: <CropAspectRatioPreset>[
-            CropAspectRatioPreset.original,
-            CropAspectRatioPreset.square,
-            CropAspectRatioPreset.ratio4x3,
-            CropAspectRatioPreset.ratio3x2,
-            CropAspectRatioPreset.ratio16x9,
-          ],
+          aspectRatioPresets: [CropAspectRatioPreset.original, CropAspectRatioPreset.square, CropAspectRatioPreset.ratio4x3, CropAspectRatioPreset.ratio3x2, CropAspectRatioPreset.ratio16x9],
         ),
         IOSUiSettings(
           title: 'Crop Document',
-          aspectRatioPresets: <CropAspectRatioPreset>[
-            CropAspectRatioPreset.original,
-            CropAspectRatioPreset.square,
-            CropAspectRatioPreset.ratio4x3,
-            CropAspectRatioPreset.ratio3x2,
-          ],
+          aspectRatioPresets: [CropAspectRatioPreset.original, CropAspectRatioPreset.square, CropAspectRatioPreset.ratio4x3, CropAspectRatioPreset.ratio3x2],
         ),
       ],
     );
@@ -291,83 +238,61 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
 
     setState(() => _stage = _Stage.saving);
     try {
-      final Directory appDir = await getApplicationDocumentsDirectory();
-      final Directory scansDir =
-          Directory(p.join(appDir.path, 'manual_crop_pages'));
+      final appDir = await getApplicationDocumentsDirectory();
+      final scansDir = Directory(p.join(appDir.path, 'manual_crop_pages'));
       await scansDir.create(recursive: true);
 
-      final String outPath = p.join(
-        scansDir.path,
-        'manual_${DateTime.now().microsecondsSinceEpoch}.jpg',
-      );
+      final outPath = p.join(scansDir.path, 'manual_${DateTime.now().microsecondsSinceEpoch}.jpg');
       await File(croppedFile.path).copy(outPath);
       _log.log('CROP', 'Saved to: $outPath');
 
       String ocrText = '';
       try {
         _log.log('CROP', 'Starting OCR...');
-        final OcrResult result = await _ocrService.recognizeText(
-          imagePath: outPath,
-          script: _getSelectedOcrScript(), // Issue 6: Use selected script
-        );
+        final result = await _ocrService.recognizeText(imagePath: outPath, script: _getSelectedOcrScript());
         ocrText = result.fullText;
         _log.log('CROP', 'OCR done: ${ocrText.length} chars');
       } on OcrUnavailableException catch (_) {
         _log.log('CROP', 'OCR unavailable');
       }
 
-      final DateTime now = DateTime.now();
-      final ScanDocument document = ScanDocument(
+      final now = DateTime.now();
+      final document = ScanDocument(
         id: '${now.microsecondsSinceEpoch}',
         title: _defaultTitle(now),
         pageCount: 1,
-        pagePaths: <String>[outPath],
+        pagePaths: [outPath],
         createdAt: now,
         updatedAt: now,
         ocrText: ocrText,
         thumbnailPath: outPath,
       );
 
-      final bool success = await _scanProvider.importDocument(document);
+      final success = await _scanProvider.importDocument(document);
       if (!mounted) return;
 
       if (success) {
         _log.log('CROP', 'Saved → home');
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('Document saved'),
-            duration: Duration(seconds: 2),
-          ),
-        );
-        WidgetsBinding.instance.addPostFrameCallback((_) {
-          if (!mounted) return;
-          context.pushReplacement('/scan/${document.id}');
-        });
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Document saved'), duration: Duration(seconds: 2)));
+        // Small delay before navigating
+        await Future.delayed(const Duration(milliseconds: 300));
+        if (!mounted) return;
+        context.pushReplacement('/scan/${document.id}');
       } else {
-        throw Exception(
-          _scanProvider.lastError.value ?? 'Failed to save document.',
-        );
+        throw Exception(_scanProvider.lastError.value ?? 'Failed to save document.');
       }
     } catch (e) {
       _log.log('CROP', 'CRASH: $e');
       if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Error: $e'),
-          backgroundColor: Colors.red,
-          duration: const Duration(seconds: 8),
-        ),
-      );
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Error: $e'), backgroundColor: Colors.red, duration: const Duration(seconds: 8)));
     } finally {
       if (mounted) setState(() => _stage = _Stage.pickImage);
     }
   }
 
   String _defaultTitle(DateTime when) {
-    final String date =
-        '${when.year}-${when.month.toString().padLeft(2, '0')}-${when.day.toString().padLeft(2, '0')}';
-    final String time =
-        '${when.hour.toString().padLeft(2, '0')}.${when.minute.toString().padLeft(2, '0')}';
+    final date = '${when.year}-${when.month.toString().padLeft(2, '0')}-${when.day.toString().padLeft(2, '0')}';
+    final time = '${when.hour.toString().padLeft(2, '0')}.${when.minute.toString().padLeft(2, '0')}';
     return 'Scan $date $time';
   }
 
@@ -379,16 +304,13 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final AppLocalizations l10n = AppLocalizations.of(context);
-    final bool isDark = Theme.of(context).brightness == Brightness.dark;
-    final Color bg = isDark ? AppColors.bgPrimaryDark : AppColors.bgPrimaryLight;
-    final Color surface =
-        isDark ? AppColors.bgSecondaryDark : AppColors.bgSecondaryLight;
-    final Color textPrimary =
-        isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight;
-    final Color textSecondary =
-        isDark ? AppColors.textSecondaryDark : AppColors.textSecondaryLight;
-    final Color accent = isDark ? AppColors.accentDark : AppColors.accentLight;
+    final l10n = AppLocalizations.of(context);
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final bg = isDark ? AppColors.bgPrimaryDark : AppColors.bgPrimaryLight;
+    final surface = isDark ? AppColors.bgSecondaryDark : AppColors.bgSecondaryLight;
+    final textPrimary = isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight;
+    final textSecondary = isDark ? AppColors.textSecondaryDark : AppColors.textSecondaryLight;
+    final accent = isDark ? AppColors.accentDark : AppColors.accentLight;
 
     return Scaffold(
       backgroundColor: bg,
@@ -406,21 +328,11 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
               : Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
+                  children: [
                     Container(
                       padding: const EdgeInsets.all(AppSpacing.sm),
-                      decoration: BoxDecoration(
-                        color: surface,
-                        borderRadius:
-                            BorderRadius.circular(AppShape.cardRadius),
-                      ),
-                      child: Text(
-                        l10n.docScannerUnsupportedMessage,
-                        style: TextStyle(
-                          color: textSecondary,
-                          fontSize: AppTypography.footnoteSize,
-                        ),
-                      ),
+                      decoration: BoxDecoration(color: surface, borderRadius: BorderRadius.circular(AppShape.cardRadius)),
+                      child: Text(l10n.docScannerUnsupportedMessage, style: TextStyle(color: textSecondary, fontSize: AppTypography.footnoteSize)),
                     ),
                     const SizedBox(height: AppSpacing.lg),
                     if (_isPicking)
@@ -428,62 +340,26 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
                     else
                       Column(
                         mainAxisSize: MainAxisSize.min,
-                        children: <Widget>[
+                        children: [
                           ElevatedButton.icon(
                             onPressed: _scanDocument,
                             icon: const Icon(Icons.document_scanner),
                             label: const Text('Scan'),
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: accent,
-                              foregroundColor: Colors.white,
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 24,
-                                vertical: 12,
-                              ),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(
-                                  AppShape.buttonRadius,
-                                ),
-                              ),
-                            ),
+                            style: ElevatedButton.styleFrom(backgroundColor: accent, foregroundColor: Colors.white, padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12), shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppShape.buttonRadius))),
                           ),
                           const SizedBox(height: AppSpacing.md),
                           ElevatedButton.icon(
                             onPressed: _takePhoto,
                             icon: const Icon(Icons.camera_alt),
                             label: const Text('Camera'),
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: accent,
-                              foregroundColor: Colors.white,
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 24,
-                                vertical: 12,
-                              ),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(
-                                  AppShape.buttonRadius,
-                                ),
-                              ),
-                            ),
+                            style: ElevatedButton.styleFrom(backgroundColor: accent, foregroundColor: Colors.white, padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12), shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppShape.buttonRadius))),
                           ),
                           const SizedBox(height: AppSpacing.md),
                           ElevatedButton.icon(
                             onPressed: _pickImage,
                             icon: const Icon(Icons.add_photo_alternate),
                             label: const Text('Import'),
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: surface,
-                              foregroundColor: textPrimary,
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 24,
-                                vertical: 12,
-                              ),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(
-                                  AppShape.buttonRadius,
-                                ),
-                              ),
-                            ),
+                            style: ElevatedButton.styleFrom(backgroundColor: surface, foregroundColor: textPrimary, padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12), shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppShape.buttonRadius))),
                           ),
                         ],
                       ),

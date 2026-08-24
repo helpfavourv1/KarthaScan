@@ -42,10 +42,10 @@ class _ExportScreenState extends State<ExportScreen> {
   }
 
   List<ScanDocument> get _documents {
-    final List<ScanDocument> all = _scanProvider.documents.value;
-    final List<ScanDocument> result = <ScanDocument>[];
-    for (final String id in widget.documentIds) {
-      for (final ScanDocument doc in all) {
+    final all = _scanProvider.documents.value;
+    final result = <ScanDocument>[];
+    for (final id in widget.documentIds) {
+      for (final doc in all) {
         if (doc.id == id) {
           result.add(doc);
           break;
@@ -59,9 +59,9 @@ class _ExportScreenState extends State<ExportScreen> {
     if (_started) return;
     _started = true;
 
-    final AppLocalizations l10n = AppLocalizations.of(context);
+    final l10n = AppLocalizations.of(context);
 
-    final ExportFormat? format = await showExportFormatSheet(context);
+    final format = await showExportFormatSheet(context);
     if (!mounted) return;
     if (format == null) {
       context.pop();
@@ -75,20 +75,16 @@ class _ExportScreenState extends State<ExportScreen> {
     double? signatureOffsetY;
     String? password;
 
-    final FilterType? chosenFilter = await showFilterSheet(
-      context,
-      current: FilterType.none,
-    );
+    final chosenFilter = await showFilterSheet(context, current: FilterType.none);
     if (chosenFilter != null) filter = chosenFilter;
     if (!mounted) return;
 
-    final bool wantsSignature = await _confirmStep(l10n.addSignatureQuestion, l10n);
+    final wantsSignature = await _confirmStep(l10n.addSignatureQuestion, l10n);
     if (wantsSignature && mounted) {
       signatureBytes = await _captureSignature();
       if (!mounted) return;
 
       if (signatureBytes != null) {
-        // Issue 9: Allow user to choose which page to sign
         final placement = await _placeSignature(
           document: _documents.first,
           signatureBytes: signatureBytes,
@@ -102,7 +98,7 @@ class _ExportScreenState extends State<ExportScreen> {
     }
 
     if (format == ExportFormat.pdf) {
-      final bool wantsPassword = await _confirmStep(l10n.passwordProtectQuestion, l10n);
+      final wantsPassword = await _confirmStep(l10n.passwordProtectQuestion, l10n);
       if (wantsPassword && mounted) {
         password = await _promptPassword(l10n);
         if (!mounted) return;
@@ -121,13 +117,13 @@ class _ExportScreenState extends State<ExportScreen> {
   }
 
   Future<bool> _confirmStep(String question, AppLocalizations l10n) async {
-    final bool? result = await showDialog<bool>(
+    final result = await showDialog<bool>(
       context: context,
-      builder: (BuildContext context) => AlertDialog(
+      builder: (context) => AlertDialog(
         title: Text(question),
-        actions: <Widget>[
-          TextButton(onPressed: () => Navigator.of(context).pop(false), child: Text(l10n.commonSkip)),
-          TextButton(onPressed: () => Navigator.of(context).pop(true), child: Text(l10n.commonYes)),
+        actions: [
+          TextButton(onPressed: () => Navigator.pop(context, false), child: Text(l10n.commonSkip)),
+          TextButton(onPressed: () => Navigator.pop(context, true), child: Text(l10n.commonYes)),
         ],
       ),
     );
@@ -135,23 +131,22 @@ class _ExportScreenState extends State<ExportScreen> {
   }
 
   Future<Uint8List?> _captureSignature() {
-    final GlobalKey<SignatureCanvasState> signatureKey = GlobalKey<SignatureCanvasState>();
+    final signatureKey = GlobalKey<SignatureCanvasState>();
     return showModalBottomSheet<Uint8List?>(
       context: context,
       isScrollControlled: true,
-      builder: (BuildContext context) => _SignatureSheet(signatureKey: signatureKey),
+      builder: (context) => _SignatureSheet(signatureKey: signatureKey),
     );
   }
 
-  // Issue 9: Updated to return (pageIndex, offsetX, offsetY)
   Future<(int, double, double)?> _placeSignature({
     required ScanDocument document,
     required Uint8List signatureBytes,
-  }) async {
+  }) {
     return showModalBottomSheet<(int, double, double)>(
       context: context,
       isScrollControlled: true,
-      builder: (BuildContext context) => _SignaturePlacementSheet(
+      builder: (context) => _SignaturePlacementSheet(
         pagePaths: document.pagePaths,
         signatureBytes: signatureBytes,
       ),
@@ -159,20 +154,20 @@ class _ExportScreenState extends State<ExportScreen> {
   }
 
   Future<String?> _promptPassword(AppLocalizations l10n) async {
-    final TextEditingController controller = TextEditingController();
-    final String? password = await showDialog<String>(
+    final controller = TextEditingController();
+    final password = await showDialog<String>(
       context: context,
-      builder: (BuildContext context) => AlertDialog(
+      builder: (context) => AlertDialog(
         title: Text(l10n.setPasswordTitle),
         content: TextField(controller: controller, obscureText: true, autofocus: true),
-        actions: <Widget>[
-          TextButton(onPressed: () => Navigator.of(context).pop(), child: Text(l10n.commonCancel)),
-          TextButton(onPressed: () => Navigator.of(context).pop(controller.text), child: Text(l10n.commonSet)),
+        actions: [
+          TextButton(onPressed: () => Navigator.pop(context), child: Text(l10n.commonCancel)),
+          TextButton(onPressed: () => Navigator.pop(context, controller.text), child: Text(l10n.commonSet)),
         ],
       ),
     );
     controller.dispose();
-    final String trimmed = password?.trim() ?? '';
+    final trimmed = password?.trim() ?? '';
     return trimmed.isEmpty ? null : trimmed;
   }
 
@@ -185,20 +180,20 @@ class _ExportScreenState extends State<ExportScreen> {
     double? signatureOffsetY,
     String? password,
   }) async {
-    final AppLocalizations l10n = AppLocalizations.of(context);
+    final l10n = AppLocalizations.of(context);
     setState(() {
       _isRunning = true;
       _statusMessage = l10n.exportingStatus;
     });
 
-    final List<ScanDocument> documents = _documents;
-    final List<String> allOutputPaths = <String>[];
+    final documents = _documents;
+    final allOutputPaths = <String>[];
     String? errorMessage;
 
     try {
-      final Directory outputDir = await getTemporaryDirectory();
-      for (final ScanDocument document in documents) {
-        final List<String> paths = await _exportService.export(
+      final outputDir = await getTemporaryDirectory();
+      for (final document in documents) {
+        final paths = await _exportService.export(
           document: document,
           format: format,
           outputDirectoryPath: outputDir.path,
@@ -243,13 +238,13 @@ class _ExportScreenState extends State<ExportScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final bool isDark = Theme.of(context).brightness == Brightness.dark;
-    final Color bg = isDark ? AppColors.bgPrimaryDark : AppColors.bgPrimaryLight;
-    final Color textPrimary = isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight;
-    final Color textSecondary = isDark ? AppColors.textSecondaryDark : AppColors.textSecondaryLight;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final bg = isDark ? AppColors.bgPrimaryDark : AppColors.bgPrimaryLight;
+    final textPrimary = isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight;
+    final textSecondary = isDark ? AppColors.textSecondaryDark : AppColors.textSecondaryLight;
 
     if (!_started) {
-      WidgetsBinding.instance.addPostFrameCallback((Duration _) => _startFlow());
+      WidgetsBinding.instance.addPostFrameCallback((_) => _startFlow());
     }
 
     return Scaffold(
@@ -260,18 +255,11 @@ class _ExportScreenState extends State<ExportScreen> {
             padding: const EdgeInsets.all(AppSpacing.xl),
             child: Column(
               mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
+              children: [
                 if (_isRunning) const CircularProgressIndicator(),
-                if (_statusMessage != null) ...<Widget>[
+                if (_statusMessage != null) ...[
                   const SizedBox(height: AppSpacing.md),
-                  Text(
-                    _statusMessage!,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: _isRunning ? textSecondary : textPrimary,
-                      fontSize: AppTypography.bodySize,
-                    ),
-                  ),
+                  Text(_statusMessage!, textAlign: TextAlign.center, style: TextStyle(color: _isRunning ? textSecondary : textPrimary, fontSize: AppTypography.bodySize)),
                 ],
               ],
             ),
@@ -284,64 +272,41 @@ class _ExportScreenState extends State<ExportScreen> {
 
 class _SignatureSheet extends StatelessWidget {
   const _SignatureSheet({required this.signatureKey});
-
   final GlobalKey<SignatureCanvasState> signatureKey;
 
   @override
   Widget build(BuildContext context) {
-    final AppLocalizations l10n = AppLocalizations.of(context);
-    final bool isDark = Theme.of(context).brightness == Brightness.dark;
-    final Color bg = isDark ? AppColors.bgPrimaryDark : AppColors.bgPrimaryLight;
-    final Color textPrimary = isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight;
-    final Color accent = isDark ? AppColors.accentDark : AppColors.accentLight;
+    final l10n = AppLocalizations.of(context);
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final bg = isDark ? AppColors.bgPrimaryDark : AppColors.bgPrimaryLight;
+    final textPrimary = isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight;
+    final accent = isDark ? AppColors.accentDark : AppColors.accentLight;
 
     return Padding(
       padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
       child: SafeArea(
         child: Container(
-          decoration: BoxDecoration(
-            color: bg,
-            borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(AppShape.bottomSheetTopRadius),
-              topRight: Radius.circular(AppShape.bottomSheetTopRadius),
-            ),
-          ),
+          decoration: BoxDecoration(color: bg, borderRadius: const BorderRadius.only(topLeft: Radius.circular(AppShape.bottomSheetTopRadius), topRight: Radius.circular(AppShape.bottomSheetTopRadius))),
           padding: const EdgeInsets.all(AppSpacing.md),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              Text(
-                l10n.signSheetTitle,
-                style: TextStyle(
-                  color: textPrimary,
-                  fontSize: AppTypography.title1Size,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
+            children: [
+              Text(l10n.signSheetTitle, style: TextStyle(color: textPrimary, fontSize: AppTypography.title1Size, fontWeight: FontWeight.w600)),
               const SizedBox(height: AppSpacing.sm),
               SizedBox(height: 180, child: SignatureCanvas(key: signatureKey)),
               const SizedBox(height: AppSpacing.sm),
               Row(
-                children: <Widget>[
-                  TextButton(
-                    onPressed: () => signatureKey.currentState?.clear(),
-                    child: Text(l10n.commonClear),
-                  ),
+                children: [
+                  TextButton(onPressed: () => signatureKey.currentState?.clear(), child: Text(l10n.commonClear)),
                   const Spacer(),
-                  TextButton(
-                    onPressed: () => Navigator.of(context).pop(),
-                    child: Text(l10n.commonSkip),
-                  ),
+                  TextButton(onPressed: () => Navigator.pop(context), child: Text(l10n.commonSkip)),
                   const SizedBox(width: AppSpacing.xs),
                   ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: accent,
-                      foregroundColor: Colors.white,
-                    ),
+                    style: ElevatedButton.styleFrom(backgroundColor: accent, foregroundColor: Colors.white),
                     onPressed: () async {
-                      final Uint8List? bytes = await signatureKey.currentState?.exportPng();
-                      if (context.mounted) Navigator.of(context).pop(bytes);
+                      final bytes = await signatureKey.currentState?.exportPng();
+                      if (context.mounted) Navigator.pop(context, bytes);
                     },
                     child: Text(l10n.useSignatureButton),
                   ),
@@ -355,15 +320,10 @@ class _SignatureSheet extends StatelessWidget {
   }
 }
 
-// Issue 9: Updated to accept pagePaths and allow page selection
 class _SignaturePlacementSheet extends StatefulWidget {
   final List<String> pagePaths;
   final Uint8List signatureBytes;
-
-  const _SignaturePlacementSheet({
-    required this.pagePaths,
-    required this.signatureBytes,
-  });
+  const _SignaturePlacementSheet({required this.pagePaths, required this.signatureBytes});
 
   @override
   State<_SignaturePlacementSheet> createState() => _SignaturePlacementSheetState();
@@ -371,56 +331,29 @@ class _SignaturePlacementSheet extends StatefulWidget {
 
 class _SignaturePlacementSheetState extends State<_SignaturePlacementSheet> {
   int _currentPageIndex = 0;
-  Offset _signatureOffset = Offset(0, 0);
+  Offset _signatureOffset = Offset.zero;
 
   @override
   Widget build(BuildContext context) {
-    final String currentPagePath = widget.pagePaths[_currentPageIndex];
+    final currentPagePath = widget.pagePaths[_currentPageIndex];
 
     return SafeArea(
       child: Container(
         height: MediaQuery.of(context).size.height * 0.8,
-        decoration: BoxDecoration(
-          color: Theme.of(context).scaffoldBackgroundColor,
-          borderRadius: const BorderRadius.only(
-            topLeft: Radius.circular(20),
-            topRight: Radius.circular(20),
-          ),
-        ),
+        decoration: BoxDecoration(color: Theme.of(context).scaffoldBackgroundColor, borderRadius: const BorderRadius.only(topLeft: Radius.circular(20), topRight: Radius.circular(20))),
         child: Column(
-          children: <Widget>[
+          children: [
             Padding(
               padding: const EdgeInsets.all(16),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Text(
-                    'Place signature on document',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w600,
-                      color: Theme.of(context).colorScheme.onSurface,
-                    ),
-                  ),
-                  // Page selector
+                children: [
+                  Text('Place signature on document', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600, color: Theme.of(context).colorScheme.onSurface)),
                   Row(
-                    children: <Widget>[
-                      IconButton(
-                        icon: const Icon(Icons.chevron_left),
-                        onPressed: _currentPageIndex > 0
-                            ? () => setState(() => _currentPageIndex--)
-                            : null,
-                      ),
-                      Text(
-                        'Page ${_currentPageIndex + 1} / ${widget.pagePaths.length}',
-                        style: const TextStyle(fontSize: 14),
-                      ),
-                      IconButton(
-                        icon: const Icon(Icons.chevron_right),
-                        onPressed: _currentPageIndex < widget.pagePaths.length - 1
-                            ? () => setState(() => _currentPageIndex++)
-                            : null,
-                      ),
+                    children: [
+                      IconButton(icon: const Icon(Icons.chevron_left), onPressed: _currentPageIndex > 0 ? () => setState(() => _currentPageIndex--) : null),
+                      Text('Page ${_currentPageIndex + 1} / ${widget.pagePaths.length}', style: const TextStyle(fontSize: 14)),
+                      IconButton(icon: const Icon(Icons.chevron_right), onPressed: _currentPageIndex < widget.pagePaths.length - 1 ? () => setState(() => _currentPageIndex++) : null),
                     ],
                   ),
                 ],
@@ -428,32 +361,11 @@ class _SignaturePlacementSheetState extends State<_SignaturePlacementSheet> {
             ),
             Expanded(
               child: GestureDetector(
-                onPanUpdate: (details) {
-                  setState(() {
-                    _signatureOffset += details.delta;
-                  });
-                },
+                onPanUpdate: (details) => setState(() => _signatureOffset += details.delta),
                 child: Stack(
-                  children: <Widget>[
-                    Positioned.fill(
-                      child: Image.file(
-                        File(currentPagePath),
-                        fit: BoxFit.contain,
-                      ),
-                    ),
-                    Positioned(
-                      left: _signatureOffset.dx,
-                      top: _signatureOffset.dy,
-                      child: Opacity(
-                        opacity: 0.8,
-                        child: Image.memory(
-                          widget.signatureBytes,
-                          width: 100,
-                          height: 50,
-                          fit: BoxFit.contain,
-                        ),
-                      ),
-                    ),
+                  children: [
+                    Positioned.fill(child: Image.file(File(currentPagePath), fit: BoxFit.contain)),
+                    Positioned(left: _signatureOffset.dx, top: _signatureOffset.dy, child: Opacity(opacity: 0.8, child: Image.memory(widget.signatureBytes, width: 100, height: 50, fit: BoxFit.contain))),
                   ],
                 ),
               ),
@@ -462,21 +374,11 @@ class _SignaturePlacementSheetState extends State<_SignaturePlacementSheet> {
               padding: const EdgeInsets.all(16),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  TextButton(
-                    onPressed: () => Navigator.of(context).pop(),
-                    child: const Text('Cancel'),
-                  ),
+                children: [
+                  TextButton(onPressed: () => Navigator.pop(context), child: const Text('Cancel')),
                   ElevatedButton(
-                    onPressed: () {
-                      Navigator.of(context).pop(
-                        (_currentPageIndex, _signatureOffset.dx, _signatureOffset.dy),
-                      );
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Theme.of(context).colorScheme.primary,
-                      foregroundColor: Colors.white,
-                    ),
+                    onPressed: () => Navigator.pop(context, (_currentPageIndex, _signatureOffset.dx, _signatureOffset.dy)),
+                    style: ElevatedButton.styleFrom(backgroundColor: Theme.of(context).colorScheme.primary, foregroundColor: Colors.white),
                     child: const Text('Confirm Placement'),
                   ),
                 ],

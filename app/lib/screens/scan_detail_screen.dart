@@ -36,22 +36,22 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> {
   }
 
   ScanDocument? get _document {
-    for (final ScanDocument doc in _scanProvider.documents.value) {
+    for (final doc in _scanProvider.documents.value) {
       if (doc.id == widget.documentId) return doc;
     }
     return null;
   }
 
   Future<void> _editTitle(ScanDocument document, AppLocalizations l10n) async {
-    final TextEditingController controller = TextEditingController(text: document.title);
-    final String? newTitle = await showDialog<String>(
+    final controller = TextEditingController(text: document.title);
+    final newTitle = await showDialog<String>(
       context: context,
-      builder: (BuildContext context) => AlertDialog(
+      builder: (context) => AlertDialog(
         title: Text(l10n.renameDocumentTitle),
         content: TextField(controller: controller, autofocus: true),
-        actions: <Widget>[
-          TextButton(onPressed: () => Navigator.of(context).pop(), child: Text(l10n.commonCancel)),
-          TextButton(onPressed: () => Navigator.of(context).pop(controller.text), child: Text(l10n.commonSave)),
+        actions: [
+          TextButton(onPressed: () => Navigator.pop(context), child: Text(l10n.commonCancel)),
+          TextButton(onPressed: () => Navigator.pop(context, controller.text), child: Text(l10n.commonSave)),
         ],
       ),
     );
@@ -62,53 +62,51 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> {
   }
 
   Future<void> _addTag(ScanDocument document, AppLocalizations l10n) async {
-    final TextEditingController controller = TextEditingController();
-    final String? tag = await showDialog<String>(
+    final controller = TextEditingController();
+    final tag = await showDialog<String>(
       context: context,
-      builder: (BuildContext context) => AlertDialog(
+      builder: (context) => AlertDialog(
         title: Text(l10n.addTagTitle),
         content: TextField(controller: controller, autofocus: true),
-        actions: <Widget>[
-          TextButton(onPressed: () => Navigator.of(context).pop(), child: Text(l10n.commonCancel)),
-          TextButton(onPressed: () => Navigator.of(context).pop(controller.text), child: Text(l10n.commonAdd)),
+        actions: [
+          TextButton(onPressed: () => Navigator.pop(context), child: Text(l10n.commonCancel)),
+          TextButton(onPressed: () => Navigator.pop(context, controller.text), child: Text(l10n.commonAdd)),
         ],
       ),
     );
     controller.dispose();
-    final String trimmed = tag?.trim() ?? '';
+    final trimmed = tag?.trim() ?? '';
     if (trimmed.isEmpty) return;
-    final List<String> updated = <String>{...document.tags, trimmed}.toList();
+    final updated = {...document.tags, trimmed}.toList();
     await _scanProvider.updateTags(document.id, updated);
   }
 
   Future<void> _removeTag(ScanDocument document, String tag) async {
-    final List<String> updated = document.tags.where((String t) => t != tag).toList();
+    final updated = document.tags.where((t) => t != tag).toList();
     await _scanProvider.updateTags(document.id, updated);
   }
 
   Future<void> _moveToFolder(ScanDocument document, AppLocalizations l10n) async {
-    final List<Folder> folders = _folderProvider.folders.value;
-    final String? chosenFolderId = await showModalBottomSheet<String>(
+    final folders = _folderProvider.folders.value;
+    final chosenFolderId = await showModalBottomSheet<String>(
       context: context,
-      builder: (BuildContext context) => _FolderPickerSheet(folders: folders),
+      builder: (context) => _FolderPickerSheet(folders: folders),
     );
     if (chosenFolderId == null) return;
     await _folderProvider.addDocumentToFolder(chosenFolderId, document.id);
     if (!mounted) return;
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text(l10n.movedToFolderMessage)),
-    );
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.movedToFolderMessage)));
   }
 
   Future<void> _delete(ScanDocument document, AppLocalizations l10n) async {
-    final bool? confirmed = await showDialog<bool>(
+    final confirmed = await showDialog<bool>(
       context: context,
-      builder: (BuildContext context) => AlertDialog(
+      builder: (context) => AlertDialog(
         title: Text(l10n.deleteScanTitle),
         content: Text(l10n.deleteScanMessage),
-        actions: <Widget>[
-          TextButton(onPressed: () => Navigator.of(context).pop(false), child: Text(l10n.commonCancel)),
-          TextButton(onPressed: () => Navigator.of(context).pop(true), child: Text(l10n.commonDelete)),
+        actions: [
+          TextButton(onPressed: () => Navigator.pop(context, false), child: Text(l10n.commonCancel)),
+          TextButton(onPressed: () => Navigator.pop(context, true), child: Text(l10n.commonDelete)),
         ],
       ),
     );
@@ -124,10 +122,8 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> {
       await _shareService.shareFiles(filePaths: document.pagePaths);
     } on ShareFailedException {
       if (!mounted) return;
-      final AppLocalizations l10n = AppLocalizations.of(context);
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(l10n.genericErrorMessage)),
-      );
+      final l10n = AppLocalizations.of(context);
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.genericErrorMessage)));
     }
   }
 
@@ -145,36 +141,34 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final AppLocalizations l10n = AppLocalizations.of(context);
-    final bool isDark = Theme.of(context).brightness == Brightness.dark;
-    final Color bg = isDark ? AppColors.bgPrimaryDark : AppColors.bgPrimaryLight;
-    final Color surface = isDark ? AppColors.bgSecondaryDark : AppColors.bgSecondaryLight;
-    final Color textPrimary = isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight;
-    final Color textSecondary = isDark ? AppColors.textSecondaryDark : AppColors.textSecondaryLight;
-    final Color accent = isDark ? AppColors.accentDark : AppColors.accentLight;
-    final Color border = isDark ? AppColors.borderSubtleDark : AppColors.borderSubtleLight;
+    final l10n = AppLocalizations.of(context);
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final bg = isDark ? AppColors.bgPrimaryDark : AppColors.bgPrimaryLight;
+    final surface = isDark ? AppColors.bgSecondaryDark : AppColors.bgSecondaryLight;
+    final textPrimary = isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight;
+    final textSecondary = isDark ? AppColors.textSecondaryDark : AppColors.textSecondaryLight;
+    final accent = isDark ? AppColors.accentDark : AppColors.accentLight;
+    final border = isDark ? AppColors.borderSubtleDark : AppColors.borderSubtleLight;
 
     return Scaffold(
       backgroundColor: bg,
       body: ListenableBuilder(
         listenable: _scanProvider.documents,
-        builder: (BuildContext context, Widget? _) {
-          final ScanDocument? document = _document;
+        builder: (context, _) {
+          final document = _document;
           if (document == null) {
             return SafeArea(
               child: Column(
-                children: <Widget>[
+                children: [
                   AppBar(backgroundColor: bg, elevation: 0),
-                  Expanded(
-                    child: Center(child: Text(l10n.scanUnavailable)),
-                  ),
+                  Expanded(child: Center(child: Text(l10n.scanUnavailable))),
                 ],
               ),
             );
           }
 
           return Column(
-            children: <Widget>[
+            children: [
               AppBar(
                 backgroundColor: bg,
                 elevation: 0,
@@ -185,7 +179,7 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> {
                     style: TextStyle(color: textPrimary, fontSize: AppTypography.title2Size),
                   ),
                 ),
-                actions: <Widget>[
+                actions: [
                   IconButton(
                     icon: Icon(Icons.drive_file_move_outlined, color: textSecondary),
                     tooltip: l10n.moveToFolderTooltip,
@@ -200,58 +194,37 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> {
               ),
               Expanded(
                 child: Stack(
-                  children: <Widget>[
+                  children: [
                     Positioned.fill(
-                      child: ScanPreviewCard(
-                        pagePaths: document.pagePaths,
-                      ),
+                      child: ScanPreviewCard(pagePaths: document.pagePaths),
                     ),
                     // Issue 10: Total OCR tray overhaul
                     DraggableScrollableSheet(
-                      initialChildSize: 0.30, // Increased from 0.25
-                      minChildSize: 0.15, // Increased from 0.12
+                      initialChildSize: 0.30,
+                      minChildSize: 0.15,
                       maxChildSize: 0.85,
-                      builder: (BuildContext context, ScrollController scrollController) {
+                      builder: (context, scrollController) {
                         return Container(
                           decoration: BoxDecoration(
                             color: bg,
-                            borderRadius: const BorderRadius.only(
-                              topLeft: Radius.circular(24),
-                              topRight: Radius.circular(24),
-                            ),
-                            boxShadow: <BoxShadow>[
-                              BoxShadow(
-                                color: Colors.black.withValues(alpha: 0.15),
-                                blurRadius: 10,
-                                offset: const Offset(0, -2),
-                              ),
+                            borderRadius: const BorderRadius.only(topLeft: Radius.circular(24), topRight: Radius.circular(24)),
+                            boxShadow: [
+                              BoxShadow(color: Colors.black.withValues(alpha: 0.15), blurRadius: 10, offset: const Offset(0, -2)),
                             ],
                           ),
                           child: Column(
-                            children: <Widget>[
-                              // Larger drag handle (60x6)
+                            children: [
                               Container(
                                 width: 60,
                                 height: 6,
                                 margin: const EdgeInsets.symmetric(vertical: 12),
-                                decoration: BoxDecoration(
-                                  color: border,
-                                  borderRadius: BorderRadius.circular(3),
-                                ),
+                                decoration: BoxDecoration(color: border, borderRadius: BorderRadius.circular(3)),
                               ),
-                              // Header row
                               Padding(
                                 padding: const EdgeInsets.symmetric(horizontal: 16),
                                 child: Row(
-                                  children: <Widget>[
-                                    Text(
-                                      l10n.ocrTextLabel,
-                                      style: TextStyle(
-                                        color: textPrimary,
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                    ),
+                                  children: [
+                                    Text(l10n.ocrTextLabel, style: TextStyle(color: textPrimary, fontSize: 18, fontWeight: FontWeight.w600)),
                                     const Spacer(),
                                     IconButton(
                                       icon: Icon(Icons.copy_outlined, color: textSecondary),
@@ -262,18 +235,13 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> {
                                 ),
                               ),
                               const SizedBox(height: 8),
-                              // Scrollable OCR text
                               Expanded(
                                 child: SingleChildScrollView(
                                   controller: scrollController,
                                   padding: const EdgeInsets.symmetric(horizontal: 16),
                                   child: SelectableText(
                                     document.ocrText.isEmpty ? l10n.noTextRecognized : document.ocrText,
-                                    style: TextStyle(
-                                      color: textSecondary,
-                                      fontSize: 15,
-                                      height: 1.5,
-                                    ),
+                                    style: TextStyle(color: textSecondary, fontSize: 15, height: 1.5),
                                   ),
                                 ),
                               ),
@@ -292,13 +260,8 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> {
                 child: Wrap(
                   spacing: 8,
                   runSpacing: 8,
-                  children: <Widget>[
-                    ...document.tags.map(
-                      (String tag) => TagChip(
-                        label: tag,
-                        onDeleted: () => _removeTag(document, tag),
-                      ),
-                    ),
+                  children: [
+                    ...document.tags.map((tag) => TagChip(label: tag, onDeleted: () => _removeTag(document, tag))),
                     TagChip(label: l10n.addTagChipLabel, onTap: () => _addTag(document, l10n)),
                   ],
                 ),
@@ -307,14 +270,9 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> {
                 top: false,
                 child: Container(
                   padding: const EdgeInsets.all(16),
-                  decoration: BoxDecoration(
-                    color: bg,
-                    border: Border(
-                      top: BorderSide(color: border, width: 0.5),
-                    ),
-                  ),
+                  decoration: BoxDecoration(color: bg, border: Border(top: BorderSide(color: border, width: 0.5))),
                   child: Row(
-                    children: <Widget>[
+                    children: [
                       Expanded(
                         child: ElevatedButton.icon(
                           onPressed: () => _share(document),
@@ -324,9 +282,7 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> {
                             backgroundColor: accent,
                             foregroundColor: Colors.white,
                             minimumSize: const Size(double.infinity, 48),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(14),
-                            ),
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
                           ),
                         ),
                       ),
@@ -340,9 +296,7 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> {
                             backgroundColor: surface,
                             foregroundColor: textPrimary,
                             minimumSize: const Size(double.infinity, 48),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(14),
-                            ),
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
                           ),
                         ),
                       ),
@@ -360,54 +314,32 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> {
 
 class _FolderPickerSheet extends StatelessWidget {
   const _FolderPickerSheet({required this.folders});
-
   final List<Folder> folders;
 
   @override
   Widget build(BuildContext context) {
-    final AppLocalizations l10n = AppLocalizations.of(context);
-    final bool isDark = Theme.of(context).brightness == Brightness.dark;
-    final Color bg = isDark ? AppColors.bgPrimaryDark : AppColors.bgPrimaryLight;
-    final Color textPrimary = isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight;
+    final l10n = AppLocalizations.of(context);
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final bg = isDark ? AppColors.bgPrimaryDark : AppColors.bgPrimaryLight;
+    final textPrimary = isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight;
 
     return SafeArea(
       child: Container(
-        decoration: BoxDecoration(
-          color: bg,
-          borderRadius: const BorderRadius.only(
-            topLeft: Radius.circular(24),
-            topRight: Radius.circular(24),
-          ),
-        ),
+        decoration: BoxDecoration(color: bg, borderRadius: const BorderRadius.only(topLeft: Radius.circular(24), topRight: Radius.circular(24))),
         padding: const EdgeInsets.all(16),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Text(
-              l10n.moveToFolderTooltip,
-              style: TextStyle(
-                color: textPrimary,
-                fontSize: 22,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
+          children: [
+            Text(l10n.moveToFolderTooltip, style: TextStyle(color: textPrimary, fontSize: 22, fontWeight: FontWeight.w600)),
             const SizedBox(height: 8),
             if (folders.isEmpty)
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 16),
-                child: Text(
-                  l10n.noFoldersYetMessage,
-                  style: TextStyle(color: textPrimary),
-                ),
+                child: Text(l10n.noFoldersYetMessage, style: TextStyle(color: textPrimary)),
               )
             else
-              ...folders.map(
-                (Folder folder) => ListTile(
-                  title: Text(folder.name),
-                  onTap: () => Navigator.of(context).pop(folder.id),
-                ),
-              ),
+              ...folders.map((folder) => ListTile(title: Text(folder.name), onTap: () => Navigator.of(context).pop(folder.id))),
           ],
         ),
       ),

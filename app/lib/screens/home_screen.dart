@@ -9,6 +9,7 @@ import '../core/providers/folder_provider.dart';
 import '../core/providers/scan_provider.dart';
 import '../core/providers/settings_provider.dart';
 import '../core/services/debug_log_service.dart';
+import '../core/services/share_service.dart';
 import '../core/utils/constants.dart';
 import '../l10n/app_localizations.dart';
 import '../widgets/empty_state.dart';
@@ -27,7 +28,8 @@ class _HomeScreenState extends State<HomeScreen> {
   final Set<String> _selectedIds = <String>{};
   List<ScanDocument>? _searchResults;
   bool _selectionMode = false;
-  int _selectedFilter = 0; // 0=All, 1=Folders, 2=Recent, 3=Favorites
+  int _selectedFilter = 0;
+  final ShareService _shareService = ShareService();
 
   late final ScanProvider _scanProvider;
   late final FolderProvider _folderProvider;
@@ -81,21 +83,20 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Future<void> _onScanPressed() async {
-    DebugLogService().log('HOME', 'FAB tapped → routing to /manual-crop');
     if (!mounted) return;
     context.push('/manual-crop');
   }
 
   Future<void> _createFolder() async {
-    final TextEditingController controller = TextEditingController();
-    final String? name = await showDialog<String>(
+    final controller = TextEditingController();
+    final name = await showDialog<String>(
       context: context,
-      builder: (BuildContext context) => AlertDialog(
+      builder: (context) => AlertDialog(
         title: const Text('New Folder'),
-        content: TextField(controller: controller, autofocus: true, decoration: const InputDecoration(hintText: 'Folder name')),
-        actions: <Widget>[
-          TextButton(onPressed: () => Navigator.of(context).pop(), child: const Text('Cancel')),
-          TextButton(onPressed: () => Navigator.of(context).pop(controller.text), child: const Text('Create')),
+        content: TextField(controller: controller, autofocus: true),
+        actions: [
+          TextButton(onPressed: () => Navigator.pop(context), child: const Text('Cancel')),
+          TextButton(onPressed: () => Navigator.pop(context, controller.text), child: const Text('Create')),
         ],
       ),
     );
@@ -105,53 +106,56 @@ class _HomeScreenState extends State<HomeScreen> {
     }
   }
 
-  // Issue 1: Add _pickLanguage() for app language
+  // App Language picker
   Future<void> _pickLanguage() async {
-    final String? chosen = await showModalBottomSheet<String>(
+    final chosen = await showModalBottomSheet<String>(
       context: context,
-      builder: (BuildContext context) => _LanguagePickerSheet(
-        current: _settingsProvider.settings.value.language,
-      ),
+      builder: (context) => _LanguagePickerSheet(current: _settingsProvider.settings.value.language),
     );
-    if (chosen != null) {
-      await _settingsProvider.setLanguage(chosen);
-    }
+    if (chosen != null) await _settingsProvider.setLanguage(chosen);
   }
 
-  // Issue 2: OCR language picker (already exists, but now clearly separated)
+  // OCR Language picker (fixed empty map)
   Future<void> _pickOcrLanguage() async {
-    final String? chosen = await showModalBottomSheet<String>(
+    final chosen = await showModalBottomSheet<String>(
       context: context,
-      builder: (BuildContext context) => _OcrLanguagePickerSheet(
+      builder: (context) => _OcrLanguagePickerSheet(
         current: _settingsProvider.settings.value.ocrLanguage,
       ),
     );
-    if (chosen != null) {
-      await _settingsProvider.setOcrLanguage(chosen);
-    }
+    if (chosen != null) await _settingsProvider.setOcrLanguage(chosen);
   }
 
-  // Issue 3: Password shortcut
+  // Password shortcut: show hint if no docs
   void _openPasswordShortcut() {
-    final ScanDocument? firstDoc = _scanProvider.documents.value.isNotEmpty
-        ? _scanProvider.documents.value.first
-        : null;
-    if (firstDoc == null) return;
-    context.push('/export', extra: <String>[firstDoc.id]);
+    if (_scanProvider.documents.value.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Scan a document first to use PDF Password.')),
+      );
+      return;
+    }
+    context.push('/export', extra: <String>[_scanProvider.documents.value.first.id]);
   }
 
-  // Issue 3: Signature shortcut
+  // Signature shortcut: show hint if no docs
   void _openSignatureShortcut() {
-    final ScanDocument? firstDoc = _scanProvider.documents.value.isNotEmpty
-        ? _scanProvider.documents.value.first
-        : null;
-    if (firstDoc == null) return;
-    context.push('/export', extra: <String>[firstDoc.id]);
+    if (_scanProvider.documents.value.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Scan a document first to add a signature.')),
+      );
+      return;
+    }
+    context.push('/export', extra: <String>[_scanProvider.documents.value.first.id]);
   }
 
-  // Issue 4: Batch export visibility (enter selection mode)
+  // Batch export: show hint if no docs
   void _startBatchExport() {
-    if (_scanProvider.documents.value.isEmpty) return;
+    if (_scanProvider.documents.value.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('No documents to batch export. Scan some first.')),
+      );
+      return;
+    }
     setState(() {
       _selectionMode = true;
       _selectedIds.clear();
@@ -184,7 +188,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Future<void> _deleteSelected() async {
-    for (final String id in _selectedIds.toList()) {
+    for (final id in _selectedIds.toList()) {
       await _scanProvider.deleteDocument(id);
       await _folderProvider.removeDocumentFromAllFolders(id);
     }
@@ -192,7 +196,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void _handleMenuAction(String action, ScanDocument document) {
-    final AppLocalizations l10n = AppLocalizations.of(context);
+    final l10n = AppLocalizations.of(context);
     switch (action) {
       case 'favorite':
         _scanProvider.toggleFavorite(document.id);
@@ -210,7 +214,7 @@ class _HomeScreenState extends State<HomeScreen> {
         context.push('/export', extra: <String>[document.id]);
         break;
       case 'share':
-        context.push('/export', extra: <String>[document.id]);
+        _shareDocument(document);
         break;
       case 'delete':
         _deleteDocument(document, l10n);
@@ -219,15 +223,15 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Future<void> _renameDocument(ScanDocument document, AppLocalizations l10n) async {
-    final TextEditingController controller = TextEditingController(text: document.title);
-    final String? newTitle = await showDialog<String>(
+    final controller = TextEditingController(text: document.title);
+    final newTitle = await showDialog<String>(
       context: context,
-      builder: (BuildContext context) => AlertDialog(
+      builder: (context) => AlertDialog(
         title: Text(l10n.renameDocumentTitle),
         content: TextField(controller: controller, autofocus: true),
-        actions: <Widget>[
-          TextButton(onPressed: () => Navigator.of(context).pop(), child: Text(l10n.commonCancel)),
-          TextButton(onPressed: () => Navigator.of(context).pop(controller.text), child: Text(l10n.commonSave)),
+        actions: [
+          TextButton(onPressed: () => Navigator.pop(context), child: Text(l10n.commonCancel)),
+          TextButton(onPressed: () => Navigator.pop(context, controller.text), child: Text(l10n.commonSave)),
         ],
       ),
     );
@@ -238,10 +242,10 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Future<void> _moveToFolder(ScanDocument document, AppLocalizations l10n) async {
-    final List<Folder> folders = _folderProvider.folders.value;
-    final String? chosenFolderId = await showModalBottomSheet<String>(
+    final folders = _folderProvider.folders.value;
+    final chosenFolderId = await showModalBottomSheet<String>(
       context: context,
-      builder: (BuildContext context) => _FolderPickerSheet(folders: folders),
+      builder: (context) => _FolderPickerSheet(folders: folders),
     );
     if (chosenFolderId == null) return;
     await _folderProvider.addDocumentToFolder(chosenFolderId, document.id);
@@ -250,34 +254,46 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Future<void> _addTags(ScanDocument document, AppLocalizations l10n) async {
-    final TextEditingController controller = TextEditingController();
-    final String? tag = await showDialog<String>(
+    final controller = TextEditingController();
+    final tag = await showDialog<String>(
       context: context,
-      builder: (BuildContext context) => AlertDialog(
+      builder: (context) => AlertDialog(
         title: Text(l10n.addTagTitle),
         content: TextField(controller: controller, autofocus: true),
-        actions: <Widget>[
-          TextButton(onPressed: () => Navigator.of(context).pop(), child: Text(l10n.commonCancel)),
-          TextButton(onPressed: () => Navigator.of(context).pop(controller.text), child: Text(l10n.commonAdd)),
+        actions: [
+          TextButton(onPressed: () => Navigator.pop(context), child: Text(l10n.commonCancel)),
+          TextButton(onPressed: () => Navigator.pop(context, controller.text), child: Text(l10n.commonAdd)),
         ],
       ),
     );
     controller.dispose();
-    final String trimmed = tag?.trim() ?? '';
+    final trimmed = tag?.trim() ?? '';
     if (trimmed.isEmpty) return;
-    final List<String> updated = <String>{...document.tags, trimmed}.toList();
+    final updated = {...document.tags, trimmed}.toList();
     await _scanProvider.updateTags(document.id, updated);
   }
 
+  // Fix issue 6: Share uses ShareService directly, not export screen
+  Future<void> _shareDocument(ScanDocument document) async {
+    try {
+      await _shareService.shareFiles(filePaths: document.pagePaths);
+    } catch (e) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(AppLocalizations.of(context).genericErrorMessage)),
+      );
+    }
+  }
+
   Future<void> _deleteDocument(ScanDocument document, AppLocalizations l10n) async {
-    final bool? confirmed = await showDialog<bool>(
+    final confirmed = await showDialog<bool>(
       context: context,
-      builder: (BuildContext context) => AlertDialog(
+      builder: (context) => AlertDialog(
         title: Text(l10n.deleteScanTitle),
         content: Text(l10n.deleteScanMessage),
-        actions: <Widget>[
-          TextButton(onPressed: () => Navigator.of(context).pop(false), child: Text(l10n.commonCancel)),
-          TextButton(onPressed: () => Navigator.of(context).pop(true), child: Text(l10n.commonDelete)),
+        actions: [
+          TextButton(onPressed: () => Navigator.pop(context, false), child: Text(l10n.commonCancel)),
+          TextButton(onPressed: () => Navigator.pop(context, true), child: Text(l10n.commonDelete)),
         ],
       ),
     );
@@ -288,22 +304,21 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final AppLocalizations l10n = AppLocalizations.of(context);
-    final bool isDark = Theme.of(context).brightness == Brightness.dark;
-    final Color bg = isDark ? AppColors.bgPrimaryDark : AppColors.bgPrimaryLight;
-    final Color surface = isDark ? AppColors.bgSecondaryDark : AppColors.bgSecondaryLight;
-    final Color textPrimary = isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight;
-    final Color textSecondary = isDark ? AppColors.textSecondaryDark : AppColors.textSecondaryLight;
-    final Color accent = isDark ? AppColors.accentDark : AppColors.accentLight;
-    final String localeCode = _settingsProvider.settings.value.language;
+    final l10n = AppLocalizations.of(context);
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final bg = isDark ? AppColors.bgPrimaryDark : AppColors.bgPrimaryLight;
+    final surface = isDark ? AppColors.bgSecondaryDark : AppColors.bgSecondaryLight;
+    final textPrimary = isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight;
+    final textSecondary = isDark ? AppColors.textSecondaryDark : AppColors.textSecondaryLight;
+    final accent = isDark ? AppColors.accentDark : AppColors.accentLight;
+    final localeCode = _settingsProvider.settings.value.language;
 
     return Scaffold(
       backgroundColor: bg,
       appBar: _selectionMode ? _buildSelectionAppBar(bg, l10n) : _buildDefaultAppBar(bg, textPrimary, textSecondary, l10n),
       body: SafeArea(
         child: Column(
-          children: <Widget>[
-            // Search Bar
+          children: [
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md, vertical: AppSpacing.sm),
               child: TextField(
@@ -321,9 +336,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
             ),
-            // Filter Chips
             _buildFilterChips(),
-            // Expanded Content
             Expanded(
               child: _searchResults != null
                   ? _buildSearchResults(localeCode, l10n)
@@ -352,11 +365,11 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _buildFilterChips() {
-    final List<String> filters = <String>['All', 'Folders', 'Recent', 'Favorites'];
-    final bool isDark = Theme.of(context).brightness == Brightness.dark;
-    final Color surface = isDark ? AppColors.bgSecondaryDark : AppColors.bgSecondaryLight;
-    final Color textPrimary = isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight;
-    final Color accent = isDark ? AppColors.accentDark : AppColors.accentLight;
+    final filters = <String>['All', 'Folders', 'Recent', 'Favorites'];
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final surface = isDark ? AppColors.bgSecondaryDark : AppColors.bgSecondaryLight;
+    final textPrimary = isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight;
+    final accent = isDark ? AppColors.accentDark : AppColors.accentLight;
 
     return SizedBox(
       height: 48,
@@ -364,9 +377,9 @@ class _HomeScreenState extends State<HomeScreen> {
         scrollDirection: Axis.horizontal,
         padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md),
         itemCount: filters.length,
-        separatorBuilder: (BuildContext context, int index) => const SizedBox(width: 8),
-        itemBuilder: (BuildContext context, int index) {
-          final bool isSelected = _selectedFilter == index;
+        separatorBuilder: (context, index) => const SizedBox(width: 8),
+        itemBuilder: (context, index) {
+          final isSelected = _selectedFilter == index;
           return GestureDetector(
             onTap: () => setState(() => _selectedFilter = index),
             child: Container(
@@ -398,7 +411,7 @@ class _HomeScreenState extends State<HomeScreen> {
         l10n.appTitle,
         style: TextStyle(color: textPrimary, fontSize: AppTypography.title1Size, fontWeight: FontWeight.w700, letterSpacing: -0.6),
       ),
-      actions: <Widget>[
+      actions: [
         IconButton(
           icon: const Icon(Icons.translate_outlined),
           tooltip: 'App Language',
@@ -447,13 +460,11 @@ class _HomeScreenState extends State<HomeScreen> {
         onPressed: _exitSelectionMode,
       ),
       title: Text(l10n.selectedCount(_selectedIds.length)),
-      actions: <Widget>[
+      actions: [
         IconButton(
           icon: const Icon(Icons.ios_share),
           tooltip: l10n.batchExportTooltip,
-          onPressed: _selectedIds.isEmpty
-              ? null
-              : () => context.push('/export', extra: _selectedIds.toList()),
+          onPressed: _selectedIds.isEmpty ? null : () => context.push('/export', extra: _selectedIds.toList()),
         ),
         IconButton(
           icon: const Icon(Icons.delete_outline),
@@ -465,31 +476,34 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _buildSearchResults(String localeCode, AppLocalizations l10n) {
-    final List<ScanDocument> results = _searchResults!;
+    final results = _searchResults!;
     if (results.isEmpty) return const EmptyState(message: 'No scans match your search.');
     return ListView.separated(
       padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md),
       itemCount: results.length,
-      separatorBuilder: (BuildContext context, int index) => const SizedBox(height: AppSpacing.xs),
-      itemBuilder: (BuildContext context, int index) => _scanTile(results[index], localeCode),
+      separatorBuilder: (context, index) => const SizedBox(height: AppSpacing.xs),
+      itemBuilder: (context, index) => _scanTile(results[index], localeCode),
     );
   }
 
   Widget _buildDefaultContent(String localeCode, AppLocalizations l10n) {
     return ListenableBuilder(
-      listenable: Listenable.merge(<Listenable>[_scanProvider.documents, _scanProvider.isLoading, _folderProvider.folders]),
-      builder: (BuildContext context, Widget? _) {
+      listenable: Listenable.merge([_scanProvider.documents, _scanProvider.isLoading, _folderProvider.folders]),
+      builder: (context, _) {
         if (_scanProvider.isLoading.value) return const Center(child: CircularProgressIndicator());
-        final List<ScanDocument> allDocuments = _scanProvider.documents.value;
-        final List<Folder> allFolders = _folderProvider.folders.value;
+        final allDocuments = _scanProvider.documents.value;
+        final allFolders = _folderProvider.folders.value;
 
         if (_selectedFilter == 1) {
           return ListView(
             padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md, vertical: AppSpacing.xs),
-            children: <Widget>[
-              if (allFolders.isNotEmpty) ...<Widget>[
+            children: [
+              if (allFolders.isNotEmpty) ...[
                 _sectionHeader(l10n.foldersSectionHeader),
-                ...allFolders.map((Folder folder) => Padding(padding: const EdgeInsets.only(bottom: AppSpacing.xs), child: FolderListTile(folder: folder, onTap: () => context.push('/folder/${folder.id}')))),
+                ...allFolders.map((folder) => Padding(
+                  padding: const EdgeInsets.only(bottom: AppSpacing.xs),
+                  child: FolderListTile(folder: folder, onTap: () => context.push('/folder/${folder.id}')),
+                )),
               ] else
                 const EmptyState(message: 'No folders yet. Tap the folder icon to create one.'),
             ],
@@ -498,23 +512,29 @@ class _HomeScreenState extends State<HomeScreen> {
 
         List<ScanDocument> documents = allDocuments;
         if (_selectedFilter == 3) {
-          documents = allDocuments.where((ScanDocument d) => d.isFavorite).toList();
+          documents = allDocuments.where((d) => d.isFavorite).toList();
         }
 
         if (documents.isEmpty && allFolders.isEmpty) return const EmptyState();
 
         return ListView(
           padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md, vertical: AppSpacing.xs),
-          children: <Widget>[
-            if (_selectedFilter != 1 && allFolders.isNotEmpty) ...<Widget>[
+          children: [
+            if (_selectedFilter != 1 && allFolders.isNotEmpty) ...[
               _sectionHeader(l10n.foldersSectionHeader),
-              ...allFolders.map((Folder folder) => Padding(padding: const EdgeInsets.only(bottom: AppSpacing.xs), child: FolderListTile(folder: folder, onTap: () => context.push('/folder/${folder.id}')))),
+              ...allFolders.map((folder) => Padding(
+                padding: const EdgeInsets.only(bottom: AppSpacing.xs),
+                child: FolderListTile(folder: folder, onTap: () => context.push('/folder/${folder.id}')),
+              )),
               const SizedBox(height: AppSpacing.sm),
             ],
-            if (_selectedFilter != 1 && documents.isNotEmpty) ...<Widget>[
+            if (_selectedFilter != 1 && documents.isNotEmpty) ...[
               _sectionHeader(l10n.documentsSectionHeader),
-              ...documents.map((ScanDocument doc) => Padding(padding: const EdgeInsets.only(bottom: AppSpacing.xs), child: _scanTile(doc, localeCode))),
-            ] else if (_selectedFilter == 3 && documents.isEmpty) ...<Widget>[
+              ...documents.map((doc) => Padding(
+                padding: const EdgeInsets.only(bottom: AppSpacing.xs),
+                child: _scanTile(doc, localeCode),
+              )),
+            ] else if (_selectedFilter == 3 && documents.isEmpty) ...[
               const EmptyState(message: 'No favorites yet. Tap the star icon on a document to add it.'),
             ],
           ],
@@ -524,8 +544,8 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _sectionHeader(String label) {
-    final bool isDark = Theme.of(context).brightness == Brightness.dark;
-    final Color textSecondary = isDark ? AppColors.textSecondaryDark : AppColors.textSecondaryLight;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final textSecondary = isDark ? AppColors.textSecondaryDark : AppColors.textSecondaryLight;
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: AppSpacing.xxs),
       child: Text(label, style: TextStyle(color: textSecondary, fontSize: AppTypography.footnoteSize, fontWeight: FontWeight.w600, letterSpacing: 0.3)),
@@ -533,14 +553,14 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _scanTile(ScanDocument document, String localeCode) {
-    final bool isSelected = _selectedIds.contains(document.id);
+    final isSelected = _selectedIds.contains(document.id);
     return ScanListTile(
       document: document,
       localeCode: localeCode,
       isSelected: isSelected,
       onTap: _selectionMode ? () => _toggleSelection(document.id) : () => context.push('/scan/${document.id}'),
       onLongPress: _selectionMode ? null : () => _enterSelectionMode(document.id),
-      onMenuAction: (String action) => _handleMenuAction(action, document),
+      onMenuAction: (action) => _handleMenuAction(action, document),
     );
   }
 }
@@ -551,10 +571,10 @@ class _FolderPickerSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bool isDark = Theme.of(context).brightness == Brightness.dark;
-    final Color bg = isDark ? AppColors.bgPrimaryDark : AppColors.bgPrimaryLight;
-    final Color textPrimary = isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight;
-    final Color accent = isDark ? AppColors.accentDark : AppColors.accentLight;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final bg = isDark ? AppColors.bgPrimaryDark : AppColors.bgPrimaryLight;
+    final textPrimary = isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight;
+    final accent = isDark ? AppColors.accentDark : AppColors.accentLight;
 
     return SafeArea(
       child: Container(
@@ -563,13 +583,13 @@ class _FolderPickerSheet extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
+          children: [
             Text('Move to Folder', style: TextStyle(color: textPrimary, fontSize: AppTypography.title1Size, fontWeight: FontWeight.w600)),
             const SizedBox(height: AppSpacing.sm),
             if (folders.isEmpty)
               const Padding(padding: EdgeInsets.symmetric(vertical: AppSpacing.md), child: Text('No folders yet. Create one from the home screen.'))
             else
-              ...folders.map((Folder folder) => ListTile(title: Text(folder.name), trailing: Icon(Icons.folder_outlined, color: accent), onTap: () => Navigator.of(context).pop(folder.id))),
+              ...folders.map((folder) => ListTile(title: Text(folder.name), trailing: Icon(Icons.folder_outlined, color: accent), onTap: () => Navigator.of(context).pop(folder.id))),
           ],
         ),
       ),
@@ -581,17 +601,17 @@ class _LanguagePickerSheet extends StatelessWidget {
   const _LanguagePickerSheet({required this.current});
   final String current;
 
-  static const Map<String, String> _labels = <String, String>{
+  static const Map<String, String> _labels = {
     'en': 'English', 'es': 'Español', 'fr': 'Français', 'de': 'Deutsch', 'pt': 'Português',
     'ar': 'العربية', 'hi': 'हिन्दी', 'ja': '日本語', 'ko': '한국어', 'zh': '中文', 'he': 'עברית',
   };
 
   @override
   Widget build(BuildContext context) {
-    final bool isDark = Theme.of(context).brightness == Brightness.dark;
-    final Color bg = isDark ? AppColors.bgPrimaryDark : AppColors.bgPrimaryLight;
-    final Color textPrimary = isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight;
-    final Color accent = isDark ? AppColors.accentDark : AppColors.accentLight;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final bg = isDark ? AppColors.bgPrimaryDark : AppColors.bgPrimaryLight;
+    final textPrimary = isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight;
+    final accent = isDark ? AppColors.accentDark : AppColors.accentLight;
 
     return SafeArea(
       child: Container(
@@ -600,10 +620,10 @@ class _LanguagePickerSheet extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
+          children: [
             Text('App Language', style: TextStyle(color: textPrimary, fontSize: AppTypography.title1Size, fontWeight: FontWeight.w600)),
             const SizedBox(height: AppSpacing.sm),
-            ...AppLocales.supportedLanguageCodes.map((String code) => ListTile(title: Text(_labels[code] ?? code, style: TextStyle(color: textPrimary)), trailing: code == current ? Icon(Icons.check, color: accent) : null, onTap: () => Navigator.of(context).pop(code))),
+            ...AppLocales.supportedLanguageCodes.map((code) => ListTile(title: Text(_labels[code] ?? code, style: TextStyle(color: textPrimary)), trailing: code == current ? Icon(Icons.check, color: accent) : null, onTap: () => Navigator.of(context).pop(code))),
           ],
         ),
       ),
@@ -611,18 +631,23 @@ class _LanguagePickerSheet extends StatelessWidget {
   }
 }
 
+// Fix issue 4: OCR Language picker now has actual languages
 class _OcrLanguagePickerSheet extends StatelessWidget {
   const _OcrLanguagePickerSheet({required this.current});
   final String current;
 
   @override
   Widget build(BuildContext context) {
-    final bool isDark = Theme.of(context).brightness == Brightness.dark;
-    final Color bg = isDark ? AppColors.bgPrimaryDark : AppColors.bgPrimaryLight;
-    final Color textPrimary = isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight;
-    final Color accent = isDark ? AppColors.accentDark : AppColors.accentLight;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final bg = isDark ? AppColors.bgPrimaryDark : AppColors.bgPrimaryLight;
+    final textPrimary = isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight;
+    final accent = isDark ? AppColors.accentDark : AppColors.accentLight;
 
-    final Map<String, String> labels = <String, String>{
+    final labels = <String, String>{
+      'latin': 'Latin (default)',
+      'chinese': 'Chinese',
+      'japanese': 'Japanese',
+      'korean': 'Korean',
     };
 
     return SafeArea(
@@ -632,10 +657,10 @@ class _OcrLanguagePickerSheet extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
+          children: [
             Text('OCR Language', style: TextStyle(color: textPrimary, fontSize: AppTypography.title1Size, fontWeight: FontWeight.w600)),
             const SizedBox(height: AppSpacing.sm),
-            ...labels.keys.map((String key) => ListTile(title: Text(labels[key]!, style: TextStyle(color: textPrimary)), trailing: key == current ? Icon(Icons.check, color: accent) : null, onTap: () => Navigator.of(context).pop(key))),
+            ...labels.keys.map((key) => ListTile(title: Text(labels[key]!, style: TextStyle(color: textPrimary)), trailing: key == current ? Icon(Icons.check, color: accent) : null, onTap: () => Navigator.of(context).pop(key))),
           ],
         ),
       ),

@@ -58,11 +58,11 @@ class SignatureCanvasState extends State<SignatureCanvas> {
 
   @override
   Widget build(BuildContext context) {
-    final AppLocalizations l10n = AppLocalizations.of(context);
-    final bool isDark = Theme.of(context).brightness == Brightness.dark;
-    final Color border = isDark ? AppColors.borderSubtleDark : AppColors.borderSubtleLight;
-    final Color surface = isDark ? AppColors.bgSecondaryDark : AppColors.bgSecondaryLight;
-    final Color hint = isDark ? AppColors.textTertiaryDark : AppColors.textTertiaryLight;
+    final l10n = AppLocalizations.of(context);
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final border = isDark ? AppColors.borderSubtleDark : AppColors.borderSubtleLight;
+    final surface = isDark ? AppColors.bgSecondaryDark : AppColors.bgSecondaryLight;
+    final hint = isDark ? AppColors.textTertiaryDark : AppColors.textTertiaryLight;
 
     return Container(
       decoration: BoxDecoration(
@@ -72,7 +72,8 @@ class SignatureCanvasState extends State<SignatureCanvas> {
       ),
       clipBehavior: Clip.antiAlias,
       child: Stack(
-        children: <Widget>[
+        children: [
+          // Use Positioned.fill to ensure the GestureDetector fills the available space
           Positioned.fill(
             child: RepaintBoundary(
               key: _boundaryKey,
@@ -86,6 +87,7 @@ class SignatureCanvasState extends State<SignatureCanvas> {
                     color: widget.strokeColor,
                     strokeWidth: widget.strokeWidth,
                   ),
+                  // The painter will get its size from the parent's constraints
                   size: Size.infinite,
                 ),
               ),
