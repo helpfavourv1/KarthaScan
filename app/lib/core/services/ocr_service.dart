@@ -1,3 +1,4 @@
+import 'package:flutter/services.dart';
 import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
 
 import 'debug_log_service.dart';
@@ -33,7 +34,7 @@ class OcrService {
       final TextRecognizer recognizer = _recognizerFor(script);
 
       final recognizedText = await recognizer.processImage(inputImage).timeout(
-        const Duration(seconds: 8),
+        const Duration(seconds: 25),
         onTimeout: () {
           throw const OcrUnavailableException('OCR engine timed out.');
         },
@@ -46,6 +47,9 @@ class OcrService {
       return OcrResult(fullText: recognizedText.text, blocks: blocks);
     } on OcrUnavailableException {
       rethrow;
+    } on PlatformException catch (e) {
+      _log.log('OCR', 'PlatformException caught: ${e.message}');
+      throw OcrUnavailableException('OCR engine failed: ${e.message}');
     } catch (error) {
       throw const OcrUnavailableException(
         AppPluginFailureCopy.ocrUnavailableTooltip,
