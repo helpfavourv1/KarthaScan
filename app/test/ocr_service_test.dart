@@ -3,12 +3,9 @@ import 'package:katharscan/core/services/ocr_service.dart';
 
 void main() {
   group('OcrScript', () {
-    test('All scripts are available without Pro gating', () {
-      expect(OcrScript.values.length, 4);
+    test('Only Latin script is available', () {
+      expect(OcrScript.values.length, 1);
       expect(OcrScript.latin, isNotNull);
-      expect(OcrScript.chinese, isNotNull);
-      expect(OcrScript.japanese, isNotNull);
-      expect(OcrScript.korean, isNotNull);
     });
   });
 }
