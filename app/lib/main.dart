@@ -9,6 +9,7 @@ import 'core/providers/scan_provider.dart';
 import 'core/providers/settings_provider.dart';
 import 'core/providers/subscription_provider.dart';
 import 'core/providers/theme_provider.dart';
+import 'core/services/debug_log_service.dart';
 import 'core/services/doc_scanner_service.dart';
 import 'core/services/local_storage.dart';
 import 'core/services/ocr_service.dart';
@@ -21,6 +22,12 @@ Future<void> main() async {
   MobileAds.instance.initialize();
 
   installGlobalErrorHandling(
+    onReportError: (FlutterErrorDetails details) {
+      DebugLogService().log(
+        'FLUTTER_ERROR',
+        '${details.exceptionAsString()} | lib: ${details.library ?? 'unknown'} | ${(details.stack?.toString() ?? '').split('\n').take(6).join(' / ')}',
+      );
+    },
     onReportIssue: (Uri mailUri) async {
       try {
         await launchUrl(mailUri);

@@ -1,10 +1,12 @@
 // lib/core/services/doc_scanner_service.dart
 import 'dart:io' show Directory, File;
 import 'dart:typed_data';
+
 import 'package:flutter/services.dart' show PlatformException;
 import 'package:flutter_doc_scanner/flutter_doc_scanner.dart';
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
+
 import 'debug_log_service.dart';
 import '../utils/constants.dart';
 
@@ -124,6 +126,7 @@ class DocScannerService {
     if (raw is Map) {
       final String? directPath = _extractStringFromMap(raw);
       if (directPath != null) return <String>[directPath];
+
       const List<String> candidateKeys = <String>[
         'images', 'Images', 'imagePaths', 'scannedImages', 'Uri', 'uri', 'uris',
         'paths', 'path', 'files', 'imageUris', 'result', 'data', 'pdf', 'PDF',
@@ -156,6 +159,29 @@ class DocScannerService {
 
     if (raw is String) return <String>[raw.replaceFirst('file://', '')];
     if (raw is Uint8List) return _saveByteArrays(<Uint8List>[raw]);
+
+    // FIX (2026-08-24): the plugin returns a result OBJECT, e.g.
+    // ImageScanResult(images: [file:///.../xxx.jpg], count: 1).
+    // It is neither List, Map, String nor Uint8List, so every check above
+    // missed it and the scanned paths were silently dropped. Read the
+    // `images` getter via dynamic dispatch so the scan can proceed.
+    try {
+      final dynamic images = (raw as dynamic).images;
+      if (images is List) {
+        final List<String> strings = images.whereType<String>().toList();
+        if (strings.isNotEmpty) {
+          _log.log('SCANNER', 'Object extraction SUCCESS via images getter');
+          return strings.map((s) => s.replaceFirst('file://', '')).toList();
+        }
+        final List<Uint8List> byteArrays = images.whereType<Uint8List>().toList();
+        if (byteArrays.isNotEmpty) return _saveByteArrays(byteArrays);
+      }
+    } on NoSuchMethodError {
+      _log.log('SCANNER', 'Raw object has no images getter');
+    } catch (error) {
+      _log.log('SCANNER', 'Object extraction error: $error');
+    }
+
     return const <String>[];
   }
 

@@ -116,7 +116,7 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
     setState(() => _isPicking = true);
     try {
       final result = await DocScannerService().scan().timeout(
-        const Duration(seconds: 45),
+        const Duration(seconds: 120),
         onTimeout: () {
           _log.log('CROP', 'Scanner timed out after 45s');
           throw const DocScannerUnsupportedException('Scanner not responding on this device. Use Camera or Import instead.');
