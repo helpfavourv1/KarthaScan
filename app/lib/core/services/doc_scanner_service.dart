@@ -120,7 +120,7 @@ class DocScannerService {
           .toList();
       if (fromMaps.isNotEmpty) return fromMaps;
       final List<Uint8List> byteArrays = raw.whereType<Uint8List>().toList();
-      if (byteArrays.isNotEmpty) return _saveByteArrays(byteArrays);
+      if (byteArrays.isNotEmpty) return await _saveByteArrays(byteArrays);
     }
 
     if (raw is Map) {
@@ -147,18 +147,18 @@ class DocScannerService {
               .toList();
           if (fromMaps.isNotEmpty) return fromMaps;
           final List<Uint8List> byteArrays = value.whereType<Uint8List>().toList();
-          if (byteArrays.isNotEmpty) return _saveByteArrays(byteArrays);
+          if (byteArrays.isNotEmpty) return await _saveByteArrays(byteArrays);
         }
         if (value is Map) {
           final String? nested = _extractStringFromMap(value);
           if (nested != null) return <String>[nested];
         }
-        if (value is Uint8List) return _saveByteArrays(<Uint8List>[value]);
+        if (value is Uint8List) return await _saveByteArrays(<Uint8List>[value]);
       }
     }
 
     if (raw is String) return <String>[raw.replaceFirst('file://', '')];
-    if (raw is Uint8List) return _saveByteArrays(<Uint8List>[raw]);
+    if (raw is Uint8List) return await _saveByteArrays(<Uint8List>[raw]);
 
     // FIX (2026-08-24): the plugin returns a result OBJECT, e.g.
     // ImageScanResult(images: [file:///.../xxx.jpg], count: 1).
@@ -174,7 +174,7 @@ class DocScannerService {
           return strings.map((s) => s.replaceFirst('file://', '')).toList();
         }
         final List<Uint8List> byteArrays = images.whereType<Uint8List>().toList();
-        if (byteArrays.isNotEmpty) return _saveByteArrays(byteArrays);
+        if (byteArrays.isNotEmpty) return await _saveByteArrays(byteArrays);
       }
     } on NoSuchMethodError {
       _log.log('SCANNER', 'Raw object has no images getter');
