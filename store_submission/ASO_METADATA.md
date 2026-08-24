@@ -19,7 +19,7 @@ FREE, FOREVER
 • 5 export formats: PDF, Word, TXT, JPG, PNG
 • Folders and full-text search
 • Dark mode
-• All OCR languages free (Latin, Chinese, Japanese, Korean, Devanagari)
+• On-device OCR (Latin script), free forever
 
 HOW IT WORKS
 Point your camera at any document. KatharScan detects the edges, corrects the perspective, and extracts searchable text automatically — all on your device.
