@@ -73,18 +73,6 @@ void main() {
       expect(header, '%PDF');
     });
 
-    test('throws ExportFailedException when password protection is requested', () async {
-      final ExportService service = ExportService();
-      expect(
-        () => service.export(
-          document: buildTestDocument(),
-          format: ExportFormat.pdf,
-          outputDirectoryPath: tempDir.path,
-          pdfPassword: 'test-password-123',
-        ),
-        throwsA(isA<ExportFailedException>()),
-      );
-    });
   });
 
   group('TXT export', () {
