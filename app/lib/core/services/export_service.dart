@@ -15,7 +15,6 @@ import '../models/scan_document.dart';
 class ExportFailedException implements Exception {
   const ExportFailedException(this.message);
   final String message;
-
   @override
   String toString() => 'ExportFailedException: $message';
 }
@@ -115,10 +114,8 @@ class ExportService {
       width: targetWidth,
       height: targetHeight,
     );
-
     final dstX = offsetX.round();
     final dstY = offsetY.round();
-
     return img.compositeImage(page, resizedSignature, dstX: dstX, dstY: dstY);
   }
 
@@ -136,16 +133,12 @@ class ExportService {
     if (filter == FilterType.none && signatureBytes == null) {
       return original;
     }
-
     try {
       img.Image? decoded = img.decodeImage(original);
       if (decoded == null) return original;
-
       if (filter != FilterType.none) {
         decoded = _applyFilter(decoded, filter);
       }
-
-      // Issue 9: Use the exact page index selected by user
       final effectiveSignaturePage = signaturePageIndex ?? (totalPages - 1);
       if (signatureBytes != null && pageIndex == effectiveSignaturePage) {
         final signatureImage = img.decodePng(signatureBytes);
@@ -158,7 +151,6 @@ class ExportService {
           );
         }
       }
-
       return Uint8List.fromList(img.encodePng(decoded));
     } catch (error, stackTrace) {
       _logError('_processPage', error, stackTrace);
@@ -176,12 +168,11 @@ class ExportService {
     double? signatureOffsetY,
     String? password,
   }) async {
-    // Apply PDF password protection if provided (if the pdf package supports it)
+    // NOTE: PDF password encryption is not available in this version of the `pdf` package.
+    // The password is accepted but not applied. This is a known limitation.
     final pw.Document pdfDoc = pw.Document(
       title: document.title,
       creator: 'KatharScan',
-      // The `pdf` package supports encryption via the `password` parameter
-      password: password,
     );
 
     for (int i = 0; i < document.pagePaths.length; i++) {
@@ -304,7 +295,6 @@ class ExportService {
         );
       }
     }
-
     return '''<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">
   <w:body>
@@ -336,7 +326,6 @@ class ExportService {
   }) async {
     final outputPaths = <String>[];
     final isMultiPage = document.pagePaths.length > 1;
-
     for (int i = 0; i < document.pagePaths.length; i++) {
       final processedBytes = await _processPage(
         document.pagePaths[i],
@@ -354,11 +343,9 @@ class ExportService {
           'Could not read page ${i + 1} of "${document.title}".',
         );
       }
-
       final reencoded = targetExtension == 'png'
           ? img.encodePng(decoded)
           : img.encodeJpg(decoded, quality: 92);
-
       final suffix = isMultiPage ? '_page${i + 1}' : '';
       final outPath = _outputPath(
         document,
@@ -369,7 +356,6 @@ class ExportService {
       await _writeBytes(outPath, Uint8List.fromList(reencoded));
       outputPaths.add(outPath);
     }
-
     if (outputPaths.isEmpty) {
       throw const ExportFailedException('This document has no pages to export.');
     }

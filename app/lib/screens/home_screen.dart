@@ -8,7 +8,6 @@ import '../core/models/scan_document.dart';
 import '../core/providers/folder_provider.dart';
 import '../core/providers/scan_provider.dart';
 import '../core/providers/settings_provider.dart';
-import '../core/services/debug_log_service.dart';
 import '../core/services/share_service.dart';
 import '../core/utils/constants.dart';
 import '../l10n/app_localizations.dart';
