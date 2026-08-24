@@ -114,15 +114,21 @@ class _HomeScreenState extends State<HomeScreen> {
     if (chosen != null) await _settingsProvider.setLanguage(chosen);
   }
 
-  // Signature shortcut: show hint if no docs
-  void _openSignatureShortcut() {
+  // Signature shortcut: let user pick document
+  Future<void> _openSignatureShortcut() async {
     if (_scanProvider.documents.value.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Scan a document first to add a signature.')),
       );
       return;
     }
-    context.push('/export', extra: <String>[_scanProvider.documents.value.first.id]);
+    final selectedId = await showModalBottomSheet<String>(
+      context: context,
+      builder: (ctx) => _DocumentPickerSheet(documents: _scanProvider.documents.value),
+    );
+    if (selectedId != null && mounted) {
+      context.push('/export', extra: <String>[selectedId]);
+    }
   }
 
   // Batch export: show hint if no docs
@@ -585,13 +591,63 @@ class _LanguagePickerSheet extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(color: bg, borderRadius: const BorderRadius.only(topLeft: Radius.circular(AppShape.bottomSheetTopRadius), topRight: Radius.circular(AppShape.bottomSheetTopRadius))),
         padding: const EdgeInsets.all(AppSpacing.md),
+        constraints: BoxConstraints(maxHeight: MediaQuery.of(context).size.height * 0.85),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text('App Language', style: TextStyle(color: textPrimary, fontSize: AppTypography.title1Size, fontWeight: FontWeight.w600)),
             const SizedBox(height: AppSpacing.sm),
-            ...AppLocales.supportedLanguageCodes.map((code) => ListTile(title: Text(_labels[code] ?? code, style: TextStyle(color: textPrimary)), trailing: code == current ? Icon(Icons.check, color: accent) : null, onTap: () => Navigator.of(context).pop(code))),
+            Flexible(
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: AppLocales.supportedLanguageCodes.map((code) => ListTile(title: Text(_labels[code] ?? code, style: TextStyle(color: textPrimary)), trailing: code == current ? Icon(Icons.check, color: accent) : null, onTap: () => Navigator.of(context).pop(code))).toList(),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
+class _DocumentPickerSheet extends StatelessWidget {
+  const _DocumentPickerSheet({required this.documents});
+  final List<ScanDocument> documents;
+
+  @override
+  Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final bg = isDark ? AppColors.bgPrimaryDark : AppColors.bgPrimaryLight;
+    final textPrimary = isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight;
+    final accent = isDark ? AppColors.accentDark : AppColors.accentLight;
+
+    return SafeArea(
+      child: Container(
+        decoration: BoxDecoration(color: bg, borderRadius: const BorderRadius.only(topLeft: Radius.circular(AppShape.bottomSheetTopRadius), topRight: Radius.circular(AppShape.bottomSheetTopRadius))),
+        padding: const EdgeInsets.all(AppSpacing.md),
+        constraints: BoxConstraints(maxHeight: MediaQuery.of(context).size.height * 0.6),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text('Select Document', style: TextStyle(color: textPrimary, fontSize: AppTypography.title1Size, fontWeight: FontWeight.w600)),
+            const SizedBox(height: AppSpacing.sm),
+            Flexible(
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: documents.map((doc) => ListTile(
+                    title: Text(doc.title, style: TextStyle(color: textPrimary)),
+                    trailing: Icon(Icons.description_outlined, color: accent),
+                    onTap: () => Navigator.of(context).pop(doc.id),
+                  )).toList(),
+                ),
+              ),
+            ),
           ],
         ),
       ),
