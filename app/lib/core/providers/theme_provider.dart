@@ -11,11 +11,12 @@
 // every write back to it — settings_provider remains the only place that
 // ever calls LocalStorageService.saveSettings(). What this provider adds
 // is a narrowly-scoped pair of notifiers so a widget that only cares
-// about theme doesn't rebuild when, say, ocrLanguage changes.
+// about theme doesn't rebuild when, say, language changes.
 //
 // REACTIVITY: ValueNotifier + ListenableBuilder only, per the MANDATORY
 // constraint in constants.dart. This class is not a ChangeNotifier
 // itself — it exposes ValueNotifier fields directly.
+
 import 'package:flutter/foundation.dart' show ValueNotifier;
 import 'package:flutter/material.dart' show Color, ThemeMode;
 

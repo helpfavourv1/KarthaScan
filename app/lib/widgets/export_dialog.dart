@@ -8,15 +8,16 @@
 // covers Drive/iCloud) is free-tier for everyone, so there's no separate
 // "cloud option" left to gate. This widget is the plain format selector
 // only; the actual Pro-gated steps in the export flow (filters,
-// signature, password) are separate widgets/screens per file #38's
-// "format select → filter apply (Pro) → signature (Pro) → password (Pro)
-// → share" sequence.
+// signature) are separate widgets/screens per file #38's
+// "format select → filter apply (Pro) → signature (Pro) → share"
+// sequence.
 //
 // LOCALIZATION: the format option list was originally a top-level `const`
 // with labels/descriptions baked in at compile time. AppLocalizations
 // needs a BuildContext, which isn't available for a compile-time const —
 // so this is now a function computed inside build(), where context (and
 // therefore l10n) is available.
+
 import 'package:flutter/material.dart';
 
 import '../core/models/export_job.dart';
@@ -87,13 +88,13 @@ class ExportDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final AppLocalizations l10n = AppLocalizations.of(context);
-    final bool isDark = Theme.of(context).brightness == Brightness.dark;
-    final Color bg = isDark ? AppColors.bgPrimaryDark : AppColors.bgPrimaryLight;
-    final Color textPrimary = isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight;
-    final Color textSecondary = isDark ? AppColors.textSecondaryDark : AppColors.textSecondaryLight;
-    final Color accent = isDark ? AppColors.accentDark : AppColors.accentLight;
-    final Color border = isDark ? AppColors.borderSubtleDark : AppColors.borderSubtleLight;
+    final l10n = AppLocalizations.of(context);
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final bg = isDark ? AppColors.bgPrimaryDark : AppColors.bgPrimaryLight;
+    final textPrimary = isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight;
+    final textSecondary = isDark ? AppColors.textSecondaryDark : AppColors.textSecondaryLight;
+    final accent = isDark ? AppColors.accentDark : AppColors.accentLight;
+    final border = isDark ? AppColors.borderSubtleDark : AppColors.borderSubtleLight;
 
     return SafeArea(
       child: Container(
@@ -113,7 +114,7 @@ class ExportDialog extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
+          children: [
             Center(
               child: Container(
                 width: 36,
@@ -176,13 +177,13 @@ class _FormatTile extends StatelessWidget {
           constraints: const BoxConstraints(minHeight: AppShape.minTouchTarget),
           padding: const EdgeInsets.symmetric(vertical: AppSpacing.xs),
           child: Row(
-            children: <Widget>[
+            children: [
               Icon(option.icon, color: accent, size: 24),
               const SizedBox(width: AppSpacing.sm),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
+                  children: [
                     Text(
                       option.label,
                       style: TextStyle(

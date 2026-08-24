@@ -114,28 +114,6 @@ class _HomeScreenState extends State<HomeScreen> {
     if (chosen != null) await _settingsProvider.setLanguage(chosen);
   }
 
-  // OCR Language picker (fixed empty map)
-  Future<void> _pickOcrLanguage() async {
-    final chosen = await showModalBottomSheet<String>(
-      context: context,
-      builder: (context) => _OcrLanguagePickerSheet(
-        current: _settingsProvider.settings.value.ocrLanguage,
-      ),
-    );
-    if (chosen != null) await _settingsProvider.setOcrLanguage(chosen);
-  }
-
-  // Password shortcut: show hint if no docs
-  void _openPasswordShortcut() {
-    if (_scanProvider.documents.value.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Scan a document first to use PDF Password.')),
-      );
-      return;
-    }
-    context.push('/export', extra: <String>[_scanProvider.documents.value.first.id]);
-  }
-
   // Signature shortcut: show hint if no docs
   void _openSignatureShortcut() {
     if (_scanProvider.documents.value.isEmpty) {
@@ -272,7 +250,6 @@ class _HomeScreenState extends State<HomeScreen> {
     await _scanProvider.updateTags(document.id, updated);
   }
 
-  // Fix issue 6: Share uses ShareService directly, not export screen
   Future<void> _shareDocument(ScanDocument document) async {
     try {
       await _shareService.shareFiles(filePaths: document.pagePaths);
@@ -416,21 +393,13 @@ class _HomeScreenState extends State<HomeScreen> {
           tooltip: 'App Language',
           onPressed: _pickLanguage,
         ),
-        IconButton(
-          icon: const Icon(Icons.text_fields_outlined),
-          tooltip: 'OCR Language',
-          onPressed: _pickOcrLanguage,
-        ),
-        IconButton(
-          icon: const Icon(Icons.lock_outline),
-          tooltip: 'PDF Password',
-          onPressed: _openPasswordShortcut,
-        ),
+        // Signature shortcut (kept)
         IconButton(
           icon: const Icon(Icons.draw_outlined),
           tooltip: 'Signature',
           onPressed: _openSignatureShortcut,
         ),
+        // Batch export shortcut (kept)
         IconButton(
           icon: const Icon(Icons.select_all_outlined),
           tooltip: 'Batch Export',
@@ -623,43 +592,6 @@ class _LanguagePickerSheet extends StatelessWidget {
             Text('App Language', style: TextStyle(color: textPrimary, fontSize: AppTypography.title1Size, fontWeight: FontWeight.w600)),
             const SizedBox(height: AppSpacing.sm),
             ...AppLocales.supportedLanguageCodes.map((code) => ListTile(title: Text(_labels[code] ?? code, style: TextStyle(color: textPrimary)), trailing: code == current ? Icon(Icons.check, color: accent) : null, onTap: () => Navigator.of(context).pop(code))),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-// Fix issue 4: OCR Language picker now has actual languages
-class _OcrLanguagePickerSheet extends StatelessWidget {
-  const _OcrLanguagePickerSheet({required this.current});
-  final String current;
-
-  @override
-  Widget build(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-    final bg = isDark ? AppColors.bgPrimaryDark : AppColors.bgPrimaryLight;
-    final textPrimary = isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight;
-    final accent = isDark ? AppColors.accentDark : AppColors.accentLight;
-
-    final labels = <String, String>{
-      'latin': 'Latin (default)',
-      'chinese': 'Chinese',
-      'japanese': 'Japanese',
-      'korean': 'Korean',
-    };
-
-    return SafeArea(
-      child: Container(
-        decoration: BoxDecoration(color: bg, borderRadius: const BorderRadius.only(topLeft: Radius.circular(AppShape.bottomSheetTopRadius), topRight: Radius.circular(AppShape.bottomSheetTopRadius))),
-        padding: const EdgeInsets.all(AppSpacing.md),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text('OCR Language', style: TextStyle(color: textPrimary, fontSize: AppTypography.title1Size, fontWeight: FontWeight.w600)),
-            const SizedBox(height: AppSpacing.sm),
-            ...labels.keys.map((key) => ListTile(title: Text(labels[key]!, style: TextStyle(color: textPrimary)), trailing: key == current ? Icon(Icons.check, color: accent) : null, onTap: () => Navigator.of(context).pop(key))),
           ],
         ),
       ),
