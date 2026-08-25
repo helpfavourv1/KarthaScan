@@ -197,25 +197,26 @@ class _ExportScreenState extends State<ExportScreen> {
                   ],
                 ),
               )
-            : ListView(
-                padding: const EdgeInsets.all(AppSpacing.md),
+            : Column(
+                children: [
+                  Expanded(
+                    child: ListView(
+                      padding: const EdgeInsets.all(AppSpacing.md),
                 children: [
                   // Format Ribbon
                   Text('Format', style: TextStyle(color: textSecondary, fontSize: AppTypography.footnoteSize, fontWeight: FontWeight.w600)),
                   const SizedBox(height: AppSpacing.sm),
-                  SizedBox(
-                    height: 100,
-                    child: ListView(
-                      scrollDirection: Axis.horizontal,
-                      children: [
-                        _buildFormatCard(ExportFormat.pdf, 'PDF', Icons.picture_as_pdf_outlined, accent),
-                        _buildFormatCard(ExportFormat.docx, 'Word', Icons.description_outlined, accent),
-                        _buildFormatCard(ExportFormat.txt, 'TXT', Icons.notes_outlined, accent),
-                        _buildFormatCard(ExportFormat.jpg, 'JPG', Icons.image_outlined, accent),
-                        _buildFormatCard(ExportFormat.png, 'PNG', Icons.image_outlined, accent),
-                        _buildFormatCard(ExportFormat.csv, 'CSV', Icons.table_chart_outlined, accent),
-                      ],
-                    ),
+                  Wrap(
+                    spacing: AppSpacing.xs,
+                    runSpacing: AppSpacing.xs,
+                    children: [
+                      _buildFormatCard(ExportFormat.pdf, 'PDF', Icons.picture_as_pdf_outlined, accent),
+                      _buildFormatCard(ExportFormat.docx, 'Word', Icons.description_outlined, accent),
+                      _buildFormatCard(ExportFormat.txt, 'TXT', Icons.notes_outlined, accent),
+                      _buildFormatCard(ExportFormat.jpg, 'JPG', Icons.image_outlined, accent),
+                      _buildFormatCard(ExportFormat.png, 'PNG', Icons.image_outlined, accent),
+                      _buildFormatCard(ExportFormat.csv, 'CSV', Icons.table_chart_outlined, accent),
+                    ],
                   ),
                   const SizedBox(height: AppSpacing.lg),
 
@@ -224,7 +225,12 @@ class _ExportScreenState extends State<ExportScreen> {
                   const SizedBox(height: AppSpacing.sm),
                   Container(
                     padding: const EdgeInsets.all(AppSpacing.md),
-                    decoration: BoxDecoration(color: surface, borderRadius: BorderRadius.circular(AppShape.cardRadius)),
+                    decoration: BoxDecoration(
+                      color: surface,
+                      borderRadius: BorderRadius.circular(AppShape.cardRadius),
+                      border: Border.all(color: isDark ? AppColors.borderSubtleDark : AppColors.borderSubtleLight, width: 1),
+                      boxShadow: AppShadows.ambient,
+                    ),
                     child: DropdownButton<FilterType>(
                       value: _selectedFilter,
                       isExpanded: true,
@@ -268,11 +274,20 @@ class _ExportScreenState extends State<ExportScreen> {
                     padding: const EdgeInsets.all(AppSpacing.md),
                     decoration: BoxDecoration(color: surface, borderRadius: BorderRadius.circular(AppShape.cardRadius)),
                     child: _signatureBytes == null
-                        ? ElevatedButton.icon(
-                            onPressed: _addSignature,
-                            icon: const Icon(Icons.draw_outlined),
-                            label: const Text('Add Signature'),
-                            style: ElevatedButton.styleFrom(backgroundColor: accent, foregroundColor: Colors.white),
+                        ? SizedBox(
+                            height: 52,
+                            width: double.infinity,
+                            child: ElevatedButton.icon(
+                              onPressed: _addSignature,
+                              icon: const Icon(Icons.draw_outlined, size: 22),
+                              label: const Text('Add Signature', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: accent,
+                                foregroundColor: Colors.white,
+                                elevation: 2,
+                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+                              ),
+                            ),
                           )
                         : Row(
                             children: [
@@ -283,18 +298,34 @@ class _ExportScreenState extends State<ExportScreen> {
                             ],
                           ),
                   ),
-                  const SizedBox(height: AppSpacing.xxl),
-
-                  // Export Button
-                  ElevatedButton(
-                    onPressed: _runExport,
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: accent,
-                      foregroundColor: Colors.white,
-                      padding: const EdgeInsets.symmetric(vertical: 16),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppShape.buttonRadius)),
+                ],
+              ),
+      ),
+                  SafeArea(
+                    top: false,
+                    child: Container(
+                      padding: const EdgeInsets.all(AppSpacing.md),
+                      decoration: BoxDecoration(
+                        color: bg,
+                        border: Border(top: BorderSide(color: isDark ? AppColors.borderSubtleDark : AppColors.borderSubtleLight, width: 0.5)),
+                      ),
+                      child: SizedBox(
+                        height: 52,
+                        width: double.infinity,
+                        child: ElevatedButton.icon(
+                          onPressed: _runExport,
+                          icon: const Icon(Icons.ios_share, size: 20),
+                          label: const Text('Export & Share', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700)),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: accent,
+                            foregroundColor: Colors.white,
+                            elevation: 6,
+                            shadowColor: accent.withValues(alpha: 0.4),
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                          ),
+                        ),
+                      ),
                     ),
-                    child: const Text('Export & Share', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
                   ),
                 ],
               ),
@@ -305,24 +336,26 @@ class _ExportScreenState extends State<ExportScreen> {
   Widget _buildFormatCard(ExportFormat format, String label, IconData icon, Color accent) {
     final isSelected = _selectedFormat == format;
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final surface = isDark ? AppColors.bgSecondaryDark : AppColors.bgSecondaryLight;
     final textPrimary = isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight;
 
     return GestureDetector(
       onTap: () => setState(() => _selectedFormat = format),
       child: Container(
-        width: 80,
-        margin: const EdgeInsets.only(right: AppSpacing.sm),
+        width: 62,
+        height: 84,
         decoration: BoxDecoration(
-          color: isSelected ? accent.withValues(alpha: 0.15) : Colors.transparent,
+          color: isSelected ? accent.withValues(alpha: 0.15) : surface,
           borderRadius: BorderRadius.circular(12),
           border: Border.all(color: isSelected ? accent : Colors.grey.withValues(alpha: 0.3), width: isSelected ? 2 : 1),
+          boxShadow: isSelected ? AppShadows.ambient : null,
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(icon, color: isSelected ? accent : textPrimary, size: 32),
-            const SizedBox(height: 8),
-            Text(label, style: TextStyle(color: isSelected ? accent : textPrimary, fontSize: 12, fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal)),
+            Icon(icon, color: isSelected ? accent : textPrimary, size: 22),
+            const SizedBox(height: 6),
+            Text(label, style: TextStyle(color: isSelected ? accent : textPrimary, fontSize: 11, fontWeight: FontWeight.w600)),
           ],
         ),
       ),
@@ -332,6 +365,7 @@ class _ExportScreenState extends State<ExportScreen> {
   Widget _buildCompressionChip(CompressionTier tier, String label, Color accent) {
     final isSelected = _selectedCompression == tier;
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final surface = isDark ? AppColors.bgSecondaryDark : AppColors.bgSecondaryLight;
     final textPrimary = isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight;
 
     return GestureDetector(
@@ -339,11 +373,12 @@ class _ExportScreenState extends State<ExportScreen> {
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 12),
         decoration: BoxDecoration(
-          color: isSelected ? accent : Colors.transparent,
-          borderRadius: BorderRadius.circular(8),
+          color: isSelected ? accent : surface,
+          borderRadius: BorderRadius.circular(12),
           border: Border.all(color: isSelected ? accent : Colors.grey.withValues(alpha: 0.3)),
+          boxShadow: isSelected ? AppShadows.ambient : null,
         ),
-        child: Text(label, style: TextStyle(color: isSelected ? Colors.white : textPrimary, fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal), textAlign: TextAlign.center),
+        child: Text(label, style: TextStyle(color: isSelected ? Colors.white : textPrimary, fontWeight: FontWeight.w700, fontSize: 12), textAlign: TextAlign.center),
       ),
     );
   }

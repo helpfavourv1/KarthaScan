@@ -335,8 +335,11 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
   Widget _buildModeCard(String label, IconData icon, _CaptureMode mode) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final accent = isDark ? AppColors.accentDark : AppColors.accentLight;
+    final surface = isDark ? AppColors.bgSecondaryDark : AppColors.bgSecondaryLight;
+    final textPrimary = isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight;
+    final textSecondary = isDark ? AppColors.textSecondaryDark : AppColors.textSecondaryLight;
     final isSelected = _currentMode == mode;
-    
+
     return GestureDetector(
       onTap: () {
         setState(() {
@@ -346,19 +349,20 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
         });
       },
       child: Container(
-        width: 90,
-        margin: const EdgeInsets.symmetric(horizontal: 6),
+        width: 74,
+        height: 84,
         decoration: BoxDecoration(
-          color: isSelected ? accent.withValues(alpha: 0.15) : Colors.transparent,
+          color: isSelected ? accent.withValues(alpha: 0.15) : surface,
           borderRadius: BorderRadius.circular(12),
           border: Border.all(color: isSelected ? accent : Colors.grey.withValues(alpha: 0.3), width: isSelected ? 2 : 1),
+          boxShadow: isSelected ? AppShadows.ambient : null,
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(icon, color: isSelected ? accent : Colors.grey, size: 32),
-            const SizedBox(height: 8),
-            Text(label, style: TextStyle(color: isSelected ? accent : Colors.grey, fontSize: 12, fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal)),
+            Icon(icon, color: isSelected ? accent : textSecondary, size: 24),
+            const SizedBox(height: 6),
+            Text(label, style: TextStyle(color: isSelected ? accent : textPrimary, fontSize: 11, fontWeight: FontWeight.w600)),
           ],
         ),
       ),
@@ -379,6 +383,7 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
     final textPrimary = isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight;
     final textSecondary = isDark ? AppColors.textSecondaryDark : AppColors.textSecondaryLight;
     final accent = isDark ? AppColors.accentDark : AppColors.accentLight;
+    final border = isDark ? AppColors.borderSubtleDark : AppColors.borderSubtleLight;
 
     return Scaffold(
       backgroundColor: bg,
@@ -396,17 +401,15 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
               : Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    SizedBox(
-                      height: 100,
-                      child: ListView(
-                        scrollDirection: Axis.horizontal,
-                        children: [
-                          _buildModeCard('Document', Icons.description_outlined, _CaptureMode.docs),
-                          _buildModeCard('OCR Text', Icons.text_snippet_outlined, _CaptureMode.ocr),
-                          _buildModeCard('ID Card', Icons.credit_card_outlined, _CaptureMode.idCard),
-                          _buildModeCard('Passport', Icons.badge_outlined, _CaptureMode.passport),
-                        ],
-                      ),
+                    Wrap(
+                      spacing: AppSpacing.xs,
+                      runSpacing: AppSpacing.xs,
+                      children: [
+                        _buildModeCard('Document', Icons.description_outlined, _CaptureMode.docs),
+                        _buildModeCard('OCR Text', Icons.text_snippet_outlined, _CaptureMode.ocr),
+                        _buildModeCard('ID Card', Icons.credit_card_outlined, _CaptureMode.idCard),
+                        _buildModeCard('Passport', Icons.badge_outlined, _CaptureMode.passport),
+                      ],
                     ),
                     const SizedBox(height: AppSpacing.lg),
                     
