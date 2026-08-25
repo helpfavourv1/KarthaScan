@@ -1,4 +1,6 @@
 import 'dart:io';
+import 'dart:ui' as ui;
+import 'package:flutter/foundation.dart' show compute;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -21,6 +23,7 @@ import '../widgets/quick_action_pill.dart';
 import '../widgets/scan_preview_card.dart';
 import '../widgets/signature_canvas.dart';
 import '../widgets/tag_chip.dart';
+import '../widgets/overlay_placement_sheet.dart';
 
 class ScanDetailScreen extends StatefulWidget {
   const ScanDetailScreen({super.key, required this.documentId});
@@ -184,7 +187,25 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
 
     if (bytes == null || !mounted) return;
 
-    await _compositeAndSavePage(_currentPageIndex, bytes);
+    final placement = await showModalBottomSheet<(int, double, double, double, double)?>(
+      context: context,
+      isScrollControlled: true,
+      builder: (context) => OverlayPlacementSheet(
+        pagePaths: document.pagePaths,
+        overlayBytes: bytes,
+        title: 'Place Annotation',
+      ),
+    );
+
+    if (placement == null || !mounted) return;
+    await _compositeAndSavePage(
+      placement.$1,
+      bytes,
+      pctX: placement.$2,
+      pctY: placement.$3,
+      rotationDegrees: placement.$4,
+      scale: placement.$5,
+    );
   }
 
   Future<void> _addSignature() async {
@@ -200,12 +221,13 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
 
     if (signatureBytes == null || !mounted) return;
 
-    final placement = await showModalBottomSheet<(int, double, double, double)?>(
+    final placement = await showModalBottomSheet<(int, double, double, double, double)?>(
       context: context,
       isScrollControlled: true,
-      builder: (context) => _SignaturePlacementSheet(
+      builder: (context) => OverlayPlacementSheet(
         pagePaths: document.pagePaths,
-        signatureBytes: signatureBytes,
+        overlayBytes: signatureBytes,
+        title: 'Place Signature',
       ),
     );
 
@@ -216,8 +238,102 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
         placement.$2,
         placement.$3,
         placement.$4,
+        scale: placement.$5,
       );
     }
+  }
+
+  Future<void> _addWatermark() async {
+    final document = _document;
+    if (document == null || document.pagePaths.isEmpty) return;
+
+    final textController = TextEditingController(text: 'CONFIDENTIAL');
+    double opacity = 0.15;
+    double fontSize = 48;
+    Color color = const Color(0xFF8E8E93);
+
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (ctx) => StatefulBuilder(
+        builder: (ctx, setDialogState) => AlertDialog(
+          title: const Text('Add Watermark'),
+          content: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                TextField(
+                  controller: textController,
+                  decoration: const InputDecoration(labelText: 'Text'),
+                ),
+                const SizedBox(height: 16),
+                Text('Opacity: ${opacity.toStringAsFixed(2)}'),
+                Slider(
+                  value: opacity,
+                  min: 0.05,
+                  max: 0.5,
+                  onChanged: (v) => setDialogState(() => opacity = v),
+                ),
+                Text('Size: ${fontSize.round()}'),
+                Slider(
+                  value: fontSize,
+                  min: 12,
+                  max: 96,
+                  onChanged: (v) => setDialogState(() => fontSize = v),
+                ),
+              ],
+            ),
+          ),
+          actions: [
+            TextButton(onPressed: () => Navigator.pop(ctx, false), child: const Text('Cancel')),
+            TextButton(onPressed: () => Navigator.pop(ctx, true), child: const Text('Add')),
+          ],
+        ),
+      ),
+    );
+
+    final watermarkText = textController.text;  // ✅ capture before dispose
+    textController.dispose();
+    if (confirmed != true || !mounted) return;
+
+    final bytes = await _renderWatermarkPng(watermarkText, opacity, fontSize, color);
+    if (bytes == null || !mounted) return;
+
+    final placement = await showModalBottomSheet<(int, double, double, double, double)?>(
+      context: context,
+      isScrollControlled: true,
+      builder: (context) => OverlayPlacementSheet(
+        pagePaths: document.pagePaths,
+        overlayBytes: bytes,
+        title: 'Place Watermark',
+      ),
+    );
+    if (placement == null || !mounted) return;
+    await _compositeAndSavePage(
+      placement.$1,
+      bytes,
+      pctX: placement.$2,
+      pctY: placement.$3,
+      rotationDegrees: placement.$4,
+      scale: placement.$5,
+    );
+  }
+
+  Future<Uint8List?> _renderWatermarkPng(String text, double opacity, double fontSize, Color color) async {
+    if (text.isEmpty) return null;
+    final paragraphBuilder = ui.ParagraphBuilder(ui.ParagraphStyle(
+      textAlign: TextAlign.center,
+      fontSize: fontSize,
+      fontWeight: FontWeight.w700,
+    ))
+      ..pushStyle(ui.TextStyle(color: color.withValues(alpha: opacity)))
+      ..addText(text);
+    final paragraph = paragraphBuilder.build()
+      ..layout(const ui.ParagraphConstraints(width: 600));
+    final ui.Image image = await paragraph.toImage(600, (fontSize * 1.4).round());
+    final ByteData? byteData = await image.toByteData(format: ui.ImageByteFormat.png);
+    if (byteData == null) return null;
+    return byteData.buffer.asUint8List();
   }
 
   Future<void> _regionOcr() async {
@@ -278,22 +394,21 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
     }
   }
 
-  Future<void> _compositeAndSavePage(int pageIndex, Uint8List overlayBytes) async {
+  Future<void> _compositeAndSavePage(int pageIndex, Uint8List overlayBytes, {double pctX = 0.5, double pctY = 0.5, double rotationDegrees = 0, double scale = 1.0}) async {
     final document = _document;
     if (document == null) return;
 
+    setState(() { /* show progress if needed */ });
     try {
       final originalBytes = await File(document.pagePaths[pageIndex]).readAsBytes();
-      final originalImage = img.decodeImage(originalBytes);
-      if (originalImage == null) return;
-
-      var overlayImage = img.decodePng(overlayBytes);
-      if (overlayImage == null) return;
-
-      overlayImage = img.copyResize(overlayImage, width: originalImage.width, height: originalImage.height);
-
-      final composite = img.compositeImage(originalImage, overlayImage);
-      final finalBytes = Uint8List.fromList(img.encodeJpg(composite, quality: 95));
+      final finalBytes = await compute(_compositeOverlayIsolate, {
+        'original': originalBytes,
+        'overlay': overlayBytes,
+        'pctX': pctX,
+        'pctY': pctY,
+        'rotation': rotationDegrees,
+        'scale': scale,
+      });
 
       final appDir = await getApplicationDocumentsDirectory();
       final scansDir = Directory(p.join(appDir.path, 'annotated_pages'));
@@ -313,31 +428,20 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
     }
   }
 
-  Future<void> _compositeSignatureOnPage(int pageIndex, Uint8List signatureBytes, double pctX, double pctY, double rotation) async {
+  Future<void> _compositeSignatureOnPage(int pageIndex, Uint8List signatureBytes, double pctX, double pctY, double rotation, {double scale = 1.0}) async {
     final document = _document;
     if (document == null) return;
 
     try {
       final originalBytes = await File(document.pagePaths[pageIndex]).readAsBytes();
-      final originalImage = img.decodeImage(originalBytes);
-      if (originalImage == null) return;
-
-      var signatureImage = img.decodePng(signatureBytes);
-      if (signatureImage == null) return;
-
-      final targetWidth = (originalImage.width * 0.28).round();
-      final targetHeight = (signatureImage.height * targetWidth / signatureImage.width).round();
-      signatureImage = img.copyResize(signatureImage, width: targetWidth, height: targetHeight);
-
-      if (rotation != 0) {
-        signatureImage = img.copyRotate(signatureImage, angle: rotation);
-      }
-
-      final dstX = (pctX * originalImage.width).round() - (signatureImage.width ~/ 2);
-      final dstY = (pctY * originalImage.height).round() - (signatureImage.height ~/ 2);
-
-      final composite = img.compositeImage(originalImage, signatureImage, dstX: dstX, dstY: dstY);
-      final finalBytes = Uint8List.fromList(img.encodeJpg(composite, quality: 95));
+      final finalBytes = await compute(_compositeSignatureIsolate, {
+        'original': originalBytes,
+        'signature': signatureBytes,
+        'pctX': pctX,
+        'pctY': pctY,
+        'rotation': rotation,
+        'scale': scale,
+      });
 
       final appDir = await getApplicationDocumentsDirectory();
       final scansDir = Directory(p.join(appDir.path, 'signed_pages'));
@@ -398,6 +502,22 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
                   ),
                 ),
                 actions: [
+                  PopupMenuButton<String>(
+                    icon: Icon(Icons.add_circle_outline, color: textSecondary),
+                    tooltip: 'Add Layer',
+                    onSelected: (action) {
+                      switch (action) {
+                        case 'annotate': _annotate(); break;
+                        case 'sign': _addSignature(); break;
+                        case 'watermark': _addWatermark(); break;
+                      }
+                    },
+                    itemBuilder: (context) => [
+                      const PopupMenuItem(value: 'annotate', child: Row(children: [Icon(Icons.highlight_outlined, size: 20), SizedBox(width: 8), Text('Annotate')])),
+                      const PopupMenuItem(value: 'sign', child: Row(children: [Icon(Icons.draw_outlined, size: 20), SizedBox(width: 8), Text('Sign')])),
+                      const PopupMenuItem(value: 'watermark', child: Row(children: [Icon(Icons.text_fields, size: 20), SizedBox(width: 8), Text('Watermark')])),
+                    ],
+                  ),
                   IconButton(
                     icon: Icon(Icons.drive_file_move_outlined, color: textSecondary),
                     tooltip: l10n.moveToFolderTooltip,
@@ -941,4 +1061,60 @@ class _FolderPickerSheet extends StatelessWidget {
       ),
     );
   }
+}
+
+
+// Top-level functions for compute() isolate
+Uint8List _compositeOverlayIsolate(Map<String, dynamic> args) {
+  final original = img.decodeImage(args['original'] as Uint8List);
+  var overlay = img.decodePng(args['overlay'] as Uint8List);
+  if (original == null || overlay == null) {
+    return args['original'] as Uint8List;
+  }
+  overlay = img.copyResize(overlay, width: original.width, height: original.height);
+  final scale = (args['scale'] as double?) ?? 1.0;
+  final pctX = (args['pctX'] as double?) ?? 0.5;
+  final pctY = (args['pctY'] as double?) ?? 0.5;
+  final rotation = (args['rotation'] as double?) ?? 0.0;
+
+  if (rotation != 0) overlay = img.copyRotate(overlay, angle: rotation);
+  if (scale != 1.0) {
+    final newW = (overlay.width * scale).round();
+    final newH = (overlay.height * scale).round();
+    overlay = img.copyResize(overlay, width: newW, height: newH);
+  }
+
+  final dstX = (pctX * original.width).round() - (overlay.width ~/ 2);
+  final dstY = (pctY * original.height).round() - (overlay.height ~/ 2);
+
+  final composite = img.compositeImage(original, overlay, dstX: dstX, dstY: dstY);
+  return Uint8List.fromList(img.encodeJpg(composite, quality: 95));
+}
+
+Uint8List _compositeSignatureIsolate(Map<String, dynamic> args) {
+  final original = img.decodeImage(args['original'] as Uint8List);
+  var signature = img.decodePng(args['signature'] as Uint8List);
+  if (original == null || signature == null) {
+    return args['original'] as Uint8List;
+  }
+  final targetWidth = (original.width * 0.28).round();
+  final targetHeight = (signature.height * targetWidth / signature.width).round();
+  signature = img.copyResize(signature, width: targetWidth, height: targetHeight);
+
+  final rotation = (args['rotation'] as double?) ?? 0.0;
+  final scale = (args['scale'] as double?) ?? 1.0;
+  if (rotation != 0) signature = img.copyRotate(signature, angle: rotation);
+  if (scale != 1.0) {
+    final newW = (signature.width * scale).round();
+    final newH = (signature.height * scale).round();
+    signature = img.copyResize(signature, width: newW, height: newH);
+  }
+
+  final pctX = (args['pctX'] as double?) ?? 0.5;
+  final pctY = (args['pctY'] as double?) ?? 0.5;
+  final dstX = (pctX * original.width).round() - (signature.width ~/ 2);
+  final dstY = (pctY * original.height).round() - (signature.height ~/ 2);
+
+  final composite = img.compositeImage(original, signature, dstX: dstX, dstY: dstY);
+  return Uint8List.fromList(img.encodeJpg(composite, quality: 95));
 }

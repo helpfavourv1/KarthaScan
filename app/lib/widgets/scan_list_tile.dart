@@ -117,6 +117,7 @@ class ScanListTile extends StatelessWidget {
                     PopupMenuItem(value: 'rename', child: const Row(children: [Icon(Icons.edit_outlined, size: 20), SizedBox(width: 8), Text('Rename')])),
                     PopupMenuItem(value: 'folder', child: const Row(children: [Icon(Icons.folder_outlined, size: 20), SizedBox(width: 8), Text('Move to Folder')])),
                     PopupMenuItem(value: 'tags', child: const Row(children: [Icon(Icons.label_outline, size: 20), SizedBox(width: 8), Text('Add Tags')])),
+                    PopupMenuItem(value: 'edit', child: const Row(children: [Icon(Icons.edit_outlined, size: 20), SizedBox(width: 8), Text('Edit Document')])),
                     const PopupMenuDivider(),
                     PopupMenuItem(value: 'export', child: const Row(children: [Icon(Icons.file_download_outlined, size: 20), SizedBox(width: 8), Text('Export')])),
                     PopupMenuItem(value: 'share', child: const Row(children: [Icon(Icons.ios_share, size: 20), SizedBox(width: 8), Text('Share')])),

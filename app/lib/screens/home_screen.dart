@@ -14,12 +14,15 @@ import '../l10n/app_localizations.dart';
 import '../widgets/empty_state.dart';
 import '../widgets/folder_list_tile.dart';
 import 'dart:io';
+import 'dart:ui' as ui;
+import 'package:flutter/foundation.dart' show compute;
 import 'package:flutter/services.dart';
 import 'package:image/image.dart' as img;
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
 import '../core/services/ocr_service.dart';
 import '../widgets/annotation_overlay.dart';
+import '../widgets/overlay_placement_sheet.dart';
 import '../widgets/scan_list_tile.dart';
 import '../widgets/tool_tile.dart';
 import 'package:phosphoricons_flutter/phosphoricons_flutter.dart';
@@ -193,6 +196,9 @@ class _HomeScreenState extends State<HomeScreen> {
         break;
       case 'delete':
         _deleteDocument(document, l10n);
+        break;
+      case 'edit':
+        context.push('/scan/${document.id}');
         break;
     }
   }
@@ -420,7 +426,24 @@ class _HomeScreenState extends State<HomeScreen> {
       builder: (c) => _HomeAnnotationSheet(annotationKey: annotationKey),
     );
     if (bytes == null || !mounted) return;
-    await _compositeOverlayOnPage(doc, 0, bytes);
+    final placement = await showModalBottomSheet<(int, double, double, double, double)?>(
+      context: context,
+      isScrollControlled: true,
+      builder: (c) => OverlayPlacementSheet(
+        pagePaths: doc.pagePaths,
+        overlayBytes: bytes,
+        title: 'Place Annotation',
+      ),
+    );
+    if (placement == null || !mounted) return;
+    await _compositeOverlayOnPage(
+      placement.$1,
+      bytes,
+      pctX: placement.$2,
+      pctY: placement.$3,
+      rotationDegrees: placement.$4,
+      scale: placement.$5,
+    );
   }
 
   Future<void> _openRegionOcr() async {
@@ -476,16 +499,17 @@ class _HomeScreenState extends State<HomeScreen> {
     }
   }
 
-  Future<void> _compositeOverlayOnPage(ScanDocument doc, int pageIndex, Uint8List overlayBytes) async {
+  Future<void> _compositeOverlayOnPage(ScanDocument doc, int pageIndex, Uint8List overlayBytes, {double pctX = 0.5, double pctY = 0.5, double rotationDegrees = 0, double scale = 1.0}) async {
     try {
       final originalBytes = await File(doc.pagePaths[pageIndex]).readAsBytes();
-      final originalImage = img.decodeImage(originalBytes);
-      if (originalImage == null) return;
-      var overlayImage = img.decodePng(overlayBytes);
-      if (overlayImage == null) return;
-      overlayImage = img.copyResize(overlayImage, width: originalImage.width, height: originalImage.height);
-      final composite = img.compositeImage(originalImage, overlayImage);
-      final finalBytes = Uint8List.fromList(img.encodeJpg(composite, quality: 95));
+      final finalBytes = await compute(_homeCompositeIsolate, {
+        'original': originalBytes,
+        'overlay': overlayBytes,
+        'pctX': pctX,
+        'pctY': pctY,
+        'rotation': rotationDegrees,
+        'scale': scale,
+      });
       final appDir = await getApplicationDocumentsDirectory();
       final dir = Directory(p.join(appDir.path, 'annotated_pages'));
       await dir.create(recursive: true);
@@ -494,10 +518,93 @@ class _HomeScreenState extends State<HomeScreen> {
       final newPaths = List<String>.from(doc.pagePaths);
       newPaths[pageIndex] = newPath;
       await _scanProvider.updateDocumentPages(doc.id, newPaths);
-      if (mounted) ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Annotation saved')));
+      if (mounted) ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Layer saved')));
     } catch (e) {
       if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Error: $e')));
     }
+  }
+
+  Future<void> _openWatermark() async {
+    if (_scanProvider.documents.value.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Scan a document first.')));
+      return;
+    }
+    final selectedId = await showModalBottomSheet<String>(
+      context: context,
+      builder: (ctx) => _DocumentPickerSheet(documents: _scanProvider.documents.value),
+    );
+    if (selectedId == null || !mounted) return;
+    final doc = _scanProvider.documents.value.firstWhere((d) => d.id == selectedId);
+    if (doc.pagePaths.isEmpty) return;
+
+    final textController = TextEditingController(text: 'CONFIDENTIAL');
+    double opacity = 0.15;
+    double fontSize = 48;
+
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (ctx) => StatefulBuilder(
+        builder: (ctx, setDialogState) => AlertDialog(
+          title: const Text('Add Watermark'),
+          content: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                TextField(controller: textController, decoration: const InputDecoration(labelText: 'Text')),
+                const SizedBox(height: 16),
+                Text('Opacity: ${opacity.toStringAsFixed(2)}'),
+                Slider(value: opacity, min: 0.05, max: 0.5, onChanged: (v) => setDialogState(() => opacity = v)),
+                Text('Size: ${fontSize.round()}'),
+                Slider(value: fontSize, min: 12, max: 96, onChanged: (v) => setDialogState(() => fontSize = v)),
+              ],
+            ),
+          ),
+          actions: [
+            TextButton(onPressed: () => Navigator.pop(ctx, false), child: const Text('Cancel')),
+            TextButton(onPressed: () => Navigator.pop(ctx, true), child: const Text('Add')),
+          ],
+        ),
+      ),
+    );
+
+    final watermarkText = textController.text;  // ✅ capture before dispose
+    textController.dispose();
+    if (confirmed != true || !mounted) return;
+
+    final bytes = await _homeRenderWatermark(watermarkText, opacity, fontSize);
+    if (bytes == null || !mounted) return;
+
+    final placement = await showModalBottomSheet<(int, double, double, double, double)?>(
+      context: context,
+      isScrollControlled: true,
+      builder: (c) => OverlayPlacementSheet(
+        pagePaths: doc.pagePaths,
+        overlayBytes: bytes,
+        title: 'Place Watermark',
+      ),
+    );
+    if (placement == null || !mounted) return;
+    await _compositeOverlayOnPage(
+      placement.$1,
+      bytes,
+      pctX: placement.$2,
+      pctY: placement.$3,
+      rotationDegrees: placement.$4,
+      scale: placement.$5,
+    );
+  }
+
+  Future<Uint8List?> _homeRenderWatermark(String text, double opacity, double fontSize) async {
+    if (text.isEmpty) return null;
+    final pb = ui.ParagraphBuilder(ui.ParagraphStyle(textAlign: TextAlign.center, fontSize: fontSize, fontWeight: FontWeight.w700))
+      ..pushStyle(ui.TextStyle(color: const Color(0xFF8E8E93).withValues(alpha: opacity)))
+      ..addText(text);
+    final paragraph = pb.build()..layout(const ui.ParagraphConstraints(width: 600));
+    final ui.Image image = await paragraph.toImage(600, (fontSize * 1.4).round());
+    final ByteData? bd = await image.toByteData(format: ui.ImageByteFormat.png);
+    if (bd == null) return null;
+    return bd.buffer.asUint8List();
   }
 
   PreferredSizeWidget _buildDefaultAppBar(Color bg, Color textPrimary, Color textSecondary, Color accent, AppLocalizations l10n) {
@@ -610,6 +717,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: [
                   ToolTile(icon: PhosphorIconsRegular.highlighter, label: 'Annotate', onTap: _openAnnotate),
                   ToolTile(icon: PhosphorIconsRegular.pen, label: 'Sign', onTap: () => _pickDocumentForExport(null)),
+                  ToolTile(icon: PhosphorIconsRegular.textbox, label: 'Watermark', onTap: _openWatermark),
                   ToolTile(icon: PhosphorIconsRegular.crop, label: 'Region OCR', onTap: _openRegionOcr),
                   ToolTile(icon: PhosphorIconsRegular.fileText, label: 'Convert', onTap: () => _pickDocumentForExport(null)),
                   ToolTile(icon: PhosphorIconsRegular.scan, label: 'Scan ID', onTap: () => context.push('/manual-crop')),
@@ -992,4 +1100,24 @@ class _HomeRegionSelectSheetState extends State<_HomeRegionSelectSheet> {
       ),
     );
   }
+}
+
+
+Uint8List _homeCompositeIsolate(Map<String, dynamic> args) {
+  final original = img.decodeImage(args['original'] as Uint8List);
+  var overlay = img.decodePng(args['overlay'] as Uint8List);
+  if (original == null || overlay == null) return args['original'] as Uint8List;
+  overlay = img.copyResize(overlay, width: original.width, height: original.height);
+  final scale = (args['scale'] as double?) ?? 1.0;
+  final pctX = (args['pctX'] as double?) ?? 0.5;
+  final pctY = (args['pctY'] as double?) ?? 0.5;
+  final rotation = (args['rotation'] as double?) ?? 0.0;
+  if (rotation != 0) overlay = img.copyRotate(overlay, angle: rotation);
+  if (scale != 1.0) {
+    overlay = img.copyResize(overlay, width: (overlay.width * scale).round(), height: (overlay.height * scale).round());
+  }
+  final dstX = (pctX * original.width).round() - (overlay.width ~/ 2);
+  final dstY = (pctY * original.height).round() - (overlay.height ~/ 2);
+  final composite = img.compositeImage(original, overlay, dstX: dstX, dstY: dstY);
+  return Uint8List.fromList(img.encodeJpg(composite, quality: 95));
 }
