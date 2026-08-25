@@ -1,36 +1,32 @@
 <svg width="1024" height="1024" viewBox="0 0 1024 1024" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="blue" x1="108" y1="160" x2="916" y2="864" gradientUnits="userSpaceOnUse">
+    <linearGradient id="blue" x1="88" y1="120" x2="936" y2="904" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#0A84FF"/>
       <stop offset="1" stop-color="#0051D5"/>
     </linearGradient>
-    <linearGradient id="ink" x1="300" y1="380" x2="724" y2="640" gradientUnits="userSpaceOnUse">
+    <linearGradient id="ink" x1="256" y1="350" x2="768" y2="650" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#0A84FF"/>
       <stop offset="1" stop-color="#0040C8"/>
     </linearGradient>
   </defs>
 
-  <!-- White full field -->
+  <!-- Premium white canvas (no black anywhere) -->
   <rect width="1024" height="1024" fill="#FFFFFF"/>
 
-  <!-- THIN meandering line around the outer boundary -->
-  <path d="M96 200 C 200 140 320 180 512 150 C 704 120 824 140 928 200 C 968 320 940 420 952 512 C 964 604 968 704 928 824 C 824 884 704 864 512 894 C 320 924 200 884 96 824 C 56 704 84 604 72 512 C 60 420 56 320 96 200 Z"
-        stroke="#000000" stroke-width="14" fill="none" stroke-linecap="round"/>
+  <!-- MAX blue meandering ribbon, centered -->
+  <path d="M120 400 C 220 160 400 300 512 210 C 624 120 804 160 904 360 C 936 470 936 554 904 664 C 804 864 624 724 512 814 C 400 904 220 864 120 664 C 88 554 88 470 120 400 Z" fill="url(#blue)"/>
 
-  <!-- ENLARGED thick blue meandering ribbon -->
-  <path d="M136 350 C 250 180 400 320 512 240 C 624 160 774 180 888 350 C 916 460 916 564 888 674 C 774 844 624 704 512 784 C 400 864 250 844 136 674 C 108 564 108 460 136 350 Z" fill="url(#blue)"/>
-
-  <!-- ENLARGED scanner body -->
-  <rect x="272" y="300" width="480" height="424" rx="36" fill="#FFFFFF" stroke="#E5E5EA" stroke-width="6"/>
+  <!-- MAX scanner body, centered -->
+  <rect x="232" y="272" width="560" height="480" rx="40" fill="#FFFFFF" stroke="#E5E5EA" stroke-width="6"/>
   <!-- Glass -->
-  <rect x="296" y="340" width="432" height="296" rx="16" fill="#F2F2F7" stroke="#D1D1D6" stroke-width="4"/>
+  <rect x="256" y="308" width="512" height="336" rx="18" fill="#F2F2F7" stroke="#D1D1D6" stroke-width="4"/>
   <!-- Control panel + buttons -->
-  <rect x="296" y="656" width="432" height="36" rx="9" fill="#E8E8ED"/>
-  <circle cx="344" cy="674" r="9" fill="#007AFF"/>
-  <circle cx="388" cy="674" r="9" fill="#34C759"/>
-  <circle cx="432" cy="674" r="9" fill="#FF9500"/>
+  <rect x="256" y="668" width="512" height="40" rx="10" fill="#E8E8ED"/>
+  <circle cx="308" cy="688" r="10" fill="#007AFF"/>
+  <circle cx="356" cy="688" r="10" fill="#34C759"/>
+  <circle cx="404" cy="688" r="10" fill="#FF9500"/>
 
-  <!-- GIANT bold script -->
-  <text x="512" y="492" font-family="'Snell Roundhand', 'Brush Script MT', 'Apple Chancery', 'Segoe Script', cursive" font-size="170" font-weight="900" fill="url(#ink)" stroke="url(#ink)" stroke-width="9" stroke-linejoin="round" text-anchor="middle">Sign</text>
-  <text x="512" y="616" font-family="'Snell Roundhand', 'Brush Script MT', 'Apple Chancery', 'Segoe Script', cursive" font-size="120" font-weight="900" fill="url(#ink)" stroke="url(#ink)" stroke-width="7" stroke-linejoin="round" text-anchor="middle" letter-spacing="2">+ OCR</text>
+  <!-- MAX bold script, centered -->
+  <text x="512" y="500" font-family="'Snell Roundhand', 'Brush Script MT', 'Apple Chancery', 'Segoe Script', cursive" font-size="200" font-weight="900" fill="url(#ink)" stroke="url(#ink)" stroke-width="10" stroke-linejoin="round" text-anchor="middle">Sign</text>
+  <text x="512" y="632" font-family="'Snell Roundhand', 'Brush Script MT', 'Apple Chancery', 'Segoe Script', cursive" font-size="140" font-weight="900" fill="url(#ink)" stroke="url(#ink)" stroke-width="8" stroke-linejoin="round" text-anchor="middle" letter-spacing="2">+ OCR</text>
 </svg>
