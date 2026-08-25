@@ -70,6 +70,12 @@ List<ExportFormatOption> _exportFormatOptions(AppLocalizations l10n) {
       description: l10n.exportFormatPngDescription,
       icon: Icons.image_outlined,
     ),
+    ExportFormatOption(
+      format: ExportFormat.csv,
+      label: 'CSV',
+      description: 'Spreadsheet data',
+      icon: Icons.table_chart_outlined,
+    ),
   ];
 }
 
