@@ -597,14 +597,23 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Future<Uint8List?> _homeRenderWatermark(String text, double opacity, double fontSize) async {
     if (text.isEmpty) return null;
-    final pb = ui.ParagraphBuilder(ui.ParagraphStyle(textAlign: TextAlign.center, fontSize: fontSize, fontWeight: FontWeight.w700))
+    final recorder = ui.PictureRecorder();
+    final canvas = Canvas(recorder);
+    final pb = ui.ParagraphBuilder(ui.ParagraphStyle(
+      textAlign: TextAlign.center,
+      fontSize: fontSize,
+      fontWeight: FontWeight.w700,
+    ))
       ..pushStyle(ui.TextStyle(color: const Color(0xFF8E8E93).withValues(alpha: opacity)))
       ..addText(text);
-    final paragraph = pb.build()..layout(const ui.ParagraphConstraints(width: 600));
-    final ui.Image image = await paragraph.toImage(600, (fontSize * 1.4).round());
-    final ByteData? bd = await image.toByteData(format: ui.ImageByteFormat.png);
-    if (bd == null) return null;
-    return bd.buffer.asUint8List();
+    final paragraph = pb.build()
+      ..layout(const ui.ParagraphConstraints(width: 600));
+    canvas.drawParagraph(paragraph, Offset.zero);
+    final picture = recorder.endRecording();
+    final image = await picture.toImage(600, (fontSize * 1.4).round());
+    final ByteData? byteData = await image.toByteData(format: ui.ImageByteFormat.png);
+    if (byteData == null) return null;
+    return byteData.buffer.asUint8List();
   }
 
   PreferredSizeWidget _buildDefaultAppBar(Color bg, Color textPrimary, Color textSecondary, Color accent, AppLocalizations l10n) {
@@ -683,6 +692,11 @@ class _HomeScreenState extends State<HomeScreen> {
         if (_scanProvider.isLoading.value) return const Center(child: CircularProgressIndicator());
         final allDocuments = _scanProvider.documents.value;
         final allFolders = _folderProvider.folders.value;
+        final isDark = Theme.of(context).brightness == Brightness.dark;
+        final surface = isDark ? AppColors.bgSecondaryDark : AppColors.bgSecondaryLight;
+        final textPrimary = isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight;
+        final accent = isDark ? AppColors.accentDark : AppColors.accentLight;
+
 
         if (_selectedFilter == 1) {
           return ListView(

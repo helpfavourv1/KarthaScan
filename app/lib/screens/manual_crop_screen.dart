@@ -383,7 +383,6 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
     final textPrimary = isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight;
     final textSecondary = isDark ? AppColors.textSecondaryDark : AppColors.textSecondaryLight;
     final accent = isDark ? AppColors.accentDark : AppColors.accentLight;
-    final border = isDark ? AppColors.borderSubtleDark : AppColors.borderSubtleLight;
 
     return Scaffold(
       backgroundColor: bg,

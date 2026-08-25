@@ -321,6 +321,8 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
 
   Future<Uint8List?> _renderWatermarkPng(String text, double opacity, double fontSize, Color color) async {
     if (text.isEmpty) return null;
+    final recorder = ui.PictureRecorder();
+    final canvas = Canvas(recorder);
     final paragraphBuilder = ui.ParagraphBuilder(ui.ParagraphStyle(
       textAlign: TextAlign.center,
       fontSize: fontSize,
@@ -330,7 +332,9 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
       ..addText(text);
     final paragraph = paragraphBuilder.build()
       ..layout(const ui.ParagraphConstraints(width: 600));
-    final ui.Image image = await paragraph.toImage(600, (fontSize * 1.4).round());
+    canvas.drawParagraph(paragraph, Offset.zero);
+    final picture = recorder.endRecording();
+    final image = await picture.toImage(600, (fontSize * 1.4).round());
     final ByteData? byteData = await image.toByteData(format: ui.ImageByteFormat.png);
     if (byteData == null) return null;
     return byteData.buffer.asUint8List();
