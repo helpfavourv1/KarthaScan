@@ -116,7 +116,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     subtitle: Text('Copy text to clipboard after scan', style: TextStyle(color: textSecondary, fontSize: AppTypography.footnoteSize)),
                     value: _settingsProvider.settings.value.autoCopyOcr,
                     onChanged: (value) => _settingsProvider.setAutoCopyOcr(value),
-                    activeColor: accent,
+                    activeThumbColor: accent,
                     tileColor: Colors.transparent,
                   ),
                   SwitchListTile(
@@ -124,7 +124,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     subtitle: Text('Play sound when scan completes', style: TextStyle(color: textSecondary, fontSize: AppTypography.footnoteSize)),
                     value: _settingsProvider.settings.value.beepOnCapture,
                     onChanged: (value) => _settingsProvider.setBeepOnCapture(value),
-                    activeColor: accent,
+                    activeThumbColor: accent,
                     tileColor: Colors.transparent,
                   ),
                   SwitchListTile(
@@ -132,7 +132,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     subtitle: Text('Haptic feedback when scan completes', style: TextStyle(color: textSecondary, fontSize: AppTypography.footnoteSize)),
                     value: _settingsProvider.settings.value.vibrateOnCapture,
                     onChanged: (value) => _settingsProvider.setVibrateOnCapture(value),
-                    activeColor: accent,
+                    activeThumbColor: accent,
                     tileColor: Colors.transparent,
                   ),
                 ],

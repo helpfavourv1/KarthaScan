@@ -19,7 +19,6 @@ import '../core/services/doc_scanner_service.dart';
 import '../core/services/export_service.dart';
 import '../core/services/ocr_service.dart';
 import '../core/utils/constants.dart';
-import '../l10n/app_localizations.dart';
 
 enum _Stage { pickImage, saving }
 enum _CaptureMode { docs, ocr, idCard, passport }
@@ -72,7 +71,7 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
       case _CaptureMode.idCard:
         return [CropAspectRatioPreset.ratio3x2, CropAspectRatioPreset.original]; // Standard ID landscape
       case _CaptureMode.passport:
-        return [CropAspectRatioPreset.ratio3x4, CropAspectRatioPreset.ratio4x3]; // Passport portrait/landscape
+        return [CropAspectRatioPreset.ratio4x3, CropAspectRatioPreset.original]; // Passport portrait/landscape
     }
   }
 
@@ -289,6 +288,7 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
           await _exportIdCard();
         } else {
           setState(() => _stage = _Stage.pickImage);
+          if (!mounted) return;
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(content: Text('Front side captured. Now capture the back side.'), duration: Duration(seconds: 2)),
           );
@@ -404,7 +404,7 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
                           _buildModeCard('Document', Icons.description_outlined, _CaptureMode.docs),
                           _buildModeCard('OCR Text', Icons.text_snippet_outlined, _CaptureMode.ocr),
                           _buildModeCard('ID Card', Icons.credit_card_outlined, _CaptureMode.idCard),
-                          _buildModeCard('Passport', Icons.passport_outlined, _CaptureMode.passport),
+                          _buildModeCard('Passport', Icons.badge_outlined, _CaptureMode.passport),
                         ],
                       ),
                     ),

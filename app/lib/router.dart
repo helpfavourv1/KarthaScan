@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import 'core/models/export_job.dart';
 import 'screens/debug_logs_screen.dart';
 import 'screens/export_screen.dart';
-import 'core/models/export_job.dart';
 import 'screens/folder_screen.dart';
 import 'screens/home_screen.dart';
 import 'screens/manual_crop_screen.dart';
@@ -44,19 +44,21 @@ GoRouter buildRouter({String initialLocation = '/'}) {
         builder: (BuildContext context, GoRouterState state) => const SettingsScreen(),
       ),
       GoRoute(
-      GoRoute(
         path: '/export',
         builder: (BuildContext context, GoRouterState state) {
-          final extra = state.extra;
+          final Object? extra = state.extra;
           List<String> documentIds = const <String>[];
           ExportFormat? initialFormat;
           if (extra is List<String>) {
             documentIds = extra;
           } else if (extra is Map<String, dynamic>) {
             documentIds = (extra['ids'] as List<String>?) ?? const <String>[];
-            final formatName = extra['format'] as String?;
+            final String? formatName = extra['format'] as String?;
             if (formatName != null) {
-              initialFormat = ExportFormat.values.firstWhere((e) => e.name == formatName, orElse: () => ExportFormat.pdf);
+              initialFormat = ExportFormat.values.firstWhere(
+                (ExportFormat e) => e.name == formatName,
+                orElse: () => ExportFormat.pdf,
+              );
             }
           }
           return ExportScreen(documentIds: documentIds, initialFormat: initialFormat);

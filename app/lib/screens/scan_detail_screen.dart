@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -701,7 +700,7 @@ class _RegionSelectSheetState extends State<_RegionSelectSheet> {
                                       child: Container(
                                         decoration: BoxDecoration(
                                           border: Border.all(color: Colors.blue, width: 2),
-                                          color: Colors.blue.withOpacity(0.2),
+                                          color: Colors.blue.withValues(alpha: 0.2),
                                         ),
                                       ),
                                     ),
