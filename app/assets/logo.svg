@@ -1,47 +1,37 @@
 <svg width="1024" height="1024" viewBox="0 0 1024 1024" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="blue" x1="188" y1="236" x2="852" y2="788" gradientUnits="userSpaceOnUse">
+    <linearGradient id="blue" x1="140" y1="180" x2="884" y2="864" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#0A84FF"/>
       <stop offset="1" stop-color="#0051D5"/>
     </linearGradient>
-    <linearGradient id="ink" x1="336" y1="480" x2="688" y2="610" gradientUnits="userSpaceOnUse">
+    <linearGradient id="ink" x1="336" y1="380" x2="688" y2="620" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#0A84FF"/>
       <stop offset="1" stop-color="#0040C8"/>
     </linearGradient>
   </defs>
 
-  <!-- Black outer field (iOS-opaque) -->
-  <rect width="1024" height="1024" fill="#000000"/>
+  <!-- White full field (no black on horizontal edges) -->
+  <rect width="1024" height="1024" fill="#FFFFFF"/>
 
-  <!-- White space ring between black and blue -->
-  <rect x="70" y="70" width="884" height="884" rx="200" fill="#FFFFFF"/>
+  <!-- Black LEFT vertical edge, shaped top & bottom ends -->
+  <path d="M0 176 C 64 132 104 140 120 208 L120 816 C 104 884 64 892 0 848 Z" fill="#000000"/>
+  <!-- Black RIGHT vertical edge, shaped top & bottom ends -->
+  <path d="M1024 176 C 960 132 920 140 904 208 L904 816 C 920 884 960 892 1024 848 Z" fill="#000000"/>
 
-  <!-- Blue meandering ribbon with thick vertical terminations -->
-  <path d="M188 340 C 296 236 408 332 512 292 C 616 252 728 240 836 340 C 852 456 852 568 836 684 C 728 788 616 692 512 732 C 408 772 296 788 188 684 C 172 568 172 456 188 340 Z" fill="url(#blue)"/>
+  <!-- THICK blue meandering ribbon -->
+  <path d="M140 340 C 250 180 400 320 512 240 C 624 160 774 180 884 340 C 912 460 912 564 884 684 C 774 844 624 704 512 784 C 400 864 250 844 140 684 C 120 564 120 460 140 340 Z" fill="url(#blue)"/>
 
-  <!-- Scanner device body with visible structure -->
-  <rect x="296" y="336" width="432" height="352" rx="32" fill="#FFFFFF" stroke="#E5E5EA" stroke-width="6"/>
-  
-  <!-- Scanner glass surface (larger, more prominent) -->
-  <rect x="316" y="376" width="392" height="240" rx="16" fill="#F2F2F7" stroke="#D1D1D6" stroke-width="4"/>
-  
-  <!-- Scanner control panel at bottom -->
+  <!-- Scanner body -->
+  <rect x="296" y="320" width="432" height="384" rx="32" fill="#FFFFFF" stroke="#E5E5EA" stroke-width="6"/>
+  <!-- Glass -->
+  <rect x="316" y="356" width="392" height="264" rx="16" fill="#F2F2F7" stroke="#D1D1D6" stroke-width="4"/>
+  <!-- Control panel + buttons -->
   <rect x="316" y="640" width="392" height="32" rx="8" fill="#E8E8ED"/>
-  
-  <!-- Control buttons -->
   <circle cx="360" cy="656" r="8" fill="#007AFF"/>
   <circle cx="400" cy="656" r="8" fill="#34C759"/>
   <circle cx="440" cy="656" r="8" fill="#FF9500"/>
 
-  <!-- SIGN + OCR - Bold, thick, visible at small sizes -->
-  <text x="512" y="520" 
-        font-family="'Snell Roundhand', 'Brush Script MT', 'Apple Chancery', 'Segoe Script', cursive" 
-        font-size="76" 
-        font-weight="900" 
-        fill="url(#ink)" 
-        stroke="url(#ink)"
-        stroke-width="3"
-        stroke-linejoin="round"
-        text-anchor="middle" 
-        letter-spacing="2">Sign + OCR</text>
+  <!-- GIANT bold script, two lines -->
+  <text x="512" y="478" font-family="'Snell Roundhand', 'Brush Script MT', 'Apple Chancery', 'Segoe Script', cursive" font-size="150" font-weight="900" fill="url(#ink)" stroke="url(#ink)" stroke-width="8" stroke-linejoin="round" text-anchor="middle">Sign</text>
+  <text x="512" y="600" font-family="'Snell Roundhand', 'Brush Script MT', 'Apple Chancery', 'Segoe Script', cursive" font-size="104" font-weight="900" fill="url(#ink)" stroke="url(#ink)" stroke-width="6" stroke-linejoin="round" text-anchor="middle" letter-spacing="2">+ OCR</text>
 </svg>
