@@ -16,9 +16,10 @@ import '../l10n/app_localizations.dart';
 import '../widgets/signature_canvas.dart';
 
 class ExportScreen extends StatefulWidget {
-  const ExportScreen({super.key, required this.documentIds});
+  const ExportScreen({super.key, required this.documentIds, this.initialFormat});
 
   final List<String> documentIds;
+  final ExportFormat? initialFormat;
 
   @override
   State<ExportScreen> createState() => _ExportScreenState();
@@ -48,6 +49,9 @@ class _ExportScreenState extends State<ExportScreen> {
   void initState() {
     super.initState();
     _scanProvider = Provider.of<ScanProvider>(context, listen: false);
+    if (widget.initialFormat != null) {
+      _selectedFormat = widget.initialFormat!;
+    }
   }
 
   List<ScanDocument> get _documents {
