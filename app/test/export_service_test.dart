@@ -143,6 +143,52 @@ void main() {
     });
   });
 
+
+  group('CSV export', () {
+    test('produces a CSV file with escaped OCR text', () async {
+      final ExportService service = ExportService();
+      const String expectedText = 'Line 1, "quoted"';
+      final List<String> outputs = await service.export(
+        document: buildTestDocument(ocrText: expectedText),
+        format: ExportFormat.csv,
+        outputDirectoryPath: tempDir.path,
+      );
+
+      expect(outputs, hasLength(1));
+      final File outputFile = File(outputs.single);
+      expect(await outputFile.exists(), isTrue);
+      final String csvContent = await outputFile.readAsString();
+      // CSV escapes double quotes by doubling them
+      expect(csvContent, '"Line 1, ""quoted"""');
+    });
+  });
+
+  group('Compression tiers', () {
+    test('small tier produces smaller JPG than original tier', () async {
+      final ExportService service = ExportService();
+      final doc = buildTestDocument();
+
+      final originalOutputs = await service.export(
+        document: doc,
+        format: ExportFormat.jpg,
+        outputDirectoryPath: tempDir.path,
+        compression: CompressionTier.original,
+      );
+      // Create a different document with a different title to avoid file overwrite
+      final smallDoc = doc.copyWith(id: 'test-doc-small', title: 'Test Document Small');
+      final smallOutputs = await service.export(
+        document: smallDoc,
+        format: ExportFormat.jpg,
+        outputDirectoryPath: tempDir.path,
+        compression: CompressionTier.small,
+      );
+
+      final originalSize = await File(originalOutputs.single).length();
+      final smallSize = await File(smallOutputs.single).length();
+      expect(smallSize, lessThan(originalSize));
+    });
+  });
+
   group('error handling', () {
     test('throws ExportFailedException for a document with an unreadable page',
         () async {
