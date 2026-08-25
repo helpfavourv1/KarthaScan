@@ -437,8 +437,9 @@ class _HomeScreenState extends State<HomeScreen> {
     );
     if (placement == null || !mounted) return;
     await _compositeOverlayOnPage(
-      placement.$1,
-      bytes,
+        doc,
+        placement.$1,
+        bytes,
       pctX: placement.$2,
       pctY: placement.$3,
       rotationDegrees: placement.$4,
@@ -586,8 +587,9 @@ class _HomeScreenState extends State<HomeScreen> {
     );
     if (placement == null || !mounted) return;
     await _compositeOverlayOnPage(
-      placement.$1,
-      bytes,
+        doc,
+        placement.$1,
+        bytes,
       pctX: placement.$2,
       pctY: placement.$3,
       rotationDegrees: placement.$4,
