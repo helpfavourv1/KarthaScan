@@ -25,8 +25,8 @@ class ToolTile extends StatelessWidget {
     return IOSPressable(
       onTap: onTap,
       child: Container(
-        width: 72,
-        padding: const EdgeInsets.symmetric(vertical: 12),
+        width: 66,
+        padding: const EdgeInsets.symmetric(vertical: 8),
         decoration: BoxDecoration(
           color: isDark ? AppColors.bgSecondaryDark : AppColors.bgSecondaryLight,
           borderRadius: BorderRadius.circular(AppShape.cardRadius),
@@ -36,21 +36,21 @@ class ToolTile extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Container(
-              width: 48,
-              height: 48,
+              width: 40,
+              height: 40,
               decoration: BoxDecoration(
                 color: accent.withValues(alpha: 0.10),
                 shape: BoxShape.circle,
               ),
-              child: PhosphorIcon(icon, color: accent, size: 24),
+              child: PhosphorIcon(icon, color: accent, size: 20),
             ),
-            const SizedBox(height: 8),
+            const SizedBox(height: 6),
             Text(
               label,
               style: TextStyle(
                 color: textPrimary,
-                fontSize: AppTypography.footnoteSize,
-                fontWeight: FontWeight.w500,
+                fontSize: 11,
+                fontWeight: FontWeight.w600,
               ),
               textAlign: TextAlign.center,
               maxLines: 1,

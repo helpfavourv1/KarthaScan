@@ -123,23 +123,6 @@ class _HomeScreenState extends State<HomeScreen> {
     if (chosen != null) await _settingsProvider.setLanguage(chosen);
   }
 
-  // Signature shortcut: let user pick document
-  Future<void> _openSignatureShortcut() async {
-    if (_scanProvider.documents.value.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Scan a document first to add a signature.')),
-      );
-      return;
-    }
-    final selectedId = await showModalBottomSheet<String>(
-      context: context,
-      builder: (ctx) => _DocumentPickerSheet(documents: _scanProvider.documents.value),
-    );
-    if (selectedId != null && mounted) {
-      context.push('/export', extra: <String>[selectedId]);
-    }
-  }
-
   // Batch export: show hint if no docs
   void _startBatchExport() {
     if (_scanProvider.documents.value.isEmpty) {
@@ -349,6 +332,8 @@ class _HomeScreenState extends State<HomeScreen> {
           ? null
           : FloatingActionButton(
               backgroundColor: accent,
+              elevation: 6,
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
               onPressed: _onScanPressed,
               child: const Icon(Icons.camera_alt_outlined, color: Colors.white),
             ),
@@ -363,7 +348,7 @@ class _HomeScreenState extends State<HomeScreen> {
     final accent = isDark ? AppColors.accentDark : AppColors.accentLight;
 
     return SizedBox(
-      height: 48,
+      height: 40,
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
         padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md),
@@ -374,17 +359,18 @@ class _HomeScreenState extends State<HomeScreen> {
           return GestureDetector(
             onTap: () => setState(() => _selectedFilter = index),
             child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
               decoration: BoxDecoration(
                 color: isSelected ? accent : surface,
-                borderRadius: BorderRadius.circular(20),
+                borderRadius: BorderRadius.circular(12),
+                boxShadow: isSelected ? AppShadows.ambient : null,
               ),
               child: Text(
                 filters[index],
                 style: TextStyle(
                   color: isSelected ? Colors.white : textPrimary,
-                  fontWeight: FontWeight.w600,
-                  fontSize: 13,
+                  fontWeight: FontWeight.w700,
+                  fontSize: 12,
                 ),
               ),
             ),
@@ -518,27 +504,21 @@ class _HomeScreenState extends State<HomeScreen> {
     return AppBar(
       backgroundColor: bg,
       elevation: 0,
-      title: Text(
-        l10n.appTitle,
-        style: TextStyle(color: textPrimary, fontSize: AppTypography.title1Size, fontWeight: FontWeight.w700, letterSpacing: -0.6),
+      titleSpacing: 0,
+      title: RichText(
+        text: TextSpan(
+          style: TextStyle(fontSize: AppTypography.title1Size, fontWeight: FontWeight.w800, letterSpacing: -0.8),
+          children: <TextSpan>[
+            TextSpan(text: 'Kathar', style: TextStyle(color: textPrimary)),
+            TextSpan(text: 'Scan', style: TextStyle(color: accent)),
+          ],
+        ),
       ),
       actions: [
         IconButton(
           icon: const Icon(Icons.translate_outlined),
           tooltip: 'App Language',
           onPressed: _pickLanguage,
-        ),
-        // Signature shortcut (kept)
-        IconButton(
-          icon: const Icon(Icons.draw_outlined),
-          tooltip: 'Signature',
-          onPressed: _openSignatureShortcut,
-        ),
-        // Batch export shortcut (kept)
-        IconButton(
-          icon: const Icon(Icons.select_all_outlined),
-          tooltip: 'Batch Export',
-          onPressed: _startBatchExport,
         ),
         IconButton(
           icon: const Icon(Icons.create_new_folder_outlined),
@@ -625,31 +605,89 @@ class _HomeScreenState extends State<HomeScreen> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md, vertical: AppSpacing.sm),
               child: Wrap(
-                spacing: AppSpacing.sm,
-                runSpacing: AppSpacing.sm,
+                spacing: AppSpacing.xs,
+                runSpacing: AppSpacing.xs,
                 children: [
                   ToolTile(icon: PhosphorIconsRegular.highlighter, label: 'Annotate', onTap: _openAnnotate),
                   ToolTile(icon: PhosphorIconsRegular.pen, label: 'Sign', onTap: () => _pickDocumentForExport(null)),
-                  ToolTile(icon: PhosphorIconsRegular.fileText, label: 'Convert', onTap: () => _pickDocumentForExport(null)),
-                  ToolTile(icon: PhosphorIconsRegular.arrowsIn, label: 'Compress', onTap: () => _pickDocumentForExport('jpg')),
-                  ToolTile(icon: PhosphorIconsRegular.scan, label: 'ID Copy', onTap: () => context.push('/manual-crop')),
-                  ToolTile(icon: PhosphorIconsRegular.fileText, label: 'Batch Export', onTap: _startBatchExport),
                   ToolTile(icon: PhosphorIconsRegular.crop, label: 'Region OCR', onTap: _openRegionOcr),
+                  ToolTile(icon: PhosphorIconsRegular.fileText, label: 'Convert', onTap: () => _pickDocumentForExport(null)),
                   ToolTile(icon: PhosphorIconsRegular.scan, label: 'Scan ID', onTap: () => context.push('/manual-crop')),
                 ],
               ),
             ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md),
+              child: SizedBox(
+                height: 40,
+                child: ElevatedButton.icon(
+                  onPressed: _startBatchExport,
+                  icon: const Icon(Icons.checklist_rounded, size: 18),
+                  label: const Text('Select Multiple Documents', style: TextStyle(fontSize: 13, fontWeight: FontWeight.w700)),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: accent,
+                    foregroundColor: Colors.white,
+                    elevation: 0,
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(height: AppSpacing.sm),
             Expanded(
               child: ListView(
                 padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md, vertical: AppSpacing.xs),
                 children: [
             if (_selectedFilter != 1 && allFolders.isNotEmpty) ...[
-              _sectionHeader(l10n.foldersSectionHeader),
-              ...allFolders.map((folder) => Padding(
-                padding: const EdgeInsets.only(bottom: AppSpacing.xs),
-                child: FolderListTile(folder: folder, onTap: () => context.push('/folder/${folder.id}')),
-              )),
-              const SizedBox(height: AppSpacing.sm),
+              Padding(
+                padding: const EdgeInsets.only(bottom: AppSpacing.sm),
+                child: Wrap(
+                  spacing: AppSpacing.xs,
+                  runSpacing: AppSpacing.xs,
+                  children: [
+                    ...allFolders.map((folder) => GestureDetector(
+                      onTap: () => context.push('/folder/${folder.id}'),
+                      child: Container(
+                        height: 36,
+                        padding: const EdgeInsets.symmetric(horizontal: 12),
+                        decoration: BoxDecoration(
+                          color: surface,
+                          borderRadius: BorderRadius.circular(12),
+                          boxShadow: AppShadows.ambient,
+                        ),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Icon(Icons.folder_outlined, color: accent, size: 16),
+                            const SizedBox(width: 6),
+                            Text(folder.name, style: TextStyle(color: textPrimary, fontSize: 12, fontWeight: FontWeight.w700)),
+                          ],
+                        ),
+                      ),
+                    )),
+                    GestureDetector(
+                      onTap: () => setState(() => _selectedFilter = 1),
+                      child: Container(
+                        height: 36,
+                        padding: const EdgeInsets.symmetric(horizontal: 12),
+                        decoration: BoxDecoration(
+                          color: accent,
+                          borderRadius: BorderRadius.circular(12),
+                          boxShadow: AppShadows.ambient,
+                        ),
+                        child: const Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Icon(Icons.folder_open_outlined, color: Colors.white, size: 16),
+                            SizedBox(width: 6),
+                            Text('All Folders', style: TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.w700)),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ],
             if (_selectedFilter != 1 && documents.isNotEmpty) ...[
               _sectionHeader(l10n.documentsSectionHeader),
