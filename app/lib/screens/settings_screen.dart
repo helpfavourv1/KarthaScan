@@ -66,6 +66,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     final textPrimary = isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight;
     final textSecondary = isDark ? AppColors.textSecondaryDark : AppColors.textSecondaryLight;
     final border = isDark ? AppColors.borderSubtleDark : AppColors.borderSubtleLight;
+    final accent = isDark ? AppColors.accentDark : AppColors.accentLight;
 
     return Scaffold(
       backgroundColor: bg,
@@ -103,6 +104,41 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 ],
               ),
             ),
+
+            const SizedBox(height: AppSpacing.md),
+            _sectionLabel('CAPTURE BEHAVIOR', textSecondary),
+            ListenableBuilder(
+              listenable: _settingsProvider.settings,
+              builder: (context, _) => Column(
+                children: [
+                  SwitchListTile(
+                    title: Text('Auto-copy OCR', style: TextStyle(color: textPrimary, fontSize: AppTypography.bodySize)),
+                    subtitle: Text('Copy text to clipboard after scan', style: TextStyle(color: textSecondary, fontSize: AppTypography.footnoteSize)),
+                    value: _settingsProvider.settings.value.autoCopyOcr,
+                    onChanged: (value) => _settingsProvider.setAutoCopyOcr(value),
+                    activeColor: accent,
+                    tileColor: Colors.transparent,
+                  ),
+                  SwitchListTile(
+                    title: Text('Beep on capture', style: TextStyle(color: textPrimary, fontSize: AppTypography.bodySize)),
+                    subtitle: Text('Play sound when scan completes', style: TextStyle(color: textSecondary, fontSize: AppTypography.footnoteSize)),
+                    value: _settingsProvider.settings.value.beepOnCapture,
+                    onChanged: (value) => _settingsProvider.setBeepOnCapture(value),
+                    activeColor: accent,
+                    tileColor: Colors.transparent,
+                  ),
+                  SwitchListTile(
+                    title: Text('Vibrate on capture', style: TextStyle(color: textPrimary, fontSize: AppTypography.bodySize)),
+                    subtitle: Text('Haptic feedback when scan completes', style: TextStyle(color: textSecondary, fontSize: AppTypography.footnoteSize)),
+                    value: _settingsProvider.settings.value.vibrateOnCapture,
+                    onChanged: (value) => _settingsProvider.setVibrateOnCapture(value),
+                    activeColor: accent,
+                    tileColor: Colors.transparent,
+                  ),
+                ],
+              ),
+            ),
+
             const SizedBox(height: AppSpacing.md),
             _sectionLabel(l10n.storageSectionLabel, textSecondary),
             _settingsTile(title: l10n.deviceMigrationLabel, trailing: Icon(Icons.chevron_right, color: textSecondary), onTap: () => context.push('/migration'), textPrimary: textPrimary, border: border),

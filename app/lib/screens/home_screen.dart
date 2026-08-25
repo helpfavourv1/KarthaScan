@@ -13,7 +13,17 @@ import '../core/utils/constants.dart';
 import '../l10n/app_localizations.dart';
 import '../widgets/empty_state.dart';
 import '../widgets/folder_list_tile.dart';
+import 'dart:io';
+import 'dart:typed_data';
+import 'package:flutter/services.dart';
+import 'package:image/image.dart' as img;
+import 'package:path/path.dart' as p;
+import 'package:path_provider/path_provider.dart';
+import '../core/services/ocr_service.dart';
+import '../widgets/annotation_overlay.dart';
 import '../widgets/scan_list_tile.dart';
+import '../widgets/tool_tile.dart';
+import 'package:phosphoricons_flutter/phosphoricons_flutter.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -297,7 +307,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return Scaffold(
       backgroundColor: bg,
-      appBar: _selectionMode ? _buildSelectionAppBar(bg, l10n) : _buildDefaultAppBar(bg, textPrimary, textSecondary, l10n),
+      appBar: _selectionMode ? _buildSelectionAppBar(bg, l10n) : _buildDefaultAppBar(bg, textPrimary, textSecondary, accent, l10n),
       body: SafeArea(
         child: Column(
           children: [
@@ -385,7 +395,127 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  PreferredSizeWidget _buildDefaultAppBar(Color bg, Color textPrimary, Color textSecondary, AppLocalizations l10n) {
+
+  Future<void> _pickDocumentForExport(String? formatHint) async {
+    if (_scanProvider.documents.value.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Scan a document first.')));
+      return;
+    }
+    final selectedId = await showModalBottomSheet<String>(
+      context: context,
+      builder: (ctx) => _DocumentPickerSheet(documents: _scanProvider.documents.value),
+    );
+    if (selectedId != null && mounted) {
+      if (formatHint == null) {
+        context.push('/export', extra: <String>[selectedId]);
+      } else {
+        context.push('/export', extra: <String, dynamic>{'ids': <String>[selectedId], 'format': formatHint});
+      }
+    }
+  }
+
+  Future<void> _openAnnotate() async {
+    if (_scanProvider.documents.value.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Scan a document first.')));
+      return;
+    }
+    final selectedId = await showModalBottomSheet<String>(
+      context: context,
+      builder: (ctx) => _DocumentPickerSheet(documents: _scanProvider.documents.value),
+    );
+    if (selectedId == null || !mounted) return;
+    final doc = _scanProvider.documents.value.firstWhere((d) => d.id == selectedId);
+    if (doc.pagePaths.isEmpty) return;
+
+    final annotationKey = GlobalKey<AnnotationOverlayState>();
+    final bytes = await showModalBottomSheet<Uint8List?>(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (c) => _HomeAnnotationSheet(annotationKey: annotationKey),
+    );
+    if (bytes == null || !mounted) return;
+    await _compositeOverlayOnPage(doc, 0, bytes);
+  }
+
+  Future<void> _openRegionOcr() async {
+    if (_scanProvider.documents.value.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Scan a document first.')));
+      return;
+    }
+    final selectedId = await showModalBottomSheet<String>(
+      context: context,
+      builder: (ctx) => _DocumentPickerSheet(documents: _scanProvider.documents.value),
+    );
+    if (selectedId == null || !mounted) return;
+    final doc = _scanProvider.documents.value.firstWhere((d) => d.id == selectedId);
+    if (doc.pagePaths.isEmpty) return;
+
+    final rect = await showModalBottomSheet<Rect?>(
+      context: context,
+      isScrollControlled: true,
+      builder: (c) => _HomeRegionSelectSheet(imagePath: doc.pagePaths.first),
+    );
+    if (rect == null || !mounted) return;
+
+    try {
+      final originalBytes = await File(doc.pagePaths.first).readAsBytes();
+      final originalImage = img.decodeImage(originalBytes);
+      if (originalImage == null) return;
+      final x = rect.left.toInt().clamp(0, originalImage.width);
+      final y = rect.top.toInt().clamp(0, originalImage.height);
+      final w = rect.width.toInt().clamp(0, originalImage.width - x);
+      final h = rect.height.toInt().clamp(0, originalImage.height - y);
+      if (w <= 0 || h <= 0) return;
+      final cropped = img.copyCrop(originalImage, x: x, y: y, width: w, height: h);
+      final tempDir = await getTemporaryDirectory();
+      final tempPath = p.join(tempDir.path, 'home_region_${DateTime.now().microsecondsSinceEpoch}.jpg');
+      await File(tempPath).writeAsBytes(Uint8List.fromList(img.encodeJpg(cropped)));
+      final ocr = OcrService();
+      final result = await ocr.recognizeText(imagePath: tempPath, script: OcrScript.latin);
+      await ocr.dispose();
+      if (!mounted) return;
+      showDialog(
+        context: context,
+        builder: (c) => AlertDialog(
+          title: const Text('Extracted Text'),
+          content: SelectableText(result.fullText.isEmpty ? 'No text found' : result.fullText),
+          actions: [
+            TextButton(onPressed: () => Navigator.pop(c), child: const Text('Close')),
+            TextButton(onPressed: () { Clipboard.setData(ClipboardData(text: result.fullText)); Navigator.pop(c); }, child: const Text('Copy')),
+          ],
+        ),
+      );
+    } catch (e) {
+      if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Region OCR failed: $e')));
+    }
+  }
+
+  Future<void> _compositeOverlayOnPage(ScanDocument doc, int pageIndex, Uint8List overlayBytes) async {
+    try {
+      final originalBytes = await File(doc.pagePaths[pageIndex]).readAsBytes();
+      final originalImage = img.decodeImage(originalBytes);
+      if (originalImage == null) return;
+      var overlayImage = img.decodePng(overlayBytes);
+      if (overlayImage == null) return;
+      overlayImage = img.copyResize(overlayImage, width: originalImage.width, height: originalImage.height);
+      final composite = img.compositeImage(originalImage, overlayImage);
+      final finalBytes = Uint8List.fromList(img.encodeJpg(composite, quality: 95));
+      final appDir = await getApplicationDocumentsDirectory();
+      final dir = Directory(p.join(appDir.path, 'annotated_pages'));
+      await dir.create(recursive: true);
+      final newPath = p.join(dir.path, 'ann_${DateTime.now().microsecondsSinceEpoch}.jpg');
+      await File(newPath).writeAsBytes(finalBytes);
+      final newPaths = List<String>.from(doc.pagePaths);
+      newPaths[pageIndex] = newPath;
+      await _scanProvider.updateDocumentPages(doc.id, newPaths);
+      if (mounted) ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Annotation saved')));
+    } catch (e) {
+      if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Error: $e')));
+    }
+  }
+
+  PreferredSizeWidget _buildDefaultAppBar(Color bg, Color textPrimary, Color textSecondary, Color accent, AppLocalizations l10n) {
     return AppBar(
       backgroundColor: bg,
       elevation: 0,
@@ -491,9 +621,29 @@ class _HomeScreenState extends State<HomeScreen> {
 
         if (documents.isEmpty && allFolders.isEmpty) return const EmptyState();
 
-        return ListView(
-          padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md, vertical: AppSpacing.xs),
+        return Column(
           children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md, vertical: AppSpacing.sm),
+              child: Wrap(
+                spacing: AppSpacing.sm,
+                runSpacing: AppSpacing.sm,
+                children: [
+                  ToolTile(icon: PhosphorIconsRegular.highlighter, label: 'Annotate', onTap: _openAnnotate),
+                  ToolTile(icon: PhosphorIconsRegular.pen, label: 'Sign', onTap: () => _pickDocumentForExport(null)),
+                  ToolTile(icon: PhosphorIconsRegular.fileText, label: 'Convert', onTap: () => _pickDocumentForExport(null)),
+                  ToolTile(icon: PhosphorIconsRegular.arrowsIn, label: 'Compress', onTap: () => _pickDocumentForExport('jpg')),
+                  ToolTile(icon: PhosphorIconsRegular.scan, label: 'ID Copy', onTap: () => context.push('/manual-crop')),
+                  ToolTile(icon: PhosphorIconsRegular.fileText, label: 'Batch Export', onTap: _startBatchExport),
+                  ToolTile(icon: PhosphorIconsRegular.crop, label: 'Region OCR', onTap: _openRegionOcr),
+                  ToolTile(icon: PhosphorIconsRegular.scan, label: 'Scan ID', onTap: () => context.push('/manual-crop')),
+                ],
+              ),
+            ),
+            Expanded(
+              child: ListView(
+                padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md, vertical: AppSpacing.xs),
+                children: [
             if (_selectedFilter != 1 && allFolders.isNotEmpty) ...[
               _sectionHeader(l10n.foldersSectionHeader),
               ...allFolders.map((folder) => Padding(
@@ -511,6 +661,9 @@ class _HomeScreenState extends State<HomeScreen> {
             ] else if (_selectedFilter == 3 && documents.isEmpty) ...[
               const EmptyState(message: 'No favorites yet. Tap the star icon on a document to add it.'),
             ],
+            ],
+              ),
+            ),
           ],
         );
       },
@@ -646,6 +799,155 @@ class _DocumentPickerSheet extends StatelessWidget {
                     onTap: () => Navigator.of(context).pop(doc.id),
                   )).toList(),
                 ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
+class _HomeAnnotationSheet extends StatelessWidget {
+  const _HomeAnnotationSheet({required this.annotationKey});
+  final GlobalKey<AnnotationOverlayState> annotationKey;
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Container(
+        height: MediaQuery.of(context).size.height * 0.6,
+        decoration: const BoxDecoration(color: Colors.white, borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
+        child: Column(
+          children: [
+            const Padding(padding: EdgeInsets.all(16), child: Text('Annotate', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600))),
+            Expanded(child: Padding(padding: const EdgeInsets.symmetric(horizontal: 16), child: Container(decoration: BoxDecoration(border: Border.all(color: Colors.grey.shade300)), child: AnnotationOverlay(key: annotationKey)))),
+            Padding(
+              padding: const EdgeInsets.all(16),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  TextButton(onPressed: () => Navigator.pop(context), child: const Text('Cancel')),
+                  const SizedBox(width: 12),
+                  ElevatedButton(onPressed: () async { final bytes = await annotationKey.currentState?.exportPng(); if (context.mounted) Navigator.pop(context, bytes); }, child: const Text('Save')),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _HomeRegionSelectSheet extends StatefulWidget {
+  const _HomeRegionSelectSheet({required this.imagePath});
+  final String imagePath;
+
+  @override
+  State<_HomeRegionSelectSheet> createState() => _HomeRegionSelectSheetState();
+}
+
+class _HomeRegionSelectSheetState extends State<_HomeRegionSelectSheet> {
+  Rect? _selectedRect;
+  Offset? _startPos;
+  img.Image? _originalImage;
+  bool _loading = true;
+  double _displayW = 0;
+  double _displayH = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadImage();
+  }
+
+  Future<void> _loadImage() async {
+    try {
+      final bytes = await File(widget.imagePath).readAsBytes();
+      _originalImage = img.decodeImage(bytes);
+      if (mounted) setState(() => _loading = false);
+    } catch (_) {
+      if (mounted) setState(() => _loading = false);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Container(
+        height: MediaQuery.of(context).size.height * 0.7,
+        decoration: const BoxDecoration(color: Colors.white, borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
+        child: Column(
+          children: [
+            const Padding(padding: EdgeInsets.all(16), child: Text('Select Region', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600))),
+            Expanded(
+              child: _loading || _originalImage == null
+                  ? const Center(child: CircularProgressIndicator())
+                  : LayoutBuilder(
+                      builder: (context, constraints) {
+                        final imgW = _originalImage!.width;
+                        final imgH = _originalImage!.height;
+                        final aspect = imgW / imgH;
+                        double displayW = constraints.maxWidth;
+                        double displayH = displayW / aspect;
+                        if (displayH > constraints.maxHeight) {
+                          displayH = constraints.maxHeight;
+                          displayW = displayH * aspect;
+                        }
+                        _displayW = displayW;
+                        _displayH = displayH;
+                        return Center(
+                          child: SizedBox(
+                            width: displayW,
+                            height: displayH,
+                            child: GestureDetector(
+                              onPanStart: (d) => setState(() => _startPos = d.localPosition),
+                              onPanUpdate: (d) {
+                                if (_startPos == null) return;
+                                setState(() {
+                                  final left = _startPos!.dx < d.localPosition.dx ? _startPos!.dx : d.localPosition.dx;
+                                  final top = _startPos!.dy < d.localPosition.dy ? _startPos!.dy : d.localPosition.dy;
+                                  final width = (d.localPosition.dx - _startPos!.dx).abs();
+                                  final height = (d.localPosition.dy - _startPos!.dy).abs();
+                                  _selectedRect = Rect.fromLTWH(left, top, width, height);
+                                });
+                              },
+                              child: Stack(
+                                children: [
+                                  Image.file(File(widget.imagePath), fit: BoxFit.fill),
+                                  if (_selectedRect != null)
+                                    Positioned.fromRect(
+                                      rect: _selectedRect!,
+                                      child: Container(decoration: BoxDecoration(border: Border.all(color: Colors.blue, width: 2), color: Colors.blue.withValues(alpha: 0.2))),
+                                    ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(16),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  TextButton(onPressed: () => Navigator.pop(context), child: const Text('Cancel')),
+                  const SizedBox(width: 12),
+                  ElevatedButton(
+                    onPressed: _selectedRect == null || _displayW == 0 || _displayH == 0
+                        ? null
+                        : () {
+                            final scaleX = _originalImage!.width / _displayW;
+                            final scaleY = _originalImage!.height / _displayH;
+                            Navigator.pop(context, Rect.fromLTRB(_selectedRect!.left * scaleX, _selectedRect!.top * scaleY, _selectedRect!.right * scaleX, _selectedRect!.bottom * scaleY));
+                          },
+                    child: const Text('Extract'),
+                  ),
+                ],
               ),
             ),
           ],
