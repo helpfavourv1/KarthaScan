@@ -31,6 +31,8 @@ class ExportService {
     int? signaturePageIndex,
     double? signatureOffsetX,
     double? signatureOffsetY,
+    double? signatureRotation,
+    CompressionTier compression = CompressionTier.original,
   }) async {
     try {
       switch (format) {
@@ -44,6 +46,7 @@ class ExportService {
               signaturePageIndex: signaturePageIndex,
               signatureOffsetX: signatureOffsetX,
               signatureOffsetY: signatureOffsetY,
+              signatureRotation: signatureRotation,
             ),
           ];
         case ExportFormat.txt:
@@ -60,6 +63,8 @@ class ExportService {
             signaturePageIndex: signaturePageIndex,
             signatureOffsetX: signatureOffsetX,
             signatureOffsetY: signatureOffsetY,
+            signatureRotation: signatureRotation,
+            compression: compression,
           );
         case ExportFormat.png:
           return await _exportImages(
@@ -71,7 +76,11 @@ class ExportService {
             signaturePageIndex: signaturePageIndex,
             signatureOffsetX: signatureOffsetX,
             signatureOffsetY: signatureOffsetY,
+            signatureRotation: signatureRotation,
+            compression: compression,
           );
+        case ExportFormat.csv:
+          return <String>[await _exportCsv(document, outputDirectoryPath)];
       }
     } on ExportFailedException {
       rethrow;
@@ -103,8 +112,12 @@ class ExportService {
     img.Image page,
     img.Image signature,
     double offsetX,
-    double offsetY,
-  ) {
+    double offsetY, {
+    double rotationDegrees = 0,
+  }) {
+    if (rotationDegrees != 0) {
+      signature = img.copyRotate(signature, angle: rotationDegrees);
+    }
     final targetWidth = (page.width * 0.28).round();
     final targetHeight = (signature.height * targetWidth / signature.width).round();
     final resizedSignature = img.copyResize(
@@ -126,6 +139,7 @@ class ExportService {
     int? signaturePageIndex,
     double? signatureOffsetX,
     double? signatureOffsetY,
+    double? signatureRotation,
   }) async {
     final original = await _readBytes(pagePath);
     if (filter == FilterType.none && signatureBytes == null) {
@@ -146,6 +160,7 @@ class ExportService {
             signatureImage,
             signatureOffsetX ?? 0.6,
             signatureOffsetY ?? 0.8,
+            rotationDegrees: signatureRotation ?? 0,
           );
         }
       }
@@ -164,6 +179,7 @@ class ExportService {
     int? signaturePageIndex,
     double? signatureOffsetX,
     double? signatureOffsetY,
+    double? signatureRotation,
   }) async {
     final pw.Document pdfDoc = pw.Document(
       title: document.title,
@@ -180,6 +196,7 @@ class ExportService {
         signaturePageIndex: signaturePageIndex,
         signatureOffsetX: signatureOffsetX,
         signatureOffsetY: signatureOffsetY,
+        signatureRotation: signatureRotation,
       );
       final image = pw.MemoryImage(bytes);
       pdfDoc.addPage(
@@ -318,6 +335,8 @@ class ExportService {
     int? signaturePageIndex,
     double? signatureOffsetX,
     double? signatureOffsetY,
+    double? signatureRotation,
+    CompressionTier compression = CompressionTier.original,
   }) async {
     final outputPaths = <String>[];
     final isMultiPage = document.pagePaths.length > 1;
@@ -331,6 +350,7 @@ class ExportService {
         signaturePageIndex: signaturePageIndex,
         signatureOffsetX: signatureOffsetX,
         signatureOffsetY: signatureOffsetY,
+        signatureRotation: signatureRotation,
       );
       final decoded = img.decodeImage(processedBytes);
       if (decoded == null) {
@@ -340,7 +360,7 @@ class ExportService {
       }
       final reencoded = targetExtension == 'png'
           ? img.encodePng(decoded)
-          : img.encodeJpg(decoded, quality: 92);
+          : img.encodeJpg(decoded, quality: _qualityFor(compression));
       final suffix = isMultiPage ? '_page${i + 1}' : '';
       final outPath = _outputPath(
         document,
@@ -355,6 +375,65 @@ class ExportService {
       throw const ExportFailedException('This document has no pages to export.');
     }
     return outputPaths;
+  }
+
+  int _qualityFor(CompressionTier tier) {
+    switch (tier) {
+      case CompressionTier.original:
+        return 92;
+      case CompressionTier.medium:
+        return 60;
+      case CompressionTier.small:
+        return 30;
+    }
+  }
+
+  Future<String> _exportCsv(ScanDocument document, String outDir) async {
+    final outPath = _outputPath(document, outDir, 'csv');
+    try {
+      final String escaped = document.ocrText.replaceAll('"', '""');
+      await File(outPath).writeAsString('"$escaped"');
+      return outPath;
+    } catch (error, stackTrace) {
+      _logError('_exportCsv', error, stackTrace);
+      throw const ExportFailedException('Could not write the CSV file.');
+    }
+  }
+
+  Future<String> exportIdCardPdf({
+    required String frontPath,
+    required String backPath,
+    required String title,
+    required String outputDirectoryPath,
+  }) async {
+    try {
+      final pw.Document pdfDoc = pw.Document(title: title, creator: 'KatharScan');
+      final Uint8List frontBytes = await _readBytes(frontPath);
+      final Uint8List backBytes = await _readBytes(backPath);
+      pdfDoc.addPage(
+        pw.Page(
+          pageFormat: PdfPageFormat.a4,
+          build: (pw.Context context) {
+            return pw.Column(
+              mainAxisAlignment: pw.MainAxisAlignment.center,
+              children: [
+                pw.Image(pw.MemoryImage(frontBytes), fit: pw.BoxFit.contain, height: 380),
+                pw.SizedBox(height: 30),
+                pw.Image(pw.MemoryImage(backBytes), fit: pw.BoxFit.contain, height: 380),
+              ],
+            );
+          },
+        ),
+      );
+      final Uint8List pdfBytes = await pdfDoc.save();
+      final String safeTitle = _sanitizeFileName(title);
+      final String outPath = p.join(outputDirectoryPath, '$safeTitle.pdf');
+      await _writeBytes(outPath, pdfBytes);
+      return outPath;
+    } catch (error, stackTrace) {
+      _logError('exportIdCardPdf', error, stackTrace);
+      throw ExportFailedException('Could not build the ID card PDF.');
+    }
   }
 
   Future<Uint8List> _readBytes(String path) async {

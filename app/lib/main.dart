@@ -46,7 +46,7 @@ Future<void> main() async {
   final SettingsProvider settingsProvider = SettingsProvider(localStorage);
   final ThemeProvider themeProvider = ThemeProvider(settingsProvider);
   final SubscriptionProvider subscriptionProvider = SubscriptionProvider(iap, settingsProvider);
-  final ScanProvider scanProvider = ScanProvider(storage: localStorage, docScanner: docScanner, ocr: ocr);
+  final ScanProvider scanProvider = ScanProvider(storage: localStorage, docScanner: docScanner, ocr: ocr, settings: settingsProvider);
   final FolderProvider folderProvider = FolderProvider(localStorage);
 
   runApp(

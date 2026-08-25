@@ -12,11 +12,13 @@ import 'dart:async' show unawaited;
 import 'dart:math' show Random;
 
 import 'package:flutter/foundation.dart' show ValueNotifier, debugPrint;
+import 'package:flutter/services.dart' show Clipboard, ClipboardData;
 
 import '../models/scan_document.dart';
 import '../services/doc_scanner_service.dart';
 import '../services/local_storage.dart';
 import '../services/ocr_service.dart';
+import 'settings_provider.dart';
 
 enum ScanFlowState { idle, scanning, recognizingText, saving, error, unsupported }
 
@@ -25,15 +27,18 @@ class ScanProvider {
     required LocalStorageService storage,
     required DocScannerService docScanner,
     required OcrService ocr,
+    required SettingsProvider settings,
   })  : _storage = storage,
         _docScanner = docScanner,
-        _ocr = ocr {
+        _ocr = ocr,
+        _settings = settings {
     unawaited(_loadAll());
   }
 
   final LocalStorageService _storage;
   final DocScannerService _docScanner;
   final OcrService _ocr;
+  final SettingsProvider _settings;
   final Random _random = Random();
 
   final ValueNotifier<List<ScanDocument>> documents =
@@ -135,7 +140,11 @@ class ScanProvider {
         debugPrint('OCR ERROR on $path: $e');
       }
     }
-    return combined.toString();
+    final String result = combined.toString();
+    if (result.isNotEmpty && _settings.settings.value.autoCopyOcr) {
+      Clipboard.setData(ClipboardData(text: result));
+    }
+    return result;
   }
 
   Future<bool> renameDocument(String id, String newTitle) async {
@@ -153,6 +162,17 @@ class ScanProvider {
     if (existing == null) return false;
     final ScanDocument updated = existing.copyWith(
       tags: tags,
+      updatedAt: DateTime.now(),
+    );
+    return _replaceAndSave(updated);
+  }
+
+  Future<bool> updateDocumentPages(String id, List<String> newPagePaths) async {
+    final ScanDocument? existing = _findById(id);
+    if (existing == null) return false;
+    final ScanDocument updated = existing.copyWith(
+      pagePaths: newPagePaths,
+      pageCount: newPagePaths.length,
       updatedAt: DateTime.now(),
     );
     return _replaceAndSave(updated);
