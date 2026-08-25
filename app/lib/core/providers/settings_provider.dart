@@ -76,6 +76,16 @@ class SettingsProvider {
   Future<bool> setAdsRemoved(bool adsRemoved) =>
       _persist(settings.value.copyWith(adsRemoved: adsRemoved));
 
+  Future<bool> setAutoCopyOcr(bool value) =>
+      _persist(settings.value.copyWith(autoCopyOcr: value));
+
+  Future<bool> setBeepOnCapture(bool value) =>
+      _persist(settings.value.copyWith(beepOnCapture: value));
+
+  Future<bool> setVibrateOnCapture(bool value) =>
+      _persist(settings.value.copyWith(vibrateOnCapture: value));
+
+
   void dispose() {
     settings.dispose();
     isLoading.dispose();

@@ -11,6 +11,9 @@ class UserSettings {
     this.storagePath,
     this.language = AppLocales.defaultLanguageCode,
     this.adsRemoved = false,
+    this.autoCopyOcr = false,
+    this.beepOnCapture = false,
+    this.vibrateOnCapture = false,
   });
 
   final ThemeMode themeMode;
@@ -18,6 +21,9 @@ class UserSettings {
   final String? storagePath;
   final String language;
   final bool adsRemoved;
+  final bool autoCopyOcr;
+  final bool beepOnCapture;
+  final bool vibrateOnCapture;
 
   static const Object _unset = Object();
 
@@ -27,6 +33,9 @@ class UserSettings {
     Object? storagePath = _unset,
     String? language,
     bool? adsRemoved,
+    bool? autoCopyOcr,
+    bool? beepOnCapture,
+    bool? vibrateOnCapture,
   }) {
     return UserSettings(
       themeMode: themeMode ?? this.themeMode,
@@ -34,6 +43,9 @@ class UserSettings {
       storagePath: identical(storagePath, _unset) ? this.storagePath : storagePath as String?,
       language: language ?? this.language,
       adsRemoved: adsRemoved ?? this.adsRemoved,
+      autoCopyOcr: autoCopyOcr ?? this.autoCopyOcr,
+      beepOnCapture: beepOnCapture ?? this.beepOnCapture,
+      vibrateOnCapture: vibrateOnCapture ?? this.vibrateOnCapture,
     );
   }
 
@@ -44,6 +56,9 @@ class UserSettings {
       'storagePath': storagePath,
       'language': language,
       'adsRemoved': adsRemoved,
+      'autoCopyOcr': autoCopyOcr,
+      'beepOnCapture': beepOnCapture,
+      'vibrateOnCapture': vibrateOnCapture,
     };
   }
 
@@ -55,6 +70,9 @@ class UserSettings {
       storagePath: json['storagePath'] as String?,
       language: json['language'] as String? ?? AppLocales.defaultLanguageCode,
       adsRemoved: adsRemovedValue,
+      autoCopyOcr: json['autoCopyOcr'] as bool? ?? false,
+      beepOnCapture: json['beepOnCapture'] as bool? ?? false,
+      vibrateOnCapture: json['vibrateOnCapture'] as bool? ?? false,
     );
   }
 
@@ -79,12 +97,15 @@ class UserSettings {
         other.accentColor == accentColor &&
         other.storagePath == storagePath &&
         other.language == language &&
-        other.adsRemoved == adsRemoved;
+        other.adsRemoved == adsRemoved &&
+        other.autoCopyOcr == autoCopyOcr &&
+        other.beepOnCapture == beepOnCapture &&
+        other.vibrateOnCapture == vibrateOnCapture;
   }
 
   @override
-  int get hashCode => Object.hash(themeMode, accentColor, storagePath, language, adsRemoved);
+  int get hashCode => Object.hash(themeMode, accentColor, storagePath, language, adsRemoved, autoCopyOcr, beepOnCapture, vibrateOnCapture);
 
   @override
-  String toString() => 'UserSettings(themeMode: $themeMode, language: $language, adsRemoved: $adsRemoved)';
+  String toString() => 'UserSettings(themeMode: $themeMode, language: $language, adsRemoved: $adsRemoved, autoCopy: $autoCopyOcr, beep: $beepOnCapture, vibrate: $vibrateOnCapture)';
 }

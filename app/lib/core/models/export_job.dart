@@ -11,6 +11,8 @@
 // in pubspec.yaml.
 import 'package:flutter/foundation.dart' show immutable;
 
+enum CompressionTier { original, medium, small }
+
 enum ExportFormat { pdf, jpg, png, txt, docx }
 
 enum ExportStatus { pending, inProgress, completed, failed }
