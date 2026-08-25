@@ -1,37 +1,36 @@
 <svg width="1024" height="1024" viewBox="0 0 1024 1024" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="blue" x1="140" y1="180" x2="884" y2="864" gradientUnits="userSpaceOnUse">
+    <linearGradient id="blue" x1="108" y1="160" x2="916" y2="864" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#0A84FF"/>
       <stop offset="1" stop-color="#0051D5"/>
     </linearGradient>
-    <linearGradient id="ink" x1="336" y1="380" x2="688" y2="620" gradientUnits="userSpaceOnUse">
+    <linearGradient id="ink" x1="300" y1="380" x2="724" y2="640" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#0A84FF"/>
       <stop offset="1" stop-color="#0040C8"/>
     </linearGradient>
   </defs>
 
-  <!-- White full field (no black on horizontal edges) -->
+  <!-- White full field -->
   <rect width="1024" height="1024" fill="#FFFFFF"/>
 
-  <!-- Black LEFT vertical edge, shaped top & bottom ends -->
-  <path d="M0 176 C 64 132 104 140 120 208 L120 816 C 104 884 64 892 0 848 Z" fill="#000000"/>
-  <!-- Black RIGHT vertical edge, shaped top & bottom ends -->
-  <path d="M1024 176 C 960 132 920 140 904 208 L904 816 C 920 884 960 892 1024 848 Z" fill="#000000"/>
+  <!-- THIN meandering line around the outer boundary -->
+  <path d="M96 200 C 200 140 320 180 512 150 C 704 120 824 140 928 200 C 968 320 940 420 952 512 C 964 604 968 704 928 824 C 824 884 704 864 512 894 C 320 924 200 884 96 824 C 56 704 84 604 72 512 C 60 420 56 320 96 200 Z"
+        stroke="#000000" stroke-width="14" fill="none" stroke-linecap="round"/>
 
-  <!-- THICK blue meandering ribbon -->
-  <path d="M140 340 C 250 180 400 320 512 240 C 624 160 774 180 884 340 C 912 460 912 564 884 684 C 774 844 624 704 512 784 C 400 864 250 844 140 684 C 120 564 120 460 140 340 Z" fill="url(#blue)"/>
+  <!-- ENLARGED thick blue meandering ribbon -->
+  <path d="M136 350 C 250 180 400 320 512 240 C 624 160 774 180 888 350 C 916 460 916 564 888 674 C 774 844 624 704 512 784 C 400 864 250 844 136 674 C 108 564 108 460 136 350 Z" fill="url(#blue)"/>
 
-  <!-- Scanner body -->
-  <rect x="296" y="320" width="432" height="384" rx="32" fill="#FFFFFF" stroke="#E5E5EA" stroke-width="6"/>
+  <!-- ENLARGED scanner body -->
+  <rect x="272" y="300" width="480" height="424" rx="36" fill="#FFFFFF" stroke="#E5E5EA" stroke-width="6"/>
   <!-- Glass -->
-  <rect x="316" y="356" width="392" height="264" rx="16" fill="#F2F2F7" stroke="#D1D1D6" stroke-width="4"/>
+  <rect x="296" y="340" width="432" height="296" rx="16" fill="#F2F2F7" stroke="#D1D1D6" stroke-width="4"/>
   <!-- Control panel + buttons -->
-  <rect x="316" y="640" width="392" height="32" rx="8" fill="#E8E8ED"/>
-  <circle cx="360" cy="656" r="8" fill="#007AFF"/>
-  <circle cx="400" cy="656" r="8" fill="#34C759"/>
-  <circle cx="440" cy="656" r="8" fill="#FF9500"/>
+  <rect x="296" y="656" width="432" height="36" rx="9" fill="#E8E8ED"/>
+  <circle cx="344" cy="674" r="9" fill="#007AFF"/>
+  <circle cx="388" cy="674" r="9" fill="#34C759"/>
+  <circle cx="432" cy="674" r="9" fill="#FF9500"/>
 
-  <!-- GIANT bold script, two lines -->
-  <text x="512" y="478" font-family="'Snell Roundhand', 'Brush Script MT', 'Apple Chancery', 'Segoe Script', cursive" font-size="150" font-weight="900" fill="url(#ink)" stroke="url(#ink)" stroke-width="8" stroke-linejoin="round" text-anchor="middle">Sign</text>
-  <text x="512" y="600" font-family="'Snell Roundhand', 'Brush Script MT', 'Apple Chancery', 'Segoe Script', cursive" font-size="104" font-weight="900" fill="url(#ink)" stroke="url(#ink)" stroke-width="6" stroke-linejoin="round" text-anchor="middle" letter-spacing="2">+ OCR</text>
+  <!-- GIANT bold script -->
+  <text x="512" y="492" font-family="'Snell Roundhand', 'Brush Script MT', 'Apple Chancery', 'Segoe Script', cursive" font-size="170" font-weight="900" fill="url(#ink)" stroke="url(#ink)" stroke-width="9" stroke-linejoin="round" text-anchor="middle">Sign</text>
+  <text x="512" y="616" font-family="'Snell Roundhand', 'Brush Script MT', 'Apple Chancery', 'Segoe Script', cursive" font-size="120" font-weight="900" fill="url(#ink)" stroke="url(#ink)" stroke-width="7" stroke-linejoin="round" text-anchor="middle" letter-spacing="2">+ OCR</text>
 </svg>
