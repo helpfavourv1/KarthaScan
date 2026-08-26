@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import '../core/utils/constants.dart';
 import 'package:image/image.dart' as img;
 
 class _Stroke {
@@ -82,7 +83,7 @@ class _EraserSheetState extends State<EraserSheet> {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final bg = isDark ? const Color(0xFF1C1C1E) : Colors.white;
     final textPrimary = isDark ? Colors.white : const Color(0xFF111111);
-    final accent = isDark ? const Color(0xFF0A84FF) : const Color(0xFF007AFF);
+    final accent = isDark ? AppColors.accentDark : AppColors.accentLight;
 
     return SafeArea(
       child: Container(

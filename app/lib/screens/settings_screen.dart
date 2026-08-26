@@ -94,6 +94,37 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 border: border,
               ),
             ),
+            ListenableBuilder(
+              listenable: _themeProvider.accentColor,
+              builder: (context, _) {
+                final current = _themeProvider.accentColor.value;
+                return Padding(
+                  padding: const EdgeInsets.symmetric(vertical: AppSpacing.sm),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text('Accent Color', style: TextStyle(color: textPrimary, fontSize: AppTypography.bodySize)),
+                      Row(
+                        children: kAccentPalettes.map((p) {
+                          final isSelected = p.light == current;
+                          return GestureDetector(
+                            onTap: () => _themeProvider.setAccentColor(p.light),
+                            child: Container(
+                              width: 28, height: 28, margin: const EdgeInsets.only(left: 8),
+                              decoration: BoxDecoration(
+                                color: p.light, shape: BoxShape.circle,
+                                border: Border.all(color: isSelected ? textPrimary : Colors.transparent, width: 2),
+                              ),
+                              child: isSelected ? const Icon(Icons.check, color: Colors.white, size: 16) : null,
+                            ),
+                          );
+                        }).toList(),
+                      ),
+                    ],
+                  ),
+                );
+              },
+            ),
             const SizedBox(height: AppSpacing.md),
             _sectionLabel(l10n.languageSectionLabel, textSecondary),
             ListenableBuilder(

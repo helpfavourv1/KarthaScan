@@ -31,10 +31,10 @@ abstract final class AppColors {
   static const Color bgTertiaryDark = Color(0xFF2C2C2E);
 
   // Accent (iOS System Blue)
-  static const Color accentLight = Color(0xFF007AFF);
-  static const Color accentDark = Color(0xFF0A84FF);
-  static const Color accentDimLight = Color(0xFF0051D5);
-  static const Color accentDimDark = Color(0xFF0A84FF);
+  static Color accentLight = Color(0xFF007AFF);
+  static Color accentDark = Color(0xFF0A84FF);
+  static Color accentDimLight = Color(0xFF0051D5);
+  static Color accentDimDark = Color(0xFF0A84FF);
 
   // Text
   static const Color textPrimaryLight = Color(0xFF111111);
@@ -47,8 +47,8 @@ abstract final class AppColors {
   // Borders
   static const Color borderSubtleLight = Color(0xFFE5E5EA);
   static const Color borderSubtleDark = Color(0xFF38383A);
-  static const Color borderFocusLight = Color(0xFF007AFF);
-  static const Color borderFocusDark = Color(0xFF0A84FF);
+  static Color borderFocusLight = Color(0xFF007AFF);
+  static Color borderFocusDark = Color(0xFF0A84FF);
 
   // Semantic Colors
   static const Color errorLight = Color(0xFFFF3B30);
@@ -58,8 +58,37 @@ abstract final class AppColors {
   static const Color warningLight = Color(0xFFFF9500);
   static const Color warningDark = Color(0xFFFF9F0A);
 
+
+  static void applyAccent(AccentPalette p) {
+    accentLight = p.light;
+    accentDark = p.dark;
+    accentDimLight = p.dimLight;
+    accentDimDark = p.dimDark;
+    borderFocusLight = p.light;
+    borderFocusDark = p.dark;
+  }
+
   AppColors._();
 }
+
+class AccentPalette {
+  const AccentPalette({required this.name, required this.light, required this.dark, required this.dimLight, required this.dimDark});
+  final String name;
+  final Color light;
+  final Color dark;
+  final Color dimLight;
+  final Color dimDark;
+}
+
+const List<AccentPalette> kAccentPalettes = [
+  AccentPalette(name: 'Blue', light: Color(0xFF007AFF), dark: Color(0xFF0A84FF), dimLight: Color(0xFF0051D5), dimDark: Color(0xFF0A84FF)),
+  AccentPalette(name: 'Indigo', light: Color(0xFF5856D6), dark: Color(0xFF5E5CE6), dimLight: Color(0xFF4338CA), dimDark: Color(0xFF5E5CE6)),
+  AccentPalette(name: 'Emerald', light: Color(0xFF34C759), dark: Color(0xFF30D158), dimLight: Color(0xFF248A3D), dimDark: Color(0xFF30D158)),
+  AccentPalette(name: 'Crimson', light: Color(0xFFFF3B30), dark: Color(0xFFFF453A), dimLight: Color(0xFFD70015), dimDark: Color(0xFFFF453A)),
+  AccentPalette(name: 'Amber', light: Color(0xFFFF9500), dark: Color(0xFFFF9F0A), dimLight: Color(0xFFC77700), dimDark: Color(0xFFFF9F0A)),
+  AccentPalette(name: 'Violet', light: Color(0xFFAF52DE), dark: Color(0xFFBF5AF7), dimLight: Color(0xFF8944AB), dimDark: Color(0xFFBF5AF7)),
+];
+
 
 abstract final class AppTypography {
   static const double displaySize = 34;

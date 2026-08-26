@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import '../core/utils/constants.dart';
 import 'package:image/image.dart' as img;
 
 
@@ -60,7 +61,7 @@ class RotateResizeSheetState extends State<RotateResizeSheet> {
     final bg = isDark ? const Color(0xFF1C1C1E) : Colors.white;
     final textPrimary = isDark ? Colors.white : const Color(0xFF111111);
     final textSecondary = isDark ? const Color(0xFF8E8E93) : const Color(0xFF3A3A3C);
-    final accent = isDark ? const Color(0xFF0A84FF) : const Color(0xFF007AFF);
+    final accent = isDark ? AppColors.accentDark : AppColors.accentLight;
 
     return SafeArea(
       child: Container(

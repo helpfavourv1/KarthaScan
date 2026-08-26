@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
+import '../core/utils/constants.dart';
 import '../core/models/edit_session.dart';
 import 'text_stamp_sheet.dart';
 
@@ -27,7 +28,7 @@ class _EditSessionSheetState extends State<EditSessionSheet> {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final bg = isDark ? const Color(0xFF1C1C1E) : Colors.white;
     final textPrimary = isDark ? Colors.white : const Color(0xFF111111);
-    final accent = isDark ? const Color(0xFF0A84FF) : const Color(0xFF007AFF);
+    final accent = isDark ? AppColors.accentDark : AppColors.accentLight;
 
     return SafeArea(
       child: Container(height: MediaQuery.of(context).size.height * 0.9, decoration: BoxDecoration(color: bg, borderRadius: const BorderRadius.vertical(top: Radius.circular(20))),

@@ -1,6 +1,7 @@
 import 'dart:typed_data';
 import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
+import '../core/utils/constants.dart';
 
 class StampResult {
   const StampResult({required this.bytes, required this.label, required this.widthFraction, required this.aspect});
@@ -36,7 +37,7 @@ class _TextStampSheetState extends State<TextStampSheet> {
       final box = Paint()..color = const Color(0xFF111111)..style = PaintingStyle.stroke..strokeWidth = 16;
       canvas.drawRRect(ui.RRect.fromRectAndRadius(const Rect.fromLTWH(8, 8, size - 16, size - 16), const Radius.circular(24)), box);
       if (_checked) {
-        final check = Paint()..color = const Color(0xFF007AFF)..style = PaintingStyle.stroke..strokeWidth = 24..strokeCap = StrokeCap.round..strokeJoin = StrokeJoin.round;
+        final check = Paint()..color = AppColors.accentLight..style = PaintingStyle.stroke..strokeWidth = 24..strokeCap = StrokeCap.round..strokeJoin = StrokeJoin.round;
         final path = Path()..moveTo(60, 130)..lineTo(105, 175)..lineTo(185, 75);
         canvas.drawPath(path, check);
       }
@@ -51,7 +52,7 @@ class _TextStampSheetState extends State<TextStampSheet> {
     if (widget.kind == 'date') {
       final d = DateTime.now();
       text = '${d.day.toString().padLeft(2, '0')}-${d.month.toString().padLeft(2, '0')}-${d.year}';
-      bg = const Color(0x00000000); fg = const Color(0xFF007AFF);
+      bg = const Color(0x00000000); fg = AppColors.accentLight;
     } else if (widget.kind == 'note') {
       text = _controller.text.isEmpty ? 'Note' : _controller.text;
       bg = const Color(0xFFFFEB84); fg = const Color(0xFF3A3A3C);

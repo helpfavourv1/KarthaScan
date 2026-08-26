@@ -2,6 +2,7 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
+import '../core/utils/constants.dart';
 
 class OverlayPlacementSheet extends StatefulWidget {
   const OverlayPlacementSheet({
@@ -31,7 +32,7 @@ class OverlayPlacementSheetState extends State<OverlayPlacementSheet> {
   Widget build(BuildContext context) {
     final currentPagePath = widget.pagePaths[_currentPageIndex];
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final accent = isDark ? const Color(0xFF0A84FF) : const Color(0xFF007AFF);
+    final accent = isDark ? AppColors.accentDark : AppColors.accentLight;
     final bg = isDark ? const Color(0xFF000000) : const Color(0xFFF2F2F7);
     final textPrimary = isDark ? Colors.white : const Color(0xFF111111);
 

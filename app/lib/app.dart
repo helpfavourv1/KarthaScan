@@ -58,6 +58,8 @@ class _KatharScanAppState extends State<KatharScanApp> {
         final Locale locale = Locale(languageCode);
         final bool isRtl = AppLocales.isRtl(languageCode);
         final Color accentColor = themeProvider.accentColor.value;
+        final AccentPalette? match = kAccentPalettes.cast<AccentPalette?>().firstWhere((p) => p!.light == accentColor, orElse: () => null);
+        AppColors.applyAccent(match ?? kAccentPalettes.first);
 
         return MaterialApp.router(
           title: 'KatharScan',
