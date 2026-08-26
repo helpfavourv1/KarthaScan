@@ -564,12 +564,13 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
                         Positioned(
                           left: 0,
                           right: 0,
-                          bottom: 24,
+                          bottom: 12,
                           child: Center(
-                            child: QuickActionPill(
-                              onAnnotate: _annotate,
+                            child: EditTray(
+                              onMarkup: _annotate,
                               onSign: _addSignature,
-                              onRegionOcr: _regionOcr,
+                              onWatermark: _addWatermark,
+                              onOcr: _regionOcr,
                               onConvert: () => context.push('/export', extra: <String>[document.id]),
                               onCompress: () => context.push('/export', extra: <String, dynamic>{'ids': <String>[document.id], 'format': 'jpg'}),
                             ),
@@ -904,127 +905,6 @@ class _SignatureSheet extends StatelessWidget {
                   child: const Text('Done'),
                 ),
               ],
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class _SignaturePlacementSheet extends StatefulWidget {
-  final List<String> pagePaths;
-  final Uint8List signatureBytes;
-  const _SignaturePlacementSheet({required this.pagePaths, required this.signatureBytes});
-
-  @override
-  State<_SignaturePlacementSheet> createState() => _SignaturePlacementSheetState();
-}
-
-class _SignaturePlacementSheetState extends State<_SignaturePlacementSheet> {
-  int _currentPageIndex = 0;
-  Offset _signatureOffset = Offset.zero;
-  double _rotationDegrees = 0;
-  final GlobalKey _stackKey = GlobalKey();
-  bool _initialized = false;
-
-  @override
-  Widget build(BuildContext context) {
-    final currentPagePath = widget.pagePaths[_currentPageIndex];
-    return SafeArea(
-      child: Container(
-        height: MediaQuery.of(context).size.height * 0.85,
-        decoration: const BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-        ),
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(16),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Text('Place Signature', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600)),
-                  Row(
-                    children: [
-                      IconButton(icon: const Icon(Icons.chevron_left), onPressed: _currentPageIndex > 0 ? () => setState(() => _currentPageIndex--) : null),
-                      Text('Page ${_currentPageIndex + 1} / ${widget.pagePaths.length}'),
-                      IconButton(icon: const Icon(Icons.chevron_right), onPressed: _currentPageIndex < widget.pagePaths.length - 1 ? () => setState(() => _currentPageIndex++) : null),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            Expanded(
-              child: LayoutBuilder(
-                builder: (context, constraints) {
-                  if (!_initialized) {
-                    _initialized = true;
-                    _signatureOffset = Offset(constraints.maxWidth * 0.6, constraints.maxHeight * 0.7);
-                  }
-                  return Stack(
-                    key: _stackKey,
-                    children: [
-                      Positioned.fill(child: Image.file(File(currentPagePath), fit: BoxFit.contain)),
-                      Positioned(
-                        left: _signatureOffset.dx,
-                        top: _signatureOffset.dy,
-                        child: GestureDetector(
-                          onPanUpdate: (details) => setState(() {
-                            _signatureOffset += details.delta;
-                            _signatureOffset = Offset(
-                              _signatureOffset.dx.clamp(0.0, constraints.maxWidth - 100).toDouble(),
-                              _signatureOffset.dy.clamp(0.0, constraints.maxHeight - 50).toDouble(),
-                            );
-                          }),
-                          child: Transform.rotate(
-                            angle: _rotationDegrees * 3.14159 / 180,
-                            child: Opacity(opacity: 0.8, child: Image.memory(widget.signatureBytes, width: 100, height: 50, fit: BoxFit.contain)),
-                          ),
-                        ),
-                      ),
-                    ],
-                  );
-                },
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Row(
-                children: [
-                  const Text('Rotate'),
-                  Expanded(
-                    child: Slider(
-                      value: _rotationDegrees,
-                      min: -180,
-                      max: 180,
-                      onChanged: (value) => setState(() => _rotationDegrees = value),
-                    ),
-                  ),
-                  Text('${_rotationDegrees.round()}°'),
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(16),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  TextButton(onPressed: () => Navigator.pop(context), child: const Text('Cancel')),
-                  const SizedBox(width: 12),
-                  ElevatedButton(
-                    onPressed: () {
-                      final RenderBox? box = _stackKey.currentContext?.findRenderObject() as RenderBox?;
-                      final Size size = box?.size ?? const Size(1, 1);
-                      final double pctX = (_signatureOffset.dx / size.width).clamp(0.0, 1.0).toDouble();
-                      final double pctY = (_signatureOffset.dy / size.height).clamp(0.0, 1.0).toDouble();
-                      Navigator.pop(context, (_currentPageIndex, pctX, pctY, _rotationDegrees));
-                    },
-                    child: const Text('Confirm'),
-                  ),
-                ],
-              ),
             ),
           ],
         ),

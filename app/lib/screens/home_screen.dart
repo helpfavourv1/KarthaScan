@@ -13,19 +13,7 @@ import '../core/utils/constants.dart';
 import '../l10n/app_localizations.dart';
 import '../widgets/empty_state.dart';
 import '../widgets/folder_list_tile.dart';
-import 'dart:io';
-import 'dart:ui' as ui;
-import 'package:flutter/foundation.dart' show compute;
-import 'package:flutter/services.dart';
-import 'package:image/image.dart' as img;
-import 'package:path/path.dart' as p;
-import 'package:path_provider/path_provider.dart';
-import '../core/services/ocr_service.dart';
-import '../widgets/annotation_overlay.dart';
-import '../widgets/overlay_placement_sheet.dart';
 import '../widgets/scan_list_tile.dart';
-import '../widgets/tool_tile.dart';
-import 'package:phosphoricons_flutter/phosphoricons_flutter.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -387,237 +375,6 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
 
-  Future<void> _pickDocumentForExport(String? formatHint) async {
-    if (_scanProvider.documents.value.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Scan a document first.')));
-      return;
-    }
-    final selectedId = await showModalBottomSheet<String>(
-      context: context,
-      builder: (ctx) => _DocumentPickerSheet(documents: _scanProvider.documents.value),
-    );
-    if (selectedId != null && mounted) {
-      if (formatHint == null) {
-        context.push('/export', extra: <String>[selectedId]);
-      } else {
-        context.push('/export', extra: <String, dynamic>{'ids': <String>[selectedId], 'format': formatHint});
-      }
-    }
-  }
-
-  Future<void> _openAnnotate() async {
-    if (_scanProvider.documents.value.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Scan a document first.')));
-      return;
-    }
-    final selectedId = await showModalBottomSheet<String>(
-      context: context,
-      builder: (ctx) => _DocumentPickerSheet(documents: _scanProvider.documents.value),
-    );
-    if (selectedId == null || !mounted) return;
-    final doc = _scanProvider.documents.value.firstWhere((d) => d.id == selectedId);
-    if (doc.pagePaths.isEmpty) return;
-
-    final annotationKey = GlobalKey<AnnotationOverlayState>();
-    final bytes = await showModalBottomSheet<Uint8List?>(
-      context: context,
-      isScrollControlled: true,
-      backgroundColor: Colors.transparent,
-      builder: (c) => _HomeAnnotationSheet(annotationKey: annotationKey),
-    );
-    if (bytes == null || !mounted) return;
-    final placement = await showModalBottomSheet<(int, double, double, double, double)?>(
-      context: context,
-      isScrollControlled: true,
-      builder: (c) => OverlayPlacementSheet(
-        pagePaths: doc.pagePaths,
-        overlayBytes: bytes,
-        title: 'Place Annotation',
-      ),
-    );
-    if (placement == null || !mounted) return;
-    await _compositeOverlayOnPage(
-        doc,
-        placement.$1,
-        bytes,
-      pctX: placement.$2,
-      pctY: placement.$3,
-      rotationDegrees: placement.$4,
-      scale: placement.$5,
-    );
-  }
-
-  Future<void> _openRegionOcr() async {
-    if (_scanProvider.documents.value.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Scan a document first.')));
-      return;
-    }
-    final selectedId = await showModalBottomSheet<String>(
-      context: context,
-      builder: (ctx) => _DocumentPickerSheet(documents: _scanProvider.documents.value),
-    );
-    if (selectedId == null || !mounted) return;
-    final doc = _scanProvider.documents.value.firstWhere((d) => d.id == selectedId);
-    if (doc.pagePaths.isEmpty) return;
-
-    final rect = await showModalBottomSheet<Rect?>(
-      context: context,
-      isScrollControlled: true,
-      builder: (c) => _HomeRegionSelectSheet(imagePath: doc.pagePaths.first),
-    );
-    if (rect == null || !mounted) return;
-
-    try {
-      final originalBytes = await File(doc.pagePaths.first).readAsBytes();
-      final originalImage = img.decodeImage(originalBytes);
-      if (originalImage == null) return;
-      final x = rect.left.toInt().clamp(0, originalImage.width);
-      final y = rect.top.toInt().clamp(0, originalImage.height);
-      final w = rect.width.toInt().clamp(0, originalImage.width - x);
-      final h = rect.height.toInt().clamp(0, originalImage.height - y);
-      if (w <= 0 || h <= 0) return;
-      final cropped = img.copyCrop(originalImage, x: x, y: y, width: w, height: h);
-      final tempDir = await getTemporaryDirectory();
-      final tempPath = p.join(tempDir.path, 'home_region_${DateTime.now().microsecondsSinceEpoch}.jpg');
-      await File(tempPath).writeAsBytes(Uint8List.fromList(img.encodeJpg(cropped)));
-      final ocr = OcrService();
-      final result = await ocr.recognizeText(imagePath: tempPath, script: OcrScript.latin);
-      await ocr.dispose();
-      if (!mounted) return;
-      showDialog(
-        context: context,
-        builder: (c) => AlertDialog(
-          title: const Text('Extracted Text'),
-          content: SelectableText(result.fullText.isEmpty ? 'No text found' : result.fullText),
-          actions: [
-            TextButton(onPressed: () => Navigator.pop(c), child: const Text('Close')),
-            TextButton(onPressed: () { Clipboard.setData(ClipboardData(text: result.fullText)); Navigator.pop(c); }, child: const Text('Copy')),
-          ],
-        ),
-      );
-    } catch (e) {
-      if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Region OCR failed: $e')));
-    }
-  }
-
-  Future<void> _compositeOverlayOnPage(ScanDocument doc, int pageIndex, Uint8List overlayBytes, {double pctX = 0.5, double pctY = 0.5, double rotationDegrees = 0, double scale = 1.0}) async {
-    try {
-      final originalBytes = await File(doc.pagePaths[pageIndex]).readAsBytes();
-      final finalBytes = await compute(_homeCompositeIsolate, {
-        'original': originalBytes,
-        'overlay': overlayBytes,
-        'pctX': pctX,
-        'pctY': pctY,
-        'rotation': rotationDegrees,
-        'scale': scale,
-      });
-      final appDir = await getApplicationDocumentsDirectory();
-      final dir = Directory(p.join(appDir.path, 'annotated_pages'));
-      await dir.create(recursive: true);
-      final newPath = p.join(dir.path, 'ann_${DateTime.now().microsecondsSinceEpoch}.jpg');
-      await File(newPath).writeAsBytes(finalBytes);
-      final newPaths = List<String>.from(doc.pagePaths);
-      newPaths[pageIndex] = newPath;
-      await _scanProvider.updateDocumentPages(doc.id, newPaths);
-      if (mounted) ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Layer saved')));
-    } catch (e) {
-      if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Error: $e')));
-    }
-  }
-
-  Future<void> _openWatermark() async {
-    if (_scanProvider.documents.value.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Scan a document first.')));
-      return;
-    }
-    final selectedId = await showModalBottomSheet<String>(
-      context: context,
-      builder: (ctx) => _DocumentPickerSheet(documents: _scanProvider.documents.value),
-    );
-    if (selectedId == null || !mounted) return;
-    final doc = _scanProvider.documents.value.firstWhere((d) => d.id == selectedId);
-    if (doc.pagePaths.isEmpty) return;
-
-    final textController = TextEditingController(text: 'CONFIDENTIAL');
-    double opacity = 0.15;
-    double fontSize = 48;
-
-    final confirmed = await showDialog<bool>(
-      context: context,
-      builder: (ctx) => StatefulBuilder(
-        builder: (ctx, setDialogState) => AlertDialog(
-          title: const Text('Add Watermark'),
-          content: SingleChildScrollView(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                TextField(controller: textController, decoration: const InputDecoration(labelText: 'Text')),
-                const SizedBox(height: 16),
-                Text('Opacity: ${opacity.toStringAsFixed(2)}'),
-                Slider(value: opacity, min: 0.05, max: 0.5, onChanged: (v) => setDialogState(() => opacity = v)),
-                Text('Size: ${fontSize.round()}'),
-                Slider(value: fontSize, min: 12, max: 96, onChanged: (v) => setDialogState(() => fontSize = v)),
-              ],
-            ),
-          ),
-          actions: [
-            TextButton(onPressed: () => Navigator.pop(ctx, false), child: const Text('Cancel')),
-            TextButton(onPressed: () => Navigator.pop(ctx, true), child: const Text('Add')),
-          ],
-        ),
-      ),
-    );
-
-    final watermarkText = textController.text;  // ✅ capture before dispose
-    textController.dispose();
-    if (confirmed != true || !mounted) return;
-
-    final bytes = await _homeRenderWatermark(watermarkText, opacity, fontSize);
-    if (bytes == null || !mounted) return;
-
-    final placement = await showModalBottomSheet<(int, double, double, double, double)?>(
-      context: context,
-      isScrollControlled: true,
-      builder: (c) => OverlayPlacementSheet(
-        pagePaths: doc.pagePaths,
-        overlayBytes: bytes,
-        title: 'Place Watermark',
-      ),
-    );
-    if (placement == null || !mounted) return;
-    await _compositeOverlayOnPage(
-        doc,
-        placement.$1,
-        bytes,
-      pctX: placement.$2,
-      pctY: placement.$3,
-      rotationDegrees: placement.$4,
-      scale: placement.$5,
-    );
-  }
-
-  Future<Uint8List?> _homeRenderWatermark(String text, double opacity, double fontSize) async {
-    if (text.isEmpty) return null;
-    final recorder = ui.PictureRecorder();
-    final canvas = Canvas(recorder);
-    final pb = ui.ParagraphBuilder(ui.ParagraphStyle(
-      textAlign: TextAlign.center,
-      fontSize: fontSize,
-      fontWeight: FontWeight.w700,
-    ))
-      ..pushStyle(ui.TextStyle(color: const Color(0xFF8E8E93).withValues(alpha: opacity)))
-      ..addText(text);
-    final paragraph = pb.build()
-      ..layout(const ui.ParagraphConstraints(width: 600));
-    canvas.drawParagraph(paragraph, Offset.zero);
-    final picture = recorder.endRecording();
-    final image = await picture.toImage(600, (fontSize * 1.4).round());
-    final ByteData? byteData = await image.toByteData(format: ui.ImageByteFormat.png);
-    if (byteData == null) return null;
-    return byteData.buffer.asUint8List();
-  }
-
   PreferredSizeWidget _buildDefaultAppBar(Color bg, Color textPrimary, Color textSecondary, Color accent, AppLocalizations l10n) {
     return AppBar(
       backgroundColor: bg,
@@ -725,72 +482,67 @@ class _HomeScreenState extends State<HomeScreen> {
 
         return Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md, vertical: AppSpacing.sm),
-              child: Wrap(
-                spacing: AppSpacing.xs,
-                runSpacing: AppSpacing.xs,
-                children: [
-                  ToolTile(icon: PhosphorIconsRegular.highlighter, label: 'Annotate', onTap: _openAnnotate),
-                  ToolTile(icon: PhosphorIconsRegular.pen, label: 'Sign', onTap: () => _pickDocumentForExport(null)),
-                  ToolTile(icon: PhosphorIconsRegular.textbox, label: 'Watermark', onTap: _openWatermark),
-                  ToolTile(icon: PhosphorIconsRegular.crop, label: 'Region OCR', onTap: _openRegionOcr),
-                  ToolTile(icon: PhosphorIconsRegular.fileText, label: 'Convert', onTap: () => _pickDocumentForExport(null)),
-                  ToolTile(icon: PhosphorIconsRegular.scan, label: 'Scan ID', onTap: () => context.push('/manual-crop')),
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md),
-              child: SizedBox(
-                height: 40,
-                child: ElevatedButton.icon(
-                  onPressed: _startBatchExport,
-                  icon: const Icon(Icons.checklist_rounded, size: 18),
-                  label: const Text('Select Multiple Documents', style: TextStyle(fontSize: 13, fontWeight: FontWeight.w700)),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: accent,
-                    foregroundColor: Colors.white,
-                    elevation: 0,
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                  ),
-                ),
-              ),
-            ),
-            const SizedBox(height: AppSpacing.sm),
             Expanded(
               child: ListView(
                 padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md, vertical: AppSpacing.xs),
                 children: [
-            if (_selectedFilter != 1 && allFolders.isNotEmpty) ...[
-              Padding(
-                padding: const EdgeInsets.only(bottom: AppSpacing.sm),
-                child: Wrap(
-                  spacing: AppSpacing.xs,
-                  runSpacing: AppSpacing.xs,
+            Padding(
+              padding: const EdgeInsets.only(bottom: AppSpacing.sm),
+              child: SizedBox(
+                height: 36,
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
                   children: [
-                    ...allFolders.map((folder) => GestureDetector(
-                      onTap: () => context.push('/folder/${folder.id}'),
-                      child: Container(
-                        height: 36,
-                        padding: const EdgeInsets.symmetric(horizontal: 12),
-                        decoration: BoxDecoration(
-                          color: surface,
-                          borderRadius: BorderRadius.circular(12),
-                          boxShadow: AppShadows.ambient,
+                    if (allFolders.isNotEmpty) ...[
+                      ...allFolders.map((folder) => Padding(
+                        padding: const EdgeInsets.only(right: AppSpacing.xs),
+                        child: GestureDetector(
+                          onTap: () => context.push('/folder/${folder.id}'),
+                          child: Container(
+                            height: 36,
+                            padding: const EdgeInsets.symmetric(horizontal: 12),
+                            decoration: BoxDecoration(
+                              color: surface,
+                              borderRadius: BorderRadius.circular(12),
+                              boxShadow: AppShadows.ambient,
+                            ),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Icon(Icons.folder_outlined, color: accent, size: 16),
+                                const SizedBox(width: 6),
+                                Text(folder.name, style: TextStyle(color: textPrimary, fontSize: 12, fontWeight: FontWeight.w700)),
+                              ],
+                            ),
+                          ),
                         ),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Icon(Icons.folder_outlined, color: accent, size: 16),
-                            const SizedBox(width: 6),
-                            Text(folder.name, style: TextStyle(color: textPrimary, fontSize: 12, fontWeight: FontWeight.w700)),
-                          ],
+                      )),
+                      Padding(
+                        padding: const EdgeInsets.only(right: AppSpacing.xs),
+                        child: GestureDetector(
+                          onTap: () => setState(() => _selectedFilter = 1),
+                          child: Container(
+                            height: 36,
+                            padding: const EdgeInsets.symmetric(horizontal: 12),
+                            decoration: BoxDecoration(
+                              color: accent,
+                              borderRadius: BorderRadius.circular(12),
+                              boxShadow: AppShadows.ambient,
+                            ),
+                            child: const Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Icon(Icons.folder_open_outlined, color: Colors.white, size: 16),
+                                SizedBox(width: 6),
+                                Text('All Folders', style: TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.w700)),
+                              ],
+                            ),
+                          ),
                         ),
                       ),
-                    )),
+                    ],
                     GestureDetector(
-                      onTap: () => setState(() => _selectedFilter = 1),
+                      onTap: _startBatchExport,
                       child: Container(
                         height: 36,
                         padding: const EdgeInsets.symmetric(horizontal: 12),
@@ -802,9 +554,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: const Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            Icon(Icons.folder_open_outlined, color: Colors.white, size: 16),
+                            Icon(Icons.checklist_rounded, color: Colors.white, size: 16),
                             SizedBox(width: 6),
-                            Text('All Folders', style: TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.w700)),
+                            Text('Select Multiple', style: TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.w700)),
                           ],
                         ),
                       ),
@@ -812,7 +564,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
               ),
-            ],
+            ),
             if (_selectedFilter != 1 && documents.isNotEmpty) ...[
               _sectionHeader(l10n.documentsSectionHeader),
               ...documents.map((doc) => Padding(
@@ -928,212 +680,5 @@ class _LanguagePickerSheet extends StatelessWidget {
 }
 
 
-class _DocumentPickerSheet extends StatelessWidget {
-  const _DocumentPickerSheet({required this.documents});
-  final List<ScanDocument> documents;
-
-  @override
-  Widget build(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-    final bg = isDark ? AppColors.bgPrimaryDark : AppColors.bgPrimaryLight;
-    final textPrimary = isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight;
-    final accent = isDark ? AppColors.accentDark : AppColors.accentLight;
-
-    return SafeArea(
-      child: Container(
-        decoration: BoxDecoration(color: bg, borderRadius: const BorderRadius.only(topLeft: Radius.circular(AppShape.bottomSheetTopRadius), topRight: Radius.circular(AppShape.bottomSheetTopRadius))),
-        padding: const EdgeInsets.all(AppSpacing.md),
-        constraints: BoxConstraints(maxHeight: MediaQuery.of(context).size.height * 0.6),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text('Select Document', style: TextStyle(color: textPrimary, fontSize: AppTypography.title1Size, fontWeight: FontWeight.w600)),
-            const SizedBox(height: AppSpacing.sm),
-            Flexible(
-              child: SingleChildScrollView(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: documents.map((doc) => ListTile(
-                    title: Text(doc.title, style: TextStyle(color: textPrimary)),
-                    trailing: Icon(Icons.description_outlined, color: accent),
-                    onTap: () => Navigator.of(context).pop(doc.id),
-                  )).toList(),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
 
 
-class _HomeAnnotationSheet extends StatelessWidget {
-  const _HomeAnnotationSheet({required this.annotationKey});
-  final GlobalKey<AnnotationOverlayState> annotationKey;
-
-  @override
-  Widget build(BuildContext context) {
-    return SafeArea(
-      child: Container(
-        height: MediaQuery.of(context).size.height * 0.6,
-        decoration: const BoxDecoration(color: Colors.white, borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
-        child: Column(
-          children: [
-            const Padding(padding: EdgeInsets.all(16), child: Text('Annotate', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600))),
-            Expanded(child: Padding(padding: const EdgeInsets.symmetric(horizontal: 16), child: Container(decoration: BoxDecoration(border: Border.all(color: Colors.grey.shade300)), child: AnnotationOverlay(key: annotationKey)))),
-            Padding(
-              padding: const EdgeInsets.all(16),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  TextButton(onPressed: () => Navigator.pop(context), child: const Text('Cancel')),
-                  const SizedBox(width: 12),
-                  ElevatedButton(onPressed: () async { final bytes = await annotationKey.currentState?.exportPng(); if (context.mounted) Navigator.pop(context, bytes); }, child: const Text('Save')),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class _HomeRegionSelectSheet extends StatefulWidget {
-  const _HomeRegionSelectSheet({required this.imagePath});
-  final String imagePath;
-
-  @override
-  State<_HomeRegionSelectSheet> createState() => _HomeRegionSelectSheetState();
-}
-
-class _HomeRegionSelectSheetState extends State<_HomeRegionSelectSheet> {
-  Rect? _selectedRect;
-  Offset? _startPos;
-  img.Image? _originalImage;
-  bool _loading = true;
-  double _displayW = 0;
-  double _displayH = 0;
-
-  @override
-  void initState() {
-    super.initState();
-    _loadImage();
-  }
-
-  Future<void> _loadImage() async {
-    try {
-      final bytes = await File(widget.imagePath).readAsBytes();
-      _originalImage = img.decodeImage(bytes);
-      if (mounted) setState(() => _loading = false);
-    } catch (_) {
-      if (mounted) setState(() => _loading = false);
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return SafeArea(
-      child: Container(
-        height: MediaQuery.of(context).size.height * 0.7,
-        decoration: const BoxDecoration(color: Colors.white, borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
-        child: Column(
-          children: [
-            const Padding(padding: EdgeInsets.all(16), child: Text('Select Region', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600))),
-            Expanded(
-              child: _loading || _originalImage == null
-                  ? const Center(child: CircularProgressIndicator())
-                  : LayoutBuilder(
-                      builder: (context, constraints) {
-                        final imgW = _originalImage!.width;
-                        final imgH = _originalImage!.height;
-                        final aspect = imgW / imgH;
-                        double displayW = constraints.maxWidth;
-                        double displayH = displayW / aspect;
-                        if (displayH > constraints.maxHeight) {
-                          displayH = constraints.maxHeight;
-                          displayW = displayH * aspect;
-                        }
-                        _displayW = displayW;
-                        _displayH = displayH;
-                        return Center(
-                          child: SizedBox(
-                            width: displayW,
-                            height: displayH,
-                            child: GestureDetector(
-                              onPanStart: (d) => setState(() => _startPos = d.localPosition),
-                              onPanUpdate: (d) {
-                                if (_startPos == null) return;
-                                setState(() {
-                                  final left = _startPos!.dx < d.localPosition.dx ? _startPos!.dx : d.localPosition.dx;
-                                  final top = _startPos!.dy < d.localPosition.dy ? _startPos!.dy : d.localPosition.dy;
-                                  final width = (d.localPosition.dx - _startPos!.dx).abs();
-                                  final height = (d.localPosition.dy - _startPos!.dy).abs();
-                                  _selectedRect = Rect.fromLTWH(left, top, width, height);
-                                });
-                              },
-                              child: Stack(
-                                children: [
-                                  Image.file(File(widget.imagePath), fit: BoxFit.fill),
-                                  if (_selectedRect != null)
-                                    Positioned.fromRect(
-                                      rect: _selectedRect!,
-                                      child: Container(decoration: BoxDecoration(border: Border.all(color: Colors.blue, width: 2), color: Colors.blue.withValues(alpha: 0.2))),
-                                    ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        );
-                      },
-                    ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(16),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  TextButton(onPressed: () => Navigator.pop(context), child: const Text('Cancel')),
-                  const SizedBox(width: 12),
-                  ElevatedButton(
-                    onPressed: _selectedRect == null || _displayW == 0 || _displayH == 0
-                        ? null
-                        : () {
-                            final scaleX = _originalImage!.width / _displayW;
-                            final scaleY = _originalImage!.height / _displayH;
-                            Navigator.pop(context, Rect.fromLTRB(_selectedRect!.left * scaleX, _selectedRect!.top * scaleY, _selectedRect!.right * scaleX, _selectedRect!.bottom * scaleY));
-                          },
-                    child: const Text('Extract'),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-
-Uint8List _homeCompositeIsolate(Map<String, dynamic> args) {
-  final original = img.decodeImage(args['original'] as Uint8List);
-  var overlay = img.decodePng(args['overlay'] as Uint8List);
-  if (original == null || overlay == null) return args['original'] as Uint8List;
-  overlay = img.copyResize(overlay, width: original.width, height: original.height);
-  final scale = (args['scale'] as double?) ?? 1.0;
-  final pctX = (args['pctX'] as double?) ?? 0.5;
-  final pctY = (args['pctY'] as double?) ?? 0.5;
-  final rotation = (args['rotation'] as double?) ?? 0.0;
-  if (rotation != 0) overlay = img.copyRotate(overlay, angle: rotation);
-  if (scale != 1.0) {
-    overlay = img.copyResize(overlay, width: (overlay.width * scale).round(), height: (overlay.height * scale).round());
-  }
-  final dstX = (pctX * original.width).round() - (overlay.width ~/ 2);
-  final dstY = (pctY * original.height).round() - (overlay.height ~/ 2);
-  final composite = img.compositeImage(original, overlay, dstX: dstX, dstY: dstY);
-  return Uint8List.fromList(img.encodeJpg(composite, quality: 95));
-}
