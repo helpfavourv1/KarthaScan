@@ -160,7 +160,6 @@ class PagesManagerSheetState extends State<PagesManagerSheet> {
 
   Future<void> _showAddOptions() async {
     final choice = await showModalBottomSheet<String>(
-      if (!mounted) return;
       context: context,
       builder: (ctx) => SafeArea(
         child: Column(
@@ -185,6 +184,7 @@ class PagesManagerSheetState extends State<PagesManagerSheet> {
         ),
       ),
     );
+    if (!mounted) return;
     if (choice == null) return;
 
     if (choice == 'camera') {
@@ -197,17 +197,7 @@ class PagesManagerSheetState extends State<PagesManagerSheet> {
       }
     } else if (choice == 'document') {
       final docId = await showModalBottomSheet<String>(
-        context: context,
-        builder: (ctx) => SafeArea(
-          child: ListView(
-            children: widget.allDocuments.map((doc) => ListTile(
-              title: Text(doc.title),
-              subtitle: Text('${doc.pageCount} pages'),
-              onTap: () => Navigator.pop(ctx, doc.id),
-            )).toList(),
-          ),
-        ),
-      );
+      if (!mounted) return;
       if (docId != null) {
         final doc = widget.allDocuments.firstWhere((d) => d.id == docId);
         final appDir = await getApplicationDocumentsDirectory();
