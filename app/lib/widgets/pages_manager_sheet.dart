@@ -7,7 +7,6 @@ import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
 
 import '../core/models/scan_document.dart';
-import '../core/utils/constants.dart';
 
 class PagesManagerSheet extends StatefulWidget {
   const PagesManagerSheet({
@@ -64,10 +63,9 @@ class PagesManagerSheetState extends State<PagesManagerSheet> {
                 buildDefaultDragHandles: false, // Disable default handles to prevent "Add" tile dragging
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 itemCount: _pages.length + 1,
-                onReorder: (oldIndex, newIndex) {
+                onReorderItem: (oldIndex, newIndex) {
                   if (oldIndex < _pages.length && newIndex <= _pages.length) {
                     setState(() {
-                      if (newIndex > oldIndex) newIndex--;
                       final item = _pages.removeAt(oldIndex);
                       _pages.insert(newIndex, item);
                     });

@@ -67,7 +67,7 @@ class _TextStampSheetState extends State<TextStampSheet> {
     final double pad = widget.kind == 'note' ? 40 : 8;
     final int w = (built.longestLine + pad * 2).ceil();
     final int h = (built.height + pad * 2).ceil();
-    if (bg.alpha > 0) {
+    if (bg.a > 0) {
       canvas.drawRRect(ui.RRect.fromRectAndRadius(Rect.fromLTWH(0, 0, w.toDouble(), h.toDouble()), const Radius.circular(16)), Paint()..color = bg);
     }
     canvas.drawParagraph(built, Offset(pad, pad));

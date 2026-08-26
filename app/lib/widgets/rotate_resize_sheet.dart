@@ -1,10 +1,8 @@
 import 'dart:io';
-import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:image/image.dart' as img;
 
-import '../core/utils/constants.dart';
 
 enum RotateResizeMode { rotate, resize }
 
