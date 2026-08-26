@@ -8,6 +8,7 @@ import '../core/models/scan_document.dart';
 import '../core/providers/folder_provider.dart';
 import '../core/providers/scan_provider.dart';
 import '../core/providers/settings_provider.dart';
+import '../core/providers/theme_provider.dart';
 import '../core/services/share_service.dart';
 import '../core/utils/constants.dart';
 import '../l10n/app_localizations.dart';
@@ -342,29 +343,29 @@ class _HomeScreenState extends State<HomeScreen> {
     final accent = isDark ? AppColors.accentDark : AppColors.accentLight;
 
     return SizedBox(
-      height: 40,
+      height: 34,
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
         padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md),
         itemCount: filters.length,
-        separatorBuilder: (context, index) => const SizedBox(width: 8),
+        separatorBuilder: (context, index) => const SizedBox(width: 6),
         itemBuilder: (context, index) {
           final isSelected = _selectedFilter == index;
           return GestureDetector(
             onTap: () => setState(() => _selectedFilter = index),
             child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
               decoration: BoxDecoration(
                 color: isSelected ? accent : surface,
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: BorderRadius.circular(10),
                 boxShadow: isSelected ? AppShadows.ambient : null,
               ),
               child: Text(
                 filters[index],
                 style: TextStyle(
                   color: isSelected ? Colors.white : textPrimary,
-                  fontWeight: FontWeight.w700,
-                  fontSize: 12,
+                  fontWeight: FontWeight.w600,
+                  fontSize: 11,
                 ),
               ),
             ),
@@ -374,6 +375,17 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
+
+
+  Future<void> _openAccentPicker() async {
+    final picked = await showModalBottomSheet<AccentPalette>(
+      context: context,
+      builder: (ctx) => _AccentPickerSheet(current: _settingsProvider.settings.value.accentColor),
+    );
+    if (picked != null && mounted) {
+      Provider.of<ThemeProvider>(context, listen: false).setAccentColor(picked.light);
+    }
+  }
 
   PreferredSizeWidget _buildDefaultAppBar(Color bg, Color textPrimary, Color textSecondary, Color accent, AppLocalizations l10n) {
     return AppBar(
@@ -399,6 +411,11 @@ class _HomeScreenState extends State<HomeScreen> {
           icon: const Icon(Icons.create_new_folder_outlined),
           tooltip: 'New Folder',
           onPressed: _createFolder,
+        ),
+        IconButton(
+          icon: const Icon(Icons.palette_outlined),
+          tooltip: 'Accent Color',
+          onPressed: _openAccentPicker,
         ),
         IconButton(
           icon: const Icon(Icons.settings_outlined),
@@ -489,7 +506,7 @@ class _HomeScreenState extends State<HomeScreen> {
             Padding(
               padding: const EdgeInsets.only(bottom: AppSpacing.sm),
               child: SizedBox(
-                height: 36,
+                height: 32,
                 child: ListView(
                   scrollDirection: Axis.horizontal,
                   children: [
@@ -499,19 +516,19 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: GestureDetector(
                           onTap: () => context.push('/folder/${folder.id}'),
                           child: Container(
-                            height: 36,
-                            padding: const EdgeInsets.symmetric(horizontal: 12),
+                            height: 32,
+                            padding: const EdgeInsets.symmetric(horizontal: 10),
                             decoration: BoxDecoration(
                               color: surface,
-                              borderRadius: BorderRadius.circular(12),
+                              borderRadius: BorderRadius.circular(10),
                               boxShadow: AppShadows.ambient,
                             ),
                             child: Row(
                               mainAxisSize: MainAxisSize.min,
                               children: [
-                                Icon(Icons.folder_outlined, color: accent, size: 16),
-                                const SizedBox(width: 6),
-                                Text(folder.name, style: TextStyle(color: textPrimary, fontSize: 12, fontWeight: FontWeight.w700)),
+                                Icon(Icons.folder_outlined, color: accent, size: 14),
+                                const SizedBox(width: 4),
+                                Text(folder.name, style: TextStyle(color: textPrimary, fontSize: 11, fontWeight: FontWeight.w600)),
                               ],
                             ),
                           ),
@@ -522,19 +539,19 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: GestureDetector(
                           onTap: () => setState(() => _selectedFilter = 1),
                           child: Container(
-                            height: 36,
-                            padding: const EdgeInsets.symmetric(horizontal: 12),
+                            height: 32,
+                            padding: const EdgeInsets.symmetric(horizontal: 10),
                             decoration: BoxDecoration(
                               color: accent,
-                              borderRadius: BorderRadius.circular(12),
+                              borderRadius: BorderRadius.circular(10),
                               boxShadow: AppShadows.ambient,
                             ),
                             child: const Row(
                               mainAxisSize: MainAxisSize.min,
                               children: [
-                                Icon(Icons.folder_open_outlined, color: Colors.white, size: 16),
-                                SizedBox(width: 6),
-                                Text('All Folders', style: TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.w700)),
+                                Icon(Icons.folder_open_outlined, color: Colors.white, size: 14),
+                                SizedBox(width: 4),
+                                Text('All Folders', style: TextStyle(color: Colors.white, fontSize: 11, fontWeight: FontWeight.w600)),
                               ],
                             ),
                           ),
@@ -544,19 +561,19 @@ class _HomeScreenState extends State<HomeScreen> {
                     GestureDetector(
                       onTap: _startBatchExport,
                       child: Container(
-                        height: 36,
-                        padding: const EdgeInsets.symmetric(horizontal: 12),
+                        height: 32,
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
                         decoration: BoxDecoration(
                           color: accent,
-                          borderRadius: BorderRadius.circular(12),
+                          borderRadius: BorderRadius.circular(10),
                           boxShadow: AppShadows.ambient,
                         ),
                         child: const Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            Icon(Icons.checklist_rounded, color: Colors.white, size: 16),
-                            SizedBox(width: 6),
-                            Text('Select Multiple', style: TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.w700)),
+                            Icon(Icons.checklist_rounded, color: Colors.white, size: 14),
+                            SizedBox(width: 4),
+                            Text('Select Multiple', style: TextStyle(color: Colors.white, fontSize: 11, fontWeight: FontWeight.w600)),
                           ],
                         ),
                       ),
@@ -679,6 +696,56 @@ class _LanguagePickerSheet extends StatelessWidget {
   }
 }
 
+class _AccentPickerSheet extends StatelessWidget {
+  const _AccentPickerSheet({required this.current});
+  final Color current;
 
+  @override
+  Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final bg = isDark ? AppColors.bgPrimaryDark : AppColors.bgPrimaryLight;
+    final textPrimary = isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight;
 
-
+    return SafeArea(
+      child: Container(
+        decoration: BoxDecoration(color: bg, borderRadius: const BorderRadius.vertical(top: Radius.circular(AppShape.bottomSheetTopRadius))),
+        padding: const EdgeInsets.all(AppSpacing.md),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text('Accent Color', style: TextStyle(color: textPrimary, fontSize: AppTypography.title1Size, fontWeight: FontWeight.w600)),
+            const SizedBox(height: AppSpacing.md),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: kAccentPalettes.map((p) {
+                final isSelected = p.light == current;
+                return GestureDetector(
+                  onTap: () => Navigator.of(context).pop(p),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Container(
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(
+                          color: p.light,
+                          shape: BoxShape.circle,
+                          border: Border.all(color: isSelected ? textPrimary : Colors.transparent, width: 3),
+                        ),
+                        child: isSelected ? const Icon(Icons.check, color: Colors.white, size: 20) : null,
+                      ),
+                      const SizedBox(height: 6),
+                      Text(p.name, style: TextStyle(color: textPrimary, fontSize: 11, fontWeight: FontWeight.w500)),
+                    ],
+                  ),
+                );
+              }).toList(),
+            ),
+            const SizedBox(height: AppSpacing.sm),
+          ],
+        ),
+      ),
+    );
+  }
+}

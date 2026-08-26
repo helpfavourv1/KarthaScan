@@ -45,7 +45,8 @@ class DocScannerService {
         _log.log('SCANNER', 'Attempt 1 SUCCESS: ${paths.length} paths');
         return DocScanResult(pageImagePaths: paths);
       }
-      _log.log('SCANNER', 'Attempt 1 returned empty or non-image paths');
+      _log.log('SCANNER', 'Attempt 1 returned empty (user cancelled or no images) → STOP cascade');
+      return const DocScanResult(pageImagePaths: <String>[]);
     } on PlatformException catch (error) {
       _log.log('SCANNER', 'Attempt 1 PlatformException: ${error.code} | ${error.message}');
       if (error.code == 'UNSUPPORTED') {
@@ -66,7 +67,8 @@ class DocScannerService {
         _log.log('SCANNER', 'Attempt 2 SUCCESS: ${paths.length} paths');
         return DocScanResult(pageImagePaths: paths);
       }
-      _log.log('SCANNER', 'Attempt 2 returned empty or non-image paths');
+      _log.log('SCANNER', 'Attempt 2 returned empty (user cancelled or no images) → STOP cascade');
+      return const DocScanResult(pageImagePaths: <String>[]);
     } catch (error) {
       _log.log('SCANNER', 'Attempt 2 error: $error');
     }
@@ -80,7 +82,8 @@ class DocScannerService {
         _log.log('SCANNER', 'Attempt 3 SUCCESS: ${paths.length} paths');
         return DocScanResult(pageImagePaths: paths);
       }
-      _log.log('SCANNER', 'Attempt 3 returned empty or non-image paths');
+      _log.log('SCANNER', 'Attempt 3 returned empty (user cancelled or no images) → STOP cascade');
+      return const DocScanResult(pageImagePaths: <String>[]);
     } catch (error) {
       _log.log('SCANNER', 'Attempt 3 error: $error');
     }
