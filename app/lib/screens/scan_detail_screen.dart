@@ -19,7 +19,7 @@ import '../core/services/share_service.dart';
 import '../core/utils/constants.dart';
 import '../l10n/app_localizations.dart';
 import '../widgets/annotation_overlay.dart';
-import '../widgets/quick_action_pill.dart';
+import '../widgets/edit_tray.dart';
 import '../widgets/scan_preview_card.dart';
 import '../widgets/signature_canvas.dart';
 import '../widgets/tag_chip.dart';
@@ -506,21 +506,10 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
                   ),
                 ),
                 actions: [
-                  PopupMenuButton<String>(
-                    icon: Icon(Icons.add_circle_outline, color: textSecondary),
-                    tooltip: 'Add Layer',
-                    onSelected: (action) {
-                      switch (action) {
-                        case 'annotate': _annotate(); break;
-                        case 'sign': _addSignature(); break;
-                        case 'watermark': _addWatermark(); break;
-                      }
-                    },
-                    itemBuilder: (context) => [
-                      const PopupMenuItem(value: 'annotate', child: Row(children: [Icon(Icons.highlight_outlined, size: 20), SizedBox(width: 8), Text('Annotate')])),
-                      const PopupMenuItem(value: 'sign', child: Row(children: [Icon(Icons.draw_outlined, size: 20), SizedBox(width: 8), Text('Sign')])),
-                      const PopupMenuItem(value: 'watermark', child: Row(children: [Icon(Icons.text_fields, size: 20), SizedBox(width: 8), Text('Watermark')])),
-                    ],
+                  IconButton(
+                    icon: Icon(document.isFavorite ? Icons.star : Icons.star_border, color: accent),
+                    tooltip: 'Favorite',
+                    onPressed: () => _scanProvider.toggleFavorite(document.id),
                   ),
                   IconButton(
                     icon: Icon(Icons.drive_file_move_outlined, color: textSecondary),
