@@ -21,6 +21,8 @@ class EditTray extends StatelessWidget {
     required this.onNote,
     required this.onDate,
     required this.onCheckbox,
+    required this.onPrint,
+    required this.onEmail,
   });
 
   final VoidCallback onMarkup;
@@ -38,6 +40,8 @@ class EditTray extends StatelessWidget {
   final VoidCallback onNote;
   final VoidCallback onDate;
   final VoidCallback onCheckbox;
+  final VoidCallback onPrint;
+  final VoidCallback onEmail;
 
   @override
   Widget build(BuildContext context) {
@@ -68,6 +72,8 @@ class EditTray extends StatelessWidget {
             _item(Icons.note_outlined, 'Note', onNote),
             _item(Icons.date_range, 'Date', onDate),
             _item(Icons.check_box_outlined, 'Check', onCheckbox),
+            _item(Icons.print_outlined, 'Print', onPrint),
+            _item(Icons.mail_outline, 'Email', onEmail),
           ],
         ),
       ),

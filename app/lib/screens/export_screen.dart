@@ -264,6 +264,21 @@ class _ExportScreenState extends State<ExportScreen> {
                         ],
                       ),
                     ),
+                    FutureBuilder<int>(
+                      future: _calculateEstimate(),
+                      builder: (context, snapshot) {
+                        if (!snapshot.hasData || snapshot.data == 0) return const SizedBox.shrink();
+                        final mb = (snapshot.data! / (1024 * 1024)).toStringAsFixed(2);
+                        return Padding(
+                          padding: const EdgeInsets.only(top: AppSpacing.sm),
+                          child: Text(
+                            'Estimated size: $mb MB',
+                            style: TextStyle(color: accent, fontSize: 12, fontWeight: FontWeight.w600),
+                            textAlign: TextAlign.center,
+                          ),
+                        );
+                      },
+                    ),
                     const SizedBox(height: AppSpacing.lg),
                   ],
 
@@ -331,6 +346,21 @@ class _ExportScreenState extends State<ExportScreen> {
               ),
       ),
     );
+  }
+
+
+  Future<int> _calculateEstimate() async {
+    if (_selectedFormat != ExportFormat.jpg && _selectedFormat != ExportFormat.png) return 0;
+    int total = 0;
+    for (final doc in _documents) {
+      for (final path in doc.pagePaths) {
+        try { total += await File(path).length(); } catch (_) {}
+      }
+    }
+    double factor = 1.0;
+    if (_selectedCompression == CompressionTier.medium) factor = 0.45;
+    if (_selectedCompression == CompressionTier.small) factor = 0.20;
+    return (total * factor).round();
   }
 
   Widget _buildFormatCard(ExportFormat format, String label, IconData icon, Color accent) {

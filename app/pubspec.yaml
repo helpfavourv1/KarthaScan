@@ -38,6 +38,7 @@ dependencies:
   pdf: ^3.11.1
   archive: ^3.6.1
   image: ^4.3.0
+  printing: ^5.13.4
 
   # Permissions & Utilities
   permission_handler: ^11.3.1

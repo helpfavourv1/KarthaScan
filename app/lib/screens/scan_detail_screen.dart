@@ -24,6 +24,9 @@ import '../widgets/scan_preview_card.dart';
 import '../widgets/signature_canvas.dart';
 import '../widgets/tag_chip.dart';
 import '../widgets/overlay_placement_sheet.dart';
+import 'package:printing/printing.dart';
+import 'package:url_launcher/url_launcher.dart';
+import '../core/services/print_service.dart';
 import '../widgets/rotate_resize_sheet.dart';
 import '../widgets/pages_manager_sheet.dart';
 import '../widgets/filter_preview_sheet.dart';
@@ -464,6 +467,39 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
     } catch (e) { if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Error: $e'))); }
   }
 
+
+  Future<void> _printDocument() async {
+    final document = _document;
+    if (document == null || document.pagePaths.isEmpty) return;
+    try {
+      final bytes = await PrintService.buildPdfBytes(document.pagePaths);
+      await Printing.layoutPdf(
+        onLayout: (PdfPageFormat format) async => bytes,
+        name: document.title,
+      );
+    } catch (e) {
+      if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Print failed: $e')));
+    }
+  }
+
+  Future<void> _emailDocument() async {
+    final document = _document;
+    if (document == null) return;
+    final subject = Uri.encodeComponent(document.title);
+    final bodyText = document.ocrText.length > 500 ? '${document.ocrText.substring(0, 500)}...' : document.ocrText;
+    final body = Uri.encodeComponent(bodyText);
+    final uri = Uri.parse('mailto:?subject=$subject&body=$body');
+    try {
+      if (await canLaunchUrl(uri)) {
+        await launchUrl(uri);
+      } else {
+        if (mounted) ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('No email app found')));
+      }
+    } catch (e) {
+      if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Email failed: $e')));
+    }
+  }
+
   Future<void> _rotatePage() async {
     final document = _document;
     if (document == null || document.pagePaths.isEmpty) return;
@@ -737,6 +773,8 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
                               onNote: () => _addStamp('note'),
                               onDate: () => _addStamp('date'),
                               onCheckbox: () => _addStamp('checkbox'),
+                              onPrint: _printDocument,
+                              onEmail: _emailDocument,
                             ),
                           ),
                         ),
