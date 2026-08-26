@@ -195,6 +195,7 @@ class PagesManagerSheetState extends State<PagesManagerSheet> {
         setState(() => _pages.add(result.files.single.path!));
       }
     } else if (choice == 'document') {
+      if (!mounted) return;
       final docId = await showModalBottomSheet<String>(
     context: context,
     builder: (ctx) => SafeArea(
