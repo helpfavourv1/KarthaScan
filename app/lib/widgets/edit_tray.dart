@@ -59,7 +59,7 @@ class EditTray extends StatelessWidget {
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            _item(Icons.highlight_outlined, 'Annotate', onMarkup),
+            _item(Icons.mode_edit_outline, 'Annotate', onMarkup),
             _item(Icons.draw_outlined, 'Sign', onSign),
             _item(Icons.text_fields, 'Watermark', onWatermark),
             _item(Icons.crop, 'OCR', onOcr),

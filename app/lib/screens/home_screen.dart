@@ -306,7 +306,9 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             _buildUnifiedRow(),
+            const SizedBox(height: 4),
             const _FeatureTicker(),
+            const SizedBox(height: 4),
             Expanded(
               child: _searchResults != null
                   ? _buildSearchResults(localeCode, l10n)
@@ -700,14 +702,33 @@ class _FeatureTicker extends StatefulWidget {
 }
 
 class _FeatureTickerState extends State<_FeatureTicker> with SingleTickerProviderStateMixin {
-  static const String _text = 'FREE UNLIMITED OCR ◆ 18-TOOL EDIT SUITE ◆ ANNOTATE · SIGN · WATERMARK ◆ REGION OCR ◆ CONVERT · COMPRESS ◆ ROTATE · RESIZE · CROP ◆ PAGES MANAGER ◆ ERASER ◆ TEXT · NOTE · DATE · CHECKBOX STAMPS ◆ FILTERS & ENHANCE ◆ PRINT · EMAIL ◆ PDF · WORD · TXT · JPG · PNG · CSV EXPORT ◆ BATCH EXPORT ◆ FOLDERS · TAGS · FAVORITES ◆ SEARCH ◆ 11 LANGUAGES ◆ DARK MODE ◆ ACCENT THEMES ◆ ID CARD & PASSPORT MODES ◆ NO ACCOUNT ◆ NO WATERMARKS ◆ 100% ON-DEVICE PRIVACY ◆ ';
+  static const List<String> _features = <String>[
+    'FREE UNLIMITED OCR', '18-TOOL EDIT SUITE', 'ANNOTATE', 'E-SIGN', 'WATERMARK',
+    'REGION OCR', 'CONVERT', 'COMPRESS', 'ROTATE', 'RESIZE', 'CROP', 'PAGES MANAGER',
+    'ERASER', 'TEXT STAMPS', 'NOTE STAMPS', 'DATE STAMPS', 'CHECKBOX STAMPS',
+    'FILTERS & ENHANCE', 'PRINT', 'EMAIL', 'PDF EXPORT', 'WORD EXPORT', 'TXT EXPORT',
+    'JPG EXPORT', 'PNG EXPORT', 'CSV EXPORT', 'BATCH EXPORT', 'FOLDERS', 'TAGS',
+    'FAVORITES', 'SEARCH', '11 LANGUAGES', 'DARK MODE', 'ACCENT THEMES',
+    'ID CARD MODE', 'PASSPORT MODE', 'NO ACCOUNT', 'NO WATERMARKS', '100% ON-DEVICE PRIVACY',
+  ];
+
+  static const double _pxPerSecond = 32.0;
 
   late final AnimationController _controller;
+  double _segmentWidth = 1;
 
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(vsync: this, duration: const Duration(seconds: 45))..repeat();
+    _controller = AnimationController(vsync: this, duration: const Duration(seconds: 90));
+    final tp = TextPainter(
+      text: TextSpan(children: _spans(const Color(0xFF8E8E93), const Color(0xFF8E8E93))),
+      textDirection: TextDirection.ltr,
+      maxLines: 1,
+    )..layout();
+    _segmentWidth = tp.width > 0 ? tp.width : 1;
+    _controller.duration = Duration(milliseconds: (_segmentWidth / _pxPerSecond * 1000).round());
+    _controller.repeat();
   }
 
   @override
@@ -717,15 +738,12 @@ class _FeatureTickerState extends State<_FeatureTicker> with SingleTickerProvide
   }
 
   List<TextSpan> _spans(Color base, Color diamond) {
-    final parts = _text.split('◆');
+    final baseStyle = TextStyle(color: base, fontSize: 10, fontWeight: FontWeight.w700, letterSpacing: 1.2);
+    final diamondStyle = TextStyle(color: diamond, fontSize: 9, fontWeight: FontWeight.w800);
     final spans = <TextSpan>[];
-    for (int i = 0; i < parts.length; i++) {
-      if (parts[i].isNotEmpty) {
-        spans.add(TextSpan(text: parts[i], style: TextStyle(color: base, fontSize: 10, fontWeight: FontWeight.w600, letterSpacing: 0.8)));
-      }
-      if (i < parts.length - 1) {
-        spans.add(TextSpan(text: '◆', style: TextStyle(color: diamond, fontSize: 10, fontWeight: FontWeight.w700)));
-      }
+    for (final f in _features) {
+      spans.add(TextSpan(text: '   $f   ', style: baseStyle));
+      spans.add(TextSpan(text: '\u25c6', style: diamondStyle));
     }
     return spans;
   }
@@ -736,30 +754,48 @@ class _FeatureTickerState extends State<_FeatureTicker> with SingleTickerProvide
     final surface = isDark ? AppColors.bgSecondaryDark : AppColors.bgSecondaryLight;
     final textSecondary = isDark ? AppColors.textSecondaryDark : AppColors.textSecondaryLight;
     final accent = isDark ? AppColors.accentDark : AppColors.accentLight;
-
-    final painter = TextPainter(
-      text: TextSpan(children: _spans(textSecondary, accent)),
-      textDirection: TextDirection.ltr,
-      maxLines: 1,
-    )..layout();
-    final double w = painter.width;
+    final border = isDark ? AppColors.borderSubtleDark : AppColors.borderSubtleLight;
 
     return Container(
-      height: 22,
-      color: surface,
-      child: ClipRect(
-        child: AnimatedBuilder(
-          animation: _controller,
-          builder: (context, _) {
-            final double dx = -_controller.value * w;
-            return Stack(
-              children: [
-                Positioned(left: dx, top: 0, bottom: 0, child: SizedBox(width: w, child: RichText(maxLines: 1, softWrap: false, text: TextSpan(children: _spans(textSecondary, accent))))),
-                Positioned(left: dx + w, top: 0, bottom: 0, child: SizedBox(width: w, child: RichText(maxLines: 1, softWrap: false, text: TextSpan(children: _spans(textSecondary, accent))))),
-              ],
-            );
-          },
+      height: 26,
+      decoration: BoxDecoration(
+        color: surface,
+        border: Border(
+          top: BorderSide(color: border, width: 0.5),
+          bottom: BorderSide(color: border, width: 0.5),
         ),
+      ),
+      child: Row(
+        children: [
+          Container(
+            height: double.infinity,
+            alignment: Alignment.center,
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            color: accent,
+            child: const Text('FEATURES', style: TextStyle(color: Colors.white, fontSize: 9, fontWeight: FontWeight.w800, letterSpacing: 1.5)),
+          ),
+          Expanded(
+            child: Directionality(
+              textDirection: TextDirection.ltr,
+              child: ClipRect(
+                child: AnimatedBuilder(
+                  animation: _controller,
+                  builder: (context, _) {
+                    final double dx = -_controller.value * _segmentWidth;
+                    return Stack(
+                      children: [
+                        Positioned(left: dx, top: 0, bottom: 0, child: SizedBox(width: _segmentWidth, child: RichText(maxLines: 1, softWrap: false, text: TextSpan(children: _spans(textSecondary, accent))))),
+                        Positioned(left: dx + _segmentWidth, top: 0, bottom: 0, child: SizedBox(width: _segmentWidth, child: RichText(maxLines: 1, softWrap: false, text: TextSpan(children: _spans(textSecondary, accent))))),
+                        Positioned(left: 0, top: 0, bottom: 0, width: 10, child: IgnorePointer(child: DecoratedBox(decoration: BoxDecoration(gradient: LinearGradient(begin: Alignment.centerLeft, end: Alignment.centerRight, colors: [surface, surface.withValues(alpha: 0.0)]))))),
+                        Positioned(right: 0, top: 0, bottom: 0, width: 10, child: IgnorePointer(child: DecoratedBox(decoration: BoxDecoration(gradient: LinearGradient(begin: Alignment.centerRight, end: Alignment.centerLeft, colors: [surface, surface.withValues(alpha: 0.0)]))))),
+                      ],
+                    );
+                  },
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
