@@ -23,6 +23,7 @@ class EditTray extends StatelessWidget {
     required this.onCheckbox,
     required this.onPrint,
     required this.onEmail,
+    required this.onErase,
   });
 
   final VoidCallback onMarkup;
@@ -42,6 +43,7 @@ class EditTray extends StatelessWidget {
   final VoidCallback onCheckbox;
   final VoidCallback onPrint;
   final VoidCallback onEmail;
+  final VoidCallback onErase;
 
   @override
   Widget build(BuildContext context) {
@@ -74,6 +76,7 @@ class EditTray extends StatelessWidget {
             _item(Icons.check_box_outlined, 'Check', onCheckbox),
             _item(Icons.print_outlined, 'Print', onPrint),
             _item(Icons.mail_outline, 'Email', onEmail),
+            _item(Icons.brush_outlined, 'Eraser', onErase),
           ],
         ),
       ),

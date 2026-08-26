@@ -27,6 +27,7 @@ import '../widgets/overlay_placement_sheet.dart';
 import 'package:printing/printing.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../core/services/print_service.dart';
+import '../widgets/eraser_overlay.dart';
 import '../widgets/rotate_resize_sheet.dart';
 import '../widgets/pages_manager_sheet.dart';
 import '../widgets/filter_preview_sheet.dart';
@@ -468,6 +469,37 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
   }
 
 
+
+  Future<void> _erasePage() async {
+    final document = _document;
+    if (document == null || document.pagePaths.isEmpty) return;
+
+    final strokes = await showModalBottomSheet<List<Map<String, dynamic>>>(
+      context: context,
+      isScrollControlled: true,
+      builder: (ctx) => EraserSheet(imagePath: document.pagePaths[_currentPageIndex]),
+    );
+    if (strokes == null || strokes.isEmpty || !mounted) return;
+
+    try {
+      final originalBytes = await File(document.pagePaths[_currentPageIndex]).readAsBytes();
+      final erased = await compute(_eraseIsolate, {'original': originalBytes, 'strokes': strokes});
+
+      final appDir = await getApplicationDocumentsDirectory();
+      final dir = Directory(p.join(appDir.path, 'erased_pages'));
+      await dir.create(recursive: true);
+      final newPath = p.join(dir.path, 'ers_${DateTime.now().microsecondsSinceEpoch}_$_currentPageIndex.jpg');
+      await File(newPath).writeAsBytes(erased);
+
+      final newPaths = List<String>.from(document.pagePaths);
+      newPaths[_currentPageIndex] = newPath;
+      await _scanProvider.updateDocumentPages(document.id, newPaths);
+      if (mounted) ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Eraser applied')));
+    } catch (e) {
+      if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Error: $e')));
+    }
+  }
+
   Future<void> _printDocument() async {
     final document = _document;
     if (document == null || document.pagePaths.isEmpty) return;
@@ -775,6 +807,7 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
                               onCheckbox: () => _addStamp('checkbox'),
                               onPrint: _printDocument,
                               onEmail: _emailDocument,
+                              onErase: _erasePage,
                             ),
                           ),
                         ),
@@ -1242,4 +1275,29 @@ Uint8List _cropIsolate(Map<String, dynamic> args) {
   if (w <= 0 || h <= 0) return args['original'] as Uint8List;
   final cropped = img.copyCrop(original, x: x, y: y, width: w, height: h);
   return Uint8List.fromList(img.encodeJpg(cropped, quality: 95));
+}
+
+
+Uint8List _eraseIsolate(Map<String, dynamic> args) {
+  final original = img.decodeImage(args['original'] as Uint8List);
+  if (original == null) return args['original'] as Uint8List;
+  final strokes = args['strokes'] as List<dynamic>;
+  for (final s in strokes) {
+    final m = s as Map<dynamic, dynamic>;
+    final pts = (m['points'] as List<dynamic>)
+        .map((e) => (e as List<dynamic>).map((v) => (v as num).toDouble()).toList())
+        .toList();
+    final colorInt = m['color'] as int;
+    final color = img.ColorRgba8((colorInt >> 16) & 0xFF, (colorInt >> 8) & 0xFF, colorInt & 0xFF, (colorInt >> 24) & 0xFF);
+    final wf = (m['width'] as num).toDouble();
+    final thickness = (wf * original.width).clamp(1.0, original.width / 2).round();
+    for (int i = 0; i < pts.length - 1; i++) {
+      final x1 = (pts[i][0] * original.width).round();
+      final y1 = (pts[i][1] * original.height).round();
+      final x2 = (pts[i + 1][0] * original.width).round();
+      final y2 = (pts[i + 1][1] * original.height).round();
+      img.drawLine(original, img.Line(img.Point(x1, y1), img.Point(x2, y2)), color: color, thickness: thickness, antialias: true);
+    }
+  }
+  return Uint8List.fromList(img.encodeJpg(original, quality: 95));
 }
