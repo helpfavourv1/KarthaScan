@@ -15,6 +15,12 @@ class EditTray extends StatelessWidget {
     required this.onRotate,
     required this.onResize,
     required this.onPages,
+    required this.onFilter,
+    required this.onCrop,
+    required this.onText,
+    required this.onNote,
+    required this.onDate,
+    required this.onCheckbox,
   });
 
   final VoidCallback onMarkup;
@@ -26,6 +32,12 @@ class EditTray extends StatelessWidget {
   final VoidCallback onRotate;
   final VoidCallback onResize;
   final VoidCallback onPages;
+  final VoidCallback onFilter;
+  final VoidCallback onCrop;
+  final VoidCallback onText;
+  final VoidCallback onNote;
+  final VoidCallback onDate;
+  final VoidCallback onCheckbox;
 
   @override
   Widget build(BuildContext context) {
@@ -50,6 +62,12 @@ class EditTray extends StatelessWidget {
             _item(Icons.rotate_90_degrees_ccw, 'Rotate', onRotate),
             _item(Icons.aspect_ratio, 'Resize', onResize),
             _item(Icons.reorder, 'Pages', onPages),
+            _item(Icons.filter_alt_outlined, 'Filter', onFilter),
+            _item(Icons.crop_free, 'Crop', onCrop),
+            _item(Icons.title, 'Text', onText),
+            _item(Icons.note_outlined, 'Note', onNote),
+            _item(Icons.date_range, 'Date', onDate),
+            _item(Icons.check_box_outlined, 'Check', onCheckbox),
           ],
         ),
       ),

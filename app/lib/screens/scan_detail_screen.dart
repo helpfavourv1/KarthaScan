@@ -26,6 +26,12 @@ import '../widgets/tag_chip.dart';
 import '../widgets/overlay_placement_sheet.dart';
 import '../widgets/rotate_resize_sheet.dart';
 import '../widgets/pages_manager_sheet.dart';
+import '../widgets/filter_preview_sheet.dart';
+import '../widgets/text_stamp_sheet.dart';
+import '../widgets/edit_session_sheet.dart';
+import '../core/models/edit_session.dart';
+import '../core/services/filter_service.dart';
+import '../core/services/export_service.dart' show FilterType;
 
 class ScanDetailScreen extends StatefulWidget {
   const ScanDetailScreen({super.key, required this.documentId});
@@ -401,6 +407,63 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
   }
 
 
+
+  Future<void> _applyFilterToPage() async {
+    final document = _document;
+    if (document == null || document.pagePaths.isEmpty) return;
+    final chosen = await showModalBottomSheet<FilterType>(context: context, isScrollControlled: true, builder: (ctx) => FilterPreviewSheet(imagePath: document.pagePaths[_currentPageIndex]));
+    if (chosen == null || chosen == FilterType.none || !mounted) return;
+    try {
+      final originalBytes = await File(document.pagePaths[_currentPageIndex]).readAsBytes();
+      final filtered = await compute(_filterBakeIsolate, {'original': originalBytes, 'filter': chosen.index});
+      final appDir = await getApplicationDocumentsDirectory();
+      final dir = Directory(p.join(appDir.path, 'filtered_pages')); await dir.create(recursive: true);
+      final newPath = p.join(dir.path, 'flt_${DateTime.now().microsecondsSinceEpoch}_$_currentPageIndex.jpg');
+      await File(newPath).writeAsBytes(filtered);
+      final newPaths = List<String>.from(document.pagePaths); newPaths[_currentPageIndex] = newPath;
+      await _scanProvider.updateDocumentPages(document.id, newPaths);
+      if (mounted) ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Filter applied')));
+    } catch (e) { if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Error: $e'))); }
+  }
+
+  Future<void> _cropCurrentPage() async {
+    final document = _document;
+    if (document == null || document.pagePaths.isEmpty) return;
+    final rect = await showModalBottomSheet<Rect?>(context: context, isScrollControlled: true, builder: (context) => _RegionSelectSheet(imagePath: document.pagePaths[_currentPageIndex]));
+    if (rect == null || !mounted) return;
+    try {
+      final originalBytes = await File(document.pagePaths[_currentPageIndex]).readAsBytes();
+      final cropped = await compute(_cropIsolate, {'original': originalBytes, 'rect': rect});
+      final appDir = await getApplicationDocumentsDirectory();
+      final dir = Directory(p.join(appDir.path, 'cropped_pages')); await dir.create(recursive: true);
+      final newPath = p.join(dir.path, 'crp_${DateTime.now().microsecondsSinceEpoch}_$_currentPageIndex.jpg');
+      await File(newPath).writeAsBytes(cropped);
+      final newPaths = List<String>.from(document.pagePaths); newPaths[_currentPageIndex] = newPath;
+      await _scanProvider.updateDocumentPages(document.id, newPaths);
+      if (mounted) ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Page cropped')));
+    } catch (e) { if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Error: $e'))); }
+  }
+
+  Future<void> _addStamp(String kind) async {
+    final document = _document;
+    if (document == null || document.pagePaths.isEmpty) return;
+    final stamp = await showModalBottomSheet<StampResult>(context: context, isScrollControlled: true, builder: (ctx) => TextStampSheet(kind: kind));
+    if (stamp == null || !mounted) return;
+    final layers = await showModalBottomSheet<List<EditLayer>>(context: context, isScrollControlled: true, builder: (ctx) => EditSessionSheet(imagePath: document.pagePaths[_currentPageIndex], initialBytes: stamp.bytes, initialLabel: stamp.label, initialWidthFraction: stamp.widthFraction, initialAspect: stamp.aspect));
+    if (layers == null || layers.isEmpty || !mounted) return;
+    try {
+      final originalBytes = await File(document.pagePaths[_currentPageIndex]).readAsBytes();
+      final baked = await compute(bakeSessionIsolate, {'original': originalBytes, 'layers': layers.map((l) => {'bytes': l.pngBytes, 'pctX': l.pctX, 'pctY': l.pctY, 'rotation': l.rotationDegrees, 'scale': l.scale, 'opacity': l.opacity, 'widthFraction': l.widthFraction}).toList()});
+      final appDir = await getApplicationDocumentsDirectory();
+      final dir = Directory(p.join(appDir.path, 'stamped_pages')); await dir.create(recursive: true);
+      final newPath = p.join(dir.path, 'stamp_${DateTime.now().microsecondsSinceEpoch}_$_currentPageIndex.jpg');
+      await File(newPath).writeAsBytes(baked);
+      final newPaths = List<String>.from(document.pagePaths); newPaths[_currentPageIndex] = newPath;
+      await _scanProvider.updateDocumentPages(document.id, newPaths);
+      if (mounted) ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Layers saved')));
+    } catch (e) { if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Error: $e'))); }
+  }
+
   Future<void> _rotatePage() async {
     final document = _document;
     if (document == null || document.pagePaths.isEmpty) return;
@@ -668,6 +731,12 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
                               onRotate: _rotatePage,
                               onResize: _resizePage,
                               onPages: _openPagesManager,
+                              onFilter: _applyFilterToPage,
+                              onCrop: _cropCurrentPage,
+                              onText: () => _addStamp('text'),
+                              onNote: () => _addStamp('note'),
+                              onDate: () => _addStamp('date'),
+                              onCheckbox: () => _addStamp('checkbox'),
                             ),
                           ),
                         ),
@@ -1114,4 +1183,25 @@ Uint8List _resizeIsolate(Map<String, dynamic> args) {
   final height = args['height'] as int;
   final resized = img.copyResize(original, width: width, height: height);
   return Uint8List.fromList(img.encodeJpg(resized, quality: 95));
+}
+
+
+Uint8List _filterBakeIsolate(Map<String, dynamic> args) {
+  final original = img.decodeImage(args['original'] as Uint8List);
+  if (original == null) return args['original'] as Uint8List;
+  final filtered = FilterService.applyToImage(original, FilterType.values[args['filter'] as int]);
+  return Uint8List.fromList(img.encodeJpg(filtered, quality: 95));
+}
+
+Uint8List _cropIsolate(Map<String, dynamic> args) {
+  final original = img.decodeImage(args['original'] as Uint8List);
+  if (original == null) return args['original'] as Uint8List;
+  final rect = args['rect'] as Rect;
+  final x = rect.left.toInt().clamp(0, original.width);
+  final y = rect.top.toInt().clamp(0, original.height);
+  final w = rect.width.toInt().clamp(0, original.width - x);
+  final h = rect.height.toInt().clamp(0, original.height - y);
+  if (w <= 0 || h <= 0) return args['original'] as Uint8List;
+  final cropped = img.copyCrop(original, x: x, y: y, width: w, height: h);
+  return Uint8List.fromList(img.encodeJpg(cropped, quality: 95));
 }
