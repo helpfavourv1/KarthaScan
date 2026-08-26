@@ -31,6 +31,7 @@ abstract final class AppColors {
   static const Color bgTertiaryDark = Color(0xFF2C2C2E);
 
   // Accent (iOS System Blue)
+  static const Color defaultAccentColor = Color(0xFF007AFF);
   static Color accentLight = Color(0xFF007AFF);
   static Color accentDark = Color(0xFF0A84FF);
   static Color accentDimLight = Color(0xFF0051D5);

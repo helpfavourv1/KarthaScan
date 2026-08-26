@@ -7,7 +7,7 @@ import '../utils/constants.dart';
 class UserSettings {
   const UserSettings({
     this.themeMode = ThemeMode.system,
-    this.accentColor = AppColors.accentLight,
+    this.accentColor = AppColors.defaultAccentColor,
     this.storagePath,
     this.language = AppLocales.defaultLanguageCode,
     this.adsRemoved = false,
