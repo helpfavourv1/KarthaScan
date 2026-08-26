@@ -305,7 +305,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
             ),
-            _buildFilterChips(),
+            _buildUnifiedRow(),
+            const _FeatureTicker(),
             Expanded(
               child: _searchResults != null
                   ? _buildSearchResults(localeCode, l10n)
@@ -335,47 +336,71 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget _buildFilterChips() {
-    final filters = <String>['All', 'Folders', 'Recent', 'Favorites'];
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-    final surface = isDark ? AppColors.bgSecondaryDark : AppColors.bgSecondaryLight;
-    final textPrimary = isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight;
-    final accent = isDark ? AppColors.accentDark : AppColors.accentLight;
+  Widget _buildUnifiedRow() {
+    const filters = <String>['All', 'Folders', 'Recent', 'Favorites'];
+    return ListenableBuilder(
+      listenable: _folderProvider.folders,
+      builder: (context, _) {
+        final allFolders = _folderProvider.folders.value;
+        final isDark = Theme.of(context).brightness == Brightness.dark;
+        final surface = isDark ? AppColors.bgSecondaryDark : AppColors.bgSecondaryLight;
+        final textPrimary = isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight;
+        final accent = isDark ? AppColors.accentDark : AppColors.accentLight;
 
-    return SizedBox(
-      height: 34,
-      child: ListView.separated(
-        scrollDirection: Axis.horizontal,
-        padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md),
-        itemCount: filters.length,
-        separatorBuilder: (context, index) => const SizedBox(width: 6),
-        itemBuilder: (context, index) {
-          final isSelected = _selectedFilter == index;
+        Widget chip({required String label, IconData? icon, bool filled = false, required VoidCallback onTap}) {
           return GestureDetector(
-            onTap: () => setState(() => _selectedFilter = index),
+            onTap: onTap,
             child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+              height: 30,
+              padding: const EdgeInsets.symmetric(horizontal: 8),
               decoration: BoxDecoration(
-                color: isSelected ? accent : surface,
-                borderRadius: BorderRadius.circular(10),
-                boxShadow: isSelected ? AppShadows.ambient : null,
+                color: filled ? accent : surface,
+                borderRadius: BorderRadius.circular(8),
+                boxShadow: AppShadows.ambient,
               ),
-              child: Text(
-                filters[index],
-                style: TextStyle(
-                  color: isSelected ? Colors.white : textPrimary,
-                  fontWeight: FontWeight.w600,
-                  fontSize: 11,
-                ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  if (icon != null) ...[
+                    Icon(icon, color: filled ? Colors.white : accent, size: 12),
+                    const SizedBox(width: 3),
+                  ],
+                  Text(label, style: TextStyle(color: filled ? Colors.white : textPrimary, fontSize: 10, fontWeight: FontWeight.w600)),
+                ],
               ),
             ),
           );
-        },
-      ),
+        }
+
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 12),
+          child: SizedBox(
+            height: 30,
+            child: ListView(
+              scrollDirection: Axis.horizontal,
+              children: [
+                for (int i = 0; i < filters.length; i++)
+                  Padding(
+                    padding: const EdgeInsets.only(right: 4),
+                    child: chip(label: filters[i], filled: _selectedFilter == i, onTap: () => setState(() => _selectedFilter = i)),
+                  ),
+                ...allFolders.map((folder) => Padding(
+                      padding: const EdgeInsets.only(right: 4),
+                      child: chip(label: folder.name, icon: Icons.folder_outlined, onTap: () => context.push('/folder/${folder.id}')),
+                    )),
+                if (allFolders.isNotEmpty)
+                  Padding(
+                    padding: const EdgeInsets.only(right: 4),
+                    child: chip(label: 'All Folders', icon: Icons.folder_open_outlined, filled: true, onTap: () => setState(() => _selectedFilter = 1)),
+                  ),
+                chip(label: 'Select Multiple', icon: Icons.checklist_rounded, filled: true, onTap: _startBatchExport),
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
-
-
 
   Future<void> _openAccentPicker() async {
     final picked = await showModalBottomSheet<AccentPalette>(
@@ -468,10 +493,6 @@ class _HomeScreenState extends State<HomeScreen> {
         if (_scanProvider.isLoading.value) return const Center(child: CircularProgressIndicator());
         final allDocuments = _scanProvider.documents.value;
         final allFolders = _folderProvider.folders.value;
-        final isDark = Theme.of(context).brightness == Brightness.dark;
-        final surface = isDark ? AppColors.bgSecondaryDark : AppColors.bgSecondaryLight;
-        final textPrimary = isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight;
-        final accent = isDark ? AppColors.accentDark : AppColors.accentLight;
 
 
         if (_selectedFilter == 1) {
@@ -503,85 +524,6 @@ class _HomeScreenState extends State<HomeScreen> {
               child: ListView(
                 padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md, vertical: AppSpacing.xs),
                 children: [
-            Padding(
-              padding: const EdgeInsets.only(bottom: AppSpacing.sm),
-              child: SizedBox(
-                height: 32,
-                child: ListView(
-                  scrollDirection: Axis.horizontal,
-                  children: [
-                    if (allFolders.isNotEmpty) ...[
-                      ...allFolders.map((folder) => Padding(
-                        padding: const EdgeInsets.only(right: AppSpacing.xs),
-                        child: GestureDetector(
-                          onTap: () => context.push('/folder/${folder.id}'),
-                          child: Container(
-                            height: 32,
-                            padding: const EdgeInsets.symmetric(horizontal: 10),
-                            decoration: BoxDecoration(
-                              color: surface,
-                              borderRadius: BorderRadius.circular(10),
-                              boxShadow: AppShadows.ambient,
-                            ),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Icon(Icons.folder_outlined, color: accent, size: 14),
-                                const SizedBox(width: 4),
-                                Text(folder.name, style: TextStyle(color: textPrimary, fontSize: 11, fontWeight: FontWeight.w600)),
-                              ],
-                            ),
-                          ),
-                        ),
-                      )),
-                      Padding(
-                        padding: const EdgeInsets.only(right: AppSpacing.xs),
-                        child: GestureDetector(
-                          onTap: () => setState(() => _selectedFilter = 1),
-                          child: Container(
-                            height: 32,
-                            padding: const EdgeInsets.symmetric(horizontal: 10),
-                            decoration: BoxDecoration(
-                              color: accent,
-                              borderRadius: BorderRadius.circular(10),
-                              boxShadow: AppShadows.ambient,
-                            ),
-                            child: const Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Icon(Icons.folder_open_outlined, color: Colors.white, size: 14),
-                                SizedBox(width: 4),
-                                Text('All Folders', style: TextStyle(color: Colors.white, fontSize: 11, fontWeight: FontWeight.w600)),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                    GestureDetector(
-                      onTap: _startBatchExport,
-                      child: Container(
-                        height: 32,
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
-                        decoration: BoxDecoration(
-                          color: accent,
-                          borderRadius: BorderRadius.circular(10),
-                          boxShadow: AppShadows.ambient,
-                        ),
-                        child: const Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Icon(Icons.checklist_rounded, color: Colors.white, size: 14),
-                            SizedBox(width: 4),
-                            Text('Select Multiple', style: TextStyle(color: Colors.white, fontSize: 11, fontWeight: FontWeight.w600)),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
             if (_selectedFilter != 1 && documents.isNotEmpty) ...[
               _sectionHeader(l10n.documentsSectionHeader),
               ...documents.map((doc) => Padding(
@@ -744,6 +686,79 @@ class _AccentPickerSheet extends StatelessWidget {
             ),
             const SizedBox(height: AppSpacing.sm),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class _FeatureTicker extends StatefulWidget {
+  const _FeatureTicker();
+
+  @override
+  State<_FeatureTicker> createState() => _FeatureTickerState();
+}
+
+class _FeatureTickerState extends State<_FeatureTicker> with SingleTickerProviderStateMixin {
+  static const String _text = 'FREE UNLIMITED OCR ◆ 18-TOOL EDIT SUITE ◆ ANNOTATE · SIGN · WATERMARK ◆ REGION OCR ◆ CONVERT · COMPRESS ◆ ROTATE · RESIZE · CROP ◆ PAGES MANAGER ◆ ERASER ◆ TEXT · NOTE · DATE · CHECKBOX STAMPS ◆ FILTERS & ENHANCE ◆ PRINT · EMAIL ◆ PDF · WORD · TXT · JPG · PNG · CSV EXPORT ◆ BATCH EXPORT ◆ FOLDERS · TAGS · FAVORITES ◆ SEARCH ◆ 11 LANGUAGES ◆ DARK MODE ◆ ACCENT THEMES ◆ ID CARD & PASSPORT MODES ◆ NO ACCOUNT ◆ NO WATERMARKS ◆ 100% ON-DEVICE PRIVACY ◆ ';
+
+  late final AnimationController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(vsync: this, duration: const Duration(seconds: 45))..repeat();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  List<TextSpan> _spans(Color base, Color diamond) {
+    final parts = _text.split('◆');
+    final spans = <TextSpan>[];
+    for (int i = 0; i < parts.length; i++) {
+      if (parts[i].isNotEmpty) {
+        spans.add(TextSpan(text: parts[i], style: TextStyle(color: base, fontSize: 10, fontWeight: FontWeight.w600, letterSpacing: 0.8)));
+      }
+      if (i < parts.length - 1) {
+        spans.add(TextSpan(text: '◆', style: TextStyle(color: diamond, fontSize: 10, fontWeight: FontWeight.w700)));
+      }
+    }
+    return spans;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final surface = isDark ? AppColors.bgSecondaryDark : AppColors.bgSecondaryLight;
+    final textSecondary = isDark ? AppColors.textSecondaryDark : AppColors.textSecondaryLight;
+    final accent = isDark ? AppColors.accentDark : AppColors.accentLight;
+
+    final painter = TextPainter(
+      text: TextSpan(children: _spans(textSecondary, accent)),
+      textDirection: TextDirection.ltr,
+      maxLines: 1,
+    )..layout();
+    final double w = painter.width;
+
+    return Container(
+      height: 22,
+      color: surface,
+      child: ClipRect(
+        child: AnimatedBuilder(
+          animation: _controller,
+          builder: (context, _) {
+            final double dx = -_controller.value * w;
+            return Stack(
+              children: [
+                Positioned(left: dx, top: 0, bottom: 0, child: SizedBox(width: w, child: RichText(maxLines: 1, softWrap: false, text: TextSpan(children: _spans(textSecondary, accent))))),
+                Positioned(left: dx + w, top: 0, bottom: 0, child: SizedBox(width: w, child: RichText(maxLines: 1, softWrap: false, text: TextSpan(children: _spans(textSecondary, accent))))),
+              ],
+            );
+          },
         ),
       ),
     );
