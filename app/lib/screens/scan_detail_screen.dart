@@ -24,6 +24,8 @@ import '../widgets/scan_preview_card.dart';
 import '../widgets/signature_canvas.dart';
 import '../widgets/tag_chip.dart';
 import '../widgets/overlay_placement_sheet.dart';
+import '../widgets/rotate_resize_sheet.dart';
+import '../widgets/pages_manager_sheet.dart';
 
 class ScanDetailScreen extends StatefulWidget {
   const ScanDetailScreen({super.key, required this.documentId});
@@ -398,6 +400,107 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
     }
   }
 
+
+  Future<void> _rotatePage() async {
+    final document = _document;
+    if (document == null || document.pagePaths.isEmpty) return;
+
+    final turns = await showModalBottomSheet<int>(
+      context: context,
+      isScrollControlled: true,
+      builder: (ctx) => RotateResizeSheet(
+        mode: RotateResizeMode.rotate,
+        imagePath: document.pagePaths[_currentPageIndex],
+      ),
+    );
+    if (turns == null || turns == 0 || !mounted) return;
+
+    try {
+      final originalBytes = await File(document.pagePaths[_currentPageIndex]).readAsBytes();
+      final rotatedBytes = await compute(_rotateIsolate, {
+        'original': originalBytes,
+        'turns': turns,
+      });
+
+      final appDir = await getApplicationDocumentsDirectory();
+      final scansDir = Directory(p.join(appDir.path, 'rotated_pages'));
+      await scansDir.create(recursive: true);
+      final newPath = p.join(scansDir.path, 'rot_${DateTime.now().microsecondsSinceEpoch}_$_currentPageIndex.jpg');
+      await File(newPath).writeAsBytes(rotatedBytes);
+
+      final newPaths = List<String>.from(document.pagePaths);
+      newPaths[_currentPageIndex] = newPath;
+      await _scanProvider.updateDocumentPages(document.id, newPaths);
+
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Page rotated')));
+      }
+    } catch (e) {
+      if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Error: $e')));
+    }
+  }
+
+  Future<void> _resizePage() async {
+    final document = _document;
+    if (document == null || document.pagePaths.isEmpty) return;
+
+    final result = await showModalBottomSheet<(int, int)>(
+      context: context,
+      isScrollControlled: true,
+      builder: (ctx) => RotateResizeSheet(
+        mode: RotateResizeMode.resize,
+        imagePath: document.pagePaths[_currentPageIndex],
+      ),
+    );
+    if (result == null || !mounted) return;
+
+    final (newW, newH) = result;
+    try {
+      final originalBytes = await File(document.pagePaths[_currentPageIndex]).readAsBytes();
+      final resizedBytes = await compute(_resizeIsolate, {
+        'original': originalBytes,
+        'width': newW,
+        'height': newH,
+      });
+
+      final appDir = await getApplicationDocumentsDirectory();
+      final scansDir = Directory(p.join(appDir.path, 'resized_pages'));
+      await scansDir.create(recursive: true);
+      final newPath = p.join(scansDir.path, 'res_${DateTime.now().microsecondsSinceEpoch}_$_currentPageIndex.jpg');
+      await File(newPath).writeAsBytes(resizedBytes);
+
+      final newPaths = List<String>.from(document.pagePaths);
+      newPaths[_currentPageIndex] = newPath;
+      await _scanProvider.updateDocumentPages(document.id, newPaths);
+
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Page resized')));
+      }
+    } catch (e) {
+      if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Error: $e')));
+    }
+  }
+
+  Future<void> _openPagesManager() async {
+    final document = _document;
+    if (document == null || document.pagePaths.isEmpty) return;
+
+    final newPaths = await showModalBottomSheet<List<String>>(
+      context: context,
+      isScrollControlled: true,
+      builder: (ctx) => PagesManagerSheet(
+        pagePaths: document.pagePaths,
+        allDocuments: _scanProvider.documents.value,
+      ),
+    );
+    if (newPaths == null || !mounted) return;
+
+    await _scanProvider.updateDocumentPages(document.id, newPaths);
+    if (mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Pages updated')));
+    }
+  }
+
   Future<void> _compositeAndSavePage(int pageIndex, Uint8List overlayBytes, {double pctX = 0.5, double pctY = 0.5, double rotationDegrees = 0, double scale = 1.0}) async {
     final document = _document;
     if (document == null) return;
@@ -562,6 +665,9 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
                               onOcr: _regionOcr,
                               onConvert: () => context.push('/export', extra: <String>[document.id]),
                               onCompress: () => context.push('/export', extra: <String, dynamic>{'ids': <String>[document.id], 'format': 'jpg'}),
+                              onRotate: _rotatePage,
+                              onResize: _resizePage,
+                              onPages: _openPagesManager,
                             ),
                           ),
                         ),
@@ -990,4 +1096,22 @@ Uint8List _compositeSignatureIsolate(Map<String, dynamic> args) {
 
   final composite = img.compositeImage(original, signature, dstX: dstX, dstY: dstY);
   return Uint8List.fromList(img.encodeJpg(composite, quality: 95));
+}
+
+
+Uint8List _rotateIsolate(Map<String, dynamic> args) {
+  final original = img.decodeImage(args['original'] as Uint8List);
+  if (original == null) return args['original'] as Uint8List;
+  final turns = args['turns'] as int;
+  final rotated = img.copyRotate(original, angle: turns * 90);
+  return Uint8List.fromList(img.encodeJpg(rotated, quality: 95));
+}
+
+Uint8List _resizeIsolate(Map<String, dynamic> args) {
+  final original = img.decodeImage(args['original'] as Uint8List);
+  if (original == null) return args['original'] as Uint8List;
+  final width = args['width'] as int;
+  final height = args['height'] as int;
+  final resized = img.copyResize(original, width: width, height: height);
+  return Uint8List.fromList(img.encodeJpg(resized, quality: 95));
 }
