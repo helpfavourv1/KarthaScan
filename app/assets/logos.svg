@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+  <defs>
+    <linearGradient id="kGrad" x1="20%" y1="0%" x2="80%" y2="100%">
+      <stop offset="0%" stop-color="#007AFF"/>
+      <stop offset="100%" stop-color="#002FA7"/>
+    </linearGradient>
+    <filter id="kShadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="14" stdDeviation="22" flood-color="#001A6B" flood-opacity="0.16"/>
+    </filter>
+  </defs>
+  
+  <!-- iOS White Squircle Background -->
+  <rect x="0" y="0" width="1024" height="1024" rx="230" ry="230" fill="#FFFFFF"/>
+  
+  <!-- Bold K: thick rounded strokes filling the canvas -->
+  <g stroke="url(#kGrad)" stroke-width="168" stroke-linecap="round" stroke-linejoin="round" filter="url(#kShadow)">
+    <line x1="290" y1="150" x2="290" y2="874"/>
+    <line x1="290" y1="512" x2="770" y2="180"/>
+    <line x1="290" y1="512" x2="770" y2="844"/>
+  </g>
+</svg>
