@@ -30,7 +30,7 @@ class _FilterPreviewSheetState extends State<FilterPreviewSheet> {
       final decoded = img.decodeImage(bytes); if (decoded == null) return;
       final small = decoded.width > 600 ? img.copyResize(decoded, width: 600) : decoded;
       final base = Uint8List.fromList(img.encodeJpg(small, quality: 85));
-      if (mounted) setState(() => _baseBytes = base, _previewBytes = base);
+      if (mounted) setState(() { _baseBytes = base; _previewBytes = base; });
     } catch (_) {}
   }
 
@@ -38,7 +38,7 @@ class _FilterPreviewSheetState extends State<FilterPreviewSheet> {
     if (_baseBytes == null || _busy) return;
     setState(() { _selected = f; _busy = true; });
     final out = await compute(_previewFilterIsolate, {'bytes': _baseBytes, 'filter': f.index});
-    if (mounted) setState(() => _previewBytes = out, _busy = false);
+    if (mounted) setState(() { _previewBytes = out; _busy = false; });
   }
 
   @override

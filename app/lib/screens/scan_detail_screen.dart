@@ -25,6 +25,7 @@ import '../widgets/signature_canvas.dart';
 import '../widgets/tag_chip.dart';
 import '../widgets/overlay_placement_sheet.dart';
 import 'package:printing/printing.dart';
+import 'package:pdf/pdf.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../core/services/print_service.dart';
 import '../widgets/eraser_overlay.dart';
@@ -1296,7 +1297,7 @@ Uint8List _eraseIsolate(Map<String, dynamic> args) {
       final y1 = (pts[i][1] * original.height).round();
       final x2 = (pts[i + 1][0] * original.width).round();
       final y2 = (pts[i + 1][1] * original.height).round();
-      img.drawLine(original, img.Line(img.Point(x1, y1), img.Point(x2, y2)), color: color, thickness: thickness, antialias: true);
+      img.drawLine(original, x1: x1, y1: y1, x2: x2, y2: y2, color: color, thickness: thickness, antialias: true);
     }
   }
   return Uint8List.fromList(img.encodeJpg(original, quality: 95));

@@ -249,7 +249,7 @@ class _EraserPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    void draw(_Stroke s) {
+    void draw(_Stroke? s) { if (s == null) return;
       final paint = Paint()
         ..color = _EraserSheetState.toColor(s.colorInt)
         ..strokeWidth = s.width
@@ -265,7 +265,7 @@ class _EraserPainter extends CustomPainter {
       }
     }
 
-    for (final s in strokes) draw(s);
+    for (final s in strokes) { draw(s); }
     if (active != null) draw(active);
   }
 
