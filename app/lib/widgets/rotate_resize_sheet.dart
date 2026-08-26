@@ -167,7 +167,7 @@ class RotateResizeSheetState extends State<RotateResizeSheet> {
       children: [
         Expanded(child: Image.file(File(widget.imagePath), fit: BoxFit.contain)),
         const SizedBox(height: 16),
-        Text('Original: ${origW}×${origH}', style: TextStyle(fontSize: 14, color: textSecondary)),
+        Text('Original: $origW×$origH', style: TextStyle(fontSize: 14, color: textSecondary)),
         const SizedBox(height: 12),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,

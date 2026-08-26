@@ -202,6 +202,7 @@ class PagesManagerSheetState extends State<PagesManagerSheet> {
             children: widget.allDocuments.map((doc) => ListTile(
               title: Text(doc.title),
               subtitle: Text('${doc.pageCount} pages'),
+              if (!mounted) return;
               onTap: () => Navigator.pop(ctx, doc.id),
             )).toList(),
           ),
