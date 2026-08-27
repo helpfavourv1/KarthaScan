@@ -1,4 +1,4 @@
-import 'package:flutter/foundation.dart' show immutable;
+import 'package:flutter/foundation.dart' show immutable, mapEquals;
 import 'package:flutter/material.dart' show Color, ThemeMode;
 
 import '../utils/constants.dart';
@@ -14,6 +14,7 @@ class UserSettings {
     this.autoCopyOcr = false,
     this.beepOnCapture = false,
     this.vibrateOnCapture = false,
+    this.lastWatermark,
   });
 
   final ThemeMode themeMode;
@@ -24,6 +25,10 @@ class UserSettings {
   final bool autoCopyOcr;
   final bool beepOnCapture;
   final bool vibrateOnCapture;
+
+  /// Memo of the last-used watermark settings. Persisted as a free-form
+  /// map so the watermark dialog can restore its full state on next use.
+  final Map<String, dynamic>? lastWatermark;
 
   static const Object _unset = Object();
 
@@ -36,6 +41,7 @@ class UserSettings {
     bool? autoCopyOcr,
     bool? beepOnCapture,
     bool? vibrateOnCapture,
+    Object? lastWatermark = _unset,
   }) {
     return UserSettings(
       themeMode: themeMode ?? this.themeMode,
@@ -46,6 +52,7 @@ class UserSettings {
       autoCopyOcr: autoCopyOcr ?? this.autoCopyOcr,
       beepOnCapture: beepOnCapture ?? this.beepOnCapture,
       vibrateOnCapture: vibrateOnCapture ?? this.vibrateOnCapture,
+      lastWatermark: identical(lastWatermark, _unset) ? this.lastWatermark : lastWatermark as Map<String, dynamic>?,
     );
   }
 
@@ -59,6 +66,7 @@ class UserSettings {
       'autoCopyOcr': autoCopyOcr,
       'beepOnCapture': beepOnCapture,
       'vibrateOnCapture': vibrateOnCapture,
+      'lastWatermark': lastWatermark,
     };
   }
 
@@ -73,6 +81,7 @@ class UserSettings {
       autoCopyOcr: json['autoCopyOcr'] as bool? ?? false,
       beepOnCapture: json['beepOnCapture'] as bool? ?? false,
       vibrateOnCapture: json['vibrateOnCapture'] as bool? ?? false,
+      lastWatermark: (json['lastWatermark'] as Map?)?.cast<String, dynamic>(),
     );
   }
 
@@ -100,11 +109,19 @@ class UserSettings {
         other.adsRemoved == adsRemoved &&
         other.autoCopyOcr == autoCopyOcr &&
         other.beepOnCapture == beepOnCapture &&
-        other.vibrateOnCapture == vibrateOnCapture;
+        other.vibrateOnCapture == vibrateOnCapture &&
+        mapEquals(other.lastWatermark, lastWatermark);
   }
 
   @override
-  int get hashCode => Object.hash(themeMode, accentColor, storagePath, language, adsRemoved, autoCopyOcr, beepOnCapture, vibrateOnCapture);
+  int get hashCode {
+    final int base = Object.hash(themeMode, accentColor, storagePath, language, adsRemoved, autoCopyOcr, beepOnCapture, vibrateOnCapture);
+    if (lastWatermark == null) return base;
+    final int mapHash = Object.hashAll(
+      lastWatermark!.entries.map((MapEntry<String, dynamic> e) => Object.hash(e.key, e.value)),
+    );
+    return Object.hash(base, mapHash);
+  }
 
   @override
   String toString() => 'UserSettings(themeMode: $themeMode, language: $language, adsRemoved: $adsRemoved, autoCopy: $autoCopyOcr, beep: $beepOnCapture, vibrate: $vibrateOnCapture)';

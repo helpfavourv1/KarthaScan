@@ -9,10 +9,13 @@
 // constraint in constants.dart.
 
 import 'dart:async' show unawaited;
+import 'dart:io' show File, Directory;
 import 'dart:math' show Random;
 
 import 'package:flutter/foundation.dart' show ValueNotifier, debugPrint;
 import 'package:flutter/services.dart' show Clipboard, ClipboardData;
+import 'package:path/path.dart' as p;
+import 'package:path_provider/path_provider.dart';
 
 import '../models/scan_document.dart';
 import '../services/doc_scanner_service.dart';
@@ -173,6 +176,103 @@ class ScanProvider {
     final ScanDocument updated = existing.copyWith(
       pagePaths: newPagePaths,
       pageCount: newPagePaths.length,
+      updatedAt: DateTime.now(),
+    );
+    return _replaceAndSave(updated);
+  }
+
+  /// Copies a source image into the app's managed pages directory.
+  /// Prevents double-free if the source is already managed elsewhere.
+  Future<String> _copyToManaged(String sourcePath) async {
+    final Directory appDir = await getApplicationDocumentsDirectory();
+    final Directory managedDir = Directory(p.join(appDir.path, 'managed_pages'));
+    await managedDir.create(recursive: true);
+    final String ext = p.extension(sourcePath);
+    final String safeExt = ext.isEmpty ? '.jpg' : ext;
+    final String outPath = p.join(
+      managedDir.path,
+      'managed_${DateTime.now().microsecondsSinceEpoch}$safeExt',
+    );
+    await File(sourcePath).copy(outPath);
+    return outPath;
+  }
+
+  Future<bool> duplicatePageAt(String id, int pageIndex) async {
+    final ScanDocument? existing = _findById(id);
+    if (existing == null) return false;
+    if (pageIndex < 0 || pageIndex >= existing.pagePaths.length) return false;
+    final String copied = await _copyToManaged(existing.pagePaths[pageIndex]);
+    final List<String> newPaths = List<String>.from(existing.pagePaths);
+    newPaths.insert(pageIndex + 1, copied);
+    return updateDocumentPages(id, newPaths);
+  }
+
+  Future<bool> insertPageAt(String id, int pageIndex, String sourcePath) async {
+    final ScanDocument? existing = _findById(id);
+    if (existing == null) return false;
+    final String copied = await _copyToManaged(sourcePath);
+    final List<String> newPaths = List<String>.from(existing.pagePaths);
+    final int insertAt = pageIndex.clamp(0, newPaths.length);
+    newPaths.insert(insertAt, copied);
+    return updateDocumentPages(id, newPaths);
+  }
+
+  Future<bool> replacePageAt(String id, int pageIndex, String sourcePath) async {
+    final ScanDocument? existing = _findById(id);
+    if (existing == null) return false;
+    if (pageIndex < 0 || pageIndex >= existing.pagePaths.length) return false;
+    final String copied = await _copyToManaged(sourcePath);
+    final List<String> newPaths = List<String>.from(existing.pagePaths);
+    newPaths[pageIndex] = copied;
+    return updateDocumentPages(id, newPaths);
+  }
+
+  /// Creates a new document from a subset of pages of an existing document.
+  /// Pages are copied into the managed directory so the new document is
+  /// independent of the source.
+  Future<ScanDocument?> extractToNewDocument(
+    String id,
+    List<int> pageIndices,
+    String? title,
+  ) async {
+    final ScanDocument? existing = _findById(id);
+    if (existing == null) return null;
+    if (pageIndices.isEmpty) return null;
+    final List<String> copiedPaths = <String>[];
+    for (final int idx in pageIndices) {
+      if (idx < 0 || idx >= existing.pagePaths.length) continue;
+      copiedPaths.add(await _copyToManaged(existing.pagePaths[idx]));
+    }
+    if (copiedPaths.isEmpty) return null;
+    final DateTime now = DateTime.now();
+    final ScanDocument newDoc = ScanDocument(
+      id: _generateId(),
+      title: (title != null && title.trim().isNotEmpty)
+          ? title.trim()
+          : _defaultTitle(now),
+      pageCount: copiedPaths.length,
+      pagePaths: copiedPaths,
+      createdAt: now,
+      updatedAt: now,
+      ocrText: '',
+      thumbnailPath: copiedPaths.first,
+    );
+    final bool success = await importDocument(newDoc);
+    return success ? newDoc : null;
+  }
+
+  /// Appends region-OCR text to a document's combined [ScanDocument.ocrText],
+  /// separated by a blank line so per-region extracts remain distinguishable.
+  Future<bool> appendOcrText(String id, String text) async {
+    final ScanDocument? existing = _findById(id);
+    if (existing == null) return false;
+    final String trimmed = text.trim();
+    if (trimmed.isEmpty) return true;
+    final String combined = existing.ocrText.isEmpty
+        ? trimmed
+        : '${existing.ocrText}\n\n$trimmed';
+    final ScanDocument updated = existing.copyWith(
+      ocrText: combined,
       updatedAt: DateTime.now(),
     );
     return _replaceAndSave(updated);

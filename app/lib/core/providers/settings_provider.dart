@@ -85,6 +85,9 @@ class SettingsProvider {
   Future<bool> setVibrateOnCapture(bool value) =>
       _persist(settings.value.copyWith(vibrateOnCapture: value));
 
+  Future<bool> setLastWatermark(Map<String, dynamic>? value) =>
+      _persist(settings.value.copyWith(lastWatermark: value));
+
 
   void dispose() {
     settings.dispose();
