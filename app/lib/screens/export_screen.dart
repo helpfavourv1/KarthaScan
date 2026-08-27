@@ -5,12 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:image/image.dart' as img;
 
 import '../core/models/export_job.dart';
 import '../core/models/scan_document.dart';
 import '../core/providers/scan_provider.dart';
 import '../core/services/export_service.dart';
 import '../core/services/share_service.dart';
+import '../core/services/local_storage.dart';
 import '../core/utils/constants.dart';
 import '../l10n/app_localizations.dart';
 import '../widgets/signature_canvas.dart';
@@ -29,11 +31,15 @@ class _ExportScreenState extends State<ExportScreen> {
   late final ScanProvider _scanProvider;
   final ExportService _exportService = ExportService();
   final ShareService _shareService = ShareService();
+  final LocalStorageService _localStorage = LocalStorageService();
 
   // Export options state
   ExportFormat _selectedFormat = ExportFormat.pdf;
   FilterType _selectedFilter = FilterType.none;
   CompressionTier _selectedCompression = CompressionTier.original;
+  ExportDocxMode _docxMode = ExportDocxMode.textOnly;
+  ExportPageFormat _pageFormat = ExportPageFormat.a4;
+  int? _targetMB;
   
   // Signature state
   Uint8List? _signatureBytes;
@@ -69,13 +75,34 @@ class _ExportScreenState extends State<ExportScreen> {
   }
 
   Future<void> _addSignature() async {
-    final signatureKey = GlobalKey<SignatureCanvasState>();
-    final signatureBytes = await showModalBottomSheet<Uint8List?>(
-      context: context,
-      isScrollControlled: true,
-      builder: (context) => _SignatureSheet(signatureKey: signatureKey),
-    );
-    
+    Uint8List? signatureBytes;
+    final saved = await _localStorage.loadSignaturePng();
+    if (saved != null && mounted) {
+      final choice = await showDialog<String>(
+        context: context,
+        builder: (ctx) => AlertDialog(
+          title: const Text('Signature'),
+          content: const Text('Use your saved signature or draw a new one?'),
+          actions: [
+            TextButton(onPressed: () => Navigator.pop(ctx, 'saved'), child: const Text('Use Saved')),
+            TextButton(onPressed: () => Navigator.pop(ctx, 'draw'), child: const Text('Draw New')),
+          ],
+        ),
+      );
+      if (choice == 'saved') signatureBytes = saved;
+    }
+    if (signatureBytes == null && mounted) {
+      final signatureKey = GlobalKey<SignatureCanvasState>();
+      signatureBytes = await showModalBottomSheet<Uint8List?>(
+        context: context,
+        isScrollControlled: true,
+        builder: (context) => _SignatureSheet(signatureKey: signatureKey),
+      );
+      if (signatureBytes != null) {
+        await _localStorage.saveSignaturePng(signatureBytes);
+      }
+    }
+
     if (signatureBytes == null || !mounted) return;
 
     final placement = await showModalBottomSheet<(int, double, double, double)?>(
@@ -83,7 +110,7 @@ class _ExportScreenState extends State<ExportScreen> {
       isScrollControlled: true,
       builder: (context) => _SignaturePlacementSheet(
         pagePaths: _documents.first.pagePaths,
-        signatureBytes: signatureBytes,
+        signatureBytes: signatureBytes!,
       ),
     );
 
@@ -133,6 +160,9 @@ class _ExportScreenState extends State<ExportScreen> {
           signatureOffsetY: _signatureOffsetY,
           signatureRotation: _signatureRotation,
           compression: _selectedCompression,
+          docxMode: _docxMode,
+          pageFormat: _pageFormat,
+          targetBytes: _targetMB != null ? _targetMB! * 1024 * 1024 : null,
         );
         allOutputPaths.addAll(paths);
       }
@@ -247,6 +277,40 @@ class _ExportScreenState extends State<ExportScreen> {
                   ),
                   const SizedBox(height: AppSpacing.lg),
 
+                  // DOCX Mode (conditional)
+                  if (_selectedFormat == ExportFormat.docx) ...[
+                    Text('Word Mode', style: TextStyle(color: textSecondary, fontSize: AppTypography.footnoteSize, fontWeight: FontWeight.w600)),
+                    const SizedBox(height: AppSpacing.sm),
+                    Container(
+                      padding: const EdgeInsets.all(AppSpacing.md),
+                      decoration: BoxDecoration(color: surface, borderRadius: BorderRadius.circular(AppShape.cardRadius)),
+                      child: Row(
+                        children: [
+                          Expanded(child: _buildDocxModeChip(ExportDocxMode.textOnly, 'Text Only', accent)),
+                          const SizedBox(width: AppSpacing.sm),
+                          Expanded(child: _buildDocxModeChip(ExportDocxMode.imageEmbedded, 'With Images', accent)),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: AppSpacing.lg),
+                  ],
+
+                  // Page Format
+                  Text('Page Size', style: TextStyle(color: textSecondary, fontSize: AppTypography.footnoteSize, fontWeight: FontWeight.w600)),
+                  const SizedBox(height: AppSpacing.sm),
+                  Container(
+                    padding: const EdgeInsets.all(AppSpacing.md),
+                    decoration: BoxDecoration(color: surface, borderRadius: BorderRadius.circular(AppShape.cardRadius)),
+                    child: Row(
+                      children: [
+                        Expanded(child: _buildPageFormatChip(ExportPageFormat.a4, 'A4', accent)),
+                        const SizedBox(width: AppSpacing.sm),
+                        Expanded(child: _buildPageFormatChip(ExportPageFormat.letter, 'Letter (US)', accent)),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: AppSpacing.lg),
+
                   // Compression (conditional)
                   if (showCompression) ...[
                     Text('Quality', style: TextStyle(color: textSecondary, fontSize: AppTypography.footnoteSize, fontWeight: FontWeight.w600)),
@@ -280,6 +344,34 @@ class _ExportScreenState extends State<ExportScreen> {
                       },
                     ),
                     const SizedBox(height: AppSpacing.lg),
+                    if (_selectedFormat == ExportFormat.jpg) ...[
+                      Text('Target Size (optional)', style: TextStyle(color: textSecondary, fontSize: AppTypography.footnoteSize, fontWeight: FontWeight.w600)),
+                      const SizedBox(height: AppSpacing.sm),
+                      Container(
+                        padding: const EdgeInsets.all(AppSpacing.md),
+                        decoration: BoxDecoration(color: surface, borderRadius: BorderRadius.circular(AppShape.cardRadius)),
+                        child: Column(
+                          children: [
+                            SwitchListTile(
+                              title: const Text('Fit to target MB'),
+                              value: _targetMB != null,
+                              onChanged: (v) => setState(() => _targetMB = v ? 2 : null),
+                            ),
+                            if (_targetMB != null) ...[
+                              Slider(
+                                value: _targetMB!.toDouble(),
+                                min: 0.5,
+                                max: 10,
+                                divisions: 19,
+                                label: '$_targetMB MB',
+                                onChanged: (v) => setState(() => _targetMB = v.round()),
+                              ),
+                              Text('$_targetMB MB', style: TextStyle(color: accent, fontSize: 12, fontWeight: FontWeight.w600)),
+                            ],
+                          ],
+                        ),
+                      ),
+                    ],
                   ],
 
                   // Signature Section
@@ -351,16 +443,24 @@ class _ExportScreenState extends State<ExportScreen> {
 
   Future<int> _calculateEstimate() async {
     if (_selectedFormat != ExportFormat.jpg && _selectedFormat != ExportFormat.png) return 0;
-    int total = 0;
-    for (final doc in _documents) {
-      for (final path in doc.pagePaths) {
-        try { total += await File(path).length(); } catch (_) {}
-      }
+    if (_documents.isEmpty) return 0;
+    
+    // Real estimate: encode first page at selected tier quality, extrapolate by page count
+    try {
+      final firstPath = _documents.first.pagePaths.first;
+      final bytes = await File(firstPath).readAsBytes();
+      final decoded = img.decodeImage(bytes);
+      if (decoded == null) return 0;
+      
+      final quality = _selectedCompression == CompressionTier.original ? 92 :
+                      _selectedCompression == CompressionTier.medium ? 60 : 30;
+      final encoded = img.encodeJpg(decoded, quality: quality);
+      final avgPageSize = encoded.length;
+      final totalPages = _documents.fold<int>(0, (sum, doc) => sum + doc.pagePaths.length);
+      return avgPageSize * totalPages;
+    } catch (_) {
+      return 0;
     }
-    double factor = 1.0;
-    if (_selectedCompression == CompressionTier.medium) factor = 0.45;
-    if (_selectedCompression == CompressionTier.small) factor = 0.20;
-    return (total * factor).round();
   }
 
   Widget _buildFormatCard(ExportFormat format, String label, IconData icon, Color accent) {
@@ -400,6 +500,48 @@ class _ExportScreenState extends State<ExportScreen> {
 
     return GestureDetector(
       onTap: () => setState(() => _selectedCompression = tier),
+      child: Container(
+        padding: const EdgeInsets.symmetric(vertical: 12),
+        decoration: BoxDecoration(
+          color: isSelected ? accent : surface,
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(color: isSelected ? accent : Colors.grey.withValues(alpha: 0.3)),
+          boxShadow: isSelected ? AppShadows.ambient : null,
+        ),
+        child: Text(label, style: TextStyle(color: isSelected ? Colors.white : textPrimary, fontWeight: FontWeight.w700, fontSize: 12), textAlign: TextAlign.center),
+      ),
+    );
+  }
+
+  Widget _buildDocxModeChip(ExportDocxMode mode, String label, Color accent) {
+    final isSelected = _docxMode == mode;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final surface = isDark ? AppColors.bgSecondaryDark : AppColors.bgSecondaryLight;
+    final textPrimary = isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight;
+
+    return GestureDetector(
+      onTap: () => setState(() => _docxMode = mode),
+      child: Container(
+        padding: const EdgeInsets.symmetric(vertical: 12),
+        decoration: BoxDecoration(
+          color: isSelected ? accent : surface,
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(color: isSelected ? accent : Colors.grey.withValues(alpha: 0.3)),
+          boxShadow: isSelected ? AppShadows.ambient : null,
+        ),
+        child: Text(label, style: TextStyle(color: isSelected ? Colors.white : textPrimary, fontWeight: FontWeight.w700, fontSize: 11), textAlign: TextAlign.center),
+      ),
+    );
+  }
+
+  Widget _buildPageFormatChip(ExportPageFormat format, String label, Color accent) {
+    final isSelected = _pageFormat == format;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final surface = isDark ? AppColors.bgSecondaryDark : AppColors.bgSecondaryLight;
+    final textPrimary = isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight;
+
+    return GestureDetector(
+      onTap: () => setState(() => _pageFormat = format),
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 12),
         decoration: BoxDecoration(

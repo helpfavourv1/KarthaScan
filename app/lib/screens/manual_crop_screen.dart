@@ -2,7 +2,9 @@ import 'dart:async' show unawaited;
 import 'dart:io' show Directory, File;
 
 import 'package:file_picker/file_picker.dart';
+import 'package:pdf_render/pdf_render.dart';
 import 'package:flutter/material.dart';
+import 'package:image/image.dart' as img;
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_cropper/image_cropper.dart';
@@ -115,7 +117,10 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
     if (_isPicking) return;
     setState(() => _isPicking = true);
     try {
-      final result = await FilePicker.platform.pickFiles(type: FileType.image);
+      final result = await FilePicker.platform.pickFiles(
+        type: FileType.custom,
+        allowedExtensions: ['jpg', 'jpeg', 'png', 'webp', 'pdf'],
+      );
       final path = result?.files.single.path;
       if (!mounted) return;
       if (path == null) {
@@ -124,6 +129,12 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
       }
       _playCaptureFeedback();
       setState(() => _isPicking = false);
+
+      // PDF import branch
+      if (path.toLowerCase().endsWith('.pdf')) {
+        await _importPdf(path);
+        return;
+      }
 
       if (_currentMode == _CaptureMode.idCard) {
         final isFront = _idFrontPath == null;
@@ -136,6 +147,66 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
       if (!mounted) return;
       setState(() => _isPicking = false);
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Import error: $e')));
+    }
+  }
+
+  Future<void> _importPdf(String pdfPath) async {
+    setState(() => _stage = _Stage.saving);
+    try {
+      final doc = await PdfDocument.openFile(pdfPath);
+      final pageCount = doc.pageCount;
+      final appDir = await getApplicationDocumentsDirectory();
+      final scansDir = Directory(p.join(appDir.path, 'pdf_import_pages'));
+      await scansDir.create(recursive: true);
+
+      final savedPaths = <String>[];
+      for (int i = 1; i <= pageCount; i++) {
+        final page = await doc.getPage(i);
+        final renderedImage = await page.render(width: (page.width * 2).round(), height: (page.height * 2).round());
+        final rawPixels = renderedImage.pixels;
+        final pngImage = img.Image.fromBytes(
+          width: renderedImage.width,
+          height: renderedImage.height,
+          bytes: rawPixels.buffer,
+          numChannels: 4,
+        );
+        final pngBytes = img.encodePng(pngImage);
+        final outPath = p.join(scansDir.path, 'pdf_${DateTime.now().microsecondsSinceEpoch}_$i.png');
+        await File(outPath).writeAsBytes(pngBytes);
+        savedPaths.add(outPath);
+      }
+
+      String ocrText = '';
+      try {
+        final result = await _ocrService.recognizeText(imagePath: savedPaths.first, script: OcrScript.latin);
+        ocrText = result.fullText;
+      } catch (_) {}
+
+      final now = DateTime.now();
+      final document = ScanDocument(
+        id: '${now.microsecondsSinceEpoch}',
+        title: 'PDF Import ${now.year}-${now.month.toString().padLeft(2, '0')}-${now.day.toString().padLeft(2, '0')}',
+        pageCount: savedPaths.length,
+        pagePaths: savedPaths,
+        createdAt: now,
+        updatedAt: now,
+        ocrText: ocrText,
+        thumbnailPath: savedPaths.first,
+      );
+
+      final success = await _scanProvider.importDocument(document);
+      if (!mounted) return;
+      if (success) {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('PDF imported as document')));
+        await Future.delayed(const Duration(milliseconds: 300));
+        if (!mounted) return;
+        context.pushReplacement('/scan/${document.id}');
+      }
+    } catch (e) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('PDF import error: $e')));
+    } finally {
+      if (mounted) setState(() => _stage = _Stage.pickImage);
     }
   }
 
