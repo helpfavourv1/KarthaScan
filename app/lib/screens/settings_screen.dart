@@ -1,5 +1,10 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:path/path.dart' as p;
+import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -7,6 +12,7 @@ import '../core/providers/settings_provider.dart';
 import '../core/providers/subscription_provider.dart';
 import '../core/providers/theme_provider.dart';
 import '../core/services/debug_log_service.dart';
+import '../core/services/ocr_service.dart';
 import '../core/utils/constants.dart';
 import '../l10n/app_localizations.dart';
 
@@ -56,6 +62,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
       builder: (context) => _LanguagePickerSheet(current: _settingsProvider.settings.value.language),
     );
     if (chosen != null) await _settingsProvider.setLanguage(chosen);
+  }
+
+  Future<void> _openOcrLanguages() async {
+    await showModalBottomSheet<void>(
+      context: context,
+      isScrollControlled: true,
+      builder: (context) => const _OcrLanguagesSheet(),
+    );
   }
 
   @override
@@ -136,6 +150,15 @@ class _SettingsScreenState extends State<SettingsScreen> {
               ),
             ),
 
+            const SizedBox(height: AppSpacing.md),
+            _sectionLabel('OCR', textSecondary),
+            _settingsTile(
+              title: 'OCR Languages',
+              trailing: Icon(Icons.chevron_right, color: textSecondary),
+              onTap: _openOcrLanguages,
+              textPrimary: textPrimary,
+              border: border,
+            ),
             const SizedBox(height: AppSpacing.md),
             _sectionLabel('CAPTURE BEHAVIOR', textSecondary),
             ListenableBuilder(
@@ -262,6 +285,93 @@ class _LanguagePickerSheet extends StatelessWidget {
                 ),
               ),
             ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
+class _OcrLanguagesSheet extends StatefulWidget {
+  const _OcrLanguagesSheet();
+
+  @override
+  State<_OcrLanguagesSheet> createState() => _OcrLanguagesSheetState();
+}
+
+class _OcrLanguagesSheetState extends State<_OcrLanguagesSheet> {
+  static const Map<OcrScript, String> _labels = {
+    OcrScript.latin: 'Latin (English, European)',
+    OcrScript.chinese: 'Chinese',
+    OcrScript.korean: 'Korean',
+    OcrScript.japanese: 'Japanese',
+  };
+
+  OcrScript? _probing;
+
+  Future<void> _probe(OcrScript script) async {
+    setState(() => _probing = script);
+    try {
+      final dir = await getTemporaryDirectory();
+      final path = p.join(dir.path, 'ocr_probe.png');
+      final file = File(path);
+      if (!await file.exists()) {
+        await file.writeAsBytes(base64Decode(
+            'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg=='));
+      }
+      await OcrService().recognizeText(imagePath: path, script: script);
+      OcrService.clearFailureFor(script);
+    } on OcrUnavailableException {
+      // Service already recorded the classified failure.
+    } catch (_) {
+      // Probe errors are non-fatal here.
+    }
+    if (mounted) setState(() => _probing = null);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final bg = isDark ? AppColors.bgPrimaryDark : AppColors.bgPrimaryLight;
+    final textPrimary = isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight;
+    final textSecondary = isDark ? AppColors.textSecondaryDark : AppColors.textSecondaryLight;
+    final accent = isDark ? AppColors.accentDark : AppColors.accentLight;
+
+    return SafeArea(
+      child: Container(
+        decoration: BoxDecoration(color: bg, borderRadius: const BorderRadius.only(topLeft: Radius.circular(AppShape.bottomSheetTopRadius), topRight: Radius.circular(AppShape.bottomSheetTopRadius))),
+        padding: const EdgeInsets.all(AppSpacing.md),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text('OCR Languages', style: TextStyle(color: textPrimary, fontSize: AppTypography.title1Size, fontWeight: FontWeight.w600)),
+            const SizedBox(height: AppSpacing.sm),
+            ...OcrScript.values.map((script) {
+              final failure = OcrService.lastFailureFor(script);
+              final String status = script == OcrScript.latin
+                  ? 'Built-in'
+                  : _probing == script
+                      ? 'Checking...'
+                      : failure != null
+                          ? 'Unavailable'
+                          : 'On-demand';
+              return ListTile(
+                contentPadding: EdgeInsets.zero,
+                title: Text(_labels[script] ?? script.name, style: TextStyle(color: textPrimary)),
+                subtitle: Text(status, style: TextStyle(color: textSecondary, fontSize: 11)),
+                trailing: _probing == script
+                    ? const SizedBox(width: 18, height: 18, child: CircularProgressIndicator(strokeWidth: 2))
+                    : script == OcrScript.latin
+                        ? Icon(Icons.check, color: accent)
+                        : IconButton(
+                            icon: Icon(failure != null ? Icons.refresh : Icons.download_for_offline_outlined, color: accent),
+                            onPressed: () => _probe(script),
+                          ),
+              );
+            }),
+            const SizedBox(height: AppSpacing.sm),
           ],
         ),
       ),

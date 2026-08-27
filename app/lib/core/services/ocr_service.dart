@@ -24,6 +24,14 @@ class OcrService {
   final Map<OcrScript, TextRecognizer> _recognizers = <OcrScript, TextRecognizer>{};
   final DebugLogService _log = DebugLogService();
 
+  static final Map<OcrScript, String> _scriptFailures = <OcrScript, String>{};
+
+  /// Last classified failure for a script, or null if none recorded.
+  static String? lastFailureFor(OcrScript script) => _scriptFailures[script];
+
+  /// Clears a recorded failure so the script becomes selectable again.
+  static void clearFailureFor(OcrScript script) => _scriptFailures.remove(script);
+
   Future<OcrResult> recognizeText({
     required String imagePath,
     required OcrScript script,
@@ -44,16 +52,20 @@ class OcrService {
           .map((block) => _blockFromMlKit(block, script))
           .toList();
 
+      _scriptFailures.remove(script);
       return OcrResult(fullText: recognizedText.text, blocks: blocks);
     } on OcrUnavailableException {
       rethrow;
     } on PlatformException catch (e) {
       _log.log('OCR', 'PlatformException caught: ${e.message}');
-      throw OcrUnavailableException('OCR engine failed: ${e.message}');
+      final message = _classify(e);
+      _scriptFailures[script] = message;
+      throw OcrUnavailableException(message);
     } catch (error) {
-      throw const OcrUnavailableException(
-        AppPluginFailureCopy.ocrUnavailableTooltip,
-      );
+      _log.log('OCR', 'Unhandled OCR error: $error');
+      final message = _classify(error);
+      _scriptFailures[script] = message;
+      throw OcrUnavailableException(message);
     }
   }
 
@@ -66,10 +78,31 @@ class OcrService {
     }
   }
 
+  String _classify(Object error) {
+    final String msg = error.toString().toLowerCase();
+    if (msg.contains('network') || msg.contains('internet') || msg.contains('connection')) {
+      return 'No internet connection. This language needs a one-time download first.';
+    }
+    if (msg.contains('download') || msg.contains('install') ||
+        msg.contains('unavailable') || msg.contains('not available')) {
+      return 'Language pack is still downloading or not installed. Try again in a moment.';
+    }
+    return AppPluginFailureCopy.ocrUnavailableTooltip;
+  }
+
   TextRecognizer _recognizerFor(OcrScript script) {
     return _recognizers.putIfAbsent(
       script,
-      () => TextRecognizer(script: _toMlKitScript(script)),
+      () {
+        try {
+          return TextRecognizer(script: _toMlKitScript(script));
+        } catch (e) {
+          _log.log('OCR', 'Recognizer creation failed for $script: $e');
+          final message = _classify(e);
+          _scriptFailures[script] = message;
+          throw OcrUnavailableException(message);
+        }
+      },
     );
   }
 

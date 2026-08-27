@@ -153,10 +153,33 @@ class _TextStampSheetState extends State<TextStampSheet> {
                 ]),
               ],
               if (widget.kind == 'date') ...[
-                TextButton(onPressed: () async {
-                  final picked = await showDatePicker(context: context, initialDate: _customDate, firstDate: DateTime(1990), lastDate: DateTime(2100));
-                  if (picked != null) setState(() => _customDate = picked);
-                }, child: Text('Date: ${_customDate.day}/${_customDate.month}/${_customDate.year}')),
+                InkWell(
+                  onTap: () async {
+                    final picked = await showDatePicker(context: context, initialDate: _customDate, firstDate: DateTime(1990), lastDate: DateTime(2100));
+                    if (picked != null) setState(() => _customDate = picked);
+                  },
+                  borderRadius: BorderRadius.circular(12),
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                    decoration: BoxDecoration(
+                      border: Border.all(color: const Color(0xFF007AFF), width: 1.5),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        const Icon(Icons.calendar_month_outlined, color: Color(0xFF007AFF), size: 20),
+                        const SizedBox(width: 8),
+                        Text(
+                          '${_customDate.day.toString().padLeft(2, '0')}-${_customDate.month.toString().padLeft(2, '0')}-${_customDate.year}',
+                          style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: Color(0xFF007AFF)),
+                        ),
+                        const SizedBox(width: 8),
+                        const Text('Change', style: TextStyle(fontSize: 11, color: Color(0xFF007AFF))),
+                      ],
+                    ),
+                  ),
+                ),
                 Wrap(spacing: 8, children: ['DD-MM-YYYY', 'MM-DD-YYYY', 'YYYY-MM-DD', 'YYYY/MM/DD'].map((f) => ChoiceChip(label: Text(f, style: const TextStyle(fontSize: 10)), selected: _dateFormat == f, onSelected: (_) => setState(() => _dateFormat = f))).toList()),
               ],
               const SizedBox(height: 12),

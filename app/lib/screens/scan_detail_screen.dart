@@ -514,6 +514,9 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
           ],
         ),
       );
+    } on OcrUnavailableException catch (e) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(e.message)));
     } catch (e) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Region OCR failed: $e')));
@@ -534,10 +537,17 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
       builder: (ctx) => SafeArea(
         child: Column(
           mainAxisSize: MainAxisSize.min,
-          children: OcrScript.values.map((s) => ListTile(
-            title: Text(labels[s] ?? s.name),
-            onTap: () => Navigator.pop(ctx, s),
-          )).toList(),
+          children: OcrScript.values.map((s) {
+            final bool failed = OcrService.lastFailureFor(s) != null;
+            return ListTile(
+              title: Text(
+                labels[s] ?? s.name,
+                style: TextStyle(color: failed ? Colors.grey : null),
+              ),
+              enabled: !failed,
+              onTap: () => Navigator.pop(ctx, s),
+            );
+          }).toList(),
         ),
       ),
     );
