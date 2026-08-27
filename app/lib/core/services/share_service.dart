@@ -38,6 +38,7 @@
 import 'package:flutter/foundation.dart' show debugPrint;
 import 'package:flutter/widgets.dart' show Rect;
 import 'package:share_plus/share_plus.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 /// Thrown when the share sheet itself fails to open — rare, usually only
 /// an invalid file path or a platform channel error. A user simply
@@ -122,5 +123,32 @@ class ShareService {
 
   void _logError(String operation, Object error, StackTrace stackTrace) {
     debugPrint('[ShareService] $operation failed: $error');
+  }
+
+  /// Fallback: force-open native mailto: composer when share sheet has no email option.
+  /// Does NOT attach files — mailto: cannot carry attachments portably.
+  /// B4 will prefer shareFiles (which attaches files) and call this only as a fallback.
+  Future<bool> launchMailto({
+    required String to,
+    String? subject,
+    String? body,
+  }) async {
+    try {
+      final uri = Uri(
+        scheme: 'mailto',
+        path: to,
+        queryParameters: <String, String>{
+          if (subject != null && subject.isNotEmpty) 'subject': subject,
+          if (body != null && body.isNotEmpty) 'body': body,
+        },
+      );
+      if (await canLaunchUrl(uri)) {
+        return await launchUrl(uri, mode: LaunchMode.externalApplication);
+      }
+      return false;
+    } catch (error, stackTrace) {
+      _logError('launchMailto', error, stackTrace);
+      return false;
+    }
   }
 }

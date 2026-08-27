@@ -21,6 +21,17 @@ class ExportFailedException implements Exception {
 
 enum FilterType { none, grayscale, blackAndWhite, colorEnhance, shadowRemoval }
 
+enum ExportDocxMode { textOnly, imageEmbedded }
+
+enum ExportPageFormat { a4, letter }
+
+PdfPageFormat _toPdfFormat(ExportPageFormat f) {
+  switch (f) {
+    case ExportPageFormat.a4: return PdfPageFormat.a4;
+    case ExportPageFormat.letter: return PdfPageFormat.letter;
+  }
+}
+
 class ExportService {
   Future<List<String>> export({
     required ScanDocument document,
@@ -33,6 +44,9 @@ class ExportService {
     double? signatureOffsetY,
     double? signatureRotation,
     CompressionTier compression = CompressionTier.original,
+    ExportDocxMode docxMode = ExportDocxMode.textOnly,
+    ExportPageFormat pageFormat = ExportPageFormat.a4,
+    int? targetBytes,
   }) async {
     try {
       switch (format) {
@@ -41,6 +55,7 @@ class ExportService {
             await _exportPdf(
               document,
               outputDirectoryPath,
+              pageFormat: _toPdfFormat(pageFormat),
               filter: filter,
               signatureBytes: signatureBytes,
               signaturePageIndex: signaturePageIndex,
@@ -52,7 +67,7 @@ class ExportService {
         case ExportFormat.txt:
           return <String>[await _exportTxt(document, outputDirectoryPath)];
         case ExportFormat.docx:
-          return <String>[await _exportDocx(document, outputDirectoryPath)];
+          return <String>[await _exportDocx(document, outputDirectoryPath, mode: docxMode, pageFormat: _toPdfFormat(pageFormat))];
         case ExportFormat.jpg:
           return await _exportImages(
             document,
@@ -65,7 +80,8 @@ class ExportService {
             signatureOffsetY: signatureOffsetY,
             signatureRotation: signatureRotation,
             compression: compression,
-          );
+          targetBytes: targetBytes,
+        );
         case ExportFormat.png:
           return await _exportImages(
             document,
@@ -78,7 +94,8 @@ class ExportService {
             signatureOffsetY: signatureOffsetY,
             signatureRotation: signatureRotation,
             compression: compression,
-          );
+          targetBytes: targetBytes,
+        );
         case ExportFormat.csv:
           return <String>[await _exportCsv(document, outputDirectoryPath)];
       }
@@ -180,6 +197,7 @@ class ExportService {
     double? signatureOffsetX,
     double? signatureOffsetY,
     double? signatureRotation,
+    PdfPageFormat pageFormat = PdfPageFormat.a4,
   }) async {
     final pw.Document pdfDoc = pw.Document(
       title: document.title,
@@ -201,7 +219,7 @@ class ExportService {
       final image = pw.MemoryImage(bytes);
       pdfDoc.addPage(
         pw.Page(
-          pageFormat: PdfPageFormat.a4,
+          pageFormat: pageFormat,
           build: (pw.Context context) {
             return pw.Center(
               child: pw.Image(image, fit: pw.BoxFit.contain),
@@ -214,7 +232,7 @@ class ExportService {
     if (document.pagePaths.isEmpty) {
       pdfDoc.addPage(
         pw.Page(
-          pageFormat: PdfPageFormat.a4,
+          pageFormat: pageFormat,
           build: (pw.Context context) => pw.Center(
             child: pw.Text('This document has no pages.'),
           ),
@@ -239,19 +257,59 @@ class ExportService {
     }
   }
 
-  Future<String> _exportDocx(ScanDocument document, String outDir) async {
+  Future<String> _exportDocx(ScanDocument document, String outDir, {
+    ExportDocxMode mode = ExportDocxMode.textOnly,
+    PdfPageFormat pageFormat = PdfPageFormat.a4,
+  }) async {
     final archive = Archive();
 
-    void addXmlFile(String path, String xml) {
-      final bytes = utf8.encode(xml);
+    void addFile(String path, List<int> bytes) {
       archive.addFile(ArchiveFile(path, bytes.length, bytes));
     }
 
-    addXmlFile('[Content_Types].xml', _docxContentTypesXml);
-    addXmlFile('_rels/.rels', _docxRelsXml);
-    addXmlFile('word/document.xml', _docxDocumentXml(document.ocrText));
-    addXmlFile('docProps/core.xml', _docxCoreXml(document));
-    addXmlFile('docProps/app.xml', _docxAppXml);
+    final List<List<int>> pageJpgs = <List<int>>[];
+    if (mode == ExportDocxMode.imageEmbedded) {
+      for (final path in document.pagePaths) {
+        try {
+          final bytes = await _readBytes(path);
+          final decoded = img.decodeImage(bytes);
+          if (decoded != null) {
+            pageJpgs.add(img.encodeJpg(decoded, quality: 92));
+          }
+        } catch (_) {}
+      }
+    }
+
+    // Content types: add jpeg for image mode
+    final contentTypesBuf = StringBuffer();
+    contentTypesBuf.writeln('<?xml version="1.0" encoding="UTF-8" standalone="yes"?>');
+    contentTypesBuf.writeln('<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">');
+    contentTypesBuf.writeln('  <Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/>');
+    contentTypesBuf.writeln('  <Default Extension="xml" ContentType="application/xml"/>');
+    if (mode == ExportDocxMode.imageEmbedded) {
+      contentTypesBuf.writeln('  <Default Extension="jpeg" ContentType="image/jpeg"/>');
+    }
+    contentTypesBuf.writeln('  <Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/>');
+    contentTypesBuf.writeln('  <Override PartName="/docProps/core.xml" ContentType="application/vnd.openxmlformats-package.core-properties+xml"/>');
+    contentTypesBuf.writeln('  <Override PartName="/docProps/app.xml" ContentType="application/vnd.openxmlformats-officedocument.extended-properties+xml"/>');
+    contentTypesBuf.writeln('</Types>');
+    addFile('[Content_Types].xml', utf8.encode(contentTypesBuf.toString()));
+
+    addFile('_rels/.rels', utf8.encode(_docxRelsXml));
+    addFile('word/document.xml', utf8.encode(
+      mode == ExportDocxMode.imageEmbedded
+        ? _docxDocumentXmlWithImages(document, pageJpgs, pageFormat)
+        : _docxDocumentXml(document.ocrText),
+    ));
+    addFile('docProps/core.xml', utf8.encode(_docxCoreXml(document)));
+    addFile('docProps/app.xml', utf8.encode(_docxAppXml));
+
+    if (mode == ExportDocxMode.imageEmbedded) {
+      addFile('word/_rels/document.xml.rels', utf8.encode(_docxDocumentRelsXml(pageJpgs.length)));
+      for (int i = 0; i < pageJpgs.length; i++) {
+        addFile('word/media/image${i + 1}.jpeg', pageJpgs[i]);
+      }
+    }
 
     final encoded = ZipEncoder().encode(archive);
     if (encoded == null) {
@@ -263,14 +321,7 @@ class ExportService {
     return outPath;
   }
 
-  static const String _docxContentTypesXml = '''<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">
-  <Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/>
-  <Default Extension="xml" ContentType="application/xml"/>
-  <Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/>
-  <Override PartName="/docProps/core.xml" ContentType="application/vnd.openxmlformats-package.core-properties+xml"/>
-  <Override PartName="/docProps/app.xml" ContentType="application/vnd.openxmlformats-officedocument.extended-properties+xml"/>
-</Types>''';
+
 
   static const String _docxRelsXml = '''<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
@@ -283,6 +334,65 @@ class ExportService {
 <Properties xmlns="http://schemas.openxmlformats.org/officeDocument/2006/extended-properties">
   <Application>KatharScan</Application>
 </Properties>''';
+
+  String _docxDocumentRelsXml(int imageCount) {
+    final buf = StringBuffer();
+    buf.writeln('<?xml version="1.0" encoding="UTF-8" standalone="yes"?>');
+    buf.writeln('<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">');
+    for (int i = 0; i < imageCount; i++) {
+      buf.writeln('  <Relationship Id="rImg${i + 1}" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="media/image${i + 1}.jpeg"/>');
+    }
+    buf.writeln('</Relationships>');
+    return buf.toString();
+  }
+
+  String _docxDocumentXmlWithImages(ScanDocument document, List<List<int>> pageJpgs, PdfPageFormat pageFormat) {
+    final buf = StringBuffer();
+    buf.writeln('<?xml version="1.0" encoding="UTF-8" standalone="yes"?>');
+    buf.writeln('<w:document xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture">');
+    buf.writeln('<w:body>');
+    for (int i = 0; i < pageJpgs.length; i++) {
+      final int widthEmu = 5486400;  // 6 inches
+      final int heightEmu = 7315200; // 8 inches
+      buf.writeln('  <w:p>');
+      buf.writeln('    <w:r>');
+      buf.writeln('      <w:drawing>');
+      buf.writeln('        <wp:inline distT="0" distB="0" distL="0" distR="0">');
+      buf.writeln('          <wp:extent cx="$widthEmu" cy="$heightEmu"/>');
+      buf.writeln('          <wp:docPr id="${i + 1}" name="Page${i + 1}"/>');
+      buf.writeln('          <a:graphic>');
+      buf.writeln('            <a:graphicData uri="http://schemas.openxmlformats.org/drawingml/2006/picture">');
+      buf.writeln('              <pic:pic>');
+      buf.writeln('                <pic:nvPicPr>');
+      buf.writeln('                  <pic:cNvPr id="${i + 1}" name="Page${i + 1}"/>');
+      buf.writeln('                  <pic:cNvPicPr/>');
+      buf.writeln('                </pic:nvPicPr>');
+      buf.writeln('                <pic:blipFill>');
+      buf.writeln('                  <a:blip r:embed="rImg${i + 1}"/>');
+      buf.writeln('                  <a:stretch><a:fillRect/></a:stretch>');
+      buf.writeln('                </pic:blipFill>');
+      buf.writeln('                <pic:spPr>');
+      buf.writeln('                  <a:xfrm><a:off x="0" y="0"/><a:ext cx="$widthEmu" cy="$heightEmu"/></a:xfrm>');
+      buf.writeln('                  <a:prstGeom prst="rect"><a:avLst/></a:prstGeom>');
+      buf.writeln('                </pic:spPr>');
+      buf.writeln('              </pic:pic>');
+      buf.writeln('            </a:graphicData>');
+      buf.writeln('          </a:graphic>');
+      buf.writeln('        </wp:inline>');
+      buf.writeln('      </w:drawing>');
+      buf.writeln('    </w:r>');
+      buf.writeln('  </w:p>');
+    }
+    final int w = (pageFormat.width * 20).round();
+    final int h = (pageFormat.height * 20).round();
+    buf.writeln('  <w:sectPr>');
+    buf.writeln('    <w:pgSz w:w="$w" w:h="$h"/>');
+    buf.writeln('    <w:pgMar w:top="1440" w:right="1440" w:bottom="1440" w:left="1440" w:header="720" w:footer="720"/>');
+    buf.writeln('  </w:sectPr>');
+    buf.writeln('</w:body>');
+    buf.writeln('</w:document>');
+    return buf.toString();
+  }
 
   String _docxCoreXml(ScanDocument document) {
     final now = DateTime.now().toUtc().toIso8601String();
@@ -337,6 +447,7 @@ class ExportService {
     double? signatureOffsetY,
     double? signatureRotation,
     CompressionTier compression = CompressionTier.original,
+      int? targetBytes,
   }) async {
     final outputPaths = <String>[];
     final isMultiPage = document.pagePaths.length > 1;
@@ -358,9 +469,10 @@ class ExportService {
           'Could not read page ${i + 1} of "${document.title}".',
         );
       }
-      final reencoded = targetExtension == 'png'
-          ? img.encodePng(decoded)
-          : img.encodeJpg(decoded, quality: _qualityFor(compression));
+      final int quality = targetBytes != null ? _findQualityForTarget(decoded, targetBytes) : _qualityFor(compression);
+        final reencoded = targetExtension == 'png'
+            ? img.encodePng(decoded)
+            : img.encodeJpg(decoded, quality: quality);
       final suffix = isMultiPage ? '_page${i + 1}' : '';
       final outPath = _outputPath(
         document,
@@ -386,6 +498,29 @@ class ExportService {
       case CompressionTier.small:
         return 30;
     }
+  }
+
+  /// Binary-searches JPG quality to land as close to [targetBytes] as possible.
+  int _findQualityForTarget(img.Image source, int targetBytes) {
+    int lo = 20;
+    int hi = 92;
+    int bestQ = lo;
+    int bestDiff = (img.encodeJpg(source, quality: lo).length - targetBytes).abs();
+    while (lo <= hi) {
+      final int mid = (lo + hi) ~/ 2;
+      final int size = img.encodeJpg(source, quality: mid).length;
+      final int diff = (size - targetBytes).abs();
+      if (diff < bestDiff) {
+        bestDiff = diff;
+        bestQ = mid;
+      }
+      if (size < targetBytes) {
+        lo = mid + 1;
+      } else {
+        hi = mid - 1;
+      }
+    }
+    return bestQ;
   }
 
   Future<String> _exportCsv(ScanDocument document, String outDir) async {

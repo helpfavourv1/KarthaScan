@@ -1,9 +1,11 @@
 // lib/core/services/local_storage.dart
 
 import 'dart:convert';
+import 'dart:io';
 import 'package:flutter/foundation.dart' show debugPrint;
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
+import 'dart:typed_data';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sqflite/sqflite.dart';
 import '../models/folder.dart';
@@ -396,5 +398,32 @@ class LocalStorageService {
 
   void _logError(String operation, Object error, StackTrace stackTrace) {
     debugPrint('[LocalStorageService] $operation failed: $error');
+  }
+
+  static const String _signatureFileName = 'saved_signature.png';
+
+  Future<String?> saveSignaturePng(Uint8List bytes) async {
+    try {
+      final appDir = await getApplicationDocumentsDirectory();
+      final path = p.join(appDir.path, _signatureFileName);
+      final file = File(path);
+      await file.writeAsBytes(bytes);
+      return path;
+    } catch (error, stackTrace) {
+      _logError('saveSignaturePng', error, stackTrace);
+      return null;
+    }
+  }
+
+  Future<Uint8List?> loadSignaturePng() async {
+    try {
+      final appDir = await getApplicationDocumentsDirectory();
+      final file = File(p.join(appDir.path, _signatureFileName));
+      if (!await file.exists()) return null;
+      return await file.readAsBytes();
+    } catch (error, stackTrace) {
+      _logError('loadSignaturePng', error, stackTrace);
+      return null;
+    }
   }
 }
