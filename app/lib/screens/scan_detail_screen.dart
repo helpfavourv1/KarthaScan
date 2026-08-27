@@ -16,6 +16,9 @@ import '../core/providers/folder_provider.dart';
 import '../core/providers/scan_provider.dart';
 import '../core/services/ocr_service.dart';
 import '../core/services/share_service.dart';
+import '../core/services/local_storage.dart';
+import '../core/providers/settings_provider.dart';
+import '../widgets/color_picker_dialog.dart';
 import '../core/utils/constants.dart';
 import '../l10n/app_localizations.dart';
 import '../widgets/edit_tray.dart';
@@ -52,6 +55,7 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
   late final FolderProvider _folderProvider;
   final ShareService _shareService = ShareService();
   final OcrService _ocrService = OcrService();
+  final LocalStorageService _localStorage = LocalStorageService();
 
   late TabController _tabController;
   int _currentPageIndex = 0;
@@ -223,21 +227,43 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
     final document = _document;
     if (document == null || document.pagePaths.isEmpty) return;
 
-    final signatureKey = GlobalKey<SignatureCanvasState>();
-    final signatureBytes = await showModalBottomSheet<Uint8List?>(
-      context: context,
-      isScrollControlled: true,
-      builder: (context) => _SignatureSheet(signatureKey: signatureKey),
-    );
+    Uint8List? signatureBytes;
+    final saved = await _localStorage.loadSignaturePng();
+    if (saved != null && mounted) {
+      final choice = await showDialog<String>(
+        context: context,
+        builder: (ctx) => AlertDialog(
+          title: const Text('Signature'),
+          content: const Text('Use your saved signature or draw a new one?'),
+          actions: [
+            TextButton(onPressed: () => Navigator.pop(ctx, 'saved'), child: const Text('Use Saved')),
+            TextButton(onPressed: () => Navigator.pop(ctx, 'draw'), child: const Text('Draw New')),
+          ],
+        ),
+      );
+      if (choice == 'saved') signatureBytes = saved;
+    }
+    if (signatureBytes == null && mounted) {
+      final signatureKey = GlobalKey<SignatureCanvasState>();
+      signatureBytes = await showModalBottomSheet<Uint8List?>(
+        context: context,
+        isScrollControlled: true,
+        builder: (context) => _SignatureSheet(signatureKey: signatureKey),
+      );
+      if (signatureBytes != null) {
+        await _localStorage.saveSignaturePng(signatureBytes);
+      }
+    }
 
     if (signatureBytes == null || !mounted) return;
+    final Uint8List signatureBytesNonNull = signatureBytes;
 
     final placement = await showModalBottomSheet<(int, double, double, double, double)?>(
       context: context,
       isScrollControlled: true,
       builder: (context) => OverlayPlacementSheet(
         pagePaths: document.pagePaths,
-        overlayBytes: signatureBytes,
+        overlayBytes: signatureBytesNonNull,
         title: 'Place Signature',
       ),
     );
@@ -258,10 +284,16 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
     final document = _document;
     if (document == null || document.pagePaths.isEmpty) return;
 
-    final textController = TextEditingController(text: 'CONFIDENTIAL');
-    double opacity = 0.15;
-    double fontSize = 48;
-    Color color = const Color(0xFF8E8E93);
+    final settingsProvider = Provider.of<SettingsProvider>(context, listen: false);
+    final memo = settingsProvider.settings.value.lastWatermark;
+
+    final textController = TextEditingController(text: (memo?['text'] as String?) ?? 'CONFIDENTIAL');
+    double opacity = (memo?['opacity'] as num?)?.toDouble() ?? 0.15;
+    double fontSize = (memo?['size'] as num?)?.toDouble() ?? 48;
+    Color color = memo?['color'] != null ? Color(memo!['color'] as int) : const Color(0xFF8E8E93);
+    String fontFamily = (memo?['fontFamily'] as String?) ?? 'sans-serif';
+    bool bold = (memo?['bold'] as bool?) ?? true;
+    TextAlign align = TextAlign.values.firstWhere((a) => a.name == ((memo?['align'] as String?) ?? 'center'), orElse: () => TextAlign.center);
 
     final confirmed = await showDialog<bool>(
       context: context,
@@ -292,6 +324,45 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
                   max: 96,
                   onChanged: (v) => setDialogState(() => fontSize = v),
                 ),
+                const SizedBox(height: 8),
+                Row(
+                  children: [
+                    const Text('Color', style: TextStyle(fontSize: 12)),
+                    const SizedBox(width: 8),
+                    for (final sw in [const Color(0xFF8E8E93), Colors.black, Colors.red, Colors.blue])
+                      GestureDetector(
+                        onTap: () => setDialogState(() => color = sw),
+                        child: Container(
+                          width: 24, height: 24, margin: const EdgeInsets.only(right: 6),
+                          decoration: BoxDecoration(color: sw, shape: BoxShape.circle, border: Border.all(color: color == sw ? Colors.blue : Colors.grey, width: color == sw ? 2 : 1)),
+                        ),
+                      ),
+                    TextButton(
+                      onPressed: () async {
+                        final picked = await showDialog<Color>(context: ctx, builder: (c2) => ColorPickerDialog(initial: color));
+                        if (picked != null) setDialogState(() => color = picked);
+                      },
+                      child: const Text('Custom'),
+                    ),
+                  ],
+                ),
+                Wrap(
+                  spacing: 6,
+                  children: ['sans-serif', 'serif', 'monospace'].map((f) => ChoiceChip(
+                    label: Text(f, style: const TextStyle(fontSize: 11)),
+                    selected: fontFamily == f,
+                    onSelected: (_) => setDialogState(() => fontFamily = f),
+                  )).toList(),
+                ),
+                Wrap(
+                  spacing: 6,
+                  children: [
+                    ChoiceChip(label: const Text('Bold'), selected: bold, onSelected: (_) => setDialogState(() => bold = !bold)),
+                    ChoiceChip(label: const Text('L'), selected: align == TextAlign.left, onSelected: (_) => setDialogState(() => align = TextAlign.left)),
+                    ChoiceChip(label: const Text('C'), selected: align == TextAlign.center, onSelected: (_) => setDialogState(() => align = TextAlign.center)),
+                    ChoiceChip(label: const Text('R'), selected: align == TextAlign.right, onSelected: (_) => setDialogState(() => align = TextAlign.right)),
+                  ],
+                ),
               ],
             ),
           ),
@@ -303,11 +374,29 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
       ),
     );
 
-    final watermarkText = textController.text;  // ✅ capture before dispose
+    final watermarkText = textController.text;
     textController.dispose();
     if (confirmed != true || !mounted) return;
 
-    final bytes = await _renderWatermarkPng(watermarkText, opacity, fontSize, color);
+    await settingsProvider.setLastWatermark(<String, dynamic>{
+      'text': watermarkText,
+      'opacity': opacity,
+      'size': fontSize,
+      'color': color.toARGB32(),
+      'fontFamily': fontFamily,
+      'bold': bold,
+      'align': align.name,
+    });
+
+    final bytes = await _renderWatermarkPng(
+      watermarkText,
+      opacity,
+      fontSize,
+      color,
+      fontFamily: fontFamily,
+      fontWeight: bold ? FontWeight.w700 : FontWeight.w400,
+      align: align,
+    );
     if (bytes == null || !mounted) return;
 
     final placement = await showModalBottomSheet<(int, double, double, double, double)?>(
@@ -330,14 +419,23 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
     );
   }
 
-  Future<Uint8List?> _renderWatermarkPng(String text, double opacity, double fontSize, Color color) async {
+  Future<Uint8List?> _renderWatermarkPng(
+    String text,
+    double opacity,
+    double fontSize,
+    Color color, {
+    String fontFamily = 'sans-serif',
+    FontWeight fontWeight = FontWeight.w700,
+    TextAlign align = TextAlign.center,
+  }) async {
     if (text.isEmpty) return null;
     final recorder = ui.PictureRecorder();
     final canvas = Canvas(recorder);
     final paragraphBuilder = ui.ParagraphBuilder(ui.ParagraphStyle(
-      textAlign: TextAlign.center,
+      textAlign: align,
       fontSize: fontSize,
-      fontWeight: FontWeight.w700,
+      fontWeight: fontWeight,
+      fontFamily: fontFamily,
     ))
       ..pushStyle(ui.TextStyle(color: color.withValues(alpha: opacity)))
       ..addText(text);
@@ -383,7 +481,10 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
       final tempPath = p.join(tempDir.path, 'region_${DateTime.now().microsecondsSinceEpoch}.jpg');
       await File(tempPath).writeAsBytes(croppedBytes);
 
-      final result = await _ocrService.recognizeText(imagePath: tempPath, script: OcrScript.latin);
+      final script = await _pickOcrScript();
+      if (script == null || !mounted) return;
+
+      final result = await _ocrService.recognizeText(imagePath: tempPath, script: script);
 
       if (!mounted) return;
       showDialog(
@@ -400,6 +501,16 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
               },
               child: const Text('Copy'),
             ),
+            TextButton(
+              onPressed: () async {
+                Navigator.pop(context);
+                await _scanProvider.appendOcrText(document.id, result.fullText);
+                if (context.mounted) {
+                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Saved to document text')));
+                }
+              },
+              child: const Text('Save'),
+            ),
           ],
         ),
       );
@@ -410,6 +521,27 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
   }
 
 
+
+  Future<OcrScript?> _pickOcrScript() async {
+    final labels = <OcrScript, String>{
+      OcrScript.latin: 'Latin (English, European)',
+      OcrScript.chinese: 'Chinese',
+      OcrScript.korean: 'Korean',
+      OcrScript.japanese: 'Japanese',
+    };
+    return showModalBottomSheet<OcrScript>(
+      context: context,
+      builder: (ctx) => SafeArea(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: OcrScript.values.map((s) => ListTile(
+            title: Text(labels[s] ?? s.name),
+            onTap: () => Navigator.pop(ctx, s),
+          )).toList(),
+        ),
+      ),
+    );
+  }
 
   Future<void> _applyFilterToPage() async {
     final document = _document;
@@ -502,8 +634,84 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
   Future<void> _printDocument() async {
     final document = _document;
     if (document == null || document.pagePaths.isEmpty) return;
+
+    String mode = 'all';
+    FilterType filter = FilterType.none;
+    bool letter = false;
+    final fromCtrl = TextEditingController(text: '1');
+    final toCtrl = TextEditingController(text: '${document.pagePaths.length}');
+
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (ctx) => StatefulBuilder(
+        builder: (ctx, setDialogState) => AlertDialog(
+          title: const Text('Print Options'),
+          content: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Wrap(
+                  spacing: 6,
+                  children: ['all', 'current', 'range'].map((m) => ChoiceChip(
+                    label: Text(m == 'all' ? 'All pages' : m == 'current' ? 'Current' : 'Range'),
+                    selected: mode == m,
+                    onSelected: (_) => setDialogState(() => mode = m),
+                  )).toList(),
+                ),
+                if (mode == 'range')
+                  Row(
+                    children: [
+                      SizedBox(width: 60, child: TextField(controller: fromCtrl, keyboardType: TextInputType.number, decoration: const InputDecoration(labelText: 'From'))),
+                      const SizedBox(width: 8),
+                      SizedBox(width: 60, child: TextField(controller: toCtrl, keyboardType: TextInputType.number, decoration: const InputDecoration(labelText: 'To'))),
+                    ],
+                  ),
+                const SizedBox(height: 8),
+                DropdownButton<FilterType>(
+                  value: filter,
+                  isExpanded: true,
+                  underline: const SizedBox.shrink(),
+                  onChanged: (v) => setDialogState(() => filter = v!),
+                  items: FilterType.values.map((f) => DropdownMenuItem(value: f, child: Text(f == FilterType.none ? 'No filter' : f.name))).toList(),
+                ),
+                SwitchListTile(
+                  title: const Text('Letter size (US)'),
+                  value: letter,
+                  onChanged: (v) => setDialogState(() => letter = v),
+                ),
+              ],
+            ),
+          ),
+          actions: [
+            TextButton(onPressed: () => Navigator.pop(ctx, false), child: const Text('Cancel')),
+            TextButton(onPressed: () => Navigator.pop(ctx, true), child: const Text('Print')),
+          ],
+        ),
+      ),
+    );
+    final fromText = fromCtrl.text;
+    final toText = toCtrl.text;
+    fromCtrl.dispose();
+    toCtrl.dispose();
+    if (confirmed != true || !mounted) return;
+
+    List<int>? indices;
+    if (mode == 'current') {
+      indices = [_currentPageIndex];
+    } else if (mode == 'range') {
+      final from = (int.tryParse(fromText) ?? 1).clamp(1, document.pagePaths.length);
+      final to = (int.tryParse(toText) ?? document.pagePaths.length).clamp(from, document.pagePaths.length);
+      indices = List<int>.generate(to - from + 1, (i) => from - 1 + i);
+    }
+
     try {
-      final bytes = await PrintService.buildPdfBytes(document.pagePaths);
+      final bytes = await PrintService.buildPdfBytes(
+        document.pagePaths,
+        pageIndices: indices,
+        filter: filter,
+        pageFormat: letter ? PdfPageFormat.letter : PdfPageFormat.a4,
+      );
       await Printing.layoutPdf(
         onLayout: (PdfPageFormat format) async => bytes,
         name: document.title,
