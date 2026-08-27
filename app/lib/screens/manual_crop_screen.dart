@@ -2,7 +2,7 @@ import 'dart:async' show unawaited;
 import 'dart:io' show Directory, File;
 
 import 'package:file_picker/file_picker.dart';
-import 'package:pdf_render/pdf_render.dart';
+import 'package:pdf_render_plus/pdf_render.dart';
 import 'package:flutter/material.dart';
 import 'package:image/image.dart' as img;
 import 'package:flutter/services.dart';
