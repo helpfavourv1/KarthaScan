@@ -12,10 +12,12 @@ class RotateResizeSheet extends StatefulWidget {
     super.key,
     required this.mode,
     required this.imagePath,
+    this.onApplyAll,
   });
 
   final RotateResizeMode mode;
   final String imagePath;
+  final ValueChanged<bool>? onApplyAll;
 
   @override
   State<RotateResizeSheet> createState() => RotateResizeSheetState();
@@ -23,10 +25,13 @@ class RotateResizeSheet extends StatefulWidget {
 
 class RotateResizeSheetState extends State<RotateResizeSheet> {
   int _quarterTurns = 0;
+  bool _applyAll = false;
   img.Image? _originalImage;
   bool _loading = true;
   final TextEditingController _widthCtrl = TextEditingController();
   final TextEditingController _heightCtrl = TextEditingController();
+  bool _aspectLock = true;
+  double _origAspect = 1.0;
 
   @override
   void initState() {
@@ -41,6 +46,7 @@ class RotateResizeSheetState extends State<RotateResizeSheet> {
       if (_originalImage != null) {
         _widthCtrl.text = _originalImage!.width.toString();
         _heightCtrl.text = _originalImage!.height.toString();
+        _origAspect = _originalImage!.width / _originalImage!.height;
       }
       if (mounted) setState(() => _loading = false);
     } catch (_) {
@@ -107,6 +113,7 @@ class RotateResizeSheetState extends State<RotateResizeSheet> {
                   ElevatedButton(
                     onPressed: () {
                       if (widget.mode == RotateResizeMode.rotate) {
+                        widget.onApplyAll?.call(_applyAll);
                         Navigator.pop(context, _quarterTurns);
                       } else {
                         final w = int.tryParse(_widthCtrl.text) ?? _originalImage!.width;
@@ -148,6 +155,11 @@ class RotateResizeSheetState extends State<RotateResizeSheet> {
           icon: const Icon(Icons.rotate_90_degrees_ccw),
           label: const Text('Rotate 90°'),
         ),
+        SwitchListTile(
+          title: const Text('Apply to all pages'),
+          value: _applyAll,
+          onChanged: (v) => setState(() => _applyAll = v),
+        ),
       ],
     );
   }
@@ -179,7 +191,13 @@ class RotateResizeSheetState extends State<RotateResizeSheet> {
                 controller: _widthCtrl,
                 keyboardType: TextInputType.number,
                 decoration: const InputDecoration(labelText: 'Width', border: OutlineInputBorder()),
-                onChanged: (_) => setState(() {}),
+                onChanged: (v) {
+                  setState(() {});
+                  if (_aspectLock) {
+                    final w = int.tryParse(v);
+                    if (w != null) _heightCtrl.text = (w / _origAspect).round().toString();
+                  }
+                },
               ),
             ),
             const Padding(padding: EdgeInsets.symmetric(horizontal: 8), child: Text('×')),
@@ -189,11 +207,34 @@ class RotateResizeSheetState extends State<RotateResizeSheet> {
                 controller: _heightCtrl,
                 keyboardType: TextInputType.number,
                 decoration: const InputDecoration(labelText: 'Height', border: OutlineInputBorder()),
-                onChanged: (_) => setState(() {}),
+                onChanged: (v) {
+                  setState(() {});
+                  if (_aspectLock) {
+                    final h = int.tryParse(v);
+                    if (h != null) _widthCtrl.text = (h * _origAspect).round().toString();
+                  }
+                },
               ),
             ),
           ],
         ),
+        const SizedBox(height: 8),
+        SwitchListTile(
+          title: const Text('Lock aspect ratio'),
+          value: _aspectLock,
+          onChanged: (v) => setState(() => _aspectLock = v),
+        ),
+        Wrap(spacing: 8, children: [
+          for (final pct in [0.25, 0.5, 0.75])
+            ChoiceChip(
+              label: Text('${(pct * 100).round()}%'),
+              selected: false,
+              onSelected: (_) => setState(() {
+                _widthCtrl.text = (origW * pct).round().toString();
+                _heightCtrl.text = (origH * pct).round().toString();
+              }),
+            ),
+        ]),
         const SizedBox(height: 12),
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),

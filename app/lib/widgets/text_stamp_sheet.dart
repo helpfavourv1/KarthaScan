@@ -1,7 +1,7 @@
 import 'dart:typed_data';
 import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
-import '../core/utils/constants.dart';
+import 'color_picker_dialog.dart';
 
 class StampResult {
   const StampResult({required this.bytes, required this.label, required this.widthFraction, required this.aspect});
@@ -22,11 +22,24 @@ class _TextStampSheetState extends State<TextStampSheet> {
   final TextEditingController _controller = TextEditingController();
   bool _checked = true;
   bool _busy = false;
+  Color _textColor = const Color(0xFF111111);
+  Color _noteBg = const Color(0xFFFFEB84);
+  Color _boxColor = const Color(0xFF111111);
+  Color _tickColor = const Color(0xFF007AFF);
+  String _fontFamily = 'sans-serif';
+  FontWeight _fontWeight = FontWeight.w700;
+  TextAlign _align = TextAlign.left;
+  bool _halo = false;
+  DateTime _customDate = DateTime.now();
+  String _dateFormat = 'DD-MM-YYYY';
+  String _checkShape = 'rounded';
 
   String get _title => widget.kind == 'text' ? 'Add Text' : widget.kind == 'note' ? 'Add Note' : widget.kind == 'date' ? 'Add Date' : 'Add Checkbox';
 
   @override
   void dispose() { _controller.dispose(); super.dispose(); }
+
+  Future<Color?> _pick(Color initial) async => showDialog<Color>(context: context, builder: (ctx) => ColorPickerDialog(initial: initial));
 
   Future<StampResult?> _generate() async {
     final recorder = ui.PictureRecorder();
@@ -34,10 +47,15 @@ class _TextStampSheetState extends State<TextStampSheet> {
 
     if (widget.kind == 'checkbox') {
       const double size = 240;
-      final box = Paint()..color = const Color(0xFF111111)..style = PaintingStyle.stroke..strokeWidth = 16;
-      canvas.drawRRect(ui.RRect.fromRectAndRadius(const Rect.fromLTWH(8, 8, size - 16, size - 16), const Radius.circular(24)), box);
+      final box = Paint()..color = _boxColor..style = PaintingStyle.stroke..strokeWidth = 16;
+      if (_checkShape == 'circle') {
+        canvas.drawCircle(const Offset(size / 2, size / 2), size / 2 - 16, box);
+      } else {
+        final radius = _checkShape == 'rounded' ? const Radius.circular(24) : Radius.zero;
+        canvas.drawRRect(ui.RRect.fromRectAndRadius(const Rect.fromLTWH(8, 8, size - 16, size - 16), radius), box);
+      }
       if (_checked) {
-        final check = Paint()..color = AppColors.accentLight..style = PaintingStyle.stroke..strokeWidth = 24..strokeCap = StrokeCap.round..strokeJoin = StrokeJoin.round;
+        final check = Paint()..color = _tickColor..style = PaintingStyle.stroke..strokeWidth = 24..strokeCap = StrokeCap.round..strokeJoin = StrokeJoin.round;
         final path = Path()..moveTo(60, 130)..lineTo(105, 175)..lineTo(185, 75);
         canvas.drawPath(path, check);
       }
@@ -48,30 +66,47 @@ class _TextStampSheetState extends State<TextStampSheet> {
       return StampResult(bytes: data.buffer.asUint8List(), label: 'Checkbox', widthFraction: 0.15, aspect: 1.0);
     }
 
-    String text; Color bg; Color fg;
+    String text; Color bg;
     if (widget.kind == 'date') {
-      final d = DateTime.now();
-      text = '${d.day.toString().padLeft(2, '0')}-${d.month.toString().padLeft(2, '0')}-${d.year}';
-      bg = const Color(0x00000000); fg = AppColors.accentLight;
+      final d = _customDate;
+      final dd = d.day.toString().padLeft(2, '0');
+      final mm = d.month.toString().padLeft(2, '0');
+      text = _dateFormat == 'DD-MM-YYYY' ? '$dd-$mm-${d.year}' : _dateFormat == 'MM-DD-YYYY' ? '$mm-$dd-${d.year}' : _dateFormat == 'YYYY-MM-DD' ? '${d.year}-$mm-$dd' : '${d.year}/$mm/$dd';
+      bg = const Color(0x00000000);
     } else if (widget.kind == 'note') {
       text = _controller.text.isEmpty ? 'Note' : _controller.text;
-      bg = const Color(0xFFFFEB84); fg = const Color(0xFF3A3A3C);
+      bg = _noteBg;
     } else {
       text = _controller.text.isEmpty ? 'Text' : _controller.text;
-      bg = const Color(0x00000000); fg = const Color(0xFF111111);
+      bg = const Color(0x00000000);
     }
 
     const double fontSize = 72;
-    final paragraph = ui.ParagraphBuilder(ui.ParagraphStyle(textAlign: ui.TextAlign.left, fontSize: fontSize, fontWeight: FontWeight.w700))
-      ..pushStyle(ui.TextStyle(color: fg))..addText(text);
-    final built = paragraph.build()..layout(const ui.ParagraphConstraints(width: 900));
+    ui.ParagraphBuilder builder = ui.ParagraphBuilder(ui.ParagraphStyle(textAlign: _align, fontSize: fontSize, fontWeight: _fontWeight, fontFamily: _fontFamily));
+    if (_halo) {
+      final haloPaint = Paint()..color = const Color(0xFFFFFFFF)..style = PaintingStyle.stroke..strokeWidth = 12..strokeCap = StrokeCap.round..strokeJoin = StrokeJoin.round;
+      builder.pushStyle(ui.TextStyle(foreground: haloPaint, fontSize: fontSize, fontWeight: _fontWeight, fontFamily: _fontFamily));
+    } else {
+      builder.pushStyle(ui.TextStyle(color: _textColor, fontSize: fontSize, fontWeight: _fontWeight, fontFamily: _fontFamily));
+    }
+    builder.addText(text);
+    final built = builder.build()..layout(const ui.ParagraphConstraints(width: 900));
     final double pad = widget.kind == 'note' ? 40 : 8;
     final int w = (built.longestLine + pad * 2).ceil();
     final int h = (built.height + pad * 2).ceil();
     if (bg.a > 0) {
       canvas.drawRRect(ui.RRect.fromRectAndRadius(Rect.fromLTWH(0, 0, w.toDouble(), h.toDouble()), const Radius.circular(16)), Paint()..color = bg);
     }
-    canvas.drawParagraph(built, Offset(pad, pad));
+    if (_halo) {
+      canvas.drawParagraph(built, Offset(pad, pad));
+      final fillBuilder = ui.ParagraphBuilder(ui.ParagraphStyle(textAlign: _align, fontSize: fontSize, fontWeight: _fontWeight, fontFamily: _fontFamily))
+        ..pushStyle(ui.TextStyle(color: _textColor, fontSize: fontSize, fontWeight: _fontWeight, fontFamily: _fontFamily))
+        ..addText(text);
+      final fillBuilt = fillBuilder.build()..layout(const ui.ParagraphConstraints(width: 900));
+      canvas.drawParagraph(fillBuilt, Offset(pad, pad));
+    } else {
+      canvas.drawParagraph(built, Offset(pad, pad));
+    }
     final picture = recorder.endRecording();
     final image = await picture.toImage(w, h);
     final data = await image.toByteData(format: ui.ImageByteFormat.png);
@@ -79,31 +114,87 @@ class _TextStampSheetState extends State<TextStampSheet> {
     return StampResult(bytes: data.buffer.asUint8List(), label: widget.kind == 'note' ? 'Note' : widget.kind == 'date' ? 'Date' : 'Text', widthFraction: widget.kind == 'note' ? 0.45 : 0.5, aspect: h / w);
   }
 
+  Widget _swatch(Color c, Color current, ValueChanged<Color> on) => GestureDetector(
+    onTap: () => on(c),
+    child: Container(width: 28, height: 28, margin: const EdgeInsets.only(right: 8), decoration: BoxDecoration(color: c, shape: BoxShape.circle, border: Border.all(color: current == c ? const Color(0xFF007AFF) : Colors.grey, width: current == c ? 3 : 1))),
+  );
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Container(
         padding: const EdgeInsets.all(16),
         decoration: const BoxDecoration(color: Colors.white, borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
-        child: Column(
-          mainAxisSize: MainAxisSize.min, crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(_title, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600)),
-            const SizedBox(height: 12),
-            if (widget.kind == 'text' || widget.kind == 'note')
-              TextField(controller: _controller, maxLines: widget.kind == 'note' ? 3 : 1, decoration: InputDecoration(labelText: widget.kind == 'note' ? 'Note text' : 'Text', border: const OutlineInputBorder())),
-            if (widget.kind == 'checkbox')
-              CheckboxListTile(value: _checked, title: const Text('Ticked'), onChanged: (v) => setState(() => _checked = v ?? true)),
-            const SizedBox(height: 12),
-            Row(mainAxisAlignment: MainAxisAlignment.end, children: [
-              TextButton(onPressed: () => Navigator.pop(context), child: const Text('Cancel')),
-              const SizedBox(width: 12),
-              ElevatedButton(
-                onPressed: _busy ? null : () async { setState(() => _busy = true); final r = await _generate(); if (context.mounted) Navigator.pop(context, r); },
-                child: const Text('Create'),
-              ),
-            ]),
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min, crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(_title, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600)),
+              const SizedBox(height: 12),
+              if (widget.kind == 'text' || widget.kind == 'note')
+                TextField(controller: _controller, maxLines: widget.kind == 'note' ? 3 : 1, decoration: InputDecoration(labelText: widget.kind == 'note' ? 'Note text' : 'Text', border: const OutlineInputBorder())),
+              if (widget.kind == 'checkbox') ...[
+                CheckboxListTile(value: _checked, title: const Text('Ticked'), onChanged: (v) => setState(() => _checked = v ?? true)),
+                Wrap(spacing: 8, children: ['rounded', 'square', 'circle'].map((s) => ChoiceChip(label: Text(s), selected: _checkShape == s, onSelected: (_) => setState(() => _checkShape = s))).toList()),
+                const SizedBox(height: 8),
+                Row(children: [
+                  const Text('Box', style: TextStyle(fontSize: 12)), const SizedBox(width: 8),
+                  _swatch(const Color(0xFF111111), _boxColor, (c) => setState(() => _boxColor = c)),
+                  _swatch(Colors.red, _boxColor, (c) => setState(() => _boxColor = c)),
+                  _swatch(Colors.blue, _boxColor, (c) => setState(() => _boxColor = c)),
+                  TextButton(onPressed: () async { final c = await _pick(_boxColor); if (c != null) setState(() => _boxColor = c); }, child: const Text('Custom')),
+                ]),
+                Row(children: [
+                  const Text('Tick', style: TextStyle(fontSize: 12)), const SizedBox(width: 8),
+                  _swatch(const Color(0xFF007AFF), _tickColor, (c) => setState(() => _tickColor = c)),
+                  _swatch(Colors.black, _tickColor, (c) => setState(() => _tickColor = c)),
+                  _swatch(Colors.green, _tickColor, (c) => setState(() => _tickColor = c)),
+                  TextButton(onPressed: () async { final c = await _pick(_tickColor); if (c != null) setState(() => _tickColor = c); }, child: const Text('Custom')),
+                ]),
+              ],
+              if (widget.kind == 'date') ...[
+                TextButton(onPressed: () async {
+                  final picked = await showDatePicker(context: context, initialDate: _customDate, firstDate: DateTime(1990), lastDate: DateTime(2100));
+                  if (picked != null) setState(() => _customDate = picked);
+                }, child: Text('Date: ${_customDate.day}/${_customDate.month}/${_customDate.year}')),
+                Wrap(spacing: 8, children: ['DD-MM-YYYY', 'MM-DD-YYYY', 'YYYY-MM-DD', 'YYYY/MM/DD'].map((f) => ChoiceChip(label: Text(f, style: const TextStyle(fontSize: 10)), selected: _dateFormat == f, onSelected: (_) => setState(() => _dateFormat = f))).toList()),
+              ],
+              const SizedBox(height: 12),
+              Row(children: [
+                const Text('Color', style: TextStyle(fontSize: 12)), const SizedBox(width: 8),
+                _swatch(const Color(0xFF111111), _textColor, (c) => setState(() => _textColor = c)),
+                _swatch(Colors.white, _textColor, (c) => setState(() => _textColor = c)),
+                _swatch(Colors.red, _textColor, (c) => setState(() => _textColor = c)),
+                _swatch(Colors.blue, _textColor, (c) => setState(() => _textColor = c)),
+                TextButton(onPressed: () async { final c = await _pick(_textColor); if (c != null) setState(() => _textColor = c); }, child: const Text('Custom')),
+              ]),
+              if (widget.kind == 'note')
+                Row(children: [
+                  const Text('Paper', style: TextStyle(fontSize: 12)), const SizedBox(width: 8),
+                  _swatch(const Color(0xFFFFEB84), _noteBg, (c) => setState(() => _noteBg = c)),
+                  _swatch(const Color(0xFFFFC9DE), _noteBg, (c) => setState(() => _noteBg = c)),
+                  _swatch(const Color(0xFFC9E4FF), _noteBg, (c) => setState(() => _noteBg = c)),
+                  _swatch(const Color(0xFFD3F8D9), _noteBg, (c) => setState(() => _noteBg = c)),
+                  TextButton(onPressed: () async { final c = await _pick(_noteBg); if (c != null) setState(() => _noteBg = c); }, child: const Text('Custom')),
+                ]),
+              const SizedBox(height: 8),
+              Wrap(spacing: 8, children: ['sans-serif', 'serif', 'monospace'].map((f) => ChoiceChip(label: Text(f), selected: _fontFamily == f, onSelected: (_) => setState(() => _fontFamily = f))).toList()),
+              const SizedBox(height: 8),
+              Wrap(spacing: 8, children: [FontWeight.w400, FontWeight.w600, FontWeight.w700, FontWeight.w900].map((w) => ChoiceChip(label: Text(w.value.toString()), selected: _fontWeight == w, onSelected: (_) => setState(() => _fontWeight = w))).toList()),
+              const SizedBox(height: 8),
+              Wrap(spacing: 8, children: [TextAlign.left, TextAlign.center, TextAlign.right].map((a) => ChoiceChip(label: Text(a == TextAlign.left ? 'L' : a == TextAlign.center ? 'C' : 'R'), selected: _align == a, onSelected: (_) => setState(() => _align = a))).toList()),
+              SwitchListTile(title: const Text('White halo (readability)'), value: _halo, onChanged: (v) => setState(() => _halo = v)),
+              const SizedBox(height: 12),
+              Row(mainAxisAlignment: MainAxisAlignment.end, children: [
+                TextButton(onPressed: () => Navigator.pop(context), child: const Text('Cancel')),
+                const SizedBox(width: 12),
+                ElevatedButton(
+                  onPressed: _busy ? null : () async { setState(() => _busy = true); final r = await _generate(); if (!context.mounted) return; if (r != null) Navigator.pop(context, r); },
+                  child: const Text('Create'),
+                ),
+              ]),
+            ],
+          ),
         ),
       ),
     );

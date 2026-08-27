@@ -24,11 +24,21 @@ class SignatureCanvas extends StatefulWidget {
 class SignatureCanvasState extends State<SignatureCanvas> {
   final GlobalKey _boundaryKey = GlobalKey();
   final List<List<Offset>> _strokes = <List<Offset>>[];
+  late Color _strokeColor = widget.strokeColor;
+  late double _strokeWidth = widget.strokeWidth;
+
+  void setColor(Color color) => setState(() => _strokeColor = color);
+  void setWidth(double width) => setState(() => _strokeWidth = width);
 
   bool get isEmpty => _strokes.isEmpty;
 
   void clear() {
     setState(_strokes.clear);
+  }
+
+  void undo() {
+    if (_strokes.isEmpty) return;
+    setState(() => _strokes.removeLast());
   }
 
   void _onPanStart(DragStartDetails details) {
@@ -84,8 +94,8 @@ class SignatureCanvasState extends State<SignatureCanvas> {
                 child: CustomPaint(
                   painter: _SignaturePainter(
                     strokes: _strokes,
-                    color: widget.strokeColor,
-                    strokeWidth: widget.strokeWidth,
+                    color: _strokeColor,
+                    strokeWidth: _strokeWidth,
                   ),
                   // The painter will get its size from the parent's constraints
                   size: Size.infinite,

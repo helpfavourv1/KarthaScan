@@ -2,6 +2,7 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
+import 'package:image/image.dart' as img;
 import '../core/utils/constants.dart';
 
 class OverlayPlacementSheet extends StatefulWidget {
@@ -27,6 +28,16 @@ class OverlayPlacementSheetState extends State<OverlayPlacementSheet> {
   double _scale = 1.0;
   final GlobalKey _stackKey = GlobalKey();
   bool _initialized = false;
+  double _overlayAspect = 2.0;
+
+  @override
+  void initState() {
+    super.initState();
+    final decoded = img.decodePng(widget.overlayBytes);
+    if (decoded != null && decoded.height > 0) {
+      _overlayAspect = (decoded.width / decoded.height).clamp(0.1, 10.0).toDouble();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -97,7 +108,7 @@ class OverlayPlacementSheetState extends State<OverlayPlacementSheet> {
                                 scale: _scale,
                                 child: Opacity(
                                   opacity: 0.85,
-                                  child: Image.memory(widget.overlayBytes, width: 100, height: 50, fit: BoxFit.contain),
+                                  child: Image.memory(widget.overlayBytes, width: 120, height: 120 / _overlayAspect, fit: BoxFit.contain),
                                 ),
                               ),
                             ),

@@ -4,7 +4,7 @@ import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart' show RenderRepaintBoundary;
 
-enum AnnotationMode { pen, highlighter }
+enum AnnotationMode { pen, highlighter, rect, arrow, ellipse }
 
 class AnnotationOverlay extends StatefulWidget {
   const AnnotationOverlay({super.key});
@@ -19,6 +19,12 @@ class AnnotationOverlayState extends State<AnnotationOverlay> {
   final List<Color> _colors = <Color>[];
   final List<double> _widths = <double>[];
   final List<bool> _isHighlighter = <bool>[];
+  final List<AnnotationMode> _modes = <AnnotationMode>[];
+  final List<List<Offset>> _redoStrokes = <List<Offset>>[];
+  final List<Color> _redoColors = <Color>[];
+  final List<double> _redoWidths = <double>[];
+  final List<bool> _redoHighlighter = <bool>[];
+  final List<AnnotationMode> _redoModes = <AnnotationMode>[];
 
   Color _currentColor = Colors.black;
   double _currentWidth = 4.0;
@@ -32,6 +38,34 @@ class AnnotationOverlayState extends State<AnnotationOverlay> {
       _colors.clear();
       _widths.clear();
       _isHighlighter.clear();
+      _modes.clear();
+      _redoStrokes.clear();
+      _redoColors.clear();
+      _redoWidths.clear();
+      _redoHighlighter.clear();
+      _redoModes.clear();
+    });
+  }
+
+  void undo() {
+    if (_strokes.isEmpty) return;
+    setState(() {
+      _redoStrokes.add(_strokes.removeLast());
+      _redoColors.add(_colors.removeLast());
+      _redoWidths.add(_widths.removeLast());
+      _redoHighlighter.add(_isHighlighter.removeLast());
+      _redoModes.add(_modes.removeLast());
+    });
+  }
+
+  void redo() {
+    if (_redoStrokes.isEmpty) return;
+    setState(() {
+      _strokes.add(_redoStrokes.removeLast());
+      _colors.add(_redoColors.removeLast());
+      _widths.add(_redoWidths.removeLast());
+      _isHighlighter.add(_redoHighlighter.removeLast());
+      _modes.add(_redoModes.removeLast());
     });
   }
 
@@ -51,19 +85,30 @@ class AnnotationOverlayState extends State<AnnotationOverlay> {
   void setColor(Color color) => setState(() => _currentColor = color);
   void setWidth(double width) => setState(() => _currentWidth = width);
 
+  bool get _isShape => _mode == AnnotationMode.rect || _mode == AnnotationMode.arrow || _mode == AnnotationMode.ellipse;
+
   void _onPanStart(DragStartDetails details) {
     setState(() {
-      _strokes.add(<Offset>[details.localPosition]);
+      _strokes.add(<Offset>[details.localPosition, if (_isShape) details.localPosition]);
       _colors.add(_currentColor);
       _widths.add(_currentWidth);
       _isHighlighter.add(_mode == AnnotationMode.highlighter);
+      _modes.add(_mode);
     });
   }
 
   void _onPanUpdate(DragUpdateDetails details) {
     if (_strokes.isEmpty) return;
     setState(() {
-      _strokes.last.add(details.localPosition);
+      if (_isShape) {
+        if (_strokes.last.length >= 2) {
+          _strokes.last[1] = details.localPosition;
+        } else {
+          _strokes.last.add(details.localPosition);
+        }
+      } else {
+        _strokes.last.add(details.localPosition);
+      }
     });
   }
 
@@ -92,6 +137,7 @@ class AnnotationOverlayState extends State<AnnotationOverlay> {
             colors: _colors,
             widths: _widths,
             isHighlighter: _isHighlighter,
+            modes: _modes,
           ),
           size: Size.infinite,
         ),
@@ -106,12 +152,14 @@ class _AnnotationPainter extends CustomPainter {
     required this.colors,
     required this.widths,
     required this.isHighlighter,
+    required this.modes,
   });
 
   final List<List<Offset>> strokes;
   final List<Color> colors;
   final List<double> widths;
   final List<bool> isHighlighter;
+  final List<AnnotationMode> modes;
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -123,8 +171,28 @@ class _AnnotationPainter extends CustomPainter {
         ..strokeCap = StrokeCap.round
         ..style = PaintingStyle.stroke;
 
-      for (int j = 0; j < stroke.length - 1; j++) {
-        canvas.drawLine(stroke[j], stroke[j + 1], paint);
+      final AnnotationMode m = i < modes.length ? modes[i] : AnnotationMode.pen;
+      if ((m == AnnotationMode.rect || m == AnnotationMode.ellipse || m == AnnotationMode.arrow) && stroke.length >= 2) {
+        final Rect rect = Rect.fromPoints(stroke.first, stroke.last);
+        if (m == AnnotationMode.rect) {
+          canvas.drawRect(rect, paint);
+        } else if (m == AnnotationMode.ellipse) {
+          canvas.drawOval(rect, paint);
+        } else {
+          final Offset a = stroke.first;
+          final Offset b = stroke.last;
+          canvas.drawLine(a, b, paint);
+          final double angle = (b - a).direction;
+          final double headLen = 12.0 + widths[i] * 2;
+          final Offset p1 = b - Offset.fromDirection(angle - 0.5, headLen);
+          final Offset p2 = b - Offset.fromDirection(angle + 0.5, headLen);
+          final Path head = Path()..moveTo(b.dx, b.dy)..lineTo(p1.dx, p1.dy)..lineTo(p2.dx, p2.dy)..close();
+          canvas.drawPath(head, paint..style = PaintingStyle.fill);
+        }
+      } else {
+        for (int j = 0; j < stroke.length - 1; j++) {
+          canvas.drawLine(stroke[j], stroke[j + 1], paint);
+        }
       }
     }
   }

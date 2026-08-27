@@ -7,6 +7,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
 
+import 'package:image/image.dart' as img;
 import '../core/models/scan_document.dart';
 
 class PagesManagerSheet extends StatefulWidget {
@@ -14,10 +15,12 @@ class PagesManagerSheet extends StatefulWidget {
     super.key,
     required this.pagePaths,
     required this.allDocuments,
+    this.onExtract,
   });
 
   final List<String> pagePaths;
   final List<ScanDocument> allDocuments;
+  final void Function(int index, String path)? onExtract;
 
   @override
   State<PagesManagerSheet> createState() => PagesManagerSheetState();
@@ -130,7 +133,11 @@ class PagesManagerSheetState extends State<PagesManagerSheet> {
         trailing: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(Icons.drag_handle, color: textPrimary), // Visual cue only
+            IconButton(
+              icon: const Icon(Icons.more_vert),
+              onPressed: () => _showPageMenu(index),
+            ),
+            Icon(Icons.drag_handle, color: textPrimary),
             IconButton(
               icon: Icon(Icons.close, color: _pages.length > 1 ? Colors.red : Colors.grey),
               onPressed: _pages.length > 1
@@ -141,6 +148,35 @@ class PagesManagerSheetState extends State<PagesManagerSheet> {
         ),
       ),
     );
+  }
+
+
+  Future<void> _showPageMenu(int index) async {
+    final action = await showModalBottomSheet<String>(
+      context: context,
+      builder: (ctx) => SafeArea(child: Column(mainAxisSize: MainAxisSize.min, children: [
+        ListTile(leading: const Icon(Icons.copy), title: const Text('Duplicate'), onTap: () => Navigator.pop(ctx, 'duplicate')),
+        ListTile(leading: const Icon(Icons.rotate_90_degrees_ccw), title: const Text('Rotate 90°'), onTap: () => Navigator.pop(ctx, 'rotate')),
+        ListTile(leading: const Icon(Icons.open_in_new), title: const Text('Extract to new doc'), onTap: () => Navigator.pop(ctx, 'extract')),
+      ])),
+    );
+    if (action == null || !mounted) return;
+    if (action == 'duplicate') {
+      setState(() => _pages.insert(index + 1, _pages[index]));
+    } else if (action == 'rotate') {
+      try {
+        final bytes = await File(_pages[index]).readAsBytes();
+        final decoded = img.decodeImage(bytes);
+        if (decoded != null) {
+          final rotated = img.copyRotate(decoded, angle: 90);
+          await File(_pages[index]).writeAsBytes(img.encodeJpg(rotated, quality: 95));
+          if (mounted) setState(() {});
+        }
+      } catch (_) {}
+    } else if (action == 'extract') {
+      final cb = widget.onExtract;
+      if (cb != null) cb(index, _pages[index]);
+    }
   }
 
   Widget _buildAddTile(Color accent, Color textPrimary) {

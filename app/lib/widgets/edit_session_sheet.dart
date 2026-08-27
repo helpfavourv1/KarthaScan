@@ -55,6 +55,33 @@ class _EditSessionSheetState extends State<EditSessionSheet> {
             for (int i = 0; i < _layers.length; i++) Padding(padding: const EdgeInsets.only(right: 8), child: ChoiceChip(label: Text('${_layers[i].label} ${i + 1}'), selected: _selected == i, onSelected: (_) => setState(() => _selected = i))),
             ActionChip(avatar: const Icon(Icons.add, size: 16), label: const Text('Add'), onPressed: () => _showAddMenu()),
           ])),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconButton(icon: const Icon(Icons.copy, size: 18), tooltip: 'Duplicate', onPressed: () => setState(() {
+                  final src = _current;
+                  _layers.insert(_selected + 1, EditLayer(pngBytes: src.pngBytes, label: '${src.label} copy', widthFraction: src.widthFraction, aspect: src.aspect));
+                  _selected = _selected + 1;
+                })),
+                IconButton(icon: const Icon(Icons.arrow_upward, size: 18), tooltip: 'Move up', onPressed: _selected == 0 ? null : () => setState(() {
+                  final l = _layers.removeAt(_selected);
+                  _layers.insert(_selected - 1, l);
+                  _selected = _selected - 1;
+                })),
+                IconButton(icon: const Icon(Icons.arrow_downward, size: 18), tooltip: 'Move down', onPressed: _selected >= _layers.length - 1 ? null : () => setState(() {
+                  final l = _layers.removeAt(_selected);
+                  _layers.insert(_selected + 1, l);
+                  _selected = _selected + 1;
+                })),
+                IconButton(icon: const Icon(Icons.delete_outline, size: 18, color: Colors.red), tooltip: 'Delete', onPressed: _layers.length <= 1 ? null : () => setState(() {
+                  _layers.removeAt(_selected);
+                  _selected = _selected.clamp(0, _layers.length - 1);
+                })),
+              ],
+            ),
+          ),
           Padding(padding: const EdgeInsets.symmetric(horizontal: 16), child: Row(children: [const Text('Rotate', style: TextStyle(fontSize: 12)), Expanded(child: Slider(value: _current.rotationDegrees, min: -180, max: 180, onChanged: (v) => setState(() => _current.rotationDegrees = v))), Text('${_current.rotationDegrees.round()}°', style: const TextStyle(fontSize: 12))])),
           Padding(padding: const EdgeInsets.symmetric(horizontal: 16), child: Row(children: [const Text('Scale', style: TextStyle(fontSize: 12)), Expanded(child: Slider(value: _current.scale, min: 0.3, max: 2.5, onChanged: (v) => setState(() => _current.scale = v))), Text('${_current.scale.toStringAsFixed(2)}x', style: const TextStyle(fontSize: 12))])),
           Padding(padding: const EdgeInsets.symmetric(horizontal: 16), child: Row(children: [const Text('Opacity', style: TextStyle(fontSize: 12)), Expanded(child: Slider(value: _current.opacity, min: 0.05, max: 1.0, onChanged: (v) => setState(() => _current.opacity = v))), Text(_current.opacity.toStringAsFixed(2), style: const TextStyle(fontSize: 12))])),

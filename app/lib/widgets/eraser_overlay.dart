@@ -5,10 +5,11 @@ import '../core/utils/constants.dart';
 import 'package:image/image.dart' as img;
 
 class _Stroke {
-  _Stroke(this.points, this.colorInt, this.width);
+  _Stroke(this.points, this.colorInt, this.width, [this.isRect = false]);
   final List<Offset> points;
   final int colorInt;
   final double width;
+  final bool isRect;
 }
 
 class EraserSheet extends StatefulWidget {
@@ -24,6 +25,7 @@ class _EraserSheetState extends State<EraserSheet> {
   _Stroke? _active;
   int _colorInt = 0xFFFFFFFF;
   double _width = 40;
+  bool _marqueeMode = false;
   bool _sampleMode = false;
   bool _loading = true;
   img.Image? _sampleImage;
@@ -74,6 +76,7 @@ class _EraserSheetState extends State<EraserSheet> {
               'points': s.points.map((o) => [o.dx / _displayW, o.dy / _displayH]).toList(),
               'color': s.colorInt,
               'width': s.width / _displayW,
+              'rect': s.isRect,
             })
         .toList();
   }
@@ -130,11 +133,21 @@ class _EraserSheetState extends State<EraserSheet> {
                                 },
                                 onPanStart: (d) {
                                   if (_sampleMode) return;
-                                  setState(() => _active = _Stroke([d.localPosition], _colorInt, _width));
+                                  setState(() => _active = _Stroke([d.localPosition, if (_marqueeMode) d.localPosition], _colorInt, _width, _marqueeMode));
                                 },
                                 onPanUpdate: (d) {
                                   if (_sampleMode || _active == null) return;
-                                  setState(() => _active!.points.add(d.localPosition));
+                                  setState(() {
+                                    if (_active!.isRect) {
+                                      if (_active!.points.length >= 2) {
+                                        _active!.points[1] = d.localPosition;
+                                      } else {
+                                        _active!.points.add(d.localPosition);
+                                      }
+                                    } else {
+                                      _active!.points.add(d.localPosition);
+                                    }
+                                  });
                                 },
                                 onPanEnd: (d) {
                                   if (_active == null) return;
@@ -190,6 +203,11 @@ class _EraserSheetState extends State<EraserSheet> {
                     icon: Icon(Icons.colorize, color: _sampleMode ? accent : textPrimary),
                     tooltip: 'Sample color from page',
                     onPressed: () => setState(() => _sampleMode = !_sampleMode),
+                  ),
+                  IconButton(
+                    icon: Icon(Icons.crop_square, color: _marqueeMode ? accent : textPrimary),
+                    tooltip: 'Marquee erase',
+                    onPressed: () => setState(() => _marqueeMode = !_marqueeMode),
                   ),
                   for (final sw in _swatches)
                     GestureDetector(
@@ -257,7 +275,9 @@ class _EraserPainter extends CustomPainter {
         ..strokeCap = StrokeCap.round
         ..strokeJoin = StrokeJoin.round
         ..style = PaintingStyle.stroke;
-      if (s.points.length == 1) {
+      if (s.isRect && s.points.length >= 2) {
+        canvas.drawRect(Rect.fromPoints(s.points[0], s.points[1]), paint..style = PaintingStyle.fill);
+      } else if (s.points.length == 1) {
         canvas.drawCircle(s.points.first, s.width / 2, paint..style = PaintingStyle.fill);
       } else {
         for (int i = 0; i < s.points.length - 1; i++) {
