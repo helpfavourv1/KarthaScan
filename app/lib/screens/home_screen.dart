@@ -703,15 +703,59 @@ class _FeatureTicker extends StatefulWidget {
 
 class _FeatureTickerState extends State<_FeatureTicker> with SingleTickerProviderStateMixin {
   static const List<String> _features = <String>[
-    'FREE UNLIMITED OCR', '18-TOOL EDIT SUITE', 'ANNOTATE', 'E-SIGN', 'WATERMARK',
-    'REGION OCR', 'CONVERT', 'COMPRESS', 'ROTATE', 'RESIZE', 'CROP', 'PAGES MANAGER',
-    'ERASER', 'TEXT STAMPS', 'NOTE STAMPS', 'DATE STAMPS', 'CHECKBOX STAMPS',
-    'FILTERS & ENHANCE', 'PRINT', 'EMAIL', 'PDF EXPORT', 'WORD EXPORT', 'TXT EXPORT',
-    'JPG EXPORT', 'PNG EXPORT', 'CSV EXPORT', 'BATCH EXPORT', 'FOLDERS', 'TAGS',
-    'FAVORITES', 'SEARCH', '11 LANGUAGES', 'DARK MODE', 'ACCENT THEMES',
-    'ID CARD MODE', 'PASSPORT MODE', 'NO ACCOUNT', 'NO WATERMARKS', '100% ON-DEVICE PRIVACY',
+    'FREE UNLIMITED OCR',
+    '18-TOOL EDIT SUITE',
+    'ANNOTATE',
+    'E-SIGN',
+    'WATERMARK',
+    'REGION OCR',
+    'CONVERT',
+    'COMPRESS',
+    'ROTATE',
+    'RESIZE',
+    'CROP',
+    'PAGES MANAGER',
+    'ERASER',
+    'TEXT STAMPS',
+    'NOTE STAMPS',
+    'DATE STAMPS',
+    'CHECKBOX STAMPS',
+    'FILTERS & ENHANCE',
+    'PRINT',
+    'EMAIL',
+    'PDF EXPORT',
+    'WORD EXPORT',
+    'TXT EXPORT',
+    'JPG EXPORT',
+    'PNG EXPORT',
+    'CSV EXPORT',
+    'BATCH EXPORT',
+    'FOLDERS',
+    'TAGS',
+    'FAVORITES',
+    'SEARCH',
+    '11 LANGUAGES',
+    'DARK MODE',
+    'ACCENT THEMES',
+    'ID CARD MODE',
+    'PASSPORT MODE',
+    'NO ACCOUNT',
+    'NO WATERMARKS',
+    '100% ON-DEVICE PRIVACY',
   ];
 
+  static const Set<String> _highlighted = <String>{
+    'FREE UNLIMITED OCR',
+    '18-TOOL EDIT SUITE',
+    'E-SIGN',
+    'WATERMARK',
+    'REGION OCR',
+    'BATCH EXPORT',
+    'NO WATERMARKS',
+    '100% ON-DEVICE PRIVACY',
+  };
+
+  // Keep original speed. Do not increase without explicit approval.
   static const double _pxPerSecond = 32.0;
 
   late final AnimationController _controller;
@@ -721,11 +765,19 @@ class _FeatureTickerState extends State<_FeatureTicker> with SingleTickerProvide
   void initState() {
     super.initState();
     _controller = AnimationController(vsync: this, duration: const Duration(seconds: 90));
+
     final tp = TextPainter(
-      text: TextSpan(children: _spans(const Color(0xFF8E8E93), const Color(0xFF8E8E93))),
+      text: TextSpan(
+        children: _spans(
+          const Color(0xFF8E8E93),
+          const Color(0xFF8E8E93),
+          const Color(0xFF8E8E93),
+        ),
+      ),
       textDirection: TextDirection.ltr,
       maxLines: 1,
     )..layout();
+
     _segmentWidth = tp.width > 0 ? tp.width : 1;
     _controller.duration = Duration(milliseconds: (_segmentWidth / _pxPerSecond * 1000).round());
     _controller.repeat();
@@ -737,13 +789,36 @@ class _FeatureTickerState extends State<_FeatureTicker> with SingleTickerProvide
     super.dispose();
   }
 
-  List<TextSpan> _spans(Color base, Color diamond) {
-    final baseStyle = TextStyle(color: base, fontSize: 10, fontWeight: FontWeight.w700, letterSpacing: 1.2);
-    final diamondStyle = TextStyle(color: diamond, fontSize: 9, fontWeight: FontWeight.w800);
+  List<TextSpan> _spans(Color base, Color accent, Color separator) {
+    final baseStyle = TextStyle(
+      color: base,
+      fontSize: 9,
+      fontWeight: FontWeight.w600,
+      letterSpacing: 0.45,
+      height: 1.0,
+    );
+    final accentStyle = TextStyle(
+      color: accent,
+      fontSize: 9,
+      fontWeight: FontWeight.w700,
+      letterSpacing: 0.45,
+      height: 1.0,
+    );
+    final separatorStyle = TextStyle(
+      color: separator,
+      fontSize: 9,
+      fontWeight: FontWeight.w500,
+      letterSpacing: 0.2,
+      height: 1.0,
+    );
+
     final spans = <TextSpan>[];
-    for (final f in _features) {
-      spans.add(TextSpan(text: '   $f   ', style: baseStyle));
-      spans.add(TextSpan(text: '\u25c6', style: diamondStyle));
+    for (final feature in _features) {
+      spans.add(TextSpan(
+        text: '  $feature  ',
+        style: _highlighted.contains(feature) ? accentStyle : baseStyle,
+      ));
+      spans.add(TextSpan(text: '|', style: separatorStyle));
     }
     return spans;
   }
@@ -751,51 +826,111 @@ class _FeatureTickerState extends State<_FeatureTicker> with SingleTickerProvide
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final bg = isDark ? AppColors.bgPrimaryDark : AppColors.bgPrimaryLight;
     final surface = isDark ? AppColors.bgSecondaryDark : AppColors.bgSecondaryLight;
     final textSecondary = isDark ? AppColors.textSecondaryDark : AppColors.textSecondaryLight;
     final accent = isDark ? AppColors.accentDark : AppColors.accentLight;
-    final border = isDark ? AppColors.borderSubtleDark : AppColors.borderSubtleLight;
+    final separator = textSecondary.withValues(alpha: 0.42);
 
-    return Container(
-      height: 26,
-      decoration: BoxDecoration(
-        color: surface,
-        border: Border(
-          top: BorderSide(color: border, width: 0.5),
-          bottom: BorderSide(color: border, width: 0.5),
-        ),
-      ),
-      child: Row(
-        children: [
-          Container(
-            height: double.infinity,
-            alignment: Alignment.center,
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            color: accent,
-            child: const Text('FEATURES', style: TextStyle(color: Colors.white, fontSize: 9, fontWeight: FontWeight.w800, letterSpacing: 1.5)),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md),
+      child: Container(
+        height: 20,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          color: surface,
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: isDark
+                ? <Color>[
+                    surface.withValues(alpha: 0.96),
+                    surface.withValues(alpha: 0.78),
+                  ]
+                : <Color>[
+                    surface.withValues(alpha: 0.92),
+                    bg.withValues(alpha: 0.42),
+                  ],
           ),
-          Expanded(
-            child: Directionality(
-              textDirection: TextDirection.ltr,
-              child: ClipRect(
-                child: AnimatedBuilder(
-                  animation: _controller,
-                  builder: (context, _) {
-                    final double dx = -_controller.value * _segmentWidth;
-                    return Stack(
-                      children: [
-                        Positioned(left: dx, top: 0, bottom: 0, child: SizedBox(width: _segmentWidth, child: RichText(maxLines: 1, softWrap: false, text: TextSpan(children: _spans(textSecondary, accent))))),
-                        Positioned(left: dx + _segmentWidth, top: 0, bottom: 0, child: SizedBox(width: _segmentWidth, child: RichText(maxLines: 1, softWrap: false, text: TextSpan(children: _spans(textSecondary, accent))))),
-                        Positioned(left: 0, top: 0, bottom: 0, width: 10, child: IgnorePointer(child: DecoratedBox(decoration: BoxDecoration(gradient: LinearGradient(begin: Alignment.centerLeft, end: Alignment.centerRight, colors: [surface, surface.withValues(alpha: 0.0)]))))),
-                        Positioned(right: 0, top: 0, bottom: 0, width: 10, child: IgnorePointer(child: DecoratedBox(decoration: BoxDecoration(gradient: LinearGradient(begin: Alignment.centerRight, end: Alignment.centerLeft, colors: [surface, surface.withValues(alpha: 0.0)]))))),
-                      ],
-                    );
-                  },
-                ),
-              ),
+        ),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(10),
+          child: Directionality(
+            textDirection: TextDirection.ltr,
+            child: AnimatedBuilder(
+              animation: _controller,
+              builder: (context, _) {
+                final double dx = -_controller.value * _segmentWidth;
+
+                Widget segment(double left) {
+                  return Positioned(
+                    left: left,
+                    top: 0,
+                    bottom: 0,
+                    child: SizedBox(
+                      width: _segmentWidth,
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: RichText(
+                          maxLines: 1,
+                          softWrap: false,
+                          text: TextSpan(children: _spans(textSecondary, accent, separator)),
+                        ),
+                      ),
+                    ),
+                  );
+                }
+
+                return Stack(
+                  children: [
+                    segment(dx),
+                    segment(dx + _segmentWidth),
+                    Positioned(
+                      left: 0,
+                      top: 0,
+                      bottom: 0,
+                      width: 18,
+                      child: IgnorePointer(
+                        child: DecoratedBox(
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              begin: Alignment.centerLeft,
+                              end: Alignment.centerRight,
+                              colors: [
+                                surface,
+                                surface.withValues(alpha: 0.0),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                      width: 18,
+                      child: IgnorePointer(
+                        child: DecoratedBox(
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              begin: Alignment.centerRight,
+                              end: Alignment.centerLeft,
+                              colors: [
+                                surface,
+                                surface.withValues(alpha: 0.0),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                );
+              },
             ),
           ),
-        ],
+        ),
       ),
     );
   }
