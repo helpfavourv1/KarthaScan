@@ -18,8 +18,8 @@ import '../core/services/ocr_service.dart';
 import '../core/services/share_service.dart';
 import '../core/utils/constants.dart';
 import '../l10n/app_localizations.dart';
-import '../widgets/annotation_overlay.dart';
 import '../widgets/edit_tray.dart';
+import '../widgets/annotate_sheet.dart';
 import '../widgets/scan_preview_card.dart';
 import '../widgets/signature_canvas.dart';
 import '../widgets/tag_chip.dart';
@@ -190,12 +190,10 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
     final document = _document;
     if (document == null || document.pagePaths.isEmpty) return;
 
-    final annotationKey = GlobalKey<AnnotationOverlayState>();
     final bytes = await showModalBottomSheet<Uint8List?>(
       context: context,
       isScrollControlled: true,
-      backgroundColor: Colors.transparent,
-      builder: (context) => _AnnotationSheet(annotationKey: annotationKey),
+      builder: (context) => const AnnotateSheet(),
     );
 
     if (bytes == null || !mounted) return;
@@ -518,13 +516,27 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
   Future<void> _emailDocument() async {
     final document = _document;
     if (document == null) return;
+
+    // Primary: share-to-email with pages attached (user picks email app from share sheet)
+    try {
+      await _shareService.shareFiles(
+        filePaths: document.pagePaths,
+        subject: document.title,
+        text: document.ocrText.length > 500 ? '${document.ocrText.substring(0, 500)}...' : document.ocrText,
+      );
+      return; // Success via share sheet
+    } catch (_) {
+      // Fall through to mailto fallback
+    }
+
+    // Fallback: mailto: (no attachments, just opens composer)
     final subject = Uri.encodeComponent(document.title);
     final bodyText = document.ocrText.length > 500 ? '${document.ocrText.substring(0, 500)}...' : document.ocrText;
     final body = Uri.encodeComponent(bodyText);
     final uri = Uri.parse('mailto:?subject=$subject&body=$body');
     try {
       if (await canLaunchUrl(uri)) {
-        await launchUrl(uri);
+        await launchUrl(uri, mode: LaunchMode.externalApplication);
       } else {
         if (mounted) ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('No email app found')));
       }
@@ -537,35 +549,44 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
     final document = _document;
     if (document == null || document.pagePaths.isEmpty) return;
 
+    bool applyAll = false;
     final turns = await showModalBottomSheet<int>(
       context: context,
       isScrollControlled: true,
       builder: (ctx) => RotateResizeSheet(
         mode: RotateResizeMode.rotate,
         imagePath: document.pagePaths[_currentPageIndex],
+        onApplyAll: (bool value) => applyAll = value,
       ),
     );
     if (turns == null || turns == 0 || !mounted) return;
 
     try {
-      final originalBytes = await File(document.pagePaths[_currentPageIndex]).readAsBytes();
-      final rotatedBytes = await compute(_rotateIsolate, {
-        'original': originalBytes,
-        'turns': turns,
-      });
-
       final appDir = await getApplicationDocumentsDirectory();
       final scansDir = Directory(p.join(appDir.path, 'rotated_pages'));
       await scansDir.create(recursive: true);
-      final newPath = p.join(scansDir.path, 'rot_${DateTime.now().microsecondsSinceEpoch}_$_currentPageIndex.jpg');
-      await File(newPath).writeAsBytes(rotatedBytes);
 
-      final newPaths = List<String>.from(document.pagePaths);
-      newPaths[_currentPageIndex] = newPath;
+      final List<String> newPaths = List<String>.from(document.pagePaths);
+      final List<int> indicesToRotate = applyAll
+          ? List<int>.generate(document.pagePaths.length, (i) => i)
+          : [_currentPageIndex];
+
+      for (final idx in indicesToRotate) {
+        final originalBytes = await File(document.pagePaths[idx]).readAsBytes();
+        final rotatedBytes = await compute(_rotateIsolate, {
+          'original': originalBytes,
+          'turns': turns,
+        });
+        final newPath = p.join(scansDir.path, 'rot_${DateTime.now().microsecondsSinceEpoch}_$idx.jpg');
+        await File(newPath).writeAsBytes(rotatedBytes);
+        newPaths[idx] = newPath;
+      }
+
       await _scanProvider.updateDocumentPages(document.id, newPaths);
 
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Page rotated')));
+        final msg = applyAll ? 'All pages rotated' : 'Page rotated';
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(msg)));
       }
     } catch (e) {
       if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Error: $e')));
@@ -623,6 +644,17 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
       builder: (ctx) => PagesManagerSheet(
         pagePaths: document.pagePaths,
         allDocuments: _scanProvider.documents.value,
+        onExtract: (int index, String path) async {
+          if (!mounted) return;
+          Navigator.of(ctx).pop();
+          final extractedDoc = await _scanProvider.extractToNewDocument(document.id, [index], 'Extracted Page');
+          if (extractedDoc != null && mounted) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text('Extracted as new document: ${extractedDoc.title}')),
+            );
+            context.push('/scan/${extractedDoc.id}');
+          }
+        },
       ),
     );
     if (newPaths == null || !mounted) return;
@@ -920,57 +952,7 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
 
 // --- Helper Sheets ---
 
-class _AnnotationSheet extends StatelessWidget {
-  const _AnnotationSheet({required this.annotationKey});
-  final GlobalKey<AnnotationOverlayState> annotationKey;
 
-  @override
-  Widget build(BuildContext context) {
-    return SafeArea(
-      child: Container(
-        height: MediaQuery.of(context).size.height * 0.6,
-        decoration: const BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-        ),
-        child: Column(
-          children: [
-            const Padding(
-              padding: EdgeInsets.all(16),
-              child: Text('Annotate', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600)),
-            ),
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: Container(
-                  decoration: BoxDecoration(border: Border.all(color: Colors.grey.shade300)),
-                  child: AnnotationOverlay(key: annotationKey),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(16),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  TextButton(onPressed: () => Navigator.pop(context), child: const Text('Cancel')),
-                  const SizedBox(width: 12),
-                  ElevatedButton(
-                    onPressed: () async {
-                      final bytes = await annotationKey.currentState?.exportPng();
-                      if (context.mounted) Navigator.pop(context, bytes);
-                    },
-                    child: const Text('Save'),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
 
 class _RegionSelectSheet extends StatefulWidget {
   const _RegionSelectSheet({required this.imagePath});
