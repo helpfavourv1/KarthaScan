@@ -24,10 +24,10 @@ class OcrService {
   final Map<OcrScript, TextRecognizer> _recognizers = <OcrScript, TextRecognizer>{};
   final DebugLogService _log = DebugLogService();
 
-  static final Map<OcrScript, String> _scriptFailures = <OcrScript, String>{};
+  static final Map<OcrScript, (String, bool)> _scriptFailures = <OcrScript, (String, bool)>{};
 
   /// Last classified failure for a script, or null if none recorded.
-  static String? lastFailureFor(OcrScript script) => _scriptFailures[script];
+  static (String, bool)? lastFailureFor(OcrScript script) => _scriptFailures[script];
 
   /// Clears a recorded failure so the script becomes selectable again.
   static void clearFailureFor(OcrScript script) => _scriptFailures.remove(script);
@@ -58,14 +58,14 @@ class OcrService {
       rethrow;
     } on PlatformException catch (e) {
       _log.log('OCR', 'PlatformException caught: ${e.message}');
-      final message = _classify(e);
-      _scriptFailures[script] = message;
-      throw OcrUnavailableException(message);
+      final result = _classify(e);
+      _scriptFailures[script] = result;
+      throw OcrUnavailableException(result.$1);
     } catch (error) {
       _log.log('OCR', 'Unhandled OCR error: $error');
-      final message = _classify(error);
-      _scriptFailures[script] = message;
-      throw OcrUnavailableException(message);
+      final result = _classify(error);
+      _scriptFailures[script] = result;
+      throw OcrUnavailableException(result.$1);
     }
   }
 
@@ -78,16 +78,16 @@ class OcrService {
     }
   }
 
-  String _classify(Object error) {
+  (String, bool) _classify(Object error) {
     final String msg = error.toString().toLowerCase();
     if (msg.contains('network') || msg.contains('internet') || msg.contains('connection')) {
-      return 'No internet connection. This language needs a one-time download first.';
+      return ('No internet. Connect once to download the language pack.', false);
     }
     if (msg.contains('download') || msg.contains('install') ||
-        msg.contains('unavailable') || msg.contains('not available')) {
-      return 'Language pack is still downloading or not installed. Try again in a moment.';
+        msg.contains('unavailable') || msg.contains('not available') || msg.contains('timeout')) {
+      return ('Language pack downloading or not ready. Try again shortly.', false);
     }
-    return AppPluginFailureCopy.ocrUnavailableTooltip;
+    return (AppPluginFailureCopy.ocrUnavailableTooltip, true);
   }
 
   TextRecognizer _recognizerFor(OcrScript script) {
@@ -98,9 +98,9 @@ class OcrService {
           return TextRecognizer(script: _toMlKitScript(script));
         } catch (e) {
           _log.log('OCR', 'Recognizer creation failed for $script: $e');
-          final message = _classify(e);
-          _scriptFailures[script] = message;
-          throw OcrUnavailableException(message);
+          final result = _classify(e);
+          _scriptFailures[script] = result;
+          throw OcrUnavailableException(result.$1);
         }
       },
     );

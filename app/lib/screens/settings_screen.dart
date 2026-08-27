@@ -350,24 +350,31 @@ class _OcrLanguagesSheetState extends State<_OcrLanguagesSheet> {
             const SizedBox(height: AppSpacing.sm),
             ...OcrScript.values.map((script) {
               final failure = OcrService.lastFailureFor(script);
+              final bool isHard = failure?.$2 ?? false;
               final String status = script == OcrScript.latin
                   ? 'Built-in'
                   : _probing == script
                       ? 'Checking...'
                       : failure != null
-                          ? 'Unavailable'
+                          ? (isHard ? 'Unsupported' : failure.$1)
                           : 'On-demand';
+              final Color statusColor = failure != null
+                  ? (isHard ? Colors.red : Colors.orange)
+                  : textSecondary;
               return ListTile(
                 contentPadding: EdgeInsets.zero,
                 title: Text(_labels[script] ?? script.name, style: TextStyle(color: textPrimary)),
-                subtitle: Text(status, style: TextStyle(color: textSecondary, fontSize: 11)),
+                subtitle: Text(status, style: TextStyle(color: statusColor, fontSize: 11)),
                 trailing: _probing == script
                     ? const SizedBox(width: 18, height: 18, child: CircularProgressIndicator(strokeWidth: 2))
                     : script == OcrScript.latin
                         ? Icon(Icons.check, color: accent)
                         : IconButton(
                             icon: Icon(failure != null ? Icons.refresh : Icons.download_for_offline_outlined, color: accent),
-                            onPressed: () => _probe(script),
+                            onPressed: () {
+                              OcrService.clearFailureFor(script);
+                              _probe(script);
+                            },
                           ),
               );
             }),

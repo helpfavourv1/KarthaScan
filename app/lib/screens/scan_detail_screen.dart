@@ -538,14 +538,19 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: OcrScript.values.map((s) {
-            final bool failed = OcrService.lastFailureFor(s) != null;
+            final failure = OcrService.lastFailureFor(s);
+            final bool isHard = failure?.$2 ?? false;
             return ListTile(
               title: Text(
                 labels[s] ?? s.name,
-                style: TextStyle(color: failed ? Colors.grey : null),
+                style: TextStyle(color: isHard ? Colors.grey : null),
               ),
-              enabled: !failed,
-              onTap: () => Navigator.pop(ctx, s),
+              enabled: !isHard,
+              subtitle: failure != null && !isHard ? Text(failure.$1, style: const TextStyle(fontSize: 10, color: Colors.orange)) : null,
+              onTap: () {
+                OcrService.clearFailureFor(s);
+                Navigator.pop(ctx, s);
+              },
             );
           }).toList(),
         ),
