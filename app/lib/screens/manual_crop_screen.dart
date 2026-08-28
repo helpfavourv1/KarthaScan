@@ -210,6 +210,44 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
     }
   }
 
+
+  Future<void> _pickAndConvertDocument() async {
+    if (_isPicking) return;
+    setState(() => _isPicking = true);
+    try {
+      final result = await FilePicker.platform.pickFiles(
+        type: FileType.custom,
+        allowedExtensions: ['jpg', 'jpeg', 'png', 'webp', 'pdf', 'txt', 'csv', 'docx'],
+      );
+      final path = result?.files.single.path;
+      if (!mounted) return;
+      if (path == null) {
+        setState(() => _isPicking = false);
+        return;
+      }
+      final ext = path.toLowerCase().split('.').last;
+      String type = 'unknown';
+      if (['jpg', 'jpeg', 'png', 'webp'].contains(ext)) {
+        type = 'image';
+      } else if (ext == 'pdf') {
+        type = 'pdf';
+      } else if (ext == 'txt') {
+        type = 'txt';
+      } else if (ext == 'csv') {
+        type = 'csv';
+      } else if (ext == 'docx') {
+        type = 'docx';
+      }
+
+      context.push('/convert?path=${Uri.encodeComponent(path)}&type=$type');
+    } catch (e) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Pick error: $e')));
+    } finally {
+      if (mounted) setState(() => _isPicking = false);
+    }
+  }
+
   Future<void> _scanDocument() async {
     if (_isPicking || _currentMode == _CaptureMode.idCard) return; // Scanner doesn't support ID flow easily
     setState(() => _isPicking = true);
@@ -545,6 +583,13 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
                             icon: const Icon(Icons.add_photo_alternate),
                             label: Text(_currentMode == _CaptureMode.idCard ? 
                               (_idFrontPath == null ? 'Import Front Side' : 'Import Back Side') : 'Import'),
+                            style: ElevatedButton.styleFrom(backgroundColor: surface, foregroundColor: textPrimary, padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12), shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppShape.buttonRadius))),
+                          ),
+                          const SizedBox(height: AppSpacing.md),
+                          ElevatedButton.icon(
+                            onPressed: _pickAndConvertDocument,
+                            icon: const Icon(Icons.transform_outlined),
+                            label: const Text('Import & Convert Document'),
                             style: ElevatedButton.styleFrom(backgroundColor: surface, foregroundColor: textPrimary, padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12), shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppShape.buttonRadius))),
                           ),
                         ],
