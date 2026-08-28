@@ -20,6 +20,7 @@ class ExportFailedException implements Exception {
 }
 
 enum FilterType { none, grayscale, blackAndWhite, colorEnhance, shadowRemoval }
+enum ExportSignatureScope { placed, all, first, last }
 
 enum ExportDocxMode { textOnly, imageEmbedded }
 
@@ -43,6 +44,8 @@ class ExportService {
     double? signatureOffsetX,
     double? signatureOffsetY,
     double? signatureRotation,
+    ExportSignatureScope signatureScope = ExportSignatureScope.placed,
+    double signatureScale = 1.0,
     CompressionTier compression = CompressionTier.original,
     ExportDocxMode docxMode = ExportDocxMode.textOnly,
     ExportPageFormat pageFormat = ExportPageFormat.a4,
@@ -81,6 +84,8 @@ class ExportService {
             signatureRotation: signatureRotation,
             compression: compression,
           targetBytes: targetBytes,
+            signatureScope: signatureScope,
+            signatureScale: signatureScale,
         );
         case ExportFormat.png:
           return await _exportImages(
@@ -95,6 +100,8 @@ class ExportService {
             signatureRotation: signatureRotation,
             compression: compression,
           targetBytes: targetBytes,
+            signatureScope: signatureScope,
+            signatureScale: signatureScale,
         );
         case ExportFormat.csv:
           return <String>[await _exportCsv(document, outputDirectoryPath)];
@@ -131,11 +138,12 @@ class ExportService {
     double offsetX,
     double offsetY, {
     double rotationDegrees = 0,
+    double scale = 1.0,
   }) {
     if (rotationDegrees != 0) {
       signature = img.copyRotate(signature, angle: rotationDegrees);
     }
-    final targetWidth = (page.width * 0.28).round();
+    final targetWidth = (page.width * 0.28 * scale).round();
     final targetHeight = (signature.height * targetWidth / signature.width).round();
     final resizedSignature = img.copyResize(
       signature,
@@ -157,6 +165,8 @@ class ExportService {
     double? signatureOffsetX,
     double? signatureOffsetY,
     double? signatureRotation,
+    ExportSignatureScope signatureScope = ExportSignatureScope.placed,
+    double signatureScale = 1.0,
   }) async {
     final original = await _readBytes(pagePath);
     if (filter == FilterType.none && signatureBytes == null) {
@@ -168,9 +178,17 @@ class ExportService {
       if (filter != FilterType.none) {
         decoded = _applyFilter(decoded, filter);
       }
-      final effectiveSignaturePage = signaturePageIndex ?? (totalPages - 1);
-      if (signatureBytes != null && pageIndex == effectiveSignaturePage) {
-        final signatureImage = img.decodePng(signatureBytes);
+      bool shouldApplySig = false;
+      if (signatureBytes != null) {
+        switch (signatureScope) {
+          case ExportSignatureScope.placed: shouldApplySig = (pageIndex == (signaturePageIndex ?? totalPages - 1)); break;
+          case ExportSignatureScope.all: shouldApplySig = true; break;
+          case ExportSignatureScope.first: shouldApplySig = (pageIndex == 0); break;
+          case ExportSignatureScope.last: shouldApplySig = (pageIndex == totalPages - 1); break;
+        }
+      }
+      if (shouldApplySig) {
+        final signatureImage = img.decodePng(signatureBytes!);
         if (signatureImage != null) {
           decoded = _compositeSignature(
             decoded,
@@ -178,6 +196,7 @@ class ExportService {
             signatureOffsetX ?? 0.6,
             signatureOffsetY ?? 0.8,
             rotationDegrees: signatureRotation ?? 0,
+            scale: signatureScale,
           );
         }
       }
@@ -198,6 +217,8 @@ class ExportService {
     double? signatureOffsetY,
     double? signatureRotation,
     PdfPageFormat pageFormat = PdfPageFormat.a4,
+    ExportSignatureScope signatureScope = ExportSignatureScope.placed,
+    double signatureScale = 1.0,
   }) async {
     final pw.Document pdfDoc = pw.Document(
       title: document.title,
@@ -215,6 +236,8 @@ class ExportService {
         signatureOffsetX: signatureOffsetX,
         signatureOffsetY: signatureOffsetY,
         signatureRotation: signatureRotation,
+        signatureScope: signatureScope,
+        signatureScale: signatureScale,
       );
       final image = pw.MemoryImage(bytes);
       pdfDoc.addPage(
@@ -448,6 +471,8 @@ class ExportService {
     double? signatureRotation,
     CompressionTier compression = CompressionTier.original,
       int? targetBytes,
+    ExportSignatureScope signatureScope = ExportSignatureScope.placed,
+    double signatureScale = 1.0,
   }) async {
     final outputPaths = <String>[];
     final isMultiPage = document.pagePaths.length > 1;
@@ -462,6 +487,8 @@ class ExportService {
         signatureOffsetX: signatureOffsetX,
         signatureOffsetY: signatureOffsetY,
         signatureRotation: signatureRotation,
+        signatureScope: signatureScope,
+        signatureScale: signatureScale,
       );
       final decoded = img.decodeImage(processedBytes);
       if (decoded == null) {

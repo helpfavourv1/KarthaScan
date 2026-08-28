@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'dart:typed_data';
 
+import 'package:flutter/foundation.dart' show compute;
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:path_provider/path_provider.dart';
@@ -11,6 +12,7 @@ import '../core/models/export_job.dart';
 import '../core/models/scan_document.dart';
 import '../core/providers/scan_provider.dart';
 import '../core/services/export_service.dart';
+import '../core/services/filter_service.dart';
 import '../core/services/share_service.dart';
 import '../core/services/local_storage.dart';
 import '../core/utils/constants.dart';
@@ -47,6 +49,8 @@ class _ExportScreenState extends State<ExportScreen> {
   double? _signatureOffsetX;
   double? _signatureOffsetY;
   double? _signatureRotation;
+  ExportSignatureScope _signatureScope = ExportSignatureScope.placed;
+  double _signatureScale = 1.0;
 
   bool _isRunning = false;
   String? _statusMessage;
@@ -105,7 +109,7 @@ class _ExportScreenState extends State<ExportScreen> {
 
     if (signatureBytes == null || !mounted) return;
 
-    final placement = await showModalBottomSheet<(int, double, double, double)?>(
+    final placement = await showModalBottomSheet<(int, double, double, double, double)?>(
       context: context,
       isScrollControlled: true,
       builder: (context) => _SignaturePlacementSheet(
@@ -121,6 +125,7 @@ class _ExportScreenState extends State<ExportScreen> {
         _signatureOffsetX = placement.$2;
         _signatureOffsetY = placement.$3;
         _signatureRotation = placement.$4;
+        _signatureScale = placement.$5;
       });
     }
   }
@@ -132,6 +137,7 @@ class _ExportScreenState extends State<ExportScreen> {
       _signatureOffsetX = null;
       _signatureOffsetY = null;
       _signatureRotation = null;
+      _signatureScale = 1.0;
     });
   }
 
@@ -159,6 +165,8 @@ class _ExportScreenState extends State<ExportScreen> {
           signatureOffsetX: _signatureOffsetX,
           signatureOffsetY: _signatureOffsetY,
           signatureRotation: _signatureRotation,
+          signatureScope: _signatureScope,
+          signatureScale: _signatureScale,
           compression: _selectedCompression,
           docxMode: _docxMode,
           pageFormat: _pageFormat,
@@ -233,6 +241,8 @@ class _ExportScreenState extends State<ExportScreen> {
                     child: ListView(
                       padding: const EdgeInsets.all(AppSpacing.md),
                 children: [
+                                        _buildLivePreview(),
+                                        const SizedBox(height: AppSpacing.lg),
                   // Format Ribbon
                   Text('Format', style: TextStyle(color: textSecondary, fontSize: AppTypography.footnoteSize, fontWeight: FontWeight.w600)),
                   const SizedBox(height: AppSpacing.sm),
@@ -396,12 +406,31 @@ class _ExportScreenState extends State<ExportScreen> {
                               ),
                             ),
                           )
-                        : Row(
+                        : Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              const Icon(Icons.check_circle, color: Colors.green),
-                              const SizedBox(width: AppSpacing.sm),
-                              const Expanded(child: Text('Signature added')),
-                              TextButton(onPressed: _removeSignature, child: const Text('Remove')),
+                              Row(
+                                children: [
+                                  const Icon(Icons.check_circle, color: Colors.green),
+                                  const SizedBox(width: AppSpacing.sm),
+                                  const Expanded(child: Text('Signature added')),
+                                  TextButton(onPressed: _removeSignature, child: const Text('Remove')),
+                                ],
+                              ),
+                              const SizedBox(height: AppSpacing.sm),
+                              Text('Apply to:', style: TextStyle(color: textSecondary, fontSize: 12)),
+                              const SizedBox(height: 4),
+                              Wrap(
+                                spacing: 8,
+                                children: ExportSignatureScope.values.map((scope) {
+                                  final label = scope == ExportSignatureScope.placed ? 'Placed Page' : scope == ExportSignatureScope.all ? 'All Pages' : scope == ExportSignatureScope.first ? 'First Page' : 'Last Page';
+                                  return ChoiceChip(
+                                    label: Text(label, style: const TextStyle(fontSize: 11)),
+                                    selected: _signatureScope == scope,
+                                    onSelected: (_) => setState(() => _signatureScope = scope),
+                                  );
+                                }).toList(),
+                              ),
                             ],
                           ),
                   ),
@@ -554,6 +583,33 @@ class _ExportScreenState extends State<ExportScreen> {
       ),
     );
   }
+  Widget _buildLivePreview() {
+    if (_documents.isEmpty) return const SizedBox.shrink();
+    return FutureBuilder<Uint8List>(
+      future: _generatePreview(),
+      builder: (context, snapshot) {
+        if (!snapshot.hasData) return const SizedBox(height: 100, child: Center(child: CircularProgressIndicator()));
+        return Container(
+          height: 150,
+          width: double.infinity,
+          decoration: BoxDecoration(
+            color: Colors.black12,
+            borderRadius: BorderRadius.circular(8),
+            border: Border.all(color: Colors.grey.withValues(alpha: 0.3)),
+          ),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(8),
+            child: Image.memory(snapshot.data!, fit: BoxFit.contain),
+          ),
+        );
+      },
+    );
+  }
+
+  Future<Uint8List> _generatePreview() async {
+    final bytes = await File(_documents.first.pagePaths.first).readAsBytes();
+    return await compute(_applyFilterIsolate, {'bytes': bytes, 'filter': _selectedFilter.index});
+  }
 }
 
 class _SignatureSheet extends StatelessWidget {
@@ -619,6 +675,7 @@ class _SignaturePlacementSheetState extends State<_SignaturePlacementSheet> {
   int _currentPageIndex = 0;
   Offset _signatureOffset = Offset.zero;
   double _rotationDegrees = 0;
+  double _scale = 1.0;
   final GlobalKey _stackKey = GlobalKey();
   bool _initialized = false;
 
@@ -671,13 +728,31 @@ class _SignaturePlacementSheetState extends State<_SignaturePlacementSheet> {
                           }),
                           child: Transform.rotate(
                             angle: _rotationDegrees * 3.14159 / 180,
-                            child: Opacity(opacity: 0.8, child: Image.memory(widget.signatureBytes, width: 100, height: 50, fit: BoxFit.contain)),
+                            child: Opacity(opacity: 0.8, child: Image.memory(widget.signatureBytes, width: 100 * _scale, height: 50 * _scale, fit: BoxFit.contain)),
                           ),
                         ),
                       ),
                     ],
                   );
                 },
+              ),
+            ),
+            // Scale slider
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Row(
+                children: [
+                  const Text('Scale', style: TextStyle(fontSize: 12)),
+                  Expanded(
+                    child: Slider(
+                      value: _scale,
+                      min: 0.5,
+                      max: 3.0,
+                      onChanged: (value) => setState(() => _scale = value),
+                    ),
+                  ),
+                  Text('${_scale.toStringAsFixed(1)}x', style: const TextStyle(fontSize: 12)),
+                ],
               ),
             ),
             // Rotation slider
@@ -710,7 +785,7 @@ class _SignaturePlacementSheetState extends State<_SignaturePlacementSheet> {
                       final Size size = box?.size ?? const Size(1, 1);
                       final double pctX = (_signatureOffset.dx / size.width).clamp(0.0, 1.0).toDouble();
                       final double pctY = (_signatureOffset.dy / size.height).clamp(0.0, 1.0).toDouble();
-                      Navigator.pop(context, (_currentPageIndex, pctX, pctY, _rotationDegrees));
+                      Navigator.pop(context, (_currentPageIndex, pctX, pctY, _rotationDegrees, _scale));
                     },
                     style: ElevatedButton.styleFrom(backgroundColor: Theme.of(context).colorScheme.primary, foregroundColor: Colors.white),
                     child: const Text('Confirm'),
@@ -723,4 +798,14 @@ class _SignaturePlacementSheetState extends State<_SignaturePlacementSheet> {
       ),
     );
   }
+}
+
+
+Uint8List _applyFilterIsolate(Map<String, dynamic> args) {
+  final bytes = args['bytes'] as Uint8List;
+  final filter = FilterType.values[args['filter'] as int];
+  final decoded = img.decodeImage(bytes);
+  if (decoded == null) return bytes;
+  final filtered = FilterService.applyToImage(decoded, filter);
+  return Uint8List.fromList(img.encodeJpg(filtered, quality: 85));
 }

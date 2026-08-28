@@ -1059,7 +1059,7 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
                   indicatorColor: accent,
                   tabs: const [
                     Tab(text: 'Image'),
-                    Tab(text: 'Text'),
+                    Tab(text: 'OCR Text'),
                   ],
                 ),
               ),

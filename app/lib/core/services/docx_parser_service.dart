@@ -21,12 +21,12 @@ class DocxParserService {
     final xml = String.fromCharCodes(docXml.content as List<int>);
     
     final paragraphs = <String>[];
-    final pRegex = RegExp(r'<w:p[^>]*>(.*?)</w:p>', dotAll: true);
-    final tRegex = RegExp(r'<w:t[^>]*>(.*?)</w:t>', dotAll: true);
-    
+        final pRegex = RegExp(r'<w:p[^>]*>(.*?)</w:p>', dotAll: true);
+    final tRegex = RegExp(r'<w:t(?:\s[^>]*)?>(.*?)</w:t>', dotAll: true);
+
     for (final pMatch in pRegex.allMatches(xml)) {
       final pContent = pMatch.group(1) ?? '';
-      final texts = tRegex.allMatches(pContent).map((m) => m.group(1) ?? '').toList();
+      final texts = tRegex.allMatches(pContent).map((m) => _decodeXmlEntities(m.group(1) ?? '')).toList();
       if (texts.isNotEmpty) paragraphs.add(texts.join(''));
     }
 
@@ -48,5 +48,16 @@ class DocxParserService {
     await File(outPath).writeAsBytes(await pdf.save());
     _log.log('DOCX_PARSER', 'Done: $outPath (${paragraphs.length} paragraphs)');
     return outPath;
+  }
+
+  String _decodeXmlEntities(String s) {
+    return s
+        .replaceAll('&amp;', '&')
+        .replaceAll('&apos;', "'")
+        .replaceAll('&quot;', '"')
+        .replaceAll('&lt;', '<')
+        .replaceAll('&gt;', '>')
+        .replaceAllMapped(RegExp(r'&#(\d+);'), (m) => String.fromCharCode(int.parse(m.group(1)!)))
+        .replaceAllMapped(RegExp(r'&#x([0-9a-fA-F]+);'), (m) => String.fromCharCode(int.parse(m.group(1)!, radix: 16)));
   }
 }
