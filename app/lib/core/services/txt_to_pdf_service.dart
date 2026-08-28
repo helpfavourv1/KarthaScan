@@ -16,15 +16,13 @@ class TxtToPdfService {
     pdf.addPage(
       pw.MultiPage(
         pageFormat: PdfPageFormat.a4,
-        build: (pw.Context context) => [
-          pw.Column(
-            crossAxisAlignment: pw.CrossAxisAlignment.start,
-            children: text.split('\n').map((line) => pw.Paragraph(
-              text: line, 
-              style: const pw.TextStyle(fontSize: 12),
-            )).toList(),
-          ),
-        ],
+        build: (pw.Context context) => text
+            .split('\n')
+            .map((line) => pw.Paragraph(
+                  text: line,
+                  style: const pw.TextStyle(fontSize: 12),
+                ))
+            .toList(),
       ),
     );
     

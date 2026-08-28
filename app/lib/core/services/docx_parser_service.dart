@@ -34,15 +34,12 @@ class DocxParserService {
     pdf.addPage(
       pw.MultiPage(
         pageFormat: PdfPageFormat.a4,
-        build: (pw.Context context) => [
-          pw.Column(
-            crossAxisAlignment: pw.CrossAxisAlignment.start,
-            children: paragraphs.map((para) => pw.Paragraph(
-              text: para, 
-              style: const pw.TextStyle(fontSize: 12),
-            )).toList(),
-          ),
-        ],
+        build: (pw.Context context) => paragraphs
+            .map((para) => pw.Paragraph(
+                  text: para,
+                  style: const pw.TextStyle(fontSize: 12),
+                ))
+            .toList(),
       ),
     );
     

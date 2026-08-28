@@ -16,19 +16,36 @@ class CsvToPdfService {
         .map((l) => l.split(','))
         .toList();
         
+    final List<String> headers = rows.isNotEmpty ? rows.first : <String>[];
+    final List<List<String>> dataRows = rows.length > 1 ? rows.skip(1).toList() : <List<String>>[];
+    const int chunkSize = 40;
+    final List<pw.Widget> tables = <pw.Widget>[];
+    for (int i = 0; i < dataRows.length; i += chunkSize) {
+      final int end = i + chunkSize > dataRows.length ? dataRows.length : i + chunkSize;
+      tables.add(pw.TableHelper.fromTextArray(
+        headers: headers,
+        data: dataRows.sublist(i, end),
+        headerStyle: pw.TextStyle(fontWeight: pw.FontWeight.bold, fontSize: 10),
+        cellStyle: const pw.TextStyle(fontSize: 9),
+        border: pw.TableBorder.all(),
+      ));
+      tables.add(pw.SizedBox(height: 12));
+    }
+    if (tables.isEmpty) {
+      tables.add(pw.TableHelper.fromTextArray(
+        headers: headers,
+        data: <List<String>>[],
+        headerStyle: pw.TextStyle(fontWeight: pw.FontWeight.bold, fontSize: 10),
+        cellStyle: const pw.TextStyle(fontSize: 9),
+        border: pw.TableBorder.all(),
+      ));
+    }
+
     final pdf = pw.Document();
     pdf.addPage(
       pw.MultiPage(
         pageFormat: PdfPageFormat.a4,
-        build: (pw.Context context) => [
-          pw.TableHelper.fromTextArray(
-            headers: rows.isNotEmpty ? rows.first : <String>[],
-            data: rows.length > 1 ? rows.skip(1).toList() : <List<String>>[],
-            headerStyle: pw.TextStyle(fontWeight: pw.FontWeight.bold, fontSize: 10),
-            cellStyle: const pw.TextStyle(fontSize: 9),
-            border: pw.TableBorder.all(),
-          ),
-        ],
+        build: (pw.Context context) => tables,
       ),
     );
     

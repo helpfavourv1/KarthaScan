@@ -161,11 +161,14 @@ class _ConvertScreenState extends State<ConvertScreen> {
 
     return Scaffold(
       appBar: AppBar(title: const Text('Convert Document')),
-      body: _isConverting
-          ? const Center(child: CircularProgressIndicator())
-          : Padding(
+      body: SafeArea(
+        child: _isConverting
+            ? const Center(child: CircularProgressIndicator())
+            : SingleChildScrollView(
+                child: Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
+                mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Card(
@@ -213,7 +216,7 @@ class _ConvertScreenState extends State<ConvertScreen> {
                         style: TextStyle(fontSize: 12, color: Colors.orange),
                       ),
                     ),
-                  const Spacer(),
+                  const SizedBox(height: 24),
                   ElevatedButton(
                     onPressed: _run,
                     style: ElevatedButton.styleFrom(padding: const EdgeInsets.symmetric(vertical: 16)),
@@ -221,7 +224,9 @@ class _ConvertScreenState extends State<ConvertScreen> {
                   ),
                 ],
               ),
-            ),
+                ),
+              ),
+        ),
     );
   }
 }

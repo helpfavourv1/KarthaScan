@@ -19,7 +19,7 @@ class PdfToImagesService {
     for (int i = 1; i <= doc.pageCount; i++) {
       final page = await doc.getPage(i);
       final rendered = await page.render(
-        width: (page.width * 2).round(), 
+        width: (page.width * 3).round(), 
         height: (page.height * 2).round(),
       );
       final pngImage = img.Image.fromBytes(
