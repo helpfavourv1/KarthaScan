@@ -1,0 +1,93 @@
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+  <!--
+    assets/logo.svg — KatharScan brand icon (Section 16 file #73, premium
+    revision). Self-contained rounded-square badge at 1024x1024, used as
+    the source for the website logo, flutter_native_splash, and
+    flutter_launcher_icons (see the rasterization note in those two YAML
+    files — this vector needs to be exported to PNG before either
+    generator runs; this file itself is the source of truth for that
+    export, not something either tool reads directly).
+
+    Concept: a document mid-scan, framed by camera-viewfinder corner
+    brackets (the universal "capture" signifier that distinguishes a
+    scanner app's icon from a generic file/notes app icon at a glance),
+    with a glowing scan beam crossing it to suggest active OCR in
+    progress. Built on the app's existing indigo accent tokens
+    (#818CF8 / #6366F1 / #4338CA) rather than a generic palette, so the
+    icon and the in-app UI read as the same product.
+  -->
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#818CF8"/>
+      <stop offset="55%" stop-color="#6366F1"/>
+      <stop offset="100%" stop-color="#4338CA"/>
+    </linearGradient>
+
+    <radialGradient id="sheenGrad" cx="30%" cy="24%" r="60%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+
+    <linearGradient id="scanGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#67E8F9" stop-opacity="0"/>
+      <stop offset="50%" stop-color="#ECFEFF" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#67E8F9" stop-opacity="0"/>
+    </linearGradient>
+
+    <clipPath id="iconClip">
+      <rect x="0" y="0" width="1024" height="1024" rx="224" ry="224"/>
+    </clipPath>
+
+    <filter id="docShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="14"/>
+      <feOffset dx="0" dy="18" result="offsetblur"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.35"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <filter id="beamGlow" x="-40%" y="-200%" width="180%" height="500%">
+      <feGaussianBlur stdDeviation="10"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect x="0" y="0" width="1024" height="1024" rx="224" ry="224" fill="url(#bgGrad)"/>
+  <rect x="0" y="0" width="1024" height="1024" fill="url(#sheenGrad)" clip-path="url(#iconClip)"/>
+
+  <!-- Viewfinder corner brackets (drawn first, behind the document, so the
+       document's drop shadow reads on top of them) -->
+  <g stroke="#FFFFFF" stroke-width="16" stroke-linecap="round" opacity="0.9">
+    <path d="M230,240 L230,170 L300,170"/>
+    <path d="M724,170 L794,170 L794,240"/>
+    <path d="M794,784 L794,854 L724,854"/>
+    <path d="M300,854 L230,854 L230,784"/>
+  </g>
+
+  <!-- Document, with folded top-right corner -->
+  <path
+    d="M310,222 L652,222 L742,312 L742,774
+       A28,28 0 0 1 714,802 L310,802
+       A28,28 0 0 1 282,774 L282,250
+       A28,28 0 0 1 310,222 Z"
+    fill="#FFFFFF"
+    filter="url(#docShadow)"
+  />
+  <!-- Fold shadow triangle -->
+  <path d="M652,222 L742,312 L652,312 Z" fill="#E5E5F5"/>
+
+  <!-- Recognized-text lines -->
+  <rect x="326" y="560" width="340" height="32" rx="16" fill="#C7C9F5"/>
+  <rect x="326" y="616" width="340" height="32" rx="16" fill="#C7C9F5"/>
+  <rect x="326" y="672" width="220" height="32" rx="16" fill="#C7C9F5"/>
+
+  <!-- Active scan beam, glowing, crossing the upper-middle of the page -->
+  <g filter="url(#beamGlow)">
+    <rect x="240" y="452" width="544" height="16" rx="8" fill="url(#scanGrad)"/>
+  </g>
+  <rect x="240" y="456" width="544" height="6" rx="3" fill="#ECFEFF" opacity="0.9"/>
+</svg>
