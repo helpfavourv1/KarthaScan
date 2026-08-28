@@ -11,7 +11,6 @@ import 'package:pdf/widgets.dart' as pw;
 import '../core/models/scan_document.dart';
 import '../core/providers/scan_provider.dart';
 import '../core/services/csv_to_pdf_service.dart';
-import '../core/services/docx_parser_service.dart';
 import '../core/services/pdf_to_images_service.dart';
 import '../core/services/share_service.dart';
 import '../core/services/txt_to_pdf_service.dart';
@@ -32,6 +31,16 @@ class _ConvertScreenState extends State<ConvertScreen> {
   _TargetFormat _target = _TargetFormat.pdf;
   _ActionType _action = _ActionType.exportShare;
   bool _isConverting = false;
+  double _progress = 0.0;
+  String _progressLabel = '';
+
+  void _report(double value, String label) {
+    if (!mounted) return;
+    setState(() {
+      _progress = value.clamp(0.0, 1.0);
+      _progressLabel = label;
+    });
+  }
 
   void _onTargetChanged(_TargetFormat newTarget) {
     setState(() {
@@ -45,6 +54,7 @@ class _ConvertScreenState extends State<ConvertScreen> {
   Future<List<String>> _convert() async {
     final String src = widget.sourcePath;
     final String type = widget.sourceType;
+    _report(0.05, 'Reading…');
     final appDir = await getApplicationDocumentsDirectory();
     final outDir = Directory(p.join(appDir.path, 'converted_docs'));
     await outDir.create(recursive: true);
@@ -55,6 +65,7 @@ class _ConvertScreenState extends State<ConvertScreen> {
 
     if (type == 'pdf') {
       if (_target == _TargetFormat.pdf) {
+        _report(0.5, 'Copying…');
         final out = p.join(outDir.path, 'conv_$ts.pdf');
         await File(src).copy(out);
         finalPaths.add(out);
@@ -63,6 +74,7 @@ class _ConvertScreenState extends State<ConvertScreen> {
       }
     } else if (type == 'image') {
       if (_target == _TargetFormat.pdf) {
+        _report(0.4, 'Building PDF…');
         final pdf = pw.Document();
         final bytes = await File(src).readAsBytes();
         final image = pw.MemoryImage(bytes);
@@ -71,6 +83,7 @@ class _ConvertScreenState extends State<ConvertScreen> {
         await File(out).writeAsBytes(await pdf.save());
         finalPaths.add(out);
       } else {
+        _report(0.4, 'Decoding image…');
         final bytes = await File(src).readAsBytes();
         final decoded = img.decodeImage(bytes);
         if (decoded == null) throw Exception('Cannot decode image');
@@ -81,25 +94,25 @@ class _ConvertScreenState extends State<ConvertScreen> {
         finalPaths.add(out);
       }
     } else if (type == 'txt') {
-      intermediatePdf = await TxtToPdfService().convertToPdf(src);
+      intermediatePdf = await TxtToPdfService().convertToPdf(src, onProgress: (v, l) => _report(0.1 + v * 0.4, l));
     } else if (type == 'csv') {
-      intermediatePdf = await CsvToPdfService().convertToPdf(src);
-    } else if (type == 'docx') {
-      intermediatePdf = await DocxParserService().convertToPdf(src);
+      intermediatePdf = await CsvToPdfService().convertToPdf(src, onProgress: (v, l) => _report(0.1 + v * 0.4, l));
     }
 
     if (intermediatePdf != null) {
       if (_target == _TargetFormat.pdf) {
+        _report(0.7, 'Saving…');
         finalPaths.add(intermediatePdf);
       } else {
-        final pngs = await PdfToImagesService().convertToImages(intermediatePdf);
+        final pngs = await PdfToImagesService().convertToImages(intermediatePdf, onProgress: (v, l) => _report(0.5 + v * 0.4, l));
         if (_target == _TargetFormat.jpg) {
           final jpgs = <String>[];
-          for (final pngPath in pngs) {
-            final bytes = await File(pngPath).readAsBytes();
+          for (int i = 0; i < pngs.length; i++) {
+            _report(0.9 + 0.09 * (i / pngs.length), 'Encoding page ${i + 1} of ${pngs.length}…');
+            final bytes = await File(pngs[i]).readAsBytes();
             final decoded = img.decodeImage(bytes);
             if (decoded != null) {
-              final jpgPath = p.join(outDir.path, 'conv_${ts}_${p.basenameWithoutExtension(pngPath)}.jpg');
+              final jpgPath = p.join(outDir.path, 'conv_${ts}_${p.basenameWithoutExtension(pngs[i])}.jpg');
               await File(jpgPath).writeAsBytes(Uint8List.fromList(img.encodeJpg(decoded)));
               jpgs.add(jpgPath);
             }
@@ -112,11 +125,16 @@ class _ConvertScreenState extends State<ConvertScreen> {
     }
 
     if (finalPaths.isEmpty) throw Exception('Conversion produced no files');
+    _report(1.0, 'Done');
     return finalPaths;
   }
 
   Future<void> _run() async {
-    setState(() => _isConverting = true);
+    setState(() {
+      _isConverting = true;
+      _progress = 0.0;
+      _progressLabel = 'Starting…';
+    });
     try {
       final paths = await _convert();
       if (!mounted) return;
@@ -163,7 +181,21 @@ class _ConvertScreenState extends State<ConvertScreen> {
       appBar: AppBar(title: const Text('Convert Document')),
       body: SafeArea(
         child: _isConverting
-            ? const Center(child: CircularProgressIndicator())
+            ? Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(24.0),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      LinearProgressIndicator(value: _progress),
+                      const SizedBox(height: 12),
+                      Text('${(_progress * 100).round()}%', style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w700)),
+                      const SizedBox(height: 4),
+                      Text(_progressLabel, style: const TextStyle(fontSize: 13)),
+                    ],
+                  ),
+                ),
+              )
             : SingleChildScrollView(
                 child: Padding(
               padding: const EdgeInsets.all(16.0),

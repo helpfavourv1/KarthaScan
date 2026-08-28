@@ -219,7 +219,7 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
     try {
       final result = await FilePicker.platform.pickFiles(
         type: FileType.custom,
-        allowedExtensions: ['jpg', 'jpeg', 'png', 'webp', 'pdf', 'txt', 'csv', 'docx'],
+        allowedExtensions: ['jpg', 'jpeg', 'png', 'webp', 'pdf', 'txt', 'csv'],
       );
       final path = result?.files.single.path;
       if (!mounted) return;
@@ -237,8 +237,6 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
         type = 'txt';
       } else if (ext == 'csv') {
         type = 'csv';
-      } else if (ext == 'docx') {
-        type = 'docx';
       }
 
       context.push('/convert?path=${Uri.encodeComponent(path)}&type=$type');

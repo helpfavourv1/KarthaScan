@@ -8,24 +8,25 @@ import 'debug_log_service.dart';
 class PdfToImagesService {
   final DebugLogService _log = DebugLogService();
 
-  Future<List<String>> convertToImages(String pdfPath) async {
+  Future<List<String>> convertToImages(String pdfPath, {void Function(double, String)? onProgress}) async {
     _log.log('PDF_TO_IMAGES', 'Starting: $pdfPath');
     final doc = await PdfDocument.openFile(pdfPath);
     final appDir = await getApplicationDocumentsDirectory();
     final outDir = Directory(p.join(appDir.path, 'converted_images'));
     await outDir.create(recursive: true);
-    
+
     final List<String> paths = [];
     for (int i = 1; i <= doc.pageCount; i++) {
+      onProgress?.call((i - 1) / doc.pageCount, 'Rendering page $i of ${doc.pageCount}…');
       final page = await doc.getPage(i);
       final rendered = await page.render(
-        width: (page.width * 3).round(), 
+        width: (page.width * 3).round(),
         height: (page.height * 2).round(),
       );
       final pngImage = img.Image.fromBytes(
-        width: rendered.width, 
+        width: rendered.width,
         height: rendered.height,
-        bytes: rendered.pixels.buffer, 
+        bytes: rendered.pixels.buffer,
         numChannels: 4,
       );
       final outPath = p.join(outDir.path, 'pdf_${DateTime.now().microsecondsSinceEpoch}_$i.png');
@@ -33,6 +34,7 @@ class PdfToImagesService {
       paths.add(outPath);
     }
     doc.dispose();
+    onProgress?.call(1.0, 'Done');
     _log.log('PDF_TO_IMAGES', 'Done: ${paths.length} pages');
     return paths;
   }
