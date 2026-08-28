@@ -20,6 +20,7 @@ import '../core/services/debug_log_service.dart';
 import '../core/services/doc_scanner_service.dart';
 import '../core/services/export_service.dart';
 import '../core/services/ocr_service.dart';
+import '../core/services/share_service.dart';
 import '../core/utils/constants.dart';
 
 enum _Stage { pickImage, saving }
@@ -37,6 +38,7 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
   late final SettingsProvider _settingsProvider;
   final OcrService _ocrService = OcrService();
   final ExportService _exportService = ExportService();
+  final ShareService _shareService = ShareService();
   final DebugLogService _log = DebugLogService();
 
   _Stage _stage = _Stage.pickImage;
@@ -249,7 +251,7 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
   }
 
   Future<void> _scanDocument() async {
-    if (_isPicking || _currentMode == _CaptureMode.idCard) return; // Scanner doesn't support ID flow easily
+    if (_isPicking) return;
     setState(() => _isPicking = true);
     try {
       final result = await DocScannerService().scan().timeout(
@@ -264,6 +266,10 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
         return;
       }
       _playCaptureFeedback();
+      if (_currentMode == _CaptureMode.idCard) {
+        await _routeScanToIdSlots(result.pageImagePaths);
+        return;
+      }
       final savedDoc = await _saveScannedDocument(result.pageImagePaths);
       if (!mounted) return;
       if (savedDoc != null) {
@@ -280,6 +286,33 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
     }
   }
 
+  Future<void> _routeScanToIdSlots(List<String> paths) async {
+    final appDir = await getApplicationDocumentsDirectory();
+    final scansDir = Directory(p.join(appDir.path, 'manual_crop_pages'));
+    await scansDir.create(recursive: true);
+
+    if (paths.isNotEmpty && _idFrontPath == null) {
+      final outPath = p.join(scansDir.path, 'manual_${DateTime.now().microsecondsSinceEpoch}_front.jpg');
+      await File(paths[0]).copy(outPath);
+      setState(() => _idFrontPath = outPath);
+    }
+    if (paths.length > 1 && _idBackPath == null) {
+      final outPath = p.join(scansDir.path, 'manual_${DateTime.now().microsecondsSinceEpoch}_back.jpg');
+      await File(paths[1]).copy(outPath);
+      setState(() => _idBackPath = outPath);
+    }
+
+    if (_idFrontPath != null && _idBackPath != null) {
+      await _exportIdCard();
+    } else {
+      setState(() => _stage = _Stage.pickImage);
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Front side captured. Now capture the back side.'), duration: Duration(seconds: 2)),
+      );
+    }
+  }
+
   Future<void> _exportIdCard() async {
     setState(() => _stage = _Stage.saving);
     try {
@@ -293,10 +326,11 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
       _log.log('CROP', 'ID Card PDF exported: $outPath');
       if (!mounted) return;
 
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('ID Card PDF generated successfully'), duration: Duration(seconds: 2)),
-      );
-      
+            if (!mounted) return;
+
+      await _showIdCardResultSheet(outPath);
+      if (!mounted) return;
+
       setState(() {
         _idFrontPath = null;
         _idBackPath = null;
@@ -353,6 +387,63 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
     } finally {
       if (mounted) setState(() => _stage = _Stage.pickImage);
     }
+  }
+
+  Future<void> _showIdCardResultSheet(String pdfPath) async {
+    await showModalBottomSheet<void>(
+      context: context,
+      builder: (ctx) => SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Text('ID Card PDF Generated', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+              const SizedBox(height: 16),
+              ElevatedButton.icon(
+                onPressed: () async {
+                  Navigator.pop(ctx);
+                  try {
+                    await _shareService.shareFiles(filePaths: [pdfPath]);
+                  } catch (_) {}
+                },
+                icon: const Icon(Icons.ios_share),
+                label: const Text('Share PDF'),
+              ),
+              const SizedBox(height: 8),
+              ElevatedButton.icon(
+                onPressed: () async {
+                  Navigator.pop(ctx);
+                  final now = DateTime.now();
+                  final doc = ScanDocument(
+                    id: '${now.microsecondsSinceEpoch}',
+                    title: 'ID Card ${now.year}-${now.month.toString().padLeft(2, '0')}-${now.day.toString().padLeft(2, '0')}',
+                    pageCount: 2,
+                    pagePaths: [_idFrontPath!, _idBackPath!],
+                    createdAt: now,
+                    updatedAt: now,
+                    ocrText: '',
+                    thumbnailPath: _idFrontPath!,
+                  );
+                  final success = await _scanProvider.importDocument(doc);
+                  if (!mounted) return;
+                  if (success) {
+                    context.pushReplacement('/scan/${doc.id}');
+                  }
+                },
+                icon: const Icon(Icons.save_alt),
+                label: const Text('Save as Document'),
+              ),
+              const SizedBox(height: 8),
+              TextButton(
+                onPressed: () => Navigator.pop(ctx),
+                child: const Text('Done'),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 
   Future<void> _cropAndSave(String sourcePath, {bool isIdFront = false, bool isIdBack = false}) async {
@@ -561,15 +652,13 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
                       Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          if (_currentMode != _CaptureMode.idCard) ...[
-                            ElevatedButton.icon(
-                              onPressed: _scanDocument,
-                              icon: const Icon(Icons.document_scanner),
-                              label: const Text('Auto Scan'),
-                              style: ElevatedButton.styleFrom(backgroundColor: accent, foregroundColor: Colors.white, padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12), shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppShape.buttonRadius))),
-                            ),
-                            const SizedBox(height: AppSpacing.md),
-                          ],
+                          ElevatedButton.icon(
+                            onPressed: _scanDocument,
+                            icon: const Icon(Icons.document_scanner),
+                            label: const Text('Auto Scan'),
+                            style: ElevatedButton.styleFrom(backgroundColor: accent, foregroundColor: Colors.white, padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12), shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppShape.buttonRadius))),
+                          ),
+                          const SizedBox(height: AppSpacing.md),
                           ElevatedButton.icon(
                             onPressed: _takePhoto,
                             icon: const Icon(Icons.camera_alt),
@@ -586,12 +675,14 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
                             style: ElevatedButton.styleFrom(backgroundColor: surface, foregroundColor: textPrimary, padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12), shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppShape.buttonRadius))),
                           ),
                           const SizedBox(height: AppSpacing.md),
-                          ElevatedButton.icon(
-                            onPressed: _pickAndConvertDocument,
-                            icon: const Icon(Icons.transform_outlined),
-                            label: const Text('Import & Convert Document'),
-                            style: ElevatedButton.styleFrom(backgroundColor: surface, foregroundColor: textPrimary, padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12), shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppShape.buttonRadius))),
-                          ),
+                          if (_currentMode != _CaptureMode.idCard) ...[
+                            ElevatedButton.icon(
+                              onPressed: _pickAndConvertDocument,
+                              icon: const Icon(Icons.transform_outlined),
+                              label: const Text('Import & Convert Document'),
+                              style: ElevatedButton.styleFrom(backgroundColor: surface, foregroundColor: textPrimary, padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12), shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppShape.buttonRadius))),
+                            ),
+                          ],
                         ],
                       ),
                   ],
