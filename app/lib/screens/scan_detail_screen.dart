@@ -202,17 +202,28 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
 
     if (bytes == null || !mounted) return;
 
-    final placement = await showModalBottomSheet<(int, double, double, double, double)?>(
-      context: context,
-      isScrollControlled: true,
-      builder: (context) => OverlayPlacementSheet(
-        pagePaths: document.pagePaths,
-        overlayBytes: bytes,
-        title: 'Place Annotation',
-      ),
-    );
+      final placement = await showModalBottomSheet<(int, double, double, double, double, double)?>(
+        context: context,
+        isScrollControlled: true,
+        builder: (context) => OverlayPlacementSheet(
+          pagePaths: document.pagePaths,
+          overlayBytes: bytes,
+          title: 'Place Annotation',
+          initialWidthFraction: 0.8,
+        ),
+      );
+      if (placement == null || !mounted) return;
+      await _compositeAndSavePage(
+        placement.$1,
+        bytes,
+        pctX: placement.$2,
+        pctY: placement.$3,
+        rotationDegrees: placement.$4,
+        scale: placement.$5,
+        widthFraction: placement.$6,
+      );
 
-    if (placement == null || !mounted) return;
+    
     await _compositeAndSavePage(
       placement.$1,
       bytes,
@@ -258,15 +269,27 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
     if (signatureBytes == null || !mounted) return;
     final Uint8List signatureBytesNonNull = signatureBytes;
 
-    final placement = await showModalBottomSheet<(int, double, double, double, double)?>(
+    final placement = await showModalBottomSheet<(int, double, double, double, double, double)?>(
       context: context,
       isScrollControlled: true,
       builder: (context) => OverlayPlacementSheet(
         pagePaths: document.pagePaths,
         overlayBytes: signatureBytesNonNull,
         title: 'Place Signature',
+        initialWidthFraction: 0.28,
       ),
     );
+    if (placement != null && mounted) {
+      await _compositeSignatureOnPage(
+        placement.$1,
+        signatureBytes,
+        placement.$2,
+        placement.$3,
+        placement.$4,
+        scale: placement.$5,
+        widthFraction: placement.$6,
+      );
+    }
 
     if (placement != null && mounted) {
       await _compositeSignatureOnPage(
@@ -399,16 +422,27 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
     );
     if (bytes == null || !mounted) return;
 
-    final placement = await showModalBottomSheet<(int, double, double, double, double)?>(
+    final placement = await showModalBottomSheet<(int, double, double, double, double, double)?>(
       context: context,
       isScrollControlled: true,
       builder: (context) => OverlayPlacementSheet(
         pagePaths: document.pagePaths,
         overlayBytes: bytes,
         title: 'Place Watermark',
+        initialWidthFraction: 0.6,
       ),
     );
     if (placement == null || !mounted) return;
+    await _compositeAndSavePage(
+      placement.$1,
+      bytes,
+      pctX: placement.$2,
+      pctY: placement.$3,
+      rotationDegrees: placement.$4,
+      scale: placement.$5,
+      widthFraction: placement.$6,
+    );
+    
     await _compositeAndSavePage(
       placement.$1,
       bytes,
@@ -888,7 +922,7 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
     }
   }
 
-  Future<void> _compositeAndSavePage(int pageIndex, Uint8List overlayBytes, {double pctX = 0.5, double pctY = 0.5, double rotationDegrees = 0, double scale = 1.0}) async {
+  Future<void> _compositeAndSavePage(int pageIndex, Uint8List overlayBytes, {double pctX = 0.5, double pctY = 0.5, double rotationDegrees = 0, double scale = 1.0, double widthFraction = 0.5}) async {
     final document = _document;
     if (document == null) return;
 
@@ -902,6 +936,7 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
         'pctY': pctY,
         'rotation': rotationDegrees,
         'scale': scale,
+        'widthFraction': widthFraction,
       });
 
       final appDir = await getApplicationDocumentsDirectory();
@@ -922,7 +957,7 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
     }
   }
 
-  Future<void> _compositeSignatureOnPage(int pageIndex, Uint8List signatureBytes, double pctX, double pctY, double rotation, {double scale = 1.0}) async {
+  Future<void> _compositeSignatureOnPage(int pageIndex, Uint8List signatureBytes, double pctX, double pctY, double rotation, {double scale = 1.0, double widthFraction = 0.28}) async {
     final document = _document;
     if (document == null) return;
 
@@ -935,6 +970,7 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
         'pctY': pctY,
         'rotation': rotation,
         'scale': scale,
+        'widthFraction': widthFraction,
       });
 
       final appDir = await getApplicationDocumentsDirectory();
@@ -1266,19 +1302,6 @@ class _RegionSelectSheetState extends State<_RegionSelectSheet> {
     newRight = newRight.clamp(0.0, _displayW);
     newBottom = newBottom.clamp(0.0, _displayH);
 
-    if (newLeft < _snapThreshold) {
-      newLeft = 0;
-    }
-    if (newTop < _snapThreshold) {
-      newTop = 0;
-    }
-    if (newRight > _displayW - _snapThreshold) {
-      newRight = _displayW;
-    }
-    if (newBottom > _displayH - _snapThreshold) {
-      newBottom = _displayH;
-    }
-
     if (newRight - newLeft < 20) {
               if (_activeHandle == 'tl' || _activeHandle == 'bl') {
           newLeft = newRight - 20;
@@ -1292,6 +1315,19 @@ class _RegionSelectSheetState extends State<_RegionSelectSheet> {
         } else {
           newBottom = newTop + 20;
         }
+    }
+
+    if (newLeft < _snapThreshold) {
+      newLeft = 0;
+    }
+    if (newTop < _snapThreshold) {
+      newTop = 0;
+    }
+    if (newRight > _displayW - _snapThreshold) {
+      newRight = _displayW;
+    }
+    if (newBottom > _displayH - _snapThreshold) {
+      newBottom = _displayH;
     }
 
     setState(() {
@@ -1539,18 +1575,17 @@ Uint8List _compositeOverlayIsolate(Map<String, dynamic> args) {
   if (original == null || overlay == null) {
     return args['original'] as Uint8List;
   }
-  overlay = img.copyResize(overlay, width: original.width, height: original.height);
   final scale = (args['scale'] as double?) ?? 1.0;
   final pctX = (args['pctX'] as double?) ?? 0.5;
   final pctY = (args['pctY'] as double?) ?? 0.5;
   final rotation = (args['rotation'] as double?) ?? 0.0;
-
+  final widthFraction = (args['widthFraction'] as double?) ?? 0.5;
+  double tw = original.width * widthFraction * scale;
+  if (tw < 8) tw = 8;
+  final targetW = tw.round();
+  final targetH = (targetW * overlay.height / overlay.width).round();
+  overlay = img.copyResize(overlay, width: targetW, height: targetH);
   if (rotation != 0) overlay = img.copyRotate(overlay, angle: rotation);
-  if (scale != 1.0) {
-    final newW = (overlay.width * scale).round();
-    final newH = (overlay.height * scale).round();
-    overlay = img.copyResize(overlay, width: newW, height: newH);
-  }
 
   final dstX = (pctX * original.width).round() - (overlay.width ~/ 2);
   final dstY = (pctY * original.height).round() - (overlay.height ~/ 2);
@@ -1565,7 +1600,8 @@ Uint8List _compositeSignatureIsolate(Map<String, dynamic> args) {
   if (original == null || signature == null) {
     return args['original'] as Uint8List;
   }
-  final targetWidth = (original.width * 0.28).round();
+  final wf = (args['widthFraction'] as double?) ?? 0.28;
+  final targetWidth = (original.width * wf).round();
   final targetHeight = (signature.height * targetWidth / signature.width).round();
   signature = img.copyResize(signature, width: targetWidth, height: targetHeight);
 

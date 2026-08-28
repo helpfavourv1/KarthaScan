@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'dart:typed_data';
-
 import 'package:flutter/material.dart';
 import 'package:image/image.dart' as img;
 import '../core/utils/constants.dart';
@@ -11,11 +10,13 @@ class OverlayPlacementSheet extends StatefulWidget {
     required this.pagePaths,
     required this.overlayBytes,
     this.title = 'Place Overlay',
+    this.initialWidthFraction = 0.3,
   });
 
   final List<String> pagePaths;
   final Uint8List overlayBytes;
   final String title;
+  final double initialWidthFraction;
 
   @override
   State<OverlayPlacementSheet> createState() => OverlayPlacementSheetState();
@@ -23,20 +24,43 @@ class OverlayPlacementSheet extends StatefulWidget {
 
 class OverlayPlacementSheetState extends State<OverlayPlacementSheet> {
   int _currentPageIndex = 0;
-  Offset _offset = Offset.zero;
+  double _centerX = 0.5;
+  double _centerY = 0.5;
   double _rotationDegrees = 0;
   double _scale = 1.0;
-  final GlobalKey _stackKey = GlobalKey();
-  bool _initialized = false;
+  late double _widthFraction;
   double _overlayAspect = 2.0;
+  double _pageAspect = 0.75;
 
   @override
   void initState() {
     super.initState();
+    _widthFraction = widget.initialWidthFraction;
     final decoded = img.decodePng(widget.overlayBytes);
     if (decoded != null && decoded.height > 0) {
       _overlayAspect = (decoded.width / decoded.height).clamp(0.1, 10.0).toDouble();
     }
+    _loadPageAspect(_currentPageIndex);
+  }
+
+  Future<void> _loadPageAspect(int index) async {
+    try {
+      final bytes = await File(widget.pagePaths[index]).readAsBytes();
+      final decoded = img.decodeImage(bytes);
+      if (decoded != null && decoded.height > 0 && mounted) {
+        setState(() => _pageAspect = decoded.width / decoded.height);
+      }
+    } catch (_) {}
+  }
+
+  Rect _imageRect(Size stack) {
+    double imgW = stack.width;
+    double imgH = imgW / _pageAspect;
+    if (imgH > stack.height) {
+      imgH = stack.height;
+      imgW = imgH * _pageAspect;
+    }
+    return Rect.fromLTWH((stack.width - imgW) / 2, (stack.height - imgH) / 2, imgW, imgH);
   }
 
   @override
@@ -66,12 +90,16 @@ class OverlayPlacementSheetState extends State<OverlayPlacementSheet> {
                     children: [
                       IconButton(
                         icon: const Icon(Icons.chevron_left),
-                        onPressed: _currentPageIndex > 0 ? () => setState(() => _currentPageIndex--) : null,
+                        onPressed: _currentPageIndex > 0
+                            ? () => setState(() { _currentPageIndex--; _loadPageAspect(_currentPageIndex); })
+                            : null,
                       ),
                       Text('Page ${_currentPageIndex + 1} / ${widget.pagePaths.length}', style: TextStyle(fontSize: 14, color: textPrimary)),
                       IconButton(
                         icon: const Icon(Icons.chevron_right),
-                        onPressed: _currentPageIndex < widget.pagePaths.length - 1 ? () => setState(() => _currentPageIndex++) : null,
+                        onPressed: _currentPageIndex < widget.pagePaths.length - 1
+                            ? () => setState(() { _currentPageIndex++; _loadPageAspect(_currentPageIndex); })
+                            : null,
                       ),
                     ],
                   ),
@@ -83,33 +111,29 @@ class OverlayPlacementSheetState extends State<OverlayPlacementSheet> {
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: LayoutBuilder(
                   builder: (context, constraints) {
-                    if (!_initialized) {
-                      _initialized = true;
-                      _offset = Offset(constraints.maxWidth * 0.5 - 50, constraints.maxHeight * 0.6);
-                    }
+                    final stack = Size(constraints.maxWidth, constraints.maxHeight);
+                    final imgRect = _imageRect(stack);
+                    final dispW = imgRect.width * _widthFraction * _scale;
+                    final dispH = dispW / _overlayAspect;
+                    final cx = imgRect.left + _centerX * imgRect.width;
+                    final cy = imgRect.top + _centerY * imgRect.height;
                     return Stack(
-                      key: _stackKey,
                       children: [
                         Positioned.fill(child: Image.file(File(currentPagePath), fit: BoxFit.contain)),
                         Positioned(
-                          left: _offset.dx,
-                          top: _offset.dy,
+                          left: cx - dispW / 2,
+                          top: cy - dispH / 2,
                           child: GestureDetector(
+                            behavior: HitTestBehavior.opaque,
                             onPanUpdate: (details) => setState(() {
-                              _offset += details.delta;
-                              _offset = Offset(
-                                _offset.dx.clamp(0.0, constraints.maxWidth - 80).toDouble(),
-                                _offset.dy.clamp(0.0, constraints.maxHeight - 40).toDouble(),
-                              );
+                              _centerX = (_centerX + details.delta.dx / imgRect.width).clamp(0.0, 1.0).toDouble();
+                              _centerY = (_centerY + details.delta.dy / imgRect.height).clamp(0.0, 1.0).toDouble();
                             }),
                             child: Transform.rotate(
                               angle: _rotationDegrees * 3.14159 / 180,
-                              child: Transform.scale(
-                                scale: _scale,
-                                child: Opacity(
-                                  opacity: 0.85,
-                                  child: Image.memory(widget.overlayBytes, width: 120, height: 120 / _overlayAspect, fit: BoxFit.contain),
-                                ),
+                              child: Opacity(
+                                opacity: 0.85,
+                                child: Image.memory(widget.overlayBytes, width: dispW, height: dispH, fit: BoxFit.contain),
                               ),
                             ),
                           ),
@@ -165,11 +189,7 @@ class OverlayPlacementSheetState extends State<OverlayPlacementSheet> {
                   const SizedBox(width: 12),
                   ElevatedButton(
                     onPressed: () {
-                      final RenderBox? box = _stackKey.currentContext?.findRenderObject() as RenderBox?;
-                      final Size size = box?.size ?? const Size(1, 1);
-                      final double pctX = (_offset.dx / size.width).clamp(0.0, 1.0).toDouble();
-                      final double pctY = (_offset.dy / size.height).clamp(0.0, 1.0).toDouble();
-                      Navigator.pop(context, (_currentPageIndex, pctX, pctY, _rotationDegrees, _scale));
+                      Navigator.pop(context, (_currentPageIndex, _centerX, _centerY, _rotationDegrees, _scale, _widthFraction));
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: accent,

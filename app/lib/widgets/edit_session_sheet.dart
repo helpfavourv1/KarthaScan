@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
+import 'package:image/image.dart' as img;
 import '../core/utils/constants.dart';
 import '../core/models/edit_session.dart';
 import 'text_stamp_sheet.dart';
@@ -14,7 +15,24 @@ class EditSessionSheet extends StatefulWidget {
 class _EditSessionSheetState extends State<EditSessionSheet> {
   late final List<EditLayer> _layers;
   int _selected = 0;
-  @override void initState() { super.initState(); _layers = [EditLayer(pngBytes: widget.initialBytes, label: widget.initialLabel, widthFraction: widget.initialWidthFraction, aspect: widget.initialAspect)]; }
+  double _pageAspect = 0.75;
+
+  @override void initState() {
+    super.initState();
+    _layers = [EditLayer(pngBytes: widget.initialBytes, label: widget.initialLabel, widthFraction: widget.initialWidthFraction, aspect: widget.initialAspect)];
+    _loadAspect();
+  }
+
+  Future<void> _loadAspect() async {
+    try {
+      final bytes = await File(widget.imagePath).readAsBytes();
+      final decoded = img.decodeImage(bytes);
+      if (decoded != null && decoded.height > 0 && mounted) {
+        setState(() => _pageAspect = decoded.width / decoded.height);
+      }
+    } catch (_) {}
+  }
+
   EditLayer get _current => _layers[_selected];
 
   Future<void> _addLayer(String kind) async {
@@ -29,23 +47,25 @@ class _EditSessionSheetState extends State<EditSessionSheet> {
     final bg = isDark ? const Color(0xFF1C1C1E) : Colors.white;
     final textPrimary = isDark ? Colors.white : const Color(0xFF111111);
     final accent = isDark ? AppColors.accentDark : AppColors.accentLight;
-
     return SafeArea(
       child: Container(height: MediaQuery.of(context).size.height * 0.9, decoration: BoxDecoration(color: bg, borderRadius: const BorderRadius.vertical(top: Radius.circular(20))),
         child: Column(children: [
           Padding(padding: const EdgeInsets.all(16), child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [Text('Edit Layers', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600, color: textPrimary)), IconButton(icon: const Icon(Icons.close), onPressed: () => Navigator.pop(context))])),
           Expanded(child: Padding(padding: const EdgeInsets.symmetric(horizontal: 16), child: LayoutBuilder(builder: (context, constraints) {
-            final w = constraints.maxWidth; final h = constraints.maxHeight;
+            final stackW = constraints.maxWidth; final stackH = constraints.maxHeight;
+            double iw = stackW; double ih = iw / _pageAspect;
+            if (ih > stackH) { ih = stackH; iw = ih * _pageAspect; }
+            final dx = (stackW - iw) / 2; final dy = (stackH - ih) / 2;
             return Stack(children: [
               Positioned.fill(child: Image.file(File(widget.imagePath), fit: BoxFit.contain)),
               for (int i = 0; i < _layers.length; i++) ...[
                 Positioned(
-                  left: _layers[i].pctX * w - (w * _layers[i].widthFraction * _layers[i].scale) / 2,
-                  top: _layers[i].pctY * h - (w * _layers[i].widthFraction * _layers[i].scale * _layers[i].aspect) / 2,
+                  left: dx + _layers[i].pctX * iw - (iw * _layers[i].widthFraction * _layers[i].scale) / 2,
+                  top: dy + _layers[i].pctY * ih - (iw * _layers[i].widthFraction * _layers[i].scale * _layers[i].aspect) / 2,
                   child: GestureDetector(
                     onTap: () => setState(() => _selected = i),
-                    onPanUpdate: (d) => setState(() { _layers[i].pctX = (_layers[i].pctX + d.delta.dx / w).clamp(0.0, 1.0); _layers[i].pctY = (_layers[i].pctY + d.delta.dy / h).clamp(0.0, 1.0); }),
-                    child: Transform.rotate(angle: _layers[i].rotationDegrees * 3.14159 / 180, child: Opacity(opacity: _layers[i].opacity, child: Image.memory(_layers[i].pngBytes, width: w * _layers[i].widthFraction * _layers[i].scale))),
+                    onPanUpdate: (d) => setState(() { _layers[i].pctX = (_layers[i].pctX + d.delta.dx / iw).clamp(0.0, 1.0); _layers[i].pctY = (_layers[i].pctY + d.delta.dy / ih).clamp(0.0, 1.0); }),
+                    child: Transform.rotate(angle: _layers[i].rotationDegrees * 3.14159 / 180, child: Opacity(opacity: _layers[i].opacity, child: Image.memory(_layers[i].pngBytes, width: iw * _layers[i].widthFraction * _layers[i].scale))),
                   ),
                 ),
               ],
