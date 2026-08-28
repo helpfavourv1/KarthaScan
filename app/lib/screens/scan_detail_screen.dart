@@ -25,7 +25,6 @@ import '../widgets/edit_tray.dart';
 import '../widgets/annotate_sheet.dart';
 import '../widgets/scan_preview_card.dart';
 import '../widgets/signature_canvas.dart';
-import '../widgets/tag_chip.dart';
 import '../widgets/overlay_placement_sheet.dart';
 import 'package:printing/printing.dart';
 import 'package:pdf/pdf.dart';
@@ -104,30 +103,7 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
     }
   }
 
-  Future<void> _addTag(ScanDocument document, AppLocalizations l10n) async {
-    final controller = TextEditingController();
-    final tag = await showDialog<String>(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: Text(l10n.addTagTitle),
-        content: TextField(controller: controller, autofocus: true),
-        actions: [
-          TextButton(onPressed: () => Navigator.pop(context), child: Text(l10n.commonCancel)),
-          TextButton(onPressed: () => Navigator.pop(context, controller.text), child: Text(l10n.commonAdd)),
-        ],
-      ),
-    );
-    controller.dispose();
-    final trimmed = tag?.trim() ?? '';
-    if (trimmed.isEmpty) return;
-    final updated = {...document.tags, trimmed}.toList();
-    await _scanProvider.updateTags(document.id, updated);
-  }
 
-  Future<void> _removeTag(ScanDocument document, String tag) async {
-    final updated = document.tags.where((t) => t != tag).toList();
-    await _scanProvider.updateTags(document.id, updated);
-  }
 
   Future<void> _moveToFolder(ScanDocument document, AppLocalizations l10n) async {
     final folders = _folderProvider.folders.value;
@@ -1076,34 +1052,7 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
                             onPageChanged: (index) => setState(() => _currentPageIndex = index),
                           ),
                         ),
-                        Positioned(
-                          left: 0,
-                          right: 0,
-                          bottom: 12,
-                          child: Center(
-                            child: EditTray(
-                              onMarkup: _annotate,
-                              onSign: _addSignature,
-                              onWatermark: _addWatermark,
-                              onOcr: _regionOcr,
-                              onConvert: () => context.push('/export', extra: <String>[document.id]),
-                              onCompress: () => context.push('/export', extra: <String, dynamic>{'ids': <String>[document.id], 'format': 'jpg'}),
-                              onRotate: _rotatePage,
-                              onResize: _resizePage,
-                              onPages: _openPagesManager,
-                              onFilter: _applyFilterToPage,
-                              onCrop: _cropCurrentPage,
-                              onText: () => _addStamp('text'),
-                              onNote: () => _addStamp('note'),
-                              onDate: () => _addStamp('date'),
-                              onCheckbox: () => _addStamp('checkbox'),
-                              onPrint: _printDocument,
-                              onEmail: _emailDocument,
-                              onErase: _erasePage,
-                            ),
-                          ),
-                        ),
-                      ],
+                                              ],
                     ),
                     // Text Tab
                     Column(
@@ -1149,20 +1098,27 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
                   ],
                 ),
               ),
-              // Tag Bar
-              Container(
-                color: bg,
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                child: Wrap(
-                  spacing: 8,
-                  runSpacing: 8,
-                  children: [
-                    ...document.tags.map((tag) => TagChip(label: tag, onDeleted: () => _removeTag(document, tag))),
-                    TagChip(label: l10n.addTagChipLabel, onTap: () => _addTag(document, l10n)),
-                  ],
-                ),
-              ),
-              // Bottom Actions
+              EditTray(
+                                                  onMarkup: _annotate,
+                                                  onSign: _addSignature,
+                                                  onWatermark: _addWatermark,
+                                                  onOcr: _regionOcr,
+                                                  onConvert: () => context.push('/export', extra: <String>[document.id]),
+                                                  onCompress: () => context.push('/export', extra: <String, dynamic>{'ids': <String>[document.id], 'format': 'jpg'}),
+                                                  onRotate: _rotatePage,
+                                                  onResize: _resizePage,
+                                                  onPages: _openPagesManager,
+                                                  onFilter: _applyFilterToPage,
+                                                  onCrop: _cropCurrentPage,
+                                                  onText: () => _addStamp('text'),
+                                                  onNote: () => _addStamp('note'),
+                                                  onDate: () => _addStamp('date'),
+                                                  onCheckbox: () => _addStamp('checkbox'),
+                                                  onPrint: _printDocument,
+                                                  onEmail: _emailDocument,
+                                                  onErase: _erasePage,
+                                                ),
+                                                // Bottom Actions
               SafeArea(
                 top: false,
                 child: Container(
