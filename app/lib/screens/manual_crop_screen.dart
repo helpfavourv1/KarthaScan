@@ -532,6 +532,19 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
     }
   }
 
+  String _getModeCaption() {
+    switch (_currentMode) {
+      case _CaptureMode.docs:
+        return 'Flexible crop: Original, Square, 4:3, 3:2, 16:9';
+      case _CaptureMode.ocr:
+        return 'Text crop: Original, Square, 4:3';
+      case _CaptureMode.idCard:
+        return 'Two-sided ID capture: Front + Back';
+      case _CaptureMode.passport:
+        return 'Passport crop: 4:3 or Original';
+    }
+  }
+
   Widget _buildModeCard(String label, IconData icon, _CaptureMode mode) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final accent = isDark ? AppColors.accentDark : AppColors.accentLight;
@@ -610,7 +623,15 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
                         _buildModeCard('Passport', Icons.badge_outlined, _CaptureMode.passport),
                       ],
                     ),
-                    const SizedBox(height: AppSpacing.lg),
+                    const SizedBox(height: AppSpacing.sm),
+                    Center(
+                      child: Text(
+                        _getModeCaption(),
+                        style: TextStyle(color: textSecondary, fontSize: AppTypography.footnoteSize, fontStyle: FontStyle.italic),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                    const SizedBox(height: AppSpacing.md),
                     
                     // ID Card State Indicator
                     if (_currentMode == _CaptureMode.idCard) ...[
