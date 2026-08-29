@@ -266,6 +266,7 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
       _playCaptureFeedback();
       if (_currentMode == _CaptureMode.idCard) {
         await _routeScanToIdSlots(result.pageImagePaths);
+        if (mounted) setState(() => _isPicking = false);
         return;
       }
       final savedDoc = await _saveScannedDocument(result.pageImagePaths);
@@ -323,17 +324,14 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
       );
       _log.log('CROP', 'ID Card PDF exported: $outPath');
       if (!mounted) return;
-
-            if (!mounted) return;
-
-      await _showIdCardResultSheet(outPath);
-      if (!mounted) return;
-
+      final front = _idFrontPath!;
+      final back = _idBackPath!;
       setState(() {
         _idFrontPath = null;
         _idBackPath = null;
         _stage = _Stage.pickImage;
       });
+      await _showIdCardResultSheet(outPath, frontPath: front, backPath: back);
     } catch (e) {
       _log.log('CROP', 'ID Card export error: $e');
       if (!mounted) return;
@@ -387,7 +385,7 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
     }
   }
 
-  Future<void> _showIdCardResultSheet(String pdfPath) async {
+  Future<void> _showIdCardResultSheet(String pdfPath, {required String frontPath, required String backPath}) async {
     await showModalBottomSheet<void>(
       context: context,
       builder: (ctx) => SafeArea(
@@ -417,11 +415,11 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
                     id: '${now.microsecondsSinceEpoch}',
                     title: 'ID Card ${now.year}-${now.month.toString().padLeft(2, '0')}-${now.day.toString().padLeft(2, '0')}',
                     pageCount: 2,
-                    pagePaths: [_idFrontPath!, _idBackPath!],
+                    pagePaths: [frontPath, backPath],
                     createdAt: now,
                     updatedAt: now,
                     ocrText: '',
-                    thumbnailPath: _idFrontPath!,
+                    thumbnailPath: frontPath,
                   );
                   final success = await _scanProvider.importDocument(doc);
                   if (!mounted) return;
