@@ -25,7 +25,7 @@ import '../l10n/app_localizations.dart';
 import '../widgets/edit_tray.dart';
 import '../widgets/annotate_sheet.dart';
 import '../widgets/scan_preview_card.dart';
-import '../widgets/signature_canvas.dart';
+import '../widgets/ink_board.dart';
 import '../widgets/overlay_placement_sheet.dart';
 import 'package:printing/printing.dart';
 import 'package:pdf/pdf.dart';
@@ -52,7 +52,7 @@ class ScanDetailScreen extends StatefulWidget {
 
 class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerProviderStateMixin {
   late final ScanProvider _scanProvider;
-  Uint8List? _signatureBytes;
+  late final InkController _inkController;
   late final FolderProvider _folderProvider;
   final ShareService _shareService = ShareService();
   final OcrService _ocrService = OcrService();
@@ -60,18 +60,27 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
 
   late TabController _tabController;
   int _currentPageIndex = 0;
-  bool _signatureMode = false;
   bool _annotateMode = false;
   Uint8List? _annotateBytes;
 
   @override
   void initState() {
     super.initState();
-    _loadSignatureBytes();
     _scanProvider = Provider.of<ScanProvider>(context, listen: false);
     _folderProvider = Provider.of<FolderProvider>(context, listen: false);
+    _inkController = InkController(onChange: _persistSignature);
     _scanProvider.setActiveScan(widget.documentId);
     _tabController = TabController(length: 2, vsync: this);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final doc = _document;
+      if (doc != null) _inkController.seed(doc);
+    });
+  }
+
+  Future<void> _persistSignature() async {
+    final doc = _document;
+    if (doc == null) return;
+    await _scanProvider.setSignatureState(doc.id, _inkController.inks.values.toList(), _inkController.layers);
   }
 
   @override
@@ -177,90 +186,6 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
   }
 
 
-  Future<void> _loadSignatureBytes() async {
-    final bytes = await _localStorage.loadSignaturePng();
-    if (mounted && bytes != null) {
-      setState(() => _signatureBytes = bytes);
-    }
-  }
-
-  Future<void> _addSignature() async {
-    await _addSignatureToPage(_currentPageIndex);
-  }
-
-  Future<void> _addSignatureToPage(int pageIndex) async {
-    final document = _document;
-    if (document == null || document.pagePaths.isEmpty) return;
-
-    Uint8List? signatureBytes;
-    final saved = await _localStorage.loadSignaturePng();
-    if (saved != null && mounted) {
-      final choice = await showDialog<String>(
-        context: context,
-        builder: (ctx) => AlertDialog(
-          title: const Text('Signature'),
-          content: const Text('Use your saved signature or draw a new one?'),
-          actions: [
-            TextButton(onPressed: () => Navigator.pop(ctx, 'saved'), child: const Text('Use Saved')),
-            TextButton(onPressed: () => Navigator.pop(ctx, 'draw'), child: const Text('Draw New')),
-          ],
-        ),
-      );
-      if (choice == 'saved') signatureBytes = saved;
-    }
-    if (signatureBytes == null && mounted) {
-      final signatureKey = GlobalKey<SignatureCanvasState>();
-      signatureBytes = await showModalBottomSheet<Uint8List?>(
-        context: context,
-        isScrollControlled: true,
-        builder: (context) => _SignatureSheet(signatureKey: signatureKey),
-      );
-      if (signatureBytes != null) {
-        await _localStorage.saveSignaturePng(signatureBytes);
-      }
-    }
-
-    if (signatureBytes == null || !mounted) return;
-
-    // Ensure overlay renders immediately
-    setState(() {
-      _signatureBytes = signatureBytes;
-      _signatureMode = true;
-    });
-
-    await _scanProvider.addSignatureLayer(
-      document.id,
-      pageIndex,
-      const SignaturePlacement(pctX: 0.5, pctY: 0.35),
-    );
-    if (mounted) {
-      setState(() {});
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Signature added — drag to reposition')),
-      );
-    }
-  }
-
-  Future<void> _copySignatureToAllPages(SignatureLayer layer) async {
-    final document = _document;
-    if (document == null) return;
-    for (int i = 0; i < document.pagePaths.length; i++) {
-      await _scanProvider.updateSignatureLayer(document.id, SignatureLayer(pageIndex: i, placement: layer.placement, inkId: layer.inkId));
-    }
-  }
-
-  Future<void> _clearSignaturePage(int pageIndex) async {
-    final document = _document;
-    if (document == null) return;
-    await _scanProvider.removeSignatureLayer(document.id, pageIndex);
-  }
-
-  Future<void> _clearAllSignatureLayers() async {
-    final document = _document;
-    if (document == null) return;
-    await _scanProvider.clearSignatureLayers(document.id);
-  }
-
   Future<void> _annotateThisPage(int pageIndex) async {
     await _addAnnotateToPage(pageIndex);
   }
@@ -290,8 +215,7 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
     setState(() {
       _annotateBytes = bytes;
       _annotateMode = true;
-      _signatureMode = false;
-    });
+      });
 
     await _scanProvider.addAnnotateLayer(
       document.id,
@@ -332,7 +256,6 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
 
 
   Future<void> _addWatermark() async {
-    _signatureMode = false;
     final document = _document;
     if (document == null || document.pagePaths.isEmpty) return;
 
@@ -513,7 +436,6 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
   }
 
   Future<void> _regionOcr() async {
-    _signatureMode = false;
     final document = _document;
     if (document == null || document.pagePaths.isEmpty) return;
 
@@ -623,7 +545,6 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
   }
 
   Future<void> _applyFilterToPage() async {
-    _signatureMode = false;
     final document = _document;
     if (document == null || document.pagePaths.isEmpty) return;
     final chosen = await showModalBottomSheet<FilterType>(context: context, isScrollControlled: true, builder: (ctx) => FilterPreviewSheet(imagePath: document.pagePaths[_currentPageIndex]));
@@ -642,7 +563,6 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
   }
 
   Future<void> _cropCurrentPage() async {
-    _signatureMode = false;
     final document = _document;
     if (document == null || document.pagePaths.isEmpty) return;
     final rect = await showModalBottomSheet<Rect?>(context: context, isScrollControlled: true, builder: (context) => _RegionSelectSheet(imagePath: document.pagePaths[_currentPageIndex]));
@@ -661,7 +581,6 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
   }
 
   Future<void> _addStamp(String kind) async {
-    _signatureMode = false;
     final document = _document;
     if (document == null || document.pagePaths.isEmpty) return;
     final stamp = await showModalBottomSheet<StampResult>(context: context, isScrollControlled: true, builder: (ctx) => TextStampSheet(kind: kind));
@@ -836,7 +755,6 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
   }
 
   Future<void> _rotatePage() async {
-    _signatureMode = false;
     final document = _document;
     if (document == null || document.pagePaths.isEmpty) return;
 
@@ -885,7 +803,6 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
   }
 
   Future<void> _resizePage() async {
-    _signatureMode = false;
     final document = _document;
     if (document == null || document.pagePaths.isEmpty) return;
 
@@ -1078,19 +995,7 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
                             pagePaths: document.pagePaths,
                             onPageChanged: (index) => setState(() => _currentPageIndex = index),
                           
-              signatureBytes: _signatureBytes,
-              signatureLayers: _document?.signatureLayers ?? const [],
-              signatureMode: _signatureMode,
-              onSignatureLayerUpdate: (pageIndex, layer) {
-                final doc = _document;
-                if (doc != null) {
-                  _scanProvider.updateSignatureLayer(doc.id, layer);
-                }
-              },
-              onSignThisPage: (pageIndex) => _addSignatureToPage(pageIndex),
-              onCopyToAllPages: (layer) => _copySignatureToAllPages(layer),
-              onClearThisPage: (pageIndex) => _clearSignaturePage(pageIndex),
-              onClearAllLayers: () => _clearAllSignatureLayers(),
+              inkController: _inkController,
               annotateLayers: _document?.annotateLayers ?? const [],
               annotateMode: _annotateMode,
               onAnnotateLayerUpdate: (pageIndex, layer) {
@@ -1153,7 +1058,7 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
               ),
               EditTray(
                                                   onMarkup: _annotate,
-                                                  onSign: _addSignature,
+                                                  onSign: () { _inkController.addInk(context, _localStorage); },
                                                   onWatermark: _addWatermark,
                                                   onOcr: _regionOcr,
                                                   onConvert: () => context.push('/export', extra: <String>[document.id]),
@@ -1499,48 +1404,7 @@ class _RegionOverlayPainter extends CustomPainter {
   }
 }
 
-class _SignatureSheet extends StatelessWidget {
-  const _SignatureSheet({required this.signatureKey});
-  final GlobalKey<SignatureCanvasState> signatureKey;
 
-  @override
-  Widget build(BuildContext context) {
-    return SafeArea(
-      child: Container(
-        decoration: const BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-        ),
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const Text('Sign', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600)),
-            const SizedBox(height: 16),
-            SizedBox(height: 200, child: SignatureCanvas(key: signatureKey)),
-            const SizedBox(height: 16),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                TextButton(onPressed: () => signatureKey.currentState?.clear(), child: const Text('Clear')),
-                const SizedBox(width: 12),
-                TextButton(onPressed: () => Navigator.pop(context), child: const Text('Cancel')),
-                const SizedBox(width: 12),
-                ElevatedButton(
-                  onPressed: () async {
-                    final bytes = await signatureKey.currentState?.exportPng();
-                    if (context.mounted) Navigator.pop(context, bytes);
-                  },
-                  child: const Text('Done'),
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
 
 class _FolderPickerSheet extends StatelessWidget {
   const _FolderPickerSheet({required this.folders});

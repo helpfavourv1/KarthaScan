@@ -1,5 +1,4 @@
 import 'dart:io' show File;
-import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:image/image.dart' as img;
 
@@ -7,22 +6,16 @@ import '../core/models/scan_document.dart';
 import '../core/models/signature_placement.dart';
 import '../core/utils/constants.dart';
 import '../l10n/app_localizations.dart';
+import 'ink_board.dart';
 
 class ScanPreviewCard extends StatefulWidget {
   const ScanPreviewCard({
     super.key,
     required this.pagePaths,
-    this.signatureBytes,
-    this.signatureLayers = const [],
-    this.signatureMode = false,
+    this.inkController,
     this.annotateLayers = const [],
     this.annotateMode = false,
     this.onShare,
-    this.onSignatureLayerUpdate,
-    this.onSignThisPage,
-    this.onCopyToAllPages,
-    this.onClearThisPage,
-    this.onClearAllLayers,
     this.onAnnotateLayerUpdate,
     this.onAnnotateThisPage,
     this.onCopyAnnotateToAllPages,
@@ -33,17 +26,10 @@ class ScanPreviewCard extends StatefulWidget {
   });
 
   final List<String> pagePaths;
-  final Uint8List? signatureBytes;
-  final List<SignatureLayer> signatureLayers;
-  final bool signatureMode;
+  final InkController? inkController;
   final List<AnnotateLayer> annotateLayers;
   final bool annotateMode;
   final VoidCallback? onShare;
-  final void Function(int pageIndex, SignatureLayer layer)? onSignatureLayerUpdate;
-  final void Function(int pageIndex)? onSignThisPage;
-  final void Function(SignatureLayer layer)? onCopyToAllPages;
-  final void Function(int pageIndex)? onClearThisPage;
-  final VoidCallback? onClearAllLayers;
   final void Function(int pageIndex, AnnotateLayer layer)? onAnnotateLayerUpdate;
   final void Function(int pageIndex)? onAnnotateThisPage;
   final void Function(AnnotateLayer layer)? onCopyAnnotateToAllPages;
@@ -59,7 +45,6 @@ class ScanPreviewCard extends StatefulWidget {
 class _ScanPreviewCardState extends State<ScanPreviewCard> {
   late final PageController _pageController;
   late int _currentPage;
-  double _sigAspect = 2.0;
   late Color _textSecondary;
 
   int get _lastIndex => widget.pagePaths.isEmpty ? 0 : widget.pagePaths.length - 1;
@@ -70,23 +55,6 @@ class _ScanPreviewCardState extends State<ScanPreviewCard> {
     final int requested = widget.initialPage;
     _currentPage = requested < 0 ? 0 : (requested > _lastIndex ? _lastIndex : requested);
     _pageController = PageController(initialPage: _currentPage);
-    _loadSigAspect();
-  }
-
-  void _loadSigAspect() {
-    if (widget.signatureBytes == null) return;
-    final decoded = img.decodePng(widget.signatureBytes!);
-    if (decoded != null && decoded.height > 0) {
-      _sigAspect = (decoded.width / decoded.height).clamp(0.1, 10.0).toDouble();
-    }
-  }
-
-  @override
-  void didUpdateWidget(covariant ScanPreviewCard oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    if (widget.signatureBytes != oldWidget.signatureBytes) {
-      _loadSigAspect();
-    }
   }
 
   @override
@@ -97,13 +65,6 @@ class _ScanPreviewCardState extends State<ScanPreviewCard> {
 
   AnnotateLayer? _getAnnotateLayerForPage(int pageIndex) {
     for (final layer in widget.annotateLayers) {
-      if (layer.pageIndex == pageIndex) return layer;
-    }
-    return null;
-  }
-
-  SignatureLayer? _getLayerForPage(int pageIndex) {
-    for (final layer in widget.signatureLayers) {
       if (layer.pageIndex == pageIndex) return layer;
     }
     return null;
@@ -205,101 +166,6 @@ class _ScanPreviewCardState extends State<ScanPreviewCard> {
     );
   }
 
-  Widget _buildSignatureControls() {
-    final layer = _getLayerForPage(_currentPage);
-    if (!widget.signatureMode) return const SizedBox.shrink();
-    if (widget.signatureBytes == null) return const SizedBox.shrink();
-    if (layer == null) {
-      return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md, vertical: AppSpacing.xs),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ActionChip(
-              avatar: const Icon(Icons.draw_outlined, size: 14),
-              label: const Text('Sign this page too', style: TextStyle(fontSize: 11)),
-              onPressed: () => widget.onSignThisPage?.call(_currentPage),
-            ),
-          ],
-        ),
-      );
-    }
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md, vertical: AppSpacing.xs),
-      color: _textSecondary.withValues(alpha: 0.05),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Row(
-            children: [
-              const Text('Rotate', style: TextStyle(fontSize: 11)),
-              Expanded(
-                child: Slider(
-                  value: layer.placement.rotationDegrees,
-                  min: -180,
-                  max: 180,
-                  onChanged: (v) {
-                    widget.onSignatureLayerUpdate?.call(_currentPage, SignatureLayer(
-                      pageIndex: layer.pageIndex,
-                      placement: SignaturePlacement(
-                        pctX: layer.placement.pctX,
-                        pctY: layer.placement.pctY,
-                        rotationDegrees: v,
-                        scale: layer.placement.scale,
-                      ),
-                    ));
-                  },
-                ),
-              ),
-              Text('${layer.placement.rotationDegrees.round()}°', style: const TextStyle(fontSize: 11)),
-            ],
-          ),
-          Row(
-            children: [
-              const Text('Scale', style: TextStyle(fontSize: 11)),
-              Expanded(
-                child: Slider(
-                  value: layer.placement.scale,
-                  min: 0.3,
-                  max: 3.0,
-                  onChanged: (v) {
-                    widget.onSignatureLayerUpdate?.call(_currentPage, SignatureLayer(
-                      pageIndex: layer.pageIndex,
-                      placement: SignaturePlacement(
-                        pctX: layer.placement.pctX,
-                        pctY: layer.placement.pctY,
-                        rotationDegrees: layer.placement.rotationDegrees,
-                        scale: v,
-                      ),
-                    ));
-                  },
-                ),
-              ),
-              Text('${layer.placement.scale.toStringAsFixed(1)}x', style: const TextStyle(fontSize: 11)),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              TextButton(
-                onPressed: () => widget.onCopyToAllPages?.call(layer),
-                child: const Text('Copy to all', style: TextStyle(fontSize: 11)),
-              ),
-              TextButton(
-                onPressed: () => widget.onClearThisPage?.call(_currentPage),
-                child: const Text('Clear this', style: TextStyle(fontSize: 11)),
-              ),
-              TextButton(
-                onPressed: () => widget.onClearAllLayers?.call(),
-                child: const Text('Clear all', style: TextStyle(fontSize: 11)),
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     final AppLocalizations l10n = AppLocalizations.of(context);
@@ -332,20 +198,16 @@ class _ScanPreviewCardState extends State<ScanPreviewCard> {
                 widget.onPageChanged?.call(index);
               },
               itemBuilder: (BuildContext context, int index) {
-                final layer = _getLayerForPage(index);
-                return _PageWithSignature(
+                return _PageWithInk(
                   pagePath: widget.pagePaths[index],
-                  signatureBytes: widget.signatureBytes,
-                  layer: layer,
-                  sigAspect: _sigAspect,
+                  controller: widget.inkController,
+                  pageIndex: index,
                   textSecondary: textSecondary,
-                  onUpdate: (newLayer) => widget.onSignatureLayerUpdate?.call(index, newLayer),
-                  signatureMode: widget.signatureMode,
+                  accent: accent,
                 );
               },
             ),
           ),
-          _buildSignatureControls(),
           _buildAnnotateControls(),
           Container(
             padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md, vertical: AppSpacing.sm),
@@ -364,30 +226,26 @@ class _ScanPreviewCardState extends State<ScanPreviewCard> {
   }
 }
 
-class _PageWithSignature extends StatefulWidget {
-  const _PageWithSignature({
+class _PageWithInk extends StatefulWidget {
+  const _PageWithInk({
     required this.pagePath,
-    required this.signatureBytes,
-    required this.layer,
-    required this.sigAspect,
+    required this.controller,
+    required this.pageIndex,
     required this.textSecondary,
-    required this.onUpdate,
-    required this.signatureMode,
+    required this.accent,
   });
 
   final String pagePath;
-  final Uint8List? signatureBytes;
-  final SignatureLayer? layer;
-  final double sigAspect;
+  final InkController? controller;
+  final int pageIndex;
   final Color textSecondary;
-  final void Function(SignatureLayer) onUpdate;
-  final bool signatureMode;
+  final Color accent;
 
   @override
-  State<_PageWithSignature> createState() => _PageWithSignatureState();
+  State<_PageWithInk> createState() => _PageWithInkState();
 }
 
-class _PageWithSignatureState extends State<_PageWithSignature> {
+class _PageWithInkState extends State<_PageWithInk> {
   double _pageAspect = 0.75;
 
   @override
@@ -428,8 +286,8 @@ class _PageWithSignatureState extends State<_PageWithSignature> {
               child: InteractiveViewer(
                 minScale: 1,
                 maxScale: 4,
-                panEnabled: !widget.signatureMode,
-                scaleEnabled: !widget.signatureMode,
+                panEnabled: widget.controller?.hasInks != true,
+                scaleEnabled: widget.controller?.hasInks != true,
                 child: Center(
                   child: Image.file(
                     File(widget.pagePath),
@@ -439,42 +297,18 @@ class _PageWithSignatureState extends State<_PageWithSignature> {
                 ),
               ),
             ),
-            if (widget.signatureBytes != null && widget.layer != null)
-              Builder(builder: (context) {
-                final layer = widget.layer!;
-                final sigW = iw * 0.28 * layer.placement.scale;
-                final sigH = sigW / widget.sigAspect;
-                return Positioned(
-                  left: dx + layer.placement.pctX * iw - sigW / 2,
-                  top: dy + layer.placement.pctY * ih - sigH / 2,
-                  child: IgnorePointer(
-                    ignoring: !widget.signatureMode,
-                    child: GestureDetector(
-                      behavior: HitTestBehavior.opaque,
-                      onPanUpdate: (d) {
-                        final newPctX = (layer.placement.pctX + d.delta.dx / iw).clamp(0.0, 1.0);
-                        final newPctY = (layer.placement.pctY + d.delta.dy / ih).clamp(0.0, 1.0);
-                        widget.onUpdate(SignatureLayer(
-                          pageIndex: layer.pageIndex,
-                          placement: SignaturePlacement(
-                            pctX: newPctX,
-                            pctY: newPctY,
-                            rotationDegrees: layer.placement.rotationDegrees,
-                            scale: layer.placement.scale,
-                          ),
-                        ));
-                      },
-                      child: Transform.rotate(
-                        angle: layer.placement.rotationDegrees * 3.14159 / 180,
-                        child: Opacity(
-                          opacity: 0.9,
-                          child: Image.memory(widget.signatureBytes!, width: sigW, height: sigH, fit: BoxFit.contain),
-                        ),
-                      ),
-                    ),
-                  ),
-                );
-              }),
+            if (widget.controller != null)
+              InkOverlayPage(
+                controller: widget.controller!,
+                pageIndex: widget.pageIndex,
+                imgW: iw,
+                imgH: ih,
+                iw: iw,
+                ih: ih,
+                dx: dx,
+                dy: dy,
+                accent: widget.accent,
+              ),
           ],
         );
       },

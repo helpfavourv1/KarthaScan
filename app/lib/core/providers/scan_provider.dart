@@ -390,6 +390,13 @@ class ScanProvider {
     return _replaceAndSave(updated);
   }
 
+  Future<bool> setSignatureState(String id, List<SignatureInk> inks, List<SignatureLayer> layers) async {
+    final ScanDocument? existing = _findById(id);
+    if (existing == null) return false;
+    final updated = existing.copyWith(signatureInks: inks, signatureLayers: layers, updatedAt: DateTime.now());
+    return _replaceAndSave(updated);
+  }
+
   Future<bool> addAnnotateLayer(String id, AnnotateLayer layer) async {
     final ScanDocument? existing = _findById(id);
     if (existing == null) return false;

@@ -12,13 +12,12 @@ import '../core/models/export_job.dart';
 import '../core/models/scan_document.dart';
 import '../core/providers/scan_provider.dart';
 import '../core/services/export_service.dart';
-import '../core/models/signature_placement.dart';
 import '../core/services/filter_service.dart';
 import '../core/services/share_service.dart';
 import '../core/services/local_storage.dart';
 import '../core/utils/constants.dart';
 import '../l10n/app_localizations.dart';
-import '../widgets/signature_canvas.dart';
+import '../widgets/ink_board.dart';
 import '../widgets/ios_pressable.dart';
 
 class ExportScreen extends StatefulWidget {
@@ -45,11 +44,8 @@ class _ExportScreenState extends State<ExportScreen> {
   ExportPageFormat _pageFormat = ExportPageFormat.a4;
   int? _targetMB;
   
-  // Signature state — multi-ink architecture (B19a)
-  final Map<String, SignatureInk> _inks = {};
-  final Map<String, Map<int, SignaturePlacement>> _inkPlacements = {};
-  String? _activeInkId;
-  String? _editInkId;
+  // Signature state — multi-ink via shared InkController (B19b)
+  late final InkController _inkController;
   int _previewPage = 0;
   final Map<String, Map<String, dynamic>> _previewCache = {};
 
@@ -69,11 +65,14 @@ class _ExportScreenState extends State<ExportScreen> {
   void initState() {
     super.initState();
     _scanProvider = Provider.of<ScanProvider>(context, listen: false);
+    _inkController = InkController(onChange: () { if (mounted) setState(() {}); });
     if (widget.initialFormat != null) {
       _selectedFormat = widget.initialFormat!;
     }
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      _seedFromDocument();
+      if (_isSingleDoc && _documents.isNotEmpty) {
+        _inkController.seed(_documents.first);
+      }
       _loadPreview(_previewPage, _selectedFilter);
     });
   }
@@ -129,89 +128,6 @@ class _ExportScreenState extends State<ExportScreen> {
     _loadPreview(_previewPage, f);
   }
 
-  void _seedFromDocument() {
-    if (!_isSingleDoc || _documents.isEmpty) return;
-    final doc = _documents.first;
-    if (doc.signatureInks.isEmpty && doc.signatureLayers.isEmpty) return;
-    setState(() {
-      for (final ink in doc.signatureInks) {
-        _inks[ink.id] = ink;
-      }
-      for (final layer in doc.signatureLayers) {
-        _inkPlacements.putIfAbsent(layer.inkId, () => {})[layer.pageIndex] = layer.placement;
-      }
-      _activeInkId ??= _inks.keys.isEmpty ? null : _inks.keys.first;
-    });
-  }
-
-  Future<void> _addInk() async {
-    Uint8List? bytes;
-    final saved = await _localStorage.loadSignaturePng();
-    if (saved != null && mounted) {
-      final choice = await showDialog<String>(
-        context: context,
-        builder: (ctx) => AlertDialog(
-          title: const Text('Signature'),
-          content: const Text('Use your saved signature or draw a new one?'),
-          actions: [
-            TextButton(onPressed: () => Navigator.pop(ctx, 'saved'), child: const Text('Use Saved')),
-            TextButton(onPressed: () => Navigator.pop(ctx, 'draw'), child: const Text('Draw New')),
-          ],
-        ),
-      );
-      if (choice == 'saved') bytes = saved;
-    }
-    if (bytes == null && mounted) {
-      final signatureKey = GlobalKey<SignatureCanvasState>();
-      bytes = await showModalBottomSheet<Uint8List?>(
-        context: context,
-        isScrollControlled: true,
-        builder: (context) => _SignatureSheet(signatureKey: signatureKey),
-      );
-      if (bytes != null) {
-        await _localStorage.saveSignaturePng(bytes);
-      }
-    }
-    if (bytes == null || !mounted) return;
-
-    final decoded = img.decodePng(bytes);
-    final aspect = (decoded != null && decoded.height > 0) ? (decoded.width / decoded.height).clamp(0.1, 10.0).toDouble() : 2.0;
-    final inkId = 'ink_${DateTime.now().microsecondsSinceEpoch}';
-    setState(() {
-      _inks[inkId] = SignatureInk(id: inkId, bytes: bytes!, label: 'Signer ${_inks.length + 1}', aspect: aspect);
-      _activeInkId = inkId;
-      _editInkId = inkId;
-    });
-  }
-
-  void _placeActiveInkOnCurrentPage() {
-    final inkId = _activeInkId;
-    if (inkId == null || _documents.isEmpty) return;
-    final pageCount = _documents.first.pagePaths.length;
-    final pageIndex = _previewPage.clamp(0, pageCount - 1);
-    setState(() {
-      _inkPlacements.putIfAbsent(inkId, () => {});
-      _inkPlacements[inkId]![pageIndex] = const SignaturePlacement(pctX: 0.5, pctY: 0.35);
-      _editInkId = inkId;
-    });
-  }
-
-  void _removeInk(String inkId) {
-    setState(() {
-      _inks.remove(inkId);
-      _inkPlacements.remove(inkId);
-      if (_editInkId == inkId) _editInkId = null;
-      if (_activeInkId == inkId) _activeInkId = _inks.keys.isEmpty ? null : _inks.keys.first;
-    });
-  }
-
-  void _clearAllSignatureLayers() {
-    setState(() {
-      _inkPlacements.clear();
-      _editInkId = null;
-    });
-  }
-
   Future<void> _runExport() async {
     final l10n = AppLocalizations.of(context);
     setState(() {
@@ -226,17 +142,16 @@ class _ExportScreenState extends State<ExportScreen> {
     try {
       final outputDir = await getTemporaryDirectory();
       Uint8List? legacyBytes;
-      if (_isSingleDoc && _inks.isEmpty) {
+      if (_isSingleDoc && !_inkController.hasInks) {
         legacyBytes = await _localStorage.loadSignaturePng();
       }
       for (final document in documents) {
         ScanDocument docForExport = document;
-        if (_isSingleDoc && _inks.isNotEmpty) {
-          final layers = <SignatureLayer>[];
-          _inkPlacements.forEach((inkId, pages) {
-            pages.forEach((pg, pl) => layers.add(SignatureLayer(pageIndex: pg, placement: pl, inkId: inkId)));
-          });
-          docForExport = document.copyWith(signatureInks: _inks.values.toList(), signatureLayers: layers);
+        if (_isSingleDoc && _inkController.hasInks) {
+          docForExport = document.copyWith(
+            signatureInks: _inkController.inks.values.toList(),
+            signatureLayers: _inkController.layers,
+          );
         }
         final paths = await _exportService.export(
           document: docForExport,
@@ -355,7 +270,7 @@ class _ExportScreenState extends State<ExportScreen> {
                               ),
                               if (_isSingleDoc) ...[
                                 const SizedBox(width: AppSpacing.sm),
-                                Expanded(child: _signatureCompact(accent, surface, textPrimary, textSecondary, isDark)),
+                                Expanded(child: InkCompactBar(controller: _inkController, accent: accent, surface: surface, textPrimary: textPrimary, isDark: isDark, onAddInk: () { _inkController.addInk(context, _localStorage); setState(() {}); })),
                               ],
                             ],
                           ),
@@ -481,13 +396,6 @@ class _ExportScreenState extends State<ExportScreen> {
     final imgW = _previewW.toDouble();
     final imgH = _previewH.toDouble();
 
-    final pageLayers = <MapEntry<String, SignaturePlacement>>[];
-    _inkPlacements.forEach((inkId, pages) {
-      final pl = pages[pageIndex];
-      if (pl != null) pageLayers.add(MapEntry(inkId, pl));
-    });
-    final editPlacement = _editInkId == null ? null : (_inkPlacements[_editInkId!] ?? const <int, SignaturePlacement>{})[pageIndex];
-
     return Column(
       children: [
         Row(
@@ -507,11 +415,14 @@ class _ExportScreenState extends State<ExportScreen> {
               child: Icon(Icons.auto_fix_high, color: _filterRowOpen ? accent : textSecondary, size: 20),
             ),
             const SizedBox(width: AppSpacing.sm),
-            if (_inks.isNotEmpty)
+            if (_inkController.hasInks)
               ActionChip(
                 avatar: const Icon(Icons.draw_outlined, size: 14),
                 label: const Text('Place here', style: TextStyle(fontSize: 10)),
-                onPressed: _placeActiveInkOnCurrentPage,
+                onPressed: () {
+                  _inkController.placeOnPage(pageIndex);
+                  setState(() {});
+                },
               ),
           ],
         ),
@@ -550,40 +461,17 @@ class _ExportScreenState extends State<ExportScreen> {
                   child: Stack(
                     children: [
                       Positioned.fill(child: Center(child: Image.memory(imgBytes, fit: BoxFit.contain))),
-                      for (final entry in pageLayers)
-                        Builder(builder: (context) {
-                          final ink = _inks[entry.key];
-                          if (ink == null) return const SizedBox.shrink();
-                          final pl = entry.value;
-                          final sigW = iw * 0.28 * pl.scale;
-                          final sigH = sigW / ink.aspect;
-                          final isEdit = entry.key == _editInkId;
-                          return Positioned(
-                            left: dx + pl.pctX * iw - sigW / 2,
-                            top: dy + pl.pctY * ih - sigH / 2,
-                            child: GestureDetector(
-                              behavior: HitTestBehavior.opaque,
-                              onTap: () => setState(() => _editInkId = entry.key),
-                              onPanUpdate: (d) => setState(() {
-                                _inkPlacements[entry.key]![pageIndex] = SignaturePlacement(
-                                  pctX: (pl.pctX + d.delta.dx / iw).clamp(0.0, 1.0),
-                                  pctY: (pl.pctY + d.delta.dy / ih).clamp(0.0, 1.0),
-                                  rotationDegrees: pl.rotationDegrees,
-                                  scale: pl.scale,
-                                );
-                              }),
-                              child: Container(
-                                decoration: isEdit
-                                    ? BoxDecoration(border: Border.all(color: accent, width: 1.5), borderRadius: BorderRadius.circular(4))
-                                    : null,
-                                child: Transform.rotate(
-                                  angle: pl.rotationDegrees * 3.14159 / 180,
-                                  child: Image.memory(ink.bytes, width: sigW, height: sigH, fit: BoxFit.contain),
-                                ),
-                              ),
-                            ),
-                          );
-                        }),
+                      InkOverlayPage(
+                        controller: _inkController,
+                        pageIndex: pageIndex,
+                        imgW: imgW,
+                        imgH: imgH,
+                        iw: iw,
+                        ih: ih,
+                        dx: dx,
+                        dy: dy,
+                        accent: accent,
+                      ),
                     ],
                   ),
                 );
@@ -591,65 +479,11 @@ class _ExportScreenState extends State<ExportScreen> {
             ),
           ),
         ),
-        if (editPlacement != null && _editInkId != null) ...[
-          Row(
-            children: [
-              const Text('Rotate', style: TextStyle(fontSize: 11)),
-              Expanded(
-                child: Slider(
-                  value: editPlacement.rotationDegrees,
-                  min: -180,
-                  max: 180,
-                  onChanged: (v) => setState(() {
-                    _inkPlacements[_editInkId]![pageIndex] = SignaturePlacement(pctX: editPlacement.pctX, pctY: editPlacement.pctY, rotationDegrees: v, scale: editPlacement.scale);
-                  }),
-                ),
-              ),
-              Text('${editPlacement.rotationDegrees.round()}°', style: const TextStyle(fontSize: 11)),
-            ],
-          ),
-          Row(
-            children: [
-              const Text('Scale', style: TextStyle(fontSize: 11)),
-              Expanded(
-                child: Slider(
-                  value: editPlacement.scale,
-                  min: 0.3,
-                  max: 3.0,
-                  onChanged: (v) => setState(() {
-                    _inkPlacements[_editInkId]![pageIndex] = SignaturePlacement(pctX: editPlacement.pctX, pctY: editPlacement.pctY, rotationDegrees: editPlacement.rotationDegrees, scale: v);
-                  }),
-                ),
-              ),
-              Text('${editPlacement.scale.toStringAsFixed(1)}x', style: const TextStyle(fontSize: 11)),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              TextButton(
-                onPressed: () => setState(() {
-                  for (int i = 0; i < pageCount; i++) {
-                    _inkPlacements[_editInkId]![i] = editPlacement;
-                  }
-                }),
-                child: const Text('Copy to all', style: TextStyle(fontSize: 11)),
-              ),
-              TextButton(
-                onPressed: () => setState(() => _inkPlacements[_editInkId]?.remove(pageIndex)),
-                child: const Text('Clear this', style: TextStyle(fontSize: 11)),
-              ),
-              TextButton(
-                onPressed: () => _removeInk(_editInkId!),
-                child: const Text('Remove ink', style: TextStyle(fontSize: 11)),
-              ),
-              TextButton(
-                onPressed: _clearAllSignatureLayers,
-                child: const Text('Clear all', style: TextStyle(fontSize: 11)),
-              ),
-            ],
-          ),
-        ],
+        InkEditControls(
+          controller: _inkController,
+          pageIndex: pageIndex,
+          pageCount: pageCount,
+        ),
       ],
     );
   }
@@ -680,60 +514,6 @@ class _ExportScreenState extends State<ExportScreen> {
   }
 
   // Compact signature controls that live in the merged row (multi-ink)
-  Widget _signatureCompact(Color accent, Color surface, Color textPrimary, Color textSecondary, bool isDark) {
-    if (_inks.isEmpty) {
-      return Container(
-        height: 48,
-        decoration: BoxDecoration(
-          color: surface,
-          borderRadius: BorderRadius.circular(8),
-          border: Border.all(color: isDark ? AppColors.borderSubtleDark : AppColors.borderSubtleLight, width: 0.5),
-        ),
-        child: IOSPressable(
-          onTap: _addInk,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(Icons.draw_outlined, size: 16, color: accent),
-              const SizedBox(width: AppSpacing.xs),
-              Text('Add Signature', style: TextStyle(color: textPrimary, fontSize: 11, fontWeight: FontWeight.w600)),
-            ],
-          ),
-        ),
-      );
-    }
-    final totalPlacements = _inkPlacements.values.fold<int>(0, (s, m) => s + m.length);
-    return Container(
-      height: 48,
-      padding: const EdgeInsets.symmetric(horizontal: AppSpacing.sm),
-      decoration: BoxDecoration(
-        color: surface,
-        borderRadius: BorderRadius.circular(8),
-        border: Border.all(color: isDark ? AppColors.borderSubtleDark : AppColors.borderSubtleLight, width: 0.5),
-      ),
-      child: Row(
-        children: [
-          Expanded(
-            child: DropdownButton<String>(
-              isExpanded: true,
-              value: _activeInkId,
-              onChanged: (v) => setState(() => _activeInkId = v),
-              items: _inks.values.map((ink) => DropdownMenuItem(value: ink.id, child: Text(ink.label, style: const TextStyle(fontSize: 11), overflow: TextOverflow.ellipsis))).toList(),
-              underline: const SizedBox.shrink(),
-              isDense: true,
-            ),
-          ),
-          Text('$totalPlacements placed', style: TextStyle(color: textPrimary, fontSize: 10, fontWeight: FontWeight.w600)),
-          const SizedBox(width: AppSpacing.xs),
-          IOSPressable(
-            onTap: _addInk,
-            child: Icon(Icons.add, size: 16, color: accent),
-          ),
-        ],
-      ),
-    );
-  }
-
   // Target MB row-launch: switch + label + value + chevron. Tap row (when ON) toggles expansion.
   Widget _targetMBRowLaunch(Color accent, Color surface, Color textPrimary, bool isDark) {
     final enabled = _targetMB != null;
@@ -874,55 +654,7 @@ class _ExportScreenState extends State<ExportScreen> {
 
 }
 
-class _SignatureSheet extends StatelessWidget {
-  const _SignatureSheet({required this.signatureKey});
-  final GlobalKey<SignatureCanvasState> signatureKey;
 
-  @override
-  Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context);
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-    final bg = isDark ? AppColors.bgPrimaryDark : AppColors.bgPrimaryLight;
-    final textPrimary = isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight;
-    final accent = isDark ? AppColors.accentDark : AppColors.accentLight;
-
-    return Padding(
-      padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-      child: SafeArea(
-        child: Container(
-          decoration: BoxDecoration(color: bg, borderRadius: const BorderRadius.only(topLeft: Radius.circular(AppShape.bottomSheetTopRadius), topRight: Radius.circular(AppShape.bottomSheetTopRadius))),
-          padding: const EdgeInsets.all(AppSpacing.md),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Text(l10n.signSheetTitle, style: TextStyle(color: textPrimary, fontSize: AppTypography.title1Size, fontWeight: FontWeight.w600)),
-              const SizedBox(height: AppSpacing.sm),
-              SizedBox(height: 180, child: SignatureCanvas(key: signatureKey)),
-              const SizedBox(height: AppSpacing.sm),
-              Row(
-                children: [
-                  TextButton(onPressed: () => signatureKey.currentState?.clear(), child: Text(l10n.commonClear)),
-                  const Spacer(),
-                  TextButton(onPressed: () => Navigator.pop(context), child: Text(l10n.commonSkip)),
-                  const SizedBox(width: AppSpacing.xs),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(backgroundColor: accent, foregroundColor: Colors.white),
-                    onPressed: () async {
-                      final bytes = await signatureKey.currentState?.exportPng();
-                      if (context.mounted) Navigator.pop(context, bytes);
-                    },
-                    child: Text(l10n.useSignatureButton),
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
 
 Map<String, dynamic> _previewIsolate(Map<String, dynamic> args) {
   final bytes = args['bytes'] as Uint8List;
