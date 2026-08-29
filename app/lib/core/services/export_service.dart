@@ -11,6 +11,7 @@ import 'package:pdf/widgets.dart' as pw;
 
 import '../models/export_job.dart';
 import '../models/scan_document.dart';
+import '../models/signature_placement.dart';
 
 class ExportFailedException implements Exception {
   const ExportFailedException(this.message);
@@ -21,22 +22,7 @@ class ExportFailedException implements Exception {
 
 enum FilterType { none, grayscale, blackAndWhite, colorEnhance, shadowRemoval }
 
-class SignaturePlacement {
-  const SignaturePlacement({
-    required this.pctX,
-    required this.pctY,
-    this.rotationDegrees = 0,
-    this.scale = 1.0,
-  });
-
-  /// Center X as a fraction of page width (0..1).
-  final double pctX;
-
-  /// Center Y as a fraction of page height (0..1).
-  final double pctY;
-  final double rotationDegrees;
-  final double scale;
-}
+// SignaturePlacement is now in models/signature_placement.dart
 
 enum ExportDocxMode { textOnly, imageEmbedded }
 
@@ -146,15 +132,26 @@ class ExportService {
     return img.compositeImage(page, sig, dstX: dstX, dstY: dstY);
   }
 
+  SignaturePlacement? _findPlacement(int pageIndex, Map<int, SignaturePlacement>? exportPlacements, List<SignatureLayer>? docLayers) {
+    final fromExport = exportPlacements?[pageIndex];
+    if (fromExport != null) return fromExport;
+    if (docLayers == null) return null;
+    for (final layer in docLayers) {
+      if (layer.pageIndex == pageIndex) return layer.placement;
+    }
+    return null;
+  }
+
   Future<Uint8List> _processPage(
     String pagePath, {
     required FilterType filter,
     required int pageIndex,
     Uint8List? signatureBytes,
     Map<int, SignaturePlacement>? signaturePlacements,
+    List<SignatureLayer>? documentLayers,
   }) async {
     final original = await _readBytes(pagePath);
-    final placement = signaturePlacements?[pageIndex];
+    final placement = _findPlacement(pageIndex, signaturePlacements, documentLayers);
     if (filter == FilterType.none && (signatureBytes == null || placement == null)) {
       return original;
     }
@@ -197,6 +194,7 @@ class ExportService {
         pageIndex: i,
         signatureBytes: signatureBytes,
         signaturePlacements: signaturePlacements,
+        documentLayers: document.signatureLayers,
       );
       final image = pw.MemoryImage(bytes);
       pdfDoc.addPage(
@@ -437,6 +435,7 @@ class ExportService {
         pageIndex: i,
         signatureBytes: signatureBytes,
         signaturePlacements: signaturePlacements,
+        documentLayers: document.signatureLayers,
       );
       final decoded = img.decodeImage(processedBytes);
       if (decoded == null) {

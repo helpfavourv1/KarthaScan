@@ -18,6 +18,7 @@ import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
 
 import '../models/scan_document.dart';
+import '../models/signature_placement.dart';
 import '../services/doc_scanner_service.dart';
 import '../services/local_storage.dart';
 import '../services/ocr_service.dart';
@@ -330,6 +331,41 @@ class ScanProvider {
       if (doc.id == id) return doc;
     }
     return null;
+  }
+
+  Future<bool> addSignatureLayer(String id, int pageIndex, SignaturePlacement placement) async {
+    final ScanDocument? existing = _findById(id);
+    if (existing == null) return false;
+    // Replace existing layer for this page, or add new
+    final filtered = existing.signatureLayers.where((l) => l.pageIndex != pageIndex).toList();
+    filtered.add(SignatureLayer(pageIndex: pageIndex, placement: placement));
+    final updated = existing.copyWith(signatureLayers: filtered, updatedAt: DateTime.now());
+    return _replaceAndSave(updated);
+  }
+
+  Future<bool> updateSignatureLayer(String id, int pageIndex, SignaturePlacement placement) async {
+    final ScanDocument? existing = _findById(id);
+    if (existing == null) return false;
+    final newLayers = existing.signatureLayers
+        .map((l) => l.pageIndex == pageIndex ? l.copyWith(placement: placement) : l)
+        .toList();
+    final updated = existing.copyWith(signatureLayers: newLayers, updatedAt: DateTime.now());
+    return _replaceAndSave(updated);
+  }
+
+  Future<bool> removeSignatureLayer(String id, int pageIndex) async {
+    final ScanDocument? existing = _findById(id);
+    if (existing == null) return false;
+    final newLayers = existing.signatureLayers.where((l) => l.pageIndex != pageIndex).toList();
+    final updated = existing.copyWith(signatureLayers: newLayers, updatedAt: DateTime.now());
+    return _replaceAndSave(updated);
+  }
+
+  Future<bool> clearSignatureLayers(String id) async {
+    final ScanDocument? existing = _findById(id);
+    if (existing == null) return false;
+    final updated = existing.copyWith(signatureLayers: const [], updatedAt: DateTime.now());
+    return _replaceAndSave(updated);
   }
 
   Future<bool> _replaceAndSave(ScanDocument updated) async {

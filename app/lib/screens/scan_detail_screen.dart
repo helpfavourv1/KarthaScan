@@ -1,4 +1,5 @@
 import 'dart:io';
+import '../core/models/signature_placement.dart';
 import 'dart:ui' as ui;
 import 'package:flutter/foundation.dart' show compute;
 
@@ -51,6 +52,7 @@ class ScanDetailScreen extends StatefulWidget {
 
 class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerProviderStateMixin {
   late final ScanProvider _scanProvider;
+  Uint8List? _signatureBytes;
   late final FolderProvider _folderProvider;
   final ShareService _shareService = ShareService();
   final OcrService _ocrService = OcrService();
@@ -62,6 +64,7 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
   @override
   void initState() {
     super.initState();
+    _loadSignatureBytes();
     _scanProvider = Provider.of<ScanProvider>(context, listen: false);
     _folderProvider = Provider.of<FolderProvider>(context, listen: false);
     _scanProvider.setActiveScan(widget.documentId);
@@ -210,6 +213,13 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
     );
   }
 
+  Future<void> _loadSignatureBytes() async {
+    final bytes = await _localStorage.loadSignaturePng();
+    if (mounted && bytes != null) {
+      setState(() => _signatureBytes = bytes);
+    }
+  }
+
   Future<void> _addSignature() async {
     final document = _document;
     if (document == null || document.pagePaths.isEmpty) return;
@@ -243,38 +253,17 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
     }
 
     if (signatureBytes == null || !mounted) return;
-    final Uint8List signatureBytesNonNull = signatureBytes;
 
-    final placement = await showModalBottomSheet<(int, double, double, double, double, double)?>(
-      context: context,
-      isScrollControlled: true,
-      builder: (context) => OverlayPlacementSheet(
-        pagePaths: document.pagePaths,
-        overlayBytes: signatureBytesNonNull,
-        title: 'Place Signature',
-        initialWidthFraction: 0.28,
-      ),
+    // Non-destructive: auto-stamp current page with default center placement
+    await _scanProvider.addSignatureLayer(
+      document.id,
+      0,
+      const SignaturePlacement(pctX: 0.5, pctY: 0.35),
     );
-    if (placement != null && mounted) {
-      await _compositeSignatureOnPage(
-        placement.$1,
-        signatureBytes,
-        placement.$2,
-        placement.$3,
-        placement.$4,
-        scale: placement.$5,
-        widthFraction: placement.$6,
-      );
-    }
-
-    if (placement != null && mounted) {
-      await _compositeSignatureOnPage(
-        placement.$1,
-        signatureBytes,
-        placement.$2,
-        placement.$3,
-        placement.$4,
-        scale: placement.$5,
+    if (mounted) {
+      setState(() {});
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Signature added — drag to reposition')),
       );
     }
   }
@@ -933,39 +922,7 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
     }
   }
 
-  Future<void> _compositeSignatureOnPage(int pageIndex, Uint8List signatureBytes, double pctX, double pctY, double rotation, {double scale = 1.0, double widthFraction = 0.28}) async {
-    final document = _document;
-    if (document == null) return;
 
-    try {
-      final originalBytes = await File(document.pagePaths[pageIndex]).readAsBytes();
-      final finalBytes = await compute(_compositeSignatureIsolate, {
-        'original': originalBytes,
-        'signature': signatureBytes,
-        'pctX': pctX,
-        'pctY': pctY,
-        'rotation': rotation,
-        'scale': scale,
-        'widthFraction': widthFraction,
-      });
-
-      final appDir = await getApplicationDocumentsDirectory();
-      final scansDir = Directory(p.join(appDir.path, 'signed_pages'));
-      await scansDir.create(recursive: true);
-      final newPath = p.join(scansDir.path, 'sig_${DateTime.now().microsecondsSinceEpoch}_$pageIndex.jpg');
-      await File(newPath).writeAsBytes(finalBytes);
-
-      final newPaths = List<String>.from(document.pagePaths);
-      newPaths[pageIndex] = newPath;
-      await _scanProvider.updateDocumentPages(document.id, newPaths);
-
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Signature saved')));
-      }
-    } catch (e) {
-      if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Error: $e')));
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -1050,7 +1007,16 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
                           child: ScanPreviewCard(
                             pagePaths: document.pagePaths,
                             onPageChanged: (index) => setState(() => _currentPageIndex = index),
-                          ),
+                          
+              signatureBytes: _signatureBytes,
+              signatureLayers: _document?.signatureLayers ?? const [],
+              onSignatureLayerUpdate: (pageIndex, layer) {
+                final doc = _document;
+                if (doc != null) {
+                  _scanProvider.updateSignatureLayer(doc.id, pageIndex, layer.placement);
+                }
+              },
+            ),
                         ),
                                               ],
                     ),
@@ -1550,34 +1516,7 @@ Uint8List _compositeOverlayIsolate(Map<String, dynamic> args) {
   return Uint8List.fromList(img.encodeJpg(composite, quality: 95));
 }
 
-Uint8List _compositeSignatureIsolate(Map<String, dynamic> args) {
-  final original = img.decodeImage(args['original'] as Uint8List);
-  var signature = img.decodePng(args['signature'] as Uint8List);
-  if (original == null || signature == null) {
-    return args['original'] as Uint8List;
-  }
-  final wf = (args['widthFraction'] as double?) ?? 0.28;
-  final targetWidth = (original.width * wf).round();
-  final targetHeight = (signature.height * targetWidth / signature.width).round();
-  signature = img.copyResize(signature, width: targetWidth, height: targetHeight);
 
-  final rotation = (args['rotation'] as double?) ?? 0.0;
-  final scale = (args['scale'] as double?) ?? 1.0;
-  if (rotation != 0) signature = img.copyRotate(signature, angle: rotation);
-  if (scale != 1.0) {
-    final newW = (signature.width * scale).round();
-    final newH = (signature.height * scale).round();
-    signature = img.copyResize(signature, width: newW, height: newH);
-  }
-
-  final pctX = (args['pctX'] as double?) ?? 0.5;
-  final pctY = (args['pctY'] as double?) ?? 0.5;
-  final dstX = (pctX * original.width).round() - (signature.width ~/ 2);
-  final dstY = (pctY * original.height).round() - (signature.height ~/ 2);
-
-  final composite = img.compositeImage(original, signature, dstX: dstX, dstY: dstY);
-  return Uint8List.fromList(img.encodeJpg(composite, quality: 95));
-}
 
 
 Uint8List _rotateIsolate(Map<String, dynamic> args) {

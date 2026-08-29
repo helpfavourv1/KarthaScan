@@ -6,6 +6,56 @@
 // Added `isFavorite` to support the Favorites filter chip.
 
 import 'package:flutter/foundation.dart' show immutable, listEquals;
+import 'signature_placement.dart';
+
+@immutable
+class SignatureLayer {
+  const SignatureLayer({
+    required this.pageIndex,
+    required this.placement,
+  });
+
+  final int pageIndex;
+  final SignaturePlacement placement;
+
+  Map<String, dynamic> toJson() => {
+    'pageIndex': pageIndex,
+    'pctX': placement.pctX,
+    'pctY': placement.pctY,
+    'rotationDegrees': placement.rotationDegrees,
+    'scale': placement.scale,
+  };
+
+  factory SignatureLayer.fromJson(Map<String, dynamic> json) {
+    return SignatureLayer(
+      pageIndex: json['pageIndex'] as int,
+      placement: SignaturePlacement(
+        pctX: (json['pctX'] as num).toDouble(),
+        pctY: (json['pctY'] as num).toDouble(),
+        rotationDegrees: (json['rotationDegrees'] as num?)?.toDouble() ?? 0,
+        scale: (json['scale'] as num?)?.toDouble() ?? 1.0,
+      ),
+    );
+  }
+
+  SignatureLayer copyWith({int? pageIndex, SignaturePlacement? placement}) {
+    return SignatureLayer(
+      pageIndex: pageIndex ?? this.pageIndex,
+      placement: placement ?? this.placement,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    return other is SignatureLayer &&
+        other.pageIndex == pageIndex &&
+        other.placement == placement;
+  }
+
+  @override
+  int get hashCode => Object.hash(pageIndex, placement);
+}
 
 @immutable
 class ScanDocument {
@@ -20,6 +70,7 @@ class ScanDocument {
     required this.thumbnailPath,
     this.tags = const <String>[],
     this.isFavorite = false,
+    this.signatureLayers = const <SignatureLayer>[],
   });
 
   final String id;
@@ -43,6 +94,9 @@ class ScanDocument {
   /// Whether the user has marked this document as favorite.
   final bool isFavorite;
 
+  /// Non-destructive signature placements per page.
+  final List<SignatureLayer> signatureLayers;
+
   ScanDocument copyWith({
     String? id,
     String? title,
@@ -54,6 +108,7 @@ class ScanDocument {
     String? thumbnailPath,
     List<String>? tags,
     bool? isFavorite,
+    List<SignatureLayer>? signatureLayers,
   }) {
     return ScanDocument(
       id: id ?? this.id,
@@ -66,6 +121,7 @@ class ScanDocument {
       thumbnailPath: thumbnailPath ?? this.thumbnailPath,
       tags: tags ?? this.tags,
       isFavorite: isFavorite ?? this.isFavorite,
+      signatureLayers: signatureLayers ?? this.signatureLayers,
     );
   }
 
@@ -81,6 +137,7 @@ class ScanDocument {
       'thumbnailPath': thumbnailPath,
       'tags': tags,
       'isFavorite': isFavorite,
+      'signatureLayers': signatureLayers.map((l) => l.toJson()).toList(),
     };
   }
 
@@ -96,6 +153,9 @@ class ScanDocument {
       thumbnailPath: json['thumbnailPath'] as String,
       tags: List<String>.from(json['tags'] as List<dynamic>? ?? const <dynamic>[]),
       isFavorite: json['isFavorite'] as bool? ?? false,
+      signatureLayers: (json['signatureLayers'] as List<dynamic>?)
+          ?.map((e) => SignatureLayer.fromJson(e as Map<String, dynamic>))
+          .toList() ?? const <SignatureLayer>[],
     );
   }
 
@@ -112,7 +172,8 @@ class ScanDocument {
         other.ocrText == ocrText &&
         other.thumbnailPath == thumbnailPath &&
         listEquals(other.tags, tags) &&
-        other.isFavorite == isFavorite;
+        other.isFavorite == isFavorite &&
+        listEquals(other.signatureLayers, signatureLayers);
   }
 
   @override
@@ -128,6 +189,7 @@ class ScanDocument {
       thumbnailPath,
       Object.hashAll(tags),
       isFavorite,
+      Object.hashAll(signatureLayers),
     );
   }
 

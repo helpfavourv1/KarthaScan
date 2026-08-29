@@ -1,16 +1,10 @@
-// lib/widgets/scan_preview_card.dart
-//
-// Document viewer: swipeable pages, zoom, share button (Section 16 file
-// #27).
-//
-// Presentational — takes page paths and an onShare callback via
-// constructor rather than calling ShareService directly, so this stays
-// reusable/testable without a BuildContext-bound service lookup.
-// scan_detail_screen.dart (Phase 5) supplies the actual share wiring.
 import 'dart:io' show File;
-
+import 'dart:typed_data';
 import 'package:flutter/material.dart';
+import 'package:image/image.dart' as img;
 
+import '../core/models/scan_document.dart';
+import '../core/models/signature_placement.dart';
 import '../core/utils/constants.dart';
 import '../l10n/app_localizations.dart';
 
@@ -18,13 +12,19 @@ class ScanPreviewCard extends StatefulWidget {
   const ScanPreviewCard({
     super.key,
     required this.pagePaths,
+    this.signatureBytes,
+    this.signatureLayers = const [],
     this.onShare,
+    this.onSignatureLayerUpdate,
     this.initialPage = 0,
     this.onPageChanged,
   });
 
   final List<String> pagePaths;
+  final Uint8List? signatureBytes;
+  final List<SignatureLayer> signatureLayers;
   final VoidCallback? onShare;
+  final void Function(int pageIndex, SignatureLayer layer)? onSignatureLayerUpdate;
   final int initialPage;
   final ValueChanged<int>? onPageChanged;
 
@@ -35,27 +35,46 @@ class ScanPreviewCard extends StatefulWidget {
 class _ScanPreviewCardState extends State<ScanPreviewCard> {
   late final PageController _pageController;
   late int _currentPage;
+  double _sigAspect = 2.0;
 
   int get _lastIndex => widget.pagePaths.isEmpty ? 0 : widget.pagePaths.length - 1;
 
   @override
   void initState() {
     super.initState();
-    // Deliberately not using int.clamp() here — its return type varies by
-    // Dart SDK version between `num` and `int`, and this project is
-    // pinned to a specific Flutter/Dart pair (Section 1). A plain
-    // conditional avoids betting on that.
     final int requested = widget.initialPage;
-    _currentPage = requested < 0
-        ? 0
-        : (requested > _lastIndex ? _lastIndex : requested);
+    _currentPage = requested < 0 ? 0 : (requested > _lastIndex ? _lastIndex : requested);
     _pageController = PageController(initialPage: _currentPage);
+    _loadSigAspect();
+  }
+
+  void _loadSigAspect() {
+    if (widget.signatureBytes == null) return;
+    final decoded = img.decodePng(widget.signatureBytes!);
+    if (decoded != null && decoded.height > 0) {
+      _sigAspect = (decoded.width / decoded.height).clamp(0.1, 10.0).toDouble();
+    }
+  }
+
+  @override
+  void didUpdateWidget(covariant ScanPreviewCard oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.signatureBytes != oldWidget.signatureBytes) {
+      _loadSigAspect();
+    }
   }
 
   @override
   void dispose() {
     _pageController.dispose();
     super.dispose();
+  }
+
+  SignatureLayer? _getLayerForPage(int pageIndex) {
+    for (final layer in widget.signatureLayers) {
+      if (layer.pageIndex == pageIndex) return layer;
+    }
+    return null;
   }
 
   @override
@@ -71,10 +90,7 @@ class _ScanPreviewCardState extends State<ScanPreviewCard> {
       return ColoredBox(
         color: bg,
         child: Center(
-          child: Text(
-            l10n.scanPreviewNoPages,
-            style: TextStyle(color: textSecondary, fontSize: AppTypography.bodySize),
-          ),
+          child: Text(l10n.scanPreviewNoPages, style: TextStyle(color: textSecondary, fontSize: AppTypography.bodySize)),
         ),
       );
     }
@@ -92,53 +108,142 @@ class _ScanPreviewCardState extends State<ScanPreviewCard> {
                 widget.onPageChanged?.call(index);
               },
               itemBuilder: (BuildContext context, int index) {
-                return InteractiveViewer(
-                  minScale: 1,
-                  maxScale: 4,
-                  child: Center(
-                    child: Image.file(
-                      File(widget.pagePaths[index]),
-                      fit: BoxFit.contain,
-                      errorBuilder: (BuildContext context, Object error, StackTrace? stackTrace) {
-                        return Icon(
-                          Icons.broken_image_outlined,
-                          color: textSecondary,
-                          size: 48,
-                        );
-                      },
-                    ),
-                  ),
+                final layer = _getLayerForPage(index);
+                return _PageWithSignature(
+                  pagePath: widget.pagePaths[index],
+                  signatureBytes: widget.signatureBytes,
+                  layer: layer,
+                  sigAspect: _sigAspect,
+                  textSecondary: textSecondary,
+                  onUpdate: (newLayer) => widget.onSignatureLayerUpdate?.call(index, newLayer),
                 );
               },
             ),
           ),
           Container(
-            padding: const EdgeInsets.symmetric(
-              horizontal: AppSpacing.md,
-              vertical: AppSpacing.sm,
-            ),
+            padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md, vertical: AppSpacing.sm),
             color: surface,
             child: Row(
               children: <Widget>[
-                Text(
-                  '${_currentPage + 1} / ${widget.pagePaths.length}',
-                  style: TextStyle(
-                    color: textSecondary,
-                    fontSize: AppTypography.footnoteSize,
-                  ),
-                ),
+                Text('${_currentPage + 1} / ${widget.pagePaths.length}', style: TextStyle(color: textSecondary, fontSize: AppTypography.footnoteSize)),
                 const Spacer(),
-                if (widget.onShare != null)
-                  IconButton(
-                    onPressed: widget.onShare,
-                    icon: Icon(Icons.ios_share, color: accent),
-                    tooltip: l10n.shareTooltip,
-                  ),
+                if (widget.onShare != null) IconButton(onPressed: widget.onShare, icon: Icon(Icons.ios_share, color: accent), tooltip: l10n.shareTooltip),
               ],
             ),
           ),
         ],
       ),
+    );
+  }
+}
+
+class _PageWithSignature extends StatefulWidget {
+  const _PageWithSignature({
+    required this.pagePath,
+    required this.signatureBytes,
+    required this.layer,
+    required this.sigAspect,
+    required this.textSecondary,
+    required this.onUpdate,
+  });
+
+  final String pagePath;
+  final Uint8List? signatureBytes;
+  final SignatureLayer? layer;
+  final double sigAspect;
+  final Color textSecondary;
+  final void Function(SignatureLayer) onUpdate;
+
+  @override
+  State<_PageWithSignature> createState() => _PageWithSignatureState();
+}
+
+class _PageWithSignatureState extends State<_PageWithSignature> {
+  double _pageAspect = 0.75;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadPageAspect();
+  }
+
+  Future<void> _loadPageAspect() async {
+    try {
+      final file = File(widget.pagePath);
+      final bytes = await file.readAsBytes();
+      final decoded = img.decodeImage(bytes);
+      if (decoded != null && decoded.height > 0 && mounted) {
+        setState(() => _pageAspect = (decoded.width / decoded.height).clamp(0.1, 10.0).toDouble());
+      }
+    } catch (_) {}
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        double iw = constraints.maxWidth;
+        double ih = iw / _pageAspect;
+        double dx = 0, dy = 0;
+        if (ih > constraints.maxHeight) {
+          ih = constraints.maxHeight;
+          iw = ih * _pageAspect;
+          dx = (constraints.maxWidth - iw) / 2;
+        } else {
+          dy = (constraints.maxHeight - ih) / 2;
+        }
+
+        return Stack(
+          children: [
+            Positioned.fill(
+              child: InteractiveViewer(
+                minScale: 1,
+                maxScale: 4,
+                child: Center(
+                  child: Image.file(
+                    File(widget.pagePath),
+                    fit: BoxFit.contain,
+                    errorBuilder: (_, __, ___) => Icon(Icons.broken_image_outlined, color: widget.textSecondary, size: 48),
+                  ),
+                ),
+              ),
+            ),
+            if (widget.signatureBytes != null && widget.layer != null)
+              Builder(builder: (context) {
+                final layer = widget.layer!;
+                final sigW = iw * 0.28 * layer.placement.scale;
+                final sigH = sigW / widget.sigAspect;
+                return Positioned(
+                  left: dx + layer.placement.pctX * iw - sigW / 2,
+                  top: dy + layer.placement.pctY * ih - sigH / 2,
+                  child: GestureDetector(
+                    behavior: HitTestBehavior.opaque,
+                    onPanUpdate: (d) {
+                      final newPctX = (layer.placement.pctX + d.delta.dx / iw).clamp(0.0, 1.0);
+                      final newPctY = (layer.placement.pctY + d.delta.dy / ih).clamp(0.0, 1.0);
+                      widget.onUpdate(SignatureLayer(
+                        pageIndex: layer.pageIndex,
+                        placement: SignaturePlacement(
+                          pctX: newPctX,
+                          pctY: newPctY,
+                          rotationDegrees: layer.placement.rotationDegrees,
+                          scale: layer.placement.scale,
+                        ),
+                      ));
+                    },
+                    child: Transform.rotate(
+                      angle: layer.placement.rotationDegrees * 3.14159 / 180,
+                      child: Opacity(
+                        opacity: 0.9,
+                        child: Image.memory(widget.signatureBytes!, width: sigW, height: sigH, fit: BoxFit.contain),
+                      ),
+                    ),
+                  ),
+                );
+              }),
+          ],
+        );
+      },
     );
   }
 }

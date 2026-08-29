@@ -12,6 +12,7 @@ import '../core/models/export_job.dart';
 import '../core/models/scan_document.dart';
 import '../core/providers/scan_provider.dart';
 import '../core/services/export_service.dart';
+import '../core/models/signature_placement.dart';
 import '../core/services/filter_service.dart';
 import '../core/services/share_service.dart';
 import '../core/services/local_storage.dart';
@@ -142,6 +143,12 @@ class _ExportScreenState extends State<ExportScreen> {
 
     try {
       final outputDir = await getTemporaryDirectory();
+      // Bridge: if user placed signatures via tray but not export, seed from document layers
+      if (_isSingleDoc && _signaturePlacements.isEmpty && documents.first.signatureLayers.isNotEmpty) {
+        for (final layer in documents.first.signatureLayers) {
+          _signaturePlacements[layer.pageIndex] = layer.placement;
+        }
+      }
       for (final document in documents) {
         final paths = await _exportService.export(
           document: document,
