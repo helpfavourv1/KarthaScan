@@ -20,7 +20,23 @@ class ExportFailedException implements Exception {
 }
 
 enum FilterType { none, grayscale, blackAndWhite, colorEnhance, shadowRemoval }
-enum ExportSignatureScope { placed, all, first, last }
+
+class SignaturePlacement {
+  const SignaturePlacement({
+    required this.pctX,
+    required this.pctY,
+    this.rotationDegrees = 0,
+    this.scale = 1.0,
+  });
+
+  /// Center X as a fraction of page width (0..1).
+  final double pctX;
+
+  /// Center Y as a fraction of page height (0..1).
+  final double pctY;
+  final double rotationDegrees;
+  final double scale;
+}
 
 enum ExportDocxMode { textOnly, imageEmbedded }
 
@@ -40,12 +56,7 @@ class ExportService {
     required String outputDirectoryPath,
     FilterType filter = FilterType.none,
     Uint8List? signatureBytes,
-    int? signaturePageIndex,
-    double? signatureOffsetX,
-    double? signatureOffsetY,
-    double? signatureRotation,
-    ExportSignatureScope signatureScope = ExportSignatureScope.placed,
-    double signatureScale = 1.0,
+    Map<int, SignaturePlacement>? signaturePlacements,
     CompressionTier compression = CompressionTier.original,
     ExportDocxMode docxMode = ExportDocxMode.textOnly,
     ExportPageFormat pageFormat = ExportPageFormat.a4,
@@ -61,10 +72,7 @@ class ExportService {
               pageFormat: _toPdfFormat(pageFormat),
               filter: filter,
               signatureBytes: signatureBytes,
-              signaturePageIndex: signaturePageIndex,
-              signatureOffsetX: signatureOffsetX,
-              signatureOffsetY: signatureOffsetY,
-              signatureRotation: signatureRotation,
+              signaturePlacements: signaturePlacements,
             ),
           ];
         case ExportFormat.txt:
@@ -78,14 +86,9 @@ class ExportService {
             targetExtension: 'jpg',
             filter: filter,
             signatureBytes: signatureBytes,
-            signaturePageIndex: signaturePageIndex,
-            signatureOffsetX: signatureOffsetX,
-            signatureOffsetY: signatureOffsetY,
-            signatureRotation: signatureRotation,
+            signaturePlacements: signaturePlacements,
             compression: compression,
-          targetBytes: targetBytes,
-            signatureScope: signatureScope,
-            signatureScale: signatureScale,
+            targetBytes: targetBytes,
         );
         case ExportFormat.png:
           return await _exportImages(
@@ -94,14 +97,9 @@ class ExportService {
             targetExtension: 'png',
             filter: filter,
             signatureBytes: signatureBytes,
-            signaturePageIndex: signaturePageIndex,
-            signatureOffsetX: signatureOffsetX,
-            signatureOffsetY: signatureOffsetY,
-            signatureRotation: signatureRotation,
+            signaturePlacements: signaturePlacements,
             compression: compression,
-          targetBytes: targetBytes,
-            signatureScope: signatureScope,
-            signatureScale: signatureScale,
+            targetBytes: targetBytes,
         );
         case ExportFormat.csv:
           return <String>[await _exportCsv(document, outputDirectoryPath)];
@@ -135,23 +133,21 @@ class ExportService {
   img.Image _compositeSignature(
     img.Image page,
     img.Image signature,
-    double offsetX,
-    double offsetY, {
-    double rotationDegrees = 0,
-    double scale = 1.0,
-  }) {
-    if (rotationDegrees != 0) {
-      signature = img.copyRotate(signature, angle: rotationDegrees);
+    SignaturePlacement placement,
+  ) {
+    var sig = signature;
+    if (placement.rotationDegrees != 0) {
+      sig = img.copyRotate(sig, angle: placement.rotationDegrees);
     }
-    final targetWidth = (page.width * 0.28 * scale).round();
-    final targetHeight = (signature.height * targetWidth / signature.width).round();
+    final targetWidth = (page.width * 0.28 * placement.scale).round();
+    final targetHeight = (sig.height * targetWidth / sig.width).round();
     final resizedSignature = img.copyResize(
-      signature,
+      sig,
       width: targetWidth,
       height: targetHeight,
     );
-    final dstX = (offsetX * page.width).round();
-    final dstY = (offsetY * page.height).round();
+    final dstX = (placement.pctX * page.width).round() - (resizedSignature.width ~/ 2);
+    final dstY = (placement.pctY * page.height).round() - (resizedSignature.height ~/ 2);
     return img.compositeImage(page, resizedSignature, dstX: dstX, dstY: dstY);
   }
 
@@ -159,17 +155,12 @@ class ExportService {
     String pagePath, {
     required FilterType filter,
     required int pageIndex,
-    required int totalPages,
     Uint8List? signatureBytes,
-    int? signaturePageIndex,
-    double? signatureOffsetX,
-    double? signatureOffsetY,
-    double? signatureRotation,
-    ExportSignatureScope signatureScope = ExportSignatureScope.placed,
-    double signatureScale = 1.0,
+    Map<int, SignaturePlacement>? signaturePlacements,
   }) async {
     final original = await _readBytes(pagePath);
-    if (filter == FilterType.none && signatureBytes == null) {
+    final placement = signaturePlacements?[pageIndex];
+    if (filter == FilterType.none && (signatureBytes == null || placement == null)) {
       return original;
     }
     try {
@@ -178,26 +169,10 @@ class ExportService {
       if (filter != FilterType.none) {
         decoded = _applyFilter(decoded, filter);
       }
-      bool shouldApplySig = false;
-      if (signatureBytes != null) {
-        switch (signatureScope) {
-          case ExportSignatureScope.placed: shouldApplySig = (pageIndex == (signaturePageIndex ?? totalPages - 1)); break;
-          case ExportSignatureScope.all: shouldApplySig = true; break;
-          case ExportSignatureScope.first: shouldApplySig = (pageIndex == 0); break;
-          case ExportSignatureScope.last: shouldApplySig = (pageIndex == totalPages - 1); break;
-        }
-      }
-      if (shouldApplySig) {
-        final signatureImage = img.decodePng(signatureBytes!);
+      if (signatureBytes != null && placement != null) {
+        final signatureImage = img.decodePng(signatureBytes);
         if (signatureImage != null) {
-          decoded = _compositeSignature(
-            decoded,
-            signatureImage,
-            signatureOffsetX ?? 0.6,
-            signatureOffsetY ?? 0.8,
-            rotationDegrees: signatureRotation ?? 0,
-            scale: signatureScale,
-          );
+          decoded = _compositeSignature(decoded, signatureImage, placement);
         }
       }
       return Uint8List.fromList(img.encodePng(decoded));
@@ -212,13 +187,8 @@ class ExportService {
     String outDir, {
     required FilterType filter,
     Uint8List? signatureBytes,
-    int? signaturePageIndex,
-    double? signatureOffsetX,
-    double? signatureOffsetY,
-    double? signatureRotation,
+    Map<int, SignaturePlacement>? signaturePlacements,
     PdfPageFormat pageFormat = PdfPageFormat.a4,
-    ExportSignatureScope signatureScope = ExportSignatureScope.placed,
-    double signatureScale = 1.0,
   }) async {
     final pw.Document pdfDoc = pw.Document(
       title: document.title,
@@ -230,14 +200,8 @@ class ExportService {
         document.pagePaths[i],
         filter: filter,
         pageIndex: i,
-        totalPages: document.pagePaths.length,
         signatureBytes: signatureBytes,
-        signaturePageIndex: signaturePageIndex,
-        signatureOffsetX: signatureOffsetX,
-        signatureOffsetY: signatureOffsetY,
-        signatureRotation: signatureRotation,
-        signatureScope: signatureScope,
-        signatureScale: signatureScale,
+        signaturePlacements: signaturePlacements,
       );
       final image = pw.MemoryImage(bytes);
       pdfDoc.addPage(
@@ -465,14 +429,9 @@ class ExportService {
     required String targetExtension,
     required FilterType filter,
     Uint8List? signatureBytes,
-    int? signaturePageIndex,
-    double? signatureOffsetX,
-    double? signatureOffsetY,
-    double? signatureRotation,
+    Map<int, SignaturePlacement>? signaturePlacements,
     CompressionTier compression = CompressionTier.original,
-      int? targetBytes,
-    ExportSignatureScope signatureScope = ExportSignatureScope.placed,
-    double signatureScale = 1.0,
+    int? targetBytes,
   }) async {
     final outputPaths = <String>[];
     final isMultiPage = document.pagePaths.length > 1;
@@ -481,14 +440,8 @@ class ExportService {
         document.pagePaths[i],
         filter: filter,
         pageIndex: i,
-        totalPages: document.pagePaths.length,
         signatureBytes: signatureBytes,
-        signaturePageIndex: signaturePageIndex,
-        signatureOffsetX: signatureOffsetX,
-        signatureOffsetY: signatureOffsetY,
-        signatureRotation: signatureRotation,
-        signatureScope: signatureScope,
-        signatureScale: signatureScale,
+        signaturePlacements: signaturePlacements,
       );
       final decoded = img.decodeImage(processedBytes);
       if (decoded == null) {

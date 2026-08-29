@@ -43,14 +43,11 @@ class _ExportScreenState extends State<ExportScreen> {
   ExportPageFormat _pageFormat = ExportPageFormat.a4;
   int? _targetMB;
   
-  // Signature state
+  // Signature state — per-page placement map (sticker model)
   Uint8List? _signatureBytes;
-  int? _signaturePageIndex;
-  double? _signatureOffsetX;
-  double? _signatureOffsetY;
-  double? _signatureRotation;
-  ExportSignatureScope _signatureScope = ExportSignatureScope.placed;
-  double _signatureScale = 1.0;
+  final Map<int, SignaturePlacement> _signaturePlacements = {};
+  int _previewPage = 0;
+  double _sigAspect = 2.0;
 
   bool _isRunning = false;
   String? _statusMessage;
@@ -109,35 +106,23 @@ class _ExportScreenState extends State<ExportScreen> {
 
     if (signatureBytes == null || !mounted) return;
 
-    final placement = await showModalBottomSheet<(int, double, double, double, double)?>(
-      context: context,
-      isScrollControlled: true,
-      builder: (context) => _SignaturePlacementSheet(
-        pagePaths: _documents.first.pagePaths,
-        signatureBytes: signatureBytes!,
-      ),
-    );
-
-    if (placement != null && mounted) {
-      setState(() {
-        _signatureBytes = signatureBytes;
-        _signaturePageIndex = placement.$1;
-        _signatureOffsetX = placement.$2;
-        _signatureOffsetY = placement.$3;
-        _signatureRotation = placement.$4;
-        _signatureScale = placement.$5;
-      });
-    }
+    final decoded = img.decodePng(signatureBytes);
+    setState(() {
+      _signatureBytes = signatureBytes;
+      if (decoded != null && decoded.height > 0) {
+        _sigAspect = (decoded.width / decoded.height).clamp(0.1, 10.0).toDouble();
+      }
+      _signaturePlacements.putIfAbsent(
+        _previewPage,
+        () => const SignaturePlacement(pctX: 0.5, pctY: 0.35),
+      );
+    });
   }
 
   void _removeSignature() {
     setState(() {
       _signatureBytes = null;
-      _signaturePageIndex = null;
-      _signatureOffsetX = null;
-      _signatureOffsetY = null;
-      _signatureRotation = null;
-      _signatureScale = 1.0;
+      _signaturePlacements.clear();
     });
   }
 
@@ -161,12 +146,7 @@ class _ExportScreenState extends State<ExportScreen> {
           outputDirectoryPath: outputDir.path,
           filter: _selectedFilter,
           signatureBytes: _signatureBytes,
-          signaturePageIndex: _signaturePageIndex,
-          signatureOffsetX: _signatureOffsetX,
-          signatureOffsetY: _signatureOffsetY,
-          signatureRotation: _signatureRotation,
-          signatureScope: _signatureScope,
-          signatureScale: _signatureScale,
+          signaturePlacements: _signatureBytes != null ? Map<int, SignaturePlacement>.of(_signaturePlacements) : null,
           compression: _selectedCompression,
           docxMode: _docxMode,
           pageFormat: _pageFormat,
@@ -413,23 +393,14 @@ class _ExportScreenState extends State<ExportScreen> {
                                 children: [
                                   const Icon(Icons.check_circle, color: Colors.green),
                                   const SizedBox(width: AppSpacing.sm),
-                                  const Expanded(child: Text('Signature added')),
+                                  const Expanded(child: Text('Signature added — drag it on the preview')),
                                   TextButton(onPressed: _removeSignature, child: const Text('Remove')),
                                 ],
                               ),
                               const SizedBox(height: AppSpacing.sm),
-                              Text('Apply to:', style: TextStyle(color: textSecondary, fontSize: 12)),
-                              const SizedBox(height: 4),
-                              Wrap(
-                                spacing: 8,
-                                children: ExportSignatureScope.values.map((scope) {
-                                  final label = scope == ExportSignatureScope.placed ? 'Placed Page' : scope == ExportSignatureScope.all ? 'All Pages' : scope == ExportSignatureScope.first ? 'First Page' : 'Last Page';
-                                  return ChoiceChip(
-                                    label: Text(label, style: const TextStyle(fontSize: 11)),
-                                    selected: _signatureScope == scope,
-                                    onSelected: (_) => setState(() => _signatureScope = scope),
-                                  );
-                                }).toList(),
+                              Text(
+                                'Signed pages: ${(_signaturePlacements.keys.toList()..sort()).map((i) => i + 1).join(', ')}',
+                                style: TextStyle(color: textSecondary, fontSize: 12),
                               ),
                             ],
                           ),
@@ -585,30 +556,146 @@ class _ExportScreenState extends State<ExportScreen> {
   }
   Widget _buildLivePreview() {
     if (_documents.isEmpty) return const SizedBox.shrink();
-    return FutureBuilder<Uint8List>(
-      future: _generatePreview(),
-      builder: (context, snapshot) {
-        if (!snapshot.hasData) return const SizedBox(height: 100, child: Center(child: CircularProgressIndicator()));
-        return Container(
-          height: 150,
-          width: double.infinity,
-          decoration: BoxDecoration(
-            color: Colors.black12,
-            borderRadius: BorderRadius.circular(8),
-            border: Border.all(color: Colors.grey.withValues(alpha: 0.3)),
+    final pageCount = _documents.first.pagePaths.length;
+    final pageIndex = _previewPage.clamp(0, pageCount - 1);
+    final placement = _signaturePlacements[pageIndex];
+    return Column(
+      children: [
+        Row(
+          children: [
+            IconButton(icon: const Icon(Icons.chevron_left), onPressed: pageIndex > 0 ? () => setState(() => _previewPage = pageIndex - 1) : null),
+            Text('Page ${pageIndex + 1} / $pageCount', style: const TextStyle(fontSize: 13)),
+            IconButton(icon: const Icon(Icons.chevron_right), onPressed: pageIndex < pageCount - 1 ? () => setState(() => _previewPage = pageIndex + 1) : null),
+            const Spacer(),
+            if (_signatureBytes != null && placement == null)
+              ActionChip(
+                avatar: const Icon(Icons.draw_outlined, size: 14),
+                label: const Text('Sign this page too', style: TextStyle(fontSize: 11)),
+                onPressed: () => setState(() {
+                  _signaturePlacements[pageIndex] = const SignaturePlacement(pctX: 0.5, pctY: 0.35);
+                }),
+              ),
+          ],
+        ),
+        FutureBuilder<Map<String, dynamic>>(
+          future: _generatePreview(pageIndex),
+          builder: (context, snapshot) {
+            if (!snapshot.hasData) return const SizedBox(height: 240, child: Center(child: CircularProgressIndicator()));
+            final data = snapshot.data!;
+            final imgBytes = data['bytes'] as Uint8List;
+            final imgW = (data['w'] as int).toDouble();
+            final imgH = (data['h'] as int).toDouble();
+            return SizedBox(
+              height: 260,
+              width: double.infinity,
+              child: LayoutBuilder(
+                builder: (context, constraints) {
+                  double iw = constraints.maxWidth;
+                  double ih = iw * (imgH / imgW);
+                  double dx = 0;
+                  double dy = 0;
+                  if (ih > constraints.maxHeight) {
+                    ih = constraints.maxHeight;
+                    iw = ih * (imgW / imgH);
+                    dx = (constraints.maxWidth - iw) / 2;
+                  } else {
+                    dy = (constraints.maxHeight - ih) / 2;
+                  }
+                  final sigW = iw * 0.28 * (placement?.scale ?? 1.0);
+                  return Stack(
+                    children: [
+                      Positioned.fill(child: Center(child: Image.memory(imgBytes, fit: BoxFit.contain))),
+                      if (_signatureBytes != null && placement != null)
+                        Positioned(
+                          left: dx + placement.pctX * iw - sigW / 2,
+                          top: dy + placement.pctY * ih - (sigW / _sigAspect) / 2,
+                          child: GestureDetector(
+                            behavior: HitTestBehavior.opaque,
+                            onPanUpdate: (d) => setState(() {
+                              _signaturePlacements[pageIndex] = SignaturePlacement(
+                                pctX: (placement.pctX + d.delta.dx / iw).clamp(0.0, 1.0),
+                                pctY: (placement.pctY + d.delta.dy / ih).clamp(0.0, 1.0),
+                                rotationDegrees: placement.rotationDegrees,
+                                scale: placement.scale,
+                              );
+                            }),
+                            child: Transform.rotate(
+                              angle: placement.rotationDegrees * 3.14159 / 180,
+                              child: Image.memory(_signatureBytes!, width: sigW, height: sigW / _sigAspect, fit: BoxFit.contain),
+                            ),
+                          ),
+                        ),
+                    ],
+                  );
+                },
+              ),
+            );
+          },
+        ),
+        if (_signatureBytes != null && placement != null) ...[
+          Row(
+            children: [
+              const Text('Rotate', style: TextStyle(fontSize: 12)),
+              Expanded(
+                child: Slider(
+                  value: placement.rotationDegrees,
+                  min: -180,
+                  max: 180,
+                  onChanged: (v) => setState(() {
+                    _signaturePlacements[pageIndex] = SignaturePlacement(pctX: placement.pctX, pctY: placement.pctY, rotationDegrees: v, scale: placement.scale);
+                  }),
+                ),
+              ),
+              Text('${placement.rotationDegrees.round()}°', style: const TextStyle(fontSize: 12)),
+            ],
           ),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(8),
-            child: Image.memory(snapshot.data!, fit: BoxFit.contain),
+          Row(
+            children: [
+              const Text('Scale', style: TextStyle(fontSize: 12)),
+              Expanded(
+                child: Slider(
+                  value: placement.scale,
+                  min: 0.3,
+                  max: 3.0,
+                  onChanged: (v) => setState(() {
+                    _signaturePlacements[pageIndex] = SignaturePlacement(pctX: placement.pctX, pctY: placement.pctY, rotationDegrees: placement.rotationDegrees, scale: v);
+                  }),
+                ),
+              ),
+              Text('${placement.scale.toStringAsFixed(1)}x', style: const TextStyle(fontSize: 12)),
+            ],
           ),
-        );
-      },
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              TextButton(
+                onPressed: () => setState(() {
+                  for (int i = 0; i < pageCount; i++) {
+                    _signaturePlacements[i] = placement;
+                  }
+                }),
+                child: const Text('Copy to all pages'),
+              ),
+              TextButton(
+                onPressed: () => setState(() => _signaturePlacements.remove(pageIndex)),
+                child: const Text('Clear this page'),
+              ),
+              TextButton(
+                onPressed: () => setState(() => _signaturePlacements.clear()),
+                child: const Text('Clear all'),
+              ),
+            ],
+          ),
+        ],
+      ],
     );
   }
 
-  Future<Uint8List> _generatePreview() async {
-    final bytes = await File(_documents.first.pagePaths.first).readAsBytes();
-    return await compute(_applyFilterIsolate, {'bytes': bytes, 'filter': _selectedFilter.index});
+  Future<Map<String, dynamic>> _generatePreview(int pageIndex) async {
+    final paths = _documents.first.pagePaths;
+    final idx = pageIndex.clamp(0, paths.length - 1);
+    final bytes = await File(paths[idx]).readAsBytes();
+    return await compute(_previewIsolate, {'bytes': bytes, 'filter': _selectedFilter.index});
   }
 }
 
@@ -662,150 +749,15 @@ class _SignatureSheet extends StatelessWidget {
   }
 }
 
-class _SignaturePlacementSheet extends StatefulWidget {
-  final List<String> pagePaths;
-  final Uint8List signatureBytes;
-  const _SignaturePlacementSheet({required this.pagePaths, required this.signatureBytes});
-
-  @override
-  State<_SignaturePlacementSheet> createState() => _SignaturePlacementSheetState();
-}
-
-class _SignaturePlacementSheetState extends State<_SignaturePlacementSheet> {
-  int _currentPageIndex = 0;
-  Offset _signatureOffset = Offset.zero;
-  double _rotationDegrees = 0;
-  double _scale = 1.0;
-  final GlobalKey _stackKey = GlobalKey();
-  bool _initialized = false;
-
-  @override
-  Widget build(BuildContext context) {
-    final currentPagePath = widget.pagePaths[_currentPageIndex];
-    return SafeArea(
-      child: Container(
-        height: MediaQuery.of(context).size.height * 0.85,
-        decoration: BoxDecoration(color: Theme.of(context).scaffoldBackgroundColor, borderRadius: const BorderRadius.only(topLeft: Radius.circular(20), topRight: Radius.circular(20))),
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(16),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text('Place signature', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600, color: Theme.of(context).colorScheme.onSurface)),
-                  Row(
-                    children: [
-                      IconButton(icon: const Icon(Icons.chevron_left), onPressed: _currentPageIndex > 0 ? () => setState(() => _currentPageIndex--) : null),
-                      Text('Page ${_currentPageIndex + 1} / ${widget.pagePaths.length}', style: const TextStyle(fontSize: 14)),
-                      IconButton(icon: const Icon(Icons.chevron_right), onPressed: _currentPageIndex < widget.pagePaths.length - 1 ? () => setState(() => _currentPageIndex++) : null),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            Expanded(
-              child: LayoutBuilder(
-                builder: (context, constraints) {
-                  if (!_initialized) {
-                    _initialized = true;
-                    _signatureOffset = Offset(constraints.maxWidth * 0.6, constraints.maxHeight * 0.7);
-                  }
-                  return Stack(
-                    key: _stackKey,
-                    children: [
-                      Positioned.fill(child: Image.file(File(currentPagePath), fit: BoxFit.contain)),
-                      Positioned(
-                        left: _signatureOffset.dx,
-                        top: _signatureOffset.dy,
-                        child: GestureDetector(
-                          onPanUpdate: (details) => setState(() {
-                            _signatureOffset += details.delta;
-                            _signatureOffset = Offset(
-                              _signatureOffset.dx.clamp(0.0, constraints.maxWidth - 100).toDouble(),
-                              _signatureOffset.dy.clamp(0.0, constraints.maxHeight - 50).toDouble(),
-                            );
-                          }),
-                          child: Transform.rotate(
-                            angle: _rotationDegrees * 3.14159 / 180,
-                            child: Opacity(opacity: 0.8, child: Image.memory(widget.signatureBytes, width: 100 * _scale, height: 50 * _scale, fit: BoxFit.contain)),
-                          ),
-                        ),
-                      ),
-                    ],
-                  );
-                },
-              ),
-            ),
-            // Scale slider
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Row(
-                children: [
-                  const Text('Scale', style: TextStyle(fontSize: 12)),
-                  Expanded(
-                    child: Slider(
-                      value: _scale,
-                      min: 0.5,
-                      max: 3.0,
-                      onChanged: (value) => setState(() => _scale = value),
-                    ),
-                  ),
-                  Text('${_scale.toStringAsFixed(1)}x', style: const TextStyle(fontSize: 12)),
-                ],
-              ),
-            ),
-            // Rotation slider
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Row(
-                children: [
-                  const Text('Rotation', style: TextStyle(fontSize: 12)),
-                  Expanded(
-                    child: Slider(
-                      value: _rotationDegrees,
-                      min: -180,
-                      max: 180,
-                      onChanged: (value) => setState(() => _rotationDegrees = value),
-                    ),
-                  ),
-                  Text('${_rotationDegrees.round()}°', style: const TextStyle(fontSize: 12)),
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(16),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  TextButton(onPressed: () => Navigator.pop(context), child: const Text('Cancel')),
-                  ElevatedButton(
-                    onPressed: () {
-                      final RenderBox? box = _stackKey.currentContext?.findRenderObject() as RenderBox?;
-                      final Size size = box?.size ?? const Size(1, 1);
-                      final double pctX = (_signatureOffset.dx / size.width).clamp(0.0, 1.0).toDouble();
-                      final double pctY = (_signatureOffset.dy / size.height).clamp(0.0, 1.0).toDouble();
-                      Navigator.pop(context, (_currentPageIndex, pctX, pctY, _rotationDegrees, _scale));
-                    },
-                    style: ElevatedButton.styleFrom(backgroundColor: Theme.of(context).colorScheme.primary, foregroundColor: Colors.white),
-                    child: const Text('Confirm'),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-
-Uint8List _applyFilterIsolate(Map<String, dynamic> args) {
+Map<String, dynamic> _previewIsolate(Map<String, dynamic> args) {
   final bytes = args['bytes'] as Uint8List;
   final filter = FilterType.values[args['filter'] as int];
   final decoded = img.decodeImage(bytes);
-  if (decoded == null) return bytes;
+  if (decoded == null) return {'bytes': bytes, 'w': 1, 'h': 1};
   final filtered = FilterService.applyToImage(decoded, filter);
-  return Uint8List.fromList(img.encodeJpg(filtered, quality: 85));
+  return {
+    'bytes': Uint8List.fromList(img.encodeJpg(filtered, quality: 85)),
+    'w': filtered.width,
+    'h': filtered.height,
+  };
 }
