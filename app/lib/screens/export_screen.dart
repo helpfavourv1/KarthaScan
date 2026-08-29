@@ -225,186 +225,163 @@ class _ExportScreenState extends State<ExportScreen> {
                       padding: const EdgeInsets.all(AppSpacing.md),
                 children: [
                                         _buildLivePreview(),
-                                        const SizedBox(height: AppSpacing.lg),
-                  // Format Ribbon
-                  Text('Format', style: TextStyle(color: textSecondary, fontSize: AppTypography.footnoteSize, fontWeight: FontWeight.w600)),
-                  const SizedBox(height: AppSpacing.sm),
-                  Wrap(
-                    spacing: AppSpacing.xs,
-                    runSpacing: AppSpacing.xs,
-                    children: [
-                      _buildFormatCard(ExportFormat.pdf, 'PDF', Icons.picture_as_pdf_outlined, accent),
-                      _buildFormatCard(ExportFormat.docx, 'Word', Icons.description_outlined, accent),
-                      _buildFormatCard(ExportFormat.txt, 'TXT', Icons.notes_outlined, accent),
-                      _buildFormatCard(ExportFormat.jpg, 'JPG', Icons.image_outlined, accent),
-                      _buildFormatCard(ExportFormat.png, 'PNG', Icons.image_outlined, accent),
-                      _buildFormatCard(ExportFormat.csv, 'CSV', Icons.table_chart_outlined, accent),
-                    ],
-                  ),
-                  const SizedBox(height: AppSpacing.lg),
-
-                  // Filter Selector
-                  Text('Filter', style: TextStyle(color: textSecondary, fontSize: AppTypography.footnoteSize, fontWeight: FontWeight.w600)),
-                  const SizedBox(height: AppSpacing.sm),
-                  Container(
-                    padding: const EdgeInsets.all(AppSpacing.md),
-                    decoration: BoxDecoration(
-                      color: surface,
-                      borderRadius: BorderRadius.circular(AppShape.cardRadius),
-                      border: Border.all(color: isDark ? AppColors.borderSubtleDark : AppColors.borderSubtleLight, width: 1),
-                      boxShadow: AppShadows.ambient,
-                    ),
-                    child: DropdownButton<FilterType>(
-                      value: _selectedFilter,
-                      isExpanded: true,
-                      underline: const SizedBox.shrink(),
-                      onChanged: (value) => setState(() => _selectedFilter = value!),
-                      items: FilterType.values.map((f) {
-                        final label = f == FilterType.none ? 'Original' :
-                                     f == FilterType.grayscale ? 'Grayscale' :
-                                     f == FilterType.blackAndWhite ? 'B&W' :
-                                     f == FilterType.colorEnhance ? 'Color Enhance' : 'Shadow Removal';
-                        return DropdownMenuItem(value: f, child: Text(label));
-                      }).toList(),
-                    ),
-                  ),
-                  const SizedBox(height: AppSpacing.lg),
-
-                  // DOCX Mode (conditional)
-                  if (_selectedFormat == ExportFormat.docx) ...[
-                    Text('Word Mode', style: TextStyle(color: textSecondary, fontSize: AppTypography.footnoteSize, fontWeight: FontWeight.w600)),
-                    const SizedBox(height: AppSpacing.sm),
-                    Container(
-                      padding: const EdgeInsets.all(AppSpacing.md),
-                      decoration: BoxDecoration(color: surface, borderRadius: BorderRadius.circular(AppShape.cardRadius)),
-                      child: Row(
-                        children: [
-                          Expanded(child: _buildDocxModeChip(ExportDocxMode.textOnly, 'Text Only', accent)),
-                          const SizedBox(width: AppSpacing.sm),
-                          Expanded(child: _buildDocxModeChip(ExportDocxMode.imageEmbedded, 'With Images', accent)),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(height: AppSpacing.lg),
-                  ],
-
-                  // Page Format
-                  Text('Page Size', style: TextStyle(color: textSecondary, fontSize: AppTypography.footnoteSize, fontWeight: FontWeight.w600)),
-                  const SizedBox(height: AppSpacing.sm),
-                  Container(
-                    padding: const EdgeInsets.all(AppSpacing.md),
-                    decoration: BoxDecoration(color: surface, borderRadius: BorderRadius.circular(AppShape.cardRadius)),
+                                        const SizedBox(height: AppSpacing.md),
+                  // Format Ribbon (single row, 70px)
+                  SizedBox(
+                    height: 70,
                     child: Row(
                       children: [
-                        Expanded(child: _buildPageFormatChip(ExportPageFormat.a4, 'A4', accent)),
-                        const SizedBox(width: AppSpacing.sm),
-                        Expanded(child: _buildPageFormatChip(ExportPageFormat.letter, 'Letter (US)', accent)),
+                        _formatCell(ExportFormat.pdf, 'PDF', Icons.picture_as_pdf_outlined, accent, surface, textPrimary, isDark),
+                        _formatCell(ExportFormat.docx, 'Word', Icons.description_outlined, accent, surface, textPrimary, isDark),
+                        _formatCell(ExportFormat.txt, 'TXT', Icons.notes_outlined, accent, surface, textPrimary, isDark),
+                        _formatCell(ExportFormat.jpg, 'JPG', Icons.image_outlined, accent, surface, textPrimary, isDark),
+                        _formatCell(ExportFormat.png, 'PNG', Icons.image_outlined, accent, surface, textPrimary, isDark),
+                        _formatCell(ExportFormat.csv, 'CSV', Icons.table_chart_outlined, accent, surface, textPrimary, isDark),
                       ],
                     ),
                   ),
-                  const SizedBox(height: AppSpacing.lg),
+                  const SizedBox(height: AppSpacing.md),
 
-                  // Compression (conditional)
-                  if (showCompression) ...[
-                    Text('Quality', style: TextStyle(color: textSecondary, fontSize: AppTypography.footnoteSize, fontWeight: FontWeight.w600)),
-                    const SizedBox(height: AppSpacing.sm),
-                    Container(
-                      padding: const EdgeInsets.all(AppSpacing.md),
-                      decoration: BoxDecoration(color: surface, borderRadius: BorderRadius.circular(AppShape.cardRadius)),
-                      child: Row(
-                        children: [
-                          Expanded(child: _buildCompressionChip(CompressionTier.small, 'Small', accent)),
-                          const SizedBox(width: AppSpacing.sm),
-                          Expanded(child: _buildCompressionChip(CompressionTier.medium, 'Medium', accent)),
-                          const SizedBox(width: AppSpacing.sm),
-                          Expanded(child: _buildCompressionChip(CompressionTier.original, 'Original', accent)),
-                        ],
-                      ),
+                  // Filter pills (44px)
+                  SizedBox(
+                    height: 44,
+                    child: ListView(
+                      scrollDirection: Axis.horizontal,
+                      children: FilterType.values.map((f) {
+                        final label = f == FilterType.none ? 'Original' :
+                                     f == FilterType.grayscale ? 'Grayscale' :
+                                     f == FilterType.blackAndWhite ? 'B&W' :
+                                     f == FilterType.colorEnhance ? 'Color' : 'Shadow';
+                        return _filterPill(f, label, accent, textPrimary, isDark);
+                      }).toList(),
                     ),
+                  ),
+                  const SizedBox(height: AppSpacing.md),
+
+                  // DOCX Mode (conditional, inline 32px)
+                  if (_selectedFormat == ExportFormat.docx) ...[
+                    _caption('Word Mode', textSecondary),
+                    const SizedBox(height: AppSpacing.xs),
+                    _segmentRow([
+                      _seg(_docxMode == ExportDocxMode.textOnly, 'Text Only', () => setState(() => _docxMode = ExportDocxMode.textOnly), accent, surface, textPrimary),
+                      _seg(_docxMode == ExportDocxMode.imageEmbedded, 'With Images', () => setState(() => _docxMode = ExportDocxMode.imageEmbedded), accent, surface, textPrimary),
+                    ]),
+                    const SizedBox(height: AppSpacing.md),
+                  ],
+
+                  // Page Size (40px segment)
+                  _caption('Page Size', textSecondary),
+                  const SizedBox(height: AppSpacing.xs),
+                  _segmentRow([
+                    _seg(_pageFormat == ExportPageFormat.a4, 'A4', () => setState(() => _pageFormat = ExportPageFormat.a4), accent, surface, textPrimary),
+                    _seg(_pageFormat == ExportPageFormat.letter, 'Letter (US)', () => setState(() => _pageFormat = ExportPageFormat.letter), accent, surface, textPrimary),
+                  ], height: 40),
+                  const SizedBox(height: AppSpacing.md),
+
+                  // Quality + Target MB (conditional, compact)
+                  if (showCompression) ...[
+                    _caption('Quality', textSecondary),
+                    const SizedBox(height: AppSpacing.xs),
+                    _segmentRow([
+                      _seg(_selectedCompression == CompressionTier.small, 'Small', () => setState(() => _selectedCompression = CompressionTier.small), accent, surface, textPrimary),
+                      _seg(_selectedCompression == CompressionTier.medium, 'Medium', () => setState(() => _selectedCompression = CompressionTier.medium), accent, surface, textPrimary),
+                      _seg(_selectedCompression == CompressionTier.original, 'Original', () => setState(() => _selectedCompression = CompressionTier.original), accent, surface, textPrimary),
+                    ]),
                     FutureBuilder<int>(
                       future: _calculateEstimate(),
                       builder: (context, snapshot) {
                         if (!snapshot.hasData || snapshot.data == 0) return const SizedBox.shrink();
                         final mb = (snapshot.data! / (1024 * 1024)).toStringAsFixed(2);
                         return Padding(
-                          padding: const EdgeInsets.only(top: AppSpacing.sm),
+                          padding: const EdgeInsets.only(top: AppSpacing.xs),
                           child: Text(
                             'Estimated size: $mb MB',
-                            style: TextStyle(color: accent, fontSize: 12, fontWeight: FontWeight.w600),
+                            style: TextStyle(color: accent, fontSize: 11, fontWeight: FontWeight.w600),
                             textAlign: TextAlign.center,
                           ),
                         );
                       },
                     ),
-                    const SizedBox(height: AppSpacing.lg),
                     if (_selectedFormat == ExportFormat.jpg) ...[
-                      Text('Target Size (optional)', style: TextStyle(color: textSecondary, fontSize: AppTypography.footnoteSize, fontWeight: FontWeight.w600)),
-                      const SizedBox(height: AppSpacing.sm),
+                      const SizedBox(height: AppSpacing.xs),
                       Container(
-                        padding: const EdgeInsets.all(AppSpacing.md),
-                        decoration: BoxDecoration(color: surface, borderRadius: BorderRadius.circular(AppShape.cardRadius)),
+                        padding: const EdgeInsets.symmetric(horizontal: AppSpacing.sm),
+                        decoration: BoxDecoration(
+                          color: surface,
+                          borderRadius: BorderRadius.circular(10),
+                          border: Border.all(color: isDark ? AppColors.borderSubtleDark : AppColors.borderSubtleLight, width: 0.5),
+                        ),
                         child: Column(
                           children: [
-                            SwitchListTile(
-                              title: const Text('Fit to target MB'),
-                              value: _targetMB != null,
-                              onChanged: (v) => setState(() => _targetMB = v ? 2 : null),
-                            ),
-                            if (_targetMB != null) ...[
-                              Slider(
-                                value: _targetMB!.toDouble(),
-                                min: 0.5,
-                                max: 10,
-                                divisions: 19,
-                                label: '$_targetMB MB',
-                                onChanged: (v) => setState(() => _targetMB = v.round()),
+                            SizedBox(
+                              height: 40,
+                              child: SwitchListTile(
+                                dense: true,
+                                title: const Text('Fit to target MB', style: TextStyle(fontSize: 12)),
+                                value: _targetMB != null,
+                                onChanged: (v) => setState(() => _targetMB = v ? 2 : null),
                               ),
-                              Text('$_targetMB MB', style: TextStyle(color: accent, fontSize: 12, fontWeight: FontWeight.w600)),
-                            ],
+                            ),
+                            if (_targetMB != null)
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: Slider(
+                                      value: _targetMB!.toDouble(),
+                                      min: 0.5,
+                                      max: 10,
+                                      divisions: 19,
+                                      label: '$_targetMB MB',
+                                      onChanged: (v) => setState(() => _targetMB = v.round()),
+                                    ),
+                                  ),
+                                  Text('$_targetMB MB', style: TextStyle(color: accent, fontSize: 12, fontWeight: FontWeight.w600)),
+                                ],
+                              ),
                           ],
                         ),
                       ),
                     ],
+                    const SizedBox(height: AppSpacing.md),
                   ],
 
                   if (_isSingleDoc) ...[
-                    // Signature Section
-                    Text('Signature', style: TextStyle(color: textSecondary, fontSize: AppTypography.footnoteSize, fontWeight: FontWeight.w600)),
-                    const SizedBox(height: AppSpacing.sm),
+                    // Signature row (compact)
                     Container(
-                      padding: const EdgeInsets.all(AppSpacing.md),
-                      decoration: BoxDecoration(color: surface, borderRadius: BorderRadius.circular(AppShape.cardRadius)),
+                      padding: const EdgeInsets.symmetric(horizontal: AppSpacing.sm),
+                      decoration: BoxDecoration(
+                        color: surface,
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(color: isDark ? AppColors.borderSubtleDark : AppColors.borderSubtleLight, width: 0.5),
+                      ),
                       child: _signatureBytes == null
                           ? SizedBox(
-                              height: 52,
-                              width: double.infinity,
-                              child: ElevatedButton.icon(
+                              height: 48,
+                              child: TextButton.icon(
                                 onPressed: _addSignature,
-                                icon: const Icon(Icons.draw_outlined, size: 22),
-                                label: const Text('Add Signature', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: accent,
-                                  foregroundColor: Colors.white,
-                                  elevation: 2,
-                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
-                                ),
+                                icon: const Icon(Icons.draw_outlined, size: 18),
+                                label: const Text('Add Signature', style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600)),
                               ),
                             )
                           : Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Row(
-                                  children: [
-                                    const Icon(Icons.check_circle, color: Colors.green),
-                                    const SizedBox(width: AppSpacing.sm),
-                                    const Expanded(child: Text('Signature added — drag it on the preview')),
-                                    TextButton(onPressed: _removeSignature, child: const Text('Remove')),
-                                  ],
+                                SizedBox(
+                                  height: 44,
+                                  child: Row(
+                                    children: [
+                                      const Icon(Icons.check_circle, color: Colors.green, size: 16),
+                                      const SizedBox(width: AppSpacing.xs),
+                                      const Expanded(child: Text('Signature — drag on preview', style: TextStyle(fontSize: 12))),
+                                      TextButton(onPressed: _removeSignature, child: const Text('Remove', style: TextStyle(fontSize: 12))),
+                                    ],
+                                  ),
                                 ),
-                                const SizedBox(height: AppSpacing.sm),
-                                Text(
-                                  'Signed pages: ${(_signaturePlacements.keys.toList()..sort()).map((i) => i + 1).join(', ')}',
-                                  style: TextStyle(color: textSecondary, fontSize: 12),
+                                Padding(
+                                  padding: const EdgeInsets.only(bottom: AppSpacing.xs),
+                                  child: Text(
+                                    'Signed pages: ${(_signaturePlacements.keys.toList()..sort()).map((i) => i + 1).join(', ')}',
+                                    style: TextStyle(color: textSecondary, fontSize: 11),
+                                  ),
                                 ),
                               ],
                             ),
@@ -468,97 +445,74 @@ class _ExportScreenState extends State<ExportScreen> {
     }
   }
 
-  Widget _buildFormatCard(ExportFormat format, String label, IconData icon, Color accent) {
+  Widget _caption(String text, Color color) {
+    return Text(text, style: TextStyle(color: color, fontSize: 11, fontWeight: FontWeight.w600));
+  }
+
+  Widget _segmentRow(List<Widget> children, {double height = 32}) {
+    return SizedBox(height: height, child: Row(children: children));
+  }
+
+  Widget _seg(bool isSelected, String label, VoidCallback onTap, Color accent, Color surface, Color textPrimary) {
+    return Expanded(
+      child: GestureDetector(
+        onTap: onTap,
+        child: Container(
+          margin: const EdgeInsets.only(right: 4),
+          decoration: BoxDecoration(
+            color: isSelected ? accent : surface,
+            borderRadius: BorderRadius.circular(8),
+            border: Border.all(color: isSelected ? accent : Colors.grey.withValues(alpha: 0.3), width: isSelected ? 1.5 : 0.5),
+          ),
+          child: Center(child: Text(label, style: TextStyle(color: isSelected ? Colors.white : textPrimary, fontSize: 11, fontWeight: FontWeight.w600), textAlign: TextAlign.center)),
+        ),
+      ),
+    );
+  }
+
+  Widget _filterPill(FilterType f, String label, Color accent, Color textPrimary, bool isDark) {
+    final isSelected = _selectedFilter == f;
+    return GestureDetector(
+      onTap: () => setState(() => _selectedFilter = f),
+      child: Container(
+        margin: const EdgeInsets.only(right: 6),
+        padding: const EdgeInsets.symmetric(horizontal: 12),
+        decoration: BoxDecoration(
+          color: isSelected ? accent : (isDark ? AppColors.bgSecondaryDark : AppColors.bgSecondaryLight),
+          borderRadius: BorderRadius.circular(18),
+          border: Border.all(color: isSelected ? accent : (isDark ? AppColors.borderSubtleDark : AppColors.borderSubtleLight), width: isSelected ? 1.5 : 0.5),
+        ),
+        child: Center(child: Text(label, style: TextStyle(color: isSelected ? Colors.white : textPrimary, fontSize: 11, fontWeight: FontWeight.w600))),
+      ),
+    );
+  }
+
+  Widget _formatCell(ExportFormat format, String label, IconData icon, Color accent, Color surface, Color textPrimary, bool isDark) {
     final isSelected = _selectedFormat == format;
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-    final surface = isDark ? AppColors.bgSecondaryDark : AppColors.bgSecondaryLight;
-    final textPrimary = isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight;
-
-    return GestureDetector(
-      onTap: () => setState(() => _selectedFormat = format),
-      child: Container(
-        width: 62,
-        height: 84,
-        decoration: BoxDecoration(
-          color: isSelected ? accent.withValues(alpha: 0.15) : surface,
-          borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: isSelected ? accent : Colors.grey.withValues(alpha: 0.3), width: isSelected ? 2 : 1),
-          boxShadow: isSelected ? AppShadows.ambient : null,
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(icon, color: isSelected ? accent : textPrimary, size: 22),
-            const SizedBox(height: 6),
-            Text(label, style: TextStyle(color: isSelected ? accent : textPrimary, fontSize: 11, fontWeight: FontWeight.w600)),
-          ],
+    return Expanded(
+      child: GestureDetector(
+        onTap: () => setState(() => _selectedFormat = format),
+        child: Container(
+          height: 70,
+          margin: const EdgeInsets.only(right: 6),
+          decoration: BoxDecoration(
+            color: isSelected ? accent.withValues(alpha: 0.10) : surface,
+            borderRadius: BorderRadius.circular(10),
+            border: Border.all(color: isSelected ? accent : (isDark ? AppColors.borderSubtleDark : AppColors.borderSubtleLight), width: isSelected ? 1.5 : 0.5),
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(icon, color: isSelected ? accent : textPrimary, size: 20),
+              const SizedBox(height: 2),
+              Text(label, style: TextStyle(color: isSelected ? accent : textPrimary, fontSize: 9, fontWeight: FontWeight.w600)),
+            ],
+          ),
         ),
       ),
     );
   }
 
-  Widget _buildCompressionChip(CompressionTier tier, String label, Color accent) {
-    final isSelected = _selectedCompression == tier;
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-    final surface = isDark ? AppColors.bgSecondaryDark : AppColors.bgSecondaryLight;
-    final textPrimary = isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight;
-
-    return GestureDetector(
-      onTap: () => setState(() => _selectedCompression = tier),
-      child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 12),
-        decoration: BoxDecoration(
-          color: isSelected ? accent : surface,
-          borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: isSelected ? accent : Colors.grey.withValues(alpha: 0.3)),
-          boxShadow: isSelected ? AppShadows.ambient : null,
-        ),
-        child: Text(label, style: TextStyle(color: isSelected ? Colors.white : textPrimary, fontWeight: FontWeight.w700, fontSize: 12), textAlign: TextAlign.center),
-      ),
-    );
-  }
-
-  Widget _buildDocxModeChip(ExportDocxMode mode, String label, Color accent) {
-    final isSelected = _docxMode == mode;
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-    final surface = isDark ? AppColors.bgSecondaryDark : AppColors.bgSecondaryLight;
-    final textPrimary = isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight;
-
-    return GestureDetector(
-      onTap: () => setState(() => _docxMode = mode),
-      child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 12),
-        decoration: BoxDecoration(
-          color: isSelected ? accent : surface,
-          borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: isSelected ? accent : Colors.grey.withValues(alpha: 0.3)),
-          boxShadow: isSelected ? AppShadows.ambient : null,
-        ),
-        child: Text(label, style: TextStyle(color: isSelected ? Colors.white : textPrimary, fontWeight: FontWeight.w700, fontSize: 11), textAlign: TextAlign.center),
-      ),
-    );
-  }
-
-  Widget _buildPageFormatChip(ExportPageFormat format, String label, Color accent) {
-    final isSelected = _pageFormat == format;
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-    final surface = isDark ? AppColors.bgSecondaryDark : AppColors.bgSecondaryLight;
-    final textPrimary = isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight;
-
-    return GestureDetector(
-      onTap: () => setState(() => _pageFormat = format),
-      child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 12),
-        decoration: BoxDecoration(
-          color: isSelected ? accent : surface,
-          borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: isSelected ? accent : Colors.grey.withValues(alpha: 0.3)),
-          boxShadow: isSelected ? AppShadows.ambient : null,
-        ),
-        child: Text(label, style: TextStyle(color: isSelected ? Colors.white : textPrimary, fontWeight: FontWeight.w700, fontSize: 12), textAlign: TextAlign.center),
-      ),
-    );
-  }
   Widget _buildLivePreview() {
     if (_documents.isEmpty) return const SizedBox.shrink();
     if (!_isSingleDoc) {
@@ -613,13 +567,13 @@ class _ExportScreenState extends State<ExportScreen> {
         FutureBuilder<Map<String, dynamic>>(
           future: _generatePreview(pageIndex),
           builder: (context, snapshot) {
-            if (!snapshot.hasData) return const SizedBox(height: 240, child: Center(child: CircularProgressIndicator()));
+            if (!snapshot.hasData) return const SizedBox(height: 340, child: Center(child: CircularProgressIndicator()));
             final data = snapshot.data!;
             final imgBytes = data['bytes'] as Uint8List;
             final imgW = (data['w'] as int).toDouble();
             final imgH = (data['h'] as int).toDouble();
             return SizedBox(
-              height: 260,
+              height: 340,
               width: double.infinity,
               child: LayoutBuilder(
                 builder: (context, constraints) {
