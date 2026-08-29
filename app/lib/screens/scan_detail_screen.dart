@@ -61,6 +61,8 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
   late TabController _tabController;
   int _currentPageIndex = 0;
   bool _signatureMode = false;
+  bool _annotateMode = false;
+  Uint8List? _annotateBytes;
 
   @override
   void initState() {
@@ -171,49 +173,9 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
   // --- R6 New Features ---
 
   Future<void> _annotate() async {
-    _signatureMode = false;
-    final document = _document;
-    if (document == null || document.pagePaths.isEmpty) return;
-
-    final bytes = await showModalBottomSheet<Uint8List?>(
-      context: context,
-      isScrollControlled: true,
-      builder: (context) => const AnnotateSheet(),
-    );
-
-    if (bytes == null || !mounted) return;
-
-      final placement = await showModalBottomSheet<(int, double, double, double, double, double)?>(
-        context: context,
-        isScrollControlled: true,
-        builder: (context) => OverlayPlacementSheet(
-          pagePaths: document.pagePaths,
-          overlayBytes: bytes,
-          title: 'Place Annotation',
-          initialWidthFraction: 0.8,
-        ),
-      );
-      if (placement == null || !mounted) return;
-      await _compositeAndSavePage(
-        placement.$1,
-        bytes,
-        pctX: placement.$2,
-        pctY: placement.$3,
-        rotationDegrees: placement.$4,
-        scale: placement.$5,
-        widthFraction: placement.$6,
-      );
-
-    
-    await _compositeAndSavePage(
-      placement.$1,
-      bytes,
-      pctX: placement.$2,
-      pctY: placement.$3,
-      rotationDegrees: placement.$4,
-      scale: placement.$5,
-    );
+    await _addAnnotateToPage(_currentPageIndex);
   }
+
 
   Future<void> _loadSignatureBytes() async {
     final bytes = await _localStorage.loadSignaturePng();
@@ -297,6 +259,75 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
     final document = _document;
     if (document == null) return;
     await _scanProvider.clearSignatureLayers(document.id);
+  }
+
+  Future<void> _annotateThisPage(int pageIndex) async {
+    await _addAnnotateToPage(pageIndex);
+  }
+
+  Future<void> _addAnnotateToPage(int pageIndex) async {
+    final document = _document;
+    if (document == null || document.pagePaths.isEmpty) return;
+
+    // Use the already-drawn bytes if available, else open the sheet
+    Uint8List? bytes = _annotateBytes;
+    if (bytes == null) {
+      bytes = await showModalBottomSheet<Uint8List?>(
+        context: context,
+        isScrollControlled: true,
+        builder: (context) => const AnnotateSheet(),
+      );
+      if (bytes == null || !mounted) return;
+    }
+
+    // Save the PNG to a file
+    final appDir = await getApplicationDocumentsDirectory();
+    final annotateDir = Directory(p.join(appDir.path, 'annotate_pages'));
+    await annotateDir.create(recursive: true);
+    final filePath = p.join(annotateDir.path, 'ann_${DateTime.now().microsecondsSinceEpoch}_$pageIndex.png');
+    await File(filePath).writeAsBytes(bytes);
+
+    setState(() {
+      _annotateBytes = bytes;
+      _annotateMode = true;
+      _signatureMode = false;
+    });
+
+    await _scanProvider.addAnnotateLayer(
+      document.id,
+      AnnotateLayer(pageIndex: pageIndex, bytesPath: filePath, placement: const SignaturePlacement(pctX: 0.5, pctY: 0.35)),
+    );
+    if (mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Annotate added — drag to reposition')),
+      );
+    }
+  }
+
+  Future<void> _copyAnnotateToAllPages(AnnotateLayer layer) async {
+    final document = _document;
+    if (document == null) return;
+    for (int i = 0; i < document.pagePaths.length; i++) {
+      await _scanProvider.addAnnotateLayer(
+        document.id,
+        AnnotateLayer(pageIndex: i, bytesPath: layer.bytesPath, placement: layer.placement),
+      );
+    }
+  }
+
+  Future<void> _clearAnnotatePage(int pageIndex) async {
+    final document = _document;
+    if (document == null) return;
+    final matching = document.annotateLayers.where((l) => l.pageIndex == pageIndex).toList();
+    if (matching.isNotEmpty) {
+      await _scanProvider.removeAnnotateLayer(document.id, pageIndex, matching.first.bytesPath);
+    }
+  }
+
+  Future<void> _clearAllAnnotateLayers() async {
+    final document = _document;
+    if (document == null) return;
+    await _scanProvider.clearAnnotateLayers(document.id);
   }
 
 
@@ -1060,6 +1091,18 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
               onCopyToAllPages: (layer) => _copySignatureToAllPages(layer),
               onClearThisPage: (pageIndex) => _clearSignaturePage(pageIndex),
               onClearAllLayers: () => _clearAllSignatureLayers(),
+              annotateLayers: _document?.annotateLayers ?? const [],
+              annotateMode: _annotateMode,
+              onAnnotateLayerUpdate: (pageIndex, layer) {
+                final doc = _document;
+                if (doc != null) {
+                  _scanProvider.updateAnnotateLayer(doc.id, layer);
+                }
+              },
+              onAnnotateThisPage: (pageIndex) => _annotateThisPage(pageIndex),
+              onCopyAnnotateToAllPages: (layer) => _copyAnnotateToAllPages(layer),
+              onClearAnnotatePage: (pageIndex) => _clearAnnotatePage(pageIndex),
+              onClearAllAnnotateLayers: () => _clearAllAnnotateLayers(),
             ),
                         ),
                                               ],

@@ -149,10 +149,12 @@ class ExportService {
     Uint8List? signatureBytes,
     Map<int, SignaturePlacement>? signaturePlacements,
     List<SignatureLayer>? documentLayers,
+    List<AnnotateLayer>? documentAnnotateLayers,
   }) async {
     final original = await _readBytes(pagePath);
     final placement = _findPlacement(pageIndex, signaturePlacements, documentLayers);
-    if (filter == FilterType.none && (signatureBytes == null || placement == null)) {
+    final annotateLayers = documentAnnotateLayers?.where((l) => l.pageIndex == pageIndex).toList() ?? const <AnnotateLayer>[];
+    if (filter == FilterType.none && (signatureBytes == null || placement == null) && annotateLayers.isEmpty) {
       return original;
     }
     try {
@@ -167,7 +169,14 @@ class ExportService {
           decoded = _compositeSignature(decoded, signatureImage, placement);
         }
       }
-      return Uint8List.fromList(img.encodePng(decoded));
+      for (final annotate in annotateLayers) {
+        final annotateBytes = await _readBytes(annotate.bytesPath);
+        final annotateImage = img.decodePng(annotateBytes);
+        if (annotateImage != null && decoded != null) {
+          decoded = _compositeSignature(decoded, annotateImage, annotate.placement);
+        }
+      }
+      return Uint8List.fromList(img.encodePng(decoded!));
     } catch (error, stackTrace) {
       _logError('_processPage', error, stackTrace);
       return original;
@@ -195,6 +204,7 @@ class ExportService {
         signatureBytes: signatureBytes,
         signaturePlacements: signaturePlacements,
         documentLayers: document.signatureLayers,
+        documentAnnotateLayers: document.annotateLayers,
       );
       final image = pw.MemoryImage(bytes);
       pdfDoc.addPage(
@@ -466,6 +476,7 @@ class ExportService {
         signatureBytes: signatureBytes,
         signaturePlacements: signaturePlacements,
         documentLayers: document.signatureLayers,
+        documentAnnotateLayers: document.annotateLayers,
       );
       final decoded = img.decodeImage(processedBytes);
       if (decoded == null) {

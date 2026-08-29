@@ -368,6 +368,41 @@ class ScanProvider {
     return _replaceAndSave(updated);
   }
 
+  Future<bool> addAnnotateLayer(String id, AnnotateLayer layer) async {
+    final ScanDocument? existing = _findById(id);
+    if (existing == null) return false;
+    final newLayers = [...existing.annotateLayers, layer];
+    final updated = existing.copyWith(annotateLayers: newLayers, updatedAt: DateTime.now());
+    return _replaceAndSave(updated);
+  }
+
+  Future<bool> updateAnnotateLayer(String id, AnnotateLayer layer) async {
+    final ScanDocument? existing = _findById(id);
+    if (existing == null) return false;
+    final newLayers = existing.annotateLayers
+        .map((l) => l.pageIndex == layer.pageIndex && l.bytesPath == layer.bytesPath ? layer : l)
+        .toList();
+    final updated = existing.copyWith(annotateLayers: newLayers, updatedAt: DateTime.now());
+    return _replaceAndSave(updated);
+  }
+
+  Future<bool> removeAnnotateLayer(String id, int pageIndex, String bytesPath) async {
+    final ScanDocument? existing = _findById(id);
+    if (existing == null) return false;
+    final newLayers = existing.annotateLayers
+        .where((l) => !(l.pageIndex == pageIndex && l.bytesPath == bytesPath))
+        .toList();
+    final updated = existing.copyWith(annotateLayers: newLayers, updatedAt: DateTime.now());
+    return _replaceAndSave(updated);
+  }
+
+  Future<bool> clearAnnotateLayers(String id) async {
+    final ScanDocument? existing = _findById(id);
+    if (existing == null) return false;
+    final updated = existing.copyWith(annotateLayers: const [], updatedAt: DateTime.now());
+    return _replaceAndSave(updated);
+  }
+
   Future<bool> _replaceAndSave(ScanDocument updated) async {
     final bool success = await _storage.saveDocument(updated);
     if (success) {

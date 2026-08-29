@@ -58,6 +58,61 @@ class SignatureLayer {
 }
 
 @immutable
+class AnnotateLayer {
+  const AnnotateLayer({
+    required this.pageIndex,
+    required this.bytesPath,
+    required this.placement,
+  });
+
+  final int pageIndex;
+  final String bytesPath;  // Path to PNG file
+  final SignaturePlacement placement;
+
+  Map<String, dynamic> toJson() => {
+    'pageIndex': pageIndex,
+    'bytesPath': bytesPath,
+    'pctX': placement.pctX,
+    'pctY': placement.pctY,
+    'rotationDegrees': placement.rotationDegrees,
+    'scale': placement.scale,
+  };
+
+  factory AnnotateLayer.fromJson(Map<String, dynamic> json) {
+    return AnnotateLayer(
+      pageIndex: json['pageIndex'] as int,
+      bytesPath: json['bytesPath'] as String,
+      placement: SignaturePlacement(
+        pctX: (json['pctX'] as num).toDouble(),
+        pctY: (json['pctY'] as num).toDouble(),
+        rotationDegrees: (json['rotationDegrees'] as num?)?.toDouble() ?? 0,
+        scale: (json['scale'] as num?)?.toDouble() ?? 1.0,
+      ),
+    );
+  }
+
+  AnnotateLayer copyWith({int? pageIndex, String? bytesPath, SignaturePlacement? placement}) {
+    return AnnotateLayer(
+      pageIndex: pageIndex ?? this.pageIndex,
+      bytesPath: bytesPath ?? this.bytesPath,
+      placement: placement ?? this.placement,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    return other is AnnotateLayer &&
+        other.pageIndex == pageIndex &&
+        other.bytesPath == bytesPath &&
+        other.placement == placement;
+  }
+
+  @override
+  int get hashCode => Object.hash(pageIndex, bytesPath, placement);
+}
+
+@immutable
 class ScanDocument {
   const ScanDocument({
     required this.id,
@@ -71,6 +126,7 @@ class ScanDocument {
     this.tags = const <String>[],
     this.isFavorite = false,
     this.signatureLayers = const <SignatureLayer>[],
+    this.annotateLayers = const <AnnotateLayer>[],
   });
 
   final String id;
@@ -97,6 +153,9 @@ class ScanDocument {
   /// Non-destructive signature placements per page.
   final List<SignatureLayer> signatureLayers;
 
+  /// Non-destructive annotate placements per page (each with own PNG).
+  final List<AnnotateLayer> annotateLayers;
+
   ScanDocument copyWith({
     String? id,
     String? title,
@@ -109,6 +168,7 @@ class ScanDocument {
     List<String>? tags,
     bool? isFavorite,
     List<SignatureLayer>? signatureLayers,
+    List<AnnotateLayer>? annotateLayers,
   }) {
     return ScanDocument(
       id: id ?? this.id,
@@ -122,6 +182,7 @@ class ScanDocument {
       tags: tags ?? this.tags,
       isFavorite: isFavorite ?? this.isFavorite,
       signatureLayers: signatureLayers ?? this.signatureLayers,
+      annotateLayers: annotateLayers ?? this.annotateLayers,
     );
   }
 
@@ -138,6 +199,7 @@ class ScanDocument {
       'tags': tags,
       'isFavorite': isFavorite,
       'signatureLayers': signatureLayers.map((l) => l.toJson()).toList(),
+      'annotateLayers': annotateLayers.map((l) => l.toJson()).toList(),
     };
   }
 
@@ -156,6 +218,9 @@ class ScanDocument {
       signatureLayers: (json['signatureLayers'] as List<dynamic>?)
           ?.map((e) => SignatureLayer.fromJson(e as Map<String, dynamic>))
           .toList() ?? const <SignatureLayer>[],
+      annotateLayers: (json['annotateLayers'] as List<dynamic>?)
+          ?.map((e) => AnnotateLayer.fromJson(e as Map<String, dynamic>))
+          .toList() ?? const <AnnotateLayer>[],
     );
   }
 
@@ -173,7 +238,8 @@ class ScanDocument {
         other.thumbnailPath == thumbnailPath &&
         listEquals(other.tags, tags) &&
         other.isFavorite == isFavorite &&
-        listEquals(other.signatureLayers, signatureLayers);
+        listEquals(other.signatureLayers, signatureLayers) &&
+        listEquals(other.annotateLayers, annotateLayers);
   }
 
   @override
@@ -190,6 +256,7 @@ class ScanDocument {
       Object.hashAll(tags),
       isFavorite,
       Object.hashAll(signatureLayers),
+      Object.hashAll(annotateLayers),
     );
   }
 
