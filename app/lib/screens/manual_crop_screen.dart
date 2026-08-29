@@ -290,15 +290,18 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
     final scansDir = Directory(p.join(appDir.path, 'manual_crop_pages'));
     await scansDir.create(recursive: true);
 
-    if (paths.isNotEmpty && _idFrontPath == null) {
+    int cursor = 0;
+    if (_idFrontPath == null && cursor < paths.length) {
       final outPath = p.join(scansDir.path, 'manual_${DateTime.now().microsecondsSinceEpoch}_front.jpg');
-      await File(paths[0]).copy(outPath);
+      await File(paths[cursor]).copy(outPath);
       setState(() => _idFrontPath = outPath);
+      cursor++;
     }
-    if (paths.length > 1 && _idBackPath == null) {
+    if (_idBackPath == null && cursor < paths.length) {
       final outPath = p.join(scansDir.path, 'manual_${DateTime.now().microsecondsSinceEpoch}_back.jpg');
-      await File(paths[1]).copy(outPath);
+      await File(paths[cursor]).copy(outPath);
       setState(() => _idBackPath = outPath);
+      cursor++;
     }
 
     if (_idFrontPath != null && _idBackPath != null) {
