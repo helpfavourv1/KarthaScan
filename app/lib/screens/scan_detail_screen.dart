@@ -221,6 +221,10 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
   }
 
   Future<void> _addSignature() async {
+    await _addSignatureToPage(_currentPageIndex);
+  }
+
+  Future<void> _addSignatureToPage(int pageIndex) async {
     final document = _document;
     if (document == null || document.pagePaths.isEmpty) return;
 
@@ -254,10 +258,12 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
 
     if (signatureBytes == null || !mounted) return;
 
-    // Non-destructive: auto-stamp current page with default center placement
+    // Ensure overlay renders immediately
+    setState(() => _signatureBytes = signatureBytes);
+
     await _scanProvider.addSignatureLayer(
       document.id,
-      0,
+      pageIndex,
       const SignaturePlacement(pctX: 0.5, pctY: 0.35),
     );
     if (mounted) {
@@ -267,6 +273,27 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
       );
     }
   }
+
+  Future<void> _copySignatureToAllPages(SignatureLayer layer) async {
+    final document = _document;
+    if (document == null) return;
+    for (int i = 0; i < document.pagePaths.length; i++) {
+      await _scanProvider.updateSignatureLayer(document.id, i, layer.placement);
+    }
+  }
+
+  Future<void> _clearSignaturePage(int pageIndex) async {
+    final document = _document;
+    if (document == null) return;
+    await _scanProvider.removeSignatureLayer(document.id, pageIndex);
+  }
+
+  Future<void> _clearAllSignatureLayers() async {
+    final document = _document;
+    if (document == null) return;
+    await _scanProvider.clearSignatureLayers(document.id);
+  }
+
 
   Future<void> _addWatermark() async {
     final document = _document;
@@ -1016,6 +1043,10 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
                   _scanProvider.updateSignatureLayer(doc.id, pageIndex, layer.placement);
                 }
               },
+              onSignThisPage: (pageIndex) => _addSignatureToPage(pageIndex),
+              onCopyToAllPages: (layer) => _copySignatureToAllPages(layer),
+              onClearThisPage: (pageIndex) => _clearSignaturePage(pageIndex),
+              onClearAllLayers: () => _clearAllSignatureLayers(),
             ),
                         ),
                                               ],

@@ -16,6 +16,10 @@ class ScanPreviewCard extends StatefulWidget {
     this.signatureLayers = const [],
     this.onShare,
     this.onSignatureLayerUpdate,
+    this.onSignThisPage,
+    this.onCopyToAllPages,
+    this.onClearThisPage,
+    this.onClearAllLayers,
     this.initialPage = 0,
     this.onPageChanged,
   });
@@ -25,6 +29,10 @@ class ScanPreviewCard extends StatefulWidget {
   final List<SignatureLayer> signatureLayers;
   final VoidCallback? onShare;
   final void Function(int pageIndex, SignatureLayer layer)? onSignatureLayerUpdate;
+  final void Function(int pageIndex)? onSignThisPage;
+  final void Function(SignatureLayer layer)? onCopyToAllPages;
+  final void Function(int pageIndex)? onClearThisPage;
+  final VoidCallback? onClearAllLayers;
   final int initialPage;
   final ValueChanged<int>? onPageChanged;
 
@@ -36,6 +44,7 @@ class _ScanPreviewCardState extends State<ScanPreviewCard> {
   late final PageController _pageController;
   late int _currentPage;
   double _sigAspect = 2.0;
+  late Color _textSecondary;
 
   int get _lastIndex => widget.pagePaths.isEmpty ? 0 : widget.pagePaths.length - 1;
 
@@ -77,6 +86,100 @@ class _ScanPreviewCardState extends State<ScanPreviewCard> {
     return null;
   }
 
+  Widget _buildSignatureControls() {
+    final layer = _getLayerForPage(_currentPage);
+    if (widget.signatureBytes == null) return const SizedBox.shrink();
+    if (layer == null) {
+      return Padding(
+        padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md, vertical: AppSpacing.xs),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ActionChip(
+              avatar: const Icon(Icons.draw_outlined, size: 14),
+              label: const Text('Sign this page too', style: TextStyle(fontSize: 11)),
+              onPressed: () => widget.onSignThisPage?.call(_currentPage),
+            ),
+          ],
+        ),
+      );
+    }
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md, vertical: AppSpacing.xs),
+      color: _textSecondary.withValues(alpha: 0.05),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Row(
+            children: [
+              const Text('Rotate', style: TextStyle(fontSize: 11)),
+              Expanded(
+                child: Slider(
+                  value: layer.placement.rotationDegrees,
+                  min: -180,
+                  max: 180,
+                  onChanged: (v) {
+                    widget.onSignatureLayerUpdate?.call(_currentPage, SignatureLayer(
+                      pageIndex: layer.pageIndex,
+                      placement: SignaturePlacement(
+                        pctX: layer.placement.pctX,
+                        pctY: layer.placement.pctY,
+                        rotationDegrees: v,
+                        scale: layer.placement.scale,
+                      ),
+                    ));
+                  },
+                ),
+              ),
+              Text('${layer.placement.rotationDegrees.round()}°', style: const TextStyle(fontSize: 11)),
+            ],
+          ),
+          Row(
+            children: [
+              const Text('Scale', style: TextStyle(fontSize: 11)),
+              Expanded(
+                child: Slider(
+                  value: layer.placement.scale,
+                  min: 0.3,
+                  max: 3.0,
+                  onChanged: (v) {
+                    widget.onSignatureLayerUpdate?.call(_currentPage, SignatureLayer(
+                      pageIndex: layer.pageIndex,
+                      placement: SignaturePlacement(
+                        pctX: layer.placement.pctX,
+                        pctY: layer.placement.pctY,
+                        rotationDegrees: layer.placement.rotationDegrees,
+                        scale: v,
+                      ),
+                    ));
+                  },
+                ),
+              ),
+              Text('${layer.placement.scale.toStringAsFixed(1)}x', style: const TextStyle(fontSize: 11)),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              TextButton(
+                onPressed: () => widget.onCopyToAllPages?.call(layer),
+                child: const Text('Copy to all', style: TextStyle(fontSize: 11)),
+              ),
+              TextButton(
+                onPressed: () => widget.onClearThisPage?.call(_currentPage),
+                child: const Text('Clear this', style: TextStyle(fontSize: 11)),
+              ),
+              TextButton(
+                onPressed: () => widget.onClearAllLayers?.call(),
+                child: const Text('Clear all', style: TextStyle(fontSize: 11)),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final AppLocalizations l10n = AppLocalizations.of(context);
@@ -84,6 +187,7 @@ class _ScanPreviewCardState extends State<ScanPreviewCard> {
     final Color bg = isDark ? AppColors.bgPrimaryDark : AppColors.bgPrimaryLight;
     final Color surface = isDark ? AppColors.bgSecondaryDark : AppColors.bgSecondaryLight;
     final Color textSecondary = isDark ? AppColors.textSecondaryDark : AppColors.textSecondaryLight;
+    _textSecondary = textSecondary;
     final Color accent = isDark ? AppColors.accentDark : AppColors.accentLight;
 
     if (widget.pagePaths.isEmpty) {
@@ -120,6 +224,7 @@ class _ScanPreviewCardState extends State<ScanPreviewCard> {
               },
             ),
           ),
+          _buildSignatureControls(),
           Container(
             padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md, vertical: AppSpacing.sm),
             color: surface,
