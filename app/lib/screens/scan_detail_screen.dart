@@ -245,7 +245,7 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
     final document = _document;
     if (document == null) return;
     for (int i = 0; i < document.pagePaths.length; i++) {
-      await _scanProvider.updateSignatureLayer(document.id, i, layer.placement);
+      await _scanProvider.updateSignatureLayer(document.id, SignatureLayer(pageIndex: i, placement: layer.placement, inkId: layer.inkId));
     }
   }
 
@@ -1084,7 +1084,7 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
               onSignatureLayerUpdate: (pageIndex, layer) {
                 final doc = _document;
                 if (doc != null) {
-                  _scanProvider.updateSignatureLayer(doc.id, pageIndex, layer.placement);
+                  _scanProvider.updateSignatureLayer(doc.id, layer);
                 }
               },
               onSignThisPage: (pageIndex) => _addSignatureToPage(pageIndex),

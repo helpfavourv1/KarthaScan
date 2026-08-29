@@ -10,6 +10,7 @@
 
 import 'dart:async' show unawaited;
 import 'dart:io' show File, Directory;
+import 'dart:typed_data';
 import 'dart:math' show Random;
 
 import 'package:flutter/foundation.dart' show ValueNotifier, debugPrint;
@@ -333,30 +334,51 @@ class ScanProvider {
     return null;
   }
 
-  Future<bool> addSignatureLayer(String id, int pageIndex, SignaturePlacement placement) async {
+  Future<bool> addSignatureInk(String id, String inkId, Uint8List bytes, String label, double aspect) async {
     final ScanDocument? existing = _findById(id);
     if (existing == null) return false;
-    // Replace existing layer for this page, or add new
-    final filtered = existing.signatureLayers.where((l) => l.pageIndex != pageIndex).toList();
-    filtered.add(SignatureLayer(pageIndex: pageIndex, placement: placement));
-    final updated = existing.copyWith(signatureLayers: filtered, updatedAt: DateTime.now());
+    final newInk = SignatureInk(id: inkId, bytes: bytes, label: label, aspect: aspect);
+    final updated = existing.copyWith(signatureInks: [...existing.signatureInks, newInk], updatedAt: DateTime.now());
     return _replaceAndSave(updated);
   }
 
-  Future<bool> updateSignatureLayer(String id, int pageIndex, SignaturePlacement placement) async {
+  Future<bool> removeSignatureInk(String id, String inkId) async {
     final ScanDocument? existing = _findById(id);
     if (existing == null) return false;
-    final newLayers = existing.signatureLayers
-        .map((l) => l.pageIndex == pageIndex ? l.copyWith(placement: placement) : l)
-        .toList();
+    final newInks = existing.signatureInks.where((i) => i.id != inkId).toList();
+    final newLayers = existing.signatureLayers.where((l) => l.inkId != inkId).toList();
+    final updated = existing.copyWith(signatureInks: newInks, signatureLayers: newLayers, updatedAt: DateTime.now());
+    return _replaceAndSave(updated);
+  }
+
+  Future<bool> addSignatureLayer(String id, int pageIndex, SignaturePlacement placement, {String inkId = 'default'}) async {
+    final ScanDocument? existing = _findById(id);
+    if (existing == null) return false;
+    final newLayer = SignatureLayer(pageIndex: pageIndex, placement: placement, inkId: inkId);
+    final updated = existing.copyWith(signatureLayers: [...existing.signatureLayers, newLayer], updatedAt: DateTime.now());
+    return _replaceAndSave(updated);
+  }
+
+  Future<bool> updateSignatureLayer(String id, SignatureLayer layer) async {
+    final ScanDocument? existing = _findById(id);
+    if (existing == null) return false;
+    final exists = existing.signatureLayers
+        .any((l) => l.pageIndex == layer.pageIndex && l.inkId == layer.inkId);
+    final newLayers = exists
+        ? existing.signatureLayers
+            .map((l) => (l.pageIndex == layer.pageIndex && l.inkId == layer.inkId) ? layer : l)
+            .toList()
+        : [...existing.signatureLayers, layer];
     final updated = existing.copyWith(signatureLayers: newLayers, updatedAt: DateTime.now());
     return _replaceAndSave(updated);
   }
 
-  Future<bool> removeSignatureLayer(String id, int pageIndex) async {
+  Future<bool> removeSignatureLayer(String id, int pageIndex, {String? inkId}) async {
     final ScanDocument? existing = _findById(id);
     if (existing == null) return false;
-    final newLayers = existing.signatureLayers.where((l) => l.pageIndex != pageIndex).toList();
+    final newLayers = existing.signatureLayers
+        .where((l) => !(l.pageIndex == pageIndex && (inkId == null || l.inkId == inkId)))
+        .toList();
     final updated = existing.copyWith(signatureLayers: newLayers, updatedAt: DateTime.now());
     return _replaceAndSave(updated);
   }

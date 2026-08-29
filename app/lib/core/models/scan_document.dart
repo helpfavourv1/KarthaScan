@@ -13,13 +13,16 @@ class SignatureLayer {
   const SignatureLayer({
     required this.pageIndex,
     required this.placement,
+    this.inkId = 'default',
   });
 
   final int pageIndex;
   final SignaturePlacement placement;
+  final String inkId;
 
   Map<String, dynamic> toJson() => {
     'pageIndex': pageIndex,
+    'inkId': inkId,
     'pctX': placement.pctX,
     'pctY': placement.pctY,
     'rotationDegrees': placement.rotationDegrees,
@@ -29,6 +32,7 @@ class SignatureLayer {
   factory SignatureLayer.fromJson(Map<String, dynamic> json) {
     return SignatureLayer(
       pageIndex: json['pageIndex'] as int,
+      inkId: json['inkId'] as String? ?? 'default',
       placement: SignaturePlacement(
         pctX: (json['pctX'] as num).toDouble(),
         pctY: (json['pctY'] as num).toDouble(),
@@ -38,10 +42,11 @@ class SignatureLayer {
     );
   }
 
-  SignatureLayer copyWith({int? pageIndex, SignaturePlacement? placement}) {
+  SignatureLayer copyWith({int? pageIndex, SignaturePlacement? placement, String? inkId}) {
     return SignatureLayer(
       pageIndex: pageIndex ?? this.pageIndex,
       placement: placement ?? this.placement,
+      inkId: inkId ?? this.inkId,
     );
   }
 
@@ -50,11 +55,12 @@ class SignatureLayer {
     if (identical(this, other)) return true;
     return other is SignatureLayer &&
         other.pageIndex == pageIndex &&
-        other.placement == placement;
+        other.placement == placement &&
+        other.inkId == inkId;
   }
 
   @override
-  int get hashCode => Object.hash(pageIndex, placement);
+  int get hashCode => Object.hash(pageIndex, placement, inkId);
 }
 
 @immutable
@@ -125,6 +131,7 @@ class ScanDocument {
     required this.thumbnailPath,
     this.tags = const <String>[],
     this.isFavorite = false,
+    this.signatureInks = const <SignatureInk>[],
     this.signatureLayers = const <SignatureLayer>[],
     this.annotateLayers = const <AnnotateLayer>[],
   });
@@ -150,7 +157,10 @@ class ScanDocument {
   /// Whether the user has marked this document as favorite.
   final bool isFavorite;
 
-  /// Non-destructive signature placements per page.
+  /// Signature inks (bytes + metadata) for this document.
+  final List<SignatureInk> signatureInks;
+
+  /// Non-destructive signature placements per page (references inkId).
   final List<SignatureLayer> signatureLayers;
 
   /// Non-destructive annotate placements per page (each with own PNG).
@@ -167,6 +177,7 @@ class ScanDocument {
     String? thumbnailPath,
     List<String>? tags,
     bool? isFavorite,
+    List<SignatureInk>? signatureInks,
     List<SignatureLayer>? signatureLayers,
     List<AnnotateLayer>? annotateLayers,
   }) {
@@ -181,6 +192,7 @@ class ScanDocument {
       thumbnailPath: thumbnailPath ?? this.thumbnailPath,
       tags: tags ?? this.tags,
       isFavorite: isFavorite ?? this.isFavorite,
+      signatureInks: signatureInks ?? this.signatureInks,
       signatureLayers: signatureLayers ?? this.signatureLayers,
       annotateLayers: annotateLayers ?? this.annotateLayers,
     );
@@ -198,6 +210,7 @@ class ScanDocument {
       'thumbnailPath': thumbnailPath,
       'tags': tags,
       'isFavorite': isFavorite,
+      'signatureInks': signatureInks.map((i) => i.toJson()).toList(),
       'signatureLayers': signatureLayers.map((l) => l.toJson()).toList(),
       'annotateLayers': annotateLayers.map((l) => l.toJson()).toList(),
     };
@@ -215,6 +228,9 @@ class ScanDocument {
       thumbnailPath: json['thumbnailPath'] as String,
       tags: List<String>.from(json['tags'] as List<dynamic>? ?? const <dynamic>[]),
       isFavorite: json['isFavorite'] as bool? ?? false,
+      signatureInks: (json['signatureInks'] as List<dynamic>?)
+          ?.map((e) => SignatureInk.fromJson(e as Map<String, dynamic>))
+          .toList() ?? const <SignatureInk>[],
       signatureLayers: (json['signatureLayers'] as List<dynamic>?)
           ?.map((e) => SignatureLayer.fromJson(e as Map<String, dynamic>))
           .toList() ?? const <SignatureLayer>[],
@@ -238,6 +254,7 @@ class ScanDocument {
         other.thumbnailPath == thumbnailPath &&
         listEquals(other.tags, tags) &&
         other.isFavorite == isFavorite &&
+        listEquals(other.signatureInks, signatureInks) &&
         listEquals(other.signatureLayers, signatureLayers) &&
         listEquals(other.annotateLayers, annotateLayers);
   }
@@ -255,6 +272,7 @@ class ScanDocument {
       thumbnailPath,
       Object.hashAll(tags),
       isFavorite,
+      Object.hashAll(signatureInks),
       Object.hashAll(signatureLayers),
       Object.hashAll(annotateLayers),
     );

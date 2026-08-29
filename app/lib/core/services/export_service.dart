@@ -132,14 +132,20 @@ class ExportService {
     return img.compositeImage(page, sig, dstX: dstX, dstY: dstY);
   }
 
-  SignaturePlacement? _findPlacement(int pageIndex, Map<int, SignaturePlacement>? exportPlacements, List<SignatureLayer>? docLayers) {
-    final fromExport = exportPlacements?[pageIndex];
-    if (fromExport != null) return fromExport;
-    if (docLayers == null) return null;
-    for (final layer in docLayers) {
-      if (layer.pageIndex == pageIndex) return layer.placement;
+  List<SignatureLayer> _findLayersForPage(int pageIndex, Map<int, SignaturePlacement>? exportPlacements, List<SignatureLayer>? docLayers) {
+    final layers = <SignatureLayer>[];
+    if (exportPlacements != null) {
+      final fromExport = exportPlacements[pageIndex];
+      if (fromExport != null) {
+        layers.add(SignatureLayer(pageIndex: pageIndex, placement: fromExport, inkId: 'default'));
+      }
     }
-    return null;
+    if (docLayers != null) {
+      for (final layer in docLayers) {
+        if (layer.pageIndex == pageIndex) layers.add(layer);
+      }
+    }
+    return layers;
   }
 
   Future<Uint8List> _processPage(
@@ -149,34 +155,43 @@ class ExportService {
     Uint8List? signatureBytes,
     Map<int, SignaturePlacement>? signaturePlacements,
     List<SignatureLayer>? documentLayers,
+    List<SignatureInk>? documentInks,
     List<AnnotateLayer>? documentAnnotateLayers,
   }) async {
     final original = await _readBytes(pagePath);
-    final placement = _findPlacement(pageIndex, signaturePlacements, documentLayers);
+    final layers = _findLayersForPage(pageIndex, signaturePlacements, documentLayers);
     final annotateLayers = documentAnnotateLayers?.where((l) => l.pageIndex == pageIndex).toList() ?? const <AnnotateLayer>[];
-    if (filter == FilterType.none && (signatureBytes == null || placement == null) && annotateLayers.isEmpty) {
+    final inkMap = <String, SignatureInk>{
+      if (documentInks != null) for (final ink in documentInks) ink.id: ink,
+    };
+    if (filter == FilterType.none && layers.isEmpty && annotateLayers.isEmpty) {
       return original;
     }
     try {
-      img.Image? decoded = img.decodeImage(original);
-      if (decoded == null) return original;
+      final decodedOriginal = img.decodeImage(original);
+      if (decodedOriginal == null) return original;
+      img.Image decoded = decodedOriginal;
       if (filter != FilterType.none) {
         decoded = _applyFilter(decoded, filter);
       }
-      if (signatureBytes != null && placement != null) {
-        final signatureImage = img.decodePng(signatureBytes);
-        if (signatureImage != null) {
-          decoded = _compositeSignature(decoded, signatureImage, placement);
+      for (final layer in layers) {
+        final ink = inkMap[layer.inkId];
+        final bytes = ink?.bytes ?? signatureBytes;
+        if (bytes != null) {
+          final sigImage = img.decodePng(bytes);
+          if (sigImage != null) {
+            decoded = _compositeSignature(decoded, sigImage, layer.placement);
+          }
         }
       }
       for (final annotate in annotateLayers) {
         final annotateBytes = await _readBytes(annotate.bytesPath);
         final annotateImage = img.decodePng(annotateBytes);
-        if (annotateImage != null && decoded != null) {
+        if (annotateImage != null) {
           decoded = _compositeSignature(decoded, annotateImage, annotate.placement);
         }
       }
-      return Uint8List.fromList(img.encodePng(decoded!));
+      return Uint8List.fromList(img.encodePng(decoded));
     } catch (error, stackTrace) {
       _logError('_processPage', error, stackTrace);
       return original;
@@ -204,6 +219,7 @@ class ExportService {
         signatureBytes: signatureBytes,
         signaturePlacements: signaturePlacements,
         documentLayers: document.signatureLayers,
+        documentInks: document.signatureInks,
         documentAnnotateLayers: document.annotateLayers,
       );
       final image = pw.MemoryImage(bytes);
@@ -476,6 +492,7 @@ class ExportService {
         signatureBytes: signatureBytes,
         signaturePlacements: signaturePlacements,
         documentLayers: document.signatureLayers,
+        documentInks: document.signatureInks,
         documentAnnotateLayers: document.annotateLayers,
       );
       final decoded = img.decodeImage(processedBytes);

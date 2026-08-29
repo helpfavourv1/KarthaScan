@@ -10,6 +10,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sqflite/sqflite.dart';
 import '../models/folder.dart';
 import '../models/scan_document.dart';
+import '../models/signature_placement.dart';
 import '../models/user_settings.dart';
 
 class LocalStorageService {
@@ -95,6 +96,7 @@ class LocalStorageService {
 
   Future<List<ScanDocument>> getAllDocuments() async {
     await initialize();
+    await _migrateAddLayerColumns();
     if (!_dbAvailable || _db == null) {
       final List<ScanDocument> fallback = _memoryDocuments.values.toList();
       fallback.sort((a, b) => b.updatedAt.compareTo(a.updatedAt));
@@ -134,6 +136,7 @@ class LocalStorageService {
 
   Future<bool> saveDocument(ScanDocument document) async {
     await initialize();
+    await _migrateAddLayerColumns();
     _memoryDocuments[document.id] = document;
 
     if (!_dbAvailable || _db == null) {
@@ -267,10 +270,25 @@ class LocalStorageService {
       'thumbnail_path': document.thumbnailPath,
       'tags': jsonEncode(document.tags),
       'is_favorite': document.isFavorite ? 1 : 0,
+      'signature_inks': jsonEncode(document.signatureInks.map((i) => i.toJson()).toList()),
+      'signature_layers': jsonEncode(document.signatureLayers.map((l) => l.toJson()).toList()),
+      'annotate_layers': jsonEncode(document.annotateLayers.map((l) => l.toJson()).toList()),
     };
   }
 
   ScanDocument _documentFromRow(Map<String, Object?> row) {
+    final sigInksJson = row['signature_inks'] as String?;
+    final sigLayersJson = row['signature_layers'] as String?;
+    final annLayersJson = row['annotate_layers'] as String?;
+    final sigInks = sigInksJson != null
+        ? (jsonDecode(sigInksJson) as List<dynamic>).map((e) => SignatureInk.fromJson(e as Map<String, dynamic>)).toList()
+        : const <SignatureInk>[];
+    final sigLayers = sigLayersJson != null
+        ? (jsonDecode(sigLayersJson) as List<dynamic>).map((e) => SignatureLayer.fromJson(e as Map<String, dynamic>)).toList()
+        : const <SignatureLayer>[];
+    final annLayers = annLayersJson != null
+        ? (jsonDecode(annLayersJson) as List<dynamic>).map((e) => AnnotateLayer.fromJson(e as Map<String, dynamic>)).toList()
+        : const <AnnotateLayer>[];
     return ScanDocument(
       id: row['id']! as String,
       title: row['title']! as String,
@@ -286,6 +304,9 @@ class LocalStorageService {
         (jsonDecode(row['tags']! as String) as List<dynamic>?) ?? <dynamic>[],
       ),
       isFavorite: (row['is_favorite'] as int? ?? 0) == 1,
+      signatureInks: sigInks,
+      signatureLayers: sigLayers,
+      annotateLayers: annLayers,
     );
   }
 
@@ -398,6 +419,20 @@ class LocalStorageService {
 
   void _logError(String operation, Object error, StackTrace stackTrace) {
     debugPrint('[LocalStorageService] $operation failed: $error');
+  }
+
+  bool _layersMigrated = false;
+
+  Future<void> _migrateAddLayerColumns() async {
+    if (_layersMigrated || !_dbAvailable || _db == null) return;
+    _layersMigrated = true;
+    for (final col in ['signature_inks', 'signature_layers', 'annotate_layers']) {
+      try {
+        await _db!.execute('ALTER TABLE documents ADD COLUMN $col TEXT');
+      } catch (_) {
+        // Column already exists
+      }
+    }
   }
 
   static const String _signatureFileName = 'saved_signature.png';
