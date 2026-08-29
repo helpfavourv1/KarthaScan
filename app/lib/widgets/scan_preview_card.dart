@@ -14,6 +14,7 @@ class ScanPreviewCard extends StatefulWidget {
     required this.pagePaths,
     this.signatureBytes,
     this.signatureLayers = const [],
+    this.signatureMode = false,
     this.onShare,
     this.onSignatureLayerUpdate,
     this.onSignThisPage,
@@ -27,6 +28,7 @@ class ScanPreviewCard extends StatefulWidget {
   final List<String> pagePaths;
   final Uint8List? signatureBytes;
   final List<SignatureLayer> signatureLayers;
+  final bool signatureMode;
   final VoidCallback? onShare;
   final void Function(int pageIndex, SignatureLayer layer)? onSignatureLayerUpdate;
   final void Function(int pageIndex)? onSignThisPage;
@@ -88,6 +90,7 @@ class _ScanPreviewCardState extends State<ScanPreviewCard> {
 
   Widget _buildSignatureControls() {
     final layer = _getLayerForPage(_currentPage);
+    if (!widget.signatureMode) return const SizedBox.shrink();
     if (widget.signatureBytes == null) return const SizedBox.shrink();
     if (layer == null) {
       return Padding(
@@ -220,6 +223,7 @@ class _ScanPreviewCardState extends State<ScanPreviewCard> {
                   sigAspect: _sigAspect,
                   textSecondary: textSecondary,
                   onUpdate: (newLayer) => widget.onSignatureLayerUpdate?.call(index, newLayer),
+                  signatureMode: widget.signatureMode,
                 );
               },
             ),
@@ -250,6 +254,7 @@ class _PageWithSignature extends StatefulWidget {
     required this.sigAspect,
     required this.textSecondary,
     required this.onUpdate,
+    required this.signatureMode,
   });
 
   final String pagePath;
@@ -258,6 +263,7 @@ class _PageWithSignature extends StatefulWidget {
   final double sigAspect;
   final Color textSecondary;
   final void Function(SignatureLayer) onUpdate;
+  final bool signatureMode;
 
   @override
   State<_PageWithSignature> createState() => _PageWithSignatureState();
@@ -304,6 +310,8 @@ class _PageWithSignatureState extends State<_PageWithSignature> {
               child: InteractiveViewer(
                 minScale: 1,
                 maxScale: 4,
+                panEnabled: !widget.signatureMode,
+                scaleEnabled: !widget.signatureMode,
                 child: Center(
                   child: Image.file(
                     File(widget.pagePath),
@@ -321,26 +329,29 @@ class _PageWithSignatureState extends State<_PageWithSignature> {
                 return Positioned(
                   left: dx + layer.placement.pctX * iw - sigW / 2,
                   top: dy + layer.placement.pctY * ih - sigH / 2,
-                  child: GestureDetector(
-                    behavior: HitTestBehavior.opaque,
-                    onPanUpdate: (d) {
-                      final newPctX = (layer.placement.pctX + d.delta.dx / iw).clamp(0.0, 1.0);
-                      final newPctY = (layer.placement.pctY + d.delta.dy / ih).clamp(0.0, 1.0);
-                      widget.onUpdate(SignatureLayer(
-                        pageIndex: layer.pageIndex,
-                        placement: SignaturePlacement(
-                          pctX: newPctX,
-                          pctY: newPctY,
-                          rotationDegrees: layer.placement.rotationDegrees,
-                          scale: layer.placement.scale,
+                  child: IgnorePointer(
+                    ignoring: !widget.signatureMode,
+                    child: GestureDetector(
+                      behavior: HitTestBehavior.opaque,
+                      onPanUpdate: (d) {
+                        final newPctX = (layer.placement.pctX + d.delta.dx / iw).clamp(0.0, 1.0);
+                        final newPctY = (layer.placement.pctY + d.delta.dy / ih).clamp(0.0, 1.0);
+                        widget.onUpdate(SignatureLayer(
+                          pageIndex: layer.pageIndex,
+                          placement: SignaturePlacement(
+                            pctX: newPctX,
+                            pctY: newPctY,
+                            rotationDegrees: layer.placement.rotationDegrees,
+                            scale: layer.placement.scale,
+                          ),
+                        ));
+                      },
+                      child: Transform.rotate(
+                        angle: layer.placement.rotationDegrees * 3.14159 / 180,
+                        child: Opacity(
+                          opacity: 0.9,
+                          child: Image.memory(widget.signatureBytes!, width: sigW, height: sigH, fit: BoxFit.contain),
                         ),
-                      ));
-                    },
-                    child: Transform.rotate(
-                      angle: layer.placement.rotationDegrees * 3.14159 / 180,
-                      child: Opacity(
-                        opacity: 0.9,
-                        child: Image.memory(widget.signatureBytes!, width: sigW, height: sigH, fit: BoxFit.contain),
                       ),
                     ),
                   ),

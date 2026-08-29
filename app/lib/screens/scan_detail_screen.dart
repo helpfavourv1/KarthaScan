@@ -60,6 +60,7 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
 
   late TabController _tabController;
   int _currentPageIndex = 0;
+  bool _signatureMode = false;
 
   @override
   void initState() {
@@ -170,6 +171,7 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
   // --- R6 New Features ---
 
   Future<void> _annotate() async {
+    _signatureMode = false;
     final document = _document;
     if (document == null || document.pagePaths.isEmpty) return;
 
@@ -259,7 +261,10 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
     if (signatureBytes == null || !mounted) return;
 
     // Ensure overlay renders immediately
-    setState(() => _signatureBytes = signatureBytes);
+    setState(() {
+      _signatureBytes = signatureBytes;
+      _signatureMode = true;
+    });
 
     await _scanProvider.addSignatureLayer(
       document.id,
@@ -296,6 +301,7 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
 
 
   Future<void> _addWatermark() async {
+    _signatureMode = false;
     final document = _document;
     if (document == null || document.pagePaths.isEmpty) return;
 
@@ -476,6 +482,7 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
   }
 
   Future<void> _regionOcr() async {
+    _signatureMode = false;
     final document = _document;
     if (document == null || document.pagePaths.isEmpty) return;
 
@@ -585,6 +592,7 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
   }
 
   Future<void> _applyFilterToPage() async {
+    _signatureMode = false;
     final document = _document;
     if (document == null || document.pagePaths.isEmpty) return;
     final chosen = await showModalBottomSheet<FilterType>(context: context, isScrollControlled: true, builder: (ctx) => FilterPreviewSheet(imagePath: document.pagePaths[_currentPageIndex]));
@@ -603,6 +611,7 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
   }
 
   Future<void> _cropCurrentPage() async {
+    _signatureMode = false;
     final document = _document;
     if (document == null || document.pagePaths.isEmpty) return;
     final rect = await showModalBottomSheet<Rect?>(context: context, isScrollControlled: true, builder: (context) => _RegionSelectSheet(imagePath: document.pagePaths[_currentPageIndex]));
@@ -621,6 +630,7 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
   }
 
   Future<void> _addStamp(String kind) async {
+    _signatureMode = false;
     final document = _document;
     if (document == null || document.pagePaths.isEmpty) return;
     final stamp = await showModalBottomSheet<StampResult>(context: context, isScrollControlled: true, builder: (ctx) => TextStampSheet(kind: kind));
@@ -795,6 +805,7 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
   }
 
   Future<void> _rotatePage() async {
+    _signatureMode = false;
     final document = _document;
     if (document == null || document.pagePaths.isEmpty) return;
 
@@ -843,6 +854,7 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
   }
 
   Future<void> _resizePage() async {
+    _signatureMode = false;
     final document = _document;
     if (document == null || document.pagePaths.isEmpty) return;
 
@@ -1037,6 +1049,7 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
                           
               signatureBytes: _signatureBytes,
               signatureLayers: _document?.signatureLayers ?? const [],
+              signatureMode: _signatureMode,
               onSignatureLayerUpdate: (pageIndex, layer) {
                 final doc = _document;
                 if (doc != null) {
