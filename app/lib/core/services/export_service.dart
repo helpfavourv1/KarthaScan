@@ -237,6 +237,36 @@ class ExportService {
     }
   }
 
+  Future<String> buildDocxFromText(String text, String outDir, String baseName) {
+    final now = DateTime.now();
+    final doc = ScanDocument(
+      id: '${now.microsecondsSinceEpoch}',
+      title: baseName,
+      pageCount: 0,
+      pagePaths: const <String>[],
+      createdAt: now,
+      updatedAt: now,
+      ocrText: text,
+      thumbnailPath: '',
+    );
+    return _exportDocx(doc, outDir, mode: ExportDocxMode.textOnly);
+  }
+
+  Future<String> buildDocxFromImages(List<String> imagePaths, String outDir, String baseName) {
+    final now = DateTime.now();
+    final doc = ScanDocument(
+      id: '${now.microsecondsSinceEpoch}',
+      title: baseName,
+      pageCount: imagePaths.length,
+      pagePaths: imagePaths,
+      createdAt: now,
+      updatedAt: now,
+      ocrText: '',
+      thumbnailPath: imagePaths.isEmpty ? '' : imagePaths.first,
+    );
+    return _exportDocx(doc, outDir, mode: ExportDocxMode.imageEmbedded);
+  }
+
   Future<String> _exportDocx(ScanDocument document, String outDir, {
     ExportDocxMode mode = ExportDocxMode.textOnly,
     PdfPageFormat pageFormat = PdfPageFormat.a4,

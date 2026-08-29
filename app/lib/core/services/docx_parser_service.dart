@@ -50,6 +50,34 @@ class DocxParserService {
     return outPath;
   }
 
+  Future<String> convertToTxt(String docxPath) async {
+    _log.log('DOCX_PARSER', 'Starting txt: $docxPath');
+    final bytes = await File(docxPath).readAsBytes();
+    final archive = ZipDecoder().decodeBytes(bytes);
+
+    final docXml = archive.firstWhere(
+      (f) => f.name == 'word/document.xml',
+      orElse: () => throw Exception('document.xml missing'),
+    );
+    final xml = String.fromCharCodes(docXml.content as List<int>);
+
+    final paragraphs = <String>[];
+    final pRegex = RegExp(r'<w:p[^>]*>(.*?)</w:p>', dotAll: true);
+    final tRegex = RegExp(r'<w:t(?:\s[^>]*)?>(.*?)</w:t>', dotAll: true);
+
+    for (final pMatch in pRegex.allMatches(xml)) {
+      final pContent = pMatch.group(1) ?? '';
+      final texts = tRegex.allMatches(pContent).map((m) => _decodeXmlEntities(m.group(1) ?? '')).toList();
+      if (texts.isNotEmpty) paragraphs.add(texts.join(''));
+    }
+
+    final appDir = await getApplicationDocumentsDirectory();
+    final outPath = p.join(appDir.path, 'docx_${DateTime.now().microsecondsSinceEpoch}.txt');
+    await File(outPath).writeAsString(paragraphs.join('\n'));
+    _log.log('DOCX_PARSER', 'Done txt: $outPath (${paragraphs.length} paragraphs)');
+    return outPath;
+  }
+
   String _decodeXmlEntities(String s) {
     return s
         .replaceAll('&amp;', '&')
