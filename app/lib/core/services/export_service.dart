@@ -135,20 +135,15 @@ class ExportService {
     img.Image signature,
     SignaturePlacement placement,
   ) {
-    var sig = signature;
+    final targetWidth = (page.width * 0.28 * placement.scale).round();
+    final targetHeight = (signature.height * targetWidth / signature.width).round();
+    var sig = img.copyResize(signature, width: targetWidth, height: targetHeight);
     if (placement.rotationDegrees != 0) {
       sig = img.copyRotate(sig, angle: placement.rotationDegrees);
     }
-    final targetWidth = (page.width * 0.28 * placement.scale).round();
-    final targetHeight = (sig.height * targetWidth / sig.width).round();
-    final resizedSignature = img.copyResize(
-      sig,
-      width: targetWidth,
-      height: targetHeight,
-    );
-    final dstX = (placement.pctX * page.width).round() - (resizedSignature.width ~/ 2);
-    final dstY = (placement.pctY * page.height).round() - (resizedSignature.height ~/ 2);
-    return img.compositeImage(page, resizedSignature, dstX: dstX, dstY: dstY);
+    final dstX = (placement.pctX * page.width).round() - (sig.width ~/ 2);
+    final dstY = (placement.pctY * page.height).round() - (sig.height ~/ 2);
+    return img.compositeImage(page, sig, dstX: dstX, dstY: dstY);
   }
 
   Future<Uint8List> _processPage(

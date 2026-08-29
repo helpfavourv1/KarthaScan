@@ -48,6 +48,9 @@ class _ExportScreenState extends State<ExportScreen> {
   final Map<int, SignaturePlacement> _signaturePlacements = {};
   int _previewPage = 0;
   double _sigAspect = 2.0;
+  final Map<String, Map<String, dynamic>> _previewCache = {};
+
+  bool get _isSingleDoc => _documents.length == 1;
 
   bool _isRunning = false;
   String? _statusMessage;
@@ -145,8 +148,8 @@ class _ExportScreenState extends State<ExportScreen> {
           format: _selectedFormat,
           outputDirectoryPath: outputDir.path,
           filter: _selectedFilter,
-          signatureBytes: _signatureBytes,
-          signaturePlacements: _signatureBytes != null ? Map<int, SignaturePlacement>.of(_signaturePlacements) : null,
+          signatureBytes: _isSingleDoc ? _signatureBytes : null,
+          signaturePlacements: (_isSingleDoc && _signatureBytes != null) ? Map<int, SignaturePlacement>.of(_signaturePlacements) : null,
           compression: _selectedCompression,
           docxMode: _docxMode,
           pageFormat: _pageFormat,
@@ -364,47 +367,49 @@ class _ExportScreenState extends State<ExportScreen> {
                     ],
                   ],
 
-                  // Signature Section
-                  Text('Signature', style: TextStyle(color: textSecondary, fontSize: AppTypography.footnoteSize, fontWeight: FontWeight.w600)),
-                  const SizedBox(height: AppSpacing.sm),
-                  Container(
-                    padding: const EdgeInsets.all(AppSpacing.md),
-                    decoration: BoxDecoration(color: surface, borderRadius: BorderRadius.circular(AppShape.cardRadius)),
-                    child: _signatureBytes == null
-                        ? SizedBox(
-                            height: 52,
-                            width: double.infinity,
-                            child: ElevatedButton.icon(
-                              onPressed: _addSignature,
-                              icon: const Icon(Icons.draw_outlined, size: 22),
-                              label: const Text('Add Signature', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: accent,
-                                foregroundColor: Colors.white,
-                                elevation: 2,
-                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+                  if (_isSingleDoc) ...[
+                    // Signature Section
+                    Text('Signature', style: TextStyle(color: textSecondary, fontSize: AppTypography.footnoteSize, fontWeight: FontWeight.w600)),
+                    const SizedBox(height: AppSpacing.sm),
+                    Container(
+                      padding: const EdgeInsets.all(AppSpacing.md),
+                      decoration: BoxDecoration(color: surface, borderRadius: BorderRadius.circular(AppShape.cardRadius)),
+                      child: _signatureBytes == null
+                          ? SizedBox(
+                              height: 52,
+                              width: double.infinity,
+                              child: ElevatedButton.icon(
+                                onPressed: _addSignature,
+                                icon: const Icon(Icons.draw_outlined, size: 22),
+                                label: const Text('Add Signature', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: accent,
+                                  foregroundColor: Colors.white,
+                                  elevation: 2,
+                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+                                ),
                               ),
+                            )
+                          : Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  children: [
+                                    const Icon(Icons.check_circle, color: Colors.green),
+                                    const SizedBox(width: AppSpacing.sm),
+                                    const Expanded(child: Text('Signature added — drag it on the preview')),
+                                    TextButton(onPressed: _removeSignature, child: const Text('Remove')),
+                                  ],
+                                ),
+                                const SizedBox(height: AppSpacing.sm),
+                                Text(
+                                  'Signed pages: ${(_signaturePlacements.keys.toList()..sort()).map((i) => i + 1).join(', ')}',
+                                  style: TextStyle(color: textSecondary, fontSize: 12),
+                                ),
+                              ],
                             ),
-                          )
-                        : Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                children: [
-                                  const Icon(Icons.check_circle, color: Colors.green),
-                                  const SizedBox(width: AppSpacing.sm),
-                                  const Expanded(child: Text('Signature added — drag it on the preview')),
-                                  TextButton(onPressed: _removeSignature, child: const Text('Remove')),
-                                ],
-                              ),
-                              const SizedBox(height: AppSpacing.sm),
-                              Text(
-                                'Signed pages: ${(_signaturePlacements.keys.toList()..sort()).map((i) => i + 1).join(', ')}',
-                                style: TextStyle(color: textSecondary, fontSize: 12),
-                              ),
-                            ],
-                          ),
-                  ),
+                    ),
+                  ],
                 ],
               ),
       ),
@@ -556,6 +561,34 @@ class _ExportScreenState extends State<ExportScreen> {
   }
   Widget _buildLivePreview() {
     if (_documents.isEmpty) return const SizedBox.shrink();
+    if (!_isSingleDoc) {
+      return FutureBuilder<Map<String, dynamic>>(
+        future: _generatePreview(0),
+        builder: (context, snapshot) {
+          if (!snapshot.hasData) return const SizedBox(height: 120, child: Center(child: CircularProgressIndicator()));
+          final imgBytes = snapshot.data!['bytes'] as Uint8List;
+          return Container(
+            height: 160,
+            width: double.infinity,
+            padding: const EdgeInsets.all(8),
+            decoration: BoxDecoration(
+              color: Colors.black12,
+              borderRadius: BorderRadius.circular(8),
+              border: Border.all(color: Colors.grey.withValues(alpha: 0.3)),
+            ),
+            child: Stack(
+              children: [
+                Positioned.fill(child: Image.memory(imgBytes, fit: BoxFit.contain)),
+                const Positioned(
+                  top: 4, left: 4,
+                  child: Text('Batch export — signature placement disabled', style: TextStyle(color: Colors.white70, fontSize: 11, backgroundColor: Colors.black38)),
+                ),
+              ],
+            ),
+          );
+        },
+      );
+    }
     final pageCount = _documents.first.pagePaths.length;
     final pageIndex = _previewPage.clamp(0, pageCount - 1);
     final placement = _signaturePlacements[pageIndex];
@@ -694,8 +727,13 @@ class _ExportScreenState extends State<ExportScreen> {
   Future<Map<String, dynamic>> _generatePreview(int pageIndex) async {
     final paths = _documents.first.pagePaths;
     final idx = pageIndex.clamp(0, paths.length - 1);
+    final key = '${idx}_${_selectedFilter.index}';
+    final cached = _previewCache[key];
+    if (cached != null) return cached;
     final bytes = await File(paths[idx]).readAsBytes();
-    return await compute(_previewIsolate, {'bytes': bytes, 'filter': _selectedFilter.index});
+    final result = await compute(_previewIsolate, {'bytes': bytes, 'filter': _selectedFilter.index});
+    _previewCache[key] = result;
+    return result;
   }
 }
 
