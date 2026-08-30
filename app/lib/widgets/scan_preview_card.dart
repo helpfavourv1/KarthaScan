@@ -144,11 +144,11 @@ class _ScanPreviewCardState extends State<ScanPreviewCard> {
       widget.onStampLayerUpdate?.call(_currentPage, newLayer);
     }
     return OverlayEditControls(
-      layerType: kind == 'text' ? LayerType.text : (kind == 'note' ? LayerType.note : LayerType.date),
+      layerType: kind == 'text' ? LayerType.text : (kind == 'note' ? LayerType.note : (kind == 'date' ? LayerType.date : LayerType.checkbox)),
       rotationDegrees: layer.placement.rotationDegrees,
       scale: layer.placement.scale,
       opacity: layer.opacity,
-      fontSize: layer.fontSize,
+      fontSize: kind == 'checkbox' ? null : layer.fontSize,
       onRotateLeft: () => upd(layer.copyWith(placement: SignaturePlacement(pctX: layer.placement.pctX, pctY: layer.placement.pctY, rotationDegrees: (layer.placement.rotationDegrees - 10).clamp(-180, 180), scale: layer.placement.scale))),
       onRotateRight: () => upd(layer.copyWith(placement: SignaturePlacement(pctX: layer.placement.pctX, pctY: layer.placement.pctY, rotationDegrees: (layer.placement.rotationDegrees + 10).clamp(-180, 180), scale: layer.placement.scale))),
       onScaleDown: () => upd(layer.copyWith(placement: SignaturePlacement(pctX: layer.placement.pctX, pctY: layer.placement.pctY, rotationDegrees: layer.placement.rotationDegrees, scale: (layer.placement.scale - 0.1).clamp(0.1, 5.0)))),
@@ -314,6 +314,8 @@ class _ScanPreviewCardState extends State<ScanPreviewCard> {
             _buildStampControls('note'),
           if (widget.editMode == TrayEditMode.date)
             _buildStampControls('date'),
+          if (widget.editMode == TrayEditMode.checkbox)
+            _buildStampControls('checkbox'),
         ],
       ),
     );

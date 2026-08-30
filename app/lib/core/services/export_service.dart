@@ -206,7 +206,9 @@ class ExportService {
         }
       }
       for (final st in stampLayers) {
-        final stBytes = await _renderStampText(st, decoded.width);
+        final stBytes = st.kind == 'checkbox'
+            ? await _renderCheckbox(st)
+            : await _renderStampText(st, decoded.width);
         if (stBytes != null) {
           final stImage = img.decodePng(stBytes);
           if (stImage != null) {
@@ -693,6 +695,43 @@ class ExportService {
     canvas.drawParagraph(paragraph, ui.Offset(pad, pad));
     final picture = recorder.endRecording();
     final image = await picture.toImage(w, h);
+    final bytes = await image.toByteData(format: ui.ImageByteFormat.png);
+    return bytes?.buffer.asUint8List();
+  }
+
+  Future<Uint8List?> _renderCheckbox(StampLayer layer) async {
+    const double size = 240;
+    final recorder = ui.PictureRecorder();
+    final canvas = ui.Canvas(recorder);
+    final shape = layer.checkShape ?? 'rounded';
+    final boxColor = ui.Color(layer.boxColor ?? 0xFF111111).withValues(alpha: layer.opacity);
+    final tickColor = ui.Color(layer.tickColor ?? 0xFF007AFF).withValues(alpha: layer.opacity);
+    final checked = layer.checked ?? true;
+    final box = ui.Paint()..color = boxColor..style = ui.PaintingStyle.stroke..strokeWidth = size * 0.067;
+    if (shape == 'circle') {
+      canvas.drawCircle(ui.Offset(size / 2, size / 2), size / 2 - size * 0.067, box);
+    } else {
+      final radius = shape == 'rounded' ? const ui.Radius.circular(24) : ui.Radius.zero;
+      canvas.drawRRect(
+        ui.RRect.fromRectAndRadius(ui.Rect.fromLTWH(size * 0.033, size * 0.033, size - size * 0.067, size - size * 0.067), radius),
+        box,
+      );
+    }
+    if (checked) {
+      final check = ui.Paint()
+        ..color = tickColor
+        ..style = ui.PaintingStyle.stroke
+        ..strokeWidth = size * 0.1
+        ..strokeCap = ui.StrokeCap.round
+        ..strokeJoin = ui.StrokeJoin.round;
+      final path = ui.Path()
+        ..moveTo(size * 0.25, size * 0.54)
+        ..lineTo(size * 0.44, size * 0.73)
+        ..lineTo(size * 0.77, size * 0.31);
+      canvas.drawPath(path, check);
+    }
+    final picture = recorder.endRecording();
+    final image = await picture.toImage(size.round(), size.round());
     final bytes = await image.toByteData(format: ui.ImageByteFormat.png);
     return bytes?.buffer.asUint8List();
   }

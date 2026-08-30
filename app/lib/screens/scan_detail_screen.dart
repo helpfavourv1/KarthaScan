@@ -34,8 +34,6 @@ import '../widgets/rotate_resize_sheet.dart';
 import '../widgets/pages_manager_sheet.dart';
 import '../widgets/filter_preview_sheet.dart';
 import '../widgets/text_stamp_sheet.dart';
-import '../widgets/edit_session_sheet.dart';
-import '../core/models/edit_session.dart';
 import '../core/services/filter_service.dart';
 import '../core/services/export_service.dart' show FilterType;
 
@@ -527,24 +525,25 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
       if (mounted) setState(() => _editMode = TrayEditMode.date);
       return;
     }
-    final stamp = await showModalBottomSheet<StampResult>(context: context, isScrollControlled: true, builder: (ctx) => TextStampSheet(kind: kind));
-    if (stamp == null || !mounted) return;
-    final layers = await showModalBottomSheet<List<EditLayer>>(context: context, isScrollControlled: true, builder: (ctx) => EditSessionSheet(imagePath: document.pagePaths[_currentPageIndex], initialBytes: stamp.bytes, initialLabel: stamp.label, initialWidthFraction: stamp.widthFraction, initialAspect: stamp.aspect));
-    if (layers == null || layers.isEmpty || !mounted) return;
-    try {
-      final originalBytes = await File(document.pagePaths[_currentPageIndex]).readAsBytes();
-      final baked = await compute(bakeSessionIsolate, {'original': originalBytes, 'layers': layers.map((l) => {'bytes': l.pngBytes, 'pctX': l.pctX, 'pctY': l.pctY, 'rotation': l.rotationDegrees, 'scale': l.scale, 'opacity': l.opacity, 'widthFraction': l.widthFraction}).toList()});
-      final appDir = await getApplicationDocumentsDirectory();
-      final dir = Directory(p.join(appDir.path, 'stamped_pages')); await dir.create(recursive: true);
-      final newPath = p.join(dir.path, 'stamp_${DateTime.now().microsecondsSinceEpoch}_$_currentPageIndex.jpg');
-      await File(newPath).writeAsBytes(baked);
-      final newPaths = List<String>.from(document.pagePaths); newPaths[_currentPageIndex] = newPath;
-      await _scanProvider.updateDocumentPages(document.id, newPaths);
-      if (mounted) ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Layers saved')));
-    } catch (e) { if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Error: $e'))); }
+    if (kind == 'checkbox') {
+      final config = await showModalBottomSheet<StampResult>(context: context, isScrollControlled: true, builder: (ctx) => const TextStampSheet(kind: 'checkbox'));
+      if (config == null || !mounted) return;
+      final layer = StampLayer(
+        id: 'stamp_${DateTime.now().microsecondsSinceEpoch}',
+        pageIndex: _currentPageIndex,
+        kind: 'checkbox',
+        placement: const SignaturePlacement(pctX: 0.5, pctY: 0.5),
+        opacity: 1.0,
+        checked: config.checkedValue,
+        checkShape: config.checkShapeValue,
+        boxColor: config.boxColorValue,
+        tickColor: config.tickColorValue,
+      );
+      await _scanProvider.addStampLayer(document.id, layer);
+      if (mounted) setState(() => _editMode = TrayEditMode.checkbox);
+      return;
+    }
   }
-
-
 
   Future<void> _editStamp(StampLayer existing) async {
     final document = _document;
@@ -562,6 +561,10 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
       noteBgColor: config.noteBgColorValue,
       dateFormat: config.dateFormatValue,
       customDateMillis: config.customDateMillisValue,
+      checked: config.checkedValue,
+      checkShape: config.checkShapeValue,
+      boxColor: config.boxColorValue,
+      tickColor: config.tickColorValue,
     );
     await _scanProvider.updateStampLayer(document.id, updated);
   }
@@ -991,7 +994,7 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
               onStampEditTools: () async {
                 final doc = _document;
                 if (doc == null) return;
-                final kind = _editMode == TrayEditMode.note ? 'note' : (_editMode == TrayEditMode.date ? 'date' : 'text');
+                final kind = _editMode == TrayEditMode.note ? 'note' : (_editMode == TrayEditMode.date ? 'date' : (_editMode == TrayEditMode.checkbox ? 'checkbox' : 'text'));
                 final pageLayers = doc.stampLayers.where((l) => l.pageIndex == _currentPageIndex && l.kind == kind).toList();
                 if (pageLayers.isEmpty) return;
                 await _editStamp(pageLayers.first);

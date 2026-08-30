@@ -10,7 +10,7 @@ import '../core/utils/constants.dart';
 import 'signature_canvas.dart';
 
 /// Which editor currently owns the tray preview screen.
-enum TrayEditMode { none, signature, annotate, watermark, text, note, date }
+enum TrayEditMode { none, signature, annotate, watermark, text, note, date, checkbox }
 
 /// Which kind of overlay layer the shared editor is editing.
 enum LayerType { signature, annotate, watermark, text, note, date, checkbox }
@@ -393,6 +393,48 @@ class WatermarkOverlayPage extends StatelessWidget {
 
 // === StampOverlayPage: renders text stamps as live overlay ===
 
+class _CheckboxPainter extends CustomPainter {
+  _CheckboxPainter({required this.shape, required this.boxColor, required this.tickColor, required this.checked, required this.opacity});
+  final String shape;
+  final Color boxColor;
+  final Color tickColor;
+  final bool checked;
+  final double opacity;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final s = size.width;
+    final box = Paint()
+      ..color = boxColor.withValues(alpha: opacity)
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = s * 0.067;
+    if (shape == 'circle') {
+      canvas.drawCircle(Offset(s / 2, s / 2), s / 2 - s * 0.067, box);
+    } else {
+      final radius = shape == 'rounded' ? Radius.circular(s * 0.1) : Radius.zero;
+      canvas.drawRRect(RRect.fromRectAndRadius(Rect.fromLTWH(s * 0.033, s * 0.033, s - s * 0.067, s - s * 0.067), radius), box);
+    }
+    if (checked) {
+      final check = Paint()
+        ..color = tickColor.withValues(alpha: opacity)
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = s * 0.1
+        ..strokeCap = StrokeCap.round
+        ..strokeJoin = StrokeJoin.round;
+      final path = Path()
+        ..moveTo(s * 0.25, s * 0.54)
+        ..lineTo(s * 0.44, s * 0.73)
+        ..lineTo(s * 0.77, s * 0.31);
+      canvas.drawPath(path, check);
+    }
+  }
+
+  @override
+  bool shouldRepaint(covariant _CheckboxPainter old) =>
+      old.shape != shape || old.boxColor != boxColor || old.tickColor != tickColor ||
+      old.checked != checked || old.opacity != opacity;
+}
+
 class StampOverlayPage extends StatelessWidget {
   const StampOverlayPage({
     super.key,
@@ -422,9 +464,41 @@ class StampOverlayPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        for (final layer in layers.where((l) => l.pageIndex == pageIndex && (l.kind == 'text' || l.kind == 'note' || l.kind == 'date')))
+        for (final layer in layers.where((l) => l.pageIndex == pageIndex && (l.kind == 'text' || l.kind == 'note' || l.kind == 'date' || l.kind == 'checkbox')))
           Builder(builder: (context) {
             final isSelected = layer.id == selectedId;
+            if (layer.kind == 'checkbox') {
+              final size = iw * 0.15 * layer.placement.scale;
+              return Positioned(
+                left: dx + layer.placement.pctX * iw - size / 2,
+                top: dy + layer.placement.pctY * ih - size / 2,
+                child: GestureDetector(
+                  behavior: HitTestBehavior.opaque,
+                  onTap: () { onSelect(layer); onSelected?.call(); },
+                  onPanUpdate: (d) => onDrag(layer, d.delta.dx, d.delta.dy),
+                  child: Container(
+                    decoration: isSelected ? BoxDecoration(border: Border.all(color: accent, width: 1.5), borderRadius: BorderRadius.circular(4)) : null,
+                    padding: const EdgeInsets.all(4),
+                    child: Transform.rotate(
+                      angle: layer.placement.rotationDegrees * 3.14159 / 180,
+                      child: SizedBox(
+                        width: size,
+                        height: size,
+                        child: CustomPaint(
+                          painter: _CheckboxPainter(
+                            shape: layer.checkShape ?? 'rounded',
+                            boxColor: Color(layer.boxColor ?? 0xFF111111),
+                            tickColor: Color(layer.tickColor ?? 0xFF007AFF),
+                            checked: layer.checked ?? true,
+                            opacity: layer.opacity,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              );
+            }
             final fontSize = layer.fontSize * layer.placement.scale;
             final color = Color(layer.color).withValues(alpha: layer.opacity);
             final shadows = layer.halo
@@ -563,7 +637,7 @@ class OverlayEditControls extends StatelessWidget {
               ],
             ),
           ),
-          if ((layerType == LayerType.watermark || layerType == LayerType.text || layerType == LayerType.note || layerType == LayerType.date) && opacity != null && fontSize != null)
+          if ((layerType == LayerType.watermark || layerType == LayerType.text || layerType == LayerType.note || layerType == LayerType.date || layerType == LayerType.checkbox) && opacity != null)
             SizedBox(
               height: 44,
               child: Row(
@@ -577,15 +651,17 @@ class OverlayEditControls extends StatelessWidget {
                         textAlign: TextAlign.center),
                   ),
                   _stepBtn(Icons.add, onOpacityUp!),
-                  const SizedBox(width: 24),
-                  _stepBtn(Icons.remove, onFontSizeDown!),
-                  SizedBox(
-                    width: 56,
-                    child: Text('${fontSize!.round()}pt',
-                        style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
-                        textAlign: TextAlign.center),
-                  ),
-                  _stepBtn(Icons.add, onFontSizeUp!),
+                  if (fontSize != null) ...[
+                    const SizedBox(width: 24),
+                    _stepBtn(Icons.remove, onFontSizeDown!),
+                    SizedBox(
+                      width: 56,
+                      child: Text('${fontSize!.round()}pt',
+                          style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
+                          textAlign: TextAlign.center),
+                    ),
+                    _stepBtn(Icons.add, onFontSizeUp!),
+                  ],
                   if (onTools != null) ...[
                     const SizedBox(width: 16),
                     _stepBtn(Icons.brush, onTools!),

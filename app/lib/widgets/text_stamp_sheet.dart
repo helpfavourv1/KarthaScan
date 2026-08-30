@@ -5,7 +5,7 @@ import 'color_picker_dialog.dart';
 import '../core/models/scan_document.dart';
 
 class StampResult {
-  const StampResult({required this.bytes, required this.label, required this.widthFraction, required this.aspect, this.text = '', this.fontSize = 72, this.color = 0xFF111111, this.fontFamily = 'sans-serif', this.fontWeightValue = 700, this.alignName = 'left', this.halo = false, this.noteBgColorValue = 0xFFFFEB84, this.dateFormatValue = 'DD-MM-YYYY', this.customDateMillisValue = 0});
+  const StampResult({required this.bytes, required this.label, required this.widthFraction, required this.aspect, this.text = '', this.fontSize = 72, this.color = 0xFF111111, this.fontFamily = 'sans-serif', this.fontWeightValue = 700, this.alignName = 'left', this.halo = false, this.noteBgColorValue = 0xFFFFEB84, this.dateFormatValue = 'DD-MM-YYYY', this.customDateMillisValue = 0, this.checkedValue = true, this.checkShapeValue = 'rounded', this.boxColorValue = 0xFF111111, this.tickColorValue = 0xFF007AFF});
   final Uint8List bytes;
   final String label;
   final double widthFraction;
@@ -20,6 +20,10 @@ class StampResult {
   final int noteBgColorValue;
   final String dateFormatValue;
   final int customDateMillisValue;
+  final bool checkedValue;
+  final String checkShapeValue;
+  final int boxColorValue;
+  final int tickColorValue;
 }
 
 class TextStampSheet extends StatefulWidget {
@@ -64,6 +68,10 @@ class _TextStampSheetState extends State<TextStampSheet> {
       if (i.customDateMillis != null && i.customDateMillis! > 0) {
         _customDate = DateTime.fromMillisecondsSinceEpoch(i.customDateMillis!);
       }
+      _checked = i.checked ?? true;
+      _checkShape = i.checkShape ?? 'rounded';
+      _boxColor = Color(i.boxColor ?? 0xFF111111);
+      _tickColor = Color(i.tickColor ?? 0xFF007AFF);
     }
   }
 
@@ -142,7 +150,7 @@ class _TextStampSheetState extends State<TextStampSheet> {
     final image = await picture.toImage(w, h);
     final data = await image.toByteData(format: ui.ImageByteFormat.png);
     if (data == null) return null;
-    return StampResult(bytes: data.buffer.asUint8List(), label: widget.kind == 'note' ? 'Note' : widget.kind == 'date' ? 'Date' : 'Text', widthFraction: widget.kind == 'note' ? 0.45 : 0.5, aspect: h / w, text: text, fontSize: fontSize, color: _textColor.toARGB32(), fontFamily: _fontFamily, fontWeightValue: _fontWeight.value, alignName: _align == TextAlign.left ? 'left' : (_align == TextAlign.right ? 'right' : 'center'), halo: _halo, noteBgColorValue: _noteBg.toARGB32(), dateFormatValue: _dateFormat, customDateMillisValue: _customDate.millisecondsSinceEpoch);
+    return StampResult(bytes: data.buffer.asUint8List(), label: widget.kind == 'note' ? 'Note' : widget.kind == 'date' ? 'Date' : 'Text', widthFraction: widget.kind == 'note' ? 0.45 : 0.5, aspect: h / w, text: text, fontSize: fontSize, color: _textColor.toARGB32(), fontFamily: _fontFamily, fontWeightValue: _fontWeight.value, alignName: _align == TextAlign.left ? 'left' : (_align == TextAlign.right ? 'right' : 'center'), halo: _halo, noteBgColorValue: _noteBg.toARGB32(), dateFormatValue: _dateFormat, customDateMillisValue: _customDate.millisecondsSinceEpoch, checkedValue: _checked, checkShapeValue: _checkShape, boxColorValue: _boxColor.toARGB32(), tickColorValue: _tickColor.toARGB32());
   }
 
   Widget _swatch(Color c, Color current, ValueChanged<Color> on) => GestureDetector(
