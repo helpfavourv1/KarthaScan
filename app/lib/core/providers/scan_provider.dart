@@ -432,6 +432,36 @@ class ScanProvider {
     return _replaceAndSave(updated);
   }
 
+  Future<bool> addWatermarkLayer(String id, WatermarkLayer layer) async {
+    final ScanDocument? existing = _findById(id);
+    if (existing == null) return false;
+    final updated = existing.copyWith(watermarkLayers: [...existing.watermarkLayers, layer], updatedAt: DateTime.now());
+    return _replaceAndSave(updated);
+  }
+
+  Future<bool> updateWatermarkLayer(String id, WatermarkLayer layer) async {
+    final ScanDocument? existing = _findById(id);
+    if (existing == null) return false;
+    final newLayers = existing.watermarkLayers.map((l) => (l.pageIndex == layer.pageIndex && l.text == layer.text) ? layer : l).toList();
+    final updated = existing.copyWith(watermarkLayers: newLayers, updatedAt: DateTime.now());
+    return _replaceAndSave(updated);
+  }
+
+  Future<bool> removeWatermarkLayer(String id, int pageIndex, String text) async {
+    final ScanDocument? existing = _findById(id);
+    if (existing == null) return false;
+    final newLayers = existing.watermarkLayers.where((l) => !(l.pageIndex == pageIndex && l.text == text)).toList();
+    final updated = existing.copyWith(watermarkLayers: newLayers, updatedAt: DateTime.now());
+    return _replaceAndSave(updated);
+  }
+
+  Future<bool> clearWatermarkLayers(String id) async {
+    final ScanDocument? existing = _findById(id);
+    if (existing == null) return false;
+    final updated = existing.copyWith(watermarkLayers: const [], updatedAt: DateTime.now());
+    return _replaceAndSave(updated);
+  }
+
   Future<bool> _replaceAndSave(ScanDocument updated) async {
     final bool success = await _storage.saveDocument(updated);
     if (success) {

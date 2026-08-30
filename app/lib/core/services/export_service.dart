@@ -1,3 +1,4 @@
+import 'dart:ui' as ui;
 import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
@@ -157,14 +158,16 @@ class ExportService {
     List<SignatureLayer>? documentLayers,
     List<SignatureInk>? documentInks,
     List<AnnotateLayer>? documentAnnotateLayers,
+    List<WatermarkLayer>? documentWatermarkLayers,
   }) async {
     final original = await _readBytes(pagePath);
     final layers = _findLayersForPage(pageIndex, signaturePlacements, documentLayers);
     final annotateLayers = documentAnnotateLayers?.where((l) => l.pageIndex == pageIndex).toList() ?? const <AnnotateLayer>[];
+    final watermarkLayers = documentWatermarkLayers?.where((l) => l.pageIndex == pageIndex).toList() ?? const <WatermarkLayer>[];
     final inkMap = <String, SignatureInk>{
       if (documentInks != null) for (final ink in documentInks) ink.id: ink,
     };
-    if (filter == FilterType.none && layers.isEmpty && annotateLayers.isEmpty) {
+    if (filter == FilterType.none && layers.isEmpty && annotateLayers.isEmpty && watermarkLayers.isEmpty) {
       return original;
     }
     try {
@@ -189,6 +192,15 @@ class ExportService {
         final annotateImage = img.decodePng(annotateBytes);
         if (annotateImage != null) {
           decoded = _compositeSignature(decoded, annotateImage, annotate.placement);
+        }
+      }
+      for (final wm in watermarkLayers) {
+        final wmBytes = await _renderWatermarkText(wm, decoded.width);
+        if (wmBytes != null) {
+          final wmImage = img.decodePng(wmBytes);
+          if (wmImage != null) {
+            decoded = _compositeSignature(decoded, wmImage, wm.placement);
+          }
         }
       }
       return Uint8List.fromList(img.encodePng(decoded));
@@ -221,6 +233,7 @@ class ExportService {
         documentLayers: document.signatureLayers,
         documentInks: document.signatureInks,
         documentAnnotateLayers: document.annotateLayers,
+        documentWatermarkLayers: document.watermarkLayers,
       );
       final image = pw.MemoryImage(bytes);
       pdfDoc.addPage(
@@ -494,6 +507,7 @@ class ExportService {
         documentLayers: document.signatureLayers,
         documentInks: document.signatureInks,
         documentAnnotateLayers: document.annotateLayers,
+        documentWatermarkLayers: document.watermarkLayers,
       );
       final decoded = img.decodeImage(processedBytes);
       if (decoded == null) {
@@ -601,6 +615,34 @@ class ExportService {
       _logError('exportIdCardPdf', error, stackTrace);
       throw ExportFailedException('Could not build the ID card PDF.');
     }
+  }
+
+  Future<Uint8List?> _renderWatermarkText(WatermarkLayer layer, int pageW) async {
+    final fontSize = layer.fontSize * layer.placement.scale;
+    final recorder = ui.PictureRecorder();
+    final canvas = ui.Canvas(recorder);
+    final paragraphBuilder = ui.ParagraphBuilder(ui.ParagraphStyle(
+      textAlign: layer.align == 'left' ? ui.TextAlign.left : (layer.align == 'right' ? ui.TextAlign.right : ui.TextAlign.center),
+      fontSize: fontSize,
+      fontWeight: layer.bold ? ui.FontWeight.w700 : ui.FontWeight.w400,
+      fontStyle: layer.italic ? ui.FontStyle.italic : ui.FontStyle.normal,
+      fontFamily: layer.fontFamily,
+    ))
+      ..pushStyle(ui.TextStyle(
+        color: ui.Color(layer.color).withValues(alpha: layer.opacity),
+        decoration: layer.underline ? ui.TextDecoration.underline : ui.TextDecoration.none,
+        shadows: layer.shadowColor != null
+            ? [ui.Shadow(offset: ui.Offset(layer.shadowOffsetX, layer.shadowOffsetY), color: ui.Color(layer.shadowColor!), blurRadius: 2)]
+            : null,
+      ))
+      ..addText(layer.text);
+    final paragraph = paragraphBuilder.build()
+      ..layout(ui.ParagraphConstraints(width: pageW * 0.3 * layer.placement.scale));
+    canvas.drawParagraph(paragraph, ui.Offset.zero);
+    final picture = recorder.endRecording();
+    final image = await picture.toImage(paragraph.width.round(), paragraph.height.round());
+    final bytes = await image.toByteData(format: ui.ImageByteFormat.png);
+    return bytes?.buffer.asUint8List();
   }
 
   Future<Uint8List> _readBytes(String path) async {

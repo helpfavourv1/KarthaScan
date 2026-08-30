@@ -10,7 +10,7 @@ import '../core/utils/constants.dart';
 import 'signature_canvas.dart';
 
 /// Which editor currently owns the tray preview screen.
-enum TrayEditMode { none, signature, annotate }
+enum TrayEditMode { none, signature, annotate, watermark }
 
 /// Which kind of overlay layer the shared editor is editing.
 enum LayerType { signature, annotate, watermark, text, note, date, checkbox }
@@ -309,6 +309,88 @@ class _AnnotateOverlayPageState extends State<AnnotateOverlayPage> {
 }
 
 
+// === WatermarkOverlayPage: renders watermark text as live overlay ===
+
+class WatermarkOverlayPage extends StatelessWidget {
+  const WatermarkOverlayPage({
+    super.key,
+    required this.layers,
+    required this.pageIndex,
+    required this.iw,
+    required this.ih,
+    required this.dx,
+    required this.dy,
+    required this.accent,
+    required this.selectedText,
+    required this.onSelect,
+    required this.onDrag,
+    this.onSelected,
+  });
+
+  final List<WatermarkLayer> layers;
+  final int pageIndex;
+  final double iw, ih, dx, dy;
+  final Color accent;
+  final String? selectedText;
+  final void Function(WatermarkLayer layer) onSelect;
+  final void Function(WatermarkLayer layer, double dxDelta, double dyDelta) onDrag;
+  final VoidCallback? onSelected;
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        for (final layer in layers.where((l) => l.pageIndex == pageIndex))
+          Builder(builder: (context) {
+            final isSelected = layer.text == selectedText;
+            final fontSize = layer.fontSize * layer.placement.scale;
+            final fontWeight = layer.bold ? FontWeight.w700 : FontWeight.w400;
+            final fontStyle = layer.italic ? FontStyle.italic : FontStyle.normal;
+            final decoration = layer.underline ? TextDecoration.underline : TextDecoration.none;
+            final color = Color(layer.color).withValues(alpha: layer.opacity);
+            final shadows = layer.shadowColor != null
+                ? [Shadow(offset: Offset(layer.shadowOffsetX, layer.shadowOffsetY), color: Color(layer.shadowColor!), blurRadius: 2)]
+                : null;
+
+            return Positioned(
+              left: dx + layer.placement.pctX * iw - (iw * 0.3) / 2,
+              top: dy + layer.placement.pctY * ih - fontSize / 2,
+              child: GestureDetector(
+                behavior: HitTestBehavior.opaque,
+                onTap: () { onSelect(layer); onSelected?.call(); },
+                onPanUpdate: (d) => onDrag(layer, d.delta.dx, d.delta.dy),
+                child: Container(
+                  decoration: isSelected
+                      ? BoxDecoration(
+                          border: Border.all(color: accent, width: 1.5),
+                          borderRadius: BorderRadius.circular(4),
+                        )
+                      : null,
+                  padding: const EdgeInsets.all(4),
+                  child: Transform.rotate(
+                    angle: layer.placement.rotationDegrees * 3.14159 / 180,
+                    child: Text(
+                      layer.text,
+                      style: TextStyle(
+                        fontSize: fontSize,
+                        fontWeight: fontWeight,
+                        fontStyle: fontStyle,
+                        fontFamily: layer.fontFamily,
+                        color: color,
+                        decoration: decoration,
+                        shadows: shadows,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            );
+          }),
+      ],
+    );
+  }
+}
+
 // === OverlayEditControls: shared rotate/scale/actions editor for every overlay layer ===
 // Row 1 (always): rotate ±10° + scale ±0.1
 // Row 2 (type-specific): hidden for signature/annotate/checkbox; T1–T5 extend with opacity/font/color/etc.
@@ -328,9 +410,23 @@ class OverlayEditControls extends StatelessWidget {
     required this.onClearThis,
     required this.onRemove,
     required this.onClearAll,
+    this.opacity,
+    this.onOpacityDown,
+    this.onOpacityUp,
+    this.fontSize,
+    this.onFontSizeDown,
+    this.onFontSizeUp,
+    this.onTools,
   });
 
   final LayerType layerType;
+  final double? opacity;
+  final VoidCallback? onOpacityDown;
+  final VoidCallback? onOpacityUp;
+  final double? fontSize;
+  final VoidCallback? onFontSizeDown;
+  final VoidCallback? onFontSizeUp;
+  final VoidCallback? onTools;
   final double rotationDegrees;
   final double scale;
   final VoidCallback onRotateLeft;
@@ -389,14 +485,36 @@ class OverlayEditControls extends StatelessWidget {
               ],
             ),
           ),
-          // Row 2 (middle) — type-specific. Hidden for signature/annotate/checkbox.
-          // T1 (watermark) adds: opacity slider + font size + color swatches.
-          // T2–T5 extend further per layer type.
-          if (layerType == LayerType.watermark ||
-              layerType == LayerType.text ||
-              layerType == LayerType.note ||
-              layerType == LayerType.date)
-            const SizedBox(height: 0), // placeholder row; replaced in T1–T5
+          if (layerType == LayerType.watermark && opacity != null && fontSize != null)
+            SizedBox(
+              height: 44,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  _stepBtn(Icons.remove, onOpacityDown!),
+                  SizedBox(
+                    width: 56,
+                    child: Text('${(opacity! * 100).round()}%',
+                        style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
+                        textAlign: TextAlign.center),
+                  ),
+                  _stepBtn(Icons.add, onOpacityUp!),
+                  const SizedBox(width: 24),
+                  _stepBtn(Icons.remove, onFontSizeDown!),
+                  SizedBox(
+                    width: 56,
+                    child: Text('${fontSize!.round()}pt',
+                        style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
+                        textAlign: TextAlign.center),
+                  ),
+                  _stepBtn(Icons.add, onFontSizeUp!),
+                  if (onTools != null) ...[
+                    const SizedBox(width: 16),
+                    _stepBtn(Icons.brush, onTools!),
+                  ],
+                ],
+              ),
+            ),
           SizedBox(
             height: 36,
             child: Row(

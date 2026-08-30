@@ -119,6 +119,131 @@ class AnnotateLayer {
 }
 
 @immutable
+@immutable
+class WatermarkLayer {
+  const WatermarkLayer({
+    required this.pageIndex,
+    required this.text,
+    required this.placement,
+    this.opacity = 0.15,
+    this.fontSize = 48,
+    this.color = 0xFF8E8E93,
+    this.fontFamily = 'sans-serif',
+    this.bold = true,
+    this.italic = false,
+    this.underline = false,
+    this.outlineColor,
+    this.outlineWidth = 0,
+    this.shadowOffsetX = 0,
+    this.shadowOffsetY = 0,
+    this.shadowColor,
+    this.align = 'center',
+  });
+
+  final int pageIndex;
+  final String text;
+  final SignaturePlacement placement;
+  final double opacity;
+  final double fontSize;
+  final int color;
+  final String fontFamily;
+  final bool bold;
+  final bool italic;
+  final bool underline;
+  final int? outlineColor;
+  final double outlineWidth;
+  final double shadowOffsetX;
+  final double shadowOffsetY;
+  final int? shadowColor;
+  final String align;
+
+  Map<String, dynamic> toJson() => {
+    'pageIndex': pageIndex,
+    'text': text,
+    'pctX': placement.pctX,
+    'pctY': placement.pctY,
+    'rotationDegrees': placement.rotationDegrees,
+    'scale': placement.scale,
+    'opacity': opacity,
+    'fontSize': fontSize,
+    'color': color,
+    'fontFamily': fontFamily,
+    'bold': bold,
+    'italic': italic,
+    'underline': underline,
+    'outlineColor': outlineColor,
+    'outlineWidth': outlineWidth,
+    'shadowOffsetX': shadowOffsetX,
+    'shadowOffsetY': shadowOffsetY,
+    'shadowColor': shadowColor,
+    'align': align,
+  };
+
+  factory WatermarkLayer.fromJson(Map<String, dynamic> json) {
+    return WatermarkLayer(
+      pageIndex: json['pageIndex'] as int,
+      text: json['text'] as String,
+      placement: SignaturePlacement(
+        pctX: (json['pctX'] as num).toDouble(),
+        pctY: (json['pctY'] as num).toDouble(),
+        rotationDegrees: (json['rotationDegrees'] as num?)?.toDouble() ?? 0,
+        scale: (json['scale'] as num?)?.toDouble() ?? 1.0,
+      ),
+      opacity: (json['opacity'] as num?)?.toDouble() ?? 0.15,
+      fontSize: (json['fontSize'] as num?)?.toDouble() ?? 48,
+      color: json['color'] as int? ?? 0xFF8E8E93,
+      fontFamily: json['fontFamily'] as String? ?? 'sans-serif',
+      bold: json['bold'] as bool? ?? true,
+      italic: json['italic'] as bool? ?? false,
+      underline: json['underline'] as bool? ?? false,
+      outlineColor: json['outlineColor'] as int?,
+      outlineWidth: (json['outlineWidth'] as num?)?.toDouble() ?? 0,
+      shadowOffsetX: (json['shadowOffsetX'] as num?)?.toDouble() ?? 0,
+      shadowOffsetY: (json['shadowOffsetY'] as num?)?.toDouble() ?? 0,
+      shadowColor: json['shadowColor'] as int?,
+      align: json['align'] as String? ?? 'center',
+    );
+  }
+
+  WatermarkLayer copyWith({
+    int? pageIndex,
+    String? text,
+    SignaturePlacement? placement,
+    double? opacity,
+    double? fontSize,
+    int? color,
+    String? fontFamily,
+    bool? bold,
+    bool? italic,
+    bool? underline,
+    int? outlineColor,
+    double? outlineWidth,
+    double? shadowOffsetX,
+    double? shadowOffsetY,
+    int? shadowColor,
+    String? align,
+  }) {
+    return WatermarkLayer(
+      pageIndex: pageIndex ?? this.pageIndex,
+      text: text ?? this.text,
+      placement: placement ?? this.placement,
+      opacity: opacity ?? this.opacity,
+      fontSize: fontSize ?? this.fontSize,
+      color: color ?? this.color,
+      fontFamily: fontFamily ?? this.fontFamily,
+      bold: bold ?? this.bold,
+      italic: italic ?? this.italic,
+      underline: underline ?? this.underline,
+      outlineColor: outlineColor ?? this.outlineColor,
+      outlineWidth: outlineWidth ?? this.outlineWidth,
+      shadowOffsetX: shadowOffsetX ?? this.shadowOffsetX,
+      shadowOffsetY: shadowOffsetY ?? this.shadowOffsetY,
+      shadowColor: shadowColor ?? this.shadowColor,
+      align: align ?? this.align,
+    );
+  }
+}
+
 class ScanDocument {
   const ScanDocument({
     required this.id,
@@ -134,6 +259,7 @@ class ScanDocument {
     this.signatureInks = const <SignatureInk>[],
     this.signatureLayers = const <SignatureLayer>[],
     this.annotateLayers = const <AnnotateLayer>[],
+    this.watermarkLayers = const <WatermarkLayer>[],
   });
 
   final String id;
@@ -165,6 +291,7 @@ class ScanDocument {
 
   /// Non-destructive annotate placements per page (each with own PNG).
   final List<AnnotateLayer> annotateLayers;
+  final List<WatermarkLayer> watermarkLayers;
 
   ScanDocument copyWith({
     String? id,
@@ -180,6 +307,7 @@ class ScanDocument {
     List<SignatureInk>? signatureInks,
     List<SignatureLayer>? signatureLayers,
     List<AnnotateLayer>? annotateLayers,
+    List<WatermarkLayer>? watermarkLayers,
   }) {
     return ScanDocument(
       id: id ?? this.id,
@@ -195,6 +323,7 @@ class ScanDocument {
       signatureInks: signatureInks ?? this.signatureInks,
       signatureLayers: signatureLayers ?? this.signatureLayers,
       annotateLayers: annotateLayers ?? this.annotateLayers,
+      watermarkLayers: watermarkLayers ?? this.watermarkLayers,
     );
   }
 
@@ -213,6 +342,7 @@ class ScanDocument {
       'signatureInks': signatureInks.map((i) => i.toJson()).toList(),
       'signatureLayers': signatureLayers.map((l) => l.toJson()).toList(),
       'annotateLayers': annotateLayers.map((l) => l.toJson()).toList(),
+      'watermarkLayers': watermarkLayers.map((l) => l.toJson()).toList(),
     };
   }
 
@@ -237,6 +367,9 @@ class ScanDocument {
       annotateLayers: (json['annotateLayers'] as List<dynamic>?)
           ?.map((e) => AnnotateLayer.fromJson(e as Map<String, dynamic>))
           .toList() ?? const <AnnotateLayer>[],
+      watermarkLayers: (json['watermarkLayers'] as List<dynamic>?)
+          ?.map((e) => WatermarkLayer.fromJson(e as Map<String, dynamic>))
+          .toList() ?? const <WatermarkLayer>[],
     );
   }
 
@@ -256,7 +389,8 @@ class ScanDocument {
         other.isFavorite == isFavorite &&
         listEquals(other.signatureInks, signatureInks) &&
         listEquals(other.signatureLayers, signatureLayers) &&
-        listEquals(other.annotateLayers, annotateLayers);
+        listEquals(other.annotateLayers, annotateLayers) &&
+        listEquals(other.watermarkLayers, watermarkLayers);
   }
 
   @override
@@ -275,6 +409,7 @@ class ScanDocument {
       Object.hashAll(signatureInks),
       Object.hashAll(signatureLayers),
       Object.hashAll(annotateLayers),
+      Object.hashAll(watermarkLayers),
     );
   }
 

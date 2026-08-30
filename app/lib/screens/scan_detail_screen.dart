@@ -1,6 +1,6 @@
 import 'dart:io';
 import '../core/models/signature_placement.dart';
-import 'dart:ui' as ui;
+
 import 'package:flutter/foundation.dart' show compute;
 
 import 'package:flutter/material.dart';
@@ -18,15 +18,13 @@ import '../core/providers/scan_provider.dart';
 import '../core/services/ocr_service.dart';
 import '../core/services/share_service.dart';
 import '../core/services/local_storage.dart';
-import '../core/providers/settings_provider.dart';
-import '../widgets/color_picker_dialog.dart';
 import '../core/utils/constants.dart';
 import '../l10n/app_localizations.dart';
 import '../widgets/edit_tray.dart';
 import '../widgets/annotate_sheet.dart';
+import '../widgets/watermark_sheet.dart';
 import '../widgets/scan_preview_card.dart';
 import '../widgets/ink_board.dart';
-import '../widgets/overlay_placement_sheet.dart';
 import 'package:printing/printing.dart';
 import 'package:pdf/pdf.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -255,181 +253,65 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
     final document = _document;
     if (document == null || document.pagePaths.isEmpty) return;
 
-    final settingsProvider = Provider.of<SettingsProvider>(context, listen: false);
-    final memo = settingsProvider.settings.value.lastWatermark;
-
-    final textController = TextEditingController(text: (memo?['text'] as String?) ?? 'CONFIDENTIAL');
-    double opacity = (memo?['opacity'] as num?)?.toDouble() ?? 0.15;
-    double fontSize = (memo?['size'] as num?)?.toDouble() ?? 48;
-    Color color = memo?['color'] != null ? Color(memo!['color'] as int) : const Color(0xFF8E8E93);
-    String fontFamily = (memo?['fontFamily'] as String?) ?? 'sans-serif';
-    bool bold = (memo?['bold'] as bool?) ?? true;
-    TextAlign align = TextAlign.values.firstWhere((a) => a.name == ((memo?['align'] as String?) ?? 'center'), orElse: () => TextAlign.center);
-
-    final confirmed = await showDialog<bool>(
-      context: context,
-      builder: (ctx) => StatefulBuilder(
-        builder: (ctx, setDialogState) => AlertDialog(
-          title: const Text('Add Watermark'),
-          content: SingleChildScrollView(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                TextField(
-                  controller: textController,
-                  decoration: const InputDecoration(labelText: 'Text'),
-                ),
-                const SizedBox(height: 16),
-                Text('Opacity: ${opacity.toStringAsFixed(2)}'),
-                Slider(
-                  value: opacity,
-                  min: 0.05,
-                  max: 0.5,
-                  onChanged: (v) => setDialogState(() => opacity = v),
-                ),
-                Text('Size: ${fontSize.round()}'),
-                Slider(
-                  value: fontSize,
-                  min: 12,
-                  max: 96,
-                  onChanged: (v) => setDialogState(() => fontSize = v),
-                ),
-                const SizedBox(height: 8),
-                Row(
-                  children: [
-                    const Text('Color', style: TextStyle(fontSize: 12)),
-                    const SizedBox(width: 8),
-                    for (final sw in [const Color(0xFF8E8E93), Colors.black, Colors.red, Colors.blue])
-                      GestureDetector(
-                        onTap: () => setDialogState(() => color = sw),
-                        child: Container(
-                          width: 24, height: 24, margin: const EdgeInsets.only(right: 6),
-                          decoration: BoxDecoration(color: sw, shape: BoxShape.circle, border: Border.all(color: color == sw ? Colors.blue : Colors.grey, width: color == sw ? 2 : 1)),
-                        ),
-                      ),
-                    TextButton(
-                      onPressed: () async {
-                        final picked = await showDialog<Color>(context: ctx, builder: (c2) => ColorPickerDialog(initial: color));
-                        if (picked != null) setDialogState(() => color = picked);
-                      },
-                      child: const Text('Custom'),
-                    ),
-                  ],
-                ),
-                Wrap(
-                  spacing: 6,
-                  children: ['sans-serif', 'serif', 'monospace'].map((f) => ChoiceChip(
-                    label: Text(f, style: const TextStyle(fontSize: 11)),
-                    selected: fontFamily == f,
-                    onSelected: (_) => setDialogState(() => fontFamily = f),
-                  )).toList(),
-                ),
-                Wrap(
-                  spacing: 6,
-                  children: [
-                    ChoiceChip(label: const Text('Bold'), selected: bold, onSelected: (_) => setDialogState(() => bold = !bold)),
-                    ChoiceChip(label: const Text('L'), selected: align == TextAlign.left, onSelected: (_) => setDialogState(() => align = TextAlign.left)),
-                    ChoiceChip(label: const Text('C'), selected: align == TextAlign.center, onSelected: (_) => setDialogState(() => align = TextAlign.center)),
-                    ChoiceChip(label: const Text('R'), selected: align == TextAlign.right, onSelected: (_) => setDialogState(() => align = TextAlign.right)),
-                  ],
-                ),
-              ],
-            ),
-          ),
-          actions: [
-            TextButton(onPressed: () => Navigator.pop(ctx, false), child: const Text('Cancel')),
-            TextButton(onPressed: () => Navigator.pop(ctx, true), child: const Text('Add')),
-          ],
-        ),
-      ),
-    );
-
-    final watermarkText = textController.text;
-    textController.dispose();
-    if (confirmed != true || !mounted) return;
-
-    await settingsProvider.setLastWatermark(<String, dynamic>{
-      'text': watermarkText,
-      'opacity': opacity,
-      'size': fontSize,
-      'color': color.toARGB32(),
-      'fontFamily': fontFamily,
-      'bold': bold,
-      'align': align.name,
-    });
-
-    final bytes = await _renderWatermarkPng(
-      watermarkText,
-      opacity,
-      fontSize,
-      color,
-      fontFamily: fontFamily,
-      fontWeight: bold ? FontWeight.w700 : FontWeight.w400,
-      align: align,
-    );
-    if (bytes == null || !mounted) return;
-
-    final placement = await showModalBottomSheet<(int, double, double, double, double, double)?>(
+    final config = await showModalBottomSheet<WatermarkLayer>(
       context: context,
       isScrollControlled: true,
-      builder: (context) => OverlayPlacementSheet(
-        pagePaths: document.pagePaths,
-        overlayBytes: bytes,
-        title: 'Place Watermark',
-        initialWidthFraction: 0.6,
-      ),
+      builder: (context) => const WatermarkSheet(),
     );
-    if (placement == null || !mounted) return;
-    await _compositeAndSavePage(
-      placement.$1,
-      bytes,
-      pctX: placement.$2,
-      pctY: placement.$3,
-      rotationDegrees: placement.$4,
-      scale: placement.$5,
-      widthFraction: placement.$6,
+    if (config == null || !mounted) return;
+
+    final layer = config.copyWith(
+      pageIndex: _currentPageIndex,
+      placement: const SignaturePlacement(pctX: 0.5, pctY: 0.5),
     );
-    
-    await _compositeAndSavePage(
-      placement.$1,
-      bytes,
-      pctX: placement.$2,
-      pctY: placement.$3,
-      rotationDegrees: placement.$4,
-      scale: placement.$5,
-    );
+    await _scanProvider.addWatermarkLayer(document.id, layer);
+    if (mounted) {
+      setState(() => _editMode = TrayEditMode.watermark);
+    }
   }
 
-  Future<Uint8List?> _renderWatermarkPng(
-    String text,
-    double opacity,
-    double fontSize,
-    Color color, {
-    String fontFamily = 'sans-serif',
-    FontWeight fontWeight = FontWeight.w700,
-    TextAlign align = TextAlign.center,
-  }) async {
-    if (text.isEmpty) return null;
-    final recorder = ui.PictureRecorder();
-    final canvas = Canvas(recorder);
-    final paragraphBuilder = ui.ParagraphBuilder(ui.ParagraphStyle(
-      textAlign: align,
-      fontSize: fontSize,
-      fontWeight: fontWeight,
-      fontFamily: fontFamily,
-    ))
-      ..pushStyle(ui.TextStyle(color: color.withValues(alpha: opacity)))
-      ..addText(text);
-    final paragraph = paragraphBuilder.build()
-      ..layout(const ui.ParagraphConstraints(width: 600));
-    canvas.drawParagraph(paragraph, Offset.zero);
-    final picture = recorder.endRecording();
-    final image = await picture.toImage(600, (fontSize * 1.4).round());
-    final ByteData? byteData = await image.toByteData(format: ui.ImageByteFormat.png);
-    if (byteData == null) return null;
-    return byteData.buffer.asUint8List();
+  Future<void> _editWatermark(WatermarkLayer existing) async {
+    final document = _document;
+    if (document == null) return;
+
+    final config = await showModalBottomSheet<WatermarkLayer>(
+      context: context,
+      isScrollControlled: true,
+      builder: (context) => WatermarkSheet(initialConfig: existing),
+    );
+    if (config == null || !mounted) return;
+
+    final updated = config.copyWith(
+      pageIndex: existing.pageIndex,
+      placement: existing.placement,
+    );
+    await _scanProvider.removeWatermarkLayer(document.id, existing.pageIndex, existing.text);
+    await _scanProvider.addWatermarkLayer(document.id, updated);
   }
+
+  Future<void> _copyWatermarkToAllPages(WatermarkLayer layer) async {
+    final document = _document;
+    if (document == null) return;
+    for (int i = 0; i < document.pagePaths.length; i++) {
+      await _scanProvider.addWatermarkLayer(document.id, layer.copyWith(pageIndex: i));
+    }
+  }
+
+  Future<void> _clearWatermarkPage(int pageIndex) async {
+    final document = _document;
+    if (document == null) return;
+    final matching = document.watermarkLayers.where((l) => l.pageIndex == pageIndex).toList();
+    for (final layer in matching) {
+      await _scanProvider.removeWatermarkLayer(document.id, pageIndex, layer.text);
+    }
+  }
+
+  Future<void> _clearAllWatermarkLayers() async {
+    final document = _document;
+    if (document == null) return;
+    await _scanProvider.clearWatermarkLayers(document.id);
+  }
+
 
   Future<void> _regionOcr() async {
     final document = _document;
@@ -870,40 +752,6 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
     }
   }
 
-  Future<void> _compositeAndSavePage(int pageIndex, Uint8List overlayBytes, {double pctX = 0.5, double pctY = 0.5, double rotationDegrees = 0, double scale = 1.0, double widthFraction = 0.5}) async {
-    final document = _document;
-    if (document == null) return;
-
-    setState(() { /* show progress if needed */ });
-    try {
-      final originalBytes = await File(document.pagePaths[pageIndex]).readAsBytes();
-      final finalBytes = await compute(_compositeOverlayIsolate, {
-        'original': originalBytes,
-        'overlay': overlayBytes,
-        'pctX': pctX,
-        'pctY': pctY,
-        'rotation': rotationDegrees,
-        'scale': scale,
-        'widthFraction': widthFraction,
-      });
-
-      final appDir = await getApplicationDocumentsDirectory();
-      final scansDir = Directory(p.join(appDir.path, 'annotated_pages'));
-      await scansDir.create(recursive: true);
-      final newPath = p.join(scansDir.path, 'ann_${DateTime.now().microsecondsSinceEpoch}_$pageIndex.jpg');
-      await File(newPath).writeAsBytes(finalBytes);
-
-      final newPaths = List<String>.from(document.pagePaths);
-      newPaths[pageIndex] = newPath;
-      await _scanProvider.updateDocumentPages(document.id, newPaths);
-
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Annotation saved')));
-      }
-    } catch (e) {
-      if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Error: $e')));
-    }
-  }
 
 
 
@@ -1007,6 +855,24 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
               onCopyAnnotateToAllPages: (layer) => _copyAnnotateToAllPages(layer),
               onClearAnnotatePage: (pageIndex) => _clearAnnotatePage(pageIndex),
               onClearAllAnnotateLayers: () => _clearAllAnnotateLayers(),
+              watermarkLayers: _document?.watermarkLayers ?? const [],
+              onWatermarkSelect: () => setState(() => _editMode = TrayEditMode.watermark),
+              onWatermarkLayerUpdate: (pageIndex, layer) {
+                final doc = _document;
+                if (doc != null) {
+                  _scanProvider.updateWatermarkLayer(doc.id, layer);
+                }
+              },
+              onWatermarkEditTools: () async {
+                final doc = _document;
+                if (doc == null) return;
+                final pageLayers = doc.watermarkLayers.where((l) => l.pageIndex == _currentPageIndex).toList();
+                if (pageLayers.isEmpty) return;
+                await _editWatermark(pageLayers.first);
+              },
+              onCopyWatermarkToAllPages: (layer) => _copyWatermarkToAllPages(layer),
+              onClearWatermarkPage: (pageIndex) => _clearWatermarkPage(pageIndex),
+              onClearAllWatermarkLayers: () => _clearAllWatermarkLayers(),
             ),
                         ),
                                               ],
@@ -1453,30 +1319,6 @@ class _FolderPickerSheet extends StatelessWidget {
 
 
 // Top-level functions for compute() isolate
-Uint8List _compositeOverlayIsolate(Map<String, dynamic> args) {
-  final original = img.decodeImage(args['original'] as Uint8List);
-  var overlay = img.decodePng(args['overlay'] as Uint8List);
-  if (original == null || overlay == null) {
-    return args['original'] as Uint8List;
-  }
-  final scale = (args['scale'] as double?) ?? 1.0;
-  final pctX = (args['pctX'] as double?) ?? 0.5;
-  final pctY = (args['pctY'] as double?) ?? 0.5;
-  final rotation = (args['rotation'] as double?) ?? 0.0;
-  final widthFraction = (args['widthFraction'] as double?) ?? 0.5;
-  double tw = original.width * widthFraction * scale;
-  if (tw < 8) tw = 8;
-  final targetW = tw.round();
-  final targetH = (targetW * overlay.height / overlay.width).round();
-  overlay = img.copyResize(overlay, width: targetW, height: targetH);
-  if (rotation != 0) overlay = img.copyRotate(overlay, angle: rotation);
-
-  final dstX = (pctX * original.width).round() - (overlay.width ~/ 2);
-  final dstY = (pctY * original.height).round() - (overlay.height ~/ 2);
-
-  final composite = img.compositeImage(original, overlay, dstX: dstX, dstY: dstY);
-  return Uint8List.fromList(img.encodeJpg(composite, quality: 95));
-}
 
 
 
