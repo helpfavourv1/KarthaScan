@@ -9,6 +9,12 @@ import '../core/services/local_storage.dart';
 import '../core/utils/constants.dart';
 import 'signature_canvas.dart';
 
+/// Which editor currently owns the tray preview screen.
+enum TrayEditMode { none, signature, annotate }
+
+/// Which kind of overlay layer the shared editor is editing.
+enum LayerType { signature, annotate, watermark, text, note, date, checkbox }
+
 /// Multi-ink signature controller.
 /// Lifted verbatim from export_screen.dart and shared by both screens.
 /// Persistence is delegated to the owner via [onChange] — the export screen
@@ -163,15 +169,18 @@ class InkOverlayPage extends StatelessWidget {
     required this.dx,
     required this.dy,
     required this.accent,
+    this.onSelected,
   });
 
   final InkController controller;
+  final VoidCallback? onSelected;
   final int pageIndex;
   final double imgW, imgH, iw, ih, dx, dy;
   final Color accent;
 
   @override
   Widget build(BuildContext context) {
+    final onSelectedCallback = onSelected;
     return Stack(
       children: [
         for (final entry in controller.inkPlacements.entries)
@@ -187,7 +196,7 @@ class InkOverlayPage extends StatelessWidget {
               top: dy + pl.pctY * ih - sigH / 2,
               child: GestureDetector(
                 behavior: HitTestBehavior.opaque,
-                onTap: () => controller.setEditInk(entry.key),
+                onTap: () { controller.setEditInk(entry.key); onSelectedCallback?.call(); },
                 onPanUpdate: (d) => controller.updatePlacement(
                   entry.key,
                   pageIndex,
@@ -234,6 +243,7 @@ class AnnotateOverlayPage extends StatefulWidget {
     required this.selectedBytesPath,
     required this.onSelect,
     required this.onDrag,
+    this.onSelected,
   });
 
   final List<AnnotateLayer> layers;
@@ -243,6 +253,7 @@ class AnnotateOverlayPage extends StatefulWidget {
   final String? selectedBytesPath;
   final void Function(AnnotateLayer layer) onSelect;
   final void Function(AnnotateLayer layer, double dxDelta, double dyDelta) onDrag;
+  final VoidCallback? onSelected;
 
   @override
   State<AnnotateOverlayPage> createState() => _AnnotateOverlayPageState();
@@ -274,7 +285,7 @@ class _AnnotateOverlayPageState extends State<AnnotateOverlayPage> {
               top: widget.dy + layer.placement.pctY * widget.ih - sigH / 2,
               child: GestureDetector(
                 behavior: HitTestBehavior.opaque,
-                onTap: () => widget.onSelect(layer),
+                onTap: () { widget.onSelect(layer); widget.onSelected?.call(); },
                 onPanUpdate: (d) => widget.onDrag(layer, d.delta.dx, d.delta.dy),
                 child: Container(
                   decoration: isSelected
@@ -297,78 +308,104 @@ class _AnnotateOverlayPageState extends State<AnnotateOverlayPage> {
   }
 }
 
-// === InkEditControls: compact steppers + actions (no sliders) ===
 
-class InkEditControls extends StatelessWidget {
-  const InkEditControls({
+// === OverlayEditControls: shared rotate/scale/actions editor for every overlay layer ===
+// Row 1 (always): rotate ±10° + scale ±0.1
+// Row 2 (type-specific): hidden for signature/annotate/checkbox; T1–T5 extend with opacity/font/color/etc.
+// Row 3 (always): Copy all / Clear this / Remove / Clear all
+
+class OverlayEditControls extends StatelessWidget {
+  const OverlayEditControls({
     super.key,
-    required this.controller,
-    required this.pageIndex,
-    required this.pageCount,
+    required this.layerType,
+    required this.rotationDegrees,
+    required this.scale,
+    required this.onRotateLeft,
+    required this.onRotateRight,
+    required this.onScaleDown,
+    required this.onScaleUp,
+    required this.onCopyAll,
+    required this.onClearThis,
+    required this.onRemove,
+    required this.onClearAll,
   });
 
-  final InkController controller;
-  final int pageIndex;
-  final int pageCount;
+  final LayerType layerType;
+  final double rotationDegrees;
+  final double scale;
+  final VoidCallback onRotateLeft;
+  final VoidCallback onRotateRight;
+  final VoidCallback onScaleDown;
+  final VoidCallback onScaleUp;
+  final VoidCallback onCopyAll;
+  final VoidCallback onClearThis;
+  final VoidCallback onRemove;
+  final VoidCallback onClearAll;
 
-  void _rotate(String inkId, SignaturePlacement pl, double delta) {
-    controller.updatePlacement(inkId, pageIndex, SignaturePlacement(
-      pctX: pl.pctX, pctY: pl.pctY,
-      rotationDegrees: (pl.rotationDegrees + delta).clamp(-180, 180),
-      scale: pl.scale));
-  }
-
-  void _scale(String inkId, SignaturePlacement pl, double delta) {
-    controller.updatePlacement(inkId, pageIndex, SignaturePlacement(
-      pctX: pl.pctX, pctY: pl.pctY,
-      rotationDegrees: pl.rotationDegrees,
-      scale: (pl.scale + delta).clamp(0.3, 3.0)));
-  }
-
-  Widget _step(IconData icon, VoidCallback onTap) {
-    return InkWell(
-      onTap: onTap,
-      borderRadius: BorderRadius.circular(12),
-      child: Padding(padding: const EdgeInsets.all(4), child: Icon(icon, size: 16)),
+  Widget _stepBtn(IconData icon, VoidCallback onTap) {
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(12),
+        child: SizedBox(
+          width: 40,
+          height: 40,
+          child: Center(child: Icon(icon, size: 24)),
+        ),
+      ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    final editId = controller.editInkId;
-    if (editId == null) return const SizedBox.shrink();
-    final pl = controller.inkPlacements[editId]?[pageIndex];
-    if (pl == null) return const SizedBox.shrink();
-
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: AppSpacing.sm),
+      padding: const EdgeInsets.symmetric(horizontal: AppSpacing.sm, vertical: AppSpacing.xs),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
+          SizedBox(
+            height: 44,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                _stepBtn(Icons.rotate_left, onRotateLeft),
+                SizedBox(
+                  width: 56,
+                  child: Text('${rotationDegrees.round()}°',
+                      style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
+                      textAlign: TextAlign.center),
+                ),
+                _stepBtn(Icons.rotate_right, onRotateRight),
+                const SizedBox(width: 24),
+                _stepBtn(Icons.remove, onScaleDown),
+                SizedBox(
+                  width: 56,
+                  child: Text('${scale.toStringAsFixed(1)}x',
+                      style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
+                      textAlign: TextAlign.center),
+                ),
+                _stepBtn(Icons.add, onScaleUp),
+              ],
+            ),
+          ),
+          // Row 2 (middle) — type-specific. Hidden for signature/annotate/checkbox.
+          // T1 (watermark) adds: opacity slider + font size + color swatches.
+          // T2–T5 extend further per layer type.
+          if (layerType == LayerType.watermark ||
+              layerType == LayerType.text ||
+              layerType == LayerType.note ||
+              layerType == LayerType.date)
+            const SizedBox(height: 0), // placeholder row; replaced in T1–T5
           SizedBox(
             height: 36,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                _step(Icons.rotate_left, () => _rotate(editId, pl, -5)),
-                Text('${pl.rotationDegrees.round()}°', style: const TextStyle(fontSize: 11)),
-                _step(Icons.rotate_right, () => _rotate(editId, pl, 5)),
-                const SizedBox(width: 16),
-                _step(Icons.remove, () => _scale(editId, pl, -0.1)),
-                Text('${pl.scale.toStringAsFixed(1)}x', style: const TextStyle(fontSize: 11)),
-                _step(Icons.add, () => _scale(editId, pl, 0.1)),
-              ],
-            ),
-          ),
-          SizedBox(
-            height: 30,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                TextButton(onPressed: () => controller.copyToAllPages(editId, pageIndex, pageCount), child: const Text('Copy all', style: TextStyle(fontSize: 10))),
-                TextButton(onPressed: () => controller.removePlacement(editId, pageIndex), child: const Text('Clear this', style: TextStyle(fontSize: 10))),
-                TextButton(onPressed: () => controller.removeInk(editId), child: const Text('Remove ink', style: TextStyle(fontSize: 10))),
-                TextButton(onPressed: controller.clearAll, child: const Text('Clear all', style: TextStyle(fontSize: 10))),
+                TextButton(onPressed: onCopyAll, child: const Text('Copy all', style: TextStyle(fontSize: 11))),
+                TextButton(onPressed: onClearThis, child: const Text('Clear this', style: TextStyle(fontSize: 11))),
+                TextButton(onPressed: onRemove, child: const Text('Remove', style: TextStyle(fontSize: 11))),
+                TextButton(onPressed: onClearAll, child: const Text('Clear all', style: TextStyle(fontSize: 11))),
               ],
             ),
           ),
@@ -377,8 +414,6 @@ class InkEditControls extends StatelessWidget {
     );
   }
 }
-
-// === InkCompactBar: dropdown + N-placed + add button (fits merged row) ===
 
 class InkCompactBar extends StatelessWidget {
   const InkCompactBar({

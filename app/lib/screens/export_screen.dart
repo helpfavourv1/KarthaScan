@@ -17,6 +17,7 @@ import '../core/services/share_service.dart';
 import '../core/services/local_storage.dart';
 import '../core/utils/constants.dart';
 import '../l10n/app_localizations.dart';
+import '../core/models/signature_placement.dart';
 import '../widgets/ink_board.dart';
 import '../widgets/ios_pressable.dart';
 
@@ -479,11 +480,24 @@ class _ExportScreenState extends State<ExportScreen> {
             ),
           ),
         ),
-        InkEditControls(
-          controller: _inkController,
-          pageIndex: pageIndex,
-          pageCount: pageCount,
-        ),
+        Builder(builder: (context) {
+          final editId = _inkController.editInkId;
+          final pl = editId == null ? null : _inkController.inkPlacements[editId]?[pageIndex];
+          if (editId == null || pl == null) return const SizedBox.shrink();
+          return OverlayEditControls(
+            layerType: LayerType.signature,
+            rotationDegrees: pl.rotationDegrees,
+            scale: pl.scale,
+            onRotateLeft: () => _inkController.updatePlacement(editId, pageIndex, SignaturePlacement(pctX: pl.pctX, pctY: pl.pctY, rotationDegrees: (pl.rotationDegrees - 10).clamp(-180, 180), scale: pl.scale)),
+            onRotateRight: () => _inkController.updatePlacement(editId, pageIndex, SignaturePlacement(pctX: pl.pctX, pctY: pl.pctY, rotationDegrees: (pl.rotationDegrees + 10).clamp(-180, 180), scale: pl.scale)),
+            onScaleDown: () => _inkController.updatePlacement(editId, pageIndex, SignaturePlacement(pctX: pl.pctX, pctY: pl.pctY, rotationDegrees: pl.rotationDegrees, scale: (pl.scale - 0.1).clamp(0.1, 5.0))),
+            onScaleUp: () => _inkController.updatePlacement(editId, pageIndex, SignaturePlacement(pctX: pl.pctX, pctY: pl.pctY, rotationDegrees: pl.rotationDegrees, scale: (pl.scale + 0.1).clamp(0.1, 5.0))),
+            onCopyAll: () => _inkController.copyToAllPages(editId, pageIndex, pageCount),
+            onClearThis: () => _inkController.removePlacement(editId, pageIndex),
+            onRemove: () => _inkController.removeInk(editId),
+            onClearAll: () => _inkController.clearAll(),
+          );
+        }),
       ],
     );
   }

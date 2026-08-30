@@ -60,7 +60,7 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
 
   late TabController _tabController;
   int _currentPageIndex = 0;
-  Uint8List? _annotateBytes;
+  TrayEditMode _editMode = TrayEditMode.none;
 
   @override
   void initState() {
@@ -193,16 +193,12 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
     final document = _document;
     if (document == null || document.pagePaths.isEmpty) return;
 
-    // Use the already-drawn bytes if available, else open the sheet
-    Uint8List? bytes = _annotateBytes;
-    if (bytes == null) {
-      bytes = await showModalBottomSheet<Uint8List?>(
-        context: context,
-        isScrollControlled: true,
-        builder: (context) => const AnnotateSheet(),
-      );
-      if (bytes == null || !mounted) return;
-    }
+    final bytes = await showModalBottomSheet<Uint8List?>(
+      context: context,
+      isScrollControlled: true,
+      builder: (context) => const AnnotateSheet(),
+    );
+    if (bytes == null || !mounted) return;
 
     // Save the PNG to a file
     final appDir = await getApplicationDocumentsDirectory();
@@ -211,19 +207,21 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
     final filePath = p.join(annotateDir.path, 'ann_${DateTime.now().microsecondsSinceEpoch}_$pageIndex.png');
     await File(filePath).writeAsBytes(bytes);
 
-    setState(() {
-      _annotateBytes = bytes;
-    });
-
     await _scanProvider.addAnnotateLayer(
       document.id,
       AnnotateLayer(pageIndex: pageIndex, bytesPath: filePath, placement: const SignaturePlacement(pctX: 0.5, pctY: 0.35)),
     );
     if (mounted) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Annotate added — drag to reposition')),
-      );
+      setState(() => _editMode = TrayEditMode.annotate);
     }
+  }
+
+  void _closeEditor() {
+    if (_editMode == TrayEditMode.none) return;
+    setState(() {
+      _editMode = TrayEditMode.none;
+      _inkController.setEditInk(null);
+    });
   }
 
   Future<void> _copyAnnotateToAllPages(AnnotateLayer layer) async {
@@ -995,6 +993,10 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
                           
               inkController: _inkController,
               annotateLayers: _document?.annotateLayers ?? const [],
+              editMode: _editMode,
+              onSignatureSelect: () => setState(() => _editMode = TrayEditMode.signature),
+              onAnnotateSelect: () => setState(() => _editMode = TrayEditMode.annotate),
+              onDoneEditing: _closeEditor,
               onAnnotateLayerUpdate: (pageIndex, layer) {
                 final doc = _document;
                 if (doc != null) {
@@ -1055,23 +1057,35 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
               ),
               EditTray(
                                                   onMarkup: _annotate,
-                                                  onSign: () async { final inkId = await _inkController.addInk(context, _localStorage); if (inkId != null) _inkController.placeOnPage(_currentPageIndex); },
-                                                  onWatermark: _addWatermark,
-                                                  onOcr: _regionOcr,
-                                                  onConvert: () => context.push('/export', extra: <String>[document.id]),
-                                                  onCompress: () => context.push('/export', extra: <String, dynamic>{'ids': <String>[document.id], 'format': 'jpg'}),
-                                                  onRotate: _rotatePage,
-                                                  onResize: _resizePage,
-                                                  onPages: _openPagesManager,
-                                                  onFilter: _applyFilterToPage,
-                                                  onCrop: _cropCurrentPage,
-                                                  onText: () => _addStamp('text'),
-                                                  onNote: () => _addStamp('note'),
-                                                  onDate: () => _addStamp('date'),
-                                                  onCheckbox: () => _addStamp('checkbox'),
-                                                  onPrint: _printDocument,
-                                                  onEmail: _emailDocument,
-                                                  onErase: _erasePage,
+                                                  onSign: () async {
+                if (_inkController.hasInks) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Multiple signers: use the signature board on the Export screen')),
+                  );
+                  return;
+                }
+                final inkId = await _inkController.addInk(context, _localStorage);
+                if (inkId != null) {
+                  _inkController.placeOnPage(_currentPageIndex);
+                  setState(() => _editMode = TrayEditMode.signature);
+                }
+              },
+                                                  onWatermark: () { _closeEditor(); _addWatermark(); },
+                                                  onOcr: () { _closeEditor(); _regionOcr(); },
+                                                  onConvert: () { _closeEditor(); context.push('/export', extra: <String>[document.id]); },
+                                                  onCompress: () { _closeEditor(); context.push('/export', extra: <String, dynamic>{'ids': <String>[document.id], 'format': 'jpg'}); },
+                                                  onRotate: () { _closeEditor(); _rotatePage(); },
+                                                  onResize: () { _closeEditor(); _resizePage(); },
+                                                  onPages: () { _closeEditor(); _openPagesManager(); },
+                                                  onFilter: () { _closeEditor(); _applyFilterToPage(); },
+                                                  onCrop: () { _closeEditor(); _cropCurrentPage(); },
+                                                  onText: () { _closeEditor(); _addStamp('text'); },
+                                                  onNote: () { _closeEditor(); _addStamp('note'); },
+                                                  onDate: () { _closeEditor(); _addStamp('date'); },
+                                                  onCheckbox: () { _closeEditor(); _addStamp('checkbox'); },
+                                                  onPrint: () { _closeEditor(); _printDocument(); },
+                                                  onEmail: () { _closeEditor(); _emailDocument(); },
+                                                  onErase: () { _closeEditor(); _erasePage(); },
                                                 ),
                                                 // Bottom Actions
               SafeArea(

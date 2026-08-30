@@ -14,6 +14,10 @@ class ScanPreviewCard extends StatefulWidget {
     required this.pagePaths,
     this.inkController,
     this.annotateLayers = const [],
+    this.editMode = TrayEditMode.none,
+    this.onSignatureSelect,
+    this.onAnnotateSelect,
+    this.onDoneEditing,
     this.onShare,
     this.onAnnotateLayerUpdate,
     this.onAnnotateThisPage,
@@ -27,6 +31,10 @@ class ScanPreviewCard extends StatefulWidget {
   final List<String> pagePaths;
   final InkController? inkController;
   final List<AnnotateLayer> annotateLayers;
+  final TrayEditMode editMode;
+  final VoidCallback? onSignatureSelect;
+  final VoidCallback? onAnnotateSelect;
+  final VoidCallback? onDoneEditing;
   final VoidCallback? onShare;
   final void Function(int pageIndex, AnnotateLayer layer)? onAnnotateLayerUpdate;
   final void Function(int pageIndex)? onAnnotateThisPage;
@@ -65,11 +73,36 @@ class _ScanPreviewCardState extends State<ScanPreviewCard> {
     _pageController.animateToPage(index, duration: const Duration(milliseconds: 200), curve: Curves.easeOut);
   }
 
-  Widget _stepBtn(IconData icon, VoidCallback onTap) {
-    return InkWell(
-      onTap: onTap,
-      borderRadius: BorderRadius.circular(12),
-      child: Padding(padding: const EdgeInsets.all(4), child: Icon(icon, size: 16)),
+  Widget _buildSignatureControls() {
+    final controller = widget.inkController;
+    if (controller == null) return const SizedBox.shrink();
+    final editId = controller.editInkId;
+    if (editId == null) return const SizedBox.shrink();
+    final pl = controller.inkPlacements[editId]?[_currentPage];
+    if (pl == null) return const SizedBox.shrink();
+    final pageCount = widget.pagePaths.length;
+
+    void doCopyAll() => controller.copyToAllPages(editId, _currentPage, pageCount);
+    void doClearThis() => controller.removePlacement(editId, _currentPage);
+    void doRemove() => controller.removeInk(editId);
+    void doClearAll() => controller.clearAll();
+
+    return OverlayEditControls(
+      layerType: LayerType.signature,
+      rotationDegrees: pl.rotationDegrees,
+      scale: pl.scale,
+      onRotateLeft: () => controller.updatePlacement(editId, _currentPage,
+          SignaturePlacement(pctX: pl.pctX, pctY: pl.pctY, rotationDegrees: (pl.rotationDegrees - 10).clamp(-180, 180), scale: pl.scale)),
+      onRotateRight: () => controller.updatePlacement(editId, _currentPage,
+          SignaturePlacement(pctX: pl.pctX, pctY: pl.pctY, rotationDegrees: (pl.rotationDegrees + 10).clamp(-180, 180), scale: pl.scale)),
+      onScaleDown: () => controller.updatePlacement(editId, _currentPage,
+          SignaturePlacement(pctX: pl.pctX, pctY: pl.pctY, rotationDegrees: pl.rotationDegrees, scale: (pl.scale - 0.1).clamp(0.1, 5.0))),
+      onScaleUp: () => controller.updatePlacement(editId, _currentPage,
+          SignaturePlacement(pctX: pl.pctX, pctY: pl.pctY, rotationDegrees: pl.rotationDegrees, scale: (pl.scale + 0.1).clamp(0.1, 5.0))),
+      onCopyAll: doCopyAll,
+      onClearThis: doClearThis,
+      onRemove: doRemove,
+      onClearAll: doClearAll,
     );
   }
 
@@ -80,39 +113,18 @@ class _ScanPreviewCardState extends State<ScanPreviewCard> {
     void upd(SignaturePlacement pl) {
       widget.onAnnotateLayerUpdate?.call(_currentPage, AnnotateLayer(pageIndex: layer.pageIndex, bytesPath: layer.bytesPath, placement: pl));
     }
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: AppSpacing.sm),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          SizedBox(
-            height: 36,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                _stepBtn(Icons.rotate_left, () => upd(SignaturePlacement(pctX: layer.placement.pctX, pctY: layer.placement.pctY, rotationDegrees: (layer.placement.rotationDegrees - 5).clamp(-180, 180), scale: layer.placement.scale))),
-                Text('${layer.placement.rotationDegrees.round()}°', style: const TextStyle(fontSize: 11)),
-                _stepBtn(Icons.rotate_right, () => upd(SignaturePlacement(pctX: layer.placement.pctX, pctY: layer.placement.pctY, rotationDegrees: (layer.placement.rotationDegrees + 5).clamp(-180, 180), scale: layer.placement.scale))),
-                const SizedBox(width: 16),
-                _stepBtn(Icons.remove, () => upd(SignaturePlacement(pctX: layer.placement.pctX, pctY: layer.placement.pctY, rotationDegrees: layer.placement.rotationDegrees, scale: (layer.placement.scale - 0.1).clamp(0.3, 3.0)))),
-                Text('${layer.placement.scale.toStringAsFixed(1)}x', style: const TextStyle(fontSize: 11)),
-                _stepBtn(Icons.add, () => upd(SignaturePlacement(pctX: layer.placement.pctX, pctY: layer.placement.pctY, rotationDegrees: layer.placement.rotationDegrees, scale: (layer.placement.scale + 0.1).clamp(0.3, 3.0)))),
-              ],
-            ),
-          ),
-          SizedBox(
-            height: 30,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                TextButton(onPressed: () => widget.onCopyAnnotateToAllPages?.call(layer), child: const Text('Copy all', style: TextStyle(fontSize: 10))),
-                TextButton(onPressed: () => widget.onClearAnnotatePage?.call(_currentPage), child: const Text('Clear this', style: TextStyle(fontSize: 10))),
-                TextButton(onPressed: () => widget.onClearAllAnnotateLayers?.call(), child: const Text('Clear all', style: TextStyle(fontSize: 10))),
-              ],
-            ),
-          ),
-        ],
-      ),
+    return OverlayEditControls(
+      layerType: LayerType.annotate,
+      rotationDegrees: layer.placement.rotationDegrees,
+      scale: layer.placement.scale,
+      onRotateLeft: () => upd(SignaturePlacement(pctX: layer.placement.pctX, pctY: layer.placement.pctY, rotationDegrees: (layer.placement.rotationDegrees - 10).clamp(-180, 180), scale: layer.placement.scale)),
+      onRotateRight: () => upd(SignaturePlacement(pctX: layer.placement.pctX, pctY: layer.placement.pctY, rotationDegrees: (layer.placement.rotationDegrees + 10).clamp(-180, 180), scale: layer.placement.scale)),
+      onScaleDown: () => upd(SignaturePlacement(pctX: layer.placement.pctX, pctY: layer.placement.pctY, rotationDegrees: layer.placement.rotationDegrees, scale: (layer.placement.scale - 0.1).clamp(0.1, 5.0))),
+      onScaleUp: () => upd(SignaturePlacement(pctX: layer.placement.pctX, pctY: layer.placement.pctY, rotationDegrees: layer.placement.rotationDegrees, scale: (layer.placement.scale + 0.1).clamp(0.1, 5.0))),
+      onCopyAll: () => widget.onCopyAnnotateToAllPages?.call(layer),
+      onClearThis: () => widget.onClearAnnotatePage?.call(_currentPage),
+      onRemove: () => widget.onClearAnnotatePage?.call(_currentPage),
+      onClearAll: () => widget.onClearAllAnnotateLayers?.call(),
     );
   }
 
@@ -121,7 +133,6 @@ class _ScanPreviewCardState extends State<ScanPreviewCard> {
     final AppLocalizations l10n = AppLocalizations.of(context);
     final bool isDark = Theme.of(context).brightness == Brightness.dark;
     final Color bg = isDark ? AppColors.bgPrimaryDark : AppColors.bgPrimaryLight;
-    final Color surface = isDark ? AppColors.bgSecondaryDark : AppColors.bgSecondaryLight;
     final Color textSecondary = isDark ? AppColors.textSecondaryDark : AppColors.textSecondaryLight;
     final Color accent = isDark ? AppColors.accentDark : AppColors.accentLight;
 
@@ -154,11 +165,11 @@ class _ScanPreviewCardState extends State<ScanPreviewCard> {
                   icon: Icon(Icons.chevron_right, color: _currentPage < _lastIndex ? accent : textSecondary),
                 ),
                 const Spacer(),
-                if (widget.inkController != null && widget.inkController!.hasInks)
+                if (widget.editMode != TrayEditMode.none && widget.onDoneEditing != null)
                   ActionChip(
-                    avatar: const Icon(Icons.draw_outlined, size: 14),
-                    label: const Text('Place on this page', style: TextStyle(fontSize: 11)),
-                    onPressed: () => widget.inkController!.placeOnPage(_currentPage),
+                    avatar: const Icon(Icons.check, size: 14),
+                    label: const Text('Done', style: TextStyle(fontSize: 11)),
+                    onPressed: widget.onDoneEditing,
                   ),
               ],
             ),
@@ -166,6 +177,9 @@ class _ScanPreviewCardState extends State<ScanPreviewCard> {
           Expanded(
             child: PageView.builder(
               controller: _pageController,
+              physics: widget.editMode == TrayEditMode.none
+                  ? const AlwaysScrollableScrollPhysics()
+                  : const NeverScrollableScrollPhysics(),
               itemCount: widget.pagePaths.length,
               onPageChanged: (int index) {
                 setState(() => _currentPage = index);
@@ -182,28 +196,18 @@ class _ScanPreviewCardState extends State<ScanPreviewCard> {
                   selectedAnnotateBytesPath: _selectedAnnotateBytesPath,
                   onAnnotateSelect: (layer) => setState(() => _selectedAnnotateBytesPath = layer.bytesPath),
                   onAnnotateUpdate: (newLayer) => widget.onAnnotateLayerUpdate?.call(index, newLayer),
+                  onSignatureSelect: () {
+                    setState(() {});
+                    widget.onSignatureSelect?.call();
+                  },
                 );
               },
             ),
           ),
-          if (widget.inkController != null)
-            InkEditControls(
-              controller: widget.inkController!,
-              pageIndex: _currentPage,
-              pageCount: widget.pagePaths.length,
-            ),
-          _buildAnnotateControls(),
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md, vertical: AppSpacing.sm),
-            color: surface,
-            child: Row(
-              children: <Widget>[
-                Text('${_currentPage + 1} / ${widget.pagePaths.length}', style: TextStyle(color: textSecondary, fontSize: AppTypography.footnoteSize)),
-                const Spacer(),
-                if (widget.onShare != null) IconButton(onPressed: widget.onShare, icon: Icon(Icons.ios_share, color: accent), tooltip: l10n.shareTooltip),
-              ],
-            ),
-          ),
+          if (widget.editMode == TrayEditMode.signature && widget.inkController != null)
+            _buildSignatureControls(),
+          if (widget.editMode == TrayEditMode.annotate)
+            _buildAnnotateControls(),
         ],
       ),
     );
@@ -221,6 +225,7 @@ class _PageWithInk extends StatefulWidget {
     this.selectedAnnotateBytesPath,
     this.onAnnotateSelect,
     this.onAnnotateUpdate,
+    this.onSignatureSelect,
   });
 
   final String pagePath;
@@ -232,6 +237,7 @@ class _PageWithInk extends StatefulWidget {
   final String? selectedAnnotateBytesPath;
   final void Function(AnnotateLayer layer)? onAnnotateSelect;
   final void Function(AnnotateLayer newLayer)? onAnnotateUpdate;
+  final VoidCallback? onSignatureSelect;
 
   @override
   State<_PageWithInk> createState() => _PageWithInkState();
@@ -293,6 +299,7 @@ class _PageWithInkState extends State<_PageWithInk> {
             if (widget.controller != null)
               InkOverlayPage(
                 controller: widget.controller!,
+                onSelected: widget.onSignatureSelect,
                 pageIndex: widget.pageIndex,
                 imgW: iw,
                 imgH: ih,
