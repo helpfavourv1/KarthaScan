@@ -39,6 +39,7 @@ class ScanPreviewCard extends StatefulWidget {
     this.onClearAllStampLayers,
     this.initialPage = 0,
     this.onPageChanged,
+    this.onEditFullscreen,
   });
 
   final List<String> pagePaths;
@@ -70,6 +71,7 @@ class ScanPreviewCard extends StatefulWidget {
   final VoidCallback? onClearAllStampLayers;
   final int initialPage;
   final ValueChanged<int>? onPageChanged;
+  final VoidCallback? onEditFullscreen;
 
   @override
   State<ScanPreviewCard> createState() => _ScanPreviewCardState();
@@ -251,6 +253,12 @@ class _ScanPreviewCardState extends State<ScanPreviewCard> {
                   onPressed: _currentPage < _lastIndex ? () => _goToPage(_currentPage + 1) : null,
                   icon: Icon(Icons.chevron_right, color: _currentPage < _lastIndex ? accent : textSecondary),
                 ),
+                if (widget.onEditFullscreen != null)
+                  ActionChip(
+                    avatar: const Icon(Icons.open_in_full, size: 14),
+                    label: const Text('Fullscreen', style: TextStyle(fontSize: 11)),
+                    onPressed: widget.onEditFullscreen,
+                  ),
                 const Spacer(),
                 if (widget.editMode != TrayEditMode.none && widget.onDoneEditing != null)
                   ActionChip(

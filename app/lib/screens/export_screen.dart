@@ -410,6 +410,12 @@ class _ExportScreenState extends State<ExportScreen> {
               onTap: pageIndex < pageCount - 1 ? () => _onPreviewPageChanged(pageIndex + 1) : null,
               child: Icon(Icons.chevron_right, color: pageIndex < pageCount - 1 ? accent : textSecondary, size: 24),
             ),
+            if (_isSingleDoc)
+              ActionChip(
+                avatar: const Icon(Icons.open_in_full, size: 14),
+                label: const Text('Fullscreen', style: TextStyle(fontSize: 11)),
+                onPressed: () => context.push('/edit/${_documents.first.id}'),
+              ),
             const Spacer(),
             IOSPressable(
               onTap: () => setState(() => _filterRowOpen = !_filterRowOpen),
