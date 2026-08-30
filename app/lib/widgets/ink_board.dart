@@ -297,7 +297,7 @@ class _AnnotateOverlayPageState extends State<AnnotateOverlayPage> {
   }
 }
 
-// === InkEditControls: rotate/scale sliders + copy/clear/remove row ===
+// === InkEditControls: compact steppers + actions (no sliders) ===
 
 class InkEditControls extends StatelessWidget {
   const InkEditControls({
@@ -311,6 +311,28 @@ class InkEditControls extends StatelessWidget {
   final int pageIndex;
   final int pageCount;
 
+  void _rotate(String inkId, SignaturePlacement pl, double delta) {
+    controller.updatePlacement(inkId, pageIndex, SignaturePlacement(
+      pctX: pl.pctX, pctY: pl.pctY,
+      rotationDegrees: (pl.rotationDegrees + delta).clamp(-180, 180),
+      scale: pl.scale));
+  }
+
+  void _scale(String inkId, SignaturePlacement pl, double delta) {
+    controller.updatePlacement(inkId, pageIndex, SignaturePlacement(
+      pctX: pl.pctX, pctY: pl.pctY,
+      rotationDegrees: pl.rotationDegrees,
+      scale: (pl.scale + delta).clamp(0.3, 3.0)));
+  }
+
+  Widget _step(IconData icon, VoidCallback onTap) {
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(12),
+      child: Padding(padding: const EdgeInsets.all(4), child: Icon(icon, size: 16)),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final editId = controller.editInkId;
@@ -318,77 +340,40 @@ class InkEditControls extends StatelessWidget {
     final pl = controller.inkPlacements[editId]?[pageIndex];
     if (pl == null) return const SizedBox.shrink();
 
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Row(
-          children: [
-            const Text('Rotate', style: TextStyle(fontSize: 11)),
-            Expanded(
-              child: Slider(
-                value: pl.rotationDegrees,
-                min: -180,
-                max: 180,
-                onChanged: (v) => controller.updatePlacement(
-                  editId,
-                  pageIndex,
-                  SignaturePlacement(
-                    pctX: pl.pctX,
-                    pctY: pl.pctY,
-                    rotationDegrees: v,
-                    scale: pl.scale,
-                  ),
-                ),
-              ),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: AppSpacing.sm),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          SizedBox(
+            height: 36,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                _step(Icons.rotate_left, () => _rotate(editId, pl, -5)),
+                Text('${pl.rotationDegrees.round()}°', style: const TextStyle(fontSize: 11)),
+                _step(Icons.rotate_right, () => _rotate(editId, pl, 5)),
+                const SizedBox(width: 16),
+                _step(Icons.remove, () => _scale(editId, pl, -0.1)),
+                Text('${pl.scale.toStringAsFixed(1)}x', style: const TextStyle(fontSize: 11)),
+                _step(Icons.add, () => _scale(editId, pl, 0.1)),
+              ],
             ),
-            Text('${pl.rotationDegrees.round()}°', style: const TextStyle(fontSize: 11)),
-          ],
-        ),
-        Row(
-          children: [
-            const Text('Scale', style: TextStyle(fontSize: 11)),
-            Expanded(
-              child: Slider(
-                value: pl.scale,
-                min: 0.3,
-                max: 3.0,
-                onChanged: (v) => controller.updatePlacement(
-                  editId,
-                  pageIndex,
-                  SignaturePlacement(
-                    pctX: pl.pctX,
-                    pctY: pl.pctY,
-                    rotationDegrees: pl.rotationDegrees,
-                    scale: v,
-                  ),
-                ),
-              ),
+          ),
+          SizedBox(
+            height: 30,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                TextButton(onPressed: () => controller.copyToAllPages(editId, pageIndex, pageCount), child: const Text('Copy all', style: TextStyle(fontSize: 10))),
+                TextButton(onPressed: () => controller.removePlacement(editId, pageIndex), child: const Text('Clear this', style: TextStyle(fontSize: 10))),
+                TextButton(onPressed: () => controller.removeInk(editId), child: const Text('Remove ink', style: TextStyle(fontSize: 10))),
+                TextButton(onPressed: controller.clearAll, child: const Text('Clear all', style: TextStyle(fontSize: 10))),
+              ],
             ),
-            Text('${pl.scale.toStringAsFixed(1)}x', style: const TextStyle(fontSize: 11)),
-          ],
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            TextButton(
-              onPressed: () => controller.copyToAllPages(editId, pageIndex, pageCount),
-              child: const Text('Copy to all', style: TextStyle(fontSize: 11)),
-            ),
-            TextButton(
-              onPressed: () => controller.removePlacement(editId, pageIndex),
-              child: const Text('Clear this', style: TextStyle(fontSize: 11)),
-            ),
-            TextButton(
-              onPressed: () => controller.removeInk(editId),
-              child: const Text('Remove ink', style: TextStyle(fontSize: 11)),
-            ),
-            TextButton(
-              onPressed: controller.clearAll,
-              child: const Text('Clear all', style: TextStyle(fontSize: 11)),
-            ),
-          ],
-        ),
-      ],
+          ),
+        ],
+      ),
     );
   }
 }

@@ -43,7 +43,6 @@ class ScanPreviewCard extends StatefulWidget {
 class _ScanPreviewCardState extends State<ScanPreviewCard> {
   late final PageController _pageController;
   late int _currentPage;
-  late Color _textSecondary;
   String? _selectedAnnotateBytesPath;
 
   int get _lastIndex => widget.pagePaths.isEmpty ? 0 : widget.pagePaths.length - 1;
@@ -62,96 +61,55 @@ class _ScanPreviewCardState extends State<ScanPreviewCard> {
     super.dispose();
   }
 
+  void _goToPage(int index) {
+    _pageController.animateToPage(index, duration: const Duration(milliseconds: 200), curve: Curves.easeOut);
+  }
+
+  Widget _stepBtn(IconData icon, VoidCallback onTap) {
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(12),
+      child: Padding(padding: const EdgeInsets.all(4), child: Icon(icon, size: 16)),
+    );
+  }
+
   Widget _buildAnnotateControls() {
     final pageLayers = widget.annotateLayers.where((l) => l.pageIndex == _currentPage).toList();
-    if (pageLayers.isEmpty) {
-      return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md, vertical: AppSpacing.xs),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ActionChip(
-              avatar: const Icon(Icons.draw_outlined, size: 14),
-              label: const Text('Annotate this page', style: TextStyle(fontSize: 11)),
-              onPressed: () => widget.onAnnotateThisPage?.call(_currentPage),
-            ),
-          ],
-        ),
-      );
-    }
+    if (pageLayers.isEmpty) return const SizedBox.shrink();
     final layer = pageLayers.firstWhere((l) => l.bytesPath == _selectedAnnotateBytesPath, orElse: () => pageLayers.first);
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md, vertical: AppSpacing.xs),
-      color: _textSecondary.withValues(alpha: 0.05),
+    void upd(SignaturePlacement pl) {
+      widget.onAnnotateLayerUpdate?.call(_currentPage, AnnotateLayer(pageIndex: layer.pageIndex, bytesPath: layer.bytesPath, placement: pl));
+    }
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: AppSpacing.sm),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Row(
-            children: [
-              const Text('Rotate', style: TextStyle(fontSize: 11)),
-              Expanded(
-                child: Slider(
-                  value: layer.placement.rotationDegrees,
-                  min: -180,
-                  max: 180,
-                  onChanged: (v) {
-                    widget.onAnnotateLayerUpdate?.call(_currentPage, AnnotateLayer(
-                      pageIndex: layer.pageIndex,
-                      bytesPath: layer.bytesPath,
-                      placement: SignaturePlacement(
-                        pctX: layer.placement.pctX,
-                        pctY: layer.placement.pctY,
-                        rotationDegrees: v,
-                        scale: layer.placement.scale,
-                      ),
-                    ));
-                  },
-                ),
-              ),
-              Text('${layer.placement.rotationDegrees.round()}°', style: const TextStyle(fontSize: 11)),
-            ],
+          SizedBox(
+            height: 36,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                _stepBtn(Icons.rotate_left, () => upd(SignaturePlacement(pctX: layer.placement.pctX, pctY: layer.placement.pctY, rotationDegrees: (layer.placement.rotationDegrees - 5).clamp(-180, 180), scale: layer.placement.scale))),
+                Text('${layer.placement.rotationDegrees.round()}°', style: const TextStyle(fontSize: 11)),
+                _stepBtn(Icons.rotate_right, () => upd(SignaturePlacement(pctX: layer.placement.pctX, pctY: layer.placement.pctY, rotationDegrees: (layer.placement.rotationDegrees + 5).clamp(-180, 180), scale: layer.placement.scale))),
+                const SizedBox(width: 16),
+                _stepBtn(Icons.remove, () => upd(SignaturePlacement(pctX: layer.placement.pctX, pctY: layer.placement.pctY, rotationDegrees: layer.placement.rotationDegrees, scale: (layer.placement.scale - 0.1).clamp(0.3, 3.0)))),
+                Text('${layer.placement.scale.toStringAsFixed(1)}x', style: const TextStyle(fontSize: 11)),
+                _stepBtn(Icons.add, () => upd(SignaturePlacement(pctX: layer.placement.pctX, pctY: layer.placement.pctY, rotationDegrees: layer.placement.rotationDegrees, scale: (layer.placement.scale + 0.1).clamp(0.3, 3.0)))),
+              ],
+            ),
           ),
-          Row(
-            children: [
-              const Text('Scale', style: TextStyle(fontSize: 11)),
-              Expanded(
-                child: Slider(
-                  value: layer.placement.scale,
-                  min: 0.3,
-                  max: 3.0,
-                  onChanged: (v) {
-                    widget.onAnnotateLayerUpdate?.call(_currentPage, AnnotateLayer(
-                      pageIndex: layer.pageIndex,
-                      bytesPath: layer.bytesPath,
-                      placement: SignaturePlacement(
-                        pctX: layer.placement.pctX,
-                        pctY: layer.placement.pctY,
-                        rotationDegrees: layer.placement.rotationDegrees,
-                        scale: v,
-                      ),
-                    ));
-                  },
-                ),
-              ),
-              Text('${layer.placement.scale.toStringAsFixed(1)}x', style: const TextStyle(fontSize: 11)),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              TextButton(
-                onPressed: () => widget.onCopyAnnotateToAllPages?.call(layer),
-                child: const Text('Copy to all', style: TextStyle(fontSize: 11)),
-              ),
-              TextButton(
-                onPressed: () => widget.onClearAnnotatePage?.call(_currentPage),
-                child: const Text('Clear this', style: TextStyle(fontSize: 11)),
-              ),
-              TextButton(
-                onPressed: () => widget.onClearAllAnnotateLayers?.call(),
-                child: const Text('Clear all', style: TextStyle(fontSize: 11)),
-              ),
-            ],
+          SizedBox(
+            height: 30,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                TextButton(onPressed: () => widget.onCopyAnnotateToAllPages?.call(layer), child: const Text('Copy all', style: TextStyle(fontSize: 10))),
+                TextButton(onPressed: () => widget.onClearAnnotatePage?.call(_currentPage), child: const Text('Clear this', style: TextStyle(fontSize: 10))),
+                TextButton(onPressed: () => widget.onClearAllAnnotateLayers?.call(), child: const Text('Clear all', style: TextStyle(fontSize: 10))),
+              ],
+            ),
           ),
         ],
       ),
@@ -165,7 +123,6 @@ class _ScanPreviewCardState extends State<ScanPreviewCard> {
     final Color bg = isDark ? AppColors.bgPrimaryDark : AppColors.bgPrimaryLight;
     final Color surface = isDark ? AppColors.bgSecondaryDark : AppColors.bgSecondaryLight;
     final Color textSecondary = isDark ? AppColors.textSecondaryDark : AppColors.textSecondaryLight;
-    _textSecondary = textSecondary;
     final Color accent = isDark ? AppColors.accentDark : AppColors.accentLight;
 
     if (widget.pagePaths.isEmpty) {
@@ -181,6 +138,31 @@ class _ScanPreviewCardState extends State<ScanPreviewCard> {
       color: bg,
       child: Column(
         children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: AppSpacing.sm, vertical: AppSpacing.xs),
+            child: Row(
+              children: [
+                IconButton(
+                  visualDensity: VisualDensity.compact,
+                  onPressed: _currentPage > 0 ? () => _goToPage(_currentPage - 1) : null,
+                  icon: Icon(Icons.chevron_left, color: _currentPage > 0 ? accent : textSecondary),
+                ),
+                Text('${_currentPage + 1} / ${widget.pagePaths.length}', style: TextStyle(color: textSecondary, fontSize: AppTypography.footnoteSize)),
+                IconButton(
+                  visualDensity: VisualDensity.compact,
+                  onPressed: _currentPage < _lastIndex ? () => _goToPage(_currentPage + 1) : null,
+                  icon: Icon(Icons.chevron_right, color: _currentPage < _lastIndex ? accent : textSecondary),
+                ),
+                const Spacer(),
+                if (widget.inkController != null && widget.inkController!.hasInks)
+                  ActionChip(
+                    avatar: const Icon(Icons.draw_outlined, size: 14),
+                    label: const Text('Place on this page', style: TextStyle(fontSize: 11)),
+                    onPressed: () => widget.inkController!.placeOnPage(_currentPage),
+                  ),
+              ],
+            ),
+          ),
           Expanded(
             child: PageView.builder(
               controller: _pageController,
@@ -204,6 +186,12 @@ class _ScanPreviewCardState extends State<ScanPreviewCard> {
               },
             ),
           ),
+          if (widget.inkController != null)
+            InkEditControls(
+              controller: widget.inkController!,
+              pageIndex: _currentPage,
+              pageCount: widget.pagePaths.length,
+            ),
           _buildAnnotateControls(),
           Container(
             padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md, vertical: AppSpacing.sm),
