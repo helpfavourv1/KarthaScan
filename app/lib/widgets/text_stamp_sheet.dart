@@ -2,18 +2,27 @@ import 'dart:typed_data';
 import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'color_picker_dialog.dart';
+import '../core/models/scan_document.dart';
 
 class StampResult {
-  const StampResult({required this.bytes, required this.label, required this.widthFraction, required this.aspect});
+  const StampResult({required this.bytes, required this.label, required this.widthFraction, required this.aspect, this.text = '', this.fontSize = 72, this.color = 0xFF111111, this.fontFamily = 'sans-serif', this.fontWeightValue = 700, this.alignName = 'left', this.halo = false});
   final Uint8List bytes;
   final String label;
   final double widthFraction;
   final double aspect;
+  final String text;
+  final double fontSize;
+  final int color;
+  final String fontFamily;
+  final int fontWeightValue;
+  final String alignName;
+  final bool halo;
 }
 
 class TextStampSheet extends StatefulWidget {
-  const TextStampSheet({super.key, required this.kind});
+  const TextStampSheet({super.key, required this.kind, this.initial});
   final String kind;
+  final StampLayer? initial;
   @override
   State<TextStampSheet> createState() => _TextStampSheetState();
 }
@@ -35,6 +44,20 @@ class _TextStampSheetState extends State<TextStampSheet> {
   String _checkShape = 'rounded';
 
   String get _title => widget.kind == 'text' ? 'Add Text' : widget.kind == 'note' ? 'Add Note' : widget.kind == 'date' ? 'Add Date' : 'Add Checkbox';
+
+  @override
+  void initState() {
+    super.initState();
+    final i = widget.initial;
+    if (i != null) {
+      _controller.text = i.text;
+      _textColor = Color(i.color);
+      _fontFamily = i.fontFamily;
+      _fontWeight = FontWeight.values.firstWhere((w) => w.value == i.fontWeight, orElse: () => FontWeight.w700);
+      _align = i.align == 'left' ? TextAlign.left : (i.align == 'right' ? TextAlign.right : TextAlign.center);
+      _halo = i.halo;
+    }
+  }
 
   @override
   void dispose() { _controller.dispose(); super.dispose(); }
@@ -111,7 +134,7 @@ class _TextStampSheetState extends State<TextStampSheet> {
     final image = await picture.toImage(w, h);
     final data = await image.toByteData(format: ui.ImageByteFormat.png);
     if (data == null) return null;
-    return StampResult(bytes: data.buffer.asUint8List(), label: widget.kind == 'note' ? 'Note' : widget.kind == 'date' ? 'Date' : 'Text', widthFraction: widget.kind == 'note' ? 0.45 : 0.5, aspect: h / w);
+    return StampResult(bytes: data.buffer.asUint8List(), label: widget.kind == 'note' ? 'Note' : widget.kind == 'date' ? 'Date' : 'Text', widthFraction: widget.kind == 'note' ? 0.45 : 0.5, aspect: h / w, text: text, fontSize: fontSize, color: _textColor.toARGB32(), fontFamily: _fontFamily, fontWeightValue: _fontWeight.value, alignName: _align == TextAlign.left ? 'left' : (_align == TextAlign.right ? 'right' : 'center'), halo: _halo);
   }
 
   Widget _swatch(Color c, Color current, ValueChanged<Color> on) => GestureDetector(

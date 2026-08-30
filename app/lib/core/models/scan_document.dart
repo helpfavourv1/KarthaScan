@@ -244,6 +244,108 @@ class WatermarkLayer {
   }
 }
 
+@immutable
+class StampLayer {
+  const StampLayer({
+    required this.id,
+    required this.pageIndex,
+    required this.kind,
+    required this.placement,
+    this.opacity = 1.0,
+    this.text = '',
+    this.fontSize = 72,
+    this.color = 0xFF111111,
+    this.fontFamily = 'sans-serif',
+    this.fontWeight = 700,
+    this.align = 'left',
+    this.halo = false,
+    this.noteBgColor,
+    this.dateFormat,
+    this.customDateMillis,
+    this.checked,
+    this.checkShape,
+    this.boxColor,
+    this.tickColor,
+  });
+
+  final String id;
+  final int pageIndex;
+  final String kind;
+  final SignaturePlacement placement;
+  final double opacity;
+  final String text;
+  final double fontSize;
+  final int color;
+  final String fontFamily;
+  final int fontWeight;
+  final String align;
+  final bool halo;
+  final int? noteBgColor;
+  final String? dateFormat;
+  final int? customDateMillis;
+  final bool? checked;
+  final String? checkShape;
+  final int? boxColor;
+  final int? tickColor;
+
+  Map<String, dynamic> toJson() => {
+    'id': id, 'pageIndex': pageIndex, 'kind': kind,
+    'pctX': placement.pctX, 'pctY': placement.pctY,
+    'rotationDegrees': placement.rotationDegrees, 'scale': placement.scale,
+    'opacity': opacity, 'text': text, 'fontSize': fontSize, 'color': color,
+    'fontFamily': fontFamily, 'fontWeight': fontWeight, 'align': align, 'halo': halo,
+    'noteBgColor': noteBgColor, 'dateFormat': dateFormat, 'customDateMillis': customDateMillis,
+    'checked': checked, 'checkShape': checkShape, 'boxColor': boxColor, 'tickColor': tickColor,
+  };
+
+  factory StampLayer.fromJson(Map<String, dynamic> json) {
+    return StampLayer(
+      id: json['id'] as String,
+      pageIndex: json['pageIndex'] as int,
+      kind: json['kind'] as String,
+      placement: SignaturePlacement(
+        pctX: (json['pctX'] as num).toDouble(),
+        pctY: (json['pctY'] as num).toDouble(),
+        rotationDegrees: (json['rotationDegrees'] as num?)?.toDouble() ?? 0,
+        scale: (json['scale'] as num?)?.toDouble() ?? 1.0,
+      ),
+      opacity: (json['opacity'] as num?)?.toDouble() ?? 1.0,
+      text: json['text'] as String? ?? '',
+      fontSize: (json['fontSize'] as num?)?.toDouble() ?? 72,
+      color: json['color'] as int? ?? 0xFF111111,
+      fontFamily: json['fontFamily'] as String? ?? 'sans-serif',
+      fontWeight: json['fontWeight'] as int? ?? 700,
+      align: json['align'] as String? ?? 'left',
+      halo: json['halo'] as bool? ?? false,
+      noteBgColor: json['noteBgColor'] as int?,
+      dateFormat: json['dateFormat'] as String?,
+      customDateMillis: json['customDateMillis'] as int?,
+      checked: json['checked'] as bool?,
+      checkShape: json['checkShape'] as String?,
+      boxColor: json['boxColor'] as int?,
+      tickColor: json['tickColor'] as int?,
+    );
+  }
+
+  StampLayer copyWith({
+    String? id, int? pageIndex, String? kind, SignaturePlacement? placement,
+    double? opacity, String? text, double? fontSize, int? color, String? fontFamily,
+    int? fontWeight, String? align, bool? halo, int? noteBgColor, String? dateFormat,
+    int? customDateMillis, bool? checked, String? checkShape, int? boxColor, int? tickColor,
+  }) {
+    return StampLayer(
+      id: id ?? this.id, pageIndex: pageIndex ?? this.pageIndex, kind: kind ?? this.kind,
+      placement: placement ?? this.placement, opacity: opacity ?? this.opacity,
+      text: text ?? this.text, fontSize: fontSize ?? this.fontSize, color: color ?? this.color,
+      fontFamily: fontFamily ?? this.fontFamily, fontWeight: fontWeight ?? this.fontWeight,
+      align: align ?? this.align, halo: halo ?? this.halo, noteBgColor: noteBgColor ?? this.noteBgColor,
+      dateFormat: dateFormat ?? this.dateFormat, customDateMillis: customDateMillis ?? this.customDateMillis,
+      checked: checked ?? this.checked, checkShape: checkShape ?? this.checkShape,
+      boxColor: boxColor ?? this.boxColor, tickColor: tickColor ?? this.tickColor,
+    );
+  }
+}
+
 class ScanDocument {
   const ScanDocument({
     required this.id,
@@ -260,6 +362,7 @@ class ScanDocument {
     this.signatureLayers = const <SignatureLayer>[],
     this.annotateLayers = const <AnnotateLayer>[],
     this.watermarkLayers = const <WatermarkLayer>[],
+    this.stampLayers = const <StampLayer>[],
   });
 
   final String id;
@@ -292,6 +395,7 @@ class ScanDocument {
   /// Non-destructive annotate placements per page (each with own PNG).
   final List<AnnotateLayer> annotateLayers;
   final List<WatermarkLayer> watermarkLayers;
+  final List<StampLayer> stampLayers;
 
   ScanDocument copyWith({
     String? id,
@@ -308,6 +412,7 @@ class ScanDocument {
     List<SignatureLayer>? signatureLayers,
     List<AnnotateLayer>? annotateLayers,
     List<WatermarkLayer>? watermarkLayers,
+    List<StampLayer>? stampLayers,
   }) {
     return ScanDocument(
       id: id ?? this.id,
@@ -324,6 +429,7 @@ class ScanDocument {
       signatureLayers: signatureLayers ?? this.signatureLayers,
       annotateLayers: annotateLayers ?? this.annotateLayers,
       watermarkLayers: watermarkLayers ?? this.watermarkLayers,
+      stampLayers: stampLayers ?? this.stampLayers,
     );
   }
 
@@ -343,6 +449,7 @@ class ScanDocument {
       'signatureLayers': signatureLayers.map((l) => l.toJson()).toList(),
       'annotateLayers': annotateLayers.map((l) => l.toJson()).toList(),
       'watermarkLayers': watermarkLayers.map((l) => l.toJson()).toList(),
+      'stampLayers': stampLayers.map((l) => l.toJson()).toList(),
     };
   }
 
@@ -370,6 +477,9 @@ class ScanDocument {
       watermarkLayers: (json['watermarkLayers'] as List<dynamic>?)
           ?.map((e) => WatermarkLayer.fromJson(e as Map<String, dynamic>))
           .toList() ?? const <WatermarkLayer>[],
+      stampLayers: (json['stampLayers'] as List<dynamic>?)
+          ?.map((e) => StampLayer.fromJson(e as Map<String, dynamic>))
+          .toList() ?? const <StampLayer>[],
     );
   }
 
@@ -390,7 +500,8 @@ class ScanDocument {
         listEquals(other.signatureInks, signatureInks) &&
         listEquals(other.signatureLayers, signatureLayers) &&
         listEquals(other.annotateLayers, annotateLayers) &&
-        listEquals(other.watermarkLayers, watermarkLayers);
+        listEquals(other.watermarkLayers, watermarkLayers) &&
+        listEquals(other.stampLayers, stampLayers);
   }
 
   @override
@@ -410,6 +521,7 @@ class ScanDocument {
       Object.hashAll(signatureLayers),
       Object.hashAll(annotateLayers),
       Object.hashAll(watermarkLayers),
+      Object.hashAll(stampLayers),
     );
   }
 

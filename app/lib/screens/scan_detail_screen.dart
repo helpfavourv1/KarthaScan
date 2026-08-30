@@ -461,6 +461,27 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
   Future<void> _addStamp(String kind) async {
     final document = _document;
     if (document == null || document.pagePaths.isEmpty) return;
+    if (kind == 'text') {
+      final config = await showModalBottomSheet<StampResult>(context: context, isScrollControlled: true, builder: (ctx) => const TextStampSheet(kind: 'text'));
+      if (config == null || !mounted) return;
+      final layer = StampLayer(
+        id: 'stamp_${DateTime.now().microsecondsSinceEpoch}',
+        pageIndex: _currentPageIndex,
+        kind: 'text',
+        placement: const SignaturePlacement(pctX: 0.5, pctY: 0.5),
+        opacity: 1.0,
+        text: config.text,
+        fontSize: config.fontSize,
+        color: config.color,
+        fontFamily: config.fontFamily,
+        fontWeight: config.fontWeightValue,
+        align: config.alignName,
+        halo: config.halo,
+      );
+      await _scanProvider.addStampLayer(document.id, layer);
+      if (mounted) setState(() => _editMode = TrayEditMode.text);
+      return;
+    }
     final stamp = await showModalBottomSheet<StampResult>(context: context, isScrollControlled: true, builder: (ctx) => TextStampSheet(kind: kind));
     if (stamp == null || !mounted) return;
     final layers = await showModalBottomSheet<List<EditLayer>>(context: context, isScrollControlled: true, builder: (ctx) => EditSessionSheet(imagePath: document.pagePaths[_currentPageIndex], initialBytes: stamp.bytes, initialLabel: stamp.label, initialWidthFraction: stamp.widthFraction, initialAspect: stamp.aspect));
@@ -479,6 +500,46 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
   }
 
 
+
+  Future<void> _editStamp(StampLayer existing) async {
+    final document = _document;
+    if (document == null) return;
+    final config = await showModalBottomSheet<StampResult>(context: context, isScrollControlled: true, builder: (ctx) => TextStampSheet(kind: existing.kind, initial: existing));
+    if (config == null || !mounted) return;
+    final updated = existing.copyWith(
+      text: config.text,
+      fontSize: config.fontSize,
+      color: config.color,
+      fontFamily: config.fontFamily,
+      fontWeight: config.fontWeightValue,
+      align: config.alignName,
+      halo: config.halo,
+    );
+    await _scanProvider.updateStampLayer(document.id, updated);
+  }
+
+  Future<void> _copyStampToAllPages(StampLayer layer) async {
+    final document = _document;
+    if (document == null) return;
+    for (int i = 0; i < document.pagePaths.length; i++) {
+      await _scanProvider.addStampLayer(document.id, layer.copyWith(id: 'stamp_${DateTime.now().microsecondsSinceEpoch}_$i', pageIndex: i));
+    }
+  }
+
+  Future<void> _clearStampPage(int pageIndex) async {
+    final document = _document;
+    if (document == null) return;
+    final matching = document.stampLayers.where((l) => l.pageIndex == pageIndex).toList();
+    for (final layer in matching) {
+      await _scanProvider.removeStampLayer(document.id, layer.id);
+    }
+  }
+
+  Future<void> _clearAllStampLayers() async {
+    final document = _document;
+    if (document == null) return;
+    await _scanProvider.clearStampLayers(document.id);
+  }
 
   Future<void> _erasePage() async {
     final document = _document;
@@ -873,6 +934,22 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
               onCopyWatermarkToAllPages: (layer) => _copyWatermarkToAllPages(layer),
               onClearWatermarkPage: (pageIndex) => _clearWatermarkPage(pageIndex),
               onClearAllWatermarkLayers: () => _clearAllWatermarkLayers(),
+              stampLayers: _document?.stampLayers ?? const [],
+              onStampSelect: () => setState(() => _editMode = TrayEditMode.text),
+              onStampLayerUpdate: (pageIndex, layer) {
+                final doc = _document;
+                if (doc != null) _scanProvider.updateStampLayer(doc.id, layer);
+              },
+              onStampEditTools: () async {
+                final doc = _document;
+                if (doc == null) return;
+                final pageLayers = doc.stampLayers.where((l) => l.pageIndex == _currentPageIndex && l.kind == 'text').toList();
+                if (pageLayers.isEmpty) return;
+                await _editStamp(pageLayers.first);
+              },
+              onCopyStampToAllPages: (layer) => _copyStampToAllPages(layer),
+              onClearStampPage: (pageIndex) => _clearStampPage(pageIndex),
+              onClearAllStampLayers: () => _clearAllStampLayers(),
             ),
                         ),
                                               ],

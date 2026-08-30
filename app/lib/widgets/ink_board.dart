@@ -10,7 +10,7 @@ import '../core/utils/constants.dart';
 import 'signature_canvas.dart';
 
 /// Which editor currently owns the tray preview screen.
-enum TrayEditMode { none, signature, annotate, watermark }
+enum TrayEditMode { none, signature, annotate, watermark, text }
 
 /// Which kind of overlay layer the shared editor is editing.
 enum LayerType { signature, annotate, watermark, text, note, date, checkbox }
@@ -391,6 +391,82 @@ class WatermarkOverlayPage extends StatelessWidget {
   }
 }
 
+// === StampOverlayPage: renders text stamps as live overlay ===
+
+class StampOverlayPage extends StatelessWidget {
+  const StampOverlayPage({
+    super.key,
+    required this.layers,
+    required this.pageIndex,
+    required this.iw,
+    required this.ih,
+    required this.dx,
+    required this.dy,
+    required this.accent,
+    required this.selectedId,
+    required this.onSelect,
+    required this.onDrag,
+    this.onSelected,
+  });
+
+  final List<StampLayer> layers;
+  final int pageIndex;
+  final double iw, ih, dx, dy;
+  final Color accent;
+  final String? selectedId;
+  final void Function(StampLayer layer) onSelect;
+  final void Function(StampLayer layer, double dxDelta, double dyDelta) onDrag;
+  final VoidCallback? onSelected;
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        for (final layer in layers.where((l) => l.pageIndex == pageIndex && l.kind == 'text'))
+          Builder(builder: (context) {
+            final isSelected = layer.id == selectedId;
+            final fontSize = layer.fontSize * layer.placement.scale;
+            final color = Color(layer.color).withValues(alpha: layer.opacity);
+            final shadows = layer.halo
+                ? [
+                    for (final o in const [Offset(2,0), Offset(-2,0), Offset(0,2), Offset(0,-2), Offset(2,2), Offset(-2,-2), Offset(2,-2), Offset(-2,2)])
+                      Shadow(offset: o, color: const Color(0xFFFFFFFF), blurRadius: 0),
+                  ]
+                : null;
+            return Positioned(
+              left: dx + layer.placement.pctX * iw - (iw * 0.3) / 2,
+              top: dy + layer.placement.pctY * ih - fontSize / 2,
+              child: GestureDetector(
+                behavior: HitTestBehavior.opaque,
+                onTap: () { onSelect(layer); onSelected?.call(); },
+                onPanUpdate: (d) => onDrag(layer, d.delta.dx, d.delta.dy),
+                child: Container(
+                  decoration: isSelected
+                      ? BoxDecoration(border: Border.all(color: accent, width: 1.5), borderRadius: BorderRadius.circular(4))
+                      : null,
+                  padding: const EdgeInsets.all(4),
+                  child: Transform.rotate(
+                    angle: layer.placement.rotationDegrees * 3.14159 / 180,
+                    child: Text(
+                      layer.text,
+                      style: TextStyle(
+                        fontSize: fontSize,
+                        fontWeight: FontWeight.values.firstWhere((w) => w.value == layer.fontWeight, orElse: () => FontWeight.w700),
+                        fontFamily: layer.fontFamily,
+                        color: color,
+                        shadows: shadows,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            );
+          }),
+      ],
+    );
+  }
+}
+
 // === OverlayEditControls: shared rotate/scale/actions editor for every overlay layer ===
 // Row 1 (always): rotate ±10° + scale ±0.1
 // Row 2 (type-specific): hidden for signature/annotate/checkbox; T1–T5 extend with opacity/font/color/etc.
@@ -485,7 +561,7 @@ class OverlayEditControls extends StatelessWidget {
               ],
             ),
           ),
-          if (layerType == LayerType.watermark && opacity != null && fontSize != null)
+          if ((layerType == LayerType.watermark || layerType == LayerType.text) && opacity != null && fontSize != null)
             SizedBox(
               height: 44,
               child: Row(

@@ -15,6 +15,7 @@ class ScanPreviewCard extends StatefulWidget {
     this.inkController,
     this.annotateLayers = const [],
     this.watermarkLayers = const [],
+    this.stampLayers = const [],
     this.editMode = TrayEditMode.none,
     this.onSignatureSelect,
     this.onAnnotateSelect,
@@ -31,6 +32,12 @@ class ScanPreviewCard extends StatefulWidget {
     this.onCopyWatermarkToAllPages,
     this.onClearWatermarkPage,
     this.onClearAllWatermarkLayers,
+    this.onStampSelect,
+    this.onStampLayerUpdate,
+    this.onStampEditTools,
+    this.onCopyStampToAllPages,
+    this.onClearStampPage,
+    this.onClearAllStampLayers,
     this.initialPage = 0,
     this.onPageChanged,
   });
@@ -39,6 +46,7 @@ class ScanPreviewCard extends StatefulWidget {
   final InkController? inkController;
   final List<AnnotateLayer> annotateLayers;
   final List<WatermarkLayer> watermarkLayers;
+  final List<StampLayer> stampLayers;
   final TrayEditMode editMode;
   final VoidCallback? onSignatureSelect;
   final VoidCallback? onAnnotateSelect;
@@ -55,6 +63,12 @@ class ScanPreviewCard extends StatefulWidget {
   final void Function(WatermarkLayer layer)? onCopyWatermarkToAllPages;
   final void Function(int pageIndex)? onClearWatermarkPage;
   final VoidCallback? onClearAllWatermarkLayers;
+  final VoidCallback? onStampSelect;
+  final void Function(int pageIndex, StampLayer layer)? onStampLayerUpdate;
+  final VoidCallback? onStampEditTools;
+  final void Function(StampLayer layer)? onCopyStampToAllPages;
+  final void Function(int pageIndex)? onClearStampPage;
+  final VoidCallback? onClearAllStampLayers;
   final int initialPage;
   final ValueChanged<int>? onPageChanged;
 
@@ -67,6 +81,7 @@ class _ScanPreviewCardState extends State<ScanPreviewCard> {
   late int _currentPage;
   String? _selectedAnnotateBytesPath;
   String? _selectedWatermarkText;
+  String? _selectedStampId;
 
   int get _lastIndex => widget.pagePaths.isEmpty ? 0 : widget.pagePaths.length - 1;
 
@@ -118,6 +133,35 @@ class _ScanPreviewCardState extends State<ScanPreviewCard> {
       onClearThis: doClearThis,
       onRemove: doRemove,
       onClearAll: doClearAll,
+    );
+  }
+
+  Widget _buildTextStampControls() {
+    final pageLayers = widget.stampLayers.where((l) => l.pageIndex == _currentPage && l.kind == 'text').toList();
+    if (pageLayers.isEmpty) return const SizedBox.shrink();
+    final layer = pageLayers.firstWhere((l) => l.id == _selectedStampId, orElse: () => pageLayers.first);
+    void upd(StampLayer newLayer) {
+      widget.onStampLayerUpdate?.call(_currentPage, newLayer);
+    }
+    return OverlayEditControls(
+      layerType: LayerType.text,
+      rotationDegrees: layer.placement.rotationDegrees,
+      scale: layer.placement.scale,
+      opacity: layer.opacity,
+      fontSize: layer.fontSize,
+      onRotateLeft: () => upd(layer.copyWith(placement: SignaturePlacement(pctX: layer.placement.pctX, pctY: layer.placement.pctY, rotationDegrees: (layer.placement.rotationDegrees - 10).clamp(-180, 180), scale: layer.placement.scale))),
+      onRotateRight: () => upd(layer.copyWith(placement: SignaturePlacement(pctX: layer.placement.pctX, pctY: layer.placement.pctY, rotationDegrees: (layer.placement.rotationDegrees + 10).clamp(-180, 180), scale: layer.placement.scale))),
+      onScaleDown: () => upd(layer.copyWith(placement: SignaturePlacement(pctX: layer.placement.pctX, pctY: layer.placement.pctY, rotationDegrees: layer.placement.rotationDegrees, scale: (layer.placement.scale - 0.1).clamp(0.1, 5.0)))),
+      onScaleUp: () => upd(layer.copyWith(placement: SignaturePlacement(pctX: layer.placement.pctX, pctY: layer.placement.pctY, rotationDegrees: layer.placement.rotationDegrees, scale: (layer.placement.scale + 0.1).clamp(0.1, 5.0)))),
+      onOpacityDown: () => upd(layer.copyWith(opacity: (layer.opacity - 0.05).clamp(0.05, 1.0))),
+      onOpacityUp: () => upd(layer.copyWith(opacity: (layer.opacity + 0.05).clamp(0.05, 1.0))),
+      onFontSizeDown: () => upd(layer.copyWith(fontSize: (layer.fontSize - 4).clamp(12, 144))),
+      onFontSizeUp: () => upd(layer.copyWith(fontSize: (layer.fontSize + 4).clamp(12, 144))),
+      onTools: widget.onStampEditTools,
+      onCopyAll: () => widget.onCopyStampToAllPages?.call(layer),
+      onClearThis: () => widget.onClearStampPage?.call(_currentPage),
+      onRemove: () => widget.onClearStampPage?.call(_currentPage),
+      onClearAll: () => widget.onClearAllStampLayers?.call(),
     );
   }
 
@@ -249,6 +293,11 @@ class _ScanPreviewCardState extends State<ScanPreviewCard> {
                   onWatermarkSelect: () => widget.onWatermarkSelect?.call(),
                   onWatermarkSelected: (layer) => setState(() => _selectedWatermarkText = layer.text),
                   onWatermarkLayerUpdate: (pageIndex, layer) => widget.onWatermarkLayerUpdate?.call(pageIndex, layer),
+                  stampLayers: widget.stampLayers,
+                  selectedStampId: _selectedStampId,
+                  onStampSelect: () => widget.onStampSelect?.call(),
+                  onStampSelected: (layer) => setState(() => _selectedStampId = layer.id),
+                  onStampLayerUpdate: (pageIndex, layer) => widget.onStampLayerUpdate?.call(pageIndex, layer),
                 );
               },
             ),
@@ -259,6 +308,8 @@ class _ScanPreviewCardState extends State<ScanPreviewCard> {
             _buildAnnotateControls(),
           if (widget.editMode == TrayEditMode.watermark)
             _buildWatermarkControls(),
+          if (widget.editMode == TrayEditMode.text)
+            _buildTextStampControls(),
         ],
       ),
     );
@@ -281,6 +332,11 @@ class _PageWithInk extends StatefulWidget {
     this.onWatermarkSelect,
     this.onWatermarkSelected,
     this.onWatermarkLayerUpdate,
+    this.stampLayers = const [],
+    this.selectedStampId,
+    this.onStampSelect,
+    this.onStampSelected,
+    this.onStampLayerUpdate,
     this.onSignatureSelect,
   });
 
@@ -299,6 +355,11 @@ class _PageWithInk extends StatefulWidget {
   final VoidCallback? onWatermarkSelect;
   final void Function(WatermarkLayer layer)? onWatermarkSelected;
   final void Function(int pageIndex, WatermarkLayer layer)? onWatermarkLayerUpdate;
+  final List<StampLayer> stampLayers;
+  final String? selectedStampId;
+  final VoidCallback? onStampSelect;
+  final void Function(StampLayer layer)? onStampSelected;
+  final void Function(int pageIndex, StampLayer layer)? onStampLayerUpdate;
 
   @override
   State<_PageWithInk> createState() => _PageWithInkState();
@@ -339,7 +400,7 @@ class _PageWithInkState extends State<_PageWithInk> {
           dy = (constraints.maxHeight - ih) / 2;
         }
 
-        final hasOverlays = (widget.controller?.hasInks ?? false) || widget.annotateLayers.isNotEmpty || widget.watermarkLayers.isNotEmpty;
+        final hasOverlays = (widget.controller?.hasInks ?? false) || widget.annotateLayers.isNotEmpty || widget.watermarkLayers.isNotEmpty || widget.stampLayers.isNotEmpty;
         return Stack(
           children: [
             Positioned.fill(
@@ -409,6 +470,28 @@ class _PageWithInkState extends State<_PageWithInk> {
                 onSelect: (layer) { widget.onWatermarkSelected?.call(layer); widget.onWatermarkSelect?.call(); },
                 onDrag: (layer, dxDelta, dyDelta) {
                   widget.onWatermarkLayerUpdate?.call(widget.pageIndex, layer.copyWith(
+                    placement: SignaturePlacement(
+                      pctX: (layer.placement.pctX + dxDelta / iw).clamp(0.0, 1.0),
+                      pctY: (layer.placement.pctY + dyDelta / ih).clamp(0.0, 1.0),
+                      rotationDegrees: layer.placement.rotationDegrees,
+                      scale: layer.placement.scale,
+                    ),
+                  ));
+                },
+              ),
+            if (widget.stampLayers.isNotEmpty)
+              StampOverlayPage(
+                layers: widget.stampLayers,
+                pageIndex: widget.pageIndex,
+                iw: iw,
+                ih: ih,
+                dx: dx,
+                dy: dy,
+                accent: widget.accent,
+                selectedId: widget.selectedStampId,
+                onSelect: (layer) { widget.onStampSelected?.call(layer); widget.onStampSelect?.call(); },
+                onDrag: (layer, dxDelta, dyDelta) {
+                  widget.onStampLayerUpdate?.call(widget.pageIndex, layer.copyWith(
                     placement: SignaturePlacement(
                       pctX: (layer.placement.pctX + dxDelta / iw).clamp(0.0, 1.0),
                       pctY: (layer.placement.pctY + dyDelta / ih).clamp(0.0, 1.0),

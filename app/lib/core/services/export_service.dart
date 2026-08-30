@@ -159,15 +159,17 @@ class ExportService {
     List<SignatureInk>? documentInks,
     List<AnnotateLayer>? documentAnnotateLayers,
     List<WatermarkLayer>? documentWatermarkLayers,
+    List<StampLayer>? documentStampLayers,
   }) async {
     final original = await _readBytes(pagePath);
     final layers = _findLayersForPage(pageIndex, signaturePlacements, documentLayers);
     final annotateLayers = documentAnnotateLayers?.where((l) => l.pageIndex == pageIndex).toList() ?? const <AnnotateLayer>[];
     final watermarkLayers = documentWatermarkLayers?.where((l) => l.pageIndex == pageIndex).toList() ?? const <WatermarkLayer>[];
+    final stampLayers = documentStampLayers?.where((l) => l.pageIndex == pageIndex).toList() ?? const <StampLayer>[];
     final inkMap = <String, SignatureInk>{
       if (documentInks != null) for (final ink in documentInks) ink.id: ink,
     };
-    if (filter == FilterType.none && layers.isEmpty && annotateLayers.isEmpty && watermarkLayers.isEmpty) {
+    if (filter == FilterType.none && layers.isEmpty && annotateLayers.isEmpty && watermarkLayers.isEmpty && stampLayers.isEmpty) {
       return original;
     }
     try {
@@ -203,6 +205,15 @@ class ExportService {
           }
         }
       }
+      for (final st in stampLayers) {
+        final stBytes = await _renderStampText(st, decoded.width);
+        if (stBytes != null) {
+          final stImage = img.decodePng(stBytes);
+          if (stImage != null) {
+            decoded = _compositeSignature(decoded, stImage, st.placement);
+          }
+        }
+      }
       return Uint8List.fromList(img.encodePng(decoded));
     } catch (error, stackTrace) {
       _logError('_processPage', error, stackTrace);
@@ -234,6 +245,7 @@ class ExportService {
         documentInks: document.signatureInks,
         documentAnnotateLayers: document.annotateLayers,
         documentWatermarkLayers: document.watermarkLayers,
+        documentStampLayers: document.stampLayers,
       );
       final image = pw.MemoryImage(bytes);
       pdfDoc.addPage(
@@ -508,6 +520,7 @@ class ExportService {
         documentInks: document.signatureInks,
         documentAnnotateLayers: document.annotateLayers,
         documentWatermarkLayers: document.watermarkLayers,
+        documentStampLayers: document.stampLayers,
       );
       final decoded = img.decodeImage(processedBytes);
       if (decoded == null) {
@@ -634,6 +647,36 @@ class ExportService {
         shadows: layer.shadowColor != null
             ? [ui.Shadow(offset: ui.Offset(layer.shadowOffsetX, layer.shadowOffsetY), color: ui.Color(layer.shadowColor!), blurRadius: 2)]
             : null,
+      ))
+      ..addText(layer.text);
+    final paragraph = paragraphBuilder.build()
+      ..layout(ui.ParagraphConstraints(width: pageW * 0.3 * layer.placement.scale));
+    canvas.drawParagraph(paragraph, ui.Offset.zero);
+    final picture = recorder.endRecording();
+    final image = await picture.toImage(paragraph.width.round(), paragraph.height.round());
+    final bytes = await image.toByteData(format: ui.ImageByteFormat.png);
+    return bytes?.buffer.asUint8List();
+  }
+
+  Future<Uint8List?> _renderStampText(StampLayer layer, int pageW) async {
+    final fontSize = layer.fontSize * layer.placement.scale;
+    final recorder = ui.PictureRecorder();
+    final canvas = ui.Canvas(recorder);
+    final shadows = layer.halo
+        ? [
+            for (final o in const [ui.Offset(2, 0), ui.Offset(-2, 0), ui.Offset(0, 2), ui.Offset(0, -2), ui.Offset(2, 2), ui.Offset(-2, -2), ui.Offset(2, -2), ui.Offset(-2, 2)])
+              ui.Shadow(offset: o, color: const ui.Color(0xFFFFFFFF), blurRadius: 0),
+          ]
+        : null;
+    final paragraphBuilder = ui.ParagraphBuilder(ui.ParagraphStyle(
+      textAlign: layer.align == 'left' ? ui.TextAlign.left : (layer.align == 'right' ? ui.TextAlign.right : ui.TextAlign.center),
+      fontSize: fontSize,
+      fontWeight: ui.FontWeight.values.firstWhere((w) => w.value == layer.fontWeight, orElse: () => ui.FontWeight.w700),
+      fontFamily: layer.fontFamily,
+    ))
+      ..pushStyle(ui.TextStyle(
+        color: ui.Color(layer.color).withValues(alpha: layer.opacity),
+        shadows: shadows,
       ))
       ..addText(layer.text);
     final paragraph = paragraphBuilder.build()

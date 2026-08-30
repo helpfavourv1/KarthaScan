@@ -462,6 +462,36 @@ class ScanProvider {
     return _replaceAndSave(updated);
   }
 
+  Future<bool> addStampLayer(String id, StampLayer layer) async {
+    final ScanDocument? existing = _findById(id);
+    if (existing == null) return false;
+    final updated = existing.copyWith(stampLayers: [...existing.stampLayers, layer], updatedAt: DateTime.now());
+    return _replaceAndSave(updated);
+  }
+
+  Future<bool> updateStampLayer(String id, StampLayer layer) async {
+    final ScanDocument? existing = _findById(id);
+    if (existing == null) return false;
+    final newLayers = existing.stampLayers.map((l) => l.id == layer.id ? layer : l).toList();
+    final updated = existing.copyWith(stampLayers: newLayers, updatedAt: DateTime.now());
+    return _replaceAndSave(updated);
+  }
+
+  Future<bool> removeStampLayer(String id, String layerId) async {
+    final ScanDocument? existing = _findById(id);
+    if (existing == null) return false;
+    final newLayers = existing.stampLayers.where((l) => l.id != layerId).toList();
+    final updated = existing.copyWith(stampLayers: newLayers, updatedAt: DateTime.now());
+    return _replaceAndSave(updated);
+  }
+
+  Future<bool> clearStampLayers(String id) async {
+    final ScanDocument? existing = _findById(id);
+    if (existing == null) return false;
+    final updated = existing.copyWith(stampLayers: const [], updatedAt: DateTime.now());
+    return _replaceAndSave(updated);
+  }
+
   Future<bool> _replaceAndSave(ScanDocument updated) async {
     final bool success = await _storage.saveDocument(updated);
     if (success) {

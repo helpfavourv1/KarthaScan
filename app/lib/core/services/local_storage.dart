@@ -274,6 +274,7 @@ class LocalStorageService {
       'signature_layers': jsonEncode(document.signatureLayers.map((l) => l.toJson()).toList()),
       'annotate_layers': jsonEncode(document.annotateLayers.map((l) => l.toJson()).toList()),
       'watermark_layers': jsonEncode(document.watermarkLayers.map((l) => l.toJson()).toList()),
+      'stamp_layers': jsonEncode(document.stampLayers.map((l) => l.toJson()).toList()),
     };
   }
 
@@ -294,6 +295,10 @@ class LocalStorageService {
     final wmLayers = wmLayersJson != null
         ? (jsonDecode(wmLayersJson) as List<dynamic>).map((e) => WatermarkLayer.fromJson(e as Map<String, dynamic>)).toList()
         : const <WatermarkLayer>[];
+    final stampLayersJson = row['stamp_layers'] as String?;
+    final stampLayers = stampLayersJson != null
+        ? (jsonDecode(stampLayersJson) as List<dynamic>).map((e) => StampLayer.fromJson(e as Map<String, dynamic>)).toList()
+        : const <StampLayer>[];
     return ScanDocument(
       id: row['id']! as String,
       title: row['title']! as String,
@@ -313,6 +318,7 @@ class LocalStorageService {
       signatureLayers: sigLayers,
       annotateLayers: annLayers,
       watermarkLayers: wmLayers,
+      stampLayers: stampLayers,
     );
   }
 
@@ -432,7 +438,7 @@ class LocalStorageService {
   Future<void> _migrateAddLayerColumns() async {
     if (_layersMigrated || !_dbAvailable || _db == null) return;
     _layersMigrated = true;
-    for (final col in ['signature_inks', 'signature_layers', 'annotate_layers', 'watermark_layers']) {
+    for (final col in ['signature_inks', 'signature_layers', 'annotate_layers', 'watermark_layers', 'stamp_layers']) {
       try {
         await _db!.execute('ALTER TABLE documents ADD COLUMN $col TEXT');
       } catch (_) {
