@@ -935,6 +935,11 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
                 ),
                 actions: [
                   IconButton(
+                    icon: Icon(Icons.edit_outlined, color: accent),
+                    tooltip: 'Full-screen edit',
+                    onPressed: () => context.push('/edit/${document.id}'),
+                  ),
+                  IconButton(
                     icon: Icon(document.isFavorite ? Icons.star : Icons.star_border, color: accent),
                     tooltip: 'Favorite',
                     onPressed: () => _scanProvider.toggleFavorite(document.id),

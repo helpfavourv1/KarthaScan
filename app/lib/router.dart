@@ -12,6 +12,7 @@ import 'screens/migration_screen.dart';
 import 'screens/onboarding_screen.dart';
 import 'screens/paywall_screen.dart';
 import 'screens/scan_detail_screen.dart';
+import 'screens/full_screen_edit_screen.dart';
 import 'screens/settings_screen.dart';
 
 GoRouter buildRouter({String initialLocation = '/'}) {
@@ -31,6 +32,13 @@ GoRouter buildRouter({String initialLocation = '/'}) {
         builder: (BuildContext context, GoRouterState state) {
           final String id = state.pathParameters['id']!;
           return ScanDetailScreen(documentId: id);
+        },
+      ),
+      GoRoute(
+        path: '/edit/:id',
+        builder: (BuildContext context, GoRouterState state) {
+          final String id = state.pathParameters['id']!;
+          return FullScreenEditScreen(documentId: id);
         },
       ),
       GoRoute(
