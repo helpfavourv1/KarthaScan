@@ -20,6 +20,7 @@ class EditTray extends StatefulWidget {
     required this.onNote,
     required this.onDate,
     required this.onCheckbox,
+    required this.onSeal,
     required this.onPrint,
     required this.onEmail,
     required this.onErase,
@@ -40,6 +41,7 @@ class EditTray extends StatefulWidget {
   final VoidCallback onNote;
   final VoidCallback onDate;
   final VoidCallback onCheckbox;
+  final VoidCallback onSeal;
   final VoidCallback onPrint;
   final VoidCallback onEmail;
   final VoidCallback onErase;
@@ -197,6 +199,7 @@ class _EditTrayState extends State<EditTray> with SingleTickerProviderStateMixin
       _TrayItem(Icons.note_outlined, 'Note', widget.onNote),
       _TrayItem(Icons.date_range, 'Date', widget.onDate),
       _TrayItem(Icons.check_box_outlined, 'Check', widget.onCheckbox),
+      _TrayItem(Icons.approval_outlined, 'Custom Seal', widget.onSeal),
       _TrayItem(Icons.print_outlined, 'Print', widget.onPrint),
       _TrayItem(Icons.mail_outline, 'Email', widget.onEmail),
       _TrayItem(Icons.brush_outlined, 'Eraser', widget.onErase),

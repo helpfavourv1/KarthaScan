@@ -144,7 +144,7 @@ class _ScanPreviewCardState extends State<ScanPreviewCard> {
       widget.onStampLayerUpdate?.call(_currentPage, newLayer);
     }
     return OverlayEditControls(
-      layerType: kind == 'text' ? LayerType.text : (kind == 'note' ? LayerType.note : (kind == 'date' ? LayerType.date : LayerType.checkbox)),
+      layerType: kind == 'text' ? LayerType.text : (kind == 'note' ? LayerType.note : (kind == 'date' ? LayerType.date : (kind == 'checkbox' ? LayerType.checkbox : LayerType.seal))),
       rotationDegrees: layer.placement.rotationDegrees,
       scale: layer.placement.scale,
       opacity: layer.opacity,
@@ -316,6 +316,8 @@ class _ScanPreviewCardState extends State<ScanPreviewCard> {
             _buildStampControls('date'),
           if (widget.editMode == TrayEditMode.checkbox)
             _buildStampControls('checkbox'),
+          if (widget.editMode == TrayEditMode.seal)
+            _buildStampControls('seal'),
         ],
       ),
     );

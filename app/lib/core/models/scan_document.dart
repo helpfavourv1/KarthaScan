@@ -266,6 +266,9 @@ class StampLayer {
     this.checkShape,
     this.boxColor,
     this.tickColor,
+    this.sealShape = 'round',
+    this.sealSubtext = '',
+    this.sealCenter = 'star',
   });
 
   final String id;
@@ -287,6 +290,9 @@ class StampLayer {
   final String? checkShape;
   final int? boxColor;
   final int? tickColor;
+  final String sealShape;
+  final String sealSubtext;
+  final String sealCenter;
 
   Map<String, dynamic> toJson() => {
     'id': id, 'pageIndex': pageIndex, 'kind': kind,
@@ -296,6 +302,7 @@ class StampLayer {
     'fontFamily': fontFamily, 'fontWeight': fontWeight, 'align': align, 'halo': halo,
     'noteBgColor': noteBgColor, 'dateFormat': dateFormat, 'customDateMillis': customDateMillis,
     'checked': checked, 'checkShape': checkShape, 'boxColor': boxColor, 'tickColor': tickColor,
+    'sealShape': sealShape, 'sealSubtext': sealSubtext, 'sealCenter': sealCenter,
   };
 
   factory StampLayer.fromJson(Map<String, dynamic> json) {
@@ -324,6 +331,9 @@ class StampLayer {
       checkShape: json['checkShape'] as String?,
       boxColor: json['boxColor'] as int?,
       tickColor: json['tickColor'] as int?,
+      sealShape: json['sealShape'] as String? ?? 'round',
+      sealSubtext: json['sealSubtext'] as String? ?? '',
+      sealCenter: json['sealCenter'] as String? ?? 'star',
     );
   }
 
@@ -332,6 +342,7 @@ class StampLayer {
     double? opacity, String? text, double? fontSize, int? color, String? fontFamily,
     int? fontWeight, String? align, bool? halo, int? noteBgColor, String? dateFormat,
     int? customDateMillis, bool? checked, String? checkShape, int? boxColor, int? tickColor,
+    String? sealShape, String? sealSubtext, String? sealCenter,
   }) {
     return StampLayer(
       id: id ?? this.id, pageIndex: pageIndex ?? this.pageIndex, kind: kind ?? this.kind,
@@ -342,6 +353,7 @@ class StampLayer {
       dateFormat: dateFormat ?? this.dateFormat, customDateMillis: customDateMillis ?? this.customDateMillis,
       checked: checked ?? this.checked, checkShape: checkShape ?? this.checkShape,
       boxColor: boxColor ?? this.boxColor, tickColor: tickColor ?? this.tickColor,
+      sealShape: sealShape ?? this.sealShape, sealSubtext: sealSubtext ?? this.sealSubtext, sealCenter: sealCenter ?? this.sealCenter,
     );
   }
 }

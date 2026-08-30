@@ -1,3 +1,4 @@
+import '../utils/seal_draw.dart';
 import 'dart:ui' as ui;
 import 'dart:convert';
 import 'dart:io';
@@ -208,7 +209,7 @@ class ExportService {
       for (final st in stampLayers) {
         final stBytes = st.kind == 'checkbox'
             ? await _renderCheckbox(st)
-            : await _renderStampText(st, decoded.width);
+            : (st.kind == 'seal' ? await _renderSeal(st) : await _renderStampText(st, decoded.width));
         if (stBytes != null) {
           final stImage = img.decodePng(stBytes);
           if (stImage != null) {
@@ -695,6 +696,17 @@ class ExportService {
     canvas.drawParagraph(paragraph, ui.Offset(pad, pad));
     final picture = recorder.endRecording();
     final image = await picture.toImage(w, h);
+    final bytes = await image.toByteData(format: ui.ImageByteFormat.png);
+    return bytes?.buffer.asUint8List();
+  }
+
+  Future<Uint8List?> _renderSeal(StampLayer layer) async {
+    const double s = 480;
+    final recorder = ui.PictureRecorder();
+    final canvas = ui.Canvas(recorder);
+    drawSeal(canvas, s, layer);
+    final picture = recorder.endRecording();
+    final image = await picture.toImage(s.round(), s.round());
     final bytes = await image.toByteData(format: ui.ImageByteFormat.png);
     return bytes?.buffer.asUint8List();
   }

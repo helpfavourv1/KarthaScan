@@ -7,13 +7,14 @@ import '../core/models/scan_document.dart';
 import '../core/models/signature_placement.dart';
 import '../core/services/local_storage.dart';
 import '../core/utils/constants.dart';
+import '../core/utils/seal_draw.dart';
 import 'signature_canvas.dart';
 
 /// Which editor currently owns the tray preview screen.
-enum TrayEditMode { none, signature, annotate, watermark, text, note, date, checkbox }
+enum TrayEditMode { none, signature, annotate, watermark, text, note, date, checkbox, seal }
 
 /// Which kind of overlay layer the shared editor is editing.
-enum LayerType { signature, annotate, watermark, text, note, date, checkbox }
+enum LayerType { signature, annotate, watermark, text, note, date, checkbox, seal }
 
 /// Multi-ink signature controller.
 /// Lifted verbatim from export_screen.dart and shared by both screens.
@@ -435,6 +436,15 @@ class _CheckboxPainter extends CustomPainter {
       old.checked != checked || old.opacity != opacity;
 }
 
+class _SealPainter extends CustomPainter {
+  _SealPainter(this.layer);
+  final StampLayer layer;
+  @override
+  void paint(Canvas canvas, Size size) => drawSeal(canvas, size.width, layer);
+  @override
+  bool shouldRepaint(covariant _SealPainter old) => old.layer != layer;
+}
+
 class StampOverlayPage extends StatelessWidget {
   const StampOverlayPage({
     super.key,
@@ -464,7 +474,7 @@ class StampOverlayPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        for (final layer in layers.where((l) => l.pageIndex == pageIndex && (l.kind == 'text' || l.kind == 'note' || l.kind == 'date' || l.kind == 'checkbox')))
+        for (final layer in layers.where((l) => l.pageIndex == pageIndex && (l.kind == 'text' || l.kind == 'note' || l.kind == 'date' || l.kind == 'checkbox' || l.kind == 'seal')))
           Builder(builder: (context) {
             final isSelected = layer.id == selectedId;
             if (layer.kind == 'checkbox') {
@@ -494,6 +504,26 @@ class StampOverlayPage extends StatelessWidget {
                           ),
                         ),
                       ),
+                    ),
+                  ),
+                ),
+              );
+            }
+            if (layer.kind == 'seal') {
+              final size = iw * 0.25 * layer.placement.scale;
+              return Positioned(
+                left: dx + layer.placement.pctX * iw - size / 2,
+                top: dy + layer.placement.pctY * ih - size / 2,
+                child: GestureDetector(
+                  behavior: HitTestBehavior.opaque,
+                  onTap: () { onSelect(layer); onSelected?.call(); },
+                  onPanUpdate: (d) => onDrag(layer, d.delta.dx, d.delta.dy),
+                  child: Container(
+                    decoration: isSelected ? BoxDecoration(border: Border.all(color: accent, width: 1.5), borderRadius: BorderRadius.circular(4)) : null,
+                    padding: const EdgeInsets.all(4),
+                    child: Transform.rotate(
+                      angle: layer.placement.rotationDegrees * 3.14159 / 180,
+                      child: SizedBox(width: size, height: size, child: CustomPaint(painter: _SealPainter(layer))),
                     ),
                   ),
                 ),
@@ -637,7 +667,7 @@ class OverlayEditControls extends StatelessWidget {
               ],
             ),
           ),
-          if ((layerType == LayerType.watermark || layerType == LayerType.text || layerType == LayerType.note || layerType == LayerType.date || layerType == LayerType.checkbox) && opacity != null)
+          if ((layerType == LayerType.watermark || layerType == LayerType.text || layerType == LayerType.note || layerType == LayerType.date || layerType == LayerType.checkbox || layerType == LayerType.seal) && opacity != null)
             SizedBox(
               height: 44,
               child: Row(

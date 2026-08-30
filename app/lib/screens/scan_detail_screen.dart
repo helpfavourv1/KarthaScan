@@ -34,6 +34,7 @@ import '../widgets/rotate_resize_sheet.dart';
 import '../widgets/pages_manager_sheet.dart';
 import '../widgets/filter_preview_sheet.dart';
 import '../widgets/text_stamp_sheet.dart';
+import '../widgets/seal_stamp_sheet.dart';
 import '../core/services/filter_service.dart';
 import '../core/services/export_service.dart' show FilterType;
 
@@ -543,6 +544,28 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
       if (mounted) setState(() => _editMode = TrayEditMode.checkbox);
       return;
     }
+    if (kind == 'seal') {
+      final config = await showModalBottomSheet<StampResult>(context: context, isScrollControlled: true, builder: (ctx) => SealStampSheet(initial: null));
+      if (config == null || !mounted) return;
+      final layer = StampLayer(
+        id: 'stamp_${DateTime.now().microsecondsSinceEpoch}',
+        pageIndex: _currentPageIndex,
+        kind: 'seal',
+        placement: const SignaturePlacement(pctX: 0.5, pctY: 0.5),
+        opacity: 1.0,
+        text: config.text,
+        fontSize: config.fontSize,
+        color: config.color,
+        fontFamily: config.fontFamily,
+        fontWeight: config.fontWeightValue,
+        sealShape: config.sealShapeValue,
+        sealSubtext: config.sealSubtextValue,
+        sealCenter: config.sealCenterValue,
+      );
+      await _scanProvider.addStampLayer(document.id, layer);
+      if (mounted) setState(() => _editMode = TrayEditMode.seal);
+      return;
+    }
   }
 
   Future<void> _editStamp(StampLayer existing) async {
@@ -565,6 +588,9 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
       checkShape: config.checkShapeValue,
       boxColor: config.boxColorValue,
       tickColor: config.tickColorValue,
+      sealShape: config.sealShapeValue,
+      sealSubtext: config.sealSubtextValue,
+      sealCenter: config.sealCenterValue,
     );
     await _scanProvider.updateStampLayer(document.id, updated);
   }
@@ -994,7 +1020,7 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
               onStampEditTools: () async {
                 final doc = _document;
                 if (doc == null) return;
-                final kind = _editMode == TrayEditMode.note ? 'note' : (_editMode == TrayEditMode.date ? 'date' : (_editMode == TrayEditMode.checkbox ? 'checkbox' : 'text'));
+                final kind = _editMode == TrayEditMode.note ? 'note' : (_editMode == TrayEditMode.date ? 'date' : (_editMode == TrayEditMode.checkbox ? 'checkbox' : (_editMode == TrayEditMode.seal ? 'seal' : 'text')));
                 final pageLayers = doc.stampLayers.where((l) => l.pageIndex == _currentPageIndex && l.kind == kind).toList();
                 if (pageLayers.isEmpty) return;
                 await _editStamp(pageLayers.first);
@@ -1078,6 +1104,7 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
                                                   onNote: () { _closeEditor(); _addStamp('note'); },
                                                   onDate: () { _closeEditor(); _addStamp('date'); },
                                                   onCheckbox: () { _closeEditor(); _addStamp('checkbox'); },
+                                                  onSeal: () { _closeEditor(); _addStamp('seal'); },
                                                   onPrint: () { _closeEditor(); _printDocument(); },
                                                   onEmail: () { _closeEditor(); _emailDocument(); },
                                                   onErase: () { _closeEditor(); _erasePage(); },
