@@ -1080,12 +1080,7 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
               EditTray(
                                                   onMarkup: _annotate,
                                                   onSign: () async {
-                if (_inkController.hasInks) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Multiple signers: use the signature board on the Export screen')),
-                  );
-                  return;
-                }
+                _closeEditor();
                 final inkId = await _inkController.addInk(context, _localStorage);
                 if (inkId != null) {
                   _inkController.placeOnPage(_currentPageIndex);
