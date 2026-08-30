@@ -5,7 +5,7 @@ import 'color_picker_dialog.dart';
 import '../core/models/scan_document.dart';
 
 class StampResult {
-  const StampResult({required this.bytes, required this.label, required this.widthFraction, required this.aspect, this.text = '', this.fontSize = 72, this.color = 0xFF111111, this.fontFamily = 'sans-serif', this.fontWeightValue = 700, this.alignName = 'left', this.halo = false, this.noteBgColorValue = 0xFFFFEB84});
+  const StampResult({required this.bytes, required this.label, required this.widthFraction, required this.aspect, this.text = '', this.fontSize = 72, this.color = 0xFF111111, this.fontFamily = 'sans-serif', this.fontWeightValue = 700, this.alignName = 'left', this.halo = false, this.noteBgColorValue = 0xFFFFEB84, this.dateFormatValue = 'DD-MM-YYYY', this.customDateMillisValue = 0});
   final Uint8List bytes;
   final String label;
   final double widthFraction;
@@ -18,6 +18,8 @@ class StampResult {
   final String alignName;
   final bool halo;
   final int noteBgColorValue;
+  final String dateFormatValue;
+  final int customDateMillisValue;
 }
 
 class TextStampSheet extends StatefulWidget {
@@ -58,6 +60,10 @@ class _TextStampSheetState extends State<TextStampSheet> {
       _align = i.align == 'left' ? TextAlign.left : (i.align == 'right' ? TextAlign.right : TextAlign.center);
       _halo = i.halo;
       _noteBg = Color(i.noteBgColor ?? 0xFFFFEB84);
+      _dateFormat = i.dateFormat ?? 'DD-MM-YYYY';
+      if (i.customDateMillis != null && i.customDateMillis! > 0) {
+        _customDate = DateTime.fromMillisecondsSinceEpoch(i.customDateMillis!);
+      }
     }
   }
 
@@ -136,7 +142,7 @@ class _TextStampSheetState extends State<TextStampSheet> {
     final image = await picture.toImage(w, h);
     final data = await image.toByteData(format: ui.ImageByteFormat.png);
     if (data == null) return null;
-    return StampResult(bytes: data.buffer.asUint8List(), label: widget.kind == 'note' ? 'Note' : widget.kind == 'date' ? 'Date' : 'Text', widthFraction: widget.kind == 'note' ? 0.45 : 0.5, aspect: h / w, text: text, fontSize: fontSize, color: _textColor.toARGB32(), fontFamily: _fontFamily, fontWeightValue: _fontWeight.value, alignName: _align == TextAlign.left ? 'left' : (_align == TextAlign.right ? 'right' : 'center'), halo: _halo, noteBgColorValue: _noteBg.toARGB32());
+    return StampResult(bytes: data.buffer.asUint8List(), label: widget.kind == 'note' ? 'Note' : widget.kind == 'date' ? 'Date' : 'Text', widthFraction: widget.kind == 'note' ? 0.45 : 0.5, aspect: h / w, text: text, fontSize: fontSize, color: _textColor.toARGB32(), fontFamily: _fontFamily, fontWeightValue: _fontWeight.value, alignName: _align == TextAlign.left ? 'left' : (_align == TextAlign.right ? 'right' : 'center'), halo: _halo, noteBgColorValue: _noteBg.toARGB32(), dateFormatValue: _dateFormat, customDateMillisValue: _customDate.millisecondsSinceEpoch);
   }
 
   Widget _swatch(Color c, Color current, ValueChanged<Color> on) => GestureDetector(

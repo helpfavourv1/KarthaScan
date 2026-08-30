@@ -10,7 +10,7 @@ import '../core/utils/constants.dart';
 import 'signature_canvas.dart';
 
 /// Which editor currently owns the tray preview screen.
-enum TrayEditMode { none, signature, annotate, watermark, text, note }
+enum TrayEditMode { none, signature, annotate, watermark, text, note, date }
 
 /// Which kind of overlay layer the shared editor is editing.
 enum LayerType { signature, annotate, watermark, text, note, date, checkbox }
@@ -422,7 +422,7 @@ class StampOverlayPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        for (final layer in layers.where((l) => l.pageIndex == pageIndex && (l.kind == 'text' || l.kind == 'note')))
+        for (final layer in layers.where((l) => l.pageIndex == pageIndex && (l.kind == 'text' || l.kind == 'note' || l.kind == 'date')))
           Builder(builder: (context) {
             final isSelected = layer.id == selectedId;
             final fontSize = layer.fontSize * layer.placement.scale;
@@ -563,7 +563,7 @@ class OverlayEditControls extends StatelessWidget {
               ],
             ),
           ),
-          if ((layerType == LayerType.watermark || layerType == LayerType.text || layerType == LayerType.note) && opacity != null && fontSize != null)
+          if ((layerType == LayerType.watermark || layerType == LayerType.text || layerType == LayerType.note || layerType == LayerType.date) && opacity != null && fontSize != null)
             SizedBox(
               height: 44,
               child: Row(

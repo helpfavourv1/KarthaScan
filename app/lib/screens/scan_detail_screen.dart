@@ -504,6 +504,29 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
       if (mounted) setState(() => _editMode = TrayEditMode.note);
       return;
     }
+    if (kind == 'date') {
+      final config = await showModalBottomSheet<StampResult>(context: context, isScrollControlled: true, builder: (ctx) => const TextStampSheet(kind: 'date'));
+      if (config == null || !mounted) return;
+      final layer = StampLayer(
+        id: 'stamp_${DateTime.now().microsecondsSinceEpoch}',
+        pageIndex: _currentPageIndex,
+        kind: 'date',
+        placement: const SignaturePlacement(pctX: 0.5, pctY: 0.5),
+        opacity: 1.0,
+        text: config.text,
+        fontSize: config.fontSize,
+        color: config.color,
+        fontFamily: config.fontFamily,
+        fontWeight: config.fontWeightValue,
+        align: config.alignName,
+        halo: config.halo,
+        dateFormat: config.dateFormatValue,
+        customDateMillis: config.customDateMillisValue,
+      );
+      await _scanProvider.addStampLayer(document.id, layer);
+      if (mounted) setState(() => _editMode = TrayEditMode.date);
+      return;
+    }
     final stamp = await showModalBottomSheet<StampResult>(context: context, isScrollControlled: true, builder: (ctx) => TextStampSheet(kind: kind));
     if (stamp == null || !mounted) return;
     final layers = await showModalBottomSheet<List<EditLayer>>(context: context, isScrollControlled: true, builder: (ctx) => EditSessionSheet(imagePath: document.pagePaths[_currentPageIndex], initialBytes: stamp.bytes, initialLabel: stamp.label, initialWidthFraction: stamp.widthFraction, initialAspect: stamp.aspect));
@@ -537,6 +560,8 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
       align: config.alignName,
       halo: config.halo,
       noteBgColor: config.noteBgColorValue,
+      dateFormat: config.dateFormatValue,
+      customDateMillis: config.customDateMillisValue,
     );
     await _scanProvider.updateStampLayer(document.id, updated);
   }
@@ -966,7 +991,7 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
               onStampEditTools: () async {
                 final doc = _document;
                 if (doc == null) return;
-                final kind = _editMode == TrayEditMode.note ? 'note' : 'text';
+                final kind = _editMode == TrayEditMode.note ? 'note' : (_editMode == TrayEditMode.date ? 'date' : 'text');
                 final pageLayers = doc.stampLayers.where((l) => l.pageIndex == _currentPageIndex && l.kind == kind).toList();
                 if (pageLayers.isEmpty) return;
                 await _editStamp(pageLayers.first);
