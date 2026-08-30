@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:image/image.dart' as img;
@@ -36,7 +37,7 @@ class InkController {
     _notify();
   }
 
-  Future<void> addInk(BuildContext context, LocalStorageService localStorage) async {
+  Future<String?> addInk(BuildContext context, LocalStorageService localStorage) async {
     Uint8List? bytes;
     final saved = await localStorage.loadSignaturePng();
     if (saved != null && context.mounted) {
@@ -63,7 +64,7 @@ class InkController {
         await localStorage.saveSignaturePng(bytes);
       }
     }
-    if (bytes == null) return;
+    if (bytes == null) return null;
 
     final decoded = img.decodePng(bytes);
     final aspect = (decoded != null && decoded.height > 0)
@@ -79,6 +80,7 @@ class InkController {
     activeInkId = inkId;
     editInkId = inkId;
     _notify();
+    return inkId;
   }
 
   void placeOnPage(int pageIndex) {
@@ -206,6 +208,84 @@ class InkOverlayPage extends StatelessWidget {
                   child: Transform.rotate(
                     angle: pl.rotationDegrees * 3.14159 / 180,
                     child: Image.memory(ink.bytes,
+                        width: sigW, height: sigH, fit: BoxFit.contain),
+                  ),
+                ),
+              ),
+            );
+          }),
+      ],
+    );
+  }
+}
+
+// === AnnotateOverlayPage: renders annotate layers for one page ===
+
+class AnnotateOverlayPage extends StatefulWidget {
+  const AnnotateOverlayPage({
+    super.key,
+    required this.layers,
+    required this.pageIndex,
+    required this.iw,
+    required this.ih,
+    required this.dx,
+    required this.dy,
+    required this.accent,
+    required this.selectedBytesPath,
+    required this.onSelect,
+    required this.onDrag,
+  });
+
+  final List<AnnotateLayer> layers;
+  final int pageIndex;
+  final double iw, ih, dx, dy;
+  final Color accent;
+  final String? selectedBytesPath;
+  final void Function(AnnotateLayer layer) onSelect;
+  final void Function(AnnotateLayer layer, double dxDelta, double dyDelta) onDrag;
+
+  @override
+  State<AnnotateOverlayPage> createState() => _AnnotateOverlayPageState();
+}
+
+class _AnnotateOverlayPageState extends State<AnnotateOverlayPage> {
+  final Map<String, Uint8List> _cache = {};
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        for (final layer in widget.layers.where((l) => l.pageIndex == widget.pageIndex))
+          Builder(builder: (context) {
+            if (!_cache.containsKey(layer.bytesPath)) {
+              if (File(layer.bytesPath).existsSync()) {
+                _cache[layer.bytesPath] = File(layer.bytesPath).readAsBytesSync();
+              } else {
+                _cache[layer.bytesPath] = Uint8List(0);
+              }
+            }
+            final bytes = _cache[layer.bytesPath]!;
+            if (bytes.isEmpty) return const SizedBox.shrink();
+            final sigW = widget.iw * 0.28 * layer.placement.scale;
+            final sigH = sigW / 2.0;
+            final isSelected = layer.bytesPath == widget.selectedBytesPath;
+            return Positioned(
+              left: widget.dx + layer.placement.pctX * widget.iw - sigW / 2,
+              top: widget.dy + layer.placement.pctY * widget.ih - sigH / 2,
+              child: GestureDetector(
+                behavior: HitTestBehavior.opaque,
+                onTap: () => widget.onSelect(layer),
+                onPanUpdate: (d) => widget.onDrag(layer, d.delta.dx, d.delta.dy),
+                child: Container(
+                  decoration: isSelected
+                      ? BoxDecoration(
+                          border: Border.all(color: widget.accent, width: 1.5),
+                          borderRadius: BorderRadius.circular(4),
+                        )
+                      : null,
+                  child: Transform.rotate(
+                    angle: layer.placement.rotationDegrees * 3.14159 / 180,
+                    child: Image.memory(bytes,
                         width: sigW, height: sigH, fit: BoxFit.contain),
                   ),
                 ),

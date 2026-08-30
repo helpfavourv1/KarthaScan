@@ -14,7 +14,6 @@ class ScanPreviewCard extends StatefulWidget {
     required this.pagePaths,
     this.inkController,
     this.annotateLayers = const [],
-    this.annotateMode = false,
     this.onShare,
     this.onAnnotateLayerUpdate,
     this.onAnnotateThisPage,
@@ -28,7 +27,6 @@ class ScanPreviewCard extends StatefulWidget {
   final List<String> pagePaths;
   final InkController? inkController;
   final List<AnnotateLayer> annotateLayers;
-  final bool annotateMode;
   final VoidCallback? onShare;
   final void Function(int pageIndex, AnnotateLayer layer)? onAnnotateLayerUpdate;
   final void Function(int pageIndex)? onAnnotateThisPage;
@@ -46,6 +44,7 @@ class _ScanPreviewCardState extends State<ScanPreviewCard> {
   late final PageController _pageController;
   late int _currentPage;
   late Color _textSecondary;
+  String? _selectedAnnotateBytesPath;
 
   int get _lastIndex => widget.pagePaths.isEmpty ? 0 : widget.pagePaths.length - 1;
 
@@ -63,17 +62,9 @@ class _ScanPreviewCardState extends State<ScanPreviewCard> {
     super.dispose();
   }
 
-  AnnotateLayer? _getAnnotateLayerForPage(int pageIndex) {
-    for (final layer in widget.annotateLayers) {
-      if (layer.pageIndex == pageIndex) return layer;
-    }
-    return null;
-  }
-
   Widget _buildAnnotateControls() {
-    final layer = _getAnnotateLayerForPage(_currentPage);
-    if (!widget.annotateMode) return const SizedBox.shrink();
-    if (layer == null) {
+    final pageLayers = widget.annotateLayers.where((l) => l.pageIndex == _currentPage).toList();
+    if (pageLayers.isEmpty) {
       return Padding(
         padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md, vertical: AppSpacing.xs),
         child: Row(
@@ -81,13 +72,14 @@ class _ScanPreviewCardState extends State<ScanPreviewCard> {
           children: [
             ActionChip(
               avatar: const Icon(Icons.draw_outlined, size: 14),
-              label: const Text('Annotate this page too', style: TextStyle(fontSize: 11)),
+              label: const Text('Annotate this page', style: TextStyle(fontSize: 11)),
               onPressed: () => widget.onAnnotateThisPage?.call(_currentPage),
             ),
           ],
         ),
       );
     }
+    final layer = pageLayers.firstWhere((l) => l.bytesPath == _selectedAnnotateBytesPath, orElse: () => pageLayers.first);
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md, vertical: AppSpacing.xs),
       color: _textSecondary.withValues(alpha: 0.05),
@@ -204,6 +196,10 @@ class _ScanPreviewCardState extends State<ScanPreviewCard> {
                   pageIndex: index,
                   textSecondary: textSecondary,
                   accent: accent,
+                  annotateLayers: widget.annotateLayers,
+                  selectedAnnotateBytesPath: _selectedAnnotateBytesPath,
+                  onAnnotateSelect: (layer) => setState(() => _selectedAnnotateBytesPath = layer.bytesPath),
+                  onAnnotateUpdate: (newLayer) => widget.onAnnotateLayerUpdate?.call(index, newLayer),
                 );
               },
             ),
@@ -233,6 +229,10 @@ class _PageWithInk extends StatefulWidget {
     required this.pageIndex,
     required this.textSecondary,
     required this.accent,
+    this.annotateLayers = const [],
+    this.selectedAnnotateBytesPath,
+    this.onAnnotateSelect,
+    this.onAnnotateUpdate,
   });
 
   final String pagePath;
@@ -240,6 +240,10 @@ class _PageWithInk extends StatefulWidget {
   final int pageIndex;
   final Color textSecondary;
   final Color accent;
+  final List<AnnotateLayer> annotateLayers;
+  final String? selectedAnnotateBytesPath;
+  final void Function(AnnotateLayer layer)? onAnnotateSelect;
+  final void Function(AnnotateLayer newLayer)? onAnnotateUpdate;
 
   @override
   State<_PageWithInk> createState() => _PageWithInkState();
@@ -280,14 +284,15 @@ class _PageWithInkState extends State<_PageWithInk> {
           dy = (constraints.maxHeight - ih) / 2;
         }
 
+        final hasOverlays = (widget.controller?.hasInks ?? false) || widget.annotateLayers.isNotEmpty;
         return Stack(
           children: [
             Positioned.fill(
               child: InteractiveViewer(
                 minScale: 1,
                 maxScale: 4,
-                panEnabled: widget.controller?.hasInks != true,
-                scaleEnabled: widget.controller?.hasInks != true,
+                panEnabled: !hasOverlays,
+                scaleEnabled: !hasOverlays,
                 child: Center(
                   child: Image.file(
                     File(widget.pagePath),
@@ -308,6 +313,32 @@ class _PageWithInkState extends State<_PageWithInk> {
                 dx: dx,
                 dy: dy,
                 accent: widget.accent,
+              ),
+            if (widget.annotateLayers.isNotEmpty)
+              AnnotateOverlayPage(
+                layers: widget.annotateLayers,
+                pageIndex: widget.pageIndex,
+                iw: iw,
+                ih: ih,
+                dx: dx,
+                dy: dy,
+                accent: widget.accent,
+                selectedBytesPath: widget.selectedAnnotateBytesPath,
+                onSelect: (layer) => widget.onAnnotateSelect?.call(layer),
+                onDrag: (layer, dxDelta, dyDelta) {
+                  final dragUpdate = widget.onAnnotateUpdate;
+                  if (dragUpdate == null) return;
+                  dragUpdate(AnnotateLayer(
+                    pageIndex: layer.pageIndex,
+                    bytesPath: layer.bytesPath,
+                    placement: SignaturePlacement(
+                      pctX: (layer.placement.pctX + dxDelta / iw).clamp(0.0, 1.0),
+                      pctY: (layer.placement.pctY + dyDelta / ih).clamp(0.0, 1.0),
+                      rotationDegrees: layer.placement.rotationDegrees,
+                      scale: layer.placement.scale,
+                    ),
+                  ));
+                },
               ),
           ],
         );

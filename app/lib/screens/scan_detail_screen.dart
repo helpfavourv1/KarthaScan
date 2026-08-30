@@ -60,7 +60,6 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
 
   late TabController _tabController;
   int _currentPageIndex = 0;
-  bool _annotateMode = false;
   Uint8List? _annotateBytes;
 
   @override
@@ -214,8 +213,7 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
 
     setState(() {
       _annotateBytes = bytes;
-      _annotateMode = true;
-      });
+    });
 
     await _scanProvider.addAnnotateLayer(
       document.id,
@@ -243,8 +241,8 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
     final document = _document;
     if (document == null) return;
     final matching = document.annotateLayers.where((l) => l.pageIndex == pageIndex).toList();
-    if (matching.isNotEmpty) {
-      await _scanProvider.removeAnnotateLayer(document.id, pageIndex, matching.first.bytesPath);
+    for (final layer in matching) {
+      await _scanProvider.removeAnnotateLayer(document.id, pageIndex, layer.bytesPath);
     }
   }
 
@@ -997,7 +995,6 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
                           
               inkController: _inkController,
               annotateLayers: _document?.annotateLayers ?? const [],
-              annotateMode: _annotateMode,
               onAnnotateLayerUpdate: (pageIndex, layer) {
                 final doc = _document;
                 if (doc != null) {
@@ -1058,7 +1055,7 @@ class _ScanDetailScreenState extends State<ScanDetailScreen> with SingleTickerPr
               ),
               EditTray(
                                                   onMarkup: _annotate,
-                                                  onSign: () { _inkController.addInk(context, _localStorage); },
+                                                  onSign: () async { final inkId = await _inkController.addInk(context, _localStorage); if (inkId != null) _inkController.placeOnPage(_currentPageIndex); },
                                                   onWatermark: _addWatermark,
                                                   onOcr: _regionOcr,
                                                   onConvert: () => context.push('/export', extra: <String>[document.id]),
