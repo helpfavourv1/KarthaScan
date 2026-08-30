@@ -136,15 +136,15 @@ class _ScanPreviewCardState extends State<ScanPreviewCard> {
     );
   }
 
-  Widget _buildTextStampControls() {
-    final pageLayers = widget.stampLayers.where((l) => l.pageIndex == _currentPage && l.kind == 'text').toList();
+  Widget _buildStampControls(String kind) {
+    final pageLayers = widget.stampLayers.where((l) => l.pageIndex == _currentPage && l.kind == kind).toList();
     if (pageLayers.isEmpty) return const SizedBox.shrink();
     final layer = pageLayers.firstWhere((l) => l.id == _selectedStampId, orElse: () => pageLayers.first);
     void upd(StampLayer newLayer) {
       widget.onStampLayerUpdate?.call(_currentPage, newLayer);
     }
     return OverlayEditControls(
-      layerType: LayerType.text,
+      layerType: kind == 'text' ? LayerType.text : LayerType.note,
       rotationDegrees: layer.placement.rotationDegrees,
       scale: layer.placement.scale,
       opacity: layer.opacity,
@@ -309,7 +309,9 @@ class _ScanPreviewCardState extends State<ScanPreviewCard> {
           if (widget.editMode == TrayEditMode.watermark)
             _buildWatermarkControls(),
           if (widget.editMode == TrayEditMode.text)
-            _buildTextStampControls(),
+            _buildStampControls('text'),
+          if (widget.editMode == TrayEditMode.note)
+            _buildStampControls('note'),
         ],
       ),
     );

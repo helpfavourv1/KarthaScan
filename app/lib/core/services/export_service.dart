@@ -681,9 +681,18 @@ class ExportService {
       ..addText(layer.text);
     final paragraph = paragraphBuilder.build()
       ..layout(ui.ParagraphConstraints(width: pageW * 0.3 * layer.placement.scale));
-    canvas.drawParagraph(paragraph, ui.Offset.zero);
+    final double pad = (layer.kind == 'note' ? 40.0 : 8.0) * (fontSize / 72.0);
+    final int w = (paragraph.longestLine + pad * 2).ceil();
+    final int h = (paragraph.height + pad * 2).ceil();
+    if (layer.kind == 'note' && layer.noteBgColor != null) {
+      canvas.drawRRect(
+        ui.RRect.fromRectAndRadius(ui.Rect.fromLTWH(0, 0, w.toDouble(), h.toDouble()), const ui.Radius.circular(16)),
+        ui.Paint()..color = ui.Color(layer.noteBgColor!).withValues(alpha: layer.opacity),
+      );
+    }
+    canvas.drawParagraph(paragraph, ui.Offset(pad, pad));
     final picture = recorder.endRecording();
-    final image = await picture.toImage(paragraph.width.round(), paragraph.height.round());
+    final image = await picture.toImage(w, h);
     final bytes = await image.toByteData(format: ui.ImageByteFormat.png);
     return bytes?.buffer.asUint8List();
   }

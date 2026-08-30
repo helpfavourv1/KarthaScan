@@ -10,7 +10,7 @@ import '../core/utils/constants.dart';
 import 'signature_canvas.dart';
 
 /// Which editor currently owns the tray preview screen.
-enum TrayEditMode { none, signature, annotate, watermark, text }
+enum TrayEditMode { none, signature, annotate, watermark, text, note }
 
 /// Which kind of overlay layer the shared editor is editing.
 enum LayerType { signature, annotate, watermark, text, note, date, checkbox }
@@ -422,7 +422,7 @@ class StampOverlayPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        for (final layer in layers.where((l) => l.pageIndex == pageIndex && l.kind == 'text'))
+        for (final layer in layers.where((l) => l.pageIndex == pageIndex && (l.kind == 'text' || l.kind == 'note')))
           Builder(builder: (context) {
             final isSelected = layer.id == selectedId;
             final fontSize = layer.fontSize * layer.placement.scale;
@@ -441,10 +441,12 @@ class StampOverlayPage extends StatelessWidget {
                 onTap: () { onSelect(layer); onSelected?.call(); },
                 onPanUpdate: (d) => onDrag(layer, d.delta.dx, d.delta.dy),
                 child: Container(
-                  decoration: isSelected
-                      ? BoxDecoration(border: Border.all(color: accent, width: 1.5), borderRadius: BorderRadius.circular(4))
-                      : null,
-                  padding: const EdgeInsets.all(4),
+                  decoration: BoxDecoration(
+                    color: layer.kind == 'note' && layer.noteBgColor != null ? Color(layer.noteBgColor!).withValues(alpha: layer.opacity) : null,
+                    borderRadius: BorderRadius.circular(layer.kind == 'note' ? 16 : 4),
+                    border: isSelected ? Border.all(color: accent, width: 1.5) : null,
+                  ),
+                  padding: EdgeInsets.all(layer.kind == 'note' ? layer.fontSize * layer.placement.scale * (40 / 72) : 4),
                   child: Transform.rotate(
                     angle: layer.placement.rotationDegrees * 3.14159 / 180,
                     child: Text(
@@ -561,7 +563,7 @@ class OverlayEditControls extends StatelessWidget {
               ],
             ),
           ),
-          if ((layerType == LayerType.watermark || layerType == LayerType.text) && opacity != null && fontSize != null)
+          if ((layerType == LayerType.watermark || layerType == LayerType.text || layerType == LayerType.note) && opacity != null && fontSize != null)
             SizedBox(
               height: 44,
               child: Row(
