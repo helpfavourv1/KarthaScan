@@ -5,6 +5,7 @@ import '../core/models/signature_placement.dart';
 import '../core/utils/constants.dart';
 import '../l10n/app_localizations.dart';
 import 'ink_board.dart';
+import 'signature_editor_bar.dart';
 import 'document_canvas.dart';
 
 class ScanPreviewCard extends StatefulWidget {
@@ -105,39 +106,15 @@ class _ScanPreviewCardState extends State<ScanPreviewCard> {
   }
 
   Widget _buildSignatureControls() {
-    final controller = widget.inkController;
-    if (controller == null) return const SizedBox.shrink();
-    final editId = controller.editInkId;
-    if (editId == null) return const SizedBox.shrink();
-    final pl = controller.inkPlacements[editId]?[_currentPage];
-    if (pl == null) return const SizedBox.shrink();
-    final pageCount = widget.pagePaths.length;
-
-    void doCopyAll() => controller.copyToAllPages(editId, _currentPage, pageCount);
-    void doClearThis() => controller.removePlacement(editId, _currentPage);
-    void doRemove() => controller.removeInk(editId);
-    void doClearAll() => controller.clearAll();
-
-    return OverlayEditControls(
-      layerType: LayerType.signature,
-      rotationDegrees: pl.rotationDegrees,
-      scale: pl.scale,
-      onRotateLeft: () => controller.updatePlacement(editId, _currentPage,
-          SignaturePlacement(pctX: pl.pctX, pctY: pl.pctY, rotationDegrees: (pl.rotationDegrees - 10).clamp(-180, 180), scale: pl.scale)),
-      onRotateRight: () => controller.updatePlacement(editId, _currentPage,
-          SignaturePlacement(pctX: pl.pctX, pctY: pl.pctY, rotationDegrees: (pl.rotationDegrees + 10).clamp(-180, 180), scale: pl.scale)),
-      onScaleDown: () => controller.updatePlacement(editId, _currentPage,
-          SignaturePlacement(pctX: pl.pctX, pctY: pl.pctY, rotationDegrees: pl.rotationDegrees, scale: (pl.scale - 0.1).clamp(0.1, 5.0))),
-      onScaleUp: () => controller.updatePlacement(editId, _currentPage,
-          SignaturePlacement(pctX: pl.pctX, pctY: pl.pctY, rotationDegrees: pl.rotationDegrees, scale: (pl.scale + 0.1).clamp(0.1, 5.0))),
-      onCopyAll: doCopyAll,
-      onClearThis: doClearThis,
-      onRemove: doRemove,
-      onClearAll: doClearAll,
-    );
-  }
-
-  Widget _buildStampControls(String kind) {
+final controller = widget.inkController;
+if (controller == null) return const SizedBox.shrink();
+return SignatureOverlayControls(
+controller: controller,
+pageIndex: _currentPage,
+pageCount: widget.pagePaths.length,
+);
+}
+Widget _buildStampControls(String kind) {
     final pageLayers = widget.stampLayers.where((l) => l.pageIndex == _currentPage && l.kind == kind).toList();
     if (pageLayers.isEmpty) return const SizedBox.shrink();
     final layer = pageLayers.firstWhere((l) => l.id == _selectedStampId, orElse: () => pageLayers.first);

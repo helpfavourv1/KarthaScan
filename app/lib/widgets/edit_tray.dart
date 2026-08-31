@@ -24,6 +24,7 @@ class EditTray extends StatefulWidget {
     required this.onPrint,
     required this.onEmail,
     required this.onErase,
+    this.compact = false,
   });
 
   final VoidCallback onMarkup;
@@ -45,6 +46,7 @@ class EditTray extends StatefulWidget {
   final VoidCallback onPrint;
   final VoidCallback onEmail;
   final VoidCallback onErase;
+  final bool compact;
 
   @override
   State<EditTray> createState() => _EditTrayState();
@@ -110,10 +112,10 @@ class _EditTrayState extends State<EditTray> with SingleTickerProviderStateMixin
         );
       },
       child: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-        height: 84,
+        margin: EdgeInsets.symmetric(horizontal: 10, vertical: widget.compact ? 4 : 6),
+        height: widget.compact ? 64 : 84,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(widget.compact ? 16 : 20),
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
@@ -129,7 +131,7 @@ class _EditTrayState extends State<EditTray> with SingleTickerProviderStateMixin
           children: [
             Positioned.fill(
               child: IgnorePointer(
-                child: CustomPaint(painter: _TrackPainter(railColor, sleeperColor)),
+                child: CustomPaint(painter: _TrackPainter(railColor, sleeperColor, widget.compact ? 53.0 : 71.0)),
               ),
             ),
             Positioned.fill(
@@ -137,7 +139,7 @@ class _EditTrayState extends State<EditTray> with SingleTickerProviderStateMixin
                 controller: _scrollController,
                 scrollDirection: Axis.horizontal,
                 physics: const BouncingScrollPhysics(),
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                padding: EdgeInsets.symmetric(horizontal: widget.compact ? 10 : 12, vertical: widget.compact ? 6 : 8),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.end,
@@ -210,9 +212,9 @@ class _EditTrayState extends State<EditTray> with SingleTickerProviderStateMixin
       widgets.add(_buildCoach(items[i], coachFill, coachBorder, iconColor, textColor, hubColor, spokeColor));
       if (i < items.length - 1) {
         widgets.add(Container(
-          width: 6,
-          height: 4,
-          margin: const EdgeInsets.only(bottom: 5),
+          width: widget.compact ? 5 : 6,
+          height: widget.compact ? 3 : 4,
+          margin: EdgeInsets.only(bottom: widget.compact ? 4 : 5),
           color: couplerColor,
         ));
       }
@@ -229,11 +231,11 @@ class _EditTrayState extends State<EditTray> with SingleTickerProviderStateMixin
           IOSPressable(
             onTap: item.onTap,
             child: Container(
-              width: 56,
-              height: 52,
+              width: widget.compact ? 46 : 56,
+              height: widget.compact ? 40 : 52,
               decoration: BoxDecoration(
                 color: coachFill,
-                borderRadius: BorderRadius.circular(10),
+                borderRadius: BorderRadius.circular(widget.compact ? 8 : 10),
                 border: Border.all(color: coachBorder, width: 1),
                 boxShadow: [
                   BoxShadow(
@@ -247,11 +249,11 @@ class _EditTrayState extends State<EditTray> with SingleTickerProviderStateMixin
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(item.icon, color: iconColor, size: 20),
+                  Icon(item.icon, color: iconColor, size: widget.compact ? 16 : 20),
                   const SizedBox(height: 2),
                   Text(
                     item.label,
-                    style: TextStyle(color: textColor, fontSize: 9, fontWeight: FontWeight.w600),
+                    style: TextStyle(color: textColor, fontSize: widget.compact ? 8 : 9, fontWeight: FontWeight.w600),
                     textAlign: TextAlign.center,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
@@ -262,21 +264,21 @@ class _EditTrayState extends State<EditTray> with SingleTickerProviderStateMixin
           ),
           const SizedBox(height: 2),
           SizedBox(
-            width: 56,
+            width: widget.compact ? 46 : 56,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 ValueListenableBuilder<double>(
                   valueListenable: _wheelAngle,
                   builder: (context, angle, _) => CustomPaint(
-                    size: const Size(10, 10),
+                    size: Size(widget.compact ? 8 : 10, widget.compact ? 8 : 10),
                     painter: _WheelPainter(angle, hubColor, spokeColor),
                   ),
                 ),
                 ValueListenableBuilder<double>(
                   valueListenable: _wheelAngle,
                   builder: (context, angle, _) => CustomPaint(
-                    size: const Size(10, 10),
+                    size: Size(widget.compact ? 8 : 10, widget.compact ? 8 : 10),
                     painter: _WheelPainter(angle, hubColor, spokeColor),
                   ),
                 ),
@@ -299,11 +301,12 @@ class _TrayItem {
 class _TrackPainter extends CustomPainter {
   final Color railColor;
   final Color sleeperColor;
-  _TrackPainter(this.railColor, this.sleeperColor);
+  final double railY;
+  _TrackPainter(this.railColor, this.sleeperColor, this.railY);
 
   @override
   void paint(Canvas canvas, Size size) {
-    final railY = size.height - 13.0;
+    // railY passed from constructor
     final railPaint = Paint()..color = railColor..strokeWidth = 2.0;
     canvas.drawLine(Offset(0, railY), Offset(size.width, railY), railPaint);
     

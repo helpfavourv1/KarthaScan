@@ -17,8 +17,8 @@ import '../core/services/share_service.dart';
 import '../core/services/local_storage.dart';
 import '../core/utils/constants.dart';
 import '../l10n/app_localizations.dart';
-import '../core/models/signature_placement.dart';
 import '../widgets/ink_board.dart';
+import '../widgets/signature_editor_bar.dart';
 import '../widgets/ios_pressable.dart';
 
 class ExportScreen extends StatefulWidget {
@@ -271,7 +271,7 @@ class _ExportScreenState extends State<ExportScreen> {
                               ),
                               if (_isSingleDoc) ...[
                                 const SizedBox(width: AppSpacing.sm),
-                                Expanded(child: InkCompactBar(controller: _inkController, accent: accent, surface: surface, textPrimary: textPrimary, isDark: isDark, onAddInk: () { _inkController.addInk(context, _localStorage); setState(() {}); })),
+                                Expanded(child: SignatureEditorBar(controller: _inkController, pageIndex: _previewPage, accent: accent, surface: surface, textPrimary: textPrimary, isDark: isDark, onAddInk: () { _inkController.addInk(context, _localStorage); setState(() {}); }, onPlaceHere: () { _inkController.placeOnPage(_previewPage); setState(() {}); })),
                               ],
                             ],
                           ),
@@ -422,15 +422,6 @@ class _ExportScreenState extends State<ExportScreen> {
               child: Icon(Icons.auto_fix_high, color: _filterRowOpen ? accent : textSecondary, size: 20),
             ),
             const SizedBox(width: AppSpacing.sm),
-            if (_inkController.hasInks)
-              ActionChip(
-                avatar: const Icon(Icons.draw_outlined, size: 14),
-                label: const Text('Place here', style: TextStyle(fontSize: 10)),
-                onPressed: () {
-                  _inkController.placeOnPage(pageIndex);
-                  setState(() {});
-                },
-              ),
           ],
         ),
         const SizedBox(height: AppSpacing.xs),
@@ -486,24 +477,11 @@ class _ExportScreenState extends State<ExportScreen> {
             ),
           ),
         ),
-        Builder(builder: (context) {
-          final editId = _inkController.editInkId;
-          final pl = editId == null ? null : _inkController.inkPlacements[editId]?[pageIndex];
-          if (editId == null || pl == null) return const SizedBox.shrink();
-          return OverlayEditControls(
-            layerType: LayerType.signature,
-            rotationDegrees: pl.rotationDegrees,
-            scale: pl.scale,
-            onRotateLeft: () => _inkController.updatePlacement(editId, pageIndex, SignaturePlacement(pctX: pl.pctX, pctY: pl.pctY, rotationDegrees: (pl.rotationDegrees - 10).clamp(-180, 180), scale: pl.scale)),
-            onRotateRight: () => _inkController.updatePlacement(editId, pageIndex, SignaturePlacement(pctX: pl.pctX, pctY: pl.pctY, rotationDegrees: (pl.rotationDegrees + 10).clamp(-180, 180), scale: pl.scale)),
-            onScaleDown: () => _inkController.updatePlacement(editId, pageIndex, SignaturePlacement(pctX: pl.pctX, pctY: pl.pctY, rotationDegrees: pl.rotationDegrees, scale: (pl.scale - 0.1).clamp(0.1, 5.0))),
-            onScaleUp: () => _inkController.updatePlacement(editId, pageIndex, SignaturePlacement(pctX: pl.pctX, pctY: pl.pctY, rotationDegrees: pl.rotationDegrees, scale: (pl.scale + 0.1).clamp(0.1, 5.0))),
-            onCopyAll: () => _inkController.copyToAllPages(editId, pageIndex, pageCount),
-            onClearThis: () => _inkController.removePlacement(editId, pageIndex),
-            onRemove: () => _inkController.removeInk(editId),
-            onClearAll: () => _inkController.clearAll(),
-          );
-        }),
+        SignatureOverlayControls(
+controller: _inkController,
+pageIndex: pageIndex,
+pageCount: pageCount,
+),
       ],
     );
   }
