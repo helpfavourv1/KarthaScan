@@ -408,21 +408,10 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
     if (doc == null || doc.pagePaths.isEmpty) return;
     final rect = await showModalBottomSheet<Rect?>(context: context, isScrollControlled: true, builder: (context) => RegionSelectSheet(imagePath: doc.pagePaths[currentPageIndex]));
     if (rect == null || !mounted) return;
-    try {
-      final originalBytes = await File(doc.pagePaths[currentPageIndex]).readAsBytes();
-      final cropped = await compute(cropIsolate, {'original': originalBytes, 'rect': rect});
-      final appDir = await getApplicationDocumentsDirectory();
-      final dir = Directory(p.join(appDir.path, 'cropped_pages'));
-      await dir.create(recursive: true);
-      final newPath = p.join(dir.path, 'crp_${DateTime.now().microsecondsSinceEpoch}_$currentPageIndex.jpg');
-      await File(newPath).writeAsBytes(cropped);
-      final newPaths = List<String>.from(doc.pagePaths);
-      newPaths[currentPageIndex] = newPath;
-      await scanProvider.updateDocumentPages(doc.id, newPaths);
-      if (mounted) ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Page cropped')));
-    } catch (e) {
-      if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Error: $e')));
-    }
+    final existing = doc.pageTransforms[currentPageIndex] ?? const PageTransform();
+    final updated = existing.copyWith(cropRect: rect);
+    await scanProvider.updatePageTransform(doc.id, currentPageIndex, updated);
+    if (mounted) ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Page cropped')));
   }
 
   Future<void> erasePage() async {
@@ -504,23 +493,10 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
     if (result == null || !mounted) return;
 
     final (newW, newH) = result;
-    try {
-      final originalBytes = await File(doc.pagePaths[currentPageIndex]).readAsBytes();
-      final resizedBytes = await compute(resizeIsolate, {'original': originalBytes, 'width': newW, 'height': newH});
-
-      final appDir = await getApplicationDocumentsDirectory();
-      final scansDir = Directory(p.join(appDir.path, 'resized_pages'));
-      await scansDir.create(recursive: true);
-      final newPath = p.join(scansDir.path, 'res_${DateTime.now().microsecondsSinceEpoch}_$currentPageIndex.jpg');
-      await File(newPath).writeAsBytes(resizedBytes);
-
-      final newPaths = List<String>.from(doc.pagePaths);
-      newPaths[currentPageIndex] = newPath;
-      await scanProvider.updateDocumentPages(doc.id, newPaths);
-      if (mounted) ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Page resized')));
-    } catch (e) {
-      if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Error: $e')));
-    }
+    final existing = doc.pageTransforms[currentPageIndex] ?? const PageTransform();
+    final updated = existing.copyWith(resizeWidth: newW, resizeHeight: newH);
+    await scanProvider.updatePageTransform(doc.id, currentPageIndex, updated);
+    if (mounted) ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Page resized')));
   }
 
   Future<void> openPagesManager() async {

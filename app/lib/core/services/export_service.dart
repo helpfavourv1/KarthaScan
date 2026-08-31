@@ -172,7 +172,7 @@ class ExportService {
     final inkMap = <String, SignatureInk>{
       if (documentInks != null) for (final ink in documentInks) ink.id: ink,
     };
-    final hasTransform = pageTransform != null && (pageTransform.filter != FilterType.none || pageTransform.rotationTurns != 0);
+    final hasTransform = pageTransform != null && (pageTransform.filter != FilterType.none || pageTransform.rotationTurns != 0 || pageTransform.cropRect != null || pageTransform.resizeWidth != null);
     if (filter == FilterType.none && !hasTransform && layers.isEmpty && annotateLayers.isEmpty && watermarkLayers.isEmpty && stampLayers.isEmpty) {
       return original;
     }
@@ -183,6 +183,13 @@ class ExportService {
       final effectiveFilter = (pageTransform != null && pageTransform.filter != FilterType.none)
           ? pageTransform.filter
           : filter;
+      if (pageTransform != null && pageTransform.cropRect != null && pageTransform.cropRect!.width > 0 && pageTransform.cropRect!.height > 0) {
+        final r = pageTransform.cropRect!;
+        decoded = img.copyCrop(decoded, x: r.left.round(), y: r.top.round(), width: r.width.round(), height: r.height.round());
+      }
+      if (pageTransform != null && pageTransform.resizeWidth != null && pageTransform.resizeHeight != null) {
+        decoded = img.copyResize(decoded, width: pageTransform.resizeWidth!, height: pageTransform.resizeHeight!);
+      }
       if (effectiveFilter != FilterType.none) {
         decoded = _applyFilter(decoded, effectiveFilter);
       }

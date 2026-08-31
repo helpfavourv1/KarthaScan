@@ -232,10 +232,20 @@ class _PageWithInkState extends State<_PageWithInk> {
         setState(() => _pageAspect = (decoded.width / decoded.height).clamp(0.1, 10.0).toDouble());
       }
       final transform = widget.pageTransforms[widget.pageIndex];
-      if (transform != null && transform.filter != FilterType.none && decoded != null) {
-        final filtered = FilterService.applyToImage(decoded, transform.filter);
-        final filteredBytes = Uint8List.fromList(img.encodeJpg(filtered, quality: 85));
-        if (mounted) setState(() => _filteredBytes = filteredBytes);
+      if (transform != null && decoded != null && (transform.cropRect != null || transform.resizeWidth != null || transform.filter != FilterType.none)) {
+        img.Image processed = decoded;
+        if (transform.cropRect != null && transform.cropRect!.width > 0 && transform.cropRect!.height > 0) {
+          final r = transform.cropRect!;
+          processed = img.copyCrop(processed, x: r.left.round(), y: r.top.round(), width: r.width.round(), height: r.height.round());
+        }
+        if (transform.resizeWidth != null && transform.resizeHeight != null) {
+          processed = img.copyResize(processed, width: transform.resizeWidth!, height: transform.resizeHeight!);
+        }
+        if (transform.filter != FilterType.none) {
+          processed = FilterService.applyToImage(processed, transform.filter);
+        }
+        final processedBytes = Uint8List.fromList(img.encodeJpg(processed, quality: 85));
+        if (mounted) setState(() => _filteredBytes = processedBytes);
       }
     } catch (_) {}
   }
@@ -247,7 +257,17 @@ class _PageWithInkState extends State<_PageWithInk> {
         final transform = widget.pageTransforms[widget.pageIndex];
         final rotationTurns = transform?.rotationTurns ?? 0;
         final isRotated = (rotationTurns % 2 != 0);
-        final visualAspect = isRotated ? (1.0 / _pageAspect) : _pageAspect;
+        final cropRect = transform?.cropRect;
+        final resizeW = transform?.resizeWidth;
+        final resizeH = transform?.resizeHeight;
+
+        double effectiveAspect = _pageAspect;
+        if (resizeW != null && resizeH != null && resizeH > 0) {
+          effectiveAspect = resizeW / resizeH;
+        } else if (cropRect != null && cropRect.width > 0 && cropRect.height > 0) {
+          effectiveAspect = cropRect.width / cropRect.height;
+        }
+        final visualAspect = isRotated ? (1.0 / effectiveAspect) : effectiveAspect;
 
         double visualW = constraints.maxWidth;
         double visualH = visualW / visualAspect;
