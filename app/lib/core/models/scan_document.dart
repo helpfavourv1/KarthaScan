@@ -5,8 +5,9 @@
 //
 // Added `isFavorite` to support the Favorites filter chip.
 
-import 'package:flutter/foundation.dart' show immutable, listEquals;
+import 'package:flutter/foundation.dart' show immutable, listEquals, mapEquals;
 import 'signature_placement.dart';
+import 'page_transform.dart';
 
 @immutable
 class SignatureLayer {
@@ -375,6 +376,7 @@ class ScanDocument {
     this.annotateLayers = const <AnnotateLayer>[],
     this.watermarkLayers = const <WatermarkLayer>[],
     this.stampLayers = const <StampLayer>[],
+    this.pageTransforms = const <int, PageTransform>{},
   });
 
   final String id;
@@ -409,6 +411,9 @@ class ScanDocument {
   final List<WatermarkLayer> watermarkLayers;
   final List<StampLayer> stampLayers;
 
+  /// Non-destructive page transforms (crop, rotate, filter, resize, eraser)
+  final Map<int, PageTransform> pageTransforms;
+
   ScanDocument copyWith({
     String? id,
     String? title,
@@ -425,6 +430,7 @@ class ScanDocument {
     List<AnnotateLayer>? annotateLayers,
     List<WatermarkLayer>? watermarkLayers,
     List<StampLayer>? stampLayers,
+    Map<int, PageTransform>? pageTransforms,
   }) {
     return ScanDocument(
       id: id ?? this.id,
@@ -442,6 +448,7 @@ class ScanDocument {
       annotateLayers: annotateLayers ?? this.annotateLayers,
       watermarkLayers: watermarkLayers ?? this.watermarkLayers,
       stampLayers: stampLayers ?? this.stampLayers,
+      pageTransforms: pageTransforms ?? this.pageTransforms,
     );
   }
 
@@ -462,6 +469,7 @@ class ScanDocument {
       'annotateLayers': annotateLayers.map((l) => l.toJson()).toList(),
       'watermarkLayers': watermarkLayers.map((l) => l.toJson()).toList(),
       'stampLayers': stampLayers.map((l) => l.toJson()).toList(),
+      'pageTransforms': pageTransforms.map((k, v) => MapEntry(k.toString(), v.toJson())),
     };
   }
 
@@ -492,6 +500,8 @@ class ScanDocument {
       stampLayers: (json['stampLayers'] as List<dynamic>?)
           ?.map((e) => StampLayer.fromJson(e as Map<String, dynamic>))
           .toList() ?? const <StampLayer>[],
+      pageTransforms: (json['pageTransforms'] as Map<String, dynamic>?)
+          ?.map((k, v) => MapEntry(int.parse(k), PageTransform.fromJson(v as Map<String, dynamic>))) ?? const <int, PageTransform>{},
     );
   }
 
@@ -513,7 +523,8 @@ class ScanDocument {
         listEquals(other.signatureLayers, signatureLayers) &&
         listEquals(other.annotateLayers, annotateLayers) &&
         listEquals(other.watermarkLayers, watermarkLayers) &&
-        listEquals(other.stampLayers, stampLayers);
+        listEquals(other.stampLayers, stampLayers) &&
+        mapEquals(other.pageTransforms, pageTransforms);
   }
 
   @override
@@ -534,6 +545,7 @@ class ScanDocument {
       Object.hashAll(annotateLayers),
       Object.hashAll(watermarkLayers),
       Object.hashAll(stampLayers),
+      Object.hashAll(pageTransforms.entries),
     );
   }
 

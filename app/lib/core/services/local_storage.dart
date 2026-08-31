@@ -11,6 +11,7 @@ import 'package:sqflite/sqflite.dart';
 import '../models/folder.dart';
 import '../models/scan_document.dart';
 import '../models/signature_placement.dart';
+import '../models/page_transform.dart';
 import '../models/user_settings.dart';
 
 class LocalStorageService {
@@ -275,6 +276,7 @@ class LocalStorageService {
       'annotate_layers': jsonEncode(document.annotateLayers.map((l) => l.toJson()).toList()),
       'watermark_layers': jsonEncode(document.watermarkLayers.map((l) => l.toJson()).toList()),
       'stamp_layers': jsonEncode(document.stampLayers.map((l) => l.toJson()).toList()),
+      'page_transforms': jsonEncode(document.pageTransforms.map((k, v) => MapEntry(k.toString(), v.toJson()))),
     };
   }
 
@@ -299,6 +301,10 @@ class LocalStorageService {
     final stampLayers = stampLayersJson != null
         ? (jsonDecode(stampLayersJson) as List<dynamic>).map((e) => StampLayer.fromJson(e as Map<String, dynamic>)).toList()
         : const <StampLayer>[];
+    final ptJson = row['page_transforms'] as String?;
+    final pageTransforms = ptJson != null
+        ? (jsonDecode(ptJson) as Map<String, dynamic>).map((k, v) => MapEntry(int.parse(k), PageTransform.fromJson(v as Map<String, dynamic>)))
+        : const <int, PageTransform>{};
     return ScanDocument(
       id: row['id']! as String,
       title: row['title']! as String,
@@ -319,6 +325,7 @@ class LocalStorageService {
       annotateLayers: annLayers,
       watermarkLayers: wmLayers,
       stampLayers: stampLayers,
+      pageTransforms: pageTransforms,
     );
   }
 
@@ -438,7 +445,7 @@ class LocalStorageService {
   Future<void> _migrateAddLayerColumns() async {
     if (_layersMigrated || !_dbAvailable || _db == null) return;
     _layersMigrated = true;
-    for (final col in ['signature_inks', 'signature_layers', 'annotate_layers', 'watermark_layers', 'stamp_layers']) {
+    for (final col in ['signature_inks', 'signature_layers', 'annotate_layers', 'watermark_layers', 'stamp_layers', 'page_transforms']) {
       try {
         await _db!.execute('ALTER TABLE documents ADD COLUMN $col TEXT');
       } catch (_) {

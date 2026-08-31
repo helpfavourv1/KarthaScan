@@ -20,6 +20,7 @@ import 'package:path_provider/path_provider.dart';
 
 import '../models/scan_document.dart';
 import '../models/signature_placement.dart';
+import '../models/page_transform.dart';
 import '../services/doc_scanner_service.dart';
 import '../services/local_storage.dart';
 import '../services/ocr_service.dart';
@@ -490,6 +491,24 @@ class ScanProvider {
     if (existing == null) return false;
     final updated = existing.copyWith(stampLayers: const [], updatedAt: DateTime.now());
     return _replaceAndSave(updated);
+  }
+
+
+  Future<bool> updatePageTransform(String id, int pageIndex, PageTransform transform) async {
+    final ScanDocument? existing = _findById(id);
+    if (existing == null) return false;
+    final newTransforms = Map<int, PageTransform>.from(existing.pageTransforms);
+    if (transform.isEmpty) {
+      newTransforms.remove(pageIndex);
+    } else {
+      newTransforms[pageIndex] = transform;
+    }
+    final updated = existing.copyWith(pageTransforms: newTransforms, updatedAt: DateTime.now());
+    return _replaceAndSave(updated);
+  }
+
+  Future<bool> revertPageTransform(String id, int pageIndex) async {
+    return updatePageTransform(id, pageIndex, const PageTransform());
   }
 
   Future<bool> _replaceAndSave(ScanDocument updated) async {
