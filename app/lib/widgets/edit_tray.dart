@@ -112,10 +112,10 @@ class _EditTrayState extends State<EditTray> with SingleTickerProviderStateMixin
         );
       },
       child: Container(
-        margin: EdgeInsets.symmetric(horizontal: 10, vertical: widget.compact ? 4 : 6),
-        height: widget.compact ? 64 : 84,
+        margin: EdgeInsets.symmetric(horizontal: 10, vertical: widget.compact ? 3 : 6),
+        height: widget.compact ? 58 : 84,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(widget.compact ? 16 : 20),
+          borderRadius: BorderRadius.circular(widget.compact ? 14 : 20),
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
@@ -131,7 +131,7 @@ class _EditTrayState extends State<EditTray> with SingleTickerProviderStateMixin
           children: [
             Positioned.fill(
               child: IgnorePointer(
-                child: CustomPaint(painter: _TrackPainter(railColor, sleeperColor, widget.compact ? 53.0 : 71.0)),
+                child: CustomPaint(painter: _TrackPainter(railColor, sleeperColor, widget.compact ? 48.0 : 71.0)),
               ),
             ),
             Positioned.fill(
@@ -139,7 +139,7 @@ class _EditTrayState extends State<EditTray> with SingleTickerProviderStateMixin
                 controller: _scrollController,
                 scrollDirection: Axis.horizontal,
                 physics: const BouncingScrollPhysics(),
-                padding: EdgeInsets.symmetric(horizontal: widget.compact ? 10 : 12, vertical: widget.compact ? 6 : 8),
+                padding: EdgeInsets.symmetric(horizontal: widget.compact ? 8 : 12, vertical: widget.compact ? 4 : 8),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.end,
@@ -212,9 +212,9 @@ class _EditTrayState extends State<EditTray> with SingleTickerProviderStateMixin
       widgets.add(_buildCoach(items[i], coachFill, coachBorder, iconColor, textColor, hubColor, spokeColor));
       if (i < items.length - 1) {
         widgets.add(Container(
-          width: widget.compact ? 5 : 6,
+          width: widget.compact ? 4 : 6,
           height: widget.compact ? 3 : 4,
-          margin: EdgeInsets.only(bottom: widget.compact ? 4 : 5),
+          margin: EdgeInsets.only(bottom: widget.compact ? 3 : 5),
           color: couplerColor,
         ));
       }
@@ -231,11 +231,11 @@ class _EditTrayState extends State<EditTray> with SingleTickerProviderStateMixin
           IOSPressable(
             onTap: item.onTap,
             child: Container(
-              width: widget.compact ? 46 : 56,
-              height: widget.compact ? 40 : 52,
+              width: widget.compact ? 42 : 56,
+              height: widget.compact ? 36 : 52,
               decoration: BoxDecoration(
                 color: coachFill,
-                borderRadius: BorderRadius.circular(widget.compact ? 8 : 10),
+                borderRadius: BorderRadius.circular(widget.compact ? 7 : 10),
                 border: Border.all(color: coachBorder, width: 1),
                 boxShadow: [
                   BoxShadow(
@@ -249,7 +249,7 @@ class _EditTrayState extends State<EditTray> with SingleTickerProviderStateMixin
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(item.icon, color: iconColor, size: widget.compact ? 16 : 20),
+                  Icon(item.icon, color: iconColor, size: widget.compact ? 14 : 20),
                   const SizedBox(height: 2),
                   Text(
                     item.label,
@@ -264,21 +264,21 @@ class _EditTrayState extends State<EditTray> with SingleTickerProviderStateMixin
           ),
           const SizedBox(height: 2),
           SizedBox(
-            width: widget.compact ? 46 : 56,
+            width: widget.compact ? 42 : 56,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 ValueListenableBuilder<double>(
                   valueListenable: _wheelAngle,
                   builder: (context, angle, _) => CustomPaint(
-                    size: Size(widget.compact ? 8 : 10, widget.compact ? 8 : 10),
+                    size: Size(widget.compact ? 7 : 10, widget.compact ? 7 : 10),
                     painter: _WheelPainter(angle, hubColor, spokeColor),
                   ),
                 ),
                 ValueListenableBuilder<double>(
                   valueListenable: _wheelAngle,
                   builder: (context, angle, _) => CustomPaint(
-                    size: Size(widget.compact ? 8 : 10, widget.compact ? 8 : 10),
+                    size: Size(widget.compact ? 7 : 10, widget.compact ? 7 : 10),
                     painter: _WheelPainter(angle, hubColor, spokeColor),
                   ),
                 ),

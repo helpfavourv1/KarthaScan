@@ -356,6 +356,7 @@ class _ScanDetailScreenState extends State<ScanDetailScreen>
                 ),
               ),
               EditTray(
+                compact: true,
                 onMarkup: () { _closeEditor(); annotateCurrentPage(); },
                 onSign: signFromTray,
                 onWatermark: () { _closeEditor(); addWatermarkNow(); },
