@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../core/models/scan_document.dart';
+import '../core/models/page_transform.dart';
 import '../core/models/signature_placement.dart';
 import '../core/utils/constants.dart';
 import '../l10n/app_localizations.dart';
@@ -41,6 +42,7 @@ class ScanPreviewCard extends StatefulWidget {
     this.initialPage = 0,
     this.onPageChanged,
     this.onEditFullscreen,
+    this.pageTransforms = const {},
   });
 
   final List<String> pagePaths;
@@ -73,6 +75,7 @@ class ScanPreviewCard extends StatefulWidget {
   final int initialPage;
   final ValueChanged<int>? onPageChanged;
   final VoidCallback? onEditFullscreen;
+  final Map<int, PageTransform> pageTransforms;
 
   @override
   State<ScanPreviewCard> createState() => _ScanPreviewCardState();
@@ -276,6 +279,7 @@ Widget _buildStampControls(String kind) {
                   setState(() => _currentPage = index);
                   widget.onPageChanged?.call(index);
                 },
+                pageTransforms: widget.pageTransforms,
               ),
           ),
           if (widget.editMode == TrayEditMode.signature && widget.inkController != null)

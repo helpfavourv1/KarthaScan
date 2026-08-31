@@ -309,6 +309,7 @@ class _ScanDetailScreenState extends State<ScanDetailScreen>
                             onClearStampPage: clearStampPage,
                             onClearAllStampLayers: clearAllStampLayers,
                             onEditFullscreen: () => context.push('/edit/${document.id}'),
+                            pageTransforms: document.pageTransforms,
                           ),
                         ),
                       ],

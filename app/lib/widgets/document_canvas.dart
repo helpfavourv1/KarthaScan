@@ -1,8 +1,12 @@
 import 'dart:io' show File;
+import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:image/image.dart' as img;
 import '../core/models/scan_document.dart';
+import '../core/models/page_transform.dart';
 import '../core/models/signature_placement.dart';
+import '../core/services/export_service.dart' show FilterType;
+import '../core/services/filter_service.dart';
 import '../core/utils/constants.dart';
 import '../l10n/app_localizations.dart';
 import 'ink_board.dart';
@@ -33,6 +37,7 @@ class DocumentCanvas extends StatefulWidget {
     this.pageController,
     this.initialPage = 0,
     this.onPageChanged,
+    this.pageTransforms = const {},
   });
 
   final List<String> pagePaths;
@@ -56,6 +61,7 @@ class DocumentCanvas extends StatefulWidget {
   final PageController? pageController;
   final int initialPage;
   final ValueChanged<int>? onPageChanged;
+  final Map<int, PageTransform> pageTransforms;
 
   @override
   State<DocumentCanvas> createState() => _DocumentCanvasState();
@@ -140,6 +146,7 @@ class _DocumentCanvasState extends State<DocumentCanvas> {
             onStampSelect: widget.onStampSelect,
             onStampSelected: widget.onStampSelected,
             onStampLayerUpdate: widget.onStampLayerUpdate,
+            pageTransforms: widget.pageTransforms,
           );
         },
       ),
@@ -170,6 +177,7 @@ class _PageWithInk extends StatefulWidget {
     this.onStampSelected,
     this.onStampLayerUpdate,
     this.onSignatureSelect,
+    this.pageTransforms = const {},
   });
 
   final String pagePath;
@@ -192,6 +200,7 @@ class _PageWithInk extends StatefulWidget {
   final VoidCallback? onStampSelect;
   final void Function(StampLayer layer)? onStampSelected;
   final void Function(int pageIndex, StampLayer layer)? onStampLayerUpdate;
+  final Map<int, PageTransform> pageTransforms;
 
   @override
   State<_PageWithInk> createState() => _PageWithInkState();
@@ -200,6 +209,7 @@ class _PageWithInk extends StatefulWidget {
 class _PageWithInkState extends State<_PageWithInk> {
   double _pageAspect = 0.75;
   final TransformationController _transformController = TransformationController();
+  Uint8List? _filteredBytes;
 
   @override
   void dispose() {
@@ -221,6 +231,12 @@ class _PageWithInkState extends State<_PageWithInk> {
       if (decoded != null && decoded.height > 0 && mounted) {
         setState(() => _pageAspect = (decoded.width / decoded.height).clamp(0.1, 10.0).toDouble());
       }
+      final transform = widget.pageTransforms[widget.pageIndex];
+      if (transform != null && transform.filter != FilterType.none && decoded != null) {
+        final filtered = FilterService.applyToImage(decoded, transform.filter);
+        final filteredBytes = Uint8List.fromList(img.encodeJpg(filtered, quality: 85));
+        if (mounted) setState(() => _filteredBytes = filteredBytes);
+      }
     } catch (_) {}
   }
 
@@ -228,16 +244,20 @@ class _PageWithInkState extends State<_PageWithInk> {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        double iw = constraints.maxWidth;
-        double ih = iw / _pageAspect;
-        double dx = 0, dy = 0;
-        if (ih > constraints.maxHeight) {
-          ih = constraints.maxHeight;
-          iw = ih * _pageAspect;
-          dx = (constraints.maxWidth - iw) / 2;
-        } else {
-          dy = (constraints.maxHeight - ih) / 2;
+        final transform = widget.pageTransforms[widget.pageIndex];
+        final rotationTurns = transform?.rotationTurns ?? 0;
+        final isRotated = (rotationTurns % 2 != 0);
+        final visualAspect = isRotated ? (1.0 / _pageAspect) : _pageAspect;
+
+        double visualW = constraints.maxWidth;
+        double visualH = visualW / visualAspect;
+        if (visualH > constraints.maxHeight) {
+          visualH = constraints.maxHeight;
+          visualW = visualH * visualAspect;
         }
+
+        final originalW = isRotated ? visualH : visualW;
+        final originalH = isRotated ? visualW : visualH;
 
         return Stack(
           children: [
@@ -248,12 +268,24 @@ class _PageWithInkState extends State<_PageWithInk> {
                 maxScale: 4,
                 child: Center(
                   child: SizedBox(
-                    width: iw,
-                    height: ih,
-                    child: Image.file(
-                      File(widget.pagePath),
-                      fit: BoxFit.fill,
-                      errorBuilder: (_, __, ___) => Icon(Icons.broken_image_outlined, color: widget.textSecondary, size: 48),
+                    width: visualW,
+                    height: visualH,
+                    child: FittedBox(
+                      fit: BoxFit.contain,
+                      child: RotatedBox(
+                        quarterTurns: rotationTurns,
+                        child: SizedBox(
+                          width: originalW,
+                          height: originalH,
+                          child: _filteredBytes != null
+                              ? Image.memory(_filteredBytes!, fit: BoxFit.fill)
+                              : Image.file(
+                                  File(widget.pagePath),
+                                  fit: BoxFit.fill,
+                                  errorBuilder: (_, __, ___) => Icon(Icons.broken_image_outlined, color: widget.textSecondary, size: 48),
+                                ),
+                        ),
+                      ),
                     ),
                   ),
                 ),
@@ -265,80 +297,96 @@ class _PageWithInkState extends State<_PageWithInk> {
                 builder: (context, child) {
                   return Transform(
                     transform: _transformController.value,
-                    child: Stack(
-                      children: [
-                        if (widget.controller != null)
-                          InkOverlayPage(
-                            controller: widget.controller!,
-                            onSelected: widget.onSignatureSelect,
-                            pageIndex: widget.pageIndex,
-                            imgW: iw, imgH: ih, iw: iw, ih: ih, dx: dx, dy: dy,
-                            accent: widget.accent,
-                            transformController: _transformController,
+                    child: Center(
+                      child: SizedBox(
+                        width: visualW,
+                        height: visualH,
+                        child: FittedBox(
+                          fit: BoxFit.contain,
+                          child: RotatedBox(
+                            quarterTurns: rotationTurns,
+                            child: SizedBox(
+                              width: originalW,
+                              height: originalH,
+                              child: Stack(
+                                children: [
+                                  if (widget.controller != null)
+                                    InkOverlayPage(
+                                      controller: widget.controller!,
+                                      onSelected: widget.onSignatureSelect,
+                                      pageIndex: widget.pageIndex,
+                                      imgW: originalW, imgH: originalH, iw: originalW, ih: originalH, dx: 0, dy: 0,
+                                      accent: widget.accent,
+                                      transformController: _transformController,
+                                    ),
+                                  if (widget.annotateLayers.isNotEmpty)
+                                    AnnotateOverlayPage(
+                                      layers: widget.annotateLayers,
+                                      pageIndex: widget.pageIndex,
+                                      iw: originalW, ih: originalH, dx: 0, dy: 0,
+                                      accent: widget.accent,
+                                      selectedBytesPath: widget.selectedAnnotateBytesPath,
+                                      onSelect: (layer) => widget.onAnnotateSelect?.call(layer),
+                                      transformController: _transformController,
+                                      onDrag: (layer, dxDelta, dyDelta) {
+                                        widget.onAnnotateUpdate?.call(widget.pageIndex, AnnotateLayer(
+                                          pageIndex: layer.pageIndex,
+                                          bytesPath: layer.bytesPath,
+                                          placement: SignaturePlacement(
+                                            pctX: (layer.placement.pctX + dxDelta / originalW).clamp(0.0, 1.0),
+                                            pctY: (layer.placement.pctY + dyDelta / originalH).clamp(0.0, 1.0),
+                                            rotationDegrees: layer.placement.rotationDegrees,
+                                            scale: layer.placement.scale,
+                                          ),
+                                        ));
+                                      },
+                                    ),
+                                  if (widget.watermarkLayers.isNotEmpty)
+                                    WatermarkOverlayPage(
+                                      layers: widget.watermarkLayers,
+                                      pageIndex: widget.pageIndex,
+                                      iw: originalW, ih: originalH, dx: 0, dy: 0,
+                                      accent: widget.accent,
+                                      selectedText: widget.selectedWatermarkText,
+                                      onSelect: (layer) { widget.onWatermarkSelected?.call(layer); widget.onWatermarkSelect?.call(); },
+                                      transformController: _transformController,
+                                      onDrag: (layer, dxDelta, dyDelta) {
+                                        widget.onWatermarkLayerUpdate?.call(widget.pageIndex, layer.copyWith(
+                                          placement: SignaturePlacement(
+                                            pctX: (layer.placement.pctX + dxDelta / originalW).clamp(0.0, 1.0),
+                                            pctY: (layer.placement.pctY + dyDelta / originalH).clamp(0.0, 1.0),
+                                            rotationDegrees: layer.placement.rotationDegrees,
+                                            scale: layer.placement.scale,
+                                          ),
+                                        ));
+                                      },
+                                    ),
+                                  if (widget.stampLayers.isNotEmpty)
+                                    StampOverlayPage(
+                                      layers: widget.stampLayers,
+                                      pageIndex: widget.pageIndex,
+                                      iw: originalW, ih: originalH, dx: 0, dy: 0,
+                                      accent: widget.accent,
+                                      selectedId: widget.selectedStampId,
+                                      onSelect: (layer) { widget.onStampSelected?.call(layer); widget.onStampSelect?.call(); },
+                                      transformController: _transformController,
+                                      onDrag: (layer, dxDelta, dyDelta) {
+                                        widget.onStampLayerUpdate?.call(widget.pageIndex, layer.copyWith(
+                                          placement: SignaturePlacement(
+                                            pctX: (layer.placement.pctX + dxDelta / originalW).clamp(0.0, 1.0),
+                                            pctY: (layer.placement.pctY + dyDelta / originalH).clamp(0.0, 1.0),
+                                            rotationDegrees: layer.placement.rotationDegrees,
+                                            scale: layer.placement.scale,
+                                          ),
+                                        ));
+                                      },
+                                    ),
+                                ],
+                              ),
+                            ),
                           ),
-                        if (widget.annotateLayers.isNotEmpty)
-                          AnnotateOverlayPage(
-                            layers: widget.annotateLayers,
-                            pageIndex: widget.pageIndex,
-                            iw: iw, ih: ih, dx: dx, dy: dy,
-                            accent: widget.accent,
-                            selectedBytesPath: widget.selectedAnnotateBytesPath,
-                            onSelect: (layer) => widget.onAnnotateSelect?.call(layer),
-                            transformController: _transformController,
-                            onDrag: (layer, dxDelta, dyDelta) {
-                              widget.onAnnotateUpdate?.call(widget.pageIndex, AnnotateLayer(
-                                pageIndex: layer.pageIndex,
-                                bytesPath: layer.bytesPath,
-                                placement: SignaturePlacement(
-                                  pctX: (layer.placement.pctX + dxDelta / iw).clamp(0.0, 1.0),
-                                  pctY: (layer.placement.pctY + dyDelta / ih).clamp(0.0, 1.0),
-                                  rotationDegrees: layer.placement.rotationDegrees,
-                                  scale: layer.placement.scale,
-                                ),
-                              ));
-                            },
-                          ),
-                        if (widget.watermarkLayers.isNotEmpty)
-                          WatermarkOverlayPage(
-                            layers: widget.watermarkLayers,
-                            pageIndex: widget.pageIndex,
-                            iw: iw, ih: ih, dx: dx, dy: dy,
-                            accent: widget.accent,
-                            selectedText: widget.selectedWatermarkText,
-                            onSelect: (layer) { widget.onWatermarkSelected?.call(layer); widget.onWatermarkSelect?.call(); },
-                            transformController: _transformController,
-                            onDrag: (layer, dxDelta, dyDelta) {
-                              widget.onWatermarkLayerUpdate?.call(widget.pageIndex, layer.copyWith(
-                                placement: SignaturePlacement(
-                                  pctX: (layer.placement.pctX + dxDelta / iw).clamp(0.0, 1.0),
-                                  pctY: (layer.placement.pctY + dyDelta / ih).clamp(0.0, 1.0),
-                                  rotationDegrees: layer.placement.rotationDegrees,
-                                  scale: layer.placement.scale,
-                                ),
-                              ));
-                            },
-                          ),
-                        if (widget.stampLayers.isNotEmpty)
-                          StampOverlayPage(
-                            layers: widget.stampLayers,
-                            pageIndex: widget.pageIndex,
-                            iw: iw, ih: ih, dx: dx, dy: dy,
-                            accent: widget.accent,
-                            selectedId: widget.selectedStampId,
-                            onSelect: (layer) { widget.onStampSelected?.call(layer); widget.onStampSelect?.call(); },
-                            transformController: _transformController,
-                            onDrag: (layer, dxDelta, dyDelta) {
-                              widget.onStampLayerUpdate?.call(widget.pageIndex, layer.copyWith(
-                                placement: SignaturePlacement(
-                                  pctX: (layer.placement.pctX + dxDelta / iw).clamp(0.0, 1.0),
-                                  pctY: (layer.placement.pctY + dyDelta / ih).clamp(0.0, 1.0),
-                                  rotationDegrees: layer.placement.rotationDegrees,
-                                  scale: layer.placement.scale,
-                                ),
-                              ));
-                            },
-                          ),
-                      ],
+                        ),
+                      ),
                     ),
                   );
                 },

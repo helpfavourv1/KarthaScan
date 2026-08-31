@@ -214,6 +214,7 @@ class _FullScreenEditScreenState extends State<FullScreenEditScreen> with Docume
                   physics: const NeverScrollableScrollPhysics(),
                   initialPage: _currentPageIndex,
                   onPageChanged: (index) => setState(() => _currentPageIndex = index),
+                  pageTransforms: doc.pageTransforms,
                 ),
               ),
               // Bottom stack

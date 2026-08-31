@@ -19,6 +19,7 @@ import 'package:pdf/pdf.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../core/models/scan_document.dart';
+import '../core/models/page_transform.dart';
 import '../core/models/signature_placement.dart';
 import '../core/providers/scan_provider.dart';
 import '../core/services/export_service.dart' show FilterType;
@@ -395,22 +396,11 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
     final doc = document;
     if (doc == null || doc.pagePaths.isEmpty) return;
     final chosen = await showModalBottomSheet<FilterType>(context: context, isScrollControlled: true, builder: (ctx) => FilterPreviewSheet(imagePath: doc.pagePaths[currentPageIndex]));
-    if (chosen == null || chosen == FilterType.none || !mounted) return;
-    try {
-      final originalBytes = await File(doc.pagePaths[currentPageIndex]).readAsBytes();
-      final filtered = await compute(filterBakeIsolate, {'original': originalBytes, 'filter': chosen.index});
-      final appDir = await getApplicationDocumentsDirectory();
-      final dir = Directory(p.join(appDir.path, 'filtered_pages'));
-      await dir.create(recursive: true);
-      final newPath = p.join(dir.path, 'flt_${DateTime.now().microsecondsSinceEpoch}_$currentPageIndex.jpg');
-      await File(newPath).writeAsBytes(filtered);
-      final newPaths = List<String>.from(doc.pagePaths);
-      newPaths[currentPageIndex] = newPath;
-      await scanProvider.updateDocumentPages(doc.id, newPaths);
-      if (mounted) ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Filter applied')));
-    } catch (e) {
-      if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Error: $e')));
-    }
+    if (chosen == null || !mounted) return;
+    final existing = doc.pageTransforms[currentPageIndex] ?? const PageTransform();
+    final updated = existing.copyWith(filter: chosen);
+    await scanProvider.updatePageTransform(doc.id, currentPageIndex, updated);
+    if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(chosen == FilterType.none ? 'Filter removed' : 'Filter applied')));
   }
 
   Future<void> cropCurrentPage() async {
@@ -481,31 +471,21 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
     );
     if (turns == null || turns == 0 || !mounted) return;
 
-    try {
-      final appDir = await getApplicationDocumentsDirectory();
-      final scansDir = Directory(p.join(appDir.path, 'rotated_pages'));
-      await scansDir.create(recursive: true);
+    final List<int> indicesToRotate = applyAll
+        ? List<int>.generate(doc.pagePaths.length, (i) => i)
+        : [currentPageIndex];
 
-      final List<String> newPaths = List<String>.from(doc.pagePaths);
-      final List<int> indicesToRotate = applyAll
-          ? List<int>.generate(doc.pagePaths.length, (i) => i)
-          : [currentPageIndex];
+    for (final idx in indicesToRotate) {
+      final currentDoc = document;
+      if (currentDoc == null) return;
+      final existing = currentDoc.pageTransforms[idx] ?? const PageTransform();
+      final updated = existing.copyWith(rotationTurns: (existing.rotationTurns + turns) % 4);
+      await scanProvider.updatePageTransform(currentDoc.id, idx, updated);
+    }
 
-      for (final idx in indicesToRotate) {
-        final originalBytes = await File(doc.pagePaths[idx]).readAsBytes();
-        final rotatedBytes = await compute(rotateIsolate, {'original': originalBytes, 'turns': turns});
-        final newPath = p.join(scansDir.path, 'rot_${DateTime.now().microsecondsSinceEpoch}_$idx.jpg');
-        await File(newPath).writeAsBytes(rotatedBytes);
-        newPaths[idx] = newPath;
-      }
-
-      await scanProvider.updateDocumentPages(doc.id, newPaths);
-      if (mounted) {
-        final msg = applyAll ? 'All pages rotated' : 'Page rotated';
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(msg)));
-      }
-    } catch (e) {
-      if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Error: $e')));
+    if (mounted) {
+      final msg = applyAll ? 'All pages rotated' : 'Page rotated';
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(msg)));
     }
   }
 
