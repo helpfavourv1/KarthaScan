@@ -7,7 +7,6 @@
 import 'dart:io' show File, Directory;
 import 'dart:typed_data';
 
-import 'package:flutter/foundation.dart' show compute;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show Clipboard, ClipboardData;
 import 'package:go_router/go_router.dart';
@@ -25,7 +24,6 @@ import '../core/providers/scan_provider.dart';
 import '../core/services/export_service.dart' show FilterType;
 import '../core/services/local_storage.dart';
 import '../core/services/ocr_service.dart';
-import '../core/services/page_isolates.dart';
 import '../core/services/print_service.dart';
 import '../core/services/share_service.dart';
 import '../l10n/app_localizations.dart';
@@ -425,23 +423,10 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
     );
     if (strokes == null || strokes.isEmpty || !mounted) return;
 
-    try {
-      final originalBytes = await File(doc.pagePaths[currentPageIndex]).readAsBytes();
-      final erased = await compute(eraseIsolate, {'original': originalBytes, 'strokes': strokes});
-
-      final appDir = await getApplicationDocumentsDirectory();
-      final dir = Directory(p.join(appDir.path, 'erased_pages'));
-      await dir.create(recursive: true);
-      final newPath = p.join(dir.path, 'ers_${DateTime.now().microsecondsSinceEpoch}_$currentPageIndex.jpg');
-      await File(newPath).writeAsBytes(erased);
-
-      final newPaths = List<String>.from(doc.pagePaths);
-      newPaths[currentPageIndex] = newPath;
-      await scanProvider.updateDocumentPages(doc.id, newPaths);
-      if (mounted) ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Eraser applied')));
-    } catch (e) {
-      if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Error: $e')));
-    }
+    final existing = doc.pageTransforms[currentPageIndex] ?? const PageTransform();
+    final updated = existing.copyWith(eraserStrokes: [...existing.eraserStrokes, ...strokes]);
+    await scanProvider.updatePageTransform(doc.id, currentPageIndex, updated);
+    if (mounted) ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Eraser applied')));
   }
 
   Future<void> rotatePage() async {

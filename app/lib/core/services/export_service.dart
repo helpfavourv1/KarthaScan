@@ -172,7 +172,7 @@ class ExportService {
     final inkMap = <String, SignatureInk>{
       if (documentInks != null) for (final ink in documentInks) ink.id: ink,
     };
-    final hasTransform = pageTransform != null && (pageTransform.filter != FilterType.none || pageTransform.rotationTurns != 0 || pageTransform.cropRect != null || pageTransform.resizeWidth != null);
+    final hasTransform = pageTransform != null && (pageTransform.filter != FilterType.none || pageTransform.rotationTurns != 0 || pageTransform.cropRect != null || pageTransform.resizeWidth != null || pageTransform.eraserStrokes.isNotEmpty);
     if (filter == FilterType.none && !hasTransform && layers.isEmpty && annotateLayers.isEmpty && watermarkLayers.isEmpty && stampLayers.isEmpty) {
       return original;
     }
@@ -195,6 +195,33 @@ class ExportService {
       }
       if (pageTransform != null && pageTransform.rotationTurns != 0) {
         decoded = img.copyRotate(decoded, angle: pageTransform.rotationTurns * 90);
+      }
+      if (pageTransform != null && pageTransform.eraserStrokes.isNotEmpty) {
+        for (final s in pageTransform.eraserStrokes) {
+          final pts = (s['points'] as List<dynamic>)
+              .map((e) => (e as List<dynamic>).map((v) => (v as num).toDouble()).toList())
+              .toList();
+          final colorInt = s['color'] as int;
+          final color = img.ColorRgba8((colorInt >> 16) & 0xFF, (colorInt >> 8) & 0xFF, colorInt & 0xFF, (colorInt >> 24) & 0xFF);
+          final wf = (s['width'] as num).toDouble();
+          final thickness = (wf * decoded.width).clamp(1.0, decoded.width / 2).round();
+          final isRect = s['rect'] as bool? ?? false;
+          if (isRect && pts.length >= 2) {
+            final x1 = (pts[0][0] * decoded.width).round();
+            final y1 = (pts[0][1] * decoded.height).round();
+            final x2 = (pts[1][0] * decoded.width).round();
+            final y2 = (pts[1][1] * decoded.height).round();
+            img.fillRect(decoded, x1: x1, y1: y1, x2: x2, y2: y2, color: color);
+          } else {
+            for (int i = 0; i < pts.length - 1; i++) {
+              final x1 = (pts[i][0] * decoded.width).round();
+              final y1 = (pts[i][1] * decoded.height).round();
+              final x2 = (pts[i + 1][0] * decoded.width).round();
+              final y2 = (pts[i + 1][1] * decoded.height).round();
+              img.drawLine(decoded, x1: x1, y1: y1, x2: x2, y2: y2, color: color, thickness: thickness, antialias: true);
+            }
+          }
+        }
       }
       for (final layer in layers) {
         final ink = inkMap[layer.inkId];

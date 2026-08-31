@@ -232,7 +232,7 @@ class _PageWithInkState extends State<_PageWithInk> {
         setState(() => _pageAspect = (decoded.width / decoded.height).clamp(0.1, 10.0).toDouble());
       }
       final transform = widget.pageTransforms[widget.pageIndex];
-      if (transform != null && decoded != null && (transform.cropRect != null || transform.resizeWidth != null || transform.filter != FilterType.none)) {
+      if (transform != null && decoded != null && (transform.cropRect != null || transform.resizeWidth != null || transform.filter != FilterType.none || transform.eraserStrokes.isNotEmpty)) {
         img.Image processed = decoded;
         if (transform.cropRect != null && transform.cropRect!.width > 0 && transform.cropRect!.height > 0) {
           final r = transform.cropRect!;
@@ -243,6 +243,33 @@ class _PageWithInkState extends State<_PageWithInk> {
         }
         if (transform.filter != FilterType.none) {
           processed = FilterService.applyToImage(processed, transform.filter);
+        }
+        if (transform.eraserStrokes.isNotEmpty) {
+          for (final s in transform.eraserStrokes) {
+            final pts = (s['points'] as List<dynamic>)
+                .map((e) => (e as List<dynamic>).map((v) => (v as num).toDouble()).toList())
+                .toList();
+            final colorInt = s['color'] as int;
+            final color = img.ColorRgba8((colorInt >> 16) & 0xFF, (colorInt >> 8) & 0xFF, colorInt & 0xFF, (colorInt >> 24) & 0xFF);
+            final wf = (s['width'] as num).toDouble();
+            final thickness = (wf * processed.width).clamp(1.0, processed.width / 2).round();
+            final isRect = s['rect'] as bool? ?? false;
+            if (isRect && pts.length >= 2) {
+              final x1 = (pts[0][0] * processed.width).round();
+              final y1 = (pts[0][1] * processed.height).round();
+              final x2 = (pts[1][0] * processed.width).round();
+              final y2 = (pts[1][1] * processed.height).round();
+              img.fillRect(processed, x1: x1, y1: y1, x2: x2, y2: y2, color: color);
+            } else {
+              for (int i = 0; i < pts.length - 1; i++) {
+                final x1 = (pts[i][0] * processed.width).round();
+                final y1 = (pts[i][1] * processed.height).round();
+                final x2 = (pts[i + 1][0] * processed.width).round();
+                final y2 = (pts[i + 1][1] * processed.height).round();
+                img.drawLine(processed, x1: x1, y1: y1, x2: x2, y2: y2, color: color, thickness: thickness, antialias: true);
+              }
+            }
+          }
         }
         final processedBytes = Uint8List.fromList(img.encodeJpg(processed, quality: 85));
         if (mounted) setState(() => _filteredBytes = processedBytes);
