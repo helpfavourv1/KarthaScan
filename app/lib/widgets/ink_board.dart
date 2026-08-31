@@ -171,6 +171,7 @@ class InkOverlayPage extends StatelessWidget {
     required this.dy,
     required this.accent,
     this.onSelected,
+    this.transformController,
   });
 
   final InkController controller;
@@ -178,6 +179,7 @@ class InkOverlayPage extends StatelessWidget {
   final int pageIndex;
   final double imgW, imgH, iw, ih, dx, dy;
   final Color accent;
+  final TransformationController? transformController;
 
   @override
   Widget build(BuildContext context) {
@@ -198,17 +200,21 @@ class InkOverlayPage extends StatelessWidget {
               child: GestureDetector(
                 behavior: HitTestBehavior.opaque,
                 onTap: () { controller.setEditInk(entry.key); onSelectedCallback?.call(); },
-                onPanUpdate: (d) => controller.updatePlacement(
+                onPanUpdate: (d) {
+                  final scale = transformController?.value.getMaxScaleOnAxis() ?? 1.0;
+                  controller.updatePlacement(
                   entry.key,
                   pageIndex,
                   SignaturePlacement(
-                    pctX: (pl.pctX + d.delta.dx / iw).clamp(0.0, 1.0),
-                    pctY: (pl.pctY + d.delta.dy / ih).clamp(0.0, 1.0),
+                    pctX: (pl.pctX + (d.delta.dx / scale) / iw).clamp(0.0, 1.0),
+                    pctY: (pl.pctY + (d.delta.dy / scale) / ih).clamp(0.0, 1.0),
                     rotationDegrees: pl.rotationDegrees,
                     scale: pl.scale,
                   ),
-                ),
+                  );
+                },
                 child: Container(
+                  padding: const EdgeInsets.all(12),
                   decoration: isEdit
                       ? BoxDecoration(
                           border: Border.all(color: accent, width: 1.5),
@@ -245,6 +251,7 @@ class AnnotateOverlayPage extends StatefulWidget {
     required this.onSelect,
     required this.onDrag,
     this.onSelected,
+    this.transformController,
   });
 
   final List<AnnotateLayer> layers;
@@ -255,6 +262,7 @@ class AnnotateOverlayPage extends StatefulWidget {
   final void Function(AnnotateLayer layer) onSelect;
   final void Function(AnnotateLayer layer, double dxDelta, double dyDelta) onDrag;
   final VoidCallback? onSelected;
+  final TransformationController? transformController;
 
   @override
   State<AnnotateOverlayPage> createState() => _AnnotateOverlayPageState();
@@ -287,8 +295,12 @@ class _AnnotateOverlayPageState extends State<AnnotateOverlayPage> {
               child: GestureDetector(
                 behavior: HitTestBehavior.opaque,
                 onTap: () { widget.onSelect(layer); widget.onSelected?.call(); },
-                onPanUpdate: (d) => widget.onDrag(layer, d.delta.dx, d.delta.dy),
+                onPanUpdate: (d) {
+                  final scale = widget.transformController?.value.getMaxScaleOnAxis() ?? 1.0;
+                  widget.onDrag(layer, d.delta.dx / scale, d.delta.dy / scale);
+                },
                 child: Container(
+                  padding: const EdgeInsets.all(12),
                   decoration: isSelected
                       ? BoxDecoration(
                           border: Border.all(color: widget.accent, width: 1.5),
@@ -326,6 +338,7 @@ class WatermarkOverlayPage extends StatelessWidget {
     required this.onSelect,
     required this.onDrag,
     this.onSelected,
+    this.transformController,
   });
 
   final List<WatermarkLayer> layers;
@@ -336,6 +349,7 @@ class WatermarkOverlayPage extends StatelessWidget {
   final void Function(WatermarkLayer layer) onSelect;
   final void Function(WatermarkLayer layer, double dxDelta, double dyDelta) onDrag;
   final VoidCallback? onSelected;
+  final TransformationController? transformController;
 
   @override
   Widget build(BuildContext context) {
@@ -359,15 +373,18 @@ class WatermarkOverlayPage extends StatelessWidget {
               child: GestureDetector(
                 behavior: HitTestBehavior.opaque,
                 onTap: () { onSelect(layer); onSelected?.call(); },
-                onPanUpdate: (d) => onDrag(layer, d.delta.dx, d.delta.dy),
+                onPanUpdate: (d) {
+                  final scale = transformController?.value.getMaxScaleOnAxis() ?? 1.0;
+                  onDrag(layer, d.delta.dx / scale, d.delta.dy / scale);
+                },
                 child: Container(
+                  padding: const EdgeInsets.all(12),
                   decoration: isSelected
                       ? BoxDecoration(
                           border: Border.all(color: accent, width: 1.5),
                           borderRadius: BorderRadius.circular(4),
                         )
                       : null,
-                  padding: const EdgeInsets.all(4),
                   child: Transform.rotate(
                     angle: layer.placement.rotationDegrees * 3.14159 / 180,
                     child: Text(
@@ -459,6 +476,7 @@ class StampOverlayPage extends StatelessWidget {
     required this.onSelect,
     required this.onDrag,
     this.onSelected,
+    this.transformController,
   });
 
   final List<StampLayer> layers;
@@ -469,6 +487,7 @@ class StampOverlayPage extends StatelessWidget {
   final void Function(StampLayer layer) onSelect;
   final void Function(StampLayer layer, double dxDelta, double dyDelta) onDrag;
   final VoidCallback? onSelected;
+  final TransformationController? transformController;
 
   @override
   Widget build(BuildContext context) {
@@ -485,10 +504,13 @@ class StampOverlayPage extends StatelessWidget {
                 child: GestureDetector(
                   behavior: HitTestBehavior.opaque,
                   onTap: () { onSelect(layer); onSelected?.call(); },
-                  onPanUpdate: (d) => onDrag(layer, d.delta.dx, d.delta.dy),
+                  onPanUpdate: (d) {
+                    final scale = transformController?.value.getMaxScaleOnAxis() ?? 1.0;
+                    onDrag(layer, d.delta.dx / scale, d.delta.dy / scale);
+                  },
                   child: Container(
+                    padding: const EdgeInsets.all(12),
                     decoration: isSelected ? BoxDecoration(border: Border.all(color: accent, width: 1.5), borderRadius: BorderRadius.circular(4)) : null,
-                    padding: const EdgeInsets.all(4),
                     child: Transform.rotate(
                       angle: layer.placement.rotationDegrees * 3.14159 / 180,
                       child: SizedBox(
@@ -517,10 +539,13 @@ class StampOverlayPage extends StatelessWidget {
                 child: GestureDetector(
                   behavior: HitTestBehavior.opaque,
                   onTap: () { onSelect(layer); onSelected?.call(); },
-                  onPanUpdate: (d) => onDrag(layer, d.delta.dx, d.delta.dy),
+                  onPanUpdate: (d) {
+                    final scale = transformController?.value.getMaxScaleOnAxis() ?? 1.0;
+                    onDrag(layer, d.delta.dx / scale, d.delta.dy / scale);
+                  },
                   child: Container(
+                    padding: const EdgeInsets.all(12),
                     decoration: isSelected ? BoxDecoration(border: Border.all(color: accent, width: 1.5), borderRadius: BorderRadius.circular(4)) : null,
-                    padding: const EdgeInsets.all(4),
                     child: Transform.rotate(
                       angle: layer.placement.rotationDegrees * 3.14159 / 180,
                       child: SizedBox(width: size, height: size, child: CustomPaint(painter: _SealPainter(layer))),
@@ -543,14 +568,17 @@ class StampOverlayPage extends StatelessWidget {
               child: GestureDetector(
                 behavior: HitTestBehavior.opaque,
                 onTap: () { onSelect(layer); onSelected?.call(); },
-                onPanUpdate: (d) => onDrag(layer, d.delta.dx, d.delta.dy),
+                onPanUpdate: (d) {
+                    final scale = transformController?.value.getMaxScaleOnAxis() ?? 1.0;
+                    onDrag(layer, d.delta.dx / scale, d.delta.dy / scale);
+                  },
                 child: Container(
+                  padding: const EdgeInsets.all(12),
                   decoration: BoxDecoration(
                     color: layer.kind == 'note' && layer.noteBgColor != null ? Color(layer.noteBgColor!).withValues(alpha: layer.opacity) : null,
                     borderRadius: BorderRadius.circular(layer.kind == 'note' ? 16 : 4),
                     border: isSelected ? Border.all(color: accent, width: 1.5) : null,
                   ),
-                  padding: EdgeInsets.all(layer.kind == 'note' ? layer.fontSize * layer.placement.scale * (40 / 72) : 4),
                   child: Transform.rotate(
                     angle: layer.placement.rotationDegrees * 3.14159 / 180,
                     child: Text(

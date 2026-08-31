@@ -61,6 +61,13 @@ class _ExportScreenState extends State<ExportScreen> {
 
   bool _isRunning = false;
   String? _statusMessage;
+  final TransformationController _exportTransformController = TransformationController();
+
+  @override
+  void dispose() {
+    _exportTransformController.dispose();
+    super.dispose();
+  }
 
   @override
   void initState() {
@@ -456,21 +463,47 @@ class _ExportScreenState extends State<ExportScreen> {
                     borderRadius: BorderRadius.circular(8),
                     border: Border.all(color: Colors.grey.withValues(alpha: 0.3)),
                   ),
-                  child: Stack(
-                    children: [
-                      Positioned.fill(child: Center(child: Image.memory(imgBytes, fit: BoxFit.contain))),
-                      InkOverlayPage(
-                        controller: _inkController,
-                        pageIndex: pageIndex,
-                        imgW: imgW,
-                        imgH: imgH,
-                        iw: iw,
-                        ih: ih,
-                        dx: dx,
-                        dy: dy,
-                        accent: accent,
-                      ),
-                    ],
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(8),
+                    child: Stack(
+                      children: [
+                        Positioned.fill(
+                          child: InteractiveViewer(
+                            transformationController: _exportTransformController,
+                            minScale: 1,
+                            maxScale: 4,
+                            child: Center(
+                              child: SizedBox(
+                                width: iw,
+                                height: ih,
+                                child: Image.memory(imgBytes, fit: BoxFit.fill),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Positioned.fill(
+                          child: AnimatedBuilder(
+                            animation: _exportTransformController,
+                            builder: (context, child) {
+                              return Transform(
+                                transform: _exportTransformController.value,
+                                child: Stack(
+                                  children: [
+                                    InkOverlayPage(
+                                      controller: _inkController,
+                                      pageIndex: pageIndex,
+                                      imgW: imgW, imgH: imgH, iw: iw, ih: ih, dx: dx, dy: dy,
+                                      accent: accent,
+                                      transformController: _exportTransformController,
+                                    ),
+                                  ],
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 );
               },

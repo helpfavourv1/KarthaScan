@@ -199,6 +199,13 @@ class _PageWithInk extends StatefulWidget {
 
 class _PageWithInkState extends State<_PageWithInk> {
   double _pageAspect = 0.75;
+  final TransformationController _transformController = TransformationController();
+
+  @override
+  void dispose() {
+    _transformController.dispose();
+    super.dispose();
+  }
 
   @override
   void initState() {
@@ -232,105 +239,111 @@ class _PageWithInkState extends State<_PageWithInk> {
           dy = (constraints.maxHeight - ih) / 2;
         }
 
-        // CRITICAL FIX: Re-enable pan/zoom even when overlays are present.
         return Stack(
           children: [
             Positioned.fill(
               child: InteractiveViewer(
+                transformationController: _transformController,
                 minScale: 1,
                 maxScale: 4,
-                panEnabled: true,
-                scaleEnabled: true,
                 child: Center(
-                  child: Image.file(
-                    File(widget.pagePath),
-                    fit: BoxFit.contain,
-                    errorBuilder: (_, __, ___) => Icon(Icons.broken_image_outlined, color: widget.textSecondary, size: 48),
+                  child: SizedBox(
+                    width: iw,
+                    height: ih,
+                    child: Image.file(
+                      File(widget.pagePath),
+                      fit: BoxFit.fill,
+                      errorBuilder: (_, __, ___) => Icon(Icons.broken_image_outlined, color: widget.textSecondary, size: 48),
+                    ),
                   ),
                 ),
               ),
             ),
-            if (widget.controller != null)
-              InkOverlayPage(
-                controller: widget.controller!,
-                onSelected: widget.onSignatureSelect,
-                pageIndex: widget.pageIndex,
-                imgW: iw,
-                imgH: ih,
-                iw: iw,
-                ih: ih,
-                dx: dx,
-                dy: dy,
-                accent: widget.accent,
-              ),
-            if (widget.annotateLayers.isNotEmpty)
-              AnnotateOverlayPage(
-                layers: widget.annotateLayers,
-                pageIndex: widget.pageIndex,
-                iw: iw,
-                ih: ih,
-                dx: dx,
-                dy: dy,
-                accent: widget.accent,
-                selectedBytesPath: widget.selectedAnnotateBytesPath,
-                onSelect: (layer) => widget.onAnnotateSelect?.call(layer),
-                onDrag: (layer, dxDelta, dyDelta) {
-                  widget.onAnnotateUpdate?.call(widget.pageIndex, AnnotateLayer(
-                    pageIndex: layer.pageIndex,
-                    bytesPath: layer.bytesPath,
-                    placement: SignaturePlacement(
-                      pctX: (layer.placement.pctX + dxDelta / iw).clamp(0.0, 1.0),
-                      pctY: (layer.placement.pctY + dyDelta / ih).clamp(0.0, 1.0),
-                      rotationDegrees: layer.placement.rotationDegrees,
-                      scale: layer.placement.scale,
+            Positioned.fill(
+              child: AnimatedBuilder(
+                animation: _transformController,
+                builder: (context, child) {
+                  return Transform(
+                    transform: _transformController.value,
+                    child: Stack(
+                      children: [
+                        if (widget.controller != null)
+                          InkOverlayPage(
+                            controller: widget.controller!,
+                            onSelected: widget.onSignatureSelect,
+                            pageIndex: widget.pageIndex,
+                            imgW: iw, imgH: ih, iw: iw, ih: ih, dx: dx, dy: dy,
+                            accent: widget.accent,
+                            transformController: _transformController,
+                          ),
+                        if (widget.annotateLayers.isNotEmpty)
+                          AnnotateOverlayPage(
+                            layers: widget.annotateLayers,
+                            pageIndex: widget.pageIndex,
+                            iw: iw, ih: ih, dx: dx, dy: dy,
+                            accent: widget.accent,
+                            selectedBytesPath: widget.selectedAnnotateBytesPath,
+                            onSelect: (layer) => widget.onAnnotateSelect?.call(layer),
+                            transformController: _transformController,
+                            onDrag: (layer, dxDelta, dyDelta) {
+                              widget.onAnnotateUpdate?.call(widget.pageIndex, AnnotateLayer(
+                                pageIndex: layer.pageIndex,
+                                bytesPath: layer.bytesPath,
+                                placement: SignaturePlacement(
+                                  pctX: (layer.placement.pctX + dxDelta / iw).clamp(0.0, 1.0),
+                                  pctY: (layer.placement.pctY + dyDelta / ih).clamp(0.0, 1.0),
+                                  rotationDegrees: layer.placement.rotationDegrees,
+                                  scale: layer.placement.scale,
+                                ),
+                              ));
+                            },
+                          ),
+                        if (widget.watermarkLayers.isNotEmpty)
+                          WatermarkOverlayPage(
+                            layers: widget.watermarkLayers,
+                            pageIndex: widget.pageIndex,
+                            iw: iw, ih: ih, dx: dx, dy: dy,
+                            accent: widget.accent,
+                            selectedText: widget.selectedWatermarkText,
+                            onSelect: (layer) { widget.onWatermarkSelected?.call(layer); widget.onWatermarkSelect?.call(); },
+                            transformController: _transformController,
+                            onDrag: (layer, dxDelta, dyDelta) {
+                              widget.onWatermarkLayerUpdate?.call(widget.pageIndex, layer.copyWith(
+                                placement: SignaturePlacement(
+                                  pctX: (layer.placement.pctX + dxDelta / iw).clamp(0.0, 1.0),
+                                  pctY: (layer.placement.pctY + dyDelta / ih).clamp(0.0, 1.0),
+                                  rotationDegrees: layer.placement.rotationDegrees,
+                                  scale: layer.placement.scale,
+                                ),
+                              ));
+                            },
+                          ),
+                        if (widget.stampLayers.isNotEmpty)
+                          StampOverlayPage(
+                            layers: widget.stampLayers,
+                            pageIndex: widget.pageIndex,
+                            iw: iw, ih: ih, dx: dx, dy: dy,
+                            accent: widget.accent,
+                            selectedId: widget.selectedStampId,
+                            onSelect: (layer) { widget.onStampSelected?.call(layer); widget.onStampSelect?.call(); },
+                            transformController: _transformController,
+                            onDrag: (layer, dxDelta, dyDelta) {
+                              widget.onStampLayerUpdate?.call(widget.pageIndex, layer.copyWith(
+                                placement: SignaturePlacement(
+                                  pctX: (layer.placement.pctX + dxDelta / iw).clamp(0.0, 1.0),
+                                  pctY: (layer.placement.pctY + dyDelta / ih).clamp(0.0, 1.0),
+                                  rotationDegrees: layer.placement.rotationDegrees,
+                                  scale: layer.placement.scale,
+                                ),
+                              ));
+                            },
+                          ),
+                      ],
                     ),
-                  ));
+                  );
                 },
               ),
-            if (widget.watermarkLayers.isNotEmpty)
-              WatermarkOverlayPage(
-                layers: widget.watermarkLayers,
-                pageIndex: widget.pageIndex,
-                iw: iw,
-                ih: ih,
-                dx: dx,
-                dy: dy,
-                accent: widget.accent,
-                selectedText: widget.selectedWatermarkText,
-                onSelect: (layer) { widget.onWatermarkSelected?.call(layer); widget.onWatermarkSelect?.call(); },
-                onDrag: (layer, dxDelta, dyDelta) {
-                  widget.onWatermarkLayerUpdate?.call(widget.pageIndex, layer.copyWith(
-                    placement: SignaturePlacement(
-                      pctX: (layer.placement.pctX + dxDelta / iw).clamp(0.0, 1.0),
-                      pctY: (layer.placement.pctY + dyDelta / ih).clamp(0.0, 1.0),
-                      rotationDegrees: layer.placement.rotationDegrees,
-                      scale: layer.placement.scale,
-                    ),
-                  ));
-                },
-              ),
-            if (widget.stampLayers.isNotEmpty)
-              StampOverlayPage(
-                layers: widget.stampLayers,
-                pageIndex: widget.pageIndex,
-                iw: iw,
-                ih: ih,
-                dx: dx,
-                dy: dy,
-                accent: widget.accent,
-                selectedId: widget.selectedStampId,
-                onSelect: (layer) { widget.onStampSelected?.call(layer); widget.onStampSelect?.call(); },
-                onDrag: (layer, dxDelta, dyDelta) {
-                  widget.onStampLayerUpdate?.call(widget.pageIndex, layer.copyWith(
-                    placement: SignaturePlacement(
-                      pctX: (layer.placement.pctX + dxDelta / iw).clamp(0.0, 1.0),
-                      pctY: (layer.placement.pctY + dyDelta / ih).clamp(0.0, 1.0),
-                      rotationDegrees: layer.placement.rotationDegrees,
-                      scale: layer.placement.scale,
-                    ),
-                  ));
-                },
-              ),
+            ),
           ],
         );
       },
