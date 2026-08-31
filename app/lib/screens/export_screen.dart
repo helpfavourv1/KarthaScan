@@ -5,6 +5,8 @@ import 'package:flutter/foundation.dart' show compute;
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:path/path.dart' as p;
+import 'package:file_saver/file_saver.dart';
 import 'package:provider/provider.dart';
 import 'package:image/image.dart' as img;
 
@@ -210,13 +212,32 @@ class _ExportScreenState extends State<ExportScreen> {
       _statusMessage = l10n.exportDoneStatus;
     });
 
-    try {
-      await _shareService.shareFiles(filePaths: allOutputPaths);
-    } on ShareFailedException {
-      // Share sheet failing to open isn't fatal here.
+    // B4: Save to Device (Public Downloads/MediaStore)
+    final savedPaths = <String>[];
+    for (final path in allOutputPaths) {
+      try {
+        final file = File(path);
+        final bytes = await file.readAsBytes();
+        final ext = p.extension(path).replaceAll('.', '');
+        final name = p.basenameWithoutExtension(path);
+        final mimeType = _getMimeType(ext);
+        final savedPath = await FileSaver.instance.saveFile(name: name, bytes: bytes, ext: ext, mimeType: mimeType);
+        savedPaths.add(savedPath);
+      } catch (_) {}
     }
 
-    if (mounted) context.pop();
+    if (!mounted) return;
+    
+    final messenger = ScaffoldMessenger.of(context);
+    messenger.showSnackBar(SnackBar(
+      content: const Text('Saved to Downloads'),
+      duration: const Duration(seconds: 4),
+      action: SnackBarAction(
+        label: 'Share',
+        onPressed: () => _shareService.shareFiles(filePaths: savedPaths.isNotEmpty ? savedPaths : allOutputPaths),
+      ),
+    ));
+    context.pop();
   }
 
   @override
@@ -387,8 +408,8 @@ class _ExportScreenState extends State<ExportScreen> {
                         width: double.infinity,
                         child: ElevatedButton.icon(
                           onPressed: _runExport,
-                          icon: const Icon(Icons.ios_share, size: 20),
-                          label: const Text('Export & Share', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700)),
+                          icon: const Icon(Icons.save_outlined, size: 20),
+                          label: const Text('Save to Device', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700)),
                           style: ElevatedButton.styleFrom(
                             backgroundColor: accent,
                             foregroundColor: Colors.white,
@@ -870,7 +891,20 @@ class _ExportScreenState extends State<ExportScreen> {
     );
   }
 
+
+  MimeType _getMimeType(String ext) {
+    switch (ext) {
+      case 'pdf': return MimeType.pdf;
+      case 'docx': return MimeType.other;
+      case 'csv': return MimeType.csv;
+      case 'txt': return MimeType.text;
+      case 'jpg': case 'jpeg': return MimeType.jpeg;
+      case 'png': return MimeType.png;
+      default: return MimeType.other;
+    }
+  }
 }
+
 
 
 
