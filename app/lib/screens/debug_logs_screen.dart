@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import '../core/services/debug_log_service.dart';
 import '../core/utils/constants.dart';
+import '../l10n/app_localizations.dart';
 
 class DebugLogsScreen extends StatelessWidget {
   const DebugLogsScreen({super.key});
@@ -20,12 +21,12 @@ class DebugLogsScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: bg,
         elevation: 0,
-        title: Text('Debug Logs', style: TextStyle(color: textPrimary)),
+        title: Text(AppLocalizations.of(context).debugLogsLabel, style: TextStyle(color: textPrimary)),
         iconTheme: IconThemeData(color: textPrimary),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.delete_outline, color: textSecondary),
-            tooltip: 'Clear logs',
+            tooltip: AppLocalizations.of(context).clearLogsTooltip,
             onPressed: logger.clear,
           ),
         ],

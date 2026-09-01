@@ -1,9 +1,5 @@
 {
   "@@locale": "en",
-  "appTitle": "KatharScan",
-  "@appTitle": {
-    "description": "The app's brand name, shown on the home screen app bar."
-  },
   "commonCancel": "Cancel",
   "commonDelete": "Delete",
   "commonSave": "Save",
@@ -11,10 +7,7 @@
   "commonExport": "Export",
   "commonImport": "Import",
   "commonSkip": "Skip",
-  "commonYes": "Yes",
-  "commonSet": "Set",
   "commonClear": "Clear",
-  "commonUpgrade": "Upgrade",
   "emptyStateDefaultMessage": "Tap the camera to scan your first document.",
   "exportFormatSheetTitle": "Export as",
   "exportFormatPdfLabel": "PDF",
@@ -44,14 +37,8 @@
   "deleteTooltip": "Delete",
   "searchHint": "Search your scans",
   "settingsTooltip": "Settings",
-  "noSearchResults": "No scans match your search.",
   "foldersSectionHeader": "Folders",
   "documentsSectionHeader": "Documents",
-  "exportBatchProTitle": "Batch export is a Pro feature",
-  "exportBatchProMessage": "Exporting several scans at once needs KatharScan Pro. You can still export one at a time for free.",
-  "addSignatureQuestion": "Add a signature?",
-  "signSheetTitle": "Sign",
-  "useSignatureButton": "Use signature",
   "exportingStatus": "Exporting…",
   "exportDoneStatus": "Done",
   "exportGenericError": "Something went wrong while exporting.",
@@ -75,40 +62,16 @@
   "couldNotImportBackupError": "Could not import this backup. Check the password and try again.",
   "backupCorruptedError": "This backup file looks corrupted.",
   "importedCount": "{count, plural, =1{1 document imported} other{{count} documents imported}}",
-  "paywallTitle": "KatharScan Pro",
-  "paywallSubtitle": "Core scanning and OCR are free forever. Pro unlocks power tools.",
-  "freeTierLabel": "Free",
-  "proTierLabel": "Pro",
-  "freeFeatureScanning": "Unlimited scanning",
-  "freeFeatureOcr": "Unlimited on-device OCR (Latin)",
-  "freeFeatureNoAds": "No watermark, no account, no ads",
-  "freeFeatureFolders": "Folders & search",
-  "freeFeatureFormats": "5 export formats",
-  "freeFeatureDarkMode": "Dark mode",
-  "proFeatureFilters": "Advanced filters",
-  "proFeatureSignature": "Signature overlay",
-  "proFeatureTags": "Custom tags & smart folders",
-  "proFeatureBatch": "Batch export",
-  "proFeatureMigration": "Device Migration",
-  "monthlyLabel": "Monthly",
-  "yearlyLabel": "Yearly",
-  "yearlySaveBadge": "Save ~15%",
   "continueButton": "Continue",
   "restorePurchasesButton": "Restore purchases",
-  "trustPromise": "Cancel anytime. We will never show you an ad, and we will never lock a free feature behind a paywall.",
-  "alreadyProTitle": "You're on KatharScan Pro",
-  "alreadyProMessage": "All power tools are unlocked. Thank you for supporting KatharScan.",
   "pricingLoadingError": "Pricing is still loading — try again in a moment.",
   "renameDocumentTitle": "Rename document",
   "addTagTitle": "Add tag",
-  "addTagChipLabel": "+ Add tag",
   "moveToFolderTooltip": "Move to folder",
   "exportTooltip": "Export",
   "deleteScanTitle": "Delete this scan?",
   "deleteScanMessage": "This can't be undone.",
   "movedToFolderMessage": "Moved to folder.",
-  "noFoldersYetMessage": "No folders yet. Create one from the home screen.",
-  "ocrTextLabel": "OCR text",
   "noTextRecognized": "No text recognized.",
   "scanUnavailable": "This scan is no longer available.",
   "settingsTitle": "Settings",
@@ -122,23 +85,286 @@
   "storageSectionLabel": "Storage",
   "deviceMigrationLabel": "Device Migration",
   "subscriptionSectionLabel": "Subscription",
-  "katharscanProLabel": "KatharScan Pro",
-  "upgradeToProLabel": "Upgrade to Pro",
   "aboutSectionLabel": "About",
   "privacyPolicyLabel": "Privacy policy",
   "supportLabel": "Support",
   "couldNotOpenLinkError": "Could not open link.",
   "restoreCompleteMessage": "Restore complete.",
   "genericErrorMessage": "Something went wrong. Please try again.",
-  "docScannerUnsupportedMessage": "Your device doesn't support the advanced document scanner. Take a photo with your Camera app, then tap Import below to crop and save it.",
-  "manualCropTitle": "Crop document",
-  "manualCropInstructions": "Drag the corners to match the document's edges",
-  "manualCropApplyGrayscale": "Grayscale",
-  "manualCropSaveButton": "Save",
   "homeLanguageTooltip": "App Language",
-  "homeSignatureTooltip": "Signature",
-  "homeBatchExportTooltip": "Batch Export",
   "removeAdsTitle": "Remove Ads Forever",
-  "removeAdsSubtitle": "Enjoy a clean, uninterrupted scanning experience with zero recurring fees.",
-  "removeAdsPrice": "$9.99 One-time"
+  "extractedTextTitle": "Extracted Text",
+  "commonClose": "Close",
+  "commonCopy": "Copy",
+  "savedToDocumentText": "Saved to document text",
+  "regionOcrFailed": "Region OCR failed",
+  "filterRemoved": "Filter removed",
+  "filterApplied": "Filter applied",
+  "pageCropped": "Page cropped",
+  "revertToOriginalTitle": "Revert to Original?",
+  "revertToOriginalMessage": "This will undo all filters, rotations, crops, resizes, and eraser strokes on this page.",
+  "commonRevert": "Revert",
+  "pageRevertedToOriginal": "Page reverted to original",
+  "eraserApplied": "Eraser applied",
+  "pageResized": "Page resized",
+  "extractedAsNewDocument": "Extracted as new document",
+  "pagesUpdated": "Pages updated",
+  "printOptionsTitle": "Print Options",
+  "letterSizeUS": "Letter size (US)",
+  "commonPrint": "Print",
+  "printFailed": "Print failed",
+  "noEmailAppFound": "No email app found",
+  "emailFailed": "Email failed",
+  "fromPageLabel": "From",
+  "toPageLabel": "To",
+  "pdfImportedAsDocument": "PDF imported as document",
+  "frontSideCaptured": "Front side captured. Now capture the back side.",
+  "idCardPdfGenerated": "ID Card PDF Generated",
+  "sharePdf": "Share PDF",
+  "saveAsDocument": "Save as Document",
+  "commonDone": "Done",
+  "documentSaved": "Document saved",
+  "commonReset": "Reset",
+  "autoScan": "Auto Scan",
+  "importAndConvertDocument": "Import & Convert Document",
+  "signatureTitle": "Signature",
+  "signatureChoiceMessage": "Use your saved signature or draw a new one?",
+  "useSavedSignature": "Use Saved",
+  "drawNewSignature": "Draw New",
+  "copyAll": "Copy all",
+  "clearThis": "Clear this",
+  "commonRemove": "Remove",
+  "clearAll": "Clear all",
+  "addSignature": "Add Signature",
+  "commonUse": "Use",
+  "stampTickedLabel": "Ticked",
+  "stampBoxLabel": "Box",
+  "stampTickLabel": "Tick",
+  "commonCustom": "Custom",
+  "commonChange": "Change",
+  "commonColor": "Color",
+  "stampPaperLabel": "Paper",
+  "whiteHaloLabel": "White halo (readability)",
+  "commonCreate": "Create",
+  "newFolderTitle": "New Folder",
+  "batchExportEmptyMessage": "No documents to batch export. Scan some first.",
+  "newFolderTooltip": "New Folder",
+  "accentColorTooltip": "Accent Color",
+  "moveToFolderTitle": "Move to Folder",
+  "noFoldersYetHomeMessage": "No folders yet. Create one from the home screen.",
+  "appLanguageTitle": "App Language",
+  "accentColorTitle": "Accent Color",
+  "sealEditTitle": "Edit Custom Seal",
+  "sealCreateTitle": "Custom Seal",
+  "sealMainTextLabel": "Main text (top arc / box)",
+  "sealSubtextLabel": "Subtext (bottom arc / below)",
+  "sealShapeOval": "Oval",
+  "sealShapeBox": "Box",
+  "sealCenterStar": "Star",
+  "sealCenterText": "Text",
+  "sealCenterLogo": "Logo",
+  "sealCenterNone": "None",
+  "sealCenterTextLabel": "Center text",
+  "sealLogoReady": "Logo ready",
+  "textSizeLabel": "Text size: {size}",
+  "@textSizeLabel": {
+    "placeholders": {
+      "size": {
+        "type": "int"
+      }
+    }
+  },
+  "commonUpdate": "Update",
+  "managePagesTitle": "Manage Pages",
+  "pageLabel": "Page {index}",
+  "@pageLabel": {
+    "placeholders": {
+      "index": {
+        "type": "int"
+      }
+    }
+  },
+  "duplicateAction": "Duplicate",
+  "rotate90Action": "Rotate 90°",
+  "extractToNewDocAction": "Extract to new doc",
+  "addPageTitle": "Add Page",
+  "cameraSource": "Camera",
+  "importFromGallery": "Import from Gallery",
+  "fromAnotherDocument": "From Another Document",
+  "pageCountLabel": "{count} pages",
+  "@pageCountLabel": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "commonConfirm": "Confirm",
+  "applyToAllPages": "Apply to all pages",
+  "widthLabel": "Width",
+  "heightLabel": "Height",
+  "lockAspectRatio": "Lock aspect ratio",
+  "originalDimensions": "Original: {w}×{h}",
+  "@originalDimensions": {
+    "placeholders": {
+      "w": {
+        "type": "int"
+      },
+      "h": {
+        "type": "int"
+      }
+    }
+  },
+  "ocrSectionLabel": "OCR",
+  "ocrLanguagesLabel": "OCR Languages",
+  "captureBehaviorSectionLabel": "CAPTURE BEHAVIOR",
+  "autoCopyOcrLabel": "Auto-copy OCR",
+  "autoCopyOcrSubtitle": "Copy text to clipboard after scan",
+  "beepOnCaptureLabel": "Beep on capture",
+  "beepOnCaptureSubtitle": "Play sound when scan completes",
+  "vibrateOnCaptureLabel": "Vibrate on capture",
+  "vibrateOnCaptureSubtitle": "Haptic feedback when scan completes",
+  "adsRemovedLabel": "Ads Removed",
+  "diagnosticsSectionLabel": "DIAGNOSTICS",
+  "debugLogsLabel": "Debug Logs",
+  "logEntriesLabel": "{count} entries",
+  "@logEntriesLabel": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "ocrStatusBuiltIn": "Built-in",
+  "ocrStatusChecking": "Checking...",
+  "ocrStatusOnDemand": "On-demand",
+  "savedAsNewDocument": "Saved as new document",
+  "conversionFailedPrefix": "Conversion failed",
+  "convertDocumentTitle": "Convert Document",
+  "convertToLabel": "Convert to:",
+  "actionLabel": "Action:",
+  "saveAsNewDocumentAction": "Save as new Document",
+  "exportAndShareAction": "Export & Share",
+  "docxWarningMessage": "DOCX sources render poorly as pages — save inside the app is limited to JPG/PNG from image, PDF, TXT or CSV sources. Use Export & Share for this file.",
+  "saveInsideAppWarning": "To save inside the app, choose JPG or PNG. Other targets are exported as files.",
+  "commonConvert": "Convert",
+  "conversionStarting": "Starting…",
+  "convertedDocTitle": "Converted {date}",
+  "@convertedDocTitle": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "progressReading": "Reading…",
+  "progressCopying": "Copying…",
+  "progressBuildingPdf": "Building PDF…",
+  "progressBuildingDocx": "Building DOCX…",
+  "progressDecodingImage": "Decoding image…",
+  "progressExtractingText": "Extracting text…",
+  "progressSaving": "Saving…",
+  "progressRasterizing": "Rasterizing pages…",
+  "progressEncodingPage": "Encoding page {current} of {total}…",
+  "@progressEncodingPage": {
+    "placeholders": {
+      "current": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "watermarkEditTitle": "Edit Watermark",
+  "watermarkAddTitle": "Add Watermark",
+  "watermarkTextLabel": "Text",
+  "opacityPercentLabel": "Opacity: {percent}%",
+  "@opacityPercentLabel": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "sizePtLabel": "Size: {size}pt",
+  "@sizePtLabel": {
+    "placeholders": {
+      "size": {
+        "type": "int"
+      }
+    }
+  },
+  "alignLabel": "Align",
+  "exportSavedToDownloads": "Saved to Downloads",
+  "commonShare": "Share",
+  "exportTitle": "Export",
+  "targetMbLabel": "{mb} MB",
+  "@targetMbLabel": {
+    "placeholders": {
+      "mb": {
+        "type": "int"
+      }
+    }
+  },
+  "filterColor": "Color",
+  "filterShadow": "Shadow",
+  "docxModeTextOnly": "Text Only",
+  "docxModeWithImages": "With Images",
+  "saveToDeviceButton": "Save to Device",
+  "pageIndicator": "Page {current} / {total}",
+  "@pageIndicator": {
+    "placeholders": {
+      "current": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "fullscreenLabel": "Fullscreen",
+  "batchExportSignatureDisabled": "Batch export — signature placement disabled",
+  "fitToTargetMbLabel": "Fit to target MB",
+  "moreOptionsTooltip": "More options",
+  "commonRename": "Rename",
+  "addTagsAction": "Add Tags",
+  "editDocumentAction": "Edit Document",
+  "copiedToClipboard": "Copied to clipboard",
+  "favoriteTooltip": "Favorite",
+  "noFoldersYet": "No folders yet",
+  "rotateLabel": "Rotate",
+  "scaleLabel": "Scale",
+  "eraserTitle": "Eraser",
+  "tapToSampleColor": "Tap a spot to sample its color",
+  "commonSize": "Size",
+  "sampleColorTooltip": "Sample color from page",
+  "marqueeEraseTooltip": "Marquee erase",
+  "commonApply": "Apply",
+  "filterTitle": "Filter",
+  "intensityLabel": "Intensity",
+  "selectRegionTitle": "Select Region",
+  "commonExtract": "Extract",
+  "customColorTitle": "Custom Color",
+  "documentNotFound": "Document not found",
+  "clearLogsTooltip": "Clear logs",
+  "placeHereLabel": "Place here",
+  "tryAgainButton": "Try again",
+  "emptyDocumentMessage": "This document has no pages.",
+  "cameraErrorPrefix": "Camera error",
+  "importErrorPrefix": "Import error",
+  "pdfImportErrorPrefix": "PDF import error",
+  "pickErrorPrefix": "Pick error",
+  "scannerErrorPrefix": "Scanner error",
+  "idPdfErrorPrefix": "Error generating ID PDF",
+  "genericErrorPrefix": "Error",
+  "annotateTitle": "Annotate",
+  "placementsCountLabel": "{count} placed",
+  "@placementsCountLabel": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  }
 }

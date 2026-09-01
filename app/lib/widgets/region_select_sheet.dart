@@ -6,6 +6,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image/image.dart' as img;
+import '../l10n/app_localizations.dart';
 
 class RegionSelectSheet extends StatefulWidget {
   const RegionSelectSheet({super.key, required this.imagePath});
@@ -147,9 +148,9 @@ class _RegionSelectSheetState extends State<RegionSelectSheet> {
         ),
         child: Column(
           children: [
-            const Padding(
+            Padding(
               padding: EdgeInsets.all(16),
-              child: Text('Select Region', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600)),
+              child: Text(AppLocalizations.of(context).selectRegionTitle, style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600)),
             ),
             Expanded(
               child: _loading || _originalImage == null
@@ -200,7 +201,7 @@ class _RegionSelectSheetState extends State<RegionSelectSheet> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  TextButton(onPressed: () => Navigator.pop(context), child: const Text('Cancel')),
+                  TextButton(onPressed: () => Navigator.pop(context), child: Text(AppLocalizations.of(context).commonCancel)),
                   const SizedBox(width: 12),
                   ElevatedButton(
                     onPressed: _displayRect == null || _displayW == 0 || _displayH == 0
@@ -216,7 +217,7 @@ class _RegionSelectSheetState extends State<RegionSelectSheet> {
                             );
                             Navigator.pop(context, originalRect);
                           },
-                    child: const Text('Extract'),
+                    child: Text(AppLocalizations.of(context).commonExtract),
                   ),
                 ],
               ),

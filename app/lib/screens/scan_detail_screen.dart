@@ -170,7 +170,7 @@ class _ScanDetailScreenState extends State<ScanDetailScreen>
   void _copyOcrToClipboard(String text, AppLocalizations l10n) {
     Clipboard.setData(ClipboardData(text: text));
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Copied to clipboard'), duration: Duration(seconds: 2)),
+      SnackBar(content: Text(AppLocalizations.of(context).copiedToClipboard), duration: Duration(seconds: 2)),
     );
   }
 
@@ -223,7 +223,7 @@ class _ScanDetailScreenState extends State<ScanDetailScreen>
                 actions: [
                   IconButton(
                     icon: Icon(document.isFavorite ? Icons.star : Icons.star_border, color: accent),
-                    tooltip: 'Favorite',
+                    tooltip: AppLocalizations.of(context).favoriteTooltip,
                     onPressed: () => _scanProvider.toggleFavorite(document.id),
                   ),
                   IconButton(
@@ -327,17 +327,17 @@ class _ScanDetailScreenState extends State<ScanDetailScreen>
                               TextButton.icon(
                                 onPressed: () => _copyOcrToClipboard(document.ocrText, l10n),
                                 icon: const Icon(Icons.copy, size: 18),
-                                label: const Text('Copy'),
+                                label: Text(AppLocalizations.of(context).commonCopy),
                               ),
                               TextButton.icon(
                                 onPressed: () => _shareOcrText(document.ocrText),
                                 icon: const Icon(Icons.ios_share, size: 18),
-                                label: const Text('Share'),
+                                label: Text(AppLocalizations.of(context).commonShare),
                               ),
                               TextButton.icon(
                                 onPressed: () => _export(document),
                                 icon: const Icon(Icons.file_download_outlined, size: 18),
-                                label: const Text('Export'),
+                                label: Text(AppLocalizations.of(context).exportTitle),
                               ),
                             ],
                           ),
@@ -446,9 +446,9 @@ class _FolderPickerSheet extends StatelessWidget {
             Text(l10n.moveToFolderTooltip, style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w600)),
             const SizedBox(height: 8),
             if (folders.isEmpty)
-              const Padding(
+              Padding(
                 padding: EdgeInsets.symmetric(vertical: 16),
-                child: Text('No folders yet'),
+                child: Text(AppLocalizations.of(context).noFoldersYet),
               )
             else
               ...folders.map((folder) => ListTile(title: Text(folder.name), onTap: () => Navigator.of(context).pop(folder.id))),

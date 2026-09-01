@@ -39,6 +39,8 @@ import 'text_stamp_sheet.dart';
 import 'watermark_sheet.dart';
 
 mixin DocumentTools<T extends StatefulWidget> on State<T> {
+  AppLocalizations get l10n => AppLocalizations.of(context);
+
   // --- Host-supplied dependencies ---
   ScanProvider get scanProvider;
   InkController get inkController;
@@ -326,26 +328,26 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
-          title: const Text('Extracted Text'),
+          title: Text(l10n.extractedTextTitle),
           content: SelectableText(result.fullText.isEmpty ? 'No text found' : result.fullText),
           actions: [
-            TextButton(onPressed: () => Navigator.pop(context), child: const Text('Close')),
+            TextButton(onPressed: () => Navigator.pop(context), child: Text(l10n.commonClose)),
             TextButton(
               onPressed: () {
                 Clipboard.setData(ClipboardData(text: result.fullText));
                 Navigator.pop(context);
               },
-              child: const Text('Copy'),
+              child: Text(l10n.commonCopy),
             ),
             TextButton(
               onPressed: () async {
                 Navigator.pop(context);
                 await scanProvider.appendOcrText(doc.id, result.fullText);
                 if (context.mounted) {
-                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Saved to document text')));
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.savedToDocumentText)));
                 }
               },
-              child: const Text('Save'),
+              child: Text(l10n.commonSave),
             ),
           ],
         ),
@@ -355,7 +357,7 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(e.message)));
     } catch (e) {
       if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Region OCR failed: $e')));
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('${l10n.regionOcrFailed}: $e')));
     }
   }
 
@@ -398,7 +400,7 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
     final existing = doc.pageTransforms[currentPageIndex] ?? const PageTransform();
     final updated = existing.copyWith(filter: chosen);
     await scanProvider.updatePageTransform(doc.id, currentPageIndex, updated);
-    if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(chosen == FilterType.none ? 'Filter removed' : 'Filter applied')));
+    if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(chosen == FilterType.none ? l10n.filterRemoved : l10n.filterApplied)));
   }
 
   Future<void> cropCurrentPage() async {
@@ -409,7 +411,7 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
     final existing = doc.pageTransforms[currentPageIndex] ?? const PageTransform();
     final updated = existing.copyWith(cropRect: rect);
     await scanProvider.updatePageTransform(doc.id, currentPageIndex, updated);
-    if (mounted) ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Page cropped')));
+    if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.pageCropped)));
   }
 
   Future<void> revertPage() async {
@@ -421,13 +423,13 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
     final confirmed = await showDialog<bool>(
       context: context,
       builder: (ctx) => AlertDialog(
-        title: const Text('Revert to Original?'),
-        content: const Text('This will undo all filters, rotations, crops, resizes, and eraser strokes on this page.'),
+        title: Text(l10n.revertToOriginalTitle),
+        content: Text(l10n.revertToOriginalMessage),
         actions: [
-          TextButton(onPressed: () => Navigator.pop(ctx, false), child: const Text('Cancel')),
+          TextButton(onPressed: () => Navigator.pop(ctx, false), child: Text(l10n.commonCancel)),
           TextButton(
             onPressed: () => Navigator.pop(ctx, true),
-            child: const Text('Revert', style: TextStyle(color: Colors.red)),
+            child: Text(l10n.commonRevert, style: TextStyle(color: Colors.red)),
           ),
         ],
       ),
@@ -436,7 +438,7 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
 
     await scanProvider.revertPageTransform(doc.id, currentPageIndex);
     if (mounted) {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Page reverted to original')));
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.pageRevertedToOriginal)));
     }
   }
 
@@ -454,7 +456,7 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
     final existing = doc.pageTransforms[currentPageIndex] ?? const PageTransform();
     final updated = existing.copyWith(eraserStrokes: [...existing.eraserStrokes, ...strokes]);
     await scanProvider.updatePageTransform(doc.id, currentPageIndex, updated);
-    if (mounted) ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Eraser applied')));
+    if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.eraserApplied)));
   }
 
   Future<void> rotatePage() async {
@@ -509,7 +511,7 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
     final existing = doc.pageTransforms[currentPageIndex] ?? const PageTransform();
     final updated = existing.copyWith(resizeWidth: newW, resizeHeight: newH);
     await scanProvider.updatePageTransform(doc.id, currentPageIndex, updated);
-    if (mounted) ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Page resized')));
+    if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.pageResized)));
   }
 
   Future<void> openPagesManager() async {
@@ -528,7 +530,7 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
           final extractedDoc = await scanProvider.extractToNewDocument(doc.id, [index], 'Extracted Page');
           if (extractedDoc != null && mounted) {
             ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text('Extracted as new document: ${extractedDoc.title}')),
+              SnackBar(content: Text('${l10n.extractedAsNewDocument}: ${extractedDoc.title}')),
             );
             context.push('/scan/${extractedDoc.id}');
           }
@@ -538,7 +540,7 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
     if (newPaths == null || !mounted) return;
 
     await scanProvider.updateDocumentPages(doc.id, newPaths);
-    if (mounted) ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Pages updated')));
+    if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.pagesUpdated)));
   }
 
   Future<void> printDocument() async {
@@ -555,7 +557,7 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
       context: context,
       builder: (ctx) => StatefulBuilder(
         builder: (ctx, setDialogState) => AlertDialog(
-          title: const Text('Print Options'),
+          title: Text(l10n.printOptionsTitle),
           content: SingleChildScrollView(
             child: Column(
               mainAxisSize: MainAxisSize.min,
@@ -572,9 +574,9 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
                 if (mode == 'range')
                   Row(
                     children: [
-                      SizedBox(width: 60, child: TextField(controller: fromCtrl, keyboardType: TextInputType.number, decoration: const InputDecoration(labelText: 'From'))),
+                      SizedBox(width: 60, child: TextField(controller: fromCtrl, keyboardType: TextInputType.number, decoration: InputDecoration(labelText: l10n.fromPageLabel))),
                       const SizedBox(width: 8),
-                      SizedBox(width: 60, child: TextField(controller: toCtrl, keyboardType: TextInputType.number, decoration: const InputDecoration(labelText: 'To'))),
+                      SizedBox(width: 60, child: TextField(controller: toCtrl, keyboardType: TextInputType.number, decoration: InputDecoration(labelText: l10n.toPageLabel))),
                     ],
                   ),
                 const SizedBox(height: 8),
@@ -586,7 +588,7 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
                   items: FilterType.values.map((f) => DropdownMenuItem(value: f, child: Text(f == FilterType.none ? 'No filter' : f.name))).toList(),
                 ),
                 SwitchListTile(
-                  title: const Text('Letter size (US)'),
+                  title: Text(l10n.letterSizeUS),
                   value: letter,
                   onChanged: (v) => setDialogState(() => letter = v),
                 ),
@@ -594,8 +596,8 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
             ),
           ),
           actions: [
-            TextButton(onPressed: () => Navigator.pop(ctx, false), child: const Text('Cancel')),
-            TextButton(onPressed: () => Navigator.pop(ctx, true), child: const Text('Print')),
+            TextButton(onPressed: () => Navigator.pop(ctx, false), child: Text(l10n.commonCancel)),
+            TextButton(onPressed: () => Navigator.pop(ctx, true), child: Text(l10n.commonPrint)),
           ],
         ),
       ),
@@ -627,7 +629,7 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
         name: doc.title,
       );
     } catch (e) {
-      if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Print failed: $e')));
+      if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('${l10n.printFailed}: $e')));
     }
   }
 
@@ -654,10 +656,10 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
       if (await canLaunchUrl(uri)) {
         await launchUrl(uri, mode: LaunchMode.externalApplication);
       } else {
-        if (mounted) ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('No email app found')));
+        if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.noEmailAppFound)));
       }
     } catch (e) {
-      if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Email failed: $e')));
+      if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('${l10n.emailFailed}: $e')));
     }
   }
 }

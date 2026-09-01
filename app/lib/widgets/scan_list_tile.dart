@@ -106,7 +106,7 @@ class ScanListTile extends StatelessWidget {
               if (onMenuAction != null)
                 PopupMenuButton<String>(
                   icon: Icon(Icons.more_vert, color: textSecondary),
-                  tooltip: 'More options',
+                  tooltip: AppLocalizations.of(context).moreOptionsTooltip,
                   onSelected: (action) => onMenuAction!(action),
                   itemBuilder: (context) => [
                     PopupMenuItem(
@@ -114,15 +114,15 @@ class ScanListTile extends StatelessWidget {
                       child: Row(children: [Icon(document.isFavorite ? Icons.star : Icons.star_border, color: accent, size: 20), const SizedBox(width: 8), Text(document.isFavorite ? 'Remove from Favorites' : 'Add to Favorites')]),
                     ),
                     const PopupMenuDivider(),
-                    PopupMenuItem(value: 'rename', child: const Row(children: [Icon(Icons.edit_outlined, size: 20), SizedBox(width: 8), Text('Rename')])),
-                    PopupMenuItem(value: 'folder', child: const Row(children: [Icon(Icons.folder_outlined, size: 20), SizedBox(width: 8), Text('Move to Folder')])),
-                    PopupMenuItem(value: 'tags', child: const Row(children: [Icon(Icons.label_outline, size: 20), SizedBox(width: 8), Text('Add Tags')])),
-                    PopupMenuItem(value: 'edit', child: const Row(children: [Icon(Icons.edit_outlined, size: 20), SizedBox(width: 8), Text('Edit Document')])),
+                    PopupMenuItem(value: 'rename', child: Row(children: [Icon(Icons.edit_outlined, size: 20), SizedBox(width: 8), Text(AppLocalizations.of(context).commonRename)])),
+                    PopupMenuItem(value: 'folder', child: Row(children: [Icon(Icons.folder_outlined, size: 20), SizedBox(width: 8), Text(AppLocalizations.of(context).moveToFolderTitle)])),
+                    PopupMenuItem(value: 'tags', child: Row(children: [Icon(Icons.label_outline, size: 20), SizedBox(width: 8), Text(AppLocalizations.of(context).addTagsAction)])),
+                    PopupMenuItem(value: 'edit', child: Row(children: [Icon(Icons.edit_outlined, size: 20), SizedBox(width: 8), Text(AppLocalizations.of(context).editDocumentAction)])),
                     const PopupMenuDivider(),
-                    PopupMenuItem(value: 'export', child: const Row(children: [Icon(Icons.file_download_outlined, size: 20), SizedBox(width: 8), Text('Export')])),
-                    PopupMenuItem(value: 'share', child: const Row(children: [Icon(Icons.ios_share, size: 20), SizedBox(width: 8), Text('Share')])),
+                    PopupMenuItem(value: 'export', child: Row(children: [Icon(Icons.file_download_outlined, size: 20), SizedBox(width: 8), Text(AppLocalizations.of(context).exportTitle)])),
+                    PopupMenuItem(value: 'share', child: Row(children: [Icon(Icons.ios_share, size: 20), SizedBox(width: 8), Text(AppLocalizations.of(context).commonShare)])),
                     const PopupMenuDivider(),
-                    PopupMenuItem(value: 'delete', child: const Row(children: [Icon(Icons.delete_outline, size: 20), SizedBox(width: 8), Text('Delete')])),
+                    PopupMenuItem(value: 'delete', child: Row(children: [Icon(Icons.delete_outline, size: 20), SizedBox(width: 8), Text(AppLocalizations.of(context).commonDelete)])),
                   ],
                 ),
             ],

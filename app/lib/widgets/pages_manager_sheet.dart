@@ -9,6 +9,7 @@ import 'package:path_provider/path_provider.dart';
 
 import 'package:image/image.dart' as img;
 import '../core/models/scan_document.dart';
+import '../l10n/app_localizations.dart';
 
 class PagesManagerSheet extends StatefulWidget {
   const PagesManagerSheet({
@@ -57,7 +58,7 @@ class PagesManagerSheetState extends State<PagesManagerSheet> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('Manage Pages', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600, color: textPrimary)),
+                  Text(AppLocalizations.of(context).managePagesTitle, style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600, color: textPrimary)),
                   IconButton(icon: const Icon(Icons.close), onPressed: () => Navigator.pop(context)),
                 ],
               ),
@@ -92,7 +93,7 @@ class PagesManagerSheetState extends State<PagesManagerSheet> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  TextButton(onPressed: () => Navigator.pop(context), child: const Text('Cancel')),
+                  TextButton(onPressed: () => Navigator.pop(context), child: Text(AppLocalizations.of(context).commonCancel)),
                   const SizedBox(width: 12),
                   ElevatedButton(
                     onPressed: () => Navigator.pop(context, _pages),
@@ -101,7 +102,7 @@ class PagesManagerSheetState extends State<PagesManagerSheet> {
                       foregroundColor: Colors.white,
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                     ),
-                    child: const Text('Save'),
+                    child: Text(AppLocalizations.of(context).commonSave),
                   ),
                 ],
               ),
@@ -129,7 +130,7 @@ class PagesManagerSheetState extends State<PagesManagerSheet> {
             child: Image.file(File(_pages[index]), fit: BoxFit.cover),
           ),
         ),
-        title: Text('Page ${index + 1}', style: TextStyle(color: textPrimary, fontWeight: FontWeight.w600)),
+        title: Text(AppLocalizations.of(context).pageLabel(index + 1), style: TextStyle(color: textPrimary, fontWeight: FontWeight.w600)),
         trailing: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -155,9 +156,9 @@ class PagesManagerSheetState extends State<PagesManagerSheet> {
     final action = await showModalBottomSheet<String>(
       context: context,
       builder: (ctx) => SafeArea(child: Column(mainAxisSize: MainAxisSize.min, children: [
-        ListTile(leading: const Icon(Icons.copy), title: const Text('Duplicate'), onTap: () => Navigator.pop(ctx, 'duplicate')),
-        ListTile(leading: const Icon(Icons.rotate_90_degrees_ccw), title: const Text('Rotate 90°'), onTap: () => Navigator.pop(ctx, 'rotate')),
-        ListTile(leading: const Icon(Icons.open_in_new), title: const Text('Extract to new doc'), onTap: () => Navigator.pop(ctx, 'extract')),
+        ListTile(leading: const Icon(Icons.copy), title: Text(AppLocalizations.of(ctx).duplicateAction), onTap: () => Navigator.pop(ctx, 'duplicate')),
+        ListTile(leading: const Icon(Icons.rotate_90_degrees_ccw), title: Text(AppLocalizations.of(ctx).rotate90Action), onTap: () => Navigator.pop(ctx, 'rotate')),
+        ListTile(leading: const Icon(Icons.open_in_new), title: Text(AppLocalizations.of(ctx).extractToNewDocAction), onTap: () => Navigator.pop(ctx, 'extract')),
       ])),
     );
     if (action == null || !mounted) return;
@@ -189,7 +190,7 @@ class PagesManagerSheetState extends State<PagesManagerSheet> {
       ),
       child: ListTile(
         leading: Icon(Icons.add_circle_outline, color: accent, size: 48),
-        title: Text('Add Page', style: TextStyle(color: accent, fontWeight: FontWeight.w600)),
+        title: Text(AppLocalizations.of(context).addPageTitle, style: TextStyle(color: accent, fontWeight: FontWeight.w600)),
         onTap: _showAddOptions,
       ),
     );
@@ -204,17 +205,17 @@ class PagesManagerSheetState extends State<PagesManagerSheet> {
           children: [
             ListTile(
               leading: const Icon(Icons.camera_alt),
-              title: const Text('Camera'),
+              title: Text(AppLocalizations.of(ctx).cameraSource),
               onTap: () => Navigator.pop(ctx, 'camera'),
             ),
             ListTile(
               leading: const Icon(Icons.photo_library),
-              title: const Text('Import from Gallery'),
+              title: Text(AppLocalizations.of(ctx).importFromGallery),
               onTap: () => Navigator.pop(ctx, 'import'),
             ),
             ListTile(
               leading: const Icon(Icons.description),
-              title: const Text('From Another Document'),
+              title: Text(AppLocalizations.of(ctx).fromAnotherDocument),
               onTap: () => Navigator.pop(ctx, 'document'),
             ),
           ],
@@ -239,7 +240,7 @@ class PagesManagerSheetState extends State<PagesManagerSheet> {
       child: ListView(
         children: widget.allDocuments.map((doc) => ListTile(
           title: Text(doc.title),
-          subtitle: Text('${doc.pageCount} pages'),
+          subtitle: Text(AppLocalizations.of(ctx).pageCountLabel(doc.pageCount)),
           onTap: () => Navigator.pop(ctx, doc.id),
         )).toList(),
       ),

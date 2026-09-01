@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 
 import '../core/models/signature_placement.dart';
 import 'ink_board.dart';
+import '../l10n/app_localizations.dart';
 
 class SignatureEditorBar extends StatelessWidget {
   const SignatureEditorBar({
@@ -49,7 +50,7 @@ class SignatureEditorBar extends StatelessWidget {
           const SizedBox(width: 8),
           ActionChip(
             avatar: const Icon(Icons.draw_outlined, size: 14),
-            label: const Text('Place here', style: TextStyle(fontSize: 10)),
+            label: Text(AppLocalizations.of(context).placeHereLabel, style: TextStyle(fontSize: 10)),
             onPressed: onPlaceHere,
           ),
         ],

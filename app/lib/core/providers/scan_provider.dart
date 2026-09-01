@@ -20,6 +20,7 @@ import 'package:path_provider/path_provider.dart';
 
 import '../models/scan_document.dart';
 import '../models/signature_placement.dart';
+import '../models/ocr_block.dart';
 import '../models/page_transform.dart';
 import '../services/doc_scanner_service.dart';
 import '../services/local_storage.dart';
@@ -85,7 +86,7 @@ class ScanProvider {
       }
 
       scanFlowState.value = ScanFlowState.recognizingText;
-      final String ocrText =
+      final (String ocrText, Map<int, List<OcrBlock>> pageBlocks) =
           await _recognizeAllPages(scanResult.pageImagePaths, OcrScript.latin);
 
       scanFlowState.value = ScanFlowState.saving;
@@ -101,6 +102,7 @@ class ScanProvider {
         updatedAt: now,
         ocrText: ocrText,
         thumbnailPath: scanResult.pageImagePaths.first,
+        pageOcrBlocks: pageBlocks,
       );
 
       await _storage.saveDocument(document);
@@ -126,12 +128,14 @@ class ScanProvider {
     }
   }
 
-  Future<String> _recognizeAllPages(
+  Future<(String, Map<int, List<OcrBlock>>)> _recognizeAllPages(
     List<String> pagePaths,
     OcrScript script,
   ) async {
     final StringBuffer combined = StringBuffer();
-    for (final String path in pagePaths) {
+    final Map<int, List<OcrBlock>> pageBlocks = <int, List<OcrBlock>>{};
+    for (int i = 0; i < pagePaths.length; i++) {
+      final String path = pagePaths[i];
       try {
         final OcrResult result = await _ocr.recognizeText(
           imagePath: path,
@@ -139,6 +143,9 @@ class ScanProvider {
         );
         if (combined.isNotEmpty) combined.writeln();
         combined.write(result.fullText);
+        if (result.blocks.isNotEmpty) {
+          pageBlocks[i] = result.blocks;
+        }
       } on OcrUnavailableException {
         ocrUnavailable.value = true;
         break;
@@ -150,7 +157,7 @@ class ScanProvider {
     if (result.isNotEmpty && _settings.settings.value.autoCopyOcr) {
       Clipboard.setData(ClipboardData(text: result));
     }
-    return result;
+    return (result, pageBlocks);
   }
 
   Future<bool> renameDocument(String id, String newTitle) async {

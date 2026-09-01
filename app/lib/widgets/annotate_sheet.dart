@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'annotation_overlay.dart';
 import 'color_picker_dialog.dart';
+import '../l10n/app_localizations.dart';
 
 class AnnotateSheet extends StatefulWidget {
   const AnnotateSheet({super.key});
@@ -37,7 +38,7 @@ class _AnnotateSheetState extends State<AnnotateSheet> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('Annotate', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600, color: textPrimary)),
+                  Text(AppLocalizations.of(context).annotateTitle, style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600, color: textPrimary)),
                   IconButton(icon: const Icon(Icons.close), onPressed: () => Navigator.pop(context)),
                 ],
               ),
@@ -86,13 +87,13 @@ class _AnnotateSheetState extends State<AnnotateSheet> {
                           final c = await showDialog<Color>(context: context, builder: (ctx) => ColorPickerDialog(initial: _color));
                           if (c != null) { setState(() => _color = c); _apply(); }
                         },
-                        child: const Text('Custom'),
+                        child: Text(AppLocalizations.of(context).commonCustom),
                       ),
                     ],
                   ),
                   Row(
                     children: [
-                      const Text('Width', style: TextStyle(fontSize: 12)),
+                      Text(AppLocalizations.of(context).widthLabel, style: TextStyle(fontSize: 12)),
                       Expanded(
                         child: Slider(
                           value: _width, min: 2, max: 20, divisions: 18,
@@ -114,7 +115,7 @@ class _AnnotateSheetState extends State<AnnotateSheet> {
                   IconButton(icon: const Icon(Icons.redo), onPressed: () => _overlayKey.currentState?.redo()),
                   IconButton(icon: const Icon(Icons.delete_outline), onPressed: () => _overlayKey.currentState?.clear()),
                   const Spacer(),
-                  TextButton(onPressed: () => Navigator.pop(context), child: const Text('Cancel')),
+                  TextButton(onPressed: () => Navigator.pop(context), child: Text(AppLocalizations.of(context).commonCancel)),
                   const SizedBox(width: 12),
                   ElevatedButton(
                     onPressed: () async {
@@ -123,7 +124,7 @@ class _AnnotateSheetState extends State<AnnotateSheet> {
                       if (bytes != null) Navigator.pop(context, bytes);
                     },
                     style: ElevatedButton.styleFrom(backgroundColor: accent, foregroundColor: Colors.white, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))),
-                    child: const Text('Confirm'),
+                    child: Text(AppLocalizations.of(context).commonConfirm),
                   ),
                 ],
               ),

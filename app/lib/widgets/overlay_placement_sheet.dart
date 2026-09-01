@@ -3,6 +3,7 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:image/image.dart' as img;
 import '../core/utils/constants.dart';
+import '../l10n/app_localizations.dart';
 
 class OverlayPlacementSheet extends StatefulWidget {
   const OverlayPlacementSheet({
@@ -94,7 +95,7 @@ class OverlayPlacementSheetState extends State<OverlayPlacementSheet> {
                             ? () => setState(() { _currentPageIndex--; _loadPageAspect(_currentPageIndex); })
                             : null,
                       ),
-                      Text('Page ${_currentPageIndex + 1} / ${widget.pagePaths.length}', style: TextStyle(fontSize: 14, color: textPrimary)),
+                      Text(AppLocalizations.of(context).pageIndicator(_currentPageIndex + 1, widget.pagePaths.length), style: TextStyle(fontSize: 14, color: textPrimary)),
                       IconButton(
                         icon: const Icon(Icons.chevron_right),
                         onPressed: _currentPageIndex < widget.pagePaths.length - 1
@@ -148,7 +149,7 @@ class OverlayPlacementSheetState extends State<OverlayPlacementSheet> {
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Row(
                 children: [
-                  const Text('Rotate', style: TextStyle(fontSize: 12)),
+                  Text(AppLocalizations.of(context).rotateLabel, style: TextStyle(fontSize: 12)),
                   Expanded(
                     child: Slider(
                       value: _rotationDegrees,
@@ -166,7 +167,7 @@ class OverlayPlacementSheetState extends State<OverlayPlacementSheet> {
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Row(
                 children: [
-                  const Text('Scale', style: TextStyle(fontSize: 12)),
+                  Text(AppLocalizations.of(context).scaleLabel, style: TextStyle(fontSize: 12)),
                   Expanded(
                     child: Slider(
                       value: _scale,
@@ -185,7 +186,7 @@ class OverlayPlacementSheetState extends State<OverlayPlacementSheet> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  TextButton(onPressed: () => Navigator.pop(context), child: const Text('Cancel')),
+                  TextButton(onPressed: () => Navigator.pop(context), child: Text(AppLocalizations.of(context).commonCancel)),
                   const SizedBox(width: 12),
                   ElevatedButton(
                     onPressed: () {
@@ -196,7 +197,7 @@ class OverlayPlacementSheetState extends State<OverlayPlacementSheet> {
                       foregroundColor: Colors.white,
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                     ),
-                    child: const Text('Confirm'),
+                    child: Text(AppLocalizations.of(context).commonConfirm),
                   ),
                 ],
               ),

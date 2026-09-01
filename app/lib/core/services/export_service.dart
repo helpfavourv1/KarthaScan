@@ -16,6 +16,7 @@ import '../models/scan_document.dart';
 import '../models/ocr_block.dart';
 import '../models/page_transform.dart';
 import '../models/signature_placement.dart';
+import '../../l10n/app_localizations.dart';
 
 class ExportFailedException implements Exception {
   const ExportFailedException(this.message);
@@ -365,11 +366,17 @@ class ExportService {
     }
 
     if (document.pagePaths.isEmpty) {
+      final deviceLocale = ui.PlatformDispatcher.instance.locale;
+      final matchLocale = AppLocalizations.supportedLocales.firstWhere(
+        (l) => l.languageCode == deviceLocale.languageCode,
+        orElse: () => AppLocalizations.supportedLocales.first,
+      );
+      final emptyMsg = lookupAppLocalizations(matchLocale).emptyDocumentMessage;
       pdfDoc.addPage(
         pw.Page(
           pageFormat: pageFormat,
           build: (pw.Context context) => pw.Center(
-            child: pw.Text('This document has no pages.'),
+            child: pw.Text(emptyMsg),
           ),
         ),
       );

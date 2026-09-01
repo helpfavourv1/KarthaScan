@@ -230,10 +230,10 @@ class _ExportScreenState extends State<ExportScreen> {
     
     final messenger = ScaffoldMessenger.of(context);
     messenger.showSnackBar(SnackBar(
-      content: const Text('Saved to Downloads'),
+      content: Text(AppLocalizations.of(context).exportSavedToDownloads),
       duration: const Duration(seconds: 4),
       action: SnackBarAction(
-        label: 'Share',
+        label: AppLocalizations.of(context).commonShare,
         onPressed: () => _shareService.shareFiles(filePaths: savedPaths.isNotEmpty ? savedPaths : allOutputPaths),
       ),
     ));
@@ -256,7 +256,7 @@ class _ExportScreenState extends State<ExportScreen> {
       appBar: AppBar(
         backgroundColor: bg,
         elevation: 0,
-        title: Text('Export', style: TextStyle(color: textPrimary)),
+        title: Text(AppLocalizations.of(context).exportTitle, style: TextStyle(color: textPrimary)),
         iconTheme: IconThemeData(color: textPrimary),
       ),
       body: SafeArea(
@@ -355,11 +355,11 @@ class _ExportScreenState extends State<ExportScreen> {
                                       min: 0.5,
                                       max: 10,
                                       divisions: 19,
-                                      label: '\$_targetMB MB',
+                                      label: AppLocalizations.of(context).targetMbLabel(_targetMB!),
                                       onChanged: (v) => setState(() => _targetMB = v.round()),
                                     ),
                                   ),
-                                  Text('\$_targetMB MB', style: TextStyle(color: accent, fontSize: 12, fontWeight: FontWeight.w600)),
+                                  Text(AppLocalizations.of(context).targetMbLabel(_targetMB!), style: TextStyle(color: accent, fontSize: 12, fontWeight: FontWeight.w600)),
                                 ],
                               ),
                             ],
@@ -373,10 +373,10 @@ class _ExportScreenState extends State<ExportScreen> {
                             child: ListView(
                               scrollDirection: Axis.horizontal,
                               children: FilterType.values.map((f) {
-                                final label = f == FilterType.none ? 'Original' :
-                                             f == FilterType.grayscale ? 'Grayscale' :
-                                             f == FilterType.blackAndWhite ? 'B&W' :
-                                             f == FilterType.colorEnhance ? 'Color' : 'Shadow';
+                                final label = f == FilterType.none ? AppLocalizations.of(context).filterOriginal :
+                                             f == FilterType.grayscale ? AppLocalizations.of(context).filterGrayscale :
+                                             f == FilterType.blackAndWhite ? AppLocalizations.of(context).filterBlackAndWhite :
+                                             f == FilterType.colorEnhance ? AppLocalizations.of(context).filterColor : AppLocalizations.of(context).filterShadow;
                                 return _filterPill(f, label, accent, textPrimary, isDark);
                               }).toList(),
                             ),
@@ -386,8 +386,8 @@ class _ExportScreenState extends State<ExportScreen> {
                         if (_selectedFormat == ExportFormat.docx) ...[
                           const SizedBox(height: AppSpacing.sm),
                           _segmentRow([
-                            _seg(_docxMode == ExportDocxMode.textOnly, 'Text Only', () => setState(() => _docxMode = ExportDocxMode.textOnly), accent, surface, textPrimary),
-                            _seg(_docxMode == ExportDocxMode.imageEmbedded, 'With Images', () => setState(() => _docxMode = ExportDocxMode.imageEmbedded), accent, surface, textPrimary),
+                            _seg(_docxMode == ExportDocxMode.textOnly, AppLocalizations.of(context).docxModeTextOnly, () => setState(() => _docxMode = ExportDocxMode.textOnly), accent, surface, textPrimary),
+                            _seg(_docxMode == ExportDocxMode.imageEmbedded, AppLocalizations.of(context).docxModeWithImages, () => setState(() => _docxMode = ExportDocxMode.imageEmbedded), accent, surface, textPrimary),
                           ], height: 32),
                         ],
                         const SizedBox(height: AppSpacing.sm),
@@ -409,7 +409,7 @@ class _ExportScreenState extends State<ExportScreen> {
                         child: ElevatedButton.icon(
                           onPressed: _runExport,
                           icon: const Icon(Icons.save_outlined, size: 20),
-                          label: const Text('Save to Device', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700)),
+                          label: Text(AppLocalizations.of(context).saveToDeviceButton, style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700)),
                           style: ElevatedButton.styleFrom(
                             backgroundColor: accent,
                             foregroundColor: Colors.white,
@@ -447,7 +447,7 @@ class _ExportScreenState extends State<ExportScreen> {
               onTap: pageIndex > 0 ? () => _onPreviewPageChanged(pageIndex - 1) : null,
               child: Icon(Icons.chevron_left, color: pageIndex > 0 ? accent : textSecondary, size: 24),
             ),
-            Text('Page ${pageIndex + 1} / $pageCount', style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w500)),
+            Text(AppLocalizations.of(context).pageIndicator(pageIndex + 1, pageCount), style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w500)),
             IOSPressable(
               onTap: pageIndex < pageCount - 1 ? () => _onPreviewPageChanged(pageIndex + 1) : null,
               child: Icon(Icons.chevron_right, color: pageIndex < pageCount - 1 ? accent : textSecondary, size: 24),
@@ -455,7 +455,7 @@ class _ExportScreenState extends State<ExportScreen> {
             if (_isSingleDoc)
               ActionChip(
                 avatar: const Icon(Icons.open_in_full, size: 14),
-                label: const Text('Fullscreen', style: TextStyle(fontSize: 11)),
+                label: Text(AppLocalizations.of(context).fullscreenLabel, style: TextStyle(fontSize: 11)),
                 onPressed: () => context.push('/edit/${_documents.first.id}'),
               ),
             const Spacer(),
@@ -647,9 +647,9 @@ class _ExportScreenState extends State<ExportScreen> {
             Positioned.fill(child: Image.memory(_previewBytes!, fit: BoxFit.contain))
           else
             const Center(child: SizedBox(width: 32, height: 32, child: CircularProgressIndicator(strokeWidth: 2))),
-          const Positioned(
+          Positioned(
             top: 4, left: 4,
-            child: Text('Batch export — signature placement disabled', style: TextStyle(color: Colors.white70, fontSize: 11, backgroundColor: Colors.black38)),
+            child: Text(AppLocalizations.of(context).batchExportSignatureDisabled, style: TextStyle(color: Colors.white70, fontSize: 11, backgroundColor: Colors.black38)),
           ),
         ],
       ),
@@ -686,10 +686,10 @@ class _ExportScreenState extends State<ExportScreen> {
               ),
             ),
             const SizedBox(width: AppSpacing.xs),
-            Text('Fit to target MB', style: TextStyle(color: textPrimary, fontSize: 12, fontWeight: FontWeight.w500)),
+            Text(AppLocalizations.of(context).fitToTargetMbLabel, style: TextStyle(color: textPrimary, fontSize: 12, fontWeight: FontWeight.w500)),
             const Spacer(),
             if (enabled) ...[
-              Text('$_targetMB MB', style: TextStyle(color: accent, fontSize: 12, fontWeight: FontWeight.w600)),
+              Text(AppLocalizations.of(context).targetMbLabel(_targetMB!), style: TextStyle(color: accent, fontSize: 12, fontWeight: FontWeight.w600)),
               const SizedBox(width: AppSpacing.xs),
               AnimatedRotation(
                 turns: _targetExpanded ? 0.5 : 0,

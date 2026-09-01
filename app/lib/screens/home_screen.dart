@@ -92,11 +92,11 @@ class _HomeScreenState extends State<HomeScreen> {
     final name = await showDialog<String>(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('New Folder'),
+        title: Text(AppLocalizations.of(context).newFolderTitle),
         content: TextField(controller: controller, autofocus: true),
         actions: [
-          TextButton(onPressed: () => Navigator.pop(context), child: const Text('Cancel')),
-          TextButton(onPressed: () => Navigator.pop(context, controller.text), child: const Text('Create')),
+          TextButton(onPressed: () => Navigator.pop(context), child: Text(AppLocalizations.of(context).commonCancel)),
+          TextButton(onPressed: () => Navigator.pop(context, controller.text), child: Text(AppLocalizations.of(context).commonCreate)),
         ],
       ),
     );
@@ -119,7 +119,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void _startBatchExport() {
     if (_scanProvider.documents.value.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('No documents to batch export. Scan some first.')),
+        SnackBar(content: Text(AppLocalizations.of(context).batchExportEmptyMessage)),
       );
       return;
     }
@@ -431,17 +431,17 @@ class _HomeScreenState extends State<HomeScreen> {
       actions: [
         IconButton(
           icon: const Icon(Icons.translate_outlined),
-          tooltip: 'App Language',
+          tooltip: AppLocalizations.of(context).homeLanguageTooltip,
           onPressed: _pickLanguage,
         ),
         IconButton(
           icon: const Icon(Icons.create_new_folder_outlined),
-          tooltip: 'New Folder',
+          tooltip: AppLocalizations.of(context).newFolderTooltip,
           onPressed: _createFolder,
         ),
         IconButton(
           icon: const Icon(Icons.palette_outlined),
-          tooltip: 'Accent Color',
+          tooltip: AppLocalizations.of(context).accentColorTooltip,
           onPressed: _openAccentPicker,
         ),
         IconButton(
@@ -585,10 +585,10 @@ class _FolderPickerSheet extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Move to Folder', style: TextStyle(color: textPrimary, fontSize: AppTypography.title1Size, fontWeight: FontWeight.w600)),
+            Text(AppLocalizations.of(context).moveToFolderTitle, style: TextStyle(color: textPrimary, fontSize: AppTypography.title1Size, fontWeight: FontWeight.w600)),
             const SizedBox(height: AppSpacing.sm),
             if (folders.isEmpty)
-              const Padding(padding: EdgeInsets.symmetric(vertical: AppSpacing.md), child: Text('No folders yet. Create one from the home screen.'))
+              Padding(padding: EdgeInsets.symmetric(vertical: AppSpacing.md), child: Text(AppLocalizations.of(context).noFoldersYetHomeMessage))
             else
               ...folders.map((folder) => ListTile(title: Text(folder.name), trailing: Icon(Icons.folder_outlined, color: accent), onTap: () => Navigator.of(context).pop(folder.id))),
           ],
@@ -623,7 +623,7 @@ class _LanguagePickerSheet extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('App Language', style: TextStyle(color: textPrimary, fontSize: AppTypography.title1Size, fontWeight: FontWeight.w600)),
+            Text(AppLocalizations.of(context).appLanguageTitle, style: TextStyle(color: textPrimary, fontSize: AppTypography.title1Size, fontWeight: FontWeight.w600)),
             const SizedBox(height: AppSpacing.sm),
             Flexible(
               child: SingleChildScrollView(
@@ -658,7 +658,7 @@ class _AccentPickerSheet extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Accent Color', style: TextStyle(color: textPrimary, fontSize: AppTypography.title1Size, fontWeight: FontWeight.w600)),
+            Text(AppLocalizations.of(context).accentColorTitle, style: TextStyle(color: textPrimary, fontSize: AppTypography.title1Size, fontWeight: FontWeight.w600)),
             const SizedBox(height: AppSpacing.md),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,

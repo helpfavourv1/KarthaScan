@@ -3,6 +3,7 @@ import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'color_picker_dialog.dart';
 import '../core/models/scan_document.dart';
+import '../l10n/app_localizations.dart';
 
 class StampResult {
   const StampResult({required this.bytes, required this.label, required this.widthFraction, required this.aspect, this.text = '', this.fontSize = 72, this.color = 0xFF111111, this.fontFamily = 'sans-serif', this.fontWeightValue = 700, this.alignName = 'left', this.halo = false, this.noteBgColorValue = 0xFFFFEB84, this.dateFormatValue = 'DD-MM-YYYY', this.customDateMillisValue = 0, this.checkedValue = true, this.checkShapeValue = 'rounded', this.boxColorValue = 0xFF111111, this.tickColorValue = 0xFF007AFF, this.sealShapeValue = 'round', this.sealSubtextValue = '', this.sealCenterValue = 'star', this.sealImageBytesValue});
@@ -177,22 +178,22 @@ class _TextStampSheetState extends State<TextStampSheet> {
               if (widget.kind == 'text' || widget.kind == 'note')
                 TextField(controller: _controller, maxLines: widget.kind == 'note' ? 3 : 1, decoration: InputDecoration(labelText: widget.kind == 'note' ? 'Note text' : 'Text', border: const OutlineInputBorder())),
               if (widget.kind == 'checkbox') ...[
-                CheckboxListTile(value: _checked, title: const Text('Ticked'), onChanged: (v) => setState(() => _checked = v ?? true)),
+                CheckboxListTile(value: _checked, title: Text(AppLocalizations.of(context).stampTickedLabel), onChanged: (v) => setState(() => _checked = v ?? true)),
                 Wrap(spacing: 8, children: ['rounded', 'square', 'circle'].map((s) => ChoiceChip(label: Text(s), selected: _checkShape == s, onSelected: (_) => setState(() => _checkShape = s))).toList()),
                 const SizedBox(height: 8),
                 Row(children: [
-                  const Text('Box', style: TextStyle(fontSize: 12)), const SizedBox(width: 8),
+                  Text(AppLocalizations.of(context).stampBoxLabel, style: TextStyle(fontSize: 12)), const SizedBox(width: 8),
                   _swatch(const Color(0xFF111111), _boxColor, (c) => setState(() => _boxColor = c)),
                   _swatch(Colors.red, _boxColor, (c) => setState(() => _boxColor = c)),
                   _swatch(Colors.blue, _boxColor, (c) => setState(() => _boxColor = c)),
-                  TextButton(onPressed: () async { final c = await _pick(_boxColor); if (c != null) setState(() => _boxColor = c); }, child: const Text('Custom')),
+                  TextButton(onPressed: () async { final c = await _pick(_boxColor); if (c != null) setState(() => _boxColor = c); }, child: Text(AppLocalizations.of(context).commonCustom)),
                 ]),
                 Row(children: [
-                  const Text('Tick', style: TextStyle(fontSize: 12)), const SizedBox(width: 8),
+                  Text(AppLocalizations.of(context).stampTickLabel, style: TextStyle(fontSize: 12)), const SizedBox(width: 8),
                   _swatch(const Color(0xFF007AFF), _tickColor, (c) => setState(() => _tickColor = c)),
                   _swatch(Colors.black, _tickColor, (c) => setState(() => _tickColor = c)),
                   _swatch(Colors.green, _tickColor, (c) => setState(() => _tickColor = c)),
-                  TextButton(onPressed: () async { final c = await _pick(_tickColor); if (c != null) setState(() => _tickColor = c); }, child: const Text('Custom')),
+                  TextButton(onPressed: () async { final c = await _pick(_tickColor); if (c != null) setState(() => _tickColor = c); }, child: Text(AppLocalizations.of(context).commonCustom)),
                 ]),
               ],
               if (widget.kind == 'date') ...[
@@ -218,7 +219,7 @@ class _TextStampSheetState extends State<TextStampSheet> {
                           style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: Color(0xFF007AFF)),
                         ),
                         const SizedBox(width: 8),
-                        const Text('Change', style: TextStyle(fontSize: 11, color: Color(0xFF007AFF))),
+                        Text(AppLocalizations.of(context).commonChange, style: TextStyle(fontSize: 11, color: Color(0xFF007AFF))),
                       ],
                     ),
                   ),
@@ -227,21 +228,21 @@ class _TextStampSheetState extends State<TextStampSheet> {
               ],
               const SizedBox(height: 12),
               Row(children: [
-                const Text('Color', style: TextStyle(fontSize: 12)), const SizedBox(width: 8),
+                Text(AppLocalizations.of(context).commonColor, style: TextStyle(fontSize: 12)), const SizedBox(width: 8),
                 _swatch(const Color(0xFF111111), _textColor, (c) => setState(() => _textColor = c)),
                 _swatch(Colors.white, _textColor, (c) => setState(() => _textColor = c)),
                 _swatch(Colors.red, _textColor, (c) => setState(() => _textColor = c)),
                 _swatch(Colors.blue, _textColor, (c) => setState(() => _textColor = c)),
-                TextButton(onPressed: () async { final c = await _pick(_textColor); if (c != null) setState(() => _textColor = c); }, child: const Text('Custom')),
+                TextButton(onPressed: () async { final c = await _pick(_textColor); if (c != null) setState(() => _textColor = c); }, child: Text(AppLocalizations.of(context).commonCustom)),
               ]),
               if (widget.kind == 'note')
                 Row(children: [
-                  const Text('Paper', style: TextStyle(fontSize: 12)), const SizedBox(width: 8),
+                  Text(AppLocalizations.of(context).stampPaperLabel, style: TextStyle(fontSize: 12)), const SizedBox(width: 8),
                   _swatch(const Color(0xFFFFEB84), _noteBg, (c) => setState(() => _noteBg = c)),
                   _swatch(const Color(0xFFFFC9DE), _noteBg, (c) => setState(() => _noteBg = c)),
                   _swatch(const Color(0xFFC9E4FF), _noteBg, (c) => setState(() => _noteBg = c)),
                   _swatch(const Color(0xFFD3F8D9), _noteBg, (c) => setState(() => _noteBg = c)),
-                  TextButton(onPressed: () async { final c = await _pick(_noteBg); if (c != null) setState(() => _noteBg = c); }, child: const Text('Custom')),
+                  TextButton(onPressed: () async { final c = await _pick(_noteBg); if (c != null) setState(() => _noteBg = c); }, child: Text(AppLocalizations.of(context).commonCustom)),
                 ]),
               const SizedBox(height: 8),
               Wrap(spacing: 8, children: ['sans-serif', 'serif', 'monospace'].map((f) => ChoiceChip(label: Text(f), selected: _fontFamily == f, onSelected: (_) => setState(() => _fontFamily = f))).toList()),
@@ -249,14 +250,14 @@ class _TextStampSheetState extends State<TextStampSheet> {
               Wrap(spacing: 8, children: [FontWeight.w400, FontWeight.w600, FontWeight.w700, FontWeight.w900].map((w) => ChoiceChip(label: Text(w.value.toString()), selected: _fontWeight == w, onSelected: (_) => setState(() => _fontWeight = w))).toList()),
               const SizedBox(height: 8),
               Wrap(spacing: 8, children: [TextAlign.left, TextAlign.center, TextAlign.right].map((a) => ChoiceChip(label: Text(a == TextAlign.left ? 'L' : a == TextAlign.center ? 'C' : 'R'), selected: _align == a, onSelected: (_) => setState(() => _align = a))).toList()),
-              SwitchListTile(title: const Text('White halo (readability)'), value: _halo, onChanged: (v) => setState(() => _halo = v)),
+              SwitchListTile(title: Text(AppLocalizations.of(context).whiteHaloLabel), value: _halo, onChanged: (v) => setState(() => _halo = v)),
               const SizedBox(height: 12),
               Row(mainAxisAlignment: MainAxisAlignment.end, children: [
-                TextButton(onPressed: () => Navigator.pop(context), child: const Text('Cancel')),
+                TextButton(onPressed: () => Navigator.pop(context), child: Text(AppLocalizations.of(context).commonCancel)),
                 const SizedBox(width: 12),
                 ElevatedButton(
                   onPressed: _busy ? null : () async { setState(() => _busy = true); final r = await _generate(); if (!context.mounted) return; if (r != null) Navigator.pop(context, r); },
-                  child: const Text('Create'),
+                  child: Text(AppLocalizations.of(context).commonCreate),
                 ),
               ]),
             ],

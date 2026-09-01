@@ -16,6 +16,7 @@ import '../core/services/export_service.dart';
 import '../core/services/pdf_to_images_service.dart';
 import '../core/services/share_service.dart';
 import '../core/services/txt_to_pdf_service.dart';
+import '../l10n/app_localizations.dart';
 
 enum _TargetFormat { pdf, jpg, png, txt, docx }
 enum _ActionType { saveDoc, exportShare }
@@ -64,9 +65,10 @@ class _ConvertScreenState extends State<ConvertScreen> {
   }
 
   Future<List<String>> _convert() async {
+    final l10n = AppLocalizations.of(context);
     final String src = widget.sourcePath;
     final String type = widget.sourceType;
-    _report(0.05, 'Reading…');
+    _report(0.05, l10n.progressReading);
     final appDir = await getApplicationDocumentsDirectory();
     final outDir = Directory(p.join(appDir.path, 'converted_docs'));
     await outDir.create(recursive: true);
@@ -77,7 +79,7 @@ class _ConvertScreenState extends State<ConvertScreen> {
 
     if (type == 'pdf') {
       if (_target == _TargetFormat.pdf) {
-        _report(0.5, 'Copying…');
+        _report(0.5, l10n.progressCopying);
         final out = p.join(outDir.path, 'conv_$ts.pdf');
         await File(src).copy(out);
         finalPaths.add(out);
@@ -86,7 +88,7 @@ class _ConvertScreenState extends State<ConvertScreen> {
       }
     } else if (type == 'image') {
       if (_target == _TargetFormat.pdf) {
-        _report(0.4, 'Building PDF…');
+        _report(0.4, l10n.progressBuildingPdf);
         final pdf = pw.Document();
         final bytes = await File(src).readAsBytes();
         final image = pw.MemoryImage(bytes);
@@ -95,11 +97,11 @@ class _ConvertScreenState extends State<ConvertScreen> {
         await File(out).writeAsBytes(await pdf.save());
         finalPaths.add(out);
       } else if (_target == _TargetFormat.docx) {
-        _report(0.5, 'Building DOCX…');
+        _report(0.5, l10n.progressBuildingDocx);
         final out = await _exportService.buildDocxFromImages([src], outDir.path, 'conv_$ts');
         finalPaths.add(out);
       } else {
-        _report(0.4, 'Decoding image…');
+        _report(0.4, l10n.progressDecodingImage);
         final bytes = await File(src).readAsBytes();
         final decoded = img.decodeImage(bytes);
         if (decoded == null) throw Exception('Cannot decode image');
@@ -111,12 +113,12 @@ class _ConvertScreenState extends State<ConvertScreen> {
       }
     } else if (type == 'txt') {
       if (_target == _TargetFormat.txt) {
-        _report(0.5, 'Copying…');
+        _report(0.5, l10n.progressCopying);
         final out = p.join(outDir.path, 'conv_$ts.txt');
         await File(src).copy(out);
         finalPaths.add(out);
       } else if (_target == _TargetFormat.docx) {
-        _report(0.5, 'Building DOCX…');
+        _report(0.5, l10n.progressBuildingDocx);
         final text = await File(src).readAsString();
         final out = await _exportService.buildDocxFromText(text, outDir.path, 'conv_$ts');
         finalPaths.add(out);
@@ -125,12 +127,12 @@ class _ConvertScreenState extends State<ConvertScreen> {
       }
     } else if (type == 'csv') {
       if (_target == _TargetFormat.txt) {
-        _report(0.5, 'Copying…');
+        _report(0.5, l10n.progressCopying);
         final out = p.join(outDir.path, 'conv_$ts.txt');
         await File(src).copy(out);
         finalPaths.add(out);
       } else if (_target == _TargetFormat.docx) {
-        _report(0.5, 'Building DOCX…');
+        _report(0.5, l10n.progressBuildingDocx);
         final text = await File(src).readAsString();
         final out = await _exportService.buildDocxFromText(text, outDir.path, 'conv_$ts');
         finalPaths.add(out);
@@ -139,10 +141,10 @@ class _ConvertScreenState extends State<ConvertScreen> {
       }
     } else if (type == 'docx') {
       if (_target == _TargetFormat.txt) {
-        _report(0.4, 'Extracting text…');
+        _report(0.4, l10n.progressExtractingText);
         finalPaths.add(await DocxParserService().convertToTxt(src));
       } else if (_target == _TargetFormat.docx) {
-        _report(0.5, 'Copying…');
+        _report(0.5, l10n.progressCopying);
         final out = p.join(outDir.path, 'conv_$ts.docx');
         await File(src).copy(out);
         finalPaths.add(out);
@@ -153,12 +155,12 @@ class _ConvertScreenState extends State<ConvertScreen> {
 
     if (intermediatePdf != null) {
       if (_target == _TargetFormat.pdf) {
-        _report(0.7, 'Saving…');
+        _report(0.7, l10n.progressSaving);
         finalPaths.add(intermediatePdf);
       } else if (_target == _TargetFormat.docx) {
-        _report(0.6, 'Rasterizing pages…');
+        _report(0.6, l10n.progressRasterizing);
         final pngs = await PdfToImagesService().convertToImages(intermediatePdf, onProgress: (v, l) => _report(0.5 + v * 0.3, l));
-        _report(0.9, 'Building DOCX…');
+        _report(0.9, l10n.progressBuildingDocx);
         final out = await _exportService.buildDocxFromImages(pngs, outDir.path, 'conv_$ts');
         finalPaths.add(out);
       } else {
@@ -166,7 +168,7 @@ class _ConvertScreenState extends State<ConvertScreen> {
         if (_target == _TargetFormat.jpg) {
           final jpgs = <String>[];
           for (int i = 0; i < pngs.length; i++) {
-            _report(0.9 + 0.09 * (i / pngs.length), 'Encoding page ${i + 1} of ${pngs.length}…');
+            _report(0.9 + 0.09 * (i / pngs.length), l10n.progressEncodingPage(i + 1, pngs.length));
             final bytes = await File(pngs[i]).readAsBytes();
             final decoded = img.decodeImage(bytes);
             if (decoded != null) {
@@ -183,7 +185,7 @@ class _ConvertScreenState extends State<ConvertScreen> {
     }
 
     if (finalPaths.isEmpty) throw Exception('Conversion produced no files');
-    _report(1.0, 'Done');
+    _report(1.0, l10n.commonDone);
     return finalPaths;
   }
 
@@ -191,7 +193,7 @@ class _ConvertScreenState extends State<ConvertScreen> {
     setState(() {
       _isConverting = true;
       _progress = 0.0;
-      _progressLabel = 'Starting…';
+      _progressLabel = AppLocalizations.of(context).conversionStarting;
     });
     try {
       final paths = await _convert();
@@ -202,7 +204,7 @@ class _ConvertScreenState extends State<ConvertScreen> {
         final now = DateTime.now();
         final doc = ScanDocument(
           id: '${now.microsecondsSinceEpoch}',
-          title: 'Converted ${now.year}-${now.month.toString().padLeft(2, '0')}-${now.day.toString().padLeft(2, '0')}',
+          title: AppLocalizations.of(context).convertedDocTitle('${now.year}-${now.month.toString().padLeft(2, '0')}-${now.day.toString().padLeft(2, '0')}'),
           pageCount: paths.length,
           pagePaths: paths,
           createdAt: now,
@@ -213,7 +215,7 @@ class _ConvertScreenState extends State<ConvertScreen> {
         final success = await provider.importDocument(doc);
         if (!mounted) return;
         if (success) {
-          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Saved as new document')));
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(AppLocalizations.of(context).savedAsNewDocument)));
           context.pushReplacement('/scan/${doc.id}');
         }
       } else {
@@ -223,7 +225,7 @@ class _ConvertScreenState extends State<ConvertScreen> {
       }
     } catch (e) {
       if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Conversion failed: $e')));
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('${AppLocalizations.of(context).conversionFailedPrefix}: $e')));
     } finally {
       if (mounted) setState(() => _isConverting = false);
     }
@@ -235,7 +237,7 @@ class _ConvertScreenState extends State<ConvertScreen> {
     final fileSize = (File(widget.sourcePath).lengthSync() / 1024).toStringAsFixed(1);
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Convert Document')),
+      appBar: AppBar(title: Text(AppLocalizations.of(context).convertDocumentTitle)),
       body: SafeArea(
         child: _isConverting
             ? Center(
@@ -268,7 +270,7 @@ class _ConvertScreenState extends State<ConvertScreen> {
                     ),
                   ),
                   const SizedBox(height: 24),
-                  const Text('Convert to:', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+                  Text(AppLocalizations.of(context).convertToLabel, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
                   const SizedBox(height: 8),
                   Wrap(
                     spacing: 8,
@@ -282,17 +284,17 @@ class _ConvertScreenState extends State<ConvertScreen> {
                     }).toList(),
                   ),
                   const SizedBox(height: 24),
-                  const Text('Action:', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+                  Text(AppLocalizations.of(context).actionLabel, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
                   Wrap(
                     spacing: 8,
                     children: [
                       ChoiceChip(
-                        label: const Text('Save as new Document'),
+                        label: Text(AppLocalizations.of(context).saveAsNewDocumentAction),
                         selected: _action == _ActionType.saveDoc,
                         onSelected: _saveDocAllowed(_target) ? (_) => setState(() => _action = _ActionType.saveDoc) : null,
                       ),
                       ChoiceChip(
-                        label: const Text('Export & Share'),
+                        label: Text(AppLocalizations.of(context).exportAndShareAction),
                         selected: _action == _ActionType.exportShare,
                         onSelected: (_) => setState(() => _action = _ActionType.exportShare),
                       ),
@@ -303,8 +305,8 @@ class _ConvertScreenState extends State<ConvertScreen> {
                       padding: const EdgeInsets.symmetric(horizontal: 16),
                       child: Text(
                         widget.sourceType == 'docx'
-                            ? 'DOCX sources render poorly as pages — save inside the app is limited to JPG/PNG from image, PDF, TXT or CSV sources. Use Export & Share for this file.'
-                            : 'To save inside the app, choose JPG or PNG. Other targets are exported as files.',
+                            ? AppLocalizations.of(context).docxWarningMessage
+                            : AppLocalizations.of(context).saveInsideAppWarning,
                         style: const TextStyle(fontSize: 12, color: Colors.orange),
                       ),
                     ),
@@ -312,7 +314,7 @@ class _ConvertScreenState extends State<ConvertScreen> {
                   ElevatedButton(
                     onPressed: _run,
                     style: ElevatedButton.styleFrom(padding: const EdgeInsets.symmetric(vertical: 16)),
-                    child: const Text('Convert', style: TextStyle(fontSize: 18)),
+                    child: Text(AppLocalizations.of(context).commonConvert, style: TextStyle(fontSize: 18)),
                   ),
                 ],
               ),

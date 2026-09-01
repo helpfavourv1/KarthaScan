@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../l10n/app_localizations.dart';
 
 class ColorPickerDialog extends StatefulWidget {
   const ColorPickerDialog({super.key, required this.initial});
@@ -14,7 +15,7 @@ class _ColorPickerDialogState extends State<ColorPickerDialog> {
   Widget build(BuildContext context) {
     final current = _hsv.toColor();
     return AlertDialog(
-      title: const Text('Custom Color'),
+      title: Text(AppLocalizations.of(context).customColorTitle),
       content: SizedBox(
         width: 260,
         child: Column(mainAxisSize: MainAxisSize.min, children: [
@@ -26,8 +27,8 @@ class _ColorPickerDialogState extends State<ColorPickerDialog> {
         ]),
       ),
       actions: [
-        TextButton(onPressed: () => Navigator.pop(context), child: const Text('Cancel')),
-        ElevatedButton(onPressed: () => Navigator.pop(context, current), child: const Text('Use')),
+        TextButton(onPressed: () => Navigator.pop(context), child: Text(AppLocalizations.of(context).commonCancel)),
+        ElevatedButton(onPressed: () => Navigator.pop(context, current), child: Text(AppLocalizations.of(context).commonUse)),
       ],
     );
   }

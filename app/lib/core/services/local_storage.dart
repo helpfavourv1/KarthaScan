@@ -12,6 +12,7 @@ import '../models/folder.dart';
 import '../models/scan_document.dart';
 import '../models/signature_placement.dart';
 import '../models/page_transform.dart';
+import '../models/ocr_block.dart';
 import '../models/user_settings.dart';
 
 class LocalStorageService {
@@ -277,6 +278,7 @@ class LocalStorageService {
       'watermark_layers': jsonEncode(document.watermarkLayers.map((l) => l.toJson()).toList()),
       'stamp_layers': jsonEncode(document.stampLayers.map((l) => l.toJson()).toList()),
       'page_transforms': jsonEncode(document.pageTransforms.map((k, v) => MapEntry(k.toString(), v.toJson()))),
+      'page_ocr_blocks': jsonEncode(document.pageOcrBlocks.map((k, v) => MapEntry(k.toString(), v.map((b) => b.toJson()).toList()))),
     };
   }
 
@@ -326,6 +328,10 @@ class LocalStorageService {
       watermarkLayers: wmLayers,
       stampLayers: stampLayers,
       pageTransforms: pageTransforms,
+      pageOcrBlocks: ((row['page_ocr_blocks'] as String?) != null)
+          ? (jsonDecode(row['page_ocr_blocks']! as String) as Map<String, dynamic>).map(
+              (k, v) => MapEntry(int.parse(k), (v as List<dynamic>).map((b) => OcrBlock.fromJson(b as Map<String, dynamic>)).toList()))
+          : const <int, List<OcrBlock>>{},
     );
   }
 
@@ -445,7 +451,7 @@ class LocalStorageService {
   Future<void> _migrateAddLayerColumns() async {
     if (_layersMigrated || !_dbAvailable || _db == null) return;
     _layersMigrated = true;
-    for (final col in ['signature_inks', 'signature_layers', 'annotate_layers', 'watermark_layers', 'stamp_layers', 'page_transforms']) {
+    for (final col in ['signature_inks', 'signature_layers', 'annotate_layers', 'watermark_layers', 'stamp_layers', 'page_transforms', 'page_ocr_blocks']) {
       try {
         await _db!.execute('ALTER TABLE documents ADD COLUMN $col TEXT');
       } catch (_) {

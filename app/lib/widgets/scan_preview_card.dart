@@ -227,7 +227,7 @@ Widget _buildStampControls(String kind) {
                   onPressed: _currentPage > 0 ? () => _goToPage(_currentPage - 1) : null,
                   icon: Icon(Icons.chevron_left, color: _currentPage > 0 ? accent : textSecondary),
                 ),
-                Text('${_currentPage + 1} / ${widget.pagePaths.length}', style: TextStyle(color: textSecondary, fontSize: AppTypography.footnoteSize)),
+                Text(AppLocalizations.of(context).pageIndicator(_currentPage + 1, widget.pagePaths.length), style: TextStyle(color: textSecondary, fontSize: AppTypography.footnoteSize)),
                 IconButton(
                   visualDensity: VisualDensity.compact,
                   onPressed: _currentPage < _lastIndex ? () => _goToPage(_currentPage + 1) : null,
@@ -236,14 +236,14 @@ Widget _buildStampControls(String kind) {
                 if (widget.onEditFullscreen != null)
                   ActionChip(
                     avatar: const Icon(Icons.open_in_full, size: 14),
-                    label: const Text('Fullscreen', style: TextStyle(fontSize: 11)),
+                    label: Text(AppLocalizations.of(context).fullscreenLabel, style: TextStyle(fontSize: 11)),
                     onPressed: widget.onEditFullscreen,
                   ),
                 const Spacer(),
                 if (widget.editMode != TrayEditMode.none && widget.onDoneEditing != null)
                   ActionChip(
                     avatar: const Icon(Icons.check, size: 14),
-                    label: const Text('Done', style: TextStyle(fontSize: 11)),
+                    label: Text(AppLocalizations.of(context).commonDone, style: TextStyle(fontSize: 11)),
                     onPressed: widget.onDoneEditing,
                   ),
               ],

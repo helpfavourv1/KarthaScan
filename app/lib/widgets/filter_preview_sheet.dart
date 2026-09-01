@@ -6,6 +6,7 @@ import '../core/utils/constants.dart';
 import 'package:image/image.dart' as img;
 import '../core/services/export_service.dart' show FilterType;
 import '../core/services/filter_service.dart';
+import '../l10n/app_localizations.dart';
 
 Uint8List _previewFilterIsolate(Map<String, dynamic> args) {
   final decoded = img.decodeImage(args['bytes'] as Uint8List);
@@ -78,7 +79,7 @@ class _FilterPreviewSheetState extends State<FilterPreviewSheet> {
     return SafeArea(
       child: Container(height: MediaQuery.of(context).size.height * 0.8, decoration: BoxDecoration(color: bg, borderRadius: const BorderRadius.vertical(top: Radius.circular(20))),
         child: Column(children: [
-          Padding(padding: const EdgeInsets.all(16), child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [Text('Filter', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600, color: textPrimary)), IconButton(icon: const Icon(Icons.close), onPressed: () => Navigator.pop(context))])),
+          Padding(padding: const EdgeInsets.all(16), child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [Text(AppLocalizations.of(context).filterTitle, style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600, color: textPrimary)), IconButton(icon: const Icon(Icons.close), onPressed: () => Navigator.pop(context))])),
           Expanded(
           child: _previewBytes == null
               ? const Center(child: CircularProgressIndicator())
@@ -102,7 +103,7 @@ class _FilterPreviewSheetState extends State<FilterPreviewSheet> {
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Row(
               children: [
-                const Text('Intensity', style: TextStyle(fontSize: 12)),
+                Text(AppLocalizations.of(context).intensityLabel, style: TextStyle(fontSize: 12)),
                 Expanded(
                   child: Slider(
                     value: _intensity, min: 0.2, max: 2.0, divisions: 18,
@@ -120,8 +121,8 @@ class _FilterPreviewSheetState extends State<FilterPreviewSheet> {
             return ChoiceChip(label: Text(label), selected: _selected == f, onSelected: (_) => _select(f));
           }).toList()),
           Padding(padding: const EdgeInsets.all(16), child: Row(mainAxisAlignment: MainAxisAlignment.end, children: [
-            TextButton(onPressed: () => Navigator.pop(context), child: const Text('Cancel')), const SizedBox(width: 12),
-            ElevatedButton(onPressed: () => Navigator.pop(context, _selected), style: ElevatedButton.styleFrom(backgroundColor: accent, foregroundColor: Colors.white, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))), child: const Text('Apply')),
+            TextButton(onPressed: () => Navigator.pop(context), child: Text(AppLocalizations.of(context).commonCancel)), const SizedBox(width: 12),
+            ElevatedButton(onPressed: () => Navigator.pop(context, _selected), style: ElevatedButton.styleFrom(backgroundColor: accent, foregroundColor: Colors.white, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))), child: Text(AppLocalizations.of(context).commonApply)),
           ])),
         ]),
       ),

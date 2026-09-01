@@ -20,6 +20,7 @@
 import 'package:flutter/material.dart';
 
 import 'constants.dart';
+import '../../l10n/app_localizations.dart';
 
 /// Installs a global, non-crashing error boundary:
 ///   - FlutterError.onError logs framework errors instead of letting them
@@ -175,7 +176,7 @@ class AppErrorScreen extends StatelessWidget {
                               BorderRadius.circular(AppShape.buttonRadius),
                         ),
                       ),
-                      child: const Text('Try again'),
+                      child: Text(AppLocalizations.of(context).tryAgainButton),
                     ),
                   ),
                 if (onRetry != null && onReportIssue != null)

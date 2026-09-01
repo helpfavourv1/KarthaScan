@@ -3,6 +3,7 @@ import '../core/models/scan_document.dart';
 import '../core/models/signature_placement.dart';
 import '../core/utils/constants.dart';
 import 'color_picker_dialog.dart';
+import '../l10n/app_localizations.dart';
 
 /// Rich watermark styling sheet. Returns a WatermarkLayer with pageIndex=0
 /// and placement at center (caller sets actual pageIndex + placement).
@@ -115,26 +116,26 @@ class _WatermarkSheetState extends State<WatermarkSheet> {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Text(isEdit ? 'Edit Watermark' : 'Add Watermark',
+                Text(isEdit ? AppLocalizations.of(context).watermarkEditTitle : AppLocalizations.of(context).watermarkAddTitle,
                     style: TextStyle(color: textPrimary, fontSize: AppTypography.title1Size, fontWeight: FontWeight.w600)),
                 const SizedBox(height: AppSpacing.sm),
                 TextField(
                   controller: _textController,
                   decoration: InputDecoration(
-                    labelText: 'Text',
+                    labelText: AppLocalizations.of(context).watermarkTextLabel,
                     labelStyle: TextStyle(color: textSecondary),
                   ),
                   style: TextStyle(color: textPrimary),
                 ),
                 const SizedBox(height: AppSpacing.sm),
-                Text('Opacity: ${(_opacity * 100).round()}%', style: TextStyle(color: textPrimary, fontSize: 12)),
+                Text(AppLocalizations.of(context).opacityPercentLabel((_opacity * 100).round()), style: TextStyle(color: textPrimary, fontSize: 12)),
                 Slider(
                   value: _opacity,
                   min: 0.05,
                   max: 1.0,
                   onChanged: (v) => setState(() => _opacity = v),
                 ),
-                Text('Size: ${_fontSize.round()}pt', style: TextStyle(color: textPrimary, fontSize: 12)),
+                Text(AppLocalizations.of(context).sizePtLabel(_fontSize.round()), style: TextStyle(color: textPrimary, fontSize: 12)),
                 Slider(
                   value: _fontSize,
                   min: 12,
@@ -142,7 +143,7 @@ class _WatermarkSheetState extends State<WatermarkSheet> {
                   onChanged: (v) => setState(() => _fontSize = v),
                 ),
                 const SizedBox(height: AppSpacing.xs),
-                Text('Color', style: TextStyle(color: textPrimary, fontSize: 12)),
+                Text(AppLocalizations.of(context).commonColor, style: TextStyle(color: textPrimary, fontSize: 12)),
                 const SizedBox(height: 4),
                 Wrap(
                   spacing: 8,
@@ -204,7 +205,7 @@ class _WatermarkSheetState extends State<WatermarkSheet> {
                   ],
                 ),
                 const SizedBox(height: AppSpacing.xs),
-                Text('Align', style: TextStyle(color: textPrimary, fontSize: 12)),
+                Text(AppLocalizations.of(context).alignLabel, style: TextStyle(color: textPrimary, fontSize: 12)),
                 Row(
                   children: [
                     ChoiceChip(
@@ -229,12 +230,12 @@ class _WatermarkSheetState extends State<WatermarkSheet> {
                 const SizedBox(height: AppSpacing.md),
                 Row(
                   children: [
-                    TextButton(onPressed: () => Navigator.pop(context), child: const Text('Cancel')),
+                    TextButton(onPressed: () => Navigator.pop(context), child: Text(AppLocalizations.of(context).commonCancel)),
                     const Spacer(),
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(backgroundColor: accent, foregroundColor: Colors.white),
                       onPressed: _confirm,
-                      child: Text(isEdit ? 'Update' : 'Add'),
+                      child: Text(isEdit ? AppLocalizations.of(context).commonUpdate : AppLocalizations.of(context).commonAdd),
                     ),
                   ],
                 ),

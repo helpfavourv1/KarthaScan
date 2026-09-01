@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import '../core/utils/constants.dart';
 import 'package:image/image.dart' as img;
+import '../l10n/app_localizations.dart';
 
 class _Stroke {
   _Stroke(this.points, this.colorInt, this.width, [this.isRect = false]);
@@ -99,14 +100,14 @@ class _EraserSheetState extends State<EraserSheet> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('Eraser', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600, color: textPrimary)),
+                  Text(AppLocalizations.of(context).eraserTitle, style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600, color: textPrimary)),
                   IconButton(icon: const Icon(Icons.close), onPressed: () => Navigator.pop(context)),
                 ],
               ),
             ),
             Expanded(
               child: _loading
-                  ? const Center(child: CircularProgressIndicator())
+                  ? Center(child: CircularProgressIndicator())
                   : Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16),
                       child: LayoutBuilder(
@@ -168,8 +169,8 @@ class _EraserSheetState extends State<EraserSheet> {
                                       Positioned.fill(
                                         child: Container(
                                           color: Colors.blue.withValues(alpha: 0.08),
-                                          child: const Center(
-                                            child: Text('Tap a spot to sample its color',
+                                          child: Center(
+                                            child: Text(AppLocalizations.of(context).tapToSampleColor,
                                                 style: TextStyle(color: Colors.blue, fontWeight: FontWeight.w700)),
                                           ),
                                         ),
@@ -187,7 +188,7 @@ class _EraserSheetState extends State<EraserSheet> {
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Row(
                 children: [
-                  const Text('Size', style: TextStyle(fontSize: 12)),
+                  Text(AppLocalizations.of(context).commonSize, style: TextStyle(fontSize: 12)),
                   Expanded(
                     child: Slider(value: _width, min: 10, max: 120, onChanged: (v) => setState(() => _width = v)),
                   ),
@@ -201,12 +202,12 @@ class _EraserSheetState extends State<EraserSheet> {
                 children: [
                   IconButton(
                     icon: Icon(Icons.colorize, color: _sampleMode ? accent : textPrimary),
-                    tooltip: 'Sample color from page',
+                    tooltip: AppLocalizations.of(context).sampleColorTooltip,
                     onPressed: () => setState(() => _sampleMode = !_sampleMode),
                   ),
                   IconButton(
                     icon: Icon(Icons.crop_square, color: _marqueeMode ? accent : textPrimary),
-                    tooltip: 'Marquee erase',
+                    tooltip: AppLocalizations.of(context).marqueeEraseTooltip,
                     onPressed: () => setState(() => _marqueeMode = !_marqueeMode),
                   ),
                   for (final sw in _swatches)
@@ -240,7 +241,7 @@ class _EraserSheetState extends State<EraserSheet> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  TextButton(onPressed: () => Navigator.pop(context), child: const Text('Cancel')),
+                  TextButton(onPressed: () => Navigator.pop(context), child: Text(AppLocalizations.of(context).commonCancel)),
                   const SizedBox(width: 12),
                   ElevatedButton(
                     onPressed: _strokes.isEmpty ? null : () => Navigator.pop(context, _export()),
@@ -249,7 +250,7 @@ class _EraserSheetState extends State<EraserSheet> {
                       foregroundColor: Colors.white,
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                     ),
-                    child: const Text('Apply'),
+                    child: Text(AppLocalizations.of(context).commonApply),
                   ),
                 ],
               ),

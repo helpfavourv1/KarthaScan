@@ -117,7 +117,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('Accent Color', style: TextStyle(color: textPrimary, fontSize: AppTypography.bodySize)),
+                      Text(AppLocalizations.of(context).accentColorTitle, style: TextStyle(color: textPrimary, fontSize: AppTypography.bodySize)),
                       Row(
                         children: kAccentPalettes.map((p) {
                           final isSelected = p.light == current;
@@ -151,39 +151,39 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ),
 
             const SizedBox(height: AppSpacing.md),
-            _sectionLabel('OCR', textSecondary),
+            _sectionLabel(AppLocalizations.of(context).ocrSectionLabel, textSecondary),
             _settingsTile(
-              title: 'OCR Languages',
+              title: AppLocalizations.of(context).ocrLanguagesLabel,
               trailing: Icon(Icons.chevron_right, color: textSecondary),
               onTap: _openOcrLanguages,
               textPrimary: textPrimary,
               border: border,
             ),
             const SizedBox(height: AppSpacing.md),
-            _sectionLabel('CAPTURE BEHAVIOR', textSecondary),
+            _sectionLabel(AppLocalizations.of(context).captureBehaviorSectionLabel, textSecondary),
             ListenableBuilder(
               listenable: _settingsProvider.settings,
               builder: (context, _) => Column(
                 children: [
                   SwitchListTile(
-                    title: Text('Auto-copy OCR', style: TextStyle(color: textPrimary, fontSize: AppTypography.bodySize)),
-                    subtitle: Text('Copy text to clipboard after scan', style: TextStyle(color: textSecondary, fontSize: AppTypography.footnoteSize)),
+                    title: Text(AppLocalizations.of(context).autoCopyOcrLabel, style: TextStyle(color: textPrimary, fontSize: AppTypography.bodySize)),
+                    subtitle: Text(AppLocalizations.of(context).autoCopyOcrSubtitle, style: TextStyle(color: textSecondary, fontSize: AppTypography.footnoteSize)),
                     value: _settingsProvider.settings.value.autoCopyOcr,
                     onChanged: (value) => _settingsProvider.setAutoCopyOcr(value),
                     activeThumbColor: accent,
                     tileColor: Colors.transparent,
                   ),
                   SwitchListTile(
-                    title: Text('Beep on capture', style: TextStyle(color: textPrimary, fontSize: AppTypography.bodySize)),
-                    subtitle: Text('Play sound when scan completes', style: TextStyle(color: textSecondary, fontSize: AppTypography.footnoteSize)),
+                    title: Text(AppLocalizations.of(context).beepOnCaptureLabel, style: TextStyle(color: textPrimary, fontSize: AppTypography.bodySize)),
+                    subtitle: Text(AppLocalizations.of(context).beepOnCaptureSubtitle, style: TextStyle(color: textSecondary, fontSize: AppTypography.footnoteSize)),
                     value: _settingsProvider.settings.value.beepOnCapture,
                     onChanged: (value) => _settingsProvider.setBeepOnCapture(value),
                     activeThumbColor: accent,
                     tileColor: Colors.transparent,
                   ),
                   SwitchListTile(
-                    title: Text('Vibrate on capture', style: TextStyle(color: textPrimary, fontSize: AppTypography.bodySize)),
-                    subtitle: Text('Haptic feedback when scan completes', style: TextStyle(color: textSecondary, fontSize: AppTypography.footnoteSize)),
+                    title: Text(AppLocalizations.of(context).vibrateOnCaptureLabel, style: TextStyle(color: textPrimary, fontSize: AppTypography.bodySize)),
+                    subtitle: Text(AppLocalizations.of(context).vibrateOnCaptureSubtitle, style: TextStyle(color: textSecondary, fontSize: AppTypography.footnoteSize)),
                     value: _settingsProvider.settings.value.vibrateOnCapture,
                     onChanged: (value) => _settingsProvider.setVibrateOnCapture(value),
                     activeThumbColor: accent,
@@ -202,17 +202,17 @@ class _SettingsScreenState extends State<SettingsScreen> {
               listenable: _subscriptionProvider.adsRemoved,
               builder: (context, _) => Column(
                 children: [
-                  _settingsTile(title: _subscriptionProvider.adsRemoved.value ? 'Ads Removed' : 'Remove Ads', trailing: Icon(Icons.chevron_right, color: textSecondary), onTap: () => context.push('/paywall'), textPrimary: textPrimary, border: border),
+                  _settingsTile(title: _subscriptionProvider.adsRemoved.value ? AppLocalizations.of(context).adsRemovedLabel : AppLocalizations.of(context).removeAdsTitle, trailing: Icon(Icons.chevron_right, color: textSecondary), onTap: () => context.push('/paywall'), textPrimary: textPrimary, border: border),
                   const SizedBox(height: AppSpacing.xs),
                   _settingsTile(title: l10n.restorePurchasesButton, trailing: const SizedBox.shrink(), onTap: () => _restorePurchases(l10n), textPrimary: textPrimary, border: border),
                 ],
               ),
             ),
             const SizedBox(height: AppSpacing.md),
-            _sectionLabel('DIAGNOSTICS', textSecondary),
+            _sectionLabel(AppLocalizations.of(context).diagnosticsSectionLabel, textSecondary),
             ListenableBuilder(
               listenable: DebugLogService().logs,
-              builder: (context, _) => _settingsTile(title: 'Debug Logs', trailing: Text('${DebugLogService().count} entries', style: TextStyle(color: textSecondary)), onTap: () => context.push('/debug-logs'), textPrimary: textPrimary, border: border),
+              builder: (context, _) => _settingsTile(title: AppLocalizations.of(context).debugLogsLabel, trailing: Text(AppLocalizations.of(context).logEntriesLabel(DebugLogService().count), style: TextStyle(color: textSecondary)), onTap: () => context.push('/debug-logs'), textPrimary: textPrimary, border: border),
             ),
             const SizedBox(height: AppSpacing.md),
             _sectionLabel(l10n.aboutSectionLabel, textSecondary),
@@ -346,18 +346,18 @@ class _OcrLanguagesSheetState extends State<_OcrLanguagesSheet> {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('OCR Languages', style: TextStyle(color: textPrimary, fontSize: AppTypography.title1Size, fontWeight: FontWeight.w600)),
+            Text(AppLocalizations.of(context).ocrLanguagesLabel, style: TextStyle(color: textPrimary, fontSize: AppTypography.title1Size, fontWeight: FontWeight.w600)),
             const SizedBox(height: AppSpacing.sm),
             ...OcrScript.values.map((script) {
               final failure = OcrService.lastFailureFor(script);
               final bool isHard = failure?.$2 ?? false;
               final String status = script == OcrScript.latin
-                  ? 'Built-in'
+                  ? AppLocalizations.of(context).ocrStatusBuiltIn
                   : _probing == script
-                      ? 'Checking...'
+                      ? AppLocalizations.of(context).ocrStatusChecking
                       : failure != null
                           ? (isHard ? 'Unsupported' : failure.$1)
-                          : 'On-demand';
+                          : AppLocalizations.of(context).ocrStatusOnDemand;
               final Color statusColor = failure != null
                   ? (isHard ? Colors.red : Colors.orange)
                   : textSecondary;

@@ -22,6 +22,7 @@ import '../core/services/export_service.dart';
 import '../core/services/ocr_service.dart';
 import '../core/services/share_service.dart';
 import '../core/utils/constants.dart';
+import '../l10n/app_localizations.dart';
 
 enum _Stage { pickImage, saving }
 enum _CaptureMode { docs, ocr, idCard, passport }
@@ -34,6 +35,8 @@ class ManualCropScreen extends StatefulWidget {
 }
 
 class _ManualCropScreenState extends State<ManualCropScreen> {
+  AppLocalizations get l10n => AppLocalizations.of(context);
+
   late final ScanProvider _scanProvider;
   late final SettingsProvider _settingsProvider;
   final OcrService _ocrService = OcrService();
@@ -111,7 +114,7 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
       _log.log('CROP', 'Camera error: $e');
       if (!mounted) return;
       setState(() => _isPicking = false);
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Camera error: $e')));
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('${l10n.cameraErrorPrefix}: $e')));
     }
   }
 
@@ -148,7 +151,7 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
       _log.log('CROP', 'Import error: $e');
       if (!mounted) return;
       setState(() => _isPicking = false);
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Import error: $e')));
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('${l10n.importErrorPrefix}: $e')));
     }
   }
 
@@ -199,14 +202,14 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
       final success = await _scanProvider.importDocument(document);
       if (!mounted) return;
       if (success) {
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('PDF imported as document')));
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.pdfImportedAsDocument)));
         await Future.delayed(const Duration(milliseconds: 300));
         if (!mounted) return;
         context.pushReplacement('/scan/${document.id}');
       }
     } catch (e) {
       if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('PDF import error: $e')));
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('${l10n.pdfImportErrorPrefix}: $e')));
     } finally {
       if (mounted) setState(() => _stage = _Stage.pickImage);
     }
@@ -244,7 +247,7 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
       context.push('/convert?path=${Uri.encodeComponent(path)}&type=$type');
     } catch (e) {
       if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Pick error: $e')));
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('${l10n.pickErrorPrefix}: $e')));
     } finally {
       if (mounted) setState(() => _isPicking = false);
     }
@@ -283,7 +286,7 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
     } catch (e) {
       if (!mounted) return;
       setState(() => _isPicking = false);
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Scanner error: $e')));
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('${l10n.scannerErrorPrefix}: $e')));
     }
   }
 
@@ -312,7 +315,7 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
       setState(() => _stage = _Stage.pickImage);
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Front side captured. Now capture the back side.'), duration: Duration(seconds: 2)),
+        SnackBar(content: Text(l10n.frontSideCaptured), duration: Duration(seconds: 2)),
       );
     }
   }
@@ -340,7 +343,7 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
     } catch (e) {
       _log.log('CROP', 'ID Card export error: $e');
       if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Error generating ID PDF: $e')));
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('${l10n.idPdfErrorPrefix}: $e')));
       setState(() {
         _idFrontPath = null;
         _idBackPath = null;
@@ -399,7 +402,7 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const Text('ID Card PDF Generated', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+              Text(l10n.idCardPdfGenerated, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
               const SizedBox(height: 16),
               ElevatedButton.icon(
                 onPressed: () async {
@@ -409,7 +412,7 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
                   } catch (_) {}
                 },
                 icon: const Icon(Icons.ios_share),
-                label: const Text('Share PDF'),
+                label: Text(l10n.sharePdf),
               ),
               const SizedBox(height: 8),
               ElevatedButton.icon(
@@ -433,12 +436,12 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
                   }
                 },
                 icon: const Icon(Icons.save_alt),
-                label: const Text('Save as Document'),
+                label: Text(l10n.saveAsDocument),
               ),
               const SizedBox(height: 8),
               TextButton(
                 onPressed: () => Navigator.pop(ctx),
-                child: const Text('Done'),
+                child: Text(l10n.commonDone),
               ),
             ],
           ),
@@ -491,7 +494,7 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
           setState(() => _stage = _Stage.pickImage);
           if (!mounted) return;
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Front side captured. Now capture the back side.'), duration: Duration(seconds: 2)),
+            SnackBar(content: Text(l10n.frontSideCaptured), duration: Duration(seconds: 2)),
           );
         }
         return;
@@ -520,14 +523,14 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
       if (!mounted) return;
 
       if (success) {
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Document saved'), duration: Duration(seconds: 2)));
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.documentSaved), duration: Duration(seconds: 2)));
         await Future.delayed(const Duration(milliseconds: 300));
         if (!mounted) return;
         context.pushReplacement('/scan/${document.id}');
       }
     } catch (e) {
       if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Error: $e')));
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('${l10n.genericErrorPrefix}: $e')));
     } finally {
       if (mounted) setState(() => _stage = _Stage.pickImage);
     }
@@ -653,11 +656,11 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
                                 children: [
                                   const Icon(Icons.check_circle, color: Colors.green, size: 16),
                                   const SizedBox(width: 4),
-                                  Text('Front side captured', style: TextStyle(color: textSecondary, fontSize: 12)),
+                                  Text(l10n.frontSideCaptured, style: TextStyle(color: textSecondary, fontSize: 12)),
                                   const SizedBox(width: 12),
                                   TextButton(
                                     onPressed: () => setState(() { _idFrontPath = null; _idBackPath = null; }),
-                                    child: const Text('Reset', style: TextStyle(fontSize: 12)),
+                                    child: Text(l10n.commonReset, style: TextStyle(fontSize: 12)),
                                   ),
                                 ],
                               ),
@@ -677,7 +680,7 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
                           ElevatedButton.icon(
                             onPressed: _scanDocument,
                             icon: const Icon(Icons.document_scanner),
-                            label: const Text('Auto Scan'),
+                            label: Text(l10n.autoScan),
                             style: ElevatedButton.styleFrom(backgroundColor: accent, foregroundColor: Colors.white, padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12), shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppShape.buttonRadius))),
                           ),
                           const SizedBox(height: AppSpacing.md),
@@ -701,7 +704,7 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
                             ElevatedButton.icon(
                               onPressed: _pickAndConvertDocument,
                               icon: const Icon(Icons.transform_outlined),
-                              label: const Text('Import & Convert Document'),
+                              label: Text(l10n.importAndConvertDocument),
                               style: ElevatedButton.styleFrom(backgroundColor: surface, foregroundColor: textPrimary, padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12), shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppShape.buttonRadius))),
                             ),
                           ],

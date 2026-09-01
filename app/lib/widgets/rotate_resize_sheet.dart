@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import '../core/utils/constants.dart';
 import 'package:image/image.dart' as img;
+import '../l10n/app_localizations.dart';
 
 
 enum RotateResizeMode { rotate, resize }
@@ -108,7 +109,7 @@ class RotateResizeSheetState extends State<RotateResizeSheet> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  TextButton(onPressed: () => Navigator.pop(context), child: const Text('Cancel')),
+                  TextButton(onPressed: () => Navigator.pop(context), child: Text(AppLocalizations.of(context).commonCancel)),
                   const SizedBox(width: 12),
                   ElevatedButton(
                     onPressed: () {
@@ -126,7 +127,7 @@ class RotateResizeSheetState extends State<RotateResizeSheet> {
                       foregroundColor: Colors.white,
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                     ),
-                    child: const Text('Confirm'),
+                    child: Text(AppLocalizations.of(context).commonConfirm),
                   ),
                 ],
               ),
@@ -153,10 +154,10 @@ class RotateResizeSheetState extends State<RotateResizeSheet> {
         ElevatedButton.icon(
           onPressed: () => setState(() => _quarterTurns = (_quarterTurns + 1) % 4),
           icon: const Icon(Icons.rotate_90_degrees_ccw),
-          label: const Text('Rotate 90°'),
+          label: Text(AppLocalizations.of(context).rotate90Action),
         ),
         SwitchListTile(
-          title: const Text('Apply to all pages'),
+          title: Text(AppLocalizations.of(context).applyToAllPages),
           value: _applyAll,
           onChanged: (v) => setState(() => _applyAll = v),
         ),
@@ -180,7 +181,7 @@ class RotateResizeSheetState extends State<RotateResizeSheet> {
       children: [
         Expanded(child: Image.file(File(widget.imagePath), fit: BoxFit.contain)),
         const SizedBox(height: 16),
-        Text('Original: $origW×$origH', style: TextStyle(fontSize: 14, color: textSecondary)),
+        Text(AppLocalizations.of(context).originalDimensions(origW, origH), style: TextStyle(fontSize: 14, color: textSecondary)),
         const SizedBox(height: 12),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -190,7 +191,7 @@ class RotateResizeSheetState extends State<RotateResizeSheet> {
               child: TextField(
                 controller: _widthCtrl,
                 keyboardType: TextInputType.number,
-                decoration: const InputDecoration(labelText: 'Width', border: OutlineInputBorder()),
+                decoration: InputDecoration(labelText: AppLocalizations.of(context).widthLabel, border: OutlineInputBorder()),
                 onChanged: (v) {
                   setState(() {});
                   if (_aspectLock) {
@@ -206,7 +207,7 @@ class RotateResizeSheetState extends State<RotateResizeSheet> {
               child: TextField(
                 controller: _heightCtrl,
                 keyboardType: TextInputType.number,
-                decoration: const InputDecoration(labelText: 'Height', border: OutlineInputBorder()),
+                decoration: InputDecoration(labelText: AppLocalizations.of(context).heightLabel, border: OutlineInputBorder()),
                 onChanged: (v) {
                   setState(() {});
                   if (_aspectLock) {
@@ -220,7 +221,7 @@ class RotateResizeSheetState extends State<RotateResizeSheet> {
         ),
         const SizedBox(height: 8),
         SwitchListTile(
-          title: const Text('Lock aspect ratio'),
+          title: Text(AppLocalizations.of(context).lockAspectRatio),
           value: _aspectLock,
           onChanged: (v) => setState(() => _aspectLock = v),
         ),

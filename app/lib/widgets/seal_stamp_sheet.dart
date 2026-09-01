@@ -8,6 +8,7 @@ import 'package:image_picker/image_picker.dart';
 import '../core/models/scan_document.dart';
 import 'color_picker_dialog.dart';
 import 'text_stamp_sheet.dart';
+import '../l10n/app_localizations.dart';
 
 class SealStampSheet extends StatefulWidget {
   const SealStampSheet({super.key, this.initial});
@@ -146,21 +147,21 @@ class _SealStampSheetState extends State<SealStampSheet> {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(isEdit ? 'Edit Custom Seal' : 'Custom Seal',
+              Text(isEdit ? AppLocalizations.of(context).sealEditTitle : AppLocalizations.of(context).sealCreateTitle,
                   style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600)),
               const SizedBox(height: 12),
               TextField(
                 controller: _text,
-                decoration: const InputDecoration(
-                  labelText: 'Main text (top arc / box)',
+                decoration: InputDecoration(
+                  labelText: AppLocalizations.of(context).sealMainTextLabel,
                   border: OutlineInputBorder(),
                 ),
               ),
               const SizedBox(height: 8),
               TextField(
                 controller: _subtext,
-                decoration: const InputDecoration(
-                  labelText: 'Subtext (bottom arc / below)',
+                decoration: InputDecoration(
+                  labelText: AppLocalizations.of(context).sealSubtextLabel,
                   border: OutlineInputBorder(),
                 ),
               ),
@@ -168,7 +169,7 @@ class _SealStampSheetState extends State<SealStampSheet> {
               Wrap(
                 spacing: 8,
                 children: ['oval', 'rectangle'].map((sh) => ChoiceChip(
-                      label: Text(sh == 'oval' ? 'Oval' : 'Box'),
+                      label: Text(sh == 'oval' ? AppLocalizations.of(context).sealShapeOval : AppLocalizations.of(context).sealShapeBox),
                       selected: _shape == sh,
                       onSelected: (_) => setState(() => _shape = sh),
                     )).toList(),
@@ -177,17 +178,17 @@ class _SealStampSheetState extends State<SealStampSheet> {
               Wrap(
                 spacing: 8,
                 children: [
-                  ChoiceChip(label: const Text('Star'), selected: _centerMode == 'star', onSelected: (_) => setState(() => _centerMode = 'star')),
-                  ChoiceChip(label: const Text('Text'), selected: _centerMode == 'text', onSelected: (_) => setState(() => _centerMode = 'text')),
-                  ChoiceChip(label: const Text('Logo'), selected: _centerMode == 'image', onSelected: (_) => _pickImage()),
-                  ChoiceChip(label: const Text('None'), selected: _centerMode == 'none', onSelected: (_) => setState(() => _centerMode = 'none')),
+                  ChoiceChip(label: Text(AppLocalizations.of(context).sealCenterStar), selected: _centerMode == 'star', onSelected: (_) => setState(() => _centerMode = 'star')),
+                  ChoiceChip(label: Text(AppLocalizations.of(context).sealCenterText), selected: _centerMode == 'text', onSelected: (_) => setState(() => _centerMode = 'text')),
+                  ChoiceChip(label: Text(AppLocalizations.of(context).sealCenterLogo), selected: _centerMode == 'image', onSelected: (_) => _pickImage()),
+                  ChoiceChip(label: Text(AppLocalizations.of(context).sealCenterNone), selected: _centerMode == 'none', onSelected: (_) => setState(() => _centerMode = 'none')),
                 ],
               ),
               if (_centerMode == 'text') ...[
                 const SizedBox(height: 8),
                 TextField(
                   controller: _centerText,
-                  decoration: const InputDecoration(labelText: 'Center text', border: OutlineInputBorder()),
+                  decoration: InputDecoration(labelText: AppLocalizations.of(context).sealCenterTextLabel, border: OutlineInputBorder()),
                 ),
               ],
               if (_centerMode == 'image' && _imageBytes != null) ...[
@@ -196,13 +197,13 @@ class _SealStampSheetState extends State<SealStampSheet> {
                   children: [
                     ClipOval(child: Image.memory(_imageBytes!, width: 48, height: 48, fit: BoxFit.cover)),
                     const SizedBox(width: 8),
-                    const Text('Logo ready', style: TextStyle(fontSize: 12, color: Colors.green, fontWeight: FontWeight.w600)),
+                    Text(AppLocalizations.of(context).sealLogoReady, style: TextStyle(fontSize: 12, color: Colors.green, fontWeight: FontWeight.w600)),
                   ],
                 ),
               ],
               const SizedBox(height: 12),
               Row(children: [
-                const Text('Color', style: TextStyle(fontSize: 12)),
+                Text(AppLocalizations.of(context).commonColor, style: TextStyle(fontSize: 12)),
                 const SizedBox(width: 8),
                 for (final sw in _swatches) _swatch(sw),
                 TextButton(
@@ -213,11 +214,11 @@ class _SealStampSheetState extends State<SealStampSheet> {
                     );
                     if (c != null) setState(() => _color = c);
                   },
-                  child: const Text('Custom'),
+                  child: Text(AppLocalizations.of(context).commonCustom),
                 ),
               ]),
               const SizedBox(height: 8),
-              Text('Text size: ${_fontSize.round()}', style: const TextStyle(fontSize: 12)),
+              Text(AppLocalizations.of(context).textSizeLabel(_fontSize.round()), style: const TextStyle(fontSize: 12)),
               Slider(
                 value: _fontSize,
                 min: 24,
@@ -226,7 +227,7 @@ class _SealStampSheetState extends State<SealStampSheet> {
               ),
               const SizedBox(height: 12),
               Row(mainAxisAlignment: MainAxisAlignment.end, children: [
-                TextButton(onPressed: () => Navigator.pop(context), child: const Text('Cancel')),
+                TextButton(onPressed: () => Navigator.pop(context), child: Text(AppLocalizations.of(context).commonCancel)),
                 const SizedBox(width: 12),
                 ElevatedButton(
                   onPressed: _confirm,
@@ -235,7 +236,7 @@ class _SealStampSheetState extends State<SealStampSheet> {
                     foregroundColor: Colors.white,
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                   ),
-                  child: Text(isEdit ? 'Update' : 'Create'),
+                  child: Text(isEdit ? AppLocalizations.of(context).commonUpdate : AppLocalizations.of(context).commonCreate),
                 ),
               ]),
             ],

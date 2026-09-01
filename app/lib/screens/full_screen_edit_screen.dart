@@ -17,6 +17,7 @@ import '../widgets/seal_stamp_sheet.dart';
 import '../widgets/signature_editor_bar.dart';
 import '../widgets/text_stamp_sheet.dart';
 import '../widgets/watermark_sheet.dart';
+import '../l10n/app_localizations.dart';
 
 class FullScreenEditScreen extends StatefulWidget {
   const FullScreenEditScreen({super.key, required this.documentId});
@@ -131,7 +132,7 @@ class _FullScreenEditScreenState extends State<FullScreenEditScreen> with Docume
         builder: (context, _) {
           final doc = document;
           if (doc == null) {
-            return SafeArea(child: Center(child: Text('Document not found', style: TextStyle(color: textPrimary))));
+            return SafeArea(child: Center(child: Text(AppLocalizations.of(context).documentNotFound, style: TextStyle(color: textPrimary))));
           }
 
           return Column(
@@ -158,7 +159,7 @@ class _FullScreenEditScreenState extends State<FullScreenEditScreen> with Docume
                         color: _currentPageIndex > 0 ? accent : textSecondary,
                         onPressed: _currentPageIndex > 0 ? () => _goToPage(_currentPageIndex - 1) : null,
                       ),
-                      Text('${_currentPageIndex + 1} / ${doc.pagePaths.length}', style: TextStyle(color: textPrimary, fontSize: AppTypography.footnoteSize, fontWeight: FontWeight.w600)),
+                      Text(AppLocalizations.of(context).pageIndicator(_currentPageIndex + 1, doc.pagePaths.length), style: TextStyle(color: textPrimary, fontSize: AppTypography.footnoteSize, fontWeight: FontWeight.w600)),
                       IconButton(
                         icon: const Icon(Icons.chevron_right),
                         color: _currentPageIndex < doc.pagePaths.length - 1 ? accent : textSecondary,
@@ -177,7 +178,7 @@ class _FullScreenEditScreenState extends State<FullScreenEditScreen> with Docume
                       if (_editMode != TrayEditMode.none)
                         ActionChip(
                           avatar: const Icon(Icons.check, size: 14),
-                          label: const Text('Done', style: TextStyle(fontSize: 11)),
+                          label: Text(AppLocalizations.of(context).commonDone, style: TextStyle(fontSize: 11)),
                           onPressed: closeEditor,
                         ),
                     ],

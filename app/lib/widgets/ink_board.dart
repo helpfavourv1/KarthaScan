@@ -9,6 +9,7 @@ import '../core/services/local_storage.dart';
 import '../core/utils/constants.dart';
 import '../core/utils/seal_draw.dart';
 import 'signature_canvas.dart';
+import '../l10n/app_localizations.dart';
 
 /// Which editor currently owns the tray preview screen.
 enum TrayEditMode { none, signature, annotate, watermark, text, note, date, checkbox, seal }
@@ -51,11 +52,11 @@ class InkController {
       final choice = await showDialog<String>(
         context: context,
         builder: (ctx) => AlertDialog(
-          title: const Text('Signature'),
-          content: const Text('Use your saved signature or draw a new one?'),
+          title: Text(AppLocalizations.of(context).signatureTitle),
+          content: Text(AppLocalizations.of(context).signatureChoiceMessage),
           actions: [
-            TextButton(onPressed: () => Navigator.pop(ctx, 'saved'), child: const Text('Use Saved')),
-            TextButton(onPressed: () => Navigator.pop(ctx, 'draw'), child: const Text('Draw New')),
+            TextButton(onPressed: () => Navigator.pop(ctx, 'saved'), child: Text(AppLocalizations.of(ctx).useSavedSignature)),
+            TextButton(onPressed: () => Navigator.pop(ctx, 'draw'), child: Text(AppLocalizations.of(ctx).drawNewSignature)),
           ],
         ),
       );
@@ -732,10 +733,10 @@ class OverlayEditControls extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                TextButton(onPressed: onCopyAll, child: const Text('Copy all', style: TextStyle(fontSize: 11))),
-                TextButton(onPressed: onClearThis, child: const Text('Clear this', style: TextStyle(fontSize: 11))),
-                TextButton(onPressed: onRemove, child: const Text('Remove', style: TextStyle(fontSize: 11))),
-                TextButton(onPressed: onClearAll, child: const Text('Clear all', style: TextStyle(fontSize: 11))),
+                TextButton(onPressed: onCopyAll, child: Text(AppLocalizations.of(context).copyAll, style: TextStyle(fontSize: 11))),
+                TextButton(onPressed: onClearThis, child: Text(AppLocalizations.of(context).clearThis, style: TextStyle(fontSize: 11))),
+                TextButton(onPressed: onRemove, child: Text(AppLocalizations.of(context).commonRemove, style: TextStyle(fontSize: 11))),
+                TextButton(onPressed: onClearAll, child: Text(AppLocalizations.of(context).clearAll, style: TextStyle(fontSize: 11))),
               ],
             ),
           ),
@@ -784,7 +785,7 @@ class InkCompactBar extends StatelessWidget {
               children: [
                 Icon(Icons.draw_outlined, size: 16, color: accent),
                 const SizedBox(width: AppSpacing.xs),
-                Text('Add Signature',
+                Text(AppLocalizations.of(context).addSignature,
                     style: TextStyle(
                         color: textPrimary,
                         fontSize: 11,
@@ -825,7 +826,7 @@ class InkCompactBar extends StatelessWidget {
               isDense: true,
             ),
           ),
-          Text('${controller.totalPlacements} placed',
+          Text(AppLocalizations.of(context).placementsCountLabel(controller.totalPlacements),
               style: TextStyle(
                   color: textPrimary, fontSize: 10, fontWeight: FontWeight.w600)),
           const SizedBox(width: AppSpacing.xs),
@@ -883,7 +884,7 @@ class InkSignatureSheetState extends State<InkSignatureSheet> {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Text('Signature',
+              Text(AppLocalizations.of(context).signatureTitle,
                   style: TextStyle(
                       color: textPrimary,
                       fontSize: AppTypography.title1Size,
@@ -895,11 +896,11 @@ class InkSignatureSheetState extends State<InkSignatureSheet> {
                 children: [
                   TextButton(
                       onPressed: () => _signatureKey.currentState?.clear(),
-                      child: const Text('Clear')),
+                      child: Text(AppLocalizations.of(context).commonClear)),
                   const Spacer(),
                   TextButton(
                       onPressed: () => Navigator.pop(context),
-                      child: const Text('Skip')),
+                      child: Text(AppLocalizations.of(context).commonSkip)),
                   const SizedBox(width: AppSpacing.xs),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
@@ -909,7 +910,7 @@ class InkSignatureSheetState extends State<InkSignatureSheet> {
                           await _signatureKey.currentState?.exportPng();
                       if (context.mounted) Navigator.pop(context, bytes);
                     },
-                    child: const Text('Use'),
+                    child: Text(AppLocalizations.of(context).commonUse),
                   ),
                 ],
               ),
