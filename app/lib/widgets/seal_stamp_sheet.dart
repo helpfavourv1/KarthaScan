@@ -1,13 +1,14 @@
+import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
+import 'package:image/image.dart' as img;
+import 'package:image_picker/image_picker.dart';
 
 import '../core/models/scan_document.dart';
 import 'color_picker_dialog.dart';
 import 'text_stamp_sheet.dart';
 
-/// Custom Seal sheet — round (ring + curved arc text + star/text center)
-/// or rectangle ("PAID"-style box). Returns a StampResult with seal recipe.
 class SealStampSheet extends StatefulWidget {
   const SealStampSheet({super.key, this.initial});
   final StampLayer? initial;
@@ -21,9 +22,11 @@ class _SealStampSheetState extends State<SealStampSheet> {
   late final TextEditingController _subtext;
   late final TextEditingController _centerText;
   late String _shape;
-  late String _centerMode; // star | text | none
+  late String _centerMode;
   late Color _color;
   late double _fontSize;
+  Uint8List? _imageBytes;
+  Uint8List? _processedImageBytes;
 
   static const _swatches = [0xFFDD2222, 0xFF1F4E9C, 0xFF111111, 0xFF2E7D32];
 
@@ -34,11 +37,13 @@ class _SealStampSheetState extends State<SealStampSheet> {
     _text = TextEditingController(text: i?.text ?? 'YOUR COMPANY');
     _subtext = TextEditingController(text: i?.sealSubtext ?? '');
     final c = i?.sealCenter ?? 'star';
-    _centerMode = c == 'star' ? 'star' : (c.isEmpty ? 'none' : 'text');
-    _centerText = TextEditingController(text: _centerMode == 'text' ? c : '');
-    _shape = i?.sealShape ?? 'round';
+    _centerMode = c == 'star' ? 'star' : (c == 'image' ? 'image' : (c.isEmpty ? 'none' : 'text'));
+    _centerText = TextEditingController(text: (_centerMode == 'text') ? c : '');
+    _shape = i?.sealShape ?? 'oval';
     _color = Color(i?.color ?? 0xFFDD2222);
     _fontSize = i?.fontSize ?? 40;
+    _imageBytes = i?.sealImageBytes;
+    _processedImageBytes = i?.sealImageBytes;
   }
 
   @override
@@ -49,10 +54,51 @@ class _SealStampSheetState extends State<SealStampSheet> {
     super.dispose();
   }
 
+  Future<void> _pickImage() async {
+    final picker = ImagePicker();
+    final picked = await picker.pickImage(source: ImageSource.gallery, imageQuality: 90);
+    if (picked == null) return;
+    final rawBytes = await File(picked.path).readAsBytes();
+    final processed = await _preRenderCircularImage(rawBytes);
+    if (!mounted) return;
+    setState(() {
+      _imageBytes = rawBytes;
+      _processedImageBytes = processed;
+      _centerMode = 'image';
+    });
+  }
+
+  /// Pre-renders the uploaded image into a circular-cropped PNG.
+  /// This ensures drawSeal() receives a ready-to-draw image.
+  Future<Uint8List> _preRenderCircularImage(Uint8List rawBytes) async {
+    final decoded = img.decodeImage(rawBytes);
+    if (decoded == null) return rawBytes;
+
+    // Resize to 400x400 for quality
+    const targetSize = 400;
+    final resized = img.copyResize(decoded, width: targetSize, height: targetSize);
+
+    // Apply circular mask
+    final mask = img.Image(width: targetSize, height: targetSize);
+    img.fill(mask, color: img.ColorRgb8(0, 0, 0));
+    img.fillCircle(mask, x: targetSize ~/ 2, y: targetSize ~/ 2, radius: targetSize ~/ 2, color: img.ColorRgb8(255, 255, 255));
+
+    for (int y = 0; y < targetSize; y++) {
+      for (int x = 0; x < targetSize; x++) {
+        final maskPixel = mask.getPixel(x, y);
+        if (maskPixel.r.toInt() == 0) {
+          resized.setPixel(x, y, img.ColorRgba8(0, 0, 0, 0));
+        }
+      }
+    }
+
+    return Uint8List.fromList(img.encodePng(resized));
+  }
+
   void _confirm() {
     final centerValue = _centerMode == 'star'
         ? 'star'
-        : (_centerMode == 'text' ? _centerText.text.trim() : '');
+        : (_centerMode == 'image' ? 'image' : (_centerMode == 'text' ? _centerText.text.trim() : ''));
     Navigator.pop(context, StampResult(
       bytes: Uint8List(0),
       label: 'Custom Seal',
@@ -64,6 +110,7 @@ class _SealStampSheetState extends State<SealStampSheet> {
       sealShapeValue: _shape,
       sealSubtextValue: _subtext.text.trim(),
       sealCenterValue: centerValue,
+      sealImageBytesValue: _processedImageBytes,
     ));
   }
 
@@ -120,29 +167,38 @@ class _SealStampSheetState extends State<SealStampSheet> {
               const SizedBox(height: 12),
               Wrap(
                 spacing: 8,
-                children: ['round', 'rectangle'].map((sh) => ChoiceChip(
-                      label: Text(sh == 'round' ? 'Round' : 'Box'),
+                children: ['oval', 'rectangle'].map((sh) => ChoiceChip(
+                      label: Text(sh == 'oval' ? 'Oval' : 'Box'),
                       selected: _shape == sh,
                       onSelected: (_) => setState(() => _shape = sh),
                     )).toList(),
               ),
               const SizedBox(height: 8),
-              if (_shape == 'round') ...[
-                Wrap(
-                  spacing: 8,
+              Wrap(
+                spacing: 8,
+                children: [
+                  ChoiceChip(label: const Text('Star'), selected: _centerMode == 'star', onSelected: (_) => setState(() => _centerMode = 'star')),
+                  ChoiceChip(label: const Text('Text'), selected: _centerMode == 'text', onSelected: (_) => setState(() => _centerMode = 'text')),
+                  ChoiceChip(label: const Text('Logo'), selected: _centerMode == 'image', onSelected: (_) => _pickImage()),
+                  ChoiceChip(label: const Text('None'), selected: _centerMode == 'none', onSelected: (_) => setState(() => _centerMode = 'none')),
+                ],
+              ),
+              if (_centerMode == 'text') ...[
+                const SizedBox(height: 8),
+                TextField(
+                  controller: _centerText,
+                  decoration: const InputDecoration(labelText: 'Center text', border: OutlineInputBorder()),
+                ),
+              ],
+              if (_centerMode == 'image' && _imageBytes != null) ...[
+                const SizedBox(height: 8),
+                Row(
                   children: [
-                    ChoiceChip(label: const Text('Star center'), selected: _centerMode == 'star', onSelected: (_) => setState(() => _centerMode = 'star')),
-                    ChoiceChip(label: const Text('Text center'), selected: _centerMode == 'text', onSelected: (_) => setState(() => _centerMode = 'text')),
-                    ChoiceChip(label: const Text('No center'), selected: _centerMode == 'none', onSelected: (_) => setState(() => _centerMode = 'none')),
+                    ClipOval(child: Image.memory(_imageBytes!, width: 48, height: 48, fit: BoxFit.cover)),
+                    const SizedBox(width: 8),
+                    const Text('Logo ready', style: TextStyle(fontSize: 12, color: Colors.green, fontWeight: FontWeight.w600)),
                   ],
                 ),
-                if (_centerMode == 'text') ...[
-                  const SizedBox(height: 8),
-                  TextField(
-                    controller: _centerText,
-                    decoration: const InputDecoration(labelText: 'Center text', border: OutlineInputBorder()),
-                  ),
-                ],
               ],
               const SizedBox(height: 12),
               Row(children: [

@@ -5,9 +5,12 @@
 //
 // Added `isFavorite` to support the Favorites filter chip.
 
+import 'dart:convert';
+import 'dart:typed_data';
 import 'package:flutter/foundation.dart' show immutable, listEquals, mapEquals;
 import 'signature_placement.dart';
 import 'page_transform.dart';
+import 'ocr_block.dart';
 
 @immutable
 class SignatureLayer {
@@ -270,6 +273,7 @@ class StampLayer {
     this.sealShape = 'round',
     this.sealSubtext = '',
     this.sealCenter = 'star',
+    this.sealImageBytes,
   });
 
   final String id;
@@ -294,6 +298,7 @@ class StampLayer {
   final String sealShape;
   final String sealSubtext;
   final String sealCenter;
+  final Uint8List? sealImageBytes;
 
   Map<String, dynamic> toJson() => {
     'id': id, 'pageIndex': pageIndex, 'kind': kind,
@@ -304,6 +309,7 @@ class StampLayer {
     'noteBgColor': noteBgColor, 'dateFormat': dateFormat, 'customDateMillis': customDateMillis,
     'checked': checked, 'checkShape': checkShape, 'boxColor': boxColor, 'tickColor': tickColor,
     'sealShape': sealShape, 'sealSubtext': sealSubtext, 'sealCenter': sealCenter,
+    if (sealImageBytes != null) 'sealImageBytes': base64Encode(sealImageBytes!),
   };
 
   factory StampLayer.fromJson(Map<String, dynamic> json) {
@@ -335,6 +341,7 @@ class StampLayer {
       sealShape: json['sealShape'] as String? ?? 'round',
       sealSubtext: json['sealSubtext'] as String? ?? '',
       sealCenter: json['sealCenter'] as String? ?? 'star',
+      sealImageBytes: json['sealImageBytes'] != null ? base64Decode(json['sealImageBytes'] as String) : null,
     );
   }
 
@@ -344,6 +351,7 @@ class StampLayer {
     int? fontWeight, String? align, bool? halo, int? noteBgColor, String? dateFormat,
     int? customDateMillis, bool? checked, String? checkShape, int? boxColor, int? tickColor,
     String? sealShape, String? sealSubtext, String? sealCenter,
+    Uint8List? sealImageBytes,
   }) {
     return StampLayer(
       id: id ?? this.id, pageIndex: pageIndex ?? this.pageIndex, kind: kind ?? this.kind,
@@ -355,6 +363,7 @@ class StampLayer {
       checked: checked ?? this.checked, checkShape: checkShape ?? this.checkShape,
       boxColor: boxColor ?? this.boxColor, tickColor: tickColor ?? this.tickColor,
       sealShape: sealShape ?? this.sealShape, sealSubtext: sealSubtext ?? this.sealSubtext, sealCenter: sealCenter ?? this.sealCenter,
+      sealImageBytes: sealImageBytes ?? this.sealImageBytes,
     );
   }
 }
@@ -377,6 +386,7 @@ class ScanDocument {
     this.watermarkLayers = const <WatermarkLayer>[],
     this.stampLayers = const <StampLayer>[],
     this.pageTransforms = const <int, PageTransform>{},
+    this.pageOcrBlocks = const <int, List<OcrBlock>>{},
   });
 
   final String id;
@@ -413,6 +423,16 @@ class ScanDocument {
 
   /// Non-destructive page transforms (crop, rotate, filter, resize, eraser)
   final Map<int, PageTransform> pageTransforms;
+  final Map<int, List<OcrBlock>> pageOcrBlocks;
+
+  static bool _mapEqualsDeep(Map<int, List<OcrBlock>>? a, Map<int, List<OcrBlock>>? b) {
+    if (identical(a, b)) return true;
+    if (a == null || b == null || a.length != b.length) return false;
+    for (final key in a.keys) {
+      if (!b.containsKey(key) || !listEquals(a[key], b[key])) return false;
+    }
+    return true;
+  }
 
   ScanDocument copyWith({
     String? id,
@@ -431,6 +451,7 @@ class ScanDocument {
     List<WatermarkLayer>? watermarkLayers,
     List<StampLayer>? stampLayers,
     Map<int, PageTransform>? pageTransforms,
+    Map<int, List<OcrBlock>>? pageOcrBlocks,
   }) {
     return ScanDocument(
       id: id ?? this.id,
@@ -449,6 +470,7 @@ class ScanDocument {
       watermarkLayers: watermarkLayers ?? this.watermarkLayers,
       stampLayers: stampLayers ?? this.stampLayers,
       pageTransforms: pageTransforms ?? this.pageTransforms,
+      pageOcrBlocks: pageOcrBlocks ?? this.pageOcrBlocks,
     );
   }
 
@@ -470,6 +492,7 @@ class ScanDocument {
       'watermarkLayers': watermarkLayers.map((l) => l.toJson()).toList(),
       'stampLayers': stampLayers.map((l) => l.toJson()).toList(),
       'pageTransforms': pageTransforms.map((k, v) => MapEntry(k.toString(), v.toJson())),
+      'pageOcrBlocks': pageOcrBlocks.map((k, v) => MapEntry(k.toString(), v.map((b) => b.toJson()).toList())),
     };
   }
 
@@ -502,6 +525,8 @@ class ScanDocument {
           .toList() ?? const <StampLayer>[],
       pageTransforms: (json['pageTransforms'] as Map<String, dynamic>?)
           ?.map((k, v) => MapEntry(int.parse(k), PageTransform.fromJson(v as Map<String, dynamic>))) ?? const <int, PageTransform>{},
+      pageOcrBlocks: (json['pageOcrBlocks'] as Map<String, dynamic>?)
+          ?.map((k, v) => MapEntry(int.parse(k), (v as List<dynamic>).map((b) => OcrBlock.fromJson(b as Map<String, dynamic>)).toList())) ?? const <int, List<OcrBlock>>{},
     );
   }
 
@@ -524,7 +549,8 @@ class ScanDocument {
         listEquals(other.annotateLayers, annotateLayers) &&
         listEquals(other.watermarkLayers, watermarkLayers) &&
         listEquals(other.stampLayers, stampLayers) &&
-        mapEquals(other.pageTransforms, pageTransforms);
+        mapEquals(other.pageTransforms, pageTransforms) &&
+        _mapEqualsDeep(other.pageOcrBlocks, pageOcrBlocks);
   }
 
   @override

@@ -3,48 +3,78 @@ import 'dart:ui' as ui;
 
 import '../models/scan_document.dart';
 
-/// Draws a custom seal at size [s] (square). Shared by the tray preview
-/// painter and the export renderer — guarantees preview == export parity.
-void drawSeal(ui.Canvas canvas, double s, StampLayer layer) {
+/// Draws a custom seal at size [s] (square canvas).
+/// [centerImage] is a pre-decoded ui.Image for the center logo (optional).
+/// Shared by the tray preview painter and the export renderer.
+void drawSeal(ui.Canvas canvas, double s, StampLayer layer, {ui.Image? centerImage}) {
   final col = ui.Color(layer.color).withValues(alpha: layer.opacity);
+
   if (layer.sealShape == 'rectangle') {
-    final border = ui.Paint()
-      ..color = col
-      ..style = ui.PaintingStyle.stroke
-      ..strokeWidth = s * 0.03;
-    canvas.drawRRect(
-      ui.RRect.fromRectAndRadius(
-        ui.Rect.fromLTWH(s * 0.02, s * 0.2, s * 0.96, s * 0.6),
-        ui.Radius.circular(s * 0.05),
-      ),
-      border,
-    );
-    _drawLabel(canvas, ui.Offset(s / 2, s * 0.44), layer.text, col, s * 0.15);
-    if (layer.sealSubtext.isNotEmpty) {
-      _drawLabel(canvas, ui.Offset(s / 2, s * 0.64), layer.sealSubtext, col, s * 0.075);
-    }
+    _drawRectangleSeal(canvas, s, layer, col);
     return;
   }
-  // Round seal: outer ring + inner ring + arc texts + center
-  canvas.drawCircle(
-    ui.Offset(s / 2, s / 2),
-    s * 0.47,
-    ui.Paint()..color = col..style = ui.PaintingStyle.stroke..strokeWidth = s * 0.03,
+
+  // === OVAL SEAL (landscape, wider than tall) ===
+  final ovalRect = ui.Rect.fromCenter(
+    center: ui.Offset(s / 2, s / 2),
+    width: s * 0.94,
+    height: s * 0.72,
   );
-  canvas.drawCircle(
-    ui.Offset(s / 2, s / 2),
-    s * 0.36,
-    ui.Paint()..color = col..style = ui.PaintingStyle.stroke..strokeWidth = s * 0.008,
+
+  // Outer ring (thick)
+  canvas.drawOval(
+    ovalRect,
+    ui.Paint()..color = col..style = ui.PaintingStyle.stroke..strokeWidth = s * 0.035,
   );
+  // Inner ring (thin)
+  canvas.drawOval(
+    ovalRect.deflate(s * 0.09),
+    ui.Paint()..color = col..style = ui.PaintingStyle.stroke..strokeWidth = s * 0.010,
+  );
+
+  // Arc texts
   final arcFont = layer.fontSize * s / 240;
-  _drawArcText(canvas, ui.Offset(s / 2, s / 2), s * 0.41, layer.text, col, arcFont * 0.55, true);
+  final rx = ovalRect.width * 0.42;
+  final ry = ovalRect.height * 0.42;
+  _drawArcTextOval(canvas, ui.Offset(s / 2, s / 2), rx, ry, layer.text, col, arcFont * 0.50, true);
   if (layer.sealSubtext.isNotEmpty) {
-    _drawArcText(canvas, ui.Offset(s / 2, s / 2), s * 0.41, layer.sealSubtext, col, arcFont * 0.45, false);
+    _drawArcTextOval(canvas, ui.Offset(s / 2, s / 2), rx, ry, layer.sealSubtext, col, arcFont * 0.40, false);
   }
+
+  // Center element
   if (layer.sealCenter == 'star') {
-    _drawStar(canvas, ui.Offset(s / 2, s / 2), s * 0.12, col);
-  } else if (layer.sealCenter.isNotEmpty) {
-    _drawLabel(canvas, ui.Offset(s / 2, s / 2), layer.sealCenter, col, s * 0.08);
+    _drawStar(canvas, ui.Offset(s / 2, s / 2), s * 0.13, col);
+  } else if (layer.sealCenter == 'image' && centerImage != null) {
+    _drawCenterImage(canvas, ui.Offset(s / 2, s / 2), s * 0.18, centerImage);
+  } else if (layer.sealCenter.isNotEmpty && layer.sealCenter != 'image' && layer.sealCenter != 'star') {
+    _drawLabel(canvas, ui.Offset(s / 2, s / 2), layer.sealCenter, col, s * 0.09);
+  }
+}
+
+void _drawRectangleSeal(ui.Canvas canvas, double s, StampLayer layer, ui.Color col) {
+  // Outer border (thick)
+  final outerRect = ui.RRect.fromRectAndRadius(
+    ui.Rect.fromLTWH(s * 0.03, s * 0.22, s * 0.94, s * 0.56),
+    ui.Radius.circular(s * 0.04),
+  );
+  canvas.drawRRect(
+    outerRect,
+    ui.Paint()..color = col..style = ui.PaintingStyle.stroke..strokeWidth = s * 0.035,
+  );
+  // Inner border (thin)
+  final innerRect = ui.RRect.fromRectAndRadius(
+    ui.Rect.fromLTWH(s * 0.09, s * 0.28, s * 0.82, s * 0.44),
+    ui.Radius.circular(s * 0.02),
+  );
+  canvas.drawRRect(
+    innerRect,
+    ui.Paint()..color = col..style = ui.PaintingStyle.stroke..strokeWidth = s * 0.010,
+  );
+  // Main text
+  _drawLabel(canvas, ui.Offset(s / 2, s * 0.46), layer.text, col, s * 0.14);
+  // Subtext
+  if (layer.sealSubtext.isNotEmpty) {
+    _drawLabel(canvas, ui.Offset(s / 2, s * 0.62), layer.sealSubtext, col, s * 0.07);
   }
 }
 
@@ -62,7 +92,7 @@ void _drawLabel(ui.Canvas canvas, ui.Offset at, String text, ui.Color col, doubl
   canvas.drawParagraph(par, ui.Offset(at.dx - par.longestLine / 2, at.dy - par.height / 2));
 }
 
-void _drawArcText(ui.Canvas canvas, ui.Offset center, double radius, String text, ui.Color col, double fs, bool top) {
+void _drawArcTextOval(ui.Canvas canvas, ui.Offset center, double rx, double ry, String text, ui.Color col, double fs, bool top) {
   if (text.isEmpty || fs <= 2) return;
   final chars = text.split('');
   final pars = <ui.Paragraph>[];
@@ -76,29 +106,32 @@ void _drawArcText(ui.Canvas canvas, ui.Offset center, double radius, String text
     pars.add(par);
     total += par.longestLine;
   }
-  final spacing = fs * 0.15;
-  final totalAngle = (total + spacing * (chars.length - 1)) / radius;
+  final spacing = fs * 0.2;
+  final avgR = (rx + ry) / 2;
+  final totalAngle = (total + spacing * (chars.length - 1)) / avgR;
   double angle = top ? (-math.pi / 2 - totalAngle / 2) : (math.pi / 2 + totalAngle / 2);
   for (int i = 0; i < chars.length; i++) {
-    final half = (pars[i].longestLine / 2) / radius;
+    final half = (pars[i].longestLine / 2) / avgR;
     if (top) {
       angle += half;
-      final pos = ui.Offset(center.dx + radius * math.cos(angle), center.dy + radius * math.sin(angle));
+      final x = center.dx + rx * math.cos(angle);
+      final y = center.dy + ry * math.sin(angle);
       canvas.save();
-      canvas.translate(pos.dx, pos.dy);
+      canvas.translate(x, y);
       canvas.rotate(angle + math.pi / 2);
       canvas.drawParagraph(pars[i], ui.Offset(-pars[i].longestLine / 2, -pars[i].height / 2));
       canvas.restore();
-      angle += half + spacing / radius;
+      angle += half + spacing / avgR;
     } else {
       angle -= half;
-      final pos = ui.Offset(center.dx + radius * math.cos(angle), center.dy + radius * math.sin(angle));
+      final x = center.dx + rx * math.cos(angle);
+      final y = center.dy + ry * math.sin(angle);
       canvas.save();
-      canvas.translate(pos.dx, pos.dy);
+      canvas.translate(x, y);
       canvas.rotate(angle - math.pi / 2);
       canvas.drawParagraph(pars[i], ui.Offset(-pars[i].longestLine / 2, -pars[i].height / 2));
       canvas.restore();
-      angle -= half + spacing / radius;
+      angle -= half + spacing / avgR;
     }
   }
 }
@@ -119,4 +152,21 @@ void _drawStar(ui.Canvas canvas, ui.Offset center, double r, ui.Color col) {
   }
   path.close();
   canvas.drawPath(path, ui.Paint()..color = col..style = ui.PaintingStyle.fill);
+}
+
+/// Draws a pre-decoded ui.Image clipped to a circle at the center.
+void _drawCenterImage(ui.Canvas canvas, ui.Offset center, double radius, ui.Image image) {
+  canvas.save();
+  final clipPath = ui.Path()..addOval(ui.Rect.fromCircle(center: center, radius: radius));
+  canvas.clipPath(clipPath);
+  final src = ui.Rect.fromLTWH(0, 0, image.width.toDouble(), image.height.toDouble());
+  final dst = ui.Rect.fromCircle(center: center, radius: radius);
+  canvas.drawImageRect(image, src, dst, ui.Paint()..filterQuality = ui.FilterQuality.high);
+  canvas.restore();
+  // Draw a thin ring around the image
+  canvas.drawCircle(
+    center,
+    radius,
+    ui.Paint()..style = ui.PaintingStyle.stroke..strokeWidth = radius * 0.06..color = const ui.Color(0xFF000000).withValues(alpha: 0.3),
+  );
 }

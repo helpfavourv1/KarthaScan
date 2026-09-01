@@ -13,6 +13,7 @@ import 'package:pdf/widgets.dart' as pw;
 
 import '../models/export_job.dart';
 import '../models/scan_document.dart';
+import '../models/ocr_block.dart';
 import '../models/page_transform.dart';
 import '../models/signature_placement.dart';
 
@@ -295,12 +296,68 @@ class ExportService {
         pageTransform: document.pageTransforms[i],
       );
       final image = pw.MemoryImage(bytes);
+      final blocks = document.pageOcrBlocks[i] ?? const <OcrBlock>[];
+      
       pdfDoc.addPage(
         pw.Page(
           pageFormat: pageFormat,
           build: (pw.Context context) {
-            return pw.Center(
-              child: pw.Image(image, fit: pw.BoxFit.contain),
+            final decoded = img.decodeImage(bytes);
+            if (decoded == null || blocks.isEmpty) {
+              return pw.Center(child: pw.Image(image, fit: pw.BoxFit.contain));
+            }
+            
+            final imgW = decoded.width.toDouble();
+            final imgH = decoded.height.toDouble();
+            final imgAspect = imgW / imgH;
+            final pageW = pageFormat.width;
+            final pageH = pageFormat.height;
+            final pageAspect = pageW / pageH;
+            
+            final double renderW, renderH, renderX, renderY;
+            if (imgAspect > pageAspect) {
+              renderW = pageW;
+              renderH = renderW / imgAspect;
+              renderX = 0;
+              renderY = (pageH - renderH) / 2;
+            } else {
+              renderH = pageH;
+              renderW = renderH * imgAspect;
+              renderX = (pageW - renderW) / 2;
+              renderY = 0;
+            }
+            
+            return pw.Stack(
+              children: [
+                pw.Positioned.fill(
+                  child: pw.Center(child: pw.Image(image, fit: pw.BoxFit.contain)),
+                ),
+                ...blocks.map((block) {
+                  final x = renderX + (block.boundingBox.left / imgW) * renderW;
+                  final y = renderY + (block.boundingBox.top / imgH) * renderH;
+                  final w = (block.boundingBox.width / imgW) * renderW;
+                  final h = (block.boundingBox.height / imgH) * renderH;
+                  final fontSize = h * 0.8;
+                  return pw.Positioned(
+                    left: x,
+                    top: y,
+                    child: pw.SizedBox(
+                      width: w,
+                      height: h,
+                      child: pw.Text(
+                        block.text,
+                        style: pw.TextStyle(
+                          fontSize: fontSize,
+                          color: const PdfColor(0, 0, 0, 0),
+                          renderingMode: PdfTextRenderingMode.invisible,
+                        ),
+                        maxLines: 1,
+                        overflow: pw.TextOverflow.clip,
+                      ),
+                    ),
+                  );
+                }),
+              ],
             );
           },
         ),
@@ -747,9 +804,20 @@ class ExportService {
 
   Future<Uint8List?> _renderSeal(StampLayer layer) async {
     const double s = 480;
+    
+    // Decode center image if present
+    ui.Image? centerImage;
+    if (layer.sealCenter == 'image' && layer.sealImageBytes != null) {
+      try {
+        final codec = await ui.instantiateImageCodec(layer.sealImageBytes!);
+        final frame = await codec.getNextFrame();
+        centerImage = frame.image;
+      } catch (_) {}
+    }
+    
     final recorder = ui.PictureRecorder();
     final canvas = ui.Canvas(recorder);
-    drawSeal(canvas, s, layer);
+    drawSeal(canvas, s, layer, centerImage: centerImage);
     final picture = recorder.endRecording();
     final image = await picture.toImage(s.round(), s.round());
     final bytes = await image.toByteData(format: ui.ImageByteFormat.png);
