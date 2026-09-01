@@ -273,6 +273,7 @@ class _FullScreenEditScreenState extends State<FullScreenEditScreen> with Docume
                       onDate: () => addStampNow('date'),
                       onCheckbox: () => addStampNow('checkbox'),
                       onSeal: () => addStampNow('seal'),
+                      onRevert: doc.pageTransforms[_currentPageIndex]?.isEmpty == false ? revertPage : null,
                       onPrint: printDocument,
                       onEmail: emailDocument,
                       onErase: erasePage,

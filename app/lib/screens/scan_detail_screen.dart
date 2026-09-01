@@ -374,6 +374,7 @@ class _ScanDetailScreenState extends State<ScanDetailScreen>
                 onDate: () { _closeEditor(); addStampNow('date'); },
                 onCheckbox: () { _closeEditor(); addStampNow('checkbox'); },
                 onSeal: () { _closeEditor(); addStampNow('seal'); },
+                onRevert: document.pageTransforms[_currentPageIndex]?.isEmpty == false ? () { _closeEditor(); revertPage(); } : null,
                 onPrint: () { _closeEditor(); printDocument(); },
                 onEmail: () { _closeEditor(); emailDocument(); },
                 onErase: () { _closeEditor(); erasePage(); },

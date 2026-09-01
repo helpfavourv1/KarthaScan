@@ -412,6 +412,34 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
     if (mounted) ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Page cropped')));
   }
 
+  Future<void> revertPage() async {
+    final doc = document;
+    if (doc == null || doc.pagePaths.isEmpty) return;
+    final transform = doc.pageTransforms[currentPageIndex];
+    if (transform == null || transform.isEmpty) return;
+
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: const Text('Revert to Original?'),
+        content: const Text('This will undo all filters, rotations, crops, resizes, and eraser strokes on this page.'),
+        actions: [
+          TextButton(onPressed: () => Navigator.pop(ctx, false), child: const Text('Cancel')),
+          TextButton(
+            onPressed: () => Navigator.pop(ctx, true),
+            child: const Text('Revert', style: TextStyle(color: Colors.red)),
+          ),
+        ],
+      ),
+    );
+    if (confirmed != true || !mounted) return;
+
+    await scanProvider.revertPageTransform(doc.id, currentPageIndex);
+    if (mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Page reverted to original')));
+    }
+  }
+
   Future<void> erasePage() async {
     final doc = document;
     if (doc == null || doc.pagePaths.isEmpty) return;
