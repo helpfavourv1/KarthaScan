@@ -26,6 +26,7 @@ import '../services/doc_scanner_service.dart';
 import '../services/local_storage.dart';
 import '../services/ocr_service.dart';
 import 'settings_provider.dart';
+import '../undo/undo_manager.dart';
 
 enum ScanFlowState { idle, scanning, recognizingText, saving, error, unsupported }
 
@@ -58,6 +59,9 @@ class ScanProvider {
   final ValueNotifier<String?> lastError = ValueNotifier<String?>(null);
 
   final ValueNotifier<bool> ocrUnavailable = ValueNotifier<bool>(false);
+
+  /// Overlay undo/redo stack (E2). Recorded by every layer mutation below.
+  final UndoManager undoManager = UndoManager();
 
   Future<void> _loadAll() async {
     isLoading.value = true;
@@ -359,11 +363,24 @@ class ScanProvider {
     return _replaceAndSave(updated);
   }
 
+  void _recordOverlayUndo(ScanDocument before, ScanDocument after, String? coalesceKey) {
+    undoManager.record(UndoCommand(
+      coalesceKey: coalesceKey,
+      undo: () async {
+        await _replaceAndSave(before);
+      },
+      redo: () async {
+        await _replaceAndSave(after);
+      },
+    ));
+  }
+
   Future<bool> addSignatureLayer(String id, int pageIndex, SignaturePlacement placement, {String inkId = 'default'}) async {
     final ScanDocument? existing = _findById(id);
     if (existing == null) return false;
     final newLayer = SignatureLayer(pageIndex: pageIndex, placement: placement, inkId: inkId);
     final updated = existing.copyWith(signatureLayers: [...existing.signatureLayers, newLayer], updatedAt: DateTime.now());
+    _recordOverlayUndo(existing, updated, null);
     return _replaceAndSave(updated);
   }
 
@@ -378,6 +395,7 @@ class ScanProvider {
             .toList()
         : [...existing.signatureLayers, layer];
     final updated = existing.copyWith(signatureLayers: newLayers, updatedAt: DateTime.now());
+    _recordOverlayUndo(existing, updated, 'sigupd:${layer.inkId}:${layer.pageIndex}');
     return _replaceAndSave(updated);
   }
 
@@ -388,6 +406,7 @@ class ScanProvider {
         .where((l) => !(l.pageIndex == pageIndex && (inkId == null || l.inkId == inkId)))
         .toList();
     final updated = existing.copyWith(signatureLayers: newLayers, updatedAt: DateTime.now());
+    _recordOverlayUndo(existing, updated, null);
     return _replaceAndSave(updated);
   }
 
@@ -395,6 +414,7 @@ class ScanProvider {
     final ScanDocument? existing = _findById(id);
     if (existing == null) return false;
     final updated = existing.copyWith(signatureLayers: const [], updatedAt: DateTime.now());
+    _recordOverlayUndo(existing, updated, null);
     return _replaceAndSave(updated);
   }
 
@@ -402,6 +422,7 @@ class ScanProvider {
     final ScanDocument? existing = _findById(id);
     if (existing == null) return false;
     final updated = existing.copyWith(signatureInks: inks, signatureLayers: layers, updatedAt: DateTime.now());
+    _recordOverlayUndo(existing, updated, 'sig:$id');
     return _replaceAndSave(updated);
   }
 
@@ -410,6 +431,7 @@ class ScanProvider {
     if (existing == null) return false;
     final newLayers = [...existing.annotateLayers, layer];
     final updated = existing.copyWith(annotateLayers: newLayers, updatedAt: DateTime.now());
+    _recordOverlayUndo(existing, updated, null);
     return _replaceAndSave(updated);
   }
 
@@ -420,6 +442,7 @@ class ScanProvider {
         .map((l) => l.pageIndex == layer.pageIndex && l.bytesPath == layer.bytesPath ? layer : l)
         .toList();
     final updated = existing.copyWith(annotateLayers: newLayers, updatedAt: DateTime.now());
+    _recordOverlayUndo(existing, updated, 'annupd:${layer.bytesPath}:${layer.pageIndex}');
     return _replaceAndSave(updated);
   }
 
@@ -430,6 +453,7 @@ class ScanProvider {
         .where((l) => !(l.pageIndex == pageIndex && l.bytesPath == bytesPath))
         .toList();
     final updated = existing.copyWith(annotateLayers: newLayers, updatedAt: DateTime.now());
+    _recordOverlayUndo(existing, updated, null);
     return _replaceAndSave(updated);
   }
 
@@ -437,6 +461,7 @@ class ScanProvider {
     final ScanDocument? existing = _findById(id);
     if (existing == null) return false;
     final updated = existing.copyWith(annotateLayers: const [], updatedAt: DateTime.now());
+    _recordOverlayUndo(existing, updated, null);
     return _replaceAndSave(updated);
   }
 
@@ -444,6 +469,7 @@ class ScanProvider {
     final ScanDocument? existing = _findById(id);
     if (existing == null) return false;
     final updated = existing.copyWith(watermarkLayers: [...existing.watermarkLayers, layer], updatedAt: DateTime.now());
+    _recordOverlayUndo(existing, updated, null);
     return _replaceAndSave(updated);
   }
 
@@ -452,6 +478,7 @@ class ScanProvider {
     if (existing == null) return false;
     final newLayers = existing.watermarkLayers.map((l) => (l.pageIndex == layer.pageIndex && l.text == layer.text) ? layer : l).toList();
     final updated = existing.copyWith(watermarkLayers: newLayers, updatedAt: DateTime.now());
+    _recordOverlayUndo(existing, updated, 'wmupd:${layer.text}:${layer.pageIndex}');
     return _replaceAndSave(updated);
   }
 
@@ -460,6 +487,7 @@ class ScanProvider {
     if (existing == null) return false;
     final newLayers = existing.watermarkLayers.where((l) => !(l.pageIndex == pageIndex && l.text == text)).toList();
     final updated = existing.copyWith(watermarkLayers: newLayers, updatedAt: DateTime.now());
+    _recordOverlayUndo(existing, updated, null);
     return _replaceAndSave(updated);
   }
 
@@ -467,6 +495,7 @@ class ScanProvider {
     final ScanDocument? existing = _findById(id);
     if (existing == null) return false;
     final updated = existing.copyWith(watermarkLayers: const [], updatedAt: DateTime.now());
+    _recordOverlayUndo(existing, updated, null);
     return _replaceAndSave(updated);
   }
 
@@ -474,6 +503,7 @@ class ScanProvider {
     final ScanDocument? existing = _findById(id);
     if (existing == null) return false;
     final updated = existing.copyWith(stampLayers: [...existing.stampLayers, layer], updatedAt: DateTime.now());
+    _recordOverlayUndo(existing, updated, null);
     return _replaceAndSave(updated);
   }
 
@@ -482,6 +512,7 @@ class ScanProvider {
     if (existing == null) return false;
     final newLayers = existing.stampLayers.map((l) => l.id == layer.id ? layer : l).toList();
     final updated = existing.copyWith(stampLayers: newLayers, updatedAt: DateTime.now());
+    _recordOverlayUndo(existing, updated, 'stupd:${layer.id}');
     return _replaceAndSave(updated);
   }
 
@@ -490,6 +521,7 @@ class ScanProvider {
     if (existing == null) return false;
     final newLayers = existing.stampLayers.where((l) => l.id != layerId).toList();
     final updated = existing.copyWith(stampLayers: newLayers, updatedAt: DateTime.now());
+    _recordOverlayUndo(existing, updated, null);
     return _replaceAndSave(updated);
   }
 
@@ -497,6 +529,7 @@ class ScanProvider {
     final ScanDocument? existing = _findById(id);
     if (existing == null) return false;
     final updated = existing.copyWith(stampLayers: const [], updatedAt: DateTime.now());
+    _recordOverlayUndo(existing, updated, null);
     return _replaceAndSave(updated);
   }
 

@@ -278,5 +278,7 @@
   "docScannerUnsupportedMessage": "Tu dispositivo no soporta el escáner avanzado de documentos. Toma una foto con la app Cámara y luego pulsa Importar abajo para recortarla y guardarla.",
   "billingUnavailableMessage": "Facturación no disponible — inténtalo más tarde.",
   "ocrNoInternetMessage": "Sin internet. Conéctate una vez para descargar el paquete de idioma.",
-  "ocrLanguagePackNotReady": "El paquete de idioma se está descargando o no está listo. Inténtalo en breve."
+  "ocrLanguagePackNotReady": "El paquete de idioma se está descargando o no está listo. Inténtalo en breve.",
+  "undoTooltip": "Deshacer",
+  "redoTooltip": "Rehacer"
 }

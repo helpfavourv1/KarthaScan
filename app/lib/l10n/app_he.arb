@@ -278,5 +278,7 @@
   "docScannerUnsupportedMessage": "המכשיר שלך אינו תומך בסורק המסמכים המתקדם. צלם תמונה באפליקציית המצלמה, ואז הקש על ייבוא למטה כדי לחתוך ולשמור.",
   "billingUnavailableMessage": "חיוב אינו זמין — נסה שוב מאוחר יותר.",
   "ocrNoInternetMessage": "אין אינטרנט. התחבר פעם אחת כדי להוריד את חבילת השפה.",
-  "ocrLanguagePackNotReady": "חבילת השפה בהורדה או אינה מוכנה. נסה שוב בקרוב."
+  "ocrLanguagePackNotReady": "חבילת השפה בהורדה או אינה מוכנה. נסה שוב בקרוב.",
+  "undoTooltip": "ביטול",
+  "redoTooltip": "בצע שוב"
 }

@@ -278,5 +278,7 @@
   "docScannerUnsupportedMessage": "Votre appareil ne prend pas en charge le scanner avancé. Prenez une photo avec l'appareil photo, puis touchez Importer ci-dessous pour la recadrer et l'enregistrer.",
   "billingUnavailableMessage": "Facturation indisponible — réessayez plus tard.",
   "ocrNoInternetMessage": "Pas d'internet. Connectez-vous une fois pour télécharger le pack linguistique.",
-  "ocrLanguagePackNotReady": "Pack linguistique en cours de téléchargement ou non prêt. Réessayez dans un instant."
+  "ocrLanguagePackNotReady": "Pack linguistique en cours de téléchargement ou non prêt. Réessayez dans un instant.",
+  "undoTooltip": "Annuler",
+  "redoTooltip": "Rétablir"
 }

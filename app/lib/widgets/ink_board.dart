@@ -45,6 +45,23 @@ class InkController {
     _notify();
   }
 
+  /// Replaces controller state with the document's persisted signature
+  /// state (used by undo/redo restore). Does NOT trigger onChange.
+  void restoreFrom(ScanDocument doc) {
+    inks.clear();
+    inkPlacements.clear();
+    for (final ink in doc.signatureInks) {
+      inks[ink.id] = ink;
+    }
+    for (final layer in doc.signatureLayers) {
+      inkPlacements.putIfAbsent(layer.inkId, () => {})[layer.pageIndex] = layer.placement;
+    }
+    if (activeInkId == null || !inks.containsKey(activeInkId)) {
+      activeInkId = inks.keys.isEmpty ? null : inks.keys.first;
+    }
+    if (editInkId != null && !inks.containsKey(editInkId)) editInkId = null;
+  }
+
   Future<String?> addInk(BuildContext context, LocalStorageService localStorage) async {
     Uint8List? bytes;
     final saved = await localStorage.loadSignaturePng();

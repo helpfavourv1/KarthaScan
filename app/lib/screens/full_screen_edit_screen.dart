@@ -52,6 +52,7 @@ class _FullScreenEditScreenState extends State<FullScreenEditScreen> with Docume
     _localStorage = LocalStorageService();
     _pageController = PageController();
     _scanProvider.setActiveScan(widget.documentId);
+    _scanProvider.undoManager.clear();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final doc = document;
       if (doc != null) _inkController.seed(doc);
@@ -62,6 +63,11 @@ class _FullScreenEditScreenState extends State<FullScreenEditScreen> with Docume
     final doc = document;
     if (doc == null) return;
     await scanProvider.setSignatureState(doc.id, _inkController.inks.values.toList(), _inkController.layers);
+  }
+
+  void _resyncInk() {
+    final doc = document;
+    if (doc != null) _inkController.restoreFrom(doc);
   }
 
   @override
@@ -165,6 +171,36 @@ class _FullScreenEditScreenState extends State<FullScreenEditScreen> with Docume
                         color: _currentPageIndex < doc.pagePaths.length - 1 ? accent : textSecondary,
                         onPressed: _currentPageIndex < doc.pagePaths.length - 1 ? () => _goToPage(_currentPageIndex + 1) : null,
                       ),
+                      ListenableBuilder(
+                        listenable: _scanProvider.undoManager.version,
+                        builder: (context, _) => Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            IconButton(
+                              icon: const Icon(Icons.undo, size: 20),
+                              tooltip: AppLocalizations.of(context).undoTooltip,
+                              color: _scanProvider.undoManager.canUndo ? textPrimary : textSecondary.withValues(alpha: 0.4),
+                              onPressed: _scanProvider.undoManager.canUndo
+                                  ? () async {
+                                      await _scanProvider.undoManager.undo();
+                                      _resyncInk();
+                                    }
+                                  : null,
+                            ),
+                            IconButton(
+                              icon: const Icon(Icons.redo, size: 20),
+                              tooltip: AppLocalizations.of(context).redoTooltip,
+                              color: _scanProvider.undoManager.canRedo ? textPrimary : textSecondary.withValues(alpha: 0.4),
+                              onPressed: _scanProvider.undoManager.canRedo
+                                  ? () async {
+                                      await _scanProvider.undoManager.redo();
+                                      _resyncInk();
+                                    }
+                                  : null,
+                            ),
+                          ],
+                        ),
+                      ),
                       IconButton(
                         icon: const Icon(Icons.ios_share, size: 20),
                         color: textPrimary,
@@ -214,7 +250,7 @@ class _FullScreenEditScreenState extends State<FullScreenEditScreen> with Docume
                   pageController: _pageController,
                   physics: const NeverScrollableScrollPhysics(),
                   initialPage: _currentPageIndex,
-                  onPageChanged: (index) => setState(() => _currentPageIndex = index),
+                  onPageChanged: (index) => setState(() { _currentPageIndex = index; _scanProvider.undoManager.clear(); }),
                   pageTransforms: doc.pageTransforms,
                 ),
               ),

@@ -278,5 +278,7 @@
   "docScannerUnsupportedMessage": "お使いのデバイスは高度なドキュメントスキャナーに対応していません。カメラアプリで写真を撮影し、下の「インポート」をタップしてトリミングして保存してください。",
   "billingUnavailableMessage": "課金を利用できません — 後で再試行してください。",
   "ocrNoInternetMessage": "インターネット接続がありません。言語パックをダウンロードするため一度接続してください。",
-  "ocrLanguagePackNotReady": "言語パックをダウンロード中または準備できていません。まもなく再試行してください。"
+  "ocrLanguagePackNotReady": "言語パックをダウンロード中または準備できていません。まもなく再試行してください。",
+  "undoTooltip": "元に戻す",
+  "redoTooltip": "やり直す"
 }

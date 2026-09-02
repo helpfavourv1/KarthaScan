@@ -278,5 +278,7 @@
   "docScannerUnsupportedMessage": "您的设备不支持高级文档扫描仪。请使用相机应用拍照，然后点击下方的“导入”进行裁剪和保存。",
   "billingUnavailableMessage": "计费不可用 — 请稍后重试。",
   "ocrNoInternetMessage": "无互联网。请连接一次以下载语言包。",
-  "ocrLanguagePackNotReady": "语言包正在下载或未就绪。请稍后再试。"
+  "ocrLanguagePackNotReady": "语言包正在下载或未就绪。请稍后再试。",
+  "undoTooltip": "撤销",
+  "redoTooltip": "重做"
 }
