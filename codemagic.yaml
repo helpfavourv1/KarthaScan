@@ -49,6 +49,10 @@ workflows:
         script: |
           cd app/ios
           pod install --repo-update
+      - name: L10n audit (drift guard)
+        script: |
+          cd app
+          python3 tool/l10n_audit.py
       - name: Build IPA
         script: |
           cd app

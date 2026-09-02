@@ -36,6 +36,10 @@ jobs:
           flutter pub run flutter_launcher_icons
           flutter pub run flutter_native_splash:create
 
+      - name: L10n audit (drift guard)
+        working-directory: app
+        run: python3 tool/l10n_audit.py
+
       - name: Static analysis
         working-directory: app
         run: |

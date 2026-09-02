@@ -704,55 +704,51 @@ class _FeatureTicker extends StatefulWidget {
 class _FeatureTickerState extends State<_FeatureTicker> with SingleTickerProviderStateMixin {
   static const List<String> _features = <String>[
     'FREE UNLIMITED OCR',
-    '18-TOOL EDIT SUITE',
-    'ANNOTATE',
+    '100% ON-DEVICE PRIVACY',
+    'NO ACCOUNT',
+    'NO WATERMARKS',
+    '21-TOOL EDIT SUITE',
+    'NON-DESTRUCTIVE EDITING',
+    'UNDO/REDO',
+    'REVERT TO ORIGINAL',
+    'TAP-TO-TYPE FILLING',
     'E-SIGN',
-    'WATERMARK',
-    'REGION OCR',
-    'CONVERT',
-    'COMPRESS',
-    'ROTATE',
-    'RESIZE',
-    'CROP',
-    'PAGES MANAGER',
-    'ERASER',
+    'CUSTOM SEALS',
     'TEXT STAMPS',
     'NOTE STAMPS',
-    'DATE STAMPS',
-    'CHECKBOX STAMPS',
-    'FILTERS & ENHANCE',
-    'PRINT',
-    'EMAIL',
+    'SEARCHABLE PDF',
+    'REGION OCR',
+    'AUTO-COPY OCR',
+    'ID CARD MODE',
+    'PASSPORT MODE',
+    'GALLERY IMPORT',
     'PDF EXPORT',
     'WORD EXPORT',
-    'TXT EXPORT',
     'JPG EXPORT',
     'PNG EXPORT',
-    'CSV EXPORT',
     'BATCH EXPORT',
     'FOLDERS',
     'TAGS',
     'FAVORITES',
     'SEARCH',
-    '11 LANGUAGES',
+    '12 LANGUAGES',
     'DARK MODE',
     'ACCENT THEMES',
-    'ID CARD MODE',
-    'PASSPORT MODE',
-    'NO ACCOUNT',
-    'NO WATERMARKS',
-    '100% ON-DEVICE PRIVACY',
+    'DEVICE MIGRATION',
   ];
 
   static const Set<String> _highlighted = <String>{
     'FREE UNLIMITED OCR',
-    '18-TOOL EDIT SUITE',
+    '21-TOOL EDIT SUITE',
+    'NON-DESTRUCTIVE EDITING',
+    'SEARCHABLE PDF',
+    'CUSTOM SEALS',
+    'REVERT TO ORIGINAL',
     'E-SIGN',
-    'WATERMARK',
-    'REGION OCR',
     'BATCH EXPORT',
     'NO WATERMARKS',
     '100% ON-DEVICE PRIVACY',
+    'TAP-TO-TYPE FILLING',
   };
 
   // Keep original speed. Do not increase without explicit approval.
@@ -772,6 +768,7 @@ class _FeatureTickerState extends State<_FeatureTicker> with SingleTickerProvide
           const Color(0xFF8E8E93),
           const Color(0xFF8E8E93),
           const Color(0xFF8E8E93),
+          AppLocalizations.of(context),
         ),
       ),
       textDirection: TextDirection.ltr,
@@ -789,38 +786,79 @@ class _FeatureTickerState extends State<_FeatureTicker> with SingleTickerProvide
     super.dispose();
   }
 
-  List<TextSpan> _spans(Color base, Color accent, Color separator) {
+  List<TextSpan> _spans(Color base, Color accent, Color separator, AppLocalizations l10n) {
     final baseStyle = TextStyle(
       color: base,
-      fontSize: 9,
+      fontSize: 14,
       fontWeight: FontWeight.w600,
-      letterSpacing: 0.45,
-      height: 1.0,
+      letterSpacing: 0.5,
+      height: 1.2,
+      fontFamily: 'SF Pro Display',
     );
     final accentStyle = TextStyle(
       color: accent,
-      fontSize: 9,
-      fontWeight: FontWeight.w700,
-      letterSpacing: 0.45,
-      height: 1.0,
+      fontSize: 16,
+      fontWeight: FontWeight.w800,
+      letterSpacing: 0.5,
+      height: 1.2,
+      fontFamily: 'SF Pro Display',
     );
     final separatorStyle = TextStyle(
       color: separator,
-      fontSize: 9,
+      fontSize: 14,
       fontWeight: FontWeight.w500,
       letterSpacing: 0.2,
-      height: 1.0,
+      height: 1.2,
     );
 
     final spans = <TextSpan>[];
     for (final feature in _features) {
+      final localized = _localizeTickerFeature(feature, l10n);
       spans.add(TextSpan(
-        text: '  $feature  ',
+        text: '  $localized  ',
         style: _highlighted.contains(feature) ? accentStyle : baseStyle,
       ));
-      spans.add(TextSpan(text: '|', style: separatorStyle));
+      spans.add(TextSpan(text: '•', style: separatorStyle));
     }
     return spans;
+  }
+
+  String _localizeTickerFeature(String feature, AppLocalizations l10n) {
+    final map = <String, String Function()>{
+      'FREE UNLIMITED OCR': () => l10n.tickerFreeUnlimitedOcr,
+      '100% ON-DEVICE PRIVACY': () => l10n.ticker100OnDevicePrivacy,
+      'NO ACCOUNT': () => l10n.tickerNoAccount,
+      'NO WATERMARKS': () => l10n.tickerNoWatermarks,
+      '21-TOOL EDIT SUITE': () => l10n.ticker21ToolEditSuite,
+      'NON-DESTRUCTIVE EDITING': () => l10n.tickerNonDestructiveEditing,
+      'UNDO/REDO': () => l10n.tickerUndoRedo,
+      'REVERT TO ORIGINAL': () => l10n.tickerRevertToOriginal,
+      'TAP-TO-TYPE FILLING': () => l10n.tickerTapToTypeFilling,
+      'E-SIGN': () => l10n.tickerESign,
+      'CUSTOM SEALS': () => l10n.tickerCustomSeals,
+      'TEXT STAMPS': () => l10n.tickerTextStamps,
+      'NOTE STAMPS': () => l10n.tickerNoteStamps,
+      'SEARCHABLE PDF': () => l10n.tickerSearchablePdf,
+      'REGION OCR': () => l10n.tickerRegionOcr,
+      'AUTO-COPY OCR': () => l10n.tickerAutoCopyOcr,
+      'ID CARD MODE': () => l10n.tickerIdCardMode,
+      'PASSPORT MODE': () => l10n.tickerPassportMode,
+      'GALLERY IMPORT': () => l10n.tickerGalleryImport,
+      'PDF EXPORT': () => l10n.tickerPdfExport,
+      'WORD EXPORT': () => l10n.tickerWordExport,
+      'JPG EXPORT': () => l10n.tickerJpgExport,
+      'PNG EXPORT': () => l10n.tickerPngExport,
+      'BATCH EXPORT': () => l10n.tickerBatchExport,
+      'FOLDERS': () => l10n.tickerFolders,
+      'TAGS': () => l10n.tickerTags,
+      'FAVORITES': () => l10n.tickerFavorites,
+      'SEARCH': () => l10n.tickerSearch,
+      '12 LANGUAGES': () => l10n.ticker12Languages,
+      'DARK MODE': () => l10n.tickerDarkMode,
+      'ACCENT THEMES': () => l10n.tickerAccentThemes,
+      'DEVICE MIGRATION': () => l10n.tickerDeviceMigration,
+    };
+    return map[feature]?.call() ?? feature;
   }
 
   @override
@@ -831,103 +869,109 @@ class _FeatureTickerState extends State<_FeatureTicker> with SingleTickerProvide
     final textSecondary = isDark ? AppColors.textSecondaryDark : AppColors.textSecondaryLight;
     final accent = isDark ? AppColors.accentDark : AppColors.accentLight;
     final separator = textSecondary.withValues(alpha: 0.42);
+    final l10n = AppLocalizations.of(context);
+    final reduceMotion = MediaQuery.of(context).disableAnimations;
+
+    if (reduceMotion && _controller.isAnimating) {
+      _controller.stop();
+    } else if (!reduceMotion && !_controller.isAnimating) {
+      _controller.repeat();
+    }
 
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md),
-      child: Container(
-        height: 20,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          color: surface,
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: isDark
-                ? <Color>[
-                    surface.withValues(alpha: 0.96),
-                    surface.withValues(alpha: 0.78),
-                  ]
-                : <Color>[
-                    surface.withValues(alpha: 0.92),
-                    bg.withValues(alpha: 0.42),
-                  ],
+      padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md, vertical: 8),
+      child: Semantics(
+        label: 'Feature ticker: ${_features.map((f) => _localizeTickerFeature(f, l10n)).join(', ')}',
+        child: Container(
+          height: 48,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(24),
+            border: Border.all(color: surface.withValues(alpha: 0.2), width: 1),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withValues(alpha: isDark ? 0.12 : 0.08),
+                offset: const Offset(0, 2),
+                blurRadius: 8,
+              ),
+            ],
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: isDark
+                  ? <Color>[
+                      surface.withValues(alpha: 0.98),
+                      surface.withValues(alpha: 0.88),
+                    ]
+                  : <Color>[
+                      surface.withValues(alpha: 0.98),
+                      bg.withValues(alpha: 0.42),
+                    ],
+            ),
           ),
-        ),
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(10),
-          child: Directionality(
-            textDirection: TextDirection.ltr,
-            child: AnimatedBuilder(
-              animation: _controller,
-              builder: (context, _) {
-                final double dx = -_controller.value * _segmentWidth;
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(24),
+            child: Directionality(
+              textDirection: TextDirection.ltr,
+              child: AnimatedBuilder(
+                animation: _controller,
+                builder: (context, _) {
+                  final double dx = -_controller.value * _segmentWidth;
 
-                Widget segment(double left) {
-                  return Positioned(
-                    left: left,
-                    top: 0,
-                    bottom: 0,
-                    child: SizedBox(
-                      width: _segmentWidth,
-                      child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: RichText(
-                          maxLines: 1,
-                          softWrap: false,
-                          text: TextSpan(children: _spans(textSecondary, accent, separator)),
+                  Widget segment(double left) {
+                    return Positioned(
+                      left: left,
+                      top: 0,
+                      bottom: 0,
+                      child: SizedBox(
+                        width: _segmentWidth,
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: RichText(
+                            maxLines: 1,
+                            softWrap: false,
+                            text: TextSpan(children: _spans(textSecondary, accent, separator, l10n)),
+                          ),
                         ),
                       ),
-                    ),
+                    );
+                  }
+
+                  return Stack(
+                    children: [
+                      segment(dx),
+                      segment(dx + _segmentWidth),
+                      Positioned(
+                        left: 0, top: 0, bottom: 0, width: 18,
+                        child: IgnorePointer(
+                          child: DecoratedBox(
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                begin: Alignment.centerLeft,
+                                end: Alignment.centerRight,
+                                colors: [surface, surface.withValues(alpha: 0.0)],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Positioned(
+                        right: 0, top: 0, bottom: 0, width: 18,
+                        child: IgnorePointer(
+                          child: DecoratedBox(
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                begin: Alignment.centerRight,
+                                end: Alignment.centerLeft,
+                                colors: [surface, surface.withValues(alpha: 0.0)],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   );
-                }
-
-                return Stack(
-                  children: [
-                    segment(dx),
-                    segment(dx + _segmentWidth),
-                    Positioned(
-                      left: 0,
-                      top: 0,
-                      bottom: 0,
-                      width: 18,
-                      child: IgnorePointer(
-                        child: DecoratedBox(
-                          decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              begin: Alignment.centerLeft,
-                              end: Alignment.centerRight,
-                              colors: [
-                                surface,
-                                surface.withValues(alpha: 0.0),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Positioned(
-                      right: 0,
-                      top: 0,
-                      bottom: 0,
-                      width: 18,
-                      child: IgnorePointer(
-                        child: DecoratedBox(
-                          decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              begin: Alignment.centerRight,
-                              end: Alignment.centerLeft,
-                              colors: [
-                                surface,
-                                surface.withValues(alpha: 0.0),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                );
-              },
+                },
+              ),
             ),
           ),
         ),
