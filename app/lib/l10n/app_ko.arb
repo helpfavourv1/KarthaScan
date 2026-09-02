@@ -273,5 +273,10 @@
   "idPdfErrorPrefix": "ID PDF 생성 오류",
   "genericErrorPrefix": "오류",
   "annotateTitle": "주석",
-  "placementsCountLabel": "{count, plural, =0{배치 없음} =1{1개 배치} other{{count}개 배치}}"
+  "placementsCountLabel": "{count, plural, =0{배치 없음} =1{1개 배치} other{{count}개 배치}}",
+  "ocrUnavailableTooltip": "이 기기에서는 OCR을 사용할 수 없습니다.",
+  "docScannerUnsupportedMessage": "기기가 고급 문서 스캐너를 지원하지 않습니다. 카메라 앱으로 사진을 찍은 후 아래 '가져오기'를 눌러 자르고 저장하세요.",
+  "billingUnavailableMessage": "결제 사용 불가 — 나중에 다시 시도하세요.",
+  "ocrNoInternetMessage": "인터넷 없음. 언어 팩을 다운로드하려면 한 번 연결하세요.",
+  "ocrLanguagePackNotReady": "언어 팩 다운로드 중이거나 준비되지 않았습니다. 잠시 후 다시 시도하세요."
 }

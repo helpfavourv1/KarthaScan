@@ -366,5 +366,10 @@
         "type": "int"
       }
     }
-  }
+  },
+  "ocrUnavailableTooltip": "OCR unavailable on this device.",
+  "docScannerUnsupportedMessage": "Your device doesn't support the advanced document scanner. Take a photo with your Camera app, then tap Import below to crop and save it.",
+  "billingUnavailableMessage": "Billing unavailable — try again later.",
+  "ocrNoInternetMessage": "No internet. Connect once to download the language pack.",
+  "ocrLanguagePackNotReady": "Language pack downloading or not ready. Try again shortly."
 }

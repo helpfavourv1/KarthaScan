@@ -3,6 +3,7 @@
 // iOS-grade design tokens, feature flags, and state-management constraint.
 
 import 'package:flutter/material.dart';
+import 'app_locale.dart';
 
 // =============================================================================
 // MANDATORY — STATE MANAGEMENT SCOPE (Section 15)
@@ -200,12 +201,9 @@ abstract final class AppSupportContact {
 }
 
 abstract final class AppPluginFailureCopy {
-  static const String ocrUnavailableTooltip = 'OCR unavailable on this device.';
-  static const String docScannerUnsupportedMessage =
-      "Your device doesn't support the advanced document scanner. Take a "
-      'photo with your Camera app, then tap Import below to crop and save it.';
-  static const String billingUnavailableMessage =
-      'Billing unavailable — try again later.';
+  static String get ocrUnavailableTooltip => AppLocale.l10n.ocrUnavailableTooltip;
+  static String get docScannerUnsupportedMessage => AppLocale.l10n.docScannerUnsupportedMessage;
+  static String get billingUnavailableMessage => AppLocale.l10n.billingUnavailableMessage;
   AppPluginFailureCopy._();
 }
 

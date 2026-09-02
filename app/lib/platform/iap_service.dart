@@ -118,7 +118,7 @@ class IapService {
     try {
       final bool available = await _iap.isAvailable();
       if (!available) {
-        throw const IapUnavailableException(
+        throw IapUnavailableException(
           AppPluginFailureCopy.billingUnavailableMessage,
         );
       }
@@ -126,7 +126,7 @@ class IapService {
       final PurchaseParam param = PurchaseParam(productDetails: product);
       final bool launched = await _iap.buyNonConsumable(purchaseParam: param);
       if (!launched) {
-        throw const IapUnavailableException(
+        throw IapUnavailableException(
           AppPluginFailureCopy.billingUnavailableMessage,
         );
       }
@@ -134,7 +134,7 @@ class IapService {
       rethrow;
     } catch (error, stackTrace) {
       _logError('purchase', error, stackTrace);
-      throw const IapUnavailableException(
+      throw IapUnavailableException(
         AppPluginFailureCopy.billingUnavailableMessage,
       );
     }

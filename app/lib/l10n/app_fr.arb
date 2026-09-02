@@ -273,5 +273,10 @@
   "idPdfErrorPrefix": "Erreur lors de la génération du PDF d'identité",
   "genericErrorPrefix": "Erreur",
   "annotateTitle": "Annoter",
-  "placementsCountLabel": "{count, plural, =0{Rien placé} =1{1 placé} other{{count} placés}}"
+  "placementsCountLabel": "{count, plural, =0{Rien placé} =1{1 placé} other{{count} placés}}",
+  "ocrUnavailableTooltip": "OCR indisponible sur cet appareil.",
+  "docScannerUnsupportedMessage": "Votre appareil ne prend pas en charge le scanner avancé. Prenez une photo avec l'appareil photo, puis touchez Importer ci-dessous pour la recadrer et l'enregistrer.",
+  "billingUnavailableMessage": "Facturation indisponible — réessayez plus tard.",
+  "ocrNoInternetMessage": "Pas d'internet. Connectez-vous une fois pour télécharger le pack linguistique.",
+  "ocrLanguagePackNotReady": "Pack linguistique en cours de téléchargement ou non prêt. Réessayez dans un instant."
 }

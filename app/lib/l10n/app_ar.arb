@@ -273,5 +273,10 @@
   "idPdfErrorPrefix": "خطأ في إنشاء PDF للهوية",
   "genericErrorPrefix": "خطأ",
   "annotateTitle": "تعليق",
-  "placementsCountLabel": "{count, plural, =0{لا يوجد موضوع} =1{موضوع واحد} =2{موضوعان} few{{count} موضوعات} many{{count} موضوعاً} other{{count} موضوع}}"
+  "placementsCountLabel": "{count, plural, =0{لا يوجد موضوع} =1{موضوع واحد} =2{موضوعان} few{{count} موضوعات} many{{count} موضوعاً} other{{count} موضوع}}",
+  "ocrUnavailableTooltip": "التعرف الضوئي غير متاح على هذا الجهاز.",
+  "docScannerUnsupportedMessage": "جهازك لا يدعم ماسح المستندات المتقدم. التقط صورة بتطبيق الكاميرا، ثم اضغط على استيراد أدناه لقصها وحفظها.",
+  "billingUnavailableMessage": "الفوترة غير متاحة — أعد المحاولة لاحقًا.",
+  "ocrNoInternetMessage": "لا يوجد إنترنت. اتصل مرة واحدة لتنزيل حزمة اللغة.",
+  "ocrLanguagePackNotReady": "حزمة اللغة قيد التنزيل أو غير جاهزة. حاول مجددًا بعد قليل."
 }

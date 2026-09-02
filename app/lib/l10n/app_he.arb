@@ -273,5 +273,10 @@
   "idPdfErrorPrefix": "שגיאה ביצירת PDF תעודת זהות",
   "genericErrorPrefix": "שגיאה",
   "annotateTitle": "הערה",
-  "placementsCountLabel": "{count, plural, =0{לא הוצב דבר} =1{הוצב אחד} =2{הוצבו שניים} many{{count} הוצבו} other{{count} הוצבו}}"
+  "placementsCountLabel": "{count, plural, =0{לא הוצב דבר} =1{הוצב אחד} =2{הוצבו שניים} many{{count} הוצבו} other{{count} הוצבו}}",
+  "ocrUnavailableTooltip": "זיהוי טקסט אינו זמין במכשיר זה.",
+  "docScannerUnsupportedMessage": "המכשיר שלך אינו תומך בסורק המסמכים המתקדם. צלם תמונה באפליקציית המצלמה, ואז הקש על ייבוא למטה כדי לחתוך ולשמור.",
+  "billingUnavailableMessage": "חיוב אינו זמין — נסה שוב מאוחר יותר.",
+  "ocrNoInternetMessage": "אין אינטרנט. התחבר פעם אחת כדי להוריד את חבילת השפה.",
+  "ocrLanguagePackNotReady": "חבילת השפה בהורדה או אינה מוכנה. נסה שוב בקרוב."
 }

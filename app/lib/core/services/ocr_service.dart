@@ -4,6 +4,7 @@ import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart
 import 'debug_log_service.dart';
 import '../models/ocr_block.dart';
 import '../utils/constants.dart';
+import '../utils/app_locale.dart';
 
 enum OcrScript { latin, chinese, korean, japanese }
 
@@ -81,11 +82,11 @@ class OcrService {
   (String, bool) _classify(Object error) {
     final String msg = error.toString().toLowerCase();
     if (msg.contains('network') || msg.contains('internet') || msg.contains('connection')) {
-      return ('No internet. Connect once to download the language pack.', false);
+      return (AppLocale.l10n.ocrNoInternetMessage, false);
     }
     if (msg.contains('download') || msg.contains('install') ||
         msg.contains('unavailable') || msg.contains('not available') || msg.contains('timeout')) {
-      return ('Language pack downloading or not ready. Try again shortly.', false);
+      return (AppLocale.l10n.ocrLanguagePackNotReady, false);
     }
     return (AppPluginFailureCopy.ocrUnavailableTooltip, true);
   }

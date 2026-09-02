@@ -11,14 +11,14 @@ import 'debug_log_service.dart';
 import '../utils/constants.dart';
 
 class DocScannerUnsupportedException implements Exception {
-  const DocScannerUnsupportedException(this.message);
+  DocScannerUnsupportedException(this.message);
   final String message;
   @override
   String toString() => 'DocScannerUnsupportedException: $message';
 }
 
 class DocScannerFailedException implements Exception {
-  const DocScannerFailedException(this.message);
+  DocScannerFailedException(this.message);
   final String message;
   @override
   String toString() => 'DocScannerFailedException: $message';
@@ -50,7 +50,7 @@ class DocScannerService {
     } on PlatformException catch (error) {
       _log.log('SCANNER', 'Attempt 1 PlatformException: ${error.code} | ${error.message}');
       if (error.code == 'UNSUPPORTED') {
-        throw const DocScannerUnsupportedException(
+        throw DocScannerUnsupportedException(
           AppPluginFailureCopy.docScannerUnsupportedMessage,
         );
       }
@@ -89,7 +89,7 @@ class DocScannerService {
     }
 
     _log.log('SCANNER', 'All attempts exhausted → throwing UnsupportedException');
-    throw const DocScannerUnsupportedException(
+    throw DocScannerUnsupportedException(
       AppPluginFailureCopy.docScannerUnsupportedMessage,
     );
   }

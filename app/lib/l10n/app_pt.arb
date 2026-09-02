@@ -273,5 +273,10 @@
   "idPdfErrorPrefix": "Erro ao gerar PDF de identificação",
   "genericErrorPrefix": "Erro",
   "annotateTitle": "Anotar",
-  "placementsCountLabel": "{count, plural, =0{Nada posicionado} =1{1 posicionado} other{{count} posicionados}}"
+  "placementsCountLabel": "{count, plural, =0{Nada posicionado} =1{1 posicionado} other{{count} posicionados}}",
+  "ocrUnavailableTooltip": "OCR indisponível neste dispositivo.",
+  "docScannerUnsupportedMessage": "Seu dispositivo não suporta o scanner avançado de documentos. Tire uma foto com o app Câmera e toque em Importar abaixo para recortar e salvar.",
+  "billingUnavailableMessage": "Cobrança indisponível — tente novamente mais tarde.",
+  "ocrNoInternetMessage": "Sem internet. Conecte-se uma vez para baixar o pacote de idioma.",
+  "ocrLanguagePackNotReady": "Pacote de idioma baixando ou não pronto. Tente novamente em breve."
 }

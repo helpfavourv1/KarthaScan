@@ -260,7 +260,7 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
       final result = await DocScannerService().scan().timeout(
         const Duration(seconds: 120),
         onTimeout: () {
-          throw const DocScannerUnsupportedException('Scanner not responding.');
+          throw DocScannerUnsupportedException('Scanner not responding.');
         },
       );
       if (!mounted) return;

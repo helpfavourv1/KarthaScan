@@ -273,5 +273,10 @@
   "idPdfErrorPrefix": "生成ID PDF错误",
   "genericErrorPrefix": "错误",
   "annotateTitle": "标注",
-  "placementsCountLabel": "{count, plural, =0{未放置} =1{已放置1个} other{已放置{count}个}}"
+  "placementsCountLabel": "{count, plural, =0{未放置} =1{已放置1个} other{已放置{count}个}}",
+  "ocrUnavailableTooltip": "此设备不支持OCR。",
+  "docScannerUnsupportedMessage": "您的设备不支持高级文档扫描仪。请使用相机应用拍照，然后点击下方的“导入”进行裁剪和保存。",
+  "billingUnavailableMessage": "计费不可用 — 请稍后重试。",
+  "ocrNoInternetMessage": "无互联网。请连接一次以下载语言包。",
+  "ocrLanguagePackNotReady": "语言包正在下载或未就绪。请稍后再试。"
 }

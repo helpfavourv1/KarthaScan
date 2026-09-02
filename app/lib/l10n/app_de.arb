@@ -273,5 +273,10 @@
   "idPdfErrorPrefix": "Fehler beim Erstellen des Ausweis-PDF",
   "genericErrorPrefix": "Fehler",
   "annotateTitle": "Annotieren",
-  "placementsCountLabel": "{count, plural, =0{Nichts platziert} =1{1 platziert} other{{count} platziert}}"
+  "placementsCountLabel": "{count, plural, =0{Nichts platziert} =1{1 platziert} other{{count} platziert}}",
+  "ocrUnavailableTooltip": "OCR auf diesem Gerät nicht verfügbar.",
+  "docScannerUnsupportedMessage": "Dein Gerät unterstützt den erweiterten Dokumentenscanner nicht. Nimm ein Foto mit der Kamera-App auf und tippe unten auf Importieren, um es zuzuschneiden und zu speichern.",
+  "billingUnavailableMessage": "Abrechnung nicht verfügbar — später erneut versuchen.",
+  "ocrNoInternetMessage": "Kein Internet. Einmal verbinden, um das Sprachpaket herunterzuladen.",
+  "ocrLanguagePackNotReady": "Sprachpaket wird heruntergeladen oder ist nicht bereit. Versuche es gleich erneut."
 }
