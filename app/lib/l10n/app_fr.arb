@@ -177,7 +177,7 @@
   "cameraSource": "Caméra",
   "importFromGallery": "Importer de la galerie",
   "fromAnotherDocument": "D'un autre document",
-  "pageCountLabel": "{count} pages",
+  "pageCountLabel": "{count, plural, =0{Aucune page} =1{1 page} other{{count} pages}}",
   "commonConfirm": "Confirmer",
   "applyToAllPages": "Appliquer à toutes les pages",
   "widthLabel": "Largeur",
@@ -196,7 +196,7 @@
   "adsRemovedLabel": "Publicités supprimées",
   "diagnosticsSectionLabel": "DIAGNOSTICS",
   "debugLogsLabel": "Journaux de débogage",
-  "logEntriesLabel": "{count} entrées",
+  "logEntriesLabel": "{count, plural, =0{Aucune entrée} =1{1 entrée} other{{count} entrées}}",
   "ocrStatusBuiltIn": "Intégré",
   "ocrStatusChecking": "Vérification...",
   "ocrStatusOnDemand": "À la demande",
@@ -273,5 +273,5 @@
   "idPdfErrorPrefix": "Erreur lors de la génération du PDF d'identité",
   "genericErrorPrefix": "Erreur",
   "annotateTitle": "Annoter",
-  "placementsCountLabel": "{count} placées"
+  "placementsCountLabel": "{count, plural, =0{Rien placé} =1{1 placé} other{{count} placés}}"
 }

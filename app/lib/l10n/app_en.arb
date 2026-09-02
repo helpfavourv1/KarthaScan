@@ -191,7 +191,7 @@
   "cameraSource": "Camera",
   "importFromGallery": "Import from Gallery",
   "fromAnotherDocument": "From Another Document",
-  "pageCountLabel": "{count} pages",
+  "pageCountLabel": "{count, plural, =0{No pages} =1{1 page} other{{count} pages}}",
   "@pageCountLabel": {
     "placeholders": {
       "count": {
@@ -227,7 +227,7 @@
   "adsRemovedLabel": "Ads Removed",
   "diagnosticsSectionLabel": "DIAGNOSTICS",
   "debugLogsLabel": "Debug Logs",
-  "logEntriesLabel": "{count} entries",
+  "logEntriesLabel": "{count, plural, =0{No entries} =1{1 entry} other{{count} entries}}",
   "@logEntriesLabel": {
     "placeholders": {
       "count": {
@@ -359,7 +359,7 @@
   "idPdfErrorPrefix": "Error generating ID PDF",
   "genericErrorPrefix": "Error",
   "annotateTitle": "Annotate",
-  "placementsCountLabel": "{count} placed",
+  "placementsCountLabel": "{count, plural, =0{Nothing placed} =1{1 placed} other{{count} placed}}",
   "@placementsCountLabel": {
     "placeholders": {
       "count": {

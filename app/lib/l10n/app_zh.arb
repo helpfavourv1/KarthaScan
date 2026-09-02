@@ -177,7 +177,7 @@
   "cameraSource": "相机",
   "importFromGallery": "从图库导入",
   "fromAnotherDocument": "从其他文档",
-  "pageCountLabel": "{count} 页",
+  "pageCountLabel": "{count, plural, =0{无页面} =1{1页} other{{count}页}}",
   "commonConfirm": "确认",
   "applyToAllPages": "应用到所有页面",
   "widthLabel": "宽度",
@@ -196,7 +196,7 @@
   "adsRemovedLabel": "已移除广告",
   "diagnosticsSectionLabel": "诊断",
   "debugLogsLabel": "调试日志",
-  "logEntriesLabel": "{count} 条",
+  "logEntriesLabel": "{count, plural, =0{无条目} =1{1条} other{{count}条}}",
   "ocrStatusBuiltIn": "内置",
   "ocrStatusChecking": "检查中...",
   "ocrStatusOnDemand": "按需",
@@ -273,5 +273,5 @@
   "idPdfErrorPrefix": "生成ID PDF错误",
   "genericErrorPrefix": "错误",
   "annotateTitle": "标注",
-  "placementsCountLabel": "已放置 {count} 个"
+  "placementsCountLabel": "{count, plural, =0{未放置} =1{已放置1个} other{已放置{count}个}}"
 }

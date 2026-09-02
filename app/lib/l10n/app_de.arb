@@ -177,7 +177,7 @@
   "cameraSource": "Kamera",
   "importFromGallery": "Aus Galerie importieren",
   "fromAnotherDocument": "Aus anderem Dokument",
-  "pageCountLabel": "{count} Seiten",
+  "pageCountLabel": "{count, plural, =0{Keine Seiten} =1{1 Seite} other{{count} Seiten}}",
   "commonConfirm": "Bestätigen",
   "applyToAllPages": "Auf alle Seiten anwenden",
   "widthLabel": "Breite",
@@ -196,7 +196,7 @@
   "adsRemovedLabel": "Werbung entfernt",
   "diagnosticsSectionLabel": "DIAGNOSE",
   "debugLogsLabel": "Debug-Protokolle",
-  "logEntriesLabel": "{count} Einträge",
+  "logEntriesLabel": "{count, plural, =0{Keine Einträge} =1{1 Eintrag} other{{count} Einträge}}",
   "ocrStatusBuiltIn": "Integriert",
   "ocrStatusChecking": "Wird geprüft...",
   "ocrStatusOnDemand": "Bei Bedarf",
@@ -273,5 +273,5 @@
   "idPdfErrorPrefix": "Fehler beim Erstellen des Ausweis-PDF",
   "genericErrorPrefix": "Fehler",
   "annotateTitle": "Annotieren",
-  "placementsCountLabel": "{count} platziert"
+  "placementsCountLabel": "{count, plural, =0{Nichts platziert} =1{1 platziert} other{{count} platziert}}"
 }

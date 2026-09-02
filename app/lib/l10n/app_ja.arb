@@ -177,7 +177,7 @@
   "cameraSource": "カメラ",
   "importFromGallery": "ギャラリーからインポート",
   "fromAnotherDocument": "別のドキュメントから",
-  "pageCountLabel": "{count} ページ",
+  "pageCountLabel": "{count, plural, =0{ページなし} =1{1ページ} other{{count}ページ}}",
   "commonConfirm": "確認",
   "applyToAllPages": "すべてのページに適用",
   "widthLabel": "幅",
@@ -196,7 +196,7 @@
   "adsRemovedLabel": "広告削除済み",
   "diagnosticsSectionLabel": "診断",
   "debugLogsLabel": "デバッグログ",
-  "logEntriesLabel": "{count} 件",
+  "logEntriesLabel": "{count, plural, =0{エントリなし} =1{1件} other{{count}件}}",
   "ocrStatusBuiltIn": "組み込み",
   "ocrStatusChecking": "確認中...",
   "ocrStatusOnDemand": "オンデマンド",
@@ -273,5 +273,5 @@
   "idPdfErrorPrefix": "ID PDF生成エラー",
   "genericErrorPrefix": "エラー",
   "annotateTitle": "注釈",
-  "placementsCountLabel": "{count} 個配置済み"
+  "placementsCountLabel": "{count, plural, =0{配置なし} =1{1個配置} other{{count}個配置}}"
 }

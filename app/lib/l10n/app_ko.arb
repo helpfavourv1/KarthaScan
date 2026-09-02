@@ -177,7 +177,7 @@
   "cameraSource": "카메라",
   "importFromGallery": "갤러리에서 가져오기",
   "fromAnotherDocument": "다른 문서에서",
-  "pageCountLabel": "{count} 페이지",
+  "pageCountLabel": "{count, plural, =0{페이지 없음} =1{1페이지} other{{count}페이지}}",
   "commonConfirm": "확인",
   "applyToAllPages": "모든 페이지에 적용",
   "widthLabel": "너비",
@@ -196,7 +196,7 @@
   "adsRemovedLabel": "광고 제거됨",
   "diagnosticsSectionLabel": "진단",
   "debugLogsLabel": "디버그 로그",
-  "logEntriesLabel": "{count}개 항목",
+  "logEntriesLabel": "{count, plural, =0{항목 없음} =1{1개 항목} other{{count}개 항목}}",
   "ocrStatusBuiltIn": "내장",
   "ocrStatusChecking": "확인 중...",
   "ocrStatusOnDemand": "온디맨드",
@@ -273,5 +273,5 @@
   "idPdfErrorPrefix": "ID PDF 생성 오류",
   "genericErrorPrefix": "오류",
   "annotateTitle": "주석",
-  "placementsCountLabel": "{count}개 배치됨"
+  "placementsCountLabel": "{count, plural, =0{배치 없음} =1{1개 배치} other{{count}개 배치}}"
 }

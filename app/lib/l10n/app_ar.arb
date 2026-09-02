@@ -177,7 +177,7 @@
   "cameraSource": "الكاميرا",
   "importFromGallery": "استيراد من المعرض",
   "fromAnotherDocument": "من مستند آخر",
-  "pageCountLabel": "{count} صفحات",
+  "pageCountLabel": "{count, plural, =0{لا توجد صفحات} =1{صفحة واحدة} =2{صفحتان} few{{count} صفحات} many{{count} صفحة} other{{count} صفحة}}",
   "commonConfirm": "تأكيد",
   "applyToAllPages": "تطبيق على جميع الصفحات",
   "widthLabel": "العرض",
@@ -196,7 +196,7 @@
   "adsRemovedLabel": "تمت إزالة الإعلانات",
   "diagnosticsSectionLabel": "التشخيصات",
   "debugLogsLabel": "سجلات التصحيح",
-  "logEntriesLabel": "{count} إدخالات",
+  "logEntriesLabel": "{count, plural, =0{لا توجد إدخالات} =1{إدخال واحد} =2{إدخالان} few{{count} إدخالات} many{{count} إدخالاً} other{{count} إدخال}}",
   "ocrStatusBuiltIn": "مدمج",
   "ocrStatusChecking": "جارٍ التحقق...",
   "ocrStatusOnDemand": "عند الطلب",
@@ -273,5 +273,5 @@
   "idPdfErrorPrefix": "خطأ في إنشاء PDF للهوية",
   "genericErrorPrefix": "خطأ",
   "annotateTitle": "تعليق",
-  "placementsCountLabel": "{count} موضوع"
+  "placementsCountLabel": "{count, plural, =0{لا يوجد موضوع} =1{موضوع واحد} =2{موضوعان} few{{count} موضوعات} many{{count} موضوعاً} other{{count} موضوع}}"
 }

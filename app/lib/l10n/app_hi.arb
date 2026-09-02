@@ -177,7 +177,7 @@
   "cameraSource": "कैमरा",
   "importFromGallery": "गैलरी से आयात करें",
   "fromAnotherDocument": "दूसरे दस्तावेज़ से",
-  "pageCountLabel": "{count} पृष्ठ",
+  "pageCountLabel": "{count, plural, =0{कोई पृष्ठ नहीं} =1{1 पृष्ठ} other{{count} पृष्ठ}}",
   "commonConfirm": "पुष्टि करें",
   "applyToAllPages": "सभी पृष्ठों पर लागू करें",
   "widthLabel": "चौड़ाई",
@@ -196,7 +196,7 @@
   "adsRemovedLabel": "विज्ञापन हटाए गए",
   "diagnosticsSectionLabel": "निदान",
   "debugLogsLabel": "डीबग लॉग",
-  "logEntriesLabel": "{count} प्रविष्टियां",
+  "logEntriesLabel": "{count, plural, =0{कोई प्रविष्टि नहीं} =1{1 प्रविष्टि} other{{count} प्रविष्टियां}}",
   "ocrStatusBuiltIn": "अंतर्निहित",
   "ocrStatusChecking": "जांच जारी...",
   "ocrStatusOnDemand": "मांग पर",
@@ -273,5 +273,5 @@
   "idPdfErrorPrefix": "आईडी PDF बनाने में त्रुटि",
   "genericErrorPrefix": "त्रुटि",
   "annotateTitle": "एनोटेट करें",
-  "placementsCountLabel": "{count} रखे गए"
+  "placementsCountLabel": "{count, plural, =0{कुछ भी नहीं रखा गया} =1{1 रखा गया} other{{count} रखे गए}}"
 }
