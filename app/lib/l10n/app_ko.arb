@@ -317,5 +317,21 @@
   "ticker12Languages": "12개 언어",
   "tickerDarkMode": "다크 모드",
   "tickerAccentThemes": "액센트 테마",
-  "tickerDeviceMigration": "기기 마이그레이션"
+  "tickerDeviceMigration": "기기 마이그레이션",
+  "onboardingWelcomeTitle": "KarthaScan에 오신 것을 환영합니다",
+  "onboardingWelcomeSubtitle": "스캔, 편집, 서명, 내보내기 — 모든 문서 작업이 하나의 비공개 앱에서.",
+  "onboardingToolsTitle": "21개의 무료 프로 도구",
+  "onboardingToolsSubtitle": "주석, 서명, 워터마크, 양식 입력, 인감 등 — 모두 무료 무제한.",
+  "onboardingOcrTitle": "온디바이스 OCR",
+  "onboardingOcrSubtitle": "12개 언어로 텍스트 추출 및 검색 — 아무것도 휴대폰을 떠나지 않습니다.",
+  "onboardingSignTitle": "서명, 입력, 인감",
+  "onboardingSignSubtitle": "계약서 전자 서명, 양식 입력, 기업 인감을 몇 초 만에.",
+  "onboardingEditTitle": "비파괴 편집",
+  "onboardingEditSubtitle": "모든 편집은 되돌릴 수 있습니다 — 언제든 실행 취소, 다시 실행, 원본 복원.",
+  "onboardingPrivacyTitle": "100% 비공개",
+  "onboardingPrivacySubtitle": "계정 없음, 클라우드 없음, 워터마크 없음. 문서는 기기를 떠나지 않습니다.",
+  "onboardingContinue": "계속",
+  "onboardingGetStarted": "시작하기",
+  "onboardingBack": "뒤로",
+  "onboardingReplayIntro": "소개 다시 보기"
 }

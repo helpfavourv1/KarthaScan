@@ -410,5 +410,21 @@
   "ticker12Languages": "12 LANGUAGES",
   "tickerDarkMode": "DARK MODE",
   "tickerAccentThemes": "ACCENT THEMES",
-  "tickerDeviceMigration": "DEVICE MIGRATION"
+  "tickerDeviceMigration": "DEVICE MIGRATION",
+  "onboardingWelcomeTitle": "Welcome to KarthaScan",
+  "onboardingWelcomeSubtitle": "Your entire document office — scan, edit, sign, and export — in one private app.",
+  "onboardingToolsTitle": "21 Free Pro Tools",
+  "onboardingToolsSubtitle": "Annotate, sign, watermark, fill forms, seal, and more — every tool free and unlimited.",
+  "onboardingOcrTitle": "On-Device OCR",
+  "onboardingOcrSubtitle": "Extract and search text in 12 languages — nothing ever leaves your phone.",
+  "onboardingSignTitle": "Sign, Fill & Seal",
+  "onboardingSignSubtitle": "E-sign contracts, type-to-fill forms, and stamp enterprise seals in seconds.",
+  "onboardingEditTitle": "Non-Destructive Editing",
+  "onboardingEditSubtitle": "Every edit stays reversible — undo, redo, and revert to original anytime.",
+  "onboardingPrivacyTitle": "100% Private",
+  "onboardingPrivacySubtitle": "No account, no cloud, no watermarks. Your documents never leave your device.",
+  "onboardingContinue": "Continue",
+  "onboardingGetStarted": "Get Started",
+  "onboardingBack": "Back",
+  "onboardingReplayIntro": "Replay introduction"
 }

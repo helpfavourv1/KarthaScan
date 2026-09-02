@@ -216,6 +216,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ),
             const SizedBox(height: AppSpacing.md),
             _sectionLabel(l10n.aboutSectionLabel, textSecondary),
+            ListTile(
+              title: Text(l10n.onboardingReplayIntro, style: TextStyle(color: textPrimary)),
+              trailing: Icon(Icons.chevron_right, color: textSecondary),
+              onTap: () => context.push('/onboarding'),
+            ),
             _settingsTile(title: l10n.privacyPolicyLabel, trailing: Icon(Icons.open_in_new, color: textSecondary, size: 16), onTap: () => _openUrl(AppSupportContact.privacyPolicyUrl, l10n), textPrimary: textPrimary, border: border),
             const SizedBox(height: AppSpacing.xs),
             _settingsTile(title: l10n.supportLabel, trailing: Icon(Icons.open_in_new, color: textSecondary, size: 16), onTap: () => _openUrl(AppSupportContact.supportUrl, l10n), textPrimary: textPrimary, border: border),

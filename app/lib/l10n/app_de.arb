@@ -317,5 +317,21 @@
   "ticker12Languages": "12 SPRACHEN",
   "tickerDarkMode": "DUNKELMODUS",
   "tickerAccentThemes": "AKZENTTHEMEN",
-  "tickerDeviceMigration": "GERÄTEMIGRATION"
+  "tickerDeviceMigration": "GERÄTEMIGRATION",
+  "onboardingWelcomeTitle": "Willkommen bei KarthaScan",
+  "onboardingWelcomeSubtitle": "Ihr komplettes Dokumentenbüro — scannen, bearbeiten, signieren, exportieren — in einer privaten App.",
+  "onboardingToolsTitle": "21 kostenlose Pro-Tools",
+  "onboardingToolsSubtitle": "Notieren, signieren, Wasserzeichen, Formulare, Siegel uvm. — alles kostenlos und unbegrenzt.",
+  "onboardingOcrTitle": "OCR auf dem Gerät",
+  "onboardingOcrSubtitle": "Text in 12 Sprachen extrahieren und durchsuchen — nichts verlässt Ihr Telefon.",
+  "onboardingSignTitle": "Signieren, Ausfüllen, Siegeln",
+  "onboardingSignSubtitle": "Verträge e-signieren, Formulare ausfüllen, Firmensiegel stempeln — in Sekunden.",
+  "onboardingEditTitle": "Nicht-destruktive Bearbeitung",
+  "onboardingEditSubtitle": "Jede Bearbeitung bleibt umkehrbar — rückgängig, wiederholen, Original wiederherstellen.",
+  "onboardingPrivacyTitle": "100% privat",
+  "onboardingPrivacySubtitle": "Kein Konto, keine Cloud, keine Wasserzeichen. Ihre Dokumente bleiben auf Ihrem Gerät.",
+  "onboardingContinue": "Weiter",
+  "onboardingGetStarted": "Loslegen",
+  "onboardingBack": "Zurück",
+  "onboardingReplayIntro": "Einführung wiederholen"
 }

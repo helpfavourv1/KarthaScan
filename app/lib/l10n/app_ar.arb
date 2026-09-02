@@ -317,5 +317,21 @@
   "ticker12Languages": "12 لغة",
   "tickerDarkMode": "الوضع الداكن",
   "tickerAccentThemes": "سمات التمييز",
-  "tickerDeviceMigration": "نقل الجهاز"
+  "tickerDeviceMigration": "نقل الجهاز",
+  "onboardingWelcomeTitle": "مرحبًا بك في KarthaScan",
+  "onboardingWelcomeSubtitle": "مكتب مستنداتك الكامل — امسح وحرر ووقّع وصدّر — في تطبيق خاص واحد.",
+  "onboardingToolsTitle": "21 أداة احترافية مجانية",
+  "onboardingToolsSubtitle": "علّق، وقّع، ضع علامة مائية، املأ النماذج، اختم، والمزيد — كل الأدوات مجانية وغير محدودة.",
+  "onboardingOcrTitle": "تعرف ضوئي على الجهاز",
+  "onboardingOcrSubtitle": "استخرج وابحث في النص بـ 12 لغة — لا شيء يغادر هاتفك.",
+  "onboardingSignTitle": "وقّع واملأ واختم",
+  "onboardingSignSubtitle": "وقّع العقود إلكترونيًا، املأ النماذج بالنقر، واختم بأختام مؤسسية في ثوانٍ.",
+  "onboardingEditTitle": "تحرير غير مدمر",
+  "onboardingEditSubtitle": "كل تعديل يبقى قابلًا للتراجع — تراجع وأعد وعُد إلى الأصل في أي وقت.",
+  "onboardingPrivacyTitle": "خصوصية 100%",
+  "onboardingPrivacySubtitle": "بدون حساب، بدون سحابة، بدون علامات مائية. مستنداتك لا تغادر جهازك.",
+  "onboardingContinue": "متابعة",
+  "onboardingGetStarted": "ابدأ الآن",
+  "onboardingBack": "رجوع",
+  "onboardingReplayIntro": "إعادة المقدمة"
 }

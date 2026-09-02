@@ -317,5 +317,21 @@
   "ticker12Languages": "12 IDIOMAS",
   "tickerDarkMode": "MODO ESCURO",
   "tickerAccentThemes": "TEMAS DE ACENTO",
-  "tickerDeviceMigration": "MIGRAÇÃO DE DISPOSITIVO"
+  "tickerDeviceMigration": "MIGRAÇÃO DE DISPOSITIVO",
+  "onboardingWelcomeTitle": "Bem-vindo ao KarthaScan",
+  "onboardingWelcomeSubtitle": "Todo o seu escritório de documentos — escaneie, edite, assine e exporte — em um app privado.",
+  "onboardingToolsTitle": "21 ferramentas Pro grátis",
+  "onboardingToolsSubtitle": "Anote, assine, marca d'água, preencha formulários, sele e mais — tudo grátis e ilimitado.",
+  "onboardingOcrTitle": "OCR no dispositivo",
+  "onboardingOcrSubtitle": "Extraia e pesquise texto em 12 idiomas — nada sai do seu telefone.",
+  "onboardingSignTitle": "Assinar, preencher, selar",
+  "onboardingSignSubtitle": "Assine contratos, preencha formulários e carimbe selos em segundos.",
+  "onboardingEditTitle": "Edição não destrutiva",
+  "onboardingEditSubtitle": "Toda edição é reversível — desfaça, refaça e volte ao original quando quiser.",
+  "onboardingPrivacyTitle": "100% privado",
+  "onboardingPrivacySubtitle": "Sem conta, sem nuvem, sem marcas d'água. Seus documentos nunca saem do dispositivo.",
+  "onboardingContinue": "Continuar",
+  "onboardingGetStarted": "Começar",
+  "onboardingBack": "Voltar",
+  "onboardingReplayIntro": "Rever introdução"
 }

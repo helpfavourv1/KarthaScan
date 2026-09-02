@@ -317,5 +317,21 @@
   "ticker12Languages": "12种语言",
   "tickerDarkMode": "深色模式",
   "tickerAccentThemes": "强调主题",
-  "tickerDeviceMigration": "设备迁移"
+  "tickerDeviceMigration": "设备迁移",
+  "onboardingWelcomeTitle": "欢迎使用 KarthaScan",
+  "onboardingWelcomeSubtitle": "您的整个文档办公室 — 扫描、编辑、签名、导出 — 尽在一个私密应用。",
+  "onboardingToolsTitle": "21 个免费专业工具",
+  "onboardingToolsSubtitle": "批注、签名、水印、填写表单、盖章等 — 全部免费无限制。",
+  "onboardingOcrTitle": "设备端 OCR",
+  "onboardingOcrSubtitle": "以 12 种语言提取和搜索文本 — 任何内容都不会离开您的手机。",
+  "onboardingSignTitle": "签名、填写、盖章",
+  "onboardingSignSubtitle": "电子签署合同、点击填写表单、几秒内加盖企业印章。",
+  "onboardingEditTitle": "非破坏性编辑",
+  "onboardingEditSubtitle": "每次编辑都可逆 — 随时撤销、重做、恢复原始。",
+  "onboardingPrivacyTitle": "100% 私密",
+  "onboardingPrivacySubtitle": "无账户、无云、无水印。您的文档永不离开设备。",
+  "onboardingContinue": "继续",
+  "onboardingGetStarted": "开始使用",
+  "onboardingBack": "返回",
+  "onboardingReplayIntro": "重看介绍"
 }

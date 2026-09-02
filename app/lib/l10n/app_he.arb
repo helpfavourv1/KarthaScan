@@ -317,5 +317,21 @@
   "ticker12Languages": "12 שפות",
   "tickerDarkMode": "מצב כהה",
   "tickerAccentThemes": "ערכות נושא",
-  "tickerDeviceMigration": "העברת מכשיר"
+  "tickerDeviceMigration": "העברת מכשיר",
+  "onboardingWelcomeTitle": "ברוכים הבאים ל-KarthaScan",
+  "onboardingWelcomeSubtitle": "כל משרד המסמכים שלכם — סרקו, ערכו, חתמו וייצאו — באפליקציה פרטית אחת.",
+  "onboardingToolsTitle": "21 כלים מקצועיים חינם",
+  "onboardingToolsSubtitle": "הערה, חתימה, סימן מים, מילוי טפסים, חותמות ועוד — הכול חינם וללא הגבלה.",
+  "onboardingOcrTitle": "זיהוי טקסט במכשיר",
+  "onboardingOcrSubtitle": "חלצו וחפשו טקסט ב-12 שפות — שום דבר לא עוזב את הטלפון.",
+  "onboardingSignTitle": "חתימה, מילוי וחותמת",
+  "onboardingSignSubtitle": "חתמו על חוזים, מלאו טפסים והטביעו חותמות תוך שניות.",
+  "onboardingEditTitle": "עריכה לא הרסנית",
+  "onboardingEditSubtitle": "כל עריכה נשארת הפיכה — ביטול, ביצוע מחדש וחזרה למקור בכל עת.",
+  "onboardingPrivacyTitle": "פרטיות 100%",
+  "onboardingPrivacySubtitle": "בלי חשבון, בלי ענן, בלי סימני מים. המסמכים שלכם לא עוזבים את המכשיר.",
+  "onboardingContinue": "המשך",
+  "onboardingGetStarted": "מתחילים",
+  "onboardingBack": "חזרה",
+  "onboardingReplayIntro": "הצגת המבוא מחדש"
 }
