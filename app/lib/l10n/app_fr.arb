@@ -280,5 +280,10 @@
   "ocrNoInternetMessage": "Pas d'internet. Connectez-vous une fois pour télécharger le pack linguistique.",
   "ocrLanguagePackNotReady": "Pack linguistique en cours de téléchargement ou non prêt. Réessayez dans un instant.",
   "undoTooltip": "Annuler",
-  "redoTooltip": "Rétablir"
+  "redoTooltip": "Rétablir",
+  "fillInputHint": "Tapez le texte à remplir",
+  "fillCapsLabel": "MAJUSCULES",
+  "fillSaveSnippet": "Enregistrer comme extrait",
+  "fillDeleteSnippet": "Supprimer l'extrait ?",
+  "fillTooltip": "Remplir"
 }

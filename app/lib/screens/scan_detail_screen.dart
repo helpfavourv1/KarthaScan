@@ -378,6 +378,7 @@ class _ScanDetailScreenState extends State<ScanDetailScreen>
                 onPrint: () { _closeEditor(); printDocument(); },
                 onEmail: () { _closeEditor(); emailDocument(); },
                 onErase: () { _closeEditor(); erasePage(); },
+                onFill: () { _closeEditor(); context.push('/edit/${document.id}', extra: <String, dynamic>{'fill': true}); },
               ),
               SafeArea(
                 top: false,

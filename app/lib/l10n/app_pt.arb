@@ -280,5 +280,10 @@
   "ocrNoInternetMessage": "Sem internet. Conecte-se uma vez para baixar o pacote de idioma.",
   "ocrLanguagePackNotReady": "Pacote de idioma baixando ou não pronto. Tente novamente em breve.",
   "undoTooltip": "Desfazer",
-  "redoTooltip": "Refazer"
+  "redoTooltip": "Refazer",
+  "fillInputHint": "Digite o texto para preencher",
+  "fillCapsLabel": "MAIÚSCULAS",
+  "fillSaveSnippet": "Salvar como trecho",
+  "fillDeleteSnippet": "Excluir trecho?",
+  "fillTooltip": "Preencher"
 }

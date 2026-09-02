@@ -274,6 +274,7 @@ class StampLayer {
     this.sealSubtext = '',
     this.sealCenter = 'star',
     this.sealImageBytes,
+    this.allCaps = false,
   });
 
   final String id;
@@ -299,6 +300,7 @@ class StampLayer {
   final String sealSubtext;
   final String sealCenter;
   final Uint8List? sealImageBytes;
+  final bool allCaps;
 
   Map<String, dynamic> toJson() => {
     'id': id, 'pageIndex': pageIndex, 'kind': kind,
@@ -310,6 +312,7 @@ class StampLayer {
     'checked': checked, 'checkShape': checkShape, 'boxColor': boxColor, 'tickColor': tickColor,
     'sealShape': sealShape, 'sealSubtext': sealSubtext, 'sealCenter': sealCenter,
     if (sealImageBytes != null) 'sealImageBytes': base64Encode(sealImageBytes!),
+    'allCaps': allCaps,
   };
 
   factory StampLayer.fromJson(Map<String, dynamic> json) {
@@ -342,6 +345,7 @@ class StampLayer {
       sealSubtext: json['sealSubtext'] as String? ?? '',
       sealCenter: json['sealCenter'] as String? ?? 'star',
       sealImageBytes: json['sealImageBytes'] != null ? base64Decode(json['sealImageBytes'] as String) : null,
+      allCaps: json['allCaps'] as bool? ?? false,
     );
   }
 
@@ -352,6 +356,7 @@ class StampLayer {
     int? customDateMillis, bool? checked, String? checkShape, int? boxColor, int? tickColor,
     String? sealShape, String? sealSubtext, String? sealCenter,
     Uint8List? sealImageBytes,
+    bool? allCaps,
   }) {
     return StampLayer(
       id: id ?? this.id, pageIndex: pageIndex ?? this.pageIndex, kind: kind ?? this.kind,
@@ -363,7 +368,7 @@ class StampLayer {
       checked: checked ?? this.checked, checkShape: checkShape ?? this.checkShape,
       boxColor: boxColor ?? this.boxColor, tickColor: tickColor ?? this.tickColor,
       sealShape: sealShape ?? this.sealShape, sealSubtext: sealSubtext ?? this.sealSubtext, sealCenter: sealCenter ?? this.sealCenter,
-      sealImageBytes: sealImageBytes ?? this.sealImageBytes,
+      sealImageBytes: sealImageBytes ?? this.sealImageBytes, allCaps: allCaps ?? this.allCaps,
     );
   }
 }

@@ -38,7 +38,9 @@ GoRouter buildRouter({String initialLocation = '/'}) {
         path: '/edit/:id',
         builder: (BuildContext context, GoRouterState state) {
           final String id = state.pathParameters['id']!;
-          return FullScreenEditScreen(documentId: id);
+          final Object? extra = state.extra;
+          final bool startInFillMode = extra is Map<String, dynamic> && extra['fill'] == true;
+          return FullScreenEditScreen(documentId: id, startInFillMode: startInFillMode);
         },
       ),
       GoRoute(

@@ -280,5 +280,10 @@
   "ocrNoInternetMessage": "Kein Internet. Einmal verbinden, um das Sprachpaket herunterzuladen.",
   "ocrLanguagePackNotReady": "Sprachpaket wird heruntergeladen oder ist nicht bereit. Versuche es gleich erneut.",
   "undoTooltip": "Rückgängig",
-  "redoTooltip": "Wiederholen"
+  "redoTooltip": "Wiederholen",
+  "fillInputHint": "Text zum Ausfüllen eingeben",
+  "fillCapsLabel": "GROSSBUCHSTABEN",
+  "fillSaveSnippet": "Als Snippet speichern",
+  "fillDeleteSnippet": "Snippet löschen?",
+  "fillTooltip": "Ausfüllen"
 }

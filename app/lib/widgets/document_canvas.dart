@@ -38,6 +38,10 @@ class DocumentCanvas extends StatefulWidget {
     this.initialPage = 0,
     this.onPageChanged,
     this.pageTransforms = const {},
+    this.onFillTap,
+    this.fillGhostText,
+    this.fillGhostPctX,
+    this.fillGhostPctY,
   });
 
   final List<String> pagePaths;
@@ -62,6 +66,10 @@ class DocumentCanvas extends StatefulWidget {
   final int initialPage;
   final ValueChanged<int>? onPageChanged;
   final Map<int, PageTransform> pageTransforms;
+  final void Function(double pctX, double pctY, int pageIndex)? onFillTap;
+  final String? fillGhostText;
+  final double? fillGhostPctX;
+  final double? fillGhostPctY;
 
   @override
   State<DocumentCanvas> createState() => _DocumentCanvasState();
@@ -147,6 +155,10 @@ class _DocumentCanvasState extends State<DocumentCanvas> {
             onStampSelected: widget.onStampSelected,
             onStampLayerUpdate: widget.onStampLayerUpdate,
             pageTransforms: widget.pageTransforms,
+            onFillTap: widget.onFillTap,
+            fillGhostText: widget.fillGhostText,
+            fillGhostPctX: widget.fillGhostPctX,
+            fillGhostPctY: widget.fillGhostPctY,
           );
         },
       ),
@@ -178,6 +190,10 @@ class _PageWithInk extends StatefulWidget {
     this.onStampLayerUpdate,
     this.onSignatureSelect,
     this.pageTransforms = const {},
+    this.onFillTap,
+    this.fillGhostText,
+    this.fillGhostPctX,
+    this.fillGhostPctY,
   });
 
   final String pagePath;
@@ -201,6 +217,10 @@ class _PageWithInk extends StatefulWidget {
   final void Function(StampLayer layer)? onStampSelected;
   final void Function(int pageIndex, StampLayer layer)? onStampLayerUpdate;
   final Map<int, PageTransform> pageTransforms;
+  final void Function(double pctX, double pctY, int pageIndex)? onFillTap;
+  final String? fillGhostText;
+  final double? fillGhostPctX;
+  final double? fillGhostPctY;
 
   @override
   State<_PageWithInk> createState() => _PageWithInkState();
@@ -427,6 +447,31 @@ class _PageWithInkState extends State<_PageWithInk> {
                                           ),
                                         ));
                                       },
+                                    ),
+                                  if (widget.onFillTap != null)
+                                    Positioned.fill(
+                                      child: GestureDetector(
+                                        behavior: HitTestBehavior.translucent,
+                                        onTapUp: (details) {
+                                          final pctX = (details.localPosition.dx / originalW).clamp(0.0, 1.0);
+                                          final pctY = (details.localPosition.dy / originalH).clamp(0.0, 1.0);
+                                          widget.onFillTap?.call(pctX, pctY, widget.pageIndex);
+                                        },
+                                      ),
+                                    ),
+                                  if (widget.fillGhostText != null && widget.fillGhostPctX != null && widget.fillGhostPctY != null)
+                                    Positioned(
+                                      left: widget.fillGhostPctX! * originalW,
+                                      top: widget.fillGhostPctY! * originalH,
+                                      child: IgnorePointer(
+                                        child: Opacity(
+                                          opacity: 0.4,
+                                          child: Text(
+                                            widget.fillGhostText!,
+                                            style: TextStyle(fontSize: 40, fontFamily: 'monospace', color: const Color(0xFF111111)),
+                                          ),
+                                        ),
+                                      ),
                                     ),
                                 ],
                               ),

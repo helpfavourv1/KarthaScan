@@ -280,5 +280,10 @@
   "ocrNoInternetMessage": "无互联网。请连接一次以下载语言包。",
   "ocrLanguagePackNotReady": "语言包正在下载或未就绪。请稍后再试。",
   "undoTooltip": "撤销",
-  "redoTooltip": "重做"
+  "redoTooltip": "重做",
+  "fillInputHint": "输入要填充的文本",
+  "fillCapsLabel": "大写",
+  "fillSaveSnippet": "保存为片段",
+  "fillDeleteSnippet": "删除片段？",
+  "fillTooltip": "填充"
 }

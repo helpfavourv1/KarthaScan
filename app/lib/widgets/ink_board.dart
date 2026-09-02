@@ -12,7 +12,7 @@ import 'signature_canvas.dart';
 import '../l10n/app_localizations.dart';
 
 /// Which editor currently owns the tray preview screen.
-enum TrayEditMode { none, signature, annotate, watermark, text, note, date, checkbox, seal }
+enum TrayEditMode { none, signature, annotate, watermark, text, note, date, checkbox, seal, fill }
 
 /// Which kind of overlay layer the shared editor is editing.
 enum LayerType { signature, annotate, watermark, text, note, date, checkbox, seal }

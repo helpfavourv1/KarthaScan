@@ -25,6 +25,7 @@ class EditTray extends StatefulWidget {
     required this.onEmail,
     required this.onErase,
     this.onRevert,
+    this.onFill,
     this.compact = false,
   });
 
@@ -48,6 +49,7 @@ class EditTray extends StatefulWidget {
   final VoidCallback onEmail;
   final VoidCallback onErase;
   final VoidCallback? onRevert;
+  final VoidCallback? onFill;
   final bool compact;
 
   @override
@@ -206,6 +208,7 @@ class _EditTrayState extends State<EditTray> with SingleTickerProviderStateMixin
       _TrayItem(Icons.approval_outlined, 'Custom Seal', widget.onSeal),
       _TrayItem(Icons.print_outlined, 'Print', widget.onPrint),
       _TrayItem(Icons.mail_outline, 'Email', widget.onEmail),
+      if (widget.onFill != null) _TrayItem(Icons.keyboard, 'Fill', widget.onFill!),
       _TrayItem(Icons.brush_outlined, 'Eraser', widget.onErase),
       if (widget.onRevert != null) _TrayItem(Icons.undo, 'Revert', widget.onRevert!),
     ];

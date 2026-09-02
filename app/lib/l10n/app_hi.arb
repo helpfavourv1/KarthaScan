@@ -280,5 +280,10 @@
   "ocrNoInternetMessage": "इंटरनेट नहीं। भाषा पैक डाउनलोड करने के लिए एक बार कनेक्ट करें।",
   "ocrLanguagePackNotReady": "भाषा पैक डाउनलोड हो रहा है या तैयार नहीं। शीघ्र ही पुनः प्रयास करें।",
   "undoTooltip": "पूर्ववत करें",
-  "redoTooltip": "फिर से करें"
+  "redoTooltip": "फिर से करें",
+  "fillInputHint": "भरने के लिए टेक्स्ट टाइप करें",
+  "fillCapsLabel": "बड़े अक्षर",
+  "fillSaveSnippet": "स्निपेट के रूप में सहेजें",
+  "fillDeleteSnippet": "स्निपेट हटाएं?",
+  "fillTooltip": "भरें"
 }

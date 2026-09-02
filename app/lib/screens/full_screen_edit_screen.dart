@@ -17,11 +17,14 @@ import '../widgets/seal_stamp_sheet.dart';
 import '../widgets/signature_editor_bar.dart';
 import '../widgets/text_stamp_sheet.dart';
 import '../widgets/watermark_sheet.dart';
+import '../widgets/fill_input_bar.dart';
+import '../core/models/fill_snippet.dart';
 import '../l10n/app_localizations.dart';
 
 class FullScreenEditScreen extends StatefulWidget {
-  const FullScreenEditScreen({super.key, required this.documentId});
+  const FullScreenEditScreen({super.key, required this.documentId, this.startInFillMode = false});
   final String documentId;
+  final bool startInFillMode;
 
   @override
   State<FullScreenEditScreen> createState() => _FullScreenEditScreenState();
@@ -42,6 +45,13 @@ class _FullScreenEditScreenState extends State<FullScreenEditScreen> with Docume
   String? _selectedWatermarkText;
   String? _selectedStampId;
 
+  // Fill mode state
+  String? _fillText;
+  double? _fillGhostPctX;
+  double? _fillGhostPctY;
+  int? _fillGhostPageIndex;
+  List<FillSnippet> _fillSnippets = [];
+
   @override
   void initState() {
     super.initState();
@@ -53,9 +63,25 @@ class _FullScreenEditScreenState extends State<FullScreenEditScreen> with Docume
     _pageController = PageController();
     _scanProvider.setActiveScan(widget.documentId);
     _scanProvider.undoManager.clear();
+    _loadFillSnippets();
+    if (widget.startInFillMode) _editMode = TrayEditMode.fill;
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final doc = document;
       if (doc != null) _inkController.seed(doc);
+    });
+  }
+
+
+  Future<void> _loadFillSnippets() async {
+    _fillSnippets = await _localStorage.loadFillSnippets();
+  }
+
+  void _onFillTap(double pctX, double pctY, int pageIndex) {
+    setState(() {
+      _fillGhostPctX = pctX;
+      _fillGhostPctY = pctY;
+      _fillGhostPageIndex = pageIndex;
+      _editMode = TrayEditMode.fill;
     });
   }
 
@@ -252,6 +278,10 @@ class _FullScreenEditScreenState extends State<FullScreenEditScreen> with Docume
                   initialPage: _currentPageIndex,
                   onPageChanged: (index) => setState(() { _currentPageIndex = index; _scanProvider.undoManager.clear(); }),
                   pageTransforms: doc.pageTransforms,
+                  onFillTap: _editMode == TrayEditMode.fill ? _onFillTap : null,
+                  fillGhostText: _fillText,
+                  fillGhostPctX: _fillGhostPctX,
+                  fillGhostPctY: _fillGhostPctY,
                 ),
               ),
               // Bottom stack
@@ -288,6 +318,42 @@ class _FullScreenEditScreenState extends State<FullScreenEditScreen> with Docume
                       _buildWatermarkControls(),
                     if (_editMode == TrayEditMode.text || _editMode == TrayEditMode.note || _editMode == TrayEditMode.date || _editMode == TrayEditMode.checkbox || _editMode == TrayEditMode.seal)
                       if (_selectedStampId != null) _buildStampControls(),
+                    if (_editMode == TrayEditMode.fill && _fillGhostPctX != null && _fillGhostPctY != null && _fillGhostPageIndex != null)
+                      FillInputBar(
+                        initialText: _fillText ?? '',
+                        snippets: _fillSnippets,
+                        onTextChange: (text) => setState(() => _fillText = text),
+                        onConfirm: (text, allCaps, color, fontSize) async {
+                          if (text.isEmpty) return;
+                          final layer = StampLayer(
+                            id: 'stamp_${DateTime.now().microsecondsSinceEpoch}',
+                            pageIndex: _fillGhostPageIndex!,
+                            kind: 'fill',
+                            placement: SignaturePlacement(pctX: _fillGhostPctX!, pctY: _fillGhostPctY!),
+                            text: text,
+                            fontSize: fontSize,
+                            color: color,
+                            fontFamily: 'monospace',
+                            fontWeight: 700,
+                            align: 'left',
+                            allCaps: allCaps,
+                          );
+                          await _scanProvider.addStampLayer(doc.id, layer);
+                          setState(() { _fillGhostPctX = null; _fillGhostPctY = null; _fillGhostPageIndex = null; _editMode = TrayEditMode.none; });
+                        },
+                        onCancel: () => setState(() { _fillGhostPctX = null; _fillGhostPctY = null; _fillGhostPageIndex = null; _editMode = TrayEditMode.none; }),
+                        onSaveSnippet: (text) async {
+                          final snippet = FillSnippet(id: 'snip_${DateTime.now().microsecondsSinceEpoch}', label: text.length > 12 ? text.substring(0, 12) : text, text: text);
+                          _fillSnippets.add(snippet);
+                          await _localStorage.saveFillSnippets(_fillSnippets);
+                          setState(() {});
+                        },
+                        onDeleteSnippet: (id) async {
+                          _fillSnippets.removeWhere((s) => s.id == id);
+                          await _localStorage.saveFillSnippets(_fillSnippets);
+                          setState(() {});
+                        },
+                      ),
                     // Compact train tray (always visible)
                     EditTray(
                       compact: true,
@@ -314,6 +380,7 @@ class _FullScreenEditScreenState extends State<FullScreenEditScreen> with Docume
                       onPrint: printDocument,
                       onEmail: emailDocument,
                       onErase: erasePage,
+                      onFill: () => setState(() { _editMode = TrayEditMode.fill; _fillGhostPctX = null; _fillGhostPctY = null; }),
                     ),
                   ],
                 ),

@@ -280,5 +280,10 @@
   "ocrNoInternetMessage": "インターネット接続がありません。言語パックをダウンロードするため一度接続してください。",
   "ocrLanguagePackNotReady": "言語パックをダウンロード中または準備できていません。まもなく再試行してください。",
   "undoTooltip": "元に戻す",
-  "redoTooltip": "やり直す"
+  "redoTooltip": "やり直す",
+  "fillInputHint": "入力するテキストを入力",
+  "fillCapsLabel": "大文字",
+  "fillSaveSnippet": "スニペットとして保存",
+  "fillDeleteSnippet": "スニペットを削除しますか？",
+  "fillTooltip": "入力"
 }

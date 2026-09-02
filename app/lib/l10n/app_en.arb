@@ -373,5 +373,10 @@
   "ocrNoInternetMessage": "No internet. Connect once to download the language pack.",
   "ocrLanguagePackNotReady": "Language pack downloading or not ready. Try again shortly.",
   "undoTooltip": "Undo",
-  "redoTooltip": "Redo"
+  "redoTooltip": "Redo",
+  "fillInputHint": "Type text to fill",
+  "fillCapsLabel": "ALL CAPS",
+  "fillSaveSnippet": "Save as snippet",
+  "fillDeleteSnippet": "Delete snippet?",
+  "fillTooltip": "Fill"
 }

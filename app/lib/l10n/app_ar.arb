@@ -280,5 +280,10 @@
   "ocrNoInternetMessage": "لا يوجد إنترنت. اتصل مرة واحدة لتنزيل حزمة اللغة.",
   "ocrLanguagePackNotReady": "حزمة اللغة قيد التنزيل أو غير جاهزة. حاول مجددًا بعد قليل.",
   "undoTooltip": "تراجع",
-  "redoTooltip": "إعادة"
+  "redoTooltip": "إعادة",
+  "fillInputHint": "اكتب نصًا لملئه",
+  "fillCapsLabel": "أحرف كبيرة",
+  "fillSaveSnippet": "حفظ كمقتطف",
+  "fillDeleteSnippet": "حذف المقتطف؟",
+  "fillTooltip": "ملء"
 }

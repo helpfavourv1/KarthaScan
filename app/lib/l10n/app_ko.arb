@@ -280,5 +280,10 @@
   "ocrNoInternetMessage": "인터넷 없음. 언어 팩을 다운로드하려면 한 번 연결하세요.",
   "ocrLanguagePackNotReady": "언어 팩 다운로드 중이거나 준비되지 않았습니다. 잠시 후 다시 시도하세요.",
   "undoTooltip": "실행 취소",
-  "redoTooltip": "다시 실행"
+  "redoTooltip": "다시 실행",
+  "fillInputHint": "채울 텍스트 입력",
+  "fillCapsLabel": "대문자",
+  "fillSaveSnippet": "스니펫으로 저장",
+  "fillDeleteSnippet": "스니펫을 삭제하시겠습니까?",
+  "fillTooltip": "채우기"
 }

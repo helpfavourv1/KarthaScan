@@ -14,6 +14,7 @@ import '../models/signature_placement.dart';
 import '../models/page_transform.dart';
 import '../models/ocr_block.dart';
 import '../models/user_settings.dart';
+import '../models/fill_snippet.dart';
 
 class LocalStorageService {
   static const String _dbFileName = 'katharscan.db';
@@ -486,4 +487,33 @@ class LocalStorageService {
       return null;
     }
   }
+
+  static const String _fillSnippetsFileName = 'fill_snippets.json';
+
+  Future<List<FillSnippet>> loadFillSnippets() async {
+    try {
+      final appDir = await getApplicationDocumentsDirectory();
+      final file = File(p.join(appDir.path, _fillSnippetsFileName));
+      if (!await file.exists()) return [];
+      final jsonStr = await file.readAsString();
+      final list = jsonDecode(jsonStr) as List<dynamic>;
+      return list.map((e) => FillSnippet.fromJson(e as Map<String, dynamic>)).toList();
+    } catch (error, stackTrace) {
+      _logError('loadFillSnippets', error, stackTrace);
+      return [];
+    }
+  }
+
+  Future<bool> saveFillSnippets(List<FillSnippet> snippets) async {
+    try {
+      final appDir = await getApplicationDocumentsDirectory();
+      final file = File(p.join(appDir.path, _fillSnippetsFileName));
+      await file.writeAsString(jsonEncode(snippets.map((s) => s.toJson()).toList()));
+      return true;
+    } catch (error, stackTrace) {
+      _logError('saveFillSnippets', error, stackTrace);
+      return false;
+    }
+  }
 }
+

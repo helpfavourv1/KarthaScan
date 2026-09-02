@@ -280,5 +280,10 @@
   "ocrNoInternetMessage": "אין אינטרנט. התחבר פעם אחת כדי להוריד את חבילת השפה.",
   "ocrLanguagePackNotReady": "חבילת השפה בהורדה או אינה מוכנה. נסה שוב בקרוב.",
   "undoTooltip": "ביטול",
-  "redoTooltip": "בצע שוב"
+  "redoTooltip": "בצע שוב",
+  "fillInputHint": "הקלד טקסט למילוי",
+  "fillCapsLabel": "אותיות רישיות",
+  "fillSaveSnippet": "שמור כקטע",
+  "fillDeleteSnippet": "למחוק קטע?",
+  "fillTooltip": "מילוי"
 }
