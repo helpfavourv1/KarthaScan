@@ -4,6 +4,9 @@ import 'dart:io' show Directory, File;
 import 'package:file_picker/file_picker.dart';
 import 'package:pdf_render_plus/pdf_render.dart';
 import 'package:flutter/material.dart';
+import '../core/services/interstitial_ad_service.dart';
+import '../core/services/ad_pacing_service.dart';
+import '../widgets/conditional_banner.dart';
 import 'package:image/image.dart' as img;
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
@@ -205,7 +208,10 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.pdfImportedAsDocument)));
         await Future.delayed(const Duration(milliseconds: 300));
         if (!mounted) return;
+        await AdPacingService.instance.recordScan();
+        if (!mounted) return;
         context.pushReplacement('/scan/${document.id}');
+        unawaited(InterstitialAdService.instance.showAfterScan());
       }
     } catch (e) {
       if (!mounted) return;
@@ -279,7 +285,10 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
       if (savedDoc != null) {
         await Future.delayed(const Duration(milliseconds: 300));
         if (!mounted) return;
+        await AdPacingService.instance.recordScan();
+        if (!mounted) return;
         context.pushReplacement('/scan/${savedDoc.id}');
+        unawaited(InterstitialAdService.instance.showAfterScan());
       } else {
         setState(() => _isPicking = false);
       }
@@ -432,7 +441,10 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
                   final success = await _scanProvider.importDocument(doc);
                   if (!mounted) return;
                   if (success) {
+                    await AdPacingService.instance.recordScan();
+                    if (!mounted) return;
                     context.pushReplacement('/scan/${doc.id}');
+                    unawaited(InterstitialAdService.instance.showAfterScan());
                   }
                 },
                 icon: const Icon(Icons.save_alt),
@@ -526,7 +538,10 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.documentSaved), duration: Duration(seconds: 2)));
         await Future.delayed(const Duration(milliseconds: 300));
         if (!mounted) return;
+        await AdPacingService.instance.recordScan();
+        if (!mounted) return;
         context.pushReplacement('/scan/${document.id}');
+        unawaited(InterstitialAdService.instance.showAfterScan());
       }
     } catch (e) {
       if (!mounted) return;
@@ -602,6 +617,7 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
     final accent = isDark ? AppColors.accentDark : AppColors.accentLight;
 
     return Scaffold(
+      bottomNavigationBar: const ConditionalBanner(),
       backgroundColor: bg,
       appBar: AppBar(
         backgroundColor: bg,

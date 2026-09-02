@@ -1,6 +1,10 @@
 import 'dart:io';
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
+import 'dart:async' show unawaited;
+import '../core/services/ad_pacing_service.dart';
+import '../core/services/interstitial_ad_service.dart';
+import '../widgets/conditional_banner.dart';
 import 'package:go_router/go_router.dart';
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
@@ -216,7 +220,10 @@ class _ConvertScreenState extends State<ConvertScreen> {
         if (!mounted) return;
         if (success) {
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(AppLocalizations.of(context).savedAsNewDocument)));
+          await AdPacingService.instance.recordConvert();
+          if (!mounted) return;
           context.pushReplacement('/scan/${doc.id}');
+          unawaited(InterstitialAdService.instance.showAfterConvert());
         }
       } else {
         await ShareService().shareFiles(filePaths: paths);
@@ -237,6 +244,7 @@ class _ConvertScreenState extends State<ConvertScreen> {
     final fileSize = (File(widget.sourcePath).lengthSync() / 1024).toStringAsFixed(1);
 
     return Scaffold(
+      bottomNavigationBar: const ConditionalBanner(),
       appBar: AppBar(title: Text(AppLocalizations.of(context).convertDocumentTitle)),
       body: SafeArea(
         child: _isConverting

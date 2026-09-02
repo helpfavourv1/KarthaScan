@@ -3,6 +3,7 @@
 // Folder contents: documents inside folder, batch select, rename folder
 // (Section 16 file #36).
 import 'package:flutter/material.dart';
+import '../widgets/conditional_banner.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
@@ -123,6 +124,7 @@ class _FolderScreenState extends State<FolderScreen> {
     final String localeCode = _settingsProvider.settings.value.language;
 
     return Scaffold(
+      bottomNavigationBar: const ConditionalBanner(),
       backgroundColor: bg,
       body: ListenableBuilder(
         listenable: Listenable.merge(<Listenable>[_folderProvider.folders, _scanProvider.documents]),

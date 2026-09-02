@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../widgets/conditional_banner.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -192,6 +193,7 @@ class _ScanDetailScreenState extends State<ScanDetailScreen>
     final border = isDark ? AppColors.borderSubtleDark : AppColors.borderSubtleLight;
 
     return Scaffold(
+      bottomNavigationBar: const ConditionalBanner(),
       backgroundColor: bg,
       body: ListenableBuilder(
         listenable: _scanProvider.documents,

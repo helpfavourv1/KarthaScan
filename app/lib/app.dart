@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'dart:async' show unawaited;
+import 'core/services/ad_pacing_service.dart';
+import 'core/services/interstitial_ad_service.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -16,7 +19,7 @@ class KatharScanApp extends StatefulWidget {
   State<KatharScanApp> createState() => _KatharScanAppState();
 }
 
-class _KatharScanAppState extends State<KatharScanApp> {
+class _KatharScanAppState extends State<KatharScanApp> with WidgetsBindingObserver {
   late final GoRouter _router;
   bool _isRouterReady = false;
 
@@ -24,6 +27,26 @@ class _KatharScanAppState extends State<KatharScanApp> {
   void initState() {
     super.initState();
     _initializeRouter();
+    WidgetsBinding.instance.addObserver(this);
+    unawaited(AdPacingService.instance.initialize());
+    unawaited(AdPacingService.instance.resetSessionCounters());
+    InterstitialAdService.instance.preload();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    super.didChangeAppLifecycleState(state);
+    if (state == AppLifecycleState.resumed) {
+      unawaited(AdPacingService.instance.recordForeground());
+      unawaited(InterstitialAdService.instance.showAfterIdle());
+    }
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    InterstitialAdService.instance.dispose();
+    super.dispose();
   }
 
   Future<void> _initializeRouter() async {

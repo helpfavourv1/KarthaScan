@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import '../widgets/conditional_banner.dart';
 import 'package:go_router/go_router.dart';
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
@@ -83,6 +84,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     final accent = isDark ? AppColors.accentDark : AppColors.accentLight;
 
     return Scaffold(
+      bottomNavigationBar: const ConditionalBanner(),
       backgroundColor: bg,
       appBar: AppBar(backgroundColor: bg, elevation: 0, title: Text(l10n.settingsTitle, style: TextStyle(color: textPrimary))),
       body: SafeArea(

@@ -2,7 +2,11 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:flutter/foundation.dart' show compute;
+import 'dart:async' show unawaited;
 import 'package:flutter/material.dart';
+import '../core/services/ad_pacing_service.dart';
+import '../core/services/interstitial_ad_service.dart';
+import '../widgets/conditional_banner.dart';
 import 'package:go_router/go_router.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart' as p;
@@ -190,6 +194,8 @@ class _ExportScreenState extends State<ExportScreen> {
           targetBytes: _targetMB != null ? _targetMB! * 1024 * 1024 : null,
         );
         allOutputPaths.addAll(paths);
+        await AdPacingService.instance.recordExport();
+        unawaited(InterstitialAdService.instance.showAfterExport());
       }
     } on ExportFailedException {
       errorMessage = l10n.genericErrorMessage;
@@ -252,6 +258,7 @@ class _ExportScreenState extends State<ExportScreen> {
     final showCompression = _selectedFormat == ExportFormat.jpg || _selectedFormat == ExportFormat.png;
 
     return Scaffold(
+      bottomNavigationBar: const ConditionalBanner(),
       backgroundColor: bg,
       appBar: AppBar(
         backgroundColor: bg,
