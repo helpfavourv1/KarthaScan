@@ -99,7 +99,7 @@ class InkController {
     inks[inkId] = SignatureInk(
       id: inkId,
       bytes: bytes,
-      label: 'Signer ${inks.length + 1}',
+      label: context.mounted ? AppLocalizations.of(context).signerLabel('${inks.length + 1}') : 'Signer ${inks.length + 1}',
       aspect: aspect,
     );
     activeInkId = inkId;

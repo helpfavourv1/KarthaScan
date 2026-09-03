@@ -87,10 +87,10 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
 
   String _getModeLabel() {
     switch (_currentMode) {
-      case _CaptureMode.docs: return 'Document Mode';
-      case _CaptureMode.ocr: return 'OCR Mode';
-      case _CaptureMode.idCard: return 'ID Card Mode';
-      case _CaptureMode.passport: return 'Passport Mode';
+      case _CaptureMode.docs: return l10n.modeDocument;
+      case _CaptureMode.ocr: return l10n.modeOcr;
+      case _CaptureMode.idCard: return l10n.modeIdCard;
+      case _CaptureMode.passport: return l10n.modePassport;
     }
   }
 
@@ -193,7 +193,7 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
       final now = DateTime.now();
       final document = ScanDocument(
         id: '${now.microsecondsSinceEpoch}',
-        title: 'PDF Import ${now.year}-${now.month.toString().padLeft(2, '0')}-${now.day.toString().padLeft(2, '0')}',
+        title: '${l10n.titlePdfImport} ${now.year}-${now.month.toString().padLeft(2, '0')}-${now.day.toString().padLeft(2, '0')}',
         pageCount: savedPaths.length,
         pagePaths: savedPaths,
         createdAt: now,
@@ -336,7 +336,7 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
       final outPath = await _exportService.exportIdCardPdf(
         frontPath: _idFrontPath!,
         backPath: _idBackPath!,
-        title: 'ID Card ${DateTime.now().millisecondsSinceEpoch}',
+        title: '${l10n.titleIdCard} ${DateTime.now().millisecondsSinceEpoch}',
         outputDirectoryPath: appDir.path,
       );
       _log.log('CROP', 'ID Card PDF exported: $outPath');
@@ -384,7 +384,7 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
       final now = DateTime.now();
       final document = ScanDocument(
         id: '${now.microsecondsSinceEpoch}',
-        title: 'Scan ${now.year}-${now.month.toString().padLeft(2, '0')}-${now.day.toString().padLeft(2, '0')}',
+        title: '${l10n.titleScan} ${now.year}-${now.month.toString().padLeft(2, '0')}-${now.day.toString().padLeft(2, '0')}',
         pageCount: savedPaths.length,
         pagePaths: savedPaths,
         createdAt: now,
@@ -430,7 +430,7 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
                   final now = DateTime.now();
                   final doc = ScanDocument(
                     id: '${now.microsecondsSinceEpoch}',
-                    title: 'ID Card ${now.year}-${now.month.toString().padLeft(2, '0')}-${now.day.toString().padLeft(2, '0')}',
+                    title: '${l10n.titleIdCard} ${now.year}-${now.month.toString().padLeft(2, '0')}-${now.day.toString().padLeft(2, '0')}',
                     pageCount: 2,
                     pagePaths: [frontPath, backPath],
                     createdAt: now,
@@ -522,7 +522,7 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
       final now = DateTime.now();
       final document = ScanDocument(
         id: '${now.microsecondsSinceEpoch}',
-        title: 'Scan ${now.year}-${now.month.toString().padLeft(2, '0')}-${now.day.toString().padLeft(2, '0')}',
+        title: '${l10n.titleScan} ${now.year}-${now.month.toString().padLeft(2, '0')}-${now.day.toString().padLeft(2, '0')}',
         pageCount: 1,
         pagePaths: [outPath],
         createdAt: now,

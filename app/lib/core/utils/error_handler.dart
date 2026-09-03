@@ -140,7 +140,7 @@ class AppErrorScreen extends StatelessWidget {
                 Icon(Icons.error_outline, size: 48, color: textSecondary),
                 const SizedBox(height: AppSpacing.md),
                 Text(
-                  'Something went wrong',
+                  AppLocalizations.of(context).errorGenericTitle,
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: textPrimary,
@@ -151,9 +151,7 @@ class AppErrorScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: AppSpacing.sm),
                 Text(
-                  'KatharScan ran into a problem displaying this screen. '
-                  'Your scans are safe — they\'re stored on this device and '
-                  'this doesn\'t affect them.',
+                  AppLocalizations.of(context).errorScreenProblem,
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: textSecondary,
@@ -188,7 +186,7 @@ class AppErrorScreen extends StatelessWidget {
                     child: TextButton(
                       onPressed: onReportIssue,
                       child: Text(
-                        'Report issue',
+                        AppLocalizations.of(context).errorReportIssue,
                         style: TextStyle(color: accent),
                       ),
                     ),

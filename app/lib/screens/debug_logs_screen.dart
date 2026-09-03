@@ -38,7 +38,7 @@ class DebugLogsScreen extends StatelessWidget {
             if (logs.isEmpty) {
               return Center(
                 child: Text(
-                  'No logs yet',
+                  AppLocalizations.of(context).debugNoLogsYet,
                   style: TextStyle(color: textSecondary, fontSize: AppTypography.bodySize),
                 ),
               );

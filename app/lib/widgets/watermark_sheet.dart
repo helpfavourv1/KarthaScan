@@ -186,19 +186,19 @@ class _WatermarkSheetState extends State<WatermarkSheet> {
                 Row(
                   children: [
                     FilterChip(
-                      label: const Text('B'),
+                      label: Text(AppLocalizations.of(context).textBold),
                       selected: _bold,
                       onSelected: (v) => setState(() => _bold = v),
                     ),
                     const SizedBox(width: 8),
                     FilterChip(
-                      label: const Text('I'),
+                      label: Text(AppLocalizations.of(context).textItalic),
                       selected: _italic,
                       onSelected: (v) => setState(() => _italic = v),
                     ),
                     const SizedBox(width: 8),
                     FilterChip(
-                      label: const Text('U'),
+                      label: Text(AppLocalizations.of(context).textUnderline),
                       selected: _underline,
                       onSelected: (v) => setState(() => _underline = v),
                     ),

@@ -339,7 +339,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _buildUnifiedRow() {
-    const filters = <String>['All', 'Folders', 'Recent', 'Favorites'];
+    final filters = <String>[AppLocalizations.of(context).filterAll, AppLocalizations.of(context).filterFolders, AppLocalizations.of(context).filterRecent, AppLocalizations.of(context).filterFavorites];
     return ListenableBuilder(
       listenable: _folderProvider.folders,
       builder: (context, _) {
@@ -393,9 +393,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 if (allFolders.isNotEmpty)
                   Padding(
                     padding: const EdgeInsets.only(right: 4),
-                    child: chip(label: 'All Folders', icon: Icons.folder_open_outlined, filled: true, onTap: () => setState(() => _selectedFilter = 1)),
+                    child: chip(label: AppLocalizations.of(context).chipAllFolders, icon: Icons.folder_open_outlined, filled: true, onTap: () => setState(() => _selectedFilter = 1)),
                   ),
-                chip(label: 'Select Multiple', icon: Icons.checklist_rounded, filled: true, onTap: _startBatchExport),
+                chip(label: AppLocalizations.of(context).chipSelectMultiple, icon: Icons.checklist_rounded, filled: true, onTap: _startBatchExport),
               ],
             ),
           ),

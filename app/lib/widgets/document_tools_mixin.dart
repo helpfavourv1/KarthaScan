@@ -329,7 +329,7 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
         context: context,
         builder: (context) => AlertDialog(
           title: Text(l10n.extractedTextTitle),
-          content: SelectableText(result.fullText.isEmpty ? 'No text found' : result.fullText),
+          content: SelectableText(result.fullText.isEmpty ? AppLocalizations.of(context).ocrNoTextFound : result.fullText),
           actions: [
             TextButton(onPressed: () => Navigator.pop(context), child: Text(l10n.commonClose)),
             TextButton(
@@ -488,7 +488,7 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
     }
 
     if (mounted) {
-      final msg = applyAll ? 'All pages rotated' : 'Page rotated';
+      final msg = applyAll ? AppLocalizations.of(context).rotationAllPages : AppLocalizations.of(context).rotationPage;
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(msg)));
     }
   }

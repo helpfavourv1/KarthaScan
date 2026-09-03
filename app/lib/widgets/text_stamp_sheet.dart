@@ -107,7 +107,8 @@ class _TextStampSheetState extends State<TextStampSheet> {
       final image = await picture.toImage(240, 240);
       final data = await image.toByteData(format: ui.ImageByteFormat.png);
       if (data == null) return null;
-      return StampResult(bytes: data.buffer.asUint8List(), label: 'Checkbox', widthFraction: 0.15, aspect: 1.0);
+      final label = mounted ? AppLocalizations.of(context).stampCheckbox : 'Checkbox';
+      return StampResult(bytes: data.buffer.asUint8List(), label: label, widthFraction: 0.15, aspect: 1.0);
     }
 
     String text; Color bg;
@@ -245,7 +246,7 @@ class _TextStampSheetState extends State<TextStampSheet> {
                   TextButton(onPressed: () async { final c = await _pick(_noteBg); if (c != null) setState(() => _noteBg = c); }, child: Text(AppLocalizations.of(context).commonCustom)),
                 ]),
               const SizedBox(height: 8),
-              Wrap(spacing: 8, children: ['sans-serif', 'serif', 'monospace'].map((f) => ChoiceChip(label: Text(f), selected: _fontFamily == f, onSelected: (_) => setState(() => _fontFamily = f))).toList()),
+              Wrap(spacing: 8, children: [AppLocalizations.of(context).fontSansSerif, AppLocalizations.of(context).fontSerif, AppLocalizations.of(context).fontMonospace].map((f) => ChoiceChip(label: Text(f), selected: _fontFamily == f, onSelected: (_) => setState(() => _fontFamily = f))).toList()),
               const SizedBox(height: 8),
               Wrap(spacing: 8, children: [FontWeight.w400, FontWeight.w600, FontWeight.w700, FontWeight.w900].map((w) => ChoiceChip(label: Text(w.value.toString()), selected: _fontWeight == w, onSelected: (_) => setState(() => _fontWeight = w))).toList()),
               const SizedBox(height: 8),

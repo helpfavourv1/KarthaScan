@@ -81,7 +81,7 @@ class _PaywallScreenState extends State<PaywallScreen> {
               padding: const EdgeInsets.all(AppSpacing.md),
               children: <Widget>[
                 Text(
-                  'Remove Ads',
+                  l10n.paywallTitle,
                   style: TextStyle(
                     color: textPrimary,
                     fontSize: AppTypography.displaySize,
@@ -90,7 +90,7 @@ class _PaywallScreenState extends State<PaywallScreen> {
                 ),
                 const SizedBox(height: AppSpacing.xs),
                 Text(
-                  'Support KatharScan with a one-time purchase. All features remain free.',
+                  l10n.paywallSubtitle,
                   style: TextStyle(color: textSecondary, fontSize: AppTypography.bodySize),
                 ),
                 const SizedBox(height: AppSpacing.lg),
@@ -104,7 +104,7 @@ class _PaywallScreenState extends State<PaywallScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
-                        'Remove Ads',
+                        l10n.paywallTitle,
                         style: TextStyle(
                           color: textPrimary,
                           fontSize: AppTypography.title1Size,
@@ -113,7 +113,7 @@ class _PaywallScreenState extends State<PaywallScreen> {
                       ),
                       const SizedBox(height: AppSpacing.xs),
                       Text(
-                        '\$9.99 one-time',
+                        l10n.paywallFallbackPrice,
                         style: TextStyle(
                           color: textSecondary,
                           fontSize: AppTypography.title2Size,
@@ -121,9 +121,9 @@ class _PaywallScreenState extends State<PaywallScreen> {
                       ),
                       const SizedBox(height: AppSpacing.sm),
                       ...<String>[
-                        'No more banner ads',
-                        'No more interstitial ads',
-                        'All features free forever',
+                        l10n.paywallFeatureNoBanner,
+                        l10n.paywallFeatureNoInterstitial,
+                        l10n.paywallFeatureFreeForever,
                       ].map((String feature) => _featureRow(feature, textPrimary, Icons.check, accent)),
                     ],
                   ),
@@ -168,7 +168,7 @@ class _PaywallScreenState extends State<PaywallScreen> {
                 ),
                 const SizedBox(height: AppSpacing.md),
                 Text(
-                  'This is a non-consumable purchase. Restore it anytime on any device with the same store account.',
+                  l10n.paywallLegalText,
                   textAlign: TextAlign.center,
                   style: TextStyle(color: textSecondary, fontSize: AppTypography.footnoteSize),
                 ),
@@ -195,7 +195,7 @@ class _PaywallScreenState extends State<PaywallScreen> {
             Icon(Icons.check_circle, color: success, size: 48),
             const SizedBox(height: AppSpacing.md),
             Text(
-              'Ads Removed',
+              l10n.paywallSuccessTitle,
               style: TextStyle(
                 color: textPrimary,
                 fontSize: AppTypography.title1Size,
@@ -204,7 +204,7 @@ class _PaywallScreenState extends State<PaywallScreen> {
             ),
             const SizedBox(height: AppSpacing.xs),
             Text(
-              'Thank you for supporting KatharScan.',
+              l10n.paywallSuccessMessage,
               textAlign: TextAlign.center,
               style: TextStyle(color: textSecondary),
             ),

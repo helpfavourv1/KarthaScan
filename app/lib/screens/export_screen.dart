@@ -327,10 +327,11 @@ class _ExportScreenState extends State<ExportScreen> {
                             builder: (context, snapshot) {
                               if (!snapshot.hasData || snapshot.data == 0) return const SizedBox.shrink();
                               final mb = (snapshot.data! / (1024 * 1024)).toStringAsFixed(2);
+                              final l10n = AppLocalizations.of(context);
                               return Padding(
                                 padding: const EdgeInsets.only(top: AppSpacing.xs),
                                 child: Text(
-                                  'Estimated size: $mb MB',
+                                  l10n.exportEstimatedSize(mb),
                                   style: TextStyle(color: accent, fontSize: 11, fontWeight: FontWeight.w600),
                                   textAlign: TextAlign.center,
                                 ),

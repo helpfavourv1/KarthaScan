@@ -102,7 +102,7 @@ class _SealStampSheetState extends State<SealStampSheet> {
         : (_centerMode == 'image' ? 'image' : (_centerMode == 'text' ? _centerText.text.trim() : ''));
     Navigator.pop(context, StampResult(
       bytes: Uint8List(0),
-      label: 'Custom Seal',
+      label: AppLocalizations.of(context).sealCustom,
       widthFraction: 0.25,
       aspect: 1.0,
       text: _text.text.trim().isEmpty ? 'SEAL' : _text.text.trim(),

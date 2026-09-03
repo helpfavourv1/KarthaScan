@@ -78,7 +78,7 @@ class _FillInputBarState extends State<FillInputBar> {
             Text(l10n.fillCapsLabel, style: const TextStyle(fontSize: 12)),
             Switch(value: _allCaps, onChanged: (v) => setState(() => _allCaps = v)),
             const SizedBox(width: 12),
-            const Text('A', style: TextStyle(fontSize: 12)),
+            Text(AppLocalizations.of(context).textFontLetterA, style: const TextStyle(fontSize: 12)),
             IconButton(icon: const Icon(Icons.remove, size: 16), onPressed: () => setState(() => _fontSize = (_fontSize - 4).clamp(12, 144))),
             Text('${_fontSize.round()}', style: const TextStyle(fontSize: 12)),
             IconButton(icon: const Icon(Icons.add, size: 16), onPressed: () => setState(() => _fontSize = (_fontSize + 4).clamp(12, 144))),

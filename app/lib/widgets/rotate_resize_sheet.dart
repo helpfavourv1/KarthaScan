@@ -201,7 +201,7 @@ class RotateResizeSheetState extends State<RotateResizeSheet> {
                 },
               ),
             ),
-            const Padding(padding: EdgeInsets.symmetric(horizontal: 8), child: Text('×')),
+            Padding(padding: EdgeInsets.symmetric(horizontal: 8), child: Text(AppLocalizations.of(context).multiplySymbol)),
             SizedBox(
               width: 80,
               child: TextField(
