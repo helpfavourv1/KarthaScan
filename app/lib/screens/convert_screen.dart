@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
+import 'package:file_saver/file_saver.dart';
 import 'dart:async' show unawaited;
 import '../core/services/ad_pacing_service.dart';
 import '../core/services/interstitial_ad_service.dart';
@@ -23,7 +24,7 @@ import '../core/services/txt_to_pdf_service.dart';
 import '../l10n/app_localizations.dart';
 
 enum _TargetFormat { pdf, jpg, png, txt, docx }
-enum _ActionType { saveDoc, exportShare }
+enum _ActionType { saveToDownloads, saveDoc, exportShare }
 
 class ConvertScreen extends StatefulWidget {
   final String sourcePath;
@@ -41,6 +42,12 @@ class _ConvertScreenState extends State<ConvertScreen> {
   bool _isConverting = false;
   double _progress = 0.0;
   String _progressLabel = '';
+
+  @override
+  void initState() {
+    super.initState();
+    _action = _ActionType.saveToDownloads;
+  }
 
   void _report(double value, String label) {
     if (!mounted) return;
@@ -66,6 +73,18 @@ class _ConvertScreenState extends State<ConvertScreen> {
         _action = _ActionType.exportShare;
       }
     });
+  }
+
+  MimeType _getMimeType(String ext) {
+    switch (ext) {
+      case 'pdf': return MimeType.pdf;
+      case 'docx': return MimeType.other;
+      case 'csv': return MimeType.csv;
+      case 'txt': return MimeType.text;
+      case 'jpg': case 'jpeg': return MimeType.jpeg;
+      case 'png': return MimeType.png;
+      default: return MimeType.other;
+    }
   }
 
   Future<List<String>> _convert() async {
@@ -203,7 +222,21 @@ class _ConvertScreenState extends State<ConvertScreen> {
       final paths = await _convert();
       if (!mounted) return;
 
-      if (_action == _ActionType.saveDoc) {
+      if (_action == _ActionType.saveToDownloads) {
+        for (final path in paths) {
+          try {
+            final file = File(path);
+            final bytes = await file.readAsBytes();
+            final ext = p.extension(path).replaceAll('.', '');
+            final name = p.basenameWithoutExtension(path);
+            await FileSaver.instance.saveFile(name: name, bytes: bytes, ext: ext, mimeType: _getMimeType(ext));
+          } catch (e) {
+            debugPrint('Save-to-downloads failed: $e');
+          }
+        }
+        if (!mounted) return;
+        context.pop();
+      } else if (_action == _ActionType.saveDoc) {
         final provider = Provider.of<ScanProvider>(context, listen: false);
         final now = DateTime.now();
         final doc = ScanDocument(
@@ -296,6 +329,11 @@ class _ConvertScreenState extends State<ConvertScreen> {
                   Wrap(
                     spacing: 8,
                     children: [
+                      ChoiceChip(
+                        label: Text(AppLocalizations.of(context).saveToDownloadsAction),
+                        selected: _action == _ActionType.saveToDownloads,
+                        onSelected: (_) => setState(() => _action = _ActionType.saveToDownloads),
+                      ),
                       ChoiceChip(
                         label: Text(AppLocalizations.of(context).saveAsNewDocumentAction),
                         selected: _action == _ActionType.saveDoc,

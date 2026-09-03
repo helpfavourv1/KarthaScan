@@ -333,5 +333,6 @@
   "onboardingContinue": "Continuar",
   "onboardingGetStarted": "Comenzar",
   "onboardingBack": "Atrás",
-  "onboardingReplayIntro": "Repetir introducción"
+  "onboardingReplayIntro": "Repetir introducción",
+  "saveToDownloadsAction": "Guardar en Descargas"
 }

@@ -333,5 +333,6 @@
   "onboardingContinue": "जारी रखें",
   "onboardingGetStarted": "शुरू करें",
   "onboardingBack": "वापस",
-  "onboardingReplayIntro": "परिचय दोबारा देखें"
+  "onboardingReplayIntro": "परिचय दोबारा देखें",
+  "saveToDownloadsAction": "डाउनलोड में सहेजें"
 }

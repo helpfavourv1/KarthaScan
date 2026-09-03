@@ -50,7 +50,10 @@ class InterstitialAdService {
   Future<void> showIfAllowed() async {
     if (await _isAdsRemovedCached()) return;
     if (!AdPacingService.instance.canShowAd()) return;
-    if (_ad == null) { await _load(); return; }
+    if (_ad == null) {
+      await _load();
+      if (_ad == null) return;
+    }
     _ad!.show();
     await AdPacingService.instance.recordAdShown();
     _ad = null;

@@ -333,5 +333,6 @@
   "onboardingContinue": "계속",
   "onboardingGetStarted": "시작하기",
   "onboardingBack": "뒤로",
-  "onboardingReplayIntro": "소개 다시 보기"
+  "onboardingReplayIntro": "소개 다시 보기",
+  "saveToDownloadsAction": "다운로드에 저장"
 }

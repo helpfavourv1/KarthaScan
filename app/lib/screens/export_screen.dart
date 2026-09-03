@@ -19,7 +19,6 @@ import '../core/models/scan_document.dart';
 import '../core/providers/scan_provider.dart';
 import '../core/services/export_service.dart';
 import '../core/services/filter_service.dart';
-import '../core/services/share_service.dart';
 import '../core/services/local_storage.dart';
 import '../core/utils/constants.dart';
 import '../l10n/app_localizations.dart';
@@ -44,7 +43,6 @@ class ExportScreen extends StatefulWidget {
 class _ExportScreenState extends State<ExportScreen> {
   late final ScanProvider _scanProvider;
   final ExportService _exportService = ExportService();
-  final ShareService _shareService = ShareService();
   final LocalStorageService _localStorage = LocalStorageService();
 
   // Export options state
@@ -229,20 +227,11 @@ class _ExportScreenState extends State<ExportScreen> {
         final mimeType = _getMimeType(ext);
         final savedPath = await FileSaver.instance.saveFile(name: name, bytes: bytes, ext: ext, mimeType: mimeType);
         savedPaths.add(savedPath);
-      } catch (_) {}
+      } catch (e) { debugPrint('Save-to-downloads failed: $e'); }
     }
 
     if (!mounted) return;
     
-    final messenger = ScaffoldMessenger.of(context);
-    messenger.showSnackBar(SnackBar(
-      content: Text(AppLocalizations.of(context).exportSavedToDownloads),
-      duration: const Duration(seconds: 4),
-      action: SnackBarAction(
-        label: AppLocalizations.of(context).commonShare,
-        onPressed: () => _shareService.shareFiles(filePaths: savedPaths.isNotEmpty ? savedPaths : allOutputPaths),
-      ),
-    ));
     context.pop();
   }
 

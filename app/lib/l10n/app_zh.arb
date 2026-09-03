@@ -333,5 +333,6 @@
   "onboardingContinue": "继续",
   "onboardingGetStarted": "开始使用",
   "onboardingBack": "返回",
-  "onboardingReplayIntro": "重看介绍"
+  "onboardingReplayIntro": "重看介绍",
+  "saveToDownloadsAction": "保存到下载"
 }

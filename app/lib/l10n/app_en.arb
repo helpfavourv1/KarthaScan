@@ -426,5 +426,6 @@
   "onboardingContinue": "Continue",
   "onboardingGetStarted": "Get Started",
   "onboardingBack": "Back",
-  "onboardingReplayIntro": "Replay introduction"
+  "onboardingReplayIntro": "Replay introduction",
+  "saveToDownloadsAction": "Save to Downloads"
 }

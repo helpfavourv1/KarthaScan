@@ -333,5 +333,6 @@
   "onboardingContinue": "続ける",
   "onboardingGetStarted": "はじめる",
   "onboardingBack": "戻る",
-  "onboardingReplayIntro": "紹介を再再生"
+  "onboardingReplayIntro": "紹介を再再生",
+  "saveToDownloadsAction": "ダウンロードに保存"
 }

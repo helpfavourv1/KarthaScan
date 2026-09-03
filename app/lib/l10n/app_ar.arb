@@ -333,5 +333,6 @@
   "onboardingContinue": "متابعة",
   "onboardingGetStarted": "ابدأ الآن",
   "onboardingBack": "رجوع",
-  "onboardingReplayIntro": "إعادة المقدمة"
+  "onboardingReplayIntro": "إعادة المقدمة",
+  "saveToDownloadsAction": "حفظ في التنزيلات"
 }

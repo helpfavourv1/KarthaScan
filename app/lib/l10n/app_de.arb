@@ -333,5 +333,6 @@
   "onboardingContinue": "Weiter",
   "onboardingGetStarted": "Loslegen",
   "onboardingBack": "Zurück",
-  "onboardingReplayIntro": "Einführung wiederholen"
+  "onboardingReplayIntro": "Einführung wiederholen",
+  "saveToDownloadsAction": "In Downloads speichern"
 }

@@ -11,11 +11,13 @@ class AdPacingService {
   static const String _adsDateKey = 'ad_pacing.ads_date';
   static const String _lastAdShownKey = 'ad_pacing.last_ad_shown';
   static const String _lastForegroundKey = 'ad_pacing.last_foreground';
+  static const String _adsSessionKey = 'ad_pacing.ads_this_session';
 
   int scansThisSession = 0;
   int exportsThisSession = 0;
   int convertsThisSession = 0;
   int adsToday = 0;
+  int adsThisSession = 0;
   DateTime? lastAdShownAt;
   DateTime? lastForegroundAt;
 
@@ -39,6 +41,7 @@ class AdPacingService {
     if (lastAdStr != null) lastAdShownAt = DateTime.parse(lastAdStr);
     final lastFgStr = prefs.getString(_lastForegroundKey);
     if (lastFgStr != null) lastForegroundAt = DateTime.parse(lastFgStr);
+    adsThisSession = prefs.getInt(_adsSessionKey) ?? 0;
   }
 
   Future<void> recordScan() async {
@@ -61,11 +64,13 @@ class AdPacingService {
 
   Future<void> recordAdShown() async {
     adsToday++;
+    adsThisSession++;
     lastAdShownAt = DateTime.now();
     final prefs = await SharedPreferences.getInstance();
     await prefs.setInt(_adsTodayKey, adsToday);
     await prefs.setString(_adsDateKey, lastAdShownAt!.toIso8601String());
     await prefs.setString(_lastAdShownKey, lastAdShownAt!.toIso8601String());
+    await prefs.setInt(_adsSessionKey, adsThisSession);
   }
 
   Future<void> recordForeground() async {
@@ -78,10 +83,12 @@ class AdPacingService {
     scansThisSession = 0;
     exportsThisSession = 0;
     convertsThisSession = 0;
+    adsThisSession = 0;
     final prefs = await SharedPreferences.getInstance();
     await prefs.setInt(_scansKey, 0);
     await prefs.setInt(_exportsKey, 0);
     await prefs.setInt(_convertsKey, 0);
+    await prefs.setInt(_adsSessionKey, 0);
   }
 
   bool canShowAd() {
@@ -89,10 +96,11 @@ class AdPacingService {
       if (DateTime.now().difference(lastAdShownAt!).inSeconds < 60) return false;
     }
     if (adsToday >= 20) return false;
+    if (adsThisSession >= 4) return false;
     return true;
   }
 
-  bool canShowAfterScan() => scansThisSession > 0 && scansThisSession % 4 == 0 && canShowAd();
+  bool canShowAfterScan() => canShowAd();
   bool canShowAfterExport() => exportsThisSession > 0 && exportsThisSession % 2 == 0 && canShowAd();
   bool canShowAfterConvert() => convertsThisSession > 0 && convertsThisSession % 2 == 0 && canShowAd();
   bool canShowAfterIdle() {
