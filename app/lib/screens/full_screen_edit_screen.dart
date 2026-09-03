@@ -137,6 +137,29 @@ class _FullScreenEditScreenState extends State<FullScreenEditScreen> with Docume
     });
   }
 
+  @override
+  void onLayerAdded(TrayEditMode mode, String? identifier) {
+    setState(() {
+      switch (mode) {
+        case TrayEditMode.annotate:
+          _selectedAnnotateBytesPath = identifier;
+          break;
+        case TrayEditMode.watermark:
+          _selectedWatermarkText = identifier;
+          break;
+        case TrayEditMode.text:
+        case TrayEditMode.note:
+        case TrayEditMode.date:
+        case TrayEditMode.checkbox:
+        case TrayEditMode.seal:
+          _selectedStampId = identifier;
+          break;
+        default:
+          break;
+      }
+    });
+  }
+
   void _goToPage(int index) {
     final doc = document;
     if (doc == null) return;

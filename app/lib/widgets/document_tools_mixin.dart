@@ -51,6 +51,7 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
   int get currentPageIndex;
   set editMode(TrayEditMode mode);
   void closeEditor();
+  void onLayerAdded(TrayEditMode mode, String? identifier);
 
   // --- Unified signature entry: export-grade grammar everywhere ---
   Future<void> signFromTray() async {
@@ -99,11 +100,12 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
     await annotateDir.create(recursive: true);
     final filePath = p.join(annotateDir.path, 'ann_${DateTime.now().microsecondsSinceEpoch}_$pageIndex.png');
     await File(filePath).writeAsBytes(bytes);
-    await scanProvider.addAnnotateLayer(
-      doc.id,
-      AnnotateLayer(pageIndex: pageIndex, bytesPath: filePath, placement: const SignaturePlacement(pctX: 0.5, pctY: 0.35)),
-    );
-    if (mounted) editMode = TrayEditMode.annotate;
+    final layer = AnnotateLayer(pageIndex: pageIndex, bytesPath: filePath, placement: const SignaturePlacement(pctX: 0.5, pctY: 0.35));
+    await scanProvider.addAnnotateLayer(doc.id, layer);
+    if (mounted) {
+      editMode = TrayEditMode.annotate;
+      onLayerAdded(TrayEditMode.annotate, layer.bytesPath);
+    }
   }
 
   Future<void> copyAnnotateToAllPages(AnnotateLayer layer) async {
@@ -147,7 +149,10 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
       placement: const SignaturePlacement(pctX: 0.5, pctY: 0.5),
     );
     await scanProvider.addWatermarkLayer(doc.id, layer);
-    if (mounted) editMode = TrayEditMode.watermark;
+    if (mounted) {
+      editMode = TrayEditMode.watermark;
+      onLayerAdded(TrayEditMode.watermark, layer.text);
+    }
   }
 
   Future<void> editWatermark(WatermarkLayer existing) async {
@@ -229,7 +234,9 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
     );
     await scanProvider.addStampLayer(doc.id, layer);
     if (mounted) {
-      editMode = kind == 'text' ? TrayEditMode.text : (kind == 'note' ? TrayEditMode.note : (kind == 'date' ? TrayEditMode.date : (kind == 'checkbox' ? TrayEditMode.checkbox : TrayEditMode.seal)));
+      final mode = kind == 'text' ? TrayEditMode.text : (kind == 'note' ? TrayEditMode.note : (kind == 'date' ? TrayEditMode.date : (kind == 'checkbox' ? TrayEditMode.checkbox : TrayEditMode.seal)));
+      editMode = mode;
+      onLayerAdded(mode, layer.id);
     }
   }
 

@@ -18,6 +18,9 @@ class ScanPreviewCard extends StatefulWidget {
     this.watermarkLayers = const [],
     this.stampLayers = const [],
     this.editMode = TrayEditMode.none,
+    this.autoSelectAnnotatePath,
+    this.autoSelectWatermarkText,
+    this.autoSelectStampId,
     this.onSignatureSelect,
     this.onAnnotateSelect,
     this.onWatermarkSelect,
@@ -51,6 +54,9 @@ class ScanPreviewCard extends StatefulWidget {
   final List<WatermarkLayer> watermarkLayers;
   final List<StampLayer> stampLayers;
   final TrayEditMode editMode;
+  final String? autoSelectAnnotatePath;
+  final String? autoSelectWatermarkText;
+  final String? autoSelectStampId;
   final VoidCallback? onSignatureSelect;
   final VoidCallback? onAnnotateSelect;
   final VoidCallback? onWatermarkSelect;
@@ -96,6 +102,20 @@ class _ScanPreviewCardState extends State<ScanPreviewCard> {
     final int requested = widget.initialPage;
     _currentPage = requested < 0 ? 0 : (requested > _lastIndex ? _lastIndex : requested);
     _pageController = PageController(initialPage: _currentPage);
+  }
+
+  @override
+  void didUpdateWidget(ScanPreviewCard oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.autoSelectAnnotatePath != null && widget.autoSelectAnnotatePath != oldWidget.autoSelectAnnotatePath) {
+      setState(() => _selectedAnnotateBytesPath = widget.autoSelectAnnotatePath);
+    }
+    if (widget.autoSelectWatermarkText != null && widget.autoSelectWatermarkText != oldWidget.autoSelectWatermarkText) {
+      setState(() => _selectedWatermarkText = widget.autoSelectWatermarkText);
+    }
+    if (widget.autoSelectStampId != null && widget.autoSelectStampId != oldWidget.autoSelectStampId) {
+      setState(() => _selectedStampId = widget.autoSelectStampId);
+    }
   }
 
   @override
