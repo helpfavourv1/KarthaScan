@@ -219,6 +219,7 @@ class InkOverlayPage extends StatelessWidget {
               child: GestureDetector(
                 behavior: HitTestBehavior.opaque,
                 onTap: () { controller.setEditInk(entry.key); onSelectedCallback?.call(); },
+                onPanStart: (_) {},
                 onPanUpdate: (d) {
                   final scale = transformController?.value.getMaxScaleOnAxis() ?? 1.0;
                   controller.updatePlacement(
@@ -314,6 +315,7 @@ class _AnnotateOverlayPageState extends State<AnnotateOverlayPage> {
               child: GestureDetector(
                 behavior: HitTestBehavior.opaque,
                 onTap: () { widget.onSelect(layer); widget.onSelected?.call(); },
+                onPanStart: (_) {},
                 onPanUpdate: (d) {
                   final scale = widget.transformController?.value.getMaxScaleOnAxis() ?? 1.0;
                   widget.onDrag(layer, d.delta.dx / scale, d.delta.dy / scale);
@@ -392,6 +394,7 @@ class WatermarkOverlayPage extends StatelessWidget {
               child: GestureDetector(
                 behavior: HitTestBehavior.opaque,
                 onTap: () { onSelect(layer); onSelected?.call(); },
+                onPanStart: (_) {},
                 onPanUpdate: (d) {
                   final scale = transformController?.value.getMaxScaleOnAxis() ?? 1.0;
                   onDrag(layer, d.delta.dx / scale, d.delta.dy / scale);
@@ -569,6 +572,7 @@ class _StampOverlayPageState extends State<StampOverlayPage> {
                 child: GestureDetector(
                   behavior: HitTestBehavior.opaque,
                   onTap: () { widget.onSelect(layer); widget.onSelected?.call(); },
+                  onPanStart: (_) {},
                   onPanUpdate: (d) {
                     final scale = widget.transformController?.value.getMaxScaleOnAxis() ?? 1.0;
                     widget.onDrag(layer, d.delta.dx / scale, d.delta.dy / scale);
@@ -605,6 +609,7 @@ class _StampOverlayPageState extends State<StampOverlayPage> {
                 child: GestureDetector(
                   behavior: HitTestBehavior.opaque,
                   onTap: () { widget.onSelect(layer); widget.onSelected?.call(); },
+                  onPanStart: (_) {},
                   onPanUpdate: (d) {
                     final scale = widget.transformController?.value.getMaxScaleOnAxis() ?? 1.0;
                     widget.onDrag(layer, d.delta.dx / scale, d.delta.dy / scale);
@@ -635,6 +640,7 @@ class _StampOverlayPageState extends State<StampOverlayPage> {
               child: GestureDetector(
                 behavior: HitTestBehavior.opaque,
                 onTap: () { widget.onSelect(layer); widget.onSelected?.call(); },
+                onPanStart: (_) {},
                 onPanUpdate: (d) {
                   final scale = widget.transformController?.value.getMaxScaleOnAxis() ?? 1.0;
                   widget.onDrag(layer, d.delta.dx / scale, d.delta.dy / scale);

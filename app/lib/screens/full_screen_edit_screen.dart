@@ -162,11 +162,9 @@ class _FullScreenEditScreenState extends State<FullScreenEditScreen> with Docume
     final doc = document;
     if (doc == null) return;
     final clamped = index.clamp(0, doc.pagePaths.length - 1);
-    _pageController.animateToPage(
-      clamped,
-      duration: const Duration(milliseconds: 250),
-      curve: Curves.easeOut,
-    );
+    if (_pageController.hasClients) {
+      _pageController.jumpToPage(clamped);
+    }
   }
 
   @override
@@ -251,14 +249,17 @@ class _FullScreenEditScreenState extends State<FullScreenEditScreen> with Docume
                       IconButton(
                         icon: const Icon(Icons.ios_share, size: 20),
                         color: textPrimary,
-                        onPressed: shareDocument,
+                        onPressed: () {
+                          final doc = document;
+                          if (doc != null) context.push('/export', extra: <String>[doc.id]);
+                        },
                       ),
                       IconButton(
                         icon: const Icon(Icons.file_download_outlined, size: 20),
                         color: textPrimary,
                         onPressed: exportDocument,
                       ),
-                      if (_editMode != TrayEditMode.none)
+                      if (_editMode != TrayEditMode.none || _selectedAnnotateBytesPath != null || _selectedWatermarkText != null || _selectedStampId != null)
                         ActionChip(
                           avatar: const Icon(Icons.check, size: 14),
                           label: Text(AppLocalizations.of(context).commonDone, style: TextStyle(fontSize: 11)),
@@ -281,23 +282,21 @@ class _FullScreenEditScreenState extends State<FullScreenEditScreen> with Docume
                   selectedStampId: _selectedStampId,
                   onAnnotateSelect: (layer) => setState(() {
                     _selectedAnnotateBytesPath = layer.bytesPath;
+                    _selectedWatermarkText = null;
+                    _selectedStampId = null;
                     _editMode = TrayEditMode.annotate;
                   }),
                   onAnnotateUpdate: (pageIndex, newLayer) => scanProvider.updateAnnotateLayer(doc.id, newLayer),
                   onSignatureSelect: () => setState(() => _editMode = TrayEditMode.signature),
                   onWatermarkSelect: () => setState(() => _editMode = TrayEditMode.watermark),
-                  onWatermarkSelected: (layer) => setState(() => _selectedWatermarkText = layer.text),
+                  onWatermarkSelected: (layer) => setState(() { _selectedWatermarkText = layer.text; _selectedAnnotateBytesPath = null; _selectedStampId = null; _editMode = TrayEditMode.watermark; }),
                   onWatermarkLayerUpdate: (pageIndex, layer) => scanProvider.updateWatermarkLayer(doc.id, layer),
-                  onStampSelect: () {
-                    final kind = _editMode == TrayEditMode.note ? 'note' : (_editMode == TrayEditMode.date ? 'date' : (_editMode == TrayEditMode.checkbox ? 'checkbox' : (_editMode == TrayEditMode.seal ? 'seal' : 'text')));
-                    setState(() => _editMode = kind == 'text' ? TrayEditMode.text : (kind == 'note' ? TrayEditMode.note : (kind == 'date' ? TrayEditMode.date : (kind == 'checkbox' ? TrayEditMode.checkbox : TrayEditMode.seal))));
-                  },
-                  onStampSelected: (layer) => setState(() => _selectedStampId = layer.id),
+                  onStampSelected: (layer) => setState(() { _selectedStampId = layer.id; _selectedAnnotateBytesPath = null; _selectedWatermarkText = null; _editMode = layer.kind == 'text' ? TrayEditMode.text : (layer.kind == 'note' ? TrayEditMode.note : (layer.kind == 'date' ? TrayEditMode.date : (layer.kind == 'checkbox' ? TrayEditMode.checkbox : TrayEditMode.seal))); }),
                   onStampLayerUpdate: (pageIndex, layer) => scanProvider.updateStampLayer(doc.id, layer),
                   pageController: _pageController,
                   physics: const NeverScrollableScrollPhysics(),
                   initialPage: _currentPageIndex,
-                  onPageChanged: (index) => setState(() { _currentPageIndex = index; _scanProvider.undoManager.clear(); }),
+                  onPageChanged: (index) => setState(() { _currentPageIndex = index; }),
                   pageTransforms: doc.pageTransforms,
                   onFillTap: _editMode == TrayEditMode.fill ? _onFillTap : null,
                   fillGhostText: _fillText,
