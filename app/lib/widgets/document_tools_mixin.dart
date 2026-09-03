@@ -231,6 +231,7 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
       sealShape: config.sealShapeValue,
       sealSubtext: config.sealSubtextValue,
       sealCenter: config.sealCenterValue,
+      sealImageBytes: config.sealImageBytesValue,
     );
     await scanProvider.addStampLayer(doc.id, layer);
     if (mounted) {
@@ -269,6 +270,7 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
       sealShape: config.sealShapeValue,
       sealSubtext: config.sealSubtextValue,
       sealCenter: config.sealCenterValue,
+      sealImageBytes: config.sealImageBytesValue,
     );
     await scanProvider.updateStampLayer(doc.id, updated);
   }

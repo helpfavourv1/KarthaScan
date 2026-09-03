@@ -877,6 +877,7 @@ class _ExportScreenState extends State<ExportScreen> {
             customDateMillis: config.customDateMillisValue, checked: config.checkedValue,
             checkShape: config.checkShapeValue, boxColor: config.boxColorValue, tickColor: config.tickColorValue,
             sealShape: config.sealShapeValue, sealSubtext: config.sealSubtextValue, sealCenter: config.sealCenterValue,
+            sealImageBytes: config.sealImageBytesValue,
           );
           await _scanProvider.updateStampLayer(doc.id, updated);
         }
