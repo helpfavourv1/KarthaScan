@@ -12,6 +12,7 @@ import '../core/utils/constants.dart';
 import '../widgets/document_canvas.dart';
 import '../widgets/document_tools_mixin.dart';
 import '../widgets/edit_tray.dart';
+import '../widgets/layer_control_panel.dart';
 import '../widgets/ink_board.dart';
 import '../widgets/seal_stamp_sheet.dart';
 import '../widgets/signature_editor_bar.dart';
@@ -335,12 +336,52 @@ class _FullScreenEditScreenState extends State<FullScreenEditScreen> with Docume
                         pageIndex: _currentPageIndex,
                         pageCount: doc.pagePaths.length,
                       ),
-                    if (_editMode == TrayEditMode.annotate && _selectedAnnotateBytesPath != null)
-                      _buildAnnotateControls(),
-                    if (_editMode == TrayEditMode.watermark && _selectedWatermarkText != null)
-                      _buildWatermarkControls(),
-                    if (_editMode == TrayEditMode.text || _editMode == TrayEditMode.note || _editMode == TrayEditMode.date || _editMode == TrayEditMode.checkbox || _editMode == TrayEditMode.seal)
-                      if (_selectedStampId != null) _buildStampControls(),
+                    LayerControlPanel(
+                      document: doc,
+                      pageIndex: _currentPageIndex,
+                      editMode: _editMode,
+                      scanProvider: _scanProvider,
+                      selectedAnnotateBytesPath: _selectedAnnotateBytesPath,
+                      selectedWatermarkText: _selectedWatermarkText,
+                      selectedStampId: _selectedStampId,
+                      onWatermarkEditTools: () async {
+                        final pageLayers = doc.watermarkLayers.where((l) => l.pageIndex == _currentPageIndex).toList();
+                        if (pageLayers.isEmpty) return;
+                        final layer = pageLayers.firstWhere((l) => l.text == _selectedWatermarkText, orElse: () => pageLayers.first);
+                        final config = await showModalBottomSheet<WatermarkLayer>(
+                          context: context,
+                          isScrollControlled: true,
+                          builder: (context) => WatermarkSheet(initialConfig: layer),
+                        );
+                        if (config != null && mounted) {
+                          final updated = config.copyWith(pageIndex: layer.pageIndex, placement: layer.placement);
+                          await _scanProvider.removeWatermarkLayer(doc.id, layer.pageIndex, layer.text);
+                          await _scanProvider.addWatermarkLayer(doc.id, updated);
+                        }
+                      },
+                      onStampEditTools: () async {
+                        final kind = _editMode == TrayEditMode.note ? 'note' : (_editMode == TrayEditMode.date ? 'date' : (_editMode == TrayEditMode.checkbox ? 'checkbox' : (_editMode == TrayEditMode.seal ? 'seal' : 'text')));
+                        final pageLayers = doc.stampLayers.where((l) => l.pageIndex == _currentPageIndex && l.kind == kind).toList();
+                        if (pageLayers.isEmpty) return;
+                        final layer = pageLayers.firstWhere((l) => l.id == _selectedStampId, orElse: () => pageLayers.first);
+                        final config = await showModalBottomSheet<StampResult>(
+                          context: context,
+                          isScrollControlled: true,
+                          builder: (ctx) => layer.kind == 'seal' ? SealStampSheet(initial: layer) : TextStampSheet(kind: layer.kind, initial: layer),
+                        );
+                        if (config != null && mounted) {
+                          final updated = layer.copyWith(
+                            text: config.text, fontSize: config.fontSize, color: config.color,
+                            fontFamily: config.fontFamily, fontWeight: config.fontWeightValue, align: config.alignName,
+                            halo: config.halo, noteBgColor: config.noteBgColorValue, dateFormat: config.dateFormatValue,
+                            customDateMillis: config.customDateMillisValue, checked: config.checkedValue,
+                            checkShape: config.checkShapeValue, boxColor: config.boxColorValue, tickColor: config.tickColorValue,
+                            sealShape: config.sealShapeValue, sealSubtext: config.sealSubtextValue, sealCenter: config.sealCenterValue,
+                          );
+                          await _scanProvider.updateStampLayer(doc.id, updated);
+                        }
+                      },
+                    ),
                     if (_editMode == TrayEditMode.fill && _fillGhostPctX != null && _fillGhostPctY != null && _fillGhostPageIndex != null)
                       FillInputBar(
                         initialText: _fillText ?? '',
@@ -415,147 +456,6 @@ class _FullScreenEditScreenState extends State<FullScreenEditScreen> with Docume
     );
   }
 
-  Widget _buildAnnotateControls() {
-    final doc = document;
-    if (doc == null) return const SizedBox.shrink();
-    final pageLayers = doc.annotateLayers.where((l) => l.pageIndex == _currentPageIndex).toList();
-    if (pageLayers.isEmpty) return const SizedBox.shrink();
-    final layer = pageLayers.firstWhere((l) => l.bytesPath == _selectedAnnotateBytesPath, orElse: () => pageLayers.first);
-
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      decoration: BoxDecoration(
-        color: Theme.of(context).brightness == Brightness.dark ? AppColors.bgSecondaryDark : AppColors.bgSecondaryLight,
-        borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
-      ),
-      child: OverlayEditControls(
-        layerType: LayerType.annotate,
-        rotationDegrees: layer.placement.rotationDegrees,
-        scale: layer.placement.scale,
-        onRotateLeft: () => scanProvider.updateAnnotateLayer(doc.id, AnnotateLayer(pageIndex: layer.pageIndex, bytesPath: layer.bytesPath, placement: SignaturePlacement(pctX: layer.placement.pctX, pctY: layer.placement.pctY, rotationDegrees: (layer.placement.rotationDegrees - 10).clamp(-180, 180), scale: layer.placement.scale))),
-        onRotateRight: () => scanProvider.updateAnnotateLayer(doc.id, AnnotateLayer(pageIndex: layer.pageIndex, bytesPath: layer.bytesPath, placement: SignaturePlacement(pctX: layer.placement.pctX, pctY: layer.placement.pctY, rotationDegrees: (layer.placement.rotationDegrees + 10).clamp(-180, 180), scale: layer.placement.scale))),
-        onScaleDown: () => scanProvider.updateAnnotateLayer(doc.id, AnnotateLayer(pageIndex: layer.pageIndex, bytesPath: layer.bytesPath, placement: SignaturePlacement(pctX: layer.placement.pctX, pctY: layer.placement.pctY, rotationDegrees: layer.placement.rotationDegrees, scale: (layer.placement.scale - 0.1).clamp(0.1, 5.0)))),
-        onScaleUp: () => scanProvider.updateAnnotateLayer(doc.id, AnnotateLayer(pageIndex: layer.pageIndex, bytesPath: layer.bytesPath, placement: SignaturePlacement(pctX: layer.placement.pctX, pctY: layer.placement.pctY, rotationDegrees: layer.placement.rotationDegrees, scale: (layer.placement.scale + 0.1).clamp(0.1, 5.0)))),
-        onCopyAll: () {
-          for (int i = 0; i < doc.pagePaths.length; i++) {
-            scanProvider.addAnnotateLayer(doc.id, AnnotateLayer(pageIndex: i, bytesPath: layer.bytesPath, placement: layer.placement));
-          }
-        },
-        onClearThis: () => scanProvider.removeAnnotateLayer(doc.id, _currentPageIndex, layer.bytesPath),
-        onRemove: () => scanProvider.removeAnnotateLayer(doc.id, _currentPageIndex, layer.bytesPath),
-        onClearAll: () => scanProvider.clearAnnotateLayers(doc.id),
-      ),
-    );
+  
+  
   }
-
-  Widget _buildWatermarkControls() {
-    final doc = document;
-    if (doc == null) return const SizedBox.shrink();
-    final pageLayers = doc.watermarkLayers.where((l) => l.pageIndex == _currentPageIndex).toList();
-    if (pageLayers.isEmpty) return const SizedBox.shrink();
-    final layer = pageLayers.firstWhere((l) => l.text == _selectedWatermarkText, orElse: () => pageLayers.first);
-
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      decoration: BoxDecoration(
-        color: Theme.of(context).brightness == Brightness.dark ? AppColors.bgSecondaryDark : AppColors.bgSecondaryLight,
-        borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
-      ),
-      child: OverlayEditControls(
-        layerType: LayerType.watermark,
-        rotationDegrees: layer.placement.rotationDegrees,
-        scale: layer.placement.scale,
-        opacity: layer.opacity,
-        fontSize: layer.fontSize,
-        onRotateLeft: () => scanProvider.updateWatermarkLayer(doc.id, layer.copyWith(placement: SignaturePlacement(pctX: layer.placement.pctX, pctY: layer.placement.pctY, rotationDegrees: (layer.placement.rotationDegrees - 10).clamp(-180, 180), scale: layer.placement.scale))),
-        onRotateRight: () => scanProvider.updateWatermarkLayer(doc.id, layer.copyWith(placement: SignaturePlacement(pctX: layer.placement.pctX, pctY: layer.placement.pctY, rotationDegrees: (layer.placement.rotationDegrees + 10).clamp(-180, 180), scale: layer.placement.scale))),
-        onScaleDown: () => scanProvider.updateWatermarkLayer(doc.id, layer.copyWith(placement: SignaturePlacement(pctX: layer.placement.pctX, pctY: layer.placement.pctY, rotationDegrees: layer.placement.rotationDegrees, scale: (layer.placement.scale - 0.1).clamp(0.1, 5.0)))),
-        onScaleUp: () => scanProvider.updateWatermarkLayer(doc.id, layer.copyWith(placement: SignaturePlacement(pctX: layer.placement.pctX, pctY: layer.placement.pctY, rotationDegrees: layer.placement.rotationDegrees, scale: (layer.placement.scale + 0.1).clamp(0.1, 5.0)))),
-        onOpacityDown: () => scanProvider.updateWatermarkLayer(doc.id, layer.copyWith(opacity: (layer.opacity - 0.05).clamp(0.05, 1.0))),
-        onOpacityUp: () => scanProvider.updateWatermarkLayer(doc.id, layer.copyWith(opacity: (layer.opacity + 0.05).clamp(0.05, 1.0))),
-        onFontSizeDown: () => scanProvider.updateWatermarkLayer(doc.id, layer.copyWith(fontSize: (layer.fontSize - 4).clamp(12, 144))),
-        onFontSizeUp: () => scanProvider.updateWatermarkLayer(doc.id, layer.copyWith(fontSize: (layer.fontSize + 4).clamp(12, 144))),
-        onTools: () async {
-          final config = await showModalBottomSheet<WatermarkLayer>(
-            context: context,
-            isScrollControlled: true,
-            builder: (context) => WatermarkSheet(initialConfig: layer),
-          );
-          if (config != null && mounted) {
-            final updated = config.copyWith(pageIndex: layer.pageIndex, placement: layer.placement);
-            await scanProvider.removeWatermarkLayer(doc.id, layer.pageIndex, layer.text);
-            await scanProvider.addWatermarkLayer(doc.id, updated);
-          }
-        },
-        onCopyAll: () {
-          for (int i = 0; i < doc.pagePaths.length; i++) {
-            scanProvider.addWatermarkLayer(doc.id, layer.copyWith(pageIndex: i));
-          }
-        },
-        onClearThis: () => scanProvider.removeWatermarkLayer(doc.id, _currentPageIndex, layer.text),
-        onRemove: () => scanProvider.removeWatermarkLayer(doc.id, _currentPageIndex, layer.text),
-        onClearAll: () => scanProvider.clearWatermarkLayers(doc.id),
-      ),
-    );
-  }
-
-  Widget _buildStampControls() {
-    final doc = document;
-    if (doc == null) return const SizedBox.shrink();
-    final kind = _editMode == TrayEditMode.note ? 'note' : (_editMode == TrayEditMode.date ? 'date' : (_editMode == TrayEditMode.checkbox ? 'checkbox' : (_editMode == TrayEditMode.seal ? 'seal' : 'text')));
-    final pageLayers = doc.stampLayers.where((l) => l.pageIndex == _currentPageIndex && l.kind == kind).toList();
-    if (pageLayers.isEmpty) return const SizedBox.shrink();
-    final layer = pageLayers.firstWhere((l) => l.id == _selectedStampId, orElse: () => pageLayers.first);
-
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      decoration: BoxDecoration(
-        color: Theme.of(context).brightness == Brightness.dark ? AppColors.bgSecondaryDark : AppColors.bgSecondaryLight,
-        borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
-      ),
-      child: OverlayEditControls(
-        layerType: kind == 'text' ? LayerType.text : (kind == 'note' ? LayerType.note : (kind == 'date' ? LayerType.date : (kind == 'checkbox' ? LayerType.checkbox : LayerType.seal))),
-        rotationDegrees: layer.placement.rotationDegrees,
-        scale: layer.placement.scale,
-        opacity: layer.opacity,
-        fontSize: kind == 'checkbox' ? null : layer.fontSize,
-        onRotateLeft: () => scanProvider.updateStampLayer(doc.id, layer.copyWith(placement: SignaturePlacement(pctX: layer.placement.pctX, pctY: layer.placement.pctY, rotationDegrees: (layer.placement.rotationDegrees - 10).clamp(-180, 180), scale: layer.placement.scale))),
-        onRotateRight: () => scanProvider.updateStampLayer(doc.id, layer.copyWith(placement: SignaturePlacement(pctX: layer.placement.pctX, pctY: layer.placement.pctY, rotationDegrees: (layer.placement.rotationDegrees + 10).clamp(-180, 180), scale: layer.placement.scale))),
-        onScaleDown: () => scanProvider.updateStampLayer(doc.id, layer.copyWith(placement: SignaturePlacement(pctX: layer.placement.pctX, pctY: layer.placement.pctY, rotationDegrees: layer.placement.rotationDegrees, scale: (layer.placement.scale - 0.1).clamp(0.1, 5.0)))),
-        onScaleUp: () => scanProvider.updateStampLayer(doc.id, layer.copyWith(placement: SignaturePlacement(pctX: layer.placement.pctX, pctY: layer.placement.pctY, rotationDegrees: layer.placement.rotationDegrees, scale: (layer.placement.scale + 0.1).clamp(0.1, 5.0)))),
-        onOpacityDown: () => scanProvider.updateStampLayer(doc.id, layer.copyWith(opacity: (layer.opacity - 0.05).clamp(0.05, 1.0))),
-        onOpacityUp: () => scanProvider.updateStampLayer(doc.id, layer.copyWith(opacity: (layer.opacity + 0.05).clamp(0.05, 1.0))),
-        onFontSizeDown: () => scanProvider.updateStampLayer(doc.id, layer.copyWith(fontSize: (layer.fontSize - 4).clamp(12, 144))),
-        onFontSizeUp: () => scanProvider.updateStampLayer(doc.id, layer.copyWith(fontSize: (layer.fontSize + 4).clamp(12, 144))),
-        onTools: () async {
-          final config = await showModalBottomSheet<StampResult>(
-            context: context,
-            isScrollControlled: true,
-            builder: (ctx) => layer.kind == 'seal'
-                ? SealStampSheet(initial: layer)
-                : TextStampSheet(kind: layer.kind, initial: layer),
-          );
-          if (config != null && mounted) {
-            final updated = layer.copyWith(
-              text: config.text, fontSize: config.fontSize, color: config.color,
-              fontFamily: config.fontFamily, fontWeight: config.fontWeightValue, align: config.alignName,
-              halo: config.halo, noteBgColor: config.noteBgColorValue, dateFormat: config.dateFormatValue,
-              customDateMillis: config.customDateMillisValue, checked: config.checkedValue,
-              checkShape: config.checkShapeValue, boxColor: config.boxColorValue, tickColor: config.tickColorValue,
-              sealShape: config.sealShapeValue, sealSubtext: config.sealSubtextValue, sealCenter: config.sealCenterValue,
-            );
-            await scanProvider.updateStampLayer(doc.id, updated);
-          }
-        },
-        onCopyAll: () {
-          for (int i = 0; i < doc.pagePaths.length; i++) {
-            scanProvider.addStampLayer(doc.id, layer.copyWith(id: 'stamp_${DateTime.now().microsecondsSinceEpoch}_$i', pageIndex: i));
-          }
-        },
-        onClearThis: () => scanProvider.removeStampLayer(doc.id, layer.id),
-        onRemove: () => scanProvider.removeStampLayer(doc.id, layer.id),
-        onClearAll: () => scanProvider.clearStampLayers(doc.id),
-      ),
-    );
-  }
-}

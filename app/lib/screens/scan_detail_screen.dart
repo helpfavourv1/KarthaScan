@@ -290,6 +290,7 @@ class _ScanDetailScreenState extends State<ScanDetailScreen>
                       children: [
                         Positioned.fill(
                           child: ScanPreviewCard(
+                            document: document,
                             pagePaths: document.pagePaths,
                             onPageChanged: (index) => setState(() => _currentPageIndex = index),
                             inkController: _inkController,

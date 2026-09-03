@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../core/models/scan_document.dart';
+import '../core/providers/scan_provider.dart';
 import '../core/models/page_transform.dart';
-import '../core/models/signature_placement.dart';
 import '../core/utils/constants.dart';
 import '../l10n/app_localizations.dart';
 import 'ink_board.dart';
 import 'signature_editor_bar.dart';
+import 'layer_control_panel.dart';
 import 'document_canvas.dart';
 
 class ScanPreviewCard extends StatefulWidget {
   const ScanPreviewCard({
     super.key,
+    required this.document,
     required this.pagePaths,
     this.inkController,
     this.annotateLayers = const [],
@@ -48,6 +51,7 @@ class ScanPreviewCard extends StatefulWidget {
     this.pageTransforms = const {},
   });
 
+  final ScanDocument document;
   final List<String> pagePaths;
   final InkController? inkController;
   final List<AnnotateLayer> annotateLayers;
@@ -93,6 +97,7 @@ class _ScanPreviewCardState extends State<ScanPreviewCard> {
   String? _selectedAnnotateBytesPath;
   String? _selectedWatermarkText;
   String? _selectedStampId;
+  late final ScanProvider _scanProvider;
 
   int get _lastIndex => widget.pagePaths.isEmpty ? 0 : widget.pagePaths.length - 1;
 
@@ -102,6 +107,7 @@ class _ScanPreviewCardState extends State<ScanPreviewCard> {
     final int requested = widget.initialPage;
     _currentPage = requested < 0 ? 0 : (requested > _lastIndex ? _lastIndex : requested);
     _pageController = PageController(initialPage: _currentPage);
+    _scanProvider = Provider.of<ScanProvider>(context, listen: false);
   }
 
   @override
@@ -137,85 +143,8 @@ pageIndex: _currentPage,
 pageCount: widget.pagePaths.length,
 );
 }
-Widget _buildStampControls(String kind) {
-    final pageLayers = widget.stampLayers.where((l) => l.pageIndex == _currentPage && l.kind == kind).toList();
-    if (pageLayers.isEmpty) return const SizedBox.shrink();
-    final layer = pageLayers.firstWhere((l) => l.id == _selectedStampId, orElse: () => pageLayers.first);
-    void upd(StampLayer newLayer) {
-      widget.onStampLayerUpdate?.call(_currentPage, newLayer);
-    }
-    return OverlayEditControls(
-      layerType: kind == 'text' ? LayerType.text : (kind == 'note' ? LayerType.note : (kind == 'date' ? LayerType.date : (kind == 'checkbox' ? LayerType.checkbox : LayerType.seal))),
-      rotationDegrees: layer.placement.rotationDegrees,
-      scale: layer.placement.scale,
-      opacity: layer.opacity,
-      fontSize: kind == 'checkbox' ? null : layer.fontSize,
-      onRotateLeft: () => upd(layer.copyWith(placement: SignaturePlacement(pctX: layer.placement.pctX, pctY: layer.placement.pctY, rotationDegrees: (layer.placement.rotationDegrees - 10).clamp(-180, 180), scale: layer.placement.scale))),
-      onRotateRight: () => upd(layer.copyWith(placement: SignaturePlacement(pctX: layer.placement.pctX, pctY: layer.placement.pctY, rotationDegrees: (layer.placement.rotationDegrees + 10).clamp(-180, 180), scale: layer.placement.scale))),
-      onScaleDown: () => upd(layer.copyWith(placement: SignaturePlacement(pctX: layer.placement.pctX, pctY: layer.placement.pctY, rotationDegrees: layer.placement.rotationDegrees, scale: (layer.placement.scale - 0.1).clamp(0.1, 5.0)))),
-      onScaleUp: () => upd(layer.copyWith(placement: SignaturePlacement(pctX: layer.placement.pctX, pctY: layer.placement.pctY, rotationDegrees: layer.placement.rotationDegrees, scale: (layer.placement.scale + 0.1).clamp(0.1, 5.0)))),
-      onOpacityDown: () => upd(layer.copyWith(opacity: (layer.opacity - 0.05).clamp(0.05, 1.0))),
-      onOpacityUp: () => upd(layer.copyWith(opacity: (layer.opacity + 0.05).clamp(0.05, 1.0))),
-      onFontSizeDown: () => upd(layer.copyWith(fontSize: (layer.fontSize - 4).clamp(12, 144))),
-      onFontSizeUp: () => upd(layer.copyWith(fontSize: (layer.fontSize + 4).clamp(12, 144))),
-      onTools: widget.onStampEditTools,
-      onCopyAll: () => widget.onCopyStampToAllPages?.call(layer),
-      onClearThis: () => widget.onClearStampPage?.call(_currentPage),
-      onRemove: () => widget.onClearStampPage?.call(_currentPage),
-      onClearAll: () => widget.onClearAllStampLayers?.call(),
-    );
-  }
 
-  Widget _buildWatermarkControls() {
-    final pageLayers = widget.watermarkLayers.where((l) => l.pageIndex == _currentPage).toList();
-    if (pageLayers.isEmpty) return const SizedBox.shrink();
-    final layer = pageLayers.firstWhere((l) => l.text == _selectedWatermarkText, orElse: () => pageLayers.first);
-    void upd(WatermarkLayer newLayer) {
-      widget.onWatermarkLayerUpdate?.call(_currentPage, newLayer);
-    }
-    return OverlayEditControls(
-      layerType: LayerType.watermark,
-      rotationDegrees: layer.placement.rotationDegrees,
-      scale: layer.placement.scale,
-      opacity: layer.opacity,
-      fontSize: layer.fontSize,
-      onRotateLeft: () => upd(layer.copyWith(placement: SignaturePlacement(pctX: layer.placement.pctX, pctY: layer.placement.pctY, rotationDegrees: (layer.placement.rotationDegrees - 10).clamp(-180, 180), scale: layer.placement.scale))),
-      onRotateRight: () => upd(layer.copyWith(placement: SignaturePlacement(pctX: layer.placement.pctX, pctY: layer.placement.pctY, rotationDegrees: (layer.placement.rotationDegrees + 10).clamp(-180, 180), scale: layer.placement.scale))),
-      onScaleDown: () => upd(layer.copyWith(placement: SignaturePlacement(pctX: layer.placement.pctX, pctY: layer.placement.pctY, rotationDegrees: layer.placement.rotationDegrees, scale: (layer.placement.scale - 0.1).clamp(0.1, 5.0)))),
-      onScaleUp: () => upd(layer.copyWith(placement: SignaturePlacement(pctX: layer.placement.pctX, pctY: layer.placement.pctY, rotationDegrees: layer.placement.rotationDegrees, scale: (layer.placement.scale + 0.1).clamp(0.1, 5.0)))),
-      onOpacityDown: () => upd(layer.copyWith(opacity: (layer.opacity - 0.05).clamp(0.05, 1.0))),
-      onOpacityUp: () => upd(layer.copyWith(opacity: (layer.opacity + 0.05).clamp(0.05, 1.0))),
-      onFontSizeDown: () => upd(layer.copyWith(fontSize: (layer.fontSize - 4).clamp(12, 144))),
-      onFontSizeUp: () => upd(layer.copyWith(fontSize: (layer.fontSize + 4).clamp(12, 144))),
-      onTools: widget.onWatermarkEditTools,
-      onCopyAll: () => widget.onCopyWatermarkToAllPages?.call(layer),
-      onClearThis: () => widget.onClearWatermarkPage?.call(_currentPage),
-      onRemove: () => widget.onClearWatermarkPage?.call(_currentPage),
-      onClearAll: () => widget.onClearAllWatermarkLayers?.call(),
-    );
-  }
 
-  Widget _buildAnnotateControls() {
-    final pageLayers = widget.annotateLayers.where((l) => l.pageIndex == _currentPage).toList();
-    if (pageLayers.isEmpty) return const SizedBox.shrink();
-    final layer = pageLayers.firstWhere((l) => l.bytesPath == _selectedAnnotateBytesPath, orElse: () => pageLayers.first);
-    void upd(SignaturePlacement pl) {
-      widget.onAnnotateLayerUpdate?.call(_currentPage, AnnotateLayer(pageIndex: layer.pageIndex, bytesPath: layer.bytesPath, placement: pl));
-    }
-    return OverlayEditControls(
-      layerType: LayerType.annotate,
-      rotationDegrees: layer.placement.rotationDegrees,
-      scale: layer.placement.scale,
-      onRotateLeft: () => upd(SignaturePlacement(pctX: layer.placement.pctX, pctY: layer.placement.pctY, rotationDegrees: (layer.placement.rotationDegrees - 10).clamp(-180, 180), scale: layer.placement.scale)),
-      onRotateRight: () => upd(SignaturePlacement(pctX: layer.placement.pctX, pctY: layer.placement.pctY, rotationDegrees: (layer.placement.rotationDegrees + 10).clamp(-180, 180), scale: layer.placement.scale)),
-      onScaleDown: () => upd(SignaturePlacement(pctX: layer.placement.pctX, pctY: layer.placement.pctY, rotationDegrees: layer.placement.rotationDegrees, scale: (layer.placement.scale - 0.1).clamp(0.1, 5.0))),
-      onScaleUp: () => upd(SignaturePlacement(pctX: layer.placement.pctX, pctY: layer.placement.pctY, rotationDegrees: layer.placement.rotationDegrees, scale: (layer.placement.scale + 0.1).clamp(0.1, 5.0))),
-      onCopyAll: () => widget.onCopyAnnotateToAllPages?.call(layer),
-      onClearThis: () => widget.onClearAnnotatePage?.call(_currentPage),
-      onRemove: () => widget.onClearAnnotatePage?.call(_currentPage),
-      onClearAll: () => widget.onClearAllAnnotateLayers?.call(),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -304,20 +233,17 @@ Widget _buildStampControls(String kind) {
           ),
           if (widget.editMode == TrayEditMode.signature && widget.inkController != null)
             _buildSignatureControls(),
-          if (widget.editMode == TrayEditMode.annotate)
-            _buildAnnotateControls(),
-          if (widget.editMode == TrayEditMode.watermark)
-            _buildWatermarkControls(),
-          if (widget.editMode == TrayEditMode.text)
-            _buildStampControls('text'),
-          if (widget.editMode == TrayEditMode.note)
-            _buildStampControls('note'),
-          if (widget.editMode == TrayEditMode.date)
-            _buildStampControls('date'),
-          if (widget.editMode == TrayEditMode.checkbox)
-            _buildStampControls('checkbox'),
-          if (widget.editMode == TrayEditMode.seal)
-            _buildStampControls('seal'),
+          LayerControlPanel(
+            document: widget.document,
+            pageIndex: _currentPage,
+            editMode: widget.editMode,
+            scanProvider: _scanProvider,
+            selectedAnnotateBytesPath: _selectedAnnotateBytesPath,
+            selectedWatermarkText: _selectedWatermarkText,
+            selectedStampId: _selectedStampId,
+            onWatermarkEditTools: widget.onWatermarkEditTools,
+            onStampEditTools: widget.onStampEditTools,
+          ),
         ],
       ),
     );
