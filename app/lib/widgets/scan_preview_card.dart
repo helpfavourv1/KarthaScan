@@ -28,7 +28,6 @@ class ScanPreviewCard extends StatefulWidget {
     this.onAnnotateSelect,
     this.onWatermarkSelect,
     this.onWatermarkLayerUpdate,
-    this.onWatermarkEditTools,
     this.onDoneEditing,
     this.onShare,
     this.onAnnotateLayerUpdate,
@@ -41,7 +40,6 @@ class ScanPreviewCard extends StatefulWidget {
     this.onClearAllWatermarkLayers,
     this.onStampSelect,
     this.onStampLayerUpdate,
-    this.onStampEditTools,
     this.onCopyStampToAllPages,
     this.onClearStampPage,
     this.onClearAllStampLayers,
@@ -65,7 +63,6 @@ class ScanPreviewCard extends StatefulWidget {
   final VoidCallback? onAnnotateSelect;
   final VoidCallback? onWatermarkSelect;
   final void Function(int pageIndex, WatermarkLayer layer)? onWatermarkLayerUpdate;
-  final VoidCallback? onWatermarkEditTools;
   final VoidCallback? onDoneEditing;
   final VoidCallback? onShare;
   final void Function(int pageIndex, AnnotateLayer layer)? onAnnotateLayerUpdate;
@@ -78,7 +75,6 @@ class ScanPreviewCard extends StatefulWidget {
   final VoidCallback? onClearAllWatermarkLayers;
   final VoidCallback? onStampSelect;
   final void Function(int pageIndex, StampLayer layer)? onStampLayerUpdate;
-  final VoidCallback? onStampEditTools;
   final void Function(StampLayer layer)? onCopyStampToAllPages;
   final void Function(int pageIndex)? onClearStampPage;
   final VoidCallback? onClearAllStampLayers;
@@ -241,8 +237,6 @@ pageCount: widget.pagePaths.length,
             selectedAnnotateBytesPath: _selectedAnnotateBytesPath,
             selectedWatermarkText: _selectedWatermarkText,
             selectedStampId: _selectedStampId,
-            onWatermarkEditTools: widget.onWatermarkEditTools,
-            onStampEditTools: widget.onStampEditTools,
           ),
         ],
       ),

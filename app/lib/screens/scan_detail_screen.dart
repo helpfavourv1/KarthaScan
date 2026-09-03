@@ -316,13 +316,6 @@ class _ScanDetailScreenState extends State<ScanDetailScreen>
                               final doc = _document;
                               if (doc != null) _scanProvider.updateWatermarkLayer(doc.id, layer);
                             },
-                            onWatermarkEditTools: () async {
-                              final doc = _document;
-                              if (doc == null) return;
-                              final pageLayers = doc.watermarkLayers.where((l) => l.pageIndex == _currentPageIndex).toList();
-                              if (pageLayers.isEmpty) return;
-                              await editWatermark(pageLayers.first);
-                            },
                             onCopyWatermarkToAllPages: copyWatermarkToAllPages,
                             onClearWatermarkPage: clearWatermarkPage,
                             onClearAllWatermarkLayers: clearAllWatermarkLayers,
@@ -331,14 +324,6 @@ class _ScanDetailScreenState extends State<ScanDetailScreen>
                             onStampLayerUpdate: (pageIndex, layer) {
                               final doc = _document;
                               if (doc != null) _scanProvider.updateStampLayer(doc.id, layer);
-                            },
-                            onStampEditTools: () async {
-                              final doc = _document;
-                              if (doc == null) return;
-                              final kind = _editMode == TrayEditMode.note ? 'note' : (_editMode == TrayEditMode.date ? 'date' : (_editMode == TrayEditMode.checkbox ? 'checkbox' : (_editMode == TrayEditMode.seal ? 'seal' : 'text')));
-                              final pageLayers = doc.stampLayers.where((l) => l.pageIndex == _currentPageIndex && l.kind == kind).toList();
-                              if (pageLayers.isEmpty) return;
-                              await editStamp(pageLayers.first);
                             },
                             onCopyStampToAllPages: copyStampToAllPages,
                             onClearStampPage: clearStampPage,

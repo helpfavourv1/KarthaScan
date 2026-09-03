@@ -5,6 +5,9 @@ import '../core/models/signature_placement.dart';
 import '../core/providers/scan_provider.dart';
 import '../core/utils/constants.dart';
 import 'ink_board.dart';
+import 'watermark_sheet.dart';
+import 'text_stamp_sheet.dart';
+import 'seal_stamp_sheet.dart';
 
 /// Shared control panel for editing overlay layers (annotate/watermark/stamp).
 /// Eliminates duplication between ScanPreviewCard and FullScreenEditScreen.
@@ -18,8 +21,6 @@ class LayerControlPanel extends StatelessWidget {
     this.selectedAnnotateBytesPath,
     this.selectedWatermarkText,
     this.selectedStampId,
-    this.onWatermarkEditTools,
-    this.onStampEditTools,
   });
 
   final ScanDocument document;
@@ -29,8 +30,6 @@ class LayerControlPanel extends StatelessWidget {
   final String? selectedAnnotateBytesPath;
   final String? selectedWatermarkText;
   final String? selectedStampId;
-  final VoidCallback? onWatermarkEditTools;
-  final VoidCallback? onStampEditTools;
 
   Widget _buildAnnotateControls(BuildContext context) {
     final pageLayers = document.annotateLayers.where((l) => l.pageIndex == pageIndex).toList();
@@ -88,7 +87,18 @@ class LayerControlPanel extends StatelessWidget {
         onOpacityUp: () => scanProvider.updateWatermarkLayer(document.id, layer.copyWith(opacity: (layer.opacity + 0.05).clamp(0.05, 1.0))),
         onFontSizeDown: () => scanProvider.updateWatermarkLayer(document.id, layer.copyWith(fontSize: (layer.fontSize - 4).clamp(12, 144))),
         onFontSizeUp: () => scanProvider.updateWatermarkLayer(document.id, layer.copyWith(fontSize: (layer.fontSize + 4).clamp(12, 144))),
-        onTools: onWatermarkEditTools,
+        onTools: () async {
+          final config = await showModalBottomSheet<WatermarkLayer>(
+            context: context,
+            isScrollControlled: true,
+            builder: (context) => WatermarkSheet(initialConfig: layer),
+          );
+          if (config != null) {
+            final updated = config.copyWith(pageIndex: layer.pageIndex, placement: layer.placement);
+            await scanProvider.removeWatermarkLayer(document.id, layer.pageIndex, layer.text);
+            await scanProvider.addWatermarkLayer(document.id, updated);
+          }
+        },
         onCopyAll: () {
           for (int i = 0; i < document.pagePaths.length; i++) {
             scanProvider.addWatermarkLayer(document.id, layer.copyWith(pageIndex: i));
@@ -127,7 +137,38 @@ class LayerControlPanel extends StatelessWidget {
         onOpacityUp: () => scanProvider.updateStampLayer(document.id, layer.copyWith(opacity: (layer.opacity + 0.05).clamp(0.05, 1.0))),
         onFontSizeDown: () => scanProvider.updateStampLayer(document.id, layer.copyWith(fontSize: (layer.fontSize - 4).clamp(12, 144))),
         onFontSizeUp: () => scanProvider.updateStampLayer(document.id, layer.copyWith(fontSize: (layer.fontSize + 4).clamp(12, 144))),
-        onTools: onStampEditTools,
+        onTools: () async {
+          final config = await showModalBottomSheet<StampResult>(
+            context: context,
+            isScrollControlled: true,
+            builder: (ctx) => layer.kind == 'seal'
+                ? SealStampSheet(initial: layer)
+                : TextStampSheet(kind: layer.kind, initial: layer),
+          );
+          if (config != null) {
+            final updated = layer.copyWith(
+              text: config.text,
+              fontSize: config.fontSize,
+              color: config.color,
+              fontFamily: config.fontFamily,
+              fontWeight: config.fontWeightValue,
+              align: config.alignName,
+              halo: config.halo,
+              noteBgColor: config.noteBgColorValue,
+              dateFormat: config.dateFormatValue,
+              customDateMillis: config.customDateMillisValue,
+              checked: config.checkedValue,
+              checkShape: config.checkShapeValue,
+              boxColor: config.boxColorValue,
+              tickColor: config.tickColorValue,
+              sealShape: config.sealShapeValue,
+              sealSubtext: config.sealSubtextValue,
+              sealCenter: config.sealCenterValue,
+              sealImageBytes: config.sealImageBytesValue,
+            );
+            await scanProvider.updateStampLayer(document.id, updated);
+          }
+        },
         onCopyAll: () {
           for (int i = 0; i < document.pagePaths.length; i++) {
             scanProvider.addStampLayer(document.id, layer.copyWith(id: 'stamp_${DateTime.now().microsecondsSinceEpoch}_$i', pageIndex: i));

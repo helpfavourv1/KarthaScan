@@ -14,10 +14,7 @@ import '../widgets/document_tools_mixin.dart';
 import '../widgets/edit_tray.dart';
 import '../widgets/layer_control_panel.dart';
 import '../widgets/ink_board.dart';
-import '../widgets/seal_stamp_sheet.dart';
 import '../widgets/signature_editor_bar.dart';
-import '../widgets/text_stamp_sheet.dart';
-import '../widgets/watermark_sheet.dart';
 import '../widgets/fill_input_bar.dart';
 import '../core/models/fill_snippet.dart';
 import '../l10n/app_localizations.dart';
@@ -344,43 +341,6 @@ class _FullScreenEditScreenState extends State<FullScreenEditScreen> with Docume
                       selectedAnnotateBytesPath: _selectedAnnotateBytesPath,
                       selectedWatermarkText: _selectedWatermarkText,
                       selectedStampId: _selectedStampId,
-                      onWatermarkEditTools: () async {
-                        final pageLayers = doc.watermarkLayers.where((l) => l.pageIndex == _currentPageIndex).toList();
-                        if (pageLayers.isEmpty) return;
-                        final layer = pageLayers.firstWhere((l) => l.text == _selectedWatermarkText, orElse: () => pageLayers.first);
-                        final config = await showModalBottomSheet<WatermarkLayer>(
-                          context: context,
-                          isScrollControlled: true,
-                          builder: (context) => WatermarkSheet(initialConfig: layer),
-                        );
-                        if (config != null && mounted) {
-                          final updated = config.copyWith(pageIndex: layer.pageIndex, placement: layer.placement);
-                          await _scanProvider.removeWatermarkLayer(doc.id, layer.pageIndex, layer.text);
-                          await _scanProvider.addWatermarkLayer(doc.id, updated);
-                        }
-                      },
-                      onStampEditTools: () async {
-                        final kind = _editMode == TrayEditMode.note ? 'note' : (_editMode == TrayEditMode.date ? 'date' : (_editMode == TrayEditMode.checkbox ? 'checkbox' : (_editMode == TrayEditMode.seal ? 'seal' : 'text')));
-                        final pageLayers = doc.stampLayers.where((l) => l.pageIndex == _currentPageIndex && l.kind == kind).toList();
-                        if (pageLayers.isEmpty) return;
-                        final layer = pageLayers.firstWhere((l) => l.id == _selectedStampId, orElse: () => pageLayers.first);
-                        final config = await showModalBottomSheet<StampResult>(
-                          context: context,
-                          isScrollControlled: true,
-                          builder: (ctx) => layer.kind == 'seal' ? SealStampSheet(initial: layer) : TextStampSheet(kind: layer.kind, initial: layer),
-                        );
-                        if (config != null && mounted) {
-                          final updated = layer.copyWith(
-                            text: config.text, fontSize: config.fontSize, color: config.color,
-                            fontFamily: config.fontFamily, fontWeight: config.fontWeightValue, align: config.alignName,
-                            halo: config.halo, noteBgColor: config.noteBgColorValue, dateFormat: config.dateFormatValue,
-                            customDateMillis: config.customDateMillisValue, checked: config.checkedValue,
-                            checkShape: config.checkShapeValue, boxColor: config.boxColorValue, tickColor: config.tickColorValue,
-                            sealShape: config.sealShapeValue, sealSubtext: config.sealSubtextValue, sealCenter: config.sealCenterValue,
-                          );
-                          await _scanProvider.updateStampLayer(doc.id, updated);
-                        }
-                      },
                     ),
                     if (_editMode == TrayEditMode.fill && _fillGhostPctX != null && _fillGhostPctY != null && _fillGhostPageIndex != null)
                       FillInputBar(
