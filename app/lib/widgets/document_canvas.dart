@@ -464,11 +464,25 @@ class _PageWithInkState extends State<_PageWithInk> {
                                       left: widget.fillGhostPctX! * originalW,
                                       top: widget.fillGhostPctY! * originalH,
                                       child: IgnorePointer(
-                                        child: Opacity(
-                                          opacity: 0.4,
-                                          child: Text(
-                                            widget.fillGhostText!,
-                                            style: TextStyle(fontSize: 40, fontFamily: 'monospace', color: const Color(0xFF111111)),
+                                        child: Container(
+                                          padding: const EdgeInsets.all(8),
+                                          decoration: BoxDecoration(
+                                            border: Border.all(color: const Color(0xFF007AFF), width: 2),
+                                            borderRadius: BorderRadius.circular(4),
+                                          ),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              const Icon(Icons.text_fields, size: 16, color: Color(0xFF007AFF)),
+                                              const SizedBox(width: 4),
+                                              Opacity(
+                                                opacity: 0.6,
+                                                child: Text(
+                                                  widget.fillGhostText!,
+                                                  style: TextStyle(fontSize: 40, fontFamily: 'monospace', color: const Color(0xFF111111)),
+                                                ),
+                                              ),
+                                            ],
                                           ),
                                         ),
                                       ),

@@ -70,6 +70,11 @@ class _FillInputBarState extends State<FillInputBar> {
                 ),
               ),
             ),
+            IconButton(
+              icon: const Icon(Icons.bookmark_border),
+              tooltip: l10n.fillSaveSnippet,
+              onPressed: _controller.text.isNotEmpty ? () => widget.onSaveSnippet(_controller.text) : null,
+            ),
             IconButton(icon: const Icon(Icons.check), onPressed: () => widget.onConfirm(_controller.text, _allCaps, _color, _fontSize)),
             IconButton(icon: const Icon(Icons.close), onPressed: widget.onCancel),
           ]),
@@ -89,9 +94,23 @@ class _FillInputBarState extends State<FillInputBar> {
               child: Row(
                 children: widget.snippets.map((s) => Padding(
                   padding: const EdgeInsets.only(right: 8),
-                  child: GestureDetector(
-                    onLongPress: () => widget.onDeleteSnippet(s.id),
-                    child: ActionChip(label: Text(s.label), onPressed: () { _controller.text = s.text; widget.onTextChange(s.text); }),
+                  child: InputChip(
+                    label: Text(s.label),
+                    deleteIcon: const Icon(Icons.close, size: 14),
+                    onDeleted: () async {
+                      final confirm = await showDialog<bool>(
+                        context: context,
+                        builder: (ctx) => AlertDialog(
+                          title: Text(l10n.fillDeleteSnippet),
+                          actions: [
+                            TextButton(onPressed: () => Navigator.pop(ctx, false), child: Text(l10n.commonCancel)),
+                            TextButton(onPressed: () => Navigator.pop(ctx, true), child: Text(l10n.commonDelete)),
+                          ],
+                        ),
+                      );
+                      if (confirm == true) widget.onDeleteSnippet(s.id);
+                    },
+                    onPressed: () { _controller.text = s.text; widget.onTextChange(s.text); },
                   ),
                 )).toList(),
               ),

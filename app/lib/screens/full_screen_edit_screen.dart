@@ -342,6 +342,36 @@ class _FullScreenEditScreenState extends State<FullScreenEditScreen> with Docume
                       selectedWatermarkText: _selectedWatermarkText,
                       selectedStampId: _selectedStampId,
                     ),
+                    if (_editMode == TrayEditMode.fill && doc.stampLayers.where((l) => l.kind == 'fill').isNotEmpty)
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                        child: OutlinedButton.icon(
+                          icon: const Icon(Icons.delete_sweep),
+                          label: Text(l10n.clearAll),
+                          onPressed: () async {
+                            final confirm = await showDialog<bool>(
+                              context: context,
+                              builder: (ctx) => AlertDialog(
+                                title: Text(l10n.clearAll),
+                                content: const Text('Clear all fill fields on this document?'),
+                                actions: [
+                                  TextButton(onPressed: () => Navigator.pop(ctx, false), child: Text(l10n.commonCancel)),
+                                  TextButton(onPressed: () => Navigator.pop(ctx, true), child: Text(l10n.commonDelete)),
+                                ],
+                              ),
+                            );
+                            if (confirm == true) {
+                              for (final layer in doc.stampLayers.where((l) => l.kind == 'fill')) {
+                                await _scanProvider.removeStampLayer(doc.id, layer.id);
+                              }
+                              if (!context.mounted) return;
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(content: Text(l10n.clearAll), duration: const Duration(seconds: 2)),
+                              );
+                            }
+                          },
+                        ),
+                      ),
                     if (_editMode == TrayEditMode.fill && _fillGhostPctX != null && _fillGhostPctY != null && _fillGhostPageIndex != null)
                       FillInputBar(
                         initialText: _fillText ?? '',
@@ -371,11 +401,19 @@ class _FullScreenEditScreenState extends State<FullScreenEditScreen> with Docume
                           _fillSnippets.add(snippet);
                           await _localStorage.saveFillSnippets(_fillSnippets);
                           setState(() {});
+                          if (!context.mounted) return;
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text(l10n.fillSaveSnippet), duration: const Duration(seconds: 2)),
+                          );
                         },
                         onDeleteSnippet: (id) async {
                           _fillSnippets.removeWhere((s) => s.id == id);
                           await _localStorage.saveFillSnippets(_fillSnippets);
                           setState(() {});
+                          if (!context.mounted) return;
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text(l10n.fillDeleteSnippet), duration: const Duration(seconds: 2)),
+                          );
                         },
                       ),
                     // Compact train tray (always visible)

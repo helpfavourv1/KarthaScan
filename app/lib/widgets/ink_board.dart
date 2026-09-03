@@ -574,6 +574,7 @@ class StampOverlayPage extends StatelessWidget {
             }
             final fontSize = layer.fontSize * layer.placement.scale;
             final color = Color(layer.color).withValues(alpha: layer.opacity);
+            final isFill = layer.kind == 'fill';
             final shadows = layer.halo
                 ? [
                     for (final o in const [Offset(2,0), Offset(-2,0), Offset(0,2), Offset(0,-2), Offset(2,2), Offset(-2,-2), Offset(2,-2), Offset(-2,2)])
@@ -595,7 +596,9 @@ class StampOverlayPage extends StatelessWidget {
                   decoration: BoxDecoration(
                     color: layer.kind == 'note' && layer.noteBgColor != null ? Color(layer.noteBgColor!).withValues(alpha: layer.opacity) : null,
                     borderRadius: BorderRadius.circular(layer.kind == 'note' ? 16 : 4),
-                    border: isSelected ? Border.all(color: accent, width: 1.5) : null,
+                    border: isFill 
+                        ? Border.all(color: const Color(0xFF007AFF), width: 1.5)
+                        : (isSelected ? Border.all(color: accent, width: 1.5) : null),
                   ),
                   child: Transform.rotate(
                     angle: layer.placement.rotationDegrees * 3.14159 / 180,
