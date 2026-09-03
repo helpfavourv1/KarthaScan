@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'dart:typed_data';
+import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:image/image.dart' as img;
 
@@ -472,15 +473,16 @@ class _CheckboxPainter extends CustomPainter {
 }
 
 class _SealPainter extends CustomPainter {
-  _SealPainter(this.layer);
+  _SealPainter(this.layer, {this.centerImage});
   final StampLayer layer;
+  final ui.Image? centerImage;
   @override
-  void paint(Canvas canvas, Size size) => drawSeal(canvas, size.width, layer);
+  void paint(Canvas canvas, Size size) => drawSeal(canvas, size.width, layer, centerImage: centerImage);
   @override
-  bool shouldRepaint(covariant _SealPainter old) => old.layer != layer;
+  bool shouldRepaint(covariant _SealPainter old) => old.layer != layer || old.centerImage != centerImage;
 }
 
-class StampOverlayPage extends StatelessWidget {
+class StampOverlayPage extends StatefulWidget {
   const StampOverlayPage({
     super.key,
     required this.layers,
@@ -508,27 +510,72 @@ class StampOverlayPage extends StatelessWidget {
   final TransformationController? transformController;
 
   @override
+  State<StampOverlayPage> createState() => _StampOverlayPageState();
+}
+
+class _StampOverlayPageState extends State<StampOverlayPage> {
+  final Map<String, ui.Image> _sealImageCache = {};
+
+  @override
+  void initState() {
+    super.initState();
+    _decodeSealImages();
+  }
+
+  @override
+  void didUpdateWidget(StampOverlayPage oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    _decodeSealImages();
+  }
+
+  Future<void> _decodeSealImages() async {
+    final sealLayers = widget.layers.where((l) => l.pageIndex == widget.pageIndex && l.kind == 'seal' && l.sealImageBytes != null);
+    for (final layer in sealLayers) {
+      if (!_sealImageCache.containsKey(layer.id)) {
+        try {
+          final codec = await ui.instantiateImageCodec(layer.sealImageBytes!);
+          final frame = await codec.getNextFrame();
+          if (mounted) {
+            setState(() {
+              _sealImageCache[layer.id] = frame.image;
+            });
+          }
+        } catch (_) {}
+      }
+    }
+  }
+
+  @override
+  void dispose() {
+    for (final image in _sealImageCache.values) {
+      image.dispose();
+    }
+    _sealImageCache.clear();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        for (final layer in layers.where((l) => l.pageIndex == pageIndex && (l.kind == 'text' || l.kind == 'note' || l.kind == 'date' || l.kind == 'checkbox' || l.kind == 'seal')))
+        for (final layer in widget.layers.where((l) => l.pageIndex == widget.pageIndex && (l.kind == 'text' || l.kind == 'note' || l.kind == 'date' || l.kind == 'checkbox' || l.kind == 'seal')))
           Builder(builder: (context) {
-            final isSelected = layer.id == selectedId;
+            final isSelected = layer.id == widget.selectedId;
             if (layer.kind == 'checkbox') {
-              final size = iw * 0.15 * layer.placement.scale;
+              final size = widget.iw * 0.15 * layer.placement.scale;
               return Positioned(
-                left: dx + layer.placement.pctX * iw - size / 2,
-                top: dy + layer.placement.pctY * ih - size / 2,
+                left: widget.dx + layer.placement.pctX * widget.iw - size / 2,
+                top: widget.dy + layer.placement.pctY * widget.ih - size / 2,
                 child: GestureDetector(
                   behavior: HitTestBehavior.opaque,
-                  onTap: () { onSelect(layer); onSelected?.call(); },
+                  onTap: () { widget.onSelect(layer); widget.onSelected?.call(); },
                   onPanUpdate: (d) {
-                    final scale = transformController?.value.getMaxScaleOnAxis() ?? 1.0;
-                    onDrag(layer, d.delta.dx / scale, d.delta.dy / scale);
+                    final scale = widget.transformController?.value.getMaxScaleOnAxis() ?? 1.0;
+                    widget.onDrag(layer, d.delta.dx / scale, d.delta.dy / scale);
                   },
                   child: Container(
                     padding: const EdgeInsets.all(12),
-                    decoration: isSelected ? BoxDecoration(border: Border.all(color: accent, width: 1.5), borderRadius: BorderRadius.circular(4)) : null,
+                    decoration: isSelected ? BoxDecoration(border: Border.all(color: widget.accent, width: 1.5), borderRadius: BorderRadius.circular(4)) : null,
                     child: Transform.rotate(
                       angle: layer.placement.rotationDegrees * 3.14159 / 180,
                       child: SizedBox(
@@ -550,23 +597,24 @@ class StampOverlayPage extends StatelessWidget {
               );
             }
             if (layer.kind == 'seal') {
-              final size = iw * 0.25 * layer.placement.scale;
+              final size = widget.iw * 0.25 * layer.placement.scale;
+              final centerImage = _sealImageCache[layer.id];
               return Positioned(
-                left: dx + layer.placement.pctX * iw - size / 2,
-                top: dy + layer.placement.pctY * ih - size / 2,
+                left: widget.dx + layer.placement.pctX * widget.iw - size / 2,
+                top: widget.dy + layer.placement.pctY * widget.ih - size / 2,
                 child: GestureDetector(
                   behavior: HitTestBehavior.opaque,
-                  onTap: () { onSelect(layer); onSelected?.call(); },
+                  onTap: () { widget.onSelect(layer); widget.onSelected?.call(); },
                   onPanUpdate: (d) {
-                    final scale = transformController?.value.getMaxScaleOnAxis() ?? 1.0;
-                    onDrag(layer, d.delta.dx / scale, d.delta.dy / scale);
+                    final scale = widget.transformController?.value.getMaxScaleOnAxis() ?? 1.0;
+                    widget.onDrag(layer, d.delta.dx / scale, d.delta.dy / scale);
                   },
                   child: Container(
                     padding: const EdgeInsets.all(12),
-                    decoration: isSelected ? BoxDecoration(border: Border.all(color: accent, width: 1.5), borderRadius: BorderRadius.circular(4)) : null,
+                    decoration: isSelected ? BoxDecoration(border: Border.all(color: widget.accent, width: 1.5), borderRadius: BorderRadius.circular(4)) : null,
                     child: Transform.rotate(
                       angle: layer.placement.rotationDegrees * 3.14159 / 180,
-                      child: SizedBox(width: size, height: size, child: CustomPaint(painter: _SealPainter(layer))),
+                      child: SizedBox(width: size, height: size, child: CustomPaint(painter: _SealPainter(layer, centerImage: centerImage))),
                     ),
                   ),
                 ),
@@ -582,23 +630,23 @@ class StampOverlayPage extends StatelessWidget {
                   ]
                 : null;
             return Positioned(
-              left: dx + layer.placement.pctX * iw - (iw * 0.3) / 2,
-              top: dy + layer.placement.pctY * ih - fontSize / 2,
+              left: widget.dx + layer.placement.pctX * widget.iw - (widget.iw * 0.3) / 2,
+              top: widget.dy + layer.placement.pctY * widget.ih - fontSize / 2,
               child: GestureDetector(
                 behavior: HitTestBehavior.opaque,
-                onTap: () { onSelect(layer); onSelected?.call(); },
+                onTap: () { widget.onSelect(layer); widget.onSelected?.call(); },
                 onPanUpdate: (d) {
-                    final scale = transformController?.value.getMaxScaleOnAxis() ?? 1.0;
-                    onDrag(layer, d.delta.dx / scale, d.delta.dy / scale);
-                  },
+                  final scale = widget.transformController?.value.getMaxScaleOnAxis() ?? 1.0;
+                  widget.onDrag(layer, d.delta.dx / scale, d.delta.dy / scale);
+                },
                 child: Container(
                   padding: const EdgeInsets.all(12),
                   decoration: BoxDecoration(
                     color: layer.kind == 'note' && layer.noteBgColor != null ? Color(layer.noteBgColor!).withValues(alpha: layer.opacity) : null,
                     borderRadius: BorderRadius.circular(layer.kind == 'note' ? 16 : 4),
-                    border: isFill 
+                    border: isFill
                         ? Border.all(color: const Color(0xFF007AFF), width: 1.5)
-                        : (isSelected ? Border.all(color: accent, width: 1.5) : null),
+                        : (isSelected ? Border.all(color: widget.accent, width: 1.5) : null),
                   ),
                   child: Transform.rotate(
                     angle: layer.placement.rotationDegrees * 3.14159 / 180,

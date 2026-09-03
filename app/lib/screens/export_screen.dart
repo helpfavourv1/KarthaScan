@@ -20,15 +20,12 @@ import '../core/providers/scan_provider.dart';
 import '../core/services/export_service.dart';
 import '../core/services/filter_service.dart';
 import '../core/services/local_storage.dart';
+import '../core/services/share_service.dart';
 import '../core/utils/constants.dart';
 import '../l10n/app_localizations.dart';
 import '../widgets/ink_board.dart';
 import '../widgets/signature_editor_bar.dart';
 import '../widgets/ios_pressable.dart';
-import '../core/models/signature_placement.dart';
-import '../widgets/watermark_sheet.dart';
-import '../widgets/text_stamp_sheet.dart';
-import '../widgets/seal_stamp_sheet.dart';
 
 class ExportScreen extends StatefulWidget {
   const ExportScreen({super.key, required this.documentIds, this.initialFormat});
@@ -44,6 +41,7 @@ class _ExportScreenState extends State<ExportScreen> {
   late final ScanProvider _scanProvider;
   final ExportService _exportService = ExportService();
   final LocalStorageService _localStorage = LocalStorageService();
+  final ShareService _shareService = ShareService();
 
   // Export options state
   ExportFormat _selectedFormat = ExportFormat.pdf;
@@ -69,10 +67,8 @@ class _ExportScreenState extends State<ExportScreen> {
 
   bool _isRunning = false;
   String? _statusMessage;
+  List<String>? _lastExportPaths;
   final TransformationController _exportTransformController = TransformationController();
-  String? _selectedAnnotateBytesPath;
-  String? _selectedWatermarkText;
-  String? _selectedStampId;
   TrayEditMode _exportEditMode = TrayEditMode.none;
 
   @override
@@ -141,9 +137,6 @@ class _ExportScreenState extends State<ExportScreen> {
   void _onPreviewPageChanged(int newPage) {
     setState(() {
       _previewPage = newPage;
-      _selectedAnnotateBytesPath = null;
-      _selectedWatermarkText = null;
-      _selectedStampId = null;
       _exportEditMode = TrayEditMode.none;
     });
     _loadPreview(newPage, _selectedFilter);
@@ -156,6 +149,7 @@ class _ExportScreenState extends State<ExportScreen> {
 
   Future<void> _runExport() async {
     final l10n = AppLocalizations.of(context);
+    _lastExportPaths = null;
     setState(() {
       _isRunning = true;
       _statusMessage = l10n.exportingStatus;
@@ -203,36 +197,52 @@ class _ExportScreenState extends State<ExportScreen> {
 
     if (!mounted) return;
 
-    if (errorMessage != null) {
-      setState(() {
-        _isRunning = false;
-        _statusMessage = errorMessage;
-      });
-      return;
-    }
-
     setState(() {
       _isRunning = false;
-      _statusMessage = l10n.exportDoneStatus;
+      _statusMessage = errorMessage ?? l10n.exportDoneStatus;
     });
+    if (errorMessage == null) _lastExportPaths = allOutputPaths;
+  }
 
-    // B4: Save to Device (Public Downloads/MediaStore)
-    final savedPaths = <String>[];
-    for (final path in allOutputPaths) {
+  Future<void> _shareExport() async {
+    await _runExport();
+    if (!mounted) return;
+    final paths = _lastExportPaths;
+    if (paths == null || paths.isEmpty) return;
+    try {
+      await _shareService.shareFiles(filePaths: paths);
+    } on ShareFailedException {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(AppLocalizations.of(context).genericErrorMessage)));
+      }
+    }
+  }
+
+  Future<void> _saveToDevice() async {
+    await _runExport();
+    if (!mounted) return;
+    final paths = _lastExportPaths;
+    if (paths == null || paths.isEmpty) return;
+    final l10n = AppLocalizations.of(context);
+    int saved = 0;
+    for (final path in paths) {
       try {
         final file = File(path);
         final bytes = await file.readAsBytes();
         final ext = p.extension(path).replaceAll('.', '');
         final name = p.basenameWithoutExtension(path);
         final mimeType = _getMimeType(ext);
-        final savedPath = await FileSaver.instance.saveFile(name: name, bytes: bytes, ext: ext, mimeType: mimeType);
-        savedPaths.add(savedPath);
-      } catch (e) { debugPrint('Save-to-downloads failed: $e'); }
+        await FileSaver.instance.saveFile(name: name, bytes: bytes, ext: ext, mimeType: mimeType);
+        saved++;
+      } catch (e) {
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('${l10n.exportGenericError}: $e')));
+        }
+      }
     }
-
-    if (!mounted) return;
-    
-    context.pop();
+    if (saved > 0 && mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.saveToDownloadsAction)));
+    }
   }
 
   @override
@@ -309,7 +319,22 @@ class _ExportScreenState extends State<ExportScreen> {
                               ),
                               if (_isSingleDoc) ...[
                                 const SizedBox(width: AppSpacing.sm),
-                                Expanded(child: SignatureEditorBar(controller: _inkController, pageIndex: _previewPage, accent: accent, surface: surface, textPrimary: textPrimary, isDark: isDark, onAddInk: () { _inkController.addInk(context, _localStorage); setState(() {}); }, onPlaceHere: () { _inkController.placeOnPage(_previewPage); setState(() {}); })),
+                                Expanded(child: InkCompactBar(
+                                  controller: _inkController,
+                                  accent: accent,
+                                  surface: surface,
+                                  textPrimary: textPrimary,
+                                  isDark: isDark,
+                                  onAddInk: () async {
+                                    final inkId = await _inkController.addInk(context, _localStorage);
+                                    if (inkId != null && mounted) {
+                                      _inkController.placeOnPage(_previewPage);
+                                      setState(() {
+                                        _exportEditMode = TrayEditMode.signature;
+                                      });
+                                    }
+                                  },
+                                )),
                               ],
                             ],
                           ),
@@ -391,7 +416,7 @@ class _ExportScreenState extends State<ExportScreen> {
                       ],
                     ),
                   ),
-                  // --- Pinned Export button ---
+                  // --- Pinned Share + Save buttons ---
                   SafeArea(
                     top: false,
                     child: Container(
@@ -400,21 +425,37 @@ class _ExportScreenState extends State<ExportScreen> {
                         color: bg,
                         border: Border(top: BorderSide(color: isDark ? AppColors.borderSubtleDark : AppColors.borderSubtleLight, width: 0.5)),
                       ),
-                      child: SizedBox(
-                        height: 52,
-                        width: double.infinity,
-                        child: ElevatedButton.icon(
-                          onPressed: _runExport,
-                          icon: const Icon(Icons.save_outlined, size: 20),
-                          label: Text(AppLocalizations.of(context).saveToDeviceButton, style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700)),
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: accent,
-                            foregroundColor: Colors.white,
-                            elevation: 6,
-                            shadowColor: accent.withValues(alpha: 0.4),
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: ElevatedButton.icon(
+                              onPressed: _isRunning ? null : _shareExport,
+                              icon: const Icon(Icons.share_outlined, size: 20),
+                              label: Text(AppLocalizations.of(context).commonShare, style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700)),
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: surface,
+                                foregroundColor: accent,
+                                elevation: 2,
+                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                              ),
+                            ),
                           ),
-                        ),
+                          const SizedBox(width: AppSpacing.sm),
+                          Expanded(
+                            child: ElevatedButton.icon(
+                              onPressed: _isRunning ? null : _saveToDevice,
+                              icon: const Icon(Icons.save_outlined, size: 20),
+                              label: Text(AppLocalizations.of(context).saveToDeviceButton, style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700)),
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: accent,
+                                foregroundColor: Colors.white,
+                                elevation: 6,
+                                shadowColor: accent.withValues(alpha: 0.4),
+                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ),
@@ -527,77 +568,15 @@ class _ExportScreenState extends State<ExportScreen> {
                                       imgW: imgW, imgH: imgH, iw: iw, ih: ih, dx: dx, dy: dy,
                                       accent: accent,
                                       transformController: _exportTransformController,
+                                      onSelected: () {
+                                        setState(() {
+                                          _exportEditMode = TrayEditMode.signature;
+                                        });
+                                      },
                                     ),
-                                    if (_documents.first.annotateLayers.isNotEmpty)
-                                      AnnotateOverlayPage(
-                                        layers: _documents.first.annotateLayers,
-                                        pageIndex: pageIndex,
-                                        iw: iw, ih: ih, dx: dx, dy: dy,
-                                        accent: accent,
-                                        selectedBytesPath: _selectedAnnotateBytesPath,
-                                        transformController: _exportTransformController,
-                                        onSelect: (layer) => setState(() {
-                                          _selectedAnnotateBytesPath = layer.bytesPath;
-                                          _exportEditMode = TrayEditMode.annotate;
-                                        }),
-                                        onDrag: (layer, dxDelta, dyDelta) {
-                                          final doc = _documents.first;
-                                          _scanProvider.updateAnnotateLayer(doc.id, AnnotateLayer(
-                                            pageIndex: layer.pageIndex, bytesPath: layer.bytesPath,
-                                            placement: SignaturePlacement(
-                                              pctX: (layer.placement.pctX + dxDelta / iw).clamp(0.0, 1.0),
-                                              pctY: (layer.placement.pctY + dyDelta / ih).clamp(0.0, 1.0),
-                                              rotationDegrees: layer.placement.rotationDegrees, scale: layer.placement.scale,
-                                            ),
-                                          ));
-                                        },
-                                      ),
-                                    if (_documents.first.watermarkLayers.isNotEmpty)
-                                      WatermarkOverlayPage(
-                                        layers: _documents.first.watermarkLayers,
-                                        pageIndex: pageIndex,
-                                        iw: iw, ih: ih, dx: dx, dy: dy,
-                                        accent: accent,
-                                        selectedText: _selectedWatermarkText,
-                                        transformController: _exportTransformController,
-                                        onSelect: (layer) => setState(() {
-                                          _selectedWatermarkText = layer.text;
-                                          _exportEditMode = TrayEditMode.watermark;
-                                        }),
-                                        onDrag: (layer, dxDelta, dyDelta) {
-                                          final doc = _documents.first;
-                                          _scanProvider.updateWatermarkLayer(doc.id, layer.copyWith(
-                                            placement: SignaturePlacement(
-                                              pctX: (layer.placement.pctX + dxDelta / iw).clamp(0.0, 1.0),
-                                              pctY: (layer.placement.pctY + dyDelta / ih).clamp(0.0, 1.0),
-                                              rotationDegrees: layer.placement.rotationDegrees, scale: layer.placement.scale,
-                                            ),
-                                          ));
-                                        },
-                                      ),
-                                    if (_documents.first.stampLayers.isNotEmpty)
-                                      StampOverlayPage(
-                                        layers: _documents.first.stampLayers,
-                                        pageIndex: pageIndex,
-                                        iw: iw, ih: ih, dx: dx, dy: dy,
-                                        accent: accent,
-                                        selectedId: _selectedStampId,
-                                        transformController: _exportTransformController,
-                                        onSelect: (layer) => setState(() {
-                                          _selectedStampId = layer.id;
-                                          _exportEditMode = layer.kind == 'text' ? TrayEditMode.text : (layer.kind == 'note' ? TrayEditMode.note : (layer.kind == 'date' ? TrayEditMode.date : (layer.kind == 'checkbox' ? TrayEditMode.checkbox : TrayEditMode.seal)));
-                                        }),
-                                        onDrag: (layer, dxDelta, dyDelta) {
-                                          final doc = _documents.first;
-                                          _scanProvider.updateStampLayer(doc.id, layer.copyWith(
-                                            placement: SignaturePlacement(
-                                              pctX: (layer.placement.pctX + dxDelta / iw).clamp(0.0, 1.0),
-                                              pctY: (layer.placement.pctY + dyDelta / ih).clamp(0.0, 1.0),
-                                              rotationDegrees: layer.placement.rotationDegrees, scale: layer.placement.scale,
-                                            ),
-                                          ));
-                                        },
-                                      ),
+
+
+
                                   ],
                                 ),
                               );
@@ -613,17 +592,26 @@ class _ExportScreenState extends State<ExportScreen> {
           ),
         ),
         if (_exportEditMode == TrayEditMode.signature)
-          SignatureOverlayControls(
-            controller: _inkController,
-            pageIndex: pageIndex,
-            pageCount: pageCount,
+          Row(
+            children: [
+              Expanded(
+                child: SignatureOverlayControls(
+                  controller: _inkController,
+                  pageIndex: pageIndex,
+                  pageCount: pageCount,
+                ),
+              ),
+              const SizedBox(width: AppSpacing.sm),
+              ActionChip(
+                avatar: const Icon(Icons.check, size: 14),
+                label: Text(AppLocalizations.of(context).commonDone, style: TextStyle(fontSize: 11)),
+                onPressed: () => setState(() {
+                  _exportEditMode = TrayEditMode.none;
+                  _inkController.setEditInk(null);
+                }),
+              ),
+            ],
           ),
-        if (_exportEditMode == TrayEditMode.annotate)
-          _buildExportAnnotateControls(),
-        if (_exportEditMode == TrayEditMode.watermark)
-          _buildExportWatermarkControls(),
-        if (_exportEditMode == TrayEditMode.text || _exportEditMode == TrayEditMode.note || _exportEditMode == TrayEditMode.date || _exportEditMode == TrayEditMode.checkbox || _exportEditMode == TrayEditMode.seal)
-          _buildExportStampControls(),
       ],
     );
   }
@@ -792,102 +780,6 @@ class _ExportScreenState extends State<ExportScreen> {
     );
   }
 
-
-  Widget _buildExportAnnotateControls() {
-    final doc = _documents.first;
-    final pageLayers = doc.annotateLayers.where((l) => l.pageIndex == _previewPage).toList();
-    if (pageLayers.isEmpty) return const SizedBox.shrink();
-    final layer = pageLayers.firstWhere((l) => l.bytesPath == _selectedAnnotateBytesPath, orElse: () => pageLayers.first);
-    return OverlayEditControls(
-      layerType: LayerType.annotate,
-      rotationDegrees: layer.placement.rotationDegrees,
-      scale: layer.placement.scale,
-      onRotateLeft: () => _scanProvider.updateAnnotateLayer(doc.id, AnnotateLayer(pageIndex: layer.pageIndex, bytesPath: layer.bytesPath, placement: SignaturePlacement(pctX: layer.placement.pctX, pctY: layer.placement.pctY, rotationDegrees: (layer.placement.rotationDegrees - 10).clamp(-180, 180), scale: layer.placement.scale))),
-      onRotateRight: () => _scanProvider.updateAnnotateLayer(doc.id, AnnotateLayer(pageIndex: layer.pageIndex, bytesPath: layer.bytesPath, placement: SignaturePlacement(pctX: layer.placement.pctX, pctY: layer.placement.pctY, rotationDegrees: (layer.placement.rotationDegrees + 10).clamp(-180, 180), scale: layer.placement.scale))),
-      onScaleDown: () => _scanProvider.updateAnnotateLayer(doc.id, AnnotateLayer(pageIndex: layer.pageIndex, bytesPath: layer.bytesPath, placement: SignaturePlacement(pctX: layer.placement.pctX, pctY: layer.placement.pctY, rotationDegrees: layer.placement.rotationDegrees, scale: (layer.placement.scale - 0.1).clamp(0.1, 5.0)))),
-      onScaleUp: () => _scanProvider.updateAnnotateLayer(doc.id, AnnotateLayer(pageIndex: layer.pageIndex, bytesPath: layer.bytesPath, placement: SignaturePlacement(pctX: layer.placement.pctX, pctY: layer.placement.pctY, rotationDegrees: layer.placement.rotationDegrees, scale: (layer.placement.scale + 0.1).clamp(0.1, 5.0)))),
-      onCopyAll: () { for (int i = 0; i < doc.pagePaths.length; i++) { _scanProvider.addAnnotateLayer(doc.id, AnnotateLayer(pageIndex: i, bytesPath: layer.bytesPath, placement: layer.placement)); } },
-      onClearThis: () => _scanProvider.removeAnnotateLayer(doc.id, _previewPage, layer.bytesPath),
-      onRemove: () => _scanProvider.removeAnnotateLayer(doc.id, _previewPage, layer.bytesPath),
-      onClearAll: () => _scanProvider.clearAnnotateLayers(doc.id),
-    );
-  }
-
-  Widget _buildExportWatermarkControls() {
-    final doc = _documents.first;
-    final pageLayers = doc.watermarkLayers.where((l) => l.pageIndex == _previewPage).toList();
-    if (pageLayers.isEmpty) return const SizedBox.shrink();
-    final layer = pageLayers.firstWhere((l) => l.text == _selectedWatermarkText, orElse: () => pageLayers.first);
-    return OverlayEditControls(
-      layerType: LayerType.watermark,
-      rotationDegrees: layer.placement.rotationDegrees,
-      scale: layer.placement.scale,
-      opacity: layer.opacity,
-      fontSize: layer.fontSize,
-      onRotateLeft: () => _scanProvider.updateWatermarkLayer(doc.id, layer.copyWith(placement: SignaturePlacement(pctX: layer.placement.pctX, pctY: layer.placement.pctY, rotationDegrees: (layer.placement.rotationDegrees - 10).clamp(-180, 180), scale: layer.placement.scale))),
-      onRotateRight: () => _scanProvider.updateWatermarkLayer(doc.id, layer.copyWith(placement: SignaturePlacement(pctX: layer.placement.pctX, pctY: layer.placement.pctY, rotationDegrees: (layer.placement.rotationDegrees + 10).clamp(-180, 180), scale: layer.placement.scale))),
-      onScaleDown: () => _scanProvider.updateWatermarkLayer(doc.id, layer.copyWith(placement: SignaturePlacement(pctX: layer.placement.pctX, pctY: layer.placement.pctY, rotationDegrees: layer.placement.rotationDegrees, scale: (layer.placement.scale - 0.1).clamp(0.1, 5.0)))),
-      onScaleUp: () => _scanProvider.updateWatermarkLayer(doc.id, layer.copyWith(placement: SignaturePlacement(pctX: layer.placement.pctX, pctY: layer.placement.pctY, rotationDegrees: layer.placement.rotationDegrees, scale: (layer.placement.scale + 0.1).clamp(0.1, 5.0)))),
-      onOpacityDown: () => _scanProvider.updateWatermarkLayer(doc.id, layer.copyWith(opacity: (layer.opacity - 0.05).clamp(0.05, 1.0))),
-      onOpacityUp: () => _scanProvider.updateWatermarkLayer(doc.id, layer.copyWith(opacity: (layer.opacity + 0.05).clamp(0.05, 1.0))),
-      onFontSizeDown: () => _scanProvider.updateWatermarkLayer(doc.id, layer.copyWith(fontSize: (layer.fontSize - 4).clamp(12, 144))),
-      onFontSizeUp: () => _scanProvider.updateWatermarkLayer(doc.id, layer.copyWith(fontSize: (layer.fontSize + 4).clamp(12, 144))),
-      onTools: () async {
-        final config = await showModalBottomSheet<WatermarkLayer>(context: context, isScrollControlled: true, builder: (context) => WatermarkSheet(initialConfig: layer));
-        if (config != null && mounted) {
-          final updated = config.copyWith(pageIndex: layer.pageIndex, placement: layer.placement);
-          await _scanProvider.removeWatermarkLayer(doc.id, layer.pageIndex, layer.text);
-          await _scanProvider.addWatermarkLayer(doc.id, updated);
-        }
-      },
-      onCopyAll: () { for (int i = 0; i < doc.pagePaths.length; i++) { _scanProvider.addWatermarkLayer(doc.id, layer.copyWith(pageIndex: i)); } },
-      onClearThis: () => _scanProvider.removeWatermarkLayer(doc.id, _previewPage, layer.text),
-      onRemove: () => _scanProvider.removeWatermarkLayer(doc.id, _previewPage, layer.text),
-      onClearAll: () => _scanProvider.clearWatermarkLayers(doc.id),
-    );
-  }
-
-  Widget _buildExportStampControls() {
-    final doc = _documents.first;
-    final kind = _exportEditMode == TrayEditMode.note ? 'note' : (_exportEditMode == TrayEditMode.date ? 'date' : (_exportEditMode == TrayEditMode.checkbox ? 'checkbox' : (_exportEditMode == TrayEditMode.seal ? 'seal' : 'text')));
-    final pageLayers = doc.stampLayers.where((l) => l.pageIndex == _previewPage && l.kind == kind).toList();
-    if (pageLayers.isEmpty) return const SizedBox.shrink();
-    final layer = pageLayers.firstWhere((l) => l.id == _selectedStampId, orElse: () => pageLayers.first);
-    return OverlayEditControls(
-      layerType: kind == 'text' ? LayerType.text : (kind == 'note' ? LayerType.note : (kind == 'date' ? LayerType.date : (kind == 'checkbox' ? LayerType.checkbox : LayerType.seal))),
-      rotationDegrees: layer.placement.rotationDegrees,
-      scale: layer.placement.scale,
-      opacity: layer.opacity,
-      fontSize: kind == 'checkbox' ? null : layer.fontSize,
-      onRotateLeft: () => _scanProvider.updateStampLayer(doc.id, layer.copyWith(placement: SignaturePlacement(pctX: layer.placement.pctX, pctY: layer.placement.pctY, rotationDegrees: (layer.placement.rotationDegrees - 10).clamp(-180, 180), scale: layer.placement.scale))),
-      onRotateRight: () => _scanProvider.updateStampLayer(doc.id, layer.copyWith(placement: SignaturePlacement(pctX: layer.placement.pctX, pctY: layer.placement.pctY, rotationDegrees: (layer.placement.rotationDegrees + 10).clamp(-180, 180), scale: layer.placement.scale))),
-      onScaleDown: () => _scanProvider.updateStampLayer(doc.id, layer.copyWith(placement: SignaturePlacement(pctX: layer.placement.pctX, pctY: layer.placement.pctY, rotationDegrees: layer.placement.rotationDegrees, scale: (layer.placement.scale - 0.1).clamp(0.1, 5.0)))),
-      onScaleUp: () => _scanProvider.updateStampLayer(doc.id, layer.copyWith(placement: SignaturePlacement(pctX: layer.placement.pctX, pctY: layer.placement.pctY, rotationDegrees: layer.placement.rotationDegrees, scale: (layer.placement.scale + 0.1).clamp(0.1, 5.0)))),
-      onOpacityDown: () => _scanProvider.updateStampLayer(doc.id, layer.copyWith(opacity: (layer.opacity - 0.05).clamp(0.05, 1.0))),
-      onOpacityUp: () => _scanProvider.updateStampLayer(doc.id, layer.copyWith(opacity: (layer.opacity + 0.05).clamp(0.05, 1.0))),
-      onFontSizeDown: () => _scanProvider.updateStampLayer(doc.id, layer.copyWith(fontSize: (layer.fontSize - 4).clamp(12, 144))),
-      onFontSizeUp: () => _scanProvider.updateStampLayer(doc.id, layer.copyWith(fontSize: (layer.fontSize + 4).clamp(12, 144))),
-      onTools: () async {
-        final config = await showModalBottomSheet<StampResult>(context: context, isScrollControlled: true, builder: (ctx) => layer.kind == 'seal' ? SealStampSheet(initial: layer) : TextStampSheet(kind: layer.kind, initial: layer));
-        if (config != null && mounted) {
-          final updated = layer.copyWith(
-            text: config.text, fontSize: config.fontSize, color: config.color,
-            fontFamily: config.fontFamily, fontWeight: config.fontWeightValue, align: config.alignName,
-            halo: config.halo, noteBgColor: config.noteBgColorValue, dateFormat: config.dateFormatValue,
-            customDateMillis: config.customDateMillisValue, checked: config.checkedValue,
-            checkShape: config.checkShapeValue, boxColor: config.boxColorValue, tickColor: config.tickColorValue,
-            sealShape: config.sealShapeValue, sealSubtext: config.sealSubtextValue, sealCenter: config.sealCenterValue,
-            sealImageBytes: config.sealImageBytesValue,
-          );
-          await _scanProvider.updateStampLayer(doc.id, updated);
-        }
-      },
-      onCopyAll: () { for (int i = 0; i < doc.pagePaths.length; i++) { _scanProvider.addStampLayer(doc.id, layer.copyWith(id: 'stamp_${DateTime.now().microsecondsSinceEpoch}_$i', pageIndex: i)); } },
-      onClearThis: () => _scanProvider.removeStampLayer(doc.id, layer.id),
-      onRemove: () => _scanProvider.removeStampLayer(doc.id, layer.id),
-      onClearAll: () => _scanProvider.clearStampLayers(doc.id),
-    );
-  }
 
 
   MimeType _getMimeType(String ext) {
