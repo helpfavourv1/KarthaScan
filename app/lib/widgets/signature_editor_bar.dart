@@ -8,7 +8,6 @@ import 'package:flutter/material.dart';
 
 import '../core/models/signature_placement.dart';
 import 'ink_board.dart';
-import '../l10n/app_localizations.dart';
 
 class SignatureEditorBar extends StatelessWidget {
   const SignatureEditorBar({
@@ -34,27 +33,13 @@ class SignatureEditorBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Expanded(
-          child: InkCompactBar(
-            controller: controller,
-            accent: accent,
-            surface: surface,
-            textPrimary: textPrimary,
-            isDark: isDark,
-            onAddInk: onAddInk,
-          ),
-        ),
-        if (controller.hasInks) ...[
-          const SizedBox(width: 8),
-          ActionChip(
-            avatar: const Icon(Icons.draw_outlined, size: 14),
-            label: Text(AppLocalizations.of(context).placeHereLabel, style: TextStyle(fontSize: 10)),
-            onPressed: onPlaceHere,
-          ),
-        ],
-      ],
+    return InkCompactBar(
+      controller: controller,
+      accent: accent,
+      surface: surface,
+      textPrimary: textPrimary,
+      isDark: isDark,
+      onAddInk: onAddInk,
     );
   }
 }

@@ -62,6 +62,8 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
       if (inkId != null && mounted) {
         inkController.placeOnPage(currentPageIndex);
       }
+    } else {
+      inkController.placeOnPage(currentPageIndex);
     }
   }
 

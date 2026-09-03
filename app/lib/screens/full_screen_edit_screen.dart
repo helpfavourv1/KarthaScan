@@ -259,12 +259,7 @@ class _FullScreenEditScreenState extends State<FullScreenEditScreen> with Docume
                         color: textPrimary,
                         onPressed: exportDocument,
                       ),
-                      if (_editMode != TrayEditMode.none || _selectedAnnotateBytesPath != null || _selectedWatermarkText != null || _selectedStampId != null)
-                        ActionChip(
-                          avatar: const Icon(Icons.check, size: 14),
-                          label: Text(AppLocalizations.of(context).commonDone, style: TextStyle(fontSize: 11)),
-                          onPressed: closeEditor,
-                        ),
+
                     ],
                   ),
                 ),
@@ -341,6 +336,18 @@ class _FullScreenEditScreenState extends State<FullScreenEditScreen> with Docume
                       selectedWatermarkText: _selectedWatermarkText,
                       selectedStampId: _selectedStampId,
                     ),
+                    if (_editMode != TrayEditMode.none || _selectedAnnotateBytesPath != null || _selectedWatermarkText != null || _selectedStampId != null)
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+                        child: Align(
+                          alignment: Alignment.centerRight,
+                          child: ActionChip(
+                            avatar: const Icon(Icons.check, size: 14),
+                            label: Text(AppLocalizations.of(context).commonDone, style: TextStyle(fontSize: 11)),
+                            onPressed: closeEditor,
+                          ),
+                        ),
+                      ),
                     if (_editMode == TrayEditMode.fill && doc.stampLayers.where((l) => l.kind == 'fill').isNotEmpty)
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),

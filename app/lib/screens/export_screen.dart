@@ -72,6 +72,12 @@ class _ExportScreenState extends State<ExportScreen> {
   final TransformationController _exportTransformController = TransformationController();
   TrayEditMode _exportEditMode = TrayEditMode.none;
 
+  Future<void> _persistSignature() async {
+    if (_documents.isEmpty) return;
+    final doc = _documents.first;
+    await _scanProvider.setSignatureState(doc.id, _inkController.inks.values.toList(), _inkController.layers);
+  }
+
   @override
   void dispose() {
     _exportTransformController.dispose();
@@ -82,7 +88,7 @@ class _ExportScreenState extends State<ExportScreen> {
   void initState() {
     super.initState();
     _scanProvider = Provider.of<ScanProvider>(context, listen: false);
-    _inkController = InkController(onChange: () { if (mounted) setState(() {}); });
+    _inkController = InkController(onChange: () { if (mounted) { setState(() {}); _persistSignature(); } });
     if (widget.initialFormat != null) {
       _selectedFormat = widget.initialFormat!;
     }
