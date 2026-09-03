@@ -21,6 +21,7 @@ import '../core/services/export_service.dart';
 import '../core/services/filter_service.dart';
 import '../core/services/local_storage.dart';
 import '../core/services/share_service.dart';
+import '../core/services/downloads_service.dart';
 import '../core/utils/constants.dart';
 import '../l10n/app_localizations.dart';
 import '../widgets/ink_board.dart';
@@ -224,24 +225,31 @@ class _ExportScreenState extends State<ExportScreen> {
     final paths = _lastExportPaths;
     if (paths == null || paths.isEmpty) return;
     final l10n = AppLocalizations.of(context);
+    final dlService = DownloadsService();
     int saved = 0;
+    String? lastError;
     for (final path in paths) {
       try {
         final file = File(path);
         final bytes = await file.readAsBytes();
         final ext = p.extension(path).replaceAll('.', '');
         final name = p.basenameWithoutExtension(path);
-        final mimeType = _getMimeType(ext);
-        await FileSaver.instance.saveFile(name: name, bytes: bytes, ext: ext, mimeType: mimeType);
+        final mimeType = _mimeTypeToString(_getMimeType(ext));
+        await dlService.saveToDownloads(
+          fileName: '$name.$ext',
+          bytes: bytes,
+          mimeType: mimeType,
+        );
         saved++;
       } catch (e) {
-        if (mounted) {
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('${l10n.exportGenericError}: $e')));
-        }
+        lastError = e.toString();
       }
     }
-    if (saved > 0 && mounted) {
+    if (!mounted) return;
+    if (saved > 0) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.saveToDownloadsAction)));
+    } else if (lastError != null) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('${l10n.exportGenericError}: $lastError')));
     }
   }
 
@@ -791,6 +799,18 @@ class _ExportScreenState extends State<ExportScreen> {
       case 'jpg': case 'jpeg': return MimeType.jpeg;
       case 'png': return MimeType.png;
       default: return MimeType.other;
+    }
+  }
+
+  String _mimeTypeToString(MimeType type) {
+    switch (type) {
+      case MimeType.pdf: return 'application/pdf';
+      case MimeType.jpeg: return 'image/jpeg';
+      case MimeType.png: return 'image/png';
+      case MimeType.text: return 'text/plain';
+      case MimeType.csv: return 'text/csv';
+      case MimeType.other: return 'application/octet-stream';
+      default: return 'application/octet-stream';
     }
   }
 }

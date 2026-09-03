@@ -20,6 +20,7 @@ import '../core/services/docx_parser_service.dart';
 import '../core/services/export_service.dart';
 import '../core/services/pdf_to_images_service.dart';
 import '../core/services/share_service.dart';
+import '../core/services/downloads_service.dart';
 import '../core/services/txt_to_pdf_service.dart';
 import '../l10n/app_localizations.dart';
 
@@ -84,6 +85,18 @@ class _ConvertScreenState extends State<ConvertScreen> {
       case 'jpg': case 'jpeg': return MimeType.jpeg;
       case 'png': return MimeType.png;
       default: return MimeType.other;
+    }
+  }
+
+  String _mimeTypeToString(MimeType type) {
+    switch (type) {
+      case MimeType.pdf: return 'application/pdf';
+      case MimeType.jpeg: return 'image/jpeg';
+      case MimeType.png: return 'image/png';
+      case MimeType.text: return 'text/plain';
+      case MimeType.csv: return 'text/csv';
+      case MimeType.other: return 'application/octet-stream';
+      default: return 'application/octet-stream';
     }
   }
 
@@ -223,19 +236,37 @@ class _ConvertScreenState extends State<ConvertScreen> {
       if (!mounted) return;
 
       if (_action == _ActionType.saveToDownloads) {
+        final dlService = DownloadsService();
+        int savedCount = 0;
+        String? lastError;
         for (final path in paths) {
           try {
             final file = File(path);
             final bytes = await file.readAsBytes();
             final ext = p.extension(path).replaceAll('.', '');
             final name = p.basenameWithoutExtension(path);
-            await FileSaver.instance.saveFile(name: name, bytes: bytes, ext: ext, mimeType: _getMimeType(ext));
+            final mime = _mimeTypeToString(_getMimeType(ext));
+            await dlService.saveToDownloads(
+              fileName: '$name.$ext',
+              bytes: bytes,
+              mimeType: mime,
+            );
+            savedCount++;
           } catch (e) {
-            debugPrint('Save-to-downloads failed: $e');
+            lastError = e.toString();
           }
         }
         if (!mounted) return;
-        context.pop();
+        if (savedCount > 0) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(AppLocalizations.of(context).saveToDownloadsAction), duration: const Duration(seconds: 2)),
+          );
+          context.pop();
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('Save failed: $lastError'), duration: const Duration(seconds: 4)),
+          );
+        }
       } else if (_action == _ActionType.saveDoc) {
         final provider = Provider.of<ScanProvider>(context, listen: false);
         final now = DateTime.now();
