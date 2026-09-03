@@ -73,7 +73,7 @@ class ScanPreviewCard extends StatefulWidget {
   final void Function(WatermarkLayer layer)? onCopyWatermarkToAllPages;
   final void Function(int pageIndex)? onClearWatermarkPage;
   final VoidCallback? onClearAllWatermarkLayers;
-  final VoidCallback? onStampSelect;
+  final void Function(StampLayer layer)? onStampSelect;
   final void Function(int pageIndex, StampLayer layer)? onStampLayerUpdate;
   final void Function(StampLayer layer)? onCopyStampToAllPages;
   final void Function(int pageIndex)? onClearStampPage;
@@ -204,17 +204,16 @@ pageCount: widget.pagePaths.length,
                 selectedAnnotateBytesPath: _selectedAnnotateBytesPath,
                 selectedWatermarkText: _selectedWatermarkText,
                 selectedStampId: _selectedStampId,
-                onAnnotateSelect: (layer) => setState(() => _selectedAnnotateBytesPath = layer.bytesPath),
+                onAnnotateSelect: (layer) => setState(() { _selectedAnnotateBytesPath = layer.bytesPath; _selectedWatermarkText = null; _selectedStampId = null; }),
                 onAnnotateUpdate: widget.onAnnotateLayerUpdate,
                 onSignatureSelect: () {
                   setState(() {});
                   widget.onSignatureSelect?.call();
                 },
                 onWatermarkSelect: widget.onWatermarkSelect,
-                onWatermarkSelected: (layer) => setState(() => _selectedWatermarkText = layer.text),
+                onWatermarkSelected: (layer) => setState(() { _selectedWatermarkText = layer.text; _selectedAnnotateBytesPath = null; _selectedStampId = null; }),
                 onWatermarkLayerUpdate: widget.onWatermarkLayerUpdate,
-                onStampSelect: widget.onStampSelect,
-                onStampSelected: (layer) => setState(() => _selectedStampId = layer.id),
+                onStampSelected: (layer) { setState(() { _selectedStampId = layer.id; _selectedAnnotateBytesPath = null; _selectedWatermarkText = null; }); widget.onStampSelect?.call(layer); },
                 onStampLayerUpdate: widget.onStampLayerUpdate,
                 physics: widget.editMode == TrayEditMode.none
                     ? const AlwaysScrollableScrollPhysics()

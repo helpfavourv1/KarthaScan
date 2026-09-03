@@ -51,6 +51,7 @@ class _ScanDetailScreenState extends State<ScanDetailScreen>
     _inkController = InkController(onChange: _persistSignature);
     _scanProvider.setActiveScan(widget.documentId);
     _tabController = TabController(length: 2, vsync: this);
+    _tabController.addListener(() { if (mounted) setState(() {}); });
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final doc = _document;
       if (doc != null) _inkController.seed(doc);
@@ -183,13 +184,8 @@ class _ScanDetailScreenState extends State<ScanDetailScreen>
   }
 
   Future<void> _share(ScanDocument document) async {
-    try {
-      await _shareService.shareFiles(filePaths: document.pagePaths);
-    } on ShareFailedException {
-      if (!mounted) return;
-      final l10n = AppLocalizations.of(context);
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.genericErrorMessage)));
-    }
+    if (!mounted) return;
+    context.push('/export', extra: <String>[document.id]);
   }
 
   Future<void> _export(ScanDocument document) async {
@@ -285,6 +281,7 @@ class _ScanDetailScreenState extends State<ScanDetailScreen>
               Expanded(
                 child: TabBarView(
                   controller: _tabController,
+                  physics: const NeverScrollableScrollPhysics(),
                   children: [
                     Stack(
                       children: [
@@ -320,7 +317,7 @@ class _ScanDetailScreenState extends State<ScanDetailScreen>
                             onClearWatermarkPage: clearWatermarkPage,
                             onClearAllWatermarkLayers: clearAllWatermarkLayers,
                             stampLayers: document.stampLayers,
-                            onStampSelect: () => setState(() => _editMode = TrayEditMode.text),
+                            onStampSelect: (layer) => setState(() => _editMode = layer.kind == 'text' ? TrayEditMode.text : (layer.kind == 'note' ? TrayEditMode.note : (layer.kind == 'date' ? TrayEditMode.date : (layer.kind == 'checkbox' ? TrayEditMode.checkbox : TrayEditMode.seal)))),
                             onStampLayerUpdate: (pageIndex, layer) {
                               final doc = _document;
                               if (doc != null) _scanProvider.updateStampLayer(doc.id, layer);
@@ -376,6 +373,7 @@ class _ScanDetailScreenState extends State<ScanDetailScreen>
                   ],
                 ),
               ),
+              if (_tabController.index == 0)
               EditTray(
                 compact: true,
                 onMarkup: () { _closeEditor(); annotateCurrentPage(); },
