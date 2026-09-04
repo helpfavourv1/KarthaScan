@@ -11,7 +11,7 @@ import json, os, re, sys, glob
 APP_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 os.chdir(APP_DIR)
 
-LANGS = ['en','ar','de','es','fr','he','hi','ja','ko','pt','zh']
+LANGS = ['en','ar','de','es','fr','he','hi','ja','ko','pt','zh','id']
 FAILURES = []
 
 # 1. Parity check
