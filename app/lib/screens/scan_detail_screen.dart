@@ -211,7 +211,6 @@ class _ScanDetailScreenState extends State<ScanDetailScreen>
     final l10n = AppLocalizations.of(context);
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final bg = isDark ? AppColors.bgPrimaryDark : AppColors.bgPrimaryLight;
-    final surface = isDark ? AppColors.bgSecondaryDark : AppColors.bgSecondaryLight;
     final textPrimary = isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight;
     final textSecondary = isDark ? AppColors.textSecondaryDark : AppColors.textSecondaryLight;
     final accent = isDark ? AppColors.accentDark : AppColors.accentLight;
@@ -401,36 +400,20 @@ class _ScanDetailScreenState extends State<ScanDetailScreen>
               SafeArea(
                 top: false,
                 child: Container(
-                  padding: const EdgeInsets.all(16),
+                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
                   decoration: BoxDecoration(color: bg, border: Border(top: BorderSide(color: border, width: 0.5))),
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Expanded(
-                        child: ElevatedButton.icon(
-                          onPressed: () => _share(document),
-                          icon: const Icon(Icons.ios_share),
-                          label: Text(l10n.shareTooltip),
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: accent,
-                            foregroundColor: Colors.white,
-                            minimumSize: const Size(double.infinity, 48),
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
-                          ),
-                        ),
+                      TextButton.icon(
+                        onPressed: () => _share(document),
+                        icon: const Icon(Icons.ios_share, size: 18),
+                        label: Text(l10n.shareTooltip, style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600, color: accent)),
                       ),
-                      const SizedBox(width: 16),
-                      Expanded(
-                        child: ElevatedButton.icon(
-                          onPressed: () => _export(document),
-                          icon: const Icon(Icons.file_download_outlined),
-                          label: Text(l10n.exportTooltip),
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: surface,
-                            foregroundColor: textPrimary,
-                            minimumSize: const Size(double.infinity, 48),
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
-                          ),
-                        ),
+                      TextButton.icon(
+                        onPressed: () => _export(document),
+                        icon: const Icon(Icons.file_download_outlined, size: 18),
+                        label: Text(l10n.exportTooltip, style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600, color: accent)),
                       ),
                     ],
                   ),

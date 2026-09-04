@@ -840,7 +840,7 @@ class InkCompactBar extends StatelessWidget {
   Widget build(BuildContext context) {
     if (!controller.hasInks) {
       return Container(
-        height: 48,
+        height: 44,
         decoration: BoxDecoration(
           color: surface,
           borderRadius: BorderRadius.circular(8),
@@ -872,7 +872,7 @@ class InkCompactBar extends StatelessWidget {
     }
 
     return Container(
-      height: 48,
+      height: 44,
       padding: const EdgeInsets.symmetric(horizontal: AppSpacing.sm),
       decoration: BoxDecoration(
         color: surface,

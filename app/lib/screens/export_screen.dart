@@ -313,9 +313,9 @@ class _ExportScreenState extends State<ExportScreen> {
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        // Format ribbon (70px, one row)
+                        // Format ribbon (56dp, one row)
                         SizedBox(
-                          height: 70,
+                          height: 56,
                           child: Row(
                             children: [
                               _formatCell(ExportFormat.pdf, 'PDF', Icons.picture_as_pdf_outlined, accent, surface, textPrimary, isDark),
@@ -330,14 +330,15 @@ class _ExportScreenState extends State<ExportScreen> {
                         const SizedBox(height: AppSpacing.sm),
                         // Merged row: Page Size + Signature (48px)
                         SizedBox(
-                          height: 48,
+                          height: 44,
                           child: Row(
                             children: [
-                              Expanded(
-                                child: _segmentRow([
-                                  _seg(_pageFormat == ExportPageFormat.a4, 'A4', () => setState(() => _pageFormat = ExportPageFormat.a4), accent, surface, textPrimary),
-                                  _seg(_pageFormat == ExportPageFormat.letter, 'Letter (US)', () => setState(() => _pageFormat = ExportPageFormat.letter), accent, surface, textPrimary),
-                                ], height: 48),
+                              Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  _fixedSeg(_pageFormat == ExportPageFormat.a4, 'A4', () => setState(() => _pageFormat = ExportPageFormat.a4), accent, surface, textPrimary),
+                                  _fixedSeg(_pageFormat == ExportPageFormat.letter, 'Letter (US)', () => setState(() => _pageFormat = ExportPageFormat.letter), accent, surface, textPrimary),
+                                ],
                               ),
                               if (_isSingleDoc) ...[
                                 const SizedBox(width: AppSpacing.sm),
@@ -442,40 +443,23 @@ class _ExportScreenState extends State<ExportScreen> {
                   SafeArea(
                     top: false,
                     child: Container(
-                      padding: const EdgeInsets.all(AppSpacing.md),
+                      padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md, vertical: AppSpacing.xs),
                       decoration: BoxDecoration(
                         color: bg,
                         border: Border(top: BorderSide(color: isDark ? AppColors.borderSubtleDark : AppColors.borderSubtleLight, width: 0.5)),
                       ),
                       child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          Expanded(
-                            child: ElevatedButton.icon(
-                              onPressed: _isRunning ? null : _shareExport,
-                              icon: const Icon(Icons.share_outlined, size: 20),
-                              label: Text(AppLocalizations.of(context).commonShare, style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700)),
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: surface,
-                                foregroundColor: accent,
-                                elevation: 2,
-                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-                              ),
-                            ),
+                          TextButton.icon(
+                            onPressed: _isRunning ? null : _shareExport,
+                            icon: const Icon(Icons.share_outlined, size: 18),
+                            label: Text(AppLocalizations.of(context).commonShare, style: TextStyle(fontSize: AppTypography.footnoteSize, fontWeight: FontWeight.w600, color: accent)),
                           ),
-                          const SizedBox(width: AppSpacing.sm),
-                          Expanded(
-                            child: ElevatedButton.icon(
-                              onPressed: _isRunning ? null : _saveToDevice,
-                              icon: const Icon(Icons.save_outlined, size: 20),
-                              label: Text(AppLocalizations.of(context).saveToDeviceButton, style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700)),
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: accent,
-                                foregroundColor: Colors.white,
-                                elevation: 6,
-                                shadowColor: accent.withValues(alpha: 0.4),
-                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-                              ),
-                            ),
+                          TextButton.icon(
+                            onPressed: _isRunning ? null : _saveToDevice,
+                            icon: const Icon(Icons.save_outlined, size: 18),
+                            label: Text(AppLocalizations.of(context).saveToDeviceButton, style: TextStyle(fontSize: AppTypography.footnoteSize, fontWeight: FontWeight.w600, color: accent)),
                           ),
                         ],
                       ),
@@ -856,6 +840,23 @@ class _ExportScreenState extends State<ExportScreen> {
     );
   }
 
+  Widget _fixedSeg(bool isSelected, String label, VoidCallback onTap, Color accent, Color surface, Color textPrimary) {
+    return IOSPressable(
+      onTap: onTap,
+      child: Container(
+        margin: const EdgeInsets.only(right: 4),
+        padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md),
+        height: 44,
+        decoration: BoxDecoration(
+          color: isSelected ? accent : surface,
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(color: isSelected ? accent : Colors.grey.withValues(alpha: 0.3), width: isSelected ? 1.5 : 0.5),
+        ),
+        child: Center(child: Text(label, style: TextStyle(color: isSelected ? Colors.white : textPrimary, fontSize: 13, fontWeight: FontWeight.w600), textAlign: TextAlign.center)),
+      ),
+    );
+  }
+
   Widget _filterPill(FilterType f, String label, Color accent, Color textPrimary, bool isDark) {
     final isSelected = _selectedFilter == f;
     return IOSPressable(
@@ -885,19 +886,19 @@ class _ExportScreenState extends State<ExportScreen> {
           _loadPreview(_previewPage, _selectedFilter);
         },
         child: Container(
-          height: 70,
-          margin: const EdgeInsets.only(right: 6),
+          height: 56,
+          margin: const EdgeInsets.only(right: 4),
           decoration: BoxDecoration(
             color: isSelected ? accent.withValues(alpha: 0.10) : surface,
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(12),
             border: Border.all(color: isSelected ? accent : (isDark ? AppColors.borderSubtleDark : AppColors.borderSubtleLight), width: isSelected ? 1.5 : 0.5),
           ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(icon, color: isSelected ? accent : textPrimary, size: 20),
+              Icon(icon, color: isSelected ? accent : textPrimary, size: 18),
               const SizedBox(height: 2),
-              Text(label, style: TextStyle(color: isSelected ? accent : textPrimary, fontSize: 9, fontWeight: FontWeight.w600)),
+              Text(label, style: TextStyle(color: isSelected ? accent : textPrimary, fontSize: 12, fontWeight: FontWeight.w600)),
             ],
           ),
         ),
