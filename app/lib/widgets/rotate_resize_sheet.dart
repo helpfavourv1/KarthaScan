@@ -85,7 +85,7 @@ class RotateResizeSheetState extends State<RotateResizeSheet> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    widget.mode == RotateResizeMode.rotate ? 'Rotate' : 'Resize',
+                    widget.mode == RotateResizeMode.rotate ? AppLocalizations.of(context).rotateLabel : AppLocalizations.of(context).resizeTitle,
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600, color: textPrimary),
                   ),
                   IconButton(icon: const Icon(Icons.close), onPressed: () => Navigator.pop(context)),

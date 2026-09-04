@@ -21,9 +21,9 @@ class _ColorPickerDialogState extends State<ColorPickerDialog> {
         child: Column(mainAxisSize: MainAxisSize.min, children: [
           Container(height: 40, width: double.infinity, decoration: BoxDecoration(color: current, borderRadius: BorderRadius.circular(8))),
           const SizedBox(height: 12),
-          _slider('Hue', _hsv.hue, 360, (v) => _hsv = _hsv.withHue(v)),
-          _slider('Sat', _hsv.saturation, 1, (v) => _hsv = _hsv.withSaturation(v)),
-          _slider('Val', _hsv.value, 1, (v) => _hsv = _hsv.withValue(v)),
+          _slider(AppLocalizations.of(context).hueLabel, _hsv.hue, 360, (v) => _hsv = _hsv.withHue(v)),
+          _slider(AppLocalizations.of(context).satLabel, _hsv.saturation, 1, (v) => _hsv = _hsv.withSaturation(v)),
+          _slider(AppLocalizations.of(context).valLabel, _hsv.value, 1, (v) => _hsv = _hsv.withValue(v)),
         ]),
       ),
       actions: [

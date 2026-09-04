@@ -57,7 +57,7 @@ class _AnnotateSheetState extends State<AnnotateSheet> {
                   final icon = m == AnnotationMode.pen ? Icons.edit : m == AnnotationMode.highlighter ? Icons.highlight : m == AnnotationMode.rect ? Icons.crop_square : m == AnnotationMode.arrow ? Icons.arrow_forward : Icons.circle_outlined;
                   return ChoiceChip(
                     avatar: Icon(icon, size: 16),
-                    label: Text(m.name),
+                    label: Text(m == AnnotationMode.pen ? AppLocalizations.of(context).annotationModePen : m == AnnotationMode.highlighter ? AppLocalizations.of(context).annotationModeHighlighter : m == AnnotationMode.rect ? AppLocalizations.of(context).annotationModeRect : m == AnnotationMode.arrow ? AppLocalizations.of(context).annotationModeArrow : AppLocalizations.of(context).annotationModeEllipse),
                     selected: _mode == m,
                     onSelected: (_) {
                       setState(() => _mode = m);

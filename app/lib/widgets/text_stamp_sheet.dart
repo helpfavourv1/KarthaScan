@@ -55,7 +55,7 @@ class _TextStampSheetState extends State<TextStampSheet> {
   String _dateFormat = 'DD-MM-YYYY';
   String _checkShape = 'rounded';
 
-  String get _title => widget.kind == 'text' ? 'Add Text' : widget.kind == 'note' ? 'Add Note' : widget.kind == 'date' ? 'Add Date' : 'Add Checkbox';
+  String get _title => widget.kind == 'text' ? AppLocalizations.of(context).addTextTitle : widget.kind == 'note' ? AppLocalizations.of(context).addNoteTitle : widget.kind == 'date' ? AppLocalizations.of(context).addDateTitle : AppLocalizations.of(context).addCheckboxTitle;
 
   @override
   void initState() {
@@ -177,10 +177,10 @@ class _TextStampSheetState extends State<TextStampSheet> {
               Text(_title, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600)),
               const SizedBox(height: 12),
               if (widget.kind == 'text' || widget.kind == 'note')
-                TextField(controller: _controller, maxLines: widget.kind == 'note' ? 3 : 1, decoration: InputDecoration(labelText: widget.kind == 'note' ? 'Note text' : 'Text', border: const OutlineInputBorder())),
+                TextField(controller: _controller, maxLines: widget.kind == 'note' ? 3 : 1, decoration: InputDecoration(labelText: (widget.kind == 'note' ? AppLocalizations.of(context).noteTextLabel : AppLocalizations.of(context).textLabel), border: const OutlineInputBorder())),
               if (widget.kind == 'checkbox') ...[
                 CheckboxListTile(value: _checked, title: Text(AppLocalizations.of(context).stampTickedLabel), onChanged: (v) => setState(() => _checked = v ?? true)),
-                Wrap(spacing: 8, children: ['rounded', 'square', 'circle'].map((s) => ChoiceChip(label: Text(s), selected: _checkShape == s, onSelected: (_) => setState(() => _checkShape = s))).toList()),
+                Wrap(spacing: 8, children: [('rounded', AppLocalizations.of(context).checkShapeRounded), ('square', AppLocalizations.of(context).checkShapeSquare), ('circle', AppLocalizations.of(context).checkShapeCircle)].map((s) => ChoiceChip(label: Text(s.$2), selected: _checkShape == s.$1, onSelected: (_) => setState(() => _checkShape = s.$1))).toList()),
                 const SizedBox(height: 8),
                 Row(children: [
                   Text(AppLocalizations.of(context).stampBoxLabel, style: TextStyle(fontSize: 12)), const SizedBox(width: 8),
@@ -250,7 +250,7 @@ class _TextStampSheetState extends State<TextStampSheet> {
               const SizedBox(height: 8),
               Wrap(spacing: 8, children: [FontWeight.w400, FontWeight.w600, FontWeight.w700, FontWeight.w900].map((w) => ChoiceChip(label: Text(w.value.toString()), selected: _fontWeight == w, onSelected: (_) => setState(() => _fontWeight = w))).toList()),
               const SizedBox(height: 8),
-              Wrap(spacing: 8, children: [TextAlign.left, TextAlign.center, TextAlign.right].map((a) => ChoiceChip(label: Text(a == TextAlign.left ? 'L' : a == TextAlign.center ? 'C' : 'R'), selected: _align == a, onSelected: (_) => setState(() => _align = a))).toList()),
+              Wrap(spacing: 8, children: [TextAlign.left, TextAlign.center, TextAlign.right].map((a) => ChoiceChip(label: Icon(a == TextAlign.left ? Icons.format_align_left : a == TextAlign.center ? Icons.format_align_center : Icons.format_align_right, size: 16), selected: _align == a, onSelected: (_) => setState(() => _align = a))).toList()),
               SwitchListTile(title: Text(AppLocalizations.of(context).whiteHaloLabel), value: _halo, onChanged: (v) => setState(() => _halo = v)),
               const SizedBox(height: 12),
               Row(mainAxisAlignment: MainAxisAlignment.end, children: [

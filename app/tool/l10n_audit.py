@@ -43,13 +43,16 @@ if missing:
 # 3. Hardcoded literal audit (allow-list: symbols, numbers, brand, error.message, runtime variables)
 pat = re.compile(r'(const Text\([\'"]|Text\([\'"]|labelText: [\'"]|title: Text\([\'"]|content: Text\([\'"]|label: Text\([\'"]|hintText: [\'"]|tooltip: [\'"]|SnackBar\(content: Text\([\'"])')
 allow = re.compile(r'[°×x%pt]|\'\d|_progress|fileSize|sourceType|totalMB|e\.message|Text\(msg\)|\'B\'|\'I\'|\'U\'|KB|MB|GB')
+pat2 = re.compile(r"(\?\s*'Add [A-Z]|\?\s*'Rotate'\s*:\s*'Resize'|labelText: [a-zA-Z_].*\?|_slider\('[A-Z]|Text\([a-z]\.name\)|label: Text\((s|label)\)|Text\([^)]*\?\s*'[A-Z]'\s*:)")
+moji = re.compile('[\xc2\xe2]')
 violations = []
 for path in glob.glob('lib/**/*.dart', recursive=True):
     if 'l10n/' in path: continue
     for lineno, line in enumerate(open(path, encoding='utf-8'), 1):
-        if pat.search(line) and not allow.search(line):
-            if 'l10n.' not in line and 'AppLocalizations.' not in line and 'AppLocale.' not in line:
-                violations.append(f"{path}:{lineno}: {line.rstrip()[:100]}")
+        if 'l10n.' in line or 'AppLocalizations.' in line or 'AppLocale.' in line:
+            continue
+        if moji.search(line) or pat2.search(line) or (pat.search(line) and not allow.search(line)):
+            violations.append(f"{path}:{lineno}: {line.rstrip()[:100]}")
 if violations:
     FAILURES.append(f"HARDCODED LITERALS ({len(violations)}):")
     FAILURES.extend(violations[:30])

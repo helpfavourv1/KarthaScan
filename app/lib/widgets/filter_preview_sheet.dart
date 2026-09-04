@@ -117,8 +117,8 @@ class _FilterPreviewSheetState extends State<FilterPreviewSheet> {
             ),
           ),
           Wrap(spacing: 8, runSpacing: 8, alignment: WrapAlignment.center, children: FilterType.values.map((f) {
-            final label = f == FilterType.none ? 'Original' : f == FilterType.grayscale ? 'Grayscale' : f == FilterType.blackAndWhite ? 'B&W' : f == FilterType.colorEnhance ? 'Enhance' : 'Shadow';
-            return ChoiceChip(label: Text(label), selected: _selected == f, onSelected: (_) => _select(f));
+            final chipLabel = f == FilterType.none ? AppLocalizations.of(context).filterOriginal : f == FilterType.grayscale ? AppLocalizations.of(context).filterGrayscale : f == FilterType.blackAndWhite ? AppLocalizations.of(context).filterBlackAndWhite : f == FilterType.colorEnhance ? AppLocalizations.of(context).filterColorEnhance : AppLocalizations.of(context).filterShadowRemoval;
+            return ChoiceChip(label: Text(chipLabel), selected: _selected == f, onSelected: (_) => _select(f));
           }).toList()),
           Padding(padding: const EdgeInsets.all(16), child: Row(mainAxisAlignment: MainAxisAlignment.end, children: [
             TextButton(onPressed: () => Navigator.pop(context), child: Text(AppLocalizations.of(context).commonCancel)), const SizedBox(width: 12),
