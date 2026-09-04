@@ -25,6 +25,8 @@ import '../core/services/downloads_service.dart';
 import '../core/utils/constants.dart';
 import '../l10n/app_localizations.dart';
 import '../widgets/ink_board.dart';
+import '../widgets/layer_control_panel.dart';
+import '../core/models/signature_placement.dart';
 import '../widgets/signature_editor_bar.dart';
 import '../widgets/ios_pressable.dart';
 
@@ -71,6 +73,9 @@ class _ExportScreenState extends State<ExportScreen> {
   List<String>? _lastExportPaths;
   final TransformationController _exportTransformController = TransformationController();
   TrayEditMode _exportEditMode = TrayEditMode.none;
+  String? _selectedAnnotateBytesPath;
+  String? _selectedWatermarkText;
+  String? _selectedStampId;
 
   Future<void> _persistSignature() async {
     if (_documents.isEmpty) return;
@@ -145,6 +150,9 @@ class _ExportScreenState extends State<ExportScreen> {
     setState(() {
       _previewPage = newPage;
       _exportEditMode = TrayEditMode.none;
+      _selectedAnnotateBytesPath = null;
+      _selectedWatermarkText = null;
+      _selectedStampId = null;
     });
     _loadPreview(newPage, _selectedFilter);
   }
@@ -588,6 +596,82 @@ class _ExportScreenState extends State<ExportScreen> {
                                         });
                                       },
                                     ),
+                                    if (_documents.first.annotateLayers.isNotEmpty)
+                                      AnnotateOverlayPage(
+                                        layers: _documents.first.annotateLayers,
+                                        pageIndex: pageIndex,
+                                        iw: iw, ih: ih, dx: dx, dy: dy,
+                                        accent: accent,
+                                        selectedBytesPath: _selectedAnnotateBytesPath,
+                                        transformController: _exportTransformController,
+                                        onSelect: (layer) => setState(() {
+                                          _selectedAnnotateBytesPath = layer.bytesPath;
+                                          _selectedWatermarkText = null;
+                                          _selectedStampId = null;
+                                          _exportEditMode = TrayEditMode.annotate;
+                                        }),
+                                        onDrag: (layer, dxDelta, dyDelta) {
+                                          final doc = _documents.first;
+                                          _scanProvider.updateAnnotateLayer(doc.id, AnnotateLayer(
+                                            pageIndex: layer.pageIndex, bytesPath: layer.bytesPath,
+                                            placement: SignaturePlacement(
+                                              pctX: (layer.placement.pctX + dxDelta / iw).clamp(0.0, 1.0),
+                                              pctY: (layer.placement.pctY + dyDelta / ih).clamp(0.0, 1.0),
+                                              rotationDegrees: layer.placement.rotationDegrees, scale: layer.placement.scale,
+                                            ),
+                                          ));
+                                        },
+                                      ),
+                                    if (_documents.first.watermarkLayers.isNotEmpty)
+                                      WatermarkOverlayPage(
+                                        layers: _documents.first.watermarkLayers,
+                                        pageIndex: pageIndex,
+                                        iw: iw, ih: ih, dx: dx, dy: dy,
+                                        accent: accent,
+                                        selectedText: _selectedWatermarkText,
+                                        transformController: _exportTransformController,
+                                        onSelect: (layer) => setState(() {
+                                          _selectedWatermarkText = layer.text;
+                                          _selectedAnnotateBytesPath = null;
+                                          _selectedStampId = null;
+                                          _exportEditMode = TrayEditMode.watermark;
+                                        }),
+                                        onDrag: (layer, dxDelta, dyDelta) {
+                                          final doc = _documents.first;
+                                          _scanProvider.updateWatermarkLayer(doc.id, layer.copyWith(
+                                            placement: SignaturePlacement(
+                                              pctX: (layer.placement.pctX + dxDelta / iw).clamp(0.0, 1.0),
+                                              pctY: (layer.placement.pctY + dyDelta / ih).clamp(0.0, 1.0),
+                                              rotationDegrees: layer.placement.rotationDegrees, scale: layer.placement.scale,
+                                            ),
+                                          ));
+                                        },
+                                      ),
+                                    if (_documents.first.stampLayers.isNotEmpty)
+                                      StampOverlayPage(
+                                        layers: _documents.first.stampLayers,
+                                        pageIndex: pageIndex,
+                                        iw: iw, ih: ih, dx: dx, dy: dy,
+                                        accent: accent,
+                                        selectedId: _selectedStampId,
+                                        transformController: _exportTransformController,
+                                        onSelect: (layer) => setState(() {
+                                          _selectedStampId = layer.id;
+                                          _selectedAnnotateBytesPath = null;
+                                          _selectedWatermarkText = null;
+                                          _exportEditMode = layer.kind == 'text' ? TrayEditMode.text : (layer.kind == 'note' ? TrayEditMode.note : (layer.kind == 'date' ? TrayEditMode.date : (layer.kind == 'checkbox' ? TrayEditMode.checkbox : TrayEditMode.seal)));
+                                        }),
+                                        onDrag: (layer, dxDelta, dyDelta) {
+                                          final doc = _documents.first;
+                                          _scanProvider.updateStampLayer(doc.id, layer.copyWith(
+                                            placement: SignaturePlacement(
+                                              pctX: (layer.placement.pctX + dxDelta / iw).clamp(0.0, 1.0),
+                                              pctY: (layer.placement.pctY + dyDelta / ih).clamp(0.0, 1.0),
+                                              rotationDegrees: layer.placement.rotationDegrees, scale: layer.placement.scale,
+                                            ),
+                                          ));
+                                        },
+                                      ),
 
 
 
@@ -625,6 +709,33 @@ class _ExportScreenState extends State<ExportScreen> {
                 }),
               ),
             ],
+          ),
+        if (_exportEditMode != TrayEditMode.none && _exportEditMode != TrayEditMode.signature)
+          LayerControlPanel(
+            document: _documents.first,
+            pageIndex: pageIndex,
+            editMode: _exportEditMode,
+            scanProvider: _scanProvider,
+            selectedAnnotateBytesPath: _selectedAnnotateBytesPath,
+            selectedWatermarkText: _selectedWatermarkText,
+            selectedStampId: _selectedStampId,
+          ),
+        if (_exportEditMode != TrayEditMode.none && _exportEditMode != TrayEditMode.signature)
+          Align(
+            alignment: Alignment.centerRight,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: AppSpacing.sm),
+              child: ActionChip(
+                avatar: const Icon(Icons.check, size: 14),
+                label: Text(AppLocalizations.of(context).commonDone, style: TextStyle(fontSize: 11)),
+                onPressed: () => setState(() {
+                  _exportEditMode = TrayEditMode.none;
+                  _selectedAnnotateBytesPath = null;
+                  _selectedWatermarkText = null;
+                  _selectedStampId = null;
+                }),
+              ),
+            ),
           ),
       ],
     );

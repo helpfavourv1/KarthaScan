@@ -1,4 +1,5 @@
 import '../utils/seal_draw.dart';
+import 'debug_log_service.dart';
 import 'dart:ui' as ui;
 import 'dart:convert';
 import 'dart:io';
@@ -905,5 +906,6 @@ class ExportService {
 
   void _logError(String operation, Object error, StackTrace stackTrace) {
     debugPrint('[ExportService] $operation failed: $error');
+    DebugLogService().log('EXPORT', '$operation failed: $error');
   }
 }
