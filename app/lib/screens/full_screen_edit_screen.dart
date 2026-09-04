@@ -316,7 +316,13 @@ class _FullScreenEditScreenState extends State<FullScreenEditScreen> with Docume
                           surface: surface,
                           textPrimary: textPrimary,
                           isDark: isDark,
-                          onAddInk: () => _inkController.addInk(context, _localStorage),
+                          onAddInk: () async {
+                            final inkId = await _inkController.addInk(context, _localStorage);
+                            if (inkId != null && mounted) {
+                              _inkController.placeOnPage(_currentPageIndex);
+                              setState(() {});
+                            }
+                          },
                           onPlaceHere: () => _inkController.placeOnPage(_currentPageIndex),
                         ),
                       ),

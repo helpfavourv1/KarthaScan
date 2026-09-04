@@ -113,7 +113,7 @@ class InkController {
     final inkId = activeInkId;
     if (inkId == null) return;
     inkPlacements.putIfAbsent(inkId, () => {});
-    inkPlacements[inkId]![pageIndex] = const SignaturePlacement(pctX: 0.5, pctY: 0.35);
+    inkPlacements[inkId]!.putIfAbsent(pageIndex, () => const SignaturePlacement(pctX: 0.5, pctY: 0.35));
     editInkId = inkId;
     _notify();
   }

@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../core/models/scan_document.dart';
 import '../core/providers/scan_provider.dart';
+import '../core/services/local_storage.dart';
 import '../core/models/page_transform.dart';
 import '../core/utils/constants.dart';
 import '../l10n/app_localizations.dart';
@@ -94,6 +95,7 @@ class _ScanPreviewCardState extends State<ScanPreviewCard> {
   String? _selectedWatermarkText;
   String? _selectedStampId;
   late final ScanProvider _scanProvider;
+  final LocalStorageService _localStorage = LocalStorageService();
 
   int get _lastIndex => widget.pagePaths.isEmpty ? 0 : widget.pagePaths.length - 1;
 
@@ -131,14 +133,37 @@ class _ScanPreviewCardState extends State<ScanPreviewCard> {
   }
 
   Widget _buildSignatureControls() {
-final controller = widget.inkController;
-if (controller == null) return const SizedBox.shrink();
-return SignatureOverlayControls(
-controller: controller,
-pageIndex: _currentPage,
-pageCount: widget.pagePaths.length,
-);
-}
+    final controller = widget.inkController;
+    if (controller == null) return const SizedBox.shrink();
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: AppSpacing.sm),
+          child: InkCompactBar(
+            controller: controller,
+            accent: isDark ? AppColors.accentDark : AppColors.accentLight,
+            surface: isDark ? AppColors.bgSecondaryDark : AppColors.bgSecondaryLight,
+            textPrimary: isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight,
+            isDark: isDark,
+            onAddInk: () async {
+              final inkId = await controller.addInk(context, _localStorage);
+              if (inkId != null && mounted) {
+                controller.placeOnPage(_currentPage);
+                setState(() {});
+              }
+            },
+          ),
+        ),
+        SignatureOverlayControls(
+          controller: controller,
+          pageIndex: _currentPage,
+          pageCount: widget.pagePaths.length,
+        ),
+      ],
+    );
+  }
 
 
 
