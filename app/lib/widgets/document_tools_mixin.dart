@@ -374,10 +374,10 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
 
   Future<OcrScript?> pickOcrScript() async {
     final labels = <OcrScript, String>{
-      OcrScript.latin: 'Latin (English, European)',
-      OcrScript.chinese: 'Chinese',
-      OcrScript.korean: 'Korean',
-      OcrScript.japanese: 'Japanese',
+      OcrScript.latin: AppLocalizations.of(context).ocrScriptLatin,
+      OcrScript.chinese: AppLocalizations.of(context).ocrScriptChinese,
+      OcrScript.korean: AppLocalizations.of(context).ocrScriptKorean,
+      OcrScript.japanese: AppLocalizations.of(context).ocrScriptJapanese,
     };
     return showModalBottomSheet<OcrScript>(
       context: context,

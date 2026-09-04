@@ -468,7 +468,7 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
       sourcePath: sourcePath,
       uiSettings: [
         AndroidUiSettings(
-          toolbarTitle: _currentMode == _CaptureMode.idCard ? 'Crop ID Card' : 'Crop Document',
+          toolbarTitle: _currentMode == _CaptureMode.idCard ? l10n.cropIdCardTitle : l10n.cropDocumentTitle,
           toolbarColor: Colors.black,
           toolbarWidgetColor: Colors.white,
           initAspectRatio: CropAspectRatioPreset.original,
@@ -476,7 +476,7 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
           aspectRatioPresets: ratios,
         ),
         IOSUiSettings(
-          title: _currentMode == _CaptureMode.idCard ? 'Crop ID Card' : 'Crop Document',
+          title: _currentMode == _CaptureMode.idCard ? l10n.cropIdCardTitle : l10n.cropDocumentTitle,
           aspectRatioPresets: ratios,
         ),
       ],
@@ -554,13 +554,13 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
   String _getModeCaption() {
     switch (_currentMode) {
       case _CaptureMode.docs:
-        return 'Flexible crop: Original, Square, 4:3, 3:2, 16:9';
+        return l10n.captionDocs;
       case _CaptureMode.ocr:
-        return 'Text crop: Original, Square, 4:3';
+        return l10n.captionOcr;
       case _CaptureMode.idCard:
-        return 'Two-sided ID capture: Front + Back';
+        return l10n.captionIdCard;
       case _CaptureMode.passport:
-        return 'Passport crop: 4:3 or Original';
+        return l10n.captionPassport;
     }
   }
 
@@ -637,10 +637,10 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
                       spacing: AppSpacing.xs,
                       runSpacing: AppSpacing.xs,
                       children: [
-                        _buildModeCard('Document', Icons.description_outlined, _CaptureMode.docs),
-                        _buildModeCard('OCR Text', Icons.text_snippet_outlined, _CaptureMode.ocr),
-                        _buildModeCard('ID Card', Icons.credit_card_outlined, _CaptureMode.idCard),
-                        _buildModeCard('Passport', Icons.badge_outlined, _CaptureMode.passport),
+                        _buildModeCard(l10n.modeDocument, Icons.description_outlined, _CaptureMode.docs),
+                        _buildModeCard(l10n.modeOcr, Icons.text_snippet_outlined, _CaptureMode.ocr),
+                        _buildModeCard(l10n.modeIdCard, Icons.credit_card_outlined, _CaptureMode.idCard),
+                        _buildModeCard(l10n.modePassport, Icons.badge_outlined, _CaptureMode.passport),
                       ],
                     ),
                     const SizedBox(height: AppSpacing.sm),
@@ -661,8 +661,8 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
                         child: Column(
                           children: [
                             Text(
-                              _idFrontPath == null ? 'Step 1: Capture Front Side' : 
-                              _idBackPath == null ? 'Step 2: Capture Back Side' : 'Generating PDF...',
+                              _idFrontPath == null ? l10n.idStepFront :
+                              _idBackPath == null ? l10n.idStepBack : l10n.idGenerating,
                               style: TextStyle(color: textPrimary, fontWeight: FontWeight.w600),
                             ),
                             if (_idFrontPath != null) ...[
@@ -704,7 +704,7 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
                             onPressed: _takePhoto,
                             icon: const Icon(Icons.camera_alt),
                             label: Text(_currentMode == _CaptureMode.idCard ? 
-                              (_idFrontPath == null ? 'Capture Front Side' : 'Capture Back Side') : 'Camera'),
+                              (_idFrontPath == null ? l10n.captureFrontSide : l10n.captureBackSide) : l10n.cameraSource),
                             style: ElevatedButton.styleFrom(backgroundColor: accent, foregroundColor: Colors.white, padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12), shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppShape.buttonRadius))),
                           ),
                           const SizedBox(height: AppSpacing.md),
@@ -712,7 +712,7 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
                             onPressed: _pickImage,
                             icon: const Icon(Icons.add_photo_alternate),
                             label: Text(_currentMode == _CaptureMode.idCard ? 
-                              (_idFrontPath == null ? 'Import Front Side' : 'Import Back Side') : 'Import'),
+                              (_idFrontPath == null ? l10n.importFrontSide : l10n.importBackSide) : l10n.commonImport),
                             style: ElevatedButton.styleFrom(backgroundColor: surface, foregroundColor: textPrimary, padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12), shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppShape.buttonRadius))),
                           ),
                           const SizedBox(height: AppSpacing.md),

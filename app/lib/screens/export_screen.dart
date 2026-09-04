@@ -340,7 +340,7 @@ class _ExportScreenState extends State<ExportScreen> {
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
                                   _fixedSeg(_pageFormat == ExportPageFormat.a4, 'A4', () => setState(() => _pageFormat = ExportPageFormat.a4), accent, surface, textPrimary),
-                                  _fixedSeg(_pageFormat == ExportPageFormat.letter, 'Letter (US)', () => setState(() => _pageFormat = ExportPageFormat.letter), accent, surface, textPrimary),
+                                  _fixedSeg(_pageFormat == ExportPageFormat.letter, AppLocalizations.of(context).pageFormatLetter, () => setState(() => _pageFormat = ExportPageFormat.letter), accent, surface, textPrimary),
                                 ],
                               ),
                               if (_isSingleDoc) ...[
@@ -369,9 +369,9 @@ class _ExportScreenState extends State<ExportScreen> {
                         if (showCompression) ...[
                           const SizedBox(height: AppSpacing.sm),
                           _segmentRow([
-                            _seg(_selectedCompression == CompressionTier.small, 'Small', () => setState(() => _selectedCompression = CompressionTier.small), accent, surface, textPrimary),
-                            _seg(_selectedCompression == CompressionTier.medium, 'Medium', () => setState(() => _selectedCompression = CompressionTier.medium), accent, surface, textPrimary),
-                            _seg(_selectedCompression == CompressionTier.original, 'Original', () => setState(() => _selectedCompression = CompressionTier.original), accent, surface, textPrimary),
+                            _seg(_selectedCompression == CompressionTier.small, AppLocalizations.of(context).compressSmall, () => setState(() => _selectedCompression = CompressionTier.small), accent, surface, textPrimary),
+                            _seg(_selectedCompression == CompressionTier.medium, AppLocalizations.of(context).compressMedium, () => setState(() => _selectedCompression = CompressionTier.medium), accent, surface, textPrimary),
+                            _seg(_selectedCompression == CompressionTier.original, AppLocalizations.of(context).filterOriginal, () => setState(() => _selectedCompression = CompressionTier.original), accent, surface, textPrimary),
                           ]),
                           FutureBuilder<int>(
                             future: _calculateEstimate(),

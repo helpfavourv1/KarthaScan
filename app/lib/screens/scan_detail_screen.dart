@@ -273,9 +273,9 @@ class _ScanDetailScreenState extends State<ScanDetailScreen>
                   labelColor: accent,
                   unselectedLabelColor: textSecondary,
                   indicatorColor: accent,
-                  tabs: const [
-                    Tab(text: 'Image'),
-                    Tab(text: 'OCR Text'),
+                  tabs: [
+                    Tab(text: AppLocalizations.of(context).tabImageLabel),
+                    Tab(text: AppLocalizations.of(context).tabOcrTextLabel),
                   ],
                 ),
               ),

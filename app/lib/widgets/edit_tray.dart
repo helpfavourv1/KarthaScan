@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../core/utils/constants.dart';
 import 'ios_pressable.dart';
+import '../l10n/app_localizations.dart';
 
 class EditTray extends StatefulWidget {
   const EditTray({
@@ -189,28 +190,29 @@ class _EditTrayState extends State<EditTray> with SingleTickerProviderStateMixin
   }
 
   List<Widget> _buildTrain(Color coachFill, Color coachBorder, Color iconColor, Color textColor, Color hubColor, Color spokeColor, Color couplerColor) {
+    final l10n = AppLocalizations.of(context);
     final items = <_TrayItem>[
-      _TrayItem(Icons.mode_edit_outline, 'Annotate', widget.onMarkup),
-      _TrayItem(Icons.draw_outlined, 'Sign', widget.onSign),
-      _TrayItem(Icons.text_fields, 'Watermark', widget.onWatermark),
-      _TrayItem(Icons.crop, 'OCR', widget.onOcr),
-      _TrayItem(Icons.file_download_outlined, 'Convert', widget.onConvert),
-      _TrayItem(Icons.compress, 'Compress', widget.onCompress),
-      _TrayItem(Icons.rotate_90_degrees_ccw, 'Rotate', widget.onRotate),
-      _TrayItem(Icons.aspect_ratio, 'Resize', widget.onResize),
-      _TrayItem(Icons.reorder, 'Pages', widget.onPages),
-      _TrayItem(Icons.filter_alt_outlined, 'Filter', widget.onFilter),
-      _TrayItem(Icons.crop_free, 'Crop', widget.onCrop),
-      _TrayItem(Icons.title, 'Text', widget.onText),
-      _TrayItem(Icons.note_outlined, 'Note', widget.onNote),
-      _TrayItem(Icons.date_range, 'Date', widget.onDate),
-      _TrayItem(Icons.check_box_outlined, 'Check', widget.onCheckbox),
-      _TrayItem(Icons.approval_outlined, 'Custom Seal', widget.onSeal),
-      _TrayItem(Icons.print_outlined, 'Print', widget.onPrint),
-      _TrayItem(Icons.mail_outline, 'Email', widget.onEmail),
-      if (widget.onFill != null) _TrayItem(Icons.keyboard, 'Fill', widget.onFill!),
-      _TrayItem(Icons.brush_outlined, 'Eraser', widget.onErase),
-      if (widget.onRevert != null) _TrayItem(Icons.undo, 'Revert', widget.onRevert!),
+      _TrayItem(Icons.mode_edit_outline, l10n.annotateTitle, widget.onMarkup),
+      _TrayItem(Icons.draw_outlined, l10n.signatureTitle, widget.onSign),
+      _TrayItem(Icons.text_fields, l10n.watermarkLabel, widget.onWatermark),
+      _TrayItem(Icons.crop, l10n.ocrSectionLabel, widget.onOcr),
+      _TrayItem(Icons.file_download_outlined, l10n.commonConvert, widget.onConvert),
+      _TrayItem(Icons.compress, l10n.compressLabel, widget.onCompress),
+      _TrayItem(Icons.rotate_90_degrees_ccw, l10n.rotateLabel, widget.onRotate),
+      _TrayItem(Icons.aspect_ratio, l10n.resizeTitle, widget.onResize),
+      _TrayItem(Icons.reorder, l10n.pagesLabel, widget.onPages),
+      _TrayItem(Icons.filter_alt_outlined, l10n.filterTitle, widget.onFilter),
+      _TrayItem(Icons.crop_free, l10n.cropLabel, widget.onCrop),
+      _TrayItem(Icons.title, l10n.textLabel, widget.onText),
+      _TrayItem(Icons.note_outlined, l10n.noteLabel, widget.onNote),
+      _TrayItem(Icons.date_range, l10n.dateLabel, widget.onDate),
+      _TrayItem(Icons.check_box_outlined, l10n.checkLabel, widget.onCheckbox),
+      _TrayItem(Icons.approval_outlined, l10n.sealCustom, widget.onSeal),
+      _TrayItem(Icons.print_outlined, l10n.commonPrint, widget.onPrint),
+      _TrayItem(Icons.mail_outline, l10n.emailLabel, widget.onEmail),
+      if (widget.onFill != null) _TrayItem(Icons.keyboard, l10n.fillTooltip, widget.onFill!),
+      _TrayItem(Icons.brush_outlined, l10n.eraserTitle, widget.onErase),
+      if (widget.onRevert != null) _TrayItem(Icons.undo, l10n.commonRevert, widget.onRevert!),
     ];
 
     final widgets = <Widget>[];

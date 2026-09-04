@@ -308,12 +308,13 @@ class _OcrLanguagesSheet extends StatefulWidget {
 }
 
 class _OcrLanguagesSheetState extends State<_OcrLanguagesSheet> {
-  static const Map<OcrScript, String> _labels = {
-    OcrScript.latin: 'Latin (English, European)',
-    OcrScript.chinese: 'Chinese',
-    OcrScript.korean: 'Korean',
-    OcrScript.japanese: 'Japanese',
-  };
+  static String _scriptLabel(OcrScript script, AppLocalizations l10n) {
+    if (script == OcrScript.latin) return l10n.ocrScriptLatin;
+    if (script == OcrScript.chinese) return l10n.ocrScriptChinese;
+    if (script == OcrScript.korean) return l10n.ocrScriptKorean;
+    if (script == OcrScript.japanese) return l10n.ocrScriptJapanese;
+    return script.name;
+  }
 
   OcrScript? _probing;
 
@@ -363,14 +364,14 @@ class _OcrLanguagesSheetState extends State<_OcrLanguagesSheet> {
                   : _probing == script
                       ? AppLocalizations.of(context).ocrStatusChecking
                       : failure != null
-                          ? (isHard ? 'Unsupported' : failure.$1)
+                          ? (isHard ? AppLocalizations.of(context).ocrStatusUnsupported : failure.$1)
                           : AppLocalizations.of(context).ocrStatusOnDemand;
               final Color statusColor = failure != null
                   ? (isHard ? Colors.red : Colors.orange)
                   : textSecondary;
               return ListTile(
                 contentPadding: EdgeInsets.zero,
-                title: Text(_labels[script] ?? script.name, style: TextStyle(color: textPrimary)),
+                title: Text(_scriptLabel(script, AppLocalizations.of(context)), style: TextStyle(color: textPrimary)),
                 subtitle: Text(status, style: TextStyle(color: statusColor, fontSize: 11)),
                 trailing: _probing == script
                     ? const SizedBox(width: 18, height: 18, child: CircularProgressIndicator(strokeWidth: 2))
