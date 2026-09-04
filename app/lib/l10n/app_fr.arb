@@ -397,5 +397,13 @@
   "annotationModeHighlighter": "Surligneur",
   "annotationModeRect": "Rectangle",
   "annotationModeArrow": "Flèche",
-  "annotationModeEllipse": "Ellipse"
+  "annotationModeEllipse": "Ellipse",
+  "sharePromptTitle": "Vous aimez KatharScan ?",
+  "sharePromptBody": "Partagez-le avec des amis qui ont besoin d'un scanner puissant.",
+  "sharePromptAction": "Partager l'app",
+  "sharePromptDismiss": "Pas maintenant",
+  "reviewPromptTitle": "Vous aimez KatharScan ?",
+  "reviewPromptBody": "Vos avis nous aident à grandir et gardent l'app gratuite.",
+  "reviewPromptYes": "Nous noter",
+  "reviewPromptNo": "Envoyer un avis"
 }

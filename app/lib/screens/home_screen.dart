@@ -15,6 +15,8 @@ import '../l10n/app_localizations.dart';
 import '../widgets/empty_state.dart';
 import '../widgets/folder_list_tile.dart';
 import '../widgets/scan_list_tile.dart';
+import '../core/services/engagement_service.dart';
+import '../core/providers/subscription_provider.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -39,11 +41,14 @@ class _HomeScreenState extends State<HomeScreen> {
   bool _isAdLoaded = false;
 
   @override
-  void initState() {
+  Future<void> initState() async {
     super.initState();
     _scanProvider = Provider.of<ScanProvider>(context, listen: false);
     _folderProvider = Provider.of<FolderProvider>(context, listen: false);
     _settingsProvider = Provider.of<SettingsProvider>(context, listen: false);
+    final subProvider = Provider.of<SubscriptionProvider>(context, listen: false);
+    await EngagementService.init(subProvider);
+    EngagementService.instance.recordHomeReturn();
     _initBannerAd();
   }
 
@@ -758,7 +763,7 @@ class _FeatureTickerState extends State<_FeatureTicker> with SingleTickerProvide
   double _segmentWidth = 1;
 
   @override
-  void initState() {
+  Future<void> initState() async {
     super.initState();
     _controller = AnimationController(vsync: this, duration: const Duration(seconds: 90));
 

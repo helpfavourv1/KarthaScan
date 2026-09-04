@@ -397,5 +397,13 @@
   "annotationModeHighlighter": "מדגש",
   "annotationModeRect": "מלבן",
   "annotationModeArrow": "חץ",
-  "annotationModeEllipse": "אליפסה"
+  "annotationModeEllipse": "אליפסה",
+  "sharePromptTitle": "אוהבים את KatharScan?",
+  "sharePromptBody": "שתפו אותו עם חברים שצריכים סורק מסמכים חזק.",
+  "sharePromptAction": "שתף אפליקציה",
+  "sharePromptDismiss": "לא עכשיו",
+  "reviewPromptTitle": "נהנים מ-KatharScan?",
+  "reviewPromptBody": "המשוב שלכם עוזר לנו לצמוח ושומר על האפליקציה חינמית.",
+  "reviewPromptYes": "דרגו אותנו",
+  "reviewPromptNo": "שלח משוב"
 }

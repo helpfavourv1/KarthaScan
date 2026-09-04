@@ -397,5 +397,13 @@
   "annotationModeHighlighter": "형광펜",
   "annotationModeRect": "직사각형",
   "annotationModeArrow": "화살표",
-  "annotationModeEllipse": "타원"
+  "annotationModeEllipse": "타원",
+  "sharePromptTitle": "KatharScan을 좋아하시나요?",
+  "sharePromptBody": "강력한 문서 스캐너가 필요한 친구와 공유하세요.",
+  "sharePromptAction": "앱 공유",
+  "sharePromptDismiss": "나중에",
+  "reviewPromptTitle": "KatharScan을 즐기시고 계신가요?",
+  "reviewPromptBody": "여러분의 피드백은 성장에 도움이 되며 앱을 무료로 유지합니다.",
+  "reviewPromptYes": "평가하기",
+  "reviewPromptNo": "피드백 보내기"
 }

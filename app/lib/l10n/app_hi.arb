@@ -397,5 +397,13 @@
   "annotationModeHighlighter": "हाइलाइटर",
   "annotationModeRect": "आयत",
   "annotationModeArrow": "तीर",
-  "annotationModeEllipse": "दीर्घवृत्त"
+  "annotationModeEllipse": "दीर्घवृत्त",
+  "sharePromptTitle": "क्या आपको KatharScan पसंद है?",
+  "sharePromptBody": "इसे उन दोस्तों के साथ साझा करें जिन्हें एक शक्तिशाली दस्तावेज़ स्कैनर की आवश्यकता है।",
+  "sharePromptAction": "ऐप साझा करें",
+  "sharePromptDismiss": "अभी नहीं",
+  "reviewPromptTitle": "क्या आप KatharScan का आनंद ले रहे हैं?",
+  "reviewPromptBody": "आपकी प्रतिक्रिया हमें बढ़ने में मदद करती है और ऐप को मुफ्त रखती है।",
+  "reviewPromptYes": "हमें रेट करें",
+  "reviewPromptNo": "प्रतिक्रिया भेजें"
 }

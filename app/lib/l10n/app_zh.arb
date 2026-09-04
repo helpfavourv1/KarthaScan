@@ -397,5 +397,13 @@
   "annotationModeHighlighter": "荧光笔",
   "annotationModeRect": "矩形",
   "annotationModeArrow": "箭头",
-  "annotationModeEllipse": "椭圆"
+  "annotationModeEllipse": "椭圆",
+  "sharePromptTitle": "喜欢 KatharScan 吗？",
+  "sharePromptBody": "与需要强大文档扫描仪的朋友分享。",
+  "sharePromptAction": "分享应用",
+  "sharePromptDismiss": "稍后",
+  "reviewPromptTitle": "喜欢使用 KatharScan 吗？",
+  "reviewPromptBody": "您的反馈有助于我们成长并保持应用免费。",
+  "reviewPromptYes": "给我们评分",
+  "reviewPromptNo": "发送反馈"
 }

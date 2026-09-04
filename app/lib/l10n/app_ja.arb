@@ -397,5 +397,13 @@
   "annotationModeHighlighter": "ハイライター",
   "annotationModeRect": "四角形",
   "annotationModeArrow": "矢印",
-  "annotationModeEllipse": "楕円"
+  "annotationModeEllipse": "楕円",
+  "sharePromptTitle": "KatharScanを気に入っていますか？",
+  "sharePromptBody": "強力なドキュメントスキャナーを必要としている友達と共有してください。",
+  "sharePromptAction": "アプリを共有",
+  "sharePromptDismiss": "後で",
+  "reviewPromptTitle": "KatharScanを楽しんでいますか？",
+  "reviewPromptBody": "あなたのフィードバックは私たちの成長を助け、アプリを無料で維持します。",
+  "reviewPromptYes": "評価する",
+  "reviewPromptNo": "フィードバックを送信"
 }

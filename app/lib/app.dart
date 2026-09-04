@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'core/services/engagement_service.dart';
+import 'widgets/share_prompt_sheet.dart';
+import 'widgets/review_sentiment_sheet.dart';
 import 'dart:async' show unawaited;
 import 'core/services/ad_pacing_service.dart';
 import 'core/services/interstitial_ad_service.dart';
@@ -123,4 +126,31 @@ class _KatharScanAppState extends State<KatharScanApp> with WidgetsBindingObserv
       ),
     );
   }
+}
+
+
+class EngagementPromptListener extends StatefulWidget {
+  const EngagementPromptListener({super.key, required this.child});
+  final Widget child;
+  @override State<EngagementPromptListener> createState() => _EngagementPromptListenerState();
+}
+class _EngagementPromptListenerState extends State<EngagementPromptListener> {
+  @override void initState() { super.initState(); EngagementService.instance.pendingPrompt.addListener(_checkPrompt); }
+  @override void dispose() { EngagementService.instance.pendingPrompt.removeListener(_checkPrompt); super.dispose(); }
+  void _checkPrompt() async {
+    final prompt = EngagementService.instance.pendingPrompt.value;
+    if (prompt == null || !mounted) return;
+    if (prompt == PendingPrompt.share) {
+      final result = await showModalBottomSheet<bool>(context: context, isScrollControlled: true, backgroundColor: Colors.transparent, builder: (ctx) => const SharePromptSheet());
+      if (result == true) {
+        EngagementService.instance.recordShareCompleted();
+      } else {
+        EngagementService.instance.recordShareDismissed();
+      }
+    } else if (prompt == PendingPrompt.review) {
+      final enjoyed = await showModalBottomSheet<bool>(context: context, isScrollControlled: true, backgroundColor: Colors.transparent, builder: (ctx) => const ReviewSentimentSheet());
+      EngagementService.instance.recordReviewSentiment(enjoyed ?? false);
+    }
+  }
+  @override Widget build(BuildContext context) => widget.child;
 }

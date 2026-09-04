@@ -17,6 +17,7 @@ import '../widgets/document_tools_mixin.dart';
 import '../widgets/edit_tray.dart';
 import '../widgets/ink_board.dart';
 import '../widgets/scan_preview_card.dart';
+import '../core/services/engagement_service.dart';
 
 class ScanDetailScreen extends StatefulWidget {
   const ScanDetailScreen({super.key, required this.documentId});
@@ -50,6 +51,7 @@ class _ScanDetailScreenState extends State<ScanDetailScreen>
     _ocrService = OcrService();
     _inkController = InkController(onChange: _persistSignature);
     _scanProvider.setActiveScan(widget.documentId);
+    EngagementService.instance.markScanDetailViewed();
     _tabController = TabController(length: 2, vsync: this);
     _tabController.addListener(() { if (mounted) setState(() {}); });
     WidgetsBinding.instance.addPostFrameCallback((_) {

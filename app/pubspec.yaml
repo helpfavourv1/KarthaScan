@@ -19,6 +19,7 @@ dependencies:
 
   # Monetization & Ads
   in_app_purchase: ^3.2.1
+  in_app_review: ^2.0.12
   google_mobile_ads: ^9.1.0
 
   # Storage & Security

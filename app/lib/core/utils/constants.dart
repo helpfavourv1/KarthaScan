@@ -193,6 +193,12 @@ abstract final class AppPermissionRationale {
   AppPermissionRationale._();
 }
 
+
+abstract final class AppStoreLinks {
+  static const String playStoreUrl = 'https://play.google.com/store/apps/details?id=com.zdmgold.katharscan';
+  static const String appStoreUrl = 'https://apps.apple.com/app/katharscan/id000000000';
+}
+
 abstract final class AppSupportContact {
   static const String supportEmail = 'accessmakr@gmail.com';
   static const String privacyPolicyUrl = 'https://katharscan.helpfavourv1.workers.dev/privacy';

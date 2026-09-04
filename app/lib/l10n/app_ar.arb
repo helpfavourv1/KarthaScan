@@ -397,5 +397,13 @@
   "annotationModeHighlighter": "قلم تمييز",
   "annotationModeRect": "مستطيل",
   "annotationModeArrow": "سهم",
-  "annotationModeEllipse": "شكل بيضاوي"
+  "annotationModeEllipse": "شكل بيضاوي",
+  "sharePromptTitle": "هل تحب KatharScan؟",
+  "sharePromptBody": "شاركه مع الأصدقاء الذين يحتاجون إلى ماسح مستندات قوي.",
+  "sharePromptAction": "مشاركة التطبيق",
+  "sharePromptDismiss": "ليس الآن",
+  "reviewPromptTitle": "هل تستمتع بـ KatharScan؟",
+  "reviewPromptBody": "تعليقاتك تساعدنا على النمو وتحافظ على التطبيق مجانًا.",
+  "reviewPromptYes": "قيمنا",
+  "reviewPromptNo": "إرسال ملاحظات"
 }

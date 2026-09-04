@@ -29,6 +29,7 @@ import '../widgets/layer_control_panel.dart';
 import '../core/models/signature_placement.dart';
 import '../widgets/signature_editor_bar.dart';
 import '../widgets/ios_pressable.dart';
+import '../core/services/engagement_service.dart';
 
 class ExportScreen extends StatefulWidget {
   const ExportScreen({super.key, required this.documentIds, this.initialFormat});
@@ -226,6 +227,7 @@ class _ExportScreenState extends State<ExportScreen> {
     if (paths == null || paths.isEmpty) return;
     try {
       await _shareService.shareFiles(filePaths: paths);
+      EngagementService.instance.recordExport();
     } on ShareFailedException {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(AppLocalizations.of(context).genericErrorMessage)));
@@ -262,6 +264,7 @@ class _ExportScreenState extends State<ExportScreen> {
     if (!mounted) return;
     if (saved > 0) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.saveToDownloadsAction)));
+      EngagementService.instance.recordExport();
     } else if (lastError != null) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('${l10n.exportGenericError}: $lastError')));
     }
