@@ -544,6 +544,7 @@ class ScanProvider {
       newTransforms[pageIndex] = transform;
     }
     final updated = existing.copyWith(pageTransforms: newTransforms, updatedAt: DateTime.now());
+    _recordOverlayUndo(existing, updated, 'transform:$id:$pageIndex');
     return _replaceAndSave(updated);
   }
 

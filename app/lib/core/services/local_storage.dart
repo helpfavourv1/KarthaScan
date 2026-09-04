@@ -175,7 +175,7 @@ class LocalStorageService {
       return true;
     } catch (error, stackTrace) {
       _logError('saveDocument', error, stackTrace);
-      return true;
+      return false;
     }
   }
 
@@ -203,7 +203,7 @@ class LocalStorageService {
       return true;
     } catch (error, stackTrace) {
       _logError('deleteDocument', error, stackTrace);
-      return true;
+      return false;
     }
   }
 
@@ -371,7 +371,7 @@ class LocalStorageService {
       return true;
     } catch (error, stackTrace) {
       _logError('saveFolder', error, stackTrace);
-      return true;
+      return false;
     }
   }
 
@@ -387,7 +387,7 @@ class LocalStorageService {
       return true;
     } catch (error, stackTrace) {
       _logError('deleteFolder', error, stackTrace);
-      return true;
+      return false;
     }
   }
 
@@ -439,7 +439,7 @@ class LocalStorageService {
       );
     } catch (error, stackTrace) {
       _logError('saveSettings', error, stackTrace);
-      return true;
+      return false;
     }
   }
 
