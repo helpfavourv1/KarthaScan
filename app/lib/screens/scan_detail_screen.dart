@@ -373,18 +373,6 @@ class _ScanDetailScreenState extends State<ScanDetailScreen>
                   ],
                 ),
               ),
-              if (_tabController.index == 0 && (_editMode != TrayEditMode.none || _lastAddedAnnotatePath != null || _lastAddedWatermarkText != null || _lastAddedStampId != null))
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-                  child: Align(
-                    alignment: Alignment.centerRight,
-                    child: ActionChip(
-                      avatar: const Icon(Icons.check, size: 14),
-                      label: Text(AppLocalizations.of(context).commonDone, style: TextStyle(fontSize: 11)),
-                      onPressed: _closeEditor,
-                    ),
-                  ),
-                ),
               if (_tabController.index == 0)
               EditTray(
                 compact: true,

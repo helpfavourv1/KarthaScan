@@ -53,7 +53,7 @@ class _ConditionalBannerState extends State<ConditionalBanner> {
   Widget build(BuildContext context) {
     final subscriptionProvider = Provider.of<SubscriptionProvider>(context, listen: true);
     if (subscriptionProvider.adsRemoved.value || _bannerAd == null || !_isAdLoaded) {
-      return const SizedBox.shrink();
+      return const SafeArea(child: SizedBox.shrink());
     }
     return SafeArea(
       child: SizedBox(
