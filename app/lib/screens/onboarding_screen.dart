@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -17,12 +16,12 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   int _currentIndex = 0;
 
   static const List<String> _assets = [
-    'assets/onboarding/welcome.svg',
-    'assets/onboarding/tools.svg',
-    'assets/onboarding/ocr.svg',
-    'assets/onboarding/sign.svg',
-    'assets/onboarding/edit.svg',
-    'assets/onboarding/privacy.svg',
+    'assets/onboarding/welcome.png',
+    'assets/onboarding/tools.png',
+    'assets/onboarding/ocr.png',
+    'assets/onboarding/sign.png',
+    'assets/onboarding/edit.png',
+    'assets/onboarding/privacy.png',
   ];
 
   void _onPageChanged(int index) => setState(() => _currentIndex = index);
@@ -86,7 +85,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        SvgPicture.asset(_assets[index], height: 240, width: 240),
+                        Image.asset(_assets[index], height: 220, width: double.infinity, fit: BoxFit.contain),
                         const SizedBox(height: 40),
                         Text(titles[index], style: TextStyle(color: textPrimary, fontSize: 26, fontWeight: FontWeight.w700, height: 1.2), textAlign: TextAlign.center),
                         const SizedBox(height: 14),
