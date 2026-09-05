@@ -581,8 +581,8 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
         });
       },
       child: Container(
-        width: 74,
         height: 84,
+        margin: const EdgeInsets.symmetric(horizontal: 2),
         decoration: BoxDecoration(
           color: isSelected ? accent.withValues(alpha: 0.15) : surface,
           borderRadius: BorderRadius.circular(12),
@@ -633,14 +633,12 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
               : Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    Wrap(
-                      spacing: AppSpacing.xs,
-                      runSpacing: AppSpacing.xs,
+                    Row(
                       children: [
-                        _buildModeCard(l10n.modeDocument, Icons.description_outlined, _CaptureMode.docs),
-                        _buildModeCard(l10n.modeOcr, Icons.text_snippet_outlined, _CaptureMode.ocr),
-                        _buildModeCard(l10n.modeIdCard, Icons.credit_card_outlined, _CaptureMode.idCard),
-                        _buildModeCard(l10n.modePassport, Icons.badge_outlined, _CaptureMode.passport),
+                        Expanded(child: _buildModeCard(l10n.modeDocument, Icons.description_outlined, _CaptureMode.docs)),
+                        Expanded(child: _buildModeCard(l10n.modeOcr, Icons.text_snippet_outlined, _CaptureMode.ocr)),
+                        Expanded(child: _buildModeCard(l10n.modeIdCard, Icons.credit_card_outlined, _CaptureMode.idCard)),
+                        Expanded(child: _buildModeCard(l10n.modePassport, Icons.badge_outlined, _CaptureMode.passport)),
                       ],
                     ),
                     const SizedBox(height: AppSpacing.sm),
