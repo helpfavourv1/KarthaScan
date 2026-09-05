@@ -229,7 +229,7 @@ class _ScanPreviewCardState extends State<ScanPreviewCard> {
                 selectedAnnotateBytesPath: _selectedAnnotateBytesPath,
                 selectedWatermarkText: _selectedWatermarkText,
                 selectedStampId: _selectedStampId,
-                onAnnotateSelect: (layer) => setState(() { _selectedAnnotateBytesPath = layer.bytesPath; _selectedWatermarkText = null; _selectedStampId = null; }),
+                onAnnotateSelect: (layer) => setState(() { _selectedAnnotateBytesPath = layer.bytesPath; _selectedWatermarkText = null; _selectedStampId = null; widget.onAnnotateSelect?.call(); }),
                 onAnnotateUpdate: widget.onAnnotateLayerUpdate,
                 onSignatureSelect: () {
                   setState(() {});

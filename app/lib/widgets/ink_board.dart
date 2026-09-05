@@ -234,8 +234,7 @@ class InkOverlayPage extends StatelessWidget {
                   );
                 },
                 child: Container(
-                  padding: const EdgeInsets.all(12),
-                  decoration: isEdit
+                                    decoration: isEdit
                       ? BoxDecoration(
                           border: Border.all(color: accent, width: 1.5),
                           borderRadius: BorderRadius.circular(4),
@@ -290,6 +289,7 @@ class AnnotateOverlayPage extends StatefulWidget {
 
 class _AnnotateOverlayPageState extends State<AnnotateOverlayPage> {
   final Map<String, Uint8List> _cache = {};
+  final Map<String, double> _aspectCache = {};
 
   @override
   Widget build(BuildContext context) {
@@ -300,6 +300,10 @@ class _AnnotateOverlayPageState extends State<AnnotateOverlayPage> {
             if (!_cache.containsKey(layer.bytesPath)) {
               if (File(layer.bytesPath).existsSync()) {
                 _cache[layer.bytesPath] = File(layer.bytesPath).readAsBytesSync();
+                final decoded = img.decodeImage(_cache[layer.bytesPath]!);
+                if (decoded != null && decoded.height > 0) {
+                  _aspectCache[layer.bytesPath] = decoded.width / decoded.height;
+                }
               } else {
                 _cache[layer.bytesPath] = Uint8List(0);
               }
@@ -307,7 +311,8 @@ class _AnnotateOverlayPageState extends State<AnnotateOverlayPage> {
             final bytes = _cache[layer.bytesPath]!;
             if (bytes.isEmpty) return const SizedBox.shrink();
             final sigW = widget.iw * 0.28 * layer.placement.scale;
-            final sigH = sigW / 2.0;
+            final aspect = _aspectCache[layer.bytesPath] ?? 2.0;
+            final sigH = sigW / aspect;
             final isSelected = layer.bytesPath == widget.selectedBytesPath;
             return Positioned(
               left: widget.dx + layer.placement.pctX * widget.iw - sigW / 2,
@@ -321,8 +326,7 @@ class _AnnotateOverlayPageState extends State<AnnotateOverlayPage> {
                   widget.onDrag(layer, d.delta.dx / scale, d.delta.dy / scale);
                 },
                 child: Container(
-                  padding: const EdgeInsets.all(12),
-                  decoration: isSelected
+                                    decoration: isSelected
                       ? BoxDecoration(
                           border: Border.all(color: widget.accent, width: 1.5),
                           borderRadius: BorderRadius.circular(4),
@@ -379,7 +383,6 @@ class WatermarkOverlayPage extends StatelessWidget {
         for (final layer in layers.where((l) => l.pageIndex == pageIndex))
           Builder(builder: (context) {
             final isSelected = layer.text == selectedText;
-            final fontSize = layer.fontSize * layer.placement.scale;
             final fontWeight = layer.bold ? FontWeight.w700 : FontWeight.w400;
             final fontStyle = layer.italic ? FontStyle.italic : FontStyle.normal;
             final decoration = layer.underline ? TextDecoration.underline : TextDecoration.none;
@@ -387,10 +390,13 @@ class WatermarkOverlayPage extends StatelessWidget {
             final shadows = layer.shadowColor != null
                 ? [Shadow(offset: Offset(layer.shadowOffsetX, layer.shadowOffsetY), color: Color(layer.shadowColor!), blurRadius: 2)]
                 : null;
-
+            final boxW = iw * 0.30 * layer.placement.scale;
+            final boxH = iw * 0.10 * layer.placement.scale;
             return Positioned(
-              left: dx + layer.placement.pctX * iw - (iw * 0.3) / 2,
-              top: dy + layer.placement.pctY * ih - fontSize / 2,
+              left: dx + layer.placement.pctX * iw - boxW / 2,
+              top: dy + layer.placement.pctY * ih - boxH / 2,
+              width: boxW,
+              height: boxH,
               child: GestureDetector(
                 behavior: HitTestBehavior.opaque,
                 onTap: () { onSelect(layer); onSelected?.call(); },
@@ -400,25 +406,27 @@ class WatermarkOverlayPage extends StatelessWidget {
                   onDrag(layer, d.delta.dx / scale, d.delta.dy / scale);
                 },
                 child: Container(
-                  padding: const EdgeInsets.all(12),
                   decoration: isSelected
                       ? BoxDecoration(
                           border: Border.all(color: accent, width: 1.5),
                           borderRadius: BorderRadius.circular(4),
                         )
                       : null,
-                  child: Transform.rotate(
-                    angle: layer.placement.rotationDegrees * 3.14159 / 180,
-                    child: Text(
-                      layer.text,
-                      style: TextStyle(
-                        fontSize: fontSize,
-                        fontWeight: fontWeight,
-                        fontStyle: fontStyle,
-                        fontFamily: layer.fontFamily,
-                        color: color,
-                        decoration: decoration,
-                        shadows: shadows,
+                  child: FittedBox(
+                    fit: BoxFit.contain,
+                    child: Transform.rotate(
+                      angle: layer.placement.rotationDegrees * 3.14159 / 180,
+                      child: Text(
+                        layer.text,
+                        style: TextStyle(
+                          fontSize: 100,
+                          fontWeight: fontWeight,
+                          fontStyle: fontStyle,
+                          fontFamily: layer.fontFamily,
+                          color: color,
+                          decoration: decoration,
+                          shadows: shadows,
+                        ),
                       ),
                     ),
                   ),
@@ -430,6 +438,7 @@ class WatermarkOverlayPage extends StatelessWidget {
     );
   }
 }
+
 
 // === StampOverlayPage: renders text stamps as live overlay ===
 
@@ -578,8 +587,7 @@ class _StampOverlayPageState extends State<StampOverlayPage> {
                     widget.onDrag(layer, d.delta.dx / scale, d.delta.dy / scale);
                   },
                   child: Container(
-                    padding: const EdgeInsets.all(12),
-                    decoration: isSelected ? BoxDecoration(border: Border.all(color: widget.accent, width: 1.5), borderRadius: BorderRadius.circular(4)) : null,
+                                        decoration: isSelected ? BoxDecoration(border: Border.all(color: widget.accent, width: 1.5), borderRadius: BorderRadius.circular(4)) : null,
                     child: Transform.rotate(
                       angle: layer.placement.rotationDegrees * 3.14159 / 180,
                       child: SizedBox(
@@ -615,8 +623,7 @@ class _StampOverlayPageState extends State<StampOverlayPage> {
                     widget.onDrag(layer, d.delta.dx / scale, d.delta.dy / scale);
                   },
                   child: Container(
-                    padding: const EdgeInsets.all(12),
-                    decoration: isSelected ? BoxDecoration(border: Border.all(color: widget.accent, width: 1.5), borderRadius: BorderRadius.circular(4)) : null,
+                                        decoration: isSelected ? BoxDecoration(border: Border.all(color: widget.accent, width: 1.5), borderRadius: BorderRadius.circular(4)) : null,
                     child: Transform.rotate(
                       angle: layer.placement.rotationDegrees * 3.14159 / 180,
                       child: SizedBox(width: size, height: size, child: CustomPaint(painter: _SealPainter(layer, centerImage: centerImage))),
@@ -625,7 +632,8 @@ class _StampOverlayPageState extends State<StampOverlayPage> {
                 ),
               );
             }
-            final fontSize = layer.fontSize * layer.placement.scale;
+            final boxW = widget.iw * 0.30 * layer.placement.scale;
+            final boxH = widget.iw * 0.10 * layer.placement.scale;
             final color = Color(layer.color).withValues(alpha: layer.opacity);
             final isFill = layer.kind == 'fill';
             final shadows = layer.halo
@@ -635,8 +643,10 @@ class _StampOverlayPageState extends State<StampOverlayPage> {
                   ]
                 : null;
             return Positioned(
-              left: widget.dx + layer.placement.pctX * widget.iw - (widget.iw * 0.3) / 2,
-              top: widget.dy + layer.placement.pctY * widget.ih - fontSize / 2,
+              left: widget.dx + layer.placement.pctX * widget.iw - boxW / 2,
+              top: widget.dy + layer.placement.pctY * widget.ih - boxH / 2,
+              width: boxW,
+              height: boxH,
               child: GestureDetector(
                 behavior: HitTestBehavior.opaque,
                 onTap: () { widget.onSelect(layer); widget.onSelected?.call(); },
@@ -646,7 +656,6 @@ class _StampOverlayPageState extends State<StampOverlayPage> {
                   widget.onDrag(layer, d.delta.dx / scale, d.delta.dy / scale);
                 },
                 child: Container(
-                  padding: const EdgeInsets.all(12),
                   decoration: BoxDecoration(
                     color: layer.kind == 'note' && layer.noteBgColor != null ? Color(layer.noteBgColor!).withValues(alpha: layer.opacity) : null,
                     borderRadius: BorderRadius.circular(layer.kind == 'note' ? 16 : 4),
@@ -654,16 +663,19 @@ class _StampOverlayPageState extends State<StampOverlayPage> {
                         ? Border.all(color: const Color(0xFF007AFF), width: 1.5)
                         : (isSelected ? Border.all(color: widget.accent, width: 1.5) : null),
                   ),
-                  child: Transform.rotate(
-                    angle: layer.placement.rotationDegrees * 3.14159 / 180,
-                    child: Text(
-                      layer.text,
-                      style: TextStyle(
-                        fontSize: fontSize,
-                        fontWeight: FontWeight.values.firstWhere((w) => w.value == layer.fontWeight, orElse: () => FontWeight.w700),
-                        fontFamily: layer.fontFamily,
-                        color: color,
-                        shadows: shadows,
+                  child: FittedBox(
+                    fit: BoxFit.contain,
+                    child: Transform.rotate(
+                      angle: layer.placement.rotationDegrees * 3.14159 / 180,
+                      child: Text(
+                        layer.text,
+                        style: TextStyle(
+                          fontSize: 100,
+                          fontWeight: FontWeight.values.firstWhere((w) => w.value == layer.fontWeight, orElse: () => FontWeight.w700),
+                          fontFamily: layer.fontFamily,
+                          color: color,
+                          shadows: shadows,
+                        ),
                       ),
                     ),
                   ),

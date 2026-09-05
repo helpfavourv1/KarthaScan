@@ -125,9 +125,10 @@ class ExportService {
   img.Image _compositeSignature(
     img.Image page,
     img.Image signature,
-    SignaturePlacement placement,
-  ) {
-    final targetWidth = (page.width * 0.28 * placement.scale).round();
+    SignaturePlacement placement, {
+    double widthFraction = 0.28,
+  }) {
+    final targetWidth = (page.width * widthFraction * placement.scale).round();
     final targetHeight = (signature.height * targetWidth / signature.width).round();
     var sig = img.copyResize(signature, width: targetWidth, height: targetHeight);
     if (placement.rotationDegrees != 0) {
@@ -232,7 +233,7 @@ class ExportService {
         if (bytes != null) {
           final sigImage = img.decodePng(bytes);
           if (sigImage != null) {
-            decoded = _compositeSignature(decoded, sigImage, layer.placement);
+            decoded = _compositeSignature(decoded, sigImage, layer.placement, widthFraction: 0.28);
           }
         }
       }
@@ -240,7 +241,7 @@ class ExportService {
         final annotateBytes = await _readBytes(annotate.bytesPath);
         final annotateImage = img.decodePng(annotateBytes);
         if (annotateImage != null) {
-          decoded = _compositeSignature(decoded, annotateImage, annotate.placement);
+          decoded = _compositeSignature(decoded, annotateImage, annotate.placement, widthFraction: 0.28);
         }
       }
       for (final wm in watermarkLayers) {
@@ -248,7 +249,7 @@ class ExportService {
         if (wmBytes != null) {
           final wmImage = img.decodePng(wmBytes);
           if (wmImage != null) {
-            decoded = _compositeSignature(decoded, wmImage, wm.placement);
+            decoded = _compositeSignature(decoded, wmImage, wm.placement, widthFraction: 0.30);
           }
         }
       }
@@ -259,7 +260,8 @@ class ExportService {
         if (stBytes != null) {
           final stImage = img.decodePng(stBytes);
           if (stImage != null) {
-            decoded = _compositeSignature(decoded, stImage, st.placement);
+            final frac = st.kind == 'checkbox' ? 0.15 : (st.kind == 'seal' ? 0.25 : 0.30);
+            decoded = _compositeSignature(decoded, stImage, st.placement, widthFraction: frac);
           }
         }
       }

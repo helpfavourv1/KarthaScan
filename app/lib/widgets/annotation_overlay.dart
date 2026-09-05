@@ -125,7 +125,9 @@ class AnnotationOverlayState extends State<AnnotationOverlay> {
 
   @override
   Widget build(BuildContext context) {
-    return RepaintBoundary(
+    return Container(
+      color: Colors.white,
+      child: RepaintBoundary(
       key: _boundaryKey,
       child: GestureDetector(
         behavior: HitTestBehavior.translucent,
@@ -142,6 +144,7 @@ class AnnotationOverlayState extends State<AnnotationOverlay> {
           size: Size.infinite,
         ),
       ),
+    ),
     );
   }
 }
