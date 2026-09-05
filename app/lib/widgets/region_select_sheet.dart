@@ -26,8 +26,7 @@ class _RegionSelectSheetState extends State<RegionSelectSheet> {
   String _activeHandle = 'none';
   Offset? _dragStart;
 
-  static const double _hitSlop = 24.0;
-  static const double _snapThreshold = 12.0;
+  static const double _hitSlop = 40.0;
 
   @override
   void initState() {
@@ -54,12 +53,20 @@ class _RegionSelectSheetState extends State<RegionSelectSheet> {
     final distTR = (pos - Offset(r.right, r.top)).distance;
     final distBL = (pos - Offset(r.left, r.bottom)).distance;
     final distBR = (pos - Offset(r.right, r.bottom)).distance;
+    final distTC = (pos - Offset(r.center.dx, r.top)).distance;
+    final distBC = (pos - Offset(r.center.dx, r.bottom)).distance;
+    final distML = (pos - Offset(r.left, r.center.dy)).distance;
+    final distMR = (pos - Offset(r.right, r.center.dy)).distance;
 
     double minDist = distTL;
     String handle = 'tl';
     if (distTR < minDist) { minDist = distTR; handle = 'tr'; }
     if (distBL < minDist) { minDist = distBL; handle = 'bl'; }
     if (distBR < minDist) { minDist = distBR; handle = 'br'; }
+    if (distTC < minDist) { minDist = distTC; handle = 'tc'; }
+    if (distBC < minDist) { minDist = distBC; handle = 'bc'; }
+    if (distML < minDist) { minDist = distML; handle = 'ml'; }
+    if (distMR < minDist) { minDist = distMR; handle = 'mr'; }
 
     if (minDist < _hitSlop) {
       _activeHandle = handle;
@@ -85,6 +92,10 @@ class _RegionSelectSheetState extends State<RegionSelectSheet> {
     else if (_activeHandle == 'tr') { newRight = pos.dx; newTop = pos.dy; }
     else if (_activeHandle == 'bl') { newLeft = pos.dx; newBottom = pos.dy; }
     else if (_activeHandle == 'br') { newRight = pos.dx; newBottom = pos.dy; }
+    else if (_activeHandle == 'tc') { newTop = pos.dy; }
+    else if (_activeHandle == 'bc') { newBottom = pos.dy; }
+    else if (_activeHandle == 'ml') { newLeft = pos.dx; }
+    else if (_activeHandle == 'mr') { newRight = pos.dx; }
     else if (_activeHandle == 'body' && _dragStart != null) {
       final delta = pos - _dragStart!;
       newLeft += delta.dx; newTop += delta.dy;
@@ -92,10 +103,11 @@ class _RegionSelectSheetState extends State<RegionSelectSheet> {
       _dragStart = pos;
     }
 
-    newLeft = newLeft.clamp(0.0, _displayW);
-    newTop = newTop.clamp(0.0, _displayH);
-    newRight = newRight.clamp(0.0, _displayW);
-    newBottom = newBottom.clamp(0.0, _displayH);
+    const inset = 10.0;
+    newLeft = newLeft.clamp(inset, _displayW - inset);
+    newTop = newTop.clamp(inset, _displayH - inset);
+    newRight = newRight.clamp(inset, _displayW - inset);
+    newBottom = newBottom.clamp(inset, _displayH - inset);
 
     if (newRight - newLeft < 20) {
       if (_activeHandle == 'tl' || _activeHandle == 'bl') {
@@ -111,11 +123,6 @@ class _RegionSelectSheetState extends State<RegionSelectSheet> {
         newBottom = newTop + 20;
       }
     }
-
-    if (newLeft < _snapThreshold) newLeft = 0;
-    if (newTop < _snapThreshold) newTop = 0;
-    if (newRight > _displayW - _snapThreshold) newRight = _displayW;
-    if (newBottom > _displayH - _snapThreshold) newBottom = _displayH;
 
     setState(() {
       _displayRect = Rect.fromLTRB(newLeft, newTop, newRight, newBottom);
@@ -258,16 +265,15 @@ class RegionOverlayPainter extends CustomPainter {
       ..strokeWidth = 2.0;
 
     const radius = 10.0;
-    final corners = [
-      Offset(r.left, r.top),
-      Offset(r.right, r.top),
-      Offset(r.left, r.bottom),
-      Offset(r.right, r.bottom),
+    final handles = [
+      Offset(r.left, r.top), Offset(r.right, r.top),
+      Offset(r.left, r.bottom), Offset(r.right, r.bottom),
+      Offset(r.center.dx, r.top), Offset(r.center.dx, r.bottom),
+      Offset(r.left, r.center.dy), Offset(r.right, r.center.dy),
     ];
-
-    for (final corner in corners) {
-      canvas.drawCircle(corner, radius, handlePaint);
-      canvas.drawCircle(corner, radius, handleBorder);
+    for (final h in handles) {
+      canvas.drawCircle(h, radius, handlePaint);
+      canvas.drawCircle(h, radius, handleBorder);
     }
   }
 

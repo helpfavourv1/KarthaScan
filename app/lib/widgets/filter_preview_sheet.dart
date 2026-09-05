@@ -49,7 +49,7 @@ class _FilterPreviewSheetState extends State<FilterPreviewSheet> {
   FilterType _selected = FilterType.none;
   Uint8List? _baseBytes; Uint8List? _previewBytes; bool _busy = false;
   double _intensity = 1.0;
-  double _splitX = 0.0;
+  double _splitX = 0.5;
 
   @override void initState() { super.initState(); _load(); }
   Future<void> _load() async {
@@ -108,7 +108,7 @@ class _FilterPreviewSheetState extends State<FilterPreviewSheet> {
                   child: Slider(
                     value: _intensity, min: 0.2, max: 2.0, divisions: 18,
                     label: _intensity.toStringAsFixed(1),
-                    onChanged: (v) => setState(() => _intensity = v),
+                    onChanged: (v) { setState(() => _intensity = v); _select(_selected); },
                     onChangeEnd: (_) => _select(_selected),
                   ),
                 ),

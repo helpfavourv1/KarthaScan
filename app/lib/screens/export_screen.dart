@@ -31,6 +31,15 @@ import '../widgets/signature_editor_bar.dart';
 import '../widgets/ios_pressable.dart';
 import '../core/services/engagement_service.dart';
 
+class _LeftClip extends CustomClipper<Rect> {
+  _LeftClip(this.f);
+  final double f;
+  @override
+  Rect getClip(Size size) => Rect.fromLTWH(0, 0, size.width * f, size.height);
+  @override
+  bool shouldReclip(covariant _LeftClip oldClipper) => oldClipper.f != f;
+}
+
 class ExportScreen extends StatefulWidget {
   const ExportScreen({super.key, required this.documentIds, this.initialFormat});
 
@@ -68,6 +77,9 @@ class _ExportScreenState extends State<ExportScreen> {
   int _previewH = 1;
   bool _filterRowOpen = false;
   bool _targetExpanded = false;
+  bool _compareMode = false;
+  double _compareSplitX = 0.5;
+  Uint8List? _originalPreviewBytes;
 
   bool _isRunning = false;
   String? _statusMessage;
@@ -137,6 +149,9 @@ class _ExportScreenState extends State<ExportScreen> {
       return;
     }
     final bytes = await File(paths[idx]).readAsBytes();
+    if (filter == FilterType.none) {
+      _originalPreviewBytes = bytes;
+    }
     final result = await compute(_previewIsolate, {'bytes': bytes, 'filter': filter.index});
     if (!mounted) return;
     _previewCache[key] = result;
@@ -510,6 +525,11 @@ class _ExportScreenState extends State<ExportScreen> {
               onTap: () => setState(() => _filterRowOpen = !_filterRowOpen),
               child: Icon(Icons.auto_fix_high, color: _filterRowOpen ? accent : textSecondary, size: 20),
             ),
+            const SizedBox(width: AppSpacing.xs),
+            IOSPressable(
+              onTap: () => setState(() => _compareMode = !_compareMode),
+              child: Icon(Icons.compare_arrows, color: _compareMode ? accent : textSecondary, size: 20),
+            ),
             const SizedBox(width: AppSpacing.sm),
           ],
         ),
@@ -563,6 +583,20 @@ class _ExportScreenState extends State<ExportScreen> {
                             ),
                           ),
                         ),
+                        if (_compareMode && _originalPreviewBytes != null && _previewBytes != null)
+                          Positioned.fill(
+                            child: GestureDetector(
+                              behavior: HitTestBehavior.opaque,
+                              onPanUpdate: (d) => setState(() => _compareSplitX = (d.localPosition.dx / iw).clamp(0.0, 1.0)),
+                              child: Stack(
+                                children: [
+                                  Positioned.fill(child: Center(child: Image.memory(_previewBytes!, fit: BoxFit.fill))),
+                                  Positioned.fill(child: ClipRect(clipper: _LeftClip(_compareSplitX), child: Center(child: Image.memory(_originalPreviewBytes!, fit: BoxFit.fill)))),
+                                  Positioned(left: iw * _compareSplitX - 1, top: 0, bottom: 0, child: Container(width: 3, color: const Color(0xFF007AFF))),
+                                ],
+                              ),
+                            ),
+                          ),
                         Positioned.fill(
                           child: AnimatedBuilder(
                             animation: _exportTransformController,
