@@ -12,6 +12,7 @@ import 'core/providers/theme_provider.dart';
 import 'core/services/debug_log_service.dart';
 import 'core/services/doc_scanner_service.dart';
 import 'core/services/local_storage.dart';
+import 'core/services/notification_service.dart';
 import 'core/services/ocr_service.dart';
 import 'core/utils/error_handler.dart';
 import 'platform/iap_service.dart';
@@ -37,6 +38,7 @@ Future<void> main() async {
 
   final LocalStorageService localStorage = LocalStorageService();
   await localStorage.initialize();
+  await NotificationService.instance.initialize();
 
   final DocScannerService docScanner = DocScannerService();
   final OcrService ocr = OcrService();

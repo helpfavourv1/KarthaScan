@@ -6,6 +6,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../providers/subscription_provider.dart';
 import '../utils/constants.dart';
 import 'share_service.dart';
+import 'notification_service.dart';
 
 enum PendingPrompt { share, review }
 
@@ -54,6 +55,11 @@ class EngagementService {
         pendingPrompt.value = PendingPrompt.share;
       }
     }
+  }
+
+  Future<void> recordExportForDocument(String documentId) async {
+    await NotificationService.instance.cancelDocumentNotifications(documentId);
+    await recordExport();
   }
 
   Future<void> recordExport() async {

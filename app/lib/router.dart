@@ -14,10 +14,31 @@ import 'screens/paywall_screen.dart';
 import 'screens/scan_detail_screen.dart';
 import 'screens/full_screen_edit_screen.dart';
 import 'screens/settings_screen.dart';
+import 'core/services/notification_service.dart';
+
+final _navigatorKey = GlobalKey<NavigatorState>();
 
 GoRouter buildRouter({String initialLocation = '/'}) {
+  // Listen for notification taps
+  NotificationService.instance.pendingPayload.addListener(() {
+    final payload = NotificationService.instance.pendingPayload.value;
+    if (payload == null) return;
+    
+    if (payload.startsWith('doc:')) {
+      final docId = payload.substring(4);
+      // Navigate to document detail
+      final context = _navigatorKey.currentContext;
+      if (context != null) {
+        context.push('/scan/$docId');
+      }
+    }
+    
+    NotificationService.instance.pendingPayload.value = null;
+  });
+
   return GoRouter(
     initialLocation: initialLocation,
+    navigatorKey: _navigatorKey,
     routes: <RouteBase>[
       GoRoute(
         path: '/',

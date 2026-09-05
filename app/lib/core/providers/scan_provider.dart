@@ -24,6 +24,7 @@ import '../models/ocr_block.dart';
 import '../models/page_transform.dart';
 import '../services/doc_scanner_service.dart';
 import '../services/local_storage.dart';
+import '../services/notification_service.dart';
 import '../services/ocr_service.dart';
 import 'settings_provider.dart';
 import '../undo/undo_manager.dart';
@@ -329,6 +330,13 @@ class ScanProvider {
               .map((ScanDocument d) => d.id == document.id ? document : d)
               .toList()
           : <ScanDocument>[document, ...documents.value];
+      
+      // Schedule export reminder in 48 hours
+      await NotificationService.instance.scheduleExportReminder(
+        documentId: document.id,
+        documentTitle: document.title,
+        scheduledTime: DateTime.now().add(const Duration(hours: 48)),
+      );
     } else {
       lastError.value = 'Could not import "${document.title}".';
     }
