@@ -709,36 +709,85 @@ class ExportService {
     }
   }
 
-  Future<String> exportIdCardPdf({
+    img.Image _trimNearBlackBorders(img.Image source) {
+    bool colDark(int x) {
+      int dark = 0, total = 0;
+      for (int y = 0; y < source.height; y += 4) {
+        final px = source.getPixel(x, y);
+        if ((0.299 * px.r + 0.587 * px.g + 0.114 * px.b) < 40) dark++;
+        total++;
+      }
+      return total > 0 && dark / total > 0.9;
+    }
+    bool rowDark(int y) {
+      int dark = 0, total = 0;
+      for (int x = 0; x < source.width; x += 4) {
+        final px = source.getPixel(x, y);
+        if ((0.299 * px.r + 0.587 * px.g + 0.114 * px.b) < 40) dark++;
+        total++;
+      }
+      return total > 0 && dark / total > 0.9;
+    }
+    int left = 0, right = source.width - 1, top = 0, bottom = source.height - 1;
+    while (left < right && colDark(left)) {
+      left++;
+    }
+    while (right > left && colDark(right)) {
+      right--;
+    }
+    while (top < bottom && rowDark(top)) {
+      top++;
+    }
+    while (bottom > top && rowDark(bottom)) {
+      bottom--;
+    }
+    final w = right - left + 1, h = bottom - top + 1;
+    if (w <= 0 || h <= 0 || (w == source.width && h == source.height)) return source;
+    return img.copyCrop(source, x: left, y: top, width: w, height: h);
+  }
+
+  Future<Map<String, String>> exportIdCardPdf({
     required String frontPath,
     required String backPath,
     required String title,
     required String outputDirectoryPath,
   }) async {
     try {
+      img.Image front = _trimNearBlackBorders(img.decodeImage(await _readBytes(frontPath))!);
+      img.Image back = _trimNearBlackBorders(img.decodeImage(await _readBytes(backPath))!);
+
+      const int canvasWidth = 1200;
+      const int gap = 40;
+      final int frontH = (front.height * canvasWidth / front.width).round();
+      final int backH = (back.height * canvasWidth / back.width).round();
+      final img.Image canvas = img.Image(width: canvasWidth, height: frontH + gap + backH);
+      img.fill(canvas, color: img.ColorRgb8(255, 255, 255));
+      img.compositeImage(canvas, img.copyResize(front, width: canvasWidth, height: frontH), dstX: 0, dstY: 0);
+      img.compositeImage(canvas, img.copyResize(back, width: canvasWidth, height: backH), dstX: 0, dstY: frontH + gap);
+      final Uint8List combinedBytes = Uint8List.fromList(img.encodePng(canvas));
+
+      final String safeTitle = _sanitizeFileName(title);
+      final String combinedPath = p.join(outputDirectoryPath, '$safeTitle.png');
+      await _writeBytes(combinedPath, combinedBytes);
+
       final pw.Document pdfDoc = pw.Document(title: title, creator: 'KatharScan');
-      final Uint8List frontBytes = await _readBytes(frontPath);
-      final Uint8List backBytes = await _readBytes(backPath);
       pdfDoc.addPage(
         pw.Page(
           pageFormat: PdfPageFormat.a4,
           build: (pw.Context context) {
-            return pw.Column(
-              mainAxisAlignment: pw.MainAxisAlignment.center,
-              children: [
-                pw.Image(pw.MemoryImage(frontBytes), fit: pw.BoxFit.contain, height: 380),
-                pw.SizedBox(height: 30),
-                pw.Image(pw.MemoryImage(backBytes), fit: pw.BoxFit.contain, height: 380),
-              ],
+            return pw.Container(
+              width: PdfPageFormat.a4.width,
+              height: PdfPageFormat.a4.height,
+              color: PdfColors.white,
+              child: pw.Center(child: pw.Image(pw.MemoryImage(combinedBytes), fit: pw.BoxFit.contain)),
             );
           },
         ),
       );
-      final Uint8List pdfBytes = await pdfDoc.save();
-      final String safeTitle = _sanitizeFileName(title);
+      final pdfBytes = await pdfDoc.save();
       final String outPath = p.join(outputDirectoryPath, '$safeTitle.pdf');
       await _writeBytes(outPath, pdfBytes);
-      return outPath;
+      return {'pdf': outPath, 'image': combinedPath};
     } catch (error, stackTrace) {
       _logError('exportIdCardPdf', error, stackTrace);
       throw ExportFailedException('Could not build the ID card PDF.');

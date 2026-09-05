@@ -24,6 +24,7 @@ import '../core/services/doc_scanner_service.dart';
 import '../core/services/export_service.dart';
 import '../core/services/ocr_service.dart';
 import '../core/services/share_service.dart';
+import '../core/services/downloads_service.dart';
 import '../core/utils/constants.dart';
 import '../l10n/app_localizations.dart';
 
@@ -333,22 +334,22 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
     setState(() => _stage = _Stage.saving);
     try {
       final appDir = await getApplicationDocumentsDirectory();
-      final outPath = await _exportService.exportIdCardPdf(
+      final result = await _exportService.exportIdCardPdf(
         frontPath: _idFrontPath!,
         backPath: _idBackPath!,
         title: '${l10n.titleIdCard} ${DateTime.now().millisecondsSinceEpoch}',
         outputDirectoryPath: appDir.path,
       );
+      final outPath = result['pdf']!;
+      final combinedPath = result['image']!;
       _log.log('CROP', 'ID Card PDF exported: $outPath');
       if (!mounted) return;
-      final front = _idFrontPath!;
-      final back = _idBackPath!;
       setState(() {
         _idFrontPath = null;
         _idBackPath = null;
         _stage = _Stage.pickImage;
       });
-      await _showIdCardResultSheet(outPath, frontPath: front, backPath: back);
+      await _showIdCardResultSheet(outPath, combinedImagePath: combinedPath);
     } catch (e) {
       _log.log('CROP', 'ID Card export error: $e');
       if (!mounted) return;
@@ -402,9 +403,11 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
     }
   }
 
-  Future<void> _showIdCardResultSheet(String pdfPath, {required String frontPath, required String backPath}) async {
+  Future<void> _showIdCardResultSheet(String pdfPath, {required String combinedImagePath}) async {
     await showModalBottomSheet<void>(
       context: context,
+      isDismissible: false,
+      enableDrag: false,
       builder: (ctx) => SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -431,12 +434,12 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
                   final doc = ScanDocument(
                     id: '${now.microsecondsSinceEpoch}',
                     title: '${l10n.titleIdCard} ${now.year}-${now.month.toString().padLeft(2, '0')}-${now.day.toString().padLeft(2, '0')}',
-                    pageCount: 2,
-                    pagePaths: [frontPath, backPath],
+                    pageCount: 1,
+                    pagePaths: [combinedImagePath],
                     createdAt: now,
                     updatedAt: now,
                     ocrText: '',
-                    thumbnailPath: frontPath,
+                    thumbnailPath: combinedImagePath,
                   );
                   final success = await _scanProvider.importDocument(doc);
                   if (!mounted) return;
@@ -452,7 +455,14 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
               ),
               const SizedBox(height: 8),
               TextButton(
-                onPressed: () => Navigator.pop(ctx),
+                onPressed: () async {
+                  Navigator.pop(ctx);
+                  try {
+                    final bytes = await File(pdfPath).readAsBytes();
+                    await DownloadsService().saveToDownloads(fileName: p.basename(pdfPath), bytes: bytes, mimeType: 'application/pdf');
+                    if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.exportSavedToDownloads), duration: Duration(seconds: 2)));
+                  } catch (_) {}
+                },
                 child: Text(l10n.commonDone),
               ),
             ],
