@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
 
 import '../core/models/folder.dart';
@@ -13,6 +12,7 @@ import '../core/services/share_service.dart';
 import '../core/utils/constants.dart';
 import '../l10n/app_localizations.dart';
 import '../widgets/empty_state.dart';
+import '../widgets/conditional_banner.dart';
 import '../widgets/folder_list_tile.dart';
 import '../widgets/scan_list_tile.dart';
 import '../core/services/engagement_service.dart';
@@ -37,8 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
   late final FolderProvider _folderProvider;
   late final SettingsProvider _settingsProvider;
 
-  BannerAd? _bannerAd;
-  bool _isAdLoaded = false;
+
 
   @override
   Future<void> initState() async {
@@ -49,31 +48,13 @@ class _HomeScreenState extends State<HomeScreen> {
     final subProvider = Provider.of<SubscriptionProvider>(context, listen: false);
     await EngagementService.init(subProvider);
     EngagementService.instance.recordHomeReturn();
-    _initBannerAd();
   }
 
-  void _initBannerAd() {
-    _bannerAd = BannerAd(
-      adUnitId: 'ca-app-pub-3940256099942544/6300978111',
-      size: AdSize.banner,
-      request: const AdRequest(),
-      listener: BannerAdListener(
-        onAdLoaded: (ad) {
-          debugPrint('$ad loaded.');
-          if (mounted) setState(() => _isAdLoaded = true);
-        },
-        onAdFailedToLoad: (ad, err) {
-          debugPrint('BannerAd failed to load: $err');
-          ad.dispose();
-        },
-      ),
-    )..load();
-  }
+
 
   @override
   void dispose() {
     _searchController.dispose();
-    _bannerAd?.dispose();
     super.dispose();
   }
 
@@ -322,15 +303,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
-      bottomNavigationBar: _bannerAd != null && _isAdLoaded
-          ? SafeArea(
-              child: SizedBox(
-                width: _bannerAd!.size.width.toDouble(),
-                height: _bannerAd!.size.height.toDouble(),
-                child: AdWidget(ad: _bannerAd!),
-              ),
-            )
-          : null,
+      bottomNavigationBar: const ConditionalBanner(),
       floatingActionButton: _selectionMode
           ? null
           : FloatingActionButton(
