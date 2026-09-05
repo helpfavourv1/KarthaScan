@@ -127,9 +127,20 @@ class ExportService {
     img.Image signature,
     SignaturePlacement placement, {
     double widthFraction = 0.28,
+    double? boxHeightFraction,
   }) {
-    final targetWidth = (page.width * widthFraction * placement.scale).round();
-    final targetHeight = (signature.height * targetWidth / signature.width).round();
+    int targetWidth;
+    int targetHeight;
+    if (boxHeightFraction != null) {
+      final boxW = page.width * widthFraction * placement.scale;
+      final boxH = page.width * boxHeightFraction * placement.scale;
+      final f = boxW / signature.width < boxH / signature.height ? boxW / signature.width : boxH / signature.height;
+      targetWidth = (signature.width * f).round().clamp(1, page.width);
+      targetHeight = (signature.height * f).round().clamp(1, page.height);
+    } else {
+      targetWidth = (page.width * widthFraction * placement.scale).round();
+      targetHeight = (signature.height * targetWidth / signature.width).round();
+    }
     var sig = img.copyResize(signature, width: targetWidth, height: targetHeight);
     if (placement.rotationDegrees != 0) {
       sig = img.copyRotate(sig, angle: placement.rotationDegrees);
@@ -249,7 +260,7 @@ class ExportService {
         if (wmBytes != null) {
           final wmImage = img.decodePng(wmBytes);
           if (wmImage != null) {
-            decoded = _compositeSignature(decoded, wmImage, wm.placement, widthFraction: 0.30);
+            decoded = _compositeSignature(decoded, wmImage, wm.placement, widthFraction: 0.30, boxHeightFraction: 0.10);
           }
         }
       }
@@ -261,7 +272,8 @@ class ExportService {
           final stImage = img.decodePng(stBytes);
           if (stImage != null) {
             final frac = st.kind == 'checkbox' ? 0.15 : (st.kind == 'seal' ? 0.25 : 0.30);
-            decoded = _compositeSignature(decoded, stImage, st.placement, widthFraction: frac);
+            final boxH = (st.kind == 'checkbox' || st.kind == 'seal') ? null : 0.10;
+            decoded = _compositeSignature(decoded, stImage, st.placement, widthFraction: frac, boxHeightFraction: boxH);
           }
         }
       }
@@ -710,40 +722,45 @@ class ExportService {
   }
 
     img.Image _trimNearBlackBorders(img.Image source) {
-    bool colDark(int x) {
-      int dark = 0, total = 0;
-      for (int y = 0; y < source.height; y += 4) {
-        final px = source.getPixel(x, y);
-        if ((0.299 * px.r + 0.587 * px.g + 0.114 * px.b) < 40) dark++;
-        total++;
+    double lumaOf(img.Color p) => 0.299 * p.r + 0.587 * p.g + 0.114 * p.b;
+    img.Image cur = source;
+    for (final dark in const [false, true, true]) {
+      bool colIs(int x) {
+        int hit = 0, total = 0;
+        for (int y = 0; y < cur.height; y += 4) {
+          final l = lumaOf(cur.getPixel(x, y));
+          total++;
+          if (dark ? l < 60 : l > 220) hit++;
+        }
+        return total > 0 && hit / total > 0.85;
       }
-      return total > 0 && dark / total > 0.9;
-    }
-    bool rowDark(int y) {
-      int dark = 0, total = 0;
-      for (int x = 0; x < source.width; x += 4) {
-        final px = source.getPixel(x, y);
-        if ((0.299 * px.r + 0.587 * px.g + 0.114 * px.b) < 40) dark++;
-        total++;
+      bool rowIs(int y) {
+        int hit = 0, total = 0;
+        for (int x = 0; x < cur.width; x += 4) {
+          final l = lumaOf(cur.getPixel(x, y));
+          total++;
+          if (dark ? l < 60 : l > 220) hit++;
+        }
+        return total > 0 && hit / total > 0.85;
       }
-      return total > 0 && dark / total > 0.9;
+      int left = 0, right = cur.width - 1, top = 0, bottom = cur.height - 1;
+      while (left < right && colIs(left)) {
+        left++;
+      }
+      while (right > left && colIs(right)) {
+        right--;
+      }
+      while (top < bottom && rowIs(top)) {
+        top++;
+      }
+      while (bottom > top && rowIs(bottom)) {
+        bottom--;
+      }
+      final w = right - left + 1, h = bottom - top + 1;
+      if (w <= 0 || h <= 0 || (w == cur.width && h == cur.height)) continue;
+      cur = img.copyCrop(cur, x: left, y: top, width: w, height: h);
     }
-    int left = 0, right = source.width - 1, top = 0, bottom = source.height - 1;
-    while (left < right && colDark(left)) {
-      left++;
-    }
-    while (right > left && colDark(right)) {
-      right--;
-    }
-    while (top < bottom && rowDark(top)) {
-      top++;
-    }
-    while (bottom > top && rowDark(bottom)) {
-      bottom--;
-    }
-    final w = right - left + 1, h = bottom - top + 1;
-    if (w <= 0 || h <= 0 || (w == source.width && h == source.height)) return source;
-    return img.copyCrop(source, x: left, y: top, width: w, height: h);
+    return cur;
   }
 
   Future<Map<String, String>> exportIdCardPdf({
@@ -795,7 +812,7 @@ class ExportService {
   }
 
   Future<Uint8List?> _renderWatermarkText(WatermarkLayer layer, int pageW) async {
-    final fontSize = layer.fontSize * layer.placement.scale;
+    const double fontSize = 100;
     final recorder = ui.PictureRecorder();
     final canvas = ui.Canvas(recorder);
     final paragraphBuilder = ui.ParagraphBuilder(ui.ParagraphStyle(
@@ -814,7 +831,7 @@ class ExportService {
       ))
       ..addText(layer.text);
     final paragraph = paragraphBuilder.build()
-      ..layout(ui.ParagraphConstraints(width: pageW * 0.3 * layer.placement.scale));
+      ..layout(const ui.ParagraphConstraints(width: 100000));
     canvas.drawParagraph(paragraph, ui.Offset.zero);
     final picture = recorder.endRecording();
     final image = await picture.toImage(paragraph.width.round(), paragraph.height.round());
@@ -823,7 +840,7 @@ class ExportService {
   }
 
   Future<Uint8List?> _renderStampText(StampLayer layer, int pageW) async {
-    final fontSize = layer.fontSize * layer.placement.scale;
+    const double fontSize = 100;
     final recorder = ui.PictureRecorder();
     final canvas = ui.Canvas(recorder);
     final shadows = layer.halo
@@ -844,7 +861,7 @@ class ExportService {
       ))
       ..addText(layer.text);
     final paragraph = paragraphBuilder.build()
-      ..layout(ui.ParagraphConstraints(width: pageW * 0.3 * layer.placement.scale));
+      ..layout(const ui.ParagraphConstraints(width: 100000));
     final double pad = (layer.kind == 'note' ? 40.0 : 8.0) * (fontSize / 72.0);
     final int w = (paragraph.longestLine + pad * 2).ceil();
     final int h = (paragraph.height + pad * 2).ceil();
