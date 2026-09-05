@@ -11,41 +11,43 @@ void drawSeal(ui.Canvas canvas, double s, StampLayer layer, {ui.Image? centerIma
 
   if (layer.sealShape == 'rectangle') {
     _drawRectangleSeal(canvas, s, layer, col);
-    return;
+  } else {
+    // === OVAL SEAL (landscape, wider than tall) ===
+    final ovalRect = ui.Rect.fromCenter(
+      center: ui.Offset(s / 2, s / 2),
+      width: s * 0.94,
+      height: s * 0.72,
+    );
+
+    // Outer ring (thick)
+    canvas.drawOval(
+      ovalRect,
+      ui.Paint()..color = col..style = ui.PaintingStyle.stroke..strokeWidth = s * 0.035,
+    );
+    // Inner ring (thin)
+    canvas.drawOval(
+      ovalRect.deflate(s * 0.09),
+      ui.Paint()..color = col..style = ui.PaintingStyle.stroke..strokeWidth = s * 0.010,
+    );
+
+    // Arc texts centered in the band between the rings, clamped so the
+    // glyphs can never touch the outer or inner ring.
+    final arcFont = layer.fontSize * s / 240;
+    final rx = s * 0.425;
+    final ry = s * 0.315;
+    final topFont = arcFont * 0.50 > s * 0.075 ? s * 0.075 : arcFont * 0.50;
+    final bottomFont = arcFont * 0.40 > s * 0.075 ? s * 0.075 : arcFont * 0.40;
+    _drawArcTextOval(canvas, ui.Offset(s / 2, s / 2), rx, ry, layer.text, col, topFont, true);
+    if (layer.sealSubtext.isNotEmpty) {
+      _drawArcTextOval(canvas, ui.Offset(s / 2, s / 2), rx, ry, layer.sealSubtext, col, bottomFont, false);
+    }
   }
 
-  // === OVAL SEAL (landscape, wider than tall) ===
-  final ovalRect = ui.Rect.fromCenter(
-    center: ui.Offset(s / 2, s / 2),
-    width: s * 0.94,
-    height: s * 0.72,
-  );
-
-  // Outer ring (thick)
-  canvas.drawOval(
-    ovalRect,
-    ui.Paint()..color = col..style = ui.PaintingStyle.stroke..strokeWidth = s * 0.035,
-  );
-  // Inner ring (thin)
-  canvas.drawOval(
-    ovalRect.deflate(s * 0.09),
-    ui.Paint()..color = col..style = ui.PaintingStyle.stroke..strokeWidth = s * 0.010,
-  );
-
-  // Arc texts
-  final arcFont = layer.fontSize * s / 240;
-  final rx = ovalRect.width * 0.42;
-  final ry = ovalRect.height * 0.42;
-  _drawArcTextOval(canvas, ui.Offset(s / 2, s / 2), rx, ry, layer.text, col, arcFont * 0.50, true);
-  if (layer.sealSubtext.isNotEmpty) {
-    _drawArcTextOval(canvas, ui.Offset(s / 2, s / 2), rx, ry, layer.sealSubtext, col, arcFont * 0.40, false);
-  }
-
-  // Center element
+  // Center element (drawn for BOTH shapes, inside the inner space)
   if (layer.sealCenter == 'star') {
     _drawStar(canvas, ui.Offset(s / 2, s / 2), s * 0.13, col);
   } else if (layer.sealCenter == 'image' && centerImage != null) {
-    _drawCenterImage(canvas, ui.Offset(s / 2, s / 2), s * 0.18, centerImage);
+    _drawCenterImage(canvas, ui.Offset(s / 2, s / 2), s * 0.15, centerImage);
   } else if (layer.sealCenter.isNotEmpty && layer.sealCenter != 'image' && layer.sealCenter != 'star') {
     _drawLabel(canvas, ui.Offset(s / 2, s / 2), layer.sealCenter, col, s * 0.09);
   }
@@ -54,7 +56,7 @@ void drawSeal(ui.Canvas canvas, double s, StampLayer layer, {ui.Image? centerIma
 void _drawRectangleSeal(ui.Canvas canvas, double s, StampLayer layer, ui.Color col) {
   // Outer border (thick)
   final outerRect = ui.RRect.fromRectAndRadius(
-    ui.Rect.fromLTWH(s * 0.03, s * 0.22, s * 0.94, s * 0.56),
+    ui.Rect.fromLTWH(s * 0.03, s * 0.20, s * 0.94, s * 0.60),
     ui.Radius.circular(s * 0.04),
   );
   canvas.drawRRect(
@@ -63,18 +65,21 @@ void _drawRectangleSeal(ui.Canvas canvas, double s, StampLayer layer, ui.Color c
   );
   // Inner border (thin)
   final innerRect = ui.RRect.fromRectAndRadius(
-    ui.Rect.fromLTWH(s * 0.09, s * 0.28, s * 0.82, s * 0.44),
+    ui.Rect.fromLTWH(s * 0.10, s * 0.32, s * 0.80, s * 0.36),
     ui.Radius.circular(s * 0.02),
   );
   canvas.drawRRect(
     innerRect,
     ui.Paint()..color = col..style = ui.PaintingStyle.stroke..strokeWidth = s * 0.010,
   );
-  // Main text
-  _drawLabel(canvas, ui.Offset(s / 2, s * 0.46), layer.text, col, s * 0.14);
-  // Subtext
+  // Main text in the top band, subtext in the bottom band, clamped so they
+  // never touch the borders.
+  final bandFont = layer.fontSize * s / 240;
+  final topFont = bandFont * 0.50 > s * 0.09 ? s * 0.09 : bandFont * 0.50;
+  final bottomFont = bandFont * 0.40 > s * 0.09 ? s * 0.09 : bandFont * 0.40;
+  _drawLabel(canvas, ui.Offset(s / 2, s * 0.26), layer.text, col, topFont);
   if (layer.sealSubtext.isNotEmpty) {
-    _drawLabel(canvas, ui.Offset(s / 2, s * 0.62), layer.sealSubtext, col, s * 0.07);
+    _drawLabel(canvas, ui.Offset(s / 2, s * 0.74), layer.sealSubtext, col, bottomFont);
   }
 }
 

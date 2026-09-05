@@ -75,9 +75,17 @@ class _SealStampSheetState extends State<SealStampSheet> {
     final decoded = img.decodeImage(rawBytes);
     if (decoded == null) return rawBytes;
 
-    // Resize to 400x400 for quality
+    // Center-crop to the largest square first (no stretching), then resize.
     const targetSize = 400;
-    final resized = img.copyResize(decoded, width: targetSize, height: targetSize);
+    final side = decoded.width < decoded.height ? decoded.width : decoded.height;
+    final cropped = img.copyCrop(
+      decoded,
+      x: (decoded.width - side) ~/ 2,
+      y: (decoded.height - side) ~/ 2,
+      width: side,
+      height: side,
+    );
+    final resized = img.copyResize(cropped, width: targetSize, height: targetSize);
 
     // Apply circular mask
     final mask = img.Image(width: targetSize, height: targetSize);
