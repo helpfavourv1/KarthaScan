@@ -326,37 +326,41 @@ class _PageWithInkState extends State<_PageWithInk> {
         final originalW = isRotated ? visualH : visualW;
         final originalH = isRotated ? visualW : visualH;
 
+        Widget imageWidget = Center(
+          child: SizedBox(
+            width: visualW,
+            height: visualH,
+            child: FittedBox(
+              fit: BoxFit.contain,
+              child: RotatedBox(
+                quarterTurns: rotationTurns,
+                child: SizedBox(
+                  width: originalW,
+                  height: originalH,
+                  child: _filteredBytes != null
+                      ? Image.memory(_filteredBytes!, fit: BoxFit.fill)
+                      : Image.file(
+                          File(widget.pagePath),
+                          fit: BoxFit.fill,
+                          errorBuilder: (_, __, ___) => Icon(Icons.broken_image_outlined, color: widget.textSecondary, size: 48),
+                        ),
+                ),
+              ),
+            ),
+          ),
+        );
+        
         return Stack(
           children: [
             Positioned.fill(
-              child: InteractiveViewer(
-                transformationController: _transformController,
-                minScale: 1,
-                maxScale: 4,
-                child: Center(
-                  child: SizedBox(
-                    width: visualW,
-                    height: visualH,
-                    child: FittedBox(
-                      fit: BoxFit.contain,
-                      child: RotatedBox(
-                        quarterTurns: rotationTurns,
-                        child: SizedBox(
-                          width: originalW,
-                          height: originalH,
-                          child: _filteredBytes != null
-                              ? Image.memory(_filteredBytes!, fit: BoxFit.fill)
-                              : Image.file(
-                                  File(widget.pagePath),
-                                  fit: BoxFit.fill,
-                                  errorBuilder: (_, __, ___) => Icon(Icons.broken_image_outlined, color: widget.textSecondary, size: 48),
-                                ),
-                        ),
-                      ),
+              child: widget.onFillTap != null
+                  ? imageWidget
+                  : InteractiveViewer(
+                      transformationController: _transformController,
+                      minScale: 1,
+                      maxScale: 4,
+                      child: imageWidget,
                     ),
-                  ),
-                ),
-              ),
             ),
             Positioned.fill(
               child: AnimatedBuilder(
