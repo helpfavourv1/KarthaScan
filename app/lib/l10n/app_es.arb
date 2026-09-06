@@ -436,5 +436,11 @@
   "ocrScriptJapanese": "Japonés",
   "ocrStatusUnsupported": "No compatible",
   "noteLabel": "Nota",
-  "dateLabel": "Fecha"
+  "dateLabel": "Fecha",
+  "accentBlue": "Azul",
+  "accentIndigo": "Índigo",
+  "accentEmerald": "Esmeralda",
+  "accentCrimson": "Carmesí",
+  "accentAmber": "Ámbar",
+  "accentViolet": "Violeta"
 }

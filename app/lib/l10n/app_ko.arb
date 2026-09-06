@@ -436,5 +436,11 @@
   "ocrScriptJapanese": "일본어",
   "ocrStatusUnsupported": "지원되지 않음",
   "noteLabel": "노트",
-  "dateLabel": "날짜"
+  "dateLabel": "날짜",
+  "accentBlue": "블루",
+  "accentIndigo": "인디고",
+  "accentEmerald": "에메랄드",
+  "accentCrimson": "크림슨",
+  "accentAmber": "앰버",
+  "accentViolet": "바이올렛"
 }

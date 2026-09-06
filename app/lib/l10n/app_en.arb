@@ -529,5 +529,11 @@
   "ocrScriptJapanese": "Japanese",
   "ocrStatusUnsupported": "Unsupported",
   "noteLabel": "Note",
-  "dateLabel": "Date"
+  "dateLabel": "Date",
+  "accentBlue": "Blue",
+  "accentIndigo": "Indigo",
+  "accentEmerald": "Emerald",
+  "accentCrimson": "Crimson",
+  "accentAmber": "Amber",
+  "accentViolet": "Violet"
 }

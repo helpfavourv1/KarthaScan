@@ -436,5 +436,11 @@
   "ocrScriptJapanese": "ياباني",
   "ocrStatusUnsupported": "غير مدعوم",
   "noteLabel": "ملاحظة",
-  "dateLabel": "تاريخ"
+  "dateLabel": "تاريخ",
+  "accentBlue": "أزرق",
+  "accentIndigo": "نيلي",
+  "accentEmerald": "زمردي",
+  "accentCrimson": "قرمزي",
+  "accentAmber": "كهرماني",
+  "accentViolet": "بنفسجي"
 }

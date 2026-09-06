@@ -436,5 +436,11 @@
   "ocrScriptJapanese": "日语",
   "ocrStatusUnsupported": "不支持",
   "noteLabel": "备注",
-  "dateLabel": "日期"
+  "dateLabel": "日期",
+  "accentBlue": "蓝色",
+  "accentIndigo": "靛蓝",
+  "accentEmerald": "翠绿",
+  "accentCrimson": "深红",
+  "accentAmber": "琥珀",
+  "accentViolet": "紫罗兰"
 }

@@ -436,5 +436,11 @@
   "ocrScriptJapanese": "יפנית",
   "ocrStatusUnsupported": "לא נתמך",
   "noteLabel": "הערה",
-  "dateLabel": "תאריך"
+  "dateLabel": "תאריך",
+  "accentBlue": "כחול",
+  "accentIndigo": "אינדיגו",
+  "accentEmerald": "אמרלד",
+  "accentCrimson": "ארגמן",
+  "accentAmber": "ענבר",
+  "accentViolet": "סגול"
 }

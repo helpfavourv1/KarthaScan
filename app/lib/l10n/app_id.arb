@@ -436,5 +436,11 @@
   "reviewPromptTitle": "Menikmati KatharScan?",
   "reviewPromptBody": "Ulasan Anda membantu kami berkembang dan menjaga aplikasi tetap gratis.",
   "reviewPromptYes": "Beri Nilai",
-  "reviewPromptNo": "Kirim Masukan"
+  "reviewPromptNo": "Kirim Masukan",
+  "accentBlue": "Biru",
+  "accentIndigo": "Nila",
+  "accentEmerald": "Zamrud",
+  "accentCrimson": "Kirmizi",
+  "accentAmber": "Amber",
+  "accentViolet": "Ungu"
 }

@@ -659,7 +659,7 @@ class _AccentPickerSheet extends StatelessWidget {
                         child: isSelected ? const Icon(Icons.check, color: Colors.white, size: 20) : null,
                       ),
                       const SizedBox(height: 6),
-                      Text(p.name, style: TextStyle(color: textPrimary, fontSize: 11, fontWeight: FontWeight.w500)),
+                      Text(p.localizedName, style: TextStyle(color: textPrimary, fontSize: 11, fontWeight: FontWeight.w500)),
                     ],
                   ),
                 );

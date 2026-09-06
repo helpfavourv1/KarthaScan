@@ -436,5 +436,11 @@
   "ocrScriptJapanese": "जापानी",
   "ocrStatusUnsupported": "असमर्थित",
   "noteLabel": "नोट",
-  "dateLabel": "तिथि"
+  "dateLabel": "तिथि",
+  "accentBlue": "नीला",
+  "accentIndigo": "इंडिगो",
+  "accentEmerald": "पन्ना",
+  "accentCrimson": "क्रिमसन",
+  "accentAmber": "एंबर",
+  "accentViolet": "बैंगनी"
 }

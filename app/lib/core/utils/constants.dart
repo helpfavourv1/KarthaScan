@@ -80,6 +80,21 @@ class AccentPalette {
   final Color dark;
   final Color dimLight;
   final Color dimDark;
+
+  /// Localized display name. Uses AppLocale (context-free) to resolve
+  /// the current locale's translation of the palette name.
+  String get localizedName {
+    final l = AppLocale.l10n;
+    switch (name) {
+      case 'Blue':    return l.accentBlue;
+      case 'Indigo':  return l.accentIndigo;
+      case 'Emerald': return l.accentEmerald;
+      case 'Crimson': return l.accentCrimson;
+      case 'Amber':   return l.accentAmber;
+      case 'Violet':  return l.accentViolet;
+      default:        return name;
+    }
+  }
 }
 
 const List<AccentPalette> kAccentPalettes = [
