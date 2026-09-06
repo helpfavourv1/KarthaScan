@@ -72,3 +72,8 @@ flutter:
     - assets/icon_source.png
     - assets/splash_logo.png
     - assets/onboarding/
+
+  fonts:
+    - family: PlusJakartaSans
+      fonts:
+        - asset: assets/fonts/PlusJakartaSans-VariableFont_wght.ttf

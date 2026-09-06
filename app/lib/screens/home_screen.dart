@@ -396,13 +396,27 @@ class _HomeScreenState extends State<HomeScreen> {
     return AppBar(
       backgroundColor: bg,
       elevation: 0,
-      titleSpacing: 0,
+      titleSpacing: AppSpacing.md,
       title: RichText(
         text: TextSpan(
-          style: TextStyle(fontSize: AppTypography.title1Size, fontWeight: FontWeight.w800, letterSpacing: -0.8),
+          style: TextStyle(
+            fontSize: 24,
+            fontWeight: FontWeight.w900,
+            letterSpacing: -1.0,
+            height: 1.0,
+            fontFamily: 'PlusJakartaSans',
+          ),
           children: <TextSpan>[
             TextSpan(text: 'Kathar', style: TextStyle(color: textPrimary)),
-            TextSpan(text: 'Scan', style: TextStyle(color: accent)),
+            TextSpan(
+              text: 'Scan',
+              style: TextStyle(
+                foreground: Paint()
+                  ..shader = LinearGradient(
+                    colors: [accent, accent.withValues(alpha: 0.7)],
+                  ).createShader(Rect.fromLTWH(0, 0, 80, 30)),
+              ),
+            ),
           ],
         ),
       ),
@@ -784,7 +798,7 @@ class _FeatureTickerState extends State<_FeatureTicker> with SingleTickerProvide
       fontWeight: FontWeight.w600,
       letterSpacing: 0.5,
       height: 1.2,
-      fontFamily: 'SF Pro Display',
+      fontFamily: 'PlusJakartaSans',
     );
     final accentStyle = TextStyle(
       color: accent,
@@ -792,7 +806,7 @@ class _FeatureTickerState extends State<_FeatureTicker> with SingleTickerProvide
       fontWeight: FontWeight.w800,
       letterSpacing: 0.5,
       height: 1.2,
-      fontFamily: 'SF Pro Display',
+      fontFamily: 'PlusJakartaSans',
     );
     final separatorStyle = TextStyle(
       color: separator,
