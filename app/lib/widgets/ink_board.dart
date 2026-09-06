@@ -570,7 +570,7 @@ class _StampOverlayPageState extends State<StampOverlayPage> {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        for (final layer in widget.layers.where((l) => l.pageIndex == widget.pageIndex && (l.kind == 'text' || l.kind == 'note' || l.kind == 'date' || l.kind == 'checkbox' || l.kind == 'seal')))
+        for (final layer in widget.layers.where((l) => l.pageIndex == widget.pageIndex && (l.kind == 'text' || l.kind == 'note' || l.kind == 'date' || l.kind == 'checkbox' || l.kind == 'seal' || l.kind == 'fill')))
           Builder(builder: (context) {
             final isSelected = layer.id == widget.selectedId;
             if (layer.kind == 'checkbox') {

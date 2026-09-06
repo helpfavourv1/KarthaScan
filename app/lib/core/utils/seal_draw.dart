@@ -85,8 +85,9 @@ void _drawRectangleSeal(ui.Canvas canvas, double s, StampLayer layer, ui.Color c
 
 void _drawLabel(ui.Canvas canvas, ui.Offset at, String text, ui.Color col, double fs) {
   if (text.isEmpty || fs <= 0) return;
+  // Default align is LEFT so glyphs start at x=0 inside the paragraph;
+  // we center the paragraph manually via longestLine/2 below.
   final par = (ui.ParagraphBuilder(ui.ParagraphStyle(
-    textAlign: ui.TextAlign.center,
     fontSize: fs,
     fontWeight: ui.FontWeight.w700,
   ))

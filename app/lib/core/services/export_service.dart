@@ -815,8 +815,10 @@ class ExportService {
     const double fontSize = 100;
     final recorder = ui.PictureRecorder();
     final canvas = ui.Canvas(recorder);
+    // Force LEFT align: the finished image is centered on the placement
+    // by the compositor, so layer.align is meaningless for single-line text.
     final paragraphBuilder = ui.ParagraphBuilder(ui.ParagraphStyle(
-      textAlign: layer.align == 'left' ? ui.TextAlign.left : (layer.align == 'right' ? ui.TextAlign.right : ui.TextAlign.center),
+      textAlign: ui.TextAlign.left,
       fontSize: fontSize,
       fontWeight: layer.bold ? ui.FontWeight.w700 : ui.FontWeight.w400,
       fontStyle: layer.italic ? ui.FontStyle.italic : ui.FontStyle.normal,
@@ -834,7 +836,10 @@ class ExportService {
       ..layout(const ui.ParagraphConstraints(width: 100000));
     canvas.drawParagraph(paragraph, ui.Offset.zero);
     final picture = recorder.endRecording();
-    final image = await picture.toImage(paragraph.width.round(), paragraph.height.round());
+    // Use longestLine (actual text width), not paragraph.width (constraint 100000).
+    final int iw = paragraph.longestLine.ceil().clamp(1, 32767);
+    final int ih = paragraph.height.ceil().clamp(1, 32767);
+    final image = await picture.toImage(iw, ih);
     final bytes = await image.toByteData(format: ui.ImageByteFormat.png);
     return bytes?.buffer.asUint8List();
   }
@@ -849,8 +854,10 @@ class ExportService {
               ui.Shadow(offset: o, color: const ui.Color(0xFFFFFFFF), blurRadius: 0),
           ]
         : null;
+    // Force LEFT align: glyphs must sit at x=0 inside the paragraph
+    // or they land outside the longestLine×height capture window.
     final paragraphBuilder = ui.ParagraphBuilder(ui.ParagraphStyle(
-      textAlign: layer.align == 'left' ? ui.TextAlign.left : (layer.align == 'right' ? ui.TextAlign.right : ui.TextAlign.center),
+      textAlign: ui.TextAlign.left,
       fontSize: fontSize,
       fontWeight: ui.FontWeight.values.firstWhere((w) => w.value == layer.fontWeight, orElse: () => ui.FontWeight.w700),
       fontFamily: layer.fontFamily,
