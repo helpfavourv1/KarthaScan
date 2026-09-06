@@ -21,6 +21,7 @@ class LayerControlPanel extends StatelessWidget {
     this.selectedAnnotateBytesPath,
     this.selectedWatermarkText,
     this.selectedStampId,
+      this.onEditFill,
   });
 
   final ScanDocument document;
@@ -30,6 +31,7 @@ class LayerControlPanel extends StatelessWidget {
   final String? selectedAnnotateBytesPath;
   final String? selectedWatermarkText;
   final String? selectedStampId;
+  final void Function(StampLayer layer)? onEditFill;
 
   Widget _buildAnnotateControls(BuildContext context) {
     final pageLayers = document.annotateLayers.where((l) => l.pageIndex == pageIndex).toList();
@@ -112,7 +114,7 @@ class LayerControlPanel extends StatelessWidget {
   }
 
   Widget _buildStampControls(BuildContext context) {
-    final kind = editMode == TrayEditMode.note ? 'note' : (editMode == TrayEditMode.date ? 'date' : (editMode == TrayEditMode.checkbox ? 'checkbox' : (editMode == TrayEditMode.seal ? 'seal' : 'text')));
+    final kind = editMode == TrayEditMode.fill ? 'fill' : (editMode == TrayEditMode.note ? 'note' : (editMode == TrayEditMode.date ? 'date' : (editMode == TrayEditMode.checkbox ? 'checkbox' : (editMode == TrayEditMode.seal ? 'seal' : 'text'))));
     final pageLayers = document.stampLayers.where((l) => l.pageIndex == pageIndex && l.kind == kind).toList();
     if (pageLayers.isEmpty) return const SizedBox.shrink();
     final layer = pageLayers.firstWhere((l) => l.id == selectedStampId, orElse: () => pageLayers.first);
@@ -124,7 +126,7 @@ class LayerControlPanel extends StatelessWidget {
         borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
       ),
       child: OverlayEditControls(
-        layerType: kind == 'text' ? LayerType.text : (kind == 'note' ? LayerType.note : (kind == 'date' ? LayerType.date : (kind == 'checkbox' ? LayerType.checkbox : LayerType.seal))),
+        layerType: kind == 'text' || kind == 'fill' ? LayerType.text : (kind == 'note' ? LayerType.note : (kind == 'date' ? LayerType.date : (kind == 'checkbox' ? LayerType.checkbox : LayerType.seal))),
         rotationDegrees: layer.placement.rotationDegrees,
         scale: layer.placement.scale,
         opacity: layer.opacity,
@@ -185,7 +187,7 @@ class LayerControlPanel extends StatelessWidget {
   Widget build(BuildContext context) {
     if (editMode == TrayEditMode.annotate) return _buildAnnotateControls(context);
     if (editMode == TrayEditMode.watermark) return _buildWatermarkControls(context);
-    if (editMode == TrayEditMode.text || editMode == TrayEditMode.note || editMode == TrayEditMode.date || editMode == TrayEditMode.checkbox || editMode == TrayEditMode.seal) {
+    if (editMode == TrayEditMode.text || editMode == TrayEditMode.note || editMode == TrayEditMode.date || editMode == TrayEditMode.checkbox || editMode == TrayEditMode.seal || editMode == TrayEditMode.fill) {
       return _buildStampControls(context);
     }
     return const SizedBox.shrink();

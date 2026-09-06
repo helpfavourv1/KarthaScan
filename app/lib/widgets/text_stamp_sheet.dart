@@ -3,6 +3,7 @@ import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'color_picker_dialog.dart';
 import '../core/models/scan_document.dart';
+import '../core/models/fill_snippet.dart';
 import '../l10n/app_localizations.dart';
 
 class StampResult {
@@ -32,9 +33,12 @@ class StampResult {
 }
 
 class TextStampSheet extends StatefulWidget {
-  const TextStampSheet({super.key, required this.kind, this.initial});
+  const TextStampSheet({super.key, required this.kind, this.initial, this.snippets, this.onSaveSnippet, this.onDeleteSnippet});
   final String kind;
   final StampLayer? initial;
+  final List<FillSnippet>? snippets;
+  final void Function(String text)? onSaveSnippet;
+  final void Function(String snippetId)? onDeleteSnippet;
   @override
   State<TextStampSheet> createState() => _TextStampSheetState();
 }
@@ -177,6 +181,9 @@ class _TextStampSheetState extends State<TextStampSheet> {
               Text(_title, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600)),
               const SizedBox(height: 12),
               if (widget.kind == 'text' || widget.kind == 'note')
+                
+              if (widget.onSaveSnippet != null && (widget.kind == 'text' || widget.kind == 'fill'))
+                IconButton(icon: const Icon(Icons.bookmark_border), tooltip: 'Save snippet', onPressed: _controller.text.isNotEmpty ? () => widget.onSaveSnippet!(_controller.text) : null),
                 TextField(controller: _controller, maxLines: widget.kind == 'note' ? 3 : 1, decoration: InputDecoration(labelText: (widget.kind == 'note' ? AppLocalizations.of(context).noteTextLabel : AppLocalizations.of(context).textLabel), border: const OutlineInputBorder())),
               if (widget.kind == 'checkbox') ...[
                 CheckboxListTile(value: _checked, title: Text(AppLocalizations.of(context).stampTickedLabel), onChanged: (v) => setState(() => _checked = v ?? true)),
@@ -253,6 +260,24 @@ class _TextStampSheetState extends State<TextStampSheet> {
               Wrap(spacing: 8, children: [TextAlign.left, TextAlign.center, TextAlign.right].map((a) => ChoiceChip(label: Icon(a == TextAlign.left ? Icons.format_align_left : a == TextAlign.center ? Icons.format_align_center : Icons.format_align_right, size: 16), selected: _align == a, onSelected: (_) => setState(() => _align = a))).toList()),
               SwitchListTile(title: Text(AppLocalizations.of(context).whiteHaloLabel), value: _halo, onChanged: (v) => setState(() => _halo = v)),
               const SizedBox(height: 12),
+              
+              if (widget.snippets != null && widget.snippets!.isNotEmpty) ...[
+                const SizedBox(height: 12),
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: widget.snippets!.map((s) => Padding(
+                      padding: const EdgeInsets.only(right: 8),
+                      child: InputChip(
+                        label: Text(s.label),
+                        deleteIcon: const Icon(Icons.close, size: 14),
+                        onDeleted: widget.onDeleteSnippet != null ? () => widget.onDeleteSnippet!(s.id) : null,
+                        onPressed: () { _controller.text = s.text; setState(() {}); },
+                      ),
+                    )).toList(),
+                  ),
+                ),
+              ],
               Row(mainAxisAlignment: MainAxisAlignment.end, children: [
                 TextButton(onPressed: () => Navigator.pop(context), child: Text(AppLocalizations.of(context).commonCancel)),
                 const SizedBox(width: 12),

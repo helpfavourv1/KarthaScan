@@ -12,10 +12,10 @@ import '../core/utils/constants.dart';
 import '../widgets/document_canvas.dart';
 import '../widgets/document_tools_mixin.dart';
 import '../widgets/edit_tray.dart';
+import '../widgets/text_stamp_sheet.dart';
 import '../widgets/layer_control_panel.dart';
 import '../widgets/ink_board.dart';
 import '../widgets/signature_editor_bar.dart';
-import '../widgets/fill_input_bar.dart';
 import '../core/models/fill_snippet.dart';
 import '../l10n/app_localizations.dart';
 
@@ -74,13 +74,58 @@ class _FullScreenEditScreenState extends State<FullScreenEditScreen> with Docume
     _fillSnippets = await _localStorage.loadFillSnippets();
   }
 
-  void _onFillTap(double pctX, double pctY, int pageIndex) {
+  Future<void> _onFillTap(double pctX, double pctY, int pageIndex) async {
     setState(() {
       _fillGhostPctX = pctX;
       _fillGhostPctY = pctY;
       _fillGhostPageIndex = pageIndex;
       _editMode = TrayEditMode.fill;
     });
+    final result = await showModalBottomSheet<StampResult>(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (ctx) => Padding(
+        padding: EdgeInsets.only(bottom: MediaQuery.of(ctx).viewInsets.bottom),
+        child: TextStampSheet(
+          kind: 'text',
+          snippets: _fillSnippets,
+          onSaveSnippet: (text) async {
+            final snippet = FillSnippet(id: 'snip_${DateTime.now().microsecondsSinceEpoch}', label: text.length > 12 ? text.substring(0, 12) : text, text: text);
+            _fillSnippets.add(snippet);
+            await _localStorage.saveFillSnippets(_fillSnippets);
+            setState(() {});
+            if (!mounted) return;
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(AppLocalizations.of(context).fillSaveSnippet), duration: const Duration(seconds: 2)));
+          },
+          onDeleteSnippet: (id) async {
+            _fillSnippets.removeWhere((s) => s.id == id);
+            await _localStorage.saveFillSnippets(_fillSnippets);
+            setState(() {});
+            if (!mounted) return;
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(AppLocalizations.of(context).fillDeleteSnippet), duration: const Duration(seconds: 2)));
+          },
+        ),
+      ),
+    );
+    if (result != null && result.text.isNotEmpty && mounted) {
+      final layer = StampLayer(
+        id: 'stamp_${DateTime.now().microsecondsSinceEpoch}',
+        pageIndex: _fillGhostPageIndex!,
+        kind: 'fill',
+        placement: SignaturePlacement(pctX: _fillGhostPctX!, pctY: _fillGhostPctY!),
+        text: result.text,
+        fontSize: result.fontSize,
+        color: result.color,
+        fontFamily: result.fontFamily,
+        fontWeight: result.fontWeightValue,
+        align: result.alignName,
+        halo: result.halo,
+      );
+      final doc = document;
+      if (doc != null) await _scanProvider.addStampLayer(doc.id, layer);
+    }
+    if (mounted) setState(() { _fillGhostPctX = null; _fillGhostPctY = null; _fillGhostPageIndex = null; _editMode = TrayEditMode.none; });
   }
 
   Future<void> _persistSignature() async {
@@ -156,6 +201,34 @@ class _FullScreenEditScreenState extends State<FullScreenEditScreen> with Docume
           break;
       }
     });
+  }
+
+
+  Future<void> _reEditFill(StampLayer layer) async {
+    final result = await showModalBottomSheet<StampResult>(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (ctx) => Padding(
+        padding: EdgeInsets.only(bottom: MediaQuery.of(ctx).viewInsets.bottom),
+        child: TextStampSheet(kind: 'text', initial: layer),
+      ),
+    );
+    if (result != null && result.text.isNotEmpty && mounted) {
+      final doc = document;
+      if (doc != null) {
+        final updated = layer.copyWith(
+          text: result.text,
+          fontSize: result.fontSize,
+          color: result.color,
+          fontFamily: result.fontFamily,
+          fontWeight: result.fontWeightValue,
+          align: result.alignName,
+          halo: result.halo,
+        );
+        await _scanProvider.updateStampLayer(doc.id, updated);
+      }
+    }
   }
 
   void _goToPage(int index) {
@@ -286,7 +359,7 @@ class _FullScreenEditScreenState extends State<FullScreenEditScreen> with Docume
                   onWatermarkSelect: () => setState(() => _editMode = TrayEditMode.watermark),
                   onWatermarkSelected: (layer) => setState(() { _selectedWatermarkText = layer.text; _selectedAnnotateBytesPath = null; _selectedStampId = null; _editMode = TrayEditMode.watermark; }),
                   onWatermarkLayerUpdate: (pageIndex, layer) => scanProvider.updateWatermarkLayer(doc.id, layer),
-                  onStampSelected: (layer) => setState(() { _selectedStampId = layer.id; _selectedAnnotateBytesPath = null; _selectedWatermarkText = null; _editMode = layer.kind == 'text' ? TrayEditMode.text : (layer.kind == 'note' ? TrayEditMode.note : (layer.kind == 'date' ? TrayEditMode.date : (layer.kind == 'checkbox' ? TrayEditMode.checkbox : TrayEditMode.seal))); }),
+                  onStampSelected: (layer) => setState(() { _selectedStampId = layer.id; _selectedAnnotateBytesPath = null; _selectedWatermarkText = null; _editMode = layer.kind == 'fill' ? TrayEditMode.fill : (layer.kind == 'text' ? TrayEditMode.text : (layer.kind == 'note' ? TrayEditMode.note : (layer.kind == 'date' ? TrayEditMode.date : (layer.kind == 'checkbox' ? TrayEditMode.checkbox : TrayEditMode.seal)))); }),
                   onStampLayerUpdate: (pageIndex, layer) => scanProvider.updateStampLayer(doc.id, layer),
                   pageController: _pageController,
                   physics: const NeverScrollableScrollPhysics(),
@@ -341,6 +414,7 @@ class _FullScreenEditScreenState extends State<FullScreenEditScreen> with Docume
                       selectedAnnotateBytesPath: _selectedAnnotateBytesPath,
                       selectedWatermarkText: _selectedWatermarkText,
                       selectedStampId: _selectedStampId,
+                      onEditFill: _reEditFill,
                     ),
                     if (_editMode != TrayEditMode.none || _selectedAnnotateBytesPath != null || _selectedWatermarkText != null || _selectedStampId != null)
                       Padding(
@@ -384,50 +458,7 @@ class _FullScreenEditScreenState extends State<FullScreenEditScreen> with Docume
                           },
                         ),
                       ),
-                    if (_editMode == TrayEditMode.fill && _fillGhostPctX != null && _fillGhostPctY != null && _fillGhostPageIndex != null)
-                      FillInputBar(
-                        initialText: _fillText ?? '',
-                        snippets: _fillSnippets,
-                        onTextChange: (text) => setState(() => _fillText = text),
-                        onConfirm: (text, allCaps, color, fontSize) async {
-                          if (text.isEmpty) return;
-                          final layer = StampLayer(
-                            id: 'stamp_${DateTime.now().microsecondsSinceEpoch}',
-                            pageIndex: _fillGhostPageIndex!,
-                            kind: 'fill',
-                            placement: SignaturePlacement(pctX: _fillGhostPctX!, pctY: _fillGhostPctY!),
-                            text: text,
-                            fontSize: fontSize,
-                            color: color,
-                            fontFamily: 'monospace',
-                            fontWeight: 700,
-                            align: 'left',
-                            allCaps: allCaps,
-                          );
-                          await _scanProvider.addStampLayer(doc.id, layer);
-                          setState(() { _fillGhostPctX = null; _fillGhostPctY = null; _fillGhostPageIndex = null; _editMode = TrayEditMode.none; });
-                        },
-                        onCancel: () => setState(() { _fillGhostPctX = null; _fillGhostPctY = null; _fillGhostPageIndex = null; _editMode = TrayEditMode.none; }),
-                        onSaveSnippet: (text) async {
-                          final snippet = FillSnippet(id: 'snip_${DateTime.now().microsecondsSinceEpoch}', label: text.length > 12 ? text.substring(0, 12) : text, text: text);
-                          _fillSnippets.add(snippet);
-                          await _localStorage.saveFillSnippets(_fillSnippets);
-                          setState(() {});
-                          if (!context.mounted) return;
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(content: Text(l10n.fillSaveSnippet), duration: const Duration(seconds: 2)),
-                          );
-                        },
-                        onDeleteSnippet: (id) async {
-                          _fillSnippets.removeWhere((s) => s.id == id);
-                          await _localStorage.saveFillSnippets(_fillSnippets);
-                          setState(() {});
-                          if (!context.mounted) return;
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(content: Text(l10n.fillDeleteSnippet), duration: const Duration(seconds: 2)),
-                          );
-                        },
-                      ),
+                    // Fill creation now handled in _onFillTap
                     // Compact train tray (always visible)
                     EditTray(
                       compact: true,
