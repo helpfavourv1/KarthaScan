@@ -1,3 +1,4 @@
+import 'dart:async' show unawaited;
 import 'dart:io';
 import 'dart:typed_data';
 import 'dart:ui' as ui;
@@ -7,6 +8,8 @@ import 'package:image/image.dart' as img;
 import '../core/models/scan_document.dart';
 import '../core/models/signature_placement.dart';
 import '../core/services/local_storage.dart';
+import '../core/services/ad_pacing_service.dart';
+import '../core/services/interstitial_ad_service.dart';
 import '../core/utils/constants.dart';
 import '../core/utils/seal_draw.dart';
 import 'signature_canvas.dart';
@@ -91,6 +94,10 @@ class InkController {
       }
     }
     if (bytes == null) return null;
+
+    // Central signature-completion hook: covers export, fullscreen edit, tray, and scan-detail surfaces
+    unawaited(AdPacingService.instance.recordSignature());
+    unawaited(InterstitialAdService.instance.showAfterSignature());
 
     final decoded = img.decodePng(bytes);
     final aspect = (decoded != null && decoded.height > 0)

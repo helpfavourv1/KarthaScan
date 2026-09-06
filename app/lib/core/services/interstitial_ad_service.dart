@@ -68,6 +68,9 @@ class InterstitialAdService {
   Future<void> showAfterConvert() async {
     if (AdPacingService.instance.canShowAfterConvert()) await showIfAllowed();
   }
+  Future<void> showAfterSignature() async {
+    if (AdPacingService.instance.canShowAfterSignature()) await showIfAllowed();
+  }
   Future<void> showAfterIdle() async {
     if (AdPacingService.instance.canShowAfterIdle()) await showIfAllowed();
   }

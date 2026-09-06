@@ -11,6 +11,7 @@ import '../core/services/share_service.dart';
 import '../core/utils/constants.dart';
 import '../widgets/document_canvas.dart';
 import '../widgets/document_tools_mixin.dart';
+import '../widgets/conditional_banner.dart';
 import '../widgets/edit_tray.dart';
 import '../widgets/text_stamp_sheet.dart';
 import '../widgets/layer_control_panel.dart';
@@ -251,6 +252,7 @@ class _FullScreenEditScreenState extends State<FullScreenEditScreen> with Docume
 
     return Scaffold(
       backgroundColor: bg,
+      bottomNavigationBar: const ConditionalBanner(),
       body: ListenableBuilder(
         listenable: _scanProvider.documents,
         builder: (context, _) {

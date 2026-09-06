@@ -12,12 +12,14 @@ class AdPacingService {
   static const String _lastAdShownKey = 'ad_pacing.last_ad_shown';
   static const String _lastForegroundKey = 'ad_pacing.last_foreground';
   static const String _adsSessionKey = 'ad_pacing.ads_this_session';
+  static const String _signaturesKey = 'ad_pacing.signatures_this_session';
 
   int scansThisSession = 0;
   int exportsThisSession = 0;
   int convertsThisSession = 0;
   int adsToday = 0;
   int adsThisSession = 0;
+  int signaturesThisSession = 0;
   DateTime? lastAdShownAt;
   DateTime? lastForegroundAt;
 
@@ -42,6 +44,7 @@ class AdPacingService {
     final lastFgStr = prefs.getString(_lastForegroundKey);
     if (lastFgStr != null) lastForegroundAt = DateTime.parse(lastFgStr);
     adsThisSession = prefs.getInt(_adsSessionKey) ?? 0;
+    signaturesThisSession = prefs.getInt(_signaturesKey) ?? 0;
   }
 
   Future<void> recordScan() async {
@@ -60,6 +63,12 @@ class AdPacingService {
     convertsThisSession++;
     final prefs = await SharedPreferences.getInstance();
     await prefs.setInt(_convertsKey, convertsThisSession);
+  }
+
+  Future<void> recordSignature() async {
+    signaturesThisSession++;
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setInt(_signaturesKey, signaturesThisSession);
   }
 
   Future<void> recordAdShown() async {
@@ -89,6 +98,8 @@ class AdPacingService {
     await prefs.setInt(_exportsKey, 0);
     await prefs.setInt(_convertsKey, 0);
     await prefs.setInt(_adsSessionKey, 0);
+    signaturesThisSession = 0;
+    await prefs.setInt(_signaturesKey, 0);
   }
 
   bool canShowAd() {
@@ -103,6 +114,7 @@ class AdPacingService {
   bool canShowAfterScan() => canShowAd();
   bool canShowAfterExport() => exportsThisSession > 0 && exportsThisSession % 2 == 0 && canShowAd();
   bool canShowAfterConvert() => convertsThisSession > 0 && convertsThisSession % 2 == 0 && canShowAd();
+  bool canShowAfterSignature() => signaturesThisSession > 0 && signaturesThisSession % 2 == 0 && canShowAd();
   bool canShowAfterIdle() {
     if (lastForegroundAt == null) return false;
     return DateTime.now().difference(lastForegroundAt!).inMinutes >= 5 && canShowAd();
