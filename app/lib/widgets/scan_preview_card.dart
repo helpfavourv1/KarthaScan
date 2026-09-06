@@ -241,6 +241,7 @@ class _ScanPreviewCardState extends State<ScanPreviewCard> {
                 onStampSelected: (layer) { setState(() { _selectedStampId = layer.id; _selectedAnnotateBytesPath = null; _selectedWatermarkText = null; }); widget.onStampSelect?.call(layer); },
                 onStampLayerUpdate: widget.onStampLayerUpdate,
                 physics: const NeverScrollableScrollPhysics(),
+                pageController: _pageController,
                 initialPage: _currentPage,
                 onPageChanged: (index) {
                   setState(() => _currentPage = index);
