@@ -619,6 +619,18 @@ class _LanguagePickerSheet extends StatelessWidget {
   }
 }
 
+String _accentLabel(String name, AppLocalizations l10n) {
+  switch (name) {
+    case 'Blue':    return l10n.accentBlue;
+    case 'Indigo':  return l10n.accentIndigo;
+    case 'Emerald': return l10n.accentEmerald;
+    case 'Crimson': return l10n.accentCrimson;
+    case 'Amber':   return l10n.accentAmber;
+    case 'Violet':  return l10n.accentViolet;
+    default:        return name;
+  }
+}
+
 class _AccentPickerSheet extends StatelessWidget {
   const _AccentPickerSheet({required this.current});
   final Color current;
@@ -659,7 +671,7 @@ class _AccentPickerSheet extends StatelessWidget {
                         child: isSelected ? const Icon(Icons.check, color: Colors.white, size: 20) : null,
                       ),
                       const SizedBox(height: 6),
-                      Text(p.localizedName, style: TextStyle(color: textPrimary, fontSize: 11, fontWeight: FontWeight.w500)),
+                      Text(_accentLabel(p.name, AppLocalizations.of(context)), style: TextStyle(color: textPrimary, fontSize: 11, fontWeight: FontWeight.w500)),
                     ],
                   ),
                 );
