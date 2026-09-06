@@ -19,12 +19,13 @@ import '../core/services/csv_to_pdf_service.dart';
 import '../core/services/docx_parser_service.dart';
 import '../core/services/export_service.dart';
 import '../core/services/pdf_to_images_service.dart';
+import '../core/services/ocr_service.dart';
 import '../core/services/share_service.dart';
 import '../core/services/downloads_service.dart';
 import '../core/services/txt_to_pdf_service.dart';
 import '../l10n/app_localizations.dart';
 
-enum _TargetFormat { pdf, jpg, png, txt, docx }
+enum _TargetFormat { pdf, jpg, png, txt, docx, csv }
 enum _ActionType { saveToDownloads, saveDoc, exportShare }
 
 class ConvertScreen extends StatefulWidget {
@@ -62,8 +63,7 @@ class _ConvertScreenState extends State<ConvertScreen> {
       (t == _TargetFormat.jpg || t == _TargetFormat.png) && widget.sourceType != 'docx';
 
   bool _targetAllowed(_TargetFormat t) {
-    final type = widget.sourceType;
-    if (t == _TargetFormat.txt) return type == 'txt' || type == 'csv' || type == 'docx';
+    // No artificial restrictions: every source can target every format.
     return true;
   }
 
@@ -119,6 +119,29 @@ class _ConvertScreenState extends State<ConvertScreen> {
         final out = p.join(outDir.path, 'conv_$ts.pdf');
         await File(src).copy(out);
         finalPaths.add(out);
+      } else if (_target == _TargetFormat.csv) {
+        _report(0.3, l10n.progressExtractingText);
+        final pngs = await PdfToImagesService().convertToImages(src, onProgress: (v, l) => _report(0.3 + v * 0.3, l));
+        if (pngs.isNotEmpty) {
+          final ocr = OcrService();
+          final result = await ocr.recognizeText(imagePath: pngs.first, script: OcrScript.latin);
+          final out = p.join(outDir.path, 'conv_$ts.csv');
+          await File(out).writeAsString('"${result.fullText.replaceAll('"', '""')}"');
+          finalPaths.add(out);
+        }
+      } else if (_target == _TargetFormat.txt) {
+        _report(0.3, l10n.progressRasterizing);
+        final pngs = await PdfToImagesService().convertToImages(src, onProgress: (v, l) => _report(0.3 + v * 0.4, l));
+        final sb = StringBuffer();
+        final ocr = OcrService();
+        for (int i = 0; i < pngs.length; i++) {
+          _report(0.7 + 0.29 * ((i + 1) / pngs.length), l10n.progressExtractingText);
+          final r = await ocr.recognizeText(imagePath: pngs[i], script: OcrScript.latin);
+          sb.writeln(r.fullText);
+        }
+        final out = p.join(outDir.path, 'conv_$ts.txt');
+        await File(out).writeAsString(sb.toString());
+        finalPaths.add(out);
       } else {
         intermediatePdf = src;
       }
@@ -126,8 +149,10 @@ class _ConvertScreenState extends State<ConvertScreen> {
       if (_target == _TargetFormat.pdf) {
         _report(0.4, l10n.progressBuildingPdf);
         final pdf = pw.Document();
-        final bytes = await File(src).readAsBytes();
-        final image = pw.MemoryImage(bytes);
+        final raw = await File(src).readAsBytes();
+        final decodedSrc = img.decodeImage(raw);
+        if (decodedSrc == null) throw Exception('Cannot decode image');
+        final image = pw.MemoryImage(Uint8List.fromList(img.encodePng(decodedSrc)));
         pdf.addPage(pw.Page(build: (pw.Context context) => pw.Center(child: pw.Image(image, fit: pw.BoxFit.contain))));
         final out = p.join(outDir.path, 'conv_$ts.pdf');
         await File(out).writeAsBytes(await pdf.save());
@@ -135,6 +160,20 @@ class _ConvertScreenState extends State<ConvertScreen> {
       } else if (_target == _TargetFormat.docx) {
         _report(0.5, l10n.progressBuildingDocx);
         final out = await _exportService.buildDocxFromImages([src], outDir.path, 'conv_$ts');
+        finalPaths.add(out);
+      } else if (_target == _TargetFormat.txt) {
+        _report(0.3, l10n.progressExtractingText);
+        final ocr = OcrService();
+        final result = await ocr.recognizeText(imagePath: src, script: OcrScript.latin);
+        final out = p.join(outDir.path, 'conv_$ts.txt');
+        await File(out).writeAsString(result.fullText);
+        finalPaths.add(out);
+      } else if (_target == _TargetFormat.csv) {
+        _report(0.3, l10n.progressExtractingText);
+        final ocr = OcrService();
+        final result = await ocr.recognizeText(imagePath: src, script: OcrScript.latin);
+        final out = p.join(outDir.path, 'conv_$ts.csv');
+        await File(out).writeAsString('"${result.fullText.replaceAll('"', '""')}"');
         finalPaths.add(out);
       } else {
         _report(0.4, l10n.progressDecodingImage);
@@ -153,6 +192,11 @@ class _ConvertScreenState extends State<ConvertScreen> {
         final out = p.join(outDir.path, 'conv_$ts.txt');
         await File(src).copy(out);
         finalPaths.add(out);
+      } else if (_target == _TargetFormat.csv) {
+        _report(0.5, l10n.progressCopying);
+        final out = p.join(outDir.path, 'conv_$ts.csv');
+        await File(src).copy(out);
+        finalPaths.add(out);
       } else if (_target == _TargetFormat.docx) {
         _report(0.5, l10n.progressBuildingDocx);
         final text = await File(src).readAsString();
@@ -167,6 +211,11 @@ class _ConvertScreenState extends State<ConvertScreen> {
         final out = p.join(outDir.path, 'conv_$ts.txt');
         await File(src).copy(out);
         finalPaths.add(out);
+      } else if (_target == _TargetFormat.csv) {
+        _report(0.5, l10n.progressCopying);
+        final out = p.join(outDir.path, 'conv_$ts.csv');
+        await File(src).copy(out);
+        finalPaths.add(out);
       } else if (_target == _TargetFormat.docx) {
         _report(0.5, l10n.progressBuildingDocx);
         final text = await File(src).readAsString();
@@ -179,6 +228,13 @@ class _ConvertScreenState extends State<ConvertScreen> {
       if (_target == _TargetFormat.txt) {
         _report(0.4, l10n.progressExtractingText);
         finalPaths.add(await DocxParserService().convertToTxt(src));
+      } else if (_target == _TargetFormat.csv) {
+        _report(0.4, l10n.progressExtractingText);
+        final txtPath = await DocxParserService().convertToTxt(src);
+        final content = await File(txtPath).readAsString();
+        final out = p.join(outDir.path, 'conv_$ts.csv');
+        await File(out).writeAsString('"${content.replaceAll('"', '""')}"');
+        finalPaths.add(out);
       } else if (_target == _TargetFormat.docx) {
         _report(0.5, l10n.progressCopying);
         final out = p.join(outDir.path, 'conv_$ts.docx');

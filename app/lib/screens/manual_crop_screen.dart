@@ -229,7 +229,7 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
     try {
       final result = await FilePicker.platform.pickFiles(
         type: FileType.custom,
-        allowedExtensions: ['jpg', 'jpeg', 'png', 'webp', 'pdf', 'txt', 'csv', 'docx'],
+        allowedExtensions: ['jpg', 'jpeg', 'png', 'webp', 'bmp', 'gif', 'tiff', 'pdf', 'txt', 'csv', 'docx', 'md'],
       );
       final path = result?.files.single.path;
       if (!mounted) return;
@@ -239,11 +239,11 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
       }
       final ext = path.toLowerCase().split('.').last;
       String type = 'unknown';
-      if (['jpg', 'jpeg', 'png', 'webp'].contains(ext)) {
+      if (['jpg', 'jpeg', 'png', 'webp', 'bmp', 'gif', 'tiff'].contains(ext)) {
         type = 'image';
       } else if (ext == 'pdf') {
         type = 'pdf';
-      } else if (ext == 'txt') {
+      } else if (ext == 'txt' || ext == 'md') {
         type = 'txt';
       } else if (ext == 'csv') {
         type = 'csv';
