@@ -604,7 +604,7 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
           children: [
             Icon(icon, color: isSelected ? accent : textSecondary, size: 24),
             const SizedBox(height: 6),
-            Text(label, style: TextStyle(color: isSelected ? accent : textPrimary, fontSize: 11, fontWeight: FontWeight.w600)),
+            Text(label, textAlign: TextAlign.center, style: TextStyle(color: isSelected ? accent : textPrimary, fontSize: 11, fontWeight: FontWeight.w600)),
           ],
         ),
       ),
