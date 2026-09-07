@@ -4,233 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>KatharScan — Free Document Scanner with Unlimited OCR</title>
-    <meta name="description" content="Free document scanning with unlimited OCR. No watermark. No account. Remove ads one-time." />
-    <style>
-        :root {
-            --bg-primary: #F2F2F7;
-            --surface: #FFFFFF;
-            --accent: #007AFF;
-            --accent-dim: #0051D5;
-            --text-primary: #111111;
-            --text-secondary: #3A3A3C;
-            --text-tertiary: #8E8E93;
-            --border: #E5E5EA;
-            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            --radius-card: 16px;
-            --radius-button: 14px;
-            --space-sm: 8px;
-            --space-md: 16px;
-            --space-lg: 24px;
-            --space-xl: 32px;
-        }
-
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            line-height: 1.5;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        /* Header */
-        .site-header {
-            background: rgba(242, 242, 247, 0.8);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .nav {
-            max-width: 960px;
-            margin: 0 auto;
-            padding: 16px 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .nav-logo {
-            font-size: 22px;
-            font-weight: 700;
-            letter-spacing: -0.6px;
-            color: var(--text-primary);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 24px;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--text-secondary);
-            font-size: 15px;
-            font-weight: 500;
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-
-        .nav-links a:hover { color: var(--accent); }
-
-        /* Hero */
-        .hero {
-            text-align: center;
-            padding: 80px 20px 60px;
-            max-width: 720px;
-            margin: 0 auto;
-        }
-
-        .hero h1 {
-            font-size: 48px;
-            font-weight: 800;
-            letter-spacing: -1.5px;
-            line-height: 1.1;
-            margin-bottom: 16px;
-            color: var(--text-primary);
-        }
-
-        .hero p.lede {
-            font-size: 20px;
-            color: var(--text-secondary);
-            margin-bottom: 32px;
-            line-height: 1.5;
-        }
-
-        .hero-badges {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 8px;
-            margin-bottom: 32px;
-        }
-
-        .badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: var(--surface);
-            padding: 8px 16px;
-            border-radius: 999px;
-            font-size: 14px;
-            font-weight: 500;
-            color: var(--text-secondary);
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-        }
-
-        .badge::before {
-            content: "✓";
-            color: var(--accent);
-            font-weight: 700;
-        }
-
-        /* Buttons */
-        .button-row {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            align-items: center;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 52px;
-            padding: 0 32px;
-            border-radius: var(--radius-button);
-            font-size: 17px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.2s;
-            width: 100%;
-            max-width: 360px;
-        }
-
-        .btn-primary {
-            background: var(--accent);
-            color: white;
-            box-shadow: 0 4px 12px rgba(0, 122, 255, 0.3);
-        }
-
-        .btn-primary:hover { background: var(--accent-dim); transform: translateY(-2px); }
-
-        .btn-secondary {
-            background: var(--surface);
-            color: var(--text-primary);
-            border: 1px solid var(--border);
-        }
-
-        .btn-secondary:hover { border-color: var(--accent); }
-
-        /* Features */
-        .features {
-            max-width: 960px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
-
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 16px;
-        }
-
-        .feature-card {
-            background: var(--surface);
-            border-radius: var(--radius-card);
-            padding: 24px;
-            box-shadow: var(--shadow);
-            transition: transform 0.2s;
-        }
-
-        .feature-card:hover { transform: translateY(-4px); }
-
-        .feature-card h3 {
-            font-size: 18px;
-            font-weight: 700;
-            margin-bottom: 8px;
-            letter-spacing: -0.3px;
-        }
-
-        .feature-card p {
-            font-size: 15px;
-            color: var(--text-secondary);
-            line-height: 1.5;
-        }
-
-        /* Footer */
-        .site-footer {
-            background: var(--surface);
-            border-top: 1px solid var(--border);
-            padding: 32px 20px;
-            text-align: center;
-            color: var(--text-tertiary);
-            font-size: 14px;
-        }
-
-        .site-footer a {
-            color: var(--text-tertiary);
-            text-decoration: none;
-            margin: 0 8px;
-        }
-
-        .site-footer a:hover { color: var(--accent); }
-
-        /* Responsive */
-        @media (max-width: 600px) {
-            .hero h1 { font-size: 32px; }
-            .nav-links { gap: 12px; }
-            .nav { padding: 12px 16px; }
-        }
-    </style>
+    <meta name="description" content="Free document scanning with unlimited OCR in 26 languages. No watermark. No account. Remove ads one-time." />
+    <link rel="stylesheet" href="style.css" />
 </head>
 <body>
     <header class="site-header">
@@ -251,11 +26,11 @@
                 <span class="badge">Unlimited scans</span>
                 <span class="badge">Unlimited OCR</span>
                 <span class="badge">No account required</span>
-                <span class="badge">Remove ads one-time</span>
+                <span class="badge">26 languages</span>
             </div>
             <div class="button-row">
-                <a class="btn btn-primary" href="#">Get it on Google Play</a>
-                <a class="btn btn-secondary" href="#">Download on the App Store</a>
+                <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.zdmgold.katharscan">Get it on Google Play</a>
+                <a class="btn btn-secondary" href="https://apps.apple.com/app/katharscan/id000000000">Download on the App Store</a>
             </div>
         </section>
 
@@ -278,8 +53,8 @@
                     <p>No server, no cloud, no account. Everything lives on your device unless you choose to share it.</p>
                 </div>
                 <div class="feature-card">
-                    <h3>11 languages</h3>
-                    <p>The app interface supports English, Spanish, French, German, Portuguese, Arabic, Hindi, Japanese, Korean, Chinese, and Hebrew. On-device OCR supports the Latin script.</p>
+                    <h3>26 languages</h3>
+                    <p>The app interface supports 26 languages including English, Spanish, French, German, Portuguese, Arabic, Hindi, Japanese, Korean, Chinese, Hebrew, Indonesian, Italian, Dutch, Turkish, Swedish, Norwegian, Danish, Finnish, Malay, Polish, Russian, Ukrainian, Vietnamese, Bengali, and Thai. On-device OCR supports Latin, Chinese, Korean, and Japanese scripts.</p>
                 </div>
                 <div class="feature-card">
                     <h3>Remove ads (optional)</h3>
