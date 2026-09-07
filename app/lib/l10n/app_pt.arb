@@ -314,7 +314,6 @@
   "tickerTags": "ETIQUETAS",
   "tickerFavorites": "FAVORITOS",
   "tickerSearch": "PESQUISAR",
-  "ticker12Languages": "12 IDIOMAS",
   "tickerDarkMode": "MODO ESCURO",
   "tickerAccentThemes": "TEMAS DE ACENTO",
   "tickerDeviceMigration": "MIGRAÇÃO DE DISPOSITIVO",
@@ -323,7 +322,7 @@
   "onboardingToolsTitle": "21 ferramentas Pro grátis",
   "onboardingToolsSubtitle": "Anote, assine, marca d'água, preencha formulários, sele e mais — tudo grátis e ilimitado.",
   "onboardingOcrTitle": "OCR no dispositivo",
-  "onboardingOcrSubtitle": "Extraia e pesquise texto em 12 idiomas — nada sai do seu telefone.",
+  "onboardingOcrSubtitle": "Extraia e pesquise texto em {count} idiomas — nada sai do seu telefone.",
   "onboardingSignTitle": "Assinar, preencher, selar",
   "onboardingSignSubtitle": "Assine contratos, preencha formulários e carimbe selos em segundos.",
   "onboardingEditTitle": "Edição não destrutiva",
@@ -442,5 +441,20 @@
   "accentEmerald": "Esmeralda",
   "accentCrimson": "Carmesim",
   "accentAmber": "Âmbar",
-  "accentViolet": "Violeta"
+  "accentViolet": "Violeta",
+  "tickerLanguages": "{count} LANGUAGES",
+  "@tickerLanguages": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@onboardingOcrSubtitle": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  }
 }

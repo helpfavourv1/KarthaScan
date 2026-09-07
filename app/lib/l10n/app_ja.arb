@@ -314,7 +314,6 @@
   "tickerTags": "タグ",
   "tickerFavorites": "お気に入り",
   "tickerSearch": "検索",
-  "ticker12Languages": "12言語",
   "tickerDarkMode": "ダークモード",
   "tickerAccentThemes": "アクセントテーマ",
   "tickerDeviceMigration": "デバイスマイグレーション",
@@ -323,7 +322,7 @@
   "onboardingToolsTitle": "21の無料プロツール",
   "onboardingToolsSubtitle": "注釈、署名、透かし、フォーム入力、シールなど — すべて無料で無制限。",
   "onboardingOcrTitle": "オンデバイスOCR",
-  "onboardingOcrSubtitle": "12言語でテキストを抽出・検索 — 何もスマホから外に出ません。",
+  "onboardingOcrSubtitle": "{count}言語でテキストを抽出・検索 — 何もスマホから外に出ません。",
   "onboardingSignTitle": "署名・入力・シール",
   "onboardingSignSubtitle": "契約書に電子署名、フォーム入力、企業シールを数秒で。",
   "onboardingEditTitle": "非破壊編集",
@@ -442,5 +441,20 @@
   "accentEmerald": "エメラルド",
   "accentCrimson": "クリムソン",
   "accentAmber": "アンバー",
-  "accentViolet": "バイオレット"
+  "accentViolet": "バイオレット",
+  "tickerLanguages": "{count} LANGUAGES",
+  "@tickerLanguages": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@onboardingOcrSubtitle": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  }
 }

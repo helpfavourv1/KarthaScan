@@ -64,7 +64,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       l10n.onboardingSignTitle, l10n.onboardingEditTitle, l10n.onboardingPrivacyTitle,
     ];
     final subs = [
-      l10n.onboardingWelcomeSubtitle, l10n.onboardingToolsSubtitle, l10n.onboardingOcrSubtitle,
+      l10n.onboardingWelcomeSubtitle, l10n.onboardingToolsSubtitle, l10n.onboardingOcrSubtitle(AppLocales.supportedLanguageCodes.length),
       l10n.onboardingSignSubtitle, l10n.onboardingEditSubtitle, l10n.onboardingPrivacySubtitle,
     ];
 

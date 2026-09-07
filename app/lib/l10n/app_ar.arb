@@ -314,7 +314,6 @@
   "tickerTags": "وسوم",
   "tickerFavorites": "مفضلة",
   "tickerSearch": "بحث",
-  "ticker12Languages": "12 لغة",
   "tickerDarkMode": "الوضع الداكن",
   "tickerAccentThemes": "سمات التمييز",
   "tickerDeviceMigration": "نقل الجهاز",
@@ -323,7 +322,7 @@
   "onboardingToolsTitle": "21 أداة احترافية مجانية",
   "onboardingToolsSubtitle": "علّق، وقّع، ضع علامة مائية، املأ النماذج، اختم، والمزيد — كل الأدوات مجانية وغير محدودة.",
   "onboardingOcrTitle": "تعرف ضوئي على الجهاز",
-  "onboardingOcrSubtitle": "استخرج وابحث في النص بـ 12 لغة — لا شيء يغادر هاتفك.",
+  "onboardingOcrSubtitle": "استخرج وابحث في النص بـ {count} لغة — لا شيء يغادر هاتفك.",
   "onboardingSignTitle": "وقّع واملأ واختم",
   "onboardingSignSubtitle": "وقّع العقود إلكترونيًا، املأ النماذج بالنقر، واختم بأختام مؤسسية في ثوانٍ.",
   "onboardingEditTitle": "تحرير غير مدمر",
@@ -442,5 +441,20 @@
   "accentEmerald": "زمردي",
   "accentCrimson": "قرمزي",
   "accentAmber": "كهرماني",
-  "accentViolet": "بنفسجي"
+  "accentViolet": "بنفسجي",
+  "tickerLanguages": "{count} LANGUAGES",
+  "@tickerLanguages": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@onboardingOcrSubtitle": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  }
 }

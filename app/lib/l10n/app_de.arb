@@ -314,7 +314,6 @@
   "tickerTags": "TAGS",
   "tickerFavorites": "FAVORITEN",
   "tickerSearch": "SUCHE",
-  "ticker12Languages": "12 SPRACHEN",
   "tickerDarkMode": "DUNKELMODUS",
   "tickerAccentThemes": "AKZENTTHEMEN",
   "tickerDeviceMigration": "GERÄTEMIGRATION",
@@ -323,7 +322,7 @@
   "onboardingToolsTitle": "21 kostenlose Pro-Tools",
   "onboardingToolsSubtitle": "Notieren, signieren, Wasserzeichen, Formulare, Siegel uvm. — alles kostenlos und unbegrenzt.",
   "onboardingOcrTitle": "OCR auf dem Gerät",
-  "onboardingOcrSubtitle": "Text in 12 Sprachen extrahieren und durchsuchen — nichts verlässt Ihr Telefon.",
+  "onboardingOcrSubtitle": "Text in {count} Sprachen extrahieren und durchsuchen — nichts verlässt Ihr Telefon.",
   "onboardingSignTitle": "Signieren, Ausfüllen, Siegeln",
   "onboardingSignSubtitle": "Verträge e-signieren, Formulare ausfüllen, Firmensiegel stempeln — in Sekunden.",
   "onboardingEditTitle": "Nicht-destruktive Bearbeitung",
@@ -442,5 +441,20 @@
   "accentEmerald": "Smaragdgrün",
   "accentCrimson": "Karminrot",
   "accentAmber": "Bernstein",
-  "accentViolet": "Violett"
+  "accentViolet": "Violett",
+  "tickerLanguages": "{count} LANGUAGES",
+  "@tickerLanguages": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@onboardingOcrSubtitle": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  }
 }

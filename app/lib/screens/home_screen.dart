@@ -858,7 +858,7 @@ class _FeatureTickerState extends State<_FeatureTicker> with SingleTickerProvide
       'TAGS': () => l10n.tickerTags,
       'FAVORITES': () => l10n.tickerFavorites,
       'SEARCH': () => l10n.tickerSearch,
-      '12 LANGUAGES': () => l10n.ticker12Languages,
+      '12 LANGUAGES': () => l10n.tickerLanguages(AppLocales.supportedLanguageCodes.length),
       'DARK MODE': () => l10n.tickerDarkMode,
       'ACCENT THEMES': () => l10n.tickerAccentThemes,
       'DEVICE MIGRATION': () => l10n.tickerDeviceMigration,
