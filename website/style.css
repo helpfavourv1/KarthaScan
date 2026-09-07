@@ -1,3 +1,10 @@
+@font-face {
+  font-family: 'PlusJakartaSans';
+  src: url('fonts/PlusJakartaSans.ttf') format('truetype');
+  font-weight: 200 900;
+  font-display: swap;
+}
+
 /* KatharScan Website — iOS-grade design tokens matching app constants.dart */
 
 :root {
@@ -57,7 +64,7 @@ html {
 body {
   background: var(--bg-primary);
   color: var(--text-primary);
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
+  font-family: 'PlusJakartaSans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
 }
@@ -90,12 +97,23 @@ a:hover {
 }
 
 .nav-logo {
-  font-size: 22px;
-  font-weight: 700;
-  letter-spacing: -0.6px;
+  font-size: 24px;
+  font-weight: 900;
+  letter-spacing: -1px;
+  line-height: 1;
   color: var(--text-primary);
   text-decoration: none;
 }
+
+.nav-logo .logo-accent {
+  background: linear-gradient(135deg, var(--accent), var(--accent-dim));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.store-badge { display: inline-flex; }
+.store-badge img { height: 52px; width: auto; display: block; border-radius: 12px; border: 1px solid var(--border-subtle); }
 
 .nav-links {
   display: flex;
