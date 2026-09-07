@@ -611,6 +611,7 @@ class _LanguagePickerSheet extends StatelessWidget {
     'uk': 'Українська',
     'vi': 'Tiếng Việt',
     'bn': 'বাংলা',
+    'th': 'ไทย',
   };
 
   @override

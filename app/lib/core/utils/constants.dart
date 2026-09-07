@@ -241,6 +241,7 @@ abstract final class AppLocales {
     'uk',
     'vi',
     'bn',
+    'th',
   ];
   static const List<String> rtlLanguageCodes = ['ar', 'he'];
   static const String defaultLanguageCode = 'en';
