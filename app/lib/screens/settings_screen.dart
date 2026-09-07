@@ -266,6 +266,7 @@ class _LanguagePickerSheet extends StatelessWidget {
     'id': 'Bahasa Indonesia',
     'it': 'Italiano',
     'nl': 'Nederlands',
+    'tr': 'Türkçe',
   };
 
   @override
