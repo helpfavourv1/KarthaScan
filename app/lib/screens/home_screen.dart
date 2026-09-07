@@ -605,6 +605,7 @@ class _LanguagePickerSheet extends StatelessWidget {
     'no': 'Norsk',
     'da': 'Dansk',
     'fi': 'Suomi',
+    'ms': 'Bahasa Melayu',
   };
 
   @override
