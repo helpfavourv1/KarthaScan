@@ -273,6 +273,7 @@ class _LanguagePickerSheet extends StatelessWidget {
     'fi': 'Suomi',
     'ms': 'Bahasa Melayu',
     'pl': 'Polski',
+    'ru': 'Русский',
   };
 
   @override
