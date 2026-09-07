@@ -64,9 +64,16 @@ class _FullScreenEditScreenState extends State<FullScreenEditScreen> with Docume
     _scanProvider.undoManager.clear();
     _loadFillSnippets();
     if (widget.startInFillMode) _editMode = TrayEditMode.fill;
-    WidgetsBinding.instance.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
       final doc = document;
       if (doc != null) _inkController.seed(doc);
+      // Defect 2 fix: when entered via Fill tray (startInFillMode),
+      // auto-open the fill input sheet on first frame so the user does not
+      // have to discover the canvas-tap gesture. Places at page center;
+      // user can drag-reposition via LayerControlPanel afterward.
+      if (widget.startInFillMode && doc != null) {
+        await _onFillTap(0.5, 0.5, _currentPageIndex);
+      }
     });
   }
 
@@ -428,36 +435,6 @@ class _FullScreenEditScreenState extends State<FullScreenEditScreen> with Docume
                             label: Text(AppLocalizations.of(context).commonDone, style: TextStyle(fontSize: 11)),
                             onPressed: closeEditor,
                           ),
-                        ),
-                      ),
-                    if (_editMode == TrayEditMode.fill && doc.stampLayers.where((l) => l.kind == 'fill').isNotEmpty)
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                        child: OutlinedButton.icon(
-                          icon: const Icon(Icons.delete_sweep),
-                          label: Text(l10n.clearAll),
-                          onPressed: () async {
-                            final confirm = await showDialog<bool>(
-                              context: context,
-                              builder: (ctx) => AlertDialog(
-                                title: Text(l10n.clearAll),
-                                content: const Text('Clear all fill fields on this document?'),
-                                actions: [
-                                  TextButton(onPressed: () => Navigator.pop(ctx, false), child: Text(l10n.commonCancel)),
-                                  TextButton(onPressed: () => Navigator.pop(ctx, true), child: Text(l10n.commonDelete)),
-                                ],
-                              ),
-                            );
-                            if (confirm == true) {
-                              for (final layer in doc.stampLayers.where((l) => l.kind == 'fill')) {
-                                await _scanProvider.removeStampLayer(doc.id, layer.id);
-                              }
-                              if (!context.mounted) return;
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(content: Text(l10n.clearAll), duration: const Duration(seconds: 2)),
-                              );
-                            }
-                          },
                         ),
                       ),
                     // Fill creation now handled in _onFillTap
