@@ -609,6 +609,7 @@ class _LanguagePickerSheet extends StatelessWidget {
     'pl': 'Polski',
     'ru': 'Русский',
     'uk': 'Українська',
+    'vi': 'Tiếng Việt',
   };
 
   @override
