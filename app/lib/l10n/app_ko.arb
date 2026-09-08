@@ -460,5 +460,7 @@
   "termsOfServiceLabel": "서비스 약관",
   "openSourceLicensesLabel": "오픈소스 라이선스",
   "whatsNewTitle": "새로운 기능",
-  "whatsNewContinue": "계속"
+  "whatsNewContinue": "계속",
+  "tickerTxtExport": "TXT 내보내기",
+  "tickerCsvExport": "CSV 내보내기"
 }

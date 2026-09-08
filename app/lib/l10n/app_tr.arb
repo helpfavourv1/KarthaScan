@@ -553,5 +553,7 @@
   "termsOfServiceLabel": "Hizmet Koşulları",
   "openSourceLicensesLabel": "Açık kaynak lisansları",
   "whatsNewTitle": "Yenilikler",
-  "whatsNewContinue": "Devam"
+  "whatsNewContinue": "Devam",
+  "tickerTxtExport": "TXT DIŞA AKTARMA",
+  "tickerCsvExport": "CSV DIŞA AKTARMA"
 }

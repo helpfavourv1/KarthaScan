@@ -553,5 +553,7 @@
   "termsOfServiceLabel": "Servicevoorwaarden",
   "openSourceLicensesLabel": "Open-source licenties",
   "whatsNewTitle": "Wat is nieuw",
-  "whatsNewContinue": "Doorgaan"
+  "whatsNewContinue": "Doorgaan",
+  "tickerTxtExport": "TXT-EXPORT",
+  "tickerCsvExport": "CSV-EXPORT"
 }

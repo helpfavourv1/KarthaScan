@@ -553,5 +553,7 @@
   "termsOfServiceLabel": "Käyttöehdot",
   "openSourceLicensesLabel": "Avoimen lähdekoodin lisenssit",
   "whatsNewTitle": "Uutta",
-  "whatsNewContinue": "Jatka"
+  "whatsNewContinue": "Jatka",
+  "tickerTxtExport": "TXT-VIENTI",
+  "tickerCsvExport": "CSV-VIENTI"
 }

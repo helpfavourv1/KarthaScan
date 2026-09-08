@@ -460,5 +460,7 @@
   "termsOfServiceLabel": "服务条款",
   "openSourceLicensesLabel": "开源许可证",
   "whatsNewTitle": "新功能",
-  "whatsNewContinue": "继续"
+  "whatsNewContinue": "继续",
+  "tickerTxtExport": "TXT导出",
+  "tickerCsvExport": "CSV导出"
 }

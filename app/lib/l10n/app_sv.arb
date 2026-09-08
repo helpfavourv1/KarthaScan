@@ -553,5 +553,7 @@
   "termsOfServiceLabel": "Användarvillkor",
   "openSourceLicensesLabel": "Öppen källkodslicenser",
   "whatsNewTitle": "Nyheter",
-  "whatsNewContinue": "Fortsätt"
+  "whatsNewContinue": "Fortsätt",
+  "tickerTxtExport": "TXT-EXPORT",
+  "tickerCsvExport": "CSV-EXPORT"
 }

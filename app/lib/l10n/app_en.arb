@@ -549,10 +549,11 @@
         "type": "int"
       }
     }
-  }
-,
+  },
   "termsOfServiceLabel": "Terms of Service",
   "openSourceLicensesLabel": "Open-source licenses",
   "whatsNewTitle": "What's New",
-  "whatsNewContinue": "Continue"
+  "whatsNewContinue": "Continue",
+  "tickerTxtExport": "TXT EXPORT",
+  "tickerCsvExport": "CSV EXPORT"
 }

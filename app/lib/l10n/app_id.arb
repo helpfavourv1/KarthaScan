@@ -460,5 +460,7 @@
   "termsOfServiceLabel": "Ketentuan Layanan",
   "openSourceLicensesLabel": "Lisensi sumber terbuka",
   "whatsNewTitle": "Apa yang Baru",
-  "whatsNewContinue": "Lanjutkan"
+  "whatsNewContinue": "Lanjutkan",
+  "tickerTxtExport": "EKSPOR TXT",
+  "tickerCsvExport": "EKSPOR CSV"
 }

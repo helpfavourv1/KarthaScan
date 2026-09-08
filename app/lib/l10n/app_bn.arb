@@ -553,5 +553,7 @@
   "termsOfServiceLabel": "পরিষেবার শর্তাবলী",
   "openSourceLicensesLabel": "ওপেন-সোর্স লাইসেন্স",
   "whatsNewTitle": "নতুন কী",
-  "whatsNewContinue": "চালিয়ে যান"
+  "whatsNewContinue": "চালিয়ে যান",
+  "tickerTxtExport": "TXT রপ্তানি",
+  "tickerCsvExport": "CSV রপ্তানি"
 }

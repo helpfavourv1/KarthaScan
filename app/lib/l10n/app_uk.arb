@@ -553,5 +553,7 @@
   "termsOfServiceLabel": "Умови використання",
   "openSourceLicensesLabel": "Ліцензії з відкритим кодом",
   "whatsNewTitle": "Що нового",
-  "whatsNewContinue": "Продовжити"
+  "whatsNewContinue": "Продовжити",
+  "tickerTxtExport": "ЕКСПОРТ TXT",
+  "tickerCsvExport": "ЕКСПОРТ CSV"
 }

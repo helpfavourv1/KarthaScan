@@ -460,5 +460,7 @@
   "termsOfServiceLabel": "תנאי שימוש",
   "openSourceLicensesLabel": "רישיונות קוד פתוח",
   "whatsNewTitle": "מה חדש",
-  "whatsNewContinue": "המשך"
+  "whatsNewContinue": "המשך",
+  "tickerTxtExport": "ייצוא TXT",
+  "tickerCsvExport": "ייצוא CSV"
 }

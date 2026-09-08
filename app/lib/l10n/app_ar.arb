@@ -460,5 +460,7 @@
   "termsOfServiceLabel": "شروط الخدمة",
   "openSourceLicensesLabel": "تراخيص مفتوحة المصدر",
   "whatsNewTitle": "الجديد",
-  "whatsNewContinue": "متابعة"
+  "whatsNewContinue": "متابعة",
+  "tickerTxtExport": "تصدير TXT",
+  "tickerCsvExport": "تصدير CSV"
 }

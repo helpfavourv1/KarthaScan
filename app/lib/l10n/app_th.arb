@@ -553,5 +553,7 @@
   "termsOfServiceLabel": "ข้อกำหนดการให้บริการ",
   "openSourceLicensesLabel": "ใบอนุญาตโอเพนซอร์ส",
   "whatsNewTitle": "มีอะไรใหม่",
-  "whatsNewContinue": "ดำเนินการต่อ"
+  "whatsNewContinue": "ดำเนินการต่อ",
+  "tickerTxtExport": "ส่งออก TXT",
+  "tickerCsvExport": "ส่งออก CSV"
 }

@@ -553,5 +553,7 @@
   "termsOfServiceLabel": "Servicevilkår",
   "openSourceLicensesLabel": "Open source-licenser",
   "whatsNewTitle": "Nyheder",
-  "whatsNewContinue": "Fortsæt"
+  "whatsNewContinue": "Fortsæt",
+  "tickerTxtExport": "TXT-EKSPORT",
+  "tickerCsvExport": "CSV-EKSPORT"
 }

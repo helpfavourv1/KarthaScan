@@ -460,5 +460,7 @@
   "termsOfServiceLabel": "Nutzungsbedingungen",
   "openSourceLicensesLabel": "Open-Source-Lizenzen",
   "whatsNewTitle": "Neuigkeiten",
-  "whatsNewContinue": "Weiter"
+  "whatsNewContinue": "Weiter",
+  "tickerTxtExport": "TXT-EXPORT",
+  "tickerCsvExport": "CSV-EXPORT"
 }

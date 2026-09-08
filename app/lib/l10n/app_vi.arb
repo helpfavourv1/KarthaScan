@@ -553,5 +553,7 @@
   "termsOfServiceLabel": "Điều khoản dịch vụ",
   "openSourceLicensesLabel": "Giấy phép mã nguồn mở",
   "whatsNewTitle": "Có gì mới",
-  "whatsNewContinue": "Tiếp tục"
+  "whatsNewContinue": "Tiếp tục",
+  "tickerTxtExport": "XUẤT TXT",
+  "tickerCsvExport": "XUẤT CSV"
 }

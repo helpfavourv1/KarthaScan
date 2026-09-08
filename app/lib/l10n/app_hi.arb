@@ -460,5 +460,7 @@
   "termsOfServiceLabel": "सेवा की शर्तें",
   "openSourceLicensesLabel": "ओपन-सोर्स लाइसेंस",
   "whatsNewTitle": "नया क्या है",
-  "whatsNewContinue": "जारी रखें"
+  "whatsNewContinue": "जारी रखें",
+  "tickerTxtExport": "TXT निर्यात",
+  "tickerCsvExport": "CSV निर्यात"
 }

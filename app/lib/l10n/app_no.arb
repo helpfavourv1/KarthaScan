@@ -553,5 +553,7 @@
   "termsOfServiceLabel": "Tjenestevilkår",
   "openSourceLicensesLabel": "Åpen kildekode-lisenser",
   "whatsNewTitle": "Nyheter",
-  "whatsNewContinue": "Fortsett"
+  "whatsNewContinue": "Fortsett",
+  "tickerTxtExport": "TXT-EKSPORT",
+  "tickerCsvExport": "CSV-EKSPORT"
 }
