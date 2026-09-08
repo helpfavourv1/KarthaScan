@@ -555,5 +555,6 @@
   "whatsNewTitle": "Apa yang Baru",
   "whatsNewContinue": "Teruskan",
   "tickerTxtExport": "EKSPORT TXT",
-  "tickerCsvExport": "EKSPORT CSV"
+  "tickerCsvExport": "EKSPORT CSV",
+  "whatsNewBody": "Selamat datang ke KatharScan! Ini ialah keluaran awam pertama dengan imbasan tanpa had, 26 bahasa dan eksport ke PDF, Word, TXT, JPG, PNG dan CSV."
 }

@@ -555,5 +555,6 @@
   "whatsNewTitle": "มีอะไรใหม่",
   "whatsNewContinue": "ดำเนินการต่อ",
   "tickerTxtExport": "ส่งออก TXT",
-  "tickerCsvExport": "ส่งออก CSV"
+  "tickerCsvExport": "ส่งออก CSV",
+  "whatsNewBody": "ยินดีต้อนรับสู่ KatharScan! นี่คือเวอร์ชันสาธารณะแรกที่มาพร้อมการสแกนไม่จำกัด 26 ภาษา และการส่งออก PDF, Word, TXT, JPG, PNG และ CSV"
 }

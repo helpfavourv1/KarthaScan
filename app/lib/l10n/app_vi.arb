@@ -555,5 +555,6 @@
   "whatsNewTitle": "Có gì mới",
   "whatsNewContinue": "Tiếp tục",
   "tickerTxtExport": "XUẤT TXT",
-  "tickerCsvExport": "XUẤT CSV"
+  "tickerCsvExport": "XUẤT CSV",
+  "whatsNewBody": "Chào mừng đến với KatharScan! Đây là bản phát hành công khai đầu tiên với quét không giới hạn, 26 ngôn ngữ và xuất ra PDF, Word, TXT, JPG, PNG, CSV."
 }

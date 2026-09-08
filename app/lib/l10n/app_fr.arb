@@ -462,5 +462,6 @@
   "whatsNewTitle": "Nouveautés",
   "whatsNewContinue": "Continuer",
   "tickerTxtExport": "EXPORT TXT",
-  "tickerCsvExport": "EXPORT CSV"
+  "tickerCsvExport": "EXPORT CSV",
+  "whatsNewBody": "Bienvenue dans KatharScan ! Voici la première version publique avec numérisation illimitée, 26 langues et export PDF, Word, TXT, JPG, PNG et CSV."
 }

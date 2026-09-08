@@ -555,5 +555,6 @@
   "whatsNewTitle": "Uutta",
   "whatsNewContinue": "Jatka",
   "tickerTxtExport": "TXT-VIENTI",
-  "tickerCsvExport": "CSV-VIENTI"
+  "tickerCsvExport": "CSV-VIENTI",
+  "whatsNewBody": "Tervetuloa KatharScaniin! Tämä on ensimmäinen julkinen versio, jossa on rajaton skannaus, 26 kieltä ja vienti muotoihin PDF, Word, TXT, JPG, PNG ja CSV."
 }

@@ -555,5 +555,6 @@
   "whatsNewTitle": "Nyheder",
   "whatsNewContinue": "Fortsæt",
   "tickerTxtExport": "TXT-EKSPORT",
-  "tickerCsvExport": "CSV-EKSPORT"
+  "tickerCsvExport": "CSV-EKSPORT",
+  "whatsNewBody": "Velkommen til KatharScan! Dette er den første offentlige version med ubegrænset scanning, 26 sprog og eksport til PDF, Word, TXT, JPG, PNG og CSV."
 }

@@ -555,5 +555,6 @@
   "whatsNewTitle": "নতুন কী",
   "whatsNewContinue": "চালিয়ে যান",
   "tickerTxtExport": "TXT রপ্তানি",
-  "tickerCsvExport": "CSV রপ্তানি"
+  "tickerCsvExport": "CSV রপ্তানি",
+  "whatsNewBody": "KatharScan-এ স্বাগতম! এটি প্রথম পাবলিক রিলিজ যেখানে আছে আনলিমিটেড স্ক্যানিং, ২টি ভাষা এবং PDF, Word, TXT, JPG, PNG ও CSV এক্সপোর্ট।"
 }

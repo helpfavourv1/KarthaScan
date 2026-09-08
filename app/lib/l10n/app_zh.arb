@@ -462,5 +462,6 @@
   "whatsNewTitle": "新功能",
   "whatsNewContinue": "继续",
   "tickerTxtExport": "TXT导出",
-  "tickerCsvExport": "CSV导出"
+  "tickerCsvExport": "CSV导出",
+  "whatsNewBody": "欢迎使用 KatharScan！这是首个公开版本，支持无限扫描、26 种语言，并可导出为 PDF、Word、TXT、JPG、PNG 和 CSV。"
 }

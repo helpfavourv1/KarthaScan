@@ -462,5 +462,6 @@
   "whatsNewTitle": "الجديد",
   "whatsNewContinue": "متابعة",
   "tickerTxtExport": "تصدير TXT",
-  "tickerCsvExport": "تصدير CSV"
+  "tickerCsvExport": "تصدير CSV",
+  "whatsNewBody": "مرحبًا بك في KatharScan! هذا هو الإصدار العام الأول بمسح غير محدود و26 لغة وتصدير إلى PDF وWord وTXT وJPG وPNG وCSV."
 }

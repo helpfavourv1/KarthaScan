@@ -20,6 +20,12 @@ import 'platform/permission_service.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // Request ATT consent on iOS BEFORE initializing AdMob (Apple requirement)
+  final PermissionService permission = PermissionService();
+  await permission.requestATT();
+
+  // Now safe to initialize AdMob — ATT consent has been requested
   MobileAds.instance.initialize();
 
   installGlobalErrorHandling(
@@ -42,11 +48,6 @@ Future<void> main() async {
 
   final DocScannerService docScanner = DocScannerService();
   final OcrService ocr = OcrService();
-  final PermissionService permission = PermissionService();
-  
-  // Request ATT consent on iOS before initializing AdMob (Apple requirement)
-  await permission.requestATT();
-  
   final IapService iap = IapService();
 
   final SettingsProvider settingsProvider = SettingsProvider(localStorage);

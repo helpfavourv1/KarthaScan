@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Core Features**
   - Unlimited document scanning with on-device OCR
   - 26 language support for app interface (English, Spanish, French, German, Portuguese, Arabic, Hindi, Japanese, Korean, Chinese, Hebrew, Indonesian, Italian, Dutch, Turkish, Swedish, Norwegian, Danish, Finnish, Malay, Polish, Russian, Ukrainian, Vietnamese, Bengali, Thai)
-  - 5 export formats: PDF, Word (.docx), TXT, JPG, PNG
+  - Export formats: PDF, Word (.docx), TXT, JPG, PNG, CSV
   - Folders, tags, and full-text search
   - Non-destructive editing with undo/redo
 

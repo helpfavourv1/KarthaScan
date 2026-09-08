@@ -555,5 +555,6 @@
   "whatsNewTitle": "Yenilikler",
   "whatsNewContinue": "Devam",
   "tickerTxtExport": "TXT DIŞA AKTARMA",
-  "tickerCsvExport": "CSV DIŞA AKTARMA"
+  "tickerCsvExport": "CSV DIŞA AKTARMA",
+  "whatsNewBody": "KatharScan'a hoş geldiniz! Bu, sınırsız tarama, 26 dil ve PDF, Word, TXT, JPG, PNG, CSV dışa aktarımı sunan ilk genel sürümdür."
 }

@@ -462,5 +462,6 @@
   "whatsNewTitle": "מה חדש",
   "whatsNewContinue": "המשך",
   "tickerTxtExport": "ייצוא TXT",
-  "tickerCsvExport": "ייצוא CSV"
+  "tickerCsvExport": "ייצוא CSV",
+  "whatsNewBody": "ברוכים הבאים ל-KatharScan! זוהי המהדורה הציבורית הראשונה עם סריקה בלתי מוגבלת, 26 שפות וייצוא ל-PDF, Word, TXT, JPG, PNG ו-CSV."
 }

@@ -462,5 +462,6 @@
   "whatsNewTitle": "新機能",
   "whatsNewContinue": "続行",
   "tickerTxtExport": "TXTエクスポート",
-  "tickerCsvExport": "CSVエクスポート"
+  "tickerCsvExport": "CSVエクスポート",
+  "whatsNewBody": "KatharScanへようこそ！無制限スキャン、26言語、PDF・Word・TXT・JPG・PNG・CSVへのエクスポートを備えた最初の公開リリースです。"
 }

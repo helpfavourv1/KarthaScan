@@ -13,6 +13,8 @@ class ConditionalBanner extends StatefulWidget {
 
 class _ConditionalBannerState extends State<ConditionalBanner> {
   static const String _testBannerId = 'ca-app-pub-3940256099942544/6300978111';
+  // Tier 2 placeholder — replace with production AdMob banner ID before store submission
+  static const String _prodBannerId = 'ca-app-pub-3940256099942544/6300978111';
   BannerAd? _bannerAd;
   bool _isAdLoaded = false;
 
@@ -27,7 +29,7 @@ class _ConditionalBannerState extends State<ConditionalBanner> {
     if (subscriptionProvider.adsRemoved.value) return;
 
     _bannerAd = BannerAd(
-      adUnitId: !kReleaseMode ? _testBannerId : _testBannerId,
+      adUnitId: kReleaseMode ? _prodBannerId : _testBannerId,
       size: AdSize.banner,
       request: const AdRequest(),
       listener: BannerAdListener(

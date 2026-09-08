@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import '../widgets/whats_new_sheet.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
@@ -48,6 +51,24 @@ class _HomeScreenState extends State<HomeScreen> {
     final subProvider = Provider.of<SubscriptionProvider>(context, listen: false);
     await EngagementService.init(subProvider);
     EngagementService.instance.recordHomeReturn();
+
+    // Show What's New sheet if this version hasn't been seen
+    WidgetsBinding.instance.addPostFrameCallback((_) => _maybeShowWhatsNew());
+  }
+
+  Future<void> _maybeShowWhatsNew() async {
+    if (!mounted) return;
+    final prefs = await SharedPreferences.getInstance();
+    final info = await PackageInfo.fromPlatform();
+    final lastSeen = prefs.getString('last_seen_version');
+    if (lastSeen != info.version && mounted) {
+      showModalBottomSheet(
+        context: context,
+        isScrollControlled: true,
+        backgroundColor: Colors.transparent,
+        builder: (_) => const WhatsNewSheet(),
+      );
+    }
   }
 
 
