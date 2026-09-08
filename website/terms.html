@@ -21,6 +21,7 @@
 
     <main class="page-content">
         <article>
+            <span class="freshness-badge" data-freshness hidden></span>
             <h1>Terms of Service</h1>
             <p class="updated">Last updated: September 2026</p>
 
@@ -68,7 +69,9 @@
             <a href="support.html">Support</a> ·
             <a href="terms.html">Terms</a>
         </p>
-        <p>&copy; 2026 KatharScan. All rights reserved.</p>
+        <p>&copy; <span id="copyright-year">2026</span> KatharScan. All rights reserved.</p>
+        <script>document.getElementById('copyright-year').textContent = new Date().getFullYear();</script>
     </footer>
+    <script src="site.js" defer></script>
 </body>
 </html>

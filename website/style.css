@@ -374,3 +374,26 @@ details p {
     padding: 12px var(--space-md);
   }
 }
+
+/* Freshness badge — pill with accent dot, quarter label injected by site.js */
+.freshness-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+.freshness-badge::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+.hero .freshness-badge { margin-bottom: 16px; }
+.page-content .freshness-badge { margin-bottom: 12px; }
