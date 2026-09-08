@@ -40,4 +40,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Known Limitations
 - Google ML Kit Doc Scanner is Android-only (iOS falls back to camera import)
-- Some OCR scripts (Chinese, Korean, Japanese) require on-demand language pack download
+- Chinese, Korean, and Japanese OCR depend on Google Play services model delivery and may show as unsupported on devices without it

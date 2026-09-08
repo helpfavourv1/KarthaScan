@@ -343,10 +343,11 @@ class _OcrLanguagesSheetState extends State<_OcrLanguagesSheet> {
       final dir = await getTemporaryDirectory();
       final path = p.join(dir.path, 'ocr_probe.png');
       final file = File(path);
-      if (!await file.exists()) {
-        await file.writeAsBytes(base64Decode(
-            'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg=='));
-      }
+      // Always overwrite: an earlier build cached a 1x1 probe image here,
+      // which ML Kit rejects ("width and height should be at least 32"),
+      // falsely classifying CJK scripts as hard-unsupported.
+      await file.writeAsBytes(base64Decode(
+          'iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAAAAACPAi4CAAAAKUlEQVR42u3MQREAAAwCIPuX1hD77SAA6VEEAoFAIBAIBAKBQCAQfA8Gpwvw4qrwDDIAAAAASUVORK5CYII='));
       await OcrService().recognizeText(imagePath: path, script: script);
       OcrService.clearFailureFor(script);
     } on OcrUnavailableException {

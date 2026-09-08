@@ -415,7 +415,7 @@
   "onboardingToolsTitle": "เครื่องมือ Pro ฟรี 21 ชิ้น",
   "onboardingToolsSubtitle": "คำอธิบายประกอบ เซ็นชื่อ ลายน้ำ กรอกแบบฟอร์ม ตราประทับ และอื่นๆ — ทุกเครื่องมือฟรีและไม่จำกัด",
   "onboardingOcrTitle": "OCR บนอุปกรณ์",
-  "onboardingOcrSubtitle": "แยกและค้นหาข้อความใน {count} ภาษา — ไม่มีอะไรออกจากโทรศัพท์ของคุณ",
+  "onboardingOcrSubtitle": "ใช้ KatharScan ได้ {count} ภาษา OCR ทำงานบนโทรศัพท์ของคุณ — ไม่มีอะไรออกจากอุปกรณ์",
   "onboardingSignTitle": "เซ็นชื่อ กรอก และประทับตรา",
   "onboardingSignSubtitle": "เซ็นสัญญาอิเล็กทรอนิกส์ กรอกแบบฟอร์ม และประทับตราบริษัทในไม่กี่วินาที",
   "onboardingEditTitle": "การแก้ไขแบบไม่ทำลาย",

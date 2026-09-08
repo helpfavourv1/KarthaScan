@@ -322,7 +322,7 @@
   "onboardingToolsTitle": "21 मुफ़्त प्रो टूल",
   "onboardingToolsSubtitle": "एनोटेट, साइन, वॉटरमार्क, फ़ॉर्म भरें, सील और बहुत कुछ — सब मुफ़्त और असीमित।",
   "onboardingOcrTitle": "ऑन-डिवाइस OCR",
-  "onboardingOcrSubtitle": "{count} भाषाओं में टेक्स्ट निकालें और खोजें — कुछ भी फ़ोन से बाहर नहीं जाता।",
+  "onboardingOcrSubtitle": "KatharScan को {count} भाषाओं में उपयोग करें। OCR आपके फ़ोन पर चलता है — कुछ भी आपके डिवाइस से बाहर नहीं जाता।",
   "onboardingSignTitle": "साइन, फिल और सील",
   "onboardingSignSubtitle": "अनुबंधों पर ई-साइन, फ़ॉर्म भरें, सेकंडों में एंटरप्राइज़ सील लगाएं।",
   "onboardingEditTitle": "गैर-विनाशकारी संपादन",

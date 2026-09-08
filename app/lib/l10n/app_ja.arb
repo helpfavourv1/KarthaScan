@@ -322,7 +322,7 @@
   "onboardingToolsTitle": "21の無料プロツール",
   "onboardingToolsSubtitle": "注釈、署名、透かし、フォーム入力、シールなど — すべて無料で無制限。",
   "onboardingOcrTitle": "オンデバイスOCR",
-  "onboardingOcrSubtitle": "{count}言語でテキストを抽出・検索 — 何もスマホから外に出ません。",
+  "onboardingOcrSubtitle": "KatharScanを{count}言語で利用可能。OCRはスマートフォン上で動作し、何も端末の外に出ません。",
   "onboardingSignTitle": "署名・入力・シール",
   "onboardingSignSubtitle": "契約書に電子署名、フォーム入力、企業シールを数秒で。",
   "onboardingEditTitle": "非破壊編集",

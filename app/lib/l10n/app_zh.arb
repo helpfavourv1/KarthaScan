@@ -322,7 +322,7 @@
   "onboardingToolsTitle": "21 个免费专业工具",
   "onboardingToolsSubtitle": "批注、签名、水印、填写表单、盖章等 — 全部免费无限制。",
   "onboardingOcrTitle": "设备端 OCR",
-  "onboardingOcrSubtitle": "以 {count} 种语言提取和搜索文本 — 任何内容都不会离开您的手机。",
+  "onboardingOcrSubtitle": "KatharScan 支持 {count} 种语言。OCR 在您的手机上运行——任何内容都不会离开您的设备。",
   "onboardingSignTitle": "签名、填写、盖章",
   "onboardingSignSubtitle": "电子签署合同、点击填写表单、几秒内加盖企业印章。",
   "onboardingEditTitle": "非破坏性编辑",
