@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:provider/provider.dart';
+
+import '../platform/permission_service.dart';
 
 import '../core/utils/constants.dart';
 import '../l10n/app_localizations.dart';
@@ -39,8 +42,14 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     if (_currentIndex < _assets.length - 1) {
       _goTo(_currentIndex + 1);
     } else {
+      // Capture the service BEFORE any await so no BuildContext is used
+      // across an async gap (lint: use_build_context_synchronously).
+      final permissionService = Provider.of<PermissionService>(context, listen: false);
       final prefs = await SharedPreferences.getInstance();
       await prefs.setBool('hasSeenOnboarding', true);
+      // ATT consent now that the user has seen the app's value (Apple:
+      // never at first launch, never before core value is experienced).
+      await permissionService.requestATT();
       if (!mounted) return;
       context.go('/');
     }
