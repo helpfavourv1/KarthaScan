@@ -550,4 +550,9 @@
       }
     }
   }
+,
+  "termsOfServiceLabel": "Terms of Service",
+  "openSourceLicensesLabel": "Open-source licenses",
+  "whatsNewTitle": "What's New",
+  "whatsNewContinue": "Continue"
 }

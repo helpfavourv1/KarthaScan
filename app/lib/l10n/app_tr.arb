@@ -549,5 +549,9 @@
         "type": "int"
       }
     }
-  }
+  },
+  "termsOfServiceLabel": "Hizmet Koşulları",
+  "openSourceLicensesLabel": "Açık kaynak lisansları",
+  "whatsNewTitle": "Yenilikler",
+  "whatsNewContinue": "Devam"
 }

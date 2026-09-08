@@ -549,5 +549,9 @@
         "type": "int"
       }
     }
-  }
+  },
+  "termsOfServiceLabel": "Условия использования",
+  "openSourceLicensesLabel": "Лицензии с открытым исходным кодом",
+  "whatsNewTitle": "Что нового",
+  "whatsNewContinue": "Продолжить"
 }

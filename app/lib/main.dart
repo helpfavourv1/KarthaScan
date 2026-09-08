@@ -43,6 +43,10 @@ Future<void> main() async {
   final DocScannerService docScanner = DocScannerService();
   final OcrService ocr = OcrService();
   final PermissionService permission = PermissionService();
+  
+  // Request ATT consent on iOS before initializing AdMob (Apple requirement)
+  await permission.requestATT();
+  
   final IapService iap = IapService();
 
   final SettingsProvider settingsProvider = SettingsProvider(localStorage);

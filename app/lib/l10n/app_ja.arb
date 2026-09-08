@@ -456,5 +456,9 @@
         "type": "int"
       }
     }
-  }
+  },
+  "termsOfServiceLabel": "利用規約",
+  "openSourceLicensesLabel": "オープンソースライセンス",
+  "whatsNewTitle": "新機能",
+  "whatsNewContinue": "続行"
 }

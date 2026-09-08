@@ -456,5 +456,9 @@
         "type": "int"
       }
     }
-  }
+  },
+  "termsOfServiceLabel": "شروط الخدمة",
+  "openSourceLicensesLabel": "تراخيص مفتوحة المصدر",
+  "whatsNewTitle": "الجديد",
+  "whatsNewContinue": "متابعة"
 }

@@ -456,5 +456,9 @@
         "type": "int"
       }
     }
-  }
+  },
+  "termsOfServiceLabel": "תנאי שימוש",
+  "openSourceLicensesLabel": "רישיונות קוד פתוח",
+  "whatsNewTitle": "מה חדש",
+  "whatsNewContinue": "המשך"
 }

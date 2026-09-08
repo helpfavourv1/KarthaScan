@@ -27,7 +27,7 @@ class _ConditionalBannerState extends State<ConditionalBanner> {
     if (subscriptionProvider.adsRemoved.value) return;
 
     _bannerAd = BannerAd(
-      adUnitId: !kReleaseMode ? _testBannerId : _testBannerId, // TODO: Replace with real ID before store submission
+      adUnitId: !kReleaseMode ? _testBannerId : _testBannerId,
       size: AdSize.banner,
       request: const AdRequest(),
       listener: BannerAdListener(

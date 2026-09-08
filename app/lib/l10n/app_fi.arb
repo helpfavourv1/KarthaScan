@@ -549,5 +549,9 @@
         "type": "int"
       }
     }
-  }
+  },
+  "termsOfServiceLabel": "Käyttöehdot",
+  "openSourceLicensesLabel": "Avoimen lähdekoodin lisenssit",
+  "whatsNewTitle": "Uutta",
+  "whatsNewContinue": "Jatka"
 }

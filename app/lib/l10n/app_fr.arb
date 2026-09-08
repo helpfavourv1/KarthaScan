@@ -456,5 +456,9 @@
         "type": "int"
       }
     }
-  }
+  },
+  "termsOfServiceLabel": "Conditions d'utilisation",
+  "openSourceLicensesLabel": "Licences open source",
+  "whatsNewTitle": "Nouveautés",
+  "whatsNewContinue": "Continuer"
 }

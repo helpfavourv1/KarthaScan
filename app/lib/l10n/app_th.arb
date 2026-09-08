@@ -549,5 +549,9 @@
         "type": "int"
       }
     }
-  }
+  },
+  "termsOfServiceLabel": "ข้อกำหนดการให้บริการ",
+  "openSourceLicensesLabel": "ใบอนุญาตโอเพนซอร์ส",
+  "whatsNewTitle": "มีอะไรใหม่",
+  "whatsNewContinue": "ดำเนินการต่อ"
 }

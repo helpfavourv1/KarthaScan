@@ -549,5 +549,9 @@
         "type": "int"
       }
     }
-  }
+  },
+  "termsOfServiceLabel": "Tjenestevilkår",
+  "openSourceLicensesLabel": "Åpen kildekode-lisenser",
+  "whatsNewTitle": "Nyheter",
+  "whatsNewContinue": "Fortsett"
 }

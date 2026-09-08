@@ -456,5 +456,9 @@
         "type": "int"
       }
     }
-  }
+  },
+  "termsOfServiceLabel": "服务条款",
+  "openSourceLicensesLabel": "开源许可证",
+  "whatsNewTitle": "新功能",
+  "whatsNewContinue": "继续"
 }

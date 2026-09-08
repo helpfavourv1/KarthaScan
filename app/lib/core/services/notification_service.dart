@@ -40,7 +40,6 @@ class NotificationService {
     final androidPlatform = _notifications.resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>();
     if (androidPlatform != null) {
       await androidPlatform.requestNotificationsPermission();
-      await androidPlatform.requestExactAlarmsPermission();
     }
 
     final iosPlatform = _notifications.resolvePlatformSpecificImplementation<IOSFlutterLocalNotificationsPlugin>();
@@ -98,7 +97,7 @@ class NotificationService {
       tz.TZDateTime.from(scheduledTime, tz.local),
       details,
       payload: 'doc:$documentId',
-      androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
+      androidScheduleMode: AndroidScheduleMode.inexact,
       uiLocalNotificationDateInterpretation: UILocalNotificationDateInterpretation.absoluteTime,
     );
   }
@@ -134,7 +133,7 @@ class NotificationService {
       tz.TZDateTime.from(threeDaysLater, tz.local),
       details,
       payload: 'feature:seal_sign',
-      androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
+      androidScheduleMode: AndroidScheduleMode.inexact,
       uiLocalNotificationDateInterpretation: UILocalNotificationDateInterpretation.absoluteTime,
     );
 
@@ -164,7 +163,7 @@ class NotificationService {
       tz.TZDateTime.from(nextMonday, tz.local),
       details,
       payload: 'feature:weekly_summary',
-      androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
+      androidScheduleMode: AndroidScheduleMode.inexact,
       uiLocalNotificationDateInterpretation: UILocalNotificationDateInterpretation.absoluteTime,
     );
   }

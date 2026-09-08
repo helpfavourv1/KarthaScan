@@ -549,5 +549,9 @@
         "type": "int"
       }
     }
-  }
+  },
+  "termsOfServiceLabel": "Terma Perkhidmatan",
+  "openSourceLicensesLabel": "Lesen sumber terbuka",
+  "whatsNewTitle": "Apa yang Baru",
+  "whatsNewContinue": "Teruskan"
 }

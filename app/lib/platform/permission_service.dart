@@ -21,7 +21,7 @@ import 'package:permission_handler/permission_handler.dart';
 /// The two permission types this app ever requests (Section 8 — camera
 /// for scanning, photos for gallery import). Nothing else: no location,
 /// contacts, SMS, call log, biometric, or notifications.
-enum AppPermission { camera, photos }
+enum AppPermission { camera, photos, appTrackingTransparency }
 
 extension _AppPermissionMapping on AppPermission {
   Permission get _handlerPermission {
@@ -35,6 +35,8 @@ extension _AppPermissionMapping on AppPermission {
         // version branching internally. Both are declared in
         // AndroidManifest.xml (file #59) per Section 8.
         return Permission.photos;
+      case AppPermission.appTrackingTransparency:
+        return Permission.appTrackingTransparency;
     }
   }
 }
@@ -119,5 +121,14 @@ class PermissionService {
 
   void _logError(String operation, Object error, StackTrace stackTrace) {
     debugPrint('[PermissionService] $operation failed: $error');
+  }
+
+
+  /// iOS-only: Requests App Tracking Transparency consent.
+  /// Required before initializing AdMob for personalized ads.
+  /// Returns granted on Android (no ATT concept).
+  Future<PermissionOutcome> requestATT() async {
+    if (!Platform.isIOS) return PermissionOutcome.granted;
+    return request(AppPermission.appTrackingTransparency);
   }
 }
