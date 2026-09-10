@@ -1,3 +1,4 @@
+import 'core/services/notification_service.dart';
 import 'package:flutter/material.dart';
 import 'core/services/engagement_service.dart';
 import 'widgets/share_prompt_sheet.dart';
@@ -34,6 +35,9 @@ class _KatharScanAppState extends State<KatharScanApp> with WidgetsBindingObserv
     unawaited(AdPacingService.instance.initialize());
     unawaited(AdPacingService.instance.resetSessionCounters());
     InterstitialAdService.instance.preload();
+    
+    // Safe notification init after widget tree is attached
+    unawaited(NotificationService.instance.initialize().catchError((e) {}));
   }
 
   @override
