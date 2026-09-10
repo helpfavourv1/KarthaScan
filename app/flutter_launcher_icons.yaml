@@ -3,7 +3,7 @@
 
 flutter_launcher_icons:
   android: "launcher_icon"
-  ios: false  # Disable iOS since no iOS project assets exist
+  ios: true  # Disable iOS since no iOS project assets exist
   image_path: "assets/icon_source.png"
   min_sdk_android: 21
 
