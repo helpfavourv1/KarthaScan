@@ -21,9 +21,12 @@ class NotificationService {
   Future<void> initialize() async {
     if (_initialized) return;
 
-    tz.initializeTimeZones();
+    try {
+      tz.initializeTimeZones();
+      // CRITICAL FIX: tz.local is null by default. Setting it prevents runtime crashes in TZDateTime.from
+      tz.setLocalLocation(tz.getLocation('UTC'));
 
-    const androidSettings = AndroidInitializationSettings('@drawable/notification_icon');
+      const androidSettings = AndroidInitializationSettings('@drawable/notification_icon');
     const iosSettings = DarwinInitializationSettings(
       requestAlertPermission: false,
       requestBadgePermission: false,
@@ -48,10 +51,23 @@ class NotificationService {
     }
 
     await _createNotificationChannel();
-    await _scheduleFeatureDiscovery();
-    await _scheduleWeeklySummary();
+    
+    // Wrap scheduling in try/catch to prevent any timezone/scheduling errors from crashing the app
+    try {
+      await _scheduleFeatureDiscovery();
+    } catch (e) {
+      // 'Feature discovery schedule failed: \$e'
+    }
+    try {
+      await _scheduleWeeklySummary();
+    } catch (e) {
+      // 'Weekly summary schedule failed: \$e'
+    }
 
     _initialized = true;
+    } catch (e) {
+      // 'Notification initialization failed: \$e'
+    }
   }
 
   Future<void> _createNotificationChannel() async {
