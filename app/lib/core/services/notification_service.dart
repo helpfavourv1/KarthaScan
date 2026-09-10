@@ -40,15 +40,9 @@ class NotificationService {
       onDidReceiveNotificationResponse: _onNotificationTapped,
     );
 
-    final androidPlatform = _notifications.resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>();
-    if (androidPlatform != null) {
-      await androidPlatform.requestNotificationsPermission();
-    }
+    // Android permission request removed to prevent cold-start crash
 
-    final iosPlatform = _notifications.resolvePlatformSpecificImplementation<IOSFlutterLocalNotificationsPlugin>();
-    if (iosPlatform != null) {
-      await iosPlatform.requestPermissions(alert: true, badge: true, sound: true);
-    }
+    // iOS permission request removed to prevent cold-start crash
 
     await _createNotificationChannel();
     
