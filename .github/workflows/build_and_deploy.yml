@@ -79,3 +79,11 @@ jobs:
         with:
           name: katharscan-android-debug-symbols
           path: app/symbols/
+      - name: Build debug APK (crash diagnosis, unobfuscated)
+        working-directory: app
+        run: flutter build apk --debug
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: katharscan-android-debug-apk
+          path: app/build/app/outputs/flutter-apk/app-debug.apk
