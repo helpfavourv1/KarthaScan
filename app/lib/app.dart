@@ -38,7 +38,7 @@ class _KatharScanAppState extends State<KatharScanApp> with WidgetsBindingObserv
     
     // Defer notification init until after the first frame is drawn to prevent BadTokenException
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      unawaited(NotificationService.instance.initialize().catchError((e) {}));
+      // DISABLED: unawaited(NotificationService.instance.initialize().catchError((e) {}));
     });
   }
 
