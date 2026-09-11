@@ -12,7 +12,7 @@
 
         <application
         android:label="@string/app_name"
-        android:name="${applicationName}"
+        android:name=".MainApplication"
         android:icon="@mipmap/launcher_icon"
         android:roundIcon="@mipmap/launcher_icon">
         <meta-data
