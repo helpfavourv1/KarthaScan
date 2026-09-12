@@ -204,6 +204,7 @@ abstract final class AppSupportContact {
   static const String supportEmail = 'accessmakr@gmail.com';
   static const String privacyPolicyUrl = 'https://katharscan.helpfavourv1.workers.dev/privacy';
   static const String supportUrl = 'https://katharscan.helpfavourv1.workers.dev/support';
+  static const String termsOfServiceUrl = 'https://katharscan.helpfavourv1.workers.dev/terms';
   AppSupportContact._();
 }
 
