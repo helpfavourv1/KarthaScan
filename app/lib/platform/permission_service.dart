@@ -131,4 +131,15 @@ class PermissionService {
     if (!Platform.isIOS) return PermissionOutcome.granted;
     return request(AppPermission.appTrackingTransparency);
   }
+
+  /// iOS-only check: Returns true if ATT was previously granted.
+  Future<bool> isATTGranted() async {
+    if (!Platform.isIOS) return true;
+    try {
+      final PermissionStatus status = await Permission.appTrackingTransparency.status;
+      return status.isGranted || status.isLimited;
+    } catch (_) {
+      return false;
+    }
+  }
 }

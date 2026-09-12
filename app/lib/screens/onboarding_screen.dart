@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
 
 import '../platform/permission_service.dart';
@@ -50,6 +51,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       // ATT consent now that the user has seen the app's value (Apple:
       // never at first launch, never before core value is experienced).
       await permissionService.requestATT();
+      
+      // CRITICAL FIX: Initialize AdMob ONLY after the ATT prompt has been displayed.
+      MobileAds.instance.initialize();
+
       if (!mounted) return;
       context.go('/');
     }

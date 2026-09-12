@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
@@ -22,9 +23,15 @@ Future<void> main() async {
 
   final PermissionService permission = PermissionService();
 
-  // Initialize AdMob now; ATT consent is requested after onboarding
-  // completes (contextually sensible moment per Apple guidelines).
-  MobileAds.instance.initialize();
+  // GATED AdMob Initialization (Apple ATT Compliance)
+  final prefs = await SharedPreferences.getInstance();
+  final bool hasSeenOnboarding = prefs.getBool('hasSeenOnboarding') ?? false;
+
+  if (hasSeenOnboarding) {
+    if (await permission.isATTGranted()) {
+      MobileAds.instance.initialize();
+    }
+  }
 
   installGlobalErrorHandling(
     onReportError: (FlutterErrorDetails details) {
