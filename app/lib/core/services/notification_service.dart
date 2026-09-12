@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:flutter_timezone/flutter_timezone.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:timezone/data/latest_all.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 import 'package:shared_preferences/shared_preferences.dart';
@@ -23,8 +25,13 @@ class NotificationService {
 
     try {
       tz.initializeTimeZones();
-      // CRITICAL FIX: tz.local is null by default. Setting it prevents runtime crashes in TZDateTime.from
-      tz.setLocalLocation(tz.getLocation('UTC'));
+      // Safe local timezone detection with UTC fallback
+      try {
+        final String tzName = await FlutterTimezone.getLocalTimezone();
+        tz.setLocalLocation(tz.getLocation(tzName));
+      } catch (e) {
+        tz.setLocalLocation(tz.getLocation('UTC'));
+      }
 
       const androidSettings = AndroidInitializationSettings('@drawable/notification_icon');
     const iosSettings = DarwinInitializationSettings(
@@ -79,12 +86,22 @@ class NotificationService {
   final ValueNotifier<String?> _pendingPayload = ValueNotifier<String?>(null);
   ValueNotifier<String?> get pendingPayload => _pendingPayload;
 
+
+  Future<bool> requestPermission() async {
+    if (!_initialized) return false;
+    final status = await Permission.notification.status;
+    if (status.isGranted) return true;
+    final result = await Permission.notification.request();
+    return result.isGranted;
+  }
+
   Future<void> scheduleExportReminder({
     required String documentId,
     required String documentTitle,
     required DateTime scheduledTime,
   }) async {
     if (!_initialized) return;
+    await requestPermission();
 
     final androidDetails = AndroidNotificationDetails(
       _channelId,
