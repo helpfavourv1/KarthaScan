@@ -59,7 +59,7 @@ jobs:
           ANDROID_KEYSTORE_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
         run: |
           if [ -n "$ANDROID_KEYSTORE_BASE64" ]; then
-            echo "$ANDROID_KEYSTORE_BASE64" | base64 --decode > app/android/upload-keystore.jks
+            echo "$ANDROID_KEYSTORE_BASE64" | base64 --decode > app/android/app/upload-keystore.jks
           fi
 
       - name: Create key.properties
@@ -68,7 +68,7 @@ jobs:
           ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
           ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
         run: |
-          if [ -f app/android/upload-keystore.jks ]; then
+          if [ -f app/android/app/upload-keystore.jks ]; then
             echo "storeFile=upload-keystore.jks" > app/android/key.properties
             echo "keyAlias=$ANDROID_KEY_ALIAS" >> app/android/key.properties
             echo "storePassword=$ANDROID_KEYSTORE_PASSWORD" >> app/android/key.properties
@@ -106,5 +106,5 @@ jobs:
       - name: Cleanup Keystore
         if: always()
         run: |
-          rm -f app/android/upload-keystore.jks
+          rm -f app/android/app/upload-keystore.jks
           rm -f app/android/key.properties
