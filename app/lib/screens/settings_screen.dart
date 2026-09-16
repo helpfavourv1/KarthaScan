@@ -1,3 +1,4 @@
+import 'package:package_info_plus/package_info_plus.dart';
 import 'dart:convert';
 import 'dart:io';
 
@@ -229,7 +230,16 @@ class _SettingsScreenState extends State<SettingsScreen> {
             const SizedBox(height: AppSpacing.xs),
             _settingsTile(title: l10n.termsOfServiceLabel, trailing: Icon(Icons.open_in_new, color: textSecondary, size: 16), onTap: () => _openUrl(AppSupportContact.termsOfServiceUrl, l10n), textPrimary: textPrimary, border: border),
             const SizedBox(height: AppSpacing.xs),
-            _settingsTile(title: l10n.openSourceLicensesLabel, trailing: Icon(Icons.chevron_right, color: textSecondary), onTap: () => showLicensePage(context: context, applicationName: 'KatharScan', applicationVersion: '1.0.0'), textPrimary: textPrimary, border: border),
+            _settingsTile(title: l10n.openSourceLicensesLabel, trailing: Icon(Icons.chevron_right, color: textSecondary), onTap: () async {
+              final info = await PackageInfo.fromPlatform();
+              if (context.mounted) {
+                showLicensePage(
+                  context: context,
+                  applicationName: 'KatharScan',
+                  applicationVersion: info.version,
+                );
+              }
+            }, textPrimary: textPrimary, border: border),
           ],
         ),
       ),
