@@ -57,7 +57,7 @@ class _WhatsNewSheetState extends State<WhatsNewSheet> {
           children: [
             Text(l10n.whatsNewTitle, style: TextStyle(color: textPrimary, fontSize: AppTypography.title1Size, fontWeight: FontWeight.w700)),
             SizedBox(height: AppSpacing.xs),
-            Text('Version \$_version', style: TextStyle(color: textSecondary, fontSize: AppTypography.footnoteSize)),
+            Text("Version $_version", style: TextStyle(color: textSecondary, fontSize: AppTypography.footnoteSize)),
             SizedBox(height: AppSpacing.md),
             Text(l10n.whatsNewBody, style: TextStyle(color: textPrimary, fontSize: AppTypography.bodySize, height: 1.5)),
             SizedBox(height: AppSpacing.lg),
