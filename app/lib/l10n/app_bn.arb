@@ -429,7 +429,7 @@
   "saveToDownloadsAction": "ডাউনলোডে সংরক্ষণ",
   "paywallTitle": "বিজ্ঞাপন সরান",
   "paywallSubtitle": "এককালীন ক্রয়ের মাধ্যমে KatharScan-কে সমর্থন করুন। সমস্ত বৈশিষ্ট্য বিনামূল্যে থাকবে।",
-  "paywallFallbackPrice": "৳৯৯৯ এককালীন",
+  "paywallFallbackPrice": "$14.99 এককালীন",
   "paywallFeatureNoBanner": "আর কোনো ব্যানার বিজ্ঞাপন নেই",
   "paywallFeatureNoInterstitial": "আর কোনো ইন্টারস্টিশিয়াল বিজ্ঞাপন নেই",
   "paywallFeatureFreeForever": "সমস্ত বৈশিষ্ট্য চিরতরে বিনামূল্যে",

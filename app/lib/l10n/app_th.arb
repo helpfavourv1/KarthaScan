@@ -429,7 +429,7 @@
   "saveToDownloadsAction": "บันทึกไปยังดาวน์โหลด",
   "paywallTitle": "ลบโฆษณา",
   "paywallSubtitle": "สนับสนุน KatharScan ด้วยการซื้อครั้งเดียว คุณสมบัติทั้งหมดยังคงฟรี",
-  "paywallFallbackPrice": "฿299 ครั้งเดียว",
+  "paywallFallbackPrice": "$14.99 ครั้งเดียว",
   "paywallFeatureNoBanner": "ไม่มีโฆษณาแบนเนอร์อีกต่อไป",
   "paywallFeatureNoInterstitial": "ไม่มีโฆษณาคั่นหน้าอีกต่อไป",
   "paywallFeatureFreeForever": "คุณสมบัติทั้งหมดฟรีตลอดไป",

@@ -429,7 +429,7 @@
   "saveToDownloadsAction": "Tallenna Latauksiin",
   "paywallTitle": "Poista mainokset",
   "paywallSubtitle": "Tue KatharScania kertaluonteisella ostolla. Kaikki ominaisuudet pysyvät ilmaiseksi.",
-  "paywallFallbackPrice": "9,99 € kertamaksu",
+  "paywallFallbackPrice": "$14.99 kertamaksu",
   "paywallFeatureNoBanner": "Ei enää bannerimainoksia",
   "paywallFeatureNoInterstitial": "Ei enää välimainoksia",
   "paywallFeatureFreeForever": "Kaikki ominaisuudet ilmaiseksi ikuisesti",

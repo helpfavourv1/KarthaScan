@@ -429,7 +429,7 @@
   "saveToDownloadsAction": "İndirilenler'e Kaydet",
   "paywallTitle": "Reklamları Kaldır",
   "paywallSubtitle": "Tek seferlik satın alımla KatharScan'ı destekleyin. Tüm özellikler ücretsiz kalır.",
-  "paywallFallbackPrice": "₺299 tek seferlik",
+  "paywallFallbackPrice": "$14.99 tek seferlik",
   "paywallFeatureNoBanner": "Artık banner reklam yok",
   "paywallFeatureNoInterstitial": "Artık geçiş reklamı yok",
   "paywallFeatureFreeForever": "Tüm özellikler sonsuza kadar ücretsiz",

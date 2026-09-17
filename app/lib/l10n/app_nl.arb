@@ -429,7 +429,7 @@
   "saveToDownloadsAction": "Opslaan in Downloads",
   "paywallTitle": "Advertenties verwijderen",
   "paywallSubtitle": "Ondersteun KatharScan met een eenmalige aankoop. Alle functies blijven gratis.",
-  "paywallFallbackPrice": "€9,99 eenmalig",
+  "paywallFallbackPrice": "$14.99 eenmalig",
   "paywallFeatureNoBanner": "Geen banneradvertenties meer",
   "paywallFeatureNoInterstitial": "Geen interstitiële advertenties meer",
   "paywallFeatureFreeForever": "Alle functies voor altijd gratis",

@@ -336,7 +336,7 @@
   "saveToDownloadsAction": "ダウンロードに保存",
   "paywallTitle": "広告を削除",
   "paywallSubtitle": "一回の購入でKatharScanをサポート。すべての機能は永久に無料です。",
-  "paywallFallbackPrice": "$9.99 買い切り",
+  "paywallFallbackPrice": "$14.99 買い切り",
   "paywallFeatureNoBanner": "バナー広告なし",
   "paywallFeatureNoInterstitial": "全画面広告なし",
   "paywallFeatureFreeForever": "すべての機能が永久に無料",

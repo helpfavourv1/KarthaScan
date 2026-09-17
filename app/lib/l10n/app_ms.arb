@@ -429,7 +429,7 @@
   "saveToDownloadsAction": "Simpan ke Muat Turun",
   "paywallTitle": "Alih Keluar Iklan",
   "paywallSubtitle": "Sokong KatharScan dengan pembelian sekali sahaja. Semua ciri kekal percuma.",
-  "paywallFallbackPrice": "RM39.99 sekali sahaja",
+  "paywallFallbackPrice": "$14.99 sekali sahaja",
   "paywallFeatureNoBanner": "Tiada lagi iklan sepanduk",
   "paywallFeatureNoInterstitial": "Tiada lagi iklan sela",
   "paywallFeatureFreeForever": "Semua ciri percuma selama-lamanya",

@@ -429,7 +429,7 @@
   "saveToDownloadsAction": "Spara i Nedladdningar",
   "paywallTitle": "Ta bort annonser",
   "paywallSubtitle": "Stöd KatharScan med ett engångsköp. Alla funktioner förblir gratis.",
-  "paywallFallbackPrice": "99 kr engångsköp",
+  "paywallFallbackPrice": "$14.99 engångsköp",
   "paywallFeatureNoBanner": "Inga fler bannerannonser",
   "paywallFeatureNoInterstitial": "Inga fler interstitialannonser",
   "paywallFeatureFreeForever": "Alla funktioner gratis för alltid",

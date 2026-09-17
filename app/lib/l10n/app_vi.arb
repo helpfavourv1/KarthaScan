@@ -429,7 +429,7 @@
   "saveToDownloadsAction": "Lưu vào Tải xuống",
   "paywallTitle": "Xóa quảng cáo",
   "paywallSubtitle": "Hỗ trợ KatharScan bằng mua hàng một lần. Tất cả tính năng vẫn miễn phí.",
-  "paywallFallbackPrice": "199.000₫ một lần",
+  "paywallFallbackPrice": "$14.99 một lần",
   "paywallFeatureNoBanner": "Không còn quảng cáo biểu ngữ",
   "paywallFeatureNoInterstitial": "Không còn quảng cáo toàn màn hình",
   "paywallFeatureFreeForever": "Tất cả tính năng miễn phí vĩnh viễn",

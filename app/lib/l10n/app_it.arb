@@ -429,7 +429,7 @@
   "saveToDownloadsAction": "Salva nei download",
   "paywallTitle": "Rimuovi pubblicità",
   "paywallSubtitle": "Supporta KatharScan con un acquisto una tantum. Tutte le funzionalità rimangono gratuite.",
-  "paywallFallbackPrice": "€9,99 una tantum",
+  "paywallFallbackPrice": "$14.99 una tantum",
   "paywallFeatureNoBanner": "Niente più banner pubblicitari",
   "paywallFeatureNoInterstitial": "Niente più pubblicità interstiziali",
   "paywallFeatureFreeForever": "Tutte le funzionalità gratuite per sempre",

@@ -429,7 +429,7 @@
   "saveToDownloadsAction": "Gem i Downloads",
   "paywallTitle": "Fjern annoncer",
   "paywallSubtitle": "Støt KatharScan med et engangskøb. Alle funktioner forbliver gratis.",
-  "paywallFallbackPrice": "69 kr engangskøb",
+  "paywallFallbackPrice": "$14.99 engangskøb",
   "paywallFeatureNoBanner": "Ingen flere bannerannoncer",
   "paywallFeatureNoInterstitial": "Ingen flere interstitialannoncer",
   "paywallFeatureFreeForever": "Alle funktioner gratis for altid",

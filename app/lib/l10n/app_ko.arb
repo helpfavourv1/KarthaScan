@@ -336,7 +336,7 @@
   "saveToDownloadsAction": "다운로드에 저장",
   "paywallTitle": "광고 제거",
   "paywallSubtitle": "일회성 결제로 KatharScan을 지원하세요. 모든 기능은 계속 무료입니다.",
-  "paywallFallbackPrice": "$9.99 일회성",
+  "paywallFallbackPrice": "$14.99 일회성",
   "paywallFeatureNoBanner": "배너 광고 없음",
   "paywallFeatureNoInterstitial": "전면 광고 없음",
   "paywallFeatureFreeForever": "모든 기능 영구 무료",

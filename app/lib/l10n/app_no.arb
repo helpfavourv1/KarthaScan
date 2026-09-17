@@ -429,7 +429,7 @@
   "saveToDownloadsAction": "Lagre i Nedlastinger",
   "paywallTitle": "Fjern annonser",
   "paywallSubtitle": "Støtt KatharScan med et engangskjøp. Alle funksjoner forblir gratis.",
-  "paywallFallbackPrice": "99 kr engangskjøp",
+  "paywallFallbackPrice": "$14.99 engangskjøp",
   "paywallFeatureNoBanner": "Ingen flere bannerannonser",
   "paywallFeatureNoInterstitial": "Ingen flere interstitialannonser",
   "paywallFeatureFreeForever": "Alle funksjoner gratis for alltid",

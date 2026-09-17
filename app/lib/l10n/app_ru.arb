@@ -429,7 +429,7 @@
   "saveToDownloadsAction": "Сохранить в Загрузки",
   "paywallTitle": "Удалить рекламу",
   "paywallSubtitle": "Поддержите KatharScan разовой покупкой. Все функции останутся бесплатными.",
-  "paywallFallbackPrice": "599 ₽ разовая",
+  "paywallFallbackPrice": "$14.99 разовая",
   "paywallFeatureNoBanner": "Больше никаких баннеров",
   "paywallFeatureNoInterstitial": "Больше никаких полноэкранных объявлений",
   "paywallFeatureFreeForever": "Все функции бесплатны навсегда",

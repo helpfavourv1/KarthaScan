@@ -1,3 +1,4 @@
+import 'dart:ui' show PlatformDispatcher;
 import 'package:flutter/foundation.dart' show immutable, mapEquals;
 import 'package:flutter/material.dart' show Color, ThemeMode;
 
@@ -76,7 +77,13 @@ class UserSettings {
       themeMode: ThemeMode.values.byName(json['themeMode'] as String? ?? ThemeMode.system.name),
       accentColor: json['accentColorArgb'] == null ? AppColors.accentLight : _colorFromArgb(json['accentColorArgb'] as int),
       storagePath: json['storagePath'] as String?,
-      language: json['language'] as String? ?? AppLocales.defaultLanguageCode,
+      language: json['language'] as String? ?? (() {
+        final deviceLocale = PlatformDispatcher.instance.locale;
+        return AppLocales.supportedLanguageCodes.firstWhere(
+          (code) => code == deviceLocale.languageCode,
+          orElse: () => 'en',
+        );
+      })(),
       adsRemoved: adsRemovedValue,
       autoCopyOcr: json['autoCopyOcr'] as bool? ?? false,
       beepOnCapture: json['beepOnCapture'] as bool? ?? false,

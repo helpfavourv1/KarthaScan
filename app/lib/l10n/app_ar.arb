@@ -336,7 +336,7 @@
   "saveToDownloadsAction": "حفظ في التنزيلات",
   "paywallTitle": "إزالة الإعلانات",
   "paywallSubtitle": "ادعم KatharScan بعملية شراء لمرة واحدة. تظل جميع الميزات مجانية.",
-  "paywallFallbackPrice": "٩.٩٩$ لمرة واحدة",
+  "paywallFallbackPrice": "$14.99 لمرة واحدة",
   "paywallFeatureNoBanner": "لا مزيد من الإعلانات الشريطية",
   "paywallFeatureNoInterstitial": "لا مزيد من الإعلانات البينية",
   "paywallFeatureFreeForever": "جميع الميزات مجانية للأبد",

@@ -336,7 +336,7 @@
   "saveToDownloadsAction": "In Downloads speichern",
   "paywallTitle": "Werbung entfernen",
   "paywallSubtitle": "Unterstützen Sie KatharScan mit einem einmaligen Kauf. Alle Funktionen bleiben kostenlos.",
-  "paywallFallbackPrice": "9,99 $ einmalig",
+  "paywallFallbackPrice": "$14.99 einmalig",
   "paywallFeatureNoBanner": "Keine Bannerwerbung mehr",
   "paywallFeatureNoInterstitial": "Keine Zwischenschaltungen mehr",
   "paywallFeatureFreeForever": "Alle Funktionen für immer kostenlos",

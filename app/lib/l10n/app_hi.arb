@@ -336,7 +336,7 @@
   "saveToDownloadsAction": "डाउनलोड में सहेजें",
   "paywallTitle": "विज्ञापन हटाएँ",
   "paywallSubtitle": "एक बार की खरीदारी के साथ KatharScan का समर्थन करें। सभी सुविधाएँ मुफ्त रहेंगी।",
-  "paywallFallbackPrice": "$9.99 एक बार",
+  "paywallFallbackPrice": "$14.99 एक बार",
   "paywallFeatureNoBanner": "कोई बैनर विज्ञापन नहीं",
   "paywallFeatureNoInterstitial": "कोई इंटरस्टिशियल विज्ञापन नहीं",
   "paywallFeatureFreeForever": "सभी सुविधाएँ हमेशा के लिए मुफ्त",
