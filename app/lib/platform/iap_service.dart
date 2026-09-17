@@ -84,7 +84,7 @@ class IapService {
 
   /// Fetches live store metadata (localized price, title, description)
   /// for the Remove Ads product ID. Returns an empty list on any failure —
-  /// paywall_screen.dart should fall back to static "$9.99" copy in that
+  /// paywall_screen.dart should fall back to static "$14.99" copy in that
   /// case rather than showing nothing.
   Future<List<ProductDetails>> queryProducts() async {
     try {
