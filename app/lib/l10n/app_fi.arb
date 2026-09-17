@@ -556,5 +556,12 @@
   "whatsNewContinue": "Jatka",
   "tickerTxtExport": "TXT-VIENTI",
   "tickerCsvExport": "CSV-VIENTI",
-  "whatsNewBody": "Tervetuloa KatharScaniin! Tämä on ensimmäinen julkinen versio, jossa on rajaton skannaus, 26 kieltä ja vienti muotoihin PDF, Word, TXT, JPG, PNG ja CSV."
+  "whatsNewBody": "Tervetuloa KatharScaniin! Tämä on ensimmäinen julkinen versio, jossa on rajaton skannaus, 26 kieltä ja vienti muotoihin PDF, Word, TXT, JPG, PNG ja CSV.",
+  "engagementSectionLabel": "ENGAGEMENT & NOTIFICATIONS",
+  "enableNotificationsLabel": "Enable Notifications",
+  "enableNotificationsSubtitle": "Allow background reminders for unexported documents",
+  "enableReviewPromptsLabel": "Enable Review Prompts",
+  "enableReviewPromptsSubtitle": "Allow the app to occasionally ask for a rating",
+  "enableSharePromptsLabel": "Enable Share Prompts",
+  "enableSharePromptsSubtitle": "Allow the app to occasionally suggest sharing"
 }

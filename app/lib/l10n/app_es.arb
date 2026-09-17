@@ -463,5 +463,12 @@
   "whatsNewContinue": "Continuar",
   "tickerTxtExport": "EXPORTAR TXT",
   "tickerCsvExport": "EXPORTAR CSV",
-  "whatsNewBody": "¡Bienvenido a KatharScan! Esta es la primera versión pública con escaneo ilimitado, 26 idiomas y exportación a PDF, Word, TXT, JPG, PNG y CSV."
+  "whatsNewBody": "¡Bienvenido a KatharScan! Esta es la primera versión pública con escaneo ilimitado, 26 idiomas y exportación a PDF, Word, TXT, JPG, PNG y CSV.",
+  "engagementSectionLabel": "ENGAGEMENT & NOTIFICATIONS",
+  "enableNotificationsLabel": "Enable Notifications",
+  "enableNotificationsSubtitle": "Allow background reminders for unexported documents",
+  "enableReviewPromptsLabel": "Enable Review Prompts",
+  "enableReviewPromptsSubtitle": "Allow the app to occasionally ask for a rating",
+  "enableSharePromptsLabel": "Enable Share Prompts",
+  "enableSharePromptsSubtitle": "Allow the app to occasionally suggest sharing"
 }

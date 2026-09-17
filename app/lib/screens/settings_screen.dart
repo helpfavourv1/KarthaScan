@@ -197,6 +197,40 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ),
 
             const SizedBox(height: AppSpacing.md),
+            _sectionLabel(AppLocalizations.of(context).engagementSectionLabel, textSecondary),
+            ListenableBuilder(
+              listenable: _settingsProvider.settings,
+              builder: (context, _) => Column(
+                children: [
+                  SwitchListTile(
+                    title: Text(AppLocalizations.of(context).enableNotificationsLabel, style: TextStyle(color: textPrimary, fontSize: AppTypography.bodySize)),
+                    subtitle: Text(AppLocalizations.of(context).enableNotificationsSubtitle, style: TextStyle(color: textSecondary, fontSize: AppTypography.footnoteSize)),
+                    value: _settingsProvider.settings.value.enableNotifications,
+                    onChanged: (value) => _settingsProvider.setEnableNotifications(value),
+                    activeThumbColor: accent,
+                    tileColor: Colors.transparent,
+                  ),
+                  SwitchListTile(
+                    title: Text(AppLocalizations.of(context).enableReviewPromptsLabel, style: TextStyle(color: textPrimary, fontSize: AppTypography.bodySize)),
+                    subtitle: Text(AppLocalizations.of(context).enableReviewPromptsSubtitle, style: TextStyle(color: textSecondary, fontSize: AppTypography.footnoteSize)),
+                    value: _settingsProvider.settings.value.enableReviewPrompts,
+                    onChanged: (value) => _settingsProvider.setEnableReviewPrompts(value),
+                    activeThumbColor: accent,
+                    tileColor: Colors.transparent,
+                  ),
+                  SwitchListTile(
+                    title: Text(AppLocalizations.of(context).enableSharePromptsLabel, style: TextStyle(color: textPrimary, fontSize: AppTypography.bodySize)),
+                    subtitle: Text(AppLocalizations.of(context).enableSharePromptsSubtitle, style: TextStyle(color: textSecondary, fontSize: AppTypography.footnoteSize)),
+                    value: _settingsProvider.settings.value.enableSharePrompts,
+                    onChanged: (value) => _settingsProvider.setEnableSharePrompts(value),
+                    activeThumbColor: accent,
+                    tileColor: Colors.transparent,
+                  ),
+                ],
+              ),
+            ),
+
+            const SizedBox(height: AppSpacing.md),
             _sectionLabel(l10n.storageSectionLabel, textSecondary),
             _settingsTile(title: l10n.deviceMigrationLabel, trailing: Icon(Icons.chevron_right, color: textSecondary), onTap: () => context.push('/migration'), textPrimary: textPrimary, border: border),
             const SizedBox(height: AppSpacing.md),

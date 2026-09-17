@@ -556,5 +556,12 @@
   "whatsNewContinue": "চালিয়ে যান",
   "tickerTxtExport": "TXT রপ্তানি",
   "tickerCsvExport": "CSV রপ্তানি",
-  "whatsNewBody": "KatharScan-এ স্বাগতম! এটি প্রথম পাবলিক রিলিজ যেখানে আছে আনলিমিটেড স্ক্যানিং, ২টি ভাষা এবং PDF, Word, TXT, JPG, PNG ও CSV এক্সপোর্ট।"
+  "whatsNewBody": "KatharScan-এ স্বাগতম! এটি প্রথম পাবলিক রিলিজ যেখানে আছে আনলিমিটেড স্ক্যানিং, ২টি ভাষা এবং PDF, Word, TXT, JPG, PNG ও CSV এক্সপোর্ট।",
+  "engagementSectionLabel": "ENGAGEMENT & NOTIFICATIONS",
+  "enableNotificationsLabel": "Enable Notifications",
+  "enableNotificationsSubtitle": "Allow background reminders for unexported documents",
+  "enableReviewPromptsLabel": "Enable Review Prompts",
+  "enableReviewPromptsSubtitle": "Allow the app to occasionally ask for a rating",
+  "enableSharePromptsLabel": "Enable Share Prompts",
+  "enableSharePromptsSubtitle": "Allow the app to occasionally suggest sharing"
 }

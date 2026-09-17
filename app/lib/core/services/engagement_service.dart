@@ -44,6 +44,7 @@ class EngagementService {
     _hasViewedScanDetail = false;
     if (_subscription.adsRemoved.value) return; // Premium suppression
     
+    if (!(_prefs.getBool('enableSharePrompts') ?? false)) return; // Opt-in check
     final engagements = (_prefs.getInt(_kEngagements) ?? 0) + 1;
     await _prefs.setInt(_kEngagements, engagements);
     
@@ -64,6 +65,7 @@ class EngagementService {
 
   Future<void> recordExport() async {
     if (_subscription.adsRemoved.value) return;
+    if (!(_prefs.getBool('enableReviewPrompts') ?? false)) return; // Opt-in check
     final exports = (_prefs.getInt(_kExports) ?? 0) + 1;
     await _prefs.setInt(_kExports, exports);
     await _prefs.setInt(_kEngagements, 0);

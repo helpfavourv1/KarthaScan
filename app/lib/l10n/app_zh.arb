@@ -463,5 +463,12 @@
   "whatsNewContinue": "继续",
   "tickerTxtExport": "TXT导出",
   "tickerCsvExport": "CSV导出",
-  "whatsNewBody": "欢迎使用 KatharScan！这是首个公开版本，支持无限扫描、26 种语言，并可导出为 PDF、Word、TXT、JPG、PNG 和 CSV。"
+  "whatsNewBody": "欢迎使用 KatharScan！这是首个公开版本，支持无限扫描、26 种语言，并可导出为 PDF、Word、TXT、JPG、PNG 和 CSV。",
+  "engagementSectionLabel": "ENGAGEMENT & NOTIFICATIONS",
+  "enableNotificationsLabel": "Enable Notifications",
+  "enableNotificationsSubtitle": "Allow background reminders for unexported documents",
+  "enableReviewPromptsLabel": "Enable Review Prompts",
+  "enableReviewPromptsSubtitle": "Allow the app to occasionally ask for a rating",
+  "enableSharePromptsLabel": "Enable Share Prompts",
+  "enableSharePromptsSubtitle": "Allow the app to occasionally suggest sharing"
 }

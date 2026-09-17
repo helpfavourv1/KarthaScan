@@ -89,6 +89,15 @@ class SettingsProvider {
       _persist(settings.value.copyWith(lastWatermark: value));
 
 
+  Future<bool> setEnableNotifications(bool value) =>
+      _persist(settings.value.copyWith(enableNotifications: value));
+
+  Future<bool> setEnableReviewPrompts(bool value) =>
+      _persist(settings.value.copyWith(enableReviewPrompts: value));
+
+  Future<bool> setEnableSharePrompts(bool value) =>
+      _persist(settings.value.copyWith(enableSharePrompts: value));
+
   void dispose() {
     settings.dispose();
     isLoading.dispose();

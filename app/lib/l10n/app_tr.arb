@@ -556,5 +556,12 @@
   "whatsNewContinue": "Devam",
   "tickerTxtExport": "TXT DIŞA AKTARMA",
   "tickerCsvExport": "CSV DIŞA AKTARMA",
-  "whatsNewBody": "KatharScan'a hoş geldiniz! Bu, sınırsız tarama, 26 dil ve PDF, Word, TXT, JPG, PNG, CSV dışa aktarımı sunan ilk genel sürümdür."
+  "whatsNewBody": "KatharScan'a hoş geldiniz! Bu, sınırsız tarama, 26 dil ve PDF, Word, TXT, JPG, PNG, CSV dışa aktarımı sunan ilk genel sürümdür.",
+  "engagementSectionLabel": "ENGAGEMENT & NOTIFICATIONS",
+  "enableNotificationsLabel": "Enable Notifications",
+  "enableNotificationsSubtitle": "Allow background reminders for unexported documents",
+  "enableReviewPromptsLabel": "Enable Review Prompts",
+  "enableReviewPromptsSubtitle": "Allow the app to occasionally ask for a rating",
+  "enableSharePromptsLabel": "Enable Share Prompts",
+  "enableSharePromptsSubtitle": "Allow the app to occasionally suggest sharing"
 }

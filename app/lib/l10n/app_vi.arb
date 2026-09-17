@@ -556,5 +556,12 @@
   "whatsNewContinue": "Tiếp tục",
   "tickerTxtExport": "XUẤT TXT",
   "tickerCsvExport": "XUẤT CSV",
-  "whatsNewBody": "Chào mừng đến với KatharScan! Đây là bản phát hành công khai đầu tiên với quét không giới hạn, 26 ngôn ngữ và xuất ra PDF, Word, TXT, JPG, PNG, CSV."
+  "whatsNewBody": "Chào mừng đến với KatharScan! Đây là bản phát hành công khai đầu tiên với quét không giới hạn, 26 ngôn ngữ và xuất ra PDF, Word, TXT, JPG, PNG, CSV.",
+  "engagementSectionLabel": "ENGAGEMENT & NOTIFICATIONS",
+  "enableNotificationsLabel": "Enable Notifications",
+  "enableNotificationsSubtitle": "Allow background reminders for unexported documents",
+  "enableReviewPromptsLabel": "Enable Review Prompts",
+  "enableReviewPromptsSubtitle": "Allow the app to occasionally ask for a rating",
+  "enableSharePromptsLabel": "Enable Share Prompts",
+  "enableSharePromptsSubtitle": "Allow the app to occasionally suggest sharing"
 }

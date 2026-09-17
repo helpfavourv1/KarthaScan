@@ -23,6 +23,12 @@ class NotificationService {
   Future<void> initialize() async {
     if (_initialized) return;
 
+    final prefs = await SharedPreferences.getInstance();
+    if (!(prefs.getBool('enableNotifications') ?? false)) {
+      _initialized = true;
+      return; // Opt-in is false, do not initialize or schedule anything
+    }
+
     try {
       tz.initializeTimeZones();
       // Safe local timezone detection with UTC fallback

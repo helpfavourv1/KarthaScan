@@ -463,5 +463,12 @@
   "whatsNewContinue": "Lanjutkan",
   "tickerTxtExport": "EKSPOR TXT",
   "tickerCsvExport": "EKSPOR CSV",
-  "whatsNewBody": "Selamat datang di KatharScan! Ini adalah rilis publik pertama dengan pemindaian tanpa batas, 26 bahasa, dan ekspor ke PDF, Word, TXT, JPG, PNG, dan CSV."
+  "whatsNewBody": "Selamat datang di KatharScan! Ini adalah rilis publik pertama dengan pemindaian tanpa batas, 26 bahasa, dan ekspor ke PDF, Word, TXT, JPG, PNG, dan CSV.",
+  "engagementSectionLabel": "ENGAGEMENT & NOTIFICATIONS",
+  "enableNotificationsLabel": "Enable Notifications",
+  "enableNotificationsSubtitle": "Allow background reminders for unexported documents",
+  "enableReviewPromptsLabel": "Enable Review Prompts",
+  "enableReviewPromptsSubtitle": "Allow the app to occasionally ask for a rating",
+  "enableSharePromptsLabel": "Enable Share Prompts",
+  "enableSharePromptsSubtitle": "Allow the app to occasionally suggest sharing"
 }

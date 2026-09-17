@@ -463,5 +463,12 @@
   "whatsNewContinue": "계속",
   "tickerTxtExport": "TXT 내보내기",
   "tickerCsvExport": "CSV 내보내기",
-  "whatsNewBody": "KatharScan에 오신 것을 환영합니다! 무제한 스캔, 26개 언어, PDF·Word·TXT·JPG·PNG·CSV 내보내기를 지원하는 첫 공개 릴리스입니다."
+  "whatsNewBody": "KatharScan에 오신 것을 환영합니다! 무제한 스캔, 26개 언어, PDF·Word·TXT·JPG·PNG·CSV 내보내기를 지원하는 첫 공개 릴리스입니다.",
+  "engagementSectionLabel": "ENGAGEMENT & NOTIFICATIONS",
+  "enableNotificationsLabel": "Enable Notifications",
+  "enableNotificationsSubtitle": "Allow background reminders for unexported documents",
+  "enableReviewPromptsLabel": "Enable Review Prompts",
+  "enableReviewPromptsSubtitle": "Allow the app to occasionally ask for a rating",
+  "enableSharePromptsLabel": "Enable Share Prompts",
+  "enableSharePromptsSubtitle": "Allow the app to occasionally suggest sharing"
 }

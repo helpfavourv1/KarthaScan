@@ -15,6 +15,9 @@ class UserSettings {
     this.autoCopyOcr = false,
     this.beepOnCapture = false,
     this.vibrateOnCapture = false,
+    this.enableNotifications = false,
+    this.enableReviewPrompts = false,
+    this.enableSharePrompts = false,
     this.lastWatermark,
   });
 
@@ -26,11 +29,11 @@ class UserSettings {
   final bool autoCopyOcr;
   final bool beepOnCapture;
   final bool vibrateOnCapture;
+  final bool enableNotifications;
+  final bool enableReviewPrompts;
+  final bool enableSharePrompts;
 
-  /// Memo of the last-used watermark settings. Persisted as a free-form
-  /// map so the watermark dialog can restore its full state on next use.
   final Map<String, dynamic>? lastWatermark;
-
   static const Object _unset = Object();
 
   UserSettings copyWith({
@@ -42,6 +45,9 @@ class UserSettings {
     bool? autoCopyOcr,
     bool? beepOnCapture,
     bool? vibrateOnCapture,
+    bool? enableNotifications,
+    bool? enableReviewPrompts,
+    bool? enableSharePrompts,
     Object? lastWatermark = _unset,
   }) {
     return UserSettings(
@@ -53,6 +59,9 @@ class UserSettings {
       autoCopyOcr: autoCopyOcr ?? this.autoCopyOcr,
       beepOnCapture: beepOnCapture ?? this.beepOnCapture,
       vibrateOnCapture: vibrateOnCapture ?? this.vibrateOnCapture,
+      enableNotifications: enableNotifications ?? this.enableNotifications,
+      enableReviewPrompts: enableReviewPrompts ?? this.enableReviewPrompts,
+      enableSharePrompts: enableSharePrompts ?? this.enableSharePrompts,
       lastWatermark: identical(lastWatermark, _unset) ? this.lastWatermark : lastWatermark as Map<String, dynamic>?,
     );
   }
@@ -67,6 +76,9 @@ class UserSettings {
       'autoCopyOcr': autoCopyOcr,
       'beepOnCapture': beepOnCapture,
       'vibrateOnCapture': vibrateOnCapture,
+      'enableNotifications': enableNotifications,
+      'enableReviewPrompts': enableReviewPrompts,
+      'enableSharePrompts': enableSharePrompts,
       'lastWatermark': lastWatermark,
     };
   }
@@ -88,15 +100,14 @@ class UserSettings {
       autoCopyOcr: json['autoCopyOcr'] as bool? ?? false,
       beepOnCapture: json['beepOnCapture'] as bool? ?? false,
       vibrateOnCapture: json['vibrateOnCapture'] as bool? ?? false,
+      enableNotifications: json['enableNotifications'] as bool? ?? false,
+      enableReviewPrompts: json['enableReviewPrompts'] as bool? ?? false,
+      enableSharePrompts: json['enableSharePrompts'] as bool? ?? false,
       lastWatermark: (json['lastWatermark'] as Map?)?.cast<String, dynamic>(),
     );
   }
 
-  static int _colorToArgb(Color color) {
-    // ignore: deprecated_member_use
-    return color.value;
-  }
-
+  static int _colorToArgb(Color color) { return color.toARGB32(); }
   static Color _colorFromArgb(int argb) {
     final int a = (argb >> 24) & 0xff;
     final int r = (argb >> 16) & 0xff;
@@ -109,27 +120,22 @@ class UserSettings {
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
     return other is UserSettings &&
-        other.themeMode == themeMode &&
-        other.accentColor == accentColor &&
-        other.storagePath == storagePath &&
-        other.language == language &&
-        other.adsRemoved == adsRemoved &&
-        other.autoCopyOcr == autoCopyOcr &&
-        other.beepOnCapture == beepOnCapture &&
-        other.vibrateOnCapture == vibrateOnCapture &&
-        mapEquals(other.lastWatermark, lastWatermark);
+        other.themeMode == themeMode && other.accentColor == accentColor &&
+        other.storagePath == storagePath && other.language == language &&
+        other.adsRemoved == adsRemoved && other.autoCopyOcr == autoCopyOcr &&
+        other.beepOnCapture == beepOnCapture && other.vibrateOnCapture == vibrateOnCapture &&
+        other.enableNotifications == enableNotifications && other.enableReviewPrompts == enableReviewPrompts &&
+        other.enableSharePrompts == enableSharePrompts && mapEquals(other.lastWatermark, lastWatermark);
   }
 
   @override
   int get hashCode {
-    final int base = Object.hash(themeMode, accentColor, storagePath, language, adsRemoved, autoCopyOcr, beepOnCapture, vibrateOnCapture);
+    final int base = Object.hash(themeMode, accentColor, storagePath, language, adsRemoved, autoCopyOcr, beepOnCapture, vibrateOnCapture, enableNotifications, enableReviewPrompts, enableSharePrompts);
     if (lastWatermark == null) return base;
-    final int mapHash = Object.hashAll(
-      lastWatermark!.entries.map((MapEntry<String, dynamic> e) => Object.hash(e.key, e.value)),
-    );
+    final int mapHash = Object.hashAll(lastWatermark!.entries.map((MapEntry<String, dynamic> e) => Object.hash(e.key, e.value)));
     return Object.hash(base, mapHash);
   }
 
   @override
-  String toString() => 'UserSettings(themeMode: $themeMode, language: $language, adsRemoved: $adsRemoved, autoCopy: $autoCopyOcr, beep: $beepOnCapture, vibrate: $vibrateOnCapture)';
+  String toString() => 'UserSettings(themeMode: $themeMode, language: $language, adsRemoved: $adsRemoved, autoCopy: $autoCopyOcr, beep: $beepOnCapture, vibrate: $vibrateOnCapture, notif: $enableNotifications, review: $enableReviewPrompts, share: $enableSharePrompts)';
 }

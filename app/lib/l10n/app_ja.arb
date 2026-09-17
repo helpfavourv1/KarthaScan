@@ -463,5 +463,12 @@
   "whatsNewContinue": "続行",
   "tickerTxtExport": "TXTエクスポート",
   "tickerCsvExport": "CSVエクスポート",
-  "whatsNewBody": "KatharScanへようこそ！無制限スキャン、26言語、PDF・Word・TXT・JPG・PNG・CSVへのエクスポートを備えた最初の公開リリースです。"
+  "whatsNewBody": "KatharScanへようこそ！無制限スキャン、26言語、PDF・Word・TXT・JPG・PNG・CSVへのエクスポートを備えた最初の公開リリースです。",
+  "engagementSectionLabel": "ENGAGEMENT & NOTIFICATIONS",
+  "enableNotificationsLabel": "Enable Notifications",
+  "enableNotificationsSubtitle": "Allow background reminders for unexported documents",
+  "enableReviewPromptsLabel": "Enable Review Prompts",
+  "enableReviewPromptsSubtitle": "Allow the app to occasionally ask for a rating",
+  "enableSharePromptsLabel": "Enable Share Prompts",
+  "enableSharePromptsSubtitle": "Allow the app to occasionally suggest sharing"
 }

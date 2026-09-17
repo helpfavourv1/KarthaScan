@@ -463,5 +463,12 @@
   "whatsNewContinue": "متابعة",
   "tickerTxtExport": "تصدير TXT",
   "tickerCsvExport": "تصدير CSV",
-  "whatsNewBody": "مرحبًا بك في KatharScan! هذا هو الإصدار العام الأول بمسح غير محدود و26 لغة وتصدير إلى PDF وWord وTXT وJPG وPNG وCSV."
+  "whatsNewBody": "مرحبًا بك في KatharScan! هذا هو الإصدار العام الأول بمسح غير محدود و26 لغة وتصدير إلى PDF وWord وTXT وJPG وPNG وCSV.",
+  "engagementSectionLabel": "ENGAGEMENT & NOTIFICATIONS",
+  "enableNotificationsLabel": "Enable Notifications",
+  "enableNotificationsSubtitle": "Allow background reminders for unexported documents",
+  "enableReviewPromptsLabel": "Enable Review Prompts",
+  "enableReviewPromptsSubtitle": "Allow the app to occasionally ask for a rating",
+  "enableSharePromptsLabel": "Enable Share Prompts",
+  "enableSharePromptsSubtitle": "Allow the app to occasionally suggest sharing"
 }

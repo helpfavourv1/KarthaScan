@@ -556,5 +556,12 @@
   "whatsNewContinue": "Fortsæt",
   "tickerTxtExport": "TXT-EKSPORT",
   "tickerCsvExport": "CSV-EKSPORT",
-  "whatsNewBody": "Velkommen til KatharScan! Dette er den første offentlige version med ubegrænset scanning, 26 sprog og eksport til PDF, Word, TXT, JPG, PNG og CSV."
+  "whatsNewBody": "Velkommen til KatharScan! Dette er den første offentlige version med ubegrænset scanning, 26 sprog og eksport til PDF, Word, TXT, JPG, PNG og CSV.",
+  "engagementSectionLabel": "ENGAGEMENT & NOTIFICATIONS",
+  "enableNotificationsLabel": "Enable Notifications",
+  "enableNotificationsSubtitle": "Allow background reminders for unexported documents",
+  "enableReviewPromptsLabel": "Enable Review Prompts",
+  "enableReviewPromptsSubtitle": "Allow the app to occasionally ask for a rating",
+  "enableSharePromptsLabel": "Enable Share Prompts",
+  "enableSharePromptsSubtitle": "Allow the app to occasionally suggest sharing"
 }

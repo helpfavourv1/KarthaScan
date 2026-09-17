@@ -556,5 +556,12 @@
   "whatsNewContinue": "ดำเนินการต่อ",
   "tickerTxtExport": "ส่งออก TXT",
   "tickerCsvExport": "ส่งออก CSV",
-  "whatsNewBody": "ยินดีต้อนรับสู่ KatharScan! นี่คือเวอร์ชันสาธารณะแรกที่มาพร้อมการสแกนไม่จำกัด 26 ภาษา และการส่งออก PDF, Word, TXT, JPG, PNG และ CSV"
+  "whatsNewBody": "ยินดีต้อนรับสู่ KatharScan! นี่คือเวอร์ชันสาธารณะแรกที่มาพร้อมการสแกนไม่จำกัด 26 ภาษา และการส่งออก PDF, Word, TXT, JPG, PNG และ CSV",
+  "engagementSectionLabel": "ENGAGEMENT & NOTIFICATIONS",
+  "enableNotificationsLabel": "Enable Notifications",
+  "enableNotificationsSubtitle": "Allow background reminders for unexported documents",
+  "enableReviewPromptsLabel": "Enable Review Prompts",
+  "enableReviewPromptsSubtitle": "Allow the app to occasionally ask for a rating",
+  "enableSharePromptsLabel": "Enable Share Prompts",
+  "enableSharePromptsSubtitle": "Allow the app to occasionally suggest sharing"
 }
