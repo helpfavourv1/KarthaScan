@@ -589,6 +589,25 @@ class ScanProvider {
     return 'Scan $date $time';
   }
 
+  Future<bool> reorderDocuments(String id, int newIndex) async {
+    final List<ScanDocument> docs = List.from(documents.value);
+    final int oldIndex = docs.indexWhere((d) => d.id == id);
+    if (oldIndex == -1 || oldIndex == newIndex) return false;
+
+    final doc = docs.removeAt(oldIndex);
+    docs.insert(newIndex, doc);
+
+    // Recalculate sortOrder for all documents to persist the new order
+    for (int i = 0; i < docs.length; i++) {
+      final updated = docs[i].copyWith(sortOrder: (docs.length - i) * 1000);
+      docs[i] = updated;
+      await _storage.saveDocument(updated);
+    }
+    
+    documents.value = docs;
+    return true;
+  }
+
   void dispose() {
     documents.dispose();
     activeScan.dispose();

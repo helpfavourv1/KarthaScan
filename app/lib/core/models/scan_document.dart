@@ -392,6 +392,7 @@ class ScanDocument {
     this.stampLayers = const <StampLayer>[],
     this.pageTransforms = const <int, PageTransform>{},
     this.pageOcrBlocks = const <int, List<OcrBlock>>{},
+    this.sortOrder = 0,
   });
 
   final String id;
@@ -430,6 +431,9 @@ class ScanDocument {
   final Map<int, PageTransform> pageTransforms;
   final Map<int, List<OcrBlock>> pageOcrBlocks;
 
+  /// Custom sort order for drag-and-drop reordering.
+  final int sortOrder;
+
   static bool _mapEqualsDeep(Map<int, List<OcrBlock>>? a, Map<int, List<OcrBlock>>? b) {
     if (identical(a, b)) return true;
     if (a == null || b == null || a.length != b.length) return false;
@@ -457,6 +461,7 @@ class ScanDocument {
     List<StampLayer>? stampLayers,
     Map<int, PageTransform>? pageTransforms,
     Map<int, List<OcrBlock>>? pageOcrBlocks,
+    int? sortOrder,
   }) {
     return ScanDocument(
       id: id ?? this.id,
@@ -476,6 +481,7 @@ class ScanDocument {
       stampLayers: stampLayers ?? this.stampLayers,
       pageTransforms: pageTransforms ?? this.pageTransforms,
       pageOcrBlocks: pageOcrBlocks ?? this.pageOcrBlocks,
+      sortOrder: sortOrder ?? this.sortOrder,
     );
   }
 
@@ -498,6 +504,7 @@ class ScanDocument {
       'stampLayers': stampLayers.map((l) => l.toJson()).toList(),
       'pageTransforms': pageTransforms.map((k, v) => MapEntry(k.toString(), v.toJson())),
       'pageOcrBlocks': pageOcrBlocks.map((k, v) => MapEntry(k.toString(), v.map((b) => b.toJson()).toList())),
+      'sortOrder': sortOrder,
     };
   }
 
@@ -532,6 +539,7 @@ class ScanDocument {
           ?.map((k, v) => MapEntry(int.parse(k), PageTransform.fromJson(v as Map<String, dynamic>))) ?? const <int, PageTransform>{},
       pageOcrBlocks: (json['pageOcrBlocks'] as Map<String, dynamic>?)
           ?.map((k, v) => MapEntry(int.parse(k), (v as List<dynamic>).map((b) => OcrBlock.fromJson(b as Map<String, dynamic>)).toList())) ?? const <int, List<OcrBlock>>{},
+      sortOrder: json['sortOrder'] as int? ?? 0,
     );
   }
 
@@ -555,7 +563,8 @@ class ScanDocument {
         listEquals(other.watermarkLayers, watermarkLayers) &&
         listEquals(other.stampLayers, stampLayers) &&
         mapEquals(other.pageTransforms, pageTransforms) &&
-        _mapEqualsDeep(other.pageOcrBlocks, pageOcrBlocks);
+        _mapEqualsDeep(other.pageOcrBlocks, pageOcrBlocks) &&
+        other.sortOrder == sortOrder;
   }
 
   @override
@@ -577,6 +586,7 @@ class ScanDocument {
       Object.hashAll(watermarkLayers),
       Object.hashAll(stampLayers),
       Object.hashAll(pageTransforms.entries),
+      sortOrder,
     );
   }
 

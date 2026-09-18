@@ -147,13 +147,6 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
-  void _enterSelectionMode(String id) {
-    setState(() {
-      _selectionMode = true;
-      _selectedIds.add(id);
-    });
-  }
-
   void _exitSelectionMode() {
     setState(() {
       _selectionMode = false;
@@ -337,6 +330,10 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
+  Future<void> _onReorder(String id, int newIndex) async {
+    await _scanProvider.reorderDocuments(id, newIndex);
+  }
+
   Widget _buildUnifiedRow() {
     final filters = <String>[AppLocalizations.of(context).filterAll, AppLocalizations.of(context).filterFolders, AppLocalizations.of(context).filterRecent, AppLocalizations.of(context).filterFavorites];
     return ListenableBuilder(
@@ -497,7 +494,7 @@ class _HomeScreenState extends State<HomeScreen> {
       padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md),
       itemCount: results.length,
       separatorBuilder: (context, index) => const SizedBox(height: AppSpacing.xs),
-      itemBuilder: (context, index) => _scanTile(results[index], localeCode),
+      itemBuilder: (context, index) => _scanTile(results[index], localeCode, index),
     );
   }
 
@@ -541,10 +538,26 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: [
             if (_selectedFilter != 1 && documents.isNotEmpty) ...[
               _sectionHeader(l10n.documentsSectionHeader),
-              ...documents.map((doc) => Padding(
-                padding: const EdgeInsets.only(bottom: AppSpacing.xs),
-                child: _scanTile(doc, localeCode),
-              )),
+              ReorderableListView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: documents.length,
+                itemBuilder: (context, index) {
+                  final doc = documents[index];
+                  return Padding(
+                    key: ValueKey(doc.id),
+                    padding: const EdgeInsets.only(bottom: AppSpacing.xs),
+                    child: ReorderableDragStartListener(
+                      index: index,
+                      child: _scanTile(doc, localeCode, index),
+                    ),
+                  );
+                },
+                onReorderItem: (oldIndex, newIndex) {
+                  if (oldIndex < newIndex) newIndex -= 1;
+                  _onReorder(documents[oldIndex].id, newIndex);
+                },
+              ),
             ] else if (_selectedFilter == 3 && documents.isEmpty) ...[
               const EmptyState(message: 'No favorites yet. Tap the star icon on a document to add it.'),
             ],
@@ -566,14 +579,13 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget _scanTile(ScanDocument document, String localeCode) {
+  Widget _scanTile(ScanDocument document, String localeCode, int index) {
     final isSelected = _selectedIds.contains(document.id);
     return ScanListTile(
       document: document,
       localeCode: localeCode,
       isSelected: isSelected,
       onTap: _selectionMode ? () => _toggleSelection(document.id) : () => context.push('/scan/${document.id}'),
-      onLongPress: _selectionMode ? null : () => _enterSelectionMode(document.id),
       onMenuAction: (action) => _handleMenuAction(action, document),
     );
   }

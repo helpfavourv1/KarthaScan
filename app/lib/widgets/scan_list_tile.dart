@@ -7,6 +7,23 @@ import '../core/utils/constants.dart';
 import '../core/utils/date_formatter.dart';
 import '../l10n/app_localizations.dart';
 
+
+String? _getCleanPreview(String ocrText) {
+  if (ocrText.trim().isEmpty) return null;
+  final String text = ocrText.trim().replaceAll(RegExp(r'\\s+'), ' ');
+  if (text.length < 15) return null;
+
+  // Check for repeating 3-character substrings (e.g., "nun" in "nninulunulununb")
+  for (int i = 0; i <= text.length - 3; i++) {
+    final String sub = text.substring(i, i + 3);
+    if (sub.contains(RegExp(r'[a-zA-Z]'))) {
+      final int count = text.split(sub).length - 1;
+      if (count >= 3) return null;
+    }
+  }
+  return text;
+}
+
 class ScanListTile extends StatelessWidget {
   const ScanListTile({
     super.key,
@@ -40,7 +57,7 @@ class ScanListTile extends StatelessWidget {
 
     final pageLabel = l10n.scanListPageCount(document.pageCount);
     final dateLabel = AppDateFormatter.formatSmartDate(document.updatedAt, localeCode: localeCode);
-    final preview = document.ocrText.trim().isEmpty ? null : document.ocrText.trim().replaceAll(RegExp(r'\s+'), ' ');
+    final preview = _getCleanPreview(document.ocrText);
 
     return Material(
       color: Colors.transparent,
