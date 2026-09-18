@@ -25,7 +25,6 @@ class NotificationService {
 
     final prefs = await SharedPreferences.getInstance();
     if (!(prefs.getBool('enableNotifications') ?? false)) {
-      _initialized = true;
       return; // Opt-in is false, do not initialize or schedule anything
     }
 
