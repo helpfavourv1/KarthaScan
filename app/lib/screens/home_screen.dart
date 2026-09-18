@@ -330,10 +330,6 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Future<void> _onReorder(String id, int newIndex) async {
-    await _scanProvider.reorderDocuments(id, newIndex);
-  }
-
   Widget _buildUnifiedRow() {
     final filters = <String>[AppLocalizations.of(context).filterAll, AppLocalizations.of(context).filterFolders, AppLocalizations.of(context).filterRecent, AppLocalizations.of(context).filterFavorites];
     return ListenableBuilder(
@@ -538,7 +534,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: [
             if (_selectedFilter != 1 && documents.isNotEmpty) ...[
               _sectionHeader(l10n.documentsSectionHeader),
-              ReorderableListView.builder(
+              ListView.builder(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
                 itemCount: documents.length,
@@ -547,15 +543,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   return Padding(
                     key: ValueKey(doc.id),
                     padding: const EdgeInsets.only(bottom: AppSpacing.xs),
-                    child: ReorderableDragStartListener(
-                      index: index,
-                      child: _scanTile(doc, localeCode, index),
-                    ),
+                    child: _scanTile(doc, localeCode, index),
                   );
-                },
-                onReorderItem: (oldIndex, newIndex) {
-                  if (oldIndex < newIndex) newIndex -= 1;
-                  _onReorder(documents[oldIndex].id, newIndex);
                 },
               ),
             ] else if (_selectedFilter == 3 && documents.isEmpty) ...[

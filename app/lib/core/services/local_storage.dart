@@ -99,7 +99,6 @@ class LocalStorageService {
 
   Future<List<ScanDocument>> getAllDocuments() async {
     await initialize();
-    await _migrateAddSortOrderColumn();
     await _migrateAddLayerColumns();
     if (!_dbAvailable || _db == null) {
       final List<ScanDocument> fallback = _memoryDocuments.values.toList();
@@ -109,7 +108,7 @@ class LocalStorageService {
     try {
       final List<Map<String, Object?>> rows = await _db!.query(
         'documents',
-        orderBy: 'sort_order DESC, updated_at DESC',
+        orderBy: 'updated_at DESC',
       );
       return rows.map(_documentFromRow).toList();
     } catch (error, stackTrace) {
@@ -140,7 +139,6 @@ class LocalStorageService {
 
   Future<bool> saveDocument(ScanDocument document) async {
     await initialize();
-    await _migrateAddSortOrderColumn();
     await _migrateAddLayerColumns();
     _memoryDocuments[document.id] = document;
 
@@ -235,7 +233,7 @@ class LocalStorageService {
           'documents',
           where: 'title LIKE ? ESCAPE ? OR ocr_text LIKE ? ESCAPE ?',
           whereArgs: <Object?>[likePattern, r'\', likePattern, r'\'],
-          orderBy: 'sort_order DESC, updated_at DESC',
+          orderBy: 'updated_at DESC',
         );
         return rows.map(_documentFromRow).toList();
       } catch (error, stackTrace) {
@@ -282,7 +280,6 @@ class LocalStorageService {
       'stamp_layers': jsonEncode(document.stampLayers.map((l) => l.toJson()).toList()),
       'page_transforms': jsonEncode(document.pageTransforms.map((k, v) => MapEntry(k.toString(), v.toJson()))),
       'page_ocr_blocks': jsonEncode(document.pageOcrBlocks.map((k, v) => MapEntry(k.toString(), v.map((b) => b.toJson()).toList()))),
-      'sort_order': document.sortOrder,
     };
   }
 
@@ -336,7 +333,6 @@ class LocalStorageService {
           ? (jsonDecode(row['page_ocr_blocks']! as String) as Map<String, dynamic>).map(
               (k, v) => MapEntry(int.parse(k), (v as List<dynamic>).map((b) => OcrBlock.fromJson(b as Map<String, dynamic>)).toList()))
           : const <int, List<OcrBlock>>{},
-      sortOrder: row['sort_order'] as int? ?? 0,
     );
   }
 
@@ -452,17 +448,6 @@ class LocalStorageService {
   }
 
   bool _layersMigrated = false;
-  bool _sortOrderMigrated = false;
-
-  Future<void> _migrateAddSortOrderColumn() async {
-    if (_sortOrderMigrated || !_dbAvailable || _db == null) return;
-    _sortOrderMigrated = true;
-    try {
-      await _db!.execute('ALTER TABLE documents ADD COLUMN sort_order INTEGER DEFAULT 0');
-    } catch (_) {
-      // Column already exists
-    }
-  }
 
   Future<void> _migrateAddLayerColumns() async {
     if (_layersMigrated || !_dbAvailable || _db == null) return;
