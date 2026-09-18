@@ -177,6 +177,12 @@ class _HomeScreenState extends State<HomeScreen> {
       case 'tags':
         _addTags(document, l10n);
         break;
+      case 'move_up':
+        _moveDocument(document.id, -1);
+        break;
+      case 'move_down':
+        _moveDocument(document.id, 1);
+        break;
       case 'export':
         context.push('/export', extra: <String>[document.id]);
         break;
@@ -252,6 +258,23 @@ class _HomeScreenState extends State<HomeScreen> {
         SnackBar(content: Text(AppLocalizations.of(context).genericErrorMessage)),
       );
     }
+  }
+
+  Future<void> _moveDocument(String id, int direction) async {
+    final docs = _scanProvider.documents.value;
+    final index = docs.indexWhere((d) => d.id == id);
+    if (index == -1) return;
+    
+    final newIndex = index + direction;
+    if (newIndex < 0 || newIndex >= docs.length) return;
+    
+    // Swap documents in the list
+    final temp = docs[index];
+    docs[index] = docs[newIndex];
+    docs[newIndex] = temp;
+    
+    // Update the provider to reflect the new order
+    _scanProvider.documents.value = List.from(docs);
   }
 
   Future<void> _deleteDocument(ScanDocument document, AppLocalizations l10n) async {

@@ -8,21 +8,6 @@ import '../core/utils/date_formatter.dart';
 import '../l10n/app_localizations.dart';
 
 
-String? _getCleanPreview(String ocrText) {
-  if (ocrText.trim().isEmpty) return null;
-  final String text = ocrText.trim().replaceAll(RegExp(r'\\s+'), ' ');
-  if (text.length < 15) return null;
-
-  // Check for repeating 3-character substrings (e.g., "nun" in "nninulunulununb")
-  for (int i = 0; i <= text.length - 3; i++) {
-    final String sub = text.substring(i, i + 3);
-    if (sub.contains(RegExp(r'[a-zA-Z]'))) {
-      final int count = text.split(sub).length - 1;
-      if (count >= 3) return null;
-    }
-  }
-  return text;
-}
 
 class ScanListTile extends StatelessWidget {
   const ScanListTile({
@@ -57,7 +42,7 @@ class ScanListTile extends StatelessWidget {
 
     final pageLabel = l10n.scanListPageCount(document.pageCount);
     final dateLabel = AppDateFormatter.formatSmartDate(document.updatedAt, localeCode: localeCode);
-    final preview = _getCleanPreview(document.ocrText);
+    final preview = document.ocrText.trim().isEmpty ? null : document.ocrText.trim().replaceAll(RegExp(r'\s+'), ' ');
 
     return Material(
       color: Colors.transparent,
@@ -80,7 +65,7 @@ class ScanListTile extends StatelessWidget {
                 borderRadius: BorderRadius.circular(AppShape.cardRadius - 8),
                 child: SizedBox(
                   width: 56,
-                  height: 72,
+                  height: 52,
                   child: _Thumbnail(path: document.thumbnailPath, isDark: isDark),
                 ),
               ),
@@ -104,7 +89,7 @@ class ScanListTile extends StatelessWidget {
                       const SizedBox(height: AppSpacing.xxs),
                       Text(
                         preview,
-                        maxLines: 2,
+                        maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(color: textTertiary, fontSize: AppTypography.captionSize, height: AppTypography.captionLineHeight),
                       ),
