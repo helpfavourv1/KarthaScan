@@ -31,11 +31,16 @@ class _SealStampSheetState extends State<SealStampSheet> {
 
   static const _swatches = [0xFFDD2222, 0xFF1F4E9C, 0xFF111111, 0xFF2E7D32];
 
+  bool _controllersInitialized = false;
+
   @override
-  void initState() {
-    super.initState();
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (_controllersInitialized) return;
+    _controllersInitialized = true;
+    final l10n = AppLocalizations.of(context);
     final i = widget.initial;
-    _text = TextEditingController(text: i?.text ?? 'YOUR COMPANY');
+    _text = TextEditingController(text: i?.text ?? l10n.sealDefaultMainText);
     _subtext = TextEditingController(text: i?.sealSubtext ?? '');
     final c = i?.sealCenter ?? 'star';
     _centerMode = c == 'star' ? 'star' : (c == 'image' ? 'image' : (c.isEmpty ? 'none' : 'text'));

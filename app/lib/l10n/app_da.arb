@@ -557,11 +557,72 @@
   "tickerTxtExport": "TXT-EKSPORT",
   "tickerCsvExport": "CSV-EKSPORT",
   "whatsNewBody": "Velkommen til KatharScan! Dette er den første offentlige version med ubegrænset scanning, 26 sprog og eksport til PDF, Word, TXT, JPG, PNG og CSV.",
-  "engagementSectionLabel": "ENGAGEMENT & NOTIFICATIONS",
-  "enableNotificationsLabel": "Enable Notifications",
-  "enableNotificationsSubtitle": "Allow background reminders for unexported documents",
-  "enableReviewPromptsLabel": "Enable Review Prompts",
-  "enableReviewPromptsSubtitle": "Allow the app to occasionally ask for a rating",
-  "enableSharePromptsLabel": "Enable Share Prompts",
-  "enableSharePromptsSubtitle": "Allow the app to occasionally suggest sharing"
+  "engagementSectionLabel": "ENGAGEMENT OG NOTIFIKATIONER",
+  "enableNotificationsLabel": "Aktivér notifikationer",
+  "enableNotificationsSubtitle": "Tillad baggrundspåmindelser for ikke-eksporterede dokumenter",
+  "enableReviewPromptsLabel": "Aktivér anmeldelsesprompter",
+  "enableReviewPromptsSubtitle": "Tillad at appen af og til beder om en bedømmelse",
+  "enableSharePromptsLabel": "Aktivér delingsprompter",
+  "enableSharePromptsSubtitle": "Tillad at appen af og til foreslår deling",
+  "exportFormatCsvDescription": "Regnearksdata",
+  "@exportFormatCsvDescription": {
+    "description": "Localized string for exportFormatCsvDescription"
+  },
+  "sealDefaultMainText": "DIT FIRMA",
+  "@sealDefaultMainText": {
+    "description": "Localized string for sealDefaultMainText"
+  },
+  "extractedPageDefaultTitle": "Udtrukket side",
+  "@extractedPageDefaultTitle": {
+    "description": "Localized string for extractedPageDefaultTitle"
+  },
+  "printRangeAll": "Alle sider",
+  "@printRangeAll": {
+    "description": "Localized string for printRangeAll"
+  },
+  "printRangeCurrent": "Aktuel",
+  "@printRangeCurrent": {
+    "description": "Localized string for printRangeCurrent"
+  },
+  "printRangeRange": "Interval",
+  "@printRangeRange": {
+    "description": "Localized string for printRangeRange"
+  },
+  "printFilterNone": "Ingen filter",
+  "@printFilterNone": {
+    "description": "Localized string for printFilterNone"
+  },
+  "removeFromFavorites": "Fjern fra favoritter",
+  "@removeFromFavorites": {
+    "description": "Localized string for removeFromFavorites"
+  },
+  "addToFavorites": "Tilføj til favoritter",
+  "@addToFavorites": {
+    "description": "Localized string for addToFavorites"
+  },
+  "saveFailedPrefix": "Lagring mislykkedes:",
+  "@saveFailedPrefix": {
+    "description": "Localized string for saveFailedPrefix"
+  },
+  "@engagementSectionLabel": {
+    "description": "Localized string for engagementSectionLabel"
+  },
+  "@enableNotificationsLabel": {
+    "description": "Localized string for enableNotificationsLabel"
+  },
+  "@enableNotificationsSubtitle": {
+    "description": "Localized string for enableNotificationsSubtitle"
+  },
+  "@enableReviewPromptsLabel": {
+    "description": "Localized string for enableReviewPromptsLabel"
+  },
+  "@enableReviewPromptsSubtitle": {
+    "description": "Localized string for enableReviewPromptsSubtitle"
+  },
+  "@enableSharePromptsLabel": {
+    "description": "Localized string for enableSharePromptsLabel"
+  },
+  "@enableSharePromptsSubtitle": {
+    "description": "Localized string for enableSharePromptsSubtitle"
+  }
 }

@@ -557,11 +557,72 @@
   "tickerTxtExport": "EKSPORT TXT",
   "tickerCsvExport": "EKSPORT CSV",
   "whatsNewBody": "Selamat datang ke KatharScan! Ini ialah keluaran awam pertama dengan imbasan tanpa had, 26 bahasa dan eksport ke PDF, Word, TXT, JPG, PNG dan CSV.",
-  "engagementSectionLabel": "ENGAGEMENT & NOTIFICATIONS",
-  "enableNotificationsLabel": "Enable Notifications",
-  "enableNotificationsSubtitle": "Allow background reminders for unexported documents",
-  "enableReviewPromptsLabel": "Enable Review Prompts",
-  "enableReviewPromptsSubtitle": "Allow the app to occasionally ask for a rating",
-  "enableSharePromptsLabel": "Enable Share Prompts",
-  "enableSharePromptsSubtitle": "Allow the app to occasionally suggest sharing"
+  "engagementSectionLabel": "PENGLIBATAN & PEMBERITAHUAN",
+  "enableNotificationsLabel": "Dayakan pemberitahuan",
+  "enableNotificationsSubtitle": "Benarkan peringatan latar belakang untuk dokumen yang belum dieksport",
+  "enableReviewPromptsLabel": "Dayakan gesaan ulasan",
+  "enableReviewPromptsSubtitle": "Benarkan apl kadang-kadang meminta penilaian",
+  "enableSharePromptsLabel": "Dayakan gesaan kongsi",
+  "enableSharePromptsSubtitle": "Benarkan apl kadang-kadang mencadangkan perkongsian",
+  "exportFormatCsvDescription": "Data hamparan",
+  "@exportFormatCsvDescription": {
+    "description": "Localized string for exportFormatCsvDescription"
+  },
+  "sealDefaultMainText": "SYARIKAT ANDA",
+  "@sealDefaultMainText": {
+    "description": "Localized string for sealDefaultMainText"
+  },
+  "extractedPageDefaultTitle": "Halaman diekstrak",
+  "@extractedPageDefaultTitle": {
+    "description": "Localized string for extractedPageDefaultTitle"
+  },
+  "printRangeAll": "Semua halaman",
+  "@printRangeAll": {
+    "description": "Localized string for printRangeAll"
+  },
+  "printRangeCurrent": "Semasa",
+  "@printRangeCurrent": {
+    "description": "Localized string for printRangeCurrent"
+  },
+  "printRangeRange": "Julat",
+  "@printRangeRange": {
+    "description": "Localized string for printRangeRange"
+  },
+  "printFilterNone": "Tiada penapis",
+  "@printFilterNone": {
+    "description": "Localized string for printFilterNone"
+  },
+  "removeFromFavorites": "Buang dari kegemaran",
+  "@removeFromFavorites": {
+    "description": "Localized string for removeFromFavorites"
+  },
+  "addToFavorites": "Tambah ke kegemaran",
+  "@addToFavorites": {
+    "description": "Localized string for addToFavorites"
+  },
+  "saveFailedPrefix": "Gagal menyimpan:",
+  "@saveFailedPrefix": {
+    "description": "Localized string for saveFailedPrefix"
+  },
+  "@engagementSectionLabel": {
+    "description": "Localized string for engagementSectionLabel"
+  },
+  "@enableNotificationsLabel": {
+    "description": "Localized string for enableNotificationsLabel"
+  },
+  "@enableNotificationsSubtitle": {
+    "description": "Localized string for enableNotificationsSubtitle"
+  },
+  "@enableReviewPromptsLabel": {
+    "description": "Localized string for enableReviewPromptsLabel"
+  },
+  "@enableReviewPromptsSubtitle": {
+    "description": "Localized string for enableReviewPromptsSubtitle"
+  },
+  "@enableSharePromptsLabel": {
+    "description": "Localized string for enableSharePromptsLabel"
+  },
+  "@enableSharePromptsSubtitle": {
+    "description": "Localized string for enableSharePromptsSubtitle"
+  }
 }

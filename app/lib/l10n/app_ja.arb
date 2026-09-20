@@ -464,11 +464,72 @@
   "tickerTxtExport": "TXTエクスポート",
   "tickerCsvExport": "CSVエクスポート",
   "whatsNewBody": "KatharScanへようこそ！無制限スキャン、26言語、PDF・Word・TXT・JPG・PNG・CSVへのエクスポートを備えた最初の公開リリースです。",
-  "engagementSectionLabel": "ENGAGEMENT & NOTIFICATIONS",
-  "enableNotificationsLabel": "Enable Notifications",
-  "enableNotificationsSubtitle": "Allow background reminders for unexported documents",
-  "enableReviewPromptsLabel": "Enable Review Prompts",
-  "enableReviewPromptsSubtitle": "Allow the app to occasionally ask for a rating",
-  "enableSharePromptsLabel": "Enable Share Prompts",
-  "enableSharePromptsSubtitle": "Allow the app to occasionally suggest sharing"
+  "engagementSectionLabel": "エンゲージメントと通知",
+  "enableNotificationsLabel": "通知を有効にする",
+  "enableNotificationsSubtitle": "未エクスポートのドキュメントに対するバックグラウンド通知を許可する",
+  "enableReviewPromptsLabel": "レビュー依頼を有効にする",
+  "enableReviewPromptsSubtitle": "アプリが時々評価を求めることを許可する",
+  "enableSharePromptsLabel": "共有依頼を有効にする",
+  "enableSharePromptsSubtitle": "アプリが時々共有を提案することを許可する",
+  "exportFormatCsvDescription": "スプレッドシートデータ",
+  "@exportFormatCsvDescription": {
+    "description": "Localized string for exportFormatCsvDescription"
+  },
+  "sealDefaultMainText": "あなたの会社",
+  "@sealDefaultMainText": {
+    "description": "Localized string for sealDefaultMainText"
+  },
+  "extractedPageDefaultTitle": "抽出されたページ",
+  "@extractedPageDefaultTitle": {
+    "description": "Localized string for extractedPageDefaultTitle"
+  },
+  "printRangeAll": "すべてのページ",
+  "@printRangeAll": {
+    "description": "Localized string for printRangeAll"
+  },
+  "printRangeCurrent": "現在",
+  "@printRangeCurrent": {
+    "description": "Localized string for printRangeCurrent"
+  },
+  "printRangeRange": "範囲",
+  "@printRangeRange": {
+    "description": "Localized string for printRangeRange"
+  },
+  "printFilterNone": "フィルターなし",
+  "@printFilterNone": {
+    "description": "Localized string for printFilterNone"
+  },
+  "removeFromFavorites": "お気に入りから削除",
+  "@removeFromFavorites": {
+    "description": "Localized string for removeFromFavorites"
+  },
+  "addToFavorites": "お気に入りに追加",
+  "@addToFavorites": {
+    "description": "Localized string for addToFavorites"
+  },
+  "saveFailedPrefix": "保存に失敗しました：",
+  "@saveFailedPrefix": {
+    "description": "Localized string for saveFailedPrefix"
+  },
+  "@engagementSectionLabel": {
+    "description": "Localized string for engagementSectionLabel"
+  },
+  "@enableNotificationsLabel": {
+    "description": "Localized string for enableNotificationsLabel"
+  },
+  "@enableNotificationsSubtitle": {
+    "description": "Localized string for enableNotificationsSubtitle"
+  },
+  "@enableReviewPromptsLabel": {
+    "description": "Localized string for enableReviewPromptsLabel"
+  },
+  "@enableReviewPromptsSubtitle": {
+    "description": "Localized string for enableReviewPromptsSubtitle"
+  },
+  "@enableSharePromptsLabel": {
+    "description": "Localized string for enableSharePromptsLabel"
+  },
+  "@enableSharePromptsSubtitle": {
+    "description": "Localized string for enableSharePromptsSubtitle"
+  }
 }

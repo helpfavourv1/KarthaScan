@@ -72,8 +72,8 @@ List<ExportFormatOption> _exportFormatOptions(AppLocalizations l10n) {
     ),
     ExportFormatOption(
       format: ExportFormat.csv,
-      label: 'CSV',
-      description: 'Spreadsheet data',
+      label: l10n.formatCsv,
+      description: l10n.exportFormatCsvDescription,
       icon: Icons.table_chart_outlined,
     ),
   ];

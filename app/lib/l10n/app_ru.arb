@@ -557,11 +557,72 @@
   "tickerTxtExport": "ЭКСПОРТ TXT",
   "tickerCsvExport": "ЭКСПОРТ CSV",
   "whatsNewBody": "Добро пожаловать в KatharScan! Это первый публичный релиз с неограниченным сканированием, 26 языками и экспортом в PDF, Word, TXT, JPG, PNG и CSV.",
-  "engagementSectionLabel": "ENGAGEMENT & NOTIFICATIONS",
-  "enableNotificationsLabel": "Enable Notifications",
-  "enableNotificationsSubtitle": "Allow background reminders for unexported documents",
-  "enableReviewPromptsLabel": "Enable Review Prompts",
-  "enableReviewPromptsSubtitle": "Allow the app to occasionally ask for a rating",
-  "enableSharePromptsLabel": "Enable Share Prompts",
-  "enableSharePromptsSubtitle": "Allow the app to occasionally suggest sharing"
+  "engagementSectionLabel": "ВЗАИМОДЕЙСТВИЕ И УВЕДОМЛЕНИЯ",
+  "enableNotificationsLabel": "Включить уведомления",
+  "enableNotificationsSubtitle": "Разрешить фоновые напоминания о неэкспортированных документах",
+  "enableReviewPromptsLabel": "Включить запросы отзывов",
+  "enableReviewPromptsSubtitle": "Разрешить приложению иногда запрашивать оценку",
+  "enableSharePromptsLabel": "Включить запросы поделиться",
+  "enableSharePromptsSubtitle": "Разрешить приложению иногда предлагать поделиться",
+  "exportFormatCsvDescription": "Данные таблицы",
+  "@exportFormatCsvDescription": {
+    "description": "Localized string for exportFormatCsvDescription"
+  },
+  "sealDefaultMainText": "ВАША КОМПАНИЯ",
+  "@sealDefaultMainText": {
+    "description": "Localized string for sealDefaultMainText"
+  },
+  "extractedPageDefaultTitle": "Извлечённая страница",
+  "@extractedPageDefaultTitle": {
+    "description": "Localized string for extractedPageDefaultTitle"
+  },
+  "printRangeAll": "Все страницы",
+  "@printRangeAll": {
+    "description": "Localized string for printRangeAll"
+  },
+  "printRangeCurrent": "Текущая",
+  "@printRangeCurrent": {
+    "description": "Localized string for printRangeCurrent"
+  },
+  "printRangeRange": "Диапазон",
+  "@printRangeRange": {
+    "description": "Localized string for printRangeRange"
+  },
+  "printFilterNone": "Без фильтра",
+  "@printFilterNone": {
+    "description": "Localized string for printFilterNone"
+  },
+  "removeFromFavorites": "Удалить из избранного",
+  "@removeFromFavorites": {
+    "description": "Localized string for removeFromFavorites"
+  },
+  "addToFavorites": "Добавить в избранное",
+  "@addToFavorites": {
+    "description": "Localized string for addToFavorites"
+  },
+  "saveFailedPrefix": "Не удалось сохранить:",
+  "@saveFailedPrefix": {
+    "description": "Localized string for saveFailedPrefix"
+  },
+  "@engagementSectionLabel": {
+    "description": "Localized string for engagementSectionLabel"
+  },
+  "@enableNotificationsLabel": {
+    "description": "Localized string for enableNotificationsLabel"
+  },
+  "@enableNotificationsSubtitle": {
+    "description": "Localized string for enableNotificationsSubtitle"
+  },
+  "@enableReviewPromptsLabel": {
+    "description": "Localized string for enableReviewPromptsLabel"
+  },
+  "@enableReviewPromptsSubtitle": {
+    "description": "Localized string for enableReviewPromptsSubtitle"
+  },
+  "@enableSharePromptsLabel": {
+    "description": "Localized string for enableSharePromptsLabel"
+  },
+  "@enableSharePromptsSubtitle": {
+    "description": "Localized string for enableSharePromptsSubtitle"
+  }
 }

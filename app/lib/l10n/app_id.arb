@@ -464,11 +464,72 @@
   "tickerTxtExport": "EKSPOR TXT",
   "tickerCsvExport": "EKSPOR CSV",
   "whatsNewBody": "Selamat datang di KatharScan! Ini adalah rilis publik pertama dengan pemindaian tanpa batas, 26 bahasa, dan ekspor ke PDF, Word, TXT, JPG, PNG, dan CSV.",
-  "engagementSectionLabel": "ENGAGEMENT & NOTIFICATIONS",
-  "enableNotificationsLabel": "Enable Notifications",
-  "enableNotificationsSubtitle": "Allow background reminders for unexported documents",
-  "enableReviewPromptsLabel": "Enable Review Prompts",
-  "enableReviewPromptsSubtitle": "Allow the app to occasionally ask for a rating",
-  "enableSharePromptsLabel": "Enable Share Prompts",
-  "enableSharePromptsSubtitle": "Allow the app to occasionally suggest sharing"
+  "engagementSectionLabel": "KETERLIBATAN & NOTIFIKASI",
+  "enableNotificationsLabel": "Aktifkan notifikasi",
+  "enableNotificationsSubtitle": "Izinkan pengingat latar belakang untuk dokumen yang belum diekspor",
+  "enableReviewPromptsLabel": "Aktifkan permintaan ulasan",
+  "enableReviewPromptsSubtitle": "Izinkan aplikasi sesekali meminta penilaian",
+  "enableSharePromptsLabel": "Aktifkan permintaan berbagi",
+  "enableSharePromptsSubtitle": "Izinkan aplikasi sesekali menyarankan berbagi",
+  "exportFormatCsvDescription": "Data spreadsheet",
+  "@exportFormatCsvDescription": {
+    "description": "Localized string for exportFormatCsvDescription"
+  },
+  "sealDefaultMainText": "PERUSAHAAN ANDA",
+  "@sealDefaultMainText": {
+    "description": "Localized string for sealDefaultMainText"
+  },
+  "extractedPageDefaultTitle": "Halaman diekstrak",
+  "@extractedPageDefaultTitle": {
+    "description": "Localized string for extractedPageDefaultTitle"
+  },
+  "printRangeAll": "Semua halaman",
+  "@printRangeAll": {
+    "description": "Localized string for printRangeAll"
+  },
+  "printRangeCurrent": "Saat ini",
+  "@printRangeCurrent": {
+    "description": "Localized string for printRangeCurrent"
+  },
+  "printRangeRange": "Rentang",
+  "@printRangeRange": {
+    "description": "Localized string for printRangeRange"
+  },
+  "printFilterNone": "Tanpa filter",
+  "@printFilterNone": {
+    "description": "Localized string for printFilterNone"
+  },
+  "removeFromFavorites": "Hapus dari favorit",
+  "@removeFromFavorites": {
+    "description": "Localized string for removeFromFavorites"
+  },
+  "addToFavorites": "Tambah ke favorit",
+  "@addToFavorites": {
+    "description": "Localized string for addToFavorites"
+  },
+  "saveFailedPrefix": "Gagal menyimpan:",
+  "@saveFailedPrefix": {
+    "description": "Localized string for saveFailedPrefix"
+  },
+  "@engagementSectionLabel": {
+    "description": "Localized string for engagementSectionLabel"
+  },
+  "@enableNotificationsLabel": {
+    "description": "Localized string for enableNotificationsLabel"
+  },
+  "@enableNotificationsSubtitle": {
+    "description": "Localized string for enableNotificationsSubtitle"
+  },
+  "@enableReviewPromptsLabel": {
+    "description": "Localized string for enableReviewPromptsLabel"
+  },
+  "@enableReviewPromptsSubtitle": {
+    "description": "Localized string for enableReviewPromptsSubtitle"
+  },
+  "@enableSharePromptsLabel": {
+    "description": "Localized string for enableSharePromptsLabel"
+  },
+  "@enableSharePromptsSubtitle": {
+    "description": "Localized string for enableSharePromptsSubtitle"
+  }
 }

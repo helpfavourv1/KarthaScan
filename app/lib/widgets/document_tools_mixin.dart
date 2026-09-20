@@ -538,7 +538,7 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
         onExtract: (int index, String path) async {
           if (!mounted) return;
           Navigator.of(ctx).pop();
-          final extractedDoc = await scanProvider.extractToNewDocument(doc.id, [index], 'Extracted Page');
+          final extractedDoc = await scanProvider.extractToNewDocument(doc.id, [index], l10n.extractedPageDefaultTitle);
           if (extractedDoc != null && mounted) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(content: Text('${l10n.extractedAsNewDocument}: ${extractedDoc.title}')),
@@ -577,7 +577,7 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
                 Wrap(
                   spacing: 6,
                   children: ['all', 'current', 'range'].map((m) => ChoiceChip(
-                    label: Text(m == 'all' ? 'All pages' : m == 'current' ? 'Current' : 'Range'),
+                    label: Text(m == 'all' ? l10n.printRangeAll : m == 'current' ? l10n.printRangeCurrent : l10n.printRangeRange),
                     selected: mode == m,
                     onSelected: (_) => setDialogState(() => mode = m),
                   )).toList(),
@@ -596,7 +596,7 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
                   isExpanded: true,
                   underline: const SizedBox.shrink(),
                   onChanged: (v) => setDialogState(() => filter = v!),
-                  items: FilterType.values.map((f) => DropdownMenuItem(value: f, child: Text(f == FilterType.none ? 'No filter' : f.name))).toList(),
+                  items: FilterType.values.map((f) => DropdownMenuItem(value: f, child: Text(f == FilterType.none ? l10n.printFilterNone : f.name))).toList(),
                 ),
                 SwitchListTile(
                   title: Text(l10n.letterSizeUS),

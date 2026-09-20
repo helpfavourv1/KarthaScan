@@ -320,7 +320,7 @@ class _ConvertScreenState extends State<ConvertScreen> {
           context.pop();
         } else {
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('Save failed: $lastError'), duration: const Duration(seconds: 4)),
+            SnackBar(content: Text('${AppLocalizations.of(context).saveFailedPrefix} $lastError'), duration: const Duration(seconds: 4)),
           );
         }
       } else if (_action == _ActionType.saveDoc) {

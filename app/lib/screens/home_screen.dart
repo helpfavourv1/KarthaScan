@@ -508,7 +508,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _buildSearchResults(String localeCode, AppLocalizations l10n) {
     final results = _searchResults!;
-    if (results.isEmpty) return const EmptyState(message: 'No scans match your search.');
+    if (results.isEmpty) return EmptyState(message: l10n.emptySearch);
     return ListView.separated(
       padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md),
       itemCount: results.length,
@@ -537,7 +537,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: FolderListTile(folder: folder, onTap: () => context.push('/folder/${folder.id}')),
                 )),
               ] else
-                const EmptyState(message: 'No folders yet. Tap the folder icon to create one.'),
+                EmptyState(message: l10n.emptyFolders),
             ],
           );
         }
@@ -571,7 +571,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 },
               ),
             ] else if (_selectedFilter == 3 && documents.isEmpty) ...[
-              const EmptyState(message: 'No favorites yet. Tap the star icon on a document to add it.'),
+              EmptyState(message: l10n.emptyFavorites),
             ],
             ],
               ),

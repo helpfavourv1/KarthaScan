@@ -557,11 +557,72 @@
   "tickerTxtExport": "XUẤT TXT",
   "tickerCsvExport": "XUẤT CSV",
   "whatsNewBody": "Chào mừng đến với KatharScan! Đây là bản phát hành công khai đầu tiên với quét không giới hạn, 26 ngôn ngữ và xuất ra PDF, Word, TXT, JPG, PNG, CSV.",
-  "engagementSectionLabel": "ENGAGEMENT & NOTIFICATIONS",
-  "enableNotificationsLabel": "Enable Notifications",
-  "enableNotificationsSubtitle": "Allow background reminders for unexported documents",
-  "enableReviewPromptsLabel": "Enable Review Prompts",
-  "enableReviewPromptsSubtitle": "Allow the app to occasionally ask for a rating",
-  "enableSharePromptsLabel": "Enable Share Prompts",
-  "enableSharePromptsSubtitle": "Allow the app to occasionally suggest sharing"
+  "engagementSectionLabel": "TƯƠNG TÁC & THÔNG BÁO",
+  "enableNotificationsLabel": "Bật thông báo",
+  "enableNotificationsSubtitle": "Cho phép nhắc nhở nền cho các tài liệu chưa xuất",
+  "enableReviewPromptsLabel": "Bật lời nhắc đánh giá",
+  "enableReviewPromptsSubtitle": "Cho phép ứng dụng thỉnh thoảng yêu cầu đánh giá",
+  "enableSharePromptsLabel": "Bật lời nhắc chia sẻ",
+  "enableSharePromptsSubtitle": "Cho phép ứng dụng thỉnh thoảng đề xuất chia sẻ",
+  "exportFormatCsvDescription": "Dữ liệu bảng tính",
+  "@exportFormatCsvDescription": {
+    "description": "Localized string for exportFormatCsvDescription"
+  },
+  "sealDefaultMainText": "CÔNG TY CỦA BẠN",
+  "@sealDefaultMainText": {
+    "description": "Localized string for sealDefaultMainText"
+  },
+  "extractedPageDefaultTitle": "Trang được trích xuất",
+  "@extractedPageDefaultTitle": {
+    "description": "Localized string for extractedPageDefaultTitle"
+  },
+  "printRangeAll": "Tất cả các trang",
+  "@printRangeAll": {
+    "description": "Localized string for printRangeAll"
+  },
+  "printRangeCurrent": "Hiện tại",
+  "@printRangeCurrent": {
+    "description": "Localized string for printRangeCurrent"
+  },
+  "printRangeRange": "Phạm vi",
+  "@printRangeRange": {
+    "description": "Localized string for printRangeRange"
+  },
+  "printFilterNone": "Không có bộ lọc",
+  "@printFilterNone": {
+    "description": "Localized string for printFilterNone"
+  },
+  "removeFromFavorites": "Xóa khỏi yêu thích",
+  "@removeFromFavorites": {
+    "description": "Localized string for removeFromFavorites"
+  },
+  "addToFavorites": "Thêm vào yêu thích",
+  "@addToFavorites": {
+    "description": "Localized string for addToFavorites"
+  },
+  "saveFailedPrefix": "Lưu không thành công:",
+  "@saveFailedPrefix": {
+    "description": "Localized string for saveFailedPrefix"
+  },
+  "@engagementSectionLabel": {
+    "description": "Localized string for engagementSectionLabel"
+  },
+  "@enableNotificationsLabel": {
+    "description": "Localized string for enableNotificationsLabel"
+  },
+  "@enableNotificationsSubtitle": {
+    "description": "Localized string for enableNotificationsSubtitle"
+  },
+  "@enableReviewPromptsLabel": {
+    "description": "Localized string for enableReviewPromptsLabel"
+  },
+  "@enableReviewPromptsSubtitle": {
+    "description": "Localized string for enableReviewPromptsSubtitle"
+  },
+  "@enableSharePromptsLabel": {
+    "description": "Localized string for enableSharePromptsLabel"
+  },
+  "@enableSharePromptsSubtitle": {
+    "description": "Localized string for enableSharePromptsSubtitle"
+  }
 }

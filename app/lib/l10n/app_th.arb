@@ -557,11 +557,72 @@
   "tickerTxtExport": "ส่งออก TXT",
   "tickerCsvExport": "ส่งออก CSV",
   "whatsNewBody": "ยินดีต้อนรับสู่ KatharScan! นี่คือเวอร์ชันสาธารณะแรกที่มาพร้อมการสแกนไม่จำกัด 26 ภาษา และการส่งออก PDF, Word, TXT, JPG, PNG และ CSV",
-  "engagementSectionLabel": "ENGAGEMENT & NOTIFICATIONS",
-  "enableNotificationsLabel": "Enable Notifications",
-  "enableNotificationsSubtitle": "Allow background reminders for unexported documents",
-  "enableReviewPromptsLabel": "Enable Review Prompts",
-  "enableReviewPromptsSubtitle": "Allow the app to occasionally ask for a rating",
-  "enableSharePromptsLabel": "Enable Share Prompts",
-  "enableSharePromptsSubtitle": "Allow the app to occasionally suggest sharing"
+  "engagementSectionLabel": "การมีส่วนร่วมและการแจ้งเตือน",
+  "enableNotificationsLabel": "เปิดใช้งานการแจ้งเตือน",
+  "enableNotificationsSubtitle": "อนุญาตการเตือนเบื้องหลังสำหรับเอกสารที่ยังไม่ได้ส่งออก",
+  "enableReviewPromptsLabel": "เปิดใช้งานคำขอรีวิว",
+  "enableReviewPromptsSubtitle": "อนุญาตให้แอปขอคะแนนเป็นครั้งคราว",
+  "enableSharePromptsLabel": "เปิดใช้งานคำขอแชร์",
+  "enableSharePromptsSubtitle": "อนุญาตให้แอปแนะนำการแชร์เป็นครั้งคราว",
+  "exportFormatCsvDescription": "ข้อมูลสเปรดชีต",
+  "@exportFormatCsvDescription": {
+    "description": "Localized string for exportFormatCsvDescription"
+  },
+  "sealDefaultMainText": "บริษัทของคุณ",
+  "@sealDefaultMainText": {
+    "description": "Localized string for sealDefaultMainText"
+  },
+  "extractedPageDefaultTitle": "หน้าที่แยกออกมา",
+  "@extractedPageDefaultTitle": {
+    "description": "Localized string for extractedPageDefaultTitle"
+  },
+  "printRangeAll": "ทุกหน้า",
+  "@printRangeAll": {
+    "description": "Localized string for printRangeAll"
+  },
+  "printRangeCurrent": "ปัจจุบัน",
+  "@printRangeCurrent": {
+    "description": "Localized string for printRangeCurrent"
+  },
+  "printRangeRange": "ช่วง",
+  "@printRangeRange": {
+    "description": "Localized string for printRangeRange"
+  },
+  "printFilterNone": "ไม่มีตัวกรอง",
+  "@printFilterNone": {
+    "description": "Localized string for printFilterNone"
+  },
+  "removeFromFavorites": "ลบออกจากรายการโปรด",
+  "@removeFromFavorites": {
+    "description": "Localized string for removeFromFavorites"
+  },
+  "addToFavorites": "เพิ่มในรายการโปรด",
+  "@addToFavorites": {
+    "description": "Localized string for addToFavorites"
+  },
+  "saveFailedPrefix": "บันทึกไม่สำเร็จ:",
+  "@saveFailedPrefix": {
+    "description": "Localized string for saveFailedPrefix"
+  },
+  "@engagementSectionLabel": {
+    "description": "Localized string for engagementSectionLabel"
+  },
+  "@enableNotificationsLabel": {
+    "description": "Localized string for enableNotificationsLabel"
+  },
+  "@enableNotificationsSubtitle": {
+    "description": "Localized string for enableNotificationsSubtitle"
+  },
+  "@enableReviewPromptsLabel": {
+    "description": "Localized string for enableReviewPromptsLabel"
+  },
+  "@enableReviewPromptsSubtitle": {
+    "description": "Localized string for enableReviewPromptsSubtitle"
+  },
+  "@enableSharePromptsLabel": {
+    "description": "Localized string for enableSharePromptsLabel"
+  },
+  "@enableSharePromptsSubtitle": {
+    "description": "Localized string for enableSharePromptsSubtitle"
+  }
 }

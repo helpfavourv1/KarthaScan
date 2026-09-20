@@ -464,11 +464,72 @@
   "tickerTxtExport": "ייצוא TXT",
   "tickerCsvExport": "ייצוא CSV",
   "whatsNewBody": "ברוכים הבאים ל-KatharScan! זוהי המהדורה הציבורית הראשונה עם סריקה בלתי מוגבלת, 26 שפות וייצוא ל-PDF, Word, TXT, JPG, PNG ו-CSV.",
-  "engagementSectionLabel": "ENGAGEMENT & NOTIFICATIONS",
-  "enableNotificationsLabel": "Enable Notifications",
-  "enableNotificationsSubtitle": "Allow background reminders for unexported documents",
-  "enableReviewPromptsLabel": "Enable Review Prompts",
-  "enableReviewPromptsSubtitle": "Allow the app to occasionally ask for a rating",
-  "enableSharePromptsLabel": "Enable Share Prompts",
-  "enableSharePromptsSubtitle": "Allow the app to occasionally suggest sharing"
+  "engagementSectionLabel": "מעורבות והתראות",
+  "enableNotificationsLabel": "אפשר התראות",
+  "enableNotificationsSubtitle": "אפשר תזכורות ברקע עבור מסמכים שלא יוצאו",
+  "enableReviewPromptsLabel": "אפשר בקשות דירוג",
+  "enableReviewPromptsSubtitle": "אפשר לאפליקציה לבקש דירוג מדי פעם",
+  "enableSharePromptsLabel": "אפשר בקשות שיתוף",
+  "enableSharePromptsSubtitle": "אפשר לאפליקציה להציע שיתוף מדי פעם",
+  "exportFormatCsvDescription": "נתוני גיליון",
+  "@exportFormatCsvDescription": {
+    "description": "Localized string for exportFormatCsvDescription"
+  },
+  "sealDefaultMainText": "החברה שלך",
+  "@sealDefaultMainText": {
+    "description": "Localized string for sealDefaultMainText"
+  },
+  "extractedPageDefaultTitle": "עמוד שחולץ",
+  "@extractedPageDefaultTitle": {
+    "description": "Localized string for extractedPageDefaultTitle"
+  },
+  "printRangeAll": "כל העמודים",
+  "@printRangeAll": {
+    "description": "Localized string for printRangeAll"
+  },
+  "printRangeCurrent": "נוכחי",
+  "@printRangeCurrent": {
+    "description": "Localized string for printRangeCurrent"
+  },
+  "printRangeRange": "טווח",
+  "@printRangeRange": {
+    "description": "Localized string for printRangeRange"
+  },
+  "printFilterNone": "ללא סינון",
+  "@printFilterNone": {
+    "description": "Localized string for printFilterNone"
+  },
+  "removeFromFavorites": "הסר מהמועדפים",
+  "@removeFromFavorites": {
+    "description": "Localized string for removeFromFavorites"
+  },
+  "addToFavorites": "הוסף למועדפים",
+  "@addToFavorites": {
+    "description": "Localized string for addToFavorites"
+  },
+  "saveFailedPrefix": "השמירה נכשלה:",
+  "@saveFailedPrefix": {
+    "description": "Localized string for saveFailedPrefix"
+  },
+  "@engagementSectionLabel": {
+    "description": "Localized string for engagementSectionLabel"
+  },
+  "@enableNotificationsLabel": {
+    "description": "Localized string for enableNotificationsLabel"
+  },
+  "@enableNotificationsSubtitle": {
+    "description": "Localized string for enableNotificationsSubtitle"
+  },
+  "@enableReviewPromptsLabel": {
+    "description": "Localized string for enableReviewPromptsLabel"
+  },
+  "@enableReviewPromptsSubtitle": {
+    "description": "Localized string for enableReviewPromptsSubtitle"
+  },
+  "@enableSharePromptsLabel": {
+    "description": "Localized string for enableSharePromptsLabel"
+  },
+  "@enableSharePromptsSubtitle": {
+    "description": "Localized string for enableSharePromptsSubtitle"
+  }
 }

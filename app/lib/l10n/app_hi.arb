@@ -464,11 +464,72 @@
   "tickerTxtExport": "TXT निर्यात",
   "tickerCsvExport": "CSV निर्यात",
   "whatsNewBody": "KatharScan में आपका स्वागत है! यह पहला सार्वजनिक रिलीज़ है जिसमें असीमित स्कैनिंग, 26 भाषाएँ और PDF, Word, TXT, JPG, PNG व CSV निर्यात शामिल है।",
-  "engagementSectionLabel": "ENGAGEMENT & NOTIFICATIONS",
-  "enableNotificationsLabel": "Enable Notifications",
-  "enableNotificationsSubtitle": "Allow background reminders for unexported documents",
-  "enableReviewPromptsLabel": "Enable Review Prompts",
-  "enableReviewPromptsSubtitle": "Allow the app to occasionally ask for a rating",
-  "enableSharePromptsLabel": "Enable Share Prompts",
-  "enableSharePromptsSubtitle": "Allow the app to occasionally suggest sharing"
+  "engagementSectionLabel": "सहभागिता और सूचनाएं",
+  "enableNotificationsLabel": "सूचनाएं सक्षम करें",
+  "enableNotificationsSubtitle": "निर्यात न किए गए दस्तावेज़ों के लिए पृष्ठभूमि अनुस्मारक की अनुमति दें",
+  "enableReviewPromptsLabel": "समीक्षा संकेत सक्षम करें",
+  "enableReviewPromptsSubtitle": "ऐप को कभी-कभी रेटिंग मांगने की अनुमति दें",
+  "enableSharePromptsLabel": "साझा संकेत सक्षम करें",
+  "enableSharePromptsSubtitle": "ऐप को कभी-कभी साझा करने का सुझाव देने की अनुमति दें",
+  "exportFormatCsvDescription": "स्प्रेडशीट डेटा",
+  "@exportFormatCsvDescription": {
+    "description": "Localized string for exportFormatCsvDescription"
+  },
+  "sealDefaultMainText": "आपकी कंपनी",
+  "@sealDefaultMainText": {
+    "description": "Localized string for sealDefaultMainText"
+  },
+  "extractedPageDefaultTitle": "निकाला गया पृष्ठ",
+  "@extractedPageDefaultTitle": {
+    "description": "Localized string for extractedPageDefaultTitle"
+  },
+  "printRangeAll": "सभी पृष्ठ",
+  "@printRangeAll": {
+    "description": "Localized string for printRangeAll"
+  },
+  "printRangeCurrent": "वर्तमान",
+  "@printRangeCurrent": {
+    "description": "Localized string for printRangeCurrent"
+  },
+  "printRangeRange": "श्रेणी",
+  "@printRangeRange": {
+    "description": "Localized string for printRangeRange"
+  },
+  "printFilterNone": "कोई फ़िल्टर नहीं",
+  "@printFilterNone": {
+    "description": "Localized string for printFilterNone"
+  },
+  "removeFromFavorites": "पसंदीदा से हटाएं",
+  "@removeFromFavorites": {
+    "description": "Localized string for removeFromFavorites"
+  },
+  "addToFavorites": "पसंदीदा में जोड़ें",
+  "@addToFavorites": {
+    "description": "Localized string for addToFavorites"
+  },
+  "saveFailedPrefix": "सहेजना विफल:",
+  "@saveFailedPrefix": {
+    "description": "Localized string for saveFailedPrefix"
+  },
+  "@engagementSectionLabel": {
+    "description": "Localized string for engagementSectionLabel"
+  },
+  "@enableNotificationsLabel": {
+    "description": "Localized string for enableNotificationsLabel"
+  },
+  "@enableNotificationsSubtitle": {
+    "description": "Localized string for enableNotificationsSubtitle"
+  },
+  "@enableReviewPromptsLabel": {
+    "description": "Localized string for enableReviewPromptsLabel"
+  },
+  "@enableReviewPromptsSubtitle": {
+    "description": "Localized string for enableReviewPromptsSubtitle"
+  },
+  "@enableSharePromptsLabel": {
+    "description": "Localized string for enableSharePromptsLabel"
+  },
+  "@enableSharePromptsSubtitle": {
+    "description": "Localized string for enableSharePromptsSubtitle"
+  }
 }

@@ -113,7 +113,7 @@ class ScanListTile extends StatelessWidget {
                   itemBuilder: (context) => [
                     PopupMenuItem(
                       value: 'favorite',
-                      child: Row(children: [Icon(document.isFavorite ? Icons.star : Icons.star_border, color: accent, size: 20), const SizedBox(width: 8), Text(document.isFavorite ? 'Remove from Favorites' : 'Add to Favorites')]),
+                      child: Row(children: [Icon(document.isFavorite ? Icons.star : Icons.star_border, color: accent, size: 20), const SizedBox(width: 8), Text(document.isFavorite ? l10n.removeFromFavorites : l10n.addToFavorites)]),
                     ),
                     const PopupMenuDivider(),
                     PopupMenuItem(value: 'rename', child: Row(children: [Icon(Icons.edit_outlined, size: 20), SizedBox(width: 8), Text(AppLocalizations.of(context).commonRename)])),
