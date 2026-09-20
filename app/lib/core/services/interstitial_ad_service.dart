@@ -8,8 +8,8 @@ class InterstitialAdService {
   InterstitialAdService._();
   static final InterstitialAdService instance = InterstitialAdService._();
 
-  static const String _testAndroid = 'ca-app-pub-3940256099942544/1033173712';
-  static const String _testIOS = 'ca-app-pub-3940256099942544/4411468910';
+  static const String _testAndroid = 'ca-app-pub-2731774500195310/6860874008';
+  static const String _testIOS = 'ca-app-pub-2731774500195310/7459639809';
 
   InterstitialAd? _ad;
   bool _loading = false;
