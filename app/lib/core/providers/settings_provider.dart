@@ -16,8 +16,11 @@ import 'dart:async' show unawaited;
 import 'package:flutter/foundation.dart' show ValueNotifier;
 import 'package:flutter/material.dart' show Color, ThemeMode;
 
+import 'package:shared_preferences/shared_preferences.dart';
+
 import '../models/user_settings.dart';
 import '../services/local_storage.dart';
+import '../services/notification_service.dart';
 
 class SettingsProvider {
   SettingsProvider(this._storage) {
@@ -46,10 +49,45 @@ class SettingsProvider {
     } finally {
       isLoading.value = false;
     }
+    await _mirrorEngagementFlags(settings.value);
+    if (settings.value.enableNotifications) {
+      try {
+        await NotificationService.instance.initialize();
+      } catch (_) {}
+    }
+  }
+
+  /// The notification and prompt services read these three plain flags from
+  /// SharedPreferences, so the saved toggles are copied there. Without this
+  /// the Settings switches never reached them.
+  Future<void> _mirrorEngagementFlags(UserSettings s) async {
+    try {
+      final SharedPreferences prefs = await SharedPreferences.getInstance();
+      await prefs.setBool('enableNotifications', s.enableNotifications);
+      await prefs.setBool('enableReviewPrompts', s.enableReviewPrompts);
+      await prefs.setBool('enableSharePrompts', s.enableSharePrompts);
+    } catch (_) {}
+  }
+
+  Future<void> _applyNotificationChoice(bool enabled) async {
+    try {
+      if (enabled) {
+        await NotificationService.instance.initialize();
+        await NotificationService.instance.requestPermission();
+      } else {
+        await NotificationService.instance.cancelAllNotifications();
+      }
+    } catch (_) {}
   }
 
   Future<bool> _persist(UserSettings next) async {
+    final bool notificationsChanged =
+        next.enableNotifications != settings.value.enableNotifications;
     settings.value = next;
+    await _mirrorEngagementFlags(next);
+    if (notificationsChanged) {
+      unawaited(_applyNotificationChoice(next.enableNotifications));
+    }
     final bool success = await _storage.saveSettings(next);
     lastError.value = success ? null : 'Could not save settings.';
     return success;

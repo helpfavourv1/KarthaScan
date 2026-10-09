@@ -113,7 +113,7 @@ class _PaywallScreenState extends State<PaywallScreen> {
                       ),
                       const SizedBox(height: AppSpacing.xs),
                       Text(
-                        l10n.paywallFallbackPrice,
+                        _subscriptionProvider.removeAdsProduct?.price ?? l10n.paywallFallbackPrice,
                         style: TextStyle(
                           color: textSecondary,
                           fontSize: AppTypography.title2Size,

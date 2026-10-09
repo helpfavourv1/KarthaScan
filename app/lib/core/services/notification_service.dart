@@ -120,7 +120,7 @@ class NotificationService {
 
     final details = NotificationDetails(android: androidDetails, iOS: iosDetails);
 
-    final notifId = documentId.hashCode.abs();
+    final notifId = _stableId(documentId);
 
     await _notifications.zonedSchedule(
       notifId,
@@ -134,10 +134,19 @@ class NotificationService {
     );
   }
 
+  /// Same id for the same document on every launch (String.hashCode is not
+  /// guaranteed to be). Kept below the reserved feature ids.
+  static int _stableId(String text) {
+    int h = 0x811C9DC5;
+    for (final int unit in text.codeUnits) {
+      h = ((h ^ unit) * 0x01000193) & 0x7FFFFFFF;
+    }
+    return 1000 + (h % 2000000000);
+  }
+
   Future<void> cancelDocumentNotifications(String documentId) async {
     if (!_initialized) return;
-    final notifId = documentId.hashCode.abs();
-    await _notifications.cancel(notifId);
+    await _notifications.cancel(_stableId(documentId));
   }
 
   Future<void> _scheduleFeatureDiscovery() async {
@@ -195,13 +204,17 @@ class NotificationService {
       tz.TZDateTime.from(nextMonday, tz.local),
       details,
       payload: 'feature:weekly_summary',
+      matchDateTimeComponents: DateTimeComponents.dayOfWeekAndTime,
       androidScheduleMode: AndroidScheduleMode.inexact,
       uiLocalNotificationDateInterpretation: UILocalNotificationDateInterpretation.absoluteTime,
     );
   }
 
   Future<void> cancelAllNotifications() async {
-    if (!_initialized) return;
-    await _notifications.cancelAll();
+    try {
+      await _notifications.cancelAll();
+    } catch (_) {}
+    // Allow the feature tip to be scheduled again if notifications come back.
+    _initialized = false;
   }
 }

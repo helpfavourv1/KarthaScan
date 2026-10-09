@@ -106,7 +106,7 @@ class _KatharScanAppState extends State<KatharScanApp> with WidgetsBindingObserv
           builder: (BuildContext context, Widget? child) {
             return Directionality(
               textDirection: isRtl ? TextDirection.rtl : TextDirection.ltr,
-              child: child ?? const SizedBox.shrink(),
+              child: EngagementPromptListener(child: child ?? const SizedBox.shrink()),
             );
           },
         );
@@ -146,15 +146,17 @@ class _EngagementPromptListenerState extends State<EngagementPromptListener> {
   void _checkPrompt() async {
     final prompt = EngagementService.instance.pendingPrompt.value;
     if (prompt == null || !mounted) return;
+    final BuildContext? sheetContext = rootOverlayContext();
+    if (sheetContext == null || !sheetContext.mounted) return;
     if (prompt == PendingPrompt.share) {
-      final result = await showModalBottomSheet<bool>(context: context, isScrollControlled: true, backgroundColor: Colors.transparent, builder: (ctx) => const SharePromptSheet());
+      final result = await showModalBottomSheet<bool>(context: sheetContext, isScrollControlled: true, backgroundColor: Colors.transparent, builder: (ctx) => const SharePromptSheet());
       if (result == true) {
         EngagementService.instance.recordShareCompleted();
       } else {
         EngagementService.instance.recordShareDismissed();
       }
     } else if (prompt == PendingPrompt.review) {
-      final enjoyed = await showModalBottomSheet<bool>(context: context, isScrollControlled: true, backgroundColor: Colors.transparent, builder: (ctx) => const ReviewSentimentSheet());
+      final enjoyed = await showModalBottomSheet<bool>(context: sheetContext, isScrollControlled: true, backgroundColor: Colors.transparent, builder: (ctx) => const ReviewSentimentSheet());
       EngagementService.instance.recordReviewSentiment(enjoyed ?? false);
     }
   }

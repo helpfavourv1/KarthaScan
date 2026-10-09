@@ -18,6 +18,10 @@ import 'core/services/notification_service.dart';
 
 final _navigatorKey = GlobalKey<NavigatorState>();
 
+/// A context that sits below the app's Navigator, for showing sheets from
+/// outside any screen. Null before the first frame.
+BuildContext? rootOverlayContext() => _navigatorKey.currentState?.overlay?.context;
+
 GoRouter buildRouter({String initialLocation = '/'}) {
   // Listen for notification taps
   NotificationService.instance.pendingPayload.addListener(() {

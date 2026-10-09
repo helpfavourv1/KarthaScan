@@ -16,8 +16,8 @@ class UserSettings {
     this.beepOnCapture = false,
     this.vibrateOnCapture = false,
     this.enableNotifications = false,
-    this.enableReviewPrompts = false,
-    this.enableSharePrompts = false,
+    this.enableReviewPrompts = true,
+    this.enableSharePrompts = true,
     this.lastWatermark,
   });
 
@@ -101,8 +101,8 @@ class UserSettings {
       beepOnCapture: json['beepOnCapture'] as bool? ?? false,
       vibrateOnCapture: json['vibrateOnCapture'] as bool? ?? false,
       enableNotifications: json['enableNotifications'] as bool? ?? false,
-      enableReviewPrompts: json['enableReviewPrompts'] as bool? ?? false,
-      enableSharePrompts: json['enableSharePrompts'] as bool? ?? false,
+      enableReviewPrompts: json['enableReviewPrompts'] as bool? ?? true,
+      enableSharePrompts: json['enableSharePrompts'] as bool? ?? true,
       lastWatermark: (json['lastWatermark'] as Map?)?.cast<String, dynamic>(),
     );
   }

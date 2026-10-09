@@ -121,6 +121,13 @@ class SubscriptionProvider {
       purchaseFlowState.value = PurchaseFlowState.error;
       lastError.value = AppPluginFailureCopy.billingUnavailableMessage;
     }
+    // If the store has nothing to restore no update ever arrives, so stop
+    // showing the spinner after a while.
+    unawaited(Future<void>.delayed(const Duration(seconds: 20), () {
+      if (purchaseFlowState.value == PurchaseFlowState.inProgress) {
+        purchaseFlowState.value = PurchaseFlowState.idle;
+      }
+    }));
     // On success, any restored purchases arrive via _handlePurchaseUpdate
     // with status == PurchaseStatus.restored — if the store genuinely has
     // nothing to restore, purchaseFlowState simply never advances past
