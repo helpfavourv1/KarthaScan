@@ -169,6 +169,7 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
       await scansDir.create(recursive: true);
 
       final savedPaths = <String>[];
+      try {
       for (int i = 1; i <= pageCount; i++) {
         final page = await doc.getPage(i);
         final renderedImage = await page.render(width: (page.width * 2).round(), height: (page.height * 2).round());
@@ -183,6 +184,9 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
         final outPath = p.join(scansDir.path, 'pdf_${DateTime.now().microsecondsSinceEpoch}_$i.png');
         await File(outPath).writeAsBytes(pngBytes);
         savedPaths.add(outPath);
+      }
+      } finally {
+        doc.dispose();
       }
 
       String ocrText = '';

@@ -16,11 +16,13 @@ class PdfToImagesService {
     await outDir.create(recursive: true);
 
     final List<String> paths = [];
+    try {
     for (int i = 1; i <= doc.pageCount; i++) {
       onProgress?.call((i - 1) / doc.pageCount, 'Rendering page $i of ${doc.pageCount}…');
       final page = await doc.getPage(i);
       final rendered = await page.render(
-        width: (page.width * 3).round(),
+        // Same factor on both axes so pages are not stretched.
+        width: (page.width * 2).round(),
         height: (page.height * 2).round(),
       );
       final pngImage = img.Image.fromBytes(
@@ -33,7 +35,9 @@ class PdfToImagesService {
       await File(outPath).writeAsBytes(img.encodePng(pngImage));
       paths.add(outPath);
     }
-    doc.dispose();
+    } finally {
+      doc.dispose();
+    }
     onProgress?.call(1.0, 'Done');
     _log.log('PDF_TO_IMAGES', 'Done: ${paths.length} pages');
     return paths;
