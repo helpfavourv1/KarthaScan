@@ -426,7 +426,8 @@ class ExportService {
       ocrText: text,
       thumbnailPath: '',
     );
-    return _exportDocx(doc, outDir, mode: ExportDocxMode.textOnly);
+    // Keep this helper on Letter, the size it always used.
+    return _exportDocx(doc, outDir, mode: ExportDocxMode.textOnly, pageFormat: PdfPageFormat.letter);
   }
 
   Future<String> buildDocxFromImages(List<String> imagePaths, String outDir, String baseName) {
@@ -486,7 +487,7 @@ class ExportService {
     addFile('word/document.xml', utf8.encode(
       mode == ExportDocxMode.imageEmbedded
         ? _docxDocumentXmlWithImages(document, pageJpgs, pageFormat)
-        : _docxDocumentXml(document.ocrText),
+        : _docxDocumentXml(document.ocrText, pageFormat),
     ));
     addFile('docProps/core.xml', utf8.encode(_docxCoreXml(document)));
     addFile('docProps/app.xml', utf8.encode(_docxAppXml));
@@ -592,7 +593,10 @@ class ExportService {
 </cp:coreProperties>''';
   }
 
-  String _docxDocumentXml(String text) {
+  String _docxDocumentXml(String text, PdfPageFormat pageFormat) {
+    // Word page size is in twentieths of a point.
+    final int pageW = (pageFormat.width * 20).round();
+    final int pageH = (pageFormat.height * 20).round();
     final lines = text.isEmpty ? [''] : text.split('\n');
     final paragraphs = StringBuffer();
     for (final line in lines) {
@@ -609,7 +613,7 @@ class ExportService {
   <w:body>
     $paragraphs
     <w:sectPr>
-      <w:pgSz w:w="12240" w:h="15840"/>
+      <w:pgSz w:w="$pageW" w:h="$pageH"/>
       <w:pgMar w:top="1440" w:right="1440" w:bottom="1440" w:left="1440"/>
     </w:sectPr>
   </w:body>
@@ -617,10 +621,15 @@ class ExportService {
   }
 
   String _xmlEscape(String input) {
+    // XML 1.0 forbids most control characters; OCR output can contain them
+    // and Word then reports the whole file as corrupt.
     return input
+        .replaceAll(RegExp(r'[\x00-\x08\x0B\x0C\x0E-\x1F\uFFFE\uFFFF]'), '')
         .replaceAll('&', '&amp;')
         .replaceAll('<', '&lt;')
-        .replaceAll('>', '&gt;');
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;')
+        .replaceAll("'", '&apos;');
   }
 
   Future<List<String>> _exportImages(
@@ -713,7 +722,8 @@ class ExportService {
     final outPath = _outputPath(document, outDir, 'csv');
     try {
       final String escaped = document.ocrText.replaceAll('"', '""');
-      await File(outPath).writeAsString('"$escaped"');
+      // Leading BOM so Excel reads the file as UTF-8.
+      await File(outPath).writeAsString('\uFEFF"$escaped"');
       return outPath;
     } catch (error, stackTrace) {
       _logError('_exportCsv', error, stackTrace);

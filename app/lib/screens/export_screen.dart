@@ -196,7 +196,13 @@ class _ExportScreenState extends State<ExportScreen> {
       if (_isSingleDoc && !_inkController.hasInks) {
         legacyBytes = await _localStorage.loadSignaturePng();
       }
+      final int runStamp = DateTime.now().microsecondsSinceEpoch;
+      int docIndex = 0;
       for (final document in documents) {
+        // One folder per document, so two documents with the same title
+        // cannot overwrite each other's files.
+        final Directory docOutDir = Directory(p.join(outputDir.path, 'export_${runStamp}_${docIndex++}'));
+        await docOutDir.create(recursive: true);
         ScanDocument docForExport = document;
         if (_isSingleDoc && _inkController.hasInks) {
           docForExport = document.copyWith(
@@ -207,7 +213,7 @@ class _ExportScreenState extends State<ExportScreen> {
         final paths = await _exportService.export(
           document: docForExport,
           format: _selectedFormat,
-          outputDirectoryPath: outputDir.path,
+          outputDirectoryPath: docOutDir.path,
           filter: _selectedFilter,
           signatureBytes: legacyBytes,
           signaturePlacements: null,
@@ -232,7 +238,11 @@ class _ExportScreenState extends State<ExportScreen> {
       _isRunning = false;
       _statusMessage = errorMessage ?? l10n.exportDoneStatus;
     });
-    if (errorMessage == null) _lastExportPaths = allOutputPaths;
+    if (errorMessage == null) {
+      _lastExportPaths = allOutputPaths;
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(errorMessage)));
+    }
   }
 
   Future<void> _shareExport() async {
@@ -496,7 +506,7 @@ class _ExportScreenState extends State<ExportScreen> {
     final textSecondary = isDark ? AppColors.textSecondaryDark : AppColors.textSecondaryLight;
     final accent = isDark ? AppColors.accentDark : AppColors.accentLight;
     final pageCount = _documents.first.pagePaths.length;
-    final pageIndex = _previewPage.clamp(0, pageCount - 1);
+    final pageIndex = pageCount == 0 ? 0 : _previewPage.clamp(0, pageCount - 1);
     final imgBytes = _previewBytes;
     final imgW = _previewW.toDouble();
     final imgH = _previewH.toDouble();

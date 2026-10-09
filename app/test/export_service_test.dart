@@ -10,9 +10,11 @@
 // which runs in a full Dart VM with real OS access (unlike widget tests'
 // mocked rendering layer) — so writing to and reading from
 // Directory.systemTemp is legitimate, standard practice here.
+import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
 
+import 'package:archive/archive.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:image/image.dart' as img;
 import 'package:katharscan/core/models/export_job.dart';
@@ -127,6 +129,58 @@ void main() {
       expect(await outputFile.exists(), isTrue);
       expect(await outputFile.length(), greaterThan(0));
     });
+
+    Future<String> readDocumentXml(String docxPath) async {
+      final Archive archive =
+          ZipDecoder().decodeBytes(await File(docxPath).readAsBytes());
+      final ArchiveFile part = archive.findFile('word/document.xml')!;
+      return utf8.decode(part.content as List<int>);
+    }
+
+    test('removes control characters and escapes special characters',
+        () async {
+      final ExportService service = ExportService();
+      final List<String> outputs = await service.export(
+        document: buildTestDocument(
+          ocrText: 'A\u0001B\u0008C & <D> "E" \'F\'',
+        ),
+        format: ExportFormat.docx,
+        outputDirectoryPath: tempDir.path,
+      );
+
+      final String xml = await readDocumentXml(outputs.single);
+      expect(
+        RegExp(r'[\x00-\x08\x0B\x0C\x0E-\x1F]').hasMatch(xml),
+        isFalse,
+      );
+      expect(xml, contains('ABC &amp; &lt;D&gt; &quot;E&quot; &apos;F&apos;'));
+    });
+
+    test('text mode uses the chosen page size', () async {
+      final ExportService service = ExportService();
+      final List<String> a4 = await service.export(
+        document: buildTestDocument(),
+        format: ExportFormat.docx,
+        outputDirectoryPath: tempDir.path,
+        pageFormat: ExportPageFormat.a4,
+      );
+      expect(
+        await readDocumentXml(a4.single),
+        contains('<w:pgSz w:w="11906" w:h="16838"/>'),
+      );
+
+      final Directory letterDir = await tempDir.createTemp('letter_');
+      final List<String> letter = await service.export(
+        document: buildTestDocument(),
+        format: ExportFormat.docx,
+        outputDirectoryPath: letterDir.path,
+        pageFormat: ExportPageFormat.letter,
+      );
+      expect(
+        await readDocumentXml(letter.single),
+        contains('<w:pgSz w:w="12240" w:h="15840"/>'),
+      );
+    });
   });
 
   group('JPG/PNG export', () {
@@ -157,9 +211,11 @@ void main() {
       expect(outputs, hasLength(1));
       final File outputFile = File(outputs.single);
       expect(await outputFile.exists(), isTrue);
-      final String csvContent = await outputFile.readAsString();
+      final Uint8List csvBytes = await outputFile.readAsBytes();
+      // UTF-8 BOM first, so Excel reads non-ASCII text correctly.
+      expect(csvBytes.sublist(0, 3), <int>[0xEF, 0xBB, 0xBF]);
       // CSV escapes double quotes by doubling them
-      expect(csvContent, '"Line 1, ""quoted"""');
+      expect(utf8.decode(csvBytes.sublist(3)), '"Line 1, ""quoted"""');
     });
   });
 
@@ -203,6 +259,23 @@ void main() {
   });
 
   group('error handling', () {
+    test('exporting a document with no pages throws ExportFailedException',
+        () async {
+      final ExportService service = ExportService();
+      final ScanDocument empty = buildTestDocument().copyWith(
+        pageCount: 0,
+        pagePaths: <String>[],
+      );
+      await expectLater(
+        service.export(
+          document: empty,
+          format: ExportFormat.jpg,
+          outputDirectoryPath: tempDir.path,
+        ),
+        throwsA(isA<ExportFailedException>()),
+      );
+    });
+
     test('throws ExportFailedException for a document with an unreadable page',
         () async {
       final ExportService service = ExportService();

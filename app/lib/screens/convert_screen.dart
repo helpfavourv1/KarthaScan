@@ -361,7 +361,10 @@ class _ConvertScreenState extends State<ConvertScreen> {
   @override
   Widget build(BuildContext context) {
     final fileName = p.basename(widget.sourcePath);
-    final fileSize = (File(widget.sourcePath).lengthSync() / 1024).toStringAsFixed(1);
+    final File sourceFile = File(widget.sourcePath);
+    final fileSize = sourceFile.existsSync()
+        ? (sourceFile.lengthSync() / 1024).toStringAsFixed(1)
+        : '0.0';
 
     return Scaffold(
       bottomNavigationBar: const ConditionalBanner(),
