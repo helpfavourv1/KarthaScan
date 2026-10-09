@@ -79,7 +79,12 @@ class PageTransform {
     return PageTransform(
       cropRect: crop,
       rotationTurns: (json['rotationTurns'] as num?)?.toInt() ?? 0,
-      filter: FilterType.values[(json['filter'] as num?)?.toInt() ?? 0],
+      filter: () {
+        final int index = (json['filter'] as num?)?.toInt() ?? 0;
+        return index >= 0 && index < FilterType.values.length
+            ? FilterType.values[index]
+            : FilterType.none;
+      }(),
       resizeWidth: (json['resizeWidth'] as num?)?.toInt(),
       resizeHeight: (json['resizeHeight'] as num?)?.toInt(),
       eraserStrokes: (json['eraserStrokes'] as List<dynamic>?)

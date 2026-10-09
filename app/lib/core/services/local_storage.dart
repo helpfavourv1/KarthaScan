@@ -69,7 +69,23 @@ class LocalStorageService {
     } catch (error, stackTrace) {
       _logError('initialize', error, stackTrace);
       _dbAvailable = false;
+      // Allow the next call to try opening the database again.
+      _initialized = false;
     }
+  }
+
+  /// Reads rows one by one so a single unreadable row is skipped (and logged)
+  /// instead of hiding every document.
+  List<ScanDocument> _documentsFromRows(List<Map<String, Object?>> rows) {
+    final List<ScanDocument> documents = <ScanDocument>[];
+    for (final Map<String, Object?> row in rows) {
+      try {
+        documents.add(_documentFromRow(row));
+      } catch (error, stackTrace) {
+        _logError('skipped unreadable document row ${row['id']}', error, stackTrace);
+      }
+    }
+    return documents;
   }
 
   Future<void> _createFtsTable(DatabaseExecutor db) async {
@@ -110,7 +126,7 @@ class LocalStorageService {
         'documents',
         orderBy: 'updated_at DESC',
       );
-      return rows.map(_documentFromRow).toList();
+      return _documentsFromRows(rows);
     } catch (error, stackTrace) {
       _logError('getAllDocuments', error, stackTrace);
       return _memoryDocuments.values.toList();
@@ -143,7 +159,8 @@ class LocalStorageService {
     _memoryDocuments[document.id] = document;
 
     if (!_dbAvailable || _db == null) {
-      return true;
+      // Nothing was written to disk, so do not report success.
+      return false;
     }
     try {
       final bool ftsExists = await _ftsTableExists(_db!);
@@ -184,7 +201,8 @@ class LocalStorageService {
     _memoryDocuments.remove(id);
 
     if (!_dbAvailable || _db == null) {
-      return true;
+      // Nothing was written to disk, so do not report success.
+      return false;
     }
     try {
       final bool ftsExists = await _ftsTableExists(_db!);
@@ -222,7 +240,7 @@ class LocalStorageService {
           'ORDER BY documents.updated_at DESC',
           <Object?>[ftsQuery],
         );
-        return rows.map(_documentFromRow).toList();
+        return _documentsFromRows(rows);
       } catch (error, stackTrace) {
         _logError('searchDocuments(fts)', error, stackTrace);
       }
@@ -235,7 +253,7 @@ class LocalStorageService {
           whereArgs: <Object?>[likePattern, r'\', likePattern, r'\'],
           orderBy: 'updated_at DESC',
         );
-        return rows.map(_documentFromRow).toList();
+        return _documentsFromRows(rows);
       } catch (error, stackTrace) {
         _logError('searchDocuments(like)', error, stackTrace);
       }
@@ -360,7 +378,8 @@ class LocalStorageService {
     _memoryFolders[folder.id] = folder;
 
     if (!_dbAvailable || _db == null) {
-      return true;
+      // Nothing was written to disk, so do not report success.
+      return false;
     }
     try {
       await _db!.insert(
@@ -380,7 +399,8 @@ class LocalStorageService {
     _memoryFolders.remove(id);
 
     if (!_dbAvailable || _db == null) {
-      return true;
+      // Nothing was written to disk, so do not report success.
+      return false;
     }
     try {
       await _db!.delete('folders', where: 'id = ?', whereArgs: <Object?>[id]);

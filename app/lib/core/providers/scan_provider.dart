@@ -110,7 +110,12 @@ class ScanProvider {
         pageOcrBlocks: pageBlocks,
       );
 
-      await _storage.saveDocument(document);
+      final bool saved = await _storage.saveDocument(document);
+      if (!saved) {
+        scanFlowState.value = ScanFlowState.error;
+        lastError.value = 'Could not save the document.';
+        return null;
+      }
       documents.value = <ScanDocument>[document, ...documents.value];
       activeScan.value = document;
       scanFlowState.value = ScanFlowState.idle;
@@ -304,6 +309,7 @@ class ScanProvider {
   }
 
   Future<bool> deleteDocument(String id) async {
+    final ScanDocument? doomed = _findById(id);
     final bool success = await _storage.deleteDocument(id);
     if (success) {
       documents.value =
@@ -311,10 +317,40 @@ class ScanProvider {
       if (activeScan.value?.id == id) {
         activeScan.value = null;
       }
+      if (doomed != null) unawaited(_deleteOwnedFiles(doomed));
     } else {
       lastError.value = 'Could not delete the document.';
     }
     return success;
+  }
+
+  /// Removes the page, thumbnail and annotation files of a deleted document.
+  /// Only files inside the app's own documents folder are touched, and a file
+  /// that another document still uses is kept.
+  Future<void> _deleteOwnedFiles(ScanDocument doomed) async {
+    try {
+      final String root = (await getApplicationDocumentsDirectory()).path;
+      final Set<String> stillUsed = <String>{};
+      for (final ScanDocument d in documents.value) {
+        stillUsed
+          ..addAll(d.pagePaths)
+          ..add(d.thumbnailPath)
+          ..addAll(d.annotateLayers.map((AnnotateLayer l) => l.bytesPath));
+      }
+      final Set<String> candidates = <String>{
+        ...doomed.pagePaths,
+        doomed.thumbnailPath,
+        ...doomed.annotateLayers.map((AnnotateLayer l) => l.bytesPath),
+      };
+      for (final String path in candidates) {
+        if (path.isEmpty || stillUsed.contains(path)) continue;
+        if (!p.isWithin(root, path)) continue;
+        final File file = File(path);
+        if (await file.exists()) await file.delete();
+      }
+    } catch (error) {
+      debugPrint('Could not remove files of a deleted document: $error');
+    }
   }
 
   Future<List<ScanDocument>> search(String query) =>
