@@ -14,12 +14,23 @@ import 'package:katharscan/core/services/local_storage.dart';
 import 'package:katharscan/platform/iap_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class _FakeIapService extends IapService {
+// Implements (not extends) the real service so no billing plugin is touched.
+class _FakeIapService implements IapService {
   @override
   Future<bool> initialize({
     required void Function(PurchaseDetails details) onPurchaseUpdate,
   }) async =>
       false;
+
+  @override
+  Future<List<ProductDetails>> queryProducts() async =>
+      const <ProductDetails>[];
+
+  @override
+  Future<void> purchase(ProductDetails product) async {}
+
+  @override
+  Future<bool> restorePurchases() async => false;
 
   @override
   Future<void> dispose() async {}
