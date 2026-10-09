@@ -2,6 +2,7 @@ import 'dart:io' show Platform;
 import 'package:file_saver/file_saver.dart';
 import 'package:flutter/foundation.dart' show debugPrint;
 import 'package:flutter/services.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 /// Cross-platform "save to device" bridge.
 /// Android: native MediaStore Downloads via the MainActivity.kt channel.
@@ -17,12 +18,27 @@ class DownloadsService {
     required String mimeType,
   }) async {
     if (Platform.isAndroid) {
+      Future<String?> attempt() => _channel.invokeMethod<String>('saveToDownloads', {
+            'fileName': fileName,
+            'bytes': bytes,
+            'mimeType': mimeType,
+          });
       try {
-        final result = await _channel.invokeMethod<String>('saveToDownloads', {
-          'fileName': fileName,
-          'bytes': bytes,
-          'mimeType': mimeType,
-        });
+        String? result;
+        try {
+          result = await attempt();
+        } on PlatformException catch (e) {
+          // Android 9 and older write straight to the public Downloads folder
+          // and need the storage permission granted first.
+          final String message = (e.message ?? '').toLowerCase();
+          if (message.contains('permission') || message.contains('eacces')) {
+            final PermissionStatus status = await Permission.storage.request();
+            if (!status.isGranted) rethrow;
+            result = await attempt();
+          } else {
+            rethrow;
+          }
+        }
         if (result == null) throw Exception('Native save returned null');
         return result;
       } on PlatformException catch (e) {

@@ -42,7 +42,39 @@ PdfPageFormat _toPdfFormat(ExportPageFormat f) {
   }
 }
 
+/// Width and height of an encoded image without decoding all its pixels.
+(int, int)? _probeImageSize(List<int> bytes) {
+  try {
+    final Uint8List data = bytes is Uint8List ? bytes : Uint8List.fromList(bytes);
+    final img.DecodeInfo? info = img.findDecoderForData(data)?.startDecode(data);
+    if (info == null || info.width <= 0 || info.height <= 0) return null;
+    return (info.width, info.height);
+  } catch (_) {
+    return null;
+  }
+}
+
 class ExportService {
+  /// One page exactly as it is exported (crop, filter, layers and all), for
+  /// printing so the paper copy matches what the person sees and exports.
+  Future<Uint8List> renderPageForOutput(
+    ScanDocument document,
+    int pageIndex, {
+    FilterType filter = FilterType.none,
+  }) {
+    return _processPage(
+      document.pagePaths[pageIndex],
+      filter: filter,
+      pageIndex: pageIndex,
+      documentLayers: document.signatureLayers,
+      documentInks: document.signatureInks,
+      documentAnnotateLayers: document.annotateLayers,
+      documentWatermarkLayers: document.watermarkLayers,
+      documentStampLayers: document.stampLayers,
+      pageTransform: document.pageTransforms[pageIndex],
+    );
+  }
+
   Future<List<String>> export({
     required ScanDocument document,
     required ExportFormat format,
@@ -318,10 +350,14 @@ class ExportService {
       );
       final image = pw.MemoryImage(bytes);
       final blocks = document.pageOcrBlocks[i] ?? const <OcrBlock>[];
-      
+      // A wide scan gets a landscape page instead of a tiny letterboxed one.
+      final (int, int)? probed = _probeImageSize(bytes);
+      final PdfPageFormat pageFmt =
+          (probed != null && probed.$1 > probed.$2) ? pageFormat.landscape : pageFormat;
+
       pdfDoc.addPage(
         pw.Page(
-          pageFormat: pageFormat,
+          pageFormat: pageFmt,
           build: (pw.Context context) {
             final decoded = img.decodeImage(bytes);
             if (decoded == null || blocks.isEmpty) {
@@ -331,8 +367,8 @@ class ExportService {
             final imgW = decoded.width.toDouble();
             final imgH = decoded.height.toDouble();
             final imgAspect = imgW / imgH;
-            final pageW = pageFormat.width;
-            final pageH = pageFormat.height;
+            final pageW = pageFmt.width;
+            final pageH = pageFmt.height;
             final pageAspect = pageW / pageH;
             
             final double renderW, renderH, renderX, renderY;
@@ -462,9 +498,9 @@ class ExportService {
 
     final List<List<int>> pageJpgs = <List<int>>[];
     if (mode == ExportDocxMode.imageEmbedded) {
-      for (final path in document.pagePaths) {
+      for (int pageIdx = 0; pageIdx < document.pagePaths.length; pageIdx++) {
         try {
-          final bytes = await _readBytes(path);
+          final bytes = await renderPageForOutput(document, pageIdx);
           final decoded = img.decodeImage(bytes);
           if (decoded != null) {
             pageJpgs.add(img.encodeJpg(decoded, quality: 92));
@@ -545,8 +581,18 @@ class ExportService {
     buf.writeln('<w:document xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture">');
     buf.writeln('<w:body>');
     for (int i = 0; i < pageJpgs.length; i++) {
-      final int widthEmu = 5486400;  // 6 inches
-      final int heightEmu = 7315200; // 8 inches
+      // Fit the page image inside the text area (page minus 1" margins)
+      // keeping its own proportions.
+      final double areaW = (pageFormat.width - 144) * 12700;
+      final double areaH = (pageFormat.height - 144) * 12700;
+      final (int, int)? size = _probeImageSize(pageJpgs[i]);
+      final double aspect = size == null ? 0.75 : size.$1 / size.$2;
+      int widthEmu = areaW.round();
+      int heightEmu = (areaW / aspect).round();
+      if (heightEmu > areaH) {
+        heightEmu = areaH.round();
+        widthEmu = (areaH * aspect).round();
+      }
       buf.writeln('  <w:p>');
       buf.writeln('    <w:r>');
       buf.writeln('      <w:drawing>');

@@ -253,11 +253,24 @@ class _ExportScreenState extends State<ExportScreen> {
     try {
       await _shareService.shareFiles(filePaths: paths);
       EngagementService.instance.recordExport();
+      _deleteExportFiles(paths);
     } on ShareFailedException {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(AppLocalizations.of(context).genericErrorMessage)));
       }
     }
+  }
+
+  /// The finished files were only needed for this share or save; remove the
+  /// temporary copies so they do not pile up in the cache.
+  void _deleteExportFiles(List<String> paths) {
+    for (final String path in paths) {
+      try {
+        final File file = File(path);
+        if (file.existsSync()) file.deleteSync();
+      } catch (_) {}
+    }
+    _lastExportPaths = null;
   }
 
   Future<void> _saveToDevice() async {
@@ -290,6 +303,7 @@ class _ExportScreenState extends State<ExportScreen> {
     if (saved > 0) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.saveToDownloadsAction)));
       EngagementService.instance.recordExport();
+      _deleteExportFiles(paths);
     } else if (lastError != null) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('${l10n.exportGenericError}: $lastError')));
     }

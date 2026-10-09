@@ -21,7 +21,7 @@ import '../core/models/scan_document.dart';
 import '../core/models/page_transform.dart';
 import '../core/models/signature_placement.dart';
 import '../core/providers/scan_provider.dart';
-import '../core/services/export_service.dart' show FilterType;
+import '../core/services/export_service.dart' show ExportService, FilterType;
 import '../core/services/local_storage.dart';
 import '../core/services/ocr_service.dart';
 import '../core/services/print_service.dart';
@@ -642,6 +642,7 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
         pageIndices: indices,
         filter: filter,
         pageFormat: letter ? PdfPageFormat.letter : PdfPageFormat.a4,
+        pageBytes: (int i) => ExportService().renderPageForOutput(doc, i, filter: filter),
       );
       await Printing.layoutPdf(
         onLayout: (PdfPageFormat format) async => bytes,

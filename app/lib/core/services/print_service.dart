@@ -13,15 +13,26 @@ abstract final class PrintService {
     List<int>? pageIndices,
     FilterType filter = FilterType.none,
     PdfPageFormat pageFormat = PdfPageFormat.a4,
+    Future<Uint8List> Function(int index)? pageBytes,
   }) async {
     final pdf = pw.Document(creator: 'KatharScan');
     final indices = pageIndices ?? List<int>.generate(pagePaths.length, (i) => i);
     for (final idx in indices) {
       if (idx < 0 || idx >= pagePaths.length) continue;
-      final file = File(pagePaths[idx]);
-      if (!await file.exists()) continue;
-      Uint8List bytes = await file.readAsBytes();
-      if (filter != FilterType.none) {
+      Uint8List bytes;
+      if (pageBytes != null) {
+        // Fully processed page (edits included), supplied by the export pipeline.
+        try {
+          bytes = await pageBytes(idx);
+        } catch (_) {
+          continue;
+        }
+      } else {
+        final file = File(pagePaths[idx]);
+        if (!await file.exists()) continue;
+        bytes = await file.readAsBytes();
+      }
+      if (pageBytes == null && filter != FilterType.none) {
         try {
           final decoded = img.decodeImage(bytes);
           if (decoded != null) {
@@ -31,9 +42,14 @@ abstract final class PrintService {
         } catch (_) {}
       }
       final image = pw.MemoryImage(bytes);
+      PdfPageFormat pageFmt = pageFormat;
+      try {
+        final img.DecodeInfo? info = img.findDecoderForData(bytes)?.startDecode(bytes);
+        if (info != null && info.width > info.height) pageFmt = pageFormat.landscape;
+      } catch (_) {}
       pdf.addPage(
         pw.Page(
-          pageFormat: pageFormat,
+          pageFormat: pageFmt,
           build: (context) => pw.Center(child: pw.Image(image, fit: pw.BoxFit.contain)),
         ),
       );
