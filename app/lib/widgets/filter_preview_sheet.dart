@@ -8,26 +8,19 @@ import '../core/services/export_service.dart' show FilterType;
 import '../core/services/filter_service.dart';
 import '../l10n/app_localizations.dart';
 
+/// What the filter sheet returns: the chosen filter and how strong it is.
+class FilterChoice {
+  const FilterChoice(this.filter, this.intensity);
+  final FilterType filter;
+  final double intensity;
+}
+
 Uint8List _previewFilterIsolate(Map<String, dynamic> args) {
   final decoded = img.decodeImage(args['bytes'] as Uint8List);
   if (decoded == null) return args['bytes'] as Uint8List;
-  final filtered = FilterService.applyToImage(decoded, FilterType.values[args['filter'] as int]);
   final double t = (args['intensity'] as double?) ?? 1.0;
-  img.Image out = filtered;
-  if (t != 1.0) {
-    out = img.Image(width: filtered.width, height: filtered.height);
-    for (int y = 0; y < filtered.height; y++) {
-      for (int x = 0; x < filtered.width; x++) {
-        final bp = decoded.getPixel(x, y);
-        final fp = filtered.getPixel(x, y);
-        final r = (bp.r.toInt() + (fp.r.toInt() - bp.r.toInt()) * t).clamp(0, 255).round();
-        final g = (bp.g.toInt() + (fp.g.toInt() - bp.g.toInt()) * t).clamp(0, 255).round();
-        final b = (bp.b.toInt() + (fp.b.toInt() - bp.b.toInt()) * t).clamp(0, 255).round();
-        out.setPixelRgba(x, y, r, g, b, 255);
-      }
-    }
-  }
-  return Uint8List.fromList(img.encodeJpg(out, quality: 85));
+  final filtered = FilterService.applyToImage(decoded, FilterType.values[args['filter'] as int], intensity: t);
+  return Uint8List.fromList(img.encodeJpg(filtered, quality: 85));
 }
 
 class _LeftClip extends CustomClipper<Rect> {
@@ -122,7 +115,7 @@ class _FilterPreviewSheetState extends State<FilterPreviewSheet> {
           }).toList()),
           Padding(padding: const EdgeInsets.all(16), child: Row(mainAxisAlignment: MainAxisAlignment.end, children: [
             TextButton(onPressed: () => Navigator.pop(context), child: Text(AppLocalizations.of(context).commonCancel)), const SizedBox(width: 12),
-            ElevatedButton(onPressed: () => Navigator.pop(context, _selected), style: ElevatedButton.styleFrom(backgroundColor: accent, foregroundColor: Colors.white, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))), child: Text(AppLocalizations.of(context).commonApply)),
+            ElevatedButton(onPressed: () => Navigator.pop(context, FilterChoice(_selected, _intensity)), style: ElevatedButton.styleFrom(backgroundColor: accent, foregroundColor: Colors.white, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))), child: Text(AppLocalizations.of(context).commonApply)),
           ])),
         ]),
       ),

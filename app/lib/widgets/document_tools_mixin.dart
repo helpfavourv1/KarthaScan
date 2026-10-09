@@ -94,6 +94,7 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
     final bytes = await showModalBottomSheet<Uint8List?>(
       context: context,
       isScrollControlled: true,
+      enableDrag: false,
       builder: (context) => const AnnotateSheet(),
     );
     if (bytes == null || !mounted) return;
@@ -204,9 +205,9 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
 
     StampResult? config;
     if (kind == 'seal') {
-      config = await showModalBottomSheet<StampResult>(context: context, isScrollControlled: true, builder: (ctx) => const SealStampSheet(initial: null));
+      config = await showModalBottomSheet<StampResult>(context: context, isScrollControlled: true, builder: (ctx) => Padding(padding: EdgeInsets.only(bottom: MediaQuery.of(ctx).viewInsets.bottom), child: const SealStampSheet(initial: null)));
     } else {
-      config = await showModalBottomSheet<StampResult>(context: context, isScrollControlled: true, builder: (ctx) => TextStampSheet(kind: kind));
+      config = await showModalBottomSheet<StampResult>(context: context, isScrollControlled: true, builder: (ctx) => Padding(padding: EdgeInsets.only(bottom: MediaQuery.of(ctx).viewInsets.bottom), child: TextStampSheet(kind: kind)));
     }
     if (config == null || !mounted) return;
 
@@ -249,9 +250,12 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
     final config = await showModalBottomSheet<StampResult>(
       context: context,
       isScrollControlled: true,
-      builder: (ctx) => existing.kind == 'seal'
-          ? SealStampSheet(initial: existing)
-          : TextStampSheet(kind: existing.kind, initial: existing),
+      builder: (ctx) => Padding(
+        padding: EdgeInsets.only(bottom: MediaQuery.of(ctx).viewInsets.bottom),
+        child: existing.kind == 'seal'
+            ? SealStampSheet(initial: existing)
+            : TextStampSheet(kind: existing.kind, initial: existing),
+      ),
     );
     if (config == null || !mounted) return;
     final updated = existing.copyWith(
@@ -406,12 +410,12 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
   Future<void> applyFilterToPage() async {
     final doc = document;
     if (doc == null || doc.pagePaths.isEmpty) return;
-    final chosen = await showModalBottomSheet<FilterType>(context: context, isScrollControlled: true, builder: (ctx) => FilterPreviewSheet(imagePath: doc.pagePaths[currentPageIndex]));
+    final chosen = await showModalBottomSheet<FilterChoice>(context: context, isScrollControlled: true, builder: (ctx) => FilterPreviewSheet(imagePath: doc.pagePaths[currentPageIndex]));
     if (chosen == null || !mounted) return;
     final existing = doc.pageTransforms[currentPageIndex] ?? const PageTransform();
-    final updated = existing.copyWith(filter: chosen);
+    final updated = existing.copyWith(filter: chosen.filter, filterIntensity: chosen.intensity);
     await scanProvider.updatePageTransform(doc.id, currentPageIndex, updated);
-    if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(chosen == FilterType.none ? l10n.filterRemoved : l10n.filterApplied)));
+    if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(chosen.filter == FilterType.none ? l10n.filterRemoved : l10n.filterApplied)));
   }
 
   Future<void> cropCurrentPage() async {
@@ -460,6 +464,7 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
     final strokes = await showModalBottomSheet<List<Map<String, dynamic>>>(
       context: context,
       isScrollControlled: true,
+      enableDrag: false,
       builder: (ctx) => EraserSheet(imagePath: doc.pagePaths[currentPageIndex]),
     );
     if (strokes == null || strokes.isEmpty || !mounted) return;
@@ -511,9 +516,12 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
     final result = await showModalBottomSheet<(int, int)>(
       context: context,
       isScrollControlled: true,
-      builder: (ctx) => RotateResizeSheet(
-        mode: RotateResizeMode.resize,
-        imagePath: doc.pagePaths[currentPageIndex],
+      builder: (ctx) => Padding(
+        padding: EdgeInsets.only(bottom: MediaQuery.of(ctx).viewInsets.bottom),
+        child: RotateResizeSheet(
+          mode: RotateResizeMode.resize,
+          imagePath: doc.pagePaths[currentPageIndex],
+        ),
       ),
     );
     if (result == null || !mounted) return;

@@ -17,6 +17,7 @@ import '../models/scan_document.dart';
 import '../models/ocr_block.dart';
 import '../models/page_transform.dart';
 import '../models/signature_placement.dart';
+import 'filter_service.dart' show FilterService;
 import '../../l10n/app_localizations.dart';
 
 class ExportFailedException implements Exception {
@@ -206,7 +207,11 @@ class ExportService {
         decoded = img.copyResize(decoded, width: pageTransform.resizeWidth!, height: pageTransform.resizeHeight!);
       }
       if (effectiveFilter != FilterType.none) {
-        decoded = _applyFilter(decoded, effectiveFilter);
+        decoded = (pageTransform != null &&
+                pageTransform.filter != FilterType.none &&
+                pageTransform.filterIntensity != 1.0)
+            ? FilterService.applyToImage(decoded, effectiveFilter, intensity: pageTransform.filterIntensity)
+            : _applyFilter(decoded, effectiveFilter);
       }
       if (pageTransform != null && pageTransform.rotationTurns != 0) {
         decoded = img.copyRotate(decoded, angle: pageTransform.rotationTurns * 90);

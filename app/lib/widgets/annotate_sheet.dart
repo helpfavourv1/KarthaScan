@@ -60,7 +60,14 @@ class _AnnotateSheetState extends State<AnnotateSheet> {
                     label: Text(m == AnnotationMode.pen ? AppLocalizations.of(context).annotationModePen : m == AnnotationMode.highlighter ? AppLocalizations.of(context).annotationModeHighlighter : m == AnnotationMode.rect ? AppLocalizations.of(context).annotationModeRect : m == AnnotationMode.arrow ? AppLocalizations.of(context).annotationModeArrow : AppLocalizations.of(context).annotationModeEllipse),
                     selected: _mode == m,
                     onSelected: (_) {
-                      setState(() => _mode = m);
+                      // Keep the sheet's color/width in step with the mode
+                      // defaults the overlay applies (yellow, wide for the
+                      // highlighter), otherwise _apply() would overwrite them.
+                      setState(() {
+                        _mode = m;
+                        _color = m == AnnotationMode.highlighter ? Colors.yellow : Colors.black;
+                        _width = m == AnnotationMode.highlighter ? 20.0 : 4.0;
+                      });
                       _overlayKey.currentState?.setMode(m);
                       _apply();
                     },

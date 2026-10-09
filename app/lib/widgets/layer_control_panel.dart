@@ -87,8 +87,12 @@ class LayerControlPanel extends StatelessWidget {
         onScaleUp: () => scanProvider.updateWatermarkLayer(document.id, layer.copyWith(placement: SignaturePlacement(pctX: layer.placement.pctX, pctY: layer.placement.pctY, rotationDegrees: layer.placement.rotationDegrees, scale: (layer.placement.scale + 0.1).clamp(0.1, 5.0)))),
         onOpacityDown: () => scanProvider.updateWatermarkLayer(document.id, layer.copyWith(opacity: (layer.opacity - 0.05).clamp(0.05, 1.0))),
         onOpacityUp: () => scanProvider.updateWatermarkLayer(document.id, layer.copyWith(opacity: (layer.opacity + 0.05).clamp(0.05, 1.0))),
-        onFontSizeDown: () => scanProvider.updateWatermarkLayer(document.id, layer.copyWith(fontSize: (layer.fontSize - 4).clamp(12, 144))),
-        onFontSizeUp: () => scanProvider.updateWatermarkLayer(document.id, layer.copyWith(fontSize: (layer.fontSize + 4).clamp(12, 144))),
+        // Text is drawn to fit its box, so the size is changed by scaling the
+        // box (the same thing the preview and the export both honor).
+        onFontSizeDown: () => scanProvider.updateWatermarkLayer(document.id, layer.copyWith(fontSize: (layer.fontSize - 4).clamp(12, 144), placement: SignaturePlacement(pctX: layer.placement.pctX, pctY: layer.placement.pctY, rotationDegrees: layer.placement.rotationDegrees, scale: (layer.placement.scale - 0.1).clamp(0.1, 5.0)))),
+        // Text is drawn to fit its box, so the size is changed by scaling the
+        // box (the same thing the preview and the export both honor).
+        onFontSizeUp: () => scanProvider.updateWatermarkLayer(document.id, layer.copyWith(fontSize: (layer.fontSize + 4).clamp(12, 144), placement: SignaturePlacement(pctX: layer.placement.pctX, pctY: layer.placement.pctY, rotationDegrees: layer.placement.rotationDegrees, scale: (layer.placement.scale + 0.1).clamp(0.1, 5.0)))),
         onTools: () async {
           final config = await showModalBottomSheet<WatermarkLayer>(
             context: context,
@@ -137,8 +141,12 @@ class LayerControlPanel extends StatelessWidget {
         onScaleUp: () => scanProvider.updateStampLayer(document.id, layer.copyWith(placement: SignaturePlacement(pctX: layer.placement.pctX, pctY: layer.placement.pctY, rotationDegrees: layer.placement.rotationDegrees, scale: (layer.placement.scale + 0.1).clamp(0.1, 5.0)))),
         onOpacityDown: () => scanProvider.updateStampLayer(document.id, layer.copyWith(opacity: (layer.opacity - 0.05).clamp(0.05, 1.0))),
         onOpacityUp: () => scanProvider.updateStampLayer(document.id, layer.copyWith(opacity: (layer.opacity + 0.05).clamp(0.05, 1.0))),
-        onFontSizeDown: () => scanProvider.updateStampLayer(document.id, layer.copyWith(fontSize: (layer.fontSize - 4).clamp(12, 144))),
-        onFontSizeUp: () => scanProvider.updateStampLayer(document.id, layer.copyWith(fontSize: (layer.fontSize + 4).clamp(12, 144))),
+        // Text is drawn to fit its box, so the size is changed by scaling the
+        // box (the same thing the preview and the export both honor).
+        onFontSizeDown: () => scanProvider.updateStampLayer(document.id, layer.copyWith(fontSize: (layer.fontSize - 4).clamp(12, 144), placement: SignaturePlacement(pctX: layer.placement.pctX, pctY: layer.placement.pctY, rotationDegrees: layer.placement.rotationDegrees, scale: (layer.placement.scale - 0.1).clamp(0.1, 5.0)))),
+        // Text is drawn to fit its box, so the size is changed by scaling the
+        // box (the same thing the preview and the export both honor).
+        onFontSizeUp: () => scanProvider.updateStampLayer(document.id, layer.copyWith(fontSize: (layer.fontSize + 4).clamp(12, 144), placement: SignaturePlacement(pctX: layer.placement.pctX, pctY: layer.placement.pctY, rotationDegrees: layer.placement.rotationDegrees, scale: (layer.placement.scale + 0.1).clamp(0.1, 5.0)))),
         onTools: () async {
           final config = await showModalBottomSheet<StampResult>(
             context: context,

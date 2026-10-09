@@ -8,6 +8,7 @@ class PageTransform {
     this.cropRect,
     this.rotationTurns = 0,
     this.filter = FilterType.none,
+    this.filterIntensity = 1.0,
     this.resizeWidth,
     this.resizeHeight,
     this.eraserStrokes = const [],
@@ -16,6 +17,7 @@ class PageTransform {
   final Rect? cropRect;
   final int rotationTurns;
   final FilterType filter;
+  final double filterIntensity;
   final int? resizeWidth;
   final int? resizeHeight;
   final List<Map<String, dynamic>> eraserStrokes;
@@ -32,6 +34,7 @@ class PageTransform {
     Rect? cropRect,
     int? rotationTurns,
     FilterType? filter,
+    double? filterIntensity,
     int? resizeWidth,
     int? resizeHeight,
     List<Map<String, dynamic>>? eraserStrokes,
@@ -43,6 +46,7 @@ class PageTransform {
       cropRect: clearCrop ? null : (cropRect ?? this.cropRect),
       rotationTurns: rotationTurns ?? this.rotationTurns,
       filter: filter ?? this.filter,
+      filterIntensity: filterIntensity ?? this.filterIntensity,
       resizeWidth: clearResize ? null : (resizeWidth ?? this.resizeWidth),
       resizeHeight: clearResize ? null : (resizeHeight ?? this.resizeHeight),
       eraserStrokes: clearEraser ? const [] : (eraserStrokes ?? this.eraserStrokes),
@@ -59,6 +63,7 @@ class PageTransform {
       },
       'rotationTurns': rotationTurns,
       'filter': filter.index,
+      if (filterIntensity != 1.0) 'filterIntensity': filterIntensity,
       if (resizeWidth != null) 'resizeWidth': resizeWidth,
       if (resizeHeight != null) 'resizeHeight': resizeHeight,
       'eraserStrokes': eraserStrokes,
@@ -85,6 +90,7 @@ class PageTransform {
             ? FilterType.values[index]
             : FilterType.none;
       }(),
+      filterIntensity: ((json['filterIntensity'] as num?)?.toDouble() ?? 1.0).clamp(0.2, 2.0).toDouble(),
       resizeWidth: (json['resizeWidth'] as num?)?.toInt(),
       resizeHeight: (json['resizeHeight'] as num?)?.toInt(),
       eraserStrokes: (json['eraserStrokes'] as List<dynamic>?)

@@ -262,7 +262,7 @@ class _PageWithInkState extends State<_PageWithInk> {
           processed = img.copyResize(processed, width: transform.resizeWidth!, height: transform.resizeHeight!);
         }
         if (transform.filter != FilterType.none) {
-          processed = FilterService.applyToImage(processed, transform.filter);
+          processed = FilterService.applyToImage(processed, transform.filter, intensity: transform.filterIntensity);
         }
         if (transform.eraserStrokes.isNotEmpty) {
           for (final s in transform.eraserStrokes) {

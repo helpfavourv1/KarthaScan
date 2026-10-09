@@ -87,6 +87,7 @@ class InkController {
       bytes = await showModalBottomSheet<Uint8List?>(
         context: context,
         isScrollControlled: true,
+        enableDrag: false,
         builder: (context) => const InkSignatureSheet(),
       );
       if (bytes != null) {
