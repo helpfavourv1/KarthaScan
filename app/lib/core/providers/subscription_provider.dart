@@ -27,7 +27,17 @@ enum PurchaseFlowState { idle, inProgress, success, error, cancelled }
 class SubscriptionProvider {
   SubscriptionProvider(this._iapService, this._settingsProvider) {
     adsRemoved = ValueNotifier<bool>(_settingsProvider.settings.value.adsRemoved);
+    // Settings load asynchronously on cold start, so the value read above is
+    // still the default (false) for a returning ad-free buyer. Pick up the
+    // saved flag as soon as it arrives.
+    _settingsProvider.settings.addListener(_syncAdsRemovedFromSettings);
     unawaited(_initialize());
+  }
+
+  void _syncAdsRemovedFromSettings() {
+    if (_settingsProvider.settings.value.adsRemoved && !adsRemoved.value) {
+      adsRemoved.value = true;
+    }
   }
 
   final IapService _iapService;
@@ -119,6 +129,7 @@ class SubscriptionProvider {
   }
 
   void dispose() {
+    _settingsProvider.settings.removeListener(_syncAdsRemovedFromSettings);
     unawaited(_iapService.dispose());
     adsRemoved.dispose();
     products.dispose();

@@ -34,7 +34,7 @@ class _KatharScanAppState extends State<KatharScanApp> with WidgetsBindingObserv
     WidgetsBinding.instance.addObserver(this);
     unawaited(AdPacingService.instance.initialize());
     unawaited(AdPacingService.instance.resetSessionCounters());
-    InterstitialAdService.instance.preload();
+    unawaited(InterstitialAdService.instance.preload());
     
     // Defer notification init until after the first frame is drawn to prevent BadTokenException
     WidgetsBinding.instance.addPostFrameCallback((_) {

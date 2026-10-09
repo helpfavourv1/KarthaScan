@@ -75,6 +75,9 @@ class InterstitialAdService {
     if (AdPacingService.instance.canShowAfterIdle()) await showIfAllowed();
   }
 
-  void preload() => _load();
+  Future<void> preload() async {
+    if (await _isAdsRemovedCached()) return;
+    await _load();
+  }
   void dispose() => _ad?.dispose();
 }

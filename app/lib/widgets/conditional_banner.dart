@@ -1,3 +1,5 @@
+import 'dart:io' show Platform;
+
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart' show kReleaseMode;
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -12,11 +14,15 @@ class ConditionalBanner extends StatefulWidget {
 }
 
 class _ConditionalBannerState extends State<ConditionalBanner> {
-  static const String _testBannerId = 'ca-app-pub-3940256099942544/6300978111';
-  // Tier 2 placeholder — replace with production AdMob banner ID before store submission
-  static const String _prodBannerId = 'ca-app-pub-3940256099942544/6300978111';
+  // Google's official test banner units (Android and iOS differ).
+  static String get _testBannerId => Platform.isAndroid
+      ? 'ca-app-pub-3940256099942544/6300978111'
+      : 'ca-app-pub-3940256099942544/2934735716';
+  // Test IDs are kept until launch — replace with the production AdMob banner IDs before store submission
+  static String get _prodBannerId => _testBannerId;
   BannerAd? _bannerAd;
   bool _isAdLoaded = false;
+  SubscriptionProvider? _subscription;
 
   @override
   void initState() {
@@ -24,8 +30,18 @@ class _ConditionalBannerState extends State<ConditionalBanner> {
     WidgetsBinding.instance.addPostFrameCallback((_) => _initBannerAd());
   }
 
+  void _onAdsRemovedChanged() {
+    if (_subscription?.adsRemoved.value != true) return;
+    _bannerAd?.dispose();
+    _bannerAd = null;
+    if (mounted) setState(() => _isAdLoaded = false);
+  }
+
   void _initBannerAd() {
+    if (!mounted) return;
     final subscriptionProvider = Provider.of<SubscriptionProvider>(context, listen: false);
+    _subscription = subscriptionProvider;
+    subscriptionProvider.adsRemoved.addListener(_onAdsRemovedChanged);
     if (subscriptionProvider.adsRemoved.value) return;
 
     _bannerAd = BannerAd(
@@ -47,6 +63,7 @@ class _ConditionalBannerState extends State<ConditionalBanner> {
 
   @override
   void dispose() {
+    _subscription?.adsRemoved.removeListener(_onAdsRemovedChanged);
     _bannerAd?.dispose();
     super.dispose();
   }
