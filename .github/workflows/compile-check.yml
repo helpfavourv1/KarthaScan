@@ -1,0 +1,210 @@
+name: KatharScan Compile Check
+
+# MANUAL ONLY. Compiles and tests the code without ever building or
+# uploading an APK/AAB. The existing build_and_deploy.yml is untouched.
+#
+# Job 1 (dart-check): pub get, gen-l10n, l10n audit, stub check,
+#   flutter analyze (the lint step), flutter test.
+# Job 2 (kotlin-check): compiles the Android Kotlin sources only
+#   (:app:compileDebugKotlin). No package/assemble task is run.
+#
+# Failures are also written as GitHub annotations (file, line, message)
+# so they can be read from the run's check annotations without
+# downloading logs. No secrets, keystore or artifact upload are used.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  dart-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+
+      - name: Prepare log folder
+        run: mkdir -p /tmp/cc
+
+      - name: Get Flutter packages
+        id: pub
+        working-directory: app
+        run: |
+          set -o pipefail
+          flutter pub get 2>&1 | tee /tmp/cc/pub.log
+
+      - name: Generate localizations
+        id: l10n
+        working-directory: app
+        run: |
+          set -o pipefail
+          flutter gen-l10n 2>&1 | tee /tmp/cc/l10n.log
+
+      - name: L10n audit (drift guard)
+        id: audit
+        working-directory: app
+        run: |
+          set -o pipefail
+          python3 tool/l10n_audit.py 2>&1 | tee /tmp/cc/audit.log
+
+      - name: Fail on stub code
+        id: stub
+        working-directory: app
+        run: |
+          set -o pipefail
+          { grep -rn "throw UnimplementedError" lib/ && echo "Stub code found" && exit 1 || exit 0; } 2>&1 | tee /tmp/cc/stub.log
+
+      - name: Static analysis (lint)
+        id: analyze
+        working-directory: app
+        run: |
+          set -o pipefail
+          flutter analyze 2>&1 | tee /tmp/cc/analyze.log
+
+      - name: Unit tests
+        id: test
+        working-directory: app
+        run: |
+          set -o pipefail
+          flutter test --reporter expanded 2>&1 | tee /tmp/cc/test.log
+
+      - name: Report problems as annotations
+        if: always()
+        env:
+          OUT_PUB: ${{ steps.pub.outcome }}
+          OUT_L10N: ${{ steps.l10n.outcome }}
+          OUT_AUDIT: ${{ steps.audit.outcome }}
+          OUT_STUB: ${{ steps.stub.outcome }}
+          OUT_ANALYZE: ${{ steps.analyze.outcome }}
+          OUT_TEST: ${{ steps.test.outcome }}
+        run: |
+          python3 - <<'PY'
+          import os, re
+
+          def esc(s):
+              return s.replace('%', '%25').replace('\r', '%0D').replace('\n', '%0A')
+
+          def read(name):
+              try:
+                  return open('/tmp/cc/' + name, encoding='utf-8', errors='replace').read()
+              except OSError:
+                  return ''
+
+          def tail(text, lines=40, limit=3500):
+              t = '\n'.join(text.strip().splitlines()[-lines:])
+              return t[-limit:]
+
+          analyze = read('analyze.log')
+          pat = re.compile(r'^\s*(error|warning|info)\s+•\s+(.*?)\s+•\s+(\S+?):(\d+):(\d+)\s+•\s+(\S+)\s*$', re.M)
+          found = pat.findall(analyze)
+          rank = {'error': 0, 'warning': 1, 'info': 2}
+          found.sort(key=lambda x: rank[x[0]])
+          for sev, msg, path, line, col, code in found[:9]:
+              level = 'error' if sev == 'error' else 'warning'
+              print('::%s file=app/%s,line=%s,col=%s,title=%s %s::%s' % (level, path, line, col, sev, code, esc(msg)))
+          if os.environ.get('OUT_ANALYZE') == 'failure':
+              counts = {k: sum(1 for f in found if f[0] == k) for k in rank}
+              print('::error title=analyze summary::%s' % esc('errors=%d warnings=%d infos=%d\n%s' % (counts['error'], counts['warning'], counts['info'], tail(analyze, 25, 1500))))
+
+          for key, name, label in [
+              ('OUT_PUB', 'pub.log', 'flutter pub get'),
+              ('OUT_L10N', 'l10n.log', 'flutter gen-l10n'),
+              ('OUT_AUDIT', 'audit.log', 'l10n audit'),
+              ('OUT_STUB', 'stub.log', 'stub check'),
+              ('OUT_TEST', 'test.log', 'flutter test'),
+          ]:
+              if os.environ.get(key) == 'failure':
+                  text = read(name)
+                  if name == 'test.log':
+                      fails = [l for l in text.splitlines() if '[E]' in l or 'Error:' in l or 'Expected:' in l or 'Actual:' in l or 'Some tests failed' in l]
+                      text = '\n'.join(fails[:30]) + '\n--- tail ---\n' + tail(text, 25, 1800)
+                  print('::error title=%s failed::%s' % (label, esc(tail(text, 60, 3500))))
+          PY
+
+  kotlin-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v5
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+
+      - name: Prepare log folder
+        run: mkdir -p /tmp/cc
+
+      - name: Get Flutter packages
+        id: pub
+        working-directory: app
+        run: |
+          set -o pipefail
+          flutter pub get 2>&1 | tee /tmp/cc/pub.log
+
+      - name: Add Gradle wrapper files (CI only, not committed)
+        id: wrapper
+        working-directory: app
+        run: |
+          set -o pipefail
+          flutter create --platforms=android --project-name katharscan --org com.zdmgold . 2>&1 | tee /tmp/cc/wrapper.log
+          ls -la android | tee -a /tmp/cc/wrapper.log
+
+      - name: Compile Kotlin (no APK)
+        id: kotlin
+        working-directory: app/android
+        run: |
+          set -o pipefail
+          chmod +x ./gradlew
+          ./gradlew :app:compileDebugKotlin --no-daemon --console=plain 2>&1 | tee /tmp/cc/kotlin.log
+
+      - name: Report problems as annotations
+        if: always()
+        env:
+          OUT_PUB: ${{ steps.pub.outcome }}
+          OUT_WRAPPER: ${{ steps.wrapper.outcome }}
+          OUT_KOTLIN: ${{ steps.kotlin.outcome }}
+        run: |
+          python3 - <<'PY'
+          import os, re
+
+          def esc(s):
+              return s.replace('%', '%25').replace('\r', '%0D').replace('\n', '%0A')
+
+          def read(name):
+              try:
+                  return open('/tmp/cc/' + name, encoding='utf-8', errors='replace').read()
+              except OSError:
+                  return ''
+
+          def tail(text, lines=40, limit=3500):
+              t = '\n'.join(text.strip().splitlines()[-lines:])
+              return t[-limit:]
+
+          kotlin = read('kotlin.log')
+          pat = re.compile(r'^e: (?:file://)?(\S+?\.kt):(\d+):(\d+)\s+(.*)$', re.M)
+          for path, line, col, msg in pat.findall(kotlin)[:9]:
+              rel = path.split('/app/android/', 1)[-1]
+              print('::error file=app/android/%s,line=%s,col=%s,title=kotlin::%s' % (rel, line, col, esc(msg)))
+
+          for key, name, label in [
+              ('OUT_PUB', 'pub.log', 'flutter pub get'),
+              ('OUT_WRAPPER', 'wrapper.log', 'gradle wrapper setup'),
+              ('OUT_KOTLIN', 'kotlin.log', 'kotlin compile'),
+          ]:
+              if os.environ.get(key) == 'failure':
+                  text = read(name)
+                  if name == 'kotlin.log':
+                      keep = [l for l in text.splitlines() if l.startswith('e: ') or 'What went wrong' in l or 'FAILED' in l or 'Could not' in l or 'error:' in l.lower()]
+                      text = '\n'.join(keep[:30]) + '\n--- tail ---\n' + tail(text, 25, 1800)
+                  print('::error title=%s failed::%s' % (label, esc(tail(text, 60, 3500))))
+          PY
