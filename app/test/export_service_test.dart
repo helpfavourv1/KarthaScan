@@ -166,7 +166,20 @@ void main() {
   group('Compression tiers', () {
     test('small tier produces smaller JPG than original tier', () async {
       final ExportService service = ExportService();
-      final doc = buildTestDocument();
+      // A flat white page gives the same JPEG size at any quality, so use a
+      // deterministic noisy page where quality really changes the size.
+      final img.Image noisy = img.Image(width: 120, height: 160);
+      int seed = 12345;
+      for (final img.Pixel pixel in noisy) {
+        seed = (seed * 1103515245 + 12345) & 0x7fffffff;
+        pixel
+          ..r = seed & 0xff
+          ..g = (seed >> 8) & 0xff
+          ..b = (seed >> 16) & 0xff;
+      }
+      final String noisyPath = '${tempDir.path}/noisy_page.png';
+      await File(noisyPath).writeAsBytes(img.encodePng(noisy));
+      final doc = buildTestDocument().copyWith(pagePaths: <String>[noisyPath]);
 
       final originalOutputs = await service.export(
         document: doc,
