@@ -121,8 +121,10 @@ jobs:
               if os.environ.get(key) == 'failure':
                   text = read(name)
                   if name == 'test.log':
-                      fails = [l for l in text.splitlines() if '[E]' in l or 'Error:' in l or 'Expected:' in l or 'Actual:' in l or 'Some tests failed' in l]
-                      text = '\n'.join(fails[:30]) + '\n--- tail ---\n' + tail(text, 25, 1800)
+                      rows = text.splitlines()
+                      starts = [i for i, l in enumerate(rows) if '[E]' in l]
+                      chunks = ['\n'.join(rows[i:i + 22]) for i in starts[:3]]
+                      text = '\n=====\n'.join(chunks) if chunks else tail(text, 40, 3000)
                   print('::error title=%s failed::%s' % (label, esc(tail(text, 60, 3500))))
           PY
 
