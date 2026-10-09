@@ -124,9 +124,16 @@ class _ConvertScreenState extends State<ConvertScreen> {
         final pngs = await PdfToImagesService().convertToImages(src, onProgress: (v, l) => _report(0.3 + v * 0.3, l));
         if (pngs.isNotEmpty) {
           final ocr = OcrService();
-          final result = await ocr.recognizeText(imagePath: pngs.first, script: OcrScript.latin);
+          final text = StringBuffer();
+          for (int i = 0; i < pngs.length; i++) {
+            final page = await ocr.recognizeTextAuto(imagePath: pngs[i]);
+            if (text.isNotEmpty) text.writeln();
+            text.write(page.fullText);
+          }
+          await ocr.dispose();
           final out = p.join(outDir.path, 'conv_$ts.csv');
-          await File(out).writeAsString('"${result.fullText.replaceAll('"', '""')}"');
+          // Leading BOM so Excel reads the file as UTF-8.
+          await File(out).writeAsString('\uFEFF"${text.toString().replaceAll('"', '""')}"');
           finalPaths.add(out);
         }
       } else if (_target == _TargetFormat.txt) {
@@ -136,9 +143,10 @@ class _ConvertScreenState extends State<ConvertScreen> {
         final ocr = OcrService();
         for (int i = 0; i < pngs.length; i++) {
           _report(0.7 + 0.29 * ((i + 1) / pngs.length), l10n.progressExtractingText);
-          final r = await ocr.recognizeText(imagePath: pngs[i], script: OcrScript.latin);
+          final r = await ocr.recognizeTextAuto(imagePath: pngs[i]);
           sb.writeln(r.fullText);
         }
+        await ocr.dispose();
         final out = p.join(outDir.path, 'conv_$ts.txt');
         await File(out).writeAsString(sb.toString());
         finalPaths.add(out);
@@ -164,16 +172,19 @@ class _ConvertScreenState extends State<ConvertScreen> {
       } else if (_target == _TargetFormat.txt) {
         _report(0.3, l10n.progressExtractingText);
         final ocr = OcrService();
-        final result = await ocr.recognizeText(imagePath: src, script: OcrScript.latin);
+        final result = await ocr.recognizeTextAuto(imagePath: src);
+        await ocr.dispose();
         final out = p.join(outDir.path, 'conv_$ts.txt');
         await File(out).writeAsString(result.fullText);
         finalPaths.add(out);
       } else if (_target == _TargetFormat.csv) {
         _report(0.3, l10n.progressExtractingText);
         final ocr = OcrService();
-        final result = await ocr.recognizeText(imagePath: src, script: OcrScript.latin);
+        final result = await ocr.recognizeTextAuto(imagePath: src);
+        await ocr.dispose();
         final out = p.join(outDir.path, 'conv_$ts.csv');
-        await File(out).writeAsString('"${result.fullText.replaceAll('"', '""')}"');
+        // Leading BOM so Excel reads the file as UTF-8.
+        await File(out).writeAsString('\uFEFF"${result.fullText.replaceAll('"', '""')}"');
         finalPaths.add(out);
       } else {
         _report(0.4, l10n.progressDecodingImage);

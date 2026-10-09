@@ -70,6 +70,71 @@ class OcrService {
     }
   }
 
+  /// Pages OCR'd per imported document. Keeps long PDF imports responsive.
+  static const int maxOcrPages = 20;
+
+  /// Number of visible (non-whitespace) characters in [text].
+  static int visibleLength(String text) => text.replaceAll(RegExp(r'\s'), '').length;
+
+  /// True when a Latin pass found so little text that another script may do
+  /// better (for example a Chinese, Japanese or Korean page).
+  static bool needsScriptFallback(String latinText) => visibleLength(latinText) < 12;
+
+  /// True when [candidate] is clearly more complete than [current], so a
+  /// similar result from another script does not replace a good Latin one.
+  static bool isClearlyBetter(String current, String candidate) {
+    final int have = visibleLength(current);
+    final int found = visibleLength(candidate);
+    return found > have + 5 && found >= have * 1.5;
+  }
+
+  /// Recognizes text with the Latin script first. If that finds almost
+  /// nothing, tries Chinese, Japanese and Korean (skipping scripts already
+  /// known to be unavailable) and keeps the clearly better result.
+  Future<OcrResult> recognizeTextAuto({required String imagePath}) async {
+    OcrResult best = await recognizeText(imagePath: imagePath, script: OcrScript.latin);
+    if (!needsScriptFallback(best.fullText)) return best;
+
+    for (final OcrScript script in const <OcrScript>[
+      OcrScript.chinese,
+      OcrScript.japanese,
+      OcrScript.korean,
+    ]) {
+      if (lastFailureFor(script) != null) continue;
+      try {
+        final OcrResult candidate = await recognizeText(imagePath: imagePath, script: script);
+        if (isClearlyBetter(best.fullText, candidate.fullText)) best = candidate;
+      } on OcrUnavailableException {
+        // Script not available on this device; keep what we have.
+      }
+    }
+    return best;
+  }
+
+  /// OCR for the first [maxPages] pages, joined in page order. A page that
+  /// fails is skipped; if OCR is unavailable altogether, returns what was
+  /// read so far.
+  Future<String> recognizeTextForPages(
+    List<String> imagePaths, {
+    int maxPages = maxOcrPages,
+  }) async {
+    final StringBuffer combined = StringBuffer();
+    final int count = imagePaths.length < maxPages ? imagePaths.length : maxPages;
+    for (int i = 0; i < count; i++) {
+      try {
+        final OcrResult result = await recognizeTextAuto(imagePath: imagePaths[i]);
+        if (result.fullText.trim().isEmpty) continue;
+        if (combined.isNotEmpty) combined.writeln();
+        combined.write(result.fullText);
+      } on OcrUnavailableException {
+        break;
+      } catch (error) {
+        _log.log('OCR', 'Page ${i + 1} skipped: $error');
+      }
+    }
+    return combined.toString();
+  }
+
   Future<bool> isAvailable() async {
     try {
       _recognizerFor(OcrScript.latin);

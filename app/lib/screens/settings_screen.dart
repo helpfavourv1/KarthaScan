@@ -392,7 +392,12 @@ class _OcrLanguagesSheetState extends State<_OcrLanguagesSheet> {
       // falsely classifying CJK scripts as hard-unsupported.
       await file.writeAsBytes(base64Decode(
           'iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAAAAACPAi4CAAAAKUlEQVR42u3MQREAAAwCIPuX1hD77SAA6VEEAoFAIBAIBAKBQCAQfA8Gpwvw4qrwDDIAAAAASUVORK5CYII='));
-      await OcrService().recognizeText(imagePath: path, script: script);
+      final OcrService probeService = OcrService();
+      try {
+        await probeService.recognizeText(imagePath: path, script: script);
+      } finally {
+        await probeService.dispose();
+      }
       OcrService.clearFailureFor(script);
     } on OcrUnavailableException {
       // Service already recorded the classified failure.

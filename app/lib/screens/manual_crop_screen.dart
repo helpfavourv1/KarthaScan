@@ -187,8 +187,7 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
 
       String ocrText = '';
       try {
-        final result = await _ocrService.recognizeText(imagePath: savedPaths.first, script: OcrScript.latin);
-        ocrText = result.fullText;
+        ocrText = await _ocrService.recognizeTextForPages(savedPaths);
       } catch (_) {}
 
       final now = DateTime.now();
@@ -378,8 +377,7 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
 
       String ocrText = '';
       try {
-        final result = await _ocrService.recognizeText(imagePath: savedPaths.first, script: OcrScript.latin);
-        ocrText = result.fullText;
+        ocrText = await _ocrService.recognizeTextForPages(savedPaths);
       } catch (_) {}
 
       final now = DateTime.now();
@@ -525,7 +523,7 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
       // Standard single-page flow
       String ocrText = '';
       try {
-        final result = await _ocrService.recognizeText(imagePath: outPath, script: OcrScript.latin);
+        final result = await _ocrService.recognizeTextAuto(imagePath: outPath);
         ocrText = result.fullText;
       } catch (_) {}
 
