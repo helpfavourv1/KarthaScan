@@ -1,5 +1,6 @@
 {
   "@@locale": "he",
+  "privacyOptionsLabel": "הגדרות פרטיות",
   "commonCancel": "ביטול",
   "commonDelete": "מחק",
   "commonSave": "שמור",

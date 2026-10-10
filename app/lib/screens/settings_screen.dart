@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import '../core/services/ad_consent_service.dart';
 import '../widgets/conditional_banner.dart';
 import 'package:go_router/go_router.dart';
 import 'package:path/path.dart' as p;
@@ -257,6 +258,15 @@ class _SettingsScreenState extends State<SettingsScreen> {
               title: Text(l10n.onboardingReplayIntro, style: TextStyle(color: textPrimary)),
               trailing: Icon(Icons.chevron_right, color: textSecondary),
               onTap: () => context.push('/onboarding'),
+            ),
+            ListenableBuilder(
+              listenable: AdConsentService.instance.privacyOptionsRequired,
+              builder: (context, _) => AdConsentService.instance.privacyOptionsRequired.value
+                  ? Padding(
+                      padding: const EdgeInsets.only(bottom: AppSpacing.xs),
+                      child: _settingsTile(title: l10n.privacyOptionsLabel, trailing: Icon(Icons.chevron_right, color: textSecondary), onTap: () => AdConsentService.instance.showPrivacyOptions(), textPrimary: textPrimary, border: border),
+                    )
+                  : const SizedBox.shrink(),
             ),
             _settingsTile(title: l10n.privacyPolicyLabel, trailing: Icon(Icons.open_in_new, color: textSecondary, size: 16), onTap: () => _openUrl(AppSupportContact.privacyPolicyUrl, l10n), textPrimary: textPrimary, border: border),
             const SizedBox(height: AppSpacing.xs),

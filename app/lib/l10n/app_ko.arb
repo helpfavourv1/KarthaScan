@@ -1,5 +1,6 @@
 {
   "@@locale": "ko",
+  "privacyOptionsLabel": "개인정보 설정",
   "commonCancel": "취소",
   "commonDelete": "삭제",
   "commonSave": "저장",

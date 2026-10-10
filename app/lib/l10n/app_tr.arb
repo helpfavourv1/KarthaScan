@@ -1,5 +1,6 @@
 {
   "@@locale": "tr",
+  "privacyOptionsLabel": "Gizlilik ayarları",
   "commonCancel": "İptal",
   "commonDelete": "Sil",
   "commonSave": "Kaydet",

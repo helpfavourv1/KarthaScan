@@ -1,5 +1,6 @@
 {
   "@@locale": "vi",
+  "privacyOptionsLabel": "Cài đặt quyền riêng tư",
   "commonCancel": "Hủy",
   "commonDelete": "Xóa",
   "commonSave": "Lưu",

@@ -1,5 +1,6 @@
 {
   "@@locale": "no",
+  "privacyOptionsLabel": "Personverninnstillinger",
   "commonCancel": "Avbryt",
   "commonDelete": "Slett",
   "commonSave": "Lagre",

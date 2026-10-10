@@ -1,5 +1,6 @@
 {
   "@@locale": "ja",
+  "privacyOptionsLabel": "プライバシー設定",
   "commonCancel": "キャンセル",
   "commonDelete": "削除",
   "commonSave": "保存",

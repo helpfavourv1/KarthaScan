@@ -1,5 +1,6 @@
 {
   "@@locale": "sv",
+  "privacyOptionsLabel": "Integritetsinställningar",
   "commonCancel": "Avbryt",
   "commonDelete": "Radera",
   "commonSave": "Spara",

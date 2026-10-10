@@ -1,5 +1,6 @@
 {
   "@@locale": "zh",
+  "privacyOptionsLabel": "隐私设置",
   "commonCancel": "取消",
   "commonDelete": "删除",
   "commonSave": "保存",

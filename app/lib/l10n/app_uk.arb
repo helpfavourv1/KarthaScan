@@ -1,5 +1,6 @@
 {
   "@@locale": "uk",
+  "privacyOptionsLabel": "Налаштування конфіденційності",
   "commonCancel": "Скасувати",
   "commonDelete": "Видалити",
   "commonSave": "Зберегти",

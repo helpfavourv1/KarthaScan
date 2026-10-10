@@ -1,5 +1,6 @@
 {
   "@@locale": "da",
+  "privacyOptionsLabel": "Privatlivsindstillinger",
   "commonCancel": "Annuller",
   "commonDelete": "Slet",
   "commonSave": "Gem",

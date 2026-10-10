@@ -1,5 +1,6 @@
 {
   "@@locale": "ar",
+  "privacyOptionsLabel": "إعدادات الخصوصية",
   "commonCancel": "إلغاء",
   "commonDelete": "حذف",
   "commonSave": "حفظ",

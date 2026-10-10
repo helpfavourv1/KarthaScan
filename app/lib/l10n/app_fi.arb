@@ -1,5 +1,6 @@
 {
   "@@locale": "fi",
+  "privacyOptionsLabel": "Tietosuoja-asetukset",
   "commonCancel": "Peruuta",
   "commonDelete": "Poista",
   "commonSave": "Tallenna",

@@ -1,5 +1,6 @@
 {
   "@@locale": "hi",
+  "privacyOptionsLabel": "गोपनीयता सेटिंग्स",
   "commonCancel": "रद्द करें",
   "commonDelete": "हटाएं",
   "commonSave": "सहेजें",

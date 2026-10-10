@@ -1,8 +1,9 @@
+import 'dart:async' show unawaited;
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 import 'app.dart';
 import 'core/providers/folder_provider.dart';
@@ -10,6 +11,7 @@ import 'core/providers/scan_provider.dart';
 import 'core/providers/settings_provider.dart';
 import 'core/providers/subscription_provider.dart';
 import 'core/providers/theme_provider.dart';
+import 'core/services/ad_consent_service.dart';
 import 'core/services/debug_log_service.dart';
 import 'core/services/doc_scanner_service.dart';
 import 'core/services/local_storage.dart';
@@ -27,10 +29,10 @@ Future<void> main() async {
   final prefs = await SharedPreferences.getInstance();
   final bool hasSeenOnboarding = prefs.getBool('hasSeenOnboarding') ?? false;
 
+  // The tracking prompt is answered at the end of onboarding, so on later
+  // launches consent can run straight away. Ads load only after it finishes.
   if (hasSeenOnboarding) {
-    if (await permission.isATTGranted()) {
-      MobileAds.instance.initialize();
-    }
+    unawaited(AdConsentService.instance.start());
   }
 
   installGlobalErrorHandling(

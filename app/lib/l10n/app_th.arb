@@ -1,5 +1,6 @@
 {
   "@@locale": "th",
+  "privacyOptionsLabel": "การตั้งค่าความเป็นส่วนตัว",
   "commonCancel": "ยกเลิก",
   "commonDelete": "ลบ",
   "commonSave": "บันทึก",

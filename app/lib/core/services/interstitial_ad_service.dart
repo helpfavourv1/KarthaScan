@@ -1,7 +1,9 @@
+import 'dart:async' show unawaited;
 import 'dart:convert';
 import 'dart:io' show Platform;
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'ad_consent_service.dart';
 import 'ad_pacing_service.dart';
 
 class InterstitialAdService {
@@ -28,6 +30,8 @@ class InterstitialAdService {
   }
 
   Future<void> _load() async {
+    // Never request an ad before the tracking prompt and consent form are done.
+    if (!AdConsentService.instance.adsReady.value) return;
     if (_loading) return;
     _loading = true;
     await InterstitialAd.load(
@@ -75,8 +79,24 @@ class InterstitialAdService {
     if (AdPacingService.instance.canShowAfterIdle()) await showIfAllowed();
   }
 
+  bool _waitingForConsent = false;
+
   Future<void> preload() async {
     if (await _isAdsRemovedCached()) return;
+    if (!AdConsentService.instance.adsReady.value) {
+      // Try again as soon as the tracking prompt and consent form are done.
+      if (!_waitingForConsent) {
+        _waitingForConsent = true;
+        void onReady() {
+          if (!AdConsentService.instance.adsReady.value) return;
+          AdConsentService.instance.adsReady.removeListener(onReady);
+          _waitingForConsent = false;
+          unawaited(preload());
+        }
+        AdConsentService.instance.adsReady.addListener(onReady);
+      }
+      return;
+    }
     await _load();
   }
   void dispose() => _ad?.dispose();

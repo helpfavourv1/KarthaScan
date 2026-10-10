@@ -1,9 +1,11 @@
+import 'dart:async' show unawaited;
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
 
+import '../core/services/ad_consent_service.dart';
 import '../platform/permission_service.dart';
 
 import '../core/utils/constants.dart';
@@ -52,8 +54,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       // never at first launch, never before core value is experienced).
       await permissionService.requestATT();
       
-      // CRITICAL FIX: Initialize AdMob ONLY after the ATT prompt has been displayed.
-      MobileAds.instance.initialize();
+      // Ads start only after the tracking prompt has been answered and
+      // Google's consent form (EEA/UK) has run.
+      unawaited(AdConsentService.instance.start());
 
       if (!mounted) return;
       context.go('/');

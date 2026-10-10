@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart' show kReleaseMode;
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
 import '../core/providers/subscription_provider.dart';
+import '../core/services/ad_consent_service.dart';
 
 class ConditionalBanner extends StatefulWidget {
   const ConditionalBanner({super.key});
@@ -44,6 +45,23 @@ class _ConditionalBannerState extends State<ConditionalBanner> {
     subscriptionProvider.adsRemoved.addListener(_onAdsRemovedChanged);
     if (subscriptionProvider.adsRemoved.value) return;
 
+    // No ad request until the tracking prompt and consent form are done.
+    if (!AdConsentService.instance.adsReady.value) {
+      AdConsentService.instance.adsReady.addListener(_onConsentReady);
+      return;
+    }
+    _loadBanner();
+  }
+
+  void _onConsentReady() {
+    if (!AdConsentService.instance.adsReady.value) return;
+    AdConsentService.instance.adsReady.removeListener(_onConsentReady);
+    if (!mounted || _bannerAd != null) return;
+    if (_subscription?.adsRemoved.value == true) return;
+    _loadBanner();
+  }
+
+  void _loadBanner() {
     _bannerAd = BannerAd(
       adUnitId: kReleaseMode ? _prodBannerId : _testBannerId,
       size: AdSize.banner,
@@ -64,6 +82,7 @@ class _ConditionalBannerState extends State<ConditionalBanner> {
   @override
   void dispose() {
     _subscription?.adsRemoved.removeListener(_onAdsRemovedChanged);
+    AdConsentService.instance.adsReady.removeListener(_onConsentReady);
     _bannerAd?.dispose();
     super.dispose();
   }
