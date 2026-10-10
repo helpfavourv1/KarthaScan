@@ -1,3 +1,4 @@
+import '../utils/csv_utils.dart';
 import '../utils/seal_draw.dart';
 import 'debug_log_service.dart';
 import 'dart:ui' as ui;
@@ -659,8 +660,10 @@ class ExportService {
       if (line.isEmpty) {
         paragraphs.writeln('<w:p/>');
       } else {
+        // Arabic/Hebrew lines are laid out right-to-left in Word.
+        final bool rtl = RegExp(r'[\u0590-\u08FF\uFB1D-\uFDFF\uFE70-\uFEFF]').hasMatch(line);
         paragraphs.writeln(
-          '<w:p><w:r><w:t xml:space="preserve">${_xmlEscape(line)}</w:t></w:r></w:p>',
+          '<w:p>${rtl ? '<w:pPr><w:bidi/></w:pPr>' : ''}<w:r>${rtl ? '<w:rPr><w:rtl/></w:rPr>' : ''}<w:t xml:space="preserve">${_xmlEscape(line)}</w:t></w:r></w:p>',
         );
       }
     }
@@ -777,9 +780,8 @@ class ExportService {
   Future<String> _exportCsv(ScanDocument document, String outDir) async {
     final outPath = _outputPath(document, outDir, 'csv');
     try {
-      final String escaped = document.ocrText.replaceAll('"', '""');
-      // Leading BOM so Excel reads the file as UTF-8.
-      await File(outPath).writeAsString('\uFEFF"$escaped"');
+      // One row per OCR line, formula-safe, with a BOM so Excel reads UTF-8.
+      await File(outPath).writeAsString(csvFromText(document.ocrText));
       return outPath;
     } catch (error, stackTrace) {
       _logError('_exportCsv', error, stackTrace);

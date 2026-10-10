@@ -3,6 +3,7 @@ import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
+import '../utils/csv_utils.dart';
 import 'debug_log_service.dart';
 
 class CsvToPdfService {
@@ -13,10 +14,7 @@ class CsvToPdfService {
     onProgress?.call(0.2, 'Reading…');
     final text = await File(csvPath).readAsString();
     onProgress?.call(0.4, 'Parsing rows…');
-    final rows = text.split('\n')
-        .where((l) => l.trim().isNotEmpty)
-        .map((l) => l.split(','))
-        .toList();
+    final List<List<String>> rows = parseCsv(text);
 
     final List<String> headers = rows.isNotEmpty ? rows.first : <String>[];
     final List<List<String>> dataRows = rows.length > 1 ? rows.skip(1).toList() : <List<String>>[];

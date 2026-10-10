@@ -16,6 +16,7 @@ import 'package:pdf/widgets.dart' as pw;
 import '../core/models/scan_document.dart';
 import '../core/providers/scan_provider.dart';
 import '../core/services/csv_to_pdf_service.dart';
+import '../core/utils/csv_utils.dart';
 import '../core/services/docx_parser_service.dart';
 import '../core/services/export_service.dart';
 import '../core/services/pdf_to_images_service.dart';
@@ -132,8 +133,7 @@ class _ConvertScreenState extends State<ConvertScreen> {
           }
           await ocr.dispose();
           final out = p.join(outDir.path, 'conv_$ts.csv');
-          // Leading BOM so Excel reads the file as UTF-8.
-          await File(out).writeAsString('\uFEFF"${text.toString().replaceAll('"', '""')}"');
+          await File(out).writeAsString(csvFromText(text.toString()));
           finalPaths.add(out);
         }
       } else if (_target == _TargetFormat.txt) {
@@ -183,8 +183,7 @@ class _ConvertScreenState extends State<ConvertScreen> {
         final result = await ocr.recognizeTextAuto(imagePath: src);
         await ocr.dispose();
         final out = p.join(outDir.path, 'conv_$ts.csv');
-        // Leading BOM so Excel reads the file as UTF-8.
-        await File(out).writeAsString('\uFEFF"${result.fullText.replaceAll('"', '""')}"');
+        await File(out).writeAsString(csvFromText(result.fullText));
         finalPaths.add(out);
       } else {
         _report(0.4, l10n.progressDecodingImage);
@@ -244,7 +243,7 @@ class _ConvertScreenState extends State<ConvertScreen> {
         final txtPath = await DocxParserService().convertToTxt(src);
         final content = await File(txtPath).readAsString();
         final out = p.join(outDir.path, 'conv_$ts.csv');
-        await File(out).writeAsString('"${content.replaceAll('"', '""')}"');
+        await File(out).writeAsString(csvFromText(content));
         finalPaths.add(out);
       } else if (_target == _TargetFormat.docx) {
         _report(0.5, l10n.progressCopying);

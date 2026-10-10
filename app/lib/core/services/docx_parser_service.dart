@@ -1,3 +1,4 @@
+import 'dart:convert' show utf8;
 import 'dart:io';
 import 'package:archive/archive.dart';
 import 'package:path/path.dart' as p;
@@ -18,7 +19,7 @@ class DocxParserService {
       (f) => f.name == 'word/document.xml', 
       orElse: () => throw Exception('document.xml missing'),
     );
-    final xml = String.fromCharCodes(docXml.content as List<int>);
+    final xml = utf8.decode(docXml.content as List<int>, allowMalformed: true);
     
     final paragraphs = <String>[];
         final pRegex = RegExp(r'<w:p[^>]*>(.*?)</w:p>', dotAll: true);
@@ -59,7 +60,7 @@ class DocxParserService {
       (f) => f.name == 'word/document.xml',
       orElse: () => throw Exception('document.xml missing'),
     );
-    final xml = String.fromCharCodes(docXml.content as List<int>);
+    final xml = utf8.decode(docXml.content as List<int>, allowMalformed: true);
 
     final paragraphs = <String>[];
     final pRegex = RegExp(r'<w:p[^>]*>(.*?)</w:p>', dotAll: true);
