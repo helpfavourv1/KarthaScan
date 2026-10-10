@@ -115,6 +115,8 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
     final doc = document;
     if (doc == null) return;
     for (int i = 0; i < doc.pagePaths.length; i++) {
+      // The source page already has it; adding it again would double it up.
+      if (i == layer.pageIndex) continue;
       await scanProvider.addAnnotateLayer(
         doc.id,
         AnnotateLayer(pageIndex: i, bytesPath: layer.bytesPath, placement: layer.placement),
@@ -179,6 +181,7 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
     final doc = document;
     if (doc == null) return;
     for (int i = 0; i < doc.pagePaths.length; i++) {
+      if (i == layer.pageIndex) continue;
       await scanProvider.addWatermarkLayer(doc.id, layer.copyWith(pageIndex: i));
     }
   }
@@ -285,6 +288,7 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
     final doc = document;
     if (doc == null) return;
     for (int i = 0; i < doc.pagePaths.length; i++) {
+      if (i == layer.pageIndex) continue;
       await scanProvider.addStampLayer(doc.id, layer.copyWith(id: 'stamp_${DateTime.now().microsecondsSinceEpoch}_$i', pageIndex: i));
     }
   }

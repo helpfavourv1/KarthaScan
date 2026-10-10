@@ -548,16 +548,21 @@ class _StampOverlayPageState extends State<StampOverlayPage> {
     _decodeSealImages();
   }
 
+  // Keyed by the picture itself, not only the layer id, so editing a seal's
+  // centre image shows the new picture instead of the old cached one.
+  String _sealKey(StampLayer layer) => '${layer.id}:${identityHashCode(layer.sealImageBytes)}';
+
   Future<void> _decodeSealImages() async {
     final sealLayers = widget.layers.where((l) => l.pageIndex == widget.pageIndex && l.kind == 'seal' && l.sealImageBytes != null);
     for (final layer in sealLayers) {
-      if (!_sealImageCache.containsKey(layer.id)) {
+      final String cacheKey = _sealKey(layer);
+      if (!_sealImageCache.containsKey(cacheKey)) {
         try {
           final codec = await ui.instantiateImageCodec(layer.sealImageBytes!);
           final frame = await codec.getNextFrame();
           if (mounted) {
             setState(() {
-              _sealImageCache[layer.id] = frame.image;
+              _sealImageCache[cacheKey] = frame.image;
             });
           }
         } catch (_) {}
@@ -618,7 +623,7 @@ class _StampOverlayPageState extends State<StampOverlayPage> {
             }
             if (layer.kind == 'seal') {
               final size = widget.iw * 0.25 * layer.placement.scale;
-              final centerImage = _sealImageCache[layer.id];
+              final centerImage = _sealImageCache[_sealKey(layer)];
               return Positioned(
                 left: widget.dx + layer.placement.pctX * widget.iw - size / 2,
                 top: widget.dy + layer.placement.pctY * widget.ih - size / 2,

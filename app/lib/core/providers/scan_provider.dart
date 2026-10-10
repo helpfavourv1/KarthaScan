@@ -8,7 +8,7 @@
 // REACTIVITY: ValueNotifier + ListenableBuilder only, per the MANDATORY
 // constraint in constants.dart.
 
-import 'dart:async' show unawaited;
+import 'dart:async' show Completer, unawaited;
 import 'dart:io' show File, Directory;
 import 'dart:typed_data';
 import 'dart:math' show Random;
@@ -612,19 +612,55 @@ class ScanProvider {
     return updatePageTransform(id, pageIndex, const PageTransform());
   }
 
-  Future<bool> _replaceAndSave(ScanDocument updated) async {
-    final bool success = await _storage.saveDocument(updated);
-    if (success) {
-      documents.value = documents.value
-          .map((ScanDocument d) => d.id == updated.id ? updated : d)
-          .toList();
-      if (activeScan.value?.id == updated.id) {
-        activeScan.value = updated;
-      }
-    } else {
-      lastError.value = 'Could not save changes to this document.';
+  // Edits are applied in memory straight away and written to the database
+  // one at a time, newest version of a document last. Before, the in-memory
+  // copy only changed after the write finished, so two quick edits (copy to
+  // all pages, dragging a layer) both started from the same old copy and the
+  // later write silently dropped the earlier one.
+  final Map<String, ScanDocument> _pendingWrites = <String, ScanDocument>{};
+  final Map<String, List<Completer<bool>>> _writeWaiters = <String, List<Completer<bool>>>{};
+  bool _writerRunning = false;
+
+  Future<bool> _replaceAndSave(ScanDocument updated) {
+    documents.value = documents.value
+        .map((ScanDocument d) => d.id == updated.id ? updated : d)
+        .toList();
+    if (activeScan.value?.id == updated.id) {
+      activeScan.value = updated;
     }
-    return success;
+    final Completer<bool> done = Completer<bool>();
+    _pendingWrites[updated.id] = updated;
+    _writeWaiters.putIfAbsent(updated.id, () => <Completer<bool>>[]).add(done);
+    unawaited(_runWriter());
+    return done.future;
+  }
+
+  Future<void> _runWriter() async {
+    if (_writerRunning) return;
+    _writerRunning = true;
+    try {
+      while (_pendingWrites.isNotEmpty) {
+        final String id = _pendingWrites.keys.first;
+        final ScanDocument doc = _pendingWrites.remove(id)!;
+        final List<Completer<bool>> waiters =
+            _writeWaiters.remove(id) ?? <Completer<bool>>[];
+        bool ok = false;
+        // A document deleted while its write was waiting must not come back.
+        if (_findById(id) != null) {
+          try {
+            ok = await _storage.saveDocument(doc);
+          } catch (_) {
+            ok = false;
+          }
+          if (!ok) lastError.value = 'Could not save changes to this document.';
+        }
+        for (final Completer<bool> w in waiters) {
+          w.complete(ok);
+        }
+      }
+    } finally {
+      _writerRunning = false;
+    }
   }
 
   String _generateId() {
