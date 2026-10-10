@@ -11,14 +11,19 @@ class PdfFonts {
   static Future<pw.ThemeData> theme() async {
     final cached = _theme;
     if (cached != null) return cached;
-    final base = pw.Font.ttf(await rootBundle.load('assets/fonts/NotoSans-Regular.ttf'));
-    final arabic = pw.Font.ttf(await rootBundle.load('assets/fonts/NotoSansArabic-Regular.ttf'));
-    return _theme = pw.ThemeData.withFont(
-      base: base,
-      bold: base,
-      italic: base,
-      boldItalic: base,
-      fontFallback: [arabic],
-    );
+    try {
+      final base = pw.Font.ttf(await rootBundle.load('assets/fonts/NotoSans-Regular.ttf'));
+      final arabic = pw.Font.ttf(await rootBundle.load('assets/fonts/NotoSansArabic-Regular.ttf'));
+      return _theme = pw.ThemeData.withFont(
+        base: base,
+        bold: base,
+        italic: base,
+        boldItalic: base,
+        fontFallback: [arabic],
+      );
+    } catch (_) {
+      // Export must never fail because a font could not load.
+      return pw.ThemeData.base();
+    }
   }
 }
