@@ -246,7 +246,10 @@ class LocalStorageService {
       }
 
       try {
-        final String likePattern = '%${trimmed.replaceAll('%', r'\%')}%';
+        // Escape the escape character first, then the two wildcards, so a
+        // search for "a_b" or "50%" matches those characters literally.
+        final String likePattern =
+            '%${trimmed.replaceAll(r'\', r'\\').replaceAll('%', r'\%').replaceAll('_', r'\_')}%';
         final List<Map<String, Object?>> rows = await _db!.query(
           'documents',
           where: 'title LIKE ? ESCAPE ? OR ocr_text LIKE ? ESCAPE ?',

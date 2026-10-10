@@ -1,3 +1,4 @@
+import 'dart:async' show Timer;
 import 'package:flutter/material.dart';
 import '../widgets/whats_new_sheet.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -75,18 +76,28 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   void dispose() {
+    _searchDebounce?.cancel();
     _searchController.dispose();
     super.dispose();
   }
 
-  Future<void> _onSearchChanged(String query) async {
+  Timer? _searchDebounce;
+  int _searchRequestId = 0;
+
+  void _onSearchChanged(String query) {
+    _searchDebounce?.cancel();
+    final int requestId = ++_searchRequestId;
     if (query.trim().isEmpty) {
       setState(() => _searchResults = null);
       return;
     }
-    final List<ScanDocument> results = await _scanProvider.search(query);
-    if (!mounted) return;
-    setState(() => _searchResults = results);
+    // Wait for a pause in typing, and ignore an answer that arrives after a
+    // newer search was started.
+    _searchDebounce = Timer(const Duration(milliseconds: 250), () async {
+      final List<ScanDocument> results = await _scanProvider.search(query);
+      if (!mounted || requestId != _searchRequestId) return;
+      setState(() => _searchResults = results);
+    });
   }
 
   Future<void> _onScanPressed() async {

@@ -60,22 +60,19 @@ flutter test
 flutter run
 ```
 
-### Version-pin caveat
+### Flutter version
 
-`pubspec.yaml`'s dependency versions were chosen for consistency with the
-pinned Flutter 3.24.0 / Dart ~3.5 timeframe, based on known package
-release history — they were not resolved against pub.dev's actual
-dependency solver, since this repo was authored without network access.
-Run `flutter pub get` and `flutter pub outdated` before the first real CI
-build, resolve whatever version conflicts Flutter reports, and update
-`pubspec.yaml` with the exact resolved versions.
+The app needs Flutter 3.44 or newer (Dart 3.12 or newer), as recorded in
+`app/pubspec.lock`. Both CI workflows use the `stable` channel. Run
+`flutter pub get` and `flutter pub outdated` before a release build, and
+update `pubspec.yaml` if the resolver reports conflicts.
 
-A few individual dependencies carry their own narrower caveats — search
-`pubspec.yaml` and the relevant service file for comments flagging
-anything verified against a single documentation source rather than
-confirmed working end-to-end (e.g. `pdf_crypto`'s exact API in
-`export_service.dart`, `flutter_doc_scanner`'s return shape in
-`doc_scanner_service.dart`).
+There is no PDF password-protection feature; nothing in the app or the store
+listing promises one.
+
+A few dependencies carry narrower caveats; search `pubspec.yaml` and the
+relevant service file for comments (for example `flutter_doc_scanner`'s
+return shape in `doc_scanner_service.dart`).
 
 ## Architecture
 

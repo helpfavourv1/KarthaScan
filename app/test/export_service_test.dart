@@ -4,7 +4,7 @@
 // 16 file #72).
 //
 // Unlike ocr_service_test.dart, these are real, fully-functioning tests —
-// export_service.dart's dependencies (pdf, archive, image, pdf_crypto)
+// export_service.dart's dependencies (pdf, archive, image)
 // are all pure Dart with no platform channel, so nothing here needs a
 // device or emulator. dart:io file I/O works normally in `flutter test`,
 // which runs in a full Dart VM with real OS access (unlike widget tests'
