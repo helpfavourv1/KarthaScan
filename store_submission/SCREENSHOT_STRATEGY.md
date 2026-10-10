@@ -18,7 +18,7 @@ for whoever captures them.
    live app before each submission, not just at launch.
 2. **Lead with "free," because it's the actual differentiator.** The
    category is crowded with scanner apps that gate OCR or watermark
-   exports behind a paywall — "free, unlimited, no watermark, no ads" is
+   exports behind a paywall — "free, unlimited, no watermark, no account" is
    the honest hook, not a generic productivity pitch.
 3. **Show the product, not just describe it.** Every screenshot is a real
    (or realistic mock) in-app screen, not a marketing illustration
@@ -51,16 +51,16 @@ for whoever captures them.
 | 1 | Home screen with a populated document list | "Unlimited scanning. Unlimited OCR. Always free." | The hero shot — leads with the free-tier promise, not a feature list. |
 | 2 | Live camera capture / edge detection in progress | "Scan documents in seconds" | Show the perspective-correction overlay mid-capture if the UI displays it. |
 | 3 | Scan detail screen with OCR text panel expanded | "Every word, searchable" | Demonstrates OCR actually working, not just claimed. |
-| 4 | Export format sheet (all 5 formats visible) | "5 export formats. Every one free." | Directly counters competitors that paywall PDF/Word export. |
-| 5 | Settings screen showing theme + language picker | "Works the way you work — 11 languages, dark mode included" | Shows breadth without overselling. |
-| 6 | Paywall screen (free vs. Pro comparison) | "Free forever. Pro is optional." | Deliberately transparent — showing the paywall itself, rather than hiding it, is more honest than only showing free-tier screens and surprising the user later. |
+| 4 | Export format sheet (all 6 formats visible) | "6 export formats. Every one free." | Directly counters competitors that paywall PDF/Word export. |
+| 5 | Settings screen showing theme + language picker | "Works the way you work — 26 languages, dark mode included" | Shows breadth without overselling. |
+| 6 | Remove Ads screen (the optional one-time purchase) | "Every feature free. Remove ads is optional." | Deliberately transparent — showing the paywall itself, rather than hiding it, is more honest than only showing free-tier screens and surprising the user later. |
 
 ## App Store-specific: first-frame text overlay
 
 Apple weights the first 2-3 screenshots most heavily for conversion.
 Screenshot #1's overlay should be the single strongest, most literally
-true claim available: **"Free unlimited OCR. No watermark. No ads."** —
-matches `website/index.html`'s hero copy exactly, so the store listing and
+true claim available: **"Free unlimited OCR. No watermark. No account."** —
+matches `website/index.html`'s hero copy, so the store listing and
 the marketing site never contradict each other.
 
 ## What NOT to do

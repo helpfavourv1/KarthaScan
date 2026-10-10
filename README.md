@@ -1,7 +1,7 @@
 # KatharScan
 
 Free document scanning with unlimited OCR. No watermark, no account
-required, and no ads.
+required. Ads are shown unless removed with a one-time purchase.
 
 ## Repository structure
 
@@ -52,7 +52,7 @@ You'll also need real signing material this repo never contains:
 ```bash
 cd app
 flutter pub get      # also runs `flutter gen-l10n`, producing
-                      # lib/l10n/app_localizations.dart from the 11 ARB
+                      # lib/l10n/app_localizations.dart from the 26 ARB
                       # files in lib/l10n/ — this generated file is
                       # gitignored and rebuilds automatically
 flutter analyze
@@ -106,7 +106,7 @@ confirmed working end-to-end (e.g. `pdf_crypto`'s exact API in
 - **`lib/screens/`** — the glue layer: wires providers to widgets via
   `Provider.of` + `ListenableBuilder`, handles navigation via `go_router`
   (`context.push(...)`, never `Navigator.pushNamed(...)`).
-- **`lib/l10n/`** — 11 ARB files feeding Flutter's `gen-l10n` codegen.
+- **`lib/l10n/`** — 26 ARB files feeding Flutter's `gen-l10n` codegen.
   Every user-facing string in `lib/widgets/` and `lib/screens/` routes
   through `AppLocalizations.of(context)!`, with one deliberate exception:
   language endonyms in the language picker (`Español`, `日本語`, etc.) are

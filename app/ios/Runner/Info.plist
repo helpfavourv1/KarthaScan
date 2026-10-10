@@ -33,7 +33,7 @@
 		<key>NSPhotoLibraryAddUsageDescription</key>
 		<string>KatharScan saves exported scans to your photo library only when you choose to.</string>
 		<key>NSPhotoLibraryUsageDescription</key>
-		<string>KatharScan saves exported scans to your photo library only when you choose to.</string>
+		<string>KatharScan reads photos you pick from your library so you can import them as scans. It saves exported scans there only when you choose to.</string>
 		<key>NSUserTrackingUsageDescription</key>
 		<string>KatharScan uses this identifier to serve and measure ads.</string>
 		<key>SKAdNetworkItems</key>
