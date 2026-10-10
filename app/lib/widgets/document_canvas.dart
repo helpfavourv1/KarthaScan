@@ -170,6 +170,7 @@ class _DocumentCanvasState extends State<DocumentCanvas> {
 // === _PageWithInk: The core page renderer with overlays ===
 class _PageWithInk extends StatefulWidget {
   const _PageWithInk({
+    super.key,
     required this.pagePath,
     required this.controller,
     required this.pageIndex,
