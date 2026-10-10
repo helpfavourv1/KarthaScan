@@ -231,20 +231,8 @@ class ExportService {
       final effectiveFilter = (pageTransform != null && pageTransform.filter != FilterType.none)
           ? pageTransform.filter
           : filter;
-      if (pageTransform != null && pageTransform.cropRect != null && pageTransform.cropRect!.width > 0 && pageTransform.cropRect!.height > 0) {
-        final r = pageTransform.cropRect!;
-        decoded = img.copyCrop(decoded, x: r.left.round(), y: r.top.round(), width: r.width.round(), height: r.height.round());
-      }
-      if (pageTransform != null && pageTransform.resizeWidth != null && pageTransform.resizeHeight != null) {
-        decoded = img.copyResize(decoded, width: pageTransform.resizeWidth!, height: pageTransform.resizeHeight!);
-      }
-      if (effectiveFilter != FilterType.none) {
-        decoded = (pageTransform != null &&
-                pageTransform.filter != FilterType.none &&
-                pageTransform.filterIntensity != 1.0)
-            ? FilterService.applyToImage(decoded, effectiveFilter, intensity: pageTransform.filterIntensity)
-            : _applyFilter(decoded, effectiveFilter);
-      }
+      // Erasing is drawn on the full original (the eraser sheet shows the
+      // uncropped page), then crop/resize/filter follow, same as the preview.
       if (pageTransform != null && pageTransform.eraserStrokes.isNotEmpty) {
         for (final s in pageTransform.eraserStrokes) {
           final pts = (s['points'] as List<dynamic>)
@@ -271,6 +259,20 @@ class ExportService {
             }
           }
         }
+      }
+      if (pageTransform != null && pageTransform.cropRect != null && pageTransform.cropRect!.width > 0 && pageTransform.cropRect!.height > 0) {
+        final r = pageTransform.cropRect!;
+        decoded = img.copyCrop(decoded, x: r.left.round(), y: r.top.round(), width: r.width.round(), height: r.height.round());
+      }
+      if (pageTransform != null && pageTransform.resizeWidth != null && pageTransform.resizeHeight != null) {
+        decoded = img.copyResize(decoded, width: pageTransform.resizeWidth!, height: pageTransform.resizeHeight!);
+      }
+      if (effectiveFilter != FilterType.none) {
+        decoded = (pageTransform != null &&
+                pageTransform.filter != FilterType.none &&
+                pageTransform.filterIntensity != 1.0)
+            ? FilterService.applyToImage(decoded, effectiveFilter, intensity: pageTransform.filterIntensity)
+            : _applyFilter(decoded, effectiveFilter);
       }
       for (final layer in layers) {
         final ink = inkMap[layer.inkId];

@@ -291,16 +291,8 @@ class _PageWithInkState extends State<_PageWithInk> {
       }
       if (transform != null && needsProcessing && decoded != null) {
         img.Image processed = decoded;
-        if (transform.cropRect != null && transform.cropRect!.width > 0 && transform.cropRect!.height > 0) {
-          final r = transform.cropRect!;
-          processed = img.copyCrop(processed, x: r.left.round(), y: r.top.round(), width: r.width.round(), height: r.height.round());
-        }
-        if (transform.resizeWidth != null && transform.resizeHeight != null) {
-          processed = img.copyResize(processed, width: transform.resizeWidth!, height: transform.resizeHeight!);
-        }
-        if (transform.filter != FilterType.none) {
-          processed = FilterService.applyToImage(processed, transform.filter, intensity: transform.filterIntensity);
-        }
+        // Erase on the full original first: the eraser sheet shows the
+        // uncropped page, so its strokes are in original-image coordinates.
         if (transform.eraserStrokes.isNotEmpty) {
           for (final s in transform.eraserStrokes) {
             final pts = (s['points'] as List<dynamic>)
@@ -327,6 +319,16 @@ class _PageWithInkState extends State<_PageWithInk> {
               }
             }
           }
+        }
+        if (transform.cropRect != null && transform.cropRect!.width > 0 && transform.cropRect!.height > 0) {
+          final r = transform.cropRect!;
+          processed = img.copyCrop(processed, x: r.left.round(), y: r.top.round(), width: r.width.round(), height: r.height.round());
+        }
+        if (transform.resizeWidth != null && transform.resizeHeight != null) {
+          processed = img.copyResize(processed, width: transform.resizeWidth!, height: transform.resizeHeight!);
+        }
+        if (transform.filter != FilterType.none) {
+          processed = FilterService.applyToImage(processed, transform.filter, intensity: transform.filterIntensity);
         }
         final processedBytes = Uint8List.fromList(img.encodeJpg(processed, quality: 85));
         if (mounted && generation == _loadGeneration) setState(() => _filteredBytes = processedBytes);

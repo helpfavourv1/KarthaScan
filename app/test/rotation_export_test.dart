@@ -3,6 +3,7 @@
 // The editor preview rotates the whole page (erasing and layers included).
 // Export must match: erase/draw in the unrotated frame, rotate last.
 import 'dart:io';
+import 'dart:ui' show Rect;
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:image/image.dart' as img;
@@ -21,7 +22,7 @@ void main() {
   });
 
   // 40x20 white page, top-left quarter erased in black (x 0..10, y 0..10).
-  Future<img.Image> render(int turns) async {
+  Future<img.Image> render(int turns, {Rect? crop}) async {
     final img.Image page = img.Image(width: 40, height: 20);
     img.fill(page, color: img.ColorRgb8(255, 255, 255));
     final File file = File('${dir.path}/page.png')
@@ -39,6 +40,7 @@ void main() {
       pageTransforms: <int, PageTransform>{
         0: PageTransform(
           rotationTurns: turns,
+          cropRect: crop,
           eraserStrokes: <Map<String, dynamic>>[
             <String, dynamic>{
               'points': <List<double>>[
@@ -85,5 +87,17 @@ void main() {
     expect((out.width, out.height), (20, 40));
     expect(dark(out, 3, 36), isTrue);
     expect(dark(out, 17, 3), isFalse);
+  });
+
+  test('erasing is placed on the original page, then the page is cropped', () async {
+    // Crop to the right half; the erased corner is in the cropped-away left
+    // half, so nothing dark may remain in the result.
+    final img.Image gone = await render(0, crop: const Rect.fromLTWH(20, 0, 20, 20));
+    expect((gone.width, gone.height), (20, 20));
+    expect(dark(gone, 3, 3), isFalse);
+    // Crop to the left half; the erased corner stays in the top-left.
+    final img.Image kept = await render(0, crop: const Rect.fromLTWH(0, 0, 20, 20));
+    expect(dark(kept, 3, 3), isTrue);
+    expect(dark(kept, 16, 16), isFalse);
   });
 }
