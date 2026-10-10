@@ -25,6 +25,7 @@ compile check (lint, unit tests, Kotlin compile) is green on `main`.
 | 3.4 | Crop a page, erase a word, export: the word is gone. |
 | 3.5 | Copy a watermark to 5 pages: all 5 keep it. Dragging a signature feels smooth. |
 | 4.2 | Android phone set to an EEA region (or with a test device ID): the consent form appears before any ad; Settings shows "Privacy settings". Outside the EEA: ads still load. iOS: tracking prompt, then ads. |
+| 4.4 | Android 13+ phone: gallery import (image and PDF) and Save to Downloads still work; no photo-access permission prompt appears. |
 | 4.3 | Privacy manifest builds in Xcode/Codemagic without warnings (iOS). |
 
 ## Known gaps left on purpose
