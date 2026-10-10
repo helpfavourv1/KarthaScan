@@ -245,9 +245,6 @@ class ExportService {
             ? FilterService.applyToImage(decoded, effectiveFilter, intensity: pageTransform.filterIntensity)
             : _applyFilter(decoded, effectiveFilter);
       }
-      if (pageTransform != null && pageTransform.rotationTurns != 0) {
-        decoded = img.copyRotate(decoded, angle: pageTransform.rotationTurns * 90);
-      }
       if (pageTransform != null && pageTransform.eraserStrokes.isNotEmpty) {
         for (final s in pageTransform.eraserStrokes) {
           final pts = (s['points'] as List<dynamic>)
@@ -313,6 +310,12 @@ class ExportService {
             decoded = _compositeSignature(decoded, stImage, st.placement, widthFraction: frac, boxHeightFraction: boxH);
           }
         }
+      }
+      // Rotate last. Erasing and every layer position are stored in the
+      // unrotated page frame (the preview rotates the whole stack together),
+      // so they must be applied before the page is turned.
+      if (pageTransform != null && pageTransform.rotationTurns != 0) {
+        decoded = img.copyRotate(decoded, angle: pageTransform.rotationTurns * 90);
       }
       return Uint8List.fromList(img.encodePng(decoded));
     } catch (error, stackTrace) {
