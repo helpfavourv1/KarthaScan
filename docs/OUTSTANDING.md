@@ -42,4 +42,5 @@ compile check (lint, unit tests, Kotlin compile) is green on `main`.
 ## Waiting on the owner (Phase 4)
 
 - Real AdMob ad unit IDs (4 of them) and App ID.
-- Apple Team ID, Codemagic keys.
+- Apple Team ID: replace `[YOUR_TEAM_ID]` in `app/ios/ExportOptions.plist` and `codemagic.yaml`.
+- Codemagic: connect the App Store Connect API key (Issuer ID, Key ID, private key) in the `app_store_credentials` group, then run the iOS workflow by hand (I cannot trigger Codemagic from here).
