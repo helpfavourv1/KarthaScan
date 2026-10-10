@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Resources the app loads by name from Dart/plugin code. The resource
+     shrinker cannot see those references, so it must be told to keep them. -->
+<resources xmlns:tools="http://schemas.android.com/tools"
+    tools:keep="@drawable/notification_icon,@mipmap/launcher_icon,@mipmap/ic_launcher,@drawable/launch_background,@drawable/background,@drawable/splash,@drawable/android12splash,@drawable/ic_launcher_foreground,@color/*,@style/*,@string/*" />
