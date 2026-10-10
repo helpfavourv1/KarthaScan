@@ -12,31 +12,27 @@
 // choice than scope-creeping a file that already has a clear, different
 // purpose.
 //
-// KEY DERIVATION: the user's backup password is turned into a 32-byte
-// AES-256 key via a single SHA-256 hash (crypto package), not a proper
-// password-based KDF (PBKDF2/Argon2 with salt and iteration count). For a
-// device-to-device backup file the user creates and consumes themselves
-// within a short window, this is a reasonable, honestly-stated tradeoff —
-// but it is a weaker defense against a stolen-file brute-force attempt
-// than a real KDF would be. Worth revisiting if this feature's threat
-// model changes (e.g., long-term cloud storage of these backup files).
+// ENCRYPTION: see core/services/backup_crypto.dart (PBKDF2 + HMAC for new
+// backups; old-format backups can still be opened).
 import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:archive/archive.dart';
-import 'package:crypto/crypto.dart' as crypto;
-import 'package:encrypt/encrypt.dart' as enc;
 import 'package:file_picker/file_picker.dart';
+import 'package:flutter/foundation.dart' show compute;
 import 'package:flutter/material.dart';
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 
+import '../core/models/fill_snippet.dart';
 import '../core/models/folder.dart';
 import '../core/models/scan_document.dart';
 import '../core/providers/folder_provider.dart';
 import '../core/providers/scan_provider.dart';
+import '../core/services/backup_crypto.dart';
+import '../core/services/local_storage.dart';
 import '../core/services/share_service.dart';
 import '../core/utils/constants.dart';
 import '../l10n/app_localizations.dart';
@@ -113,19 +109,51 @@ class _MigrationScreenState extends State<MigrationScreen> {
         }
       }
 
+      // Annotation drawings are separate image files; without them an
+      // imported document would lose its annotations.
+      final Map<String, String> annotationToArchiveName = <String, String>{};
+      for (final ScanDocument document in documents) {
+        for (final AnnotateLayer layer in document.annotateLayers) {
+          if (annotationToArchiveName.containsKey(layer.bytesPath)) continue;
+          try {
+            final Uint8List bytes = await File(layer.bytesPath).readAsBytes();
+            final String name = 'a${annotationToArchiveName.length}_${p.basename(layer.bytesPath)}';
+            archive.addFile(ArchiveFile('annotations/$name', bytes.length, bytes));
+            annotationToArchiveName[layer.bytesPath] = name;
+          } catch (_) {
+            // Missing file: the layer is simply left without a picture.
+          }
+        }
+      }
+
       final List<Map<String, dynamic>> documentJson = documents.map((ScanDocument d) {
         final Map<String, dynamic> json = d.toJson();
         json['pagePaths'] = d.pagePaths
             .map((String path) => pathToArchiveName[path] ?? p.basename(path))
             .toList();
+        final List<dynamic> layers = json['annotateLayers'] as List<dynamic>? ?? <dynamic>[];
+        json['annotateLayers'] = layers.map((dynamic l) {
+          final Map<String, dynamic> layer = Map<String, dynamic>.from(l as Map);
+          layer['bytesPath'] = annotationToArchiveName[layer['bytesPath']] ?? '';
+          return layer;
+        }).toList();
         return json;
       }).toList();
 
+      // Saved signature and text snippets travel with the backup too.
+      final LocalStorageService storage = LocalStorageService();
+      final Uint8List? signature = await storage.loadSignaturePng();
+      if (signature != null) {
+        archive.addFile(ArchiveFile('signature.png', signature.length, signature));
+      }
+      final List<FillSnippet> snippets = await storage.loadFillSnippets();
+
       final Map<String, dynamic> manifest = <String, dynamic>{
-        'version': 1,
+        'version': 2,
         'exportedAt': DateTime.now().toIso8601String(),
         'documents': documentJson,
         'folders': folders.map((Folder f) => f.toJson()).toList(),
+        'snippets': snippets.map((FillSnippet s) => s.toJson()).toList(),
       };
       final List<int> manifestBytes = utf8.encode(jsonEncode(manifest));
       archive.addFile(ArchiveFile('manifest.json', manifestBytes.length, manifestBytes));
@@ -135,7 +163,11 @@ class _MigrationScreenState extends State<MigrationScreen> {
         throw Exception('Could not build the archive.');
       }
 
-      final Uint8List encrypted = _encrypt(Uint8List.fromList(zipBytes), password);
+      // Key stretching is slow on purpose, so it runs off the UI thread.
+      final Uint8List encrypted = await compute(
+        backupEncryptJob,
+        <String, Object>{'data': Uint8List.fromList(zipBytes), 'password': password},
+      );
 
       final Directory outDir = await getTemporaryDirectory();
       final String outPath = p.join(
@@ -195,7 +227,10 @@ class _MigrationScreenState extends State<MigrationScreen> {
 
     try {
       final Uint8List encrypted = await File(pickedPath).readAsBytes();
-      final Uint8List decrypted = _decrypt(encrypted, password);
+      final Uint8List decrypted = await compute(
+        backupDecryptJob,
+        <String, Object>{'data': encrypted, 'password': password},
+      );
       final Archive archive = ZipDecoder().decodeBytes(decrypted);
 
       final ArchiveFile? manifestFile = archive.findFile('manifest.json');
@@ -212,13 +247,26 @@ class _MigrationScreenState extends State<MigrationScreen> {
       final Map<String, String> archiveNameToNewPath = <String, String>{};
       for (final ArchiveFile file in archive.files) {
         if (!file.isFile || !file.name.startsWith('pages/')) continue;
-        final String archiveName = file.name.substring('pages/'.length);
+        // basename: never let an archive entry name walk out of the folder.
+        final String archiveName = p.basename(file.name.substring('pages/'.length));
         final String newPath = p.join(
           importDir.path,
           '${DateTime.now().microsecondsSinceEpoch}_$archiveName',
         );
         await File(newPath).writeAsBytes(file.content as List<int>);
         archiveNameToNewPath[archiveName] = newPath;
+      }
+
+      final Map<String, String> annotationNameToNewPath = <String, String>{};
+      for (final ArchiveFile file in archive.files) {
+        if (!file.isFile || !file.name.startsWith('annotations/')) continue;
+        final String name = p.basename(file.name.substring('annotations/'.length));
+        final String newPath = p.join(
+          importDir.path,
+          'ann_${DateTime.now().microsecondsSinceEpoch}_$name',
+        );
+        await File(newPath).writeAsBytes(file.content as List<int>);
+        annotationNameToNewPath[name] = newPath;
       }
 
       final List<dynamic> folderJsonList = manifest['folders'] as List<dynamic>? ?? <dynamic>[];
@@ -239,10 +287,36 @@ class _MigrationScreenState extends State<MigrationScreen> {
         if (newPaths.isEmpty) continue;
 
         docJson['pagePaths'] = newPaths;
+        docJson['pageCount'] = newPaths.length; // some pages may have been skipped
         docJson['thumbnailPath'] = newPaths.first;
+        final List<dynamic> layerList = docJson['annotateLayers'] as List<dynamic>? ?? <dynamic>[];
+        docJson['annotateLayers'] = layerList
+            .map((dynamic l) => Map<String, dynamic>.from(l as Map))
+            .where((Map<String, dynamic> l) => annotationNameToNewPath.containsKey(l['bytesPath']))
+            .map((Map<String, dynamic> l) {
+          l['bytesPath'] = annotationNameToNewPath[l['bytesPath']];
+          return l;
+        }).toList();
         final ScanDocument document = ScanDocument.fromJson(docJson);
         final bool success = await _scanProvider.importDocument(document);
         if (success) importedCount++;
+      }
+
+      // Saved signature (kept if one already exists here) and snippets (merged).
+      final LocalStorageService storage = LocalStorageService();
+      final ArchiveFile? signatureFile = archive.findFile('signature.png');
+      if (signatureFile != null && await storage.loadSignaturePng() == null) {
+        await storage.saveSignaturePng(Uint8List.fromList(signatureFile.content as List<int>));
+      }
+      final List<dynamic> snippetJson = manifest['snippets'] as List<dynamic>? ?? <dynamic>[];
+      if (snippetJson.isNotEmpty) {
+        final List<FillSnippet> existing = await storage.loadFillSnippets();
+        final Set<String> known = existing.map((FillSnippet s) => s.id).toSet();
+        for (final dynamic j in snippetJson) {
+          final FillSnippet snippet = FillSnippet.fromJson(Map<String, dynamic>.from(j as Map));
+          if (known.add(snippet.id)) existing.add(snippet);
+        }
+        await storage.saveFillSnippets(existing);
       }
 
       if (!mounted) return;
@@ -258,37 +332,6 @@ class _MigrationScreenState extends State<MigrationScreen> {
         _statusMessage = l10n.couldNotImportBackupError;
       });
     }
-  }
-
-  // ---------------------------------------------------------------------
-  // Encryption helpers
-  // ---------------------------------------------------------------------
-
-  Uint8List _deriveKey(String password) {
-    final crypto.Digest digest = crypto.sha256.convert(utf8.encode(password));
-    return Uint8List.fromList(digest.bytes);
-  }
-
-  Uint8List _encrypt(Uint8List data, String password) {
-    final enc.Key key = enc.Key(_deriveKey(password));
-    final enc.IV iv = enc.IV.fromSecureRandom(16);
-    final enc.Encrypter encrypter = enc.Encrypter(enc.AES(key, mode: enc.AESMode.cbc));
-    final enc.Encrypted encrypted = encrypter.encryptBytes(data, iv: iv);
-    // The IV is prepended in plaintext — it doesn't need to be secret,
-    // only unique per encryption, and decrypt needs it to proceed.
-    return Uint8List.fromList(<int>[...iv.bytes, ...encrypted.bytes]);
-  }
-
-  Uint8List _decrypt(Uint8List data, String password) {
-    if (data.length <= 16) {
-      throw Exception('This backup file looks corrupted.');
-    }
-    final enc.Key key = enc.Key(_deriveKey(password));
-    final enc.IV iv = enc.IV(data.sublist(0, 16));
-    final Uint8List cipherBytes = data.sublist(16);
-    final enc.Encrypter encrypter = enc.Encrypter(enc.AES(key, mode: enc.AESMode.cbc));
-    final List<int> decrypted = encrypter.decryptBytes(enc.Encrypted(cipherBytes), iv: iv);
-    return Uint8List.fromList(decrypted);
   }
 
   Future<String?> _promptPassword({required String title, required String confirmLabel}) async {
