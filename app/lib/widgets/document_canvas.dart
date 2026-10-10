@@ -134,6 +134,7 @@ class _DocumentCanvasState extends State<DocumentCanvas> {
         },
         itemBuilder: (BuildContext context, int index) {
           return _PageWithInk(
+            key: ValueKey<String>('${widget.pagePaths[index]}#$index'),
             pagePath: widget.pagePaths[index],
             controller: widget.inkController,
             pageIndex: index,
@@ -243,16 +244,51 @@ class _PageWithInkState extends State<_PageWithInk> {
     _loadPageAspect();
   }
 
+  @override
+  void didUpdateWidget(covariant _PageWithInk oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    // Reload when the file or this page's edits changed (crop, filter,
+    // revert...), otherwise the preview keeps showing the old picture.
+    if (oldWidget.pagePath != widget.pagePath ||
+        oldWidget.pageTransforms[oldWidget.pageIndex] != widget.pageTransforms[widget.pageIndex]) {
+      _loadPageAspect();
+    }
+  }
+
+  int _loadGeneration = 0;
+
   Future<void> _loadPageAspect() async {
+    final int generation = ++_loadGeneration;
     try {
       final file = File(widget.pagePath);
       final bytes = await file.readAsBytes();
-      final decoded = img.decodeImage(bytes);
-      if (decoded != null && decoded.height > 0 && mounted) {
-        setState(() => _pageAspect = (decoded.width / decoded.height).clamp(0.1, 10.0).toDouble());
-      }
+      if (!mounted || generation != _loadGeneration) return;
+      // Read the size from the file header; decoding the whole picture is only
+      // needed when there are edits to bake into the preview.
       final transform = widget.pageTransforms[widget.pageIndex];
-      if (transform != null && decoded != null && (transform.cropRect != null || transform.resizeWidth != null || transform.filter != FilterType.none || transform.eraserStrokes.isNotEmpty)) {
+      final bool needsProcessing = transform != null &&
+          (transform.cropRect != null || transform.resizeWidth != null || transform.filter != FilterType.none || transform.eraserStrokes.isNotEmpty);
+      img.Image? decoded;
+      int? width;
+      int? height;
+      if (needsProcessing) {
+        decoded = img.decodeImage(bytes);
+        width = decoded?.width;
+        height = decoded?.height;
+      } else {
+        final img.DecodeInfo? info = img.findDecoderForData(bytes)?.startDecode(bytes);
+        width = info?.width;
+        height = info?.height;
+      }
+      if (!mounted || generation != _loadGeneration) return;
+      if (width != null && height != null && height > 0) {
+        final double aspect = (width / height).clamp(0.1, 10.0).toDouble();
+        setState(() {
+          _pageAspect = aspect;
+          if (!needsProcessing) _filteredBytes = null;
+        });
+      }
+      if (transform != null && needsProcessing && decoded != null) {
         img.Image processed = decoded;
         if (transform.cropRect != null && transform.cropRect!.width > 0 && transform.cropRect!.height > 0) {
           final r = transform.cropRect!;
@@ -292,7 +328,7 @@ class _PageWithInkState extends State<_PageWithInk> {
           }
         }
         final processedBytes = Uint8List.fromList(img.encodeJpg(processed, quality: 85));
-        if (mounted) setState(() => _filteredBytes = processedBytes);
+        if (mounted && generation == _loadGeneration) setState(() => _filteredBytes = processedBytes);
       }
     } catch (_) {}
   }

@@ -129,7 +129,7 @@ class PagesManagerSheetState extends State<PagesManagerSheet> {
           child: SizedBox(
             width: 48,
             height: 64,
-            child: Image.file(File(_pages[index]), fit: BoxFit.cover),
+            child: Image.file(File(_pages[index]), fit: BoxFit.cover, cacheWidth: 144),
           ),
         ),
         title: Text(AppLocalizations.of(context).pageLabel(index + 1), style: TextStyle(color: textPrimary, fontWeight: FontWeight.w600)),

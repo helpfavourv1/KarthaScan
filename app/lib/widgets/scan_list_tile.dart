@@ -145,6 +145,7 @@ class _Thumbnail extends StatelessWidget {
     return Image.file(
       File(path),
       fit: BoxFit.cover,
+      cacheWidth: 240, // small thumbnail: do not decode the full-size scan
       errorBuilder: (context, error, stackTrace) => Container(
         color: isDark ? AppColors.bgTertiaryDark : AppColors.bgTertiaryLight,
         alignment: Alignment.center,
