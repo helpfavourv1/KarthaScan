@@ -25,6 +25,7 @@ compile check (lint, unit tests, Kotlin compile) is green on `main`.
 | 3.4 | Crop a page, erase a word, export: the word is gone. |
 | 3.5 | Copy a watermark to 5 pages: all 5 keep it. Dragging a signature feels smooth. |
 | 4.2 | Android phone set to an EEA region (or with a test device ID): the consent form appears before any ad; Settings shows "Privacy settings". Outside the EEA: ads still load. iOS: tracking prompt, then ads. |
+| 5.2 | Settings > Device Migration: make a backup with a password, delete the app data (or use a second phone), import it: documents, annotations, saved signature and snippets return. Also import a backup made by the OLD app version. A wrong password shows the import error. |
 | 5.3 | Export a document as CSV and open it in a spreadsheet: one row per line. Export Arabic text as Word: right-to-left. |
 | 5.4 | Type in the home search box: results appear after a short pause. Search for "a_b". |
 | 4.4 | Android 13+ phone: gallery import (image and PDF) and Save to Downloads still work; no photo-access permission prompt appears. |
@@ -32,10 +33,9 @@ compile check (lint, unit tests, Kotlin compile) is green on `main`.
 
 ## Phase 5 status
 
-Done in code: 5.3 CSV/DOCX text fixes, 5.4 debounce and wildcard escape, 5.5 dead code removal and README.
+Done in code: 5.2 backups, 5.3 CSV/DOCX text fixes, 5.4 debounce and wildcard escape, 5.5 dead code removal and README.
 Left (needs more than code, or higher risk):
 - 5.1 database version/undo hardening (wait for the rebuilt APK).
-- 5.2 backups (annotation images, signature, snippets, salted key, integrity check).
 - 5.3 bundled Unicode font for PDF/DOCX text (needs a font file; the sandbox cannot download one).
 - 5.4 index tags in search (needs a database change, belongs with 5.1).
 - 5.5 bigger tap targets in the edit tray; unused storage-path setting; `pubspec.lock` still lists phosphoricons_flutter until the next `flutter pub get` is committed.
