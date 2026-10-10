@@ -5,6 +5,7 @@ import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 import '../utils/csv_utils.dart';
 import 'debug_log_service.dart';
+import 'pdf_fonts.dart';
 
 class CsvToPdfService {
   final DebugLogService _log = DebugLogService();
@@ -45,6 +46,7 @@ class CsvToPdfService {
     final pdf = pw.Document();
     pdf.addPage(
       pw.MultiPage(
+        theme: await PdfFonts.theme(),
         pageFormat: PdfPageFormat.a4,
         build: (pw.Context context) => tables,
       ),

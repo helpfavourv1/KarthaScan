@@ -19,6 +19,7 @@ import '../models/ocr_block.dart';
 import '../models/page_transform.dart';
 import '../models/signature_placement.dart';
 import 'filter_service.dart' show FilterService;
+import 'pdf_fonts.dart';
 import '../../l10n/app_localizations.dart';
 
 class ExportFailedException implements Exception {
@@ -363,6 +364,7 @@ class ExportService {
 
       pdfDoc.addPage(
         pw.Page(
+          theme: await PdfFonts.theme(),
           pageFormat: pageFmt,
           build: (pw.Context context) {
             final decoded = img.decodeImage(bytes);
@@ -436,6 +438,7 @@ class ExportService {
       final emptyMsg = lookupAppLocalizations(matchLocale).emptyDocumentMessage;
       pdfDoc.addPage(
         pw.Page(
+          theme: await PdfFonts.theme(),
           pageFormat: pageFormat,
           build: (pw.Context context) => pw.Center(
             child: pw.Text(emptyMsg),
@@ -858,6 +861,7 @@ class ExportService {
       final pw.Document pdfDoc = pw.Document(title: title, creator: 'KatharScan');
       pdfDoc.addPage(
         pw.Page(
+          theme: await PdfFonts.theme(),
           pageFormat: PdfPageFormat.a4,
           build: (pw.Context context) {
             return pw.Container(

@@ -6,6 +6,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'debug_log_service.dart';
+import 'pdf_fonts.dart';
 
 class DocxParserService {
   final DebugLogService _log = DebugLogService();
@@ -34,6 +35,7 @@ class DocxParserService {
     final pdf = pw.Document();
     pdf.addPage(
       pw.MultiPage(
+        theme: await PdfFonts.theme(),
         pageFormat: PdfPageFormat.a4,
         build: (pw.Context context) => paragraphs
             .map((para) => pw.Paragraph(

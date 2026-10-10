@@ -73,6 +73,8 @@ flutter:
     - assets/icon_source.png
     - assets/splash_logo.png
     - assets/onboarding/
+    - assets/fonts/NotoSans-Regular.ttf
+    - assets/fonts/NotoSansArabic-Regular.ttf
 
   fonts:
     - family: PlusJakartaSans

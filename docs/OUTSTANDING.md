@@ -56,3 +56,8 @@ Left (needs more than code, or higher risk):
 - Real AdMob ad unit IDs (4 of them) and App ID.
 - Apple Team ID: replace `[YOUR_TEAM_ID]` in `app/ios/ExportOptions.plist` and `codemagic.yaml`.
 - Codemagic: connect the App Store Connect API key (Issuer ID, Key ID, private key) in the `app_store_credentials` group, then run the iOS workflow by hand (I cannot trigger Codemagic from here).
+
+## 5.3 Bundled PDF fonts (phone check)
+- Noto Sans + Noto Sans Arabic (SIL OFL, from notofonts GitHub) bundled in `app/assets/fonts/`, used by TXT/CSV/DOCX-to-PDF, the searchable-PDF text layer and the empty-doc page.
+- Check: convert a TXT with Cyrillic, Greek and Arabic lines to PDF; no empty boxes.
+- Not covered: Chinese/Japanese/Korean (fonts are 8-16 MB each) and Hindi (the pdf package cannot shape Devanagari joins). Add the OFL licence text to the in-app licences page before launch.
