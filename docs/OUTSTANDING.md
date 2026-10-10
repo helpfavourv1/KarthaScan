@@ -24,6 +24,8 @@ compile check (lint, unit tests, Kotlin compile) is green on `main`.
 | 3.3 | Crop, filter and revert show immediately without leaving the editor. |
 | 3.4 | Crop a page, erase a word, export: the word is gone. |
 | 3.5 | Copy a watermark to 5 pages: all 5 keep it. Dragging a signature feels smooth. |
+| 4.2 | Android phone set to an EEA region (or with a test device ID): the consent form appears before any ad; Settings shows "Privacy settings". Outside the EEA: ads still load. iOS: tracking prompt, then ads. |
+| 4.3 | Privacy manifest builds in Xcode/Codemagic without warnings (iOS). |
 
 ## Known gaps left on purpose
 
@@ -33,6 +35,8 @@ compile check (lint, unit tests, Kotlin compile) is green on `main`.
 - If a save fails the change stays on screen with an error (no rollback).
 - `ITSAppUsesNonExemptEncryption` is a legal declaration for the owner to make.
 - Share and review prompts default ON for new installs only.
+- In-app wording still says "100% ON-DEVICE PRIVACY" (ticker) and "100% Private" (onboarding): ads and purchases use the network. Changing it means new text in 26 languages; your call on the wording.
+- Ads now start after the tracking prompt is answered, even if the answer is "Ask app not to track" (non-personalised ads). Before, a "no" blocked ads entirely.
 
 ## Waiting on the owner (Phase 4)
 
