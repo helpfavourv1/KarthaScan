@@ -28,6 +28,7 @@ import '../services/notification_service.dart';
 import '../services/ocr_service.dart';
 import 'settings_provider.dart';
 import '../undo/undo_manager.dart';
+import '../utils/page_remap.dart';
 
 enum ScanFlowState { idle, scanning, recognizingText, saving, error, unsupported }
 
@@ -190,10 +191,20 @@ class ScanProvider {
     return _replaceAndSave(updated);
   }
 
-  Future<bool> updateDocumentPages(String id, List<String> newPagePaths) async {
+  /// Saves a new page list. Per-page edits (transforms, layers, OCR blocks)
+  /// follow their pages: by default a page keeps its edits when its file path
+  /// is unchanged; pass [sourceIndices] to say which old page each new page
+  /// came from (null = a brand new page with no edits).
+  Future<bool> updateDocumentPages(
+    String id,
+    List<String> newPagePaths, {
+    List<int?>? sourceIndices,
+  }) async {
     final ScanDocument? existing = _findById(id);
     if (existing == null) return false;
-    final ScanDocument updated = existing.copyWith(
+    final List<int?> map =
+        sourceIndices ?? matchPagesByPath(existing.pagePaths, newPagePaths);
+    final ScanDocument updated = remapPageEdits(existing, map).copyWith(
       pagePaths: newPagePaths,
       pageCount: newPagePaths.length,
       updatedAt: DateTime.now(),
@@ -244,7 +255,12 @@ class ScanProvider {
     final String copied = await _copyToManaged(sourcePath);
     final List<String> newPaths = List<String>.from(existing.pagePaths);
     newPaths[pageIndex] = copied;
-    return updateDocumentPages(id, newPaths);
+    // Same page, new picture: keep its crop, layers and other edits.
+    return updateDocumentPages(
+      id,
+      newPaths,
+      sourceIndices: List<int?>.generate(newPaths.length, (int i) => i),
+    );
   }
 
   /// Creates a new document from a subset of pages of an existing document.

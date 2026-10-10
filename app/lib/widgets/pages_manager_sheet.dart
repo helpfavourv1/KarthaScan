@@ -72,7 +72,9 @@ class PagesManagerSheetState extends State<PagesManagerSheet> {
                   if (oldIndex < _pages.length && newIndex <= _pages.length) {
                     setState(() {
                       final item = _pages.removeAt(oldIndex);
-                      _pages.insert(newIndex, item);
+                      // Dropping below the last page (onto the Add tile) can
+                      // report an index past the end of the shortened list.
+                      _pages.insert(newIndex.clamp(0, _pages.length), item);
                     });
                   }
                 },
@@ -163,15 +165,32 @@ class PagesManagerSheetState extends State<PagesManagerSheet> {
     );
     if (action == null || !mounted) return;
     if (action == 'duplicate') {
-      setState(() => _pages.insert(index + 1, _pages[index]));
-    } else if (action == 'rotate') {
+      // A real copy, so the two tiles have distinct keys and the copy can
+      // be edited or deleted on its own.
       try {
-        final bytes = await File(_pages[index]).readAsBytes();
+        final String source = _pages[index];
+        final String copy = p.join(
+          p.dirname(source),
+          'dup_${DateTime.now().microsecondsSinceEpoch}${p.extension(source)}',
+        );
+        await File(source).copy(copy);
+        if (mounted) setState(() => _pages.insert(index + 1, copy));
+      } catch (_) {}
+    } else if (action == 'rotate') {
+      // Write the rotated picture to a new file and point this tile at it, so
+      // the original file is untouched unless the person presses Save.
+      try {
+        final String source = _pages[index];
+        final bytes = await File(source).readAsBytes();
         final decoded = img.decodeImage(bytes);
         if (decoded != null) {
           final rotated = img.copyRotate(decoded, angle: 90);
-          await File(_pages[index]).writeAsBytes(img.encodeJpg(rotated, quality: 95));
-          if (mounted) setState(() {});
+          final String target = p.join(
+            p.dirname(source),
+            'rot_${DateTime.now().microsecondsSinceEpoch}.jpg',
+          );
+          await File(target).writeAsBytes(img.encodeJpg(rotated, quality: 95));
+          if (mounted) setState(() => _pages[index] = target);
         }
       } catch (_) {}
     } else if (action == 'extract') {

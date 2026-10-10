@@ -545,8 +545,12 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
         allDocuments: scanProvider.documents.value,
         onExtract: (int index, String path) async {
           if (!mounted) return;
+          // `index` is the tile's position in the sheet, which may have been
+          // reordered; the saved document is addressed by the page's file.
+          final int savedIndex = doc.pagePaths.indexOf(path);
+          if (savedIndex < 0) return;
           Navigator.of(ctx).pop();
-          final extractedDoc = await scanProvider.extractToNewDocument(doc.id, [index], l10n.extractedPageDefaultTitle);
+          final extractedDoc = await scanProvider.extractToNewDocument(doc.id, [savedIndex], l10n.extractedPageDefaultTitle);
           if (extractedDoc != null && mounted) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(content: Text('${l10n.extractedAsNewDocument}: ${extractedDoc.title}')),
