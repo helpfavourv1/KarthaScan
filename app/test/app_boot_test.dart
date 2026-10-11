@@ -65,6 +65,16 @@ void main() {
       const MethodChannel('plugins.flutter.io/path_provider'),
       (MethodCall call) async => tmp.path,
     );
+    messenger.setMockMethodCallHandler(
+      const MethodChannel('dev.fluttercommunity.plus/package_info'),
+      (MethodCall call) async => <String, dynamic>{
+        'appName': 'KatharScan',
+        'packageName': 'com.zdmgold.katharscan',
+        'version': '1.0.0',
+        'buildNumber': '1',
+        'buildSignature': '',
+      },
+    );
     SharedPreferences.setMockInitialValues(<String, Object>{
       'hasSeenOnboarding': seenOnboarding,
     });
