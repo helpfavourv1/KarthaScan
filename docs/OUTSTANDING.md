@@ -75,14 +75,5 @@ App IDs already in the build: Android `ca-app-pub-2731774500195310~5515913454` (
 9. Test devices: if you add your phone as a test device for the EEA form test, remove it before launch.
 10. Store forms must match: Play Data safety (ads, advertising ID, AD_ID permission is in the manifest) and Apple privacy labels (ads, tracking). Note `pubspec.yaml` description still says "no ads"; fix wording in the store listing/metadata.
 
-## R8 shrinking (phone check after the next APK)
-Code shrinking and resource shrinking are ON in the release build (`app/android/app/build.gradle`, rules in `proguard-rules.pro`, kept resources in `res/raw/keep.xml`). CI runs the real R8 step (no APK) and it passes, but R8 cannot prove runtime behaviour. On the first release APK check each of these on a phone:
-- Open the app, scan a page (document scanner), run OCR in Latin, Chinese, Japanese, Korean.
-- Import a PDF (page rendering), export PDF/DOCX/TXT/CSV, print, share, save to Downloads.
-- Crop a photo (UCrop screen opens), pick an image/file, camera permission prompt.
-- Schedule a notification and see it appear WITH its icon; restart the phone and check it survives.
-- Banner and interstitial test ads load; consent flow runs.
-- Subscription screen loads products and restore works.
-- Backup export and import.
-- Settings (package info), links opening.
-If anything crashes only in release, the fix is a keep rule; send me the crash line.
+## R8 shrinking: decided NOT to use
+Owner measured only about 2 MB saved, not worth the release-only crash risk. `minifyEnabled` and `shrinkResources` are false again. `proguard-rules.pro` (full keep rules for every plugin, verified to pass an R8 run in CI) and `res/raw/keep.xml` stay in the repo, unused, in case shrinking is wanted later. To enable later: set both flags true and add `proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'` to the release block, then run the full phone check (OCR all scripts, PDF import/export, notifications with icon, ads and consent, subscriptions, crop, backup).

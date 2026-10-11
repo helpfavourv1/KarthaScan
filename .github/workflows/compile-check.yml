@@ -169,6 +169,102 @@ jobs:
           chmod +x ./gradlew
           ./gradlew :app:compileDebugKotlin --no-daemon --console=plain 2>&1 | tee /tmp/cc/kotlin.log
 
+      - name: Report problems as annotations
+        if: always()
+        env:
+          OUT_PUB: ${{ steps.pub.outcome }}
+          OUT_L10N: ${{ steps.l10n.outcome }}
+          OUT_AUDIT: ${{ steps.audit.outcome }}
+          OUT_STUB: ${{ steps.stub.outcome }}
+          OUT_ANALYZE: ${{ steps.analyze.outcome }}
+          OUT_TEST: ${{ steps.test.outcome }}
+        run: |
+          python3 - <<'PY'
+          import os, re
+
+          def esc(s):
+              return s.replace('%', '%25').replace('\r', '%0D').replace('\n', '%0A')
+
+          def read(name):
+              try:
+                  return open('/tmp/cc/' + name, encoding='utf-8', errors='replace').read()
+              except OSError:
+                  return ''
+
+          def tail(text, lines=40, limit=3500):
+              t = '\n'.join(text.strip().splitlines()[-lines:])
+              return t[-limit:]
+
+          analyze = read('analyze.log')
+          pat = re.compile(r'^\s*(error|warning|info)\s+•\s+(.*?)\s+•\s+(\S+?):(\d+):(\d+)\s+•\s+(\S+)\s*$', re.M)
+          found = pat.findall(analyze)
+          rank = {'error': 0, 'warning': 1, 'info': 2}
+          found.sort(key=lambda x: rank[x[0]])
+          for sev, msg, path, line, col, code in found[:9]:
+              level = 'error' if sev == 'error' else 'warning'
+              print('::%s file=app/%s,line=%s,col=%s,title=%s %s::%s' % (level, path, line, col, sev, code, esc(msg)))
+          if os.environ.get('OUT_ANALYZE') == 'failure':
+              counts = {k: sum(1 for f in found if f[0] == k) for k in rank}
+              print('::error title=analyze summary::%s' % esc('errors=%d warnings=%d infos=%d\n%s' % (counts['error'], counts['warning'], counts['info'], tail(analyze, 25, 1500))))
+
+          for key, name, label in [
+              ('OUT_PUB', 'pub.log', 'flutter pub get'),
+              ('OUT_L10N', 'l10n.log', 'flutter gen-l10n'),
+              ('OUT_AUDIT', 'audit.log', 'l10n audit'),
+              ('OUT_STUB', 'stub.log', 'stub check'),
+              ('OUT_TEST', 'test.log', 'flutter test'),
+          ]:
+              if os.environ.get(key) == 'failure':
+                  text = read(name)
+                  if name == 'test.log':
+                      rows = text.splitlines()
+                      starts = [i for i, l in enumerate(rows) if '[E]' in l]
+                      chunks = ['\n'.join(rows[i:i + 22]) for i in starts[:3]]
+                      text = '\n=====\n'.join(chunks) if chunks else tail(text, 40, 3000)
+                  print('::error title=%s failed::%s' % (label, esc(tail(text, 60, 3500))))
+          PY
+
+  kotlin-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v5
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+
+      - name: Prepare log folder
+        run: mkdir -p /tmp/cc
+
+      - name: Get Flutter packages
+        id: pub
+        working-directory: app
+        run: |
+          set -o pipefail
+          flutter pub get 2>&1 | tee /tmp/cc/pub.log
+
+      - name: Add Gradle wrapper files (CI only, not committed)
+        id: wrapper
+        working-directory: app
+        run: |
+          set -o pipefail
+          flutter create --platforms=android --project-name katharscan --org com.zdmgold . 2>&1 | tee /tmp/cc/wrapper.log
+          ls -la android | tee -a /tmp/cc/wrapper.log
+
+      - name: Compile Kotlin (no APK)
+        id: kotlin
+        working-directory: app/android
+        run: |
+          set -o pipefail
+          chmod +x ./gradlew
+          ./gradlew :app:compileDebugKotlin --no-daemon --console=plain 2>&1 | tee /tmp/cc/kotlin.log
+
       - name: List Flutter plugin Android packages
         if: always()
         working-directory: app
@@ -196,7 +292,6 @@ jobs:
           OUT_PUB: ${{ steps.pub.outcome }}
           OUT_WRAPPER: ${{ steps.wrapper.outcome }}
           OUT_KOTLIN: ${{ steps.kotlin.outcome }}
-          OUT_R8: ${{ steps.r8.outcome }}
         run: |
           python3 - <<'PY'
           import os, re
@@ -224,7 +319,6 @@ jobs:
               ('OUT_PUB', 'pub.log', 'flutter pub get'),
               ('OUT_WRAPPER', 'wrapper.log', 'gradle wrapper setup'),
               ('OUT_KOTLIN', 'kotlin.log', 'kotlin compile'),
-              ('OUT_R8', 'r8.log', 'R8 shrink check'),
           ]:
               if os.environ.get(key) == 'failure':
                   text = read(name)
