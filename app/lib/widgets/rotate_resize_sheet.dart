@@ -14,11 +14,16 @@ class RotateResizeSheet extends StatefulWidget {
     required this.mode,
     required this.imagePath,
     this.onApplyAll,
+    this.initialTurns = 0,
   });
 
   final RotateResizeMode mode;
   final String imagePath;
   final ValueChanged<bool>? onApplyAll;
+
+  /// Quarter turns the page already has. The preview starts from this
+  /// orientation; the sheet still returns only the NEW turns (0 to 3).
+  final int initialTurns;
 
   @override
   State<RotateResizeSheet> createState() => RotateResizeSheetState();
@@ -144,12 +149,12 @@ class RotateResizeSheetState extends State<RotateResizeSheet> {
       children: [
         Expanded(
           child: RotatedBox(
-            quarterTurns: _quarterTurns,
+            quarterTurns: (widget.initialTurns + _quarterTurns) % 4,
             child: Image.file(File(widget.imagePath), fit: BoxFit.contain),
           ),
         ),
         const SizedBox(height: 16),
-        Text('${_quarterTurns * 90}°', style: TextStyle(fontSize: 24, fontWeight: FontWeight.w700, color: textSecondary)),
+        Text('${((widget.initialTurns + _quarterTurns) % 4) * 90}°', style: TextStyle(fontSize: 24, fontWeight: FontWeight.w700, color: textSecondary)),
         const SizedBox(height: 12),
         ElevatedButton.icon(
           onPressed: () => setState(() => _quarterTurns = (_quarterTurns + 1) % 4),

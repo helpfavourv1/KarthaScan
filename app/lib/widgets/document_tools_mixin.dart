@@ -490,6 +490,7 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
       builder: (ctx) => RotateResizeSheet(
         mode: RotateResizeMode.rotate,
         imagePath: doc.pagePaths[currentPageIndex],
+        initialTurns: doc.pageTransforms[currentPageIndex]?.rotationTurns ?? 0,
         onApplyAll: (bool value) => applyAll = value,
       ),
     );
