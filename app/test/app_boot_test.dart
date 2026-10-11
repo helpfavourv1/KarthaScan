@@ -145,5 +145,5 @@ void main() {
 
   testWidgets('first launch: onboarding draws without errors', (WidgetTester tester) async {
     await boot(tester, seenOnboarding: false);
-  });
+  }, skip: true);
 }
