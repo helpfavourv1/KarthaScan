@@ -53,4 +53,19 @@
 -keepclasseswithmembernames class * { native <methods>; }
 
 # ===== Plugin glue code (tiny; keeping it removes reflection/JNI risk) =====
-# PLUGIN_KEEPS_PLACEHOLDER
+-keep class com.mr.flutter.plugin.filepicker.** { *; }
+-keep class com.incrediblezayed.file_saver.** { *; }
+-keep class com.shirsh.flutter_doc_scanner.** { *; }
+-keep class net.jonhanson.flutter_native_splash.** { *; }
+-keep class net.wolverinebeach.flutter_timezone.** { *; }
+-keep class io.flutter.plugins.** { *; }
+-keep class vn.hunghd.flutter.plugins.imagecropper.** { *; }
+-keep class dev.britannio.in_app_review.** { *; }
+-keep class dev.fluttercommunity.plus.** { *; }
+-keep class jp.espresso3389.pdf_render.** { *; }
+-keep class com.baseflow.permissionhandler.** { *; }
+-keep class net.nfet.flutter.printing.** { *; }
+-keep class com.tekartik.sqflite.** { *; }
+# Dart-to-Java bridge (jni / jnigen): Java classes are looked up by name.
+-keep class com.github.dart_lang.** { *; }
+-dontwarn com.github.dart_lang.**
