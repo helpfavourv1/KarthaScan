@@ -44,17 +44,21 @@ class _HomeScreenState extends State<HomeScreen> {
 
 
   @override
-  Future<void> initState() async {
+  void initState() {
     super.initState();
     _scanProvider = Provider.of<ScanProvider>(context, listen: false);
     _folderProvider = Provider.of<FolderProvider>(context, listen: false);
     _settingsProvider = Provider.of<SettingsProvider>(context, listen: false);
     final subProvider = Provider.of<SubscriptionProvider>(context, listen: false);
-    await EngagementService.init(subProvider);
-    EngagementService.instance.recordHomeReturn();
+    _initEngagement(subProvider);
 
     // Show What's New sheet if this version hasn't been seen
     WidgetsBinding.instance.addPostFrameCallback((_) => _maybeShowWhatsNew());
+  }
+
+  Future<void> _initEngagement(SubscriptionProvider subProvider) async {
+    await EngagementService.init(subProvider);
+    EngagementService.instance.recordHomeReturn();
   }
 
   Future<void> _maybeShowWhatsNew() async {
