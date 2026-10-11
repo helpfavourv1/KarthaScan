@@ -161,10 +161,13 @@ class RotateResizeSheetState extends State<RotateResizeSheet> {
           icon: const Icon(Icons.rotate_90_degrees_ccw),
           label: Text(AppLocalizations.of(context).rotate90Action),
         ),
-        SwitchListTile(
-          title: Text(AppLocalizations.of(context).applyToAllPages),
-          value: _applyAll,
-          onChanged: (v) => setState(() => _applyAll = v),
+        Material(
+          color: Colors.transparent,
+          child: SwitchListTile(
+            title: Text(AppLocalizations.of(context).applyToAllPages),
+            value: _applyAll,
+            onChanged: (v) => setState(() => _applyAll = v),
+          ),
         ),
       ],
     );
