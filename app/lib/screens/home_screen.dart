@@ -842,7 +842,13 @@ class _FeatureTickerState extends State<_FeatureTicker> with SingleTickerProvide
   void initState() {
     super.initState();
     _controller = AnimationController(vsync: this, duration: const Duration(seconds: 90));
+  }
 
+  // Translated text can only be read here, not in initState. Runs once at
+  // start and again if the app language changes.
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
     final tp = TextPainter(
       text: TextSpan(
         children: _spans(
