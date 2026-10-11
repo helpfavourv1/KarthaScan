@@ -76,19 +76,31 @@ Uri buildReportIssueMailUri({
     ..writeln('Library: $library')
     ..writeln('Error: $summary');
 
+  final String stack = (details.stack?.toString() ?? '')
+      .split('\n')
+      .where((String l) => l.trim().isNotEmpty)
+      .take(10)
+      .join('\n');
+  if (stack.isNotEmpty) {
+    body
+      ..writeln()
+      ..writeln('Stack:')
+      ..writeln(stack);
+  }
+
   if (extraContext != null && extraContext.trim().isNotEmpty) {
     body
       ..writeln()
       ..writeln('Context: $extraContext');
   }
 
+  // Built by hand: Uri.queryParameters writes spaces as '+', which mail apps
+  // show literally. Uri.encodeComponent writes '%20', which they decode.
   return Uri(
     scheme: 'mailto',
     path: AppSupportContact.supportEmail,
-    queryParameters: <String, String>{
-      'subject': 'KatharScan Bug Report',
-      'body': body.toString(),
-    },
+    query: 'subject=${Uri.encodeComponent('KatharScan Bug Report')}'
+        '&body=${Uri.encodeComponent(body.toString())}',
   );
 }
 
