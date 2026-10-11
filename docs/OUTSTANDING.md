@@ -61,3 +61,28 @@ Left (needs more than code, or higher risk):
 - Noto Sans + Noto Sans Arabic (SIL OFL, from notofonts GitHub) bundled in `app/assets/fonts/`, used by TXT/CSV/DOCX-to-PDF, the searchable-PDF text layer and the empty-doc page.
 - Check: convert a TXT with Cyrillic, Greek and Arabic lines to PDF; no empty boxes.
 - Not covered: Chinese/Japanese/Korean (fonts are 8-16 MB each) and Hindi (the pdf package cannot shape Devanagari joins). Add the OFL licence text to the in-app licences page before launch.
+
+## AdMob console: everything still to do (owner)
+App IDs already in the build: Android `ca-app-pub-2731774500195310~5515913454` (AndroidManifest), iOS `ca-app-pub-2731774500195310~7132336744` (Info.plist). Check both exist in AdMob under Apps and match.
+1. Create 4 real ad units: Android banner, Android interstitial, iOS banner, iOS interstitial. Send me the 4 IDs; I replace the Google test IDs in `banner_ad_widget.dart`, `conditional_banner.dart` (same banner unit) and `interstitial_ad_service.dart`. Until then the app only shows test ads.
+2. Privacy & messaging, European regulations: create and PUBLISH the consent message (covers EEA, UK, Switzerland), tick both apps. Without it, no consent form appears for those users.
+3. Privacy & messaging, US states regulations message (optional but advised) and the iOS "IDFA explainer" (optional, the app already shows Apple's prompt).
+4. After each app is live in its store, link it in AdMob (Apps > App settings > App store details) so ads serve and app-ads.txt can be verified.
+5. app-ads.txt: host it at the root of the developer website named on the store listing, then check it in AdMob (Apps > View app-ads.txt status).
+6. Account: payment profile, tax info, address PIN, payee name. Payments do not start without them.
+7. Blocking controls: choose blocked ad categories / sensitive categories to suit a document scanner (kids, gambling etc.).
+8. Not child-directed: leave "tagForChildDirectedTreatment" unset in the app and answer "not designed for children" in the store forms.
+9. Test devices: if you add your phone as a test device for the EEA form test, remove it before launch.
+10. Store forms must match: Play Data safety (ads, advertising ID, AD_ID permission is in the manifest) and Apple privacy labels (ads, tracking). Note `pubspec.yaml` description still says "no ads"; fix wording in the store listing/metadata.
+
+## R8 shrinking (phone check after the next APK)
+Code shrinking and resource shrinking are ON in the release build (`app/android/app/build.gradle`, rules in `proguard-rules.pro`, kept resources in `res/raw/keep.xml`). CI runs the real R8 step (no APK) and it passes, but R8 cannot prove runtime behaviour. On the first release APK check each of these on a phone:
+- Open the app, scan a page (document scanner), run OCR in Latin, Chinese, Japanese, Korean.
+- Import a PDF (page rendering), export PDF/DOCX/TXT/CSV, print, share, save to Downloads.
+- Crop a photo (UCrop screen opens), pick an image/file, camera permission prompt.
+- Schedule a notification and see it appear WITH its icon; restart the phone and check it survives.
+- Banner and interstitial test ads load; consent flow runs.
+- Subscription screen loads products and restore works.
+- Backup export and import.
+- Settings (package info), links opening.
+If anything crashes only in release, the fix is a keep rule; send me the crash line.
