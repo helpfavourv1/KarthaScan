@@ -839,7 +839,7 @@ class _FeatureTickerState extends State<_FeatureTicker> with SingleTickerProvide
   double _segmentWidth = 1;
 
   @override
-  Future<void> initState() async {
+  void initState() {
     super.initState();
     _controller = AnimationController(vsync: this, duration: const Duration(seconds: 90));
 
