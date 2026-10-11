@@ -177,13 +177,16 @@ jobs:
             n=$(grep -hE "namespace|package=" "$d/android/build.gradle" "$d/android/src/main/AndroidManifest.xml" 2>/dev/null | head -2 | tr -d '\n')
             echo "PLUGIN $(basename $d): $n"
           done 2>&1 | tee /tmp/cc/plugins.log
+          echo "::notice title=plugins::$(sed ':a;N;$!ba;s/\n/%0A/g' /tmp/cc/plugins.log | cut -c1-3800)"
 
       - name: Shrink check with R8 (no APK)
         id: r8
         working-directory: app/android
         run: |
           set -o pipefail
-          ./gradlew :app:minifyReleaseWithR8 :app:shrinkReleaseRes --no-daemon --console=plain 2>&1 | tee /tmp/cc/r8.log
+          ./gradlew :app:tasks --all --no-daemon --console=plain 2>&1 | grep -iE "shrink|optimizeRes|minify" > /tmp/cc/tasks.log || true
+          echo "::notice title=shrink tasks::$(sed ':a;N;$!ba;s/\n/%0A/g' /tmp/cc/tasks.log | cut -c1-1500)"
+          ./gradlew :app:minifyReleaseWithR8 --no-daemon --console=plain 2>&1 | tee /tmp/cc/r8.log
           echo "--- missing_rules.txt ---"
           find build -name missing_rules.txt -exec cat {} \; 2>/dev/null | tee /tmp/cc/missing.log || true
 
