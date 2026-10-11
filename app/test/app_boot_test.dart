@@ -83,6 +83,7 @@ void main() {
     final void Function(FlutterErrorDetails)? oldOnError = FlutterError.onError;
     FlutterError.onError = (FlutterErrorDetails d) {
       errors.add('[widget/${d.library}] ${_trace(d.exception, d.stack)}');
+      oldOnError?.call(d); // keep the test framework's own bookkeeping
     };
     PlatformDispatcher.instance.onError = (Object e, StackTrace s) {
       if (e is MissingPluginException) return true;
@@ -131,6 +132,7 @@ void main() {
     }
 
     FlutterError.onError = oldOnError;
+    while (tester.takeException() != null) {}
     if (errors.isNotEmpty) {
       fail('App threw while starting (seenOnboarding=$seenOnboarding):\n'
           '${errors.take(3).join('\n----\n')}');
