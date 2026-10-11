@@ -44,12 +44,11 @@ class _FakeIapService implements IapService {
 }
 
 String _trace(Object error, StackTrace? stack) {
-  final String s = (stack?.toString() ?? '')
-      .split('\n')
-      .where((String l) => l.trim().isNotEmpty)
-      .take(14)
-      .join('\n');
-  return '$error\n$s';
+  final String head = error.toString().split('\n').first;
+  final List<String> lines = (stack?.toString() ?? '').split('\n');
+  final String app = lines.where((String l) => l.contains('katharscan')).take(8).join('\n');
+  final String top = lines.where((String l) => l.trim().isNotEmpty).take(4).join('\n');
+  return '$head\nTOP:\n$top\nAPP FRAMES:\n${app.isEmpty ? '(none)' : app}';
 }
 
 void main() {
@@ -135,7 +134,7 @@ void main() {
     while (tester.takeException() != null) {}
     if (errors.isNotEmpty) {
       fail('App threw while starting (seenOnboarding=$seenOnboarding):\n'
-          '${errors.take(3).join('\n----\n')}');
+          '${errors.take(4).join('\n----\n')}');
     }
   }
 

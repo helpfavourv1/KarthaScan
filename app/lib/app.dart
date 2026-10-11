@@ -106,7 +106,7 @@ class _KatharScanAppState extends State<KatharScanApp> with WidgetsBindingObserv
           builder: (BuildContext context, Widget? child) {
             return Directionality(
               textDirection: isRtl ? TextDirection.rtl : TextDirection.ltr,
-              child: child ?? const SizedBox.shrink(),
+              child: EngagementPromptListener(child: child ?? const SizedBox.shrink()),
             );
           },
         );
