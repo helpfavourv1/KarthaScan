@@ -77,3 +77,9 @@ App IDs already in the build: Android `ca-app-pub-2731774500195310~5515913454` (
 
 ## R8 shrinking: decided NOT to use
 Owner measured only about 2 MB saved, not worth the release-only crash risk. `minifyEnabled` and `shrinkResources` are false again. `proguard-rules.pro` (full keep rules for every plugin, verified to pass an R8 run in CI) and `res/raw/keep.xml` stay in the repo, unused, in case shrinking is wanted later. To enable later: set both flags true and add `proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'` to the release block, then run the full phone check (OCR all scripts, PDF import/export, notifications with icon, ads and consent, subscriptions, crop, backup).
+
+## Launch crash "Something went wrong" (fixed in code, confirm on phone)
+- Cause: the share/review prompt listener (mounted around the whole app in Phase 2) read `EngagementService.instance` before the service existed, so the first frame threw "Null check operator used on a null value". Fixed by creating the service in `main.dart` before `runApp`.
+- Also fixed: two `async initState` methods and a translated-text read in `initState` on the home screen (debug-only assertions).
+- New test `app_boot_test.dart` starts the real app (home and onboarding) and fails with the call trace if anything throws. Both pass.
+- Phone check: install the next APK; the app must open to onboarding (fresh install) or home.
