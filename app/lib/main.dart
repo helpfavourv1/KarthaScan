@@ -14,6 +14,7 @@ import 'core/providers/theme_provider.dart';
 import 'core/services/ad_consent_service.dart';
 import 'core/services/debug_log_service.dart';
 import 'core/services/doc_scanner_service.dart';
+import 'core/services/engagement_service.dart';
 import 'core/services/local_storage.dart';
 import 'core/services/ocr_service.dart';
 import 'core/utils/error_handler.dart';
@@ -62,6 +63,10 @@ Future<void> main() async {
   final SubscriptionProvider subscriptionProvider = SubscriptionProvider(iap, settingsProvider);
   final ScanProvider scanProvider = ScanProvider(storage: localStorage, docScanner: docScanner, ocr: ocr, settings: settingsProvider);
   final FolderProvider folderProvider = FolderProvider(localStorage);
+
+  // The share/review prompt listener wraps the whole app and needs this
+  // service on the very first frame.
+  await EngagementService.init(subscriptionProvider);
 
   runApp(
     MultiProvider(

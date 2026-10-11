@@ -18,6 +18,7 @@ import 'package:katharscan/core/providers/settings_provider.dart';
 import 'package:katharscan/core/providers/subscription_provider.dart';
 import 'package:katharscan/core/providers/theme_provider.dart';
 import 'package:katharscan/core/services/doc_scanner_service.dart';
+import 'package:katharscan/core/services/engagement_service.dart';
 import 'package:katharscan/core/services/local_storage.dart';
 import 'package:katharscan/core/services/ocr_service.dart';
 import 'package:katharscan/platform/iap_service.dart';
@@ -97,6 +98,8 @@ void main() {
       settings: settings,
     );
     final FolderProvider folders = FolderProvider(storage);
+    // Mirrors main.dart: the prompt listener needs this on the first frame.
+    await tester.runAsync(() => EngagementService.init(sub));
 
     await tester.pumpWidget(
       MultiProvider(
