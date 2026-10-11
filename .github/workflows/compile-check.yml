@@ -123,9 +123,16 @@ jobs:
                   if name == 'test.log':
                       rows = text.splitlines()
                       starts = [i for i, l in enumerate(rows) if '[E]' in l]
-                      chunks = ['\n'.join(rows[max(0, i - 70):i + 22]) for i in starts[:2]]
+                      names = []
+                      for l in rows:
+                          if '[E]' in l:
+                              n = l.split(': ', 1)[-1].replace('[E]', '').strip()
+                              if n not in names:
+                                  names.append(n)
+                      print('::error title=failing tests::%s' % esc('\n'.join(names[:12])[:3000]))
+                      chunks = ['\n'.join(rows[max(0, i - 30):i + 8]) for i in starts[:1]]
                       text = '\n=====\n'.join(chunks) if chunks else tail(text, 40, 3000)
-                  print('::error title=%s failed::%s' % (label, esc(tail(text, 200, 14000))))
+                  print('::error title=%s failed::%s' % (label, esc(tail(text, 80, 3800))))
           PY
 
   kotlin-check:
