@@ -83,3 +83,20 @@ Owner measured only about 2 MB saved, not worth the release-only crash risk. `mi
 - Also fixed: two `async initState` methods and a translated-text read in `initState` on the home screen (debug-only assertions).
 - New test `app_boot_test.dart` starts the real app (home and onboarding) and fails with the call trace if anything throws. Both pass.
 - Phone check: install the next APK; the app must open to onboarding (fresh install) or home.
+
+## Stress review of the 21 tray tools (code reading + CI probes) - findings, fixes NOT yet made
+Confirmed (code or CI probe):
+1. HIGH Share (detail screen), Email and Share from the home list send the RAW saved photos, not the edited pages: crop, filter, rotation, eraser/redaction, signature, stamps are all missing (`document_tools_mixin.dart` shareDocument/emailDocument, `home_screen.dart:269`). Export and Print are correct.
+2. HIGH Any failure while rendering a page silently returns the unedited ORIGINAL (`export_service.dart` `_processPage` catch). Probe: resize 0x0 brings the erased/redacted area back with no error. Resize accepts 0, negative and huge numbers (`rotate_resize_sheet.dart`).
+3. HIGH Pages manager "Rotate" writes a new file, so on Confirm that page loses ALL its edits (crop, stamps, signature, eraser, OCR blocks): `updateDocumentPages` matches pages by file path.
+4. HIGH Preview decodes, erases, crops, resizes, filters and re-encodes the FULL photo on the UI thread each time a page with edits is shown (`document_canvas.dart` `_loadPageAspect`), and export holds every page in memory (PDF embeds edited pages as PNG, large). Risk of freezes/out-of-memory on 20+ pages. Same family as queued 3.6.
+5. MEDIUM Filter strength: probe shows the filter changes the caller's picture in place and the 50% grayscale equals full grayscale (slider does nothing for Grayscale). Other filters respond only through their parameters; the blend loop is redundant and slow. (My Phase 2.3 claim was only partly right.)
+6. MEDIUM Resize always stores the sheet's numbers (defaults to the UNCROPPED size): crop then Resize then Confirm stretches the cropped area to the old size; a later re-crop keeps the stale resize.
+7. MEDIUM Crop/Revert change the frame that stamps and signatures are positioned in (percent of the cropped frame), so existing layers shift when a crop is added or reverted; Revert leaves layers behind.
+8. MEDIUM Fill: double-tap opens two sheets; the second close hits `_fillGhostPageIndex!` after it was cleared (Null check, layer lost) (`full_screen_edit_screen.dart:122`).
+9. MEDIUM Watermark identity is (page, text) and signature identity is (page, ink): two watermarks with the same text, or the same signature twice on one page, are edited/deleted together.
+10. MEDIUM Signature controller keeps old page indexes after Pages manager reorder/delete; the next signature change can write them back over the remapped ones (needs phone check).
+11. MEDIUM Compress tray button opens Export with JPG; PDF cannot be compressed at all.
+Plausible, to confirm on a phone: photos with EXIF rotation (camera/gallery inserted via Pages manager) export/print sideways and misalign crop/eraser (no EXIF handling anywhere; image_picker with imageQuality in the scanner path likely bakes it).
+Low: Region OCR, Crop, Eraser and Resize sheets all show the unrotated raw photo; Print filter dropdown shows raw enum names; Watermark default 'CONFIDENTIAL' not localised; annotation PNGs and rotated pages leave orphan files; Email falls back to mailto silently dropping the attachment; print controllers disposed while the dialog animates out.
+Not reviewed in depth: Seal/Text/Note/Date/Check drawing parity with export (sizes, fonts, RTL), OCR service internals, Convert screen, Eraser overlay gestures, sqlite FTS/migrations.
