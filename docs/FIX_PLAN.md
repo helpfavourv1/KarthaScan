@@ -12,6 +12,7 @@ Rules for every batch: smallest fix, no refactors, `build_and_deploy.yml` untouc
 | 5 | Filter alters caller's image in place; 50% grayscale same as 100% | Filter a copy; make strength actually blend | Grayscale slider changes result |
 | 18 | Stamp export loses multi-line alignment, no wrap, no length limit | Wrap to box width, apply alignment, cap length | Long/multi-line note exports like preview |
 | 17a | Convert ignores EXIF rotation | Bake orientation after decode in Convert | Gallery photo to PDF upright |
+| 11 | Compress opens Export as JPG; PDF cannot be compressed | PDF export embeds JPG at tier quality with a longest-side cap; compression choice shown for PDF; tray Compress opens PDF; show result size | Compress a PDF: file is smaller |
 Unskip the 3 probe tests in `stress_findings_test.dart` once 2, 5 are fixed.
 
 ## Batch B: no lost pages, edits or search text (Pages manager, extract)
@@ -22,6 +23,7 @@ Unskip the 3 probe tests in `stress_findings_test.dart` once 2, 5 are fixed.
 | 15 | Page changes never refresh OCR text/thumbnail; files orphaned | After save: update thumbnail, drop deleted pages' text, OCR new pages, delete orphan files |
 | 16 | Extract and Convert-as-document lose edits and OCR text | Carry crop/rotation/layers for extracted pages; OCR the new document |
 | 10 | Signature controller keeps stale page indexes after reorder/delete | Re-seed controller from the document after Pages manager saves |
+| 7 | Adding or reverting a crop shifts stamps and signatures | Convert every layer's position and scale when the crop rectangle changes (crop and revert), keep out-of-crop layers on the page; unit tests for crop in, crop out, revert | Add stamp, crop: stamp stays over the same words |
 | 9 | Watermark/signature identity collides (same text, same ink twice) | Give each layer its own id; key edits by id |
 Phone check: reorder, delete, rotate, add from camera, extract; edits stay, search finds the right text.
 
@@ -47,9 +49,9 @@ Phone check: a 20+ page document scrolls and exports without freezing.
 ## Batch E: low items
 Convert cleanup of `converted_docs`; txt to csv conversion; print filter names and Watermark default localised; orphan annotation/rotated files; Email fallback tells the user the attachment was dropped; print dialog controllers; crop/eraser/region/resize sheets show the rotated page.
 
-## Needs your decision before I touch it
-- 7: Adding or reverting a crop shifts stamps and signatures. Options: keep layers where they are on the page (recommended, needs conversion on crop) or warn before cropping a page with layers.
-- 11: Compress opens Export as JPG and PDFs cannot be compressed. Do you want a real PDF compress (re-encode pages at lower quality)? Bigger piece of work.
+## Decisions made
+- 7: keep layers where they are on the page (Batch B).
+- 11: real PDF compress (Batch A).
 
 ## Not yet reviewed
 `layer_control_panel.dart`, `signature_editor_bar.dart`, FTS migration path. I will read these before Batch C starts.
