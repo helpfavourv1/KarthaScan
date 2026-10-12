@@ -99,4 +99,16 @@ Confirmed (code or CI probe):
 11. MEDIUM Compress tray button opens Export with JPG; PDF cannot be compressed at all.
 Plausible, to confirm on a phone: photos with EXIF rotation (camera/gallery inserted via Pages manager) export/print sideways and misalign crop/eraser (no EXIF handling anywhere; image_picker with imageQuality in the scanner path likely bakes it).
 Low: Region OCR, Crop, Eraser and Resize sheets all show the unrotated raw photo; Print filter dropdown shows raw enum names; Watermark default 'CONFIDENTIAL' not localised; annotation PNGs and rotated pages leave orphan files; Email falls back to mailto silently dropping the attachment; print controllers disposed while the dialog animates out.
-Not reviewed in depth: Seal/Text/Note/Date/Check drawing parity with export (sizes, fonts, RTL), OCR service internals, Convert screen, Eraser overlay gestures, sqlite FTS/migrations.
+### Second pass (remaining tools), fixes NOT yet made
+12. HIGH Pages manager: pages added from Camera/Gallery are kept at their cache path (not copied into app storage); the OS can clear them later and the page goes missing.
+13. MEDIUM Text/Note sheet (text_stamp_sheet.dart ~183-187): the TextField sits outside the if, so it also shows on Checkbox and Date sheets; the note/text kinds work.
+14. MEDIUM Text, Note, Date, Checkbox and Seal sheets have a hard-coded white background; in dark mode typed text and labels are white on white.
+15. MEDIUM Pages manager changes never refresh OCR text or thumbnail: deleted pages stay searchable, added pages are not searchable; deleted page files and annotation PNGs are left behind.
+16. MEDIUM Extract page to new document drops crop, rotation, layers and OCR text (new doc not searchable). Convert > Save as document also has empty OCR text.
+17. MEDIUM Convert: no EXIF handling for gallery photos (sideways PDF/JPG/PNG likely); PDF to TXT/CSV OCRs every page with up to 4 passes each, no cancel, progress stalls; converted_docs files are never cleaned; txt to csv is a plain copy.
+18. LOW Stamp export: multi-line alignment lost, long text not wrapped, no length limit (huge text can hit the silent original fallback).
+19. LOW Eraser: a single tap does nothing (only drags); Annotate: switching tool resets the chosen colour; annotation overlay decodes PNG on the UI thread when first shown; whole drawing canvas (with empty margins) becomes the layer.
+20. LOW Seal: logo picker decodes a full photo on the UI thread; re-tapping Logo re-opens the picker; centre text "star"/"image" is read back as that mode.
+21. LOW OCR: pages with little text trigger 4 OCR passes; confidence always 1.0.
+22. LOW Signature interstitial ad fires right after drawing, before placing it.
+Still not reviewed: layer_control_panel.dart, signature_editor_bar.dart, full FTS migration path.
