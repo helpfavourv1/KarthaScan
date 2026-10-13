@@ -308,7 +308,7 @@ class ExportService {
         final r = pageTransform.cropRect!;
         decoded = img.copyCrop(decoded, x: r.left.round(), y: r.top.round(), width: r.width.round(), height: r.height.round());
       }
-      if (pageTransform != null && pageTransform.resizeWidth != null && pageTransform.resizeHeight != null) {
+      if (pageTransform != null && (pageTransform.resizeWidth ?? 0) > 0 && (pageTransform.resizeHeight ?? 0) > 0) {
         decoded = img.copyResize(decoded, width: pageTransform.resizeWidth!, height: pageTransform.resizeHeight!);
       }
       if (effectiveFilter != FilterType.none) {

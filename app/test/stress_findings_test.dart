@@ -56,7 +56,7 @@ void main() {
     setUp(() => dir = Directory.systemTemp.createTempSync('stress_'));
     tearDown(() => dir.deleteSync(recursive: true));
 
-    test('resize to 0 fails the render instead of returning the unedited original', () async {
+    test('resize to 0 is ignored and the erased area stays erased', () async {
       final img.Image page = img.Image(width: 40, height: 20);
       img.fill(page, color: img.ColorRgb8(255, 255, 255));
       final File file = File('${dir.path}/p.png')..writeAsBytesSync(img.encodePng(page));
@@ -85,10 +85,10 @@ void main() {
           ),
         },
       );
-      await expectLater(
-        ExportService().renderPageForOutput(doc, 0),
-        throwsA(isA<ExportFailedException>()),
-      );
+      // A stored zero size is ignored; the erased (redacted) area stays erased.
+      final bytes = await ExportService().renderPageForOutput(doc, 0);
+      final img.Image out = img.decodePng(bytes)!;
+      expect(out.getPixel(3, 3).r.toInt() < 128, isTrue, reason: 'the erased area came back');
       expect(ExportService().pageHasEdits(doc, 0), isTrue);
     });
   });

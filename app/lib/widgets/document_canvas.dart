@@ -324,7 +324,7 @@ class _PageWithInkState extends State<_PageWithInk> {
           final r = transform.cropRect!;
           processed = img.copyCrop(processed, x: r.left.round(), y: r.top.round(), width: r.width.round(), height: r.height.round());
         }
-        if (transform.resizeWidth != null && transform.resizeHeight != null) {
+        if ((transform.resizeWidth ?? 0) > 0 && (transform.resizeHeight ?? 0) > 0) {
           processed = img.copyResize(processed, width: transform.resizeWidth!, height: transform.resizeHeight!);
         }
         if (transform.filter != FilterType.none) {
@@ -348,7 +348,7 @@ class _PageWithInkState extends State<_PageWithInk> {
         final resizeH = transform?.resizeHeight;
 
         double effectiveAspect = _pageAspect;
-        if (resizeW != null && resizeH != null && resizeH > 0) {
+        if (resizeW != null && resizeW > 0 && resizeH != null && resizeH > 0) {
           effectiveAspect = resizeW / resizeH;
         } else if (cropRect != null && cropRect.width > 0 && cropRect.height > 0) {
           effectiveAspect = cropRect.width / cropRect.height;
