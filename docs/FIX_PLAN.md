@@ -15,7 +15,7 @@ Rules for every batch: smallest fix, no refactors, `build_and_deploy.yml` untouc
 | 11 | Compress opens Export as JPG; PDF cannot be compressed | PDF export embeds JPG at tier quality with a longest-side cap; compression choice shown for PDF; tray Compress opens PDF; show result size | Compress a PDF: file is smaller |
 Unskip the 3 probe tests in `stress_findings_test.dart` once 2, 5 are fixed.
 
-## Batch B: no lost pages, edits or search text (Pages manager, extract)
+## Batch B: no lost pages, edits or search text (Pages manager, extract) - CODE DONE, lint and tests passed, needs phone check
 | # | Problem | Fix |
 |---|---|---|
 | 12 | Camera/gallery pages stay in cache and can vanish | Copy into managed pages when added |
