@@ -82,7 +82,13 @@ class _FullScreenEditScreenState extends State<FullScreenEditScreen> with Docume
     _fillSnippets = await _localStorage.loadFillSnippets();
   }
 
+  bool _fillSheetOpen = false;
+
   Future<void> _onFillTap(double pctX, double pctY, int pageIndex) async {
+    // A double tap must not open a second sheet: the first one to close
+    // clears the position the second one still needs.
+    if (_fillSheetOpen) return;
+    _fillSheetOpen = true;
     setState(() {
       _fillGhostPctX = pctX;
       _fillGhostPctY = pctY;
@@ -119,9 +125,9 @@ class _FullScreenEditScreenState extends State<FullScreenEditScreen> with Docume
     if (result != null && result.text.isNotEmpty && mounted) {
       final layer = StampLayer(
         id: 'stamp_${DateTime.now().microsecondsSinceEpoch}',
-        pageIndex: _fillGhostPageIndex!,
+        pageIndex: pageIndex,
         kind: 'fill',
-        placement: SignaturePlacement(pctX: _fillGhostPctX!, pctY: _fillGhostPctY!),
+        placement: SignaturePlacement(pctX: pctX, pctY: pctY),
         text: result.text,
         fontSize: result.fontSize,
         color: result.color,
@@ -133,6 +139,7 @@ class _FullScreenEditScreenState extends State<FullScreenEditScreen> with Docume
       final doc = document;
       if (doc != null) await _scanProvider.addStampLayer(doc.id, layer);
     }
+    _fillSheetOpen = false;
     if (mounted) setState(() { _fillGhostPctX = null; _fillGhostPctY = null; _fillGhostPageIndex = null; _editMode = TrayEditMode.none; });
   }
 

@@ -54,6 +54,7 @@ class LayerControlPanel extends StatelessWidget {
         onScaleUp: () => scanProvider.updateAnnotateLayer(document.id, layer.copyWith(placement: SignaturePlacement(pctX: layer.placement.pctX, pctY: layer.placement.pctY, rotationDegrees: layer.placement.rotationDegrees, scale: (layer.placement.scale + 0.1).clamp(0.1, 5.0)))),
         onCopyAll: () {
           for (int i = 0; i < document.pagePaths.length; i++) {
+            if (i == pageIndex) continue; // the source page already has it
             scanProvider.addAnnotateLayer(document.id, AnnotateLayer(pageIndex: i, bytesPath: layer.bytesPath, placement: layer.placement));
           }
         },
@@ -107,6 +108,7 @@ class LayerControlPanel extends StatelessWidget {
         },
         onCopyAll: () {
           for (int i = 0; i < document.pagePaths.length; i++) {
+            if (i == pageIndex) continue;
             scanProvider.addWatermarkLayer(document.id, layer.copyWith(pageIndex: i));
           }
         },
@@ -181,6 +183,7 @@ class LayerControlPanel extends StatelessWidget {
         },
         onCopyAll: () {
           for (int i = 0; i < document.pagePaths.length; i++) {
+            if (i == pageIndex) continue;
             scanProvider.addStampLayer(document.id, layer.copyWith(id: 'stamp_${DateTime.now().microsecondsSinceEpoch}_$i', pageIndex: i));
           }
         },

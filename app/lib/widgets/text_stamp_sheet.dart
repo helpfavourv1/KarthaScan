@@ -173,18 +173,21 @@ class _TextStampSheetState extends State<TextStampSheet> {
     return SafeArea(
       child: Container(
         padding: const EdgeInsets.all(16),
-        decoration: const BoxDecoration(color: Colors.white, borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
+        decoration: BoxDecoration(color: Theme.of(context).brightness == Brightness.dark ? const Color(0xFF1C1C1E) : Colors.white, borderRadius: const BorderRadius.vertical(top: Radius.circular(20))),
         child: SingleChildScrollView(
           child: Column(
             mainAxisSize: MainAxisSize.min, crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(_title, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600)),
               const SizedBox(height: 12),
-              if (widget.kind == 'text' || widget.kind == 'note')
-                
-              if (widget.onSaveSnippet != null && (widget.kind == 'text' || widget.kind == 'fill'))
-                IconButton(icon: const Icon(Icons.bookmark_border), tooltip: AppLocalizations.of(context).fillSaveSnippet, onPressed: _controller.text.isNotEmpty ? () { widget.onSaveSnippet!(_controller.text); setState(() {}); } : null),
-                TextField(controller: _controller, maxLength: 300, maxLines: widget.kind == 'note' ? 3 : 1, decoration: InputDecoration(labelText: (widget.kind == 'note' ? AppLocalizations.of(context).noteTextLabel : AppLocalizations.of(context).textLabel), border: const OutlineInputBorder())),
+              if (widget.kind == 'text' || widget.kind == 'note') ...[
+                if (widget.onSaveSnippet != null && widget.kind == 'text')
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: IconButton(icon: const Icon(Icons.bookmark_border), tooltip: AppLocalizations.of(context).fillSaveSnippet, onPressed: _controller.text.isNotEmpty ? () { widget.onSaveSnippet!(_controller.text); setState(() {}); } : null),
+                  ),
+                TextField(controller: _controller, maxLength: 300, maxLines: widget.kind == 'note' ? 3 : 1, onChanged: (_) => setState(() {}), decoration: InputDecoration(labelText: (widget.kind == 'note' ? AppLocalizations.of(context).noteTextLabel : AppLocalizations.of(context).textLabel), border: const OutlineInputBorder())),
+              ],
               if (widget.kind == 'checkbox') ...[
                 CheckboxListTile(value: _checked, title: Text(AppLocalizations.of(context).stampTickedLabel), onChanged: (v) => setState(() => _checked = v ?? true)),
                 Wrap(spacing: 8, children: [('rounded', AppLocalizations.of(context).checkShapeRounded), ('square', AppLocalizations.of(context).checkShapeSquare), ('circle', AppLocalizations.of(context).checkShapeCircle)].map((s) => ChoiceChip(label: Text(s.$2), selected: _checkShape == s.$1, onSelected: (_) => setState(() => _checkShape = s.$1))).toList()),
@@ -282,7 +285,7 @@ class _TextStampSheetState extends State<TextStampSheet> {
                 TextButton(onPressed: () => Navigator.pop(context), child: Text(AppLocalizations.of(context).commonCancel)),
                 const SizedBox(width: 12),
                 ElevatedButton(
-                  onPressed: _busy ? null : () async { setState(() => _busy = true); final r = await _generate(); if (!context.mounted) return; if (r != null) Navigator.pop(context, r); },
+                  onPressed: _busy ? null : () async { setState(() => _busy = true); final r = await _generate(); if (!context.mounted) return; if (r != null) { Navigator.pop(context, r); } else { setState(() => _busy = false); } },
                   child: Text(AppLocalizations.of(context).commonCreate),
                 ),
               ]),

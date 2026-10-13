@@ -132,6 +132,14 @@ class _EraserSheetState extends State<EraserSheet> {
                                 onTapDown: (d) {
                                   if (_sampleMode) _sampleAt(d.localPosition);
                                 },
+                                // A single tap erases a small square the size of the brush.
+                                onTapUp: (d) {
+                                  if (_sampleMode || _marqueeMode) return;
+                                  final h = _width / 2;
+                                  setState(() => _strokes.add(_Stroke(
+                                        [d.localPosition - Offset(h, h), d.localPosition + Offset(h, h)],
+                                        _colorInt, _width, true)));
+                                },
                                 onPanStart: (d) {
                                   if (_sampleMode) return;
                                   setState(() => _active = _Stroke([d.localPosition, if (_marqueeMode) d.localPosition], _colorInt, _width, _marqueeMode));

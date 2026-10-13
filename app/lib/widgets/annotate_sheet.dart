@@ -1,4 +1,8 @@
+import 'dart:typed_data';
+
+import 'package:flutter/foundation.dart' show compute;
 import 'package:flutter/material.dart';
+import 'package:image/image.dart' as img;
 import 'annotation_overlay.dart';
 import 'color_picker_dialog.dart';
 import '../l10n/app_localizations.dart';
@@ -63,10 +67,18 @@ class _AnnotateSheetState extends State<AnnotateSheet> {
                       // Keep the sheet's color/width in step with the mode
                       // defaults the overlay applies (yellow, wide for the
                       // highlighter), otherwise _apply() would overwrite them.
+                      // Only the highlighter has its own colour and width; moving
+                      // between the other tools keeps what the person chose.
+                      final bool wasHighlighter = _mode == AnnotationMode.highlighter;
                       setState(() {
                         _mode = m;
-                        _color = m == AnnotationMode.highlighter ? Colors.yellow : Colors.black;
-                        _width = m == AnnotationMode.highlighter ? 20.0 : 4.0;
+                        if (m == AnnotationMode.highlighter) {
+                          _color = Colors.yellow;
+                          _width = 20.0;
+                        } else if (wasHighlighter) {
+                          _color = Colors.black;
+                          _width = 4.0;
+                        }
                       });
                       _overlayKey.currentState?.setMode(m);
                       _apply();
@@ -126,9 +138,12 @@ class _AnnotateSheetState extends State<AnnotateSheet> {
                   const SizedBox(width: 12),
                   ElevatedButton(
                     onPressed: () async {
-                      final bytes = await _overlayKey.currentState?.exportPng();
+                      final raw = await _overlayKey.currentState?.exportPng();
+                      if (raw == null || !context.mounted) return;
+                      // Cut away the empty margins so the layer is just the drawing.
+                      final bytes = await compute(_trimTransparent, raw);
                       if (!context.mounted) return;
-                      if (bytes != null) Navigator.pop(context, bytes);
+                      Navigator.pop(context, bytes);
                     },
                     style: ElevatedButton.styleFrom(backgroundColor: accent, foregroundColor: Colors.white, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))),
                     child: Text(AppLocalizations.of(context).commonConfirm),
@@ -140,5 +155,19 @@ class _AnnotateSheetState extends State<AnnotateSheet> {
         ),
       ),
     );
+  }
+}
+
+/// Removes the fully transparent border of a PNG. Returns the input if
+/// anything goes wrong or nothing would be left.
+Uint8List _trimTransparent(Uint8List png) {
+  try {
+    final img.Image? decoded = img.decodePng(png);
+    if (decoded == null) return png;
+    final img.Image trimmed = img.trim(decoded, mode: img.TrimMode.transparent);
+    if (trimmed.width < 1 || trimmed.height < 1) return png;
+    return Uint8List.fromList(img.encodePng(trimmed));
+  } catch (_) {
+    return png;
   }
 }

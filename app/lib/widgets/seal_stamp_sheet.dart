@@ -1,6 +1,8 @@
 import 'dart:io';
 import 'dart:typed_data';
 
+import 'package:flutter/foundation.dart' show compute;
+
 import 'package:flutter/material.dart';
 import 'package:image/image.dart' as img;
 import 'package:image_picker/image_picker.dart';
@@ -65,7 +67,7 @@ class _SealStampSheetState extends State<SealStampSheet> {
     final picked = await picker.pickImage(source: ImageSource.gallery, imageQuality: 90);
     if (picked == null) return;
     final rawBytes = await File(picked.path).readAsBytes();
-    final processed = await _preRenderCircularImage(rawBytes);
+    final processed = await compute(_renderCircularLogo, rawBytes);
     if (!mounted) return;
     setState(() {
       _imageBytes = rawBytes;
@@ -74,45 +76,17 @@ class _SealStampSheetState extends State<SealStampSheet> {
     });
   }
 
-  /// Pre-renders the uploaded image into a circular-cropped PNG.
-  /// This ensures drawSeal() receives a ready-to-draw image.
-  Future<Uint8List> _preRenderCircularImage(Uint8List rawBytes) async {
-    final decoded = img.decodeImage(rawBytes);
-    if (decoded == null) return rawBytes;
-
-    // Center-crop to the largest square first (no stretching), then resize.
-    const targetSize = 400;
-    final side = decoded.width < decoded.height ? decoded.width : decoded.height;
-    final cropped = img.copyCrop(
-      decoded,
-      x: (decoded.width - side) ~/ 2,
-      y: (decoded.height - side) ~/ 2,
-      width: side,
-      height: side,
-    );
-    final resized = img.copyResize(cropped, width: targetSize, height: targetSize);
-
-    // Apply circular mask
-    final mask = img.Image(width: targetSize, height: targetSize);
-    img.fill(mask, color: img.ColorRgb8(0, 0, 0));
-    img.fillCircle(mask, x: targetSize ~/ 2, y: targetSize ~/ 2, radius: targetSize ~/ 2, color: img.ColorRgb8(255, 255, 255));
-
-    for (int y = 0; y < targetSize; y++) {
-      for (int x = 0; x < targetSize; x++) {
-        final maskPixel = mask.getPixel(x, y);
-        if (maskPixel.r.toInt() == 0) {
-          resized.setPixel(x, y, img.ColorRgba8(0, 0, 0, 0));
-        }
-      }
-    }
-
-    return Uint8List.fromList(img.encodePng(resized));
+  /// The centre value 'star' or 'image' means a mode, so typed text that is
+  /// exactly one of those words gets an invisible character added.
+  String _safeCenterText(String t) {
+    final String lower = t.toLowerCase();
+    return (lower == 'star' || lower == 'image') ? '$t\u200B' : t;
   }
 
   void _confirm() {
     final centerValue = _centerMode == 'star'
         ? 'star'
-        : (_centerMode == 'image' ? 'image' : (_centerMode == 'text' ? _centerText.text.trim() : ''));
+        : (_centerMode == 'image' ? 'image' : (_centerMode == 'text' ? _safeCenterText(_centerText.text.trim()) : ''));
     Navigator.pop(context, StampResult(
       bytes: Uint8List(0),
       label: AppLocalizations.of(context).sealCustom,
@@ -151,9 +125,9 @@ class _SealStampSheetState extends State<SealStampSheet> {
     return SafeArea(
       child: Container(
         padding: const EdgeInsets.all(16),
-        decoration: const BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+        decoration: BoxDecoration(
+          color: Theme.of(context).brightness == Brightness.dark ? const Color(0xFF1C1C1E) : Colors.white,
+          borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
         ),
         child: SingleChildScrollView(
           child: Column(
@@ -193,7 +167,7 @@ class _SealStampSheetState extends State<SealStampSheet> {
                 children: [
                   ChoiceChip(label: Text(AppLocalizations.of(context).sealCenterStar), selected: _centerMode == 'star', onSelected: (_) => setState(() => _centerMode = 'star')),
                   ChoiceChip(label: Text(AppLocalizations.of(context).sealCenterText), selected: _centerMode == 'text', onSelected: (_) => setState(() => _centerMode = 'text')),
-                  ChoiceChip(label: Text(AppLocalizations.of(context).sealCenterLogo), selected: _centerMode == 'image', onSelected: (_) => _pickImage()),
+                  ChoiceChip(label: Text(AppLocalizations.of(context).sealCenterLogo), selected: _centerMode == 'image', onSelected: (_) { if (_imageBytes != null && _centerMode != 'image') { setState(() => _centerMode = 'image'); } else { _pickImage(); } }),
                   ChoiceChip(label: Text(AppLocalizations.of(context).sealCenterNone), selected: _centerMode == 'none', onSelected: (_) => setState(() => _centerMode = 'none')),
                 ],
               ),
@@ -259,3 +233,39 @@ class _SealStampSheetState extends State<SealStampSheet> {
     );
   }
 }
+
+  /// Pre-renders the uploaded image into a circular-cropped PNG.
+  /// This ensures drawSeal() receives a ready-to-draw image.
+Uint8List _renderCircularLogo(Uint8List rawBytes) {
+    final decoded = img.decodeImage(rawBytes);
+    if (decoded == null) return rawBytes;
+
+    // Center-crop to the largest square first (no stretching), then resize.
+    const targetSize = 400;
+    final side = decoded.width < decoded.height ? decoded.width : decoded.height;
+    final cropped = img.copyCrop(
+      decoded,
+      x: (decoded.width - side) ~/ 2,
+      y: (decoded.height - side) ~/ 2,
+      width: side,
+      height: side,
+    );
+    final resized = img.copyResize(cropped, width: targetSize, height: targetSize);
+
+    // Apply circular mask
+    final mask = img.Image(width: targetSize, height: targetSize);
+    img.fill(mask, color: img.ColorRgb8(0, 0, 0));
+    img.fillCircle(mask, x: targetSize ~/ 2, y: targetSize ~/ 2, radius: targetSize ~/ 2, color: img.ColorRgb8(255, 255, 255));
+
+    for (int y = 0; y < targetSize; y++) {
+      for (int x = 0; x < targetSize; x++) {
+        final maskPixel = mask.getPixel(x, y);
+        if (maskPixel.r.toInt() == 0) {
+          resized.setPixel(x, y, img.ColorRgba8(0, 0, 0, 0));
+        }
+      }
+    }
+
+    return Uint8List.fromList(img.encodePng(resized));
+  }
+
