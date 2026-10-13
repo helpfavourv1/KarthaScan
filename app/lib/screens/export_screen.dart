@@ -318,7 +318,7 @@ class _ExportScreenState extends State<ExportScreen> {
     final textSecondary = isDark ? AppColors.textSecondaryDark : AppColors.textSecondaryLight;
     final accent = isDark ? AppColors.accentDark : AppColors.accentLight;
 
-    final showCompression = _selectedFormat == ExportFormat.jpg || _selectedFormat == ExportFormat.png;
+    final showCompression = _selectedFormat == ExportFormat.jpg || _selectedFormat == ExportFormat.png || _selectedFormat == ExportFormat.pdf;
 
     return Scaffold(
       bottomNavigationBar: const ConditionalBanner(),
@@ -859,15 +859,23 @@ class _ExportScreenState extends State<ExportScreen> {
   }
 
   Future<int> _calculateEstimate() async {
-    if (_selectedFormat != ExportFormat.jpg && _selectedFormat != ExportFormat.png) return 0;
+    if (_selectedFormat != ExportFormat.jpg && _selectedFormat != ExportFormat.png && _selectedFormat != ExportFormat.pdf) return 0;
+    if (_selectedFormat == ExportFormat.pdf && _selectedCompression == CompressionTier.original) return 0;
     if (_documents.isEmpty) return 0;
     
     // Real estimate: encode first page at selected tier quality, extrapolate by page count
     try {
       final firstPath = _documents.first.pagePaths.first;
       final bytes = await File(firstPath).readAsBytes();
-      final decoded = img.decodeImage(bytes);
+      var decoded = img.decodeImage(bytes);
       if (decoded == null) return 0;
+      if (_selectedFormat == ExportFormat.pdf) {
+        // PDF pages are also shrunk to a size cap, same as the real export.
+        final cap = _selectedCompression == CompressionTier.small ? 1400 : 2000;
+        if (decoded.width >= decoded.height ? decoded.width > cap : decoded.height > cap) {
+          decoded = decoded.width >= decoded.height ? img.copyResize(decoded, width: cap) : img.copyResize(decoded, height: cap);
+        }
+      }
       
       final quality = _selectedCompression == CompressionTier.original ? 92 :
                       _selectedCompression == CompressionTier.medium ? 60 : 30;

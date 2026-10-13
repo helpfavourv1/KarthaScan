@@ -266,7 +266,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Future<void> _shareDocument(ScanDocument document) async {
     try {
-      await _shareService.shareFiles(filePaths: document.pagePaths);
+      final paths = await ExportService().renderPagesForShare(document);
+      await _shareService.shareFiles(filePaths: paths);
     } catch (e) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(

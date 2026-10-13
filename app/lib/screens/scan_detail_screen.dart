@@ -382,7 +382,7 @@ class _ScanDetailScreenState extends State<ScanDetailScreen>
                 onWatermark: () { _closeEditor(); addWatermarkNow(); },
                 onOcr: () { _closeEditor(); regionOcr(); },
                 onConvert: () { _closeEditor(); exportDocument(); },
-                onCompress: () { _closeEditor(); context.push('/export', extra: <String, dynamic>{'ids': <String>[document.id], 'format': 'jpg'}); },
+                onCompress: () { _closeEditor(); context.push('/export', extra: <String, dynamic>{'ids': <String>[document.id], 'format': 'pdf'}); },
                 onRotate: () { _closeEditor(); rotatePage(); },
                 onResize: () { _closeEditor(); resizePage(); },
                 onPages: () { _closeEditor(); openPagesManager(); },

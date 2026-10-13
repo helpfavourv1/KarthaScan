@@ -448,7 +448,7 @@ class _FullScreenEditScreenState extends State<FullScreenEditScreen> with Docume
                       onConvert: exportDocument,
                       onCompress: () {
                         closeEditor();
-                        context.push('/export', extra: <String, dynamic>{'ids': <String>[doc.id], 'format': 'jpg'});
+                        context.push('/export', extra: <String, dynamic>{'ids': <String>[doc.id], 'format': 'pdf'});
                       },
                       onRotate: rotatePage,
                       onResize: resizePage,

@@ -10,6 +10,7 @@ import 'package:archive/archive.dart';
 import 'package:flutter/foundation.dart' show debugPrint;
 import 'package:image/image.dart' as img;
 import 'package:path/path.dart' as p;
+import 'package:path_provider/path_provider.dart' show getTemporaryDirectory;
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 
@@ -77,6 +78,44 @@ class ExportService {
     );
   }
 
+  /// True when the page has any edit that changes what is exported.
+  bool pageHasEdits(ScanDocument document, int pageIndex) {
+    final PageTransform? t = document.pageTransforms[pageIndex];
+    final bool transformed = t != null &&
+        (t.filter != FilterType.none || t.rotationTurns != 0 || t.cropRect != null || t.resizeWidth != null || t.eraserStrokes.isNotEmpty);
+    return transformed ||
+        document.signatureLayers.any((l) => l.pageIndex == pageIndex) ||
+        document.annotateLayers.any((l) => l.pageIndex == pageIndex) ||
+        document.watermarkLayers.any((l) => l.pageIndex == pageIndex) ||
+        document.stampLayers.any((l) => l.pageIndex == pageIndex);
+  }
+
+  /// Files to share or email: pages without edits are sent as they are, edited
+  /// pages are rendered exactly as Export renders them (JPG, quality 92).
+  Future<List<String>> renderPagesForShare(ScanDocument document) async {
+    final Directory dir = Directory(p.join(
+      (await getTemporaryDirectory()).path,
+      'share_${DateTime.now().microsecondsSinceEpoch}',
+    ));
+    await dir.create(recursive: true);
+    final List<String> out = <String>[];
+    for (int i = 0; i < document.pagePaths.length; i++) {
+      if (!pageHasEdits(document, i)) {
+        out.add(document.pagePaths[i]);
+        continue;
+      }
+      final Uint8List bytes = await renderPageForOutput(document, i);
+      final img.Image? decoded = img.decodeImage(bytes);
+      if (decoded == null) {
+        throw ExportFailedException('Could not read page ${i + 1}.');
+      }
+      final String path = p.join(dir.path, 'page_${i + 1}.jpg');
+      await File(path).writeAsBytes(img.encodeJpg(decoded, quality: 92), flush: true);
+      out.add(path);
+    }
+    return out;
+  }
+
   Future<List<String>> export({
     required ScanDocument document,
     required ExportFormat format,
@@ -100,6 +139,7 @@ class ExportService {
               filter: filter,
               signatureBytes: signatureBytes,
               signaturePlacements: signaturePlacements,
+              compression: compression,
             ),
           ];
         case ExportFormat.txt:
@@ -228,7 +268,9 @@ class ExportService {
     }
     try {
       final decodedOriginal = img.decodeImage(original);
-      if (decodedOriginal == null) return original;
+      if (decodedOriginal == null) {
+        throw ExportFailedException('Could not read page ${pageIndex + 1}.');
+      }
       img.Image decoded = decodedOriginal;
       final effectiveFilter = (pageTransform != null && pageTransform.filter != FilterType.none)
           ? pageTransform.filter
@@ -324,7 +366,29 @@ class ExportService {
       return Uint8List.fromList(img.encodePng(decoded));
     } catch (error, stackTrace) {
       _logError('_processPage', error, stackTrace);
-      return original;
+      // Never hand back the unedited original: erased or redacted content
+      // would silently reappear in the exported or shared file.
+      if (error is ExportFailedException) rethrow;
+      throw ExportFailedException('Could not render page ${pageIndex + 1} with its edits.');
+    }
+  }
+
+  /// Re-encodes a page as a smaller JPG for PDF output: capped longest side
+  /// and the tier's quality. Falls back to the original bytes if it fails.
+  Uint8List _compressForPdf(Uint8List bytes, CompressionTier tier) {
+    try {
+      img.Image? decoded = img.decodeImage(bytes);
+      if (decoded == null) return bytes;
+      final int cap = tier == CompressionTier.small ? 1400 : 2000;
+      final int longest = decoded.width > decoded.height ? decoded.width : decoded.height;
+      if (longest > cap) {
+        decoded = decoded.width >= decoded.height
+            ? img.copyResize(decoded, width: cap)
+            : img.copyResize(decoded, height: cap);
+      }
+      return Uint8List.fromList(img.encodeJpg(decoded, quality: _qualityFor(tier)));
+    } catch (_) {
+      return bytes;
     }
   }
 
@@ -335,6 +399,7 @@ class ExportService {
     Uint8List? signatureBytes,
     Map<int, SignaturePlacement>? signaturePlacements,
     PdfPageFormat pageFormat = PdfPageFormat.a4,
+    CompressionTier compression = CompressionTier.original,
   }) async {
     final pw.Document pdfDoc = pw.Document(
       title: document.title,
@@ -355,10 +420,13 @@ class ExportService {
         documentStampLayers: document.stampLayers,
         pageTransform: document.pageTransforms[i],
       );
-      final image = pw.MemoryImage(bytes);
+      // Size of the page picture before any compression; the invisible OCR
+      // text is positioned against this.
+      final (int, int)? probed = _probeImageSize(bytes);
+      final Uint8List embedBytes = compression == CompressionTier.original ? bytes : _compressForPdf(bytes, compression);
+      final image = pw.MemoryImage(embedBytes);
       final blocks = document.pageOcrBlocks[i] ?? const <OcrBlock>[];
       // A wide scan gets a landscape page instead of a tiny letterboxed one.
-      final (int, int)? probed = _probeImageSize(bytes);
       final PdfPageFormat pageFmt =
           (probed != null && probed.$1 > probed.$2) ? pageFormat.landscape : pageFormat;
 
@@ -367,13 +435,12 @@ class ExportService {
           theme: await PdfFonts.theme(),
           pageFormat: pageFmt,
           build: (pw.Context context) {
-            final decoded = img.decodeImage(bytes);
-            if (decoded == null || blocks.isEmpty) {
+            if (probed == null || blocks.isEmpty) {
               return pw.Center(child: pw.Image(image, fit: pw.BoxFit.contain));
             }
             
-            final imgW = decoded.width.toDouble();
-            final imgH = decoded.height.toDouble();
+            final imgW = probed.$1.toDouble();
+            final imgH = probed.$2.toDouble();
             final imgAspect = imgW / imgH;
             final pageW = pageFmt.width;
             final pageH = pageFmt.height;
@@ -514,7 +581,9 @@ class ExportService {
           if (decoded != null) {
             pageJpgs.add(img.encodeJpg(decoded, quality: 92));
           }
-        } catch (_) {}
+        } catch (_) {
+          throw const ExportFailedException('Could not build the DOCX file.');
+        }
       }
     }
 
@@ -917,33 +986,53 @@ class ExportService {
   }
 
   Future<Uint8List?> _renderStampText(StampLayer layer, int pageW) async {
-    const double fontSize = 100;
-    final recorder = ui.PictureRecorder();
-    final canvas = ui.Canvas(recorder);
+    double fontSize = 100;
+    // A picture wider than this cannot be created reliably. Very long text is
+    // drawn smaller instead of failing the whole export.
+    const double maxSide = 8000;
     final shadows = layer.halo
         ? [
             for (final o in const [ui.Offset(2, 0), ui.Offset(-2, 0), ui.Offset(0, 2), ui.Offset(0, -2), ui.Offset(2, 2), ui.Offset(-2, -2), ui.Offset(2, -2), ui.Offset(-2, 2)])
               ui.Shadow(offset: o, color: const ui.Color(0xFFFFFFFF), blurRadius: 0),
           ]
         : null;
-    // Force LEFT align: glyphs must sit at x=0 inside the paragraph
-    // or they land outside the longestLine×height capture window.
-    final paragraphBuilder = ui.ParagraphBuilder(ui.ParagraphStyle(
-      textAlign: ui.TextAlign.left,
-      fontSize: fontSize,
-      fontWeight: ui.FontWeight.values.firstWhere((w) => w.value == layer.fontWeight, orElse: () => ui.FontWeight.w700),
-      fontFamily: layer.fontFamily,
-    ))
-      ..pushStyle(ui.TextStyle(
-        color: ui.Color(layer.color).withValues(alpha: layer.opacity),
-        shadows: shadows,
+    final ui.TextAlign align = layer.align == 'right'
+        ? ui.TextAlign.right
+        : (layer.align == 'center' ? ui.TextAlign.center : ui.TextAlign.left);
+
+    ui.Paragraph build(double size) {
+      final builder = ui.ParagraphBuilder(ui.ParagraphStyle(
+        textAlign: align,
+        fontSize: size,
+        fontWeight: ui.FontWeight.values.firstWhere((w) => w.value == layer.fontWeight, orElse: () => ui.FontWeight.w700),
+        fontFamily: layer.fontFamily,
       ))
-      ..addText(layer.text);
-    final paragraph = paragraphBuilder.build()
-      ..layout(const ui.ParagraphConstraints(width: 100000));
-    final double pad = (layer.kind == 'note' ? 40.0 : 8.0) * (fontSize / 72.0);
-    final int w = (paragraph.longestLine + pad * 2).ceil();
+        ..pushStyle(ui.TextStyle(
+          color: ui.Color(layer.color).withValues(alpha: layer.opacity),
+          shadows: shadows,
+        ))
+        ..addText(layer.text);
+      final paragraph = builder.build()..layout(const ui.ParagraphConstraints(width: 100000));
+      // Lay out again at the longest line's width so left/centre/right
+      // alignment applies between the lines of a multi-line text.
+      paragraph.layout(ui.ParagraphConstraints(width: paragraph.longestLine.ceilToDouble() + 1));
+      return paragraph;
+    }
+
+    ui.Paragraph paragraph = build(fontSize);
+    double pad = (layer.kind == 'note' ? 40.0 : 8.0) * (fontSize / 72.0);
+    final double widest = paragraph.longestLine + pad * 2;
+    final double tallest = paragraph.height + pad * 2;
+    final double over = widest > tallest ? widest : tallest;
+    if (over > maxSide) {
+      fontSize = fontSize * maxSide / over;
+      paragraph = build(fontSize);
+      pad = (layer.kind == 'note' ? 40.0 : 8.0) * (fontSize / 72.0);
+    }
+    final int w = (paragraph.longestLine + pad * 2).ceil() + 1;
     final int h = (paragraph.height + pad * 2).ceil();
+    final recorder = ui.PictureRecorder();
+    final canvas = ui.Canvas(recorder);
     if (layer.kind == 'note' && layer.noteBgColor != null) {
       canvas.drawRRect(
         ui.RRect.fromRectAndRadius(ui.Rect.fromLTWH(0, 0, w.toDouble(), h.toDouble()), const ui.Radius.circular(16)),

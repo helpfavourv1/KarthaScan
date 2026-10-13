@@ -158,8 +158,10 @@ class _ConvertScreenState extends State<ConvertScreen> {
         _report(0.4, l10n.progressBuildingPdf);
         final pdf = pw.Document();
         final raw = await File(src).readAsBytes();
-        final decodedSrc = img.decodeImage(raw);
-        if (decodedSrc == null) throw Exception('Cannot decode image');
+        final decodedRaw = img.decodeImage(raw);
+        if (decodedRaw == null) throw Exception('Cannot decode image');
+        // Phone photos carry a rotation flag; apply it so the result is upright.
+        final decodedSrc = img.bakeOrientation(decodedRaw);
         final image = pw.MemoryImage(Uint8List.fromList(img.encodePng(decodedSrc)));
         pdf.addPage(pw.Page(build: (pw.Context context) => pw.Center(child: pw.Image(image, fit: pw.BoxFit.contain))));
         final out = p.join(outDir.path, 'conv_$ts.pdf');
@@ -188,8 +190,9 @@ class _ConvertScreenState extends State<ConvertScreen> {
       } else {
         _report(0.4, l10n.progressDecodingImage);
         final bytes = await File(src).readAsBytes();
-        final decoded = img.decodeImage(bytes);
-        if (decoded == null) throw Exception('Cannot decode image');
+        final decodedRaw = img.decodeImage(bytes);
+        if (decodedRaw == null) throw Exception('Cannot decode image');
+        final decoded = img.bakeOrientation(decodedRaw);
         final outExt = _target == _TargetFormat.jpg ? 'jpg' : 'png';
         final out = p.join(outDir.path, 'conv_$ts.$outExt');
         final outBytes = _target == _TargetFormat.jpg ? img.encodeJpg(decoded) : img.encodePng(decoded);

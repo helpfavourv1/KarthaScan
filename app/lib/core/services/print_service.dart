@@ -22,11 +22,9 @@ abstract final class PrintService {
       Uint8List bytes;
       if (pageBytes != null) {
         // Fully processed page (edits included), supplied by the export pipeline.
-        try {
-          bytes = await pageBytes(idx);
-        } catch (_) {
-          continue;
-        }
+        // A page that cannot be rendered with its edits must stop the print,
+        // not be left out of the paper copy.
+        bytes = await pageBytes(idx);
       } else {
         final file = File(pagePaths[idx]);
         if (!await file.exists()) continue;

@@ -184,7 +184,7 @@ class _TextStampSheetState extends State<TextStampSheet> {
                 
               if (widget.onSaveSnippet != null && (widget.kind == 'text' || widget.kind == 'fill'))
                 IconButton(icon: const Icon(Icons.bookmark_border), tooltip: AppLocalizations.of(context).fillSaveSnippet, onPressed: _controller.text.isNotEmpty ? () { widget.onSaveSnippet!(_controller.text); setState(() {}); } : null),
-                TextField(controller: _controller, maxLines: widget.kind == 'note' ? 3 : 1, decoration: InputDecoration(labelText: (widget.kind == 'note' ? AppLocalizations.of(context).noteTextLabel : AppLocalizations.of(context).textLabel), border: const OutlineInputBorder())),
+                TextField(controller: _controller, maxLength: 300, maxLines: widget.kind == 'note' ? 3 : 1, decoration: InputDecoration(labelText: (widget.kind == 'note' ? AppLocalizations.of(context).noteTextLabel : AppLocalizations.of(context).textLabel), border: const OutlineInputBorder())),
               if (widget.kind == 'checkbox') ...[
                 CheckboxListTile(value: _checked, title: Text(AppLocalizations.of(context).stampTickedLabel), onChanged: (v) => setState(() => _checked = v ?? true)),
                 Wrap(spacing: 8, children: [('rounded', AppLocalizations.of(context).checkShapeRounded), ('square', AppLocalizations.of(context).checkShapeSquare), ('circle', AppLocalizations.of(context).checkShapeCircle)].map((s) => ChoiceChip(label: Text(s.$2), selected: _checkShape == s.$1, onSelected: (_) => setState(() => _checkShape = s.$1))).toList()),

@@ -21,7 +21,7 @@ import '../core/models/scan_document.dart';
 import '../core/models/page_transform.dart';
 import '../core/models/signature_placement.dart';
 import '../core/providers/scan_provider.dart';
-import '../core/services/export_service.dart' show ExportService, FilterType;
+import '../core/services/export_service.dart' show ExportService, ExportFailedException, FilterType;
 import '../core/services/local_storage.dart';
 import '../core/services/ocr_service.dart';
 import '../core/services/print_service.dart';
@@ -71,11 +71,15 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
     final doc = document;
     if (doc == null) return;
     try {
-      await shareService.shareFiles(filePaths: doc.pagePaths);
+      final paths = await ExportService().renderPagesForShare(doc);
+      await shareService.shareFiles(filePaths: paths);
     } on ShareFailedException {
       if (!mounted) return;
       final l10n = AppLocalizations.of(context);
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.genericErrorMessage)));
+    } on ExportFailedException {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(AppLocalizations.of(context).genericErrorMessage)));
     }
   }
 
@@ -428,7 +432,8 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
     final rect = await showModalBottomSheet<Rect?>(context: context, isScrollControlled: true, builder: (context) => RegionSelectSheet(imagePath: doc.pagePaths[currentPageIndex]));
     if (rect == null || !mounted) return;
     final existing = doc.pageTransforms[currentPageIndex] ?? const PageTransform();
-    final updated = existing.copyWith(cropRect: rect);
+    // A new crop changes the page's size, so an older resize no longer fits.
+    final updated = existing.copyWith(cropRect: rect, clearResize: true);
     await scanProvider.updatePageTransform(doc.id, currentPageIndex, updated);
     if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.pageCropped)));
   }
@@ -526,6 +531,7 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
         child: RotateResizeSheet(
           mode: RotateResizeMode.resize,
           imagePath: doc.pagePaths[currentPageIndex],
+          baseSize: doc.pageTransforms[currentPageIndex]?.cropRect?.size,
         ),
       ),
     );
@@ -666,9 +672,17 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
     final doc = document;
     if (doc == null) return;
 
+    final List<String> paths;
+    try {
+      paths = await ExportService().renderPagesForShare(doc);
+    } on ExportFailedException {
+      if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.genericErrorMessage)));
+      return;
+    }
+
     try {
       await shareService.shareFiles(
-        filePaths: doc.pagePaths,
+        filePaths: paths,
         subject: doc.title,
         text: doc.ocrText.length > 500 ? '${doc.ocrText.substring(0, 500)}...' : doc.ocrText,
       );

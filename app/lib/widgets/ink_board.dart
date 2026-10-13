@@ -682,6 +682,7 @@ class _StampOverlayPageState extends State<StampOverlayPage> {
                       angle: layer.placement.rotationDegrees * 3.14159 / 180,
                       child: Text(
                         layer.text,
+                        textAlign: layer.align == 'right' ? TextAlign.right : (layer.align == 'center' ? TextAlign.center : TextAlign.left),
                         style: TextStyle(
                           fontSize: 100,
                           fontWeight: FontWeight.values.firstWhere((w) => w.value == layer.fontWeight, orElse: () => FontWeight.w700),

@@ -15,7 +15,12 @@ class RotateResizeSheet extends StatefulWidget {
     required this.imagePath,
     this.onApplyAll,
     this.initialTurns = 0,
+    this.baseSize,
   });
+
+  /// Size of the page as it is now (the cropped area, if the page is cropped).
+  /// Resize starts from this, not from the full photo.
+  final Size? baseSize;
 
   final RotateResizeMode mode;
   final String imagePath;
@@ -38,6 +43,17 @@ class RotateResizeSheetState extends State<RotateResizeSheet> {
   final TextEditingController _heightCtrl = TextEditingController();
   bool _aspectLock = true;
   double _origAspect = 1.0;
+  int _baseW = 1;
+  int _baseH = 1;
+
+  static const int _maxSide = 10000;
+  static const int _maxPixels = 40000000;
+
+  bool get _sizeValid {
+    final w = int.tryParse(_widthCtrl.text);
+    final h = int.tryParse(_heightCtrl.text);
+    return w != null && h != null && w >= 1 && h >= 1 && w <= _maxSide && h <= _maxSide && w * h <= _maxPixels;
+  }
 
   @override
   void initState() {
@@ -50,9 +66,12 @@ class RotateResizeSheetState extends State<RotateResizeSheet> {
       final bytes = await File(widget.imagePath).readAsBytes();
       _originalImage = img.decodeImage(bytes);
       if (_originalImage != null) {
-        _widthCtrl.text = _originalImage!.width.toString();
-        _heightCtrl.text = _originalImage!.height.toString();
-        _origAspect = _originalImage!.width / _originalImage!.height;
+        final Size? base = widget.baseSize;
+        _baseW = (base != null && base.width >= 1) ? base.width.round() : _originalImage!.width;
+        _baseH = (base != null && base.height >= 1) ? base.height.round() : _originalImage!.height;
+        _widthCtrl.text = _baseW.toString();
+        _heightCtrl.text = _baseH.toString();
+        _origAspect = _baseW / _baseH;
       }
       if (mounted) setState(() => _loading = false);
     } catch (_) {
@@ -117,13 +136,13 @@ class RotateResizeSheetState extends State<RotateResizeSheet> {
                   TextButton(onPressed: () => Navigator.pop(context), child: Text(AppLocalizations.of(context).commonCancel)),
                   const SizedBox(width: 12),
                   ElevatedButton(
-                    onPressed: () {
+                    onPressed: (widget.mode == RotateResizeMode.resize && !_sizeValid) ? null : () {
                       if (widget.mode == RotateResizeMode.rotate) {
                         widget.onApplyAll?.call(_applyAll);
                         Navigator.pop(context, _quarterTurns);
                       } else {
-                        final w = int.tryParse(_widthCtrl.text) ?? _originalImage!.width;
-                        final h = int.tryParse(_heightCtrl.text) ?? _originalImage!.height;
+                        final w = int.tryParse(_widthCtrl.text) ?? _baseW;
+                        final h = int.tryParse(_heightCtrl.text) ?? _baseH;
                         Navigator.pop(context, (w, h));
                       }
                     },
@@ -174,8 +193,8 @@ class RotateResizeSheetState extends State<RotateResizeSheet> {
   }
 
   Widget _buildResizePreview(Color textSecondary, Color accent) {
-    final origW = _originalImage!.width;
-    final origH = _originalImage!.height;
+    final origW = _baseW;
+    final origH = _baseH;
     final newW = int.tryParse(_widthCtrl.text) ?? origW;
     final newH = int.tryParse(_heightCtrl.text) ?? origH;
     final origBytes = File(widget.imagePath).lengthSync();
@@ -245,6 +264,11 @@ class RotateResizeSheetState extends State<RotateResizeSheet> {
             ),
         ]),
         const SizedBox(height: 12),
+        if (!_sizeValid)
+          Padding(
+            padding: const EdgeInsets.only(bottom: 8),
+            child: Text('1 - $_maxSide px', style: const TextStyle(fontSize: 12, color: Colors.red)),
+          ),
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
           decoration: BoxDecoration(
