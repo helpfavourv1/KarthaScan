@@ -17,8 +17,6 @@ img.Image _colored() {
   return im;
 }
 
-const String _pending = 'Confirmed bug, fix pending (see docs/OUTSTANDING.md)';
-
 void main() {
   group('filter probes', () {
   test('filter: the source picture is not changed by applying a filter', () {
@@ -51,14 +49,14 @@ void main() {
     final p = out.getPixel(0, 0);
     expect((p.r.toInt(), p.g.toInt(), p.b.toInt()), (200, 100, 50));
   });
-  }, skip: _pending);
+  });
 
-  group('export drops ALL edits when one step fails', () {
+  group('export never falls back to the unedited original ALL edits when one step fails', () {
     late Directory dir;
     setUp(() => dir = Directory.systemTemp.createTempSync('stress_'));
     tearDown(() => dir.deleteSync(recursive: true));
 
-    test('resize to 0 returns the untouched original (erased area comes back)', () async {
+    test('resize to 0 fails the render instead of returning the unedited original', () async {
       final img.Image page = img.Image(width: 40, height: 20);
       img.fill(page, color: img.ColorRgb8(255, 255, 255));
       final File file = File('${dir.path}/p.png')..writeAsBytesSync(img.encodePng(page));
@@ -87,10 +85,11 @@ void main() {
           ),
         },
       );
-      final bytes = await ExportService().renderPageForOutput(doc, 0);
-      final img.Image out = img.decodePng(bytes)!;
-      expect(out.getPixel(3, 3).r.toInt() < 128, isTrue,
-          reason: 'a failed resize made the export fall back to the unedited original; the erased (redacted) area is visible again');
+      await expectLater(
+        ExportService().renderPageForOutput(doc, 0),
+        throwsA(isA<ExportFailedException>()),
+      );
+      expect(ExportService().pageHasEdits(doc, 0), isTrue);
     });
-  }, skip: _pending);
+  });
 }
