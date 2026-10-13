@@ -353,6 +353,8 @@ class _ConvertScreenState extends State<ConvertScreen> {
         if (!mounted) return;
         if (success) {
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(AppLocalizations.of(context).savedAsNewDocument)));
+          // Make the converted pages searchable (runs in the background).
+          unawaited(provider.refreshOcrText(doc.id));
           await AdPacingService.instance.recordConvert();
           if (!mounted) return;
           context.pushReplacement('/scan/${doc.id}');

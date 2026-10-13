@@ -11,10 +11,12 @@
 import 'dart:async' show Completer, unawaited;
 import 'dart:io' show File, Directory;
 import 'dart:typed_data';
+import 'dart:ui' show Rect;
 import 'dart:math' show Random;
 
-import 'package:flutter/foundation.dart' show ValueNotifier, debugPrint;
+import 'package:flutter/foundation.dart' show ValueNotifier, debugPrint, listEquals;
 import 'package:flutter/services.dart' show Clipboard, ClipboardData;
+import 'package:image/image.dart' as img;
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
 
@@ -28,6 +30,7 @@ import '../services/notification_service.dart';
 import '../services/ocr_service.dart';
 import 'settings_provider.dart';
 import '../undo/undo_manager.dart';
+import '../utils/crop_convert.dart';
 import '../utils/page_remap.dart';
 
 enum ScanFlowState { idle, scanning, recognizingText, saving, error, unsupported }
@@ -199,17 +202,58 @@ class ScanProvider {
     String id,
     List<String> newPagePaths, {
     List<int?>? sourceIndices,
+    Map<int, int>? addTurns,
   }) async {
     final ScanDocument? existing = _findById(id);
     if (existing == null) return false;
     final List<int?> map =
         sourceIndices ?? matchPagesByPath(existing.pagePaths, newPagePaths);
-    final ScanDocument updated = remapPageEdits(existing, map).copyWith(
+    ScanDocument remapped = remapPageEdits(existing, map);
+    // Quarter turns added in the Pages manager are kept as an edit on the
+    // page, so the page keeps all its other edits.
+    if (addTurns != null && addTurns.isNotEmpty) {
+      final Map<int, PageTransform> transforms = Map<int, PageTransform>.from(remapped.pageTransforms);
+      addTurns.forEach((int index, int turns) {
+        if (index < 0 || index >= newPagePaths.length || turns % 4 == 0) return;
+        final PageTransform t = transforms[index] ?? const PageTransform();
+        transforms[index] = t.copyWith(rotationTurns: (t.rotationTurns + turns) % 4);
+      });
+      remapped = remapped.copyWith(pageTransforms: transforms);
+    }
+    // The cover follows the first page, as long as it was the first page.
+    final bool coverWasFirstPage = existing.pagePaths.isNotEmpty && existing.thumbnailPath == existing.pagePaths.first;
+    final ScanDocument updated = remapped.copyWith(
       pagePaths: newPagePaths,
       pageCount: newPagePaths.length,
+      thumbnailPath: (coverWasFirstPage && newPagePaths.isNotEmpty) ? newPagePaths.first : null,
       updatedAt: DateTime.now(),
     );
-    return _replaceAndSave(updated);
+    final bool pagesAddedOrRemoved =
+        !(existing.pagePaths.toSet().length == newPagePaths.toSet().length &&
+            existing.pagePaths.toSet().containsAll(newPagePaths));
+    final bool saved = await _replaceAndSave(updated);
+    // Search text must follow the pages: removed pages stop matching and
+    // added pages start matching. Runs in the background.
+    if (saved && pagesAddedOrRemoved) unawaited(refreshOcrText(id));
+    return saved;
+  }
+
+  /// Reads the text of every page again and stores it as the document's
+  /// search text. Does nothing when the reader finds no text at all.
+  Future<void> refreshOcrText(String id) async {
+    final ScanDocument? doc = _findById(id);
+    if (doc == null) return;
+    final List<String> paths = List<String>.from(doc.pagePaths);
+    String text;
+    try {
+      text = await _ocr.recognizeTextForPages(paths);
+    } catch (_) {
+      return;
+    }
+    if (text.trim().isEmpty) return;
+    final ScanDocument? current = _findById(id);
+    if (current == null || !listEquals(current.pagePaths, paths)) return;
+    await _replaceAndSave(current.copyWith(ocrText: text));
   }
 
   /// Copies a source image into the app's managed pages directory.
@@ -273,15 +317,39 @@ class ScanProvider {
   ) async {
     final ScanDocument? existing = _findById(id);
     if (existing == null) return null;
-    if (pageIndices.isEmpty) return null;
+    final List<int> valid = <int>[
+      for (final int idx in pageIndices)
+        if (idx >= 0 && idx < existing.pagePaths.length) idx,
+    ];
+    if (valid.isEmpty) return null;
     final List<String> copiedPaths = <String>[];
-    for (final int idx in pageIndices) {
-      if (idx < 0 || idx >= existing.pagePaths.length) continue;
+    for (final int idx in valid) {
       copiedPaths.add(await _copyToManaged(existing.pagePaths[idx]));
     }
-    if (copiedPaths.isEmpty) return null;
+    // The new document keeps each page's crop, rotation, erasing, filter and
+    // layers. Annotation pictures are copied so deleting one document never
+    // removes the other's drawings.
+    final ScanDocument remapped = remapPageEdits(existing, valid);
+    final Map<String, String> annotateCopies = <String, String>{};
+    final List<AnnotateLayer> annotateLayers = <AnnotateLayer>[];
+    for (final AnnotateLayer layer in remapped.annotateLayers) {
+      String path = annotateCopies[layer.bytesPath] ?? layer.bytesPath;
+      if (!annotateCopies.containsKey(layer.bytesPath)) {
+        try {
+          final Directory appDir = await getApplicationDocumentsDirectory();
+          final Directory dir = Directory(p.join(appDir.path, 'annotate_pages'));
+          await dir.create(recursive: true);
+          path = p.join(dir.path, 'ann_${DateTime.now().microsecondsSinceEpoch}_${annotateCopies.length}.png');
+          await File(layer.bytesPath).copy(path);
+        } catch (_) {
+          path = layer.bytesPath;
+        }
+        annotateCopies[layer.bytesPath] = path;
+      }
+      annotateLayers.add(layer.copyWith(bytesPath: path));
+    }
     final DateTime now = DateTime.now();
-    final ScanDocument newDoc = ScanDocument(
+    final ScanDocument newDoc = remapped.copyWith(
       id: _generateId(),
       title: (title != null && title.trim().isNotEmpty)
           ? title.trim()
@@ -292,8 +360,12 @@ class ScanProvider {
       updatedAt: now,
       ocrText: '',
       thumbnailPath: copiedPaths.first,
+      tags: const <String>[],
+      isFavorite: false,
+      annotateLayers: annotateLayers,
     );
     final bool success = await importDocument(newDoc);
+    if (success) unawaited(refreshOcrText(newDoc.id));
     return success ? newDoc : null;
   }
 
@@ -528,7 +600,13 @@ class ScanProvider {
   Future<bool> addWatermarkLayer(String id, WatermarkLayer layer) async {
     final ScanDocument? existing = _findById(id);
     if (existing == null) return false;
-    final updated = existing.copyWith(watermarkLayers: [...existing.watermarkLayers, layer], updatedAt: DateTime.now());
+    // A watermark is identified by its page and text, so adding the same text
+    // again on a page replaces the earlier one instead of making a twin that
+    // would be edited and removed together with it.
+    final List<WatermarkLayer> kept = existing.watermarkLayers
+        .where((l) => !(l.pageIndex == layer.pageIndex && l.text == layer.text))
+        .toList();
+    final updated = existing.copyWith(watermarkLayers: [...kept, layer], updatedAt: DateTime.now());
     _recordOverlayUndo(existing, updated, null);
     return _replaceAndSave(updated);
   }
@@ -594,16 +672,50 @@ class ScanProvider {
   }
 
 
+  /// Visible area of the whole photo, in pixels (read from the file header).
+  Future<Rect?> _photoRect(String path) async {
+    try {
+      final Uint8List bytes = await File(path).readAsBytes();
+      final img.DecodeInfo? info = img.findDecoderForData(bytes)?.startDecode(bytes);
+      if (info == null || info.width <= 0 || info.height <= 0) return null;
+      return Rect.fromLTWH(0, 0, info.width.toDouble(), info.height.toDouble());
+    } catch (_) {
+      return null;
+    }
+  }
+
+  bool _hasLayersOnPage(ScanDocument d, int pageIndex) =>
+      d.signatureLayers.any((l) => l.pageIndex == pageIndex) ||
+      d.annotateLayers.any((l) => l.pageIndex == pageIndex) ||
+      d.watermarkLayers.any((l) => l.pageIndex == pageIndex) ||
+      d.stampLayers.any((l) => l.pageIndex == pageIndex);
+
   Future<bool> updatePageTransform(String id, int pageIndex, PageTransform transform) async {
-    final ScanDocument? existing = _findById(id);
+    ScanDocument? existing = _findById(id);
     if (existing == null) return false;
-    final newTransforms = Map<int, PageTransform>.from(existing.pageTransforms);
+    // A changed crop moves what "50% across the page" means, so layers on the
+    // page are converted to keep them over the same part of the photo.
+    final Rect? oldCrop = existing.pageTransforms[pageIndex]?.cropRect;
+    final Rect? newCrop = transform.cropRect;
+    Rect? from;
+    Rect? to;
+    if (oldCrop != newCrop && _hasLayersOnPage(existing, pageIndex) && pageIndex < existing.pagePaths.length) {
+      final Rect? whole = (oldCrop == null || newCrop == null) ? await _photoRect(existing.pagePaths[pageIndex]) : null;
+      from = oldCrop ?? whole;
+      to = newCrop ?? whole;
+    }
+    // Read the document again: it may have changed while the file was read.
+    existing = _findById(id);
+    if (existing == null) return false;
+    ScanDocument base = existing;
+    if (from != null && to != null) base = convertLayersForCrop(existing, pageIndex, from, to);
+    final newTransforms = Map<int, PageTransform>.from(base.pageTransforms);
     if (transform.isEmpty) {
       newTransforms.remove(pageIndex);
     } else {
       newTransforms[pageIndex] = transform;
     }
-    final updated = existing.copyWith(pageTransforms: newTransforms, updatedAt: DateTime.now());
+    final updated = base.copyWith(pageTransforms: newTransforms, updatedAt: DateTime.now());
     _recordOverlayUndo(existing, updated, 'transform:$id:$pageIndex');
     return _replaceAndSave(updated);
   }

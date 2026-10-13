@@ -7,9 +7,16 @@ import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
 
-import 'package:image/image.dart' as img;
 import '../core/models/scan_document.dart';
 import '../l10n/app_localizations.dart';
+
+/// What the Pages manager hands back on Save: the pages in their new order,
+/// and for each page file the quarter turns added with "Rotate 90".
+class PagesManagerResult {
+  const PagesManagerResult({required this.paths, required this.turnsByPath});
+  final List<String> paths;
+  final Map<String, int> turnsByPath;
+}
 
 class PagesManagerSheet extends StatefulWidget {
   const PagesManagerSheet({
@@ -30,6 +37,40 @@ class PagesManagerSheet extends StatefulWidget {
 class PagesManagerSheetState extends State<PagesManagerSheet> {
   late List<String> _pages;
   final ImagePicker _picker = ImagePicker();
+  final Map<String, int> _turnsByPath = <String, int>{};
+  // Files this sheet created (copies of added, duplicated or merged pages).
+  // Whatever is not kept when the sheet closes is deleted again.
+  final List<String> _created = <String>[];
+  bool _saved = false;
+
+  @override
+  void dispose() {
+    for (final String path in _created) {
+      if (!_saved || !_pages.contains(path)) {
+        try {
+          File(path).deleteSync();
+        } catch (_) {}
+      }
+    }
+    super.dispose();
+  }
+
+  /// Copies a picked photo into the app's own storage. Pickers hand back files
+  /// in a cache folder that Android may clear, which would empty the page.
+  Future<String?> _importIntoApp(String sourcePath) async {
+    try {
+      final Directory appDir = await getApplicationDocumentsDirectory();
+      final Directory dir = Directory(p.join(appDir.path, 'managed_pages'));
+      await dir.create(recursive: true);
+      final String ext = p.extension(sourcePath).isEmpty ? '.jpg' : p.extension(sourcePath);
+      final String target = p.join(dir.path, 'managed_${DateTime.now().microsecondsSinceEpoch}$ext');
+      await File(sourcePath).copy(target);
+      _created.add(target);
+      return target;
+    } catch (_) {
+      return null;
+    }
+  }
 
   @override
   void initState() {
@@ -98,7 +139,7 @@ class PagesManagerSheetState extends State<PagesManagerSheet> {
                   TextButton(onPressed: () => Navigator.pop(context), child: Text(AppLocalizations.of(context).commonCancel)),
                   const SizedBox(width: 12),
                   ElevatedButton(
-                    onPressed: () => Navigator.pop(context, _pages),
+                    onPressed: () { _saved = true; Navigator.pop(context, PagesManagerResult(paths: List<String>.from(_pages), turnsByPath: Map<String, int>.from(_turnsByPath))); },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: accent,
                       foregroundColor: Colors.white,
@@ -129,7 +170,10 @@ class PagesManagerSheetState extends State<PagesManagerSheet> {
           child: SizedBox(
             width: 48,
             height: 64,
-            child: Image.file(File(_pages[index]), fit: BoxFit.cover, cacheWidth: 144),
+            child: RotatedBox(
+              quarterTurns: (_turnsByPath[_pages[index]] ?? 0) % 4,
+              child: Image.file(File(_pages[index]), fit: BoxFit.cover, cacheWidth: 144),
+            ),
           ),
         ),
         title: Text(AppLocalizations.of(context).pageLabel(index + 1), style: TextStyle(color: textPrimary, fontWeight: FontWeight.w600)),
@@ -174,25 +218,18 @@ class PagesManagerSheetState extends State<PagesManagerSheet> {
           'dup_${DateTime.now().microsecondsSinceEpoch}${p.extension(source)}',
         );
         await File(source).copy(copy);
+        _created.add(copy);
+        final int? turns = _turnsByPath[source];
+        if (turns != null) _turnsByPath[copy] = turns;
         if (mounted) setState(() => _pages.insert(index + 1, copy));
       } catch (_) {}
     } else if (action == 'rotate') {
-      // Write the rotated picture to a new file and point this tile at it, so
-      // the original file is untouched unless the person presses Save.
-      try {
-        final String source = _pages[index];
-        final bytes = await File(source).readAsBytes();
-        final decoded = img.decodeImage(bytes);
-        if (decoded != null) {
-          final rotated = img.copyRotate(decoded, angle: 90);
-          final String target = p.join(
-            p.dirname(source),
-            'rot_${DateTime.now().microsecondsSinceEpoch}.jpg',
-          );
-          await File(target).writeAsBytes(img.encodeJpg(rotated, quality: 95));
-          if (mounted) setState(() => _pages[index] = target);
-        }
-      } catch (_) {}
+      // The turn is stored as an edit on the page (applied on Save), so the
+      // picture file and everything already done to the page stay as they are.
+      setState(() {
+        final String path = _pages[index];
+        _turnsByPath[path] = ((_turnsByPath[path] ?? 0) + 1) % 4;
+      });
     } else if (action == 'extract') {
       final cb = widget.onExtract;
       if (cb != null) cb(index, _pages[index]);
@@ -245,11 +282,15 @@ class PagesManagerSheetState extends State<PagesManagerSheet> {
 
     if (choice == 'camera') {
       final xFile = await _picker.pickImage(source: ImageSource.camera);
-      if (xFile != null) setState(() => _pages.add(xFile.path));
+      if (xFile != null) {
+        final String? kept = await _importIntoApp(xFile.path);
+        if (kept != null && mounted) setState(() => _pages.add(kept));
+      }
     } else if (choice == 'import') {
       final result = await FilePicker.platform.pickFiles(type: FileType.image);
       if (result != null && result.files.single.path != null) {
-        setState(() => _pages.add(result.files.single.path!));
+        final String? kept = await _importIntoApp(result.files.single.path!);
+        if (kept != null && mounted) setState(() => _pages.add(kept));
       }
     } else if (choice == 'document') {
       if (!mounted) return;
@@ -275,7 +316,8 @@ class PagesManagerSheetState extends State<PagesManagerSheet> {
           final fileName = '${DateTime.now().microsecondsSinceEpoch}_${p.basename(path)}';
           final newPath = p.join(combinedDir.path, fileName);
           await File(path).copy(newPath);
-          setState(() => _pages.add(newPath));
+          _created.add(newPath);
+          if (mounted) setState(() => _pages.add(newPath));
         }
       }
     }

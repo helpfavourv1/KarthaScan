@@ -44,6 +44,17 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
   // --- Host-supplied dependencies ---
   ScanProvider get scanProvider;
   InkController get inkController;
+
+  /// Reloads the signature controller from the saved document. Needed after
+  /// anything that moves or renumbers layers (crop, revert, page changes),
+  /// otherwise the controller keeps the old positions, draws the signature
+  /// in the wrong place and writes the old state back on its next change.
+  void resyncInkFromDocument() {
+    final d = document;
+    if (d == null) return;
+    inkController.restoreFrom(d);
+    if (mounted) setState(() {});
+  }
   LocalStorageService get localStorage;
   OcrService get ocrService;
   ShareService get shareService;
@@ -435,6 +446,7 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
     // A new crop changes the page's size, so an older resize no longer fits.
     final updated = existing.copyWith(cropRect: rect, clearResize: true);
     await scanProvider.updatePageTransform(doc.id, currentPageIndex, updated);
+    resyncInkFromDocument();
     if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.pageCropped)));
   }
 
@@ -461,6 +473,7 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
     if (confirmed != true || !mounted) return;
 
     await scanProvider.revertPageTransform(doc.id, currentPageIndex);
+    resyncInkFromDocument();
     if (mounted) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.pageRevertedToOriginal)));
     }
@@ -548,7 +561,7 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
     final doc = document;
     if (doc == null || doc.pagePaths.isEmpty) return;
 
-    final newPaths = await showModalBottomSheet<List<String>>(
+    final result = await showModalBottomSheet<PagesManagerResult>(
       context: context,
       isScrollControlled: true,
       builder: (ctx) => PagesManagerSheet(
@@ -571,9 +584,15 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
         },
       ),
     );
-    if (newPaths == null || !mounted) return;
+    if (result == null || !mounted) return;
 
-    await scanProvider.updateDocumentPages(doc.id, newPaths);
+    // Quarter turns are given by position in the new order.
+    final Map<int, int> addTurns = <int, int>{
+      for (int i = 0; i < result.paths.length; i++)
+        if ((result.turnsByPath[result.paths[i]] ?? 0) % 4 != 0) i: result.turnsByPath[result.paths[i]]! % 4,
+    };
+    await scanProvider.updateDocumentPages(doc.id, result.paths, addTurns: addTurns);
+    resyncInkFromDocument();
     if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.pagesUpdated)));
   }
 
