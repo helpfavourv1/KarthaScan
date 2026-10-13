@@ -48,7 +48,6 @@ class _FullScreenEditScreenState extends State<FullScreenEditScreen> with Docume
   String? _fillText;
   double? _fillGhostPctX;
   double? _fillGhostPctY;
-  int? _fillGhostPageIndex;
   List<FillSnippet> _fillSnippets = [];
 
   @override
@@ -92,7 +91,6 @@ class _FullScreenEditScreenState extends State<FullScreenEditScreen> with Docume
     setState(() {
       _fillGhostPctX = pctX;
       _fillGhostPctY = pctY;
-      _fillGhostPageIndex = pageIndex;
       _editMode = TrayEditMode.fill;
     });
     final result = await showModalBottomSheet<StampResult>(
@@ -140,7 +138,7 @@ class _FullScreenEditScreenState extends State<FullScreenEditScreen> with Docume
       if (doc != null) await _scanProvider.addStampLayer(doc.id, layer);
     }
     _fillSheetOpen = false;
-    if (mounted) setState(() { _fillGhostPctX = null; _fillGhostPctY = null; _fillGhostPageIndex = null; _editMode = TrayEditMode.none; });
+    if (mounted) setState(() { _fillGhostPctX = null; _fillGhostPctY = null; _editMode = TrayEditMode.none; });
   }
 
   Future<void> _persistSignature() async {
