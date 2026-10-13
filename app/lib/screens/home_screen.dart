@@ -13,6 +13,7 @@ import '../core/providers/scan_provider.dart';
 import '../core/providers/settings_provider.dart';
 import '../core/providers/theme_provider.dart';
 import '../core/services/share_service.dart';
+import '../core/services/export_service.dart' show ExportService;
 import '../core/utils/constants.dart';
 import '../l10n/app_localizations.dart';
 import '../widgets/empty_state.dart';
