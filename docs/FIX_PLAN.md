@@ -2,7 +2,7 @@
 
 Rules for every batch: smallest fix, no refactors, `build_and_deploy.yml` untouched, I run only the compile check (never the APK build), you rebuild the APK after a batch and test the "phone check" line. Numbers match `docs/OUTSTANDING.md`.
 
-## Batch A: what leaves the app must be correct (export, share, filters)
+## Batch A: what leaves the app must be correct (export, share, filters) - CODE DONE, compile check passed, needs phone check
 | # | Problem | Fix | Phone check |
 |---|---|---|---|
 | 1 | Share/Email/home-list share send raw photos | Share and Email render each page through the same function Export/Print use, then send those files | Edit a page (crop, stamp, erase), Share: the received file shows the edits |
