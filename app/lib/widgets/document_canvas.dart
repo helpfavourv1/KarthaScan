@@ -1,5 +1,6 @@
 import 'dart:io' show File;
 import 'dart:typed_data';
+import 'package:flutter/foundation.dart' show compute;
 import 'package:flutter/material.dart';
 import 'package:image/image.dart' as img;
 import '../core/models/scan_document.dart';
@@ -264,24 +265,14 @@ class _PageWithInkState extends State<_PageWithInk> {
       final file = File(widget.pagePath);
       final bytes = await file.readAsBytes();
       if (!mounted || generation != _loadGeneration) return;
-      // Read the size from the file header; decoding the whole picture is only
-      // needed when there are edits to bake into the preview.
+      // The size comes from the file header; the picture itself is only
+      // decoded (in a background isolate) when there are edits to bake in.
       final transform = widget.pageTransforms[widget.pageIndex];
       final bool needsProcessing = transform != null &&
           (transform.cropRect != null || transform.resizeWidth != null || transform.filter != FilterType.none || transform.eraserStrokes.isNotEmpty);
-      img.Image? decoded;
-      int? width;
-      int? height;
-      if (needsProcessing) {
-        decoded = img.decodeImage(bytes);
-        width = decoded?.width;
-        height = decoded?.height;
-      } else {
-        final img.DecodeInfo? info = img.findDecoderForData(bytes)?.startDecode(bytes);
-        width = info?.width;
-        height = info?.height;
-      }
-      if (!mounted || generation != _loadGeneration) return;
+      final img.DecodeInfo? info = img.findDecoderForData(bytes)?.startDecode(bytes);
+      final int? width = info?.width;
+      final int? height = info?.height;
       if (width != null && height != null && height > 0) {
         final double aspect = (width / height).clamp(0.1, 10.0).toDouble();
         setState(() {
@@ -289,49 +280,11 @@ class _PageWithInkState extends State<_PageWithInk> {
           if (!needsProcessing) _filteredBytes = null;
         });
       }
-      if (transform != null && needsProcessing && decoded != null) {
-        img.Image processed = decoded;
-        // Erase on the full original first: the eraser sheet shows the
-        // uncropped page, so its strokes are in original-image coordinates.
-        if (transform.eraserStrokes.isNotEmpty) {
-          for (final s in transform.eraserStrokes) {
-            final pts = (s['points'] as List<dynamic>)
-                .map((e) => (e as List<dynamic>).map((v) => (v as num).toDouble()).toList())
-                .toList();
-            final colorInt = s['color'] as int;
-            final color = img.ColorRgba8((colorInt >> 16) & 0xFF, (colorInt >> 8) & 0xFF, colorInt & 0xFF, (colorInt >> 24) & 0xFF);
-            final wf = (s['width'] as num).toDouble();
-            final thickness = (wf * processed.width).clamp(1.0, processed.width / 2).round();
-            final isRect = s['rect'] as bool? ?? false;
-            if (isRect && pts.length >= 2) {
-              final x1 = (pts[0][0] * processed.width).round();
-              final y1 = (pts[0][1] * processed.height).round();
-              final x2 = (pts[1][0] * processed.width).round();
-              final y2 = (pts[1][1] * processed.height).round();
-              img.fillRect(processed, x1: x1, y1: y1, x2: x2, y2: y2, color: color);
-            } else {
-              for (int i = 0; i < pts.length - 1; i++) {
-                final x1 = (pts[i][0] * processed.width).round();
-                final y1 = (pts[i][1] * processed.height).round();
-                final x2 = (pts[i + 1][0] * processed.width).round();
-                final y2 = (pts[i + 1][1] * processed.height).round();
-                img.drawLine(processed, x1: x1, y1: y1, x2: x2, y2: y2, color: color, thickness: thickness, antialias: true);
-              }
-            }
-          }
+      if (needsProcessing && transform != null) {
+        final Uint8List? processed = await compute(renderPagePreview, PagePreviewJob(bytes, transform));
+        if (processed != null && mounted && generation == _loadGeneration) {
+          setState(() => _filteredBytes = processed);
         }
-        if (transform.cropRect != null && transform.cropRect!.width > 0 && transform.cropRect!.height > 0) {
-          final r = transform.cropRect!;
-          processed = img.copyCrop(processed, x: r.left.round(), y: r.top.round(), width: r.width.round(), height: r.height.round());
-        }
-        if ((transform.resizeWidth ?? 0) > 0 && (transform.resizeHeight ?? 0) > 0) {
-          processed = img.copyResize(processed, width: transform.resizeWidth!, height: transform.resizeHeight!);
-        }
-        if (transform.filter != FilterType.none) {
-          processed = FilterService.applyToImage(processed, transform.filter, intensity: transform.filterIntensity);
-        }
-        final processedBytes = Uint8List.fromList(img.encodeJpg(processed, quality: 85));
-        if (mounted && generation == _loadGeneration) setState(() => _filteredBytes = processedBytes);
       }
     } catch (_) {}
   }
@@ -545,5 +498,73 @@ class _PageWithInkState extends State<_PageWithInk> {
         );
       },
     );
+  }
+}
+
+
+/// Input for [renderPagePreview]; plain data so it can cross to an isolate.
+class PagePreviewJob {
+  const PagePreviewJob(this.bytes, this.transform);
+  final Uint8List bytes;
+  final PageTransform transform;
+}
+
+/// Longest side of the preview picture. The preview is shown on a phone
+/// screen (zoom up to 4x), so a full-resolution copy only wastes memory.
+const int kPreviewMaxSide = 2000;
+
+/// Builds the edited preview of a page (erase, crop, resize, filter) and
+/// returns it as a JPG. Runs in a background isolate. Null if it fails.
+Uint8List? renderPagePreview(PagePreviewJob job) {
+  try {
+    final PageTransform transform = job.transform;
+    img.Image? processed = img.decodeImage(job.bytes);
+    if (processed == null) return null;
+    // Erase on the full original first: the eraser sheet shows the
+    // uncropped page, so its strokes are in original-image coordinates.
+    for (final s in transform.eraserStrokes) {
+      final pts = (s['points'] as List<dynamic>)
+          .map((e) => (e as List<dynamic>).map((v) => (v as num).toDouble()).toList())
+          .toList();
+      final colorInt = s['color'] as int;
+      final color = img.ColorRgba8((colorInt >> 16) & 0xFF, (colorInt >> 8) & 0xFF, colorInt & 0xFF, (colorInt >> 24) & 0xFF);
+      final wf = (s['width'] as num).toDouble();
+      final thickness = (wf * processed.width).clamp(1.0, processed.width / 2).round();
+      final isRect = s['rect'] as bool? ?? false;
+      if (isRect && pts.length >= 2) {
+        final x1 = (pts[0][0] * processed.width).round();
+        final y1 = (pts[0][1] * processed.height).round();
+        final x2 = (pts[1][0] * processed.width).round();
+        final y2 = (pts[1][1] * processed.height).round();
+        img.fillRect(processed, x1: x1, y1: y1, x2: x2, y2: y2, color: color);
+      } else {
+        for (int i = 0; i < pts.length - 1; i++) {
+          final x1 = (pts[i][0] * processed.width).round();
+          final y1 = (pts[i][1] * processed.height).round();
+          final x2 = (pts[i + 1][0] * processed.width).round();
+          final y2 = (pts[i + 1][1] * processed.height).round();
+          img.drawLine(processed, x1: x1, y1: y1, x2: x2, y2: y2, color: color, thickness: thickness, antialias: true);
+        }
+      }
+    }
+    final r = transform.cropRect;
+    if (r != null && r.width > 0 && r.height > 0) {
+      processed = img.copyCrop(processed, x: r.left.round(), y: r.top.round(), width: r.width.round(), height: r.height.round());
+    }
+    if ((transform.resizeWidth ?? 0) > 0 && (transform.resizeHeight ?? 0) > 0) {
+      processed = img.copyResize(processed, width: transform.resizeWidth!, height: transform.resizeHeight!);
+    }
+    final int longest = processed.width > processed.height ? processed.width : processed.height;
+    if (longest > kPreviewMaxSide) {
+      processed = processed.width >= processed.height
+          ? img.copyResize(processed, width: kPreviewMaxSide)
+          : img.copyResize(processed, height: kPreviewMaxSide);
+    }
+    if (transform.filter != FilterType.none) {
+      processed = FilterService.applyToImage(processed, transform.filter, intensity: transform.filterIntensity);
+    }
+    return Uint8List.fromList(img.encodeJpg(processed, quality: 85));
+  } catch (_) {
+    return null;
   }
 }

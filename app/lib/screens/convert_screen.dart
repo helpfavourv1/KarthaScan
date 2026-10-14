@@ -38,7 +38,12 @@ class ConvertScreen extends StatefulWidget {
   State<ConvertScreen> createState() => _ConvertScreenState();
 }
 
+class _ConversionCancelled implements Exception {
+  const _ConversionCancelled();
+}
+
 class _ConvertScreenState extends State<ConvertScreen> {
+  bool _cancelRequested = false;
   final ExportService _exportService = ExportService();
   _TargetFormat _target = _TargetFormat.pdf;
   _ActionType _action = _ActionType.exportShare;
@@ -126,12 +131,17 @@ class _ConvertScreenState extends State<ConvertScreen> {
         if (pngs.isNotEmpty) {
           final ocr = OcrService();
           final text = StringBuffer();
-          for (int i = 0; i < pngs.length; i++) {
-            final page = await ocr.recognizeTextAuto(imagePath: pngs[i]);
-            if (text.isNotEmpty) text.writeln();
-            text.write(page.fullText);
+          try {
+            for (int i = 0; i < pngs.length; i++) {
+              if (_cancelRequested) throw const _ConversionCancelled();
+              _report(0.6 + 0.39 * (i / pngs.length), l10n.progressExtractingText);
+              final page = await ocr.recognizeTextAuto(imagePath: pngs[i]);
+              if (text.isNotEmpty) text.writeln();
+              text.write(page.fullText);
+            }
+          } finally {
+            await ocr.dispose();
           }
-          await ocr.dispose();
           final out = p.join(outDir.path, 'conv_$ts.csv');
           await File(out).writeAsString(csvFromText(text.toString()));
           finalPaths.add(out);
@@ -141,12 +151,16 @@ class _ConvertScreenState extends State<ConvertScreen> {
         final pngs = await PdfToImagesService().convertToImages(src, onProgress: (v, l) => _report(0.3 + v * 0.4, l));
         final sb = StringBuffer();
         final ocr = OcrService();
-        for (int i = 0; i < pngs.length; i++) {
-          _report(0.7 + 0.29 * ((i + 1) / pngs.length), l10n.progressExtractingText);
-          final r = await ocr.recognizeTextAuto(imagePath: pngs[i]);
-          sb.writeln(r.fullText);
+        try {
+          for (int i = 0; i < pngs.length; i++) {
+            if (_cancelRequested) throw const _ConversionCancelled();
+            _report(0.7 + 0.29 * (i / pngs.length), l10n.progressExtractingText);
+            final r = await ocr.recognizeTextAuto(imagePath: pngs[i]);
+            sb.writeln(r.fullText);
+          }
+        } finally {
+          await ocr.dispose();
         }
-        await ocr.dispose();
         final out = p.join(outDir.path, 'conv_$ts.txt');
         await File(out).writeAsString(sb.toString());
         finalPaths.add(out);
@@ -295,6 +309,7 @@ class _ConvertScreenState extends State<ConvertScreen> {
   }
 
   Future<void> _run() async {
+    _cancelRequested = false;
     setState(() {
       _isConverting = true;
       _progress = 0.0;
@@ -365,6 +380,8 @@ class _ConvertScreenState extends State<ConvertScreen> {
         if (!mounted) return;
         Navigator.of(context).pop();
       }
+    } on _ConversionCancelled {
+      // The person stopped the conversion; nothing to report.
     } catch (e) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('${AppLocalizations.of(context).conversionFailedPrefix}: $e')));
@@ -397,6 +414,11 @@ class _ConvertScreenState extends State<ConvertScreen> {
                       Text('${(_progress * 100).round()}%', style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w700)),
                       const SizedBox(height: 4),
                       Text(_progressLabel, style: const TextStyle(fontSize: 13)),
+                      const SizedBox(height: 16),
+                      TextButton(
+                        onPressed: _cancelRequested ? null : () => setState(() => _cancelRequested = true),
+                        child: Text(AppLocalizations.of(context).commonCancel),
+                      ),
                     ],
                   ),
                 ),

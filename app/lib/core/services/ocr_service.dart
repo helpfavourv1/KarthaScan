@@ -104,6 +104,8 @@ class OcrService {
       try {
         final OcrResult candidate = await recognizeText(imagePath: imagePath, script: script);
         if (isClearlyBetter(best.fullText, candidate.fullText)) best = candidate;
+        // Enough text found: the remaining scripts would only repeat the work.
+        if (!needsScriptFallback(best.fullText)) break;
       } on OcrUnavailableException {
         // Script not available on this device; keep what we have.
       }

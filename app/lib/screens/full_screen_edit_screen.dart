@@ -191,6 +191,7 @@ class _FullScreenEditScreenState extends State<FullScreenEditScreen> with Docume
       _selectedWatermarkText = null;
       _selectedStampId = null;
     });
+    _inkController.showSignatureAdIfPending();
   }
 
   @override
@@ -283,7 +284,7 @@ class _FullScreenEditScreenState extends State<FullScreenEditScreen> with Docume
                   bottom: false,
                   child: Row(
                     children: [
-                      IconButton(icon: const Icon(Icons.close), color: textPrimary, onPressed: () => context.pop()),
+                      IconButton(icon: const Icon(Icons.close), color: textPrimary, onPressed: () { _inkController.showSignatureAdIfPending(); context.pop(); }),
                       Expanded(
                         child: Text(
                           doc.title,

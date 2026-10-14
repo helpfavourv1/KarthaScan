@@ -35,6 +35,16 @@ class InkController {
   String? activeInkId;
   String? editInkId;
 
+  /// True once a signature was drawn and its ad has not been shown yet. The ad
+  /// appears when the editor closes, not while the person is still placing it.
+  bool signatureAdPending = false;
+
+  void showSignatureAdIfPending() {
+    if (!signatureAdPending) return;
+    signatureAdPending = false;
+    unawaited(InterstitialAdService.instance.showAfterSignature());
+  }
+
   void _notify() => onChange?.call();
 
   void seed(ScanDocument doc) {
@@ -98,7 +108,7 @@ class InkController {
 
     // Central signature-completion hook: covers export, fullscreen edit, tray, and scan-detail surfaces
     unawaited(AdPacingService.instance.recordSignature());
-    unawaited(InterstitialAdService.instance.showAfterSignature());
+    signatureAdPending = true;
 
     final decoded = img.decodePng(bytes);
     final aspect = (decoded != null && decoded.height > 0)
@@ -298,6 +308,29 @@ class AnnotateOverlayPage extends StatefulWidget {
 class _AnnotateOverlayPageState extends State<AnnotateOverlayPage> {
   final Map<String, Uint8List> _cache = {};
   final Map<String, double> _aspectCache = {};
+  final Set<String> _loading = <String>{};
+
+  /// Reads an annotation picture without blocking the screen. The size comes
+  /// from the file header, so the picture is not decoded just to measure it.
+  Future<void> _load(String path) async {
+    if (!_loading.add(path)) return;
+    Uint8List bytes = Uint8List(0);
+    double? aspect;
+    try {
+      final file = File(path);
+      if (await file.exists()) {
+        bytes = await file.readAsBytes();
+        final img.DecodeInfo? info = img.findDecoderForData(bytes)?.startDecode(bytes);
+        if (info != null && info.height > 0) aspect = info.width / info.height;
+      }
+    } catch (_) {}
+    _loading.remove(path);
+    if (!mounted) return;
+    setState(() {
+      _cache[path] = bytes;
+      if (aspect != null) _aspectCache[path] = aspect;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -305,18 +338,11 @@ class _AnnotateOverlayPageState extends State<AnnotateOverlayPage> {
       children: [
         for (final layer in widget.layers.where((l) => l.pageIndex == widget.pageIndex))
           Builder(builder: (context) {
-            if (!_cache.containsKey(layer.bytesPath)) {
-              if (File(layer.bytesPath).existsSync()) {
-                _cache[layer.bytesPath] = File(layer.bytesPath).readAsBytesSync();
-                final decoded = img.decodeImage(_cache[layer.bytesPath]!);
-                if (decoded != null && decoded.height > 0) {
-                  _aspectCache[layer.bytesPath] = decoded.width / decoded.height;
-                }
-              } else {
-                _cache[layer.bytesPath] = Uint8List(0);
-              }
+            final Uint8List? bytes = _cache[layer.bytesPath];
+            if (bytes == null) {
+              _load(layer.bytesPath);
+              return const SizedBox.shrink();
             }
-            final bytes = _cache[layer.bytesPath]!;
             if (bytes.isEmpty) return const SizedBox.shrink();
             final sigW = widget.iw * 0.28 * layer.placement.scale;
             final aspect = _aspectCache[layer.bytesPath] ?? 2.0;

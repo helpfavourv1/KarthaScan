@@ -407,6 +407,8 @@ class ExportService {
     );
 
     for (int i = 0; i < document.pagePaths.length; i++) {
+      // Let the screen draw a frame between pages so the app stays responsive.
+      await Future<void>.delayed(Duration.zero);
       final bytes = await _processPage(
         document.pagePaths[i],
         filter: filter,
@@ -776,6 +778,7 @@ class ExportService {
     final outputPaths = <String>[];
     final isMultiPage = document.pagePaths.length > 1;
     for (int i = 0; i < document.pagePaths.length; i++) {
+      await Future<void>.delayed(Duration.zero);
       final processedBytes = await _processPage(
         document.pagePaths[i],
         filter: filter,

@@ -109,6 +109,7 @@ class _ScanDetailScreenState extends State<ScanDetailScreen>
       _lastAddedWatermarkText = null;
       _lastAddedStampId = null;
     });
+    _inkController.showSignatureAdIfPending();
   }
 
   @override
