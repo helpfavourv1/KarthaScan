@@ -280,7 +280,7 @@ class _PageWithInkState extends State<_PageWithInk> {
           if (!needsProcessing) _filteredBytes = null;
         });
       }
-      if (needsProcessing && transform != null) {
+      if (needsProcessing) {
         final Uint8List? processed = await compute(renderPagePreview, PagePreviewJob(bytes, transform));
         if (processed != null && mounted && generation == _loadGeneration) {
           setState(() => _filteredBytes = processed);
