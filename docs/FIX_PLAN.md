@@ -37,7 +37,7 @@ Phone check: reorder, delete, rotate, add from camera, extract; edits stay, sear
 | 20 | Seal: re-tap Logo reopens picker; "star"/"image" centre text misread | Keep existing logo unless user picks again; store mode separately |
 | 22 | Ad right after drawing a signature | Move the ad to after the signature is placed |
 
-## Batch D: speed and memory (with queued 3.6)
+## Batch D: speed and memory (with queued 3.6) - CODE DONE, lint and tests passed, needs phone check
 | # | Problem | Fix |
 |---|---|---|
 | 4 | Preview re-decodes and re-renders the full photo on the UI thread; export holds all pages | Do the work in an isolate, cache the result, render pages one at a time |
