@@ -27,7 +27,7 @@ Unskip the 3 probe tests in `stress_findings_test.dart` once 2, 5 are fixed.
 | 9 | Watermark/signature identity collides (same text, same ink twice) | Give each layer its own id; key edits by id |
 Phone check: reorder, delete, rotate, add from camera, extract; edits stay, search finds the right text.
 
-## Batch C: tool screens and gestures
+## Batch C: tool screens and gestures - CODE DONE, compile check passed, needs phone check (item 22 held for your decision)
 | # | Problem | Fix |
 |---|---|---|
 | 13 | Text box shows on Checkbox and Date sheets | Put the TextField inside the text/note condition |
