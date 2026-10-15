@@ -569,6 +569,14 @@
   "@exportFormatCsvDescription": {
     "description": "Localized string for exportFormatCsvDescription"
   },
+  "watermarkDefaultText": "VERTROUWELIJK",
+  "@watermarkDefaultText": {
+    "description": "Localized string for watermarkDefaultText"
+  },
+  "emailAttachmentNotIncluded": "De pagina's konden niet aan de e-mail worden toegevoegd. Gebruik Delen om de pagina's te versturen.",
+  "@emailAttachmentNotIncluded": {
+    "description": "Localized string for emailAttachmentNotIncluded"
+  },
   "sealDefaultMainText": "UW BEDRIJF",
   "@sealDefaultMainText": {
     "description": "Localized string for sealDefaultMainText"

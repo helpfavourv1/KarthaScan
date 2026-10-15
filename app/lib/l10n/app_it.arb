@@ -569,6 +569,14 @@
   "@exportFormatCsvDescription": {
     "description": "Localized string for exportFormatCsvDescription"
   },
+  "watermarkDefaultText": "RISERVATO",
+  "@watermarkDefaultText": {
+    "description": "Localized string for watermarkDefaultText"
+  },
+  "emailAttachmentNotIncluded": "Non è stato possibile allegare le pagine all'email. Usa Condividi per inviare le pagine.",
+  "@emailAttachmentNotIncluded": {
+    "description": "Localized string for emailAttachmentNotIncluded"
+  },
   "sealDefaultMainText": "LA TUA AZIENDA",
   "@sealDefaultMainText": {
     "description": "Localized string for sealDefaultMainText"

@@ -569,6 +569,14 @@
   "@exportFormatCsvDescription": {
     "description": "Localized string for exportFormatCsvDescription"
   },
+  "watermarkDefaultText": "POUFNE",
+  "@watermarkDefaultText": {
+    "description": "Localized string for watermarkDefaultText"
+  },
+  "emailAttachmentNotIncluded": "Nie udało się dołączyć stron do e-maila. Użyj Udostępnij, aby wysłać strony.",
+  "@emailAttachmentNotIncluded": {
+    "description": "Localized string for emailAttachmentNotIncluded"
+  },
   "sealDefaultMainText": "TWOJA FIRMA",
   "@sealDefaultMainText": {
     "description": "Localized string for sealDefaultMainText"

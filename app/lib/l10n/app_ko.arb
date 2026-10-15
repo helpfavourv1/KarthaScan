@@ -476,6 +476,14 @@
   "@exportFormatCsvDescription": {
     "description": "Localized string for exportFormatCsvDescription"
   },
+  "watermarkDefaultText": "기밀",
+  "@watermarkDefaultText": {
+    "description": "Localized string for watermarkDefaultText"
+  },
+  "emailAttachmentNotIncluded": "페이지를 이메일에 첨부하지 못했습니다. 공유 기능으로 페이지를 보내세요.",
+  "@emailAttachmentNotIncluded": {
+    "description": "Localized string for emailAttachmentNotIncluded"
+  },
   "sealDefaultMainText": "귀하의 회사",
   "@sealDefaultMainText": {
     "description": "Localized string for sealDefaultMainText"

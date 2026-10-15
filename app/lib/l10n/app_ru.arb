@@ -569,6 +569,14 @@
   "@exportFormatCsvDescription": {
     "description": "Localized string for exportFormatCsvDescription"
   },
+  "watermarkDefaultText": "КОНФИДЕНЦИАЛЬНО",
+  "@watermarkDefaultText": {
+    "description": "Localized string for watermarkDefaultText"
+  },
+  "emailAttachmentNotIncluded": "Не удалось прикрепить страницы к письму. Используйте «Поделиться», чтобы отправить страницы.",
+  "@emailAttachmentNotIncluded": {
+    "description": "Localized string for emailAttachmentNotIncluded"
+  },
   "sealDefaultMainText": "ВАША КОМПАНИЯ",
   "@sealDefaultMainText": {
     "description": "Localized string for sealDefaultMainText"

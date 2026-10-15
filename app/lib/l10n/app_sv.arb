@@ -569,6 +569,14 @@
   "@exportFormatCsvDescription": {
     "description": "Localized string for exportFormatCsvDescription"
   },
+  "watermarkDefaultText": "KONFIDENTIELLT",
+  "@watermarkDefaultText": {
+    "description": "Localized string for watermarkDefaultText"
+  },
+  "emailAttachmentNotIncluded": "Sidorna kunde inte bifogas e-postmeddelandet. Använd Dela för att skicka sidorna.",
+  "@emailAttachmentNotIncluded": {
+    "description": "Localized string for emailAttachmentNotIncluded"
+  },
   "sealDefaultMainText": "DITT FÖRETAG",
   "@sealDefaultMainText": {
     "description": "Localized string for sealDefaultMainText"

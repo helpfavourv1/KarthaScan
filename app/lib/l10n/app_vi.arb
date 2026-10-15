@@ -569,6 +569,14 @@
   "@exportFormatCsvDescription": {
     "description": "Localized string for exportFormatCsvDescription"
   },
+  "watermarkDefaultText": "BẢO MẬT",
+  "@watermarkDefaultText": {
+    "description": "Localized string for watermarkDefaultText"
+  },
+  "emailAttachmentNotIncluded": "Không thể đính kèm các trang vào email. Hãy dùng Chia sẻ để gửi các trang.",
+  "@emailAttachmentNotIncluded": {
+    "description": "Localized string for emailAttachmentNotIncluded"
+  },
   "sealDefaultMainText": "CÔNG TY CỦA BẠN",
   "@sealDefaultMainText": {
     "description": "Localized string for sealDefaultMainText"

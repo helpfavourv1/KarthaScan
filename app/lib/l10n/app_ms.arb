@@ -569,6 +569,14 @@
   "@exportFormatCsvDescription": {
     "description": "Localized string for exportFormatCsvDescription"
   },
+  "watermarkDefaultText": "SULIT",
+  "@watermarkDefaultText": {
+    "description": "Localized string for watermarkDefaultText"
+  },
+  "emailAttachmentNotIncluded": "Halaman tidak dapat dilampirkan pada e-mel. Gunakan Kongsi untuk menghantar halaman.",
+  "@emailAttachmentNotIncluded": {
+    "description": "Localized string for emailAttachmentNotIncluded"
+  },
   "sealDefaultMainText": "SYARIKAT ANDA",
   "@sealDefaultMainText": {
     "description": "Localized string for sealDefaultMainText"

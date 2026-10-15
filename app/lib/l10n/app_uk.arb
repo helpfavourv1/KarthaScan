@@ -569,6 +569,14 @@
   "@exportFormatCsvDescription": {
     "description": "Localized string for exportFormatCsvDescription"
   },
+  "watermarkDefaultText": "КОНФІДЕНЦІЙНО",
+  "@watermarkDefaultText": {
+    "description": "Localized string for watermarkDefaultText"
+  },
+  "emailAttachmentNotIncluded": "Не вдалося додати сторінки до листа. Використайте «Поділитися», щоб надіслати сторінки.",
+  "@emailAttachmentNotIncluded": {
+    "description": "Localized string for emailAttachmentNotIncluded"
+  },
   "sealDefaultMainText": "ВАША КОМПАНІЯ",
   "@sealDefaultMainText": {
     "description": "Localized string for sealDefaultMainText"

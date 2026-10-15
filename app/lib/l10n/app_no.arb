@@ -569,6 +569,14 @@
   "@exportFormatCsvDescription": {
     "description": "Localized string for exportFormatCsvDescription"
   },
+  "watermarkDefaultText": "KONFIDENSIELT",
+  "@watermarkDefaultText": {
+    "description": "Localized string for watermarkDefaultText"
+  },
+  "emailAttachmentNotIncluded": "Sidene kunne ikke legges ved e-posten. Bruk Del for å sende sidene.",
+  "@emailAttachmentNotIncluded": {
+    "description": "Localized string for emailAttachmentNotIncluded"
+  },
   "sealDefaultMainText": "DITT SELSKAP",
   "@sealDefaultMainText": {
     "description": "Localized string for sealDefaultMainText"

@@ -476,6 +476,14 @@
   "@exportFormatCsvDescription": {
     "description": "Localized string for exportFormatCsvDescription"
   },
+  "watermarkDefaultText": "RAHASIA",
+  "@watermarkDefaultText": {
+    "description": "Localized string for watermarkDefaultText"
+  },
+  "emailAttachmentNotIncluded": "Halaman tidak dapat dilampirkan ke email. Gunakan Bagikan untuk mengirim halaman.",
+  "@emailAttachmentNotIncluded": {
+    "description": "Localized string for emailAttachmentNotIncluded"
+  },
   "sealDefaultMainText": "PERUSAHAAN ANDA",
   "@sealDefaultMainText": {
     "description": "Localized string for sealDefaultMainText"

@@ -476,6 +476,14 @@
   "@exportFormatCsvDescription": {
     "description": "Localized string for exportFormatCsvDescription"
   },
+  "watermarkDefaultText": "سري",
+  "@watermarkDefaultText": {
+    "description": "Localized string for watermarkDefaultText"
+  },
+  "emailAttachmentNotIncluded": "تعذر إرفاق الصفحات بالبريد. استخدم المشاركة لإرسال الصفحات.",
+  "@emailAttachmentNotIncluded": {
+    "description": "Localized string for emailAttachmentNotIncluded"
+  },
   "sealDefaultMainText": "شركتك",
   "@sealDefaultMainText": {
     "description": "Localized string for sealDefaultMainText"

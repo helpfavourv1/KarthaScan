@@ -569,6 +569,14 @@
   "@exportFormatCsvDescription": {
     "description": "Localized string for exportFormatCsvDescription"
   },
+  "watermarkDefaultText": "FORTROLIGT",
+  "@watermarkDefaultText": {
+    "description": "Localized string for watermarkDefaultText"
+  },
+  "emailAttachmentNotIncluded": "Siderne kunne ikke vedhæftes e-mailen. Brug Del for at sende siderne.",
+  "@emailAttachmentNotIncluded": {
+    "description": "Localized string for emailAttachmentNotIncluded"
+  },
   "sealDefaultMainText": "DIT FIRMA",
   "@sealDefaultMainText": {
     "description": "Localized string for sealDefaultMainText"

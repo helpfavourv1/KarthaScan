@@ -476,6 +476,14 @@
   "@exportFormatCsvDescription": {
     "description": "Localized string for exportFormatCsvDescription"
   },
+  "watermarkDefaultText": "CONFIDENTIEL",
+  "@watermarkDefaultText": {
+    "description": "Localized string for watermarkDefaultText"
+  },
+  "emailAttachmentNotIncluded": "Les pages n'ont pas pu être jointes à l'e-mail. Utilisez Partager pour envoyer les pages.",
+  "@emailAttachmentNotIncluded": {
+    "description": "Localized string for emailAttachmentNotIncluded"
+  },
   "sealDefaultMainText": "VOTRE ENTREPRISE",
   "@sealDefaultMainText": {
     "description": "Localized string for sealDefaultMainText"

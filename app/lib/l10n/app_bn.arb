@@ -569,6 +569,14 @@
   "@exportFormatCsvDescription": {
     "description": "Localized string for exportFormatCsvDescription"
   },
+  "watermarkDefaultText": "গোপনীয়",
+  "@watermarkDefaultText": {
+    "description": "Localized string for watermarkDefaultText"
+  },
+  "emailAttachmentNotIncluded": "পৃষ্ঠাগুলো ইমেইলে সংযুক্ত করা যায়নি। পৃষ্ঠা পাঠাতে শেয়ার ব্যবহার করুন।",
+  "@emailAttachmentNotIncluded": {
+    "description": "Localized string for emailAttachmentNotIncluded"
+  },
   "sealDefaultMainText": "আপনার কোম্পানি",
   "@sealDefaultMainText": {
     "description": "Localized string for sealDefaultMainText"

@@ -569,6 +569,14 @@
   "@exportFormatCsvDescription": {
     "description": "Localized string for exportFormatCsvDescription"
   },
+  "watermarkDefaultText": "GİZLİ",
+  "@watermarkDefaultText": {
+    "description": "Localized string for watermarkDefaultText"
+  },
+  "emailAttachmentNotIncluded": "Sayfalar e-postaya eklenemedi. Sayfaları göndermek için Paylaş'ı kullanın.",
+  "@emailAttachmentNotIncluded": {
+    "description": "Localized string for emailAttachmentNotIncluded"
+  },
   "sealDefaultMainText": "ŞİRKETİNİZ",
   "@sealDefaultMainText": {
     "description": "Localized string for sealDefaultMainText"
