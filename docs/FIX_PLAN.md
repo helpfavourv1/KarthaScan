@@ -27,7 +27,7 @@ Unskip the 3 probe tests in `stress_findings_test.dart` once 2, 5 are fixed.
 | 9 | Watermark/signature identity collides (same text, same ink twice) | Give each layer its own id; key edits by id |
 Phone check: reorder, delete, rotate, add from camera, extract; edits stay, search finds the right text.
 
-## Batch C: tool screens and gestures - CODE DONE, compile check passed, needs phone check (item 22 held for your decision)
+## Batch C: tool screens and gestures - CODE DONE, compile check passed, needs phone check (item 22 done: ad shows when the editor closes after a signature was added)
 | # | Problem | Fix |
 |---|---|---|
 | 13 | Text box shows on Checkbox and Date sheets | Put the TextField inside the text/note condition |
@@ -46,7 +46,7 @@ Phone check: reorder, delete, rotate, add from camera, extract; edits stay, sear
 | 21 | Low-text pages trigger 4 OCR passes | Same rule as above |
 Phone check: a 20+ page document scrolls and exports without freezing.
 
-## Batch E: low items
+## Batch E: low items - CODE DONE, compile check running, no phone test needed (orphan file deletion and rotated-page crop views intentionally skipped)
 Convert cleanup of `converted_docs`; txt to csv conversion; print filter names and Watermark default localised; orphan annotation/rotated files; Email fallback tells the user the attachment was dropped; print dialog controllers; crop/eraser/region/resize sheets show the rotated page.
 
 ## Decisions made
