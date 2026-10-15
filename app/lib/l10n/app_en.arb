@@ -581,6 +581,14 @@
   "@exportFormatCsvDescription": {
     "description": "Localized string for exportFormatCsvDescription"
   },
+  "watermarkDefaultText": "CONFIDENTIAL",
+  "@watermarkDefaultText": {
+    "description": "Default text of a new watermark"
+  },
+  "emailAttachmentNotIncluded": "The pages could not be attached to the email. Use Share to send the pages.",
+  "@emailAttachmentNotIncluded": {
+    "description": "Shown when the email app was opened without the pages attached"
+  },
   "sealDefaultMainText": "YOUR COMPANY",
   "@sealDefaultMainText": {
     "description": "Localized string for sealDefaultMainText"

@@ -18,6 +18,7 @@ class WatermarkSheet extends StatefulWidget {
 
 class _WatermarkSheetState extends State<WatermarkSheet> {
   late final TextEditingController _textController;
+  bool _needsDefaultText = false;
   late double _opacity;
   late double _fontSize;
   late int _color;
@@ -42,10 +43,20 @@ class _WatermarkSheetState extends State<WatermarkSheet> {
   ];
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (_needsDefaultText) {
+      _needsDefaultText = false;
+      _textController.text = AppLocalizations.of(context).watermarkDefaultText;
+    }
+  }
+
+  @override
   void initState() {
     super.initState();
     final c = widget.initialConfig;
-    _textController = TextEditingController(text: c?.text ?? 'CONFIDENTIAL');
+    _textController = TextEditingController(text: c?.text ?? '');
+    _needsDefaultText = c?.text == null;
     _opacity = c?.opacity ?? 0.15;
     _fontSize = c?.fontSize ?? 48;
     _color = c?.color ?? 0xFF8E8E93;

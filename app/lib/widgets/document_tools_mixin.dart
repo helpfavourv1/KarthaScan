@@ -638,7 +638,7 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
                   isExpanded: true,
                   underline: const SizedBox.shrink(),
                   onChanged: (v) => setDialogState(() => filter = v!),
-                  items: FilterType.values.map((f) => DropdownMenuItem(value: f, child: Text(f == FilterType.none ? l10n.printFilterNone : f.name))).toList(),
+                  items: FilterType.values.map((f) => DropdownMenuItem(value: f, child: Text(f == FilterType.none ? l10n.printFilterNone : f == FilterType.grayscale ? l10n.filterGrayscale : f == FilterType.blackAndWhite ? l10n.filterBlackAndWhite : f == FilterType.colorEnhance ? l10n.filterColorEnhance : l10n.filterShadowRemoval))).toList(),
                 ),
                 SwitchListTile(
                   title: Text(l10n.letterSizeUS),
@@ -657,8 +657,11 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
     );
     final fromText = fromCtrl.text;
     final toText = toCtrl.text;
-    fromCtrl.dispose();
-    toCtrl.dispose();
+    // The dialog's close animation may still read the controllers.
+    Future<void>.delayed(const Duration(milliseconds: 500), () {
+      fromCtrl.dispose();
+      toCtrl.dispose();
+    });
     if (confirmed != true || !mounted) return;
 
     List<int>? indices;
@@ -717,6 +720,7 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
     try {
       if (await canLaunchUrl(uri)) {
         await launchUrl(uri, mode: LaunchMode.externalApplication);
+        if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.emailAttachmentNotIncluded)));
       } else {
         if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.noEmailAppFound)));
       }

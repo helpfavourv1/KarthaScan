@@ -106,6 +106,22 @@ class _ConvertScreenState extends State<ConvertScreen> {
     }
   }
 
+  /// Removes converted files older than a day that no document uses.
+  Future<void> _cleanOldConverted(Directory dir) async {
+    try {
+      final used = <String>{};
+      for (final d in Provider.of<ScanProvider>(context, listen: false).documents.value) {
+        used.addAll(d.pagePaths);
+        used.add(d.thumbnailPath);
+      }
+      final cutoff = DateTime.now().subtract(const Duration(days: 1));
+      await for (final e in dir.list()) {
+        if (e is! File || used.contains(e.path)) continue;
+        if ((await e.lastModified()).isBefore(cutoff)) await e.delete();
+      }
+    } catch (_) {}
+  }
+
   Future<List<String>> _convert() async {
     final l10n = AppLocalizations.of(context);
     final String src = widget.sourcePath;
@@ -114,6 +130,7 @@ class _ConvertScreenState extends State<ConvertScreen> {
     final appDir = await getApplicationDocumentsDirectory();
     final outDir = Directory(p.join(appDir.path, 'converted_docs'));
     await outDir.create(recursive: true);
+    await _cleanOldConverted(outDir);
     final ts = DateTime.now().microsecondsSinceEpoch;
 
     List<String> finalPaths = [];
@@ -222,7 +239,7 @@ class _ConvertScreenState extends State<ConvertScreen> {
       } else if (_target == _TargetFormat.csv) {
         _report(0.5, l10n.progressCopying);
         final out = p.join(outDir.path, 'conv_$ts.csv');
-        await File(src).copy(out);
+        await File(out).writeAsString(csvFromText(await File(src).readAsString()));
         finalPaths.add(out);
       } else if (_target == _TargetFormat.docx) {
         _report(0.5, l10n.progressBuildingDocx);
