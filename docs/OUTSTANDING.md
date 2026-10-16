@@ -37,7 +37,11 @@ compile check (lint, unit tests, Kotlin compile) is green on `main`.
 - Edit tray buttons have a 48 px touch area (compact tray too).
 - Unused storagePath setting removed; stale phosphoricons entry removed from pubspec.lock.
 - Database version 2: tags are searchable; old search index is rebuilt on upgrade. Check: add a tag, search for it. Undo rollback on a failed save NOT done on purpose: when the database is unavailable every save reports failure, so a rollback would undo every edit on screen.
-- Next up (approved): Batch G, CJK fonts downloaded on first use from the GitHub repo and Hindi/Indic text drawn as pictures in generated PDFs.
+
+## Batch G: CJK and Hindi text in generated PDFs (done in code, compile check green, needs a phone check)
+- Chinese/Japanese/Korean: fonts live in `fonts_remote/` in the repo (SC 10.6 MB, JP 5.8 MB, KR 6.2 MB). The app downloads the one it needs the first time a PDF has that text, checks its SHA-256, keeps it in the app's private folder. Offline: PDF is made without it (boxes) and the download is not retried for 5 minutes. Needs the repo to stay public and `fonts_remote/` to stay on `main`.
+- Hindi, other Indic scripts, Hebrew, Thai: those lines are drawn as pictures with the phone's own fonts (TXT, DOCX, CSV to PDF). Text is not selectable there. The hidden text layer of searchable PDFs is unchanged.
+- Check: convert a TXT with Chinese, Korean and Japanese lines to PDF with data on (first time downloads, shows the text), then offline (cached, still works). Convert a TXT with Hindi, Hebrew and Thai lines: all readable. CSV with Hindi cells: table shows them.
 
 ## Phase 5 status
 
