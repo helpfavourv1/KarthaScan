@@ -76,6 +76,7 @@ flutter:
     - assets/onboarding/
     - assets/fonts/NotoSans-Regular.ttf
     - assets/fonts/NotoSansArabic-Regular.ttf
+    - assets/licenses/
 
   fonts:
     - family: PlusJakartaSans

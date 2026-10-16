@@ -231,7 +231,15 @@ class _EditTrayState extends State<EditTray> with SingleTickerProviderStateMixin
   }
 
   Widget _buildCoach(_TrayItem item, Color coachFill, Color coachBorder, Color iconColor, Color textColor, Color hubColor, Color spokeColor) {
-    return Padding(
+    // The whole coach (button and wheels) is the touch target, at least 48 x 48,
+    // so the compact tray's small buttons are still easy to hit.
+    return GestureDetector(
+      key: ValueKey<String>('trayTarget:${item.label}'),
+      behavior: HitTestBehavior.opaque,
+      onTap: item.onTap,
+      child: ConstrainedBox(
+      constraints: const BoxConstraints(minWidth: 48, minHeight: 48),
+      child: Padding(
       padding: const EdgeInsets.symmetric(horizontal: 2),
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -295,6 +303,8 @@ class _EditTrayState extends State<EditTray> with SingleTickerProviderStateMixin
           ),
         ],
       ),
+    ),
+    ),
     );
   }
 }

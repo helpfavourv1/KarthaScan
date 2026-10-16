@@ -102,10 +102,6 @@ class SettingsProvider {
   Future<bool> setLanguage(String languageCode) =>
       _persist(settings.value.copyWith(language: languageCode));
 
-  /// Pass null to clear a storage-path override back to the app default.
-  Future<bool> setStoragePath(String? path) =>
-      _persist(settings.value.copyWith(storagePath: path));
-
   /// Called by subscription_provider.dart when the authoritative
   /// entitlement state changes, keeping UserSettings.adsRemoved — a cached
   /// convenience flag for instant cold-start UI — in sync. Not meant to

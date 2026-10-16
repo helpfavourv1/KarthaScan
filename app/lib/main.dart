@@ -1,6 +1,8 @@
 import 'dart:async' show unawaited;
 
+import 'package:flutter/foundation.dart' show LicenseEntryWithLineBreaks, LicenseRegistry;
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart' show rootBundle;
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -23,6 +25,7 @@ import 'platform/permission_service.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  _registerFontLicenses();
 
   final PermissionService permission = PermissionService();
 
@@ -82,4 +85,18 @@ Future<void> main() async {
       child: const KatharScanApp(),
     ),
   );
+}
+
+/// Lists the bundled fonts' SIL Open Font Licences on the licences page.
+void _registerFontLicenses() {
+  const fonts = <String, List<String>>{
+    'assets/licenses/OFL-NotoSans.txt': ['Noto Sans'],
+    'assets/licenses/OFL-NotoSansArabic.txt': ['Noto Sans Arabic'],
+    'assets/licenses/OFL-PlusJakartaSans.txt': ['Plus Jakarta Sans'],
+  };
+  LicenseRegistry.addLicense(() async* {
+    for (final e in fonts.entries) {
+      yield LicenseEntryWithLineBreaks(e.value, await rootBundle.loadString(e.key));
+    }
+  });
 }

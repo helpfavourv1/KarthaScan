@@ -785,7 +785,7 @@ class _FeatureTicker extends StatefulWidget {
 class _FeatureTickerState extends State<_FeatureTicker> with SingleTickerProviderStateMixin {
   static const List<String> _features = <String>[
     'FREE UNLIMITED OCR',
-    '100% ON-DEVICE PRIVACY',
+    'YOUR DOCUMENTS STAY ON YOUR DEVICE',
     'NO ACCOUNT',
     'NO WATERMARKS',
     '21-TOOL EDIT SUITE',
@@ -830,7 +830,7 @@ class _FeatureTickerState extends State<_FeatureTicker> with SingleTickerProvide
     'E-SIGN',
     'BATCH EXPORT',
     'NO WATERMARKS',
-    '100% ON-DEVICE PRIVACY',
+    'YOUR DOCUMENTS STAY ON YOUR DEVICE',
     'TAP-TO-TYPE FILLING',
   };
 
@@ -915,7 +915,7 @@ class _FeatureTickerState extends State<_FeatureTicker> with SingleTickerProvide
   String _localizeTickerFeature(String feature, AppLocalizations l10n) {
     final map = <String, String Function()>{
       'FREE UNLIMITED OCR': () => l10n.tickerFreeUnlimitedOcr,
-      '100% ON-DEVICE PRIVACY': () => l10n.ticker100OnDevicePrivacy,
+      'YOUR DOCUMENTS STAY ON YOUR DEVICE': () => l10n.ticker100OnDevicePrivacy,
       'NO ACCOUNT': () => l10n.tickerNoAccount,
       'NO WATERMARKS': () => l10n.tickerNoWatermarks,
       '21-TOOL EDIT SUITE': () => l10n.ticker21ToolEditSuite,

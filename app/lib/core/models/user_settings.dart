@@ -9,7 +9,6 @@ class UserSettings {
   const UserSettings({
     this.themeMode = ThemeMode.system,
     this.accentColor = AppColors.defaultAccentColor,
-    this.storagePath,
     this.language = AppLocales.defaultLanguageCode,
     this.adsRemoved = false,
     this.autoCopyOcr = false,
@@ -23,7 +22,6 @@ class UserSettings {
 
   final ThemeMode themeMode;
   final Color accentColor;
-  final String? storagePath;
   final String language;
   final bool adsRemoved;
   final bool autoCopyOcr;
@@ -39,7 +37,6 @@ class UserSettings {
   UserSettings copyWith({
     ThemeMode? themeMode,
     Color? accentColor,
-    Object? storagePath = _unset,
     String? language,
     bool? adsRemoved,
     bool? autoCopyOcr,
@@ -53,7 +50,6 @@ class UserSettings {
     return UserSettings(
       themeMode: themeMode ?? this.themeMode,
       accentColor: accentColor ?? this.accentColor,
-      storagePath: identical(storagePath, _unset) ? this.storagePath : storagePath as String?,
       language: language ?? this.language,
       adsRemoved: adsRemoved ?? this.adsRemoved,
       autoCopyOcr: autoCopyOcr ?? this.autoCopyOcr,
@@ -70,7 +66,6 @@ class UserSettings {
     return <String, dynamic>{
       'themeMode': themeMode.name,
       'accentColorArgb': _colorToArgb(accentColor),
-      'storagePath': storagePath,
       'language': language,
       'adsRemoved': adsRemoved,
       'autoCopyOcr': autoCopyOcr,
@@ -88,7 +83,6 @@ class UserSettings {
     return UserSettings(
       themeMode: ThemeMode.values.byName(json['themeMode'] as String? ?? ThemeMode.system.name),
       accentColor: json['accentColorArgb'] == null ? AppColors.accentLight : _colorFromArgb(json['accentColorArgb'] as int),
-      storagePath: json['storagePath'] as String?,
       language: json['language'] as String? ?? (() {
         final deviceLocale = PlatformDispatcher.instance.locale;
         return AppLocales.supportedLanguageCodes.firstWhere(
@@ -121,7 +115,7 @@ class UserSettings {
     if (identical(this, other)) return true;
     return other is UserSettings &&
         other.themeMode == themeMode && other.accentColor == accentColor &&
-        other.storagePath == storagePath && other.language == language &&
+        other.language == language &&
         other.adsRemoved == adsRemoved && other.autoCopyOcr == autoCopyOcr &&
         other.beepOnCapture == beepOnCapture && other.vibrateOnCapture == vibrateOnCapture &&
         other.enableNotifications == enableNotifications && other.enableReviewPrompts == enableReviewPrompts &&
@@ -130,7 +124,7 @@ class UserSettings {
 
   @override
   int get hashCode {
-    final int base = Object.hash(themeMode, accentColor, storagePath, language, adsRemoved, autoCopyOcr, beepOnCapture, vibrateOnCapture, enableNotifications, enableReviewPrompts, enableSharePrompts);
+    final int base = Object.hash(themeMode, accentColor, language, adsRemoved, autoCopyOcr, beepOnCapture, vibrateOnCapture, enableNotifications, enableReviewPrompts, enableSharePrompts);
     if (lastWatermark == null) return base;
     final int mapHash = Object.hashAll(lastWatermark!.entries.map((MapEntry<String, dynamic> e) => Object.hash(e.key, e.value)));
     return Object.hash(base, mapHash);
