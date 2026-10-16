@@ -35,7 +35,7 @@ class DocxParserService {
     final pdf = pw.Document();
     pdf.addPage(
       pw.MultiPage(
-        theme: await PdfFonts.theme(),
+        theme: await PdfFonts.theme(text: paragraphs.join('\n')),
         pageFormat: PdfPageFormat.a4,
         build: (pw.Context context) => paragraphs
             .map((para) => pw.Paragraph(

@@ -46,7 +46,7 @@ class CsvToPdfService {
     final pdf = pw.Document();
     pdf.addPage(
       pw.MultiPage(
-        theme: await PdfFonts.theme(),
+        theme: await PdfFonts.theme(text: text),
         pageFormat: PdfPageFormat.a4,
         build: (pw.Context context) => tables,
       ),

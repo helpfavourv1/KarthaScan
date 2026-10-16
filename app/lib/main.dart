@@ -93,6 +93,7 @@ void _registerFontLicenses() {
     'assets/licenses/OFL-NotoSans.txt': ['Noto Sans'],
     'assets/licenses/OFL-NotoSansArabic.txt': ['Noto Sans Arabic'],
     'assets/licenses/OFL-PlusJakartaSans.txt': ['Plus Jakarta Sans'],
+    'assets/licenses/OFL-NotoSansCJK.txt': ['Noto Sans SC, JP and KR (downloaded for PDF text)'],
   };
   LicenseRegistry.addLicense(() async* {
     for (final e in fonts.entries) {

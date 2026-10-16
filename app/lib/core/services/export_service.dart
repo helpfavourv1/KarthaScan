@@ -434,7 +434,7 @@ class ExportService {
 
       pdfDoc.addPage(
         pw.Page(
-          theme: await PdfFonts.theme(),
+          theme: await PdfFonts.theme(text: blocks.map((OcrBlock b) => b.text).join(' ')),
           pageFormat: pageFmt,
           build: (pw.Context context) {
             if (probed == null || blocks.isEmpty) {
@@ -507,7 +507,7 @@ class ExportService {
       final emptyMsg = lookupAppLocalizations(matchLocale).emptyDocumentMessage;
       pdfDoc.addPage(
         pw.Page(
-          theme: await PdfFonts.theme(),
+          theme: await PdfFonts.theme(text: emptyMsg),
           pageFormat: pageFormat,
           build: (pw.Context context) => pw.Center(
             child: pw.Text(emptyMsg),
