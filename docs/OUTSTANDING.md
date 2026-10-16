@@ -31,6 +31,14 @@ compile check (lint, unit tests, Kotlin compile) is green on `main`.
 | 4.4 | Android 13+ phone: gallery import (image and PDF) and Save to Downloads still work; no photo-access permission prompt appears. |
 | 4.3 | Privacy manifest builds in Xcode/Codemagic without warnings (iOS). |
 
+## Batch F and database v2 (done in code, compile check green, needs a phone check)
+- Licences page lists Noto Sans, Noto Sans Arabic and Plus Jakarta Sans (SIL OFL). Check: Settings > Open source licences.
+- Privacy wording: ticker "YOUR DOCUMENTS STAY ON YOUR DEVICE", onboarding title "Private by design" in all 26 languages (my translations, native review advised).
+- Edit tray buttons have a 48 px touch area (compact tray too).
+- Unused storagePath setting removed; stale phosphoricons entry removed from pubspec.lock.
+- Database version 2: tags are searchable; old search index is rebuilt on upgrade. Check: add a tag, search for it. Undo rollback on a failed save NOT done on purpose: when the database is unavailable every save reports failure, so a rollback would undo every edit on screen.
+- Next up (approved): Batch G, CJK fonts downloaded on first use from the GitHub repo and Hindi/Indic text drawn as pictures in generated PDFs.
+
 ## Phase 5 status
 
 Done in code: 5.2 backups, 5.3 CSV/DOCX text fixes, 5.4 debounce and wildcard escape, 5.5 dead code removal and README.
@@ -48,7 +56,6 @@ Left (needs more than code, or higher risk):
 - If a save fails the change stays on screen with an error (no rollback).
 - `ITSAppUsesNonExemptEncryption` is a legal declaration for the owner to make.
 - Share and review prompts default ON for new installs only.
-- In-app wording still says "100% ON-DEVICE PRIVACY" (ticker) and "100% Private" (onboarding): ads and purchases use the network. Changing it means new text in 26 languages; your call on the wording.
 - Ads now start after the tracking prompt is answered, even if the answer is "Ask app not to track" (non-personalised ads). Before, a "no" blocked ads entirely.
 
 ## Waiting on the owner (Phase 4)
