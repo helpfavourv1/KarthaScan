@@ -14,7 +14,7 @@ void main() {
   });
 
   testWidgets('a Hindi line becomes a picture, an English line stays text', (WidgetTester tester) async {
-    final pw.Widget? picture = await tester.runAsync(
+    final pw.Widget? picture = await tester.runAsync<pw.Widget?>(
         () => ComplexScriptText.render('नमस्ते दुनिया', fontSize: 12, maxWidth: 400));
     expect(picture, isA<pw.Image>());
     final pw.Widget text = (await tester.runAsync(() => ComplexScriptText.paragraph('Hello')))!;
