@@ -5,6 +5,7 @@ import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
+import 'complex_script_text.dart';
 import 'debug_log_service.dart';
 import 'pdf_fonts.dart';
 
@@ -33,16 +34,15 @@ class DocxParserService {
     }
 
     final pdf = pw.Document();
+    final List<pw.Widget> paragraphWidgets = <pw.Widget>[];
+    for (final String para in paragraphs) {
+      paragraphWidgets.add(await ComplexScriptText.paragraph(para, maxWidth: ComplexScriptText.a4TextWidth));
+    }
     pdf.addPage(
       pw.MultiPage(
         theme: await PdfFonts.theme(text: paragraphs.join('\n')),
         pageFormat: PdfPageFormat.a4,
-        build: (pw.Context context) => paragraphs
-            .map((para) => pw.Paragraph(
-                  text: para,
-                  style: const pw.TextStyle(fontSize: 12),
-                ))
-            .toList(),
+        build: (pw.Context context) => paragraphWidgets,
       ),
     );
     

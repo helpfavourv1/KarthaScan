@@ -4,6 +4,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 import '../utils/csv_utils.dart';
+import 'complex_script_text.dart';
 import 'debug_log_service.dart';
 import 'pdf_fonts.dart';
 
@@ -40,6 +41,30 @@ class CsvToPdfService {
         cellStyle: const pw.TextStyle(fontSize: 9),
         border: pw.TableBorder.all(),
       ));
+    }
+
+    if (ComplexScriptText.hasComplex(text)) {
+      // Joined scripts are drawn as pictures, so build the table by hand.
+      tables.clear();
+      final int cols = rows.fold<int>(1, (int m, List<String> r) => r.length > m ? r.length : m);
+      final double cellWidth = ComplexScriptText.a4TextWidth / cols - 8;
+      final List<pw.TableRow> tableRows = <pw.TableRow>[];
+      for (int r = 0; r < rows.length; r++) {
+        final List<pw.Widget> cells = <pw.Widget>[];
+        for (int c = 0; c < cols; c++) {
+          final String cell = c < rows[r].length ? rows[r][c] : '';
+          final double size = r == 0 ? 10 : 9;
+          final pw.Widget? picture = ComplexScriptText.hasComplex(cell)
+              ? await ComplexScriptText.render(cell, fontSize: size, maxWidth: cellWidth)
+              : null;
+          cells.add(pw.Padding(
+            padding: const pw.EdgeInsets.all(3),
+            child: picture ?? pw.Text(cell, style: pw.TextStyle(fontSize: size, fontWeight: r == 0 ? pw.FontWeight.bold : pw.FontWeight.normal)),
+          ));
+        }
+        tableRows.add(pw.TableRow(children: cells));
+      }
+      tables.add(pw.Table(border: pw.TableBorder.all(), children: tableRows));
     }
 
     onProgress?.call(0.7, 'Building tables…');

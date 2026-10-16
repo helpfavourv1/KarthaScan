@@ -3,6 +3,7 @@ import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
+import 'complex_script_text.dart';
 import 'debug_log_service.dart';
 import 'pdf_fonts.dart';
 
@@ -15,18 +16,16 @@ class TxtToPdfService {
     final text = await File(txtPath).readAsString();
     onProgress?.call(0.5, 'Parsing…');
     final pdf = pw.Document();
+    final List<pw.Widget> paragraphs = <pw.Widget>[];
+    for (final String line in text.split('\n')) {
+      paragraphs.add(await ComplexScriptText.paragraph(line, maxWidth: ComplexScriptText.a4TextWidth));
+    }
 
     pdf.addPage(
       pw.MultiPage(
         theme: await PdfFonts.theme(text: text),
         pageFormat: PdfPageFormat.a4,
-        build: (pw.Context context) => text
-            .split('\n')
-            .map((line) => pw.Paragraph(
-                  text: line,
-                  style: const pw.TextStyle(fontSize: 12),
-                ))
-            .toList(),
+        build: (pw.Context context) => paragraphs,
       ),
     );
 
