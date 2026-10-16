@@ -18,7 +18,7 @@ import '../models/fill_snippet.dart';
 
 class LocalStorageService {
   static const String _dbFileName = 'katharscan.db';
-  static const int _dbVersion = 1;
+  static const int _dbVersion = 2;
   static const String _settingsPrefsKey = 'katharscan.user_settings.v1';
 
   Database? _db;
@@ -64,6 +64,11 @@ class LocalStorageService {
           ''');
           await _createFtsTable(db);
         },
+        // Version 2: tags became searchable. Rebuild the search index from the
+        // documents table; the documents themselves are not touched.
+        onUpgrade: (Database db, int oldVersion, int newVersion) async {
+          if (oldVersion < 2) await _rebuildFtsWithTags(db);
+        },
       );
       _dbAvailable = true;
     } catch (error, stackTrace) {
@@ -94,11 +99,42 @@ class LocalStorageService {
         CREATE VIRTUAL TABLE documents_fts USING fts5(
           id UNINDEXED,
           title,
-          ocr_text
+          ocr_text,
+          tags
         )
       ''');
     } catch (error, stackTrace) {
       _logError('_createFtsTable', error, stackTrace);
+    }
+  }
+
+  Future<void> _rebuildFtsWithTags(Database db) async {
+    try {
+      await db.transaction((Transaction txn) async {
+        await txn.execute('DROP TABLE IF EXISTS documents_fts');
+        await _createFtsTable(txn);
+        final List<Map<String, Object?>> rows =
+            await txn.query('documents', columns: <String>['id', 'title', 'ocr_text', 'tags']);
+        for (final Map<String, Object?> row in rows) {
+          await txn.insert('documents_fts', <String, Object?>{
+            'id': row['id'],
+            'title': row['title'],
+            'ocr_text': row['ocr_text'],
+            'tags': _tagsText(row['tags']),
+          });
+        }
+      });
+    } catch (error, stackTrace) {
+      _logError('_rebuildFtsWithTags', error, stackTrace);
+    }
+  }
+
+  /// Tags are stored as a JSON list; the search index wants plain words.
+  static String _tagsText(Object? json) {
+    try {
+      return (jsonDecode(json as String) as List<dynamic>).join(' ');
+    } catch (_) {
+      return '';
     }
   }
 
@@ -180,6 +216,7 @@ class LocalStorageService {
             'id': document.id,
             'title': document.title,
             'ocr_text': document.ocrText,
+            'tags': document.tags.join(' '),
           });
         });
       } else {
@@ -252,8 +289,8 @@ class LocalStorageService {
             '%${trimmed.replaceAll(r'\', r'\\').replaceAll('%', r'\%').replaceAll('_', r'\_')}%';
         final List<Map<String, Object?>> rows = await _db!.query(
           'documents',
-          where: 'title LIKE ? ESCAPE ? OR ocr_text LIKE ? ESCAPE ?',
-          whereArgs: <Object?>[likePattern, r'\', likePattern, r'\'],
+          where: 'title LIKE ? ESCAPE ? OR ocr_text LIKE ? ESCAPE ? OR tags LIKE ? ESCAPE ?',
+          whereArgs: <Object?>[likePattern, r'\', likePattern, r'\', likePattern, r'\'],
           orderBy: 'updated_at DESC',
         );
         return _documentsFromRows(rows);
@@ -266,7 +303,8 @@ class LocalStorageService {
     final List<ScanDocument> results = _memoryDocuments.values
         .where((ScanDocument doc) =>
             doc.title.toLowerCase().contains(lowerQuery) ||
-            doc.ocrText.toLowerCase().contains(lowerQuery))
+            doc.ocrText.toLowerCase().contains(lowerQuery) ||
+            doc.tags.any((String t) => t.toLowerCase().contains(lowerQuery)))
         .toList();
     results.sort((a, b) => b.updatedAt.compareTo(a.updatedAt));
     return results;
