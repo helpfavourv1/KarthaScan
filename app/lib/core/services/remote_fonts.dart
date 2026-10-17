@@ -20,8 +20,12 @@ class RemoteFont {
 class RemoteFonts {
   RemoteFonts._();
 
-  static const String baseUrl =
-      'https://raw.githubusercontent.com/helpfavourv1/KarthaScan/main/fonts_remote/';
+  /// Tried in order. The website is the main source; the repository copy is a
+  /// spare (it only works while the repository is public).
+  static const List<String> baseUrls = <String>[
+    'https://katharscan.helpfavourv1.workers.dev/fonts/cjk/',
+    'https://raw.githubusercontent.com/helpfavourv1/KarthaScan/main/website/fonts/cjk/',
+  ];
 
   static const RemoteFont sc = RemoteFont('NotoSansSC-Regular.ttf', 10595892,
       'd50b2d4242ed2c21a0c31210c404773763e69541f637506a014bbda9d2fedcd6');
@@ -88,21 +92,28 @@ class RemoteFonts {
       if (failed != null && DateTime.now().difference(failed) < const Duration(minutes: 5)) return null;
 
       final File part = File('${file.path}.part');
-      final HttpClient client = HttpClient()..connectionTimeout = const Duration(seconds: 20);
-      try {
-        final HttpClientRequest req = await client.getUrl(Uri.parse('$baseUrl${font.fileName}'));
-        final HttpClientResponse res = await req.close().timeout(const Duration(seconds: 30));
-        if (res.statusCode != 200) throw HttpException('HTTP ${res.statusCode}');
-        final IOSink sink = part.openWrite();
-        await res.timeout(const Duration(seconds: 60)).pipe(sink);
-      } finally {
-        client.close(force: true);
+      Object? lastError;
+      bool ok = false;
+      for (final String base in baseUrls) {
+        final HttpClient client = HttpClient()..connectionTimeout = const Duration(seconds: 20);
+        try {
+          final HttpClientRequest req = await client.getUrl(Uri.parse('$base${font.fileName}'));
+          final HttpClientResponse res = await req.close().timeout(const Duration(seconds: 30));
+          if (res.statusCode != 200) throw HttpException('HTTP ${res.statusCode}');
+          final IOSink sink = part.openWrite();
+          await res.timeout(const Duration(seconds: 60)).pipe(sink);
+          final String hash = sha256.convert(await part.readAsBytes()).toString();
+          if (hash != font.sha256Hex) throw const FormatException('font checksum mismatch');
+          ok = true;
+          break;
+        } catch (error) {
+          lastError = error;
+          if (await part.exists()) await part.delete();
+        } finally {
+          client.close(force: true);
+        }
       }
-      final String hash = sha256.convert(await part.readAsBytes()).toString();
-      if (hash != font.sha256Hex) {
-        await part.delete();
-        throw const FormatException('font checksum mismatch');
-      }
+      if (!ok) throw lastError ?? const HttpException('download failed');
       return await part.rename(file.path);
     } catch (error) {
       _failedAt[font.fileName] = DateTime.now();

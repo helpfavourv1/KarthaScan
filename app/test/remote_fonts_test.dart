@@ -1,5 +1,5 @@
 // CJK text in generated PDFs: font choice, and a real PDF made with the font
-// file from the repo's fonts_remote folder (no network).
+// file from the website's fonts/cjk folder (no network).
 import 'dart:io';
 
 import 'package:crypto/crypto.dart';
@@ -19,16 +19,16 @@ void main() {
     expect(RemoteFonts.neededFor('한국어 文书'), <RemoteFont>[RemoteFonts.kr]);
   });
 
-  test('checksums in the app match the files in fonts_remote', () {
+  test('checksums in the app match the files in website/fonts/cjk', () {
     for (final RemoteFont f in <RemoteFont>[RemoteFonts.sc, RemoteFonts.jp, RemoteFonts.kr]) {
-      final File file = File('../fonts_remote/${f.fileName}');
+      final File file = File('../website/fonts/cjk/${f.fileName}');
       expect(file.lengthSync(), f.bytes, reason: f.fileName);
       expect(sha256.convert(file.readAsBytesSync()).toString(), f.sha256Hex, reason: f.fileName);
     }
   });
 
   test('PDFs with Chinese and Korean text are made, small, twice in one run', () async {
-    RemoteFonts.directoryOverride = Directory('../fonts_remote');
+    RemoteFonts.directoryOverride = Directory('../website/fonts/cjk');
     for (int i = 0; i < 2; i++) {
       const String text = '中文文档测试 한국어 문서';
       final pw.Document doc = pw.Document();
