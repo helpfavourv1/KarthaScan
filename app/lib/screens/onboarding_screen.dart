@@ -22,12 +22,12 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   int _currentIndex = 0;
 
   static const List<String> _assets = [
-    'assets/onboarding/welcome.png',
-    'assets/onboarding/tools.png',
-    'assets/onboarding/ocr.png',
-    'assets/onboarding/sign.png',
-    'assets/onboarding/edit.png',
-    'assets/onboarding/privacy.png',
+    'assets/onboarding/welcome.webp',
+    'assets/onboarding/tools.webp',
+    'assets/onboarding/ocr.webp',
+    'assets/onboarding/sign.webp',
+    'assets/onboarding/edit.webp',
+    'assets/onboarding/privacy.webp',
   ];
 
   void _onPageChanged(int index) => setState(() => _currentIndex = index);
