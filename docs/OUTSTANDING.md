@@ -43,6 +43,12 @@ compile check (lint, unit tests, Kotlin compile) is green on `main`.
 - Hindi, other Indic scripts, Hebrew, Thai: those lines are drawn as pictures with the phone's own fonts (TXT, DOCX, CSV to PDF). Text is not selectable there. The hidden text layer of searchable PDFs is unchanged.
 - Check: convert a TXT with Chinese, Korean and Japanese lines to PDF with data on (first time downloads, shows the text), then offline (cached, still works). Convert a TXT with Hindi, Hebrew and Thai lines: all readable. CSV with Hindi cells: table shows them.
 
+## OCR for Chinese, Japanese, Korean, Hindi (done in code, compile check green incl. Kotlin, needs a phone check)
+- Cause of "never works": the packs come from Google Play services and the app never asked for them; the scan flow only ever ran the Latin recognizer; a "not ready" result was remembered for the whole session so scans skipped those scripts.
+- Now: Android asks Play services to download the pack (`ocr_models` channel), the scan flow tries Latin then Chinese/Japanese/Korean/Devanagari, "still downloading" is retried (only hard failures are remembered), Devanagari (Hindi, Marathi) added to Settings > OCR Languages.
+- Check (phone online, Google Play services present): Settings > OCR Languages, tap the download icon on Chinese, Korean, Japanese and Hindi; wait a minute, tap refresh until the status clears. Then scan a Chinese page: text is found and searchable.
+- Not covered by ML Kit at all: Arabic, Cyrillic (Russian, Ukrainian), Greek, Hebrew, Thai, Bengali. Option: Tesseract with language files hosted on the website and downloaded on first use. Not started: needs a native plugin the APK build cannot be tested for here.
+
 ## Phase 5 status
 
 Done in code: 5.2 backups, 5.3 CSV/DOCX text fixes, 5.4 debounce and wildcard escape, 5.5 dead code removal and README.
