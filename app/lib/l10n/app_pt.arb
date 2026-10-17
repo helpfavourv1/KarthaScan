@@ -434,6 +434,10 @@
   "ocrScriptChinese": "Chinês",
   "ocrScriptKorean": "Coreano",
   "ocrScriptJapanese": "Japonês",
+  "ocrScriptDevanagari": "Hindi, marata (devanágari)",
+  "@ocrScriptDevanagari": {
+    "description": "Localized string for ocrScriptDevanagari"
+  },
   "ocrStatusUnsupported": "Não suportado",
   "noteLabel": "Nota",
   "dateLabel": "Data",

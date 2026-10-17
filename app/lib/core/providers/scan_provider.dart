@@ -96,7 +96,7 @@ class ScanProvider {
 
       scanFlowState.value = ScanFlowState.recognizingText;
       final (String ocrText, Map<int, List<OcrBlock>> pageBlocks) =
-          await _recognizeAllPages(scanResult.pageImagePaths, OcrScript.latin);
+          await _recognizeAllPages(scanResult.pageImagePaths);
 
       scanFlowState.value = ScanFlowState.saving;
       final DateTime now = DateTime.now();
@@ -144,17 +144,15 @@ class ScanProvider {
 
   Future<(String, Map<int, List<OcrBlock>>)> _recognizeAllPages(
     List<String> pagePaths,
-    OcrScript script,
   ) async {
     final StringBuffer combined = StringBuffer();
     final Map<int, List<OcrBlock>> pageBlocks = <int, List<OcrBlock>>{};
     for (int i = 0; i < pagePaths.length; i++) {
       final String path = pagePaths[i];
       try {
-        final OcrResult result = await _ocr.recognizeText(
-          imagePath: path,
-          script: script,
-        );
+        // Latin first; Chinese, Japanese, Korean and Devanagari are tried when
+        // Latin finds almost nothing.
+        final OcrResult result = await _ocr.recognizeTextAuto(imagePath: path);
         if (combined.isNotEmpty) combined.writeln();
         combined.write(result.fullText);
         if (result.blocks.isNotEmpty) {

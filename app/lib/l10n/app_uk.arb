@@ -527,6 +527,10 @@
   "ocrScriptChinese": "Китайська",
   "ocrScriptKorean": "Корейська",
   "ocrScriptJapanese": "Японська",
+  "ocrScriptDevanagari": "Гінді, маратхі (деванагарі)",
+  "@ocrScriptDevanagari": {
+    "description": "Localized string for ocrScriptDevanagari"
+  },
   "ocrStatusUnsupported": "Не підтримується",
   "noteLabel": "Нотатка",
   "dateLabel": "Дата",

@@ -527,6 +527,10 @@
   "ocrScriptChinese": "Chinese",
   "ocrScriptKorean": "Korean",
   "ocrScriptJapanese": "Japanese",
+  "ocrScriptDevanagari": "Hindi, Marathi (Devanagari)",
+  "@ocrScriptDevanagari": {
+    "description": "OCR script option for Hindi and Marathi"
+  },
   "ocrStatusUnsupported": "Unsupported",
   "noteLabel": "Note",
   "dateLabel": "Date",

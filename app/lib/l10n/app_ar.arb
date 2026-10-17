@@ -434,6 +434,10 @@
   "ocrScriptChinese": "صيني",
   "ocrScriptKorean": "كوري",
   "ocrScriptJapanese": "ياباني",
+  "ocrScriptDevanagari": "الهندية والماراثية (ديفاناغاري)",
+  "@ocrScriptDevanagari": {
+    "description": "Localized string for ocrScriptDevanagari"
+  },
   "ocrStatusUnsupported": "غير مدعوم",
   "noteLabel": "ملاحظة",
   "dateLabel": "تاريخ",

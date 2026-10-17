@@ -6,7 +6,7 @@ import '../models/ocr_block.dart';
 import '../utils/constants.dart';
 import '../utils/app_locale.dart';
 
-enum OcrScript { latin, chinese, korean, japanese }
+enum OcrScript { latin, chinese, korean, japanese, devanagari }
 
 class OcrUnavailableException implements Exception {
   const OcrUnavailableException(this.message);
@@ -19,6 +19,32 @@ class OcrResult {
   const OcrResult({required this.fullText, required this.blocks});
   final String fullText;
   final List<OcrBlock> blocks;
+}
+
+/// Asks Google Play services to download an OCR language pack (Android). The
+/// recognizer alone does not start the download reliably. iOS bundles the
+/// models, so the missing channel there counts as ready.
+class OcrModels {
+  OcrModels._();
+
+  static const MethodChannel _channel = MethodChannel('com.zdmgold.katharscan/ocr_models');
+  static final Set<OcrScript> _ready = <OcrScript>{};
+
+  /// 'ready', 'downloading' or 'unavailable' (no answer from Play services;
+  /// the recognizer is then tried anyway).
+  static Future<String> ensure(OcrScript script) async {
+    if (script == OcrScript.latin || _ready.contains(script)) return 'ready';
+    try {
+      final String? r = await _channel.invokeMethod<String>('ensure', <String, Object>{'script': script.name, 'install': true});
+      if (r == 'ready') _ready.add(script);
+      return r ?? 'unavailable';
+    } on MissingPluginException {
+      _ready.add(script);
+      return 'ready';
+    } on PlatformException {
+      return 'unavailable';
+    }
+  }
 }
 
 class OcrService {
@@ -39,6 +65,11 @@ class OcrService {
   }) async {
     _log.log('OCR', 'recognizeText started: path=$imagePath script=$script');
     try {
+      if (await OcrModels.ensure(script) == 'downloading') {
+        final result = (AppLocale.l10n.ocrLanguagePackNotReady, false);
+        _scriptFailures[script] = result;
+        throw OcrUnavailableException(result.$1);
+      }
       final inputImage = InputImage.fromFilePath(imagePath);
       final TextRecognizer recognizer = _recognizerFor(script);
 
@@ -99,8 +130,10 @@ class OcrService {
       OcrScript.chinese,
       OcrScript.japanese,
       OcrScript.korean,
+      OcrScript.devanagari,
     ]) {
-      if (lastFailureFor(script) != null) continue;
+      // Only a script that can never work is skipped; "still downloading" is retried.
+      if (lastFailureFor(script)?.$2 ?? false) continue;
       try {
         final OcrResult candidate = await recognizeText(imagePath: imagePath, script: script);
         if (isClearlyBetter(best.fullText, candidate.fullText)) best = candidate;
@@ -184,6 +217,8 @@ class OcrService {
         return TextRecognitionScript.korean;
       case OcrScript.japanese:
         return TextRecognitionScript.japanese;
+      case OcrScript.devanagari:
+        return TextRecognitionScript.devanagiri;
     }
   }
 

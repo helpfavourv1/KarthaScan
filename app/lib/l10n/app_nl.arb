@@ -527,6 +527,10 @@
   "ocrScriptChinese": "Chinees",
   "ocrScriptKorean": "Koreaans",
   "ocrScriptJapanese": "Japans",
+  "ocrScriptDevanagari": "Hindi, Marathi (Devanagari)",
+  "@ocrScriptDevanagari": {
+    "description": "Localized string for ocrScriptDevanagari"
+  },
   "ocrStatusUnsupported": "Niet ondersteund",
   "noteLabel": "Notitie",
   "dateLabel": "Datum",

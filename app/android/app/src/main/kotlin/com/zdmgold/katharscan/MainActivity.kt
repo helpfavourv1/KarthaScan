@@ -6,14 +6,61 @@ import android.os.Environment
 import android.provider.MediaStore
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.FlutterEngine
+import com.google.android.gms.common.moduleinstall.ModuleInstall
+import com.google.android.gms.common.moduleinstall.ModuleInstallRequest
+import com.google.android.gms.common.api.OptionalModuleApi
+import com.google.mlkit.vision.text.TextRecognition
+import com.google.mlkit.vision.text.chinese.ChineseTextRecognizerOptions
+import com.google.mlkit.vision.text.devanagari.DevanagariTextRecognizerOptions
+import com.google.mlkit.vision.text.japanese.JapaneseTextRecognizerOptions
+import com.google.mlkit.vision.text.korean.KoreanTextRecognizerOptions
 import io.flutter.plugin.common.MethodChannel
 import java.io.File
 
 class MainActivity: FlutterActivity() {
     private val CHANNEL = "com.zdmgold.katharscan/downloads"
+    private val OCR_CHANNEL = "com.zdmgold.katharscan/ocr_models"
 
     override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
         super.configureFlutterEngine(flutterEngine)
+        // Asks Google Play services to download an OCR language pack and reports
+        // whether it is ready. Without this request the pack may never arrive.
+        MethodChannel(flutterEngine.dartExecutor.binaryMessenger, OCR_CHANNEL).setMethodCallHandler { call, result ->
+            if (call.method != "ensure") {
+                result.notImplemented()
+                return@setMethodCallHandler
+            }
+            val script = call.argument<String>("script")
+            val install = call.argument<Boolean>("install") ?: true
+            val api: OptionalModuleApi? = when (script) {
+                "chinese" -> TextRecognition.getClient(ChineseTextRecognizerOptions.Builder().build())
+                "japanese" -> TextRecognition.getClient(JapaneseTextRecognizerOptions.Builder().build())
+                "korean" -> TextRecognition.getClient(KoreanTextRecognizerOptions.Builder().build())
+                "devanagari" -> TextRecognition.getClient(DevanagariTextRecognizerOptions.Builder().build())
+                else -> null
+            }
+            if (api == null) {
+                result.error("UNKNOWN_SCRIPT", "No pack for $script", null)
+                return@setMethodCallHandler
+            }
+            val client = ModuleInstall.getClient(this)
+            client.areModulesAvailable(api)
+                .addOnSuccessListener { available ->
+                    if (available.areModulesAvailable()) {
+                        result.success("ready")
+                    } else if (!install) {
+                        result.success("missing")
+                    } else {
+                        client.installModules(ModuleInstallRequest.newBuilder().addApi(api).build())
+                            .addOnSuccessListener { r ->
+                                result.success(if (r.areModulesAlreadyInstalled()) "ready" else "downloading")
+                            }
+                            .addOnFailureListener { e -> result.error("INSTALL_FAILED", e.message, null) }
+                    }
+                }
+                .addOnFailureListener { e -> result.error("CHECK_FAILED", e.message, null) }
+        }
+
         MethodChannel(flutterEngine.dartExecutor.binaryMessenger, CHANNEL).setMethodCallHandler { call, result ->
             if (call.method == "saveToDownloads") {
                 val bytes = call.argument<ByteArray>("bytes")

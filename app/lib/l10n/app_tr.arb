@@ -527,6 +527,10 @@
   "ocrScriptChinese": "Çince",
   "ocrScriptKorean": "Korece",
   "ocrScriptJapanese": "Japonca",
+  "ocrScriptDevanagari": "Hintçe, Marathi (Devanagari)",
+  "@ocrScriptDevanagari": {
+    "description": "Localized string for ocrScriptDevanagari"
+  },
   "ocrStatusUnsupported": "Desteklenmiyor",
   "noteLabel": "Not",
   "dateLabel": "Tarih",

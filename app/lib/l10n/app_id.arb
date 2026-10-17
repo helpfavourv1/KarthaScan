@@ -408,6 +408,10 @@
   "ocrScriptChinese": "Cina",
   "ocrScriptKorean": "Korea",
   "ocrScriptJapanese": "Jepang",
+  "ocrScriptDevanagari": "Hindi, Marathi (Devanagari)",
+  "@ocrScriptDevanagari": {
+    "description": "Localized string for ocrScriptDevanagari"
+  },
   "ocrStatusUnsupported": "Tidak didukung",
   "noteLabel": "Catatan",
   "dateLabel": "Tanggal",

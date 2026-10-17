@@ -401,6 +401,7 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
       OcrScript.chinese: AppLocalizations.of(context).ocrScriptChinese,
       OcrScript.korean: AppLocalizations.of(context).ocrScriptKorean,
       OcrScript.japanese: AppLocalizations.of(context).ocrScriptJapanese,
+      OcrScript.devanagari: AppLocalizations.of(context).ocrScriptDevanagari,
     };
     return showModalBottomSheet<OcrScript>(
       context: context,

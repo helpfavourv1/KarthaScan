@@ -527,6 +527,10 @@
   "ocrScriptChinese": "Trung Quốc",
   "ocrScriptKorean": "Hàn Quốc",
   "ocrScriptJapanese": "Nhật Bản",
+  "ocrScriptDevanagari": "Tiếng Hindi, Marathi (Devanagari)",
+  "@ocrScriptDevanagari": {
+    "description": "Localized string for ocrScriptDevanagari"
+  },
   "ocrStatusUnsupported": "Không được hỗ trợ",
   "noteLabel": "Ghi chú",
   "dateLabel": "Ngày",

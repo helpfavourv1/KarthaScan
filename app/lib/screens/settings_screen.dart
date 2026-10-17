@@ -386,6 +386,7 @@ class _OcrLanguagesSheetState extends State<_OcrLanguagesSheet> {
     if (script == OcrScript.chinese) return l10n.ocrScriptChinese;
     if (script == OcrScript.korean) return l10n.ocrScriptKorean;
     if (script == OcrScript.japanese) return l10n.ocrScriptJapanese;
+    if (script == OcrScript.devanagari) return l10n.ocrScriptDevanagari;
     return script.name;
   }
 
