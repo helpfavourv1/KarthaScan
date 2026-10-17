@@ -3,8 +3,8 @@ import 'package:katharscan/core/services/ocr_service.dart';
 
 void main() {
   group('OcrScript', () {
-    test('Latin, Chinese, Korean and Japanese scripts are available', () {
-      expect(OcrScript.values.length, 4);
+    test('Latin, Chinese, Korean, Japanese and Devanagari scripts are available', () {
+      expect(OcrScript.values.length, 5);
       expect(OcrScript.latin, isNotNull);
     });
   });
