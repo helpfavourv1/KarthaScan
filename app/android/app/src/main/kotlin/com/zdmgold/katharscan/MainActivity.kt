@@ -20,6 +20,7 @@ import java.io.File
 class MainActivity: FlutterActivity() {
     private val CHANNEL = "com.zdmgold.katharscan/downloads"
     private val OCR_CHANNEL = "com.zdmgold.katharscan/ocr_models"
+    private val TESS_CHANNEL = "com.zdmgold.katharscan/tess_ocr"
 
     override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
         super.configureFlutterEngine(flutterEngine)
@@ -59,6 +60,28 @@ class MainActivity: FlutterActivity() {
                     }
                 }
                 .addOnFailureListener { e -> result.error("CHECK_FAILED", e.message, null) }
+        }
+
+        MethodChannel(flutterEngine.dartExecutor.binaryMessenger, TESS_CHANNEL).setMethodCallHandler { call, result ->
+            if (call.method != "extract") {
+                result.notImplemented()
+                return@setMethodCallHandler
+            }
+            val imagePath = call.argument<String>("imagePath")
+            val dataPath = call.argument<String>("dataPath")
+            val language = call.argument<String>("language")
+            if (imagePath == null || dataPath == null || language == null) {
+                result.error("INVALID_ARGS", "Missing arguments", null)
+                return@setMethodCallHandler
+            }
+            Thread {
+                try {
+                    val out = TessOcr.run(imagePath, dataPath, language)
+                    runOnUiThread { result.success(out) }
+                } catch (e: Throwable) {
+                    runOnUiThread { result.error("TESS_FAILED", e.message, null) }
+                }
+            }.start()
         }
 
         MethodChannel(flutterEngine.dartExecutor.binaryMessenger, CHANNEL).setMethodCallHandler { call, result ->

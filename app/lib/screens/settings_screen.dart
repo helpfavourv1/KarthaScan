@@ -16,6 +16,7 @@ import '../core/providers/subscription_provider.dart';
 import '../core/providers/theme_provider.dart';
 import '../core/services/debug_log_service.dart';
 import '../core/services/ocr_service.dart';
+import '../core/services/tess_data.dart';
 import '../core/utils/constants.dart';
 import '../l10n/app_localizations.dart';
 
@@ -387,10 +388,33 @@ class _OcrLanguagesSheetState extends State<_OcrLanguagesSheet> {
     if (script == OcrScript.korean) return l10n.ocrScriptKorean;
     if (script == OcrScript.japanese) return l10n.ocrScriptJapanese;
     if (script == OcrScript.devanagari) return l10n.ocrScriptDevanagari;
-    return script.name;
+    return switch (script) {
+      OcrScript.arabic => l10n.ocrScriptArabic,
+      OcrScript.russian => l10n.ocrScriptRussian,
+      OcrScript.ukrainian => l10n.ocrScriptUkrainian,
+      OcrScript.greek => l10n.ocrScriptGreek,
+      OcrScript.hebrew => l10n.ocrScriptHebrew,
+      OcrScript.thai => l10n.ocrScriptThai,
+      OcrScript.bengali => l10n.ocrScriptBengali,
+      _ => script.name,
+    };
   }
 
   OcrScript? _probing;
+  final Set<OcrScript> _installed = <OcrScript>{};
+
+  @override
+  void initState() {
+    super.initState();
+    _loadInstalled();
+  }
+
+  Future<void> _loadInstalled() async {
+    for (final OcrScript s in OcrScript.values.where((OcrScript s) => s.usesTesseract)) {
+      if (await TessData.isInstalled(s.tessCode!)) _installed.add(s);
+    }
+    if (mounted) setState(() {});
+  }
 
   Future<void> _probe(OcrScript script) async {
     setState(() => _probing = script);
@@ -405,7 +429,13 @@ class _OcrLanguagesSheetState extends State<_OcrLanguagesSheet> {
           'iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAAAAACPAi4CAAAAKUlEQVR42u3MQREAAAwCIPuX1hD77SAA6VEEAoFAIBAIBAKBQCAQfA8Gpwvw4qrwDDIAAAAASUVORK5CYII='));
       final OcrService probeService = OcrService();
       try {
-        await probeService.recognizeText(imagePath: path, script: script);
+        if (script.usesTesseract) {
+          // Fetches the language file; a blank probe image needs no OCR run.
+          if (!await TessData.ensure(script.tessCode!)) throw const OcrUnavailableException('download failed');
+          await _loadInstalled();
+        } else {
+          await probeService.recognizeText(imagePath: path, script: script);
+        }
       } finally {
         await probeService.dispose();
       }
@@ -430,7 +460,7 @@ class _OcrLanguagesSheetState extends State<_OcrLanguagesSheet> {
       child: Container(
         decoration: BoxDecoration(color: bg, borderRadius: const BorderRadius.only(topLeft: Radius.circular(AppShape.bottomSheetTopRadius), topRight: Radius.circular(AppShape.bottomSheetTopRadius))),
         padding: const EdgeInsets.all(AppSpacing.md),
-        child: Column(
+        child: SingleChildScrollView(child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -445,7 +475,9 @@ class _OcrLanguagesSheetState extends State<_OcrLanguagesSheet> {
                       ? AppLocalizations.of(context).ocrStatusChecking
                       : failure != null
                           ? (isHard ? AppLocalizations.of(context).ocrStatusUnsupported : failure.$1)
-                          : AppLocalizations.of(context).ocrStatusOnDemand;
+                          : _installed.contains(script)
+                              ? AppLocalizations.of(context).ocrStatusInstalled
+                              : AppLocalizations.of(context).ocrStatusOnDemand;
               final Color statusColor = failure != null
                   ? (isHard ? Colors.red : Colors.orange)
                   : textSecondary;
@@ -468,7 +500,7 @@ class _OcrLanguagesSheetState extends State<_OcrLanguagesSheet> {
             }),
             const SizedBox(height: AppSpacing.sm),
           ],
-        ),
+        )),
       ),
     );
   }

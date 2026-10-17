@@ -1,12 +1,42 @@
+import 'dart:io';
+
 import 'package:flutter/services.dart';
 import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
 
 import 'debug_log_service.dart';
+import 'tess_data.dart';
 import '../models/ocr_block.dart';
 import '../utils/constants.dart';
 import '../utils/app_locale.dart';
 
-enum OcrScript { latin, chinese, korean, japanese, devanagari }
+enum OcrScript {
+  latin,
+  chinese,
+  korean,
+  japanese,
+  devanagari,
+  arabic,
+  russian,
+  ukrainian,
+  greek,
+  hebrew,
+  thai,
+  bengali;
+
+  /// Tesseract language code for scripts ML Kit does not cover, else null.
+  String? get tessCode => switch (this) {
+        OcrScript.arabic => 'ara',
+        OcrScript.russian => 'rus',
+        OcrScript.ukrainian => 'ukr',
+        OcrScript.greek => 'ell',
+        OcrScript.hebrew => 'heb',
+        OcrScript.thai => 'tha',
+        OcrScript.bengali => 'ben',
+        _ => null,
+      };
+
+  bool get usesTesseract => tessCode != null;
+}
 
 class OcrUnavailableException implements Exception {
   const OcrUnavailableException(this.message);
@@ -64,6 +94,7 @@ class OcrService {
     required OcrScript script,
   }) async {
     _log.log('OCR', 'recognizeText started: path=$imagePath script=$script');
+    if (script.usesTesseract) return _recognizeWithTesseract(imagePath, script);
     try {
       if (await OcrModels.ensure(script) == 'downloading') {
         final result = (AppLocale.l10n.ocrLanguagePackNotReady, false);
@@ -143,7 +174,73 @@ class OcrService {
         // Script not available on this device; keep what we have.
       }
     }
+    if (!needsScriptFallback(best.fullText)) return best;
+
+    // Tesseract packs the user already installed. Never downloaded here: a
+    // scan must not start a 4 MB download by itself.
+    for (final OcrScript script in OcrScript.values.where((OcrScript s) => s.usesTesseract)) {
+      if (!await TessData.isInstalled(script.tessCode!)) continue;
+      try {
+        final OcrResult candidate = await _recognizeWithTesseract(imagePath, script);
+        if (isClearlyBetter(best.fullText, candidate.fullText)) best = candidate;
+        if (!needsScriptFallback(best.fullText)) break;
+      } on OcrUnavailableException {
+        // Keep what we have.
+      }
+    }
     return best;
+  }
+
+  static const MethodChannel _tessChannel = MethodChannel('com.zdmgold.katharscan/tess_ocr');
+
+  /// Tesseract OCR (Android). The language file is downloaded on first use.
+  Future<OcrResult> _recognizeWithTesseract(String imagePath, OcrScript script) async {
+    final String code = script.tessCode!;
+    if (!Platform.isAndroid) {
+      final result = (AppLocale.l10n.ocrStatusUnsupported, true);
+      _scriptFailures[script] = result;
+      throw OcrUnavailableException(result.$1);
+    }
+    try {
+      if (!await TessData.ensure(code)) {
+        final result = (AppLocale.l10n.ocrNoInternetMessage, false);
+        _scriptFailures[script] = result;
+        throw OcrUnavailableException(result.$1);
+      }
+      final Map<Object?, Object?>? raw = await _tessChannel
+          .invokeMapMethod<Object?, Object?>('extract', <String, Object>{
+        'imagePath': imagePath,
+        'dataPath': (await TessData.root()).path,
+        'language': code,
+      }).timeout(const Duration(seconds: 90));
+      final List<Object?> lines = (raw?['lines'] as List<Object?>?) ?? const <Object?>[];
+      final List<OcrBlock> blocks = <OcrBlock>[];
+      for (final Object? l in lines) {
+        final Map<Object?, Object?> m = l! as Map<Object?, Object?>;
+        final String text = (m['text'] as String? ?? '').trim();
+        if (text.isEmpty) continue;
+        blocks.add(OcrBlock(
+          text: text,
+          boundingBox: OcrBoundingBox(
+            left: (m['left'] as num).toDouble(),
+            top: (m['top'] as num).toDouble(),
+            width: (m['width'] as num).toDouble(),
+            height: (m['height'] as num).toDouble(),
+          ),
+          confidence: ((m['confidence'] as num?) ?? 100).toDouble() / 100,
+          language: code,
+        ));
+      }
+      _scriptFailures.remove(script);
+      return OcrResult(fullText: ((raw?['text'] as String?) ?? '').trim(), blocks: blocks);
+    } on OcrUnavailableException {
+      rethrow;
+    } catch (error) {
+      _log.log('OCR', 'Tesseract failed for $script: $error');
+      final result = (AppPluginFailureCopy.ocrUnavailableTooltip, true);
+      _scriptFailures[script] = result;
+      throw OcrUnavailableException(result.$1);
+    }
   }
 
   /// OCR for the first [maxPages] pages, joined in page order. A page that
@@ -219,6 +316,8 @@ class OcrService {
         return TextRecognitionScript.japanese;
       case OcrScript.devanagari:
         return TextRecognitionScript.devanagiri;
+      default:
+        throw StateError('$script is handled by Tesseract');
     }
   }
 

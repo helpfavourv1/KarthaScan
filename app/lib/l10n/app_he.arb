@@ -544,5 +544,37 @@
   },
   "@enableSharePromptsSubtitle": {
     "description": "Localized string for enableSharePromptsSubtitle"
+  },
+  "ocrScriptArabic": "العربية",
+  "@ocrScriptArabic": {
+    "description": "OCR language option (native name)"
+  },
+  "ocrScriptRussian": "Русский",
+  "@ocrScriptRussian": {
+    "description": "OCR language option (native name)"
+  },
+  "ocrScriptUkrainian": "Українська",
+  "@ocrScriptUkrainian": {
+    "description": "OCR language option (native name)"
+  },
+  "ocrScriptGreek": "Ελληνικά",
+  "@ocrScriptGreek": {
+    "description": "OCR language option (native name)"
+  },
+  "ocrScriptHebrew": "עברית",
+  "@ocrScriptHebrew": {
+    "description": "OCR language option (native name)"
+  },
+  "ocrScriptThai": "ไทย",
+  "@ocrScriptThai": {
+    "description": "OCR language option (native name)"
+  },
+  "ocrScriptBengali": "বাংলা",
+  "@ocrScriptBengali": {
+    "description": "OCR language option (native name)"
+  },
+  "ocrStatusInstalled": "מותקן",
+  "@ocrStatusInstalled": {
+    "description": "OCR language pack already downloaded"
   }
 }

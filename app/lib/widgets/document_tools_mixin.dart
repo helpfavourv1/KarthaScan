@@ -402,11 +402,19 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
       OcrScript.korean: AppLocalizations.of(context).ocrScriptKorean,
       OcrScript.japanese: AppLocalizations.of(context).ocrScriptJapanese,
       OcrScript.devanagari: AppLocalizations.of(context).ocrScriptDevanagari,
+      OcrScript.arabic: AppLocalizations.of(context).ocrScriptArabic,
+      OcrScript.russian: AppLocalizations.of(context).ocrScriptRussian,
+      OcrScript.ukrainian: AppLocalizations.of(context).ocrScriptUkrainian,
+      OcrScript.greek: AppLocalizations.of(context).ocrScriptGreek,
+      OcrScript.hebrew: AppLocalizations.of(context).ocrScriptHebrew,
+      OcrScript.thai: AppLocalizations.of(context).ocrScriptThai,
+      OcrScript.bengali: AppLocalizations.of(context).ocrScriptBengali,
     };
     return showModalBottomSheet<OcrScript>(
       context: context,
+      isScrollControlled: true,
       builder: (ctx) => SafeArea(
-        child: Column(
+        child: SingleChildScrollView(child: Column(
           mainAxisSize: MainAxisSize.min,
           children: OcrScript.values.map((s) {
             final failure = OcrService.lastFailureFor(s);
@@ -421,7 +429,7 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
               },
             );
           }).toList(),
-        ),
+        )),
       ),
     );
   }
