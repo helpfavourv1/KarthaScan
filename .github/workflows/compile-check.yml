@@ -1,12 +1,16 @@
 name: KatharScan Compile Check
 
-# MANUAL ONLY. Compiles and tests the code without ever building or
-# uploading an APK/AAB. The existing build_and_deploy.yml is untouched.
+# MANUAL ONLY. Compiles and tests the code; the only APK it ever makes is a
+# throwaway debug build that is never uploaded. The existing build_and_deploy.yml is untouched.
 #
 # Job 1 (dart-check): pub get, gen-l10n, l10n audit, stub check,
 #   flutter analyze (the lint step), flutter test.
 # Job 2 (kotlin-check): compiles the Android Kotlin sources only
 #   (:app:compileDebugKotlin). No package/assemble task is run.
+#
+# Job 3 (android-debug-build): a full DEBUG build of the Android app
+#   (flutter build apk --debug) to prove native plugins and Gradle packaging
+#   work. The APK is thrown away: nothing is uploaded or signed.
 #
 # Failures are also written as GitHub annotations (file, line, message)
 # so they can be read from the run's check annotations without
@@ -216,4 +220,49 @@ jobs:
                       keep = [l for l in text.splitlines() if l.startswith('e: ') or 'What went wrong' in l or 'FAILED' in l or 'Could not' in l or 'error:' in l.lower()]
                       text = '\n'.join(keep[:30]) + '\n--- tail ---\n' + tail(text, 25, 1800)
                   print('::error title=%s failed::%s' % (label, esc(tail(text, 60, 3500))))
+          PY
+
+  android-debug-build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v5
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+
+      - name: Prepare log folder
+        run: mkdir -p /tmp/cc
+
+      - name: Get Flutter packages
+        working-directory: app
+        run: flutter pub get
+
+      - name: Generate localizations
+        working-directory: app
+        run: flutter gen-l10n
+
+      - name: Build debug APK (thrown away)
+        id: build
+        working-directory: app
+        run: |
+          set -o pipefail
+          flutter build apk --debug 2>&1 | tee /tmp/cc/build.log
+
+      - name: Report problems as annotations
+        if: always() && steps.build.outcome == 'failure'
+        run: |
+          python3 - <<'PY'
+          def esc(s):
+              return s.replace('%', '%25').replace('\r', '%0D').replace('\n', '%0A')
+          text = open('/tmp/cc/build.log', encoding='utf-8', errors='replace').read()
+          keep = [l for l in text.splitlines() if l.startswith('e: ') or 'What went wrong' in l or 'FAILED' in l or 'Could not' in l or 'error:' in l.lower() or 'Execution failed' in l]
+          out = '\n'.join(keep[:30]) + '\n--- tail ---\n' + '\n'.join(text.strip().splitlines()[-30:])
+          print('::error title=debug APK build failed::%s' % esc(out[-3500:]))
           PY
