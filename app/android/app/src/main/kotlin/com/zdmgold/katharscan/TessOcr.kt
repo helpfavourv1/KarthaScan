@@ -23,9 +23,9 @@ object TessOcr {
             if (!api.init(dataPath, language)) throw IllegalStateException("Tesseract init failed for $language")
             api.setPageSegMode(TessBaseAPI.PageSegMode.PSM_AUTO)
             api.setImage(bitmap)
-            val text = api.utf8Text ?: ""
+            val text = api.getUTF8Text() ?: ""
             val lines = ArrayList<Map<String, Any>>()
-            val it: ResultIterator? = api.resultIterator
+            val it: ResultIterator? = api.getResultIterator()
             if (it != null) {
                 it.begin()
                 do {
