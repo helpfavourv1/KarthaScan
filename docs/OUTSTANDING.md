@@ -47,7 +47,7 @@ compile check (lint, unit tests, Kotlin compile) is green on `main`.
 - Cause of "never works": the packs come from Google Play services and the app never asked for them; the scan flow only ever ran the Latin recognizer; a "not ready" result was remembered for the whole session so scans skipped those scripts.
 - Now: Android asks Play services to download the pack (`ocr_models` channel), the scan flow tries Latin then Chinese/Japanese/Korean/Devanagari, "still downloading" is retried (only hard failures are remembered), Devanagari (Hindi, Marathi) added to Settings > OCR Languages.
 - Check (phone online, Google Play services present): Settings > OCR Languages, tap the download icon on Chinese, Korean, Japanese and Hindi; wait a minute, tap refresh until the status clears. Then scan a Chinese page: text is found and searchable.
-- Not covered by ML Kit at all: Arabic, Cyrillic (Russian, Ukrainian), Greek, Hebrew, Thai, Bengali. Option: Tesseract with language files hosted on the website and downloaded on first use. Not started: needs a native plugin the APK build cannot be tested for here.
+- Arabic, Russian, Ukrainian, Greek, Hebrew, Thai, Bengali: done with Tesseract (Android only; iOS shows Unsupported). Language files live in `website/tessdata/` and download on first use (website first, GitHub raw as spare), SHA-256 checked. Scans use only packs already installed. Compiles and packages in CI (debug APK job green); recognition quality still needs a phone test. After deploying the website, confirm https://katharscan.helpfavourv1.workers.dev/tessdata/tha.traineddata opens.
 
 ## Phase 5 status
 
