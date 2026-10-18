@@ -61,6 +61,19 @@ class _EditTrayState extends State<EditTray> with SingleTickerProviderStateMixin
   late final ScrollController _scrollController;
   late final ValueNotifier<double> _wheelAngle;
   late final AnimationController _entranceCtrl;
+  DateTime? _lastTap;
+
+  /// A second tap within this time is ignored. Without it a double tap opened
+  /// two sheets (or two export screens) on top of each other.
+  static const Duration _tapGap = Duration(milliseconds: 700);
+
+  void _tap(VoidCallback action) {
+    final DateTime now = DateTime.now();
+    final DateTime? last = _lastTap;
+    if (last != null && now.difference(last) < _tapGap) return;
+    _lastTap = now;
+    action();
+  }
   late final Animation<double> _entranceAnim;
 
   @override
@@ -236,7 +249,7 @@ class _EditTrayState extends State<EditTray> with SingleTickerProviderStateMixin
     return GestureDetector(
       key: ValueKey<String>('trayTarget:${item.label}'),
       behavior: HitTestBehavior.opaque,
-      onTap: item.onTap,
+      onTap: () => _tap(item.onTap),
       child: ConstrainedBox(
       constraints: const BoxConstraints(minWidth: 48, minHeight: 48),
       child: Padding(
@@ -245,7 +258,7 @@ class _EditTrayState extends State<EditTray> with SingleTickerProviderStateMixin
         mainAxisSize: MainAxisSize.min,
         children: [
           IOSPressable(
-            onTap: item.onTap,
+            onTap: () => _tap(item.onTap),
             child: Container(
               width: widget.compact ? 42 : 56,
               height: widget.compact ? 36 : 52,

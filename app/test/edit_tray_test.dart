@@ -5,6 +5,7 @@ import 'package:katharscan/l10n/app_localizations.dart';
 import 'package:katharscan/widgets/edit_tray.dart';
 
 void main() {
+  trayDebounceTests();
   for (final bool compact in <bool>[true, false]) {
     testWidgets('tray touch targets are at least 48 px (compact: $compact)', (WidgetTester tester) async {
       void noop() {}
@@ -32,4 +33,38 @@ void main() {
       }
     });
   }
+}
+
+// Double taps must not open a tool twice.
+void trayDebounceTests() {
+  testWidgets('rapid double tap fires a tool once; a later tap fires again', (WidgetTester tester) async {
+    int count = 0;
+    void noop() {}
+    await tester.pumpWidget(MaterialApp(
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
+      home: Scaffold(
+        body: EditTray(
+          compact: true,
+          onMarkup: () => count++, onSign: noop, onWatermark: noop, onOcr: noop, onConvert: noop,
+          onCompress: noop, onRotate: noop, onResize: noop, onPages: noop, onFilter: noop,
+          onCrop: noop, onText: noop, onNote: noop, onDate: noop, onCheckbox: noop,
+          onSeal: noop, onPrint: noop, onEmail: noop, onErase: noop,
+        ),
+      ),
+    ));
+    await tester.pump(const Duration(milliseconds: 500));
+    final Finder markup = find.byWidgetPredicate((Widget w) =>
+        w.key is ValueKey<String> && (w.key! as ValueKey<String>).value.startsWith('trayTarget:') &&
+        (w.key! as ValueKey<String>).value == 'trayTarget:${AppLocalizations.of(tester.element(find.byType(EditTray))).annotateTitle}');
+    await tester.tap(markup);
+    await tester.tap(markup);
+    await tester.tap(markup);
+    await tester.pump();
+    expect(count, 1);
+    await tester.runAsync(() => Future<void>.delayed(const Duration(milliseconds: 800)));
+    await tester.tap(markup);
+    await tester.pump();
+    expect(count, 2);
+  });
 }
