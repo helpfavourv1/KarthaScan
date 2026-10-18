@@ -60,20 +60,38 @@ class OcrModels {
   static const MethodChannel _channel = MethodChannel('com.zdmgold.katharscan/ocr_models');
   static final Set<OcrScript> _ready = <OcrScript>{};
 
-  /// 'ready', 'downloading' or 'unavailable' (no answer from Play services;
-  /// the recognizer is then tried anyway).
-  static Future<String> ensure(OcrScript script) async {
+  /// Last error text from Play services per script, for the settings screen.
+  static final Map<OcrScript, String> lastError = <OcrScript, String>{};
+
+  /// 'ready', 'downloading', 'missing' (only when [install] is false) or
+  /// 'unavailable' (no answer from Play services; the recognizer is then
+  /// tried anyway).
+  static Future<String> ensure(OcrScript script, {bool install = true}) async {
     if (script == OcrScript.latin || _ready.contains(script)) return 'ready';
     try {
-      final String? r = await _channel.invokeMethod<String>('ensure', <String, Object>{'script': script.name, 'install': true});
+      final String? r = await _channel.invokeMethod<String>('ensure', <String, Object>{'script': script.name, 'install': install});
       if (r == 'ready') _ready.add(script);
+      lastError.remove(script);
       return r ?? 'unavailable';
     } on MissingPluginException {
       _ready.add(script);
       return 'ready';
-    } on PlatformException {
+    } on PlatformException catch (e) {
+      lastError[script] = e.message ?? e.code;
       return 'unavailable';
     }
+  }
+
+  /// Requests the download and waits (up to [timeout]) until Play services has
+  /// finished it. Returns true when the pack is ready.
+  static Future<bool> download(OcrScript script, {Duration timeout = const Duration(minutes: 3)}) async {
+    String state = await ensure(script);
+    final DateTime end = DateTime.now().add(timeout);
+    while (state == 'downloading' && DateTime.now().isBefore(end)) {
+      await Future<void>.delayed(const Duration(seconds: 3));
+      state = await ensure(script, install: false);
+    }
+    return state == 'ready';
   }
 }
 

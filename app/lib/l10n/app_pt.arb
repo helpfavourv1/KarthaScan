@@ -545,36 +545,40 @@
   "@enableSharePromptsSubtitle": {
     "description": "Localized string for enableSharePromptsSubtitle"
   },
-  "ocrScriptArabic": "العربية",
+  "ocrScriptArabic": "العربية (Arabic)",
   "@ocrScriptArabic": {
     "description": "OCR language option (native name)"
   },
-  "ocrScriptRussian": "Русский",
+  "ocrScriptRussian": "Русский (Russian)",
   "@ocrScriptRussian": {
     "description": "OCR language option (native name)"
   },
-  "ocrScriptUkrainian": "Українська",
+  "ocrScriptUkrainian": "Українська (Ukrainian)",
   "@ocrScriptUkrainian": {
     "description": "OCR language option (native name)"
   },
-  "ocrScriptGreek": "Ελληνικά",
+  "ocrScriptGreek": "Ελληνικά (Greek)",
   "@ocrScriptGreek": {
     "description": "OCR language option (native name)"
   },
-  "ocrScriptHebrew": "עברית",
+  "ocrScriptHebrew": "עברית (Hebrew)",
   "@ocrScriptHebrew": {
     "description": "OCR language option (native name)"
   },
-  "ocrScriptThai": "ไทย",
+  "ocrScriptThai": "ไทย (Thai)",
   "@ocrScriptThai": {
     "description": "OCR language option (native name)"
   },
-  "ocrScriptBengali": "বাংলা",
+  "ocrScriptBengali": "বাংলা (Bengali)",
   "@ocrScriptBengali": {
     "description": "OCR language option (native name)"
   },
   "ocrStatusInstalled": "Instalado",
   "@ocrStatusInstalled": {
     "description": "OCR language pack already downloaded"
+  },
+  "ocrStatusDownloading": "Baixando…",
+  "@ocrStatusDownloading": {
+    "description": "OCR language pack is downloading"
   }
 }

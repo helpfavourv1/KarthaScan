@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import '../core/utils/language_names.dart';
 import '../core/services/ad_consent_service.dart';
 import '../widgets/conditional_banner.dart';
 import 'package:go_router/go_router.dart';
@@ -362,7 +363,7 @@ class _LanguagePickerSheet extends StatelessWidget {
               child: SingleChildScrollView(
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
-                  children: AppLocales.supportedLanguageCodes.map((code) => ListTile(title: Text(_labels[code] ?? code, style: TextStyle(color: textPrimary)), trailing: code == current ? Icon(Icons.check, color: accent) : null, onTap: () => Navigator.of(context).pop(code))).toList(),
+                  children: AppLocales.supportedLanguageCodes.map((code) => ListTile(title: Text(_labels[code] ?? code, style: TextStyle(color: textPrimary)), subtitle: code == 'en' ? null : Text(kLanguageEnglishNames[code] ?? '', style: TextStyle(color: textPrimary.withOpacity(0.6), fontSize: 12)), trailing: code == current ? Icon(Icons.check, color: accent) : null, onTap: () => Navigator.of(context).pop(code))).toList(),
                 ),
               ),
             ),
@@ -402,6 +403,7 @@ class _OcrLanguagesSheetState extends State<_OcrLanguagesSheet> {
 
   OcrScript? _probing;
   final Set<OcrScript> _installed = <OcrScript>{};
+  final Map<OcrScript, String> _messages = <OcrScript, String>{};
 
   @override
   void initState() {
@@ -410,41 +412,36 @@ class _OcrLanguagesSheetState extends State<_OcrLanguagesSheet> {
   }
 
   Future<void> _loadInstalled() async {
-    for (final OcrScript s in OcrScript.values.where((OcrScript s) => s.usesTesseract)) {
-      if (await TessData.isInstalled(s.tessCode!)) _installed.add(s);
+    for (final OcrScript s in OcrScript.values) {
+      if (s == OcrScript.latin) continue;
+      final bool have = s.usesTesseract
+          ? await TessData.isInstalled(s.tessCode!)
+          : await OcrModels.ensure(s, install: false) == 'ready';
+      if (have) _installed.add(s);
     }
     if (mounted) setState(() {});
   }
 
   Future<void> _probe(OcrScript script) async {
     setState(() => _probing = script);
+    OcrService.clearFailureFor(script);
     try {
-      final dir = await getTemporaryDirectory();
-      final path = p.join(dir.path, 'ocr_probe.png');
-      final file = File(path);
-      // Always overwrite: an earlier build cached a 1x1 probe image here,
-      // which ML Kit rejects ("width and height should be at least 32"),
-      // falsely classifying CJK scripts as hard-unsupported.
-      await file.writeAsBytes(base64Decode(
-          'iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAAAAACPAi4CAAAAKUlEQVR42u3MQREAAAwCIPuX1hD77SAA6VEEAoFAIBAIBAKBQCAQfA8Gpwvw4qrwDDIAAAAASUVORK5CYII='));
-      final OcrService probeService = OcrService();
-      try {
-        if (script.usesTesseract) {
-          // Fetches the language file; a blank probe image needs no OCR run.
-          if (!await TessData.ensure(script.tessCode!)) throw const OcrUnavailableException('download failed');
-          await _loadInstalled();
-        } else {
-          await probeService.recognizeText(imagePath: path, script: script);
-        }
-      } finally {
-        await probeService.dispose();
+      final bool ok = script.usesTesseract
+          ? await TessData.ensure(script.tessCode!)
+          : await OcrModels.download(script);
+      if (!ok) {
+        // Soft failure: shown under the language, retry with the button.
+        final AppLocalizations l10n = AppLocalizations.of(context);
+        _messages[script] = script.usesTesseract
+            ? l10n.ocrNoInternetMessage
+            : (OcrModels.lastError[script] ?? l10n.ocrLanguagePackNotReady);
+      } else {
+        _messages.remove(script);
       }
-      OcrService.clearFailureFor(script);
-    } on OcrUnavailableException {
-      // Service already recorded the classified failure.
     } catch (_) {
-      // Probe errors are non-fatal here.
+      // Non-fatal.
     }
+    await _loadInstalled();
     if (mounted) setState(() => _probing = null);
   }
 
@@ -472,13 +469,13 @@ class _OcrLanguagesSheetState extends State<_OcrLanguagesSheet> {
               final String status = script == OcrScript.latin
                   ? AppLocalizations.of(context).ocrStatusBuiltIn
                   : _probing == script
-                      ? AppLocalizations.of(context).ocrStatusChecking
-                      : failure != null
-                          ? (isHard ? AppLocalizations.of(context).ocrStatusUnsupported : failure.$1)
-                          : _installed.contains(script)
-                              ? AppLocalizations.of(context).ocrStatusInstalled
-                              : AppLocalizations.of(context).ocrStatusOnDemand;
-              final Color statusColor = failure != null
+                      ? AppLocalizations.of(context).ocrStatusDownloading
+                      : _installed.contains(script)
+                          ? AppLocalizations.of(context).ocrStatusInstalled
+                          : failure != null
+                              ? (isHard ? AppLocalizations.of(context).ocrStatusUnsupported : failure.$1)
+                              : _messages[script] ?? AppLocalizations.of(context).ocrStatusOnDemand;
+              final Color statusColor = (failure != null && !_installed.contains(script)) || _messages.containsKey(script)
                   ? (isHard ? Colors.red : Colors.orange)
                   : textSecondary;
               return ListTile(
@@ -487,7 +484,7 @@ class _OcrLanguagesSheetState extends State<_OcrLanguagesSheet> {
                 subtitle: Text(status, style: TextStyle(color: statusColor, fontSize: 11)),
                 trailing: _probing == script
                     ? const SizedBox(width: 18, height: 18, child: CircularProgressIndicator(strokeWidth: 2))
-                    : script == OcrScript.latin
+                    : (script == OcrScript.latin || _installed.contains(script))
                         ? Icon(Icons.check, color: accent)
                         : IconButton(
                             icon: Icon(failure != null ? Icons.refresh : Icons.download_for_offline_outlined, color: accent),
