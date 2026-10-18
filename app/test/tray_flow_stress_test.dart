@@ -8,8 +8,6 @@
 // A failing test here is a confirmed defect; the message says what was seen.
 import 'dart:convert';
 import 'dart:io';
-import 'dart:typed_data';
-import 'dart:ui' show Rect;
 
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
