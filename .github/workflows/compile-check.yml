@@ -134,6 +134,18 @@ jobs:
                               if n not in names:
                                   names.append(n)
                       print('::error title=failing tests::%s' % esc('\n'.join(names[:12])[:3000]))
+                      seen = set()
+                      for i in starts:
+                          n = rows[i].split(': ', 1)[-1].replace('[E]', '').strip()
+                          if n in seen or len(seen) >= 12:
+                              continue
+                          seen.add(n)
+                          msg = []
+                          for l in rows[i + 1:i + 14]:
+                              if l.strip().startswith('package:') or l.startswith('00:'):
+                                  break
+                              msg.append(l)
+                          print('::error title=failure detail::%s' % esc((n + '\n' + '\n'.join(msg))[:1500]))
                       chunks = ['\n'.join(rows[max(0, i - 30):i + 8]) for i in starts[:1]]
                       text = '\n=====\n'.join(chunks) if chunks else tail(text, 40, 3000)
                   print('::error title=%s failed::%s' % (label, esc(tail(text, 80, 3800))))
