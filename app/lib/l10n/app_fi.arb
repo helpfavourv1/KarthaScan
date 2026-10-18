@@ -673,5 +673,9 @@
   "ocrStatusDownloading": "Ladataan…",
   "@ocrStatusDownloading": {
     "description": "OCR language pack is downloading"
+  },
+  "exportNoTextError": "Tässä asiakirjassa ei ole vielä tekstiä. Suorita ensin tekstintunnistus.",
+  "@exportNoTextError": {
+    "description": "Shown when a text export is asked for a document with no recognized text"
   }
 }

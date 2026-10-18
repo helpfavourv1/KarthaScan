@@ -580,5 +580,9 @@
   "ocrStatusDownloading": "מוריד…",
   "@ocrStatusDownloading": {
     "description": "OCR language pack is downloading"
+  },
+  "exportNoTextError": "במסמך זה עדיין אין טקסט. הפעילו קודם זיהוי טקסט (OCR).",
+  "@exportNoTextError": {
+    "description": "Shown when a text export is asked for a document with no recognized text"
   }
 }

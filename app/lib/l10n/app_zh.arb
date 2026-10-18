@@ -580,5 +580,9 @@
   "ocrStatusDownloading": "正在下载…",
   "@ocrStatusDownloading": {
     "description": "OCR language pack is downloading"
+  },
+  "exportNoTextError": "此文档还没有文字。请先运行 OCR。",
+  "@exportNoTextError": {
+    "description": "Shown when a text export is asked for a document with no recognized text"
   }
 }

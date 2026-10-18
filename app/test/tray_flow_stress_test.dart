@@ -349,7 +349,7 @@ void main() {
         final ScanDocument doc = await heavy('x_${f.name}');
         final Directory out = Directory('${tmp.path}/out_${f.name}')..createSync();
         final List<String> files = await ExportService().export(
-          document: doc,
+          document: f == ExportFormat.txt ? doc.copyWith(ocrText: 'hello world') : doc,
           format: f,
           outputDirectoryPath: out.path,
           docxMode: ExportDocxMode.imageEmbedded,
@@ -367,6 +367,16 @@ void main() {
         }
       });
     }
+
+    test('text export of a document with no text says so instead of writing an empty file', () async {
+      final ScanDocument doc = await heavy('x_notext');
+      final Directory out = Directory('${tmp.path}/out_notext')..createSync();
+      await expectLater(
+        ExportService().export(document: doc, format: ExportFormat.txt, outputDirectoryPath: out.path),
+        throwsA(isA<ExportNoTextException>()),
+      );
+      expect(out.listSync(), isEmpty, reason: 'an empty file was left behind');
+    });
 
     test('every compression level exports the edited PDF', () async {
       final ScanDocument doc = await heavy('x_comp');

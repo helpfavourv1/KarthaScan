@@ -673,5 +673,9 @@
   "ocrStatusDownloading": "Memuat turun…",
   "@ocrStatusDownloading": {
     "description": "OCR language pack is downloading"
+  },
+  "exportNoTextError": "Dokumen ini belum mempunyai teks. Jalankan OCR dahulu.",
+  "@exportNoTextError": {
+    "description": "Shown when a text export is asked for a document with no recognized text"
   }
 }

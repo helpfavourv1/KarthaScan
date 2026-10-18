@@ -673,5 +673,9 @@
   "ocrStatusDownloading": "กำลังดาวน์โหลด…",
   "@ocrStatusDownloading": {
     "description": "OCR language pack is downloading"
+  },
+  "exportNoTextError": "เอกสารนี้ยังไม่มีข้อความ โปรดเรียกใช้ OCR ก่อน",
+  "@exportNoTextError": {
+    "description": "Shown when a text export is asked for a document with no recognized text"
   }
 }

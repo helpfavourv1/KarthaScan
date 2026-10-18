@@ -673,5 +673,9 @@
   "ocrStatusDownloading": "ডাউনলোড হচ্ছে…",
   "@ocrStatusDownloading": {
     "description": "OCR language pack is downloading"
+  },
+  "exportNoTextError": "এই নথিতে এখনও কোনো লেখা নেই। আগে OCR চালান।",
+  "@exportNoTextError": {
+    "description": "Shown when a text export is asked for a document with no recognized text"
   }
 }

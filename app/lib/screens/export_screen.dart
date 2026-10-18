@@ -226,6 +226,8 @@ class _ExportScreenState extends State<ExportScreen> {
         await AdPacingService.instance.recordExport();
         unawaited(InterstitialAdService.instance.showAfterExport());
       }
+    } on ExportNoTextException {
+      errorMessage = l10n.exportNoTextError;
     } on ExportFailedException {
       errorMessage = l10n.genericErrorMessage;
     } catch (_) {

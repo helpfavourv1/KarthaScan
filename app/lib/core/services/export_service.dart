@@ -23,6 +23,11 @@ import 'filter_service.dart' show FilterService;
 import 'pdf_fonts.dart';
 import '../../l10n/app_localizations.dart';
 
+/// The document has no recognized text, so a text export would be empty.
+class ExportNoTextException extends ExportFailedException {
+  const ExportNoTextException() : super('This document has no text to export.');
+}
+
 class ExportFailedException implements Exception {
   const ExportFailedException(this.message);
   final String message;
@@ -523,6 +528,7 @@ class ExportService {
   }
 
   Future<String> _exportTxt(ScanDocument document, String outDir) async {
+    if (document.ocrText.trim().isEmpty) throw const ExportNoTextException();
     final outPath = _outputPath(document, outDir, 'txt');
     try {
       await File(outPath).writeAsString(document.ocrText);
@@ -568,6 +574,9 @@ class ExportService {
     ExportDocxMode mode = ExportDocxMode.textOnly,
     PdfPageFormat pageFormat = PdfPageFormat.a4,
   }) async {
+    if (mode == ExportDocxMode.textOnly && document.ocrText.trim().isEmpty) {
+      throw const ExportNoTextException();
+    }
     final archive = Archive();
 
     void addFile(String path, List<int> bytes) {

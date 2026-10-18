@@ -229,6 +229,10 @@ class ScanProvider {
     final bool pagesAddedOrRemoved =
         !(existing.pagePaths.toSet().length == newPagePaths.toSet().length &&
             existing.pagePaths.toSet().containsAll(newPagePaths));
+    // Undo history refers to page numbers, so it ends when the pages change.
+    if (!listEquals(existing.pagePaths, newPagePaths) || (addTurns != null && addTurns.isNotEmpty)) {
+      undoManager.clear();
+    }
     final bool saved = await _replaceAndSave(updated);
     // Search text must follow the pages: removed pages stop matching and
     // added pages start matching. Runs in the background.
@@ -396,7 +400,18 @@ class ScanProvider {
 
   Future<bool> deleteDocument(String id) async {
     final ScanDocument? doomed = _findById(id);
+    // Stop queued edits first: one saved after the delete would bring the
+    // document back.
+    _deleting.add(id);
+    _pendingWrites.remove(id);
+    for (final Completer<bool> w in _writeWaiters.remove(id) ?? <Completer<bool>>[]) {
+      w.complete(false);
+    }
+    while (_writerRunning) {
+      await Future<void>.delayed(const Duration(milliseconds: 5));
+    }
     final bool success = await _storage.deleteDocument(id);
+    _deleting.remove(id);
     if (success) {
       documents.value =
           documents.value.where((ScanDocument d) => d.id != id).toList();
@@ -493,14 +508,33 @@ class ScanProvider {
     return _replaceAndSave(updated);
   }
 
+  /// Puts the overlay edits (signatures, annotations, watermarks, stamps and
+  /// page edits) of [snapshot] onto the document as it is now. Undo used to put
+  /// back a whole old copy of the document, which also undid a rename, new
+  /// tags, or a deleted page made after the edit.
+  ScanDocument _withOverlaysOf(ScanDocument now, ScanDocument snapshot) {
+    return now.copyWith(
+      signatureInks: snapshot.signatureInks,
+      signatureLayers: snapshot.signatureLayers,
+      annotateLayers: snapshot.annotateLayers,
+      watermarkLayers: snapshot.watermarkLayers,
+      stampLayers: snapshot.stampLayers,
+      pageTransforms: snapshot.pageTransforms,
+      updatedAt: DateTime.now(),
+    );
+  }
+
   void _recordOverlayUndo(ScanDocument before, ScanDocument after, String? coalesceKey) {
+    final String id = before.id;
     undoManager.record(UndoCommand(
       coalesceKey: coalesceKey,
       undo: () async {
-        await _replaceAndSave(before);
+        final ScanDocument? now = _findById(id);
+        if (now != null) await _replaceAndSave(_withOverlaysOf(now, before));
       },
       redo: () async {
-        await _replaceAndSave(after);
+        final ScanDocument? now = _findById(id);
+        if (now != null) await _replaceAndSave(_withOverlaysOf(now, after));
       },
     ));
   }
@@ -730,8 +764,10 @@ class ScanProvider {
   final Map<String, ScanDocument> _pendingWrites = <String, ScanDocument>{};
   final Map<String, List<Completer<bool>>> _writeWaiters = <String, List<Completer<bool>>>{};
   bool _writerRunning = false;
+  final Set<String> _deleting = <String>{};
 
   Future<bool> _replaceAndSave(ScanDocument updated) {
+    if (_deleting.contains(updated.id)) return Future<bool>.value(false);
     documents.value = documents.value
         .map((ScanDocument d) => d.id == updated.id ? updated : d)
         .toList();

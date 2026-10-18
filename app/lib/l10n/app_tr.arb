@@ -673,5 +673,9 @@
   "ocrStatusDownloading": "İndiriliyor…",
   "@ocrStatusDownloading": {
     "description": "OCR language pack is downloading"
+  },
+  "exportNoTextError": "Bu belgede henüz metin yok. Önce OCR çalıştırın.",
+  "@exportNoTextError": {
+    "description": "Shown when a text export is asked for a document with no recognized text"
   }
 }

@@ -580,5 +580,9 @@
   "ocrStatusDownloading": "جارٍ التنزيل…",
   "@ocrStatusDownloading": {
     "description": "OCR language pack is downloading"
+  },
+  "exportNoTextError": "لا يحتوي هذا المستند على نص بعد. شغّل التعرف على النص أولاً.",
+  "@exportNoTextError": {
+    "description": "Shown when a text export is asked for a document with no recognized text"
   }
 }

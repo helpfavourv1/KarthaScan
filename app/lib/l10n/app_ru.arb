@@ -673,5 +673,9 @@
   "ocrStatusDownloading": "Загрузка…",
   "@ocrStatusDownloading": {
     "description": "OCR language pack is downloading"
+  },
+  "exportNoTextError": "В этом документе пока нет текста. Сначала запустите распознавание (OCR).",
+  "@exportNoTextError": {
+    "description": "Shown when a text export is asked for a document with no recognized text"
   }
 }

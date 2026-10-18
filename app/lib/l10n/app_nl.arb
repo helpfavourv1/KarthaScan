@@ -673,5 +673,9 @@
   "ocrStatusDownloading": "Downloaden…",
   "@ocrStatusDownloading": {
     "description": "OCR language pack is downloading"
+  },
+  "exportNoTextError": "Dit document bevat nog geen tekst. Voer eerst OCR uit.",
+  "@exportNoTextError": {
+    "description": "Shown when a text export is asked for a document with no recognized text"
   }
 }
