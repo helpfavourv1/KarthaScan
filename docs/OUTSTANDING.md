@@ -129,3 +129,6 @@ Low: Region OCR, Crop, Eraser and Resize sheets all show the unrotated raw photo
 21. LOW OCR: pages with little text trigger 4 OCR passes; confidence always 1.0.
 22. LOW Signature interstitial ad fires right after drawing, before placing it.
 Still not reviewed: layer_control_panel.dart, signature_editor_bar.dart, full FTS migration path.
+
+## Tray stress test (2026-10-18)
+`app/test/tray_flow_stress_test.dart` (runs in CI) fires 150 quick mixed edits, undo/redo, page delete/reorder/extract, delete-while-saving, and exports a heavily edited document in every format. Defects it found and that are fixed: double tap opened a tool twice (700 ms tap gap in the tray); a delete during queued edits let the document come back; undo restored a whole old copy of the document (undid renames, tags and deleted pages); text export of a document with no text wrote an empty file. Not tested here (needs a phone): memory use of very large pages (the resize limit is 40 megapixels), real gesture feel of the sheets, ads and share/print hand-off.
