@@ -1,14 +1,10 @@
 import 'package:package_info_plus/package_info_plus.dart';
-import 'dart:convert';
-import 'dart:io';
 
 import 'package:flutter/material.dart';
 import '../core/utils/language_names.dart';
 import '../core/services/ad_consent_service.dart';
 import '../widgets/conditional_banner.dart';
 import 'package:go_router/go_router.dart';
-import 'package:path/path.dart' as p;
-import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -363,7 +359,7 @@ class _LanguagePickerSheet extends StatelessWidget {
               child: SingleChildScrollView(
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
-                  children: AppLocales.supportedLanguageCodes.map((code) => ListTile(title: Text(_labels[code] ?? code, style: TextStyle(color: textPrimary)), subtitle: code == 'en' ? null : Text(kLanguageEnglishNames[code] ?? '', style: TextStyle(color: textPrimary.withOpacity(0.6), fontSize: 12)), trailing: code == current ? Icon(Icons.check, color: accent) : null, onTap: () => Navigator.of(context).pop(code))).toList(),
+                  children: AppLocales.supportedLanguageCodes.map((code) => ListTile(title: Text(_labels[code] ?? code, style: TextStyle(color: textPrimary)), subtitle: code == 'en' ? null : Text(kLanguageEnglishNames[code] ?? '', style: TextStyle(color: textPrimary.withValues(alpha: 0.6), fontSize: 12)), trailing: code == current ? Icon(Icons.check, color: accent) : null, onTap: () => Navigator.of(context).pop(code))).toList(),
                 ),
               ),
             ),
@@ -425,13 +421,13 @@ class _OcrLanguagesSheetState extends State<_OcrLanguagesSheet> {
   Future<void> _probe(OcrScript script) async {
     setState(() => _probing = script);
     OcrService.clearFailureFor(script);
+    final AppLocalizations l10n = AppLocalizations.of(context);
     try {
       final bool ok = script.usesTesseract
           ? await TessData.ensure(script.tessCode!)
           : await OcrModels.download(script);
       if (!ok) {
         // Soft failure: shown under the language, retry with the button.
-        final AppLocalizations l10n = AppLocalizations.of(context);
         _messages[script] = script.usesTesseract
             ? l10n.ocrNoInternetMessage
             : (OcrModels.lastError[script] ?? l10n.ocrLanguagePackNotReady);

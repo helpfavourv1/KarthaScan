@@ -699,7 +699,7 @@ class _LanguagePickerSheet extends StatelessWidget {
               child: SingleChildScrollView(
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
-                  children: AppLocales.supportedLanguageCodes.map((code) => ListTile(title: Text(_labels[code] ?? code, style: TextStyle(color: textPrimary)), subtitle: code == 'en' ? null : Text(kLanguageEnglishNames[code] ?? '', style: TextStyle(color: textPrimary.withOpacity(0.6), fontSize: 12)), trailing: code == current ? Icon(Icons.check, color: accent) : null, onTap: () => Navigator.of(context).pop(code))).toList(),
+                  children: AppLocales.supportedLanguageCodes.map((code) => ListTile(title: Text(_labels[code] ?? code, style: TextStyle(color: textPrimary)), subtitle: code == 'en' ? null : Text(kLanguageEnglishNames[code] ?? '', style: TextStyle(color: textPrimary.withValues(alpha: 0.6), fontSize: 12)), trailing: code == current ? Icon(Icons.check, color: accent) : null, onTap: () => Navigator.of(context).pop(code))).toList(),
                 ),
               ),
             ),
