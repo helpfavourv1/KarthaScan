@@ -52,17 +52,12 @@ compile check (lint, unit tests, Kotlin compile) is green on `main`.
 ## Phase 5 status
 
 Done in code: 5.2 backups, 5.3 CSV/DOCX text fixes, 5.4 debounce and wildcard escape, 5.5 dead code removal and README.
-Left (needs more than code, or higher risk):
-- 5.1 database version/undo hardening (wait for the rebuilt APK).
-- 5.3 bundled Unicode font for PDF/DOCX text (needs a font file; the sandbox cannot download one).
-- 5.4 index tags in search (needs a database change, belongs with 5.1).
-- 5.5 bigger tap targets in the edit tray; unused storage-path setting; `pubspec.lock` still lists phosphoricons_flutter until the next `flutter pub get` is committed.
+Left: nothing in code. 5.1 (undo/database hardening) and 3.6 wait for the phone test. Bundled fonts, tags in search, bigger tap targets and the unused-setting cleanup are done (see Batches F and G).
 
 ## Known gaps left on purpose
 
 - Dark-mode background of the drawing canvas (needed white for exported ink).
 - No new OCR-language setting (would need strings in 26 languages).
-- Pages-manager rotate resets that page's other edits on Save.
 - If a save fails the change stays on screen with an error (no rollback).
 - `ITSAppUsesNonExemptEncryption` is a legal declaration for the owner to make.
 - Share and review prompts default ON for new installs only.
@@ -85,12 +80,12 @@ App IDs already in the build: Android `ca-app-pub-2731774500195310~5515913454` (
 2. Privacy & messaging, European regulations: create and PUBLISH the consent message (covers EEA, UK, Switzerland), tick both apps. Without it, no consent form appears for those users.
 3. Privacy & messaging, US states regulations message (optional but advised) and the iOS "IDFA explainer" (optional, the app already shows Apple's prompt).
 4. After each app is live in its store, link it in AdMob (Apps > App settings > App store details) so ads serve and app-ads.txt can be verified.
-5. app-ads.txt: host it at the root of the developer website named on the store listing, then check it in AdMob (Apps > View app-ads.txt status).
+5. app-ads.txt: the file is in `website/app-ads.txt` (served at the site root after deploy; publisher ID from the app ID). Put the website address in the store listing as the developer website, then check it in AdMob (Apps > View app-ads.txt status).
 6. Account: payment profile, tax info, address PIN, payee name. Payments do not start without them.
 7. Blocking controls: choose blocked ad categories / sensitive categories to suit a document scanner (kids, gambling etc.).
 8. Not child-directed: leave "tagForChildDirectedTreatment" unset in the app and answer "not designed for children" in the store forms.
 9. Test devices: if you add your phone as a test device for the EEA form test, remove it before launch.
-10. Store forms must match: Play Data safety (ads, advertising ID, AD_ID permission is in the manifest) and Apple privacy labels (ads, tracking). Note `pubspec.yaml` description still says "no ads"; fix wording in the store listing/metadata.
+10. Store forms must match: Play Data safety (ads, advertising ID, AD_ID permission is in the manifest) and Apple privacy labels (ads, tracking). `pubspec.yaml` description no longer says "no ads"; make sure the store listing text does not either.
 
 ## R8 shrinking: decided NOT to use
 Owner measured only about 2 MB saved, not worth the release-only crash risk. `minifyEnabled` and `shrinkResources` are false again. `proguard-rules.pro` (full keep rules for every plugin, verified to pass an R8 run in CI) and `res/raw/keep.xml` stay in the repo, unused, in case shrinking is wanted later. To enable later: set both flags true and add `proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'` to the release block, then run the full phone check (OCR all scripts, PDF import/export, notifications with icon, ads and consent, subscriptions, crop, backup).
@@ -101,34 +96,11 @@ Owner measured only about 2 MB saved, not worth the release-only crash risk. `mi
 - New test `app_boot_test.dart` starts the real app (home and onboarding) and fails with the call trace if anything throws. Both pass.
 - Phone check: install the next APK; the app must open to onboarding (fresh install) or home.
 
-## Stress review of the 21 tray tools (code reading + CI probes) - findings, fixes NOT yet made
-Confirmed (code or CI probe):
-1. HIGH Share (detail screen), Email and Share from the home list send the RAW saved photos, not the edited pages: crop, filter, rotation, eraser/redaction, signature, stamps are all missing (`document_tools_mixin.dart` shareDocument/emailDocument, `home_screen.dart:269`). Export and Print are correct.
-2. HIGH Any failure while rendering a page silently returns the unedited ORIGINAL (`export_service.dart` `_processPage` catch). Probe: resize 0x0 brings the erased/redacted area back with no error. Resize accepts 0, negative and huge numbers (`rotate_resize_sheet.dart`).
-3. HIGH Pages manager "Rotate" writes a new file, so on Confirm that page loses ALL its edits (crop, stamps, signature, eraser, OCR blocks): `updateDocumentPages` matches pages by file path.
-4. HIGH Preview decodes, erases, crops, resizes, filters and re-encodes the FULL photo on the UI thread each time a page with edits is shown (`document_canvas.dart` `_loadPageAspect`), and export holds every page in memory (PDF embeds edited pages as PNG, large). Risk of freezes/out-of-memory on 20+ pages. Same family as queued 3.6.
-5. MEDIUM Filter strength: probe shows the filter changes the caller's picture in place and the 50% grayscale equals full grayscale (slider does nothing for Grayscale). Other filters respond only through their parameters; the blend loop is redundant and slow. (My Phase 2.3 claim was only partly right.)
-6. MEDIUM Resize always stores the sheet's numbers (defaults to the UNCROPPED size): crop then Resize then Confirm stretches the cropped area to the old size; a later re-crop keeps the stale resize.
-7. MEDIUM Crop/Revert change the frame that stamps and signatures are positioned in (percent of the cropped frame), so existing layers shift when a crop is added or reverted; Revert leaves layers behind.
-8. MEDIUM Fill: double-tap opens two sheets; the second close hits `_fillGhostPageIndex!` after it was cleared (Null check, layer lost) (`full_screen_edit_screen.dart:122`).
-9. MEDIUM Watermark identity is (page, text) and signature identity is (page, ink): two watermarks with the same text, or the same signature twice on one page, are edited/deleted together.
-10. MEDIUM Signature controller keeps old page indexes after Pages manager reorder/delete; the next signature change can write them back over the remapped ones (needs phone check).
-11. MEDIUM Compress tray button opens Export with JPG; PDF cannot be compressed at all.
-Plausible, to confirm on a phone: photos with EXIF rotation (camera/gallery inserted via Pages manager) export/print sideways and misalign crop/eraser (no EXIF handling anywhere; image_picker with imageQuality in the scanner path likely bakes it).
-Low: Region OCR, Crop, Eraser and Resize sheets all show the unrotated raw photo; Print filter dropdown shows raw enum names; Watermark default 'CONFIDENTIAL' not localised; annotation PNGs and rotated pages leave orphan files; Email falls back to mailto silently dropping the attachment; print controllers disposed while the dialog animates out.
-### Second pass (remaining tools), fixes NOT yet made
-12. HIGH Pages manager: pages added from Camera/Gallery are kept at their cache path (not copied into app storage); the OS can clear them later and the page goes missing.
-13. MEDIUM Text/Note sheet (text_stamp_sheet.dart ~183-187): the TextField sits outside the if, so it also shows on Checkbox and Date sheets; the note/text kinds work.
-14. MEDIUM Text, Note, Date, Checkbox and Seal sheets have a hard-coded white background; in dark mode typed text and labels are white on white.
-15. MEDIUM Pages manager changes never refresh OCR text or thumbnail: deleted pages stay searchable, added pages are not searchable; deleted page files and annotation PNGs are left behind.
-16. MEDIUM Extract page to new document drops crop, rotation, layers and OCR text (new doc not searchable). Convert > Save as document also has empty OCR text.
-17. MEDIUM Convert: no EXIF handling for gallery photos (sideways PDF/JPG/PNG likely); PDF to TXT/CSV OCRs every page with up to 4 passes each, no cancel, progress stalls; converted_docs files are never cleaned; txt to csv is a plain copy.
-18. LOW Stamp export: multi-line alignment lost, long text not wrapped, no length limit (huge text can hit the silent original fallback).
-19. LOW Eraser: a single tap does nothing (only drags); Annotate: switching tool resets the chosen colour; annotation overlay decodes PNG on the UI thread when first shown; whole drawing canvas (with empty margins) becomes the layer.
-20. LOW Seal: logo picker decodes a full photo on the UI thread; re-tapping Logo re-opens the picker; centre text "star"/"image" is read back as that mode.
-21. LOW OCR: pages with little text trigger 4 OCR passes; confidence always 1.0.
-22. LOW Signature interstitial ad fires right after drawing, before placing it.
-Still not reviewed: layer_control_panel.dart, signature_editor_bar.dart, full FTS migration path.
+## Stress review of the 21 tray tools: resolved
+The 22 findings from the code review were fixed in Batches A to E (see `docs/FIX_PLAN.md`) and are waiting for the phone check above. Review of `layer_control_panel.dart`, `signature_editor_bar.dart` and the search-index upgrade is done (2026-10-19):
+- Signature: one placement per signer per page by design (keyed by signer and page), so the old "same signature twice" finding does not apply.
+- Search-index upgrade (database v1 to v2): drops and rebuilds the index inside one transaction from the stored rows; covered by `db_upgrade_test.dart`. A rebuild error is logged and swallowed (search is then empty until documents are saved again, documents are never touched).
+- OPEN, small: watermarks are still identified by page + text (`removeWatermarkLayer`). Two watermarks with the same text on one page are removed together, and "Tools" (edit text, size, colour) on one of them replaces both with a single one. Fix needs an id on the watermark layer (model + stored data + panel).
 
 ## Tray stress test (2026-10-18)
 `app/test/tray_flow_stress_test.dart` (runs in CI) fires 150 quick mixed edits, undo/redo, page delete/reorder/extract, delete-while-saving, and exports a heavily edited document in every format. Defects it found and that are fixed: double tap opened a tool twice (700 ms tap gap in the tray); a delete during queued edits let the document come back; undo restored a whole old copy of the document (undid renames, tags and deleted pages); text export of a document with no text wrote an empty file. Not tested here (needs a phone): memory use of very large pages (the resize limit is 40 megapixels), real gesture feel of the sheets, ads and share/print hand-off.

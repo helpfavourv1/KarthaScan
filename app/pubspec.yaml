@@ -1,7 +1,5 @@
 name: katharscan
-description: Professional document scanning and PDF management.
-  Scan documents with free unlimited OCR, no watermarks, no account
-  required, and no ads.
+description: Document scanner with on-device text recognition, editing and export to PDF, Word, text and images.
 publish_to: 'none'
 version: 1.0.0+1
 
