@@ -12,6 +12,10 @@ name: KatharScan Compile Check
 #   (flutter build apk --debug) to prove native plugins and Gradle packaging
 #   work. The APK is thrown away: nothing is uploaded or signed.
 #
+# Job 4 (android-emulator-tests): boots an Android emulator and runs
+#   app/integration_test (real OCR, downloads, PDF/export, tray walk). Nothing is
+#   signed or uploaded; results are written as annotations.
+#
 # Failures are also written as GitHub annotations (file, line, message)
 # so they can be read from the run's check annotations without
 # downloading logs. No secrets, keystore or artifact upload are used.
@@ -277,4 +281,77 @@ jobs:
           keep = [l for l in text.splitlines() if l.startswith('e: ') or 'What went wrong' in l or 'FAILED' in l or 'Could not' in l or 'error:' in l.lower() or 'Execution failed' in l]
           out = '\n'.join(keep[:30]) + '\n--- tail ---\n' + '\n'.join(text.strip().splitlines()[-30:])
           print('::error title=debug APK build failed::%s' % esc(out[-3500:]))
+          PY
+
+  android-emulator-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+
+      - uses: actions/setup-java@v5
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+
+      - name: Prepare log folder
+        run: mkdir -p /tmp/cc
+
+      - name: Get packages, localizations and Gradle wrapper
+        working-directory: app
+        run: |
+          flutter pub get
+          flutter gen-l10n
+          flutter create --platforms=android --project-name katharscan --org com.zdmgold .
+
+      - name: Run emulator tests
+        id: emu
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 33
+          target: google_apis
+          arch: x86_64
+          profile: pixel_6
+          disable-animations: true
+          working-directory: app
+          script: bash -c "set -o pipefail; flutter test integration_test/emulator_suite_test.dart --no-pub -d emulator-5554 --reporter expanded 2>&1 | tee /tmp/cc/emu.log"
+
+      - name: Report results as annotations
+        if: always()
+        run: |
+          python3 - <<'PY'
+          import re
+          def esc(s):
+              return s.replace('%', '%25').replace('\r', '%0D').replace('\n', '%0A')
+          try:
+              text = open('/tmp/cc/emu.log', encoding='utf-8', errors='replace').read()
+          except OSError:
+              text = ''
+          rows = [l.split('EMU: ', 1)[1].strip() for l in text.splitlines() if 'EMU: ' in l]
+          seen = []
+          for r in rows:
+              if r not in seen:
+                  seen.append(r)
+          fails = [r for r in seen if '| FAIL |' in r]
+          rest = [r for r in seen if '| FAIL |' not in r]
+          print('::notice title=emulator results (%d lines, %d failing)::%s' % (len(seen), len(fails), esc('\n'.join((fails + rest))[:3800])))
+          for r in fails[:15]:
+              print('::error title=emulator FAIL::%s' % esc(r[:1500]))
+          if not seen:
+              keep = [l for l in text.splitlines() if 'Error' in l or 'error' in l or 'FAILED' in l or 'Exception' in l]
+              print('::error title=emulator run produced no results::%s' % esc(('\n'.join(keep[:25]) + '\n--- tail ---\n' + '\n'.join(text.strip().splitlines()[-25:]))[-3500:]))
+          else:
+              errs = [l for l in text.splitlines() if '[E]' in l or 'Some tests failed' in l]
+              if errs:
+                  print('::error title=emulator test errors::%s' % esc('\n'.join(errs[:20])[:3000]))
           PY
