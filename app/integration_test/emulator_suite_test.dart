@@ -146,7 +146,7 @@ void main() {
     'kr': RemoteFonts.kr,
   }.entries) {
     testWidgets('G1 font download ${e.key}', (WidgetTester tester) async {
-      final File? f = await tester.runAsync(() => RemoteFonts.ensure(e.value));
+      final File? f = await tester.runAsync<File?>(() => RemoteFonts.ensure(e.value));
       note('G1-${e.key}', f != null ? 'PASS' : 'FAIL', f != null ? '${f.lengthSync()} bytes' : 'download or checksum failed');
       expect(f, isNotNull, reason: 'font ${e.value.fileName} could not be downloaded');
       expect(f!.lengthSync(), e.value.bytes);
@@ -165,7 +165,7 @@ void main() {
         '';
     expect(File(pdf).existsSync(), isTrue);
     expect(File(pdf).lengthSync(), greaterThan(1000));
-    final Uint8List? png = await tester.runAsync(() => firstPdfPagePng(pdf));
+    final Uint8List? png = await tester.runAsync<Uint8List?>(() => firstPdfPagePng(pdf));
     expect(png, isNotNull, reason: 'PDF page could not be drawn');
     final img.Image? decoded = img.decodePng(png!);
     int dark = 0;
@@ -183,7 +183,7 @@ void main() {
       String how = '';
       try {
         final OcrResult r = await tester.runAsync(() => OcrService().recognizeText(imagePath: picture.path, script: script)) ??
-            const OcrResult(fullText: '', blocks: <dynamic>[] as dynamic);
+            const OcrResult(fullText: '', blocks: <OcrBlock>[]);
         got = r.fullText;
         how = script.usesTesseract ? 'tesseract' : 'mlkit';
       } on OcrUnavailableException catch (error) {
@@ -224,7 +224,7 @@ void main() {
     final File csv = File(p.join(tmp.path, 'hindi_table.csv'));
     await csv.writeAsString('नाम,शहर,राशि\nराहुल,दिल्ली,1284.50\nप्रिया,मुंबई,560.00\nअमित,पुणे,92.25\n');
     final String pdf = await tester.runAsync(() => CsvToPdfService().convertToPdf(csv.path)) ?? '';
-    final Uint8List? png = await tester.runAsync(() => firstPdfPagePng(pdf));
+    final Uint8List? png = await tester.runAsync<Uint8List?>(() => firstPdfPagePng(pdf));
     expect(png, isNotNull);
     final img.Image decoded = img.decodePng(png!)!;
     int dark = 0;
@@ -332,7 +332,6 @@ void main() {
       await bootProvider();
       final File page = await writePng('edit_page', await renderText('Plain page for editing', width: 800));
       await seedDoc('emu_a1', <File>[page]);
-      await scan.documents.value.isEmpty ? null : null;
       await scan.refresh();
       await scan.addStampLayer('emu_a1', const StampLayer(id: 's1', pageIndex: 0, kind: 'text', placement: SignaturePlacement(pctX: 0.5, pctY: 0.8), text: 'APPROVED', fontSize: 96, color: 0xFFCC0000));
       await scan.addWatermarkLayer('emu_a1', const WatermarkLayer(pageIndex: 0, text: 'CONFIDENTIAL', placement: SignaturePlacement(pctX: 0.5, pctY: 0.4), opacity: 0.6, color: 0xFF0000AA));
@@ -477,7 +476,7 @@ void main() {
     ));
 
     final List<String> errors = <String>[];
-    final FlutterExceptionHandler? old = FlutterError.onError;
+    final void Function(FlutterErrorDetails)? old = FlutterError.onError;
     FlutterError.onError = (FlutterErrorDetails d) {
       errors.add('${d.exceptionAsString().split('\n').first} @ ${(d.stack?.toString() ?? '').split('\n').where((String l) => l.contains('katharscan')).take(3).join(' <- ')}');
       old?.call(d);
