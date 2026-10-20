@@ -344,7 +344,15 @@ jobs:
                   seen.append(r)
           fails = [r for r in seen if '| FAIL |' in r]
           rest = [r for r in seen if '| FAIL |' not in r]
-          print('::notice title=emulator results (%d lines, %d failing)::%s' % (len(seen), len(fails), esc('\n'.join((fails + rest))[:3800])))
+          allrows = fails + rest
+          chunk, n = '', 1
+          for r in allrows:
+              if len(chunk) + len(r) > 3000:
+                  print('::notice title=emulator results part %d::%s' % (n, esc(chunk)))
+                  chunk, n = '', n + 1
+              chunk += r[:700] + '\n'
+          if chunk:
+              print('::notice title=emulator results part %d::%s' % (n, esc(chunk)))
           for r in fails[:15]:
               print('::error title=emulator FAIL::%s' % esc(r[:1500]))
           if not seen:

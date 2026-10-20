@@ -28,4 +28,12 @@ void main() {
       expect(OcrService.isClearlyBetter('abcd', 'a' * 12), isTrue);
     });
   });
+
+  group('wordQuality', () {
+    test('real words score high, lookalike garbage scores low', () {
+      expect(OcrService.looksGarbled('Invoice No. 2026-0417 Thank you for your order today'), isFalse);
+      expect(OcrService.looksGarbled('Счёт Благодарим за заказ посылка прибудет'), isFalse);
+      expect(OcrService.looksGarbled('CyëT NO 2026-0417 BnarogapuM 3a 3akas noCbINKa npuőyaeT 18 OKTA6pA'), isTrue);
+    });
+  });
 }

@@ -168,12 +168,43 @@ class OcrService {
     return found > have + 5 && found >= have * 1.5;
   }
 
+  /// Share of words that look like real words: letters in one consistent case
+  /// pattern, or plain numbers. Latin recognition of a Cyrillic or Greek page
+  /// returns long lookalike strings ("BnarogapuM", "3akas") that score low.
+  static double wordQuality(String text) {
+    int good = 0;
+    int total = 0;
+    final RegExp letters = RegExp(r'^\p{L}+$', unicode: true);
+    final RegExp number = RegExp(r'^[\d.,:/\-%]+$');
+    for (final String raw in text.split(RegExp(r'\s+'))) {
+      final String t = raw.replaceAll(RegExp(r'^[\p{P}\p{S}]+|[\p{P}\p{S}]+$', unicode: true), '');
+      if (t.length < 3) continue;
+      total++;
+      if (number.hasMatch(t)) {
+        good++;
+      } else if (letters.hasMatch(t)) {
+        final bool lower = t == t.toLowerCase();
+        final bool upper = t == t.toUpperCase();
+        final bool capital = t.substring(1) == t.substring(1).toLowerCase();
+        if (lower || upper || capital) good++;
+      }
+    }
+    return total == 0 ? 1 : good / total;
+  }
+
+  /// True when the Latin result has enough text but reads like misread
+  /// letters from another alphabet.
+  static bool looksGarbled(String text) => visibleLength(text) >= 12 && wordQuality(text) < 0.6;
+
   /// Recognizes text with the Latin script first. If that finds almost
   /// nothing, tries Chinese, Japanese and Korean (skipping scripts already
   /// known to be unavailable) and keeps the clearly better result.
   Future<OcrResult> recognizeTextAuto({required String imagePath}) async {
     OcrResult best = await recognizeText(imagePath: imagePath, script: OcrScript.latin);
-    if (!needsScriptFallback(best.fullText)) return best;
+    if (!needsScriptFallback(best.fullText)) {
+      if (looksGarbled(best.fullText)) return _betterFromInstalledPacks(imagePath, best);
+      return best;
+    }
 
     for (final OcrScript script in const <OcrScript>[
       OcrScript.chinese,
@@ -202,6 +233,27 @@ class OcrService {
         final OcrResult candidate = await _recognizeWithTesseract(imagePath, script);
         if (isClearlyBetter(best.fullText, candidate.fullText)) best = candidate;
         if (!needsScriptFallback(best.fullText)) break;
+      } on OcrUnavailableException {
+        // Keep what we have.
+      }
+    }
+    return best;
+  }
+
+  /// Tries the Tesseract packs the user installed and keeps a result whose
+  /// words are clearly more word-like than the Latin guess.
+  Future<OcrResult> _betterFromInstalledPacks(String imagePath, OcrResult latin) async {
+    OcrResult best = latin;
+    double bestQuality = wordQuality(latin.fullText);
+    for (final OcrScript script in OcrScript.values.where((OcrScript s) => s.usesTesseract)) {
+      if (!await TessData.isInstalled(script.tessCode!)) continue;
+      try {
+        final OcrResult candidate = await _recognizeWithTesseract(imagePath, script);
+        final double q = wordQuality(candidate.fullText);
+        if (q > bestQuality + 0.2 && visibleLength(candidate.fullText) >= visibleLength(latin.fullText) * 0.5) {
+          best = candidate;
+          bestQuality = q;
+        }
       } on OcrUnavailableException {
         // Keep what we have.
       }

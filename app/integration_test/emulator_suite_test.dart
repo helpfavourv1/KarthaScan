@@ -123,10 +123,22 @@ double charSimilarity(String a, String b) {
   return 1 - prev[y.length] / longest;
 }
 
+/// PDF pages come back with a transparent background; put them on white as a viewer does.
+Uint8List flattenOnWhite(Uint8List png) {
+  final img.Image src = img.decodePng(png)!;
+  final img.Image out = img.Image(width: src.width, height: src.height);
+  for (final img.Pixel px in src) {
+    final double a = px.a / px.maxChannelValue;
+    int mix(num c) => (c * a + 255 * (1 - a)).round().clamp(0, 255);
+    out.setPixelRgb(px.x, px.y, mix(px.r), mix(px.g), mix(px.b));
+  }
+  return Uint8List.fromList(img.encodePng(out));
+}
+
 Future<Uint8List?> firstPdfPagePng(String pdfPath, {double dpi = 200}) async {
   final Uint8List bytes = await File(pdfPath).readAsBytes();
   await for (final PdfRaster r in Printing.raster(bytes, pages: <int>[0], dpi: dpi)) {
-    return r.toPng();
+    return flattenOnWhite(await r.toPng());
   }
   return null;
 }
@@ -346,7 +358,7 @@ void main() {
       int red = 0, blue = 0;
       for (final img.Pixel px in b) {
         if (px.r > 150 && px.g < 80 && px.b < 80) red++;
-        if (px.b > 120 && px.r < 80 && px.g < 80) blue++;
+        if (px.b > px.r + 40 && px.b > px.g + 40) blue++;
       }
       note('A1-render', (red > 200 && blue > 100) ? 'PASS' : 'FAIL',
           'rotated ${a.width}x${a.height} -> ${b.width}x${b.height}; red stamp pixels $red, blue watermark pixels $blue');
