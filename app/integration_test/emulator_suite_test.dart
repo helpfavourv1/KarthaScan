@@ -16,6 +16,7 @@ import 'package:go_router/go_router.dart';
 import 'package:image/image.dart' as img;
 import 'package:integration_test/integration_test.dart';
 import 'package:katharscan/core/models/export_job.dart';
+import 'package:katharscan/core/models/ocr_block.dart';
 import 'package:katharscan/core/models/page_transform.dart';
 import 'package:katharscan/core/models/scan_document.dart';
 import 'package:katharscan/core/models/signature_placement.dart';
