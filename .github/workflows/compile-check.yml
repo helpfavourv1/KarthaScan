@@ -326,8 +326,8 @@ jobs:
           working-directory: app
           script: |
             bash -c "flutter test integration_test/emulator_suite_test.dart --no-pub -d emulator-5554 --reporter expanded 2>&1 | tee /tmp/cc/emu.log; true"
-            bash -c "flutter test integration_test/emulator_stress_test.dart --no-pub -d emulator-5554 --reporter expanded 2>&1 | tee /tmp/cc/emu2.log; true"
-            bash -c "adb logcat -c; adb install -r -g build/app/outputs/flutter-apk/app-debug.apk >/dev/null 2>&1; adb shell monkey -p com.zdmgold.katharscan --throttle 60 --pct-syskeys 0 --pct-appswitch 0 -s 42 -v 6000 > /tmp/cc/monkey.log 2>&1; adb logcat -d -b crash > /tmp/cc/crash.log 2>&1; true"
+            bash -c "timeout 1500 flutter test integration_test/emulator_stress_test.dart --no-pub -d emulator-5554 --reporter expanded 2>&1 | tee /tmp/cc/emu2.log; true"
+            bash -c "adb logcat -c; adb install -r -g build/app/outputs/flutter-apk/app-debug.apk >/dev/null 2>&1; timeout 420 adb shell monkey -p com.zdmgold.katharscan --throttle 60 --pct-syskeys 0 --pct-appswitch 0 -s 42 -v 6000 > /tmp/cc/monkey.log 2>&1; adb logcat -d -b crash > /tmp/cc/crash.log 2>&1; true"
 
       - name: Report results as annotations
         if: always()
