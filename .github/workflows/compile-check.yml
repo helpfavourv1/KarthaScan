@@ -375,6 +375,7 @@ jobs:
                       print('::error title=emulator test detail::%s' % esc('\n'.join(rows2[max(0, i - 40):i + 3])[-3000:]))
                       break
 
+          PY
           python3 - <<'PY'
           def esc(s):
               return s.replace('%', '%25').replace('\r', '%0D').replace('\n', '%0A')
