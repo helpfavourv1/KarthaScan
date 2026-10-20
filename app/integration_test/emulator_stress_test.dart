@@ -1,10 +1,8 @@
 // Harder round on the emulator: every language at large text sizes, heavy
 // documents, rapid edits with undo, hammering the tray, app backgrounding.
 // Each test prints "EMU: <id> | <status> | <detail>" like the main suite.
-import 'dart:async';
 import 'dart:io';
 import 'dart:math';
-import 'dart:typed_data';
 import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
@@ -240,8 +238,8 @@ void main() {
       await Future.wait(pending.map((Future<void> f) => f.catchError((Object _) {})));
       await Future<void>.delayed(const Duration(seconds: 2));
       final ScanDocument mem = scan.documents.value.firstWhere((ScanDocument d) => d.id == 'stress_edit');
-      final ScanDocument? disk = await storage.getDocument('stress_edit');
-      final bool resurrected = (await storage.getDocument('stress_gone')) != null || scan.documents.value.any((ScanDocument d) => d.id == 'stress_gone');
+      final ScanDocument? disk = await storage.getDocumentById('stress_edit');
+      final bool resurrected = (await storage.getDocumentById('stress_gone')) != null || scan.documents.value.any((ScanDocument d) => d.id == 'stress_gone');
       final bool same = disk != null && disk.title == mem.title && disk.stampLayers.length == mem.stampLayers.length && disk.watermarkLayers.length == mem.watermarkLayers.length && disk.pageTransforms.length == mem.pageTransforms.length;
       final bool ok = errors == 0 && same && !resurrected;
       note('S5-rapid-edits', ok ? 'PASS' : 'FAIL', 'sync errors=$errors, disk equals memory=$same (stamps ${mem.stampLayers.length}/${disk?.stampLayers.length}), deleted doc came back=$resurrected');
