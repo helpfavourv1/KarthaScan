@@ -501,8 +501,10 @@ void main() {
     ));
 
     final List<String> errors = <String>[];
+    final List<String> everything = <String>[];
     final void Function(FlutterErrorDetails)? old = FlutterError.onError;
     FlutterError.onError = (FlutterErrorDetails d) {
+      everything.add('${d.exceptionAsString().split('\n').first} @ ${(d.stack?.toString() ?? '').split('\n').take(6).join(' <- ')}');
       errors.add('${d.exceptionAsString().split('\n').first} @ ${(d.stack?.toString() ?? '').split('\n').where((String l) => l.contains('katharscan')).take(3).join(' <- ')}');
       old?.call(d);
     };
@@ -574,6 +576,7 @@ void main() {
       }
     }
     FlutterError.onError = old;
+    note('C1-all-errors', everything.isEmpty ? 'PASS' : 'FAIL', everything.isEmpty ? 'none' : '${everything.length} errors: ${everything.take(4).join(' ## ')}');
     expect(failures, isEmpty, reason: failures.join('\n'));
   }, timeout: const Timeout(Duration(minutes: 15)));
 }

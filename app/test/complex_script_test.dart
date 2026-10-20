@@ -10,7 +10,8 @@ void main() {
     expect(ComplexScriptText.hasComplex('नमस्ते दुनिया'), isTrue);
     expect(ComplexScriptText.hasComplex('שלום עולם'), isTrue);
     expect(ComplexScriptText.hasComplex('สวัสดี'), isTrue);
-    expect(ComplexScriptText.hasComplex('Hello Привет مرحبا 你好'), isFalse);
+    expect(ComplexScriptText.hasComplex('مرحبا بالعالم'), isTrue);
+    expect(ComplexScriptText.hasComplex('Hello Привет 你好'), isFalse);
   });
 
   testWidgets('a Hindi line becomes a picture, an English line stays text', (WidgetTester tester) async {

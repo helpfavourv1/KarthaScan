@@ -12,6 +12,11 @@ class ComplexScriptText {
 
   static bool isComplexRune(int c) =>
       (c >= 0x0590 && c <= 0x05FF) || // Hebrew
+      (c >= 0x0600 && c <= 0x06FF) || // Arabic (needs joining; checked on a device: the PDF library draws it reversed and unjoined)
+      (c >= 0x0750 && c <= 0x077F) || // Arabic Supplement
+      (c >= 0x08A0 && c <= 0x08FF) || // Arabic Extended-A
+      (c >= 0xFB50 && c <= 0xFDFF) || // Arabic presentation forms A
+      (c >= 0xFE70 && c <= 0xFEFF) || // Arabic presentation forms B
       (c >= 0x0900 && c <= 0x0DFF) || // Devanagari .. Malayalam
       (c >= 0x0E00 && c <= 0x0EFF) || // Thai, Lao
       (c >= 0xFB1D && c <= 0xFB4F); // Hebrew presentation forms
