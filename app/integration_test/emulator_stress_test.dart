@@ -1,6 +1,7 @@
 // Harder round on the emulator: every language at large text sizes, heavy
 // documents, rapid edits with undo, hammering the tray, app backgrounding.
 // Each test prints "EMU: <id> | <status> | <detail>" like the main suite.
+import 'dart:async';
 import 'dart:io';
 import 'dart:math';
 import 'dart:ui' as ui;
@@ -101,8 +102,10 @@ void main() {
     final FlutterExceptionHandlerAlias? old = FlutterError.onError;
     String where = 'boot';
     FlutterError.onError = (FlutterErrorDetails d) {
-      errors.add('[$where] ${d.exceptionAsString().split('\n').first}');
-      old?.call(d);
+      final String full = d.toString();
+      final RegExpMatch? loc = RegExp(r'(lib/[\w/]+\.dart:\d+)').firstMatch(full);
+      errors.add('[$where] ${d.exceptionAsString().split('\n').first} @ ${loc?.group(1) ?? '?'}');
+      // Not forwarded: overflow messages must not end the sweep.
     };
     final BuildContext ctx = tester.element(find.byType(Scaffold).first);
     final SettingsProvider settings = Provider.of<SettingsProvider>(ctx, listen: false);
@@ -110,6 +113,7 @@ void main() {
     final GoRouter router = GoRouter.of(ctx);
 
     final Map<String, List<String>> bad = <String, List<String>>{};
+    final Map<String, Set<String>> groups = <String, Set<String>>{};
     final List<String> locales = AppLocalizations.supportedLocales.map((Locale l) => l.languageCode).toList();
     int combos = 0;
     for (final String lang in locales) {
@@ -128,44 +132,54 @@ void main() {
       }
       final List<String> mine = errors.where((String e) => e.contains('[$lang ')).toSet().toList();
       if (mine.isNotEmpty) bad[lang] = mine;
+      for (final String e in errors.where((String e) => e.contains('[$lang '))) {
+        final RegExpMatch m = RegExp(r'^\[(\S+) (x[\d.]+) (\w+) (\S+)\] (.*?)(?: by [\d.]+ pixels)?( on the \w+)? ?@ (.*)$').firstMatch(e) ?? RegExp(r'^(.*)$').firstMatch(e)!;
+        final String key = m.groupCount >= 7 ? '${m.group(4)} ${m.group(2)} ${m.group(3)} | ${m.group(5)}${m.group(6) ?? ''} @ ${m.group(7)}' : e;
+        groups.putIfAbsent(key, () => <String>{}).add(lang);
+      }
+      errors.clear();
     }
     tester.platformDispatcher.clearAllTestValues();
     FlutterError.onError = old;
     final bool ok = bad.isEmpty;
-    note('S1-languages', ok ? 'PASS' : 'FAIL',
-        '$combos screen/lang/size/theme combinations; ${bad.length} languages with problems${ok ? '' : ': ${bad.entries.take(12).map((MapEntry<String, List<String>> e) => '${e.key}: ${e.value.take(2).join(' | ')}').join(' ## ')}'}');
+    final List<MapEntry<String, Set<String>>> sorted = groups.entries.toList()..sort((a, b) => b.value.length.compareTo(a.value.length));
+    note('S1-languages', ok ? 'PASS' : 'FAIL', '$combos combinations; ${bad.length} languages with problems; ${groups.length} distinct problems');
+    for (final MapEntry<String, Set<String>> g in sorted.take(14)) {
+      note('S1-problem', 'FAIL', '${g.key} (${g.value.length} languages${g.value.length < 6 ? ': ${g.value.join(',')}' : ''})');
+    }
     expect(bad, isEmpty);
   }, timeout: long);
 
   // ---- S3: heavy workloads
-  testWidgets('S3 100-page document: export all formats, time and result', (WidgetTester tester) async {
-    await tester.runAsync(() async {
-      await bootProvider();
-      final List<File> pages = <File>[];
-      final File one = await pagePng('s3');
-      for (int i = 0; i < 100; i++) {
-        final File f = File(p.join(one.parent.path, 's3_$i.png'));
-        await one.copy(f.path);
-        pages.add(f);
-      }
-      final ScanDocument doc = await seedDoc('stress_100', pages);
-      final Directory out = Directory(p.join((await getTemporaryDirectory()).path, 'stress_out'))..createSync(recursive: true);
-      final StringBuffer r = StringBuffer();
-      bool ok = true;
-      for (final ExportFormat f in <ExportFormat>[ExportFormat.pdf, ExportFormat.jpg, ExportFormat.docx]) {
+  for (final ExportFormat fmt in <ExportFormat>[ExportFormat.pdf, ExportFormat.jpg, ExportFormat.docx]) {
+    testWidgets('S3 100-page document export ${fmt.name}', (WidgetTester tester) async {
+      await tester.runAsync(() async {
+        await bootProvider();
+        final File one = await pagePng('s3');
+        final List<File> pages = <File>[];
+        for (int i = 0; i < 100; i++) {
+          final File f = File(p.join(one.parent.path, 's3_$i.png'));
+          if (!f.existsSync()) await one.copy(f.path);
+          pages.add(f);
+        }
+        final ScanDocument doc = await seedDoc('stress_100_${fmt.name}', pages);
+        final Directory out = Directory(p.join((await getTemporaryDirectory()).path, 'stress_out'))..createSync(recursive: true);
         final Stopwatch sw = Stopwatch()..start();
         try {
-          final List<String> files = await ExportService().export(document: doc, format: f, outputDirectoryPath: out.path);
-          r.write('${f.name}: ${files.length} file(s) ${sw.elapsed.inSeconds}s; ');
+          final List<String> files = await ExportService()
+              .export(document: doc, format: fmt, outputDirectoryPath: out.path)
+              .timeout(const Duration(minutes: 3));
+          note('S3-100pages-${fmt.name}', 'PASS', '${files.length} file(s) in ${sw.elapsed.inSeconds}s');
+        } on TimeoutException {
+          note('S3-100pages-${fmt.name}', 'FAIL', 'did not finish in 3 minutes');
+          fail('timeout');
         } catch (e) {
-          ok = false;
-          r.write('${f.name}: FAILED $e; ');
+          note('S3-100pages-${fmt.name}', 'FAIL', 'error $e');
+          rethrow;
         }
-      }
-      note('S3-100pages', ok ? 'PASS' : 'FAIL', r.toString());
-      expect(ok, isTrue, reason: r.toString());
-    });
-  }, timeout: long);
+      });
+    }, timeout: const Timeout(Duration(minutes: 5)));
+  }
 
   testWidgets('S4 very large photos (12, 24 and 48 megapixel pages) export', (WidgetTester tester) async {
     await tester.runAsync(() async {
