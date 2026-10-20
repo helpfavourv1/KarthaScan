@@ -362,4 +362,9 @@ jobs:
               errs = [l for l in text.splitlines() if '[E]' in l or 'Some tests failed' in l]
               if errs:
                   print('::error title=emulator test errors::%s' % esc('\n'.join(errs[:20])[:3000]))
+              rows2 = text.splitlines()
+              for i, l in enumerate(rows2):
+                  if '[E]' in l and 'C1' in l:
+                      print('::error title=emulator C1 detail::%s' % esc('\n'.join(rows2[i:i + 16])[:3000]))
+                      break
           PY
