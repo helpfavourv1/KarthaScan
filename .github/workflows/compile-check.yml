@@ -365,6 +365,6 @@ jobs:
               rows2 = text.splitlines()
               for i, l in enumerate(rows2):
                   if '[E]' in l and 'C1' in l:
-                      print('::error title=emulator C1 detail::%s' % esc('\n'.join(rows2[i:i + 16])[:3000]))
+                      print('::error title=emulator C1 detail::%s' % esc('\n'.join(rows2[max(0, i - 40):i + 3])[-3000:]))
                       break
           PY

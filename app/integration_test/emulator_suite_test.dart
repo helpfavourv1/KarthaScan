@@ -500,15 +500,6 @@ void main() {
       createdAt: now, updatedAt: now, ocrText: 'walk', thumbnailPath: pages.first.path,
     ));
 
-    final List<String> errors = <String>[];
-    final List<String> everything = <String>[];
-    final void Function(FlutterErrorDetails)? old = FlutterError.onError;
-    FlutterError.onError = (FlutterErrorDetails d) {
-      everything.add('${d.exceptionAsString().split('\n').first} @ ${(d.stack?.toString() ?? '').split('\n').take(6).join(' <- ')}');
-      errors.add('${d.exceptionAsString().split('\n').first} @ ${(d.stack?.toString() ?? '').split('\n').where((String l) => l.contains('katharscan')).take(3).join(' <- ')}');
-      old?.call(d);
-    };
-
     Future<void> pumpFor(int ms) async {
       final int steps = ms ~/ 100;
       for (int i = 0; i < steps; i++) {
@@ -518,6 +509,15 @@ void main() {
 
     await app.main();
     await pumpFor(4000);
+    final List<String> errors = <String>[];
+    final List<String> everything = <String>[];
+    final void Function(FlutterErrorDetails)? old = FlutterError.onError;
+    FlutterError.onError = (FlutterErrorDetails d) {
+      everything.add('${d.exceptionAsString().split('\n').first} @ ${(d.stack?.toString() ?? '').split('\n').take(6).join(' <- ')}');
+      errors.add('${d.exceptionAsString().split('\n').first} @ ${(d.stack?.toString() ?? '').split('\n').where((String l) => l.contains('katharscan')).take(3).join(' <- ')}');
+      old?.call(d);
+    };
+
     final GoRouter router = GoRouter.of(tester.element(find.byType(Scaffold).first));
     router.go('/scan/emu_ui');
     await pumpFor(4000);
