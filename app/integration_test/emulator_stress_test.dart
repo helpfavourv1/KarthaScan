@@ -323,7 +323,10 @@ void main() {
     for (int round = 0; round < 6; round++) {
       // Fast repeated taps on every tray target, no waiting for sheets.
       final List<Finder> targets = find.byWidgetPredicate((Widget w) => w.key is ValueKey<String> && (w.key! as ValueKey<String>).value.startsWith('trayTarget:')).evaluate().map((Element e) => find.byKey(e.widget.key!)).toList();
+      note('S6-progress', 'INFO', 'round $round: ${targets.length} tray targets, $taps taps so far');
       for (final Finder t in targets) {
+        final String label = (t.evaluate().isEmpty ? '?' : (t.evaluate().first.widget.key as ValueKey<String>?)?.value ?? '?');
+        if (round == 0) note('S6-tap', 'INFO', 'about to tap $label');
         for (int k = 0; k < 3; k++) {
           try {
             await tester.tap(t, warnIfMissed: false);
@@ -332,12 +335,14 @@ void main() {
           } catch (_) {}
         }
       }
+      note('S6-progress', 'INFO', 'round $round: tray done, random taps next');
       for (int i = 0; i < 60; i++) {
         await tester.tapAt(Offset(rnd.nextDouble() * size.width, rnd.nextDouble() * size.height));
         await tester.pump(const Duration(milliseconds: 40));
         taps++;
         if (i % 15 == 0) await tester.binding.handlePopRoute();
       }
+      note('S6-progress', 'INFO', 'round $round: random taps done, backgrounding');
       // Send the app to the background and bring it back.
       binding.handleAppLifecycleStateChanged(AppLifecycleState.inactive);
       binding.handleAppLifecycleStateChanged(AppLifecycleState.paused);
