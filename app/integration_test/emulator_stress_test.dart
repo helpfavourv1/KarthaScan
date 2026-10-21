@@ -167,7 +167,7 @@ void main() {
         final Stopwatch sw = Stopwatch()..start();
         try {
           final List<String> files = await ExportService()
-              .export(document: doc, format: fmt, outputDirectoryPath: out.path)
+              .export(document: doc, format: fmt, outputDirectoryPath: out.path, docxMode: ExportDocxMode.imageEmbedded)
               .timeout(const Duration(minutes: 3));
           note('S3-100pages-${fmt.name}', 'PASS', '${files.length} file(s) in ${sw.elapsed.inSeconds}s');
         } on TimeoutException {
