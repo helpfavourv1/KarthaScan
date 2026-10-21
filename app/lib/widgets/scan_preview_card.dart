@@ -197,24 +197,28 @@ class _ScanPreviewCardState extends State<ScanPreviewCard> {
                   onPressed: _currentPage > 0 ? () => _goToPage(_currentPage - 1) : null,
                   icon: Icon(Icons.chevron_left, color: _currentPage > 0 ? accent : textSecondary),
                 ),
-                Text(AppLocalizations.of(context).pageIndicator(_currentPage + 1, widget.pagePaths.length), style: TextStyle(color: textSecondary, fontSize: AppTypography.footnoteSize)),
+                Flexible(child: Text(AppLocalizations.of(context).pageIndicator(_currentPage + 1, widget.pagePaths.length), maxLines: 1, overflow: TextOverflow.ellipsis, style: TextStyle(color: textSecondary, fontSize: AppTypography.footnoteSize))),
                 IconButton(
                   visualDensity: VisualDensity.compact,
                   onPressed: _currentPage < _lastIndex ? () => _goToPage(_currentPage + 1) : null,
                   icon: Icon(Icons.chevron_right, color: _currentPage < _lastIndex ? accent : textSecondary),
                 ),
                 if (widget.onEditFullscreen != null)
-                  ActionChip(
-                    avatar: const Icon(Icons.open_in_full, size: 14),
-                    label: Text(AppLocalizations.of(context).fullscreenLabel, style: TextStyle(fontSize: 11)),
-                    onPressed: widget.onEditFullscreen,
+                  Flexible(
+                    child: ActionChip(
+                      avatar: const Icon(Icons.open_in_full, size: 14),
+                      label: Text(AppLocalizations.of(context).fullscreenLabel, maxLines: 1, overflow: TextOverflow.ellipsis, style: TextStyle(fontSize: 11)),
+                      onPressed: widget.onEditFullscreen,
+                    ),
                   ),
                 const Spacer(),
                 if (widget.editMode != TrayEditMode.none && widget.onDoneEditing != null)
-                  ActionChip(
-                    avatar: const Icon(Icons.check, size: 14),
-                    label: Text(AppLocalizations.of(context).commonDone, style: TextStyle(fontSize: 11)),
-                    onPressed: widget.onDoneEditing,
+                  Flexible(
+                    child: ActionChip(
+                      avatar: const Icon(Icons.check, size: 14),
+                      label: Text(AppLocalizations.of(context).commonDone, maxLines: 1, overflow: TextOverflow.ellipsis, style: TextStyle(fontSize: 11)),
+                      onPressed: widget.onDoneEditing,
+                    ),
                   ),
               ],
             ),

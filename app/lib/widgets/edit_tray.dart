@@ -228,6 +228,13 @@ class _EditTrayState extends State<EditTray> with SingleTickerProviderStateMixin
       if (widget.onRevert != null) _TrayItem(Icons.undo, l10n.commonRevert, widget.onRevert!),
     ];
 
+    // Two tools can share a label in a translation; each key must stay unique.
+    final Map<String, int> seen = <String, int>{};
+    for (final _TrayItem it in items) {
+      final int n = seen[it.label] = (seen[it.label] ?? 0) + 1;
+      if (n > 1) it.keyId = '${it.label}#$n';
+    }
+
     final widgets = <Widget>[];
     for (int i = 0; i < items.length; i++) {
       widgets.add(_buildCoach(items[i], coachFill, coachBorder, iconColor, textColor, hubColor, spokeColor));
@@ -247,7 +254,7 @@ class _EditTrayState extends State<EditTray> with SingleTickerProviderStateMixin
     // The whole coach (button and wheels) is the touch target, at least 48 x 48,
     // so the compact tray's small buttons are still easy to hit.
     return GestureDetector(
-      key: ValueKey<String>('trayTarget:${item.label}'),
+      key: ValueKey<String>('trayTarget:${item.keyId}'),
       behavior: HitTestBehavior.opaque,
       onTap: () => _tap(item.onTap),
       child: ConstrainedBox(
@@ -335,6 +342,7 @@ class _TrayItem {
   final IconData icon;
   final String label;
   final VoidCallback onTap;
+  late String keyId = label;
   _TrayItem(this.icon, this.label, this.onTap);
 }
 
