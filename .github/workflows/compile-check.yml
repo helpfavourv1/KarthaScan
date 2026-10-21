@@ -354,7 +354,7 @@ jobs:
                   seen.append(r)
           fails = [r for r in seen if '| FAIL |' in r]
           rest = [r for r in seen if '| FAIL |' not in r]
-          allrows = fails + rest
+          allrows = [r for r in fails if not r.startswith('S1-problem')] + [r for r in rest if not r.startswith('S6-tap')]
           chunk, n = '', 1
           for r in allrows:
               if len(chunk) + len(r) > 3000:
@@ -363,7 +363,7 @@ jobs:
               chunk += r[:700] + '\n'
           if chunk:
               print('::notice title=emulator results part %d::%s' % (n, esc(chunk)))
-          for r in fails[:15]:
+          for r in sorted(fails, key=lambda r: r.startswith('S1-problem'))[:15]:
               print('::error title=emulator FAIL::%s' % esc(r[:1500]))
           if not seen:
               keep = [l for l in text.splitlines() if 'Error' in l or 'error' in l or 'FAILED' in l or 'Exception' in l]
