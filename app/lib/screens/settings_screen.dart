@@ -1,3 +1,4 @@
+import 'dart:io' show Platform;
 import 'package:package_info_plus/package_info_plus.dart';
 
 import 'package:flutter/material.dart';
@@ -430,7 +431,7 @@ class _OcrLanguagesSheetState extends State<_OcrLanguagesSheet> {
       if (!ok) {
         // Soft failure: shown under the language, retry with the button.
         _messages[script] = script.usesTesseract
-            ? l10n.ocrNoInternetMessage
+            ? (Platform.isIOS ? l10n.ocrStatusUnsupported : l10n.ocrNoInternetMessage)
             : (OcrModels.lastError[script] ?? l10n.ocrLanguagePackNotReady);
       } else {
         _messages.remove(script);

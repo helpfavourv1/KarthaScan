@@ -16,6 +16,9 @@ name: KatharScan Compile Check
 #   app/integration_test (real OCR, downloads, PDF/export, tray walk). Nothing is
 #   signed or uploaded; results are written as annotations.
 #
+# Job 5 (ios-simulator-check): builds the iOS app for the simulator (no signing) and runs
+#   integration_test/ios_ocr_test.dart on an iPhone simulator. Nothing is signed or uploaded.
+#
 # Failures are also written as GitHub annotations (file, line, message)
 # so they can be read from the run's check annotations without
 # downloading logs. No secrets, keystore or artifact upload are used.
@@ -394,3 +397,66 @@ jobs:
           print('::%s title=monkey (6000 random events)::%s' % ('error' if crashed else 'notice', esc((' '.join(events) + '\n' + ('\n'.join([l for l in (m + c).splitlines() if 'CRASH' in l or 'ANR' in l or 'Exception' in l or 'FATAL' in l][:20]) if crashed else 'no crash, no ANR'))[:3000])))
           PY
           grep -q "Some tests failed" /tmp/cc/emu.log /tmp/cc/emu2.log && exit 1 || exit 0
+
+  ios-simulator-check:
+    runs-on: macos-15
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+
+      - name: Prepare log folder
+        run: mkdir -p /tmp/cc
+
+      - name: Get packages and localizations
+        working-directory: app
+        run: |
+          flutter pub get
+          flutter gen-l10n
+
+      - name: Boot an iPhone simulator
+        id: sim
+        run: |
+          set -e
+          UDID=$(xcrun simctl list devices available | grep -E "iPhone" | head -1 | sed -E 's/.*\(([0-9A-F-]{36})\).*/\1/')
+          echo "udid=$UDID" >> "$GITHUB_OUTPUT"
+          xcrun simctl boot "$UDID" || true
+          xcrun simctl bootstatus "$UDID" -b | tail -1
+          xcrun simctl list runtimes | tail -3
+
+      - name: Build and run iOS tests
+        id: ios
+        working-directory: app
+        run: |
+          set +e
+          flutter test integration_test/ios_ocr_test.dart -d "${{ steps.sim.outputs.udid }}" --reporter expanded 2>&1 | tee /tmp/cc/ios.log
+          exit 0
+
+      - name: Report results as annotations
+        if: always()
+        run: |
+          python3 - <<'PY'
+          def esc(s):
+              return s.replace('%', '%25').replace('\r', '%0D').replace('\n', '%0A')
+          try:
+              text = open('/tmp/cc/ios.log', encoding='utf-8', errors='replace').read()
+          except OSError:
+              text = ''
+          rows = []
+          for l in text.splitlines():
+              if 'EMU: ' in l:
+                  r = l.split('EMU: ', 1)[1].strip()
+                  if r not in rows:
+                      rows.append(r)
+          bad = [r for r in rows if '| FAIL |' in r]
+          if rows:
+              print('::notice title=iOS Vision OCR::%s' % esc('\n'.join(rows)[:3500]))
+          for r in bad:
+              print('::error title=iOS FAIL::%s' % esc(r[:1200]))
+          if not rows:
+              keep = [l for l in text.splitlines() if 'error' in l.lower() or 'Error' in l or 'failed' in l.lower()]
+              print('::error title=iOS run produced no results::%s' % esc(('\n'.join(keep[:25]) + '\n--- tail ---\n' + '\n'.join(text.strip().splitlines()[-25:]))[-3500:]))
+          PY

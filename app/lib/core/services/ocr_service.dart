@@ -266,7 +266,8 @@ class OcrService {
   /// Tesseract OCR (Android). The language file is downloaded on first use.
   Future<OcrResult> _recognizeWithTesseract(String imagePath, OcrScript script) async {
     final String code = script.tessCode!;
-    if (!Platform.isAndroid) {
+    if (!Platform.isAndroid && !(Platform.isIOS && await TessData.isInstalled(code))) {
+      // iPhone: only the languages this iOS version's Vision framework can read.
       final result = (AppLocale.l10n.ocrStatusUnsupported, true);
       _scriptFailures[script] = result;
       throw OcrUnavailableException(result.$1);
@@ -280,7 +281,7 @@ class OcrService {
       final Map<Object?, Object?>? raw = await _tessChannel
           .invokeMapMethod<Object?, Object?>('extract', <String, Object>{
         'imagePath': imagePath,
-        'dataPath': (await TessData.root()).path,
+        'dataPath': Platform.isAndroid ? (await TessData.root()).path : '',
         'language': code,
       }).timeout(const Duration(seconds: 90));
       final List<Object?> lines = (raw?['lines'] as List<Object?>?) ?? const <Object?>[];

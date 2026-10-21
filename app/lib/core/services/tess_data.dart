@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:crypto/crypto.dart' show sha256;
+import 'package:flutter/services.dart' show MethodChannel;
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
 
@@ -53,7 +54,24 @@ class TessData {
   static Future<File> _file(TessPack pack) async =>
       File(p.join((await root()).path, 'tessdata', pack.fileName));
 
+  /// On iPhone these scripts are read by Apple's built-in Vision text
+  /// recognition (no download); "installed" there means the phone's iOS version supports the language.
+  static const MethodChannel _vision = MethodChannel('com.zdmgold.katharscan/tess_ocr');
+  static final Map<String, bool> _visionSupport = <String, bool>{};
+
+  static Future<bool> _visionSupports(String code) async {
+    final bool? cached = _visionSupport[code];
+    if (cached != null) return cached;
+    try {
+      final bool? ok = await _vision.invokeMethod<bool>('supports', <String, Object>{'language': code});
+      return _visionSupport[code] = ok ?? false;
+    } catch (_) {
+      return false;
+    }
+  }
+
   static Future<bool> isInstalled(String code) async {
+    if (Platform.isIOS) return _visionSupports(code);
     final TessPack? pack = packs[code];
     if (pack == null) return false;
     final File f = await _file(pack);
@@ -63,6 +81,7 @@ class TessData {
   /// Downloads the pack if needed. Returns false when it cannot be had
   /// (offline, bad checksum).
   static Future<bool> ensure(String code, {bool download = true}) async {
+    if (Platform.isIOS) return _visionSupports(code);
     final TessPack? pack = packs[code];
     if (pack == null) return false;
     try {
