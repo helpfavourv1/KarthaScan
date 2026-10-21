@@ -414,6 +414,7 @@ jobs:
       - name: Get packages and localizations
         working-directory: app
         run: |
+          flutter config --no-enable-swift-package-manager
           flutter pub get
           flutter gen-l10n
 
