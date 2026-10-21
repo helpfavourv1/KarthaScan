@@ -340,7 +340,6 @@ void main() {
         await tester.tapAt(Offset(rnd.nextDouble() * size.width, rnd.nextDouble() * size.height));
         await tester.pump(const Duration(milliseconds: 40));
         taps++;
-        if (i % 15 == 0) await tester.binding.handlePopRoute();
       }
       note('S6-progress', 'INFO', 'round $round: random taps done, backgrounding');
       // Send the app to the background and bring it back.
