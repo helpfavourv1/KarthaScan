@@ -427,6 +427,13 @@ jobs:
           xcrun simctl bootstatus "$UDID" -b | tail -1
           xcrun simctl list runtimes | tail -3
 
+      - name: Build iOS app for the simulator (no signing)
+        working-directory: app
+        run: |
+          set +e
+          flutter build ios --simulator --debug --no-codesign 2>&1 | tee /tmp/cc/iosbuild.log
+          exit 0
+
       - name: Build and run iOS tests
         id: ios
         working-directory: app
@@ -456,6 +463,15 @@ jobs:
               print('::notice title=iOS Vision OCR::%s' % esc('\n'.join(rows)[:3500]))
           for r in bad:
               print('::error title=iOS FAIL::%s' % esc(r[:1200]))
+          try:
+              b = open('/tmp/cc/iosbuild.log', encoding='utf-8', errors='replace').read()
+              bl = [l for l in b.splitlines() if 'error' in l.lower() or 'Could not' in l or 'failed' in l.lower() or l.strip().startswith('/') and ': error' in l]
+              if bl:
+                  print('::error title=iOS build messages::%s' % esc('\n'.join(bl[:30])[:3500]))
+              else:
+                  print('::notice title=iOS build::%s' % esc('\n'.join(b.strip().splitlines()[-6:])))
+          except OSError:
+              pass
           if not rows:
               keep = [l for l in text.splitlines() if 'error' in l.lower() or 'Error' in l or 'failed' in l.lower()]
               print('::error title=iOS run produced no results::%s' % esc(('\n'.join(keep[:25]) + '\n--- tail ---\n' + '\n'.join(text.strip().splitlines()[-25:]))[-3500:]))
