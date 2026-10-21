@@ -584,5 +584,9 @@
   "exportNoTextError": "Dieses Dokument enthält noch keinen Text. Führen Sie zuerst OCR aus.",
   "@exportNoTextError": {
     "description": "Shown when a text export is asked for a document with no recognized text"
+  },
+  "saveFailedBanner": "Ihre letzten Änderungen konnten nicht gespeichert werden.",
+  "@saveFailedBanner": {
+    "description": "Banner shown when saving document changes failed; a Try again button sits next to it"
   }
 }

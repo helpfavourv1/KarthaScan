@@ -10,6 +10,7 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'core/providers/scan_provider.dart';
 import 'core/providers/settings_provider.dart';
 import 'core/providers/theme_provider.dart';
 import 'core/utils/constants.dart';
@@ -106,7 +107,10 @@ class _KatharScanAppState extends State<KatharScanApp> with WidgetsBindingObserv
           builder: (BuildContext context, Widget? child) {
             return Directionality(
               textDirection: isRtl ? TextDirection.rtl : TextDirection.ltr,
-              child: EngagementPromptListener(child: child ?? const SizedBox.shrink()),
+              child: SaveFailureBanner(
+                scanProvider: Provider.of<ScanProvider>(context, listen: false),
+                child: EngagementPromptListener(child: child ?? const SizedBox.shrink()),
+              ),
             );
           },
         );
@@ -161,4 +165,57 @@ class _EngagementPromptListenerState extends State<EngagementPromptListener> {
     }
   }
   @override Widget build(BuildContext context) => widget.child;
+}
+
+/// Shown above every screen while a document's latest changes could not be
+/// saved, with a button that tries again.
+class SaveFailureBanner extends StatelessWidget {
+  const SaveFailureBanner({super.key, required this.scanProvider, required this.child});
+
+  final ScanProvider scanProvider;
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    // The child stays in the same place in the tree so showing the banner never rebuilds the app.
+    return Stack(
+      textDirection: Directionality.of(context),
+      children: <Widget>[
+        child,
+        ValueListenableBuilder<int>(
+          valueListenable: scanProvider.failedSaves,
+          builder: (BuildContext context, int failed, Widget? _) {
+            if (failed == 0) return const SizedBox.shrink();
+            final AppLocalizations l10n = AppLocalizations.of(context);
+            return Positioned(
+              top: 0,
+              left: 0,
+              right: 0,
+              child: Material(
+                color: const Color(0xFFB3261E),
+                child: SafeArea(
+                  bottom: false,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                    child: Row(
+                      children: <Widget>[
+                        Expanded(
+                          child: Text(l10n.saveFailedBanner, style: const TextStyle(color: Colors.white, fontSize: 13)),
+                        ),
+                        TextButton(
+                          key: const ValueKey<String>('saveRetry'),
+                          onPressed: () => scanProvider.retryFailedSaves(),
+                          child: Text(l10n.tryAgainButton, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w700)),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            );
+          },
+        ),
+      ],
+    );
+  }
 }

@@ -584,5 +584,9 @@
   "exportNoTextError": "لا يحتوي هذا المستند على نص بعد. شغّل التعرف على النص أولاً.",
   "@exportNoTextError": {
     "description": "Shown when a text export is asked for a document with no recognized text"
+  },
+  "saveFailedBanner": "تعذّر حفظ آخر تغييراتك.",
+  "@saveFailedBanner": {
+    "description": "Banner shown when saving document changes failed; a Try again button sits next to it"
   }
 }

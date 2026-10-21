@@ -677,5 +677,9 @@
   "exportNoTextError": "เอกสารนี้ยังไม่มีข้อความ โปรดเรียกใช้ OCR ก่อน",
   "@exportNoTextError": {
     "description": "Shown when a text export is asked for a document with no recognized text"
+  },
+  "saveFailedBanner": "ไม่สามารถบันทึกการเปลี่ยนแปลงล่าสุดของคุณได้",
+  "@saveFailedBanner": {
+    "description": "Banner shown when saving document changes failed; a Try again button sits next to it"
   }
 }

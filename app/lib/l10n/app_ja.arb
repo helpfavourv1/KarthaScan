@@ -584,5 +584,9 @@
   "exportNoTextError": "この書類にはまだテキストがありません。先にOCRを実行してください。",
   "@exportNoTextError": {
     "description": "Shown when a text export is asked for a document with no recognized text"
+  },
+  "saveFailedBanner": "最新の変更を保存できませんでした。",
+  "@saveFailedBanner": {
+    "description": "Banner shown when saving document changes failed; a Try again button sits next to it"
   }
 }

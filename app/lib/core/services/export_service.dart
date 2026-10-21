@@ -4,6 +4,7 @@ import 'debug_log_service.dart';
 import 'dart:ui' as ui;
 import 'dart:convert';
 import 'dart:io';
+import 'dart:isolate';
 import 'dart:typed_data';
 
 import 'package:archive/archive.dart';
@@ -59,6 +60,35 @@ PdfPageFormat _toPdfFormat(ExportPageFormat f) {
     return (info.width, info.height);
   } catch (_) {
     return null;
+  }
+}
+
+/// Pages above this many pixels (about 24 MP) are decoded at reduced size so
+/// a 48 MP or larger photo does not run the phone out of memory while it is
+/// edited and exported. Layer positions are fractions of the page, so they
+/// land in the same place.
+const int _kMaxEditPixels = 24000000;
+const int _kCappedLongSide = 6000;
+
+Future<img.Image?> _decodeForEdit(Uint8List bytes) async {
+  final (int, int)? size = _probeImageSize(bytes);
+  if (size == null || size.$1 * size.$2 <= _kMaxEditPixels) return Isolate.run(() => img.decodeImage(bytes));
+  final double k = _kCappedLongSide / (size.$1 > size.$2 ? size.$1 : size.$2);
+  final ui.Codec codec = await ui.instantiateImageCodec(
+    bytes,
+    targetWidth: (size.$1 * k).round(),
+    targetHeight: (size.$2 * k).round(),
+  );
+  try {
+    final ui.FrameInfo frame = await codec.getNextFrame();
+    final ByteData? raw = await frame.image.toByteData(format: ui.ImageByteFormat.rawRgba);
+    final int w = frame.image.width;
+    final int h = frame.image.height;
+    frame.image.dispose();
+    if (raw == null) return null;
+    return img.Image.fromBytes(width: w, height: h, bytes: raw.buffer, numChannels: 4);
+  } finally {
+    codec.dispose();
   }
 }
 
@@ -272,7 +302,7 @@ class ExportService {
       return original;
     }
     try {
-      final decodedOriginal = img.decodeImage(original);
+      final decodedOriginal = await _decodeForEdit(original);
       if (decodedOriginal == null) {
         throw ExportFailedException('Could not read page ${pageIndex + 1}.');
       }
@@ -317,11 +347,16 @@ class ExportService {
         decoded = img.copyResize(decoded, width: pageTransform.resizeWidth!, height: pageTransform.resizeHeight!);
       }
       if (effectiveFilter != FilterType.none) {
-        decoded = (pageTransform != null &&
+        final img.Image forFilter = decoded;
+        final double? intensity = (pageTransform != null &&
                 pageTransform.filter != FilterType.none &&
                 pageTransform.filterIntensity != 1.0)
-            ? FilterService.applyToImage(decoded, effectiveFilter, intensity: pageTransform.filterIntensity)
-            : _applyFilter(decoded, effectiveFilter);
+            ? pageTransform.filterIntensity
+            : null;
+        // Heavy pixel work runs on a background isolate so the screen keeps moving.
+        decoded = await Isolate.run(() => intensity != null
+            ? FilterService.applyToImage(forFilter, effectiveFilter, intensity: intensity)
+            : _applyFilter(forFilter, effectiveFilter));
       }
       for (final layer in layers) {
         final ink = inkMap[layer.inkId];
@@ -366,9 +401,12 @@ class ExportService {
       // unrotated page frame (the preview rotates the whole stack together),
       // so they must be applied before the page is turned.
       if (pageTransform != null && pageTransform.rotationTurns != 0) {
-        decoded = img.copyRotate(decoded, angle: pageTransform.rotationTurns * 90);
+        final img.Image forRotate = decoded;
+        final int turns = pageTransform.rotationTurns;
+        decoded = await Isolate.run(() => img.copyRotate(forRotate, angle: turns * 90));
       }
-      return Uint8List.fromList(img.encodePng(decoded));
+      final img.Image forEncode = decoded;
+      return await Isolate.run(() => Uint8List.fromList(img.encodePng(forEncode)));
     } catch (error, stackTrace) {
       _logError('_processPage', error, stackTrace);
       // Never hand back the unedited original: erased or redacted content
@@ -380,7 +418,15 @@ class ExportService {
 
   /// Re-encodes a page as a smaller JPG for PDF output: capped longest side
   /// and the tier's quality. Falls back to the original bytes if it fails.
-  Uint8List _compressForPdf(Uint8List bytes, CompressionTier tier) {
+  Future<Uint8List> _compressForPdf(Uint8List bytes, CompressionTier tier) async {
+    try {
+      return await Isolate.run(() => _compressForPdfSync(bytes, tier));
+    } catch (_) {
+      return bytes;
+    }
+  }
+
+  Uint8List _compressForPdfSync(Uint8List bytes, CompressionTier tier) {
     try {
       img.Image? decoded = img.decodeImage(bytes);
       if (decoded == null) return bytes;
@@ -430,7 +476,7 @@ class ExportService {
       // Size of the page picture before any compression; the invisible OCR
       // text is positioned against this.
       final (int, int)? probed = _probeImageSize(bytes);
-      final Uint8List embedBytes = compression == CompressionTier.original ? bytes : _compressForPdf(bytes, compression);
+      final Uint8List embedBytes = compression == CompressionTier.original ? bytes : await _compressForPdf(bytes, compression);
       final image = pw.MemoryImage(embedBytes);
       final blocks = document.pageOcrBlocks[i] ?? const <OcrBlock>[];
       // A wide scan gets a landscape page instead of a tiny letterboxed one.

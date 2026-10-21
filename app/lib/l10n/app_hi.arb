@@ -584,5 +584,9 @@
   "exportNoTextError": "इस दस्तावेज़ में अभी कोई टेक्स्ट नहीं है। पहले OCR चलाएँ।",
   "@exportNoTextError": {
     "description": "Shown when a text export is asked for a document with no recognized text"
+  },
+  "saveFailedBanner": "आपके नवीनतम बदलाव सहेजे नहीं जा सके।",
+  "@saveFailedBanner": {
+    "description": "Banner shown when saving document changes failed; a Try again button sits next to it"
   }
 }

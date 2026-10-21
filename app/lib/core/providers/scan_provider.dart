@@ -661,6 +661,48 @@ class ScanProvider {
     return _replaceAndSave(updated);
   }
 
+  /// Swaps one watermark for an edited version in a single save and a single
+  /// undo step (editing the text changes the identity, so it cannot be a plain update).
+  Future<bool> replaceWatermarkLayer(String id, WatermarkLayer old, WatermarkLayer updatedLayer) async {
+    final ScanDocument? existing = _findById(id);
+    if (existing == null) return false;
+    final List<WatermarkLayer> kept = existing.watermarkLayers
+        .where((l) => !(l.pageIndex == old.pageIndex && l.text == old.text) &&
+            !(l.pageIndex == updatedLayer.pageIndex && l.text == updatedLayer.text))
+        .toList();
+    final updated = existing.copyWith(watermarkLayers: [...kept, updatedLayer], updatedAt: DateTime.now());
+    _recordOverlayUndo(existing, updated, null);
+    return _replaceAndSave(updated);
+  }
+
+  /// Puts [layer] on every listed page in one save and one undo step.
+  Future<bool> addWatermarkLayerToPages(String id, WatermarkLayer layer, Iterable<int> pages) async {
+    final ScanDocument? existing = _findById(id);
+    if (existing == null) return false;
+    final Set<int> target = pages.toSet();
+    final List<WatermarkLayer> kept = existing.watermarkLayers
+        .where((l) => !(target.contains(l.pageIndex) && l.text == layer.text))
+        .toList();
+    final updated = existing.copyWith(
+      watermarkLayers: [...kept, for (final int p in target) layer.copyWith(pageIndex: p)],
+      updatedAt: DateTime.now(),
+    );
+    _recordOverlayUndo(existing, updated, null);
+    return _replaceAndSave(updated);
+  }
+
+  /// Removes every watermark on one page in one save and one undo step.
+  Future<bool> clearWatermarksOnPage(String id, int pageIndex) async {
+    final ScanDocument? existing = _findById(id);
+    if (existing == null) return false;
+    final updated = existing.copyWith(
+      watermarkLayers: existing.watermarkLayers.where((l) => l.pageIndex != pageIndex).toList(),
+      updatedAt: DateTime.now(),
+    );
+    _recordOverlayUndo(existing, updated, null);
+    return _replaceAndSave(updated);
+  }
+
   Future<bool> clearWatermarkLayers(String id) async {
     final ScanDocument? existing = _findById(id);
     if (existing == null) return false;
@@ -781,6 +823,25 @@ class ScanProvider {
     return done.future;
   }
 
+  /// Writes that still failed after retrying, newest version per document.
+  final Map<String, ScanDocument> _failedWrites = <String, ScanDocument>{};
+
+  /// Number of documents with unsaved changes; the banner shows when above 0.
+  final ValueNotifier<int> failedSaves = ValueNotifier<int>(0);
+
+  /// Tries every failed write again. Returns true when all of them saved.
+  Future<bool> retryFailedSaves() async {
+    final List<ScanDocument> docs = _failedWrites.values.toList();
+    _failedWrites.clear();
+    failedSaves.value = 0;
+    bool all = true;
+    for (final ScanDocument d in docs) {
+      final ScanDocument latest = _findById(d.id) ?? d;
+      if (!await _replaceAndSave(latest)) all = false;
+    }
+    return all;
+  }
+
   Future<void> _runWriter() async {
     if (_writerRunning) return;
     _writerRunning = true;
@@ -793,12 +854,23 @@ class ScanProvider {
         bool ok = false;
         // A document deleted while its write was waiting must not come back.
         if (_findById(id) != null) {
-          try {
-            ok = await _storage.saveDocument(doc);
-          } catch (_) {
-            ok = false;
+          // A busy or briefly locked database often succeeds a moment later.
+          for (int attempt = 0; attempt < 3 && !ok; attempt++) {
+            if (attempt > 0) await Future<void>.delayed(Duration(milliseconds: 250 * attempt * attempt));
+            try {
+              ok = await _storage.saveDocument(doc);
+            } catch (_) {
+              ok = false;
+            }
           }
-          if (!ok) lastError.value = 'Could not save changes to this document.';
+          if (ok) {
+            if (_failedWrites.remove(id) != null) failedSaves.value = _failedWrites.length;
+          } else {
+            // Keep the newest version so the person can retry from the banner.
+            if (!_pendingWrites.containsKey(id)) _failedWrites[id] = doc;
+            failedSaves.value = _failedWrites.length;
+            lastError.value = 'Could not save changes to this document.';
+          }
         }
         for (final Completer<bool> w in waiters) {
           w.complete(ok);
@@ -829,6 +901,7 @@ class ScanProvider {
     isLoading.dispose();
     scanFlowState.dispose();
     lastError.dispose();
+    failedSaves.dispose();
     ocrUnavailable.dispose();
   }
 }

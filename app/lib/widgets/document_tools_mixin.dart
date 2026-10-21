@@ -188,26 +188,23 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
       pageIndex: existing.pageIndex,
       placement: existing.placement,
     );
-    await scanProvider.removeWatermarkLayer(doc.id, existing.pageIndex, existing.text);
-    await scanProvider.addWatermarkLayer(doc.id, updated);
+    await scanProvider.replaceWatermarkLayer(doc.id, existing, updated);
   }
 
   Future<void> copyWatermarkToAllPages(WatermarkLayer layer) async {
     final doc = document;
     if (doc == null) return;
-    for (int i = 0; i < doc.pagePaths.length; i++) {
-      if (i == layer.pageIndex) continue;
-      await scanProvider.addWatermarkLayer(doc.id, layer.copyWith(pageIndex: i));
-    }
+    await scanProvider.addWatermarkLayerToPages(
+      doc.id,
+      layer,
+      <int>[for (int i = 0; i < doc.pagePaths.length; i++) if (i != layer.pageIndex) i],
+    );
   }
 
   Future<void> clearWatermarkPage(int pageIndex) async {
     final doc = document;
     if (doc == null) return;
-    final matching = doc.watermarkLayers.where((l) => l.pageIndex == pageIndex).toList();
-    for (final layer in matching) {
-      await scanProvider.removeWatermarkLayer(doc.id, pageIndex, layer.text);
-    }
+    await scanProvider.clearWatermarksOnPage(doc.id, pageIndex);
   }
 
   Future<void> clearAllWatermarkLayers() async {

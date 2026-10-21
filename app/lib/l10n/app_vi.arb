@@ -677,5 +677,9 @@
   "exportNoTextError": "Tài liệu này chưa có văn bản. Hãy chạy OCR trước.",
   "@exportNoTextError": {
     "description": "Shown when a text export is asked for a document with no recognized text"
+  },
+  "saveFailedBanner": "Không thể lưu các thay đổi gần nhất của bạn.",
+  "@saveFailedBanner": {
+    "description": "Banner shown when saving document changes failed; a Try again button sits next to it"
   }
 }

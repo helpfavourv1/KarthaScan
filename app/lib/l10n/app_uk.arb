@@ -677,5 +677,9 @@
   "exportNoTextError": "У цьому документі ще немає тексту. Спочатку запустіть розпізнавання (OCR).",
   "@exportNoTextError": {
     "description": "Shown when a text export is asked for a document with no recognized text"
+  },
+  "saveFailedBanner": "Не вдалося зберегти останні зміни.",
+  "@saveFailedBanner": {
+    "description": "Banner shown when saving document changes failed; a Try again button sits next to it"
   }
 }

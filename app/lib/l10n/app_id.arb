@@ -584,5 +584,9 @@
   "exportNoTextError": "Dokumen ini belum memiliki teks. Jalankan OCR terlebih dahulu.",
   "@exportNoTextError": {
     "description": "Shown when a text export is asked for a document with no recognized text"
+  },
+  "saveFailedBanner": "Perubahan terbaru Anda tidak dapat disimpan.",
+  "@saveFailedBanner": {
+    "description": "Banner shown when saving document changes failed; a Try again button sits next to it"
   }
 }

@@ -474,4 +474,36 @@ void main() {
       expect(sw.elapsed.inSeconds, lessThan(90), reason: '30 small pages took ${sw.elapsed.inSeconds}s');
     });
   });
+
+  group('atomic watermark and save-failure helpers', () {
+    test('editing watermark text, copying to all pages and clearing a page are one undo step each', () async {
+      final List<File> pages = <File>[await page('w1', 40, 60, 10), await page('w2', 40, 60, 20), await page('w3', 40, 60, 30)];
+      final ScanDocument d = await makeDoc('wm', pages);
+      await boot(<ScanDocument>[d]);
+      const WatermarkLayer a = WatermarkLayer(pageIndex: 0, text: 'DRAFT', placement: _mid);
+      await scan.addWatermarkLayer('wm', a);
+      await scan.replaceWatermarkLayer('wm', a, a.copyWith(text: 'FINAL'));
+      expect(current('wm').watermarkLayers.map((WatermarkLayer l) => l.text), <String>['FINAL']);
+      await scan.undoManager.undo();
+      expect(current('wm').watermarkLayers.map((WatermarkLayer l) => l.text), <String>['DRAFT']);
+      await scan.undoManager.redo();
+      await scan.addWatermarkLayerToPages('wm', current('wm').watermarkLayers.single, <int>[1, 2]);
+      expect(current('wm').watermarkLayers.length, 3);
+      await scan.undoManager.undo();
+      expect(current('wm').watermarkLayers.length, 1);
+      await scan.undoManager.redo();
+      await scan.clearWatermarksOnPage('wm', 1);
+      expect(current('wm').watermarkLayers.map((WatermarkLayer l) => l.pageIndex).toSet(), <int>{0, 2});
+      await settle();
+      expect((await fromDb('wm')).watermarkLayers.length, 2);
+    });
+
+    test('retryFailedSaves with nothing failed clears the banner counter', () async {
+      final ScanDocument d = await makeDoc('rt', <File>[await page('r1', 40, 60, 10)]);
+      await boot(<ScanDocument>[d]);
+      scan.failedSaves.value = 2;
+      expect(await scan.retryFailedSaves(), isTrue);
+      expect(scan.failedSaves.value, 0);
+    });
+  });
 }

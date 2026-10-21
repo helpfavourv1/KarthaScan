@@ -584,5 +584,9 @@
   "exportNoTextError": "此文档还没有文字。请先运行 OCR。",
   "@exportNoTextError": {
     "description": "Shown when a text export is asked for a document with no recognized text"
+  },
+  "saveFailedBanner": "无法保存您最近的更改。",
+  "@saveFailedBanner": {
+    "description": "Banner shown when saving document changes failed; a Try again button sits next to it"
   }
 }

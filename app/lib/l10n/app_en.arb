@@ -656,5 +656,9 @@
   "exportNoTextError": "This document has no text yet. Run OCR on it first.",
   "@exportNoTextError": {
     "description": "Shown when a text export is asked for a document with no recognized text"
+  },
+  "saveFailedBanner": "Your latest changes could not be saved.",
+  "@saveFailedBanner": {
+    "description": "Banner shown when saving document changes failed; a Try again button sits next to it"
   }
 }

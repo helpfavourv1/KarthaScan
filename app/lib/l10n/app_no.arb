@@ -677,5 +677,9 @@
   "exportNoTextError": "Dette dokumentet har ingen tekst ennå. Kjør OCR først.",
   "@exportNoTextError": {
     "description": "Shown when a text export is asked for a document with no recognized text"
+  },
+  "saveFailedBanner": "De siste endringene dine kunne ikke lagres.",
+  "@saveFailedBanner": {
+    "description": "Banner shown when saving document changes failed; a Try again button sits next to it"
   }
 }

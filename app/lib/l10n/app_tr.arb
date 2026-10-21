@@ -677,5 +677,9 @@
   "exportNoTextError": "Bu belgede henüz metin yok. Önce OCR çalıştırın.",
   "@exportNoTextError": {
     "description": "Shown when a text export is asked for a document with no recognized text"
+  },
+  "saveFailedBanner": "Son değişiklikleriniz kaydedilemedi.",
+  "@saveFailedBanner": {
+    "description": "Banner shown when saving document changes failed; a Try again button sits next to it"
   }
 }
