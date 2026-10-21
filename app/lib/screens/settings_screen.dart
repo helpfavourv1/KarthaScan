@@ -119,8 +119,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(AppLocalizations.of(context).accentColorTitle, style: TextStyle(color: textPrimary, fontSize: AppTypography.bodySize)),
+                      Expanded(child: Text(AppLocalizations.of(context).accentColorTitle, style: TextStyle(color: textPrimary, fontSize: AppTypography.bodySize))),
                       Row(
+                        mainAxisSize: MainAxisSize.min,
                         children: kAccentPalettes.map((p) {
                           final isSelected = p.light == current;
                           return GestureDetector(

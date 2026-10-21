@@ -21,6 +21,11 @@ name: KatharScan Compile Check
 # downloading logs. No secrets, keystore or artifact upload are used.
 on:
   workflow_dispatch:
+    inputs:
+      emu_filter:
+        description: 'Emulator stress tests only: run just tests whose name contains this text (empty = everything)'
+        required: false
+        default: ''
 
 permissions:
   contents: read
@@ -325,9 +330,7 @@ jobs:
           disable-animations: true
           working-directory: app
           script: |
-            bash -c "flutter test integration_test/emulator_suite_test.dart --no-pub -d emulator-5554 --reporter expanded 2>&1 | tee /tmp/cc/emu.log; true"
-            bash -c "timeout 1700 flutter test integration_test/emulator_stress_test.dart --no-pub -d emulator-5554 --reporter expanded 2>&1 | tee /tmp/cc/emu2.log; true"
-            bash -c "adb logcat -c; adb install -r -g build/app/outputs/flutter-apk/app-debug.apk >/dev/null 2>&1; adb shell am start -n com.zdmgold.katharscan/.MainActivity >/dev/null 2>&1; sleep 25; timeout 420 adb shell monkey -p com.zdmgold.katharscan --throttle 60 --pct-syskeys 0 --pct-appswitch 0 -s 42 -v 6000 > /tmp/cc/monkey.log 2>&1; adb logcat -d -b crash > /tmp/cc/crash.log 2>&1; adb logcat -d | grep -i -A12 'ANR in' | head -40 >> /tmp/cc/crash.log; true"
+            bash -c 'F="${{ github.event.inputs.emu_filter }}"; if [ -n "$F" ]; then timeout 1700 flutter test integration_test/emulator_stress_test.dart --no-pub -d emulator-5554 --plain-name "$F" --reporter expanded 2>&1 | tee /tmp/cc/emu2.log; touch /tmp/cc/emu.log; exit 0; fi; flutter test integration_test/emulator_suite_test.dart --no-pub -d emulator-5554 --reporter expanded 2>&1 | tee /tmp/cc/emu.log; timeout 1700 flutter test integration_test/emulator_stress_test.dart --no-pub -d emulator-5554 --reporter expanded 2>&1 | tee /tmp/cc/emu2.log; adb logcat -c; adb install -r -g build/app/outputs/flutter-apk/app-debug.apk >/dev/null 2>&1; adb shell am start -n com.zdmgold.katharscan/.MainActivity >/dev/null 2>&1; sleep 25; timeout 420 adb shell monkey -p com.zdmgold.katharscan --throttle 60 --pct-syskeys 0 --pct-appswitch 0 -s 42 -v 6000 > /tmp/cc/monkey.log 2>&1; adb logcat -d -b crash > /tmp/cc/crash.log 2>&1; adb logcat -d | grep -i -A12 "ANR in" | head -40 >> /tmp/cc/crash.log; true'
 
       - name: Report results as annotations
         if: always()

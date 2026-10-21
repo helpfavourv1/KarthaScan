@@ -181,6 +181,33 @@ void main() {
     }, timeout: const Timeout(Duration(minutes: 5)));
   }
 
+  testWidgets('S3b PDF export scaling: 10, 25, 50 pages, time and memory', (WidgetTester tester) async {
+    await tester.runAsync(() async {
+      await bootProvider();
+      final File one = await pagePng('s3');
+      final StringBuffer r = StringBuffer();
+      for (final int n in <int>[10, 25, 50]) {
+        final List<File> pages = <File>[];
+        for (int i = 0; i < n; i++) {
+          final File f = File(p.join(one.parent.path, 's3b_$i.png'));
+          if (!f.existsSync()) await one.copy(f.path);
+          pages.add(f);
+        }
+        final ScanDocument doc = await seedDoc('stress_scale_$n', pages);
+        final Directory out = Directory(p.join((await getTemporaryDirectory()).path, 'stress_scale'))..createSync(recursive: true);
+        final Stopwatch sw = Stopwatch()..start();
+        try {
+          await ExportService().export(document: doc, format: ExportFormat.pdf, outputDirectoryPath: out.path).timeout(const Duration(minutes: 2));
+          r.write('$n pages: ${sw.elapsed.inSeconds}s, memory ${(ProcessInfo.currentRss / 1048576).round()}MB; ');
+        } on TimeoutException {
+          r.write('$n pages: over 2 min, memory ${(ProcessInfo.currentRss / 1048576).round()}MB; ');
+          break;
+        }
+      }
+      note('S3b-pdf-scaling', 'INFO', r.toString());
+    });
+  }, timeout: const Timeout(Duration(minutes: 8)));
+
   testWidgets('S4 very large photos (12, 24 and 48 megapixel pages) export', (WidgetTester tester) async {
     await tester.runAsync(() async {
       await bootProvider();

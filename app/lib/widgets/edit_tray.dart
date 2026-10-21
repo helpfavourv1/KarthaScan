@@ -275,19 +275,28 @@ class _EditTrayState extends State<EditTray> with SingleTickerProviderStateMixin
                   ),
                 ],
               ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(item.icon, color: iconColor, size: widget.compact ? 14 : 20),
-                  const SizedBox(height: 2),
-                  Text(
-                    item.label,
-                    style: TextStyle(color: textColor, fontSize: widget.compact ? 8 : 9, fontWeight: FontWeight.w600),
-                    textAlign: TextAlign.center,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
+              // Fixed-size coach: the label never scales with the phone's text size
+              // and the content shrinks to fit instead of overflowing (tall scripts
+              // such as Thai and Hindi, and very large system text, overflowed 5 px).
+              child: Center(
+                child: FittedBox(
+                  fit: BoxFit.scaleDown,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(item.icon, color: iconColor, size: widget.compact ? 14 : 20),
+                      const SizedBox(height: 2),
+                      Text(
+                        item.label,
+                        style: TextStyle(color: textColor, fontSize: widget.compact ? 8 : 9, fontWeight: FontWeight.w600),
+                        textAlign: TextAlign.center,
+                        textScaler: TextScaler.noScaling,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ],
                   ),
-                ],
+                ),
               ),
             ),
           ),
