@@ -29,6 +29,10 @@ on:
         description: 'Emulator stress tests only: run just tests whose name contains this text (a regex such as "S4|S5|S6", or the word monkey for the random-tap run; empty = everything)'
         required: false
         default: ''
+      emu_target:
+        description: 'Emulator system image: google_apis (default) or google_apis_playstore (needed to try the Chinese/Japanese/Korean/Hindi ML Kit packs)'
+        required: false
+        default: 'google_apis'
 
 permissions:
   contents: read
@@ -327,7 +331,7 @@ jobs:
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 33
-          target: google_apis
+          target: ${{ github.event.inputs.emu_target || 'google_apis' }}
           arch: x86_64
           profile: pixel_6
           disable-animations: true
