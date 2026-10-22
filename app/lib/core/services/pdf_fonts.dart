@@ -26,15 +26,20 @@ class PdfFonts {
 
   /// The same fonts as [theme] picks for [text], as bytes.
   static Future<PdfFontBytes> bytesFor(String text) async {
-    final Uint8List latin = (await rootBundle.load('assets/fonts/NotoSans-Regular.ttf')).buffer.asUint8List();
-    final List<Uint8List> fallback = <Uint8List>[
-      (await rootBundle.load('assets/fonts/NotoSansArabic-Regular.ttf')).buffer.asUint8List(),
-    ];
-    for (final RemoteFont f in RemoteFonts.neededFor(text)) {
-      final File? file = await RemoteFonts.ensure(f);
-      if (file != null) fallback.add(await file.readAsBytes());
+    try {
+      final Uint8List latin = (await rootBundle.load('assets/fonts/NotoSans-Regular.ttf')).buffer.asUint8List();
+      final List<Uint8List> fallback = <Uint8List>[
+        (await rootBundle.load('assets/fonts/NotoSansArabic-Regular.ttf')).buffer.asUint8List(),
+      ];
+      for (final RemoteFont f in RemoteFonts.neededFor(text)) {
+        final File? file = await RemoteFonts.ensure(f);
+        if (file != null) fallback.add(await file.readAsBytes());
+      }
+      return PdfFontBytes(latin: latin, fallback: fallback);
+    } catch (_) {
+      // Export must never fail because a font could not load; the built-in font is used.
+      return PdfFontBytes(latin: Uint8List(0), fallback: const <Uint8List>[]);
     }
-    return PdfFontBytes(latin: latin, fallback: fallback);
   }
 
   /// [text] is everything the PDF is going to draw, used to pick the fonts.
