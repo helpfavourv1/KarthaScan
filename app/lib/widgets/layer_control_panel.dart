@@ -18,7 +18,7 @@ class LayerControlPanel extends StatelessWidget {
     required this.pageIndex,
     required this.editMode,
     required this.scanProvider,
-    this.selectedAnnotateBytesPath,
+    this.selectedAnnotateId,
     this.selectedWatermarkText,
     this.selectedStampId,
       this.onEditFill,
@@ -28,7 +28,7 @@ class LayerControlPanel extends StatelessWidget {
   final int pageIndex;
   final TrayEditMode editMode;
   final ScanProvider scanProvider;
-  final String? selectedAnnotateBytesPath;
+  final String? selectedAnnotateId;
   final String? selectedWatermarkText;
   final String? selectedStampId;
   final void Function(StampLayer layer)? onEditFill;
@@ -36,7 +36,7 @@ class LayerControlPanel extends StatelessWidget {
   Widget _buildAnnotateControls(BuildContext context) {
     final pageLayers = document.annotateLayers.where((l) => l.pageIndex == pageIndex).toList();
     if (pageLayers.isEmpty) return const SizedBox.shrink();
-    final layer = pageLayers.firstWhere((l) => l.bytesPath == selectedAnnotateBytesPath, orElse: () => pageLayers.first);
+    final layer = pageLayers.firstWhere((l) => l.id == selectedAnnotateId, orElse: () => pageLayers.first);
 
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
@@ -58,8 +58,8 @@ class LayerControlPanel extends StatelessWidget {
             scanProvider.addAnnotateLayer(document.id, AnnotateLayer(pageIndex: i, bytesPath: layer.bytesPath, placement: layer.placement));
           }
         },
-        onClearThis: () => scanProvider.removeAnnotateLayer(document.id, pageIndex, layer.bytesPath),
-        onRemove: () => scanProvider.removeAnnotateLayer(document.id, pageIndex, layer.bytesPath),
+        onClearThis: () => scanProvider.removeAnnotateLayer(document.id, layer.id),
+        onRemove: () => scanProvider.removeAnnotateLayer(document.id, layer.id),
         onClearAll: () => scanProvider.clearAnnotateLayers(document.id),
       ),
     );
@@ -68,7 +68,7 @@ class LayerControlPanel extends StatelessWidget {
   Widget _buildWatermarkControls(BuildContext context) {
     final pageLayers = document.watermarkLayers.where((l) => l.pageIndex == pageIndex).toList();
     if (pageLayers.isEmpty) return const SizedBox.shrink();
-    final layer = pageLayers.firstWhere((l) => l.text == selectedWatermarkText, orElse: () => pageLayers.first);
+    final layer = pageLayers.firstWhere((l) => l.id == selectedWatermarkText, orElse: () => pageLayers.first);
 
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
@@ -102,18 +102,16 @@ class LayerControlPanel extends StatelessWidget {
           );
           if (config != null) {
             final updated = config.copyWith(pageIndex: layer.pageIndex, placement: layer.placement);
-            await scanProvider.removeWatermarkLayer(document.id, layer.pageIndex, layer.text);
-            await scanProvider.addWatermarkLayer(document.id, updated);
+            await scanProvider.replaceWatermarkLayer(document.id, layer, updated);
           }
         },
-        onCopyAll: () {
-          for (int i = 0; i < document.pagePaths.length; i++) {
-            if (i == pageIndex) continue;
-            scanProvider.addWatermarkLayer(document.id, layer.copyWith(pageIndex: i));
-          }
-        },
-        onClearThis: () => scanProvider.removeWatermarkLayer(document.id, pageIndex, layer.text),
-        onRemove: () => scanProvider.removeWatermarkLayer(document.id, pageIndex, layer.text),
+        onCopyAll: () => scanProvider.addWatermarkLayerToPages(
+          document.id,
+          layer,
+          <int>[for (int i = 0; i < document.pagePaths.length; i++) if (i != pageIndex) i],
+        ),
+        onClearThis: () => scanProvider.removeWatermarkLayer(document.id, layer.id),
+        onRemove: () => scanProvider.removeWatermarkLayer(document.id, layer.id),
         onClearAll: () => scanProvider.clearWatermarkLayers(document.id),
       ),
     );

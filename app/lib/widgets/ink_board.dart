@@ -127,14 +127,38 @@ class InkController {
     return inkId;
   }
 
+  /// Puts the active signature on [pageIndex]. If that signature is already on
+  /// the page, a second independent copy is placed (same picture, new id) so a
+  /// page can be signed in more than one spot and each copy moves on its own.
   void placeOnPage(int pageIndex) {
     final inkId = activeInkId;
     if (inkId == null) return;
+    final SignatureInk? source = inks[inkId];
+    final bool alreadyThere = inkPlacements[inkId]?.containsKey(pageIndex) ?? false;
+    if (alreadyThere && source != null) {
+      final String copyId = 'ink_${DateTime.now().microsecondsSinceEpoch}_${_copySeq++}';
+      final SignaturePlacement at = inkPlacements[inkId]![pageIndex]!;
+      inks[copyId] = source.copyWith(id: copyId, label: '${source.label} +');
+      inkPlacements[copyId] = {
+        pageIndex: SignaturePlacement(
+          pctX: at.pctX,
+          pctY: (at.pctY + 0.15).clamp(0.05, 0.95).toDouble(),
+          rotationDegrees: at.rotationDegrees,
+          scale: at.scale,
+        ),
+      };
+      activeInkId = copyId;
+      editInkId = copyId;
+      _notify();
+      return;
+    }
     inkPlacements.putIfAbsent(inkId, () => {});
     inkPlacements[inkId]!.putIfAbsent(pageIndex, () => const SignaturePlacement(pctX: 0.5, pctY: 0.35));
     editInkId = inkId;
     _notify();
   }
+
+  int _copySeq = 0;
 
   void removeInk(String inkId) {
     inks.remove(inkId);
@@ -284,7 +308,7 @@ class AnnotateOverlayPage extends StatefulWidget {
     required this.dx,
     required this.dy,
     required this.accent,
-    required this.selectedBytesPath,
+    required this.selectedId,
     required this.onSelect,
     required this.onDrag,
     this.onSelected,
@@ -295,7 +319,7 @@ class AnnotateOverlayPage extends StatefulWidget {
   final int pageIndex;
   final double iw, ih, dx, dy;
   final Color accent;
-  final String? selectedBytesPath;
+  final String? selectedId;
   final void Function(AnnotateLayer layer) onSelect;
   final void Function(AnnotateLayer layer, double dxDelta, double dyDelta) onDrag;
   final VoidCallback? onSelected;
@@ -347,7 +371,7 @@ class _AnnotateOverlayPageState extends State<AnnotateOverlayPage> {
             final sigW = widget.iw * 0.28 * layer.placement.scale;
             final aspect = _aspectCache[layer.bytesPath] ?? 2.0;
             final sigH = sigW / aspect;
-            final isSelected = layer.bytesPath == widget.selectedBytesPath;
+            final isSelected = layer.id == widget.selectedId;
             return Positioned(
               left: widget.dx + layer.placement.pctX * widget.iw - sigW / 2,
               top: widget.dy + layer.placement.pctY * widget.ih - sigH / 2,
@@ -416,7 +440,7 @@ class WatermarkOverlayPage extends StatelessWidget {
       children: [
         for (final layer in layers.where((l) => l.pageIndex == pageIndex))
           Builder(builder: (context) {
-            final isSelected = layer.text == selectedText;
+            final isSelected = layer.id == selectedText;
             final fontWeight = layer.bold ? FontWeight.w700 : FontWeight.w400;
             final fontStyle = layer.italic ? FontStyle.italic : FontStyle.normal;
             final decoration = layer.underline ? TextDecoration.underline : TextDecoration.none;

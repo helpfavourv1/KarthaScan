@@ -39,7 +39,7 @@ class _ScanDetailScreenState extends State<ScanDetailScreen>
   late TabController _tabController;
   int _currentPageIndex = 0;
   TrayEditMode _editMode = TrayEditMode.none;
-  String? _lastAddedAnnotatePath;
+  String? _lastAddedAnnotateId;
   String? _lastAddedWatermarkText;
   String? _lastAddedStampId;
 
@@ -105,7 +105,7 @@ class _ScanDetailScreenState extends State<ScanDetailScreen>
     setState(() {
       _editMode = TrayEditMode.none;
       _inkController.setEditInk(null);
-      _lastAddedAnnotatePath = null;
+      _lastAddedAnnotateId = null;
       _lastAddedWatermarkText = null;
       _lastAddedStampId = null;
     });
@@ -117,7 +117,7 @@ class _ScanDetailScreenState extends State<ScanDetailScreen>
     setState(() {
       switch (mode) {
         case TrayEditMode.annotate:
-          _lastAddedAnnotatePath = identifier;
+          _lastAddedAnnotateId = identifier;
           break;
         case TrayEditMode.watermark:
           _lastAddedWatermarkText = identifier;
@@ -295,7 +295,7 @@ class _ScanDetailScreenState extends State<ScanDetailScreen>
                             inkController: _inkController,
                             annotateLayers: document.annotateLayers,
                             editMode: _editMode,
-                            autoSelectAnnotatePath: _lastAddedAnnotatePath,
+                            autoSelectAnnotateId: _lastAddedAnnotateId,
                             autoSelectWatermarkText: _lastAddedWatermarkText,
                             autoSelectStampId: _lastAddedStampId,
                             onSignatureSelect: () => setState(() => _editMode = TrayEditMode.signature),

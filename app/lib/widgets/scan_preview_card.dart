@@ -22,7 +22,7 @@ class ScanPreviewCard extends StatefulWidget {
     this.watermarkLayers = const [],
     this.stampLayers = const [],
     this.editMode = TrayEditMode.none,
-    this.autoSelectAnnotatePath,
+    this.autoSelectAnnotateId,
     this.autoSelectWatermarkText,
     this.autoSelectStampId,
     this.onSignatureSelect,
@@ -57,7 +57,7 @@ class ScanPreviewCard extends StatefulWidget {
   final List<WatermarkLayer> watermarkLayers;
   final List<StampLayer> stampLayers;
   final TrayEditMode editMode;
-  final String? autoSelectAnnotatePath;
+  final String? autoSelectAnnotateId;
   final String? autoSelectWatermarkText;
   final String? autoSelectStampId;
   final VoidCallback? onSignatureSelect;
@@ -91,7 +91,7 @@ class ScanPreviewCard extends StatefulWidget {
 class _ScanPreviewCardState extends State<ScanPreviewCard> {
   late final PageController _pageController;
   late int _currentPage;
-  String? _selectedAnnotateBytesPath;
+  String? _selectedAnnotateId;
   String? _selectedWatermarkText;
   String? _selectedStampId;
   late final ScanProvider _scanProvider;
@@ -111,8 +111,8 @@ class _ScanPreviewCardState extends State<ScanPreviewCard> {
   @override
   void didUpdateWidget(ScanPreviewCard oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (widget.autoSelectAnnotatePath != null && widget.autoSelectAnnotatePath != oldWidget.autoSelectAnnotatePath) {
-      setState(() => _selectedAnnotateBytesPath = widget.autoSelectAnnotatePath);
+    if (widget.autoSelectAnnotateId != null && widget.autoSelectAnnotateId != oldWidget.autoSelectAnnotateId) {
+      setState(() => _selectedAnnotateId = widget.autoSelectAnnotateId);
     }
     if (widget.autoSelectWatermarkText != null && widget.autoSelectWatermarkText != oldWidget.autoSelectWatermarkText) {
       setState(() => _selectedWatermarkText = widget.autoSelectWatermarkText);
@@ -230,19 +230,19 @@ class _ScanPreviewCardState extends State<ScanPreviewCard> {
                 annotateLayers: widget.annotateLayers,
                 watermarkLayers: widget.watermarkLayers,
                 stampLayers: widget.stampLayers,
-                selectedAnnotateBytesPath: _selectedAnnotateBytesPath,
+                selectedAnnotateId: _selectedAnnotateId,
                 selectedWatermarkText: _selectedWatermarkText,
                 selectedStampId: _selectedStampId,
-                onAnnotateSelect: (layer) => setState(() { _selectedAnnotateBytesPath = layer.bytesPath; _selectedWatermarkText = null; _selectedStampId = null; widget.onAnnotateSelect?.call(); }),
+                onAnnotateSelect: (layer) => setState(() { _selectedAnnotateId = layer.id; _selectedWatermarkText = null; _selectedStampId = null; widget.onAnnotateSelect?.call(); }),
                 onAnnotateUpdate: widget.onAnnotateLayerUpdate,
                 onSignatureSelect: () {
                   setState(() {});
                   widget.onSignatureSelect?.call();
                 },
                 onWatermarkSelect: widget.onWatermarkSelect,
-                onWatermarkSelected: (layer) => setState(() { _selectedWatermarkText = layer.text; _selectedAnnotateBytesPath = null; _selectedStampId = null; }),
+                onWatermarkSelected: (layer) => setState(() { _selectedWatermarkText = layer.id; _selectedAnnotateId = null; _selectedStampId = null; }),
                 onWatermarkLayerUpdate: widget.onWatermarkLayerUpdate,
-                onStampSelected: (layer) { setState(() { _selectedStampId = layer.id; _selectedAnnotateBytesPath = null; _selectedWatermarkText = null; }); widget.onStampSelect?.call(layer); },
+                onStampSelected: (layer) { setState(() { _selectedStampId = layer.id; _selectedAnnotateId = null; _selectedWatermarkText = null; }); widget.onStampSelect?.call(layer); },
                 onStampLayerUpdate: widget.onStampLayerUpdate,
                 physics: const NeverScrollableScrollPhysics(),
                 pageController: _pageController,
@@ -261,7 +261,7 @@ class _ScanPreviewCardState extends State<ScanPreviewCard> {
             pageIndex: _currentPage,
             editMode: widget.editMode,
             scanProvider: _scanProvider,
-            selectedAnnotateBytesPath: _selectedAnnotateBytesPath,
+            selectedAnnotateId: _selectedAnnotateId,
             selectedWatermarkText: _selectedWatermarkText,
             selectedStampId: _selectedStampId,
           ),

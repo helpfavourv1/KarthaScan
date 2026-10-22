@@ -590,10 +590,14 @@ class ScanProvider {
     return _replaceAndSave(updated);
   }
 
+  int _annSeq = 0;
+  String newAnnotateId() => 'ann-${DateTime.now().microsecondsSinceEpoch}-${_annSeq++}';
+
   Future<bool> addAnnotateLayer(String id, AnnotateLayer layer) async {
     final ScanDocument? existing = _findById(id);
     if (existing == null) return false;
-    final newLayers = [...existing.annotateLayers, layer];
+    final AnnotateLayer added = layer.id.isEmpty ? layer.copyWith(id: newAnnotateId()) : layer;
+    final newLayers = [...existing.annotateLayers.where((l) => l.id != added.id), added];
     final updated = existing.copyWith(annotateLayers: newLayers, updatedAt: DateTime.now());
     _recordOverlayUndo(existing, updated, null);
     return _replaceAndSave(updated);
@@ -603,18 +607,18 @@ class ScanProvider {
     final ScanDocument? existing = _findById(id);
     if (existing == null) return false;
     final newLayers = existing.annotateLayers
-        .map((l) => l.pageIndex == layer.pageIndex && l.bytesPath == layer.bytesPath ? layer : l)
+        .map((l) => l.id == layer.id ? layer : l)
         .toList();
     final updated = existing.copyWith(annotateLayers: newLayers, updatedAt: DateTime.now());
-    _recordOverlayUndo(existing, updated, 'annupd:${layer.bytesPath}:${layer.pageIndex}');
+    _recordOverlayUndo(existing, updated, 'annupd:${layer.id}');
     return _replaceAndSave(updated);
   }
 
-  Future<bool> removeAnnotateLayer(String id, int pageIndex, String bytesPath) async {
+  Future<bool> removeAnnotateLayer(String id, String layerId) async {
     final ScanDocument? existing = _findById(id);
     if (existing == null) return false;
     final newLayers = existing.annotateLayers
-        .where((l) => !(l.pageIndex == pageIndex && l.bytesPath == bytesPath))
+        .where((l) => l.id != layerId)
         .toList();
     final updated = existing.copyWith(annotateLayers: newLayers, updatedAt: DateTime.now());
     _recordOverlayUndo(existing, updated, null);
@@ -629,16 +633,17 @@ class ScanProvider {
     return _replaceAndSave(updated);
   }
 
+  int _wmSeq = 0;
+  String newWatermarkId() => 'wm-${DateTime.now().microsecondsSinceEpoch}-${_wmSeq++}';
+
   Future<bool> addWatermarkLayer(String id, WatermarkLayer layer) async {
     final ScanDocument? existing = _findById(id);
     if (existing == null) return false;
-    // A watermark is identified by its page and text, so adding the same text
-    // again on a page replaces the earlier one instead of making a twin that
-    // would be edited and removed together with it.
-    final List<WatermarkLayer> kept = existing.watermarkLayers
-        .where((l) => !(l.pageIndex == layer.pageIndex && l.text == layer.text))
-        .toList();
-    final updated = existing.copyWith(watermarkLayers: [...kept, layer], updatedAt: DateTime.now());
+    // Several watermarks may carry the same text, even on one page (for
+    // example "CONFIDENTIAL" at the top and at the bottom); each has its own id.
+    final WatermarkLayer added = layer.id.isEmpty ? layer.copyWith(id: newWatermarkId()) : layer;
+    final List<WatermarkLayer> kept = existing.watermarkLayers.where((l) => l.id != added.id).toList();
+    final updated = existing.copyWith(watermarkLayers: [...kept, added], updatedAt: DateTime.now());
     _recordOverlayUndo(existing, updated, null);
     return _replaceAndSave(updated);
   }
@@ -646,45 +651,44 @@ class ScanProvider {
   Future<bool> updateWatermarkLayer(String id, WatermarkLayer layer) async {
     final ScanDocument? existing = _findById(id);
     if (existing == null) return false;
-    final newLayers = existing.watermarkLayers.map((l) => (l.pageIndex == layer.pageIndex && l.text == layer.text) ? layer : l).toList();
+    final newLayers = existing.watermarkLayers.map((l) => l.id == layer.id ? layer : l).toList();
     final updated = existing.copyWith(watermarkLayers: newLayers, updatedAt: DateTime.now());
-    _recordOverlayUndo(existing, updated, 'wmupd:${layer.text}:${layer.pageIndex}');
+    _recordOverlayUndo(existing, updated, 'wmupd:${layer.id}');
     return _replaceAndSave(updated);
   }
 
-  Future<bool> removeWatermarkLayer(String id, int pageIndex, String text) async {
+  Future<bool> removeWatermarkLayer(String id, String layerId) async {
     final ScanDocument? existing = _findById(id);
     if (existing == null) return false;
-    final newLayers = existing.watermarkLayers.where((l) => !(l.pageIndex == pageIndex && l.text == text)).toList();
+    final newLayers = existing.watermarkLayers.where((l) => l.id != layerId).toList();
     final updated = existing.copyWith(watermarkLayers: newLayers, updatedAt: DateTime.now());
     _recordOverlayUndo(existing, updated, null);
     return _replaceAndSave(updated);
   }
 
   /// Swaps one watermark for an edited version in a single save and a single
-  /// undo step (editing the text changes the identity, so it cannot be a plain update).
+  /// undo step. The edited version keeps the old one's id.
   Future<bool> replaceWatermarkLayer(String id, WatermarkLayer old, WatermarkLayer updatedLayer) async {
     final ScanDocument? existing = _findById(id);
     if (existing == null) return false;
-    final List<WatermarkLayer> kept = existing.watermarkLayers
-        .where((l) => !(l.pageIndex == old.pageIndex && l.text == old.text) &&
-            !(l.pageIndex == updatedLayer.pageIndex && l.text == updatedLayer.text))
-        .toList();
-    final updated = existing.copyWith(watermarkLayers: [...kept, updatedLayer], updatedAt: DateTime.now());
+    final WatermarkLayer next = updatedLayer.copyWith(id: old.id);
+    final updated = existing.copyWith(
+      watermarkLayers: existing.watermarkLayers.map((l) => l.id == old.id ? next : l).toList(),
+      updatedAt: DateTime.now(),
+    );
     _recordOverlayUndo(existing, updated, null);
     return _replaceAndSave(updated);
   }
 
-  /// Puts [layer] on every listed page in one save and one undo step.
+  /// Puts a copy of [layer] on every listed page in one save and one undo step.
   Future<bool> addWatermarkLayerToPages(String id, WatermarkLayer layer, Iterable<int> pages) async {
     final ScanDocument? existing = _findById(id);
     if (existing == null) return false;
-    final Set<int> target = pages.toSet();
-    final List<WatermarkLayer> kept = existing.watermarkLayers
-        .where((l) => !(target.contains(l.pageIndex) && l.text == layer.text))
-        .toList();
     final updated = existing.copyWith(
-      watermarkLayers: [...kept, for (final int p in target) layer.copyWith(pageIndex: p)],
+      watermarkLayers: [
+        ...existing.watermarkLayers,
+        for (final int p in pages.toSet()) layer.copyWith(id: newWatermarkId(), pageIndex: p),
+      ],
       updatedAt: DateTime.now(),
     );
     _recordOverlayUndo(existing, updated, null);

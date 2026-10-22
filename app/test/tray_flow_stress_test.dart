@@ -22,6 +22,7 @@ import 'package:katharscan/core/services/doc_scanner_service.dart';
 import 'package:katharscan/core/services/export_service.dart';
 import 'package:katharscan/core/services/local_storage.dart';
 import 'package:katharscan/core/services/ocr_service.dart';
+import 'package:katharscan/widgets/ink_board.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
@@ -482,7 +483,7 @@ void main() {
       await boot(<ScanDocument>[d]);
       const WatermarkLayer a = WatermarkLayer(pageIndex: 0, text: 'DRAFT', placement: _mid);
       await scan.addWatermarkLayer('wm', a);
-      await scan.replaceWatermarkLayer('wm', a, a.copyWith(text: 'FINAL'));
+      await scan.replaceWatermarkLayer('wm', current('wm').watermarkLayers.single, a.copyWith(text: 'FINAL'));
       expect(current('wm').watermarkLayers.map((WatermarkLayer l) => l.text), <String>['FINAL']);
       await scan.undoManager.undo();
       expect(current('wm').watermarkLayers.map((WatermarkLayer l) => l.text), <String>['DRAFT']);
@@ -496,6 +497,66 @@ void main() {
       expect(current('wm').watermarkLayers.map((WatermarkLayer l) => l.pageIndex).toSet(), <int>{0, 2});
       await settle();
       expect((await fromDb('wm')).watermarkLayers.length, 2);
+    });
+
+    test('the same watermark text, the same picture and the same signature can be placed several times on one page', () async {
+      final File ann = await annotationPng('multi');
+      final ScanDocument d = await makeDoc('mp', <File>[await page('m1', 40, 60, 10), await page('m2', 40, 60, 20)]);
+      await boot(<ScanDocument>[d]);
+
+      // Watermarks: three "DRAFT" on page 0, moved and removed independently.
+      for (int i = 0; i < 3; i++) {
+        await scan.addWatermarkLayer('mp', WatermarkLayer(pageIndex: 0, text: 'DRAFT', placement: SignaturePlacement(pctX: 0.2 * (i + 1), pctY: 0.5)));
+      }
+      List<WatermarkLayer> wms = current('mp').watermarkLayers;
+      expect(wms.length, 3);
+      expect(wms.map((WatermarkLayer l) => l.id).toSet().length, 3, reason: 'ids must be unique');
+      await scan.updateWatermarkLayer('mp', wms[1].copyWith(placement: const SignaturePlacement(pctX: 0.9, pctY: 0.9)));
+      wms = current('mp').watermarkLayers;
+      expect(wms[0].placement.pctX, closeTo(0.2, 1e-9));
+      expect(wms[1].placement.pctX, closeTo(0.9, 1e-9));
+      expect(wms[2].placement.pctX, closeTo(0.6, 1e-9));
+      await scan.removeWatermarkLayer('mp', wms[0].id);
+      expect(current('mp').watermarkLayers.length, 2);
+
+      // Annotation pictures: the same file twice on one page.
+      for (int i = 0; i < 2; i++) {
+        await scan.addAnnotateLayer('mp', AnnotateLayer(pageIndex: 0, bytesPath: ann.path, placement: SignaturePlacement(pctX: 0.3 + 0.4 * i, pctY: 0.3)));
+      }
+      List<AnnotateLayer> ans = current('mp').annotateLayers;
+      expect(ans.length, 2);
+      expect(ans[0].id == ans[1].id, isFalse);
+      await scan.updateAnnotateLayer('mp', ans[0].copyWith(placement: const SignaturePlacement(pctX: 0.1, pctY: 0.1)));
+      ans = current('mp').annotateLayers;
+      expect(ans[0].placement.pctX, closeTo(0.1, 1e-9));
+      expect(ans[1].placement.pctX, closeTo(0.7, 1e-9), reason: 'the other copy must not move');
+      await scan.removeAnnotateLayer('mp', ans[1].id);
+      expect(current('mp').annotateLayers.single.id, ans[0].id);
+
+      // Ids survive saving and loading.
+      await settle();
+      final ScanDocument disk = await fromDb('mp');
+      expect(disk.watermarkLayers.map((WatermarkLayer l) => l.id), current('mp').watermarkLayers.map((WatermarkLayer l) => l.id));
+      expect(disk.annotateLayers.single.id, ans[0].id);
+    });
+
+    test('older saved layers without an id still load with a stable id', () {
+      final AnnotateLayer a = AnnotateLayer.fromJson(<String, dynamic>{'pageIndex': 1, 'bytesPath': '/x.png', 'pctX': 0.5, 'pctY': 0.5});
+      final AnnotateLayer b = AnnotateLayer.fromJson(<String, dynamic>{'pageIndex': 1, 'bytesPath': '/x.png', 'pctX': 0.5, 'pctY': 0.5});
+      expect(a.id, isNotEmpty);
+      expect(a.id, b.id);
+    });
+
+    test('placing the active signature on a page twice gives two independent copies', () {
+      final InkController c = InkController();
+      c.inks['ink_a'] = SignatureInk(id: 'ink_a', bytes: inkPng(), label: 'Signer 1');
+      c.activeInkId = 'ink_a';
+      c.placeOnPage(0);
+      c.placeOnPage(0);
+      c.placeOnPage(1);
+      final int onPage0 = c.inkPlacements.values.where((Map<int, SignaturePlacement> m) => m.containsKey(0)).length;
+      expect(onPage0, 2);
+      expect(c.layers.length, 4 - 1, reason: 'two copies on page 0 plus the active copy on page 1');
     });
 
     test('retryFailedSaves with nothing failed clears the banner counter', () async {

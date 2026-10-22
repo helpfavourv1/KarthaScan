@@ -86,7 +86,7 @@ class _ExportScreenState extends State<ExportScreen> {
   List<String>? _lastExportPaths;
   final TransformationController _exportTransformController = TransformationController();
   TrayEditMode _exportEditMode = TrayEditMode.none;
-  String? _selectedAnnotateBytesPath;
+  String? _selectedAnnotateId;
   String? _selectedWatermarkText;
   String? _selectedStampId;
 
@@ -166,7 +166,7 @@ class _ExportScreenState extends State<ExportScreen> {
     setState(() {
       _previewPage = newPage;
       _exportEditMode = TrayEditMode.none;
-      _selectedAnnotateBytesPath = null;
+      _selectedAnnotateId = null;
       _selectedWatermarkText = null;
       _selectedStampId = null;
     });
@@ -649,10 +649,10 @@ class _ExportScreenState extends State<ExportScreen> {
                                         pageIndex: pageIndex,
                                         iw: iw, ih: ih, dx: dx, dy: dy,
                                         accent: accent,
-                                        selectedBytesPath: _selectedAnnotateBytesPath,
+                                        selectedId: _selectedAnnotateId,
                                         transformController: _exportTransformController,
                                         onSelect: (layer) => setState(() {
-                                          _selectedAnnotateBytesPath = layer.bytesPath;
+                                          _selectedAnnotateId = layer.id;
                                           _selectedWatermarkText = null;
                                           _selectedStampId = null;
                                           _exportEditMode = TrayEditMode.annotate;
@@ -660,7 +660,7 @@ class _ExportScreenState extends State<ExportScreen> {
                                         onDrag: (layer, dxDelta, dyDelta) {
                                           final doc = _documents.first;
                                           _scanProvider.updateAnnotateLayer(doc.id, AnnotateLayer(
-                                            pageIndex: layer.pageIndex, bytesPath: layer.bytesPath,
+                                            id: layer.id, pageIndex: layer.pageIndex, bytesPath: layer.bytesPath,
                                             placement: SignaturePlacement(
                                               pctX: (layer.placement.pctX + dxDelta / iw).clamp(0.0, 1.0),
                                               pctY: (layer.placement.pctY + dyDelta / ih).clamp(0.0, 1.0),
@@ -678,8 +678,8 @@ class _ExportScreenState extends State<ExportScreen> {
                                         selectedText: _selectedWatermarkText,
                                         transformController: _exportTransformController,
                                         onSelect: (layer) => setState(() {
-                                          _selectedWatermarkText = layer.text;
-                                          _selectedAnnotateBytesPath = null;
+                                          _selectedWatermarkText = layer.id;
+                                          _selectedAnnotateId = null;
                                           _selectedStampId = null;
                                           _exportEditMode = TrayEditMode.watermark;
                                         }),
@@ -704,7 +704,7 @@ class _ExportScreenState extends State<ExportScreen> {
                                         transformController: _exportTransformController,
                                         onSelect: (layer) => setState(() {
                                           _selectedStampId = layer.id;
-                                          _selectedAnnotateBytesPath = null;
+                                          _selectedAnnotateId = null;
                                           _selectedWatermarkText = null;
                                           _exportEditMode = layer.kind == 'text' ? TrayEditMode.text : (layer.kind == 'note' ? TrayEditMode.note : (layer.kind == 'date' ? TrayEditMode.date : (layer.kind == 'checkbox' ? TrayEditMode.checkbox : TrayEditMode.seal)));
                                         }),
@@ -763,7 +763,7 @@ class _ExportScreenState extends State<ExportScreen> {
             pageIndex: pageIndex,
             editMode: _exportEditMode,
             scanProvider: _scanProvider,
-            selectedAnnotateBytesPath: _selectedAnnotateBytesPath,
+            selectedAnnotateId: _selectedAnnotateId,
             selectedWatermarkText: _selectedWatermarkText,
             selectedStampId: _selectedStampId,
           ),
@@ -777,7 +777,7 @@ class _ExportScreenState extends State<ExportScreen> {
                 label: Text(AppLocalizations.of(context).commonDone, style: TextStyle(fontSize: 11)),
                 onPressed: () => setState(() {
                   _exportEditMode = TrayEditMode.none;
-                  _selectedAnnotateBytesPath = null;
+                  _selectedAnnotateId = null;
                   _selectedWatermarkText = null;
                   _selectedStampId = null;
                 }),

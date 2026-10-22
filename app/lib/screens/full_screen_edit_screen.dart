@@ -40,7 +40,7 @@ class _FullScreenEditScreenState extends State<FullScreenEditScreen> with Docume
   int _currentPageIndex = 0;
   TrayEditMode _editMode = TrayEditMode.none;
 
-  String? _selectedAnnotateBytesPath;
+  String? _selectedAnnotateId;
   String? _selectedWatermarkText;
   String? _selectedStampId;
 
@@ -187,7 +187,7 @@ class _FullScreenEditScreenState extends State<FullScreenEditScreen> with Docume
     setState(() {
       _editMode = TrayEditMode.none;
       _inkController.setEditInk(null);
-      _selectedAnnotateBytesPath = null;
+      _selectedAnnotateId = null;
       _selectedWatermarkText = null;
       _selectedStampId = null;
     });
@@ -199,7 +199,7 @@ class _FullScreenEditScreenState extends State<FullScreenEditScreen> with Docume
     setState(() {
       switch (mode) {
         case TrayEditMode.annotate:
-          _selectedAnnotateBytesPath = identifier;
+          _selectedAnnotateId = identifier;
           break;
         case TrayEditMode.watermark:
           _selectedWatermarkText = identifier;
@@ -360,11 +360,11 @@ class _FullScreenEditScreenState extends State<FullScreenEditScreen> with Docume
                   annotateLayers: doc.annotateLayers,
                   watermarkLayers: doc.watermarkLayers,
                   stampLayers: doc.stampLayers,
-                  selectedAnnotateBytesPath: _selectedAnnotateBytesPath,
+                  selectedAnnotateId: _selectedAnnotateId,
                   selectedWatermarkText: _selectedWatermarkText,
                   selectedStampId: _selectedStampId,
                   onAnnotateSelect: (layer) => setState(() {
-                    _selectedAnnotateBytesPath = layer.bytesPath;
+                    _selectedAnnotateId = layer.id;
                     _selectedWatermarkText = null;
                     _selectedStampId = null;
                     _editMode = TrayEditMode.annotate;
@@ -372,9 +372,9 @@ class _FullScreenEditScreenState extends State<FullScreenEditScreen> with Docume
                   onAnnotateUpdate: (pageIndex, newLayer) => scanProvider.updateAnnotateLayer(doc.id, newLayer),
                   onSignatureSelect: () => setState(() => _editMode = TrayEditMode.signature),
                   onWatermarkSelect: () => setState(() => _editMode = TrayEditMode.watermark),
-                  onWatermarkSelected: (layer) => setState(() { _selectedWatermarkText = layer.text; _selectedAnnotateBytesPath = null; _selectedStampId = null; _editMode = TrayEditMode.watermark; }),
+                  onWatermarkSelected: (layer) => setState(() { _selectedWatermarkText = layer.id; _selectedAnnotateId = null; _selectedStampId = null; _editMode = TrayEditMode.watermark; }),
                   onWatermarkLayerUpdate: (pageIndex, layer) => scanProvider.updateWatermarkLayer(doc.id, layer),
-                  onStampSelected: (layer) => setState(() { _selectedStampId = layer.id; _selectedAnnotateBytesPath = null; _selectedWatermarkText = null; _editMode = layer.kind == 'fill' ? TrayEditMode.fill : (layer.kind == 'text' ? TrayEditMode.text : (layer.kind == 'note' ? TrayEditMode.note : (layer.kind == 'date' ? TrayEditMode.date : (layer.kind == 'checkbox' ? TrayEditMode.checkbox : TrayEditMode.seal)))); }),
+                  onStampSelected: (layer) => setState(() { _selectedStampId = layer.id; _selectedAnnotateId = null; _selectedWatermarkText = null; _editMode = layer.kind == 'fill' ? TrayEditMode.fill : (layer.kind == 'text' ? TrayEditMode.text : (layer.kind == 'note' ? TrayEditMode.note : (layer.kind == 'date' ? TrayEditMode.date : (layer.kind == 'checkbox' ? TrayEditMode.checkbox : TrayEditMode.seal)))); }),
                   onStampLayerUpdate: (pageIndex, layer) => scanProvider.updateStampLayer(doc.id, layer),
                   pageController: _pageController,
                   physics: const NeverScrollableScrollPhysics(),
@@ -426,12 +426,12 @@ class _FullScreenEditScreenState extends State<FullScreenEditScreen> with Docume
                       pageIndex: _currentPageIndex,
                       editMode: _editMode,
                       scanProvider: _scanProvider,
-                      selectedAnnotateBytesPath: _selectedAnnotateBytesPath,
+                      selectedAnnotateId: _selectedAnnotateId,
                       selectedWatermarkText: _selectedWatermarkText,
                       selectedStampId: _selectedStampId,
                       onEditFill: _reEditFill,
                     ),
-                    if (_editMode != TrayEditMode.none || _selectedAnnotateBytesPath != null || _selectedWatermarkText != null || _selectedStampId != null)
+                    if (_editMode != TrayEditMode.none || _selectedAnnotateId != null || _selectedWatermarkText != null || _selectedStampId != null)
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
                         child: Align(

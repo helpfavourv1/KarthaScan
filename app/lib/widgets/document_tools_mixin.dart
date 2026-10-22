@@ -118,11 +118,11 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
     await annotateDir.create(recursive: true);
     final filePath = p.join(annotateDir.path, 'ann_${DateTime.now().microsecondsSinceEpoch}_$pageIndex.png');
     await File(filePath).writeAsBytes(bytes);
-    final layer = AnnotateLayer(pageIndex: pageIndex, bytesPath: filePath, placement: const SignaturePlacement(pctX: 0.5, pctY: 0.35));
+    final layer = AnnotateLayer(id: scanProvider.newAnnotateId(), pageIndex: pageIndex, bytesPath: filePath, placement: const SignaturePlacement(pctX: 0.5, pctY: 0.35));
     await scanProvider.addAnnotateLayer(doc.id, layer);
     if (mounted) {
       editMode = TrayEditMode.annotate;
-      onLayerAdded(TrayEditMode.annotate, layer.bytesPath);
+      onLayerAdded(TrayEditMode.annotate, layer.id);
     }
   }
 
@@ -144,7 +144,7 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
     if (doc == null) return;
     final matching = doc.annotateLayers.where((l) => l.pageIndex == pageIndex).toList();
     for (final layer in matching) {
-      await scanProvider.removeAnnotateLayer(doc.id, pageIndex, layer.bytesPath);
+      await scanProvider.removeAnnotateLayer(doc.id, layer.id);
     }
   }
 
@@ -165,13 +165,14 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
     );
     if (config == null || !mounted) return;
     final layer = config.copyWith(
+      id: scanProvider.newWatermarkId(),
       pageIndex: currentPageIndex,
       placement: const SignaturePlacement(pctX: 0.5, pctY: 0.5),
     );
     await scanProvider.addWatermarkLayer(doc.id, layer);
     if (mounted) {
       editMode = TrayEditMode.watermark;
-      onLayerAdded(TrayEditMode.watermark, layer.text);
+      onLayerAdded(TrayEditMode.watermark, layer.id);
     }
   }
 

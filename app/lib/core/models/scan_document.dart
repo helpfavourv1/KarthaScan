@@ -73,13 +73,19 @@ class AnnotateLayer {
     required this.pageIndex,
     required this.bytesPath,
     required this.placement,
+    this.id = '',
   });
+
+  /// Unique per placed copy, so the same picture can sit on a page more than
+  /// once and each copy is moved, resized or removed on its own.
+  final String id;
 
   final int pageIndex;
   final String bytesPath;  // Path to PNG file
   final SignaturePlacement placement;
 
   Map<String, dynamic> toJson() => {
+    'id': id,
     'pageIndex': pageIndex,
     'bytesPath': bytesPath,
     'pctX': placement.pctX,
@@ -89,9 +95,13 @@ class AnnotateLayer {
   };
 
   factory AnnotateLayer.fromJson(Map<String, dynamic> json) {
+    final int page = json['pageIndex'] as int;
+    final String path = json['bytesPath'] as String;
+    final String? savedId = json['id'] as String?;
     return AnnotateLayer(
-      pageIndex: json['pageIndex'] as int,
-      bytesPath: json['bytesPath'] as String,
+      id: (savedId != null && savedId.isNotEmpty) ? savedId : 'ann-$page-${path.hashCode}',
+      pageIndex: page,
+      bytesPath: path,
       placement: SignaturePlacement(
         pctX: (json['pctX'] as num).toDouble(),
         pctY: (json['pctY'] as num).toDouble(),
@@ -101,8 +111,9 @@ class AnnotateLayer {
     );
   }
 
-  AnnotateLayer copyWith({int? pageIndex, String? bytesPath, SignaturePlacement? placement}) {
+  AnnotateLayer copyWith({String? id, int? pageIndex, String? bytesPath, SignaturePlacement? placement}) {
     return AnnotateLayer(
+      id: id ?? this.id,
       pageIndex: pageIndex ?? this.pageIndex,
       bytesPath: bytesPath ?? this.bytesPath,
       placement: placement ?? this.placement,
@@ -113,19 +124,21 @@ class AnnotateLayer {
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
     return other is AnnotateLayer &&
+        other.id == id &&
         other.pageIndex == pageIndex &&
         other.bytesPath == bytesPath &&
         other.placement == placement;
   }
 
   @override
-  int get hashCode => Object.hash(pageIndex, bytesPath, placement);
+  int get hashCode => Object.hash(id, pageIndex, bytesPath, placement);
 }
 
 @immutable
 @immutable
 class WatermarkLayer {
   const WatermarkLayer({
+    this.id = '',
     required this.pageIndex,
     required this.text,
     required this.placement,
@@ -144,6 +157,9 @@ class WatermarkLayer {
     this.align = 'center',
   });
 
+  /// Unique per watermark, so the same text can sit in several places on a page.
+  /// Empty only before it is added to a document (the provider assigns one).
+  final String id;
   final int pageIndex;
   final String text;
   final SignaturePlacement placement;
@@ -162,6 +178,7 @@ class WatermarkLayer {
   final String align;
 
   Map<String, dynamic> toJson() => {
+    'id': id,
     'pageIndex': pageIndex,
     'text': text,
     'pctX': placement.pctX,
@@ -185,6 +202,10 @@ class WatermarkLayer {
 
   factory WatermarkLayer.fromJson(Map<String, dynamic> json) {
     return WatermarkLayer(
+      // Watermarks saved before ids existed were unique per page and text.
+      id: (json['id'] as String?)?.isNotEmpty == true
+          ? json['id'] as String
+          : 'wm-${json['pageIndex']}-${(json['text'] as String).hashCode}',
       pageIndex: json['pageIndex'] as int,
       text: json['text'] as String,
       placement: SignaturePlacement(
@@ -210,6 +231,7 @@ class WatermarkLayer {
   }
 
   WatermarkLayer copyWith({
+    String? id,
     int? pageIndex,
     String? text,
     SignaturePlacement? placement,
@@ -228,6 +250,7 @@ class WatermarkLayer {
     String? align,
   }) {
     return WatermarkLayer(
+      id: id ?? this.id,
       pageIndex: pageIndex ?? this.pageIndex,
       text: text ?? this.text,
       placement: placement ?? this.placement,

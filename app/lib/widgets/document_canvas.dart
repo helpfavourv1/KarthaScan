@@ -22,7 +22,7 @@ class DocumentCanvas extends StatefulWidget {
     this.annotateLayers = const [],
     this.watermarkLayers = const [],
     this.stampLayers = const [],
-    this.selectedAnnotateBytesPath,
+    this.selectedAnnotateId,
     this.selectedWatermarkText,
     this.selectedStampId,
     this.onAnnotateSelect,
@@ -50,7 +50,7 @@ class DocumentCanvas extends StatefulWidget {
   final List<AnnotateLayer> annotateLayers;
   final List<WatermarkLayer> watermarkLayers;
   final List<StampLayer> stampLayers;
-  final String? selectedAnnotateBytesPath;
+  final String? selectedAnnotateId;
   final String? selectedWatermarkText;
   final String? selectedStampId;
   final void Function(AnnotateLayer layer)? onAnnotateSelect;
@@ -142,7 +142,7 @@ class _DocumentCanvasState extends State<DocumentCanvas> {
             textSecondary: textSecondary,
             accent: accent,
             annotateLayers: widget.annotateLayers,
-            selectedAnnotateBytesPath: widget.selectedAnnotateBytesPath,
+            selectedAnnotateId: widget.selectedAnnotateId,
             onAnnotateSelect: widget.onAnnotateSelect,
             onAnnotateUpdate: widget.onAnnotateUpdate,
             onSignatureSelect: widget.onSignatureSelect,
@@ -178,7 +178,7 @@ class _PageWithInk extends StatefulWidget {
     required this.textSecondary,
     required this.accent,
     this.annotateLayers = const [],
-    this.selectedAnnotateBytesPath,
+    this.selectedAnnotateId,
     this.onAnnotateSelect,
     this.onAnnotateUpdate,
     this.watermarkLayers = const [],
@@ -205,7 +205,7 @@ class _PageWithInk extends StatefulWidget {
   final Color textSecondary;
   final Color accent;
   final List<AnnotateLayer> annotateLayers;
-  final String? selectedAnnotateBytesPath;
+  final String? selectedAnnotateId;
   final void Function(AnnotateLayer layer)? onAnnotateSelect;
   final void Function(int pageIndex, AnnotateLayer newLayer)? onAnnotateUpdate;
   final VoidCallback? onSignatureSelect;
@@ -388,11 +388,12 @@ class _PageWithInkState extends State<_PageWithInk> {
                                       pageIndex: widget.pageIndex,
                                       iw: originalW, ih: originalH, dx: 0, dy: 0,
                                       accent: widget.accent,
-                                      selectedBytesPath: widget.selectedAnnotateBytesPath,
+                                      selectedId: widget.selectedAnnotateId,
                                       onSelect: (layer) => widget.onAnnotateSelect?.call(layer),
                                       transformController: _transformController,
                                       onDrag: (layer, dxDelta, dyDelta) {
                                         widget.onAnnotateUpdate?.call(widget.pageIndex, AnnotateLayer(
+                                          id: layer.id,
                                           pageIndex: layer.pageIndex,
                                           bytesPath: layer.bytesPath,
                                           placement: SignaturePlacement(
