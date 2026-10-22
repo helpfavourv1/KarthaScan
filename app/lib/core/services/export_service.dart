@@ -92,6 +92,137 @@ Future<img.Image?> _decodeForEdit(Uint8List bytes) async {
   }
 }
 
+/// Plain data for one PDF page (everything here can cross to another isolate).
+class _PdfPageData {
+  const _PdfPageData({
+    required this.image,
+    required this.imageWidth,
+    required this.imageHeight,
+    required this.format,
+    required this.blocks,
+  });
+  final Uint8List image;
+  final int? imageWidth;
+  final int? imageHeight;
+  final PdfPageFormat format;
+  final List<(String, double, double, double, double)> blocks;
+}
+
+class _PdfJob {
+  const _PdfJob({
+    required this.title,
+    required this.pages,
+    required this.emptyMessage,
+    required this.pageFormat,
+    required this.fonts,
+  });
+  final String title;
+  final List<_PdfPageData> pages;
+  final String emptyMessage;
+  final PdfPageFormat pageFormat;
+  final PdfFontBytes fonts;
+}
+
+/// Builds the PDF file. Runs on a background isolate.
+Future<Uint8List> _assemblePdf(_PdfJob job) async {
+  pw.ThemeData theme;
+  try {
+    final pw.Font latin = pw.Font.ttf(ByteData.sublistView(job.fonts.latin));
+    theme = pw.ThemeData.withFont(
+      base: latin,
+      bold: latin,
+      italic: latin,
+      boldItalic: latin,
+      fontFallback: <pw.Font>[for (final Uint8List b in job.fonts.fallback) pw.Font.ttf(ByteData.sublistView(b))],
+    );
+  } catch (_) {
+    theme = pw.ThemeData.base();
+  }
+  final pw.Document pdfDoc = pw.Document(title: job.title, creator: 'KatharScan');
+
+  for (final _PdfPageData pg in job.pages) {
+    final image = pw.MemoryImage(pg.image);
+    final PdfPageFormat pageFmt = pg.format;
+    final blocks = pg.blocks;
+    final int? w = pg.imageWidth;
+    final int? h = pg.imageHeight;
+    pdfDoc.addPage(
+      pw.Page(
+        theme: theme,
+        pageFormat: pageFmt,
+        build: (pw.Context context) {
+          if (w == null || h == null || blocks.isEmpty) {
+            return pw.Center(child: pw.Image(image, fit: pw.BoxFit.contain));
+          }
+          final imgW = w.toDouble();
+          final imgH = h.toDouble();
+          final imgAspect = imgW / imgH;
+          final pageW = pageFmt.width;
+          final pageH = pageFmt.height;
+          final pageAspect = pageW / pageH;
+
+          final double renderW, renderH, renderX, renderY;
+          if (imgAspect > pageAspect) {
+            renderW = pageW;
+            renderH = renderW / imgAspect;
+            renderX = 0;
+            renderY = (pageH - renderH) / 2;
+          } else {
+            renderH = pageH;
+            renderW = renderH * imgAspect;
+            renderX = (pageW - renderW) / 2;
+            renderY = 0;
+          }
+
+          return pw.Stack(
+            children: [
+              pw.Positioned.fill(
+                child: pw.Center(child: pw.Image(image, fit: pw.BoxFit.contain)),
+              ),
+              ...blocks.map((block) {
+                final x = renderX + (block.$2 / imgW) * renderW;
+                final y = renderY + (block.$3 / imgH) * renderH;
+                final bw = (block.$4 / imgW) * renderW;
+                final bh = (block.$5 / imgH) * renderH;
+                final fontSize = bh * 0.8;
+                return pw.Positioned(
+                  left: x,
+                  top: y,
+                  child: pw.SizedBox(
+                    width: bw,
+                    height: bh,
+                    child: pw.Text(
+                      block.$1,
+                      style: pw.TextStyle(
+                        fontSize: fontSize,
+                        color: const PdfColor(0, 0, 0, 0),
+                        renderingMode: PdfTextRenderingMode.invisible,
+                      ),
+                      maxLines: 1,
+                      overflow: pw.TextOverflow.clip,
+                    ),
+                  ),
+                );
+              }),
+            ],
+          );
+        },
+      ),
+    );
+  }
+
+  if (job.pages.isEmpty) {
+    pdfDoc.addPage(
+      pw.Page(
+        theme: theme,
+        pageFormat: job.pageFormat,
+        build: (pw.Context context) => pw.Center(child: pw.Text(job.emptyMessage)),
+      ),
+    );
+  }
+  return pdfDoc.save();
+}
+
 class ExportService {
   /// One page exactly as it is exported (crop, filter, layers and all), for
   /// printing so the paper copy matches what the person sees and exports.
@@ -452,10 +583,7 @@ class ExportService {
     PdfPageFormat pageFormat = PdfPageFormat.a4,
     CompressionTier compression = CompressionTier.original,
   }) async {
-    final pw.Document pdfDoc = pw.Document(
-      title: document.title,
-      creator: 'KatharScan',
-    );
+    final List<_PdfPageData> pages = <_PdfPageData>[];
 
     for (int i = 0; i < document.pagePaths.length; i++) {
       // Let the screen draw a frame between pages so the app stays responsive.
@@ -477,97 +605,49 @@ class ExportService {
       // text is positioned against this.
       final (int, int)? probed = _probeImageSize(bytes);
       final Uint8List embedBytes = compression == CompressionTier.original ? bytes : await _compressForPdf(bytes, compression);
-      final image = pw.MemoryImage(embedBytes);
       final blocks = document.pageOcrBlocks[i] ?? const <OcrBlock>[];
       // A wide scan gets a landscape page instead of a tiny letterboxed one.
       final PdfPageFormat pageFmt =
           (probed != null && probed.$1 > probed.$2) ? pageFormat.landscape : pageFormat;
-
-      pdfDoc.addPage(
-        pw.Page(
-          theme: await PdfFonts.theme(text: blocks.map((OcrBlock b) => b.text).join(' ')),
-          pageFormat: pageFmt,
-          build: (pw.Context context) {
-            if (probed == null || blocks.isEmpty) {
-              return pw.Center(child: pw.Image(image, fit: pw.BoxFit.contain));
-            }
-            
-            final imgW = probed.$1.toDouble();
-            final imgH = probed.$2.toDouble();
-            final imgAspect = imgW / imgH;
-            final pageW = pageFmt.width;
-            final pageH = pageFmt.height;
-            final pageAspect = pageW / pageH;
-            
-            final double renderW, renderH, renderX, renderY;
-            if (imgAspect > pageAspect) {
-              renderW = pageW;
-              renderH = renderW / imgAspect;
-              renderX = 0;
-              renderY = (pageH - renderH) / 2;
-            } else {
-              renderH = pageH;
-              renderW = renderH * imgAspect;
-              renderX = (pageW - renderW) / 2;
-              renderY = 0;
-            }
-            
-            return pw.Stack(
-              children: [
-                pw.Positioned.fill(
-                  child: pw.Center(child: pw.Image(image, fit: pw.BoxFit.contain)),
-                ),
-                ...blocks.map((block) {
-                  final x = renderX + (block.boundingBox.left / imgW) * renderW;
-                  final y = renderY + (block.boundingBox.top / imgH) * renderH;
-                  final w = (block.boundingBox.width / imgW) * renderW;
-                  final h = (block.boundingBox.height / imgH) * renderH;
-                  final fontSize = h * 0.8;
-                  return pw.Positioned(
-                    left: x,
-                    top: y,
-                    child: pw.SizedBox(
-                      width: w,
-                      height: h,
-                      child: pw.Text(
-                        block.text,
-                        style: pw.TextStyle(
-                          fontSize: fontSize,
-                          color: const PdfColor(0, 0, 0, 0),
-                          renderingMode: PdfTextRenderingMode.invisible,
-                        ),
-                        maxLines: 1,
-                        overflow: pw.TextOverflow.clip,
-                      ),
-                    ),
-                  );
-                }),
-              ],
-            );
-          },
-        ),
-      );
+      pages.add(_PdfPageData(
+        image: embedBytes,
+        imageWidth: probed?.$1,
+        imageHeight: probed?.$2,
+        format: pageFmt,
+        blocks: <(String, double, double, double, double)>[
+          for (final OcrBlock b in blocks)
+            (b.text, b.boundingBox.left, b.boundingBox.top, b.boundingBox.width, b.boundingBox.height),
+        ],
+      ));
     }
 
+    String emptyMsg = '';
     if (document.pagePaths.isEmpty) {
       final deviceLocale = ui.PlatformDispatcher.instance.locale;
       final matchLocale = AppLocalizations.supportedLocales.firstWhere(
         (l) => l.languageCode == deviceLocale.languageCode,
         orElse: () => AppLocalizations.supportedLocales.first,
       );
-      final emptyMsg = lookupAppLocalizations(matchLocale).emptyDocumentMessage;
-      pdfDoc.addPage(
-        pw.Page(
-          theme: await PdfFonts.theme(text: emptyMsg),
-          pageFormat: pageFormat,
-          build: (pw.Context context) => pw.Center(
-            child: pw.Text(emptyMsg),
-          ),
-        ),
-      );
+      emptyMsg = lookupAppLocalizations(matchLocale).emptyDocumentMessage;
     }
 
-    final pdfBytes = await pdfDoc.save();
+    // The fonts the text needs, as bytes, so a background isolate can build the file.
+    final String allText = <String>[
+      emptyMsg,
+      for (final _PdfPageData pg in pages) ...pg.blocks.map(((String, double, double, double, double) b) => b.$1),
+    ].join(' ');
+    final PdfFontBytes fonts = await PdfFonts.bytesFor(allText);
+
+    // Laying out and compressing the pages is the heaviest step; it runs off the
+    // screen thread so the app keeps responding during a long export.
+    final _PdfJob job = _PdfJob(
+      title: document.title,
+      pages: pages,
+      emptyMessage: emptyMsg,
+      pageFormat: pageFormat,
+      fonts: fonts,
+    );
+    final Uint8List pdfBytes = await Isolate.run(() => _assemblePdf(job));
     final outPath = _outputPath(document, outDir, 'pdf');
     await _writeBytes(outPath, pdfBytes);
     return outPath;

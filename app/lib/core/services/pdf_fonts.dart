@@ -1,9 +1,17 @@
 import 'dart:io' show File;
+import 'dart:typed_data' show Uint8List;
 
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:pdf/widgets.dart' as pw;
 
 import 'remote_fonts.dart';
+
+/// Font files as plain bytes, so a PDF can be built on a background isolate.
+class PdfFontBytes {
+  const PdfFontBytes({required this.latin, required this.fallback});
+  final Uint8List latin;
+  final List<Uint8List> fallback;
+}
 
 /// Bundled Noto fonts for generated PDFs, so Cyrillic, Greek and Arabic text
 /// is not drawn as empty boxes. The default PDF fonts only cover Latin.
@@ -15,6 +23,19 @@ class PdfFonts {
   static pw.Font? _latin;
   static pw.Font? _arabic;
   static final Map<String, pw.Font> _remote = <String, pw.Font>{};
+
+  /// The same fonts as [theme] picks for [text], as bytes.
+  static Future<PdfFontBytes> bytesFor(String text) async {
+    final Uint8List latin = (await rootBundle.load('assets/fonts/NotoSans-Regular.ttf')).buffer.asUint8List();
+    final List<Uint8List> fallback = <Uint8List>[
+      (await rootBundle.load('assets/fonts/NotoSansArabic-Regular.ttf')).buffer.asUint8List(),
+    ];
+    for (final RemoteFont f in RemoteFonts.neededFor(text)) {
+      final File? file = await RemoteFonts.ensure(f);
+      if (file != null) fallback.add(await file.readAsBytes());
+    }
+    return PdfFontBytes(latin: latin, fallback: fallback);
+  }
 
   /// [text] is everything the PDF is going to draw, used to pick the fonts.
   static Future<pw.ThemeData> theme({String text = ''}) async {
