@@ -30,10 +30,13 @@ class ExportNoTextException extends ExportFailedException {
 }
 
 class ExportFailedException implements Exception {
-  const ExportFailedException(this.message);
+  const ExportFailedException(this.message, {this.cause});
   final String message;
+
+  /// The underlying error, kept for diagnostics. Never shown to the person.
+  final Object? cause;
   @override
-  String toString() => 'ExportFailedException: $message';
+  String toString() => cause == null ? 'ExportFailedException: $message' : 'ExportFailedException: $message (cause: $cause)';
 }
 
 enum FilterType { none, grayscale, blackAndWhite, colorEnhance, shadowRemoval }
@@ -343,6 +346,7 @@ class ExportService {
       _logError('export(${format.name})', error, stackTrace);
       throw ExportFailedException(
         'Could not export "${document.title}" as ${format.name.toUpperCase()}.',
+        cause: error,
       );
     }
   }
