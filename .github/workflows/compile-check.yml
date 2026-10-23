@@ -404,9 +404,18 @@ jobs:
           if sc:
               rows = [l.strip() for l in sc.splitlines() if l.startswith('EMU: ')]
               print('::notice title=screen measurements::%s' % esc('\n'.join(rows)[:60000]))
-              shots = [l.strip() for l in sc.splitlines() if l.startswith('SHOT: ')]
-              for i in range(0, len(shots), 3):
-                  print('::notice title=screen shots %d::%s' % (i // 3, esc('\n'.join(shots[i:i + 3])[:62000])))
+              keep = ['scan-detail-pages', 'editor-plain', 'editor-watermark-selected', 'editor-annotation-selected', 'editor-signature-mode', 'editor-fill-mode', 'editor-fill-sheet-open', 'export-pdf', 'home', 'scan-detail-text']
+              shots = [l.strip() for l in sc.splitlines() if l.startswith('SHOT: ') and l.split(' ')[1] in keep]
+              levels = ['notice', 'warning', 'error']
+              chunks = []
+              for l in shots:
+                  name = l.split(' ')[1]
+                  data = l.split('| ', 1)[1]
+                  parts = [data[i:i + 3500] for i in range(0, len(data), 3500)]
+                  for n, part in enumerate(parts):
+                      chunks.append((name, n + 1, len(parts), part))
+              for i, (name, n, total, part) in enumerate(chunks[:30]):
+                  print('::%s title=shot %s %d/%d::%s' % (levels[i // 10], name, n, total, part))
           k = rd('kill.log').strip()
           if k:
               print('::notice title=process kills and crashes during the stress tests::%s' % esc(k[-3800:]))

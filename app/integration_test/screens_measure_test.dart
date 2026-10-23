@@ -2,7 +2,6 @@
 // much of the screen the document gets, and what sits next to the ad banner.
 // Prints "EMU: M-<screen> | INFO | ..." measurements and "SHOT: <id> | <base64 jpeg>"
 // small screenshots so they can be read back from the check annotations.
-import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
@@ -136,12 +135,12 @@ void main() {
         final Iterable<Element> boundaries = find.byType(RepaintBoundary).evaluate();
         final RenderRepaintBoundary rb = boundaries.first.renderObject! as RenderRepaintBoundary;
         final String? b64 = await tester.runAsync<String?>(() async {
-          final ui.Image im = await rb.toImage(pixelRatio: 0.35);
+          final ui.Image im = await rb.toImage(pixelRatio: 0.3);
           final ByteData? bd = await im.toByteData(format: ui.ImageByteFormat.png);
           if (bd == null) return null;
           final img.Image? d = img.decodePng(bd.buffer.asUint8List());
           if (d == null) return null;
-          return base64Encode(img.encodeJpg(d, quality: 55));
+          return base64Encode(img.encodeJpg(d, quality: 35));
         });
         if (b64 != null) {
           // ignore: avoid_print
