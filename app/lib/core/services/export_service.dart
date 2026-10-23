@@ -98,13 +98,15 @@ Future<img.Image?> _decodeForEdit(Uint8List bytes) async {
 /// Plain data for one PDF page (everything here can cross to another isolate).
 class _PdfPageData {
   const _PdfPageData({
-    required this.image,
+    required this.imagePath,
     required this.imageWidth,
     required this.imageHeight,
     required this.format,
     required this.blocks,
   });
-  final Uint8List image;
+  /// The page picture, staged on disk so 100 pages are never all in memory
+  /// (or copied to the background isolate) at once.
+  final String imagePath;
   final int? imageWidth;
   final int? imageHeight;
   final PdfPageFormat format;
@@ -144,7 +146,7 @@ Future<Uint8List> _assemblePdf(_PdfJob job) async {
   final pw.Document pdfDoc = pw.Document(title: job.title, creator: 'KatharScan');
 
   for (final _PdfPageData pg in job.pages) {
-    final image = pw.MemoryImage(pg.image);
+    final String imagePath = pg.imagePath;
     final PdfPageFormat pageFmt = pg.format;
     final blocks = pg.blocks;
     final int? w = pg.imageWidth;
@@ -154,6 +156,7 @@ Future<Uint8List> _assemblePdf(_PdfJob job) async {
         theme: theme,
         pageFormat: pageFmt,
         build: (pw.Context context) {
+          final image = pw.MemoryImage(File(imagePath).readAsBytesSync());
           if (w == null || h == null || blocks.isEmpty) {
             return pw.Center(child: pw.Image(image, fit: pw.BoxFit.contain));
           }
@@ -565,6 +568,14 @@ class ExportService {
     try {
       img.Image? decoded = img.decodeImage(bytes);
       if (decoded == null) return bytes;
+      if (decoded.hasAlpha) {
+        final img.Image white = img.Image(width: decoded.width, height: decoded.height, numChannels: 3);
+        img.fill(white, color: img.ColorRgb8(255, 255, 255));
+        decoded = img.compositeImage(white, decoded);
+      }
+      if (tier == CompressionTier.original) {
+        return Uint8List.fromList(img.encodeJpg(decoded, quality: 95));
+      }
       final int cap = tier == CompressionTier.small ? 1400 : 2000;
       final int longest = decoded.width > decoded.height ? decoded.width : decoded.height;
       if (longest > cap) {
@@ -588,7 +599,8 @@ class ExportService {
     CompressionTier compression = CompressionTier.original,
   }) async {
     final List<_PdfPageData> pages = <_PdfPageData>[];
-
+    final Directory stage = await Directory(p.join((await getTemporaryDirectory()).path, 'pdf_stage_${DateTime.now().microsecondsSinceEpoch}')).create(recursive: true);
+    try {
     for (int i = 0; i < document.pagePaths.length; i++) {
       // Let the screen draw a frame between pages so the app stays responsive.
       await Future<void>.delayed(Duration.zero);
@@ -608,13 +620,18 @@ class ExportService {
       // Size of the page picture before any compression; the invisible OCR
       // text is positioned against this.
       final (int, int)? probed = _probeImageSize(bytes);
-      final Uint8List embedBytes = compression == CompressionTier.original ? bytes : await _compressForPdf(bytes, compression);
+      // Every page goes in as a JPEG: the PDF library passes JPEG through, but
+      // unpacks a PNG into raw pixels, which for many large pages runs a phone
+      // out of memory. At the original tier the size is untouched and quality is 95.
+      final Uint8List embedBytes = await _compressForPdf(bytes, compression);
+      final String stagedPath = p.join(stage.path, 'p$i.jpg');
+      await File(stagedPath).writeAsBytes(embedBytes);
       final blocks = document.pageOcrBlocks[i] ?? const <OcrBlock>[];
       // A wide scan gets a landscape page instead of a tiny letterboxed one.
       final PdfPageFormat pageFmt =
           (probed != null && probed.$1 > probed.$2) ? pageFormat.landscape : pageFormat;
       pages.add(_PdfPageData(
-        image: embedBytes,
+        imagePath: stagedPath,
         imageWidth: probed?.$1,
         imageHeight: probed?.$2,
         format: pageFmt,
@@ -655,6 +672,11 @@ class ExportService {
     final outPath = _outputPath(document, outDir, 'pdf');
     await _writeBytes(outPath, pdfBytes);
     return outPath;
+    } finally {
+      try {
+        await stage.delete(recursive: true);
+      } catch (_) {}
+    }
   }
 
   Future<String> _exportTxt(ScanDocument document, String outDir) async {
