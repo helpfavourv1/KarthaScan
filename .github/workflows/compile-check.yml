@@ -334,6 +334,8 @@ jobs:
           target: ${{ github.event.inputs.emu_target || 'google_apis' }}
           arch: x86_64
           profile: pixel_6
+          ram-size: 4096M
+          heap-size: 576M
           disable-animations: true
           working-directory: app
           script: |
