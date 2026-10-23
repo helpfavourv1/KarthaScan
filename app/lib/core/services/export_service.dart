@@ -599,7 +599,7 @@ class ExportService {
     CompressionTier compression = CompressionTier.original,
   }) async {
     final List<_PdfPageData> pages = <_PdfPageData>[];
-    final Directory stage = await Directory(p.join((await getTemporaryDirectory()).path, 'pdf_stage_${DateTime.now().microsecondsSinceEpoch}')).create(recursive: true);
+    final Directory stage = await Directory(p.join(outDir, '.pdf_stage_${DateTime.now().microsecondsSinceEpoch}')).create(recursive: true);
     try {
     for (int i = 0; i < document.pagePaths.length; i++) {
       // Let the screen draw a frame between pages so the app stays responsive.
