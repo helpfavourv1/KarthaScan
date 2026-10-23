@@ -337,7 +337,7 @@ jobs:
           disable-animations: true
           working-directory: app
           script: |
-            bash -c 'F="${{ github.event.inputs.emu_filter }}"; MONKEY() { adb logcat -c; adb install -r -g build/app/outputs/flutter-apk/app-debug.apk >/dev/null 2>&1; adb shell am start -n com.zdmgold.katharscan/.MainActivity >/dev/null 2>&1; sleep 25; timeout 420 adb shell monkey -p com.zdmgold.katharscan --throttle 60 --pct-syskeys 0 --pct-appswitch 0 -s 42 -v 6000 > /tmp/cc/monkey.log 2>&1; adb logcat -d -b crash > /tmp/cc/crash.log 2>&1; adb logcat -d | grep -i -A12 "ANR in" | head -40 >> /tmp/cc/crash.log; }; touch /tmp/cc/emu.log /tmp/cc/emu2.log; if [ "$F" = monkey ]; then flutter build apk --debug --no-pub >/dev/null 2>&1; MONKEY; exit 0; fi; if [ -n "$F" ]; then flutter test integration_test/emulator_suite_test.dart --no-pub -d emulator-5554 --name "$F" --reporter expanded 2>&1 | tee /tmp/cc/emu.log; timeout 1700 flutter test integration_test/emulator_stress_test.dart --no-pub -d emulator-5554 --name "$F" --reporter expanded 2>&1 | tee /tmp/cc/emu2.log; exit 0; fi; flutter test integration_test/emulator_suite_test.dart --no-pub -d emulator-5554 --reporter expanded 2>&1 | tee /tmp/cc/emu.log; timeout 1700 flutter test integration_test/emulator_stress_test.dart --no-pub -d emulator-5554 --reporter expanded 2>&1 | tee /tmp/cc/emu2.log; MONKEY; true'
+            bash -c 'F="${{ github.event.inputs.emu_filter }}"; MONKEY() { adb logcat -c; adb install -r -g build/app/outputs/flutter-apk/app-debug.apk >/dev/null 2>&1; adb shell am start -n com.zdmgold.katharscan/.MainActivity >/dev/null 2>&1; sleep 25; timeout 420 adb shell monkey -p com.zdmgold.katharscan --throttle 60 --pct-syskeys 0 --pct-appswitch 0 -s 42 -v 6000 > /tmp/cc/monkey.log 2>&1; adb logcat -d -b crash > /tmp/cc/crash.log 2>&1; adb logcat -d | grep -i -A12 "ANR in" | head -40 >> /tmp/cc/crash.log; }; touch /tmp/cc/emu.log /tmp/cc/emu2.log; if [ "$F" = monkey ]; then flutter build apk --debug --no-pub >/dev/null 2>&1; MONKEY; exit 0; fi; if [ -n "$F" ]; then flutter test integration_test/emulator_suite_test.dart --no-pub -d emulator-5554 --name "$F" --reporter expanded 2>&1 | tee /tmp/cc/emu.log; timeout 1700 flutter test integration_test/emulator_stress_test.dart --no-pub -d emulator-5554 --name "$F" --reporter expanded 2>&1 | tee /tmp/cc/emu2.log; adb logcat -d | grep -iE "lowmemorykiller|lmkd|Out of memory|Fatal signal|FATAL EXCEPTION|has died|am_kill|am_proc_died|Force finishing" | tail -25 > /tmp/cc/kill.log; exit 0; fi; flutter test integration_test/emulator_suite_test.dart --no-pub -d emulator-5554 --reporter expanded 2>&1 | tee /tmp/cc/emu.log; timeout 1700 flutter test integration_test/emulator_stress_test.dart --no-pub -d emulator-5554 --reporter expanded 2>&1 | tee /tmp/cc/emu2.log; adb logcat -d | grep -iE "lowmemorykiller|lmkd|Out of memory|Fatal signal|FATAL EXCEPTION|has died|am_kill|am_proc_died|Force finishing" | tail -25 > /tmp/cc/kill.log; MONKEY; true'
 
       - name: Report results as annotations
         if: always()
@@ -394,6 +394,9 @@ jobs:
                   return open('/tmp/cc/' + n, encoding='utf-8', errors='replace').read()
               except OSError:
                   return ''
+          k = rd('kill.log').strip()
+          if k:
+              print('::notice title=process kills and crashes during the stress tests::%s' % esc(k[-2500:]))
           m = rd('monkey.log')
           c = rd('crash.log')
           crashed = 'CRASH' in m or 'ANR' in m or 'FATAL EXCEPTION' in c
