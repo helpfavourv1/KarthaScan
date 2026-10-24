@@ -280,6 +280,26 @@ class _ScanDetailScreenState extends State<ScanDetailScreen>
                   ],
                 ),
               ),
+              // Share and Export live under the tabs, away from the ad banner.
+              Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+                  decoration: BoxDecoration(color: bg, border: Border(bottom: BorderSide(color: border, width: 0.5))),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      TextButton.icon(
+                        onPressed: () => _share(document),
+                        icon: const Icon(Icons.ios_share, size: 18),
+                        label: Text(l10n.shareTooltip, style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600, color: accent)),
+                      ),
+                      TextButton.icon(
+                        onPressed: () => _export(document),
+                        icon: const Icon(Icons.file_download_outlined, size: 18),
+                        label: Text(l10n.exportTooltip, style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600, color: accent)),
+                      ),
+                    ],
+                  ),
+                ),
               Expanded(
                 child: TabBarView(
                   controller: _tabController,
@@ -399,28 +419,6 @@ class _ScanDetailScreenState extends State<ScanDetailScreen>
                 onEmail: () { _closeEditor(); emailDocument(); },
                 onErase: () { _closeEditor(); erasePage(); },
                 onFill: () { _closeEditor(); context.push('/edit/${document.id}', extra: <String, dynamic>{'fill': true}); },
-              ),
-              SafeArea(
-                top: false,
-                child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-                  decoration: BoxDecoration(color: bg, border: Border(top: BorderSide(color: border, width: 0.5))),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      TextButton.icon(
-                        onPressed: () => _share(document),
-                        icon: const Icon(Icons.ios_share, size: 18),
-                        label: Text(l10n.shareTooltip, style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600, color: accent)),
-                      ),
-                      TextButton.icon(
-                        onPressed: () => _export(document),
-                        icon: const Icon(Icons.file_download_outlined, size: 18),
-                        label: Text(l10n.exportTooltip, style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600, color: accent)),
-                      ),
-                    ],
-                  ),
-                ),
               ),
             ],
           );

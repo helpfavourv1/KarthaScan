@@ -23,6 +23,9 @@ class _ConditionalBannerState extends State<ConditionalBanner> {
   static String get _prodBannerId => _testBannerId;
   BannerAd? _bannerAd;
   bool _isAdLoaded = false;
+  // Set once a request fails, so the reserved space collapses instead of staying blank.
+  bool _failed = false;
+  static const double _gap = 8;
   SubscriptionProvider? _subscription;
 
   @override
@@ -74,6 +77,7 @@ class _ConditionalBannerState extends State<ConditionalBanner> {
         onAdFailedToLoad: (ad, err) {
           debugPrint('BannerAd failed to load: $err');
           ad.dispose();
+          if (mounted) setState(() { _failed = true; _bannerAd = null; });
         },
       ),
     )..load();
@@ -90,14 +94,24 @@ class _ConditionalBannerState extends State<ConditionalBanner> {
   @override
   Widget build(BuildContext context) {
     final subscriptionProvider = Provider.of<SubscriptionProvider>(context, listen: true);
-    if (subscriptionProvider.adsRemoved.value || _bannerAd == null || !_isAdLoaded) {
+    if (subscriptionProvider.adsRemoved.value || _failed) {
       return const SafeArea(child: SizedBox.shrink());
     }
+    // The banner's space is held from the first frame (while consent is pending
+    // and while the ad loads), so the screen never jumps when it appears and a
+    // button can never slide under a finger onto the ad. The 8 dp strip above the
+    // ad keeps taps on the controls above it from landing on the ad.
+    final BannerAd? ad = _bannerAd;
     return SafeArea(
-      child: SizedBox(
-        width: _bannerAd!.size.width.toDouble(),
-        height: _bannerAd!.size.height.toDouble(),
-        child: AdWidget(ad: _bannerAd!),
+      child: Padding(
+        padding: const EdgeInsets.only(top: _gap),
+        child: SizedBox(
+          height: 50,
+          width: double.infinity,
+          child: (ad != null && _isAdLoaded)
+              ? Center(child: SizedBox(width: ad.size.width.toDouble(), height: ad.size.height.toDouble(), child: AdWidget(ad: ad)))
+              : null,
+        ),
       ),
     );
   }

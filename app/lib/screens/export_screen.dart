@@ -345,6 +345,32 @@ class _ExportScreenState extends State<ExportScreen> {
               )
             : Column(
                 children: [
+                  // --- Share + Save at the top, away from the ad banner ---
+                  SafeArea(
+                    bottom: false,
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md, vertical: AppSpacing.xs),
+                      decoration: BoxDecoration(
+                        color: bg,
+                        border: Border(bottom: BorderSide(color: isDark ? AppColors.borderSubtleDark : AppColors.borderSubtleLight, width: 0.5)),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          TextButton.icon(
+                            onPressed: _isRunning ? null : _shareExport,
+                            icon: const Icon(Icons.share_outlined, size: 18),
+                            label: Text(AppLocalizations.of(context).commonShare, style: TextStyle(fontSize: AppTypography.footnoteSize, fontWeight: FontWeight.w600, color: accent)),
+                          ),
+                          TextButton.icon(
+                            onPressed: _isRunning ? null : _saveToDevice,
+                            icon: const Icon(Icons.save_outlined, size: 18),
+                            label: Text(AppLocalizations.of(context).saveToDeviceButton, style: TextStyle(fontSize: AppTypography.footnoteSize, fontWeight: FontWeight.w600, color: accent)),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
                   Expanded(
                     child: Padding(
                       padding: const EdgeInsets.fromLTRB(AppSpacing.md, AppSpacing.md, AppSpacing.md, AppSpacing.sm),
@@ -481,32 +507,6 @@ class _ExportScreenState extends State<ExportScreen> {
                         ],
                         const SizedBox(height: AppSpacing.sm),
                       ],
-                    ),
-                  ),
-                  // --- Pinned Share + Save buttons ---
-                  SafeArea(
-                    top: false,
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md, vertical: AppSpacing.xs),
-                      decoration: BoxDecoration(
-                        color: bg,
-                        border: Border(top: BorderSide(color: isDark ? AppColors.borderSubtleDark : AppColors.borderSubtleLight, width: 0.5)),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          TextButton.icon(
-                            onPressed: _isRunning ? null : _shareExport,
-                            icon: const Icon(Icons.share_outlined, size: 18),
-                            label: Text(AppLocalizations.of(context).commonShare, style: TextStyle(fontSize: AppTypography.footnoteSize, fontWeight: FontWeight.w600, color: accent)),
-                          ),
-                          TextButton.icon(
-                            onPressed: _isRunning ? null : _saveToDevice,
-                            icon: const Icon(Icons.save_outlined, size: 18),
-                            label: Text(AppLocalizations.of(context).saveToDeviceButton, style: TextStyle(fontSize: AppTypography.footnoteSize, fontWeight: FontWeight.w600, color: accent)),
-                          ),
-                        ],
-                      ),
                     ),
                   ),
                 ],
