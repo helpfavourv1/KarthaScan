@@ -219,11 +219,28 @@ void main() {
     if (canvas != null) {
       await tester.tapAt(Offset(canvas.center.dx, canvas.top + canvas.height * 0.62));
       await pumpFor(1800);
-      await measure('editor-fill-sheet-open', types: <String>['TextStampSheet', 'DocumentCanvas'], texts: <String>[l10n.commonCreate, l10n.commonCancel]);
-      final Finder cancel = find.text(l10n.commonCancel);
-      if (cancel.evaluate().isNotEmpty) {
-        await tester.tap(cancel.first);
+      final Finder field = find.byKey(const ValueKey<String>('fillTextField'));
+      if (field.evaluate().isEmpty) {
+        note('M-editor-fill-typing', 'typing field not found after tapping the page');
+      } else {
+        await tester.enterText(field, 'Measured fill text 24-10-2026');
         await pumpFor(800);
+        await measure('editor-fill-typing', types: <String>['FillEditorDock', 'DocumentCanvas'], texts: <String>[l10n.commonDone]);
+        await tester.tap(find.byKey(const ValueKey<String>('fillDone')));
+        await pumpFor(1000);
+        await measure('editor-fill-placed', types: editorTypes, texts: <String>[l10n.commonDone, l10n.editLabel]);
+        // Double tap the placed text: it must reopen for editing.
+        final Offset at = Offset(canvas.center.dx, canvas.top + canvas.height * 0.62);
+        await tester.tapAt(at);
+        await tester.pump(const Duration(milliseconds: 60));
+        await tester.tapAt(at);
+        await pumpFor(1200);
+        final bool reopened = find.byKey(const ValueKey<String>('fillTextField')).evaluate().isNotEmpty;
+        note('M-editor-fill-reedit', reopened ? 'double tap reopened the typing bar' : 'double tap did NOT reopen the typing bar');
+        if (reopened) {
+          await tester.tap(find.byKey(const ValueKey<String>('fillDone')));
+          await pumpFor(800);
+        }
       }
     }
 
