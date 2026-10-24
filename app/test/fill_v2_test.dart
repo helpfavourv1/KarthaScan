@@ -7,6 +7,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:image/image.dart' as img;
+import 'package:katharscan/core/models/export_job.dart';
 import 'package:katharscan/core/models/fill_snippet.dart';
 import 'package:katharscan/core/models/scan_document.dart';
 import 'package:katharscan/core/models/signature_placement.dart';
