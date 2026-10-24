@@ -157,7 +157,7 @@ class LayerControlPanel extends StatelessWidget {
         rotationDegrees: layer.placement.rotationDegrees,
         scale: layer.placement.scale,
         opacity: layer.opacity,
-        fontSize: kind == 'checkbox' ? null : layer.fontSize,
+        fontSize: kind == 'checkbox' ? null : (layer.isFlowFill ? layer.fillSize * 600 : layer.fontSize),
         onRotateLeft: () => scanProvider.updateStampLayer(document.id, layer.copyWith(placement: SignaturePlacement(pctX: layer.placement.pctX, pctY: layer.placement.pctY, rotationDegrees: (layer.placement.rotationDegrees - 10).clamp(-180, 180), scale: layer.placement.scale))),
         onRotateRight: () => scanProvider.updateStampLayer(document.id, layer.copyWith(placement: SignaturePlacement(pctX: layer.placement.pctX, pctY: layer.placement.pctY, rotationDegrees: (layer.placement.rotationDegrees + 10).clamp(-180, 180), scale: layer.placement.scale))),
         onScaleDown: () => scanProvider.updateStampLayer(document.id, layer.copyWith(placement: SignaturePlacement(pctX: layer.placement.pctX, pctY: layer.placement.pctY, rotationDegrees: layer.placement.rotationDegrees, scale: (layer.placement.scale - 0.1).clamp(0.1, 5.0)))),
@@ -166,11 +166,16 @@ class LayerControlPanel extends StatelessWidget {
         onOpacityUp: () => scanProvider.updateStampLayer(document.id, layer.copyWith(opacity: (layer.opacity + 0.05).clamp(0.05, 1.0))),
         // Text is drawn to fit its box, so the size is changed by scaling the
         // box (the same thing the preview and the export both honor).
-        onFontSizeDown: () => scanProvider.updateStampLayer(document.id, layer.copyWith(fontSize: (layer.fontSize - 4).clamp(12, 144), placement: SignaturePlacement(pctX: layer.placement.pctX, pctY: layer.placement.pctY, rotationDegrees: layer.placement.rotationDegrees, scale: (layer.placement.scale - 0.1).clamp(0.1, 5.0)))),
+        onFontSizeDown: () => layer.isFlowFill ? scanProvider.updateStampLayer(document.id, layer.copyWith(fillSize: (layer.fillSize / 1.1).clamp(0.008, 0.12))) : scanProvider.updateStampLayer(document.id, layer.copyWith(fontSize: (layer.fontSize - 4).clamp(12, 144), placement: SignaturePlacement(pctX: layer.placement.pctX, pctY: layer.placement.pctY, rotationDegrees: layer.placement.rotationDegrees, scale: (layer.placement.scale - 0.1).clamp(0.1, 5.0)))),
         // Text is drawn to fit its box, so the size is changed by scaling the
         // box (the same thing the preview and the export both honor).
-        onFontSizeUp: () => scanProvider.updateStampLayer(document.id, layer.copyWith(fontSize: (layer.fontSize + 4).clamp(12, 144), placement: SignaturePlacement(pctX: layer.placement.pctX, pctY: layer.placement.pctY, rotationDegrees: layer.placement.rotationDegrees, scale: (layer.placement.scale + 0.1).clamp(0.1, 5.0)))),
+        onFontSizeUp: () => layer.isFlowFill ? scanProvider.updateStampLayer(document.id, layer.copyWith(fillSize: (layer.fillSize * 1.1).clamp(0.008, 0.12))) : scanProvider.updateStampLayer(document.id, layer.copyWith(fontSize: (layer.fontSize + 4).clamp(12, 144), placement: SignaturePlacement(pctX: layer.placement.pctX, pctY: layer.placement.pctY, rotationDegrees: layer.placement.rotationDegrees, scale: (layer.placement.scale + 0.1).clamp(0.1, 5.0)))),
         onTools: () async {
+          // Fill text is edited right on the page, not in a sheet.
+          if (layer.kind == 'fill' && onEditFill != null) {
+            onEditFill!(layer);
+            return;
+          }
           final config = await showModalBottomSheet<StampResult>(
             context: context,
             isScrollControlled: true,

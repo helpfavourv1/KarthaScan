@@ -1,3 +1,5 @@
+import 'dart:async' show unawaited;
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -13,7 +15,7 @@ import '../widgets/document_canvas.dart';
 import '../widgets/document_tools_mixin.dart';
 import '../widgets/conditional_banner.dart';
 import '../widgets/edit_tray.dart';
-import '../widgets/text_stamp_sheet.dart';
+import '../widgets/fill_editor_dock.dart';
 import '../widgets/layer_control_panel.dart';
 import '../widgets/ink_board.dart';
 import '../widgets/signature_editor_bar.dart';
@@ -50,6 +52,16 @@ class _FullScreenEditScreenState extends State<FullScreenEditScreen> with Docume
   double? _fillGhostPctY;
   List<FillSnippet> _fillSnippets = [];
 
+  // The Fill text being typed. It is drawn live on the page and only saved to the
+  // document when the person finishes (Done, another tap on the page, or leaving).
+  StampLayer? _fillDraft;
+  bool _fillDraftIsNew = false;
+  // The style of the last Fill text, so the next field starts the same way.
+  StampLayer _fillTemplate = const StampLayer(
+    id: '', pageIndex: 0, kind: 'fill', placement: SignaturePlacement(pctX: 0.5, pctY: 0.5),
+    color: 0xFF111111, fontFamily: 'sans-serif', fontWeight: 400, align: 'left', boxWidth: 0.45, fillSize: 0.022,
+  );
+
   @override
   void initState() {
     super.initState();
@@ -81,64 +93,79 @@ class _FullScreenEditScreenState extends State<FullScreenEditScreen> with Docume
     _fillSnippets = await _localStorage.loadFillSnippets();
   }
 
-  bool _fillSheetOpen = false;
-
+  /// Tap on empty page space in Fill mode: finish any text being typed, then start a
+  /// new text box at the tapped spot.
   Future<void> _onFillTap(double pctX, double pctY, int pageIndex) async {
-    // A double tap must not open a second sheet: the first one to close
-    // clears the position the second one still needs.
-    if (_fillSheetOpen) return;
-    _fillSheetOpen = true;
+    await _commitFill();
+    if (!mounted) return;
     setState(() {
-      _fillGhostPctX = pctX;
-      _fillGhostPctY = pctY;
-      _editMode = TrayEditMode.fill;
-    });
-    final result = await showModalBottomSheet<StampResult>(
-      context: context,
-      isScrollControlled: true,
-      backgroundColor: Colors.transparent,
-      builder: (ctx) => Padding(
-        padding: EdgeInsets.only(bottom: MediaQuery.of(ctx).viewInsets.bottom),
-        child: TextStampSheet(
-          kind: 'text',
-          snippets: _fillSnippets,
-          onSaveSnippet: (text) async {
-            final snippet = FillSnippet(id: 'snip_${DateTime.now().microsecondsSinceEpoch}', label: text.length > 12 ? text.substring(0, 12) : text, text: text);
-            _fillSnippets.add(snippet);
-            await _localStorage.saveFillSnippets(_fillSnippets);
-            setState(() {});
-            if (!mounted) return;
-            ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(AppLocalizations.of(context).fillSaveSnippet), duration: const Duration(seconds: 2)));
-          },
-          onDeleteSnippet: (id) async {
-            _fillSnippets.removeWhere((s) => s.id == id);
-            await _localStorage.saveFillSnippets(_fillSnippets);
-            setState(() {});
-            if (!mounted) return;
-            ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(AppLocalizations.of(context).fillDeleteSnippet), duration: const Duration(seconds: 2)));
-          },
-        ),
-      ),
-    );
-    if (result != null && result.text.isNotEmpty && mounted) {
-      final layer = StampLayer(
+      _fillDraftIsNew = true;
+      _fillDraft = _fillTemplate.copyWith(
         id: 'stamp_${DateTime.now().microsecondsSinceEpoch}',
         pageIndex: pageIndex,
-        kind: 'fill',
         placement: SignaturePlacement(pctX: pctX, pctY: pctY),
-        text: result.text,
-        fontSize: result.fontSize,
-        color: result.color,
-        fontFamily: result.fontFamily,
-        fontWeight: result.fontWeightValue,
-        align: result.alignName,
-        halo: result.halo,
+        text: '',
       );
-      final doc = document;
-      if (doc != null) await _scanProvider.addStampLayer(doc.id, layer);
+      _editMode = TrayEditMode.fill;
+      _selectedStampId = null;
+      _selectedAnnotateId = null;
+      _selectedWatermarkText = null;
+    });
+  }
+
+  /// Saves the typed text as a layer. Empty text is dropped (an existing box keeps its old text).
+  Future<void> _commitFill() async {
+    final StampLayer? draft = _fillDraft;
+    if (draft == null) return;
+    final bool isNew = _fillDraftIsNew;
+    if (mounted) setState(() => _fillDraft = null);
+    final ScanDocument? doc = document;
+    if (doc == null || draft.text.trim().isEmpty) return;
+    _fillTemplate = draft.copyWith(text: '');
+    if (isNew) {
+      await _scanProvider.addStampLayer(doc.id, draft);
+    } else {
+      await _scanProvider.updateStampLayer(doc.id, draft);
     }
-    _fillSheetOpen = false;
-    if (mounted) setState(() { _fillGhostPctX = null; _fillGhostPctY = null; _editMode = TrayEditMode.none; });
+    if (mounted) setState(() => _selectedStampId = draft.id);
+  }
+
+  /// Opens an existing Fill text for typing (double tap, or Edit in the controls).
+  Future<void> _beginEditFill(StampLayer layer) async {
+    await _commitFill();
+    if (!mounted) return;
+    setState(() {
+      _fillDraftIsNew = false;
+      // An older Fill (shrunk to a fixed box) becomes a normal wrapping box when edited.
+      _fillDraft = layer.isFlowFill ? layer : layer.copyWith(boxWidth: 0.30, fillSize: 0.022);
+      _editMode = TrayEditMode.fill;
+      _selectedStampId = layer.id;
+    });
+  }
+
+  Future<void> _saveFillSnippet(String text) async {
+    final snippet = FillSnippet(id: 'snip_${DateTime.now().microsecondsSinceEpoch}', label: text.length > 12 ? text.substring(0, 12) : text, text: text);
+    _fillSnippets.add(snippet);
+    await _localStorage.saveFillSnippets(_fillSnippets);
+    if (!mounted) return;
+    setState(() {});
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(AppLocalizations.of(context).fillSaveSnippet), duration: const Duration(seconds: 2)));
+  }
+
+  Future<void> _deleteFillSnippet(String id) async {
+    _fillSnippets.removeWhere((s) => s.id == id);
+    await _localStorage.saveFillSnippets(_fillSnippets);
+    if (!mounted) return;
+    setState(() {});
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(AppLocalizations.of(context).fillDeleteSnippet), duration: const Duration(seconds: 2)));
+  }
+
+  /// The document's text layers plus the Fill text being typed (drawn live).
+  List<StampLayer> _stampsForCanvas(ScanDocument doc) {
+    final StampLayer? d = _fillDraft;
+    if (d == null) return doc.stampLayers;
+    final StampLayer shown = d.text.isEmpty ? d.copyWith(text: AppLocalizations.of(context).fillTypeHint, opacity: 0.4) : d;
+    return <StampLayer>[for (final StampLayer l in doc.stampLayers) if (l.id != d.id) l, shown];
   }
 
   Future<void> _persistSignature() async {
@@ -183,6 +210,7 @@ class _FullScreenEditScreenState extends State<FullScreenEditScreen> with Docume
   set editMode(TrayEditMode mode) => setState(() => _editMode = mode);
   @override
   void closeEditor() {
+    if (_fillDraft != null) unawaited(_commitFill());
     if (_editMode == TrayEditMode.none) return;
     setState(() {
       _editMode = TrayEditMode.none;
@@ -218,32 +246,7 @@ class _FullScreenEditScreenState extends State<FullScreenEditScreen> with Docume
   }
 
 
-  Future<void> _reEditFill(StampLayer layer) async {
-    final result = await showModalBottomSheet<StampResult>(
-      context: context,
-      isScrollControlled: true,
-      backgroundColor: Colors.transparent,
-      builder: (ctx) => Padding(
-        padding: EdgeInsets.only(bottom: MediaQuery.of(ctx).viewInsets.bottom),
-        child: TextStampSheet(kind: 'text', initial: layer),
-      ),
-    );
-    if (result != null && result.text.isNotEmpty && mounted) {
-      final doc = document;
-      if (doc != null) {
-        final updated = layer.copyWith(
-          text: result.text,
-          fontSize: result.fontSize,
-          color: result.color,
-          fontFamily: result.fontFamily,
-          fontWeight: result.fontWeightValue,
-          align: result.alignName,
-          halo: result.halo,
-        );
-        await _scanProvider.updateStampLayer(doc.id, updated);
-      }
-    }
-  }
+  Future<void> _reEditFill(StampLayer layer) => _beginEditFill(layer);
 
   void _goToPage(int index) {
     final doc = document;
@@ -359,7 +362,7 @@ class _FullScreenEditScreenState extends State<FullScreenEditScreen> with Docume
                   inkController: _inkController,
                   annotateLayers: doc.annotateLayers,
                   watermarkLayers: doc.watermarkLayers,
-                  stampLayers: doc.stampLayers,
+                  stampLayers: _stampsForCanvas(doc),
                   selectedAnnotateId: _selectedAnnotateId,
                   selectedWatermarkText: _selectedWatermarkText,
                   selectedStampId: _selectedStampId,
@@ -375,7 +378,15 @@ class _FullScreenEditScreenState extends State<FullScreenEditScreen> with Docume
                   onWatermarkSelected: (layer) => setState(() { _selectedWatermarkText = layer.id; _selectedAnnotateId = null; _selectedStampId = null; _editMode = TrayEditMode.watermark; }),
                   onWatermarkLayerUpdate: (pageIndex, layer) => scanProvider.updateWatermarkLayer(doc.id, layer),
                   onStampSelected: (layer) => setState(() { _selectedStampId = layer.id; _selectedAnnotateId = null; _selectedWatermarkText = null; _editMode = layer.kind == 'fill' ? TrayEditMode.fill : (layer.kind == 'text' ? TrayEditMode.text : (layer.kind == 'note' ? TrayEditMode.note : (layer.kind == 'date' ? TrayEditMode.date : (layer.kind == 'checkbox' ? TrayEditMode.checkbox : TrayEditMode.seal)))); }),
-                  onStampLayerUpdate: (pageIndex, layer) => scanProvider.updateStampLayer(doc.id, layer),
+                  onStampLayerUpdate: (pageIndex, layer) {
+                    // Dragging the box being typed only moves the draft.
+                    if (_fillDraft?.id == layer.id) {
+                      setState(() => _fillDraft = _fillDraft!.copyWith(placement: layer.placement));
+                    } else {
+                      scanProvider.updateStampLayer(doc.id, layer);
+                    }
+                  },
+                  onStampDoubleTap: (layer) { if (layer.kind == 'fill') unawaited(_beginEditFill(layer)); },
                   pageController: _pageController,
                   physics: const NeverScrollableScrollPhysics(),
                   initialPage: _currentPageIndex,
@@ -448,8 +459,26 @@ class _FullScreenEditScreenState extends State<FullScreenEditScreen> with Docume
                           ),
                         ),
                       ),
-                    // Fill creation now handled in _onFillTap
-                    // Compact train tray (always visible)
+                    // Fill: a hint until a spot is tapped, then the typing bar above the keyboard.
+                    if (_editMode == TrayEditMode.fill && _fillDraft == null && _selectedStampId == null)
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
+                        child: Text(AppLocalizations.of(context).fillTapHint, textAlign: TextAlign.center, style: TextStyle(fontSize: 13, color: textSecondary)),
+                      ),
+                    if (_fillDraft != null)
+                      FillEditorDock(
+                        draft: _fillDraft!,
+                        snippets: _fillSnippets,
+                        onChanged: (StampLayer d) => setState(() => _fillDraft = d),
+                        onDone: () => unawaited(_commitFill()),
+                        onSaveSnippet: (String t) => unawaited(_saveFillSnippet(t)),
+                        onDeleteSnippet: (String id) => unawaited(_deleteFillSnippet(id)),
+                        accent: accent,
+                        surface: surface,
+                        textPrimary: textPrimary,
+                      ),
+                    // Compact train tray (hidden only while the keyboard is up for typing; it could not be used then)
+                    if (_fillDraft == null)
                     EditTray(
                       compact: true,
                       onMarkup: annotateCurrentPage,

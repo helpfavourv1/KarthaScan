@@ -94,7 +94,9 @@ class _ConditionalBannerState extends State<ConditionalBanner> {
   @override
   Widget build(BuildContext context) {
     final subscriptionProvider = Provider.of<SubscriptionProvider>(context, listen: true);
-    if (subscriptionProvider.adsRemoved.value || _failed) {
+    // While the keyboard is up the banner would sit right above the keys, where a typing
+    // tap could land on it, so it steps out of the way until the keyboard closes.
+    if (subscriptionProvider.adsRemoved.value || _failed || MediaQuery.viewInsetsOf(context).bottom > 0) {
       return const SafeArea(child: SizedBox.shrink());
     }
     // The banner's space is held from the first frame (while consent is pending

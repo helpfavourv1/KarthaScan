@@ -298,6 +298,8 @@ class StampLayer {
     this.sealCenter = 'star',
     this.sealImageBytes,
     this.allCaps = false,
+    this.boxWidth = 0,
+    this.fillSize = 0,
   });
 
   final String id;
@@ -325,6 +327,15 @@ class StampLayer {
   final Uint8List? sealImageBytes;
   final bool allCaps;
 
+  /// Fill text only. Width of the text box as a fraction of the page width and the
+  /// text height as a fraction of the page width. Both 0 means an older fill that
+  /// is drawn shrunk to fit a fixed box.
+  final double boxWidth;
+  final double fillSize;
+
+  /// True for fill text that wraps inside a box and keeps its real size.
+  bool get isFlowFill => kind == 'fill' && boxWidth > 0 && fillSize > 0;
+
   Map<String, dynamic> toJson() => {
     'id': id, 'pageIndex': pageIndex, 'kind': kind,
     'pctX': placement.pctX, 'pctY': placement.pctY,
@@ -336,6 +347,7 @@ class StampLayer {
     'sealShape': sealShape, 'sealSubtext': sealSubtext, 'sealCenter': sealCenter,
     if (sealImageBytes != null) 'sealImageBytes': base64Encode(sealImageBytes!),
     'allCaps': allCaps,
+    'boxWidth': boxWidth, 'fillSize': fillSize,
   };
 
   factory StampLayer.fromJson(Map<String, dynamic> json) {
@@ -369,6 +381,8 @@ class StampLayer {
       sealCenter: json['sealCenter'] as String? ?? 'star',
       sealImageBytes: json['sealImageBytes'] != null ? base64Decode(json['sealImageBytes'] as String) : null,
       allCaps: json['allCaps'] as bool? ?? false,
+      boxWidth: (json['boxWidth'] as num?)?.toDouble() ?? 0,
+      fillSize: (json['fillSize'] as num?)?.toDouble() ?? 0,
     );
   }
 
@@ -380,6 +394,8 @@ class StampLayer {
     String? sealShape, String? sealSubtext, String? sealCenter,
     Uint8List? sealImageBytes,
     bool? allCaps,
+    double? boxWidth,
+    double? fillSize,
   }) {
     return StampLayer(
       id: id ?? this.id, pageIndex: pageIndex ?? this.pageIndex, kind: kind ?? this.kind,
@@ -392,6 +408,7 @@ class StampLayer {
       boxColor: boxColor ?? this.boxColor, tickColor: tickColor ?? this.tickColor,
       sealShape: sealShape ?? this.sealShape, sealSubtext: sealSubtext ?? this.sealSubtext, sealCenter: sealCenter ?? this.sealCenter,
       sealImageBytes: sealImageBytes ?? this.sealImageBytes, allCaps: allCaps ?? this.allCaps,
+      boxWidth: boxWidth ?? this.boxWidth, fillSize: fillSize ?? this.fillSize,
     );
   }
 }

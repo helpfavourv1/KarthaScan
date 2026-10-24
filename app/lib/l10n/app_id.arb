@@ -589,5 +589,7 @@
   "@saveFailedBanner": {
     "description": "Banner shown when saving document changes failed; a Try again button sits next to it"
   },
-  "editLabel": "Ubah"
+  "editLabel": "Ubah",
+  "fillTapHint": "Ketuk halaman di tempat Anda ingin mengetik",
+  "fillTypeHint": "Ketik di sini"
 }

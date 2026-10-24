@@ -589,5 +589,7 @@
   "@saveFailedBanner": {
     "description": "Banner shown when saving document changes failed; a Try again button sits next to it"
   },
-  "editLabel": "Editar"
+  "editLabel": "Editar",
+  "fillTapHint": "Toca la página donde quieras escribir",
+  "fillTypeHint": "Escribe aquí"
 }

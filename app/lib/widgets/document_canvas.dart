@@ -33,6 +33,7 @@ class DocumentCanvas extends StatefulWidget {
     this.onWatermarkLayerUpdate,
     this.onStampSelect,
     this.onStampSelected,
+    this.onStampDoubleTap,
     this.onStampLayerUpdate,
     this.physics = const AlwaysScrollableScrollPhysics(),
     this.pageController,
@@ -61,6 +62,7 @@ class DocumentCanvas extends StatefulWidget {
   final void Function(int pageIndex, WatermarkLayer layer)? onWatermarkLayerUpdate;
   final VoidCallback? onStampSelect;
   final void Function(StampLayer layer)? onStampSelected;
+  final void Function(StampLayer layer)? onStampDoubleTap;
   final void Function(int pageIndex, StampLayer layer)? onStampLayerUpdate;
   final ScrollPhysics physics;
   final PageController? pageController;
@@ -155,6 +157,7 @@ class _DocumentCanvasState extends State<DocumentCanvas> {
             selectedStampId: widget.selectedStampId,
             onStampSelect: widget.onStampSelect,
             onStampSelected: widget.onStampSelected,
+            onStampDoubleTap: widget.onStampDoubleTap,
             onStampLayerUpdate: widget.onStampLayerUpdate,
             pageTransforms: widget.pageTransforms,
             onFillTap: widget.onFillTap,
@@ -190,6 +193,7 @@ class _PageWithInk extends StatefulWidget {
     this.selectedStampId,
     this.onStampSelect,
     this.onStampSelected,
+    this.onStampDoubleTap,
     this.onStampLayerUpdate,
     this.onSignatureSelect,
     this.pageTransforms = const {},
@@ -218,6 +222,7 @@ class _PageWithInk extends StatefulWidget {
   final String? selectedStampId;
   final VoidCallback? onStampSelect;
   final void Function(StampLayer layer)? onStampSelected;
+  final void Function(StampLayer layer)? onStampDoubleTap;
   final void Function(int pageIndex, StampLayer layer)? onStampLayerUpdate;
   final Map<int, PageTransform> pageTransforms;
   final void Function(double pctX, double pctY, int pageIndex)? onFillTap;
@@ -382,6 +387,18 @@ class _PageWithInkState extends State<_PageWithInk> {
                                       accent: widget.accent,
                                       transformController: _transformController,
                                     ),
+                                  // Under every layer, so tapping existing text selects it instead of starting a new one.
+                                  if (widget.onFillTap != null)
+                                    Positioned.fill(
+                                      child: GestureDetector(
+                                        behavior: HitTestBehavior.translucent,
+                                        onTapUp: (details) {
+                                          final pctX = (details.localPosition.dx / originalW).clamp(0.0, 1.0);
+                                          final pctY = (details.localPosition.dy / originalH).clamp(0.0, 1.0);
+                                          widget.onFillTap?.call(pctX, pctY, widget.pageIndex);
+                                        },
+                                      ),
+                                    ),
                                   if (widget.annotateLayers.isNotEmpty)
                                     AnnotateOverlayPage(
                                       layers: widget.annotateLayers,
@@ -433,6 +450,7 @@ class _PageWithInkState extends State<_PageWithInk> {
                                       accent: widget.accent,
                                       selectedId: widget.selectedStampId,
                                       onSelect: (layer) { widget.onStampSelected?.call(layer); widget.onStampSelect?.call(); },
+                                      onDoubleTap: widget.onStampDoubleTap,
                                       transformController: _transformController,
                                       onDrag: (layer, dxDelta, dyDelta) {
                                         widget.onStampLayerUpdate?.call(widget.pageIndex, layer.copyWith(
@@ -444,17 +462,6 @@ class _PageWithInkState extends State<_PageWithInk> {
                                           ),
                                         ));
                                       },
-                                    ),
-                                  if (widget.onFillTap != null)
-                                    Positioned.fill(
-                                      child: GestureDetector(
-                                        behavior: HitTestBehavior.translucent,
-                                        onTapUp: (details) {
-                                          final pctX = (details.localPosition.dx / originalW).clamp(0.0, 1.0);
-                                          final pctY = (details.localPosition.dy / originalH).clamp(0.0, 1.0);
-                                          widget.onFillTap?.call(pctX, pctY, widget.pageIndex);
-                                        },
-                                      ),
                                     ),
                                   if (widget.fillGhostText != null && widget.fillGhostPctX != null && widget.fillGhostPctY != null)
                                     Positioned(

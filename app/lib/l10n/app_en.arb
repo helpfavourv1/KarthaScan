@@ -664,5 +664,13 @@
   "editLabel": "Edit",
   "@editLabel": {
     "description": "Short button label that opens the full editor for the selected item"
+  },
+  "fillTapHint": "Tap the page where you want to type",
+  "@fillTapHint": {
+    "description": "Hint shown in Fill mode before the person taps a spot on the page"
+  },
+  "fillTypeHint": "Type here",
+  "@fillTypeHint": {
+    "description": "Placeholder in the Fill text field"
   }
 }

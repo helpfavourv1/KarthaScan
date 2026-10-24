@@ -682,5 +682,7 @@
   "@saveFailedBanner": {
     "description": "Banner shown when saving document changes failed; a Try again button sits next to it"
   },
-  "editLabel": "Redigera"
+  "editLabel": "Redigera",
+  "fillTapHint": "Tryck på sidan där du vill skriva",
+  "fillTypeHint": "Skriv här"
 }

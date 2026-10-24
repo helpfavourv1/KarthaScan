@@ -525,13 +525,21 @@ class ExportService {
       for (final st in stampLayers) {
         final stBytes = st.kind == 'checkbox'
             ? await _renderCheckbox(st)
-            : (st.kind == 'seal' ? await _renderSeal(st) : await _renderStampText(st, decoded.width));
+            : (st.kind == 'seal'
+                ? await _renderSeal(st)
+                : (st.isFlowFill ? await _renderFillText(st, decoded.width) : await _renderStampText(st, decoded.width)));
         if (stBytes != null) {
           final stImage = img.decodePng(stBytes);
           if (stImage != null) {
-            final frac = st.kind == 'checkbox' ? 0.15 : (st.kind == 'seal' ? 0.25 : 0.30);
-            final boxH = (st.kind == 'checkbox' || st.kind == 'seal') ? null : 0.10;
-            decoded = _compositeSignature(decoded, stImage, st.placement, widthFraction: frac, boxHeightFraction: boxH);
+            if (st.isFlowFill) {
+              // Fill text keeps its real size: the picture is already the exact size
+              // it has on the page, so it is placed without being fitted into a box.
+              decoded = _compositeSignature(decoded, stImage, st.placement, widthFraction: stImage.width / decoded.width);
+            } else {
+              final frac = st.kind == 'checkbox' ? 0.15 : (st.kind == 'seal' ? 0.25 : 0.30);
+              final boxH = (st.kind == 'checkbox' || st.kind == 'seal') ? null : 0.10;
+              decoded = _compositeSignature(decoded, stImage, st.placement, widthFraction: frac, boxHeightFraction: boxH);
+            }
           }
         }
       }
@@ -1145,6 +1153,41 @@ class ExportService {
     final int iw = paragraph.longestLine.ceil().clamp(1, 32767);
     final int ih = paragraph.height.ceil().clamp(1, 32767);
     final image = await picture.toImage(iw, ih);
+    final bytes = await image.toByteData(format: ui.ImageByteFormat.png);
+    return bytes?.buffer.asUint8List();
+  }
+
+  /// Fill text: wraps inside a box [StampLayer.boxWidth] wide and is drawn at
+  /// [StampLayer.fillSize] of the page width, so what is typed is the size it prints.
+  Future<Uint8List?> _renderFillText(StampLayer layer, int pageW) async {
+    if (layer.text.isEmpty) return null;
+    final double fontPx = (layer.fillSize * pageW).clamp(6.0, 600.0).toDouble();
+    final double width = (layer.boxWidth * pageW).clamp(20.0, pageW.toDouble()).toDouble();
+    final double halo = fontPx * 0.03 < 1 ? 1 : fontPx * 0.03;
+    final shadows = layer.halo
+        ? [
+            for (final o in <ui.Offset>[ui.Offset(halo, 0), ui.Offset(-halo, 0), ui.Offset(0, halo), ui.Offset(0, -halo), ui.Offset(halo, halo), ui.Offset(-halo, -halo), ui.Offset(halo, -halo), ui.Offset(-halo, halo)])
+              ui.Shadow(offset: o, color: const ui.Color(0xFFFFFFFF), blurRadius: 0),
+          ]
+        : null;
+    final ui.TextAlign align = layer.align == 'right'
+        ? ui.TextAlign.right
+        : (layer.align == 'center' ? ui.TextAlign.center : ui.TextAlign.left);
+    final builder = ui.ParagraphBuilder(ui.ParagraphStyle(
+      textAlign: align,
+      fontSize: fontPx,
+      fontWeight: ui.FontWeight.values.firstWhere((w) => w.value == layer.fontWeight, orElse: () => ui.FontWeight.w400),
+      fontFamily: layer.fontFamily,
+    ))
+      ..pushStyle(ui.TextStyle(color: ui.Color(layer.color).withValues(alpha: layer.opacity), shadows: shadows))
+      ..addText(layer.text);
+    final paragraph = builder.build()..layout(ui.ParagraphConstraints(width: width));
+    final int w = width.ceil();
+    final int h = (paragraph.height.ceil() + 2).clamp(1, 20000);
+    final recorder = ui.PictureRecorder();
+    final canvas = ui.Canvas(recorder);
+    canvas.drawParagraph(paragraph, ui.Offset.zero);
+    final image = await recorder.endRecording().toImage(w, h);
     final bytes = await image.toByteData(format: ui.ImageByteFormat.png);
     return bytes?.buffer.asUint8List();
   }

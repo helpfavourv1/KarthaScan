@@ -566,6 +566,7 @@ class StampOverlayPage extends StatefulWidget {
     required this.onSelect,
     required this.onDrag,
     this.onSelected,
+    this.onDoubleTap,
     this.transformController,
   });
 
@@ -577,6 +578,7 @@ class StampOverlayPage extends StatefulWidget {
   final void Function(StampLayer layer) onSelect;
   final void Function(StampLayer layer, double dxDelta, double dyDelta) onDrag;
   final VoidCallback? onSelected;
+  final void Function(StampLayer layer)? onDoubleTap;
   final TransformationController? transformController;
 
   @override
@@ -627,6 +629,59 @@ class _StampOverlayPageState extends State<StampOverlayPage> {
     }
     _sealImageCache.clear();
     super.dispose();
+  }
+
+  /// Fill text: wraps inside its box and is drawn at its real size (a fraction of
+  /// the page width), the same way the export draws it.
+  Widget _flowFill(StampLayer layer, bool isSelected) {
+    final double fontPx = layer.fillSize * widget.iw * layer.placement.scale;
+    final double boxW = layer.boxWidth * widget.iw * layer.placement.scale;
+    final double halo = fontPx * 0.03 < 1 ? 1 : fontPx * 0.03;
+    final shadows = layer.halo
+        ? [
+            for (final o in <Offset>[Offset(halo, 0), Offset(-halo, 0), Offset(0, halo), Offset(0, -halo), Offset(halo, halo), Offset(-halo, -halo), Offset(halo, -halo), Offset(-halo, halo)])
+              Shadow(offset: o, color: const Color(0xFFFFFFFF), blurRadius: 0),
+          ]
+        : null;
+    final TextAlign align = layer.align == 'right' ? TextAlign.right : (layer.align == 'center' ? TextAlign.center : TextAlign.left);
+    return Positioned(
+      left: widget.dx + layer.placement.pctX * widget.iw,
+      top: widget.dy + layer.placement.pctY * widget.ih,
+      child: FractionalTranslation(
+        translation: const Offset(-0.5, -0.5),
+        child: GestureDetector(
+          behavior: HitTestBehavior.opaque,
+          onTap: () { widget.onSelect(layer); widget.onSelected?.call(); },
+          onDoubleTap: widget.onDoubleTap == null ? null : () => widget.onDoubleTap!(layer),
+          onPanStart: (_) {},
+          onPanUpdate: (d) {
+            final scale = widget.transformController?.value.getMaxScaleOnAxis() ?? 1.0;
+            widget.onDrag(layer, d.delta.dx / scale, d.delta.dy / scale);
+          },
+          child: Transform.rotate(
+            angle: layer.placement.rotationDegrees * 3.14159 / 180,
+            child: Container(
+              width: boxW,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(3),
+                border: Border.all(color: isSelected ? widget.accent : widget.accent.withValues(alpha: 0.35), width: isSelected ? 1.5 : 0.8),
+              ),
+              child: Text(
+                layer.text.isEmpty ? ' ' : layer.text,
+                textAlign: align,
+                style: TextStyle(
+                  fontSize: fontPx,
+                  fontWeight: FontWeight.values.firstWhere((w) => w.value == layer.fontWeight, orElse: () => FontWeight.w400),
+                  fontFamily: layer.fontFamily,
+                  color: Color(layer.color).withValues(alpha: layer.opacity),
+                  shadows: shadows,
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
   }
 
   @override
@@ -695,6 +750,7 @@ class _StampOverlayPageState extends State<StampOverlayPage> {
                 ),
               );
             }
+            if (layer.isFlowFill) return _flowFill(layer, isSelected);
             final boxW = widget.iw * 0.30 * layer.placement.scale;
             final boxH = widget.iw * 0.10 * layer.placement.scale;
             final color = Color(layer.color).withValues(alpha: layer.opacity);

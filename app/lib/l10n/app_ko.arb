@@ -589,5 +589,7 @@
   "@saveFailedBanner": {
     "description": "Banner shown when saving document changes failed; a Try again button sits next to it"
   },
-  "editLabel": "편집"
+  "editLabel": "편집",
+  "fillTapHint": "입력하려는 위치의 페이지를 탭하세요",
+  "fillTypeHint": "여기에 입력"
 }

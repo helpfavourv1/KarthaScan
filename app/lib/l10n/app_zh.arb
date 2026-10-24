@@ -589,5 +589,7 @@
   "@saveFailedBanner": {
     "description": "Banner shown when saving document changes failed; a Try again button sits next to it"
   },
-  "editLabel": "编辑"
+  "editLabel": "编辑",
+  "fillTapHint": "点按页面上要输入文字的位置",
+  "fillTypeHint": "在此输入"
 }
