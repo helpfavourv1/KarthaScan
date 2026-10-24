@@ -354,22 +354,6 @@ class ExportService {
     }
   }
 
-  img.Image _applyFilter(img.Image source, FilterType filter) {
-    switch (filter) {
-      case FilterType.none:
-        return source;
-      case FilterType.grayscale:
-        return img.grayscale(source);
-      case FilterType.blackAndWhite:
-        final gray = img.grayscale(source);
-        return img.adjustColor(gray, contrast: 3.0, brightness: 1.05);
-      case FilterType.colorEnhance:
-        return img.adjustColor(source, contrast: 1.15, saturation: 1.2, brightness: 1.05);
-      case FilterType.shadowRemoval:
-        return img.adjustColor(source, contrast: 1.2, brightness: 1.15, gamma: 0.9);
-    }
-  }
-
   img.Image _compositeSignature(
     img.Image page,
     img.Image signature,
@@ -486,15 +470,11 @@ class ExportService {
       }
       if (effectiveFilter != FilterType.none) {
         final img.Image forFilter = decoded;
-        final double? intensity = (pageTransform != null &&
-                pageTransform.filter != FilterType.none &&
-                pageTransform.filterIntensity != 1.0)
+        final double intensity = (pageTransform != null && pageTransform.filter != FilterType.none)
             ? pageTransform.filterIntensity
-            : null;
+            : 1.0;
         // Heavy pixel work runs on a background isolate so the screen keeps moving.
-        decoded = await Isolate.run(() => intensity != null
-            ? FilterService.applyToImage(forFilter, effectiveFilter, intensity: intensity)
-            : _applyFilter(forFilter, effectiveFilter));
+        decoded = await Isolate.run(() => FilterService.applyToImage(forFilter, effectiveFilter, intensity: intensity));
       }
       for (final layer in layers) {
         final ink = inkMap[layer.inkId];
