@@ -588,5 +588,6 @@
   "saveFailedBanner": "לא ניתן היה לשמור את השינויים האחרונים שלך.",
   "@saveFailedBanner": {
     "description": "Banner shown when saving document changes failed; a Try again button sits next to it"
-  }
+  },
+  "editLabel": "עריכה"
 }

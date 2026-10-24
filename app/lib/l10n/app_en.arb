@@ -660,5 +660,9 @@
   "saveFailedBanner": "Your latest changes could not be saved.",
   "@saveFailedBanner": {
     "description": "Banner shown when saving document changes failed; a Try again button sits next to it"
+  },
+  "editLabel": "Edit",
+  "@editLabel": {
+    "description": "Short button label that opens the full editor for the selected item"
   }
 }

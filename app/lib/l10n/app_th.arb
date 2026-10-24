@@ -681,5 +681,6 @@
   "saveFailedBanner": "ไม่สามารถบันทึกการเปลี่ยนแปลงล่าสุดของคุณได้",
   "@saveFailedBanner": {
     "description": "Banner shown when saving document changes failed; a Try again button sits next to it"
-  }
+  },
+  "editLabel": "แก้ไข"
 }

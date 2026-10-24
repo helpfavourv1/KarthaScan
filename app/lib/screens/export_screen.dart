@@ -737,17 +737,21 @@ class _ExportScreenState extends State<ExportScreen> {
           ),
         ),
         if (_exportEditMode == TrayEditMode.signature)
-          Row(
-            children: [
-              Expanded(
-                child: SignatureOverlayControls(
-                  controller: _inkController,
-                  pageIndex: pageIndex,
-                  pageCount: pageCount,
-                ),
-              ),
-              const SizedBox(width: AppSpacing.sm),
-              ActionChip(
+          SignatureOverlayControls(
+            controller: _inkController,
+            pageIndex: pageIndex,
+            pageCount: pageCount,
+            onDone: () => setState(() {
+              _exportEditMode = TrayEditMode.none;
+              _inkController.setEditInk(null);
+            }),
+          ),
+        if (_exportEditMode == TrayEditMode.signature && !SignatureOverlayControls.willShow(_inkController, pageIndex))
+          Align(
+            alignment: Alignment.centerRight,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: AppSpacing.sm),
+              child: ActionChip(
                 avatar: const Icon(Icons.check, size: 14),
                 label: Text(AppLocalizations.of(context).commonDone, style: TextStyle(fontSize: 11)),
                 onPressed: () => setState(() {
@@ -755,7 +759,7 @@ class _ExportScreenState extends State<ExportScreen> {
                   _inkController.setEditInk(null);
                 }),
               ),
-            ],
+            ),
           ),
         if (_exportEditMode != TrayEditMode.none && _exportEditMode != TrayEditMode.signature)
           LayerControlPanel(
@@ -766,8 +770,14 @@ class _ExportScreenState extends State<ExportScreen> {
             selectedAnnotateId: _selectedAnnotateId,
             selectedWatermarkText: _selectedWatermarkText,
             selectedStampId: _selectedStampId,
+            onDone: () => setState(() {
+              _exportEditMode = TrayEditMode.none;
+              _selectedAnnotateId = null;
+              _selectedWatermarkText = null;
+              _selectedStampId = null;
+            }),
           ),
-        if (_exportEditMode != TrayEditMode.none && _exportEditMode != TrayEditMode.signature)
+        if (_exportEditMode != TrayEditMode.none && _exportEditMode != TrayEditMode.signature && !LayerControlPanel.willShow(_documents.first, pageIndex, _exportEditMode))
           Align(
             alignment: Alignment.centerRight,
             child: Padding(

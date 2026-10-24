@@ -588,5 +588,6 @@
   "saveFailedBanner": "最新の変更を保存できませんでした。",
   "@saveFailedBanner": {
     "description": "Banner shown when saving document changes failed; a Try again button sits next to it"
-  }
+  },
+  "editLabel": "編集"
 }

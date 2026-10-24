@@ -22,6 +22,7 @@ class LayerControlPanel extends StatelessWidget {
     this.selectedWatermarkText,
     this.selectedStampId,
       this.onEditFill,
+    this.onDone,
   });
 
   final ScanDocument document;
@@ -33,13 +34,33 @@ class LayerControlPanel extends StatelessWidget {
   final String? selectedStampId;
   final void Function(StampLayer layer)? onEditFill;
 
+  /// Shown as the Done button inside the controls, so no separate Done row is needed.
+  final VoidCallback? onDone;
+
+  static String _stampKind(TrayEditMode m) =>
+      m == TrayEditMode.fill ? 'fill' : (m == TrayEditMode.note ? 'note' : (m == TrayEditMode.date ? 'date' : (m == TrayEditMode.checkbox ? 'checkbox' : (m == TrayEditMode.seal ? 'seal' : 'text'))));
+
+  static bool _isStampMode(TrayEditMode m) =>
+      m == TrayEditMode.text || m == TrayEditMode.note || m == TrayEditMode.date || m == TrayEditMode.checkbox || m == TrayEditMode.seal || m == TrayEditMode.fill;
+
+  /// True when this panel will draw controls (so the screen can skip its own Done button).
+  static bool willShow(ScanDocument document, int pageIndex, TrayEditMode mode) {
+    if (mode == TrayEditMode.annotate) return document.annotateLayers.any((l) => l.pageIndex == pageIndex);
+    if (mode == TrayEditMode.watermark) return document.watermarkLayers.any((l) => l.pageIndex == pageIndex);
+    if (_isStampMode(mode)) {
+      final String kind = _stampKind(mode);
+      return document.stampLayers.any((l) => l.pageIndex == pageIndex && l.kind == kind);
+    }
+    return false;
+  }
+
   Widget _buildAnnotateControls(BuildContext context) {
     final pageLayers = document.annotateLayers.where((l) => l.pageIndex == pageIndex).toList();
     if (pageLayers.isEmpty) return const SizedBox.shrink();
     final layer = pageLayers.firstWhere((l) => l.id == selectedAnnotateId, orElse: () => pageLayers.first);
 
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       decoration: BoxDecoration(
         color: Theme.of(context).brightness == Brightness.dark ? AppColors.bgSecondaryDark : AppColors.bgSecondaryLight,
         borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
@@ -61,6 +82,7 @@ class LayerControlPanel extends StatelessWidget {
         onClearThis: () => scanProvider.removeAnnotateLayer(document.id, layer.id),
         onRemove: () => scanProvider.removeAnnotateLayer(document.id, layer.id),
         onClearAll: () => scanProvider.clearAnnotateLayers(document.id),
+        onDone: onDone,
       ),
     );
   }
@@ -71,7 +93,7 @@ class LayerControlPanel extends StatelessWidget {
     final layer = pageLayers.firstWhere((l) => l.id == selectedWatermarkText, orElse: () => pageLayers.first);
 
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       decoration: BoxDecoration(
         color: Theme.of(context).brightness == Brightness.dark ? AppColors.bgSecondaryDark : AppColors.bgSecondaryLight,
         borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
@@ -113,6 +135,7 @@ class LayerControlPanel extends StatelessWidget {
         onClearThis: () => scanProvider.removeWatermarkLayer(document.id, layer.id),
         onRemove: () => scanProvider.removeWatermarkLayer(document.id, layer.id),
         onClearAll: () => scanProvider.clearWatermarkLayers(document.id),
+        onDone: onDone,
       ),
     );
   }
@@ -124,7 +147,7 @@ class LayerControlPanel extends StatelessWidget {
     final layer = pageLayers.firstWhere((l) => l.id == selectedStampId, orElse: () => pageLayers.first);
 
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       decoration: BoxDecoration(
         color: Theme.of(context).brightness == Brightness.dark ? AppColors.bgSecondaryDark : AppColors.bgSecondaryLight,
         borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
@@ -188,6 +211,7 @@ class LayerControlPanel extends StatelessWidget {
         onClearThis: () => scanProvider.removeStampLayer(document.id, layer.id),
         onRemove: () => scanProvider.removeStampLayer(document.id, layer.id),
         onClearAll: () => scanProvider.clearStampLayers(document.id),
+        onDone: onDone,
       ),
     );
   }

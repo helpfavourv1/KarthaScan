@@ -195,7 +195,7 @@ void main() {
     if (find.text('CONFIDENTIAL').evaluate().isNotEmpty) {
       await tester.tap(find.text('CONFIDENTIAL').first, warnIfMissed: false);
       await pumpFor(1000);
-      await measure('editor-watermark-selected', types: editorTypes, texts: <String>[l10n.commonDone, l10n.copyAll, l10n.clearThis, l10n.commonRemove, l10n.clearAll]);
+      await measure('editor-watermark-selected', types: editorTypes, texts: <String>[l10n.commonDone, l10n.copyAll, l10n.editLabel, l10n.commonRemove, l10n.clearAll]);
     } else {
       note('M-editor-watermark-selected', 'watermark text not found on the page');
     }

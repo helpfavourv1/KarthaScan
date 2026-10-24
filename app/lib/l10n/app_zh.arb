@@ -588,5 +588,6 @@
   "saveFailedBanner": "无法保存您最近的更改。",
   "@saveFailedBanner": {
     "description": "Banner shown when saving document changes failed; a Try again button sits next to it"
-  }
+  },
+  "editLabel": "编辑"
 }

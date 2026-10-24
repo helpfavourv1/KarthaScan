@@ -50,11 +50,19 @@ class SignatureOverlayControls extends StatelessWidget {
     required this.controller,
     required this.pageIndex,
     required this.pageCount,
+    this.onDone,
   });
 
   final InkController controller;
   final int pageIndex;
   final int pageCount;
+  final VoidCallback? onDone;
+
+  /// True when these controls will draw something for the page.
+  static bool willShow(InkController controller, int pageIndex) {
+    final String? id = controller.editInkId;
+    return id != null && controller.inkPlacements[id]?[pageIndex] != null;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -84,6 +92,7 @@ class SignatureOverlayControls extends StatelessWidget {
       onClearThis: doClearThis,
       onRemove: doRemove,
       onClearAll: doClearAll,
+      onDone: onDone,
     );
   }
 }

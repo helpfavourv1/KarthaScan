@@ -681,5 +681,6 @@
   "saveFailedBanner": "De siste endringene dine kunne ikke lagres.",
   "@saveFailedBanner": {
     "description": "Banner shown when saving document changes failed; a Try again button sits next to it"
-  }
+  },
+  "editLabel": "Rediger"
 }

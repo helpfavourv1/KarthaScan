@@ -681,5 +681,6 @@
   "saveFailedBanner": "Не удалось сохранить последние изменения.",
   "@saveFailedBanner": {
     "description": "Banner shown when saving document changes failed; a Try again button sits next to it"
-  }
+  },
+  "editLabel": "Изменить"
 }

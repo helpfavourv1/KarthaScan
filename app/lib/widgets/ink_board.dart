@@ -753,9 +753,10 @@ class _StampOverlayPageState extends State<StampOverlayPage> {
 }
 
 // === OverlayEditControls: shared rotate/scale/actions editor for every overlay layer ===
-// Row 1 (always): rotate ±10° + scale ±0.1
-// Row 2 (type-specific): hidden for signature/annotate/checkbox; T1–T5 extend with opacity/font/color/etc.
-// Row 3 (always): Copy all / Clear this / Remove / Clear all
+// Two compact rows, every control always visible (nothing scrolls or hides):
+//   Row 1: steppers for rotate, scale and (when the layer has them) opacity and size.
+//          On a very narrow screen the steppers wrap onto a second line instead of hiding.
+//   Row 2: Edit (when available) / Copy to all / Remove / Clear all / Done.
 
 class OverlayEditControls extends StatelessWidget {
   const OverlayEditControls({
@@ -778,6 +779,7 @@ class OverlayEditControls extends StatelessWidget {
     this.onFontSizeDown,
     this.onFontSizeUp,
     this.onTools,
+    this.onDone,
   });
 
   final LayerType layerType;
@@ -788,6 +790,7 @@ class OverlayEditControls extends StatelessWidget {
   final VoidCallback? onFontSizeDown;
   final VoidCallback? onFontSizeUp;
   final VoidCallback? onTools;
+  final VoidCallback? onDone;
   final double rotationDegrees;
   final double scale;
   final VoidCallback onRotateLeft;
@@ -795,6 +798,7 @@ class OverlayEditControls extends StatelessWidget {
   final VoidCallback onScaleDown;
   final VoidCallback onScaleUp;
   final VoidCallback onCopyAll;
+  // Kept for callers; "clear this" and "remove" did the same thing, so only Remove is shown.
   final VoidCallback onClearThis;
   final VoidCallback onRemove;
   final VoidCallback onClearAll;
@@ -805,10 +809,48 @@ class OverlayEditControls extends StatelessWidget {
       child: InkWell(
         onTap: onTap,
         borderRadius: BorderRadius.circular(12),
+        child: SizedBox(width: 30, height: 40, child: Center(child: Icon(icon, size: 22))),
+      ),
+    );
+  }
+
+  Widget _group(IconData minusIcon, VoidCallback onMinus, String value, IconData plusIcon, VoidCallback onPlus) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        _stepBtn(minusIcon, onMinus),
+        SizedBox(
+          width: 38,
+          child: Text(value,
+              style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
+              textAlign: TextAlign.center,
+              maxLines: 1,
+              softWrap: false),
+        ),
+        _stepBtn(plusIcon, onPlus),
+      ],
+    );
+  }
+
+  Widget _action(BuildContext context, IconData icon, String label, VoidCallback onTap, {Color? color}) {
+    return Expanded(
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(10),
         child: SizedBox(
-          width: 40,
-          height: 40,
-          child: Center(child: Icon(icon, size: 24)),
+          height: 44,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(icon, size: 20, color: color),
+              const SizedBox(height: 2),
+              Text(label,
+                  style: TextStyle(fontSize: 9, fontWeight: FontWeight.w600, color: color),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  textAlign: TextAlign.center),
+            ],
+          ),
         ),
       ),
     );
@@ -816,79 +858,36 @@ class OverlayEditControls extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final AppLocalizations l10n = AppLocalizations.of(context);
+    final bool dark = Theme.of(context).brightness == Brightness.dark;
+    final Color accent = dark ? AppColors.accentDark : AppColors.accentLight;
+    final bool hasOpacity = (layerType == LayerType.watermark || layerType == LayerType.text || layerType == LayerType.note || layerType == LayerType.date || layerType == LayerType.checkbox || layerType == LayerType.seal) &&
+        opacity != null && onOpacityDown != null && onOpacityUp != null;
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: AppSpacing.sm, vertical: AppSpacing.xs),
+      padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xs, vertical: 2),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          SizedBox(
-            height: 44,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                _stepBtn(Icons.rotate_left, onRotateLeft),
-                SizedBox(
-                  width: 56,
-                  child: Text('${rotationDegrees.round()}°',
-                      style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
-                      textAlign: TextAlign.center),
-                ),
-                _stepBtn(Icons.rotate_right, onRotateRight),
-                const SizedBox(width: 24),
-                _stepBtn(Icons.remove, onScaleDown),
-                SizedBox(
-                  width: 56,
-                  child: Text('${scale.toStringAsFixed(1)}x',
-                      style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
-                      textAlign: TextAlign.center),
-                ),
-                _stepBtn(Icons.add, onScaleUp),
-              ],
-            ),
+          Wrap(
+            alignment: WrapAlignment.center,
+            spacing: 4,
+            runSpacing: 0,
+            children: [
+              _group(Icons.rotate_left, onRotateLeft, '${rotationDegrees.round()}°', Icons.rotate_right, onRotateRight),
+              _group(Icons.remove, onScaleDown, '${scale.toStringAsFixed(1)}x', Icons.add, onScaleUp),
+              if (hasOpacity) _group(Icons.remove, onOpacityDown!, '${(opacity! * 100).round()}%', Icons.add, onOpacityUp!),
+              if (hasOpacity && fontSize != null && onFontSizeDown != null && onFontSizeUp != null)
+                _group(Icons.remove, onFontSizeDown!, '${fontSize!.round()}pt', Icons.add, onFontSizeUp!),
+            ],
           ),
-          if ((layerType == LayerType.watermark || layerType == LayerType.text || layerType == LayerType.note || layerType == LayerType.date || layerType == LayerType.checkbox || layerType == LayerType.seal) && opacity != null)
-            SizedBox(
-              height: 44,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  _stepBtn(Icons.remove, onOpacityDown!),
-                  SizedBox(
-                    width: 56,
-                    child: Text('${(opacity! * 100).round()}%',
-                        style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
-                        textAlign: TextAlign.center),
-                  ),
-                  _stepBtn(Icons.add, onOpacityUp!),
-                  if (fontSize != null) ...[
-                    const SizedBox(width: 24),
-                    _stepBtn(Icons.remove, onFontSizeDown!),
-                    SizedBox(
-                      width: 56,
-                      child: Text('${fontSize!.round()}pt',
-                          style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
-                          textAlign: TextAlign.center),
-                    ),
-                    _stepBtn(Icons.add, onFontSizeUp!),
-                  ],
-                  if (onTools != null) ...[
-                    const SizedBox(width: 16),
-                    _stepBtn(Icons.brush, onTools!),
-                  ],
-                ],
-              ),
-            ),
-          SizedBox(
-            height: 36,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                TextButton(onPressed: onCopyAll, child: Text(AppLocalizations.of(context).copyAll, style: TextStyle(fontSize: 11))),
-                TextButton(onPressed: onClearThis, child: Text(AppLocalizations.of(context).clearThis, style: TextStyle(fontSize: 11))),
-                TextButton(onPressed: onRemove, child: Text(AppLocalizations.of(context).commonRemove, style: TextStyle(fontSize: 11))),
-                TextButton(onPressed: onClearAll, child: Text(AppLocalizations.of(context).clearAll, style: TextStyle(fontSize: 11))),
-              ],
-            ),
+          Row(
+            children: [
+              if (onTools != null) _action(context, Icons.brush, l10n.editLabel, onTools!),
+              _action(context, Icons.copy_all, l10n.copyAll, onCopyAll),
+              _action(context, Icons.delete_outline, l10n.commonRemove, onRemove),
+              _action(context, Icons.layers_clear_outlined, l10n.clearAll, onClearAll),
+              if (onDone != null) _action(context, Icons.check_circle, l10n.commonDone, onDone!, color: accent),
+            ],
           ),
         ],
       ),

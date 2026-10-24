@@ -396,7 +396,7 @@ class _FullScreenEditScreenState extends State<FullScreenEditScreen> with Docume
                     // Signature bar (only in signature mode)
                     if (_editMode == TrayEditMode.signature)
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 3),
                         child: SignatureEditorBar(
                           controller: _inkController,
                           pageIndex: _currentPageIndex,
@@ -420,6 +420,7 @@ class _FullScreenEditScreenState extends State<FullScreenEditScreen> with Docume
                         controller: _inkController,
                         pageIndex: _currentPageIndex,
                         pageCount: doc.pagePaths.length,
+                        onDone: closeEditor,
                       ),
                     LayerControlPanel(
                       document: doc,
@@ -430,8 +431,12 @@ class _FullScreenEditScreenState extends State<FullScreenEditScreen> with Docume
                       selectedWatermarkText: _selectedWatermarkText,
                       selectedStampId: _selectedStampId,
                       onEditFill: _reEditFill,
+                      onDone: closeEditor,
                     ),
-                    if (_editMode != TrayEditMode.none || _selectedAnnotateId != null || _selectedWatermarkText != null || _selectedStampId != null)
+                    // The Done button lives inside the control rows when they are showing.
+                    if ((_editMode != TrayEditMode.none || _selectedAnnotateId != null || _selectedWatermarkText != null || _selectedStampId != null) &&
+                        !LayerControlPanel.willShow(doc, _currentPageIndex, _editMode) &&
+                        !(_editMode == TrayEditMode.signature && SignatureOverlayControls.willShow(_inkController, _currentPageIndex)))
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
                         child: Align(
