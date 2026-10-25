@@ -406,6 +406,8 @@ jobs:
               body = '\n'.join(rows)
               for i in range(0, min(len(body), 36000), 3500):
                   print('::notice title=screen measurements %d::%s' % (i // 3500, esc(body[i:i + 3500])))
+              errl = [l for l in sc.splitlines() if not l.startswith(('SHOT: ', 'EMU: '))]
+              print('::warning title=screens log tail::%s' % esc('\n'.join(l[:300] for l in errl[-30:])[-3500:]))
               keep = ['editor-watermark-selected', 'editor-signature-mode', 'editor-fill-typing', 'export-pdf']
               shots = [l.strip() for l in sc.splitlines() if l.startswith('SHOT: ') and l.split(' ')[1] in keep]
               levels = ['warning', 'error']
