@@ -94,6 +94,7 @@ void main() {
     await settleMeasure(tester);
     await tester.tap(find.byKey(const ValueKey<String>('compressGo')));
     await tester.pumpAndSettle();
+    expect(find.byType(CompressSheet), findsNothing, reason: 'sheet did not close after Compress was tapped');
     expect(result?.format, ExportFormat.jpg);
     expect(result?.tier, CompressionTier.small);
   });
