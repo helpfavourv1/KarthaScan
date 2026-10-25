@@ -105,6 +105,8 @@ void main() {
     Future<void> tapTray(String label) async {
       final Finder f = find.byKey(ValueKey<String>('trayTarget:$label'));
       if (f.evaluate().isEmpty) throw StateError('tray item "$label" not found');
+      await tester.ensureVisible(f);
+      await pumpFor(300);
       await tester.tap(f, warnIfMissed: false);
       await pumpFor(1500);
     }
