@@ -863,7 +863,7 @@ class _StampOverlayPageState extends State<StampOverlayPage> {
 // Two compact rows, every control always visible (nothing scrolls or hides):
 //   Row 1: steppers for rotate, scale and (when the layer has them) opacity and size.
 //          On a very narrow screen the steppers wrap onto a second line instead of hiding.
-//   Row 2: Edit (when available) / Copy to all / Remove / Clear all / Done.
+//   Row 2: Edit (when available) / Copy to all / Clear this / Clear page / Clear all pages / Done.
 
 class OverlayEditControls extends StatelessWidget {
   const OverlayEditControls({
@@ -890,6 +890,14 @@ class OverlayEditControls extends StatelessWidget {
   });
 
   final LayerType layerType;
+  final double? opacity;
+  final VoidCallback? onOpacityDown;
+  final VoidCallback? onOpacityUp;
+  final double? fontSize;
+  final VoidCallback? onFontSizeDown;
+  final VoidCallback? onFontSizeUp;
+  final VoidCallback? onTools;
+  final VoidCallback? onDone;
   final double rotationDegrees;
   final double scale;
   final VoidCallback onRotateLeft;
