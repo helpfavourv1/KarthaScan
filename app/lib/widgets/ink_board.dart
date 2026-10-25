@@ -836,9 +836,13 @@ class OverlayEditControls extends StatelessWidget {
     this.onFontSizeUp,
     this.onTools,
     this.onDone,
+    this.showClearThis = false,
   });
 
   final LayerType layerType;
+  /// Signatures only: "Clear this" removes the signature from this page, while
+  /// Remove deletes it everywhere. For the other layers both do the same, so only Remove shows.
+  final bool showClearThis;
   final double? opacity;
   final VoidCallback? onOpacityDown;
   final VoidCallback? onOpacityUp;
@@ -854,7 +858,6 @@ class OverlayEditControls extends StatelessWidget {
   final VoidCallback onScaleDown;
   final VoidCallback onScaleUp;
   final VoidCallback onCopyAll;
-  // Kept for callers; "clear this" and "remove" did the same thing, so only Remove is shown.
   final VoidCallback onClearThis;
   final VoidCallback onRemove;
   final VoidCallback onClearAll;
@@ -940,6 +943,7 @@ class OverlayEditControls extends StatelessWidget {
             children: [
               if (onTools != null) _action(context, Icons.brush, l10n.editLabel, onTools!),
               _action(context, Icons.copy_all, l10n.copyAll, onCopyAll),
+              if (showClearThis) _action(context, Icons.layers_clear, l10n.clearThis, onClearThis),
               _action(context, Icons.delete_outline, l10n.commonRemove, onRemove),
               _action(context, Icons.layers_clear_outlined, l10n.clearAll, onClearAll),
               if (onDone != null) _action(context, Icons.check_circle, l10n.commonDone, onDone!, color: accent),

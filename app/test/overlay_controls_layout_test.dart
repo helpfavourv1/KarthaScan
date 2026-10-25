@@ -10,7 +10,7 @@ import 'package:katharscan/widgets/ink_board.dart';
 void main() {
   for (final Locale locale in const <Locale>[Locale('en'), Locale('de'), Locale('ru')]) {
     for (final double width in <double>[360, 411]) {
-      for (final LayerType type in <LayerType>[LayerType.watermark, LayerType.annotate, LayerType.text]) {
+      for (final LayerType type in <LayerType>[LayerType.watermark, LayerType.annotate, LayerType.text, LayerType.signature]) {
         testWidgets('controls ${type.name} at ${width.toInt()}dp ${locale.languageCode}: compact, no overflow', (WidgetTester tester) async {
           void noop() {}
           await tester.binding.setSurfaceSize(Size(width, 800));
@@ -32,6 +32,7 @@ void main() {
                   onCopyAll: noop, onClearThis: noop, onRemove: noop, onClearAll: noop,
                   onOpacityDown: noop, onOpacityUp: noop, onFontSizeDown: noop, onFontSizeUp: noop,
                   onTools: noop, onDone: noop,
+                  showClearThis: type == LayerType.signature,
                 ),
               ),
             ),

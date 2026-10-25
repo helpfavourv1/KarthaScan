@@ -90,6 +90,7 @@ class SignatureOverlayControls extends StatelessWidget {
           SignaturePlacement(pctX: pl.pctX, pctY: pl.pctY, rotationDegrees: pl.rotationDegrees, scale: (pl.scale + 0.1).clamp(0.1, 5.0))),
       onCopyAll: doCopyAll,
       onClearThis: doClearThis,
+      showClearThis: true,
       onRemove: doRemove,
       onClearAll: doClearAll,
       onDone: onDone,
