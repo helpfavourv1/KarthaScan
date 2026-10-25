@@ -865,7 +865,7 @@ class OverlayEditControls extends StatelessWidget {
       child: InkWell(
         onTap: onTap,
         borderRadius: BorderRadius.circular(12),
-        child: SizedBox(width: 30, height: 40, child: Center(child: Icon(icon, size: 22))),
+        child: SizedBox(width: 26, height: 40, child: Center(child: Icon(icon, size: 20))),
       ),
     );
   }
@@ -876,9 +876,9 @@ class OverlayEditControls extends StatelessWidget {
       children: [
         _stepBtn(minusIcon, onMinus),
         SizedBox(
-          width: 38,
+          width: 34,
           child: Text(value,
-              style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
+              style: const TextStyle(fontSize: 11, fontWeight: FontWeight.w600),
               textAlign: TextAlign.center,
               maxLines: 1,
               softWrap: false),
@@ -926,7 +926,7 @@ class OverlayEditControls extends StatelessWidget {
         children: [
           Wrap(
             alignment: WrapAlignment.center,
-            spacing: 4,
+            spacing: 2,
             runSpacing: 0,
             children: [
               _group(Icons.rotate_left, onRotateLeft, '${rotationDegrees.round()}°', Icons.rotate_right, onRotateRight),

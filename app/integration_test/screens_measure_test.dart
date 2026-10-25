@@ -203,52 +203,60 @@ void main() {
       note('M-editor-watermark-selected', 'watermark text not found on the page');
     }
 
-    final Finder annImg = find.descendant(of: find.byWidgetPredicate((Widget w) => w.runtimeType.toString() == 'AnnotateOverlayPage'), matching: find.byType(Image));
-    if (annImg.evaluate().isNotEmpty) {
-      await tester.tap(annImg.first, warnIfMissed: false);
-      await pumpFor(1000);
-      await measure('editor-annotation-selected', types: editorTypes, texts: <String>[l10n.commonDone]);
-    } else {
-      note('M-editor-annotation-selected', 'annotation picture not found');
+    try {
+      final Finder annImg = find.descendant(of: find.byWidgetPredicate((Widget w) => w.runtimeType.toString() == 'AnnotateOverlayPage'), matching: find.byType(Image));
+      if (annImg.evaluate().isNotEmpty) {
+        await tester.tap(annImg.first, warnIfMissed: false);
+        await pumpFor(1000);
+        await measure('editor-annotation-selected', types: editorTypes, texts: <String>[l10n.commonDone]);
+      } else {
+        note('M-editor-annotation-selected', 'annotation picture not found');
+      }
+
+      await tapTray(l10n.signatureTitle);
+      await measure('editor-signature-mode', types: editorTypes, texts: <String>[l10n.commonDone, l10n.addSignature]);
+    } catch (e, st) {
+      note('M-error-annotation-signature', '$e ${st.toString().split('\n').take(4).join(' / ')}');
     }
 
-    await tapTray(l10n.signatureTitle);
-    await measure('editor-signature-mode', types: editorTypes, texts: <String>[l10n.commonDone, l10n.addSignature]);
-
-    await tapTray(l10n.fillTooltip);
-    await measure('editor-fill-mode', types: editorTypes, texts: <String>[l10n.commonDone]);
-    // Tap the page to open the fill sheet.
-    final Rect? canvas = rectOf('DocumentCanvas');
-    if (canvas != null) {
-      await tester.tapAt(Offset(canvas.center.dx, canvas.top + canvas.height * 0.62));
-      await pumpFor(1800);
-      final Finder field = find.byKey(const ValueKey<String>('fillTextField'));
-      if (field.evaluate().isEmpty) {
-        note('M-editor-fill-typing', 'typing field not found after tapping the page');
-      } else {
-        await tester.enterText(field, 'Measured fill text 24-10-2026');
-        await pumpFor(800);
-        await measure('editor-fill-typing', types: <String>['FillEditorDock', 'DocumentCanvas'], texts: <String>[l10n.commonDone]);
-        await tester.tap(find.byKey(const ValueKey<String>('fillDone')));
-        await pumpFor(1000);
-        await measure('editor-fill-placed', types: editorTypes, texts: <String>[l10n.commonDone, l10n.editLabel]);
-        // Double tap the placed text: it must reopen for editing.
-        final Offset at = Offset(canvas.center.dx, canvas.top + canvas.height * 0.62);
-        await tester.tapAt(at);
-        await tester.pump(const Duration(milliseconds: 60));
-        await tester.tapAt(at);
-        await pumpFor(1200);
-        final bool reopened = find.byKey(const ValueKey<String>('fillTextField')).evaluate().isNotEmpty;
-        note('M-editor-fill-reedit', reopened ? 'double tap reopened the typing bar' : 'double tap did NOT reopen the typing bar');
-        if (reopened) {
-          await tester.tap(find.byKey(const ValueKey<String>('fillDone')));
+    try {
+      await tapTray(l10n.fillTooltip);
+      await measure('editor-fill-mode', types: editorTypes, texts: <String>[l10n.commonDone]);
+      // Tap the page to open the fill sheet.
+      final Rect? canvas = rectOf('DocumentCanvas');
+      if (canvas != null) {
+        await tester.tapAt(Offset(canvas.center.dx, canvas.top + canvas.height * 0.62));
+        await pumpFor(1800);
+        final Finder field = find.byKey(const ValueKey<String>('fillTextField'));
+        if (field.evaluate().isEmpty) {
+          note('M-editor-fill-typing', 'typing field not found after tapping the page');
+        } else {
+          await tester.enterText(field, 'Measured fill text 24-10-2026');
           await pumpFor(800);
+          await measure('editor-fill-typing', types: <String>['FillEditorDock', 'DocumentCanvas'], texts: <String>[l10n.commonDone]);
+          await tester.tap(find.byKey(const ValueKey<String>('fillDone')));
+          await pumpFor(1000);
+          await measure('editor-fill-placed', types: editorTypes, texts: <String>[l10n.commonDone, l10n.editLabel]);
+          // Double tap the placed text: it must reopen for editing.
+          final Offset at = Offset(canvas.center.dx, canvas.top + canvas.height * 0.62);
+          await tester.tapAt(at);
+          await tester.pump(const Duration(milliseconds: 60));
+          await tester.tapAt(at);
+          await pumpFor(1200);
+          final bool reopened = find.byKey(const ValueKey<String>('fillTextField')).evaluate().isNotEmpty;
+          note('M-editor-fill-reedit', reopened ? 'double tap reopened the typing bar' : 'double tap did NOT reopen the typing bar');
+          if (reopened) {
+            await tester.tap(find.byKey(const ValueKey<String>('fillDone')));
+            await pumpFor(800);
+          }
         }
       }
-    }
 
-    await tapTray(l10n.textLabel);
-    await measure('editor-text-tool', types: editorTypes);
+      await tapTray(l10n.textLabel);
+      await measure('editor-text-tool', types: editorTypes);
+    } catch (e, st) {
+      note('M-error-fill-text', '$e ${st.toString().split('\n').take(4).join(' / ')}');
+    }
 
     // Export screen, PDF and JPG.
     router.go('/');
