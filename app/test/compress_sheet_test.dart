@@ -92,6 +92,7 @@ void main() {
     await tester.pump();
     await tester.tap(find.text('JPG'));
     await settleMeasure(tester);
+    await tester.pumpAndSettle();
     final Finder go = find.byKey(const ValueKey<String>('compressGo'));
     final String where = 'seg ${tester.getRect(find.byKey(const ValueKey<String>('compressFormat')))} card ${tester.getRect(find.byKey(const ValueKey<String>('compressCard:small')))} sheet ${tester.getRect(find.byType(CompressSheet))} '
         'go at ${tester.getRect(go)} screen ${tester.view.physicalSize / tester.view.devicePixelRatio} hit ${go.hitTestable().evaluate().length}';
