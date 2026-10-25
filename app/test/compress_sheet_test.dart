@@ -14,6 +14,14 @@ import 'package:katharscan/core/services/export_service.dart';
 import 'package:katharscan/l10n/app_localizations.dart';
 import 'package:katharscan/widgets/compress_sheet.dart';
 
+Future<void> settleMeasure(WidgetTester tester) async {
+  for (int i = 0; i < 150; i++) {
+    await tester.runAsync(() => Future<void>.delayed(const Duration(milliseconds: 200)));
+    await tester.pump();
+    if (find.byType(CircularProgressIndicator).evaluate().isEmpty) return;
+  }
+}
+
 void main() {
   late Directory dir;
   late ScanDocument doc;
@@ -77,15 +85,13 @@ void main() {
     await tester.tap(find.text('open'));
     await tester.pump(const Duration(milliseconds: 400));
     // Wait for the real measurement.
-    await tester.runAsync(() => Future<void>.delayed(const Duration(seconds: 8)));
-    await tester.pump();
+    await settleMeasure(tester);
     expect(find.byType(CircularProgressIndicator), findsNothing);
     expect(find.textContaining(RegExp(r'(MB|KB)$')), findsNWidgets(3));
     await tester.tap(find.byKey(const ValueKey<String>('compressCard:small')));
     await tester.pump();
     await tester.tap(find.text('JPG'));
-    await tester.runAsync(() => Future<void>.delayed(const Duration(seconds: 8)));
-    await tester.pump();
+    await settleMeasure(tester);
     await tester.tap(find.byKey(const ValueKey<String>('compressGo')));
     await tester.pumpAndSettle();
     expect(result?.format, ExportFormat.jpg);
