@@ -214,6 +214,14 @@ void main() {
       expect(meanAbsDiff(exported, FilterService.applyToImage(page, FilterType.blackAndWhite)), 0);
     });
 
+    test('export-screen filter replaces the page filter; Original keeps it', () async {
+      final ScanDocument doc = docWith(const PageTransform(filter: FilterType.grayscale));
+      final img.Image replaced = img.decodePng(await ExportService().renderPageForOutput(doc, 0, filter: FilterType.blackAndWhite))!;
+      expect(meanAbsDiff(replaced, FilterService.applyToImage(page, FilterType.blackAndWhite)), 0);
+      final img.Image kept = img.decodePng(await ExportService().renderPageForOutput(doc, 0))!;
+      expect(meanAbsDiff(kept, FilterService.applyToImage(page, FilterType.grayscale)), 0);
+    });
+
     test('a page filter at half strength exports half way', () async {
       final Uint8List bytes = await ExportService().renderPageForOutput(
         docWith(const PageTransform(filter: FilterType.blackAndWhite, filterIntensity: 0.5)), 0,

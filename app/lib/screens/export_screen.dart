@@ -15,6 +15,7 @@ import 'package:provider/provider.dart';
 import 'package:image/image.dart' as img;
 
 import '../core/models/export_job.dart';
+import '../core/models/page_transform.dart';
 import '../core/models/scan_document.dart';
 import '../core/providers/scan_provider.dart';
 import '../core/services/export_service.dart';
@@ -138,7 +139,13 @@ class _ExportScreenState extends State<ExportScreen> {
     final paths = _documents.first.pagePaths;
     if (paths.isEmpty) return;  // Empty-guard
     final idx = pageIndex.clamp(0, paths.length - 1);
-    final key = '${idx}_${filter.index}';
+    // "Original" on this screen means each page's own filter from the editor;
+    // any other choice replaces it, and export does exactly the same.
+    final PageTransform? own = _documents.first.pageTransforms[idx];
+    final bool useOwn = filter == FilterType.none && own != null && own.filter != FilterType.none;
+    final FilterType shown = useOwn ? own.filter : filter;
+    final double strength = useOwn ? own.filterIntensity : 1.0;
+    final key = '${idx}_${shown.index}_$strength';
     final cached = _previewCache[key];
     if (cached != null) {
       setState(() {
@@ -149,10 +156,8 @@ class _ExportScreenState extends State<ExportScreen> {
       return;
     }
     final bytes = await File(paths[idx]).readAsBytes();
-    if (filter == FilterType.none) {
-      _originalPreviewBytes = bytes;
-    }
-    final result = await compute(_previewIsolate, {'bytes': bytes, 'filter': filter.index});
+    _originalPreviewBytes = bytes;
+    final result = await compute(_previewIsolate, {'bytes': bytes, 'filter': shown.index, 'strength': strength});
     if (!mounted) return;
     _previewCache[key] = result;
     setState(() {
@@ -1022,7 +1027,7 @@ Map<String, dynamic> _previewIsolate(Map<String, dynamic> args) {
   final filter = FilterType.values[args['filter'] as int];
   final decoded = img.decodeImage(bytes);
   if (decoded == null) return {'bytes': bytes, 'w': 1, 'h': 1};
-  final filtered = FilterService.applyToImage(decoded, filter);
+  final filtered = FilterService.applyToImage(decoded, filter, intensity: (args['strength'] as double?) ?? 1.0);
   return {
     'bytes': Uint8List.fromList(img.encodeJpg(filtered, quality: 85)),
     'w': filtered.width,

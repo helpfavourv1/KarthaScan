@@ -429,9 +429,12 @@ class ExportService {
         throw ExportFailedException('Could not read page ${pageIndex + 1}.');
       }
       img.Image decoded = decodedOriginal;
-      final effectiveFilter = (pageTransform != null && pageTransform.filter != FilterType.none)
-          ? pageTransform.filter
-          : filter;
+      // A filter chosen on the export screen replaces the page's own filter;
+      // "Original" there keeps whatever the editor set for the page.
+      final bool useExportFilter = filter != FilterType.none;
+      final effectiveFilter = useExportFilter
+          ? filter
+          : (pageTransform != null ? pageTransform.filter : FilterType.none);
       // Erasing is drawn on the full original (the eraser sheet shows the
       // uncropped page), then crop/resize/filter follow, same as the preview.
       if (pageTransform != null && pageTransform.eraserStrokes.isNotEmpty) {
@@ -470,9 +473,7 @@ class ExportService {
       }
       if (effectiveFilter != FilterType.none) {
         final img.Image forFilter = decoded;
-        final double intensity = (pageTransform != null && pageTransform.filter != FilterType.none)
-            ? pageTransform.filterIntensity
-            : 1.0;
+        final double intensity = (!useExportFilter && pageTransform != null) ? pageTransform.filterIntensity : 1.0;
         // Heavy pixel work runs on a background isolate so the screen keeps moving.
         decoded = await Isolate.run(() => FilterService.applyToImage(forFilter, effectiveFilter, intensity: intensity));
       }
