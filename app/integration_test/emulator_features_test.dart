@@ -159,7 +159,8 @@ void main() {
       await tapTray(l10n.fillTooltip);
       final Finder canvas = find.byWidgetPredicate((Widget w) => w.runtimeType.toString() == 'DocumentCanvas');
       final Rect r = tester.getRect(canvas.first);
-      final Offset at = Offset(r.center.dx, r.top + r.height * 0.35);
+      // An empty spot: the seeded layers sit at 25 to 75 percent of the height.
+      final Offset at = Offset(r.left + r.width * 0.3, r.top + r.height * 0.93);
       await tester.tapAt(at);
       await pumpFor(1500);
       final Finder field = find.byKey(const ValueKey<String>('fillTextField'));
@@ -208,12 +209,14 @@ void main() {
       final Finder del = find.byKey(const ValueKey<String>('deleteSavedSignature'));
       check('F3-delete-visible', del.evaluate().isNotEmpty, 'delete button in the signature picker');
       if (del.evaluate().isNotEmpty) {
+        // Opening the Signature tool puts a copy of the active signature on this page.
+        final int inks0 = doc().signatureInks.length, places0 = doc().signatureLayers.length;
         await tester.tap(del.first, warnIfMissed: false);
         await pumpFor(1500);
-        check('F3-deleted', doc().signatureInks.isEmpty && doc().signatureLayers.isEmpty, 'inks ${doc().signatureInks.length} (want 0), placements ${doc().signatureLayers.length} (want 0)');
+        check('F3-deleted', doc().signatureInks.length == inks0 - 1 && doc().signatureLayers.length < places0, 'inks ${doc().signatureInks.length} (was $inks0), placements ${doc().signatureLayers.length} (was $places0)');
         await tapText(l10n.undoTooltip);
         await pumpFor(1000);
-        check('F3-undo', doc().signatureInks.length == 1 && doc().signatureLayers.length == 3, 'inks ${doc().signatureInks.length} (want 1), placements ${doc().signatureLayers.length} (want 3)');
+        check('F3-undo', doc().signatureInks.length == inks0 && doc().signatureLayers.length == places0, 'inks ${doc().signatureInks.length} (want $inks0), placements ${doc().signatureLayers.length} (want $places0)');
       }
     });
 
