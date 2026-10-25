@@ -8,6 +8,7 @@ import 'dart:typed_data';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:image/image.dart' as img;
+import 'package:katharscan/core/models/export_job.dart';
 import 'package:katharscan/core/models/page_transform.dart';
 import 'package:katharscan/core/models/scan_document.dart';
 import 'package:katharscan/core/services/export_service.dart';
