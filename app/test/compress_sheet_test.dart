@@ -92,9 +92,11 @@ void main() {
     await tester.pump();
     await tester.tap(find.text('JPG'));
     await settleMeasure(tester);
-    await tester.tap(find.byKey(const ValueKey<String>('compressGo')));
+    final Finder go = find.byKey(const ValueKey<String>('compressGo'));
+    final String where = 'go at ${tester.getRect(go)} screen ${tester.view.physicalSize / tester.view.devicePixelRatio} hit ${go.hitTestable().evaluate().length}';
+    await tester.tap(go);
     await tester.pumpAndSettle();
-    expect(find.byType(CompressSheet), findsNothing, reason: 'sheet did not close after Compress was tapped');
+    expect(find.byType(CompressSheet), findsNothing, reason: 'sheet did not close after Compress was tapped; $where');
     expect(result?.format, ExportFormat.jpg);
     expect(result?.tier, CompressionTier.small);
   });
