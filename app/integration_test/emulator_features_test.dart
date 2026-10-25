@@ -160,7 +160,8 @@ void main() {
       final Finder canvas = find.byWidgetPredicate((Widget w) => w.runtimeType.toString() == 'DocumentCanvas');
       final Rect r = tester.getRect(canvas.first);
       // An empty spot: the seeded layers sit at 25 to 75 percent of the height.
-      final Offset at = Offset(r.left + r.width * 0.3, r.top + r.height * 0.93);
+      final Offset at = Offset(r.left + r.width * 0.3, r.top + r.height * 0.86);
+      note('F2-info', 'INFO', 'canvas $r, tap at $at, fill hint shown: ${find.text(l10n.fillTapHint).evaluate().isNotEmpty}');
       await tester.tapAt(at);
       await pumpFor(1500);
       final Finder field = find.byKey(const ValueKey<String>('fillTextField'));
