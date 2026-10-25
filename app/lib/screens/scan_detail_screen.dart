@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../widgets/compress_sheet.dart';
 import '../widgets/conditional_banner.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
@@ -403,7 +404,15 @@ class _ScanDetailScreenState extends State<ScanDetailScreen>
                 onWatermark: () { _closeEditor(); addWatermarkNow(); },
                 onOcr: () { _closeEditor(); regionOcr(); },
                 onConvert: () { _closeEditor(); exportDocument(); },
-                onCompress: () { _closeEditor(); context.push('/export', extra: <String, dynamic>{'ids': <String>[document.id], 'format': 'pdf'}); },
+                onCompress: () async {
+                  final CompressChoice? c = await showModalBottomSheet<CompressChoice>(
+                    context: context,
+                    builder: (BuildContext ctx) => CompressSheet(document: document),
+                  );
+                  if (c == null || !context.mounted) return;
+                  _closeEditor();
+                  context.push('/export', extra: <String, dynamic>{'ids': <String>[document.id], 'format': c.format.name, 'compression': c.tier.name});
+                },
                 onRotate: () { _closeEditor(); rotatePage(); },
                 onResize: () { _closeEditor(); resizePage(); },
                 onPages: () { _closeEditor(); openPagesManager(); },

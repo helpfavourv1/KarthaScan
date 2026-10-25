@@ -85,6 +85,7 @@ GoRouter buildRouter({String initialLocation = '/'}) {
           final Object? extra = state.extra;
           List<String> documentIds = const <String>[];
           ExportFormat? initialFormat;
+          CompressionTier? initialCompression;
           if (extra is List<String>) {
             documentIds = extra;
           } else if (extra is Map<String, dynamic>) {
@@ -96,8 +97,14 @@ GoRouter buildRouter({String initialLocation = '/'}) {
                 orElse: () => ExportFormat.pdf,
               );
             }
+            final String? tierName = extra['compression'] as String?;
+            if (tierName != null) {
+              for (final CompressionTier t in CompressionTier.values) {
+                if (t.name == tierName) initialCompression = t;
+              }
+            }
           }
-          return ExportScreen(documentIds: documentIds, initialFormat: initialFormat);
+          return ExportScreen(documentIds: documentIds, initialFormat: initialFormat, initialCompression: initialCompression);
         },
       ),
       GoRoute(

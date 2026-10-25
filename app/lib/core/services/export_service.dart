@@ -968,6 +968,33 @@ class ExportService {
     return outputPaths;
   }
 
+  /// Real file size of each compression level for a PDF or JPG export: the first
+  /// page is rendered exactly as the export renders it (edits, filter, layers),
+  /// encoded at every level, and scaled by the page count. Other formats return
+  /// an empty map.
+  Future<Map<CompressionTier, int>> estimateSizes(
+    ScanDocument document,
+    ExportFormat format, {
+    FilterType filter = FilterType.none,
+  }) async {
+    if ((format != ExportFormat.pdf && format != ExportFormat.jpg) || document.pagePaths.isEmpty) {
+      return <CompressionTier, int>{};
+    }
+    final Uint8List page = await renderPageForOutput(document, 0, filter: filter);
+    final int pages = document.pagePaths.length;
+    final Map<CompressionTier, int> out = <CompressionTier, int>{};
+    for (final CompressionTier tier in CompressionTier.values) {
+      final int one = format == ExportFormat.pdf
+          ? (await _compressForPdf(page, tier)).length
+          : await Isolate.run(() {
+              final img.Image? d = img.decodeImage(page);
+              return d == null ? 0 : img.encodeJpg(d, quality: _qualityFor(tier)).length;
+            });
+      out[tier] = one * pages;
+    }
+    return out;
+  }
+
   int _qualityFor(CompressionTier tier) {
     switch (tier) {
       case CompressionTier.original:

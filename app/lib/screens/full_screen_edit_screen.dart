@@ -11,6 +11,7 @@ import '../core/services/local_storage.dart';
 import '../core/services/ocr_service.dart';
 import '../core/services/share_service.dart';
 import '../core/utils/constants.dart';
+import '../widgets/compress_sheet.dart';
 import '../widgets/document_canvas.dart';
 import '../widgets/document_tools_mixin.dart';
 import '../widgets/conditional_banner.dart';
@@ -486,9 +487,14 @@ class _FullScreenEditScreenState extends State<FullScreenEditScreen> with Docume
                       onWatermark: addWatermarkNow,
                       onOcr: regionOcr,
                       onConvert: exportDocument,
-                      onCompress: () {
+                      onCompress: () async {
+                        final CompressChoice? c = await showModalBottomSheet<CompressChoice>(
+                          context: context,
+                          builder: (BuildContext ctx) => CompressSheet(document: doc),
+                        );
+                        if (c == null || !context.mounted) return;
                         closeEditor();
-                        context.push('/export', extra: <String, dynamic>{'ids': <String>[doc.id], 'format': 'pdf'});
+                        context.push('/export', extra: <String, dynamic>{'ids': <String>[doc.id], 'format': c.format.name, 'compression': c.tier.name});
                       },
                       onRotate: rotatePage,
                       onResize: resizePage,

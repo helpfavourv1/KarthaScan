@@ -42,10 +42,11 @@ class _LeftClip extends CustomClipper<Rect> {
 }
 
 class ExportScreen extends StatefulWidget {
-  const ExportScreen({super.key, required this.documentIds, this.initialFormat});
+  const ExportScreen({super.key, required this.documentIds, this.initialFormat, this.initialCompression});
 
   final List<String> documentIds;
   final ExportFormat? initialFormat;
+  final CompressionTier? initialCompression;
 
   @override
   State<ExportScreen> createState() => _ExportScreenState();
@@ -111,6 +112,7 @@ class _ExportScreenState extends State<ExportScreen> {
     if (widget.initialFormat != null) {
       _selectedFormat = widget.initialFormat!;
     }
+    if (widget.initialCompression != null) _selectedCompression = widget.initialCompression!;
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (_isSingleDoc && _documents.isNotEmpty) {
         _inkController.seed(_documents.first);
@@ -877,29 +879,19 @@ class _ExportScreenState extends State<ExportScreen> {
 
   Future<int> _calculateEstimate() async {
     if (_selectedFormat != ExportFormat.jpg && _selectedFormat != ExportFormat.png && _selectedFormat != ExportFormat.pdf) return 0;
-    if (_selectedFormat == ExportFormat.pdf && _selectedCompression == CompressionTier.original) return 0;
     if (_documents.isEmpty) return 0;
-    
-    // Real estimate: encode first page at selected tier quality, extrapolate by page count
     try {
-      final firstPath = _documents.first.pagePaths.first;
-      final bytes = await File(firstPath).readAsBytes();
-      var decoded = img.decodeImage(bytes);
-      if (decoded == null) return 0;
-      if (_selectedFormat == ExportFormat.pdf) {
-        // PDF pages are also shrunk to a size cap, same as the real export.
-        final cap = _selectedCompression == CompressionTier.small ? 1400 : 2000;
-        if (decoded.width >= decoded.height ? decoded.width > cap : decoded.height > cap) {
-          decoded = decoded.width >= decoded.height ? img.copyResize(decoded, width: cap) : img.copyResize(decoded, height: cap);
-        }
+      if (_selectedFormat == ExportFormat.png) {
+        // PNG has no compression levels: measure the real first page.
+        final Uint8List page = await _exportService.renderPageForOutput(_documents.first, 0, filter: _selectedFilter);
+        return page.length * _documents.fold<int>(0, (int sum, ScanDocument d) => sum + d.pagePaths.length);
       }
-      
-      final quality = _selectedCompression == CompressionTier.original ? 92 :
-                      _selectedCompression == CompressionTier.medium ? 60 : 30;
-      final encoded = img.encodeJpg(decoded, quality: quality);
-      final avgPageSize = encoded.length;
-      final totalPages = _documents.fold<int>(0, (sum, doc) => sum + doc.pagePaths.length);
-      return avgPageSize * totalPages;
+      int total = 0;
+      for (final ScanDocument d in _documents) {
+        final Map<CompressionTier, int> sizes = await _exportService.estimateSizes(d, _selectedFormat, filter: _selectedFilter);
+        total += sizes[_selectedCompression] ?? 0;
+      }
+      return total;
     } catch (_) {
       return 0;
     }
