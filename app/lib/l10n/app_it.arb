@@ -684,5 +684,8 @@
   },
   "editLabel": "Modifica",
   "fillTapHint": "Tocca la pagina nel punto in cui vuoi scrivere",
-  "fillTypeHint": "Scrivi qui"
+  "fillTypeHint": "Scrivi qui",
+  "clearPage": "Cancella pagina",
+  "clearAllPages": "Cancella tutte le pagine",
+  "clearedCount": "{count} cancellati"
 }

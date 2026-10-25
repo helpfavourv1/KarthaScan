@@ -684,5 +684,8 @@
   },
   "editLabel": "Rediger",
   "fillTapHint": "Tryk på siden, hvor du vil skrive",
-  "fillTypeHint": "Skriv her"
+  "fillTypeHint": "Skriv her",
+  "clearPage": "Ryd side",
+  "clearAllPages": "Ryd alle sider",
+  "clearedCount": "Ryddet {count}"
 }

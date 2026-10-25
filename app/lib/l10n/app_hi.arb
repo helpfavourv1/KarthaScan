@@ -591,5 +591,8 @@
   },
   "editLabel": "संपादित करें",
   "fillTapHint": "पृष्ठ पर जहाँ लिखना चाहते हैं वहाँ टैप करें",
-  "fillTypeHint": "यहाँ लिखें"
+  "fillTypeHint": "यहाँ लिखें",
+  "clearPage": "पेज साफ़ करें",
+  "clearAllPages": "सभी पेज साफ़ करें",
+  "clearedCount": "{count} साफ़ किए गए"
 }

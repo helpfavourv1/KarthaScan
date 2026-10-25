@@ -591,5 +591,8 @@
   },
   "editLabel": "編集",
   "fillTapHint": "文字を入力したい場所をタップしてください",
-  "fillTypeHint": "ここに入力"
+  "fillTypeHint": "ここに入力",
+  "clearPage": "ページをクリア",
+  "clearAllPages": "全ページをクリア",
+  "clearedCount": "{count}件をクリアしました"
 }

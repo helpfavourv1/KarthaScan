@@ -684,5 +684,8 @@
   },
   "editLabel": "Змінити",
   "fillTapHint": "Торкніться сторінки там, де хочете ввести текст",
-  "fillTypeHint": "Введіть текст"
+  "fillTypeHint": "Введіть текст",
+  "clearPage": "Очистити сторінку",
+  "clearAllPages": "Очистити всі сторінки",
+  "clearedCount": "Очищено: {count}"
 }

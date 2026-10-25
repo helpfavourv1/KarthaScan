@@ -684,5 +684,8 @@
   },
   "editLabel": "সম্পাদনা",
   "fillTapHint": "যেখানে লিখতে চান পৃষ্ঠার সেই জায়গায় ট্যাপ করুন",
-  "fillTypeHint": "এখানে লিখুন"
+  "fillTypeHint": "এখানে লিখুন",
+  "clearPage": "পৃষ্ঠা মুছুন",
+  "clearAllPages": "সব পৃষ্ঠা মুছুন",
+  "clearedCount": "{count}টি মুছে ফেলা হয়েছে"
 }

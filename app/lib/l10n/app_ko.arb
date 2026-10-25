@@ -591,5 +591,8 @@
   },
   "editLabel": "편집",
   "fillTapHint": "입력하려는 위치의 페이지를 탭하세요",
-  "fillTypeHint": "여기에 입력"
+  "fillTypeHint": "여기에 입력",
+  "clearPage": "페이지 지우기",
+  "clearAllPages": "모든 페이지 지우기",
+  "clearedCount": "{count}개 지움"
 }

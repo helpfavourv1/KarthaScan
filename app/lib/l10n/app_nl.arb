@@ -684,5 +684,8 @@
   },
   "editLabel": "Bewerken",
   "fillTapHint": "Tik op de pagina waar je wilt typen",
-  "fillTypeHint": "Typ hier"
+  "fillTypeHint": "Typ hier",
+  "clearPage": "Pagina wissen",
+  "clearAllPages": "Alle pagina's wissen",
+  "clearedCount": "{count} gewist"
 }

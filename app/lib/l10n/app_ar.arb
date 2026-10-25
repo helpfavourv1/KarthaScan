@@ -591,5 +591,8 @@
   },
   "editLabel": "تعديل",
   "fillTapHint": "اضغط على الصفحة حيث تريد الكتابة",
-  "fillTypeHint": "اكتب هنا"
+  "fillTypeHint": "اكتب هنا",
+  "clearPage": "مسح الصفحة",
+  "clearAllPages": "مسح كل الصفحات",
+  "clearedCount": "تم مسح {count}"
 }

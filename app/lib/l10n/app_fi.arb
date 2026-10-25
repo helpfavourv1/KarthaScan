@@ -684,5 +684,8 @@
   },
   "editLabel": "Muokkaa",
   "fillTapHint": "Napauta sivua kohdassa, johon haluat kirjoittaa",
-  "fillTypeHint": "Kirjoita tähän"
+  "fillTypeHint": "Kirjoita tähän",
+  "clearPage": "Tyhjennä sivu",
+  "clearAllPages": "Tyhjennä kaikki sivut",
+  "clearedCount": "Tyhjennetty {count}"
 }

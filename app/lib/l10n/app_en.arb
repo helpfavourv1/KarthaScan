@@ -672,5 +672,22 @@
   "fillTypeHint": "Type here",
   "@fillTypeHint": {
     "description": "Placeholder in the Fill text field"
+  },
+  "clearPage": "Clear page",
+  "@clearPage": {
+    "description": "Button: removes every item of the selected kind on the page being viewed"
+  },
+  "clearAllPages": "Clear all pages",
+  "@clearAllPages": {
+    "description": "Button: removes every item of the selected kind on every page"
+  },
+  "clearedCount": "Cleared {count}",
+  "@clearedCount": {
+    "description": "Message after a clear, with an Undo button",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
   }
 }

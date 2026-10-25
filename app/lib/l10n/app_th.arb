@@ -684,5 +684,8 @@
   },
   "editLabel": "แก้ไข",
   "fillTapHint": "แตะที่หน้าตรงตำแหน่งที่ต้องการพิมพ์",
-  "fillTypeHint": "พิมพ์ที่นี่"
+  "fillTypeHint": "พิมพ์ที่นี่",
+  "clearPage": "ล้างหน้า",
+  "clearAllPages": "ล้างทุกหน้า",
+  "clearedCount": "ล้างแล้ว {count}"
 }

@@ -591,5 +591,8 @@
   },
   "editLabel": "עריכה",
   "fillTapHint": "הקש על המקום בעמוד שבו תרצה להקליד",
-  "fillTypeHint": "הקלד כאן"
+  "fillTypeHint": "הקלד כאן",
+  "clearPage": "נקה עמוד",
+  "clearAllPages": "נקה את כל העמודים",
+  "clearedCount": "נוקו {count}"
 }

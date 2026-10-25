@@ -591,5 +591,8 @@
   },
   "editLabel": "编辑",
   "fillTapHint": "点按页面上要输入文字的位置",
-  "fillTypeHint": "在此输入"
+  "fillTypeHint": "在此输入",
+  "clearPage": "清除本页",
+  "clearAllPages": "清除所有页",
+  "clearedCount": "已清除 {count} 项"
 }

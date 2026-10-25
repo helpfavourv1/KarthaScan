@@ -684,5 +684,8 @@
   },
   "editLabel": "Edit",
   "fillTapHint": "Ketik halaman di tempat anda mahu menaip",
-  "fillTypeHint": "Taip di sini"
+  "fillTypeHint": "Taip di sini",
+  "clearPage": "Kosongkan halaman",
+  "clearAllPages": "Kosongkan semua halaman",
+  "clearedCount": "{count} dikosongkan"
 }

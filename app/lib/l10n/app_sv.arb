@@ -684,5 +684,8 @@
   },
   "editLabel": "Redigera",
   "fillTapHint": "Tryck på sidan där du vill skriva",
-  "fillTypeHint": "Skriv här"
+  "fillTypeHint": "Skriv här",
+  "clearPage": "Rensa sidan",
+  "clearAllPages": "Rensa alla sidor",
+  "clearedCount": "{count} rensade"
 }

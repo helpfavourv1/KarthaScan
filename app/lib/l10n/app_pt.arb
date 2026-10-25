@@ -591,5 +591,8 @@
   },
   "editLabel": "Editar",
   "fillTapHint": "Toque na página onde quer escrever",
-  "fillTypeHint": "Digite aqui"
+  "fillTypeHint": "Digite aqui",
+  "clearPage": "Limpar página",
+  "clearAllPages": "Limpar todas as páginas",
+  "clearedCount": "{count} removidos"
 }

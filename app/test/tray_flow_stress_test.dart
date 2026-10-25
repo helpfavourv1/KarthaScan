@@ -9,6 +9,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:flutter/foundation.dart' show VoidCallback;
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:image/image.dart' as img;
@@ -565,6 +566,137 @@ void main() {
       scan.failedSaves.value = 2;
       expect(await scan.retryFailedSaves(), isTrue);
       expect(scan.failedSaves.value, 0);
+    });
+  });
+
+  group('clear scopes: this item, this page, all pages', () {
+    Future<ScanDocument> seeded() async {
+      final List<File> pages = <File>[
+        await page('c0', 60, 40, 10),
+        await page('c1', 60, 40, 120),
+        await page('c2', 60, 40, 220),
+      ];
+      final ScanDocument d = await makeDoc('dc', pages);
+      await boot(<ScanDocument>[d]);
+      final File ann = await annotationPng('annc');
+      for (int i = 0; i < 3; i++) {
+        await scan.addAnnotateLayer('dc', AnnotateLayer(pageIndex: i, bytesPath: ann.path, placement: _mid));
+        await scan.addWatermarkLayer('dc', WatermarkLayer(pageIndex: i, text: 'W$i', placement: _mid));
+        await scan.addWatermarkLayer('dc', WatermarkLayer(pageIndex: i, text: 'X$i', placement: const SignaturePlacement(pctX: 0.2, pctY: 0.2)));
+        await scan.addStampLayer('dc', StampLayer(id: 'dt$i', pageIndex: i, kind: 'date', placement: _mid, text: '2026'));
+        await scan.addStampLayer('dc', StampLayer(id: 'tx$i', pageIndex: i, kind: 'text', placement: _mid, text: 'hi'));
+      }
+      await settle();
+      return current('dc');
+    }
+
+    test('watermarks: this page only, then all pages; other kinds untouched', () async {
+      await seeded();
+      expect(await scan.clearWatermarkLayersFor('dc', pageIndex: 0), 2);
+      expect(current('dc').watermarkLayers.where((WatermarkLayer l) => l.pageIndex == 0), isEmpty);
+      expect(current('dc').watermarkLayers.length, 4);
+      expect(await scan.clearWatermarkLayersFor('dc'), 4);
+      expect(current('dc').watermarkLayers, isEmpty);
+      expect(current('dc').annotateLayers.length, 3);
+      expect(current('dc').stampLayers.length, 6);
+    });
+
+    test('stamps clear per kind: Date does not touch Text', () async {
+      await seeded();
+      expect(await scan.clearStampLayersFor('dc', 'date', pageIndex: 1), 1);
+      expect(current('dc').stampLayers.where((StampLayer l) => l.kind == 'date').map((StampLayer l) => l.pageIndex), <int>[0, 2]);
+      expect(current('dc').stampLayers.where((StampLayer l) => l.kind == 'text').length, 3);
+      expect(await scan.clearStampLayersFor('dc', 'date'), 2);
+      expect(current('dc').stampLayers.every((StampLayer l) => l.kind == 'text'), isTrue);
+    });
+
+    test('annotation pictures: page then all', () async {
+      await seeded();
+      expect(await scan.clearAnnotateLayersFor('dc', pageIndex: 2), 1);
+      expect(current('dc').annotateLayers.map((AnnotateLayer l) => l.pageIndex), <int>[0, 1]);
+      expect(await scan.clearAnnotateLayersFor('dc'), 2);
+      expect(current('dc').annotateLayers, isEmpty);
+    });
+
+    test('a clear that matches nothing returns 0 and adds no undo step', () async {
+      await seeded();
+      await settle();
+      final int before = scan.undoManager.version.value;
+      expect(await scan.clearStampLayersFor('dc', 'seal'), 0);
+      expect(await scan.clearWatermarkLayersFor('dc', pageIndex: 9), 0);
+      expect(scan.undoManager.version.value, before);
+    });
+
+    test('undo puts back exactly what the clear removed, redo clears again', () async {
+      final ScanDocument start = await seeded();
+      await scan.clearWatermarkLayersFor('dc');
+      await scan.undoManager.undo();
+      await settle();
+      expect(current('dc').watermarkLayers.map((WatermarkLayer l) => l.id).toSet(), start.watermarkLayers.map((WatermarkLayer l) => l.id).toSet());
+      await scan.undoManager.redo();
+      await settle();
+      expect(current('dc').watermarkLayers, isEmpty);
+      expect(fingerprint(await fromDb('dc')), fingerprint(current('dc')));
+    });
+
+    test('the exported page no longer has a cleared picture', () async {
+      await seeded();
+      bool hasRed(img.Image im) {
+        for (int y = 0; y < im.height; y++) {
+          for (int x = 0; x < im.width; x++) {
+            final img.Pixel p = im.getPixel(x, y);
+            if (p.r > 200 && p.g < 60 && p.b < 60) return true;
+          }
+        }
+        return false;
+      }
+
+      img.Image render(Uint8List b) => img.decodePng(b)!;
+      expect(hasRed(render(await ExportService().renderPageForOutput(current('dc'), 0))), isTrue);
+      await scan.clearAnnotateLayersFor('dc', pageIndex: 0);
+      expect(hasRed(render(await ExportService().renderPageForOutput(current('dc'), 0))), isFalse);
+      expect(hasRed(render(await ExportService().renderPageForOutput(current('dc'), 1))), isTrue);
+    });
+
+    test('signatures: this, page, all pages, and Undo only fills empty spots', () {
+      final InkController c = InkController();
+      c.inks['a'] = SignatureInk(id: 'a', label: 'A', bytes: Uint8List(4), aspect: 2);
+      c.inks['b'] = SignatureInk(id: 'b', label: 'B', bytes: Uint8List(4), aspect: 2);
+      for (final String ink in <String>['a', 'b']) {
+        for (int pg = 0; pg < 3; pg++) {
+          c.inkPlacements.putIfAbsent(ink, () => <int, SignaturePlacement>{})[pg] = _mid;
+        }
+      }
+      final gone = c.removePlacement('a', 1);
+      expect(c.inkPlacements['a']!.containsKey(1), isFalse);
+      expect(c.inkPlacements['b']!.length, 3);
+      c.restorePlacements(gone);
+      expect(c.inkPlacements['a']!.length, 3);
+      expect(c.clearPage(2), 2);
+      expect(c.inkPlacements['a']!.keys.toSet(), <int>{0, 1});
+      final gonePage = c.lastCleared;
+      // A later edit in the same spot must survive an Undo.
+      c.inkPlacements['a']![2] = const SignaturePlacement(pctX: 0.1, pctY: 0.1);
+      c.restorePlacements(gonePage);
+      expect(c.inkPlacements['a']![2]!.pctX, 0.1);
+      expect(c.inkPlacements['b']![2], isNotNull);
+      expect(c.clearAll(), 6);
+      expect(c.inkPlacements.values.every((Map<int, SignaturePlacement> m) => m.isEmpty), isTrue);
+      expect(c.inks.length, 2, reason: 'saved signatures must stay');
+    });
+
+    test('deleting a saved signature removes its places and Undo brings both back', () {
+      final InkController c = InkController();
+      c.inks['a'] = SignatureInk(id: 'a', label: 'A', bytes: Uint8List(4), aspect: 2);
+      c.activeInkId = 'a';
+      c.inkPlacements['a'] = <int, SignaturePlacement>{0: _mid, 2: _mid};
+      final VoidCallback restore = c.removeInk('a');
+      expect(c.inks, isEmpty);
+      expect(c.inkPlacements.containsKey('a'), isFalse);
+      restore();
+      expect(c.inks.containsKey('a'), isTrue);
+      expect(c.inkPlacements['a']!.keys.toSet(), <int>{0, 2});
+      expect(c.activeInkId, 'a');
     });
   });
 }

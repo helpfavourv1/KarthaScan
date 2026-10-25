@@ -633,6 +633,48 @@ class ScanProvider {
     return _replaceAndSave(updated);
   }
 
+  /// Removes annotation pictures from every page, or only from [pageIndex].
+  /// Returns how many were removed (nothing is recorded when that is 0).
+  Future<int> clearAnnotateLayersFor(String id, {int? pageIndex}) async {
+    final ScanDocument? existing = _findById(id);
+    if (existing == null) return 0;
+    final List<AnnotateLayer> kept = existing.annotateLayers.where((l) => pageIndex != null && l.pageIndex != pageIndex).toList();
+    final int removed = existing.annotateLayers.length - kept.length;
+    if (removed == 0) return 0;
+    final updated = existing.copyWith(annotateLayers: kept, updatedAt: DateTime.now());
+    _recordOverlayUndo(existing, updated, null);
+    await _replaceAndSave(updated);
+    return removed;
+  }
+
+  /// Removes watermarks from every page, or only from [pageIndex].
+  Future<int> clearWatermarkLayersFor(String id, {int? pageIndex}) async {
+    final ScanDocument? existing = _findById(id);
+    if (existing == null) return 0;
+    final List<WatermarkLayer> kept = existing.watermarkLayers.where((l) => pageIndex != null && l.pageIndex != pageIndex).toList();
+    final int removed = existing.watermarkLayers.length - kept.length;
+    if (removed == 0) return 0;
+    final updated = existing.copyWith(watermarkLayers: kept, updatedAt: DateTime.now());
+    _recordOverlayUndo(existing, updated, null);
+    await _replaceAndSave(updated);
+    return removed;
+  }
+
+  /// Removes stamps of one [kind] (text, note, date, checkbox, seal, fill) from
+  /// every page, or only from [pageIndex]. Other kinds are left alone.
+  Future<int> clearStampLayersFor(String id, String kind, {int? pageIndex}) async {
+    final ScanDocument? existing = _findById(id);
+    if (existing == null) return 0;
+    bool hit(StampLayer l) => l.kind == kind && (pageIndex == null || l.pageIndex == pageIndex);
+    final List<StampLayer> kept = existing.stampLayers.where((l) => !hit(l)).toList();
+    final int removed = existing.stampLayers.length - kept.length;
+    if (removed == 0) return 0;
+    final updated = existing.copyWith(stampLayers: kept, updatedAt: DateTime.now());
+    _recordOverlayUndo(existing, updated, null);
+    await _replaceAndSave(updated);
+    return removed;
+  }
+
   int _wmSeq = 0;
   String newWatermarkId() => 'wm-${DateTime.now().microsecondsSinceEpoch}-${_wmSeq++}';
 

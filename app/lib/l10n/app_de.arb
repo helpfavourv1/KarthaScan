@@ -591,5 +591,8 @@
   },
   "editLabel": "Bearbeiten",
   "fillTapHint": "Tippe auf die Stelle der Seite, an der du schreiben möchtest",
-  "fillTypeHint": "Hier eingeben"
+  "fillTypeHint": "Hier eingeben",
+  "clearPage": "Seite leeren",
+  "clearAllPages": "Alle Seiten leeren",
+  "clearedCount": "{count} gelöscht"
 }

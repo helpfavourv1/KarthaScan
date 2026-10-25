@@ -684,5 +684,8 @@
   },
   "editLabel": "Edytuj",
   "fillTapHint": "Dotknij strony w miejscu, w którym chcesz pisać",
-  "fillTypeHint": "Wpisz tutaj"
+  "fillTypeHint": "Wpisz tutaj",
+  "clearPage": "Wyczyść stronę",
+  "clearAllPages": "Wyczyść wszystkie strony",
+  "clearedCount": "Wyczyszczono {count}"
 }

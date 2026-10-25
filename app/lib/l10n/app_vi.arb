@@ -684,5 +684,8 @@
   },
   "editLabel": "Sửa",
   "fillTapHint": "Chạm vào trang tại vị trí bạn muốn nhập",
-  "fillTypeHint": "Nhập tại đây"
+  "fillTypeHint": "Nhập tại đây",
+  "clearPage": "Xóa trang",
+  "clearAllPages": "Xóa tất cả trang",
+  "clearedCount": "Đã xóa {count}"
 }

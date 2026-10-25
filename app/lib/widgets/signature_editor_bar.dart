@@ -7,6 +7,7 @@
 import 'package:flutter/material.dart';
 
 import '../core/models/signature_placement.dart';
+import 'clear_feedback.dart';
 import 'ink_board.dart';
 
 class SignatureEditorBar extends StatelessWidget {
@@ -72,9 +73,22 @@ class SignatureOverlayControls extends StatelessWidget {
     if (pl == null) return const SizedBox.shrink();
 
     void doCopyAll() => controller.copyToAllPages(editId, pageIndex, pageCount);
-    void doClearThis() => controller.removePlacement(editId, pageIndex);
-    void doRemove() => controller.removeInk(editId);
-    void doClearAll() => controller.clearAll();
+    void cleared(BuildContext c, int n, Map<String, Map<int, SignaturePlacement>> gone) =>
+        showClearedMessage(c, n, () async => controller.restorePlacements(gone));
+    void doClearThis() {
+      final Map<String, Map<int, SignaturePlacement>> gone = controller.removePlacement(editId, pageIndex);
+      cleared(context, gone.isEmpty ? 0 : 1, gone);
+    }
+
+    void doClearPage() {
+      final int n = controller.clearPage(pageIndex);
+      cleared(context, n, controller.lastCleared);
+    }
+
+    void doClearAllPages() {
+      final int n = controller.clearAll();
+      cleared(context, n, controller.lastCleared);
+    }
 
     return OverlayEditControls(
       layerType: LayerType.signature,
@@ -90,9 +104,8 @@ class SignatureOverlayControls extends StatelessWidget {
           SignaturePlacement(pctX: pl.pctX, pctY: pl.pctY, rotationDegrees: pl.rotationDegrees, scale: (pl.scale + 0.1).clamp(0.1, 5.0))),
       onCopyAll: doCopyAll,
       onClearThis: doClearThis,
-      showClearThis: true,
-      onRemove: doRemove,
-      onClearAll: doClearAll,
+      onClearPage: doClearPage,
+      onClearAllPages: doClearAllPages,
       onDone: onDone,
     );
   }

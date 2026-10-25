@@ -684,5 +684,8 @@
   },
   "editLabel": "Düzenle",
   "fillTapHint": "Yazmak istediğiniz yere sayfaya dokunun",
-  "fillTypeHint": "Buraya yazın"
+  "fillTypeHint": "Buraya yazın",
+  "clearPage": "Sayfayı temizle",
+  "clearAllPages": "Tüm sayfaları temizle",
+  "clearedCount": "{count} temizlendi"
 }

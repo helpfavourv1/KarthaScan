@@ -591,5 +591,8 @@
   },
   "editLabel": "Ubah",
   "fillTapHint": "Ketuk halaman di tempat Anda ingin mengetik",
-  "fillTypeHint": "Ketik di sini"
+  "fillTypeHint": "Ketik di sini",
+  "clearPage": "Hapus halaman",
+  "clearAllPages": "Hapus semua halaman",
+  "clearedCount": "{count} dihapus"
 }

@@ -5,6 +5,7 @@ import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:image/image.dart' as img;
 
+import 'clear_feedback.dart';
 import '../core/models/scan_document.dart';
 import '../core/models/signature_placement.dart';
 import '../core/services/local_storage.dart';
@@ -160,17 +161,63 @@ class InkController {
 
   int _copySeq = 0;
 
-  void removeInk(String inkId) {
+  /// Deletes a saved signature drawing and every place it was put. Returns a
+  /// function that puts everything back (used by the Undo message).
+  VoidCallback removeInk(String inkId) {
+    final SignatureInk? ink = inks[inkId];
+    final Map<int, SignaturePlacement> placements = Map<int, SignaturePlacement>.of(inkPlacements[inkId] ?? <int, SignaturePlacement>{});
+    final String? wasActive = activeInkId;
     inks.remove(inkId);
     inkPlacements.remove(inkId);
     if (editInkId == inkId) editInkId = null;
     if (activeInkId == inkId) activeInkId = inks.keys.isEmpty ? null : inks.keys.first;
     _notify();
+    return () {
+      if (ink == null) return;
+      inks[inkId] = ink;
+      inkPlacements[inkId] = placements;
+      if (wasActive == inkId) activeInkId = inkId;
+      activeInkId ??= inkId;
+      _notify();
+    };
   }
 
-  void clearAll() {
-    inkPlacements.clear();
-    editInkId = null;
+  /// Takes every signature off every page (the saved drawings stay). Returns how
+  /// many placements were removed.
+  int clearAll() => _removePlacements((int _) => true);
+
+  /// Takes every signature off [pageIndex] only.
+  int clearPage(int pageIndex) => _removePlacements((int p) => p == pageIndex);
+
+  /// What the last clear took away, so Undo can put exactly that back.
+  Map<String, Map<int, SignaturePlacement>> lastCleared = <String, Map<int, SignaturePlacement>>{};
+
+  int _removePlacements(bool Function(int page) test) {
+    final Map<String, Map<int, SignaturePlacement>> removed = <String, Map<int, SignaturePlacement>>{};
+    int n = 0;
+    for (final MapEntry<String, Map<int, SignaturePlacement>> e in inkPlacements.entries) {
+      for (final int page in e.value.keys.where(test).toList()) {
+        removed.putIfAbsent(e.key, () => <int, SignaturePlacement>{})[page] = e.value.remove(page)!;
+        n++;
+      }
+    }
+    lastCleared = removed;
+    if (n > 0) {
+      editInkId = null;
+      _notify();
+    }
+    return n;
+  }
+
+  /// Puts back [placements] (what a clear returned) into
+  /// empty spots only, so a later edit is never overwritten.
+  void restorePlacements(Map<String, Map<int, SignaturePlacement>> placements) {
+    placements.forEach((String inkId, Map<int, SignaturePlacement> byPage) {
+      if (!inks.containsKey(inkId)) return;
+      byPage.forEach((int page, SignaturePlacement pl) {
+        inkPlacements.putIfAbsent(inkId, () => <int, SignaturePlacement>{}).putIfAbsent(page, () => pl);
+      });
+    });
     _notify();
   }
 
@@ -190,9 +237,13 @@ class InkController {
     _notify();
   }
 
-  void removePlacement(String inkId, int pageIndex) {
-    inkPlacements[inkId]?.remove(pageIndex);
+  /// Takes one signature off one page. Returns what was removed (for Undo).
+  Map<String, Map<int, SignaturePlacement>> removePlacement(String inkId, int pageIndex) {
+    final SignaturePlacement? gone = inkPlacements[inkId]?.remove(pageIndex);
     _notify();
+    return gone == null
+        ? <String, Map<int, SignaturePlacement>>{}
+        : <String, Map<int, SignaturePlacement>>{inkId: <int, SignaturePlacement>{pageIndex: gone}};
   }
 
   void copyToAllPages(String inkId, int sourcePageIndex, int pageCount) {
@@ -826,8 +877,8 @@ class OverlayEditControls extends StatelessWidget {
     required this.onScaleUp,
     required this.onCopyAll,
     required this.onClearThis,
-    required this.onRemove,
-    required this.onClearAll,
+    required this.onClearPage,
+    required this.onClearAllPages,
     this.opacity,
     this.onOpacityDown,
     this.onOpacityUp,
@@ -836,21 +887,9 @@ class OverlayEditControls extends StatelessWidget {
     this.onFontSizeUp,
     this.onTools,
     this.onDone,
-    this.showClearThis = false,
   });
 
   final LayerType layerType;
-  /// Signatures only: "Clear this" removes the signature from this page, while
-  /// Remove deletes it everywhere. For the other layers both do the same, so only Remove shows.
-  final bool showClearThis;
-  final double? opacity;
-  final VoidCallback? onOpacityDown;
-  final VoidCallback? onOpacityUp;
-  final double? fontSize;
-  final VoidCallback? onFontSizeDown;
-  final VoidCallback? onFontSizeUp;
-  final VoidCallback? onTools;
-  final VoidCallback? onDone;
   final double rotationDegrees;
   final double scale;
   final VoidCallback onRotateLeft;
@@ -858,9 +897,12 @@ class OverlayEditControls extends StatelessWidget {
   final VoidCallback onScaleDown;
   final VoidCallback onScaleUp;
   final VoidCallback onCopyAll;
+  /// The selected item only.
   final VoidCallback onClearThis;
-  final VoidCallback onRemove;
-  final VoidCallback onClearAll;
+  /// Every item of this kind on the page being viewed.
+  final VoidCallback onClearPage;
+  /// Every item of this kind on every page.
+  final VoidCallback onClearAllPages;
 
   Widget _stepBtn(IconData icon, VoidCallback onTap) {
     return Material(
@@ -943,9 +985,9 @@ class OverlayEditControls extends StatelessWidget {
             children: [
               if (onTools != null) _action(context, Icons.brush, l10n.editLabel, onTools!),
               _action(context, Icons.copy_all, l10n.copyAll, onCopyAll),
-              if (showClearThis) _action(context, Icons.layers_clear, l10n.clearThis, onClearThis),
-              _action(context, Icons.delete_outline, l10n.commonRemove, onRemove),
-              _action(context, Icons.layers_clear_outlined, l10n.clearAll, onClearAll),
+              _action(context, Icons.delete_outline, l10n.clearThis, onClearThis),
+              _action(context, Icons.layers_clear_outlined, l10n.clearPage, onClearPage),
+              _action(context, Icons.delete_sweep_outlined, l10n.clearAllPages, onClearAllPages),
               if (onDone != null) _action(context, Icons.check_circle, l10n.commonDone, onDone!, color: accent),
             ],
           ),
@@ -1050,6 +1092,26 @@ class InkCompactBar extends StatelessWidget {
               ),
             ),
           ),
+          // Deletes the chosen saved signature (and every place it was put).
+          if (controller.activeInkId != null)
+            Tooltip(
+              message: AppLocalizations.of(context).commonRemove,
+              child: Material(
+                color: Colors.transparent,
+                child: InkWell(
+                  key: const ValueKey<String>('deleteSavedSignature'),
+                  borderRadius: BorderRadius.circular(12),
+                  onTap: () {
+                    final VoidCallback restore = controller.removeInk(controller.activeInkId!);
+                    showClearedMessage(context, 1, () async => restore());
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.all(4),
+                    child: Icon(Icons.delete_outline, size: 18, color: textPrimary),
+                  ),
+                ),
+              ),
+            ),
         ],
       ),
     );
