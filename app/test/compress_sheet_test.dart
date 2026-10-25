@@ -76,7 +76,7 @@ void main() {
             body: Center(
               child: TextButton(
                 onPressed: () async => result = await showModalBottomSheet<CompressChoice>(
-                  context: c, builder: (BuildContext _) => CompressSheet(document: doc)),
+                  isScrollControlled: true, context: c, builder: (BuildContext _) => CompressSheet(document: doc)),
                 child: const Text('open'),
               ),
             ),

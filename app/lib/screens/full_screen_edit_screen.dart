@@ -490,6 +490,7 @@ class _FullScreenEditScreenState extends State<FullScreenEditScreen> with Docume
                       onCompress: () async {
                         final CompressChoice? c = await showModalBottomSheet<CompressChoice>(
                           context: context,
+                          isScrollControlled: true,
                           builder: (BuildContext ctx) => CompressSheet(document: doc),
                         );
                         if (c == null || !context.mounted) return;

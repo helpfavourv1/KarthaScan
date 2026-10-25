@@ -105,7 +105,8 @@ class _CompressSheetState extends State<CompressSheet> {
     final AppLocalizations l10n = AppLocalizations.of(context);
     final Color accent = Theme.of(context).colorScheme.primary;
     return SafeArea(
-      child: Padding(
+      child: SingleChildScrollView(
+        child: Padding(
         padding: const EdgeInsets.fromLTRB(16, 12, 16, 16),
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -139,6 +140,7 @@ class _CompressSheetState extends State<CompressSheet> {
               child: Text(l10n.compressLabel),
             ),
           ],
+        ),
         ),
       ),
     );

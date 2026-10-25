@@ -407,6 +407,7 @@ class _ScanDetailScreenState extends State<ScanDetailScreen>
                 onCompress: () async {
                   final CompressChoice? c = await showModalBottomSheet<CompressChoice>(
                     context: context,
+                    isScrollControlled: true,
                     builder: (BuildContext ctx) => CompressSheet(document: document),
                   );
                   if (c == null || !context.mounted) return;
