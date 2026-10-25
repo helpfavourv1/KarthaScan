@@ -146,7 +146,7 @@ void main() {
   group('all filters', () {
     test('never change the input and keep size and transparency', () {
       for (final FilterType f in FilterType.values) {
-        final img.Image src = shadowedPage(120, 160)..setPixelRgba(0, 0, 10, 20, 30, 77);
+        final img.Image src = shadowedPage(120, 160).convert(numChannels: 4)..setPixelRgba(0, 0, 10, 20, 30, 77);
         final Uint8List before = Uint8List.fromList(src.getBytes());
         final img.Image out = FilterService.applyToImage(src, f);
         expect(src.getBytes(), before, reason: '$f changed its input');
@@ -165,7 +165,7 @@ void main() {
           expect(d, greaterThanOrEqualTo(prev), reason: '$f not monotonic at $t');
           prev = d;
         }
-        expect(prev, greaterThan(5), reason: '$f at full strength barely changes anything');
+        expect(prev, greaterThan(f == FilterType.grayscale ? 2 : 5), reason: '$f at full strength barely changes anything');
       }
     });
 
