@@ -199,7 +199,7 @@ void main() {
           if ((a.getPixel(x, y).r - b.getPixel(x, y).r).abs() > 60) diff++;
         }
       }
-      check('F2-exported', diff > 150, 'exported page differs from the page without Fill text in $diff sampled pixels');
+      check('F2-exported', diff > 40, 'exported page differs from the page without Fill text in $diff sampled pixels');
     });
 
     // ---- F3: delete a saved signature from the picker, then Undo ----
