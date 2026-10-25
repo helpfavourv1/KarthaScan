@@ -18,7 +18,10 @@ Future<void> settleMeasure(WidgetTester tester) async {
   for (int i = 0; i < 150; i++) {
     await tester.runAsync(() => Future<void>.delayed(const Duration(milliseconds: 200)));
     await tester.pump();
-    if (find.byType(CircularProgressIndicator).evaluate().isEmpty) return;
+    if (find.byType(CircularProgressIndicator).evaluate().isEmpty) {
+      await tester.pumpAndSettle();
+      return;
+    }
   }
 }
 
