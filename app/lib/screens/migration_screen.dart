@@ -158,8 +158,8 @@ class _MigrationScreenState extends State<MigrationScreen> {
       final List<int> manifestBytes = utf8.encode(jsonEncode(manifest));
       archive.addFile(ArchiveFile('manifest.json', manifestBytes.length, manifestBytes));
 
-      final List<int>? zipBytes = ZipEncoder().encode(archive);
-      if (zipBytes == null) {
+      final List<int> zipBytes = ZipEncoder().encode(archive);
+      if (zipBytes.isEmpty) {
         throw Exception('Could not build the archive.');
       }
 

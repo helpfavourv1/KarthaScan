@@ -779,8 +779,8 @@ class ExportService {
       }
     }
 
-    final encoded = ZipEncoder().encode(archive);
-    if (encoded == null) {
+    final List<int> encoded = ZipEncoder().encode(archive);
+    if (encoded.isEmpty) {
       throw const ExportFailedException('Could not build the DOCX file.');
     }
 
