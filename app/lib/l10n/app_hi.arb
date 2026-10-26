@@ -594,5 +594,7 @@
   "fillTypeHint": "यहाँ लिखें",
   "clearPage": "पेज साफ़ करें",
   "clearAllPages": "सभी पेज साफ़ करें",
-  "clearedCount": "{count} साफ़ किए गए"
+  "clearedCount": "{count} साफ़ किए गए",
+  "idLayoutRealSize": "वास्तविक आकार",
+  "idLayoutFullWidth": "पूरी चौड़ाई"
 }

@@ -687,5 +687,7 @@
   "fillTypeHint": "Typ hier",
   "clearPage": "Pagina wissen",
   "clearAllPages": "Alle pagina's wissen",
-  "clearedCount": "{count} gewist"
+  "clearedCount": "{count} gewist",
+  "idLayoutRealSize": "Werkelijke grootte",
+  "idLayoutFullWidth": "Volledige breedte"
 }

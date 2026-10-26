@@ -687,5 +687,7 @@
   "fillTypeHint": "Skriv her",
   "clearPage": "Tøm side",
   "clearAllPages": "Tøm alle sider",
-  "clearedCount": "Tømte {count}"
+  "clearedCount": "Tømte {count}",
+  "idLayoutRealSize": "Faktisk størrelse",
+  "idLayoutFullWidth": "Full bredde"
 }

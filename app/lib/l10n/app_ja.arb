@@ -594,5 +594,7 @@
   "fillTypeHint": "ここに入力",
   "clearPage": "ページをクリア",
   "clearAllPages": "全ページをクリア",
-  "clearedCount": "{count}件をクリアしました"
+  "clearedCount": "{count}件をクリアしました",
+  "idLayoutRealSize": "実寸",
+  "idLayoutFullWidth": "全幅"
 }

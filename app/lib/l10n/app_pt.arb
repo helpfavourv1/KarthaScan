@@ -594,5 +594,7 @@
   "fillTypeHint": "Digite aqui",
   "clearPage": "Limpar página",
   "clearAllPages": "Limpar todas as páginas",
-  "clearedCount": "{count} removidos"
+  "clearedCount": "{count} removidos",
+  "idLayoutRealSize": "Tamanho real",
+  "idLayoutFullWidth": "Largura total"
 }

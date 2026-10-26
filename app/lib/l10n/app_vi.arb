@@ -687,5 +687,7 @@
   "fillTypeHint": "Nhập tại đây",
   "clearPage": "Xóa trang",
   "clearAllPages": "Xóa tất cả trang",
-  "clearedCount": "Đã xóa {count}"
+  "clearedCount": "Đã xóa {count}",
+  "idLayoutRealSize": "Kích thước thật",
+  "idLayoutFullWidth": "Toàn chiều rộng"
 }

@@ -594,5 +594,7 @@
   "fillTypeHint": "여기에 입력",
   "clearPage": "페이지 지우기",
   "clearAllPages": "모든 페이지 지우기",
-  "clearedCount": "{count}개 지움"
+  "clearedCount": "{count}개 지움",
+  "idLayoutRealSize": "실제 크기",
+  "idLayoutFullWidth": "전체 너비"
 }

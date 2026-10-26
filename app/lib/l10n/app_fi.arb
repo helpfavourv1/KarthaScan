@@ -687,5 +687,7 @@
   "fillTypeHint": "Kirjoita tähän",
   "clearPage": "Tyhjennä sivu",
   "clearAllPages": "Tyhjennä kaikki sivut",
-  "clearedCount": "Tyhjennetty {count}"
+  "clearedCount": "Tyhjennetty {count}",
+  "idLayoutRealSize": "Todellinen koko",
+  "idLayoutFullWidth": "Koko leveys"
 }

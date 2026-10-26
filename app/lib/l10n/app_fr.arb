@@ -594,5 +594,7 @@
   "fillTypeHint": "Saisissez ici",
   "clearPage": "Effacer la page",
   "clearAllPages": "Effacer toutes les pages",
-  "clearedCount": "{count} effacé(s)"
+  "clearedCount": "{count} effacé(s)",
+  "idLayoutRealSize": "Taille réelle",
+  "idLayoutFullWidth": "Pleine largeur"
 }

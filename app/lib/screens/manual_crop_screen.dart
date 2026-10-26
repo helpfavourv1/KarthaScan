@@ -335,12 +335,15 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
 
   Future<void> _exportIdCard() async {
     setState(() => _stage = _Stage.saving);
+    final String frontPath = _idFrontPath!;
+    final String backPath = _idBackPath!;
+    final String title = '${l10n.titleIdCard} ${DateTime.now().millisecondsSinceEpoch}';
     try {
       final appDir = await getApplicationDocumentsDirectory();
       final result = await _exportService.exportIdCardPdf(
-        frontPath: _idFrontPath!,
-        backPath: _idBackPath!,
-        title: '${l10n.titleIdCard} ${DateTime.now().millisecondsSinceEpoch}',
+        frontPath: frontPath,
+        backPath: backPath,
+        title: title,
         outputDirectoryPath: appDir.path,
       );
       final outPath = result['pdf']!;
@@ -352,7 +355,14 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
         _idBackPath = null;
         _stage = _Stage.pickImage;
       });
-      await _showIdCardResultSheet(outPath, combinedImagePath: combinedPath);
+      await _showIdCardResultSheet(
+        outPath,
+        combinedImagePath: combinedPath,
+        frontPath: frontPath,
+        backPath: backPath,
+        title: title,
+        outputDirectoryPath: appDir.path,
+      );
     } catch (e) {
       _log.log('CROP', 'ID Card export error: $e');
       if (!mounted) return;
@@ -405,18 +415,55 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
     }
   }
 
-  Future<void> _showIdCardResultSheet(String pdfPath, {required String combinedImagePath}) async {
+  Future<void> _showIdCardResultSheet(
+    String initialPdfPath, {
+    required String combinedImagePath,
+    required String frontPath,
+    required String backPath,
+    required String title,
+    required String outputDirectoryPath,
+  }) async {
+    String pdfPath = initialPdfPath;
+    String combinedPath = combinedImagePath;
+    IdCardLayout layout = IdCardLayout.realSize;
     await showModalBottomSheet<void>(
       context: context,
       isDismissible: false,
       enableDrag: false,
-      builder: (ctx) => SafeArea(
+      builder: (ctx) => StatefulBuilder(builder: (BuildContext ctx, StateSetter setSheet) => SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(l10n.idCardPdfGenerated, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+              const SizedBox(height: 12),
+              // Real size is what a copy of an ID is expected to look like; full
+              // width is for looking at it on a screen. Switching rebuilds the files.
+              SegmentedButton<IdCardLayout>(
+                key: const ValueKey<String>('idLayout'),
+                showSelectedIcon: false,
+                segments: <ButtonSegment<IdCardLayout>>[
+                  ButtonSegment<IdCardLayout>(value: IdCardLayout.realSize, label: Text(l10n.idLayoutRealSize)),
+                  ButtonSegment<IdCardLayout>(value: IdCardLayout.fullWidth, label: Text(l10n.idLayoutFullWidth)),
+                ],
+                selected: <IdCardLayout>{layout},
+                onSelectionChanged: (Set<IdCardLayout> sel) async {
+                  final IdCardLayout next = sel.first;
+                  try {
+                    final Map<String, String> r = await _exportService.exportIdCardPdf(
+                      frontPath: frontPath,
+                      backPath: backPath,
+                      title: title,
+                      outputDirectoryPath: outputDirectoryPath,
+                      layout: next,
+                    );
+                    pdfPath = r['pdf']!;
+                    combinedPath = r['image']!;
+                    setSheet(() => layout = next);
+                  } catch (_) {}
+                },
+              ),
               const SizedBox(height: 16),
               ElevatedButton.icon(
                 onPressed: () async {
@@ -437,11 +484,11 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
                     id: '${now.microsecondsSinceEpoch}',
                     title: '${l10n.titleIdCard} ${now.year}-${now.month.toString().padLeft(2, '0')}-${now.day.toString().padLeft(2, '0')}',
                     pageCount: 1,
-                    pagePaths: [combinedImagePath],
+                    pagePaths: [combinedPath],
                     createdAt: now,
                     updatedAt: now,
                     ocrText: '',
-                    thumbnailPath: combinedImagePath,
+                    thumbnailPath: combinedPath,
                   );
                   final success = await _scanProvider.importDocument(doc);
                   if (!mounted) return;
@@ -470,7 +517,7 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
             ],
           ),
         ),
-      ),
+      )),
     );
   }
 

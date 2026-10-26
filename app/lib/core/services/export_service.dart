@@ -39,6 +39,15 @@ class ExportFailedException implements Exception {
   String toString() => cause == null ? 'ExportFailedException: $message' : 'ExportFailedException: $message (cause: $cause)';
 }
 
+/// How the two sides of an ID card are placed on the A4 page.
+enum IdCardLayout {
+  /// Each side at its real size (85.6 mm wide), centred, front above back.
+  realSize,
+
+  /// Both sides scaled to the full page width (for viewing on a screen).
+  fullWidth,
+}
+
 enum FilterType { none, grayscale, blackAndWhite, colorEnhance, shadowRemoval }
 
 // SignaturePlacement is now in models/signature_placement.dart
@@ -1091,19 +1100,47 @@ class ExportService {
     required String backPath,
     required String title,
     required String outputDirectoryPath,
+    IdCardLayout layout = IdCardLayout.realSize,
   }) async {
     try {
       img.Image front = _trimNearBlackBorders(img.decodeImage(await _readBytes(frontPath))!);
       img.Image back = _trimNearBlackBorders(img.decodeImage(await _readBytes(backPath))!);
 
-      const int canvasWidth = 1200;
-      const int gap = 40;
-      final int frontH = (front.height * canvasWidth / front.width).round();
-      final int backH = (back.height * canvasWidth / back.width).round();
-      final img.Image canvas = img.Image(width: canvasWidth, height: frontH + gap + backH);
-      img.fill(canvas, color: img.ColorRgb8(255, 255, 255));
-      img.compositeImage(canvas, img.copyResize(front, width: canvasWidth, height: frontH), dstX: 0, dstY: 0);
-      img.compositeImage(canvas, img.copyResize(back, width: canvasWidth, height: backH), dstX: 0, dstY: frontH + gap);
+      final img.Image canvas;
+      if (layout == IdCardLayout.realSize) {
+        // A4 at 300 dpi; each side 85.6 mm wide (ISO card size), 10 mm apart.
+        const int pageW = 2480, pageH = 3508;
+        const int margin = 120;
+        int cardW = (85.6 / 25.4 * 300).round();
+        const int gap = 118;
+        int frontH = (front.height * cardW / front.width).round();
+        int backH = (back.height * cardW / back.width).round();
+        // An unusually tall pair is shrunk (same factor on both) so it still fits the page.
+        final int room = pageH - 2 * margin;
+        if (frontH + gap + backH > room) {
+          final double k = (room - gap) / (frontH + backH);
+          cardW = (cardW * k).round();
+          frontH = (front.height * cardW / front.width).round();
+          backH = (back.height * cardW / back.width).round();
+        }
+        final int total = frontH + gap + backH;
+        final int x = (pageW - cardW) ~/ 2;
+        // 30 mm from the top when it fits, otherwise centred.
+        final int top = (354 + total + margin <= pageH) ? 354 : ((pageH - total) ~/ 2);
+        canvas = img.Image(width: pageW, height: pageH);
+        img.fill(canvas, color: img.ColorRgb8(255, 255, 255));
+        img.compositeImage(canvas, img.copyResize(front, width: cardW, height: frontH), dstX: x, dstY: top);
+        img.compositeImage(canvas, img.copyResize(back, width: cardW, height: backH), dstX: x, dstY: top + frontH + gap);
+      } else {
+        const int canvasWidth = 1200;
+        const int gap = 40;
+        final int frontH = (front.height * canvasWidth / front.width).round();
+        final int backH = (back.height * canvasWidth / back.width).round();
+        canvas = img.Image(width: canvasWidth, height: frontH + gap + backH);
+        img.fill(canvas, color: img.ColorRgb8(255, 255, 255));
+        img.compositeImage(canvas, img.copyResize(front, width: canvasWidth, height: frontH), dstX: 0, dstY: 0);
+        img.compositeImage(canvas, img.copyResize(back, width: canvasWidth, height: backH), dstX: 0, dstY: frontH + gap);
+      }
       final Uint8List combinedBytes = Uint8List.fromList(img.encodePng(canvas));
 
       final String safeTitle = _sanitizeFileName(title);

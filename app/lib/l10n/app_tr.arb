@@ -687,5 +687,7 @@
   "fillTypeHint": "Buraya yazın",
   "clearPage": "Sayfayı temizle",
   "clearAllPages": "Tüm sayfaları temizle",
-  "clearedCount": "{count} temizlendi"
+  "clearedCount": "{count} temizlendi",
+  "idLayoutRealSize": "Gerçek boyut",
+  "idLayoutFullWidth": "Tam genişlik"
 }

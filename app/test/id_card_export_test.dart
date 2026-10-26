@@ -26,8 +26,8 @@ void main() {
     return f.path;
   }
 
-  Future<Map<String, String>> run(String front, String back, {String title = 'ID Card 1'}) =>
-      ExportService().exportIdCardPdf(frontPath: front, backPath: back, title: title, outputDirectoryPath: out.path);
+  Future<Map<String, String>> run(String front, String back, {String title = 'ID Card 1', IdCardLayout layout = IdCardLayout.fullWidth}) =>
+      ExportService().exportIdCardPdf(frontPath: front, backPath: back, title: title, outputDirectoryPath: out.path, layout: layout);
 
   bool isRed(img.Pixel p) => p.r > 200 && p.g < 60 && p.b < 60;
   bool isBlue(img.Pixel p) => p.b > 200 && p.r < 100 && p.g > 80 && p.g < 160;
@@ -75,6 +75,42 @@ void main() {
     expect(sheet.height, 1800 + 40 + 800);
     expect(isRed(sheet.getPixel(10, 900)), isTrue);
     expect(isBlue(sheet.getPixel(1190, 1800 + 40 + 400)), isTrue);
+  });
+
+  group('real size (default)', () {
+    test('A4 canvas, 85.6 mm wide cards centred, white outside, front above back', () async {
+      final String front = side('f', 1000, 640, img.ColorRgb8(255, 0, 0));
+      final String back = side('b', 1000, 640, img.ColorRgb8(60, 120, 255));
+      final Map<String, String> r = await run(front, back, layout: IdCardLayout.realSize);
+      final img.Image sheet = img.decodePng(File(r['image']!).readAsBytesSync())!;
+      expect(sheet.width, 2480);
+      expect(sheet.height, 3508);
+      expect(isRed(sheet.getPixel(1240, 354 + 100)), isTrue, reason: 'front near the top');
+      expect(isBlue(sheet.getPixel(1240, 354 + 647 + 118 + 100)), isTrue, reason: 'back below the front');
+      final img.Pixel left = sheet.getPixel(300, 500);
+      expect(left.r > 250 && left.g > 250 && left.b > 250, isTrue, reason: 'white outside the card');
+      expect(isRed(sheet.getPixel(734 + 20, 354 + 100)), isTrue, reason: 'card left edge ~ x 734');
+      final img.Pixel just = sheet.getPixel(734 - 20, 354 + 100);
+      expect(just.r > 250 && just.g > 250, isTrue);
+      expect(String.fromCharCodes(File(r['pdf']!).readAsBytesSync().take(5)), '%PDF-');
+    });
+
+    test('portrait cards that are too tall shrink to fit the page', () async {
+      final String front = side('f', 600, 1800, img.ColorRgb8(255, 0, 0));
+      final String back = side('b', 600, 1800, img.ColorRgb8(60, 120, 255));
+      final Map<String, String> r = await run(front, back, layout: IdCardLayout.realSize);
+      final img.Image sheet = img.decodePng(File(r['image']!).readAsBytesSync())!;
+      expect(sheet.height, 3508);
+      expect(isRed(sheet.getPixel(1240, 700)), isTrue);
+      expect(isBlue(sheet.getPixel(1240, 3508 - 700)), isTrue);
+    });
+
+    test('12 MP photos work', () async {
+      final String front = side('f', 4000, 3000, img.ColorRgb8(255, 0, 0));
+      final String back = side('b', 4000, 3000, img.ColorRgb8(60, 120, 255));
+      final Map<String, String> r = await run(front, back, layout: IdCardLayout.realSize);
+      expect(img.decodePng(File(r['image']!).readAsBytesSync())!.width, 2480);
+    });
   });
 
   test('large photos (12 MP each) are handled', () async {

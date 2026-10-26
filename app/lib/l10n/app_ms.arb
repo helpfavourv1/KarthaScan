@@ -687,5 +687,7 @@
   "fillTypeHint": "Taip di sini",
   "clearPage": "Kosongkan halaman",
   "clearAllPages": "Kosongkan semua halaman",
-  "clearedCount": "{count} dikosongkan"
+  "clearedCount": "{count} dikosongkan",
+  "idLayoutRealSize": "Saiz sebenar",
+  "idLayoutFullWidth": "Lebar penuh"
 }

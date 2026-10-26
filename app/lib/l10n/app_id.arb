@@ -594,5 +594,7 @@
   "fillTypeHint": "Ketik di sini",
   "clearPage": "Hapus halaman",
   "clearAllPages": "Hapus semua halaman",
-  "clearedCount": "{count} dihapus"
+  "clearedCount": "{count} dihapus",
+  "idLayoutRealSize": "Ukuran asli",
+  "idLayoutFullWidth": "Lebar penuh"
 }

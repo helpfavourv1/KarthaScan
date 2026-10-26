@@ -594,5 +594,7 @@
   "fillTypeHint": "اكتب هنا",
   "clearPage": "مسح الصفحة",
   "clearAllPages": "مسح كل الصفحات",
-  "clearedCount": "تم مسح {count}"
+  "clearedCount": "تم مسح {count}",
+  "idLayoutRealSize": "الحجم الحقيقي",
+  "idLayoutFullWidth": "العرض الكامل"
 }

@@ -689,5 +689,13 @@
         "type": "int"
       }
     }
+  },
+  "idLayoutRealSize": "Real size",
+  "@idLayoutRealSize": {
+    "description": "ID card result sheet: each side at real card size on an A4 page"
+  },
+  "idLayoutFullWidth": "Full width",
+  "@idLayoutFullWidth": {
+    "description": "ID card result sheet: both sides scaled to the full page width"
   }
 }

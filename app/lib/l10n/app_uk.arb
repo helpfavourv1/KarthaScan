@@ -687,5 +687,7 @@
   "fillTypeHint": "Введіть текст",
   "clearPage": "Очистити сторінку",
   "clearAllPages": "Очистити всі сторінки",
-  "clearedCount": "Очищено: {count}"
+  "clearedCount": "Очищено: {count}",
+  "idLayoutRealSize": "Реальний розмір",
+  "idLayoutFullWidth": "На всю ширину"
 }

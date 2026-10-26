@@ -305,7 +305,7 @@ void main() {
       final File front = File(p.join(work.path, 'front.jpg'))..writeAsBytesSync(img.encodeJpg(photo(4000, 3000, img.ColorRgb8(255, 0, 0), 120), quality: 90));
       final File back = File(p.join(work.path, 'back.jpg'))..writeAsBytesSync(img.encodeJpg(photo(4000, 3000, img.ColorRgb8(60, 120, 255), 120), quality: 90));
       final DateTime s0 = DateTime.now();
-      final Map<String, String> r = await ExportService().exportIdCardPdf(frontPath: front.path, backPath: back.path, title: 'ID Card emulator', outputDirectoryPath: work.path);
+      final Map<String, String> r = await ExportService().exportIdCardPdf(frontPath: front.path, backPath: back.path, title: 'ID Card emulator', outputDirectoryPath: work.path, layout: IdCardLayout.fullWidth);
       final img.Image sheet = img.decodePng(File(r['image']!).readAsBytesSync())!;
       final int frontH = (3000 * 1200 / 4000).round();
       final img.Pixel top = sheet.getPixel(600, frontH ~/ 2), bottom = sheet.getPixel(600, sheet.height - frontH ~/ 2);

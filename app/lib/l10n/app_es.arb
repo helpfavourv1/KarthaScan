@@ -594,5 +594,7 @@
   "fillTypeHint": "Escribe aquí",
   "clearPage": "Borrar página",
   "clearAllPages": "Borrar todas las páginas",
-  "clearedCount": "{count} borrados"
+  "clearedCount": "{count} borrados",
+  "idLayoutRealSize": "Tamaño real",
+  "idLayoutFullWidth": "Ancho completo"
 }

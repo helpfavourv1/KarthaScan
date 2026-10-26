@@ -687,5 +687,7 @@
   "fillTypeHint": "Scrivi qui",
   "clearPage": "Cancella pagina",
   "clearAllPages": "Cancella tutte le pagine",
-  "clearedCount": "{count} cancellati"
+  "clearedCount": "{count} cancellati",
+  "idLayoutRealSize": "Dimensione reale",
+  "idLayoutFullWidth": "Larghezza piena"
 }

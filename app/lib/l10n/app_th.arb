@@ -687,5 +687,7 @@
   "fillTypeHint": "พิมพ์ที่นี่",
   "clearPage": "ล้างหน้า",
   "clearAllPages": "ล้างทุกหน้า",
-  "clearedCount": "ล้างแล้ว {count}"
+  "clearedCount": "ล้างแล้ว {count}",
+  "idLayoutRealSize": "ขนาดจริง",
+  "idLayoutFullWidth": "เต็มความกว้าง"
 }

@@ -687,5 +687,7 @@
   "fillTypeHint": "এখানে লিখুন",
   "clearPage": "পৃষ্ঠা মুছুন",
   "clearAllPages": "সব পৃষ্ঠা মুছুন",
-  "clearedCount": "{count}টি মুছে ফেলা হয়েছে"
+  "clearedCount": "{count}টি মুছে ফেলা হয়েছে",
+  "idLayoutRealSize": "আসল আকার",
+  "idLayoutFullWidth": "পূর্ণ প্রস্থ"
 }
