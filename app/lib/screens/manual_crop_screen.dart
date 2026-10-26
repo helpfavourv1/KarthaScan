@@ -2,12 +2,10 @@ import 'dart:async' show unawaited;
 import 'dart:io' show Directory, File;
 
 import 'package:file_picker/file_picker.dart';
-import 'package:pdf_render_plus/pdf_render.dart';
 import 'package:flutter/material.dart';
 import '../core/services/interstitial_ad_service.dart';
 import '../core/services/ad_pacing_service.dart';
 import '../widgets/conditional_banner.dart';
-import 'package:image/image.dart' as img;
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_cropper/image_cropper.dart';
@@ -22,6 +20,7 @@ import '../core/providers/settings_provider.dart';
 import '../core/services/debug_log_service.dart';
 import '../core/services/doc_scanner_service.dart';
 import '../core/services/export_service.dart';
+import '../core/services/pdf_import_service.dart';
 import '../core/services/ocr_service.dart';
 import '../core/services/share_service.dart';
 import '../core/services/downloads_service.dart';
@@ -42,6 +41,7 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
   AppLocalizations get l10n => AppLocalizations.of(context);
 
   late final ScanProvider _scanProvider;
+  final ValueNotifier<String?> _importStatus = ValueNotifier<String?>(null);
   late final SettingsProvider _settingsProvider;
   final OcrService _ocrService = OcrService();
   final ExportService _exportService = ExportService();
@@ -162,37 +162,21 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
   Future<void> _importPdf(String pdfPath) async {
     setState(() => _stage = _Stage.saving);
     try {
-      final doc = await PdfDocument.openFile(pdfPath);
-      final pageCount = doc.pageCount;
-      final appDir = await getApplicationDocumentsDirectory();
-      final scansDir = Directory(p.join(appDir.path, 'pdf_import_pages'));
-      await scansDir.create(recursive: true);
-
-      final savedPaths = <String>[];
-      try {
-      for (int i = 1; i <= pageCount; i++) {
-        final page = await doc.getPage(i);
-        final renderedImage = await page.render(width: (page.width * 2).round(), height: (page.height * 2).round());
-        final rawPixels = renderedImage.pixels;
-        final pngImage = img.Image.fromBytes(
-          width: renderedImage.width,
-          height: renderedImage.height,
-          bytes: rawPixels.buffer,
-          numChannels: 4,
-        );
-        final pngBytes = img.encodePng(pngImage);
-        final outPath = p.join(scansDir.path, 'pdf_${DateTime.now().microsecondsSinceEpoch}_$i.png');
-        await File(outPath).writeAsBytes(pngBytes);
-        savedPaths.add(outPath);
-      }
-      } finally {
-        doc.dispose();
-      }
-
-      String ocrText = '';
-      try {
-        ocrText = await _ocrService.recognizeTextForPages(savedPaths);
-      } catch (_) {}
+      final imported = await PdfImportService().importPages(
+        pdfPath,
+        isCancelled: () => !mounted,
+        onProgress: (PdfImportProgress pr) {
+          if (!mounted) return;
+          final int? minutes = pr.eta == null ? null : (pr.eta!.inSeconds / 60).ceil();
+          _importStatus.value = minutes == null || pr.page < 3 || minutes < 1
+              ? l10n.readingPageProgress(pr.page, pr.total)
+              : l10n.readingPageEta(pr.page, pr.total, minutes);
+        },
+      );
+      if (imported.cancelled || imported.pagePaths.isEmpty) return;
+      final savedPaths = imported.pagePaths;
+      // Real text is already known; only picture pages are read by OCR, in the background.
+      final String ocrText = imported.text;
 
       final now = DateTime.now();
       final document = ScanDocument(
@@ -210,6 +194,7 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
       if (!mounted) return;
       if (success) {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.pdfImportedAsDocument)));
+        if (imported.pagesNeedingOcr.isNotEmpty) unawaited(_scanProvider.refreshOcrText(document.id));
         await Future.delayed(const Duration(milliseconds: 300));
         if (!mounted) return;
         await AdPacingService.instance.recordScan();
@@ -221,6 +206,7 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('${l10n.pdfImportErrorPrefix}: $e')));
     } finally {
+      _importStatus.value = null;
       if (mounted) setState(() => _stage = _Stage.pickImage);
     }
   }
@@ -688,7 +674,20 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
         child: Padding(
           padding: const EdgeInsets.all(AppSpacing.md),
           child: _stage == _Stage.saving
-              ? const Center(child: CircularProgressIndicator())
+              ? Center(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const CircularProgressIndicator(),
+                      ValueListenableBuilder<String?>(
+                        valueListenable: _importStatus,
+                        builder: (context, status, _) => status == null
+                            ? const SizedBox.shrink()
+                            : Padding(padding: const EdgeInsets.only(top: 16), child: Text(status, key: const ValueKey('importStatus'))),
+                      ),
+                    ],
+                  ),
+                )
               : Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [

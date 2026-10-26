@@ -14,6 +14,7 @@ import 'package:image/image.dart' as img;
 import 'package:integration_test/integration_test.dart';
 import 'package:katharscan/core/services/conversion_workspace.dart';
 import 'package:katharscan/core/services/export_service.dart';
+import 'package:katharscan/core/services/pdf_import_service.dart';
 import 'package:katharscan/core/services/pdf_text_extractor.dart';
 import 'package:katharscan/core/services/local_storage.dart';
 import 'package:katharscan/core/services/ocr_service.dart';
@@ -337,6 +338,42 @@ void main() {
       final String t = made.isEmpty ? '' : made.first.readAsStringSync();
       check('C6-range-dialog', dialog && t.contains('page 3 of 30') && t.contains('page 5 of 30') && !t.contains('page 2 of 30') && !t.contains('page 6 of 30'),
           'dialog shown: $dialog, text: "${t.replaceAll('\n', ' ').trim()}"');
+    });
+
+
+    // ---- C7: PDF import as a document (Import PDF): speed, memory, text, cancel ----
+    await section('C7-pdf-import', () async {
+      final Directory out = Directory(p.join(docs.path, 'c7_pages'))..createSync(recursive: true);
+      int lastPage = 0;
+      final DateTime t0 = DateTime.now();
+      final PdfImportResult r = await PdfImportService().importPages(pdf100.path, outDir: out.path, onProgress: (PdfImportProgress pr) => lastPage = pr.page);
+      final int secs = DateTime.now().difference(t0).inSeconds;
+      final img.Image? first = img.decodePng(File(r.pagePaths.first).readAsBytesSync());
+      check('C7-import-100', r.pagePaths.length == 100 && lastPage == 100 && first != null && r.pagesNeedingOcr.isEmpty && r.text.contains('Alpha page 100 of 100'),
+          '${r.pagePaths.length} pages in $secs s (was 34 s render + 222 s OCR before), text from the PDF: ${r.text.length} characters, pages needing OCR: ${r.pagesNeedingOcr.length}, first page ${first?.width}x${first?.height}');
+      if (out.existsSync()) out.deleteSync(recursive: true);
+
+      // Cancel part-way: nothing may be left behind.
+      out.createSync(recursive: true);
+      int calls = 0;
+      final PdfImportResult c = await PdfImportService().importPages(pdf100.path, outDir: out.path, isCancelled: () => ++calls > 10);
+      check('C7-cancel-leaves-nothing', c.cancelled && c.pagePaths.isEmpty && out.listSync().isEmpty, 'cancelled=${c.cancelled}, files left: ${out.listSync().length}');
+      out.deleteSync(recursive: true);
+
+      // A pure scan: no text in the PDF, pages are flagged for background OCR.
+      final PdfImportResult scanR = await PdfImportService().importPages(File(p.join(work.path, 'scanned.pdf')).path, outDir: out.path);
+      check('C7-scan-flagged-for-ocr', scanR.pagePaths.length == 2 && scanR.pagesNeedingOcr.length == 2 && scanR.text.isEmpty, '${scanR.pagePaths.length} pages, ${scanR.pagesNeedingOcr.length} flagged for OCR');
+      if (out.existsSync()) out.deleteSync(recursive: true);
+
+      // A corrupt PDF fails cleanly.
+      Object? err;
+      final File corrupt = File(p.join(work.path, 'corrupt7.pdf'))..writeAsBytesSync(Uint8List.fromList(List<int>.generate(500, (int i) => i % 256)));
+      try {
+        await PdfImportService().importPages(corrupt.path, outDir: out.path);
+      } catch (e) {
+        err = e;
+      }
+      check('C7-corrupt-fails-cleanly', err != null, 'error: ${err.toString().split('\n').first}');
     });
 
     // ---- C5: bad files must fail with a message, never hang or crash ----
