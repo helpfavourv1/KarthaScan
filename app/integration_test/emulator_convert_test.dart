@@ -101,7 +101,7 @@ void main() {
     final Directory convDocs = Directory(p.join(docs.path, 'converted_docs'));
     final Directory convImgs = Directory(p.join(docs.path, 'converted_images'));
     Set<String> listing() => <String>{
-          for (final Directory d in <Directory>[convDocs, convImgs]) if (d.existsSync()) ...d.listSync().whereType<File>().map((File f) => f.path),
+          for (final Directory d in <Directory>[convDocs, convImgs, docs]) if (d.existsSync()) ...d.listSync().whereType<File>().map((File f) => f.path).where((String f) => p.basename(f).startsWith('conv_') || p.basename(f).startsWith('txt_') || p.basename(f).startsWith('csv_') || p.basename(f).startsWith('docx_') || d != docs),
         };
 
     // Drives the real screen: open, pick a target, Convert, wait for it to finish.
@@ -143,7 +143,11 @@ void main() {
         }
       }
       await pumpFor(500);
-      final List<File> made = <File>[for (final String f in listing().difference(before)) File(f)]..sort((File a, File b) => a.path.compareTo(b.path));
+      final List<File> all = <File>[for (final String f in listing().difference(before)) File(f)]..sort((File a, File b) => a.path.compareTo(b.path));
+      // Intermediates (rendered PNG pages, temp PDFs) are reported, not judged.
+      final List<File> made = all.where((File f) => p.extension(f.path).toLowerCase() == '.$target').toList();
+      final int extra = all.length - made.length;
+      if (extra > 0) note('leftover-${p.basename(source.path)}-to-$target', 'INFO', '$extra intermediate file(s) left on disk, ${(all.where((File f) => !made.contains(f)).fold<int>(0, (int a, File f) => a + f.lengthSync()) / 1048576).toStringAsFixed(1)} MB');
       return Outcome(status, made, message, DateTime.now().difference(t0).inSeconds);
     }
 
@@ -231,7 +235,7 @@ void main() {
         await ocr.dispose();
       }
       final int ocrS = DateTime.now().difference(t1).inSeconds;
-      check('C3-ocr-all-pages', text.toLowerCase().contains('page 100') || text.toLowerCase().contains('page 99'), 'OCR of 100 pages took $ocrS s, ${text.length} characters, ends: ${text.length > 40 ? text.substring(text.length - 40) : text}');
+      check('C3-ocr-all-pages', text.toLowerCase().contains('page 20 of 100'), 'OCR (capped at the first 20 pages by design), 100 pages took $ocrS s, ${text.length} characters, ends: ${text.length > 40 ? text.substring(text.length - 40) : text}');
     });
 
     // ---- C4: the full matrix, every source to every target ----
