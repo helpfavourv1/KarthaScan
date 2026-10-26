@@ -129,7 +129,7 @@ class PdfTextExtractor {
             } catch (_) {}
           }
         }
-        final String pageResult = text ?? '';
+        final String pageResult = text;
         await cp.writeAsString(pageResult);
         pages.add(pageResult);
         worked++;
