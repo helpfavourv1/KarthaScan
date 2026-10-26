@@ -8,12 +8,12 @@ import 'debug_log_service.dart';
 class PdfToImagesService {
   final DebugLogService _log = DebugLogService();
 
-  Future<List<String>> convertToImages(String pdfPath, {void Function(double, String)? onProgress}) async {
+  Future<List<String>> convertToImages(String pdfPath, {void Function(double, String)? onProgress, String? outDir}) async {
     _log.log('PDF_TO_IMAGES', 'Starting: $pdfPath');
     final doc = await PdfDocument.openFile(pdfPath);
-    final appDir = await getApplicationDocumentsDirectory();
-    final outDir = Directory(p.join(appDir.path, 'converted_images'));
-    await outDir.create(recursive: true);
+    final String dirPath = outDir ?? p.join((await getApplicationDocumentsDirectory()).path, 'converted_images');
+    final Directory outputDir = Directory(dirPath);
+    await outputDir.create(recursive: true);
 
     final List<String> paths = [];
     try {
@@ -31,7 +31,7 @@ class PdfToImagesService {
         bytes: rendered.pixels.buffer,
         numChannels: 4,
       );
-      final outPath = p.join(outDir.path, 'pdf_${DateTime.now().microsecondsSinceEpoch}_$i.png');
+      final outPath = p.join(outputDir.path, 'pdf_${DateTime.now().microsecondsSinceEpoch}_$i.png');
       await File(outPath).writeAsBytes(img.encodePng(pngImage));
       paths.add(outPath);
     }

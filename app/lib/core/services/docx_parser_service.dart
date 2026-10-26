@@ -12,7 +12,7 @@ import 'pdf_fonts.dart';
 class DocxParserService {
   final DebugLogService _log = DebugLogService();
 
-  Future<String> convertToPdf(String docxPath) async {
+  Future<String> convertToPdf(String docxPath, {String? outDir}) async {
     _log.log('DOCX_PARSER', 'Starting: $docxPath');
     final bytes = await File(docxPath).readAsBytes();
     final archive = ZipDecoder().decodeBytes(bytes);
@@ -46,14 +46,14 @@ class DocxParserService {
       ),
     );
     
-    final appDir = await getApplicationDocumentsDirectory();
-    final outPath = p.join(appDir.path, 'docx_${DateTime.now().microsecondsSinceEpoch}.pdf');
+    final String dirPath = outDir ?? (await getApplicationDocumentsDirectory()).path;
+    final outPath = p.join(dirPath, 'docx_${DateTime.now().microsecondsSinceEpoch}.pdf');
     await File(outPath).writeAsBytes(await pdf.save());
     _log.log('DOCX_PARSER', 'Done: $outPath (${paragraphs.length} paragraphs)');
     return outPath;
   }
 
-  Future<String> convertToTxt(String docxPath) async {
+  Future<String> convertToTxt(String docxPath, {String? outDir}) async {
     _log.log('DOCX_PARSER', 'Starting txt: $docxPath');
     final bytes = await File(docxPath).readAsBytes();
     final archive = ZipDecoder().decodeBytes(bytes);
@@ -74,8 +74,8 @@ class DocxParserService {
       if (texts.isNotEmpty) paragraphs.add(texts.join(''));
     }
 
-    final appDir = await getApplicationDocumentsDirectory();
-    final outPath = p.join(appDir.path, 'docx_${DateTime.now().microsecondsSinceEpoch}.txt');
+    final String dirPath = outDir ?? (await getApplicationDocumentsDirectory()).path;
+    final outPath = p.join(dirPath, 'docx_${DateTime.now().microsecondsSinceEpoch}.txt');
     await File(outPath).writeAsString(paragraphs.join('\n'));
     _log.log('DOCX_PARSER', 'Done txt: $outPath (${paragraphs.length} paragraphs)');
     return outPath;

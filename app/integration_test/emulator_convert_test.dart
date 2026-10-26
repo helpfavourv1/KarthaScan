@@ -147,7 +147,11 @@ void main() {
       // Intermediates (rendered PNG pages, temp PDFs) are reported, not judged.
       final List<File> made = all.where((File f) => p.extension(f.path).toLowerCase() == '.$target').toList();
       final int extra = all.length - made.length;
-      if (extra > 0) note('leftover-${p.basename(source.path)}-to-$target', 'INFO', '$extra intermediate file(s) left on disk, ${(all.where((File f) => !made.contains(f)).fold<int>(0, (int a, File f) => a + f.lengthSync()) / 1048576).toStringAsFixed(1)} MB');
+      // Nothing but the deliverable may remain, and the scratch area must be empty.
+      final Directory work = Directory(p.join(docs.path, 'work'));
+      final int scratch = work.existsSync() ? work.listSync().length : 0;
+      note('clean-${p.basename(source.path)}-to-$target', extra == 0 && scratch == 0 ? 'PASS' : 'FAIL',
+          '$extra intermediate file(s) left (${all.where((File f) => !made.contains(f)).map((File f) => p.basename(f.path)).take(3).join(', ')}), scratch folders: $scratch');
       return Outcome(status, made, message, DateTime.now().difference(t0).inSeconds);
     }
 
@@ -178,9 +182,10 @@ void main() {
           final Uint8List b = o.files.first.readAsBytesSync();
           if (String.fromCharCodes(b.take(5)) != '%PDF-') return 'not a PDF';
           final int n = pdfPages(o.files.first);
-          if (n < pages) return 'PDF has $n pages, want at least $pages';
+          if (n < (pages > 0 ? pages : 1)) return 'PDF has $n pages, want at least ${pages > 0 ? pages : 1}';
         case 'jpg' || 'png':
-          if (o.files.length != pages) return '${o.files.length} pictures, want $pages';
+          // Text-like sources paginate (80 lines -> several pictures); fixed-page sources must match.
+          if (pages > 0 ? o.files.length != pages : o.files.isEmpty) return '${o.files.length} pictures, want ${pages > 0 ? pages : 'at least 1'}';
           for (final File f in o.files) {
             final img.Image? im = target == 'jpg' ? img.decodeJpg(f.readAsBytesSync()) : img.decodePng(f.readAsBytesSync());
             if (im == null) return '${p.basename(f.path)} does not decode';
@@ -242,9 +247,9 @@ void main() {
     final Map<String, (File, String, int, String?)> sources = <String, (File, String, int, String?)>{
       'pdf': (pdf3, 'pdf', 3, 'alpha'),
       'image': (image, 'image', 1, 'alpha'),
-      'txt': (txt, 'txt', 1, 'Alpha'),
-      'csv': (csv, 'csv', 1, 'Alpha'),
-      'docx': (docx, 'docx', 1, 'Alpha'),
+      'txt': (txt, 'txt', 0, 'Alpha'),
+      'csv': (csv, 'csv', 0, 'Alpha'),
+      'docx': (docx, 'docx', 0, 'Alpha'),
     };
     for (final MapEntry<String, (File, String, int, String?)> s in sources.entries) {
       for (final String t in targets) {

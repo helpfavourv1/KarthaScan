@@ -8,6 +8,7 @@ import '../core/services/interstitial_ad_service.dart';
 import '../widgets/conditional_banner.dart';
 import 'package:go_router/go_router.dart';
 import 'package:path/path.dart' as p;
+import '../core/services/conversion_workspace.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:image/image.dart' as img;
@@ -106,23 +107,19 @@ class _ConvertScreenState extends State<ConvertScreen> {
     }
   }
 
-  /// Removes converted files older than a day that no document uses.
-  Future<void> _cleanOldConverted(Directory dir) async {
+  /// Removes leftovers from earlier conversions that no document uses.
+  Future<void> _sweepOld() async {
     try {
       final used = <String>{};
       for (final d in Provider.of<ScanProvider>(context, listen: false).documents.value) {
         used.addAll(d.pagePaths);
         used.add(d.thumbnailPath);
       }
-      final cutoff = DateTime.now().subtract(const Duration(days: 1));
-      await for (final e in dir.list()) {
-        if (e is! File || used.contains(e.path)) continue;
-        if ((await e.lastModified()).isBefore(cutoff)) await e.delete();
-      }
+      await (await ConversionWorkspace.create()).sweep(keep: used);
     } catch (_) {}
   }
 
-  Future<List<String>> _convert() async {
+  Future<List<String>> _convert(ConversionJob job) async {
     final l10n = AppLocalizations.of(context);
     final String src = widget.sourcePath;
     final String type = widget.sourceType;
@@ -130,7 +127,7 @@ class _ConvertScreenState extends State<ConvertScreen> {
     final appDir = await getApplicationDocumentsDirectory();
     final outDir = Directory(p.join(appDir.path, 'converted_docs'));
     await outDir.create(recursive: true);
-    await _cleanOldConverted(outDir);
+    await _sweepOld();
     final ts = DateTime.now().microsecondsSinceEpoch;
 
     List<String> finalPaths = [];
@@ -144,7 +141,7 @@ class _ConvertScreenState extends State<ConvertScreen> {
         finalPaths.add(out);
       } else if (_target == _TargetFormat.csv) {
         _report(0.3, l10n.progressExtractingText);
-        final pngs = await PdfToImagesService().convertToImages(src, onProgress: (v, l) => _report(0.3 + v * 0.3, l));
+        final pngs = await PdfToImagesService().convertToImages(src, outDir: job.dir.path, onProgress: (v, l) => _report(0.3 + v * 0.3, l));
         if (pngs.isNotEmpty) {
           final ocr = OcrService();
           final text = StringBuffer();
@@ -165,7 +162,7 @@ class _ConvertScreenState extends State<ConvertScreen> {
         }
       } else if (_target == _TargetFormat.txt) {
         _report(0.3, l10n.progressRasterizing);
-        final pngs = await PdfToImagesService().convertToImages(src, onProgress: (v, l) => _report(0.3 + v * 0.4, l));
+        final pngs = await PdfToImagesService().convertToImages(src, outDir: job.dir.path, onProgress: (v, l) => _report(0.3 + v * 0.4, l));
         final sb = StringBuffer();
         final ocr = OcrService();
         try {
@@ -247,7 +244,7 @@ class _ConvertScreenState extends State<ConvertScreen> {
         final out = await _exportService.buildDocxFromText(text, outDir.path, 'conv_$ts');
         finalPaths.add(out);
       } else {
-        intermediatePdf = await TxtToPdfService().convertToPdf(src, onProgress: (v, l) => _report(0.1 + v * 0.4, l));
+        intermediatePdf = await TxtToPdfService().convertToPdf(src, outDir: job.dir.path, onProgress: (v, l) => _report(0.1 + v * 0.4, l));
       }
     } else if (type == 'csv') {
       if (_target == _TargetFormat.txt) {
@@ -266,15 +263,15 @@ class _ConvertScreenState extends State<ConvertScreen> {
         final out = await _exportService.buildDocxFromText(text, outDir.path, 'conv_$ts');
         finalPaths.add(out);
       } else {
-        intermediatePdf = await CsvToPdfService().convertToPdf(src, onProgress: (v, l) => _report(0.1 + v * 0.4, l));
+        intermediatePdf = await CsvToPdfService().convertToPdf(src, outDir: job.dir.path, onProgress: (v, l) => _report(0.1 + v * 0.4, l));
       }
     } else if (type == 'docx') {
       if (_target == _TargetFormat.txt) {
         _report(0.4, l10n.progressExtractingText);
-        finalPaths.add(await DocxParserService().convertToTxt(src));
+        finalPaths.add(await DocxParserService().convertToTxt(src, outDir: outDir.path));
       } else if (_target == _TargetFormat.csv) {
         _report(0.4, l10n.progressExtractingText);
-        final txtPath = await DocxParserService().convertToTxt(src);
+        final txtPath = await DocxParserService().convertToTxt(src, outDir: job.dir.path);
         final content = await File(txtPath).readAsString();
         final out = p.join(outDir.path, 'conv_$ts.csv');
         await File(out).writeAsString(csvFromText(content));
@@ -285,22 +282,35 @@ class _ConvertScreenState extends State<ConvertScreen> {
         await File(src).copy(out);
         finalPaths.add(out);
       } else {
-        intermediatePdf = await DocxParserService().convertToPdf(src);
+        intermediatePdf = await DocxParserService().convertToPdf(src, outDir: job.dir.path);
       }
     }
 
     if (intermediatePdf != null) {
       if (_target == _TargetFormat.pdf) {
         _report(0.7, l10n.progressSaving);
-        finalPaths.add(intermediatePdf);
+        // The scratch folder is deleted when the job ends, so the PDF moves out of it.
+        if (p.isWithin(job.dir.path, intermediatePdf)) {
+          final String moved = p.join(outDir.path, 'conv_$ts.pdf');
+          await File(intermediatePdf).copy(moved);
+          finalPaths.add(moved);
+        } else {
+          finalPaths.add(intermediatePdf);
+        }
       } else if (_target == _TargetFormat.docx) {
         _report(0.6, l10n.progressRasterizing);
-        final pngs = await PdfToImagesService().convertToImages(intermediatePdf, onProgress: (v, l) => _report(0.5 + v * 0.3, l));
+        final pngs = await PdfToImagesService().convertToImages(intermediatePdf, outDir: job.dir.path, onProgress: (v, l) => _report(0.5 + v * 0.3, l));
         _report(0.9, l10n.progressBuildingDocx);
         final out = await _exportService.buildDocxFromImages(pngs, outDir.path, 'conv_$ts');
         finalPaths.add(out);
       } else {
-        final pngs = await PdfToImagesService().convertToImages(intermediatePdf, onProgress: (v, l) => _report(0.5 + v * 0.4, l));
+        // PNG pictures are the deliverable, so they go to the output folder; for JPG
+        // they are only a step on the way and live in the scratch folder.
+        final pngs = await PdfToImagesService().convertToImages(
+          intermediatePdf,
+          outDir: _target == _TargetFormat.jpg ? job.dir.path : p.join(appDir.path, 'converted_images'),
+          onProgress: (v, l) => _report(0.5 + v * 0.4, l),
+        );
         if (_target == _TargetFormat.jpg) {
           final jpgs = <String>[];
           for (int i = 0; i < pngs.length; i++) {
@@ -332,8 +342,11 @@ class _ConvertScreenState extends State<ConvertScreen> {
       _progress = 0.0;
       _progressLabel = AppLocalizations.of(context).conversionStarting;
     });
+    ConversionJob? job;
     try {
-      final paths = await _convert();
+      final workspace = await ConversionWorkspace.create();
+      job = await workspace.begin('convert');
+      final paths = await _convert(job);
       if (!mounted) return;
 
       if (_action == _ActionType.saveToDownloads) {
@@ -403,6 +416,7 @@ class _ConvertScreenState extends State<ConvertScreen> {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('${AppLocalizations.of(context).conversionFailedPrefix}: $e')));
     } finally {
+      await job?.dispose();
       if (mounted) setState(() => _isConverting = false);
     }
   }

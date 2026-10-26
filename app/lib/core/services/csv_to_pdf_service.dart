@@ -11,7 +11,7 @@ import 'pdf_fonts.dart';
 class CsvToPdfService {
   final DebugLogService _log = DebugLogService();
 
-  Future<String> convertToPdf(String csvPath, {void Function(double, String)? onProgress}) async {
+  Future<String> convertToPdf(String csvPath, {void Function(double, String)? onProgress, String? outDir}) async {
     _log.log('CSV_TO_PDF', 'Starting: $csvPath');
     onProgress?.call(0.2, 'Reading…');
     final text = await File(csvPath).readAsString();
@@ -78,8 +78,8 @@ class CsvToPdfService {
     );
 
     onProgress?.call(0.9, 'Saving…');
-    final appDir = await getApplicationDocumentsDirectory();
-    final outPath = p.join(appDir.path, 'csv_${DateTime.now().microsecondsSinceEpoch}.pdf');
+    final String dirPath = outDir ?? (await getApplicationDocumentsDirectory()).path;
+    final outPath = p.join(dirPath, 'csv_${DateTime.now().microsecondsSinceEpoch}.pdf');
     await File(outPath).writeAsBytes(await pdf.save());
     onProgress?.call(1.0, 'Done');
     _log.log('CSV_TO_PDF', 'Done: $outPath');

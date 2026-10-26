@@ -9,6 +9,7 @@
 // constraint in constants.dart.
 
 import 'dart:async' show Completer, unawaited;
+import '../services/conversion_workspace.dart';
 import 'dart:io' show File, Directory;
 import 'dart:typed_data';
 import 'dart:ui' show Rect;
@@ -75,6 +76,20 @@ class ScanProvider {
     } finally {
       isLoading.value = false;
     }
+    unawaited(_sweepTemporaryFiles());
+  }
+
+  /// Startup housekeeping: removes scratch folders and converted output left by
+  /// crashed or abandoned jobs. Files a document uses are never touched.
+  Future<void> _sweepTemporaryFiles() async {
+    try {
+      final Set<String> keep = <String>{};
+      for (final ScanDocument d in documents.value) {
+        keep.addAll(d.pagePaths);
+        keep.add(d.thumbnailPath);
+      }
+      await (await ConversionWorkspace.create()).sweep(keep: keep);
+    } catch (_) {}
   }
 
   Future<void> refresh() async {

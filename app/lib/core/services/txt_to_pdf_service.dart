@@ -10,7 +10,7 @@ import 'pdf_fonts.dart';
 class TxtToPdfService {
   final DebugLogService _log = DebugLogService();
 
-  Future<String> convertToPdf(String txtPath, {void Function(double, String)? onProgress}) async {
+  Future<String> convertToPdf(String txtPath, {void Function(double, String)? onProgress, String? outDir}) async {
     _log.log('TXT_TO_PDF', 'Starting: $txtPath');
     onProgress?.call(0.2, 'Reading…');
     final text = await File(txtPath).readAsString();
@@ -30,8 +30,8 @@ class TxtToPdfService {
     );
 
     onProgress?.call(0.8, 'Building PDF…');
-    final appDir = await getApplicationDocumentsDirectory();
-    final outPath = p.join(appDir.path, 'txt_${DateTime.now().microsecondsSinceEpoch}.pdf');
+    final String dirPath = outDir ?? (await getApplicationDocumentsDirectory()).path;
+    final outPath = p.join(dirPath, 'txt_${DateTime.now().microsecondsSinceEpoch}.pdf');
     await File(outPath).writeAsBytes(await pdf.save());
     onProgress?.call(1.0, 'Saving…');
     _log.log('TXT_TO_PDF', 'Done: $outPath');
