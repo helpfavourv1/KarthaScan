@@ -304,29 +304,16 @@ class _ConvertScreenState extends State<ConvertScreen> {
         final out = await _exportService.buildDocxFromImages(pngs, outDir.path, 'conv_$ts');
         finalPaths.add(out);
       } else {
-        // PNG pictures are the deliverable, so they go to the output folder; for JPG
-        // they are only a step on the way and live in the scratch folder.
-        final pngs = await PdfToImagesService().convertToImages(
+        // One pass, one page at a time, straight to the requested format.
+        final bool asJpg = _target == _TargetFormat.jpg;
+        finalPaths = await PdfToImagesService().convertToImages(
           intermediatePdf,
-          outDir: _target == _TargetFormat.jpg ? job.dir.path : p.join(appDir.path, 'converted_images'),
-          onProgress: (v, l) => _report(0.5 + v * 0.4, l),
+          outDir: asJpg ? outDir.path : p.join(appDir.path, 'converted_images'),
+          format: asJpg ? PageImageFormat.jpg : PageImageFormat.png,
+          isCancelled: () => _cancelRequested,
+          onProgress: (v, l) => _report(0.5 + v * 0.45, l),
         );
-        if (_target == _TargetFormat.jpg) {
-          final jpgs = <String>[];
-          for (int i = 0; i < pngs.length; i++) {
-            _report(0.9 + 0.09 * (i / pngs.length), l10n.progressEncodingPage(i + 1, pngs.length));
-            final bytes = await File(pngs[i]).readAsBytes();
-            final decoded = img.decodeImage(bytes);
-            if (decoded != null) {
-              final jpgPath = p.join(outDir.path, 'conv_${ts}_${p.basenameWithoutExtension(pngs[i])}.jpg');
-              await File(jpgPath).writeAsBytes(Uint8List.fromList(img.encodeJpg(decoded)));
-              jpgs.add(jpgPath);
-            }
-          }
-          finalPaths = jpgs;
-        } else {
-          finalPaths = pngs;
-        }
+        if (_cancelRequested) throw const _ConversionCancelled();
       }
     }
 
