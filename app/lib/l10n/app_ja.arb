@@ -596,5 +596,11 @@
   "clearAllPages": "全ページをクリア",
   "clearedCount": "{count}件をクリアしました",
   "idLayoutRealSize": "実寸",
-  "idLayoutFullWidth": "全幅"
+  "idLayoutFullWidth": "全幅",
+  "pagesToReadTitle": "読み取るページ",
+  "pagesToReadHint": "このPDFは{count}ページです。画像のページはOCRで読み取ります(1ページ約10秒)。テキストのページは即時です。",
+  "pageFromLabel": "開始ページ",
+  "pageToLabel": "終了ページ",
+  "readingPageProgress": "{page}/{total}ページ",
+  "readingPageEta": "{page}/{total}ページ・残り約{minutes}分"
 }

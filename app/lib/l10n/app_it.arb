@@ -689,5 +689,11 @@
   "clearAllPages": "Cancella tutte le pagine",
   "clearedCount": "{count} cancellati",
   "idLayoutRealSize": "Dimensione reale",
-  "idLayoutFullWidth": "Larghezza piena"
+  "idLayoutFullWidth": "Larghezza piena",
+  "pagesToReadTitle": "Pagine da leggere",
+  "pagesToReadHint": "Questo PDF ha {count} pagine. Le pagine immagine vengono lette con OCR (circa 10 secondi ciascuna); quelle con testo reale sono istantanee.",
+  "pageFromLabel": "Dalla pagina",
+  "pageToLabel": "Alla pagina",
+  "readingPageProgress": "Pagina {page} di {total}",
+  "readingPageEta": "Pagina {page} di {total} · circa {minutes} min rimanenti"
 }

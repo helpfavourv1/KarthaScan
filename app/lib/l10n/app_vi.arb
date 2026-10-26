@@ -689,5 +689,11 @@
   "clearAllPages": "Xóa tất cả trang",
   "clearedCount": "Đã xóa {count}",
   "idLayoutRealSize": "Kích thước thật",
-  "idLayoutFullWidth": "Toàn chiều rộng"
+  "idLayoutFullWidth": "Toàn chiều rộng",
+  "pagesToReadTitle": "Các trang cần đọc",
+  "pagesToReadHint": "PDF này có {count} trang. Trang là hình ảnh được đọc bằng OCR (khoảng 10 giây mỗi trang); trang có văn bản thật thì tức thì.",
+  "pageFromLabel": "Từ trang",
+  "pageToLabel": "Đến trang",
+  "readingPageProgress": "Trang {page}/{total}",
+  "readingPageEta": "Trang {page}/{total} · còn khoảng {minutes} phút"
 }

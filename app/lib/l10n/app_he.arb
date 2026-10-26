@@ -596,5 +596,11 @@
   "clearAllPages": "נקה את כל העמודים",
   "clearedCount": "נוקו {count}",
   "idLayoutRealSize": "גודל אמיתי",
-  "idLayoutFullWidth": "רוחב מלא"
+  "idLayoutFullWidth": "רוחב מלא",
+  "pagesToReadTitle": "עמודים לקריאה",
+  "pagesToReadHint": "ל-PDF הזה {count} עמודים. עמודים שהם תמונות נקראים ב-OCR (כ-10 שניות כל אחד); עמודי טקסט אמיתי מיידיים.",
+  "pageFromLabel": "מעמוד",
+  "pageToLabel": "עד עמוד",
+  "readingPageProgress": "עמוד {page} מתוך {total}",
+  "readingPageEta": "עמוד {page} מתוך {total} · נותרו כ-{minutes} דק׳"
 }

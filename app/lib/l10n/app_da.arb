@@ -689,5 +689,11 @@
   "clearAllPages": "Ryd alle sider",
   "clearedCount": "Ryddet {count}",
   "idLayoutRealSize": "Faktisk størrelse",
-  "idLayoutFullWidth": "Fuld bredde"
+  "idLayoutFullWidth": "Fuld bredde",
+  "pagesToReadTitle": "Sider der skal læses",
+  "pagesToReadHint": "Denne PDF har {count} sider. Sider der er billeder læses med OCR (ca. 10 sekunder hver); sider med rigtig tekst er øjeblikkelige.",
+  "pageFromLabel": "Fra side",
+  "pageToLabel": "Til side",
+  "readingPageProgress": "Side {page} af {total}",
+  "readingPageEta": "Side {page} af {total} · ca. {minutes} min tilbage"
 }

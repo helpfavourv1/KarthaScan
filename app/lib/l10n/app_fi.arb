@@ -689,5 +689,11 @@
   "clearAllPages": "Tyhjennä kaikki sivut",
   "clearedCount": "Tyhjennetty {count}",
   "idLayoutRealSize": "Todellinen koko",
-  "idLayoutFullWidth": "Koko leveys"
+  "idLayoutFullWidth": "Koko leveys",
+  "pagesToReadTitle": "Luettavat sivut",
+  "pagesToReadHint": "Tässä PDF:ssä on {count} sivua. Kuvasivut luetaan tekstintunnistuksella (noin 10 sekuntia per sivu); oikeaa tekstiä sisältävät sivut heti.",
+  "pageFromLabel": "Alkaen sivulta",
+  "pageToLabel": "Sivulle asti",
+  "readingPageProgress": "Sivu {page} / {total}",
+  "readingPageEta": "Sivu {page} / {total} · noin {minutes} min jäljellä"
 }

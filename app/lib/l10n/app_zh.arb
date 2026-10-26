@@ -596,5 +596,11 @@
   "clearAllPages": "清除所有页",
   "clearedCount": "已清除 {count} 项",
   "idLayoutRealSize": "实际大小",
-  "idLayoutFullWidth": "全宽"
+  "idLayoutFullWidth": "全宽",
+  "pagesToReadTitle": "要读取的页面",
+  "pagesToReadHint": "此 PDF 共 {count} 页。图片页面使用 OCR 读取(每页约 10 秒);含真实文字的页面则立即完成。",
+  "pageFromLabel": "起始页",
+  "pageToLabel": "结束页",
+  "readingPageProgress": "第 {page} / {total} 页",
+  "readingPageEta": "第 {page} / {total} 页 · 约剩 {minutes} 分钟"
 }

@@ -596,5 +596,11 @@
   "clearAllPages": "모든 페이지 지우기",
   "clearedCount": "{count}개 지움",
   "idLayoutRealSize": "실제 크기",
-  "idLayoutFullWidth": "전체 너비"
+  "idLayoutFullWidth": "전체 너비",
+  "pagesToReadTitle": "읽을 페이지",
+  "pagesToReadHint": "이 PDF는 {count}페이지입니다. 이미지 페이지는 OCR로 읽으며(페이지당 약 10초), 실제 텍스트 페이지는 즉시 처리됩니다.",
+  "pageFromLabel": "시작 페이지",
+  "pageToLabel": "끝 페이지",
+  "readingPageProgress": "{page}/{total} 페이지",
+  "readingPageEta": "{page}/{total} 페이지 · 약 {minutes}분 남음"
 }

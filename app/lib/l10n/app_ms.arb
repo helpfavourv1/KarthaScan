@@ -689,5 +689,11 @@
   "clearAllPages": "Kosongkan semua halaman",
   "clearedCount": "{count} dikosongkan",
   "idLayoutRealSize": "Saiz sebenar",
-  "idLayoutFullWidth": "Lebar penuh"
+  "idLayoutFullWidth": "Lebar penuh",
+  "pagesToReadTitle": "Halaman untuk dibaca",
+  "pagesToReadHint": "PDF ini mempunyai {count} halaman. Halaman gambar dibaca dengan OCR (kira-kira 10 saat setiap satu); halaman teks sebenar segera.",
+  "pageFromLabel": "Dari halaman",
+  "pageToLabel": "Hingga halaman",
+  "readingPageProgress": "Halaman {page} daripada {total}",
+  "readingPageEta": "Halaman {page} daripada {total} · kira-kira {minutes} min lagi"
 }

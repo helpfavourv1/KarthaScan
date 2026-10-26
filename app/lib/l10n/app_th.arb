@@ -689,5 +689,11 @@
   "clearAllPages": "ล้างทุกหน้า",
   "clearedCount": "ล้างแล้ว {count}",
   "idLayoutRealSize": "ขนาดจริง",
-  "idLayoutFullWidth": "เต็มความกว้าง"
+  "idLayoutFullWidth": "เต็มความกว้าง",
+  "pagesToReadTitle": "หน้าที่จะอ่าน",
+  "pagesToReadHint": "PDF นี้มี {count} หน้า หน้าที่เป็นรูปภาพจะอ่านด้วย OCR (ประมาณ 10 วินาทีต่อหน้า) ส่วนหน้าที่มีข้อความจริงอ่านได้ทันที",
+  "pageFromLabel": "จากหน้า",
+  "pageToLabel": "ถึงหน้า",
+  "readingPageProgress": "หน้า {page} จาก {total}",
+  "readingPageEta": "หน้า {page} จาก {total} · เหลือประมาณ {minutes} นาที"
 }

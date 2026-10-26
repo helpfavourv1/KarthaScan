@@ -697,5 +697,53 @@
   "idLayoutFullWidth": "Full width",
   "@idLayoutFullWidth": {
     "description": "ID card result sheet: both sides scaled to the full page width"
+  },
+  "pagesToReadTitle": "Pages to read",
+  "@pagesToReadTitle": {
+    "description": "Title of the dialog asking which pages of a PDF to turn into text"
+  },
+  "pagesToReadHint": "This PDF has {count} pages. Pages that are pictures are read with OCR (about 10 seconds each); pages with real text are instant.",
+  "@pagesToReadHint": {
+    "description": "Explains how long reading a PDF takes; {count} is the page count",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "pageFromLabel": "From page",
+  "@pageFromLabel": {
+    "description": "Label of the first-page field"
+  },
+  "pageToLabel": "To page",
+  "@pageToLabel": {
+    "description": "Label of the last-page field"
+  },
+  "readingPageProgress": "Page {page} of {total}",
+  "@readingPageProgress": {
+    "description": "Progress while reading a PDF page by page",
+    "placeholders": {
+      "page": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "readingPageEta": "Page {page} of {total} · about {minutes} min left",
+  "@readingPageEta": {
+    "description": "Progress with a time estimate",
+    "placeholders": {
+      "page": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      },
+      "minutes": {
+        "type": "int"
+      }
+    }
   }
 }

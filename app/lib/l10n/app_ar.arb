@@ -596,5 +596,11 @@
   "clearAllPages": "مسح كل الصفحات",
   "clearedCount": "تم مسح {count}",
   "idLayoutRealSize": "الحجم الحقيقي",
-  "idLayoutFullWidth": "العرض الكامل"
+  "idLayoutFullWidth": "العرض الكامل",
+  "pagesToReadTitle": "الصفحات المراد قراءتها",
+  "pagesToReadHint": "يحتوي هذا الملف على {count} صفحة. الصفحات المصورة تُقرأ بالتعرف الضوئي (نحو 10 ثوانٍ لكل صفحة)، أما الصفحات النصية فتُقرأ فورًا.",
+  "pageFromLabel": "من الصفحة",
+  "pageToLabel": "إلى الصفحة",
+  "readingPageProgress": "الصفحة {page} من {total}",
+  "readingPageEta": "الصفحة {page} من {total} · تبقّى نحو {minutes} د"
 }

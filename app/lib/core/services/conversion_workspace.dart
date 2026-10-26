@@ -36,7 +36,7 @@ class ConversionWorkspace {
 
   /// Removes leftovers. [keep] holds paths documents still use (pages, thumbnails);
   /// those are never touched. Returns the number of files and folders removed.
-  Future<int> sweep({Set<String> keep = const <String>{}, DateTime? now, Duration scratchAge = const Duration(minutes: 10), Duration outputAge = const Duration(days: 1)}) async {
+  Future<int> sweep({Set<String> keep = const <String>{}, DateTime? now, Duration scratchAge = const Duration(minutes: 10), Duration resumeAge = const Duration(days: 1), Duration outputAge = const Duration(days: 1)}) async {
     final DateTime t = now ?? DateTime.now();
     int removed = 0;
 
@@ -51,7 +51,9 @@ class ConversionWorkspace {
     if (await workDir.exists()) {
       await for (final FileSystemEntity e in workDir.list()) {
         try {
-          if (t.difference((await e.stat()).modified) > scratchAge) await removeEntity(e);
+          // Checkpoints of interrupted text jobs live longer, so they can be resumed.
+          final Duration limit = p.basename(e.path).startsWith('ocr_') ? resumeAge : scratchAge;
+          if (t.difference((await e.stat()).modified) > limit) await removeEntity(e);
         } catch (_) {}
       }
     }

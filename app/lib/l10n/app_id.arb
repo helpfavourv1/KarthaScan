@@ -596,5 +596,11 @@
   "clearAllPages": "Hapus semua halaman",
   "clearedCount": "{count} dihapus",
   "idLayoutRealSize": "Ukuran asli",
-  "idLayoutFullWidth": "Lebar penuh"
+  "idLayoutFullWidth": "Lebar penuh",
+  "pagesToReadTitle": "Halaman yang dibaca",
+  "pagesToReadHint": "PDF ini memiliki {count} halaman. Halaman berupa gambar dibaca dengan OCR (sekitar 10 detik per halaman); halaman teks asli instan.",
+  "pageFromLabel": "Dari halaman",
+  "pageToLabel": "Sampai halaman",
+  "readingPageProgress": "Halaman {page} dari {total}",
+  "readingPageEta": "Halaman {page} dari {total} · sekitar {minutes} mnt lagi"
 }

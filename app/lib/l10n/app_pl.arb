@@ -689,5 +689,11 @@
   "clearAllPages": "Wyczyść wszystkie strony",
   "clearedCount": "Wyczyszczono {count}",
   "idLayoutRealSize": "Rzeczywisty rozmiar",
-  "idLayoutFullWidth": "Pełna szerokość"
+  "idLayoutFullWidth": "Pełna szerokość",
+  "pagesToReadTitle": "Strony do odczytania",
+  "pagesToReadHint": "Ten plik PDF ma {count} stron. Strony będące obrazami są odczytywane przez OCR (około 10 sekund każda); strony z prawdziwym tekstem — natychmiast.",
+  "pageFromLabel": "Od strony",
+  "pageToLabel": "Do strony",
+  "readingPageProgress": "Strona {page} z {total}",
+  "readingPageEta": "Strona {page} z {total} · jeszcze ok. {minutes} min"
 }

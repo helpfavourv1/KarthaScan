@@ -9,6 +9,8 @@ import '../widgets/conditional_banner.dart';
 import 'package:go_router/go_router.dart';
 import 'package:path/path.dart' as p;
 import '../core/services/conversion_workspace.dart';
+import '../core/services/pdf_text_extractor.dart';
+import 'package:pdf_render_plus/pdf_render.dart' show PdfDocument;
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:image/image.dart' as img;
@@ -45,6 +47,8 @@ class _ConversionCancelled implements Exception {
 
 class _ConvertScreenState extends State<ConvertScreen> {
   bool _cancelRequested = false;
+  int? _firstPage;
+  int? _lastPage;
   final ExportService _exportService = ExportService();
   _TargetFormat _target = _TargetFormat.pdf;
   _ActionType _action = _ActionType.exportShare;
@@ -139,44 +143,29 @@ class _ConvertScreenState extends State<ConvertScreen> {
         final out = p.join(outDir.path, 'conv_$ts.pdf');
         await File(src).copy(out);
         finalPaths.add(out);
-      } else if (_target == _TargetFormat.csv) {
-        _report(0.3, l10n.progressExtractingText);
-        final pngs = await PdfToImagesService().convertToImages(src, outDir: job.dir.path, onProgress: (v, l) => _report(0.3 + v * 0.3, l));
-        if (pngs.isNotEmpty) {
-          final ocr = OcrService();
-          final text = StringBuffer();
-          try {
-            for (int i = 0; i < pngs.length; i++) {
-              if (_cancelRequested) throw const _ConversionCancelled();
-              _report(0.6 + 0.39 * (i / pngs.length), l10n.progressExtractingText);
-              final page = await ocr.recognizeTextAuto(imagePath: pngs[i]);
-              if (text.isNotEmpty) text.writeln();
-              text.write(page.fullText);
-            }
-          } finally {
-            await ocr.dispose();
-          }
-          final out = p.join(outDir.path, 'conv_$ts.csv');
-          await File(out).writeAsString(csvFromText(text.toString()));
-          finalPaths.add(out);
-        }
-      } else if (_target == _TargetFormat.txt) {
-        _report(0.3, l10n.progressRasterizing);
-        final pngs = await PdfToImagesService().convertToImages(src, outDir: job.dir.path, onProgress: (v, l) => _report(0.3 + v * 0.4, l));
-        final sb = StringBuffer();
-        final ocr = OcrService();
-        try {
-          for (int i = 0; i < pngs.length; i++) {
-            if (_cancelRequested) throw const _ConversionCancelled();
-            _report(0.7 + 0.29 * (i / pngs.length), l10n.progressExtractingText);
-            final r = await ocr.recognizeTextAuto(imagePath: pngs[i]);
-            sb.writeln(r.fullText);
-          }
-        } finally {
-          await ocr.dispose();
-        }
-        final out = p.join(outDir.path, 'conv_$ts.txt');
-        await File(out).writeAsString(sb.toString());
+      } else if (_target == _TargetFormat.csv || _target == _TargetFormat.txt) {
+        final workspace = await ConversionWorkspace.create();
+        final result = await PdfTextExtractor().extract(
+          src,
+          workspace: workspace,
+          job: job,
+          firstPage: _firstPage,
+          lastPage: _lastPage,
+          isCancelled: () => _cancelRequested,
+          onProgress: (PdfTextProgress pr) {
+            final int? minutes = pr.eta == null ? null : (pr.eta!.inSeconds / 60).ceil().clamp(1, 100000);
+            _report(
+              0.05 + 0.94 * (pr.done / pr.total),
+              minutes == null || pr.done < 2
+                  ? l10n.readingPageProgress(pr.page, pr.total)
+                  : l10n.readingPageEta(pr.page, pr.total, minutes),
+            );
+          },
+        );
+        if (result.cancelled) throw const _ConversionCancelled();
+        final bool csv = _target == _TargetFormat.csv;
+        final out = p.join(outDir.path, 'conv_$ts.${csv ? 'csv' : 'txt'}');
+        await File(out).writeAsString(csv ? csvFromText(result.text) : result.text);
         finalPaths.add(out);
       } else {
         intermediatePdf = src;
@@ -322,7 +311,55 @@ class _ConvertScreenState extends State<ConvertScreen> {
     return finalPaths;
   }
 
+  /// Asks which pages to read when a PDF is long. Returns false if the person backs out.
+  Future<bool> _chooseRange() async {
+    _firstPage = null;
+    _lastPage = null;
+    if (widget.sourceType != 'pdf' || (_target != _TargetFormat.txt && _target != _TargetFormat.csv)) return true;
+    int count = 0;
+    try {
+      final doc = await PdfDocument.openFile(widget.sourcePath);
+      count = doc.pageCount;
+      doc.dispose();
+    } catch (_) {
+      return true; // the conversion itself reports an unreadable file
+    }
+    if (count <= 20 || !mounted) return true;
+    final l10n = AppLocalizations.of(context);
+    final from = TextEditingController(text: '1');
+    final to = TextEditingController(text: '$count');
+    final ok = await showDialog<bool>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: Text(l10n.pagesToReadTitle),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(l10n.pagesToReadHint(count)),
+            const SizedBox(height: 12),
+            Row(children: [
+              Expanded(child: TextField(key: const ValueKey('rangeFrom'), controller: from, keyboardType: TextInputType.number, decoration: InputDecoration(labelText: l10n.pageFromLabel))),
+              const SizedBox(width: 12),
+              Expanded(child: TextField(key: const ValueKey('rangeTo'), controller: to, keyboardType: TextInputType.number, decoration: InputDecoration(labelText: l10n.pageToLabel))),
+            ]),
+          ],
+        ),
+        actions: [
+          TextButton(onPressed: () => Navigator.of(ctx).pop(false), child: Text(l10n.commonCancel)),
+          TextButton(key: const ValueKey('rangeGo'), onPressed: () => Navigator.of(ctx).pop(true), child: Text(l10n.commonConvert)),
+        ],
+      ),
+    );
+    if (ok != true) return false;
+    final (int f, int l) = PdfTextExtractor.normalizeRange(count, int.tryParse(from.text.trim()), int.tryParse(to.text.trim()));
+    _firstPage = f;
+    _lastPage = l;
+    return true;
+  }
+
   Future<void> _run() async {
+    if (!await _chooseRange()) return;
     _cancelRequested = false;
     setState(() {
       _isConverting = true;

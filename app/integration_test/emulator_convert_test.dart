@@ -12,7 +12,9 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image/image.dart' as img;
 import 'package:integration_test/integration_test.dart';
+import 'package:katharscan/core/services/conversion_workspace.dart';
 import 'package:katharscan/core/services/export_service.dart';
+import 'package:katharscan/core/services/pdf_text_extractor.dart';
 import 'package:katharscan/core/services/local_storage.dart';
 import 'package:katharscan/core/services/ocr_service.dart';
 import 'package:katharscan/core/services/pdf_to_images_service.dart';
@@ -59,7 +61,7 @@ void main() {
     final GoRouter router = GoRouter.of(ctx);
     final AppLocalizations l10n = AppLocalizations.of(ctx);
 
-    void check(String id, bool ok, String detail) => note(id, ok ? 'PASS' : 'FAIL', '$detail | peak memory ${(ProcessInfo.maxRss / 1048576).round()} MB');
+    void check(String id, bool ok, String detail) => note(id, ok ? 'PASS' : 'FAIL', '$detail | memory now ${(ProcessInfo.currentRss / 1048576).round()} MB, peak ${(ProcessInfo.maxRss / 1048576).round()} MB');
 
     Future<void> section(String id, Future<void> Function() body) async {
       try {
@@ -155,6 +157,7 @@ void main() {
       return Outcome(status, made, message, DateTime.now().difference(t0).inSeconds);
     }
 
+    // C6 below runs after the matrix; helpers first.
     int pdfPages(File f) => RegExp(r'/Type\s*/Page(?!s)').allMatches(String.fromCharCodes(f.readAsBytesSync())).length;
     String zipText(File f) {
       final Archive a = ZipDecoder().decodeBytes(f.readAsBytesSync());
@@ -262,6 +265,79 @@ void main() {
         });
       }
     }
+
+
+    // ---- C6: text reading: embedded text is instant and exact, scans use OCR, jobs resume ----
+    await section('C6-text-extraction', () async {
+      final ConversionWorkspace ws = await ConversionWorkspace.create();
+      // Embedded text: the generated PDF has real text, so no OCR is needed.
+      ConversionJob job = await ws.begin('c6a');
+      final DateTime t0 = DateTime.now();
+      final PdfTextResult r1 = await PdfTextExtractor().extract(pdf3.path, workspace: ws, job: job);
+      await job.dispose();
+      final int ms1 = DateTime.now().difference(t0).inMilliseconds;
+      check('C6-embedded', r1.embedded == 3 && r1.ocr == 0 && r1.text.contains('Alpha page 1 of 3') && r1.text.contains('Alpha page 3 of 3'),
+          '${r1.embedded} text pages, ${r1.ocr} OCR pages, $ms1 ms, text "${r1.text.replaceAll('\n', ' ').substring(0, min(40, r1.text.length))}"');
+
+      // A scanned PDF (pictures only) must fall back to OCR and still read the words.
+      final pw.Document scan = pw.Document();
+      final pw.MemoryImage mi = pw.MemoryImage(image.readAsBytesSync());
+      for (int i = 0; i < 2; i++) {
+        scan.addPage(pw.Page(build: (pw.Context c) => pw.Center(child: pw.Image(mi))));
+      }
+      final File scanPdf = File(p.join(work.path, 'scanned.pdf'))..writeAsBytesSync(await scan.save());
+      job = await ws.begin('c6b');
+      final DateTime t1 = DateTime.now();
+      final PdfTextResult r2 = await PdfTextExtractor().extract(scanPdf.path, workspace: ws, job: job);
+      await job.dispose();
+      check('C6-scanned-uses-ocr', r2.ocr == 2 && r2.embedded == 0 && r2.text.toLowerCase().contains('alpha'),
+          '${r2.ocr} OCR pages, ${DateTime.now().difference(t1).inSeconds} s, text "${r2.text.replaceAll('\n', ' ').trim()}"');
+
+      // Cancel after 2 pages, then run again: those pages come from checkpoints.
+      final File pdf12 = await makePdf('sample12.pdf', 12);
+      int seen = 0;
+      job = await ws.begin('c6c');
+      final PdfTextResult part = await PdfTextExtractor().extract(pdf12.path, workspace: ws, job: job, isCancelled: () => ++seen > 3);
+      await job.dispose();
+      job = await ws.begin('c6d');
+      final PdfTextResult rest = await PdfTextExtractor().extract(pdf12.path, workspace: ws, job: job);
+      await job.dispose();
+      check('C6-resume', part.cancelled && rest.resumed == part.pages.length && rest.pages.length == 12 && rest.text.contains('page 12 of 12') && !rest.text.contains('page 13'),
+          'first run stopped with ${part.pages.length} pages, second resumed ${rest.resumed} and finished ${rest.pages.length}');
+      final Directory wd = ws.workDir;
+      final int left = wd.existsSync() ? wd.listSync().length : 0;
+      check('C6-clean-after-finish', left == 0, '$left folder(s) in the scratch area after the finished job');
+
+      // Page range through the real screen: 30-page PDF, ask for pages 3 to 5 only.
+      final File pdf30 = await makePdf('sample30.pdf', 30);
+      final Set<String> before = listing();
+      router.go('/');
+      await pumpFor(500);
+      router.push('/convert?path=${Uri.encodeComponent(pdf30.path)}&type=pdf');
+      await pumpFor(1500);
+      final Finder txtChip = find.widgetWithText(ChoiceChip, 'TXT');
+      await tester.ensureVisible(txtChip);
+      await tester.tap(txtChip, warnIfMissed: false);
+      await pumpFor(400);
+      final Finder goBtn = find.widgetWithText(ElevatedButton, l10n.commonConvert);
+      await tester.ensureVisible(goBtn);
+      await tester.tap(goBtn, warnIfMissed: false);
+      await pumpFor(1500);
+      final bool dialog = find.byKey(const ValueKey('rangeFrom')).evaluate().isNotEmpty;
+      if (dialog) {
+        await tester.enterText(find.byKey(const ValueKey('rangeFrom')), '3');
+        await tester.enterText(find.byKey(const ValueKey('rangeTo')), '5');
+        await tester.tap(find.byKey(const ValueKey('rangeGo')));
+        for (int i = 0; i < 120 && find.text(l10n.convertDocumentTitle).evaluate().isNotEmpty; i++) {
+          await tester.pump(const Duration(milliseconds: 500));
+        }
+        await pumpFor(500);
+      }
+      final List<File> made = <File>[for (final String f in listing().difference(before)) File(f)].where((File f) => f.path.endsWith('.txt')).toList();
+      final String t = made.isEmpty ? '' : made.first.readAsStringSync();
+      check('C6-range-dialog', dialog && t.contains('page 3 of 30') && t.contains('page 5 of 30') && !t.contains('page 2 of 30') && !t.contains('page 6 of 30'),
+          'dialog shown: $dialog, text: "${t.replaceAll('\n', ' ').trim()}"');
+    });
 
     // ---- C5: bad files must fail with a message, never hang or crash ----
     Future<void> bad(String id, File f, String type, String target) async {

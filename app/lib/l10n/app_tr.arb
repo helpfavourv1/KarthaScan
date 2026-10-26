@@ -689,5 +689,11 @@
   "clearAllPages": "Tüm sayfaları temizle",
   "clearedCount": "{count} temizlendi",
   "idLayoutRealSize": "Gerçek boyut",
-  "idLayoutFullWidth": "Tam genişlik"
+  "idLayoutFullWidth": "Tam genişlik",
+  "pagesToReadTitle": "Okunacak sayfalar",
+  "pagesToReadHint": "Bu PDF {count} sayfa içeriyor. Resim olan sayfalar OCR ile okunur (sayfa başına yaklaşık 10 saniye); gerçek metinli sayfalar anında okunur.",
+  "pageFromLabel": "Başlangıç sayfası",
+  "pageToLabel": "Bitiş sayfası",
+  "readingPageProgress": "Sayfa {page} / {total}",
+  "readingPageEta": "Sayfa {page} / {total} · yaklaşık {minutes} dk kaldı"
 }

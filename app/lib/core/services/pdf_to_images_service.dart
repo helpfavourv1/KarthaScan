@@ -58,18 +58,13 @@ class PdfToImagesService {
         if (isCancelled?.call() ?? false) break;
         onProgress?.call((i - 1) / doc.pageCount, 'Rendering page $i of ${doc.pageCount}…');
         final page = await doc.getPage(i);
-        final (int w, int h) = targetSize(page.width, page.height, scale: scale);
-        final rendered = await page.render(width: w, height: h);
-        try {
-          final Uint8List bytes = format == PageImageFormat.png
-              ? await _encodePng(rendered.pixels, rendered.width, rendered.height)
-              : _encodeJpg(rendered.pixels, rendered.width, rendered.height, jpgQuality);
-          final String outPath = p.join(outputDir.path, 'pdf_${stamp}_${i.toString().padLeft(4, '0')}.$ext');
-          await File(outPath).writeAsBytes(bytes, flush: false);
-          paths.add(outPath);
-        } finally {
-          rendered.dispose();
-        }
+        paths.add(await renderPageToFile(
+          page,
+          p.join(outputDir.path, 'pdf_${stamp}_${i.toString().padLeft(4, '0')}.$ext'),
+          format: format,
+          jpgQuality: jpgQuality,
+          scale: scale,
+        ));
         // Let the engine reclaim the page before the next render starts.
         await Future<void>.delayed(Duration.zero);
       }
@@ -79,6 +74,27 @@ class PdfToImagesService {
     onProgress?.call(1.0, 'Done');
     _log.log('PDF_TO_IMAGES', 'Done: ${paths.length} pages');
     return paths;
+  }
+
+  /// Renders one page to [outPath] and releases the page's pixels again.
+  Future<String> renderPageToFile(
+    PdfPage page,
+    String outPath, {
+    PageImageFormat format = PageImageFormat.png,
+    int jpgQuality = 90,
+    double scale = 2,
+  }) async {
+    final (int w, int h) = targetSize(page.width, page.height, scale: scale);
+    final rendered = await page.render(width: w, height: h);
+    try {
+      final Uint8List bytes = format == PageImageFormat.png
+          ? await _encodePng(rendered.pixels, rendered.width, rendered.height)
+          : _encodeJpg(rendered.pixels, rendered.width, rendered.height, jpgQuality);
+      await File(outPath).writeAsBytes(bytes, flush: false);
+    } finally {
+      rendered.dispose();
+    }
+    return outPath;
   }
 
   Uint8List _encodeJpg(Uint8List rgba, int w, int h, int quality) {

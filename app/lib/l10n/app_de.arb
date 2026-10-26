@@ -596,5 +596,11 @@
   "clearAllPages": "Alle Seiten leeren",
   "clearedCount": "{count} gelöscht",
   "idLayoutRealSize": "Originalgröße",
-  "idLayoutFullWidth": "Volle Breite"
+  "idLayoutFullWidth": "Volle Breite",
+  "pagesToReadTitle": "Zu lesende Seiten",
+  "pagesToReadHint": "Diese PDF hat {count} Seiten. Bildseiten werden per OCR gelesen (etwa 10 Sekunden pro Seite), Seiten mit echtem Text sofort.",
+  "pageFromLabel": "Von Seite",
+  "pageToLabel": "Bis Seite",
+  "readingPageProgress": "Seite {page} von {total}",
+  "readingPageEta": "Seite {page} von {total} · noch ca. {minutes} Min."
 }

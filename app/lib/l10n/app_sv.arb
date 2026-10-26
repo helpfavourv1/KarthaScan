@@ -689,5 +689,11 @@
   "clearAllPages": "Rensa alla sidor",
   "clearedCount": "{count} rensade",
   "idLayoutRealSize": "Verklig storlek",
-  "idLayoutFullWidth": "Full bredd"
+  "idLayoutFullWidth": "Full bredd",
+  "pagesToReadTitle": "Sidor som ska läsas",
+  "pagesToReadHint": "Den här PDF-filen har {count} sidor. Sidor som är bilder läses med OCR (cirka 10 sekunder var); sidor med riktig text är omedelbara.",
+  "pageFromLabel": "Från sida",
+  "pageToLabel": "Till sida",
+  "readingPageProgress": "Sida {page} av {total}",
+  "readingPageEta": "Sida {page} av {total} · cirka {minutes} min kvar"
 }

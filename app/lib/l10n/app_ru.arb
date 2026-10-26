@@ -689,5 +689,11 @@
   "clearAllPages": "Очистить все страницы",
   "clearedCount": "Очищено: {count}",
   "idLayoutRealSize": "Реальный размер",
-  "idLayoutFullWidth": "Во всю ширину"
+  "idLayoutFullWidth": "Во всю ширину",
+  "pagesToReadTitle": "Страницы для чтения",
+  "pagesToReadHint": "В этом PDF {count} стр. Страницы-изображения читаются с помощью OCR (около 10 секунд каждая); страницы с настоящим текстом — мгновенно.",
+  "pageFromLabel": "С страницы",
+  "pageToLabel": "По страницу",
+  "readingPageProgress": "Страница {page} из {total}",
+  "readingPageEta": "Страница {page} из {total} · осталось около {minutes} мин"
 }

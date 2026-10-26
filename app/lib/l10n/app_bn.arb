@@ -689,5 +689,11 @@
   "clearAllPages": "সব পৃষ্ঠা মুছুন",
   "clearedCount": "{count}টি মুছে ফেলা হয়েছে",
   "idLayoutRealSize": "আসল আকার",
-  "idLayoutFullWidth": "পূর্ণ প্রস্থ"
+  "idLayoutFullWidth": "পূর্ণ প্রস্থ",
+  "pagesToReadTitle": "পড়ার জন্য পৃষ্ঠা",
+  "pagesToReadHint": "এই PDF-এ {count}টি পৃষ্ঠা আছে। ছবির পৃষ্ঠা OCR দিয়ে পড়া হয় (প্রতিটি প্রায় ১০ সেকেন্ড); আসল লেখার পৃষ্ঠা তাৎক্ষণিক।",
+  "pageFromLabel": "শুরুর পৃষ্ঠা",
+  "pageToLabel": "শেষ পৃষ্ঠা",
+  "readingPageProgress": "পৃষ্ঠা {page} / {total}",
+  "readingPageEta": "পৃষ্ঠা {page} / {total} · প্রায় {minutes} মিনিট বাকি"
 }

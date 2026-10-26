@@ -596,5 +596,11 @@
   "clearAllPages": "सभी पेज साफ़ करें",
   "clearedCount": "{count} साफ़ किए गए",
   "idLayoutRealSize": "वास्तविक आकार",
-  "idLayoutFullWidth": "पूरी चौड़ाई"
+  "idLayoutFullWidth": "पूरी चौड़ाई",
+  "pagesToReadTitle": "पढ़ने के लिए पृष्ठ",
+  "pagesToReadHint": "इस PDF में {count} पृष्ठ हैं। चित्र वाले पृष्ठ OCR से पढ़े जाते हैं (प्रत्येक लगभग 10 सेकंड); असली टेक्स्ट वाले पृष्ठ तुरंत।",
+  "pageFromLabel": "पृष्ठ से",
+  "pageToLabel": "पृष्ठ तक",
+  "readingPageProgress": "पृष्ठ {page} / {total}",
+  "readingPageEta": "पृष्ठ {page} / {total} · लगभग {minutes} मिनट शेष"
 }
