@@ -17,7 +17,7 @@ class DocxParserService {
     final bytes = await File(docxPath).readAsBytes();
     final archive = ZipDecoder().decodeBytes(bytes);
     
-    final docXml = archive.firstWhere(
+    final docXml = archive.files.firstWhere(
       (f) => f.name == 'word/document.xml', 
       orElse: () => throw Exception('document.xml missing'),
     );
@@ -58,7 +58,7 @@ class DocxParserService {
     final bytes = await File(docxPath).readAsBytes();
     final archive = ZipDecoder().decodeBytes(bytes);
 
-    final docXml = archive.firstWhere(
+    final docXml = archive.files.firstWhere(
       (f) => f.name == 'word/document.xml',
       orElse: () => throw Exception('document.xml missing'),
     );
