@@ -8,6 +8,9 @@ class PdfTextReader {
 
   static bool _initialised = false;
 
+  /// The last reason a read failed, for diagnostics.
+  static String? lastError;
+
   /// Returns null when the file cannot be opened; callers then fall back to OCR.
   static Future<PdfTextReader?> open(String path) async {
     try {
@@ -16,7 +19,8 @@ class PdfTextReader {
         _initialised = true;
       }
       return PdfTextReader._(await pdfrx.PdfDocument.openFile(path));
-    } catch (_) {
+    } catch (e) {
+      lastError = 'open: $e';
       return null;
     }
   }
@@ -29,8 +33,10 @@ class PdfTextReader {
       if (pageNumber < 1 || pageNumber > _doc.pages.length) return null;
       final dynamic t = await _doc.pages[pageNumber - 1].loadText();
       final dynamic full = t?.fullText;
+      if (full is! String) lastError = 'loadText returned ${t.runtimeType}';
       return full is String ? full : null;
-    } catch (_) {
+    } catch (e) {
+      lastError = 'pageText: $e';
       return null;
     }
   }

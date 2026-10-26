@@ -16,6 +16,7 @@ import 'package:katharscan/core/services/conversion_workspace.dart';
 import 'package:katharscan/core/services/export_service.dart';
 import 'package:katharscan/core/services/pdf_import_service.dart';
 import 'package:katharscan/core/services/pdf_text_extractor.dart';
+import 'package:katharscan/core/services/pdf_text_reader.dart';
 import 'package:katharscan/core/services/local_storage.dart';
 import 'package:katharscan/core/services/ocr_service.dart';
 import 'package:katharscan/core/services/pdf_to_images_service.dart';
@@ -64,7 +65,9 @@ void main() {
 
     void check(String id, bool ok, String detail) => note(id, ok ? 'PASS' : 'FAIL', '$detail | memory now ${(ProcessInfo.currentRss / 1048576).round()} MB, peak ${(ProcessInfo.maxRss / 1048576).round()} MB');
 
+    const bool quick = bool.fromEnvironment('CONVERT_QUICK');
     Future<void> section(String id, Future<void> Function() body) async {
+      if (quick && !id.startsWith('C6') && !id.startsWith('C7')) return;
       try {
         await body();
       } catch (e, st) {
@@ -272,6 +275,10 @@ void main() {
     await section('C6-text-extraction', () async {
       final ConversionWorkspace ws = await ConversionWorkspace.create();
       // Embedded text: the generated PDF has real text, so no OCR is needed.
+      final PdfTextReader? probe = await PdfTextReader.open(pdf3.path);
+      final String? probeText = await probe?.pageText(1);
+      note('C6-probe', 'INFO', 'reader opened: ${probe != null}, pages: ${probe?.pageCount}, page 1 text: "${probeText ?? 'null'}", last error: ${PdfTextReader.lastError}');
+      await probe?.dispose();
       ConversionJob job = await ws.begin('c6a');
       final DateTime t0 = DateTime.now();
       final PdfTextResult r1 = await PdfTextExtractor().extract(pdf3.path, workspace: ws, job: job);
