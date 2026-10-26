@@ -303,13 +303,13 @@ void main() {
 
       final Directory work = Directory(p.join(pages.first.parent.path, 'idcard'))..createSync(recursive: true);
       final File front = File(p.join(work.path, 'front.jpg'))..writeAsBytesSync(img.encodeJpg(photo(4000, 3000, img.ColorRgb8(255, 0, 0), 120), quality: 90));
-      final File back = File(p.join(work.path, 'back.jpg'))..writeAsBytesSync(img.encodeJpg(photo(4000, 3000, img.ColorRgb8(0, 0, 255), 120), quality: 90));
+      final File back = File(p.join(work.path, 'back.jpg'))..writeAsBytesSync(img.encodeJpg(photo(4000, 3000, img.ColorRgb8(60, 120, 255), 120), quality: 90));
       final DateTime s0 = DateTime.now();
       final Map<String, String> r = await ExportService().exportIdCardPdf(frontPath: front.path, backPath: back.path, title: 'ID Card emulator', outputDirectoryPath: work.path);
       final img.Image sheet = img.decodePng(File(r['image']!).readAsBytesSync())!;
       final int frontH = (3000 * 1200 / 4000).round();
       final img.Pixel top = sheet.getPixel(600, frontH ~/ 2), bottom = sheet.getPixel(600, sheet.height - frontH ~/ 2);
-      check('F6-stack', sheet.width == 1200 && top.r > 200 && top.b < 60 && bottom.b > 200 && bottom.r < 60,
+      check('F6-stack', sheet.width == 1200 && top.r > 200 && top.b < 60 && bottom.b > 200 && bottom.r < 100,
           '12 MP front and back in ${DateTime.now().difference(s0).inMilliseconds} ms, sheet ${sheet.width}x${sheet.height}, top red ${top.r.toInt()}, bottom blue ${bottom.b.toInt()}');
       final Uint8List pdf = File(r['pdf']!).readAsBytesSync();
       check('F6-pdf', String.fromCharCodes(pdf.take(5)) == '%PDF-' && pdf.length > 1000, 'PDF ${pdf.length} bytes');

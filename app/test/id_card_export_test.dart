@@ -30,11 +30,11 @@ void main() {
       ExportService().exportIdCardPdf(frontPath: front, backPath: back, title: title, outputDirectoryPath: out.path);
 
   bool isRed(img.Pixel p) => p.r > 200 && p.g < 60 && p.b < 60;
-  bool isBlue(img.Pixel p) => p.b > 200 && p.r < 60 && p.g < 60;
+  bool isBlue(img.Pixel p) => p.b > 200 && p.r < 100 && p.g > 80 && p.g < 160;
 
   test('front is on top, back below, white gap between, one A4 PDF page', () async {
     final String front = side('front', 1000, 630, img.ColorRgb8(255, 0, 0));
-    final String back = side('back', 800, 500, img.ColorRgb8(0, 0, 255));
+    final String back = side('back', 800, 500, img.ColorRgb8(60, 120, 255));
     final Map<String, String> r = await run(front, back);
     final img.Image sheet = img.decodePng(File(r['image']!).readAsBytesSync())!;
     expect(sheet.width, 1200);
@@ -53,15 +53,23 @@ void main() {
 
   test('black scanner borders around each side are trimmed away', () async {
     final String front = side('f', 1000, 640, img.ColorRgb8(255, 0, 0), border: 60);
-    final String back = side('b', 1000, 640, img.ColorRgb8(0, 0, 255), border: 60);
+    final String back = side('b', 1000, 640, img.ColorRgb8(60, 120, 255), border: 60);
     final img.Image sheet = img.decodePng(File((await run(front, back))['image']!).readAsBytesSync())!;
     expect(isRed(sheet.getPixel(3, 3)), isTrue, reason: 'black border left on the front');
     expect(isBlue(sheet.getPixel(sheet.width - 4, sheet.height - 4)), isTrue, reason: 'black border left on the back');
   });
 
+  test('a dark card is not mistaken for a black border and trimmed away', () async {
+    final String front = side('f', 1000, 630, img.ColorRgb8(0, 0, 90));
+    final String back = side('b', 1000, 630, img.ColorRgb8(10, 10, 10));
+    final img.Image sheet = img.decodePng(File((await run(front, back))['image']!).readAsBytesSync())!;
+    // Nothing may be cut off by more than the 15 percent border allowance per side.
+    expect(sheet.height, greaterThan((756 + 40 + 756) * 0.7), reason: 'dark card was cropped away: ${sheet.height}');
+  });
+
   test('portrait front with a landscape back still produces both sides in full width', () async {
     final String front = side('f', 600, 900, img.ColorRgb8(255, 0, 0));
-    final String back = side('b', 900, 600, img.ColorRgb8(0, 0, 255));
+    final String back = side('b', 900, 600, img.ColorRgb8(60, 120, 255));
     final img.Image sheet = img.decodePng(File((await run(front, back))['image']!).readAsBytesSync())!;
     expect(sheet.width, 1200);
     expect(sheet.height, 1800 + 40 + 800);
@@ -71,7 +79,7 @@ void main() {
 
   test('large photos (12 MP each) are handled', () async {
     final String front = side('f', 4000, 3000, img.ColorRgb8(255, 0, 0));
-    final String back = side('b', 4000, 3000, img.ColorRgb8(0, 0, 255));
+    final String back = side('b', 4000, 3000, img.ColorRgb8(60, 120, 255));
     final Map<String, String> r = await run(front, back);
     expect(img.decodePng(File(r['image']!).readAsBytesSync())!.width, 1200);
     expect(File(r['pdf']!).lengthSync(), greaterThan(1000));
@@ -92,7 +100,7 @@ void main() {
 
   test('awkward titles stay inside the output folder', () async {
     final String front = side('f', 400, 250, img.ColorRgb8(255, 0, 0));
-    final String back = side('b', 400, 250, img.ColorRgb8(0, 0, 255));
+    final String back = side('b', 400, 250, img.ColorRgb8(60, 120, 255));
     final Map<String, String> r = await run(front, back, title: '../../ID: a/b*?"<>|');
     for (final String path in <String>[r['pdf']!, r['image']!]) {
       expect(File(path).parent.path, out.path, reason: 'file escaped the output folder: $path');
@@ -102,7 +110,7 @@ void main() {
 
   test('running it twice with the same title does not mix up the results', () async {
     final String front = side('f', 400, 250, img.ColorRgb8(255, 0, 0));
-    final String back = side('b', 400, 250, img.ColorRgb8(0, 0, 255));
+    final String back = side('b', 400, 250, img.ColorRgb8(60, 120, 255));
     final Map<String, String> a = await run(front, back, title: 'Same');
     final Map<String, String> b = await run(back, front, title: 'Same');
     final img.Image second = img.decodePng(File(b['image']!).readAsBytesSync())!;

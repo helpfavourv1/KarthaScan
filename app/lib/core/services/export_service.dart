@@ -1064,16 +1064,19 @@ class ExportService {
         return total > 0 && hit / total > 0.85;
       }
       int left = 0, right = cur.width - 1, top = 0, bottom = cur.height - 1;
-      while (left < right && colIs(left)) {
+      // A border is never more than a small strip: a dark card or passport cover must
+      // not be mistaken for a black border and trimmed away.
+      final int maxX = (cur.width * 0.15).floor(), maxY = (cur.height * 0.15).floor();
+      while (left < right && left < maxX && colIs(left)) {
         left++;
       }
-      while (right > left && colIs(right)) {
+      while (right > left && cur.width - 1 - right < maxX && colIs(right)) {
         right--;
       }
-      while (top < bottom && rowIs(top)) {
+      while (top < bottom && top < maxY && rowIs(top)) {
         top++;
       }
-      while (bottom > top && rowIs(bottom)) {
+      while (bottom > top && cur.height - 1 - bottom < maxY && rowIs(bottom)) {
         bottom--;
       }
       final w = right - left + 1, h = bottom - top + 1;
