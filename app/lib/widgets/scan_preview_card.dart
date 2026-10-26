@@ -160,12 +160,23 @@ class _ScanPreviewCardState extends State<ScanPreviewCard> {
           controller: controller,
           pageIndex: _currentPage,
           pageCount: widget.pagePaths.length,
+          onDone: widget.onDoneEditing,
         ),
       ],
     );
   }
 
 
+
+  /// True when the controls under the page draw their own Done button, so the
+  /// chip in the top row is not shown twice.
+  bool get _controlsHaveDone {
+    if (widget.editMode == TrayEditMode.signature) {
+      final InkController? c = widget.inkController;
+      return c != null && SignatureOverlayControls.willShow(c, _currentPage);
+    }
+    return LayerControlPanel.willShow(widget.document, _currentPage, widget.editMode);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -212,7 +223,7 @@ class _ScanPreviewCardState extends State<ScanPreviewCard> {
                     ),
                   ),
                 const Spacer(),
-                if (widget.editMode != TrayEditMode.none && widget.onDoneEditing != null)
+                if (widget.editMode != TrayEditMode.none && widget.onDoneEditing != null && !_controlsHaveDone)
                   Flexible(
                     child: ActionChip(
                       avatar: const Icon(Icons.check, size: 14),
@@ -264,6 +275,7 @@ class _ScanPreviewCardState extends State<ScanPreviewCard> {
             selectedAnnotateId: _selectedAnnotateId,
             selectedWatermarkText: _selectedWatermarkText,
             selectedStampId: _selectedStampId,
+            onDone: widget.onDoneEditing,
           ),
         ],
       ),

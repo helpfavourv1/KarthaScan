@@ -11,10 +11,12 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image/image.dart' as img;
 import 'package:integration_test/integration_test.dart';
+import 'package:katharscan/core/models/export_job.dart';
 import 'package:katharscan/core/models/page_transform.dart';
 import 'package:katharscan/core/models/scan_document.dart';
 import 'package:katharscan/core/models/signature_placement.dart';
 import 'package:katharscan/core/providers/scan_provider.dart';
+import 'package:katharscan/core/services/downloads_service.dart';
 import 'package:katharscan/core/services/export_service.dart';
 import 'package:katharscan/core/services/local_storage.dart';
 import 'package:katharscan/l10n/app_localizations.dart';
@@ -288,6 +290,56 @@ void main() {
         check('F5-${ft.name}', ok && o.width == w, '12 MP page in $ms ms; paper right ${paperRight.r.toInt()}, ink ${inkLeft.r.toInt()}');
       }
       note('F5-total', 'INFO', 'all four filters on 12 MP: ${DateTime.now().difference(t0).inSeconds} s');
+    });
+
+    // ---- F6: ID card mode: front + back as a finished document in every format ----
+    await section('F6-id-card', () async {
+      img.Image photo(int w, int h, img.Color c, int border) {
+        final img.Image im = img.Image(width: w, height: h);
+        img.fill(im, color: img.ColorRgb8(0, 0, 0));
+        img.fillRect(im, x1: border, y1: border, x2: w - border - 1, y2: h - border - 1, color: c);
+        return im;
+      }
+
+      final Directory work = Directory(p.join(pages.first.parent.path, 'idcard'))..createSync(recursive: true);
+      final File front = File(p.join(work.path, 'front.jpg'))..writeAsBytesSync(img.encodeJpg(photo(4000, 3000, img.ColorRgb8(255, 0, 0), 120), quality: 90));
+      final File back = File(p.join(work.path, 'back.jpg'))..writeAsBytesSync(img.encodeJpg(photo(4000, 3000, img.ColorRgb8(0, 0, 255), 120), quality: 90));
+      final DateTime s0 = DateTime.now();
+      final Map<String, String> r = await ExportService().exportIdCardPdf(frontPath: front.path, backPath: back.path, title: 'ID Card emulator', outputDirectoryPath: work.path);
+      final img.Image sheet = img.decodePng(File(r['image']!).readAsBytesSync())!;
+      final int frontH = (3000 * 1200 / 4000).round();
+      final img.Pixel top = sheet.getPixel(600, frontH ~/ 2), bottom = sheet.getPixel(600, sheet.height - frontH ~/ 2);
+      check('F6-stack', sheet.width == 1200 && top.r > 200 && top.b < 60 && bottom.b > 200 && bottom.r < 60,
+          '12 MP front and back in ${DateTime.now().difference(s0).inMilliseconds} ms, sheet ${sheet.width}x${sheet.height}, top red ${top.r.toInt()}, bottom blue ${bottom.b.toInt()}');
+      final Uint8List pdf = File(r['pdf']!).readAsBytesSync();
+      check('F6-pdf', String.fromCharCodes(pdf.take(5)) == '%PDF-' && pdf.length > 1000, 'PDF ${pdf.length} bytes');
+
+      // "Save as document", then export that document in each format.
+      final ScanDocument idDoc = ScanDocument(
+        id: 'idcard_doc', title: 'ID Card emulator', pageCount: 1, pagePaths: <String>[r['image']!],
+        createdAt: now, updatedAt: now, ocrText: '', thumbnailPath: r['image']!,
+      );
+      check('F6-save-as-document', await scan.importDocument(idDoc), 'document created from the stacked picture');
+      final Directory outDir = Directory(p.join(work.path, 'out'))..createSync(recursive: true);
+      for (final ExportFormat f in <ExportFormat>[ExportFormat.pdf, ExportFormat.jpg, ExportFormat.png, ExportFormat.docx]) {
+        final List<String> files = await ExportService().export(
+          document: idDoc, format: f, outputDirectoryPath: outDir.path, docxMode: ExportDocxMode.imageEmbedded,
+        );
+        final Uint8List b = File(files.first).readAsBytesSync();
+        bool ok = b.length > 1000;
+        if (f == ExportFormat.pdf) ok = ok && String.fromCharCodes(b.take(5)) == '%PDF-';
+        if (f == ExportFormat.docx) ok = ok && b[0] == 0x50 && b[1] == 0x4B;
+        if (f == ExportFormat.jpg) { final img.Image? d = img.decodeJpg(b); ok = ok && d != null && d.width == 1200; }
+        if (f == ExportFormat.png) { final img.Image? d = img.decodePng(b); ok = ok && d != null && d.width == 1200; }
+        check('F6-export-${f.name}', ok, '${f.name}: ${b.length} bytes');
+      }
+      // The "save to Downloads" action of the result sheet, on the real device.
+      try {
+        final String saved = await DownloadsService().saveToDownloads(fileName: 'idcard_emulator.pdf', bytes: pdf, mimeType: 'application/pdf');
+        check('F6-downloads', saved.isNotEmpty, 'saved to $saved');
+      } catch (e) {
+        check('F6-downloads', false, 'saveToDownloads failed: $e');
+      }
     });
   });
 }
