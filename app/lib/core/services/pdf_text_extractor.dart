@@ -5,6 +5,7 @@ import 'package:pdf_render_plus/pdf_render.dart';
 
 import 'conversion_workspace.dart';
 import 'ocr_service.dart';
+import 'pdf_text_reader.dart';
 import 'pdf_to_images_service.dart';
 
 class PdfTextProgress {
@@ -85,6 +86,7 @@ class PdfTextExtractor {
     await checkpoints.create(recursive: true);
 
     final doc = await PdfDocument.openFile(pdfPath);
+    final PdfTextReader? reader = await PdfTextReader.open(pdfPath);
     final List<String> pages = <String>[];
     int embedded = 0, ocr = 0, resumed = 0;
     bool cancelled = false;
@@ -112,11 +114,8 @@ class PdfTextExtractor {
           continue;
         }
         final page = await doc.getPage(n);
-        String? text;
-        try {
-          text = (await page.loadText()).fullText;
-        } catch (_) {}
-        if (hasEnoughText(text)) {
+        String? text = await reader?.pageText(n);
+        if (text != null && hasEnoughText(text)) {
           embedded++;
         } else {
           final String png = p.join(job.dir.path, 'page_$n.png');
@@ -130,13 +129,15 @@ class PdfTextExtractor {
             } catch (_) {}
           }
         }
-        await cp.writeAsString(text);
-        pages.add(text);
+        final String pageResult = text ?? '';
+        await cp.writeAsString(pageResult);
+        pages.add(pageResult);
         worked++;
         await Future<void>.delayed(Duration.zero);
       }
     } finally {
       doc.dispose();
+      await reader?.dispose();
       await _ocr.dispose();
     }
     // A finished job leaves nothing behind; a cancelled one keeps its pages for resuming.

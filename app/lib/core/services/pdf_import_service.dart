@@ -5,6 +5,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:pdf_render_plus/pdf_render.dart';
 
 import 'pdf_text_extractor.dart';
+import 'pdf_text_reader.dart';
 import 'pdf_to_images_service.dart';
 
 class PdfImportProgress {
@@ -44,6 +45,7 @@ class PdfImportService {
     final String dirPath = outDir ?? p.join((await getApplicationDocumentsDirectory()).path, 'pdf_import_pages');
     await Directory(dirPath).create(recursive: true);
     final doc = await PdfDocument.openFile(pdfPath);
+    final PdfTextReader? reader = await PdfTextReader.open(pdfPath);
     final List<String> paths = <String>[];
     final List<int> needOcr = <int>[];
     final StringBuffer text = StringBuffer();
@@ -63,11 +65,8 @@ class PdfImportService {
           eta: PdfTextExtractor.estimateRemaining(spent: watch.elapsed, worked: n - 1, remaining: total - n + 1),
         ));
         final page = await doc.getPage(n);
-        String? pageText;
-        try {
-          pageText = (await page.loadText()).fullText;
-        } catch (_) {}
-        if (PdfTextExtractor.hasEnoughText(pageText)) {
+        final String? pageText = await reader?.pageText(n);
+        if (pageText != null && PdfTextExtractor.hasEnoughText(pageText)) {
           if (text.isNotEmpty) text.writeln();
           text.write(pageText);
         } else {
@@ -78,6 +77,7 @@ class PdfImportService {
       }
     } finally {
       doc.dispose();
+      await reader?.dispose();
     }
     if (cancelled) {
       // A cancelled import leaves nothing behind.
