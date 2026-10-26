@@ -6,15 +6,9 @@ class PdfTextReader {
   PdfTextReader._(this._doc);
   final pdfrx.PdfDocument _doc;
 
-  static bool _initialised = false;
-
   /// Returns null when the file cannot be opened; callers then fall back to OCR.
   static Future<PdfTextReader?> open(String path) async {
     try {
-      if (!_initialised) {
-        pdfrx.pdfrxFlutterInitialize();
-        _initialised = true;
-      }
       return PdfTextReader._(await pdfrx.PdfDocument.openFile(path));
     } catch (_) {
       return null;
