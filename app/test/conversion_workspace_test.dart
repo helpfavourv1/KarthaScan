@@ -41,7 +41,8 @@ void main() {
   test('sweep removes old scratch folders, stray intermediates and old output; keeps what documents use', () async {
     final ConversionJob old = await ws.begin('crashed');
     File(old.path('page.png')).writeAsStringSync('x');
-    old.dir.setLastModifiedSync(DateTime.now().subtract(const Duration(hours: 2)));
+    // Dart cannot set a folder's time, the system tool can.
+    expect(Process.runSync('touch', <String>['-d', '2 hours ago', old.dir.path]).exitCode, 0);
     final ConversionJob running = await ws.begin('running'); // fresh: must survive
     final File strayOld = make('txt_123.pdf', ageHours: 2);
     final File strayNew = make('csv_456.pdf');
