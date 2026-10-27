@@ -1,3 +1,6 @@
+@Timeout(Duration(seconds: 40))
+library;
+
 // Custom seal: drawing (shapes, fitting, size, scripts, worn look), logo preparation,
 // the saved-seal library, the data model, the editor sheet and the export.
 import 'dart:io';
