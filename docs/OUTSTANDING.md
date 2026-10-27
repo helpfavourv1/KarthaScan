@@ -138,3 +138,12 @@ Every layer kind now has the same three buttons: **Clear this** (the selected it
 - Emulator feature test (`emulator_features_test.dart`, workflow input `emu_features`): clear scopes with Undo through the real buttons, Fill typing/placing/double-tap re-edit/export, saved signature delete and Undo, Compress sheet, all four filters on a 12 MP shadowed page (about 15 s per page in the debug build; release is faster). All passing on the emulator.
 - Previous note about the screen-measuring run that lost the emulator still stands; those numbers come from widget tests.
 - Native review: new strings `clearPage`, `clearAllPages`, `clearedCount` (26 locales).
+
+## Import / convert hardening (verified on emulator, Oct 2026)
+- ID card output: real-size A4 default (85.6 mm cards, 300 dpi), Full width as an option in the result sheet.
+- Conversion workspace: per-job scratch folder, always deleted; startup sweeper; no intermediates left for any source/target pair (emulator `clean-*` checks).
+- Streaming PDF render: one page at a time, native PNG encode, direct JPG, 3000 px longest-side cap. Peak memory 2.6 GB -> ~0.85 GB; 100-page PDF->JPG 75 s -> 20 s.
+- PDF text: real text read via pdfrx (instant), OCR only for scanned pages; page-range dialog (>20 pages); progress with ETA; checkpoints and resume.
+- PDF import: 100 pages in ~40 s (was ~4 min), searchable immediately for text PDFs, background OCR only for scans; cancel leaves nothing behind.
+- Dependency changes: added `pdfrx ^2.6.5`; `archive` 3.6 -> ^4.5.0 (DOCX export + device backup rely on it: phone-check a backup/restore round trip).
+- Open: new strings need native review (pagesToReadTitle, pagesToReadHint, pageFromLabel, pageToLabel, readingPageProgress, readingPageEta, idLayoutRealSize, idLayoutFullWidth). Reading runs while the app is open (no background service); document appears after the render pass, not after page 1.
