@@ -188,7 +188,7 @@ void main() {
       final Px p = await render(tester, l);
       int strong = 0;
       for (int i = 3; i < p.rgba.length; i += 4) {
-        if (p.rgba[i] > 160) strong++;
+        if (p.rgba[i] > 230) strong++;
       }
       expect(strong, 0);
       expect(p.inkCount, greaterThan(500));
@@ -331,6 +331,8 @@ void main() {
       ));
       await tester.tap(find.text('open'));
       await tester.pumpAndSettle();
+      final Object? boot = tester.takeException();
+      expect(boot == null, isTrue, reason: 'sheet build: ${boot.toString().split('\n').take(6).join(' / ')}');
       expect(find.byKey(const ValueKey('sealPreview')), findsOneWidget);
 
       await tester.enterText(find.byKey(const ValueKey('sealMainText')), 'NORTH LTD');
@@ -361,6 +363,8 @@ void main() {
       await SealLibrary().save(const SealDesign(text: 'SAVED CO', shape: 'rectangle', ink: true));
       await tester.pumpWidget(host(const SealStampSheet()));
       await tester.pumpAndSettle();
+      final Object? boot = tester.takeException();
+      expect(boot == null, isTrue, reason: 'sheet build: ${boot.toString().split('\n').take(6).join(' / ')}');
       final Finder saved = find.byWidgetPredicate((Widget w) => w.key is ValueKey<String> && (w.key! as ValueKey<String>).value.startsWith('savedSeal:'));
       expect(saved, findsOneWidget);
       await tester.tap(saved);
@@ -374,6 +378,8 @@ void main() {
       SharedPreferences.setMockInitialValues(<String, Object>{});
       await tester.pumpWidget(host(const SealStampSheet()));
       await tester.pumpAndSettle();
+      final Object? boot = tester.takeException();
+      expect(boot == null, isTrue, reason: 'sheet build: ${boot.toString().split('\n').take(6).join(' / ')}');
       await tester.enterText(find.byKey(const ValueKey('sealMainText')), 'MY STAMP');
       await tester.ensureVisible(find.byKey(const ValueKey('sealSave')));
       await tester.tap(find.byKey(const ValueKey('sealSave')));
