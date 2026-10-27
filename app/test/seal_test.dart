@@ -82,6 +82,14 @@ Future<Px> render(WidgetTester tester, StampLayer l, {ui.Image? logo}) async {
   }))!;
 }
 
+List<String> captureErrors() {
+  final List<String> errs = <String>[];
+  final FlutterExceptionHandler? old = FlutterError.onError;
+  FlutterError.onError = (FlutterErrorDetails d) => errs.add(d.exceptionAsString().split('\n').take(4).join(' / '));
+  addTearDown(() => FlutterError.onError = old);
+  return errs;
+}
+
 void main() {
   group('drawing', () {
     testWidgets('each shape has its own outline and stays inside the canvas', (WidgetTester tester) async {
@@ -312,6 +320,7 @@ void main() {
 
     testWidgets('shows a live preview, applies every choice and returns them', (WidgetTester tester) async {
       SharedPreferences.setMockInitialValues(<String, Object>{});
+      final List<String> errs = captureErrors();
       StampResult? result;
       await tester.pumpWidget(MaterialApp(
         localizationsDelegates: AppLocalizations.localizationsDelegates,
@@ -331,8 +340,7 @@ void main() {
       ));
       await tester.tap(find.text('open'));
       await tester.pumpAndSettle();
-      final Object? boot = tester.takeException();
-      expect(boot == null, isTrue, reason: 'sheet build: ${boot.toString().split('\n').take(6).join(' / ')}');
+      expect(errs, isEmpty, reason: 'sheet build errors: $errs');
       expect(find.byKey(const ValueKey('sealPreview')), findsOneWidget);
 
       await tester.enterText(find.byKey(const ValueKey('sealMainText')), 'NORTH LTD');
@@ -360,11 +368,11 @@ void main() {
 
     testWidgets('a saved seal appears and fills the editor when tapped', (WidgetTester tester) async {
       SharedPreferences.setMockInitialValues(<String, Object>{});
+      final List<String> errs = captureErrors();
       await SealLibrary().save(const SealDesign(text: 'SAVED CO', shape: 'rectangle', ink: true));
       await tester.pumpWidget(host(const SealStampSheet()));
       await tester.pumpAndSettle();
-      final Object? boot = tester.takeException();
-      expect(boot == null, isTrue, reason: 'sheet build: ${boot.toString().split('\n').take(6).join(' / ')}');
+      expect(errs, isEmpty, reason: 'sheet build errors: $errs');
       final Finder saved = find.byWidgetPredicate((Widget w) => w.key is ValueKey<String> && (w.key! as ValueKey<String>).value.startsWith('savedSeal:'));
       expect(saved, findsOneWidget);
       await tester.tap(saved);
@@ -376,10 +384,10 @@ void main() {
 
     testWidgets('Save this seal puts it in the library', (WidgetTester tester) async {
       SharedPreferences.setMockInitialValues(<String, Object>{});
+      final List<String> errs = captureErrors();
       await tester.pumpWidget(host(const SealStampSheet()));
       await tester.pumpAndSettle();
-      final Object? boot = tester.takeException();
-      expect(boot == null, isTrue, reason: 'sheet build: ${boot.toString().split('\n').take(6).join(' / ')}');
+      expect(errs, isEmpty, reason: 'sheet build errors: $errs');
       await tester.enterText(find.byKey(const ValueKey('sealMainText')), 'MY STAMP');
       await tester.ensureVisible(find.byKey(const ValueKey('sealSave')));
       await tester.tap(find.byKey(const ValueKey('sealSave')));
