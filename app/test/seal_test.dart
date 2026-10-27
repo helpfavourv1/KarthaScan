@@ -84,7 +84,7 @@ Future<Px> render(WidgetTester tester, StampLayer l, {ui.Image? logo}) async {
 
 List<String> captureErrors() {
   final List<String> errs = <String>[];
-  final FlutterExceptionHandler? old = FlutterError.onError;
+  final void Function(FlutterErrorDetails)? old = FlutterError.onError;
   FlutterError.onError = (FlutterErrorDetails d) => errs.add(d.exceptionAsString().split('\n').take(4).join(' / '));
   addTearDown(() => FlutterError.onError = old);
   return errs;
