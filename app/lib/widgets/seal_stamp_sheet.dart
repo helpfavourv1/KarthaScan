@@ -198,12 +198,12 @@ class _SealStampSheetState extends State<SealStampSheet> {
     final bool dark = Theme.of(context).brightness == Brightness.dark;
     final SealDesign design = _design();
     return SafeArea(
-      child: Container(
+      // A Material (not just a coloured box) so the switches' ink effects show.
+      child: Material(
+        color: dark ? const Color(0xFF1C1C1E) : Colors.white,
+        borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
+        child: Padding(
         padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          color: dark ? const Color(0xFF1C1C1E) : Colors.white,
-          borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
-        ),
         child: SingleChildScrollView(
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -389,6 +389,7 @@ class _SealStampSheetState extends State<SealStampSheet> {
               ]),
             ],
           ),
+        ),
         ),
       ),
     );
