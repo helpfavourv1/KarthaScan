@@ -147,3 +147,9 @@ Every layer kind now has the same three buttons: **Clear this** (the selected it
 - PDF import: 100 pages in ~40 s (was ~4 min), searchable immediately for text PDFs, background OCR only for scans; cancel leaves nothing behind.
 - Dependency changes: added `pdfrx ^2.6.5`; `archive` 3.6 -> ^4.5.0 (DOCX export + device backup rely on it: phone-check a backup/restore round trip).
 - Open: new strings need native review (pagesToReadTitle, pagesToReadHint, pageFromLabel, pageToLabel, readingPageProgress, readingPageEta, idLayoutRealSize, idLayoutFullWidth). Reading runs while the app is open (no background service); document appears after the render pass, not after page 1.
+
+## Custom seal upgrade (verified in CI, Oct 2026)
+- Fixed: size slider was dead above ~36; long text overflowed; Arabic/Hindi arc text broke; export was a 480 px picture enlarged; no preview; no saved seals; no tests.
+- Now: auto-fitted lettering, working text-size (50-100 %), shapes oval/round/box, clean/classic font, separate text colour, worn-stamp look (deterministic), live preview, saved seals (12, long-press deletes), 256 px circular logos with optional transparent white, export drawn at output resolution (480-2048 px). Arabic/Hebrew set straight; Indic letters grouped by cluster (approximate shaping).
+- Tests: test/seal_test.dart (25). Old seals keep their look (new fields default).
+- Open: logo is still stored per seal layer (Copy all repeats it; now ~4x smaller); new strings need native review (sealShapeRound, sealFontSans, sealFontSerif, sealInkLook, sealSaveToLibrary, sealSavedHeading, sealTextColorLabel, sealTextColorSame, sealTextSizePercent, sealRemoveWhite, sealSavedMessage); not yet looked at on a real phone.
