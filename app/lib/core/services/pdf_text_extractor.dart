@@ -50,7 +50,7 @@ class PdfTextExtractor {
   final PdfToImagesService _renderer;
 
   /// A page with fewer visible characters than this is treated as a picture.
-  static const int minEmbeddedChars = 20;
+  static const int minEmbeddedChars = 8;
 
   /// Folder name of the checkpoints for one PDF. The same file gives the same key.
   static String checkpointKey(String pdfPath, int length, DateTime modified) =>
