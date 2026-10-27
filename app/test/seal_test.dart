@@ -331,7 +331,6 @@ void main() {
 
     testWidgets('shows a live preview, applies every choice and returns them', (WidgetTester tester) async {
       SharedPreferences.setMockInitialValues(<String, Object>{});
-      final List<String> errs = captureErrors();
       StampResult? result;
       await tester.pumpWidget(MaterialApp(
         localizationsDelegates: AppLocalizations.localizationsDelegates,
@@ -351,7 +350,10 @@ void main() {
       ));
       await tester.tap(find.text('open'));
       await settle(tester);
-      expect(errs, isEmpty, reason: 'sheet build errors: $errs');
+      {
+        final Object? boot = tester.takeException();
+        if (boot != null) fail('sheet build: ${boot.toString().split('\n').take(60).join(' / ')}');
+      }
       expect(find.byKey(const ValueKey('sealPreview')), findsOneWidget);
 
       await tester.enterText(find.byKey(const ValueKey('sealMainText')), 'NORTH LTD');
@@ -379,11 +381,13 @@ void main() {
 
     testWidgets('a saved seal appears and fills the editor when tapped', (WidgetTester tester) async {
       SharedPreferences.setMockInitialValues(<String, Object>{});
-      final List<String> errs = captureErrors();
       await SealLibrary().save(const SealDesign(text: 'SAVED CO', shape: 'rectangle', ink: true));
       await tester.pumpWidget(host(const SealStampSheet()));
       await settle(tester);
-      expect(errs, isEmpty, reason: 'sheet build errors: $errs');
+      {
+        final Object? boot = tester.takeException();
+        if (boot != null) fail('sheet build: ${boot.toString().split('\n').take(60).join(' / ')}');
+      }
       final Finder saved = find.byWidgetPredicate((Widget w) => w.key is ValueKey<String> && (w.key! as ValueKey<String>).value.startsWith('savedSeal:'));
       expect(saved, findsOneWidget);
       await tester.tap(saved);
@@ -395,10 +399,12 @@ void main() {
 
     testWidgets('Save this seal puts it in the library', (WidgetTester tester) async {
       SharedPreferences.setMockInitialValues(<String, Object>{});
-      final List<String> errs = captureErrors();
       await tester.pumpWidget(host(const SealStampSheet()));
       await settle(tester);
-      expect(errs, isEmpty, reason: 'sheet build errors: $errs');
+      {
+        final Object? boot = tester.takeException();
+        if (boot != null) fail('sheet build: ${boot.toString().split('\n').take(60).join(' / ')}');
+      }
       await tester.enterText(find.byKey(const ValueKey('sealMainText')), 'MY STAMP');
       await tester.ensureVisible(find.byKey(const ValueKey('sealSave')));
       await tester.tap(find.byKey(const ValueKey('sealSave')));
