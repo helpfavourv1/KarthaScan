@@ -695,5 +695,16 @@
   "pageFromLabel": "Alkaen sivulta",
   "pageToLabel": "Sivulle asti",
   "readingPageProgress": "Sivu {page} / {total}",
-  "readingPageEta": "Sivu {page} / {total} · noin {minutes} min jäljellä"
+  "readingPageEta": "Sivu {page} / {total} · noin {minutes} min jäljellä",
+  "sealShapeRound": "Pyöreä",
+  "sealFontSans": "Selkeä",
+  "sealFontSerif": "Klassinen",
+  "sealInkLook": "Kulunut leimasinjälki",
+  "sealSaveToLibrary": "Tallenna tämä sinetti",
+  "sealSavedHeading": "Tallennetut sinetit",
+  "sealTextColorLabel": "Tekstin väri",
+  "sealTextColorSame": "Kuten rengas",
+  "sealTextSizePercent": "Tekstin koko {percent} %",
+  "sealRemoveWhite": "Tee valkoisesta läpinäkyvä",
+  "sealSavedMessage": "Sinetti tallennettu"
 }

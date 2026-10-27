@@ -602,5 +602,16 @@
   "pageFromLabel": "Von Seite",
   "pageToLabel": "Bis Seite",
   "readingPageProgress": "Seite {page} von {total}",
-  "readingPageEta": "Seite {page} von {total} · noch ca. {minutes} Min."
+  "readingPageEta": "Seite {page} von {total} · noch ca. {minutes} Min.",
+  "sealShapeRound": "Rund",
+  "sealFontSans": "Modern",
+  "sealFontSerif": "Klassisch",
+  "sealInkLook": "Abgenutzter Stempel-Look",
+  "sealSaveToLibrary": "Dieses Siegel speichern",
+  "sealSavedHeading": "Gespeicherte Siegel",
+  "sealTextColorLabel": "Textfarbe",
+  "sealTextColorSame": "Wie der Ring",
+  "sealTextSizePercent": "Textgröße {percent} %",
+  "sealRemoveWhite": "Weiß transparent machen",
+  "sealSavedMessage": "Siegel gespeichert"
 }

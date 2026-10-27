@@ -602,5 +602,16 @@
   "pageFromLabel": "من الصفحة",
   "pageToLabel": "إلى الصفحة",
   "readingPageProgress": "الصفحة {page} من {total}",
-  "readingPageEta": "الصفحة {page} من {total} · تبقّى نحو {minutes} د"
+  "readingPageEta": "الصفحة {page} من {total} · تبقّى نحو {minutes} د",
+  "sealShapeRound": "دائري",
+  "sealFontSans": "عصري",
+  "sealFontSerif": "كلاسيكي",
+  "sealInkLook": "مظهر ختم مستعمل",
+  "sealSaveToLibrary": "حفظ هذا الختم",
+  "sealSavedHeading": "الأختام المحفوظة",
+  "sealTextColorLabel": "لون النص",
+  "sealTextColorSame": "مثل الإطار",
+  "sealTextSizePercent": "حجم النص {percent}%",
+  "sealRemoveWhite": "جعل الأبيض شفافًا",
+  "sealSavedMessage": "تم حفظ الختم"
 }

@@ -602,5 +602,16 @@
   "pageFromLabel": "開始ページ",
   "pageToLabel": "終了ページ",
   "readingPageProgress": "{page}/{total}ページ",
-  "readingPageEta": "{page}/{total}ページ・残り約{minutes}分"
+  "readingPageEta": "{page}/{total}ページ・残り約{minutes}分",
+  "sealShapeRound": "円形",
+  "sealFontSans": "すっきり",
+  "sealFontSerif": "クラシック",
+  "sealInkLook": "かすれたスタンプ風",
+  "sealSaveToLibrary": "このシールを保存",
+  "sealSavedHeading": "保存したシール",
+  "sealTextColorLabel": "文字色",
+  "sealTextColorSame": "リングと同じ",
+  "sealTextSizePercent": "文字サイズ {percent}%",
+  "sealRemoveWhite": "白を透明にする",
+  "sealSavedMessage": "シールを保存しました"
 }

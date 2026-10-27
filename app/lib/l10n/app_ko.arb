@@ -602,5 +602,16 @@
   "pageFromLabel": "시작 페이지",
   "pageToLabel": "끝 페이지",
   "readingPageProgress": "{page}/{total} 페이지",
-  "readingPageEta": "{page}/{total} 페이지 · 약 {minutes}분 남음"
+  "readingPageEta": "{page}/{total} 페이지 · 약 {minutes}분 남음",
+  "sealShapeRound": "원형",
+  "sealFontSans": "깔끔한",
+  "sealFontSerif": "클래식",
+  "sealInkLook": "낡은 도장 느낌",
+  "sealSaveToLibrary": "이 인장 저장",
+  "sealSavedHeading": "저장된 인장",
+  "sealTextColorLabel": "글자 색",
+  "sealTextColorSame": "테두리와 동일",
+  "sealTextSizePercent": "글자 크기 {percent}%",
+  "sealRemoveWhite": "흰색을 투명하게",
+  "sealSavedMessage": "인장이 저장되었습니다"
 }

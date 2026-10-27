@@ -695,5 +695,16 @@
   "pageFromLabel": "শুরুর পৃষ্ঠা",
   "pageToLabel": "শেষ পৃষ্ঠা",
   "readingPageProgress": "পৃষ্ঠা {page} / {total}",
-  "readingPageEta": "পৃষ্ঠা {page} / {total} · প্রায় {minutes} মিনিট বাকি"
+  "readingPageEta": "পৃষ্ঠা {page} / {total} · প্রায় {minutes} মিনিট বাকি",
+  "sealShapeRound": "গোল",
+  "sealFontSans": "আধুনিক",
+  "sealFontSerif": "ক্লাসিক",
+  "sealInkLook": "পুরোনো স্ট্যাম্পের ছাপ",
+  "sealSaveToLibrary": "এই সিল সংরক্ষণ করুন",
+  "sealSavedHeading": "সংরক্ষিত সিল",
+  "sealTextColorLabel": "লেখার রং",
+  "sealTextColorSame": "রিংয়ের মতো",
+  "sealTextSizePercent": "লেখার আকার {percent}%",
+  "sealRemoveWhite": "সাদা অংশ স্বচ্ছ করুন",
+  "sealSavedMessage": "সিল সংরক্ষিত হয়েছে"
 }

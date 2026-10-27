@@ -695,5 +695,16 @@
   "pageFromLabel": "Fra side",
   "pageToLabel": "Til side",
   "readingPageProgress": "Side {page} af {total}",
-  "readingPageEta": "Side {page} af {total} · ca. {minutes} min tilbage"
+  "readingPageEta": "Side {page} af {total} · ca. {minutes} min tilbage",
+  "sealShapeRound": "Rund",
+  "sealFontSans": "Moderne",
+  "sealFontSerif": "Klassisk",
+  "sealInkLook": "Slidt stempellook",
+  "sealSaveToLibrary": "Gem dette segl",
+  "sealSavedHeading": "Gemte segl",
+  "sealTextColorLabel": "Tekstfarve",
+  "sealTextColorSame": "Som ringen",
+  "sealTextSizePercent": "Tekststørrelse {percent} %",
+  "sealRemoveWhite": "Gør hvid gennemsigtig",
+  "sealSavedMessage": "Segl gemt"
 }

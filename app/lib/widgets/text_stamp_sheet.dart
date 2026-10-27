@@ -7,7 +7,7 @@ import '../core/models/fill_snippet.dart';
 import '../l10n/app_localizations.dart';
 
 class StampResult {
-  const StampResult({required this.bytes, required this.label, required this.widthFraction, required this.aspect, this.text = '', this.fontSize = 72, this.color = 0xFF111111, this.fontFamily = 'sans-serif', this.fontWeightValue = 700, this.alignName = 'left', this.halo = false, this.noteBgColorValue = 0xFFFFEB84, this.dateFormatValue = 'DD-MM-YYYY', this.customDateMillisValue = 0, this.checkedValue = true, this.checkShapeValue = 'rounded', this.boxColorValue = 0xFF111111, this.tickColorValue = 0xFF007AFF, this.sealShapeValue = 'round', this.sealSubtextValue = '', this.sealCenterValue = 'star', this.sealImageBytesValue});
+  const StampResult({required this.bytes, required this.label, required this.widthFraction, required this.aspect, this.text = '', this.fontSize = 72, this.color = 0xFF111111, this.fontFamily = 'sans-serif', this.fontWeightValue = 700, this.alignName = 'left', this.halo = false, this.noteBgColorValue = 0xFFFFEB84, this.dateFormatValue = 'DD-MM-YYYY', this.customDateMillisValue = 0, this.checkedValue = true, this.checkShapeValue = 'rounded', this.boxColorValue = 0xFF111111, this.tickColorValue = 0xFF007AFF, this.sealShapeValue = 'round', this.sealSubtextValue = '', this.sealCenterValue = 'star', this.sealImageBytesValue, this.sealTextColorValue, this.sealTextScaleValue = 1.0, this.sealFontValue = 'sans', this.sealInkValue = false});
   final Uint8List bytes;
   final String label;
   final double widthFraction;
@@ -30,6 +30,10 @@ class StampResult {
   final String sealSubtextValue;
   final String sealCenterValue;
   final Uint8List? sealImageBytesValue;
+  final int? sealTextColorValue;
+  final double sealTextScaleValue;
+  final String sealFontValue;
+  final bool sealInkValue;
 }
 
 class TextStampSheet extends StatefulWidget {

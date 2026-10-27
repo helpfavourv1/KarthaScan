@@ -297,6 +297,10 @@ class StampLayer {
     this.sealSubtext = '',
     this.sealCenter = 'star',
     this.sealImageBytes,
+    this.sealTextColor,
+    this.sealTextScale = 1.0,
+    this.sealFont = 'sans',
+    this.sealInk = false,
     this.allCaps = false,
     this.boxWidth = 0,
     this.fillSize = 0,
@@ -325,6 +329,19 @@ class StampLayer {
   final String sealSubtext;
   final String sealCenter;
   final Uint8List? sealImageBytes;
+
+  /// Seal only. Colour of the lettering; null means the same as the rings.
+  final int? sealTextColor;
+
+  /// Seal only. Size of the lettering as a share (0.5 to 1.0) of the largest size
+  /// that fits the ring. 1.0 is what seals made before this setting looked like.
+  final double sealTextScale;
+
+  /// Seal only. 'sans' or 'serif'.
+  final String sealFont;
+
+  /// Seal only. Worn rubber-stamp look; the same marks are drawn in the preview and the export.
+  final bool sealInk;
   final bool allCaps;
 
   /// Fill text only. Width of the text box as a fraction of the page width and the
@@ -346,6 +363,8 @@ class StampLayer {
     'checked': checked, 'checkShape': checkShape, 'boxColor': boxColor, 'tickColor': tickColor,
     'sealShape': sealShape, 'sealSubtext': sealSubtext, 'sealCenter': sealCenter,
     if (sealImageBytes != null) 'sealImageBytes': base64Encode(sealImageBytes!),
+    if (sealTextColor != null) 'sealTextColor': sealTextColor,
+    'sealTextScale': sealTextScale, 'sealFont': sealFont, 'sealInk': sealInk,
     'allCaps': allCaps,
     'boxWidth': boxWidth, 'fillSize': fillSize,
   };
@@ -380,6 +399,10 @@ class StampLayer {
       sealSubtext: json['sealSubtext'] as String? ?? '',
       sealCenter: json['sealCenter'] as String? ?? 'star',
       sealImageBytes: json['sealImageBytes'] != null ? base64Decode(json['sealImageBytes'] as String) : null,
+      sealTextColor: json['sealTextColor'] as int?,
+      sealTextScale: (json['sealTextScale'] as num?)?.toDouble() ?? 1.0,
+      sealFont: json['sealFont'] as String? ?? 'sans',
+      sealInk: json['sealInk'] as bool? ?? false,
       allCaps: json['allCaps'] as bool? ?? false,
       boxWidth: (json['boxWidth'] as num?)?.toDouble() ?? 0,
       fillSize: (json['fillSize'] as num?)?.toDouble() ?? 0,
@@ -393,6 +416,11 @@ class StampLayer {
     int? customDateMillis, bool? checked, String? checkShape, int? boxColor, int? tickColor,
     String? sealShape, String? sealSubtext, String? sealCenter,
     Uint8List? sealImageBytes,
+    int? sealTextColor,
+    bool clearSealTextColor = false,
+    double? sealTextScale,
+    String? sealFont,
+    bool? sealInk,
     bool? allCaps,
     double? boxWidth,
     double? fillSize,
@@ -407,7 +435,12 @@ class StampLayer {
       checked: checked ?? this.checked, checkShape: checkShape ?? this.checkShape,
       boxColor: boxColor ?? this.boxColor, tickColor: tickColor ?? this.tickColor,
       sealShape: sealShape ?? this.sealShape, sealSubtext: sealSubtext ?? this.sealSubtext, sealCenter: sealCenter ?? this.sealCenter,
-      sealImageBytes: sealImageBytes ?? this.sealImageBytes, allCaps: allCaps ?? this.allCaps,
+      sealImageBytes: sealImageBytes ?? this.sealImageBytes,
+      sealTextColor: clearSealTextColor ? null : (sealTextColor ?? this.sealTextColor),
+      sealTextScale: sealTextScale ?? this.sealTextScale,
+      sealFont: sealFont ?? this.sealFont,
+      sealInk: sealInk ?? this.sealInk,
+      allCaps: allCaps ?? this.allCaps,
       boxWidth: boxWidth ?? this.boxWidth, fillSize: fillSize ?? this.fillSize,
     );
   }

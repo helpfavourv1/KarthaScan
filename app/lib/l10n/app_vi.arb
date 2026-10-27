@@ -695,5 +695,16 @@
   "pageFromLabel": "Từ trang",
   "pageToLabel": "Đến trang",
   "readingPageProgress": "Trang {page}/{total}",
-  "readingPageEta": "Trang {page}/{total} · còn khoảng {minutes} phút"
+  "readingPageEta": "Trang {page}/{total} · còn khoảng {minutes} phút",
+  "sealShapeRound": "Tròn",
+  "sealFontSans": "Gọn",
+  "sealFontSerif": "Cổ điển",
+  "sealInkLook": "Kiểu con dấu cũ",
+  "sealSaveToLibrary": "Lưu con dấu này",
+  "sealSavedHeading": "Con dấu đã lưu",
+  "sealTextColorLabel": "Màu chữ",
+  "sealTextColorSame": "Giống viền",
+  "sealTextSizePercent": "Cỡ chữ {percent}%",
+  "sealRemoveWhite": "Làm trong suốt màu trắng",
+  "sealSavedMessage": "Đã lưu con dấu"
 }

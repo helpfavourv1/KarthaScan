@@ -602,5 +602,16 @@
   "pageFromLabel": "起始页",
   "pageToLabel": "结束页",
   "readingPageProgress": "第 {page} / {total} 页",
-  "readingPageEta": "第 {page} / {total} 页 · 约剩 {minutes} 分钟"
+  "readingPageEta": "第 {page} / {total} 页 · 约剩 {minutes} 分钟",
+  "sealShapeRound": "圆形",
+  "sealFontSans": "简洁",
+  "sealFontSerif": "经典",
+  "sealInkLook": "磨损印章效果",
+  "sealSaveToLibrary": "保存此印章",
+  "sealSavedHeading": "已保存的印章",
+  "sealTextColorLabel": "文字颜色",
+  "sealTextColorSame": "与外圈相同",
+  "sealTextSizePercent": "文字大小 {percent}%",
+  "sealRemoveWhite": "将白色设为透明",
+  "sealSavedMessage": "印章已保存"
 }

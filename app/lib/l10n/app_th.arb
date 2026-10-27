@@ -695,5 +695,16 @@
   "pageFromLabel": "จากหน้า",
   "pageToLabel": "ถึงหน้า",
   "readingPageProgress": "หน้า {page} จาก {total}",
-  "readingPageEta": "หน้า {page} จาก {total} · เหลือประมาณ {minutes} นาที"
+  "readingPageEta": "หน้า {page} จาก {total} · เหลือประมาณ {minutes} นาที",
+  "sealShapeRound": "วงกลม",
+  "sealFontSans": "เรียบ",
+  "sealFontSerif": "คลาสสิก",
+  "sealInkLook": "ลายตราประทับเก่า",
+  "sealSaveToLibrary": "บันทึกตรานี้",
+  "sealSavedHeading": "ตราที่บันทึกไว้",
+  "sealTextColorLabel": "สีข้อความ",
+  "sealTextColorSame": "เหมือนวงแหวน",
+  "sealTextSizePercent": "ขนาดข้อความ {percent}%",
+  "sealRemoveWhite": "ทำให้สีขาวโปร่งใส",
+  "sealSavedMessage": "บันทึกตราแล้ว"
 }

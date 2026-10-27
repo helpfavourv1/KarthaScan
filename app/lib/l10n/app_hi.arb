@@ -602,5 +602,16 @@
   "pageFromLabel": "पृष्ठ से",
   "pageToLabel": "पृष्ठ तक",
   "readingPageProgress": "पृष्ठ {page} / {total}",
-  "readingPageEta": "पृष्ठ {page} / {total} · लगभग {minutes} मिनट शेष"
+  "readingPageEta": "पृष्ठ {page} / {total} · लगभग {minutes} मिनट शेष",
+  "sealShapeRound": "गोल",
+  "sealFontSans": "सादा",
+  "sealFontSerif": "क्लासिक",
+  "sealInkLook": "घिसी मुहर जैसा रूप",
+  "sealSaveToLibrary": "यह सील सहेजें",
+  "sealSavedHeading": "सहेजी गई सीलें",
+  "sealTextColorLabel": "टेक्स्ट का रंग",
+  "sealTextColorSame": "रिंग जैसा",
+  "sealTextSizePercent": "टेक्स्ट आकार {percent}%",
+  "sealRemoveWhite": "सफ़ेद को पारदर्शी करें",
+  "sealSavedMessage": "सील सहेजी गई"
 }

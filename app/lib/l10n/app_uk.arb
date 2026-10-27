@@ -695,5 +695,16 @@
   "pageFromLabel": "Зі сторінки",
   "pageToLabel": "До сторінки",
   "readingPageProgress": "Сторінка {page} з {total}",
-  "readingPageEta": "Сторінка {page} з {total} · залишилось близько {minutes} хв"
+  "readingPageEta": "Сторінка {page} з {total} · залишилось близько {minutes} хв",
+  "sealShapeRound": "Круглий",
+  "sealFontSans": "Строгий",
+  "sealFontSerif": "Класичний",
+  "sealInkLook": "Ефект потертої печатки",
+  "sealSaveToLibrary": "Зберегти печатку",
+  "sealSavedHeading": "Збережені печатки",
+  "sealTextColorLabel": "Колір тексту",
+  "sealTextColorSame": "Як у кільця",
+  "sealTextSizePercent": "Розмір тексту {percent}%",
+  "sealRemoveWhite": "Зробити білий прозорим",
+  "sealSavedMessage": "Печатку збережено"
 }

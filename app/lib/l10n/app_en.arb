@@ -745,5 +745,54 @@
         "type": "int"
       }
     }
+  },
+  "sealShapeRound": "Round",
+  "@sealShapeRound": {
+    "description": "Seal shape: circle"
+  },
+  "sealFontSans": "Clean",
+  "@sealFontSans": {
+    "description": "Seal lettering style: plain sans-serif"
+  },
+  "sealFontSerif": "Classic",
+  "@sealFontSerif": {
+    "description": "Seal lettering style: serif"
+  },
+  "sealInkLook": "Worn stamp look",
+  "@sealInkLook": {
+    "description": "Switch that gives a seal a worn rubber-stamp texture"
+  },
+  "sealSaveToLibrary": "Save this seal",
+  "@sealSaveToLibrary": {
+    "description": "Button that saves the seal being edited for reuse"
+  },
+  "sealSavedHeading": "Saved seals",
+  "@sealSavedHeading": {
+    "description": "Heading above the list of saved seals; tap one to use it, long-press to delete"
+  },
+  "sealTextColorLabel": "Text colour",
+  "@sealTextColorLabel": {
+    "description": "Label for the lettering colour of a seal"
+  },
+  "sealTextColorSame": "Same as ring",
+  "@sealTextColorSame": {
+    "description": "Choice: lettering uses the ring colour"
+  },
+  "sealTextSizePercent": "Text size {percent}%",
+  "@sealTextSizePercent": {
+    "description": "Slider label; {percent} is 50 to 100",
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "sealRemoveWhite": "Make white transparent",
+  "@sealRemoveWhite": {
+    "description": "Switch for a seal logo: turns its white background transparent"
+  },
+  "sealSavedMessage": "Seal saved",
+  "@sealSavedMessage": {
+    "description": "Shown after a seal is saved to the library"
   }
 }

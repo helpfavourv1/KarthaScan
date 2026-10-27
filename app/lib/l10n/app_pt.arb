@@ -602,5 +602,16 @@
   "pageFromLabel": "Da página",
   "pageToLabel": "Até a página",
   "readingPageProgress": "Página {page} de {total}",
-  "readingPageEta": "Página {page} de {total} · cerca de {minutes} min restantes"
+  "readingPageEta": "Página {page} de {total} · cerca de {minutes} min restantes",
+  "sealShapeRound": "Redondo",
+  "sealFontSans": "Limpo",
+  "sealFontSerif": "Clássico",
+  "sealInkLook": "Aspeto de carimbo gasto",
+  "sealSaveToLibrary": "Guardar este selo",
+  "sealSavedHeading": "Selos guardados",
+  "sealTextColorLabel": "Cor do texto",
+  "sealTextColorSame": "Igual ao anel",
+  "sealTextSizePercent": "Tamanho do texto {percent}%",
+  "sealRemoveWhite": "Tornar o branco transparente",
+  "sealSavedMessage": "Selo guardado"
 }

@@ -204,6 +204,11 @@ class LayerControlPanel extends StatelessWidget {
               sealSubtext: config.sealSubtextValue,
               sealCenter: config.sealCenterValue,
               sealImageBytes: config.sealImageBytesValue,
+              sealTextColor: config.sealTextColorValue,
+              clearSealTextColor: config.sealTextColorValue == null,
+              sealTextScale: config.sealTextScaleValue,
+              sealFont: config.sealFontValue,
+              sealInk: config.sealInkValue,
             );
             await scanProvider.updateStampLayer(document.id, updated);
           }

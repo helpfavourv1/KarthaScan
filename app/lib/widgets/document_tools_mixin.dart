@@ -251,6 +251,10 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
       sealSubtext: config.sealSubtextValue,
       sealCenter: config.sealCenterValue,
       sealImageBytes: config.sealImageBytesValue,
+              sealTextColor: config.sealTextColorValue,
+              sealTextScale: config.sealTextScaleValue,
+              sealFont: config.sealFontValue,
+              sealInk: config.sealInkValue,
     );
     await scanProvider.addStampLayer(doc.id, layer);
     if (mounted) {
@@ -293,6 +297,11 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
       sealSubtext: config.sealSubtextValue,
       sealCenter: config.sealCenterValue,
       sealImageBytes: config.sealImageBytesValue,
+              sealTextColor: config.sealTextColorValue,
+              clearSealTextColor: config.sealTextColorValue == null,
+              sealTextScale: config.sealTextScaleValue,
+              sealFont: config.sealFontValue,
+              sealInk: config.sealInkValue,
     );
     await scanProvider.updateStampLayer(doc.id, updated);
   }

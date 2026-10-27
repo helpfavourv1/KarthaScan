@@ -602,5 +602,16 @@
   "pageFromLabel": "De la page",
   "pageToLabel": "À la page",
   "readingPageProgress": "Page {page} sur {total}",
-  "readingPageEta": "Page {page} sur {total} · environ {minutes} min restantes"
+  "readingPageEta": "Page {page} sur {total} · environ {minutes} min restantes",
+  "sealShapeRound": "Rond",
+  "sealFontSans": "Épuré",
+  "sealFontSerif": "Classique",
+  "sealInkLook": "Aspect tampon usé",
+  "sealSaveToLibrary": "Enregistrer ce sceau",
+  "sealSavedHeading": "Sceaux enregistrés",
+  "sealTextColorLabel": "Couleur du texte",
+  "sealTextColorSame": "Comme l’anneau",
+  "sealTextSizePercent": "Taille du texte {percent} %",
+  "sealRemoveWhite": "Rendre le blanc transparent",
+  "sealSavedMessage": "Sceau enregistré"
 }

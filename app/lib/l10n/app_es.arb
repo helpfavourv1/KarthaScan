@@ -602,5 +602,16 @@
   "pageFromLabel": "Desde la página",
   "pageToLabel": "Hasta la página",
   "readingPageProgress": "Página {page} de {total}",
-  "readingPageEta": "Página {page} de {total} · unos {minutes} min restantes"
+  "readingPageEta": "Página {page} de {total} · unos {minutes} min restantes",
+  "sealShapeRound": "Redondo",
+  "sealFontSans": "Limpio",
+  "sealFontSerif": "Clásico",
+  "sealInkLook": "Aspecto de sello gastado",
+  "sealSaveToLibrary": "Guardar este sello",
+  "sealSavedHeading": "Sellos guardados",
+  "sealTextColorLabel": "Color del texto",
+  "sealTextColorSame": "Como el anillo",
+  "sealTextSizePercent": "Tamaño del texto {percent} %",
+  "sealRemoveWhite": "Hacer transparente el blanco",
+  "sealSavedMessage": "Sello guardado"
 }

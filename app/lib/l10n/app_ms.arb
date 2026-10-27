@@ -695,5 +695,16 @@
   "pageFromLabel": "Dari halaman",
   "pageToLabel": "Hingga halaman",
   "readingPageProgress": "Halaman {page} daripada {total}",
-  "readingPageEta": "Halaman {page} daripada {total} · kira-kira {minutes} min lagi"
+  "readingPageEta": "Halaman {page} daripada {total} · kira-kira {minutes} min lagi",
+  "sealShapeRound": "Bulat",
+  "sealFontSans": "Kemas",
+  "sealFontSerif": "Klasik",
+  "sealInkLook": "Rupa cop lusuh",
+  "sealSaveToLibrary": "Simpan meterai ini",
+  "sealSavedHeading": "Meterai tersimpan",
+  "sealTextColorLabel": "Warna teks",
+  "sealTextColorSame": "Sama seperti cincin",
+  "sealTextSizePercent": "Saiz teks {percent}%",
+  "sealRemoveWhite": "Jadikan putih lutsinar",
+  "sealSavedMessage": "Meterai disimpan"
 }

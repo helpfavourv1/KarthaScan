@@ -602,5 +602,16 @@
   "pageFromLabel": "Dari halaman",
   "pageToLabel": "Sampai halaman",
   "readingPageProgress": "Halaman {page} dari {total}",
-  "readingPageEta": "Halaman {page} dari {total} · sekitar {minutes} mnt lagi"
+  "readingPageEta": "Halaman {page} dari {total} · sekitar {minutes} mnt lagi",
+  "sealShapeRound": "Bulat",
+  "sealFontSans": "Bersih",
+  "sealFontSerif": "Klasik",
+  "sealInkLook": "Tampilan stempel usang",
+  "sealSaveToLibrary": "Simpan segel ini",
+  "sealSavedHeading": "Segel tersimpan",
+  "sealTextColorLabel": "Warna teks",
+  "sealTextColorSame": "Sama dengan cincin",
+  "sealTextSizePercent": "Ukuran teks {percent}%",
+  "sealRemoveWhite": "Jadikan putih transparan",
+  "sealSavedMessage": "Segel disimpan"
 }

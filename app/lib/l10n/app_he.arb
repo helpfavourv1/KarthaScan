@@ -602,5 +602,16 @@
   "pageFromLabel": "מעמוד",
   "pageToLabel": "עד עמוד",
   "readingPageProgress": "עמוד {page} מתוך {total}",
-  "readingPageEta": "עמוד {page} מתוך {total} · נותרו כ-{minutes} דק׳"
+  "readingPageEta": "עמוד {page} מתוך {total} · נותרו כ-{minutes} דק׳",
+  "sealShapeRound": "עגול",
+  "sealFontSans": "נקי",
+  "sealFontSerif": "קלאסי",
+  "sealInkLook": "מראה חותמת משומשת",
+  "sealSaveToLibrary": "שמירת החותמת",
+  "sealSavedHeading": "חותמות שמורות",
+  "sealTextColorLabel": "צבע הטקסט",
+  "sealTextColorSame": "כמו הטבעת",
+  "sealTextSizePercent": "גודל טקסט {percent}%",
+  "sealRemoveWhite": "הפיכת הלבן לשקוף",
+  "sealSavedMessage": "החותמת נשמרה"
 }

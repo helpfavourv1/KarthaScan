@@ -695,5 +695,16 @@
   "pageFromLabel": "Dalla pagina",
   "pageToLabel": "Alla pagina",
   "readingPageProgress": "Pagina {page} di {total}",
-  "readingPageEta": "Pagina {page} di {total} · circa {minutes} min rimanenti"
+  "readingPageEta": "Pagina {page} di {total} · circa {minutes} min rimanenti",
+  "sealShapeRound": "Rotondo",
+  "sealFontSans": "Pulito",
+  "sealFontSerif": "Classico",
+  "sealInkLook": "Aspetto timbro consumato",
+  "sealSaveToLibrary": "Salva questo sigillo",
+  "sealSavedHeading": "Sigilli salvati",
+  "sealTextColorLabel": "Colore del testo",
+  "sealTextColorSame": "Come l’anello",
+  "sealTextSizePercent": "Dimensione testo {percent}%",
+  "sealRemoveWhite": "Rendi trasparente il bianco",
+  "sealSavedMessage": "Sigillo salvato"
 }

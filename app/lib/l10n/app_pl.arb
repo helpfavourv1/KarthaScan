@@ -695,5 +695,16 @@
   "pageFromLabel": "Od strony",
   "pageToLabel": "Do strony",
   "readingPageProgress": "Strona {page} z {total}",
-  "readingPageEta": "Strona {page} z {total} · jeszcze ok. {minutes} min"
+  "readingPageEta": "Strona {page} z {total} · jeszcze ok. {minutes} min",
+  "sealShapeRound": "Okrągły",
+  "sealFontSans": "Czysty",
+  "sealFontSerif": "Klasyczny",
+  "sealInkLook": "Efekt zużytej pieczęci",
+  "sealSaveToLibrary": "Zapisz tę pieczęć",
+  "sealSavedHeading": "Zapisane pieczęcie",
+  "sealTextColorLabel": "Kolor tekstu",
+  "sealTextColorSame": "Jak obwódka",
+  "sealTextSizePercent": "Rozmiar tekstu {percent}%",
+  "sealRemoveWhite": "Usuń białe tło",
+  "sealSavedMessage": "Zapisano pieczęć"
 }

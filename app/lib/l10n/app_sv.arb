@@ -695,5 +695,16 @@
   "pageFromLabel": "Från sida",
   "pageToLabel": "Till sida",
   "readingPageProgress": "Sida {page} av {total}",
-  "readingPageEta": "Sida {page} av {total} · cirka {minutes} min kvar"
+  "readingPageEta": "Sida {page} av {total} · cirka {minutes} min kvar",
+  "sealShapeRound": "Rund",
+  "sealFontSans": "Ren",
+  "sealFontSerif": "Klassisk",
+  "sealInkLook": "Sliten stämpellook",
+  "sealSaveToLibrary": "Spara detta sigill",
+  "sealSavedHeading": "Sparade sigill",
+  "sealTextColorLabel": "Textfärg",
+  "sealTextColorSame": "Som ringen",
+  "sealTextSizePercent": "Textstorlek {percent} %",
+  "sealRemoveWhite": "Gör vitt genomskinligt",
+  "sealSavedMessage": "Sigill sparat"
 }

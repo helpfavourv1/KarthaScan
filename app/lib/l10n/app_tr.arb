@@ -695,5 +695,16 @@
   "pageFromLabel": "Başlangıç sayfası",
   "pageToLabel": "Bitiş sayfası",
   "readingPageProgress": "Sayfa {page} / {total}",
-  "readingPageEta": "Sayfa {page} / {total} · yaklaşık {minutes} dk kaldı"
+  "readingPageEta": "Sayfa {page} / {total} · yaklaşık {minutes} dk kaldı",
+  "sealShapeRound": "Yuvarlak",
+  "sealFontSans": "Sade",
+  "sealFontSerif": "Klasik",
+  "sealInkLook": "Yıpranmış mühür görünümü",
+  "sealSaveToLibrary": "Bu mührü kaydet",
+  "sealSavedHeading": "Kayıtlı mühürler",
+  "sealTextColorLabel": "Metin rengi",
+  "sealTextColorSame": "Halkayla aynı",
+  "sealTextSizePercent": "Metin boyutu %{percent}",
+  "sealRemoveWhite": "Beyazı saydam yap",
+  "sealSavedMessage": "Mühür kaydedildi"
 }

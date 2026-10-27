@@ -516,7 +516,7 @@ class ExportService {
         final stBytes = st.kind == 'checkbox'
             ? await _renderCheckbox(st)
             : (st.kind == 'seal'
-                ? await _renderSeal(st)
+                ? await _renderSeal(st, (decoded.width * 0.25 * st.placement.scale * 1.5).round())
                 : (st.isFlowFill ? await _renderFillText(st, decoded.width) : await _renderStampText(st, decoded.width)));
         if (stBytes != null) {
           final stImage = img.decodePng(stBytes);
@@ -1301,8 +1301,11 @@ class ExportService {
     return bytes?.buffer.asUint8List();
   }
 
-  Future<Uint8List?> _renderSeal(StampLayer layer) async {
-    const double s = 480;
+  /// [pixels] is roughly how wide the seal will be on the page; it is drawn at
+  /// least that large (never below 480, never above 2048) so it is not enlarged,
+  /// and so it stays sharp when the page is printed.
+  Future<Uint8List?> _renderSeal(StampLayer layer, [int pixels = 480]) async {
+    final double s = pixels.clamp(480, 2048).toDouble();
     
     // Decode center image if present
     ui.Image? centerImage;

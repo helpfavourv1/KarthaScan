@@ -695,5 +695,16 @@
   "pageFromLabel": "Van pagina",
   "pageToLabel": "Tot pagina",
   "readingPageProgress": "Pagina {page} van {total}",
-  "readingPageEta": "Pagina {page} van {total} · nog ca. {minutes} min"
+  "readingPageEta": "Pagina {page} van {total} · nog ca. {minutes} min",
+  "sealShapeRound": "Rond",
+  "sealFontSans": "Strak",
+  "sealFontSerif": "Klassiek",
+  "sealInkLook": "Versleten stempellook",
+  "sealSaveToLibrary": "Dit zegel bewaren",
+  "sealSavedHeading": "Bewaarde zegels",
+  "sealTextColorLabel": "Tekstkleur",
+  "sealTextColorSame": "Zoals de ring",
+  "sealTextSizePercent": "Tekstgrootte {percent}%",
+  "sealRemoveWhite": "Wit transparant maken",
+  "sealSavedMessage": "Zegel bewaard"
 }

@@ -695,5 +695,16 @@
   "pageFromLabel": "С страницы",
   "pageToLabel": "По страницу",
   "readingPageProgress": "Страница {page} из {total}",
-  "readingPageEta": "Страница {page} из {total} · осталось около {minutes} мин"
+  "readingPageEta": "Страница {page} из {total} · осталось около {minutes} мин",
+  "sealShapeRound": "Круглый",
+  "sealFontSans": "Строгий",
+  "sealFontSerif": "Классический",
+  "sealInkLook": "Эффект потёртой печати",
+  "sealSaveToLibrary": "Сохранить печать",
+  "sealSavedHeading": "Сохранённые печати",
+  "sealTextColorLabel": "Цвет текста",
+  "sealTextColorSame": "Как у кольца",
+  "sealTextSizePercent": "Размер текста {percent}%",
+  "sealRemoveWhite": "Сделать белый прозрачным",
+  "sealSavedMessage": "Печать сохранена"
 }

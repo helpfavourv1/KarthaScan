@@ -695,5 +695,16 @@
   "pageFromLabel": "Fra side",
   "pageToLabel": "Til side",
   "readingPageProgress": "Side {page} av {total}",
-  "readingPageEta": "Side {page} av {total} · ca. {minutes} min igjen"
+  "readingPageEta": "Side {page} av {total} · ca. {minutes} min igjen",
+  "sealShapeRound": "Rund",
+  "sealFontSans": "Ren",
+  "sealFontSerif": "Klassisk",
+  "sealInkLook": "Slitt stempellook",
+  "sealSaveToLibrary": "Lagre dette seglet",
+  "sealSavedHeading": "Lagrede segl",
+  "sealTextColorLabel": "Tekstfarge",
+  "sealTextColorSame": "Som ringen",
+  "sealTextSizePercent": "Tekststørrelse {percent} %",
+  "sealRemoveWhite": "Gjør hvitt gjennomsiktig",
+  "sealSavedMessage": "Segl lagret"
 }
