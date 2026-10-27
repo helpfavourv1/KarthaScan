@@ -88,7 +88,11 @@ Future<Px> render(WidgetTester tester, StampLayer l, {ui.Image? logo}) async {
 List<String> captureErrors() {
   final List<String> errs = <String>[];
   final void Function(FlutterErrorDetails)? old = FlutterError.onError;
-  FlutterError.onError = (FlutterErrorDetails d) => errs.add(d.exceptionAsString().split('\n').take(4).join(' / '));
+  FlutterError.onError = (FlutterErrorDetails d) {
+    // ignore: avoid_print
+    print('SEALERR: ${d.exceptionAsString().split('\n').take(8).join(' / ')}');
+    old?.call(d);
+  };
   addTearDown(() => FlutterError.onError = old);
   return errs;
 }
@@ -330,6 +334,7 @@ void main() {
         );
 
     testWidgets('shows a live preview, applies every choice and returns them', (WidgetTester tester) async {
+      captureErrors();
       SharedPreferences.setMockInitialValues(<String, Object>{});
       StampResult? result;
       await tester.pumpWidget(MaterialApp(
@@ -380,6 +385,7 @@ void main() {
     });
 
     testWidgets('a saved seal appears and fills the editor when tapped', (WidgetTester tester) async {
+      captureErrors();
       SharedPreferences.setMockInitialValues(<String, Object>{});
       await SealLibrary().save(const SealDesign(text: 'SAVED CO', shape: 'rectangle', ink: true));
       await tester.pumpWidget(host(const SealStampSheet()));
@@ -398,6 +404,7 @@ void main() {
     });
 
     testWidgets('Save this seal puts it in the library', (WidgetTester tester) async {
+      captureErrors();
       SharedPreferences.setMockInitialValues(<String, Object>{});
       await tester.pumpWidget(host(const SealStampSheet()));
       await settle(tester);
