@@ -90,6 +90,14 @@ List<String> captureErrors() {
   return errs;
 }
 
+/// A few fixed frames: enough for a sheet to slide in, and it cannot spin forever
+/// if something repaints every frame.
+Future<void> settle(WidgetTester tester) async {
+  for (int i = 0; i < 6; i++) {
+    await tester.pump(const Duration(milliseconds: 200));
+  }
+}
+
 void main() {
   group('drawing', () {
     testWidgets('each shape has its own outline and stays inside the canvas', (WidgetTester tester) async {
@@ -339,7 +347,7 @@ void main() {
         ),
       ));
       await tester.tap(find.text('open'));
-      await tester.pumpAndSettle();
+      await settle(tester);
       expect(errs, isEmpty, reason: 'sheet build errors: $errs');
       expect(find.byKey(const ValueKey('sealPreview')), findsOneWidget);
 
@@ -356,7 +364,7 @@ void main() {
       await tester.pump();
       await tester.ensureVisible(find.byKey(const ValueKey('sealConfirm')));
       await tester.tap(find.byKey(const ValueKey('sealConfirm')));
-      await tester.pumpAndSettle();
+      await settle(tester);
 
       expect(result, isNotNull);
       expect(result!.text, 'NORTH LTD');
@@ -371,12 +379,12 @@ void main() {
       final List<String> errs = captureErrors();
       await SealLibrary().save(const SealDesign(text: 'SAVED CO', shape: 'rectangle', ink: true));
       await tester.pumpWidget(host(const SealStampSheet()));
-      await tester.pumpAndSettle();
+      await settle(tester);
       expect(errs, isEmpty, reason: 'sheet build errors: $errs');
       final Finder saved = find.byWidgetPredicate((Widget w) => w.key is ValueKey<String> && (w.key! as ValueKey<String>).value.startsWith('savedSeal:'));
       expect(saved, findsOneWidget);
       await tester.tap(saved);
-      await tester.pumpAndSettle();
+      await settle(tester);
       expect(find.widgetWithText(TextField, 'SAVED CO'), findsOneWidget);
       final ChoiceChip box = tester.widget<ChoiceChip>(find.byKey(const ValueKey('sealShape:rectangle')));
       expect(box.selected, isTrue);
@@ -386,12 +394,12 @@ void main() {
       SharedPreferences.setMockInitialValues(<String, Object>{});
       final List<String> errs = captureErrors();
       await tester.pumpWidget(host(const SealStampSheet()));
-      await tester.pumpAndSettle();
+      await settle(tester);
       expect(errs, isEmpty, reason: 'sheet build errors: $errs');
       await tester.enterText(find.byKey(const ValueKey('sealMainText')), 'MY STAMP');
       await tester.ensureVisible(find.byKey(const ValueKey('sealSave')));
       await tester.tap(find.byKey(const ValueKey('sealSave')));
-      await tester.pumpAndSettle();
+      await settle(tester);
       final List<SavedSeal> v = await tester.runAsync(() => SealLibrary().load()) ?? <SavedSeal>[];
       expect(v.single.design.text, 'MY STAMP');
     });
