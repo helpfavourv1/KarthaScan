@@ -706,5 +706,14 @@
   "sealTextColorSame": "Kuten rengas",
   "sealTextSizePercent": "Tekstin koko {percent} %",
   "sealRemoveWhite": "Tee valkoisesta läpinäkyvä",
-  "sealSavedMessage": "Sinetti tallennettu"
+  "sealSavedMessage": "Sinetti tallennettu",
+  "signatureTabDraw": "Piirrä",
+  "signatureTabType": "Kirjoita",
+  "signatureTypeHint": "Kirjoita nimesi",
+  "signatureWidthLabel": "Kynän paksuus",
+  "signatureFontFlowing": "Soljuva",
+  "signatureFontHandwritten": "Käsiala",
+  "signatureSavedHeading": "Tallennetut allekirjoitukset",
+  "signatureNewOne": "Piirrä tai kirjoita uusi",
+  "signatureDeleteSaved": "Poista tallennettu allekirjoitus"
 }

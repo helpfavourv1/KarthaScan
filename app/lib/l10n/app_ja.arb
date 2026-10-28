@@ -613,5 +613,14 @@
   "sealTextColorSame": "リングと同じ",
   "sealTextSizePercent": "文字サイズ {percent}%",
   "sealRemoveWhite": "白を透明にする",
-  "sealSavedMessage": "シールを保存しました"
+  "sealSavedMessage": "シールを保存しました",
+  "signatureTabDraw": "描く",
+  "signatureTabType": "入力",
+  "signatureTypeHint": "名前を入力",
+  "signatureWidthLabel": "ペンの太さ",
+  "signatureFontFlowing": "流れる書体",
+  "signatureFontHandwritten": "手書き風",
+  "signatureSavedHeading": "保存済みの署名",
+  "signatureNewOne": "新しく描く・入力する",
+  "signatureDeleteSaved": "保存した署名を削除"
 }

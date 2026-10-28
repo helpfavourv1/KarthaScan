@@ -613,5 +613,14 @@
   "sealTextColorSame": "Comme l’anneau",
   "sealTextSizePercent": "Taille du texte {percent} %",
   "sealRemoveWhite": "Rendre le blanc transparent",
-  "sealSavedMessage": "Sceau enregistré"
+  "sealSavedMessage": "Sceau enregistré",
+  "signatureTabDraw": "Dessiner",
+  "signatureTabType": "Saisir",
+  "signatureTypeHint": "Saisissez votre nom",
+  "signatureWidthLabel": "Épaisseur",
+  "signatureFontFlowing": "Fluide",
+  "signatureFontHandwritten": "Manuscrite",
+  "signatureSavedHeading": "Signatures enregistrées",
+  "signatureNewOne": "Dessiner ou saisir une nouvelle",
+  "signatureDeleteSaved": "Supprimer la signature enregistrée"
 }

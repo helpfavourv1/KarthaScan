@@ -706,5 +706,14 @@
   "sealTextColorSame": "เหมือนวงแหวน",
   "sealTextSizePercent": "ขนาดข้อความ {percent}%",
   "sealRemoveWhite": "ทำให้สีขาวโปร่งใส",
-  "sealSavedMessage": "บันทึกตราแล้ว"
+  "sealSavedMessage": "บันทึกตราแล้ว",
+  "signatureTabDraw": "วาด",
+  "signatureTabType": "พิมพ์",
+  "signatureTypeHint": "พิมพ์ชื่อของคุณ",
+  "signatureWidthLabel": "ความหนาปากกา",
+  "signatureFontFlowing": "ลื่นไหล",
+  "signatureFontHandwritten": "ลายมือ",
+  "signatureSavedHeading": "ลายเซ็นที่บันทึกไว้",
+  "signatureNewOne": "วาดหรือพิมพ์ใหม่",
+  "signatureDeleteSaved": "ลบลายเซ็นที่บันทึกไว้"
 }

@@ -613,5 +613,14 @@
   "sealTextColorSame": "Sama dengan cincin",
   "sealTextSizePercent": "Ukuran teks {percent}%",
   "sealRemoveWhite": "Jadikan putih transparan",
-  "sealSavedMessage": "Segel disimpan"
+  "sealSavedMessage": "Segel disimpan",
+  "signatureTabDraw": "Gambar",
+  "signatureTabType": "Ketik",
+  "signatureTypeHint": "Ketik nama Anda",
+  "signatureWidthLabel": "Tebal pena",
+  "signatureFontFlowing": "Mengalir",
+  "signatureFontHandwritten": "Tulisan tangan",
+  "signatureSavedHeading": "Tanda tangan tersimpan",
+  "signatureNewOne": "Gambar atau ketik yang baru",
+  "signatureDeleteSaved": "Hapus tanda tangan tersimpan"
 }

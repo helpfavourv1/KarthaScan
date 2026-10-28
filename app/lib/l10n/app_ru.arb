@@ -706,5 +706,14 @@
   "sealTextColorSame": "Как у кольца",
   "sealTextSizePercent": "Размер текста {percent}%",
   "sealRemoveWhite": "Сделать белый прозрачным",
-  "sealSavedMessage": "Печать сохранена"
+  "sealSavedMessage": "Печать сохранена",
+  "signatureTabDraw": "Рисовать",
+  "signatureTabType": "Ввод",
+  "signatureTypeHint": "Введите имя",
+  "signatureWidthLabel": "Толщина пера",
+  "signatureFontFlowing": "Плавный",
+  "signatureFontHandwritten": "Рукописный",
+  "signatureSavedHeading": "Сохранённые подписи",
+  "signatureNewOne": "Нарисовать или ввести новую",
+  "signatureDeleteSaved": "Удалить сохранённую подпись"
 }

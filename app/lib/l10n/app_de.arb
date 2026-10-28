@@ -613,5 +613,14 @@
   "sealTextColorSame": "Wie der Ring",
   "sealTextSizePercent": "Textgröße {percent} %",
   "sealRemoveWhite": "Weiß transparent machen",
-  "sealSavedMessage": "Siegel gespeichert"
+  "sealSavedMessage": "Siegel gespeichert",
+  "signatureTabDraw": "Zeichnen",
+  "signatureTabType": "Tippen",
+  "signatureTypeHint": "Namen eingeben",
+  "signatureWidthLabel": "Stiftstärke",
+  "signatureFontFlowing": "Fließend",
+  "signatureFontHandwritten": "Handschrift",
+  "signatureSavedHeading": "Gespeicherte Unterschriften",
+  "signatureNewOne": "Neue zeichnen oder tippen",
+  "signatureDeleteSaved": "Gespeicherte Unterschrift entfernen"
 }

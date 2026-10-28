@@ -706,5 +706,14 @@
   "sealTextColorSame": "Jak obwódka",
   "sealTextSizePercent": "Rozmiar tekstu {percent}%",
   "sealRemoveWhite": "Usuń białe tło",
-  "sealSavedMessage": "Zapisano pieczęć"
+  "sealSavedMessage": "Zapisano pieczęć",
+  "signatureTabDraw": "Rysuj",
+  "signatureTabType": "Wpisz",
+  "signatureTypeHint": "Wpisz swoje imię i nazwisko",
+  "signatureWidthLabel": "Grubość pióra",
+  "signatureFontFlowing": "Płynne",
+  "signatureFontHandwritten": "Odręczne",
+  "signatureSavedHeading": "Zapisane podpisy",
+  "signatureNewOne": "Narysuj lub wpisz nowy",
+  "signatureDeleteSaved": "Usuń zapisany podpis"
 }

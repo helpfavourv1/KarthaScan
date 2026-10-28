@@ -613,5 +613,14 @@
   "sealTextColorSame": "כמו הטבעת",
   "sealTextSizePercent": "גודל טקסט {percent}%",
   "sealRemoveWhite": "הפיכת הלבן לשקוף",
-  "sealSavedMessage": "החותמת נשמרה"
+  "sealSavedMessage": "החותמת נשמרה",
+  "signatureTabDraw": "ציור",
+  "signatureTabType": "הקלדה",
+  "signatureTypeHint": "הקלד את שמך",
+  "signatureWidthLabel": "עובי העט",
+  "signatureFontFlowing": "זורם",
+  "signatureFontHandwritten": "כתב יד",
+  "signatureSavedHeading": "חתימות שמורות",
+  "signatureNewOne": "ציור או הקלדה של חדשה",
+  "signatureDeleteSaved": "הסרת חתימה שמורה"
 }

@@ -4,16 +4,19 @@ import 'dart:typed_data';
 import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:image/image.dart' as img;
+import 'package:path/path.dart' as p;
+import 'package:path_provider/path_provider.dart';
 
 import 'clear_feedback.dart';
 import '../core/models/scan_document.dart';
 import '../core/models/signature_placement.dart';
 import '../core/services/local_storage.dart';
+import '../core/services/signature_library.dart';
 import '../core/services/ad_pacing_service.dart';
 import '../core/services/interstitial_ad_service.dart';
 import '../core/utils/constants.dart';
 import '../core/utils/seal_draw.dart';
-import 'signature_canvas.dart';
+import 'signature_sheets.dart';
 import '../l10n/app_localizations.dart';
 
 /// Which editor currently owns the tray preview screen.
@@ -79,20 +82,23 @@ class InkController {
 
   Future<String?> addInk(BuildContext context, LocalStorageService localStorage) async {
     Uint8List? bytes;
-    final saved = await localStorage.loadSignaturePng();
-    if (saved != null && context.mounted) {
-      final choice = await showDialog<String>(
-        context: context,
-        builder: (ctx) => AlertDialog(
-          title: Text(AppLocalizations.of(context).signatureTitle),
-          content: Text(AppLocalizations.of(context).signatureChoiceMessage),
-          actions: [
-            TextButton(onPressed: () => Navigator.pop(ctx, 'saved'), child: Text(AppLocalizations.of(ctx).useSavedSignature)),
-            TextButton(onPressed: () => Navigator.pop(ctx, 'draw'), child: Text(AppLocalizations.of(ctx).drawNewSignature)),
-          ],
-        ),
-      );
-      if (choice == 'saved') bytes = saved;
+    SignatureLibrary? library;
+    try {
+      final Directory docs = await getApplicationDocumentsDirectory();
+      library = SignatureLibrary(Directory(p.join(docs.path, 'saved_signatures')));
+      await library.importLegacy(await localStorage.loadSignaturePng());
+      final List<SavedSignature> saved = await library.list();
+      if (saved.isNotEmpty && context.mounted) {
+        final Object? choice = await showModalBottomSheet<Object?>(
+          context: context,
+          isScrollControlled: true,
+          builder: (ctx) => SignaturePickerSheet(library: library!, saved: saved),
+        );
+        if (choice is Uint8List) bytes = choice;
+        if (choice == null) return null;
+      }
+    } catch (_) {
+      // The saved list is a convenience; drawing a new one still works.
     }
     if (bytes == null && context.mounted) {
       bytes = await showModalBottomSheet<Uint8List?>(
@@ -102,6 +108,9 @@ class InkController {
         builder: (context) => const InkSignatureSheet(),
       );
       if (bytes != null) {
+        try {
+          await library?.add(bytes);
+        } catch (_) {}
         await localStorage.saveSignaturePng(bytes);
       }
     }
@@ -1121,81 +1130,6 @@ class InkCompactBar extends StatelessWidget {
               ),
             ),
         ],
-      ),
-    );
-  }
-}
-
-// === InkSignatureSheet: signature canvas bottom sheet ===
-
-class InkSignatureSheet extends StatefulWidget {
-  const InkSignatureSheet({super.key});
-
-  @override
-  State<InkSignatureSheet> createState() => InkSignatureSheetState();
-}
-
-class InkSignatureSheetState extends State<InkSignatureSheet> {
-  final GlobalKey<SignatureCanvasState> _signatureKey =
-      GlobalKey<SignatureCanvasState>();
-
-  @override
-  Widget build(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-    final bg = isDark ? AppColors.bgPrimaryDark : AppColors.bgPrimaryLight;
-    final textPrimary =
-        isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight;
-    final accent = isDark ? AppColors.accentDark : AppColors.accentLight;
-
-    return Padding(
-      padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-      child: SafeArea(
-        child: Container(
-          decoration: BoxDecoration(
-            color: bg,
-            borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(AppShape.bottomSheetTopRadius),
-              topRight: Radius.circular(AppShape.bottomSheetTopRadius),
-            ),
-          ),
-          padding: const EdgeInsets.all(AppSpacing.md),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Text(AppLocalizations.of(context).signatureTitle,
-                  style: TextStyle(
-                      color: textPrimary,
-                      fontSize: AppTypography.title1Size,
-                      fontWeight: FontWeight.w600)),
-              const SizedBox(height: AppSpacing.sm),
-              SizedBox(height: 180, child: SignatureCanvas(key: _signatureKey)),
-              const SizedBox(height: AppSpacing.sm),
-              Row(
-                children: [
-                  TextButton(
-                      onPressed: () => _signatureKey.currentState?.clear(),
-                      child: Text(AppLocalizations.of(context).commonClear)),
-                  const Spacer(),
-                  TextButton(
-                      onPressed: () => Navigator.pop(context),
-                      child: Text(AppLocalizations.of(context).commonSkip)),
-                  const SizedBox(width: AppSpacing.xs),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: accent, foregroundColor: Colors.white),
-                    onPressed: () async {
-                      final bytes =
-                          await _signatureKey.currentState?.exportPng();
-                      if (context.mounted) Navigator.pop(context, bytes);
-                    },
-                    child: Text(AppLocalizations.of(context).commonUse),
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
       ),
     );
   }

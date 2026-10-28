@@ -613,5 +613,14 @@
   "sealTextColorSame": "مثل الإطار",
   "sealTextSizePercent": "حجم النص {percent}%",
   "sealRemoveWhite": "جعل الأبيض شفافًا",
-  "sealSavedMessage": "تم حفظ الختم"
+  "sealSavedMessage": "تم حفظ الختم",
+  "signatureTabDraw": "رسم",
+  "signatureTabType": "كتابة",
+  "signatureTypeHint": "اكتب اسمك",
+  "signatureWidthLabel": "عرض القلم",
+  "signatureFontFlowing": "انسيابي",
+  "signatureFontHandwritten": "خط اليد",
+  "signatureSavedHeading": "التوقيعات المحفوظة",
+  "signatureNewOne": "ارسم أو اكتب توقيعًا جديدًا",
+  "signatureDeleteSaved": "إزالة التوقيع المحفوظ"
 }

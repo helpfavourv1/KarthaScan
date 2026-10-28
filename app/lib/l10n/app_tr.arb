@@ -706,5 +706,14 @@
   "sealTextColorSame": "Halkayla aynı",
   "sealTextSizePercent": "Metin boyutu %{percent}",
   "sealRemoveWhite": "Beyazı saydam yap",
-  "sealSavedMessage": "Mühür kaydedildi"
+  "sealSavedMessage": "Mühür kaydedildi",
+  "signatureTabDraw": "Çiz",
+  "signatureTabType": "Yaz",
+  "signatureTypeHint": "Adınızı yazın",
+  "signatureWidthLabel": "Kalem kalınlığı",
+  "signatureFontFlowing": "Akıcı",
+  "signatureFontHandwritten": "El yazısı",
+  "signatureSavedHeading": "Kayıtlı imzalar",
+  "signatureNewOne": "Yeni çiz veya yaz",
+  "signatureDeleteSaved": "Kayıtlı imzayı kaldır"
 }

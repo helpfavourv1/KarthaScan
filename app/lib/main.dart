@@ -93,6 +93,8 @@ void _registerFontLicenses() {
     'assets/licenses/OFL-NotoSans.txt': ['Noto Sans'],
     'assets/licenses/OFL-NotoSansArabic.txt': ['Noto Sans Arabic'],
     'assets/licenses/OFL-PlusJakartaSans.txt': ['Plus Jakarta Sans'],
+    'assets/licenses/OFL-DancingScript.txt': ['Dancing Script'],
+    'assets/licenses/OFL-Caveat.txt': ['Caveat'],
     'assets/licenses/Apache-2.0-Tesseract.txt': ['Tesseract OCR, Tesseract4Android and tessdata_fast language files'],
     'assets/licenses/BSD-Leptonica.txt': ['Leptonica'],
     'assets/licenses/OFL-NotoSansCJK.txt': ['Noto Sans SC, JP and KR (downloaded for PDF text)'],

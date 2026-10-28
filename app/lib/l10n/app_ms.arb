@@ -706,5 +706,14 @@
   "sealTextColorSame": "Sama seperti cincin",
   "sealTextSizePercent": "Saiz teks {percent}%",
   "sealRemoveWhite": "Jadikan putih lutsinar",
-  "sealSavedMessage": "Meterai disimpan"
+  "sealSavedMessage": "Meterai disimpan",
+  "signatureTabDraw": "Lukis",
+  "signatureTabType": "Taip",
+  "signatureTypeHint": "Taip nama anda",
+  "signatureWidthLabel": "Lebar pen",
+  "signatureFontFlowing": "Mengalir",
+  "signatureFontHandwritten": "Tulisan tangan",
+  "signatureSavedHeading": "Tandatangan disimpan",
+  "signatureNewOne": "Lukis atau taip yang baharu",
+  "signatureDeleteSaved": "Alih keluar tandatangan disimpan"
 }

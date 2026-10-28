@@ -794,5 +794,41 @@
   "sealSavedMessage": "Seal saved",
   "@sealSavedMessage": {
     "description": "Shown after a seal is saved to the library"
+  },
+  "signatureTabDraw": "Draw",
+  "@signatureTabDraw": {
+    "description": "Tab label: draw a signature by hand"
+  },
+  "signatureTabType": "Type",
+  "@signatureTabType": {
+    "description": "Tab label: type a signature with the keyboard"
+  },
+  "signatureTypeHint": "Type your name",
+  "@signatureTypeHint": {
+    "description": "Hint in the field where the name for a typed signature is entered"
+  },
+  "signatureWidthLabel": "Pen width",
+  "@signatureWidthLabel": {
+    "description": "Label for the pen thickness choice in the signature pad"
+  },
+  "signatureFontFlowing": "Flowing",
+  "@signatureFontFlowing": {
+    "description": "Name of a flowing script style for typed signatures"
+  },
+  "signatureFontHandwritten": "Handwritten",
+  "@signatureFontHandwritten": {
+    "description": "Name of a handwriting style for typed signatures"
+  },
+  "signatureSavedHeading": "Saved signatures",
+  "@signatureSavedHeading": {
+    "description": "Heading above the list of saved signatures"
+  },
+  "signatureNewOne": "Draw or type a new one",
+  "@signatureNewOne": {
+    "description": "Button: make a new signature instead of a saved one"
+  },
+  "signatureDeleteSaved": "Remove saved signature",
+  "@signatureDeleteSaved": {
+    "description": "Tooltip on the delete button of a saved signature"
   }
 }

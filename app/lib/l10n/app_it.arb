@@ -706,5 +706,14 @@
   "sealTextColorSame": "Come l’anello",
   "sealTextSizePercent": "Dimensione testo {percent}%",
   "sealRemoveWhite": "Rendi trasparente il bianco",
-  "sealSavedMessage": "Sigillo salvato"
+  "sealSavedMessage": "Sigillo salvato",
+  "signatureTabDraw": "Disegna",
+  "signatureTabType": "Digita",
+  "signatureTypeHint": "Digita il tuo nome",
+  "signatureWidthLabel": "Spessore penna",
+  "signatureFontFlowing": "Fluida",
+  "signatureFontHandwritten": "Scrittura a mano",
+  "signatureSavedHeading": "Firme salvate",
+  "signatureNewOne": "Disegna o digita una nuova",
+  "signatureDeleteSaved": "Rimuovi firma salvata"
 }

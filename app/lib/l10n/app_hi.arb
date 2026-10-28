@@ -613,5 +613,14 @@
   "sealTextColorSame": "रिंग जैसा",
   "sealTextSizePercent": "टेक्स्ट आकार {percent}%",
   "sealRemoveWhite": "सफ़ेद को पारदर्शी करें",
-  "sealSavedMessage": "सील सहेजी गई"
+  "sealSavedMessage": "सील सहेजी गई",
+  "signatureTabDraw": "बनाएँ",
+  "signatureTabType": "टाइप करें",
+  "signatureTypeHint": "अपना नाम लिखें",
+  "signatureWidthLabel": "कलम की मोटाई",
+  "signatureFontFlowing": "प्रवाही",
+  "signatureFontHandwritten": "हस्तलिखित",
+  "signatureSavedHeading": "सहेजे गए हस्ताक्षर",
+  "signatureNewOne": "नया बनाएँ या टाइप करें",
+  "signatureDeleteSaved": "सहेजा हस्ताक्षर हटाएँ"
 }

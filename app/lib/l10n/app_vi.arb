@@ -706,5 +706,14 @@
   "sealTextColorSame": "Giống viền",
   "sealTextSizePercent": "Cỡ chữ {percent}%",
   "sealRemoveWhite": "Làm trong suốt màu trắng",
-  "sealSavedMessage": "Đã lưu con dấu"
+  "sealSavedMessage": "Đã lưu con dấu",
+  "signatureTabDraw": "Vẽ",
+  "signatureTabType": "Nhập",
+  "signatureTypeHint": "Nhập tên của bạn",
+  "signatureWidthLabel": "Độ dày nét",
+  "signatureFontFlowing": "Mềm mại",
+  "signatureFontHandwritten": "Chữ viết tay",
+  "signatureSavedHeading": "Chữ ký đã lưu",
+  "signatureNewOne": "Vẽ hoặc nhập chữ ký mới",
+  "signatureDeleteSaved": "Xóa chữ ký đã lưu"
 }

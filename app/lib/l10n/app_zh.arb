@@ -613,5 +613,14 @@
   "sealTextColorSame": "与外圈相同",
   "sealTextSizePercent": "文字大小 {percent}%",
   "sealRemoveWhite": "将白色设为透明",
-  "sealSavedMessage": "印章已保存"
+  "sealSavedMessage": "印章已保存",
+  "signatureTabDraw": "手写",
+  "signatureTabType": "键入",
+  "signatureTypeHint": "输入您的姓名",
+  "signatureWidthLabel": "笔画粗细",
+  "signatureFontFlowing": "流畅体",
+  "signatureFontHandwritten": "手写体",
+  "signatureSavedHeading": "已保存的签名",
+  "signatureNewOne": "手写或键入新签名",
+  "signatureDeleteSaved": "删除已保存的签名"
 }

@@ -706,5 +706,14 @@
   "sealTextColorSame": "রিংয়ের মতো",
   "sealTextSizePercent": "লেখার আকার {percent}%",
   "sealRemoveWhite": "সাদা অংশ স্বচ্ছ করুন",
-  "sealSavedMessage": "সিল সংরক্ষিত হয়েছে"
+  "sealSavedMessage": "সিল সংরক্ষিত হয়েছে",
+  "signatureTabDraw": "আঁকুন",
+  "signatureTabType": "টাইপ করুন",
+  "signatureTypeHint": "আপনার নাম লিখুন",
+  "signatureWidthLabel": "কলমের পুরুত্ব",
+  "signatureFontFlowing": "প্রবহমান",
+  "signatureFontHandwritten": "হাতের লেখা",
+  "signatureSavedHeading": "সংরক্ষিত স্বাক্ষর",
+  "signatureNewOne": "নতুন স্বাক্ষর আঁকুন বা টাইপ করুন",
+  "signatureDeleteSaved": "সংরক্ষিত স্বাক্ষর সরান"
 }

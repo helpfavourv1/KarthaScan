@@ -706,5 +706,14 @@
   "sealTextColorSame": "Zoals de ring",
   "sealTextSizePercent": "Tekstgrootte {percent}%",
   "sealRemoveWhite": "Wit transparant maken",
-  "sealSavedMessage": "Zegel bewaard"
+  "sealSavedMessage": "Zegel bewaard",
+  "signatureTabDraw": "Tekenen",
+  "signatureTabType": "Typen",
+  "signatureTypeHint": "Typ je naam",
+  "signatureWidthLabel": "Pendikte",
+  "signatureFontFlowing": "Vloeiend",
+  "signatureFontHandwritten": "Handschrift",
+  "signatureSavedHeading": "Opgeslagen handtekeningen",
+  "signatureNewOne": "Nieuwe tekenen of typen",
+  "signatureDeleteSaved": "Opgeslagen handtekening verwijderen"
 }

@@ -613,5 +613,14 @@
   "sealTextColorSame": "테두리와 동일",
   "sealTextSizePercent": "글자 크기 {percent}%",
   "sealRemoveWhite": "흰색을 투명하게",
-  "sealSavedMessage": "인장이 저장되었습니다"
+  "sealSavedMessage": "인장이 저장되었습니다",
+  "signatureTabDraw": "그리기",
+  "signatureTabType": "입력",
+  "signatureTypeHint": "이름을 입력하세요",
+  "signatureWidthLabel": "펜 굵기",
+  "signatureFontFlowing": "흐르는 글씨",
+  "signatureFontHandwritten": "손글씨",
+  "signatureSavedHeading": "저장된 서명",
+  "signatureNewOne": "새로 그리거나 입력하기",
+  "signatureDeleteSaved": "저장된 서명 삭제"
 }

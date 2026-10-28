@@ -706,5 +706,14 @@
   "sealTextColorSame": "Som ringen",
   "sealTextSizePercent": "Textstorlek {percent} %",
   "sealRemoveWhite": "Gör vitt genomskinligt",
-  "sealSavedMessage": "Sigill sparat"
+  "sealSavedMessage": "Sigill sparat",
+  "signatureTabDraw": "Rita",
+  "signatureTabType": "Skriv",
+  "signatureTypeHint": "Skriv ditt namn",
+  "signatureWidthLabel": "Pennbredd",
+  "signatureFontFlowing": "Flytande",
+  "signatureFontHandwritten": "Handskrift",
+  "signatureSavedHeading": "Sparade signaturer",
+  "signatureNewOne": "Rita eller skriv en ny",
+  "signatureDeleteSaved": "Ta bort sparad signatur"
 }

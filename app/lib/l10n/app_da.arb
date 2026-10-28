@@ -706,5 +706,14 @@
   "sealTextColorSame": "Som ringen",
   "sealTextSizePercent": "Tekststørrelse {percent} %",
   "sealRemoveWhite": "Gør hvid gennemsigtig",
-  "sealSavedMessage": "Segl gemt"
+  "sealSavedMessage": "Segl gemt",
+  "signatureTabDraw": "Tegn",
+  "signatureTabType": "Skriv",
+  "signatureTypeHint": "Skriv dit navn",
+  "signatureWidthLabel": "Penbredde",
+  "signatureFontFlowing": "flydende",
+  "signatureFontHandwritten": "Håndskrift",
+  "signatureSavedHeading": "Gemte underskrifter",
+  "signatureNewOne": "Tegn eller skriv en ny",
+  "signatureDeleteSaved": "Fjern gemt underskrift"
 }
