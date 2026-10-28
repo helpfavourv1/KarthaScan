@@ -307,14 +307,24 @@ void main() {
 
     testWidgets('a logo file that is gone stops the export instead of shipping an unmarked page', (WidgetTester tester) async {
       for (final String layout in <String>['single', 'tiled']) {
-        Object? caught;
-        try {
-          await exportPage(tester, wm(text: '', image: '/does/not/exist.png', layout: layout));
-        } catch (e) {
-          caught = e;
-        }
-        // ignore: avoid_print
-        print('WMERR $layout: ${caught.runtimeType} $caught');
+        final Object? caught = await tester.runAsync<Object?>(() async {
+          final Directory dir = Directory.systemTemp.createTempSync('wm_missing');
+          try {
+            final img.Image page = img.Image(width: 300, height: 400);
+            final File f = File('${dir.path}/p.png')..writeAsBytesSync(img.encodePng(page));
+            final DateTime now = DateTime.now();
+            final ScanDocument doc = ScanDocument(
+              id: 'd', title: 't', pageCount: 1, pagePaths: <String>[f.path], createdAt: now, updatedAt: now, ocrText: '', thumbnailPath: f.path,
+              watermarkLayers: <WatermarkLayer>[wm(text: '', image: '/does/not/exist.png', layout: layout)],
+            );
+            await ExportService().renderPageForOutput(doc, 0);
+            return null;
+          } catch (e) {
+            return e;
+          } finally {
+            dir.deleteSync(recursive: true);
+          }
+        });
         expect(caught, isA<ExportFailedException>(), reason: layout);
       }
     });
