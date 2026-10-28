@@ -511,9 +511,7 @@ class ExportService {
         }
         if (wm.isImage) {
           final logo = await _readWatermarkLogo(wm);
-          if (logo != null) {
-            decoded = _compositeSignature(decoded, logo, wm.placement, widthFraction: 0.30, boxHeightFraction: 0.30);
-          }
+          decoded = _compositeSignature(decoded, logo, wm.placement, widthFraction: 0.30, boxHeightFraction: 0.30);
           continue;
         }
         final wmBytes = await _renderWatermarkText(wm, decoded.width);
@@ -1184,23 +1182,20 @@ class ExportService {
     }
   }
 
-  /// A logo watermark's picture with its opacity applied, or null if the file is gone.
-  Future<img.Image?> _readWatermarkLogo(WatermarkLayer wm) async {
-    try {
-      final Uint8List bytes = await _readBytes(wm.imagePath!);
-      final img.Image? logo = img.decodeImage(bytes);
-      if (logo == null) return null;
-      final img.Image rgba = logo.numChannels == 4 ? logo : logo.convert(numChannels: 4);
-      if (wm.opacity < 1) {
-        for (final img.Pixel px in rgba) {
-          px.a = px.a * wm.opacity;
-        }
+  /// A logo watermark's picture with its opacity applied. A missing or unreadable
+  /// logo stops the export: a page must never leave without the watermark it was
+  /// given (it may be there to mark the file confidential).
+  Future<img.Image> _readWatermarkLogo(WatermarkLayer wm) async {
+    final Uint8List bytes = await _readBytes(wm.imagePath!);
+    final img.Image? logo = img.decodeImage(bytes);
+    if (logo == null) throw ExportFailedException('Could not read the watermark picture.');
+    final img.Image rgba = logo.numChannels == 4 ? logo : logo.convert(numChannels: 4);
+    if (wm.opacity < 1) {
+      for (final img.Pixel px in rgba) {
+        px.a = px.a * wm.opacity;
       }
-      return rgba;
-    } catch (error, stackTrace) {
-      _logError('_readWatermarkLogo', error, stackTrace);
-      return null;
     }
+    return rgba;
   }
 
   /// A repeated watermark: drawn once over a page-sized transparent picture with
@@ -1230,7 +1225,8 @@ class ExportService {
       return img.compositeImage(page, layer);
     } catch (error, stackTrace) {
       _logError('_compositeWatermarkTiles', error, stackTrace);
-      return page;
+      if (error is ExportFailedException) rethrow;
+      throw ExportFailedException('Could not draw the watermark.');
     } finally {
       logo?.dispose();
     }

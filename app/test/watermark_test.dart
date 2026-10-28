@@ -301,9 +301,10 @@ void main() {
       }
     });
 
-    testWidgets('a logo file that is gone leaves the page as it was', (WidgetTester tester) async {
-      final img.Image out = await exportPage(tester, wm(text: '', image: '/does/not/exist.png'));
-      expect(redInRect(out, 0, 0, 1200, 1600), 0);
+    testWidgets('a logo file that is gone stops the export instead of shipping an unmarked page', (WidgetTester tester) async {
+      for (final String layout in <String>['single', 'tiled']) {
+        await expectLater(exportPage(tester, wm(text: '', image: '/does/not/exist.png', layout: layout)), throwsA(isA<ExportFailedException>()), reason: layout);
+      }
     });
   });
 }
