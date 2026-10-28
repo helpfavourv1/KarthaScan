@@ -19,6 +19,7 @@ import 'package:katharscan/core/providers/scan_provider.dart';
 import 'package:katharscan/core/services/downloads_service.dart';
 import 'package:katharscan/core/services/export_service.dart';
 import 'package:katharscan/core/services/local_storage.dart';
+import 'package:katharscan/core/utils/typed_signature.dart';
 import 'package:katharscan/l10n/app_localizations.dart';
 import 'package:katharscan/main.dart' as app;
 import 'package:path/path.dart' as p;
@@ -341,5 +342,16 @@ void main() {
         check('F6-downloads', false, 'saveToDownloads failed: $e');
       }
     });
+  });
+
+  testWidgets('G typed signature fonts load on the device', (WidgetTester tester) async {
+    final Map<String, int> w = <String, int>{};
+    for (final String f in <String>[...typedSignatureFonts, 'NoSuchFont']) {
+      final Uint8List? b = await renderTypedSignature('Mmmm Wwww', fontFamily: f, color: 0xFF000000);
+      w[f] = b == null ? -1 : img.decodePng(b)!.width;
+    }
+    final bool distinct = w['DancingScript'] != w['Caveat'] && w['DancingScript'] != w['NoSuchFont'] && w['Caveat'] != w['NoSuchFont'];
+    note('G-fonts', distinct ? 'PASS' : 'FAIL', 'widths $w');
+    expect(distinct, isTrue);
   });
 }

@@ -155,20 +155,6 @@ void main() {
       });
     });
 
-    testWidgets('the two bundled script fonts really load and look different from each other', (WidgetTester tester) async {
-      await tester.runAsync(() async {
-        final Map<String, int> widths = <String, int>{};
-        for (final String f in typedSignatureFonts) {
-          widths[f] = img.decodePng((await renderTypedSignature('Mmmm Wwww', fontFamily: f, color: 0xFF000000))!)!.width;
-        }
-        final int fallback = img.decodePng((await renderTypedSignature('Mmmm Wwww', fontFamily: 'NoSuchFont', color: 0xFF000000))!)!.width;
-        expect(widths.values.toSet().length, 2, reason: 'different fonts, different widths: $widths');
-        for (final MapEntry<String, int> e in widths.entries) {
-          expect(e.value, isNot(fallback), reason: '${e.key} is not the fallback font ($fallback)');
-        }
-      });
-    });
-
     testWidgets('a longer name is wider; empty text gives nothing', (WidgetTester tester) async {
       await tester.runAsync(() async {
         final img.Image a = img.decodePng((await renderTypedSignature('Al', fontFamily: 'Caveat', color: 0xFF000000))!)!;
