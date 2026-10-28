@@ -4,13 +4,13 @@
 /// is empty or anything in it is not a page of a [total]-page document, so a typo
 /// is reported instead of being half-applied.
 List<int>? parsePageRange(String spec, int total) {
-  final String text = spec.trim().toLowerCase();
+  final String text = spec.trim().toLowerCase().replaceAll(RegExp(r'\s*[-–]\s*'), '-');
   if (text.isEmpty || total < 1) return null;
   if (text == 'all') return <int>[for (int i = 0; i < total; i++) i];
   final Set<int> pages = <int>{};
   for (final String raw in text.split(RegExp(r'[,;\s]+'))) {
     if (raw.isEmpty) continue;
-    final RegExpMatch? range = RegExp(r'^(\d+)\s*[-–]\s*(\d+)$').firstMatch(raw);
+    final RegExpMatch? range = RegExp(r'^(\d+)-(\d+)$').firstMatch(raw);
     if (range != null) {
       final int a = int.parse(range.group(1)!), b = int.parse(range.group(2)!);
       if (a < 1 || b > total || a > b) return null;

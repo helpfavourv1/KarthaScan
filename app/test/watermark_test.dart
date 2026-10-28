@@ -166,6 +166,7 @@ void main() {
         expect(tester.takeException(), isNull);
         await tester.tap(find.byKey(ValueKey<String>('wmLayout:${c[0]}')));
         await tester.pump();
+        await tester.ensureVisible(find.text('Add'));
         await tester.tap(find.text('Add'));
         await settle(tester);
         expect(result, isNotNull, reason: '${c[0]}');
@@ -234,15 +235,18 @@ void main() {
       await tester.tap(find.descendant(of: find.byKey(const ValueKey('wmKind')), matching: find.text('Image')));
       await settle(tester);
       // Adding before a picture is chosen does nothing.
+      await tester.ensureVisible(find.text('Add'));
       await tester.tap(find.text('Add'));
       await tester.pump();
       expect(result, isNull);
       await tester.runAsync(() async {
+        await tester.ensureVisible(find.byKey(const ValueKey('wmChooseImage')));
         await tester.tap(find.byKey(const ValueKey('wmChooseImage')));
         await Future<void>.delayed(const Duration(milliseconds: 1500));
       });
       await settle(tester);
       expect(find.byKey(const ValueKey('wmLogoPreview')), findsOneWidget);
+      await tester.ensureVisible(find.text('Add'));
       await tester.tap(find.text('Add'));
       await settle(tester);
       expect(result, isNotNull);
@@ -303,7 +307,15 @@ void main() {
 
     testWidgets('a logo file that is gone stops the export instead of shipping an unmarked page', (WidgetTester tester) async {
       for (final String layout in <String>['single', 'tiled']) {
-        await expectLater(exportPage(tester, wm(text: '', image: '/does/not/exist.png', layout: layout)), throwsA(isA<ExportFailedException>()), reason: layout);
+        Object? caught;
+        try {
+          await exportPage(tester, wm(text: '', image: '/does/not/exist.png', layout: layout));
+        } catch (e) {
+          caught = e;
+        }
+        // ignore: avoid_print
+        print('WMERR $layout: ${caught.runtimeType} $caught');
+        expect(caught, isA<ExportFailedException>(), reason: layout);
       }
     });
   });

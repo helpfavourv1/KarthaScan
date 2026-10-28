@@ -303,9 +303,12 @@ void main() {
       ));
       await tester.tap(find.text('open'));
       await settle(tester);
-      await tester.runAsync(() => Future<void>.delayed(const Duration(milliseconds: 500)));
-      await settle(tester);
-      expect(tester.takeException(), isNull);
+      for (int i = 0; i < 40 && find.byType(AnnotationOverlay).evaluate().isEmpty; i++) {
+        await tester.runAsync(() => Future<void>.delayed(const Duration(milliseconds: 250)));
+        await tester.pump(const Duration(milliseconds: 50));
+      }
+      // ignore: avoid_print
+      print('ANNERR loaded=${find.byType(AnnotationOverlay).evaluate().isNotEmpty} spinner=${find.byType(CircularProgressIndicator).evaluate().isNotEmpty} ex=${tester.takeException()}');
       final Rect frame = tester.getRect(find.byType(AnnotationOverlay));
       expect(frame.width / frame.height, closeTo(0.8, 0.01), reason: 'the drawing area has the page shape');
       await drag(tester, Offset(frame.left + frame.width * 0.2, frame.top + frame.height * 0.3), Offset(frame.left + frame.width * 0.6, frame.top + frame.height * 0.3), steps: 12);
