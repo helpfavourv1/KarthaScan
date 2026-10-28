@@ -1,3 +1,4 @@
+import '../core/utils/smooth_resize.dart';
 import 'dart:io';
 import 'dart:typed_data';
 import 'package:flutter/foundation.dart' show compute;
@@ -49,7 +50,7 @@ class _FilterPreviewSheetState extends State<FilterPreviewSheet> {
     try {
       final bytes = await File(widget.imagePath).readAsBytes();
       final decoded = img.decodeImage(bytes); if (decoded == null) return;
-      final small = decoded.width > 600 ? img.copyResize(decoded, width: 600) : decoded;
+      final small = decoded.width > 600 ? resizeSmooth(decoded, width: 600) : decoded;
       final base = Uint8List.fromList(img.encodeJpg(small, quality: 85));
       if (mounted) setState(() { _baseBytes = base; _previewBytes = base; });
     } catch (_) {}

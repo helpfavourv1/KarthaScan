@@ -2,6 +2,7 @@
 //
 // Top-level isolate entry points for compute(). Lifted verbatim from
 // scan_detail_screen.dart so every host shares one implementation.
+import '../utils/smooth_resize.dart';
 import 'dart:typed_data';
 import 'dart:ui' show Rect;
 
@@ -23,7 +24,7 @@ Uint8List resizeIsolate(Map<String, dynamic> args) {
   if (original == null) return args['original'] as Uint8List;
   final width = args['width'] as int;
   final height = args['height'] as int;
-  final resized = img.copyResize(original, width: width, height: height);
+  final resized = resizeSmooth(original, width: width, height: height);
   return Uint8List.fromList(img.encodeJpg(resized, quality: 95));
 }
 

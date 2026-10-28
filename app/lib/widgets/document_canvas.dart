@@ -1,3 +1,4 @@
+import '../core/utils/smooth_resize.dart';
 import 'dart:io' show File;
 import 'dart:typed_data';
 import 'package:flutter/foundation.dart' show compute;
@@ -560,13 +561,13 @@ Uint8List? renderPagePreview(PagePreviewJob job) {
       processed = img.copyCrop(processed, x: r.left.round(), y: r.top.round(), width: r.width.round(), height: r.height.round());
     }
     if ((transform.resizeWidth ?? 0) > 0 && (transform.resizeHeight ?? 0) > 0) {
-      processed = img.copyResize(processed, width: transform.resizeWidth!, height: transform.resizeHeight!);
+      processed = resizeSmooth(processed, width: transform.resizeWidth!, height: transform.resizeHeight!);
     }
     final int longest = processed.width > processed.height ? processed.width : processed.height;
     if (longest > kPreviewMaxSide) {
       processed = processed.width >= processed.height
-          ? img.copyResize(processed, width: kPreviewMaxSide)
-          : img.copyResize(processed, height: kPreviewMaxSide);
+          ? resizeSmooth(processed, width: kPreviewMaxSide)
+          : resizeSmooth(processed, height: kPreviewMaxSide);
     }
     if (transform.filter != FilterType.none) {
       processed = FilterService.applyToImage(processed, transform.filter, intensity: transform.filterIntensity);

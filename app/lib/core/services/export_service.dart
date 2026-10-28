@@ -1,3 +1,4 @@
+import '../utils/smooth_resize.dart';
 import '../utils/csv_utils.dart';
 import '../utils/seal_draw.dart';
 import '../utils/watermark_draw.dart';
@@ -383,9 +384,9 @@ class ExportService {
       targetWidth = (page.width * widthFraction * placement.scale).round();
       targetHeight = (signature.height * targetWidth / signature.width).round();
     }
-    var sig = img.copyResize(signature, width: targetWidth, height: targetHeight);
+    var sig = resizeSmooth(signature, width: targetWidth, height: targetHeight);
     if (placement.rotationDegrees != 0) {
-      sig = img.copyRotate(sig, angle: placement.rotationDegrees);
+      sig = rotateSmooth(sig, placement.rotationDegrees);
     }
     final dstX = (placement.pctX * page.width).round() - (sig.width ~/ 2);
     final dstY = (placement.pctY * page.height).round() - (sig.height ~/ 2);
@@ -479,7 +480,7 @@ class ExportService {
         decoded = img.copyCrop(decoded, x: r.left.round(), y: r.top.round(), width: r.width.round(), height: r.height.round());
       }
       if (pageTransform != null && (pageTransform.resizeWidth ?? 0) > 0 && (pageTransform.resizeHeight ?? 0) > 0) {
-        decoded = img.copyResize(decoded, width: pageTransform.resizeWidth!, height: pageTransform.resizeHeight!);
+        decoded = resizeSmooth(decoded, width: pageTransform.resizeWidth!, height: pageTransform.resizeHeight!);
       }
       if (effectiveFilter != FilterType.none) {
         final img.Image forFilter = decoded;
@@ -588,8 +589,8 @@ class ExportService {
       final int longest = decoded.width > decoded.height ? decoded.width : decoded.height;
       if (longest > cap) {
         decoded = decoded.width >= decoded.height
-            ? img.copyResize(decoded, width: cap)
-            : img.copyResize(decoded, height: cap);
+            ? resizeSmooth(decoded, width: cap)
+            : resizeSmooth(decoded, height: cap);
       }
       return Uint8List.fromList(img.encodeJpg(decoded, quality: _qualityFor(tier)));
     } catch (_) {
@@ -1139,8 +1140,8 @@ class ExportService {
         final int top = (354 + total + margin <= pageH) ? 354 : ((pageH - total) ~/ 2);
         canvas = img.Image(width: pageW, height: pageH);
         img.fill(canvas, color: img.ColorRgb8(255, 255, 255));
-        img.compositeImage(canvas, img.copyResize(front, width: cardW, height: frontH), dstX: x, dstY: top);
-        img.compositeImage(canvas, img.copyResize(back, width: cardW, height: backH), dstX: x, dstY: top + frontH + gap);
+        img.compositeImage(canvas, resizeSmooth(front, width: cardW, height: frontH), dstX: x, dstY: top);
+        img.compositeImage(canvas, resizeSmooth(back, width: cardW, height: backH), dstX: x, dstY: top + frontH + gap);
       } else {
         const int canvasWidth = 1200;
         const int gap = 40;
@@ -1148,8 +1149,8 @@ class ExportService {
         final int backH = (back.height * canvasWidth / back.width).round();
         canvas = img.Image(width: canvasWidth, height: frontH + gap + backH);
         img.fill(canvas, color: img.ColorRgb8(255, 255, 255));
-        img.compositeImage(canvas, img.copyResize(front, width: canvasWidth, height: frontH), dstX: 0, dstY: 0);
-        img.compositeImage(canvas, img.copyResize(back, width: canvasWidth, height: backH), dstX: 0, dstY: frontH + gap);
+        img.compositeImage(canvas, resizeSmooth(front, width: canvasWidth, height: frontH), dstX: 0, dstY: 0);
+        img.compositeImage(canvas, resizeSmooth(back, width: canvasWidth, height: backH), dstX: 0, dstY: frontH + gap);
       }
       final Uint8List combinedBytes = Uint8List.fromList(img.encodePng(canvas));
 

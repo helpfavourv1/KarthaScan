@@ -1,3 +1,4 @@
+import '../core/utils/smooth_resize.dart';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -46,7 +47,7 @@ class _EraserSheetState extends State<EraserSheet> {
       final bytes = await File(widget.imagePath).readAsBytes();
       final decoded = img.decodeImage(bytes);
       if (decoded != null) {
-        _sampleImage = decoded.width > 800 ? img.copyResize(decoded, width: 800) : decoded;
+        _sampleImage = decoded.width > 800 ? resizeSmooth(decoded, width: 800) : decoded;
       }
     } catch (_) {}
     if (mounted) setState(() => _loading = false);

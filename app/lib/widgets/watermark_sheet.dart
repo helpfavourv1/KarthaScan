@@ -1,3 +1,4 @@
+import '../core/utils/smooth_resize.dart';
 import 'dart:io';
 import 'dart:typed_data';
 
@@ -431,7 +432,7 @@ Uint8List? _prepareWatermarkLogo(Uint8List raw) {
     img.Image out = decoded;
     final int longest = decoded.width > decoded.height ? decoded.width : decoded.height;
     if (longest > 1024) {
-      out = decoded.width >= decoded.height ? img.copyResize(decoded, width: 1024) : img.copyResize(decoded, height: 1024);
+      out = decoded.width >= decoded.height ? resizeSmooth(decoded, width: 1024) : resizeSmooth(decoded, height: 1024);
     }
     if (out.numChannels != 4) out = out.convert(numChannels: 4);
     return Uint8List.fromList(img.encodePng(out));
