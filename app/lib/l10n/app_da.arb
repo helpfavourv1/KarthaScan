@@ -715,5 +715,7 @@
   "signatureFontHandwritten": "Håndskrift",
   "signatureSavedHeading": "Gemte underskrifter",
   "signatureNewOne": "Tegn eller skriv en ny",
-  "signatureDeleteSaved": "Fjern gemt underskrift"
+  "signatureDeleteSaved": "Fjern gemt underskrift",
+  "annotationModeSelect": "Vælg",
+  "annotationModeEraser": "Viskelæder"
 }

@@ -715,5 +715,7 @@
   "signatureFontHandwritten": "Chữ viết tay",
   "signatureSavedHeading": "Chữ ký đã lưu",
   "signatureNewOne": "Vẽ hoặc nhập chữ ký mới",
-  "signatureDeleteSaved": "Xóa chữ ký đã lưu"
+  "signatureDeleteSaved": "Xóa chữ ký đã lưu",
+  "annotationModeSelect": "Chọn",
+  "annotationModeEraser": "Cục tẩy"
 }

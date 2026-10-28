@@ -622,5 +622,7 @@
   "signatureFontHandwritten": "Handschrift",
   "signatureSavedHeading": "Gespeicherte Unterschriften",
   "signatureNewOne": "Neue zeichnen oder tippen",
-  "signatureDeleteSaved": "Gespeicherte Unterschrift entfernen"
+  "signatureDeleteSaved": "Gespeicherte Unterschrift entfernen",
+  "annotationModeSelect": "Auswählen",
+  "annotationModeEraser": "Radierer"
 }

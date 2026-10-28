@@ -622,5 +622,7 @@
   "signatureFontHandwritten": "כתב יד",
   "signatureSavedHeading": "חתימות שמורות",
   "signatureNewOne": "ציור או הקלדה של חדשה",
-  "signatureDeleteSaved": "הסרת חתימה שמורה"
+  "signatureDeleteSaved": "הסרת חתימה שמורה",
+  "annotationModeSelect": "בחירה",
+  "annotationModeEraser": "מחק"
 }

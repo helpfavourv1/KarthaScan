@@ -622,5 +622,7 @@
   "signatureFontHandwritten": "手書き風",
   "signatureSavedHeading": "保存済みの署名",
   "signatureNewOne": "新しく描く・入力する",
-  "signatureDeleteSaved": "保存した署名を削除"
+  "signatureDeleteSaved": "保存した署名を削除",
+  "annotationModeSelect": "選択",
+  "annotationModeEraser": "消しゴム"
 }

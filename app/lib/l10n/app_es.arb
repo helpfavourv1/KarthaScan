@@ -622,5 +622,7 @@
   "signatureFontHandwritten": "Manuscrita",
   "signatureSavedHeading": "Firmas guardadas",
   "signatureNewOne": "Dibujar o escribir una nueva",
-  "signatureDeleteSaved": "Quitar firma guardada"
+  "signatureDeleteSaved": "Quitar firma guardada",
+  "annotationModeSelect": "Seleccionar",
+  "annotationModeEraser": "Borrador"
 }

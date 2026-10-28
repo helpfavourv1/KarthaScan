@@ -715,5 +715,7 @@
   "signatureFontHandwritten": "Рукописный",
   "signatureSavedHeading": "Сохранённые подписи",
   "signatureNewOne": "Нарисовать или ввести новую",
-  "signatureDeleteSaved": "Удалить сохранённую подпись"
+  "signatureDeleteSaved": "Удалить сохранённую подпись",
+  "annotationModeSelect": "Выбрать",
+  "annotationModeEraser": "Ластик"
 }

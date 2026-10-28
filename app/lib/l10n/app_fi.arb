@@ -715,5 +715,7 @@
   "signatureFontHandwritten": "Käsiala",
   "signatureSavedHeading": "Tallennetut allekirjoitukset",
   "signatureNewOne": "Piirrä tai kirjoita uusi",
-  "signatureDeleteSaved": "Poista tallennettu allekirjoitus"
+  "signatureDeleteSaved": "Poista tallennettu allekirjoitus",
+  "annotationModeSelect": "Valitse",
+  "annotationModeEraser": "Pyyhekumi"
 }

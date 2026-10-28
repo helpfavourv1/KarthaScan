@@ -715,5 +715,7 @@
   "signatureFontHandwritten": "Handschrift",
   "signatureSavedHeading": "Opgeslagen handtekeningen",
   "signatureNewOne": "Nieuwe tekenen of typen",
-  "signatureDeleteSaved": "Opgeslagen handtekening verwijderen"
+  "signatureDeleteSaved": "Opgeslagen handtekening verwijderen",
+  "annotationModeSelect": "Selecteren",
+  "annotationModeEraser": "Gum"
 }

@@ -715,5 +715,7 @@
   "signatureFontHandwritten": "Рукописний",
   "signatureSavedHeading": "Збережені підписи",
   "signatureNewOne": "Намалювати або ввести новий",
-  "signatureDeleteSaved": "Видалити збережений підпис"
+  "signatureDeleteSaved": "Видалити збережений підпис",
+  "annotationModeSelect": "Вибрати",
+  "annotationModeEraser": "Гумка"
 }

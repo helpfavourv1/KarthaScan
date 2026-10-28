@@ -715,5 +715,7 @@
   "signatureFontHandwritten": "Håndskrift",
   "signatureSavedHeading": "Lagrede signaturer",
   "signatureNewOne": "Tegn eller skriv en ny",
-  "signatureDeleteSaved": "Fjern lagret signatur"
+  "signatureDeleteSaved": "Fjern lagret signatur",
+  "annotationModeSelect": "Velg",
+  "annotationModeEraser": "Viskelær"
 }

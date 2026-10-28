@@ -622,5 +622,7 @@
   "signatureFontHandwritten": "手写体",
   "signatureSavedHeading": "已保存的签名",
   "signatureNewOne": "手写或键入新签名",
-  "signatureDeleteSaved": "删除已保存的签名"
+  "signatureDeleteSaved": "删除已保存的签名",
+  "annotationModeSelect": "选择",
+  "annotationModeEraser": "橡皮擦"
 }

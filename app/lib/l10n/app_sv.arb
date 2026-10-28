@@ -715,5 +715,7 @@
   "signatureFontHandwritten": "Handskrift",
   "signatureSavedHeading": "Sparade signaturer",
   "signatureNewOne": "Rita eller skriv en ny",
-  "signatureDeleteSaved": "Ta bort sparad signatur"
+  "signatureDeleteSaved": "Ta bort sparad signatur",
+  "annotationModeSelect": "Markera",
+  "annotationModeEraser": "Suddgummi"
 }

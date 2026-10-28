@@ -622,5 +622,7 @@
   "signatureFontHandwritten": "خط اليد",
   "signatureSavedHeading": "التوقيعات المحفوظة",
   "signatureNewOne": "ارسم أو اكتب توقيعًا جديدًا",
-  "signatureDeleteSaved": "إزالة التوقيع المحفوظ"
+  "signatureDeleteSaved": "إزالة التوقيع المحفوظ",
+  "annotationModeSelect": "تحديد",
+  "annotationModeEraser": "ممحاة"
 }

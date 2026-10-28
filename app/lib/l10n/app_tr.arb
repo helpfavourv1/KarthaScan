@@ -715,5 +715,7 @@
   "signatureFontHandwritten": "El yazısı",
   "signatureSavedHeading": "Kayıtlı imzalar",
   "signatureNewOne": "Yeni çiz veya yaz",
-  "signatureDeleteSaved": "Kayıtlı imzayı kaldır"
+  "signatureDeleteSaved": "Kayıtlı imzayı kaldır",
+  "annotationModeSelect": "Seç",
+  "annotationModeEraser": "Silgi"
 }

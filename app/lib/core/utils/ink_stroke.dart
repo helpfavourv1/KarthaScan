@@ -81,3 +81,27 @@ List<InkSegment> buildInkSegments(
   out.add(InkSegment(start, pts.last.p, widths.last));
   return out;
 }
+
+/// A smooth single outline through [points]: quadratic curves through the
+/// midpoints of the samples. Drawn as one stroked path, so a translucent
+/// highlighter lays down one even band instead of beads where pieces overlap.
+Path smoothPath(List<Offset> points) {
+  final Path path = Path();
+  if (points.isEmpty) return path;
+  path.moveTo(points.first.dx, points.first.dy);
+  if (points.length == 1) {
+    // A tap: a zero-length line drawn with round ends is a dot.
+    path.lineTo(points.first.dx + 0.01, points.first.dy);
+    return path;
+  }
+  if (points.length == 2) {
+    path.lineTo(points[1].dx, points[1].dy);
+    return path;
+  }
+  for (int i = 1; i < points.length - 1; i++) {
+    final Offset mid = Offset.lerp(points[i], points[i + 1], 0.5)!;
+    path.quadraticBezierTo(points[i].dx, points[i].dy, mid.dx, mid.dy);
+  }
+  path.lineTo(points.last.dx, points.last.dy);
+  return path;
+}

@@ -622,5 +622,7 @@
   "signatureFontHandwritten": "हस्तलिखित",
   "signatureSavedHeading": "सहेजे गए हस्ताक्षर",
   "signatureNewOne": "नया बनाएँ या टाइप करें",
-  "signatureDeleteSaved": "सहेजा हस्ताक्षर हटाएँ"
+  "signatureDeleteSaved": "सहेजा हस्ताक्षर हटाएँ",
+  "annotationModeSelect": "चुनें",
+  "annotationModeEraser": "इरेज़र"
 }

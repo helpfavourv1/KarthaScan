@@ -715,5 +715,7 @@
   "signatureFontHandwritten": "ลายมือ",
   "signatureSavedHeading": "ลายเซ็นที่บันทึกไว้",
   "signatureNewOne": "วาดหรือพิมพ์ใหม่",
-  "signatureDeleteSaved": "ลบลายเซ็นที่บันทึกไว้"
+  "signatureDeleteSaved": "ลบลายเซ็นที่บันทึกไว้",
+  "annotationModeSelect": "เลือก",
+  "annotationModeEraser": "ยางลบ"
 }

@@ -27,6 +27,7 @@ import '../core/services/ocr_service.dart';
 import '../core/services/print_service.dart';
 import '../core/services/share_service.dart';
 import '../l10n/app_localizations.dart';
+import '../core/utils/annotation_items.dart' show AnnotateResult;
 import 'annotate_sheet.dart';
 import 'eraser_overlay.dart';
 import 'filter_preview_sheet.dart';
@@ -106,19 +107,22 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
   Future<void> addAnnotateToPage(int pageIndex) async {
     final doc = document;
     if (doc == null || doc.pagePaths.isEmpty) return;
-    final bytes = await showModalBottomSheet<Uint8List?>(
+    final AnnotateResult? drawn = await showModalBottomSheet<AnnotateResult?>(
       context: context,
       isScrollControlled: true,
       enableDrag: false,
-      builder: (context) => const AnnotateSheet(),
+      builder: (context) => AnnotateSheet(
+        pagePath: pageIndex < doc.pagePaths.length ? doc.pagePaths[pageIndex] : null,
+        pageTransform: doc.pageTransforms[pageIndex],
+      ),
     );
-    if (bytes == null || !mounted) return;
+    if (drawn == null || !mounted) return;
     final appDir = await getApplicationDocumentsDirectory();
     final annotateDir = Directory(p.join(appDir.path, 'annotate_pages'));
     await annotateDir.create(recursive: true);
     final filePath = p.join(annotateDir.path, 'ann_${DateTime.now().microsecondsSinceEpoch}_$pageIndex.png');
-    await File(filePath).writeAsBytes(bytes);
-    final layer = AnnotateLayer(id: scanProvider.newAnnotateId(), pageIndex: pageIndex, bytesPath: filePath, placement: const SignaturePlacement(pctX: 0.5, pctY: 0.35));
+    await File(filePath).writeAsBytes(drawn.bytes);
+    final layer = AnnotateLayer(id: scanProvider.newAnnotateId(), pageIndex: pageIndex, bytesPath: filePath, placement: SignaturePlacement(pctX: drawn.pctX, pctY: drawn.pctY, scale: drawn.scale));
     await scanProvider.addAnnotateLayer(doc.id, layer);
     if (mounted) {
       editMode = TrayEditMode.annotate;

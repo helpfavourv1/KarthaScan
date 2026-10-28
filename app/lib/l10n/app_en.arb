@@ -830,5 +830,13 @@
   "signatureDeleteSaved": "Remove saved signature",
   "@signatureDeleteSaved": {
     "description": "Tooltip on the delete button of a saved signature"
+  },
+  "annotationModeSelect": "Select",
+  "@annotationModeSelect": {
+    "description": "Annotate tool: pick a mark to move, recolour or delete it"
+  },
+  "annotationModeEraser": "Eraser",
+  "@annotationModeEraser": {
+    "description": "Annotate tool: remove marks by dragging across them"
   }
 }

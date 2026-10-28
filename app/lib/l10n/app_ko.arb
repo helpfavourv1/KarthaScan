@@ -622,5 +622,7 @@
   "signatureFontHandwritten": "손글씨",
   "signatureSavedHeading": "저장된 서명",
   "signatureNewOne": "새로 그리거나 입력하기",
-  "signatureDeleteSaved": "저장된 서명 삭제"
+  "signatureDeleteSaved": "저장된 서명 삭제",
+  "annotationModeSelect": "선택",
+  "annotationModeEraser": "지우개"
 }

@@ -622,5 +622,7 @@
   "signatureFontHandwritten": "Tulisan tangan",
   "signatureSavedHeading": "Tanda tangan tersimpan",
   "signatureNewOne": "Gambar atau ketik yang baru",
-  "signatureDeleteSaved": "Hapus tanda tangan tersimpan"
+  "signatureDeleteSaved": "Hapus tanda tangan tersimpan",
+  "annotationModeSelect": "Pilih",
+  "annotationModeEraser": "Penghapus"
 }

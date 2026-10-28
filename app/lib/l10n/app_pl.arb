@@ -715,5 +715,7 @@
   "signatureFontHandwritten": "Odręczne",
   "signatureSavedHeading": "Zapisane podpisy",
   "signatureNewOne": "Narysuj lub wpisz nowy",
-  "signatureDeleteSaved": "Usuń zapisany podpis"
+  "signatureDeleteSaved": "Usuń zapisany podpis",
+  "annotationModeSelect": "Zaznacz",
+  "annotationModeEraser": "Gumka"
 }

@@ -45,6 +45,15 @@ Uint8List trimToInk(Uint8List png, {int margin = 6}) {
   try {
     final img.Image? decoded = img.decodePng(png);
     if (decoded == null) return png;
+    // Nothing drawn: hand the picture back unchanged.
+    bool anyInk = false;
+    for (final img.Pixel px in decoded) {
+      if (px.a > 0) {
+        anyInk = true;
+        break;
+      }
+    }
+    if (!anyInk) return png;
     final img.Image trimmed = img.trim(decoded, mode: img.TrimMode.transparent);
     if (trimmed.width < 1 || trimmed.height < 1) return png;
     final img.Image padded = img.Image(

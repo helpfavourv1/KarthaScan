@@ -715,5 +715,7 @@
   "signatureFontHandwritten": "হাতের লেখা",
   "signatureSavedHeading": "সংরক্ষিত স্বাক্ষর",
   "signatureNewOne": "নতুন স্বাক্ষর আঁকুন বা টাইপ করুন",
-  "signatureDeleteSaved": "সংরক্ষিত স্বাক্ষর সরান"
+  "signatureDeleteSaved": "সংরক্ষিত স্বাক্ষর সরান",
+  "annotationModeSelect": "নির্বাচন",
+  "annotationModeEraser": "ইরেজার"
 }
