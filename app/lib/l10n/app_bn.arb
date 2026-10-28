@@ -717,5 +717,18 @@
   "signatureNewOne": "নতুন স্বাক্ষর আঁকুন বা টাইপ করুন",
   "signatureDeleteSaved": "সংরক্ষিত স্বাক্ষর সরান",
   "annotationModeSelect": "নির্বাচন",
-  "annotationModeEraser": "ইরেজার"
+  "annotationModeEraser": "ইরেজার",
+  "watermarkKindText": "টেক্সট",
+  "watermarkKindImage": "ছবি",
+  "watermarkChooseImage": "ছবি বেছে নিন",
+  "watermarkLayoutLabel": "লেআউট",
+  "watermarkLayoutSingle": "একক",
+  "watermarkLayoutDiagonal": "তির্যক",
+  "watermarkLayoutTiled": "পুনরাবৃত্ত",
+  "watermarkPagesLabel": "পৃষ্ঠা",
+  "watermarkPagesThis": "এই পৃষ্ঠা",
+  "watermarkPagesAll": "সব পৃষ্ঠা",
+  "watermarkPagesRange": "পরিসর",
+  "watermarkPagesRangeHint": "যেমন 1-3, 5",
+  "watermarkPagesInvalid": "পৃষ্ঠাগুলি দেখুন (নথিতে {count}টি পৃষ্ঠা আছে)"
 }

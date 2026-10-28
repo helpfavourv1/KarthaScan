@@ -717,5 +717,18 @@
   "signatureNewOne": "Nieuwe tekenen of typen",
   "signatureDeleteSaved": "Opgeslagen handtekening verwijderen",
   "annotationModeSelect": "Selecteren",
-  "annotationModeEraser": "Gum"
+  "annotationModeEraser": "Gum",
+  "watermarkKindText": "Tekst",
+  "watermarkKindImage": "Afbeelding",
+  "watermarkChooseImage": "Afbeelding kiezen",
+  "watermarkLayoutLabel": "Indeling",
+  "watermarkLayoutSingle": "Enkel",
+  "watermarkLayoutDiagonal": "Diagonaal",
+  "watermarkLayoutTiled": "Betegeld",
+  "watermarkPagesLabel": "Pagina's",
+  "watermarkPagesThis": "Deze pagina",
+  "watermarkPagesAll": "Alle pagina's",
+  "watermarkPagesRange": "Bereik",
+  "watermarkPagesRangeHint": "bijv. 1-3, 5",
+  "watermarkPagesInvalid": "Controleer de pagina's (het document heeft {count} pagina's)"
 }

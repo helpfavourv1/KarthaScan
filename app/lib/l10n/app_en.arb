@@ -838,5 +838,62 @@
   "annotationModeEraser": "Eraser",
   "@annotationModeEraser": {
     "description": "Annotate tool: remove marks by dragging across them"
+  },
+  "watermarkKindText": "Text",
+  "@watermarkKindText": {
+    "description": "Watermark kind: text"
+  },
+  "watermarkKindImage": "Image",
+  "@watermarkKindImage": {
+    "description": "Watermark kind: a logo or picture"
+  },
+  "watermarkChooseImage": "Choose image",
+  "@watermarkChooseImage": {
+    "description": "Button to pick a logo for a watermark"
+  },
+  "watermarkLayoutLabel": "Layout",
+  "@watermarkLayoutLabel": {
+    "description": "Label above the watermark layout choices"
+  },
+  "watermarkLayoutSingle": "Single",
+  "@watermarkLayoutSingle": {
+    "description": "Watermark layout: one watermark"
+  },
+  "watermarkLayoutDiagonal": "Diagonal",
+  "@watermarkLayoutDiagonal": {
+    "description": "Watermark layout: one large diagonal watermark"
+  },
+  "watermarkLayoutTiled": "Tiled",
+  "@watermarkLayoutTiled": {
+    "description": "Watermark layout: repeated across the whole page"
+  },
+  "watermarkPagesLabel": "Pages",
+  "@watermarkPagesLabel": {
+    "description": "Label above the choice of which pages get the watermark"
+  },
+  "watermarkPagesThis": "This page",
+  "@watermarkPagesThis": {
+    "description": "Apply the watermark to the current page only"
+  },
+  "watermarkPagesAll": "All pages",
+  "@watermarkPagesAll": {
+    "description": "Apply the watermark to every page"
+  },
+  "watermarkPagesRange": "Range",
+  "@watermarkPagesRange": {
+    "description": "Apply the watermark to a typed range of pages"
+  },
+  "watermarkPagesRangeHint": "e.g. 1-3, 5",
+  "@watermarkPagesRangeHint": {
+    "description": "Example shown in the page range field"
+  },
+  "watermarkPagesInvalid": "Check the pages (the document has {count} pages)",
+  "@watermarkPagesInvalid": {
+    "description": "Error when the typed page range is not valid for this document",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
   }
 }

@@ -624,5 +624,18 @@
   "signatureNewOne": "Gambar atau ketik yang baru",
   "signatureDeleteSaved": "Hapus tanda tangan tersimpan",
   "annotationModeSelect": "Pilih",
-  "annotationModeEraser": "Penghapus"
+  "annotationModeEraser": "Penghapus",
+  "watermarkKindText": "Teks",
+  "watermarkKindImage": "Gambar",
+  "watermarkChooseImage": "Pilih gambar",
+  "watermarkLayoutLabel": "Tata letak",
+  "watermarkLayoutSingle": "Tunggal",
+  "watermarkLayoutDiagonal": "Diagonal",
+  "watermarkLayoutTiled": "Berulang",
+  "watermarkPagesLabel": "Halaman",
+  "watermarkPagesThis": "Halaman ini",
+  "watermarkPagesAll": "Semua halaman",
+  "watermarkPagesRange": "Rentang",
+  "watermarkPagesRangeHint": "mis. 1-3, 5",
+  "watermarkPagesInvalid": "Periksa halaman (dokumen memiliki {count} halaman)"
 }

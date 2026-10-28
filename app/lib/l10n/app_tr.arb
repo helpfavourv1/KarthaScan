@@ -717,5 +717,18 @@
   "signatureNewOne": "Yeni çiz veya yaz",
   "signatureDeleteSaved": "Kayıtlı imzayı kaldır",
   "annotationModeSelect": "Seç",
-  "annotationModeEraser": "Silgi"
+  "annotationModeEraser": "Silgi",
+  "watermarkKindText": "Metin",
+  "watermarkKindImage": "Görsel",
+  "watermarkChooseImage": "Görsel seç",
+  "watermarkLayoutLabel": "Düzen",
+  "watermarkLayoutSingle": "Tek",
+  "watermarkLayoutDiagonal": "Çapraz",
+  "watermarkLayoutTiled": "Döşemeli",
+  "watermarkPagesLabel": "Sayfalar",
+  "watermarkPagesThis": "Bu sayfa",
+  "watermarkPagesAll": "Tüm sayfalar",
+  "watermarkPagesRange": "Aralık",
+  "watermarkPagesRangeHint": "örn. 1-3, 5",
+  "watermarkPagesInvalid": "Sayfaları kontrol edin (belgede {count} sayfa var)"
 }

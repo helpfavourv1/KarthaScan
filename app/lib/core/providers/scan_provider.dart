@@ -752,6 +752,24 @@ class ScanProvider {
     return _replaceAndSave(updated);
   }
 
+  /// Adds [layer] to each of [pages] in one save and one undo step. Returns the
+  /// new layers' ids in page order (empty if the document is gone or saving failed).
+  Future<List<String>> addWatermarkLayersToPages(String id, WatermarkLayer layer, List<int> pages) async {
+    final ScanDocument? existing = _findById(id);
+    if (existing == null) return <String>[];
+    final List<int> unique = pages.toSet().toList()..sort();
+    final List<WatermarkLayer> added = <WatermarkLayer>[
+      for (final int p in unique) layer.copyWith(id: newWatermarkId(), pageIndex: p),
+    ];
+    final updated = existing.copyWith(
+      watermarkLayers: [...existing.watermarkLayers, ...added],
+      updatedAt: DateTime.now(),
+    );
+    _recordOverlayUndo(existing, updated, null);
+    final bool ok = await _replaceAndSave(updated);
+    return ok ? <String>[for (final WatermarkLayer l in added) l.id] : <String>[];
+  }
+
   /// Removes every watermark on one page in one save and one undo step.
   Future<bool> clearWatermarksOnPage(String id, int pageIndex) async {
     final ScanDocument? existing = _findById(id);

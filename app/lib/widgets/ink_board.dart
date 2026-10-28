@@ -16,6 +16,7 @@ import '../core/services/ad_pacing_service.dart';
 import '../core/services/interstitial_ad_service.dart';
 import '../core/utils/constants.dart';
 import '../core/utils/seal_draw.dart';
+import '../core/utils/watermark_draw.dart';
 import 'signature_sheets.dart';
 import '../l10n/app_localizations.dart';
 
@@ -501,6 +502,51 @@ class WatermarkOverlayPage extends StatelessWidget {
         for (final layer in layers.where((l) => l.pageIndex == pageIndex))
           Builder(builder: (context) {
             final isSelected = layer.id == selectedText;
+            if (layer.isTiled) {
+              return Positioned(
+                left: dx,
+                top: dy,
+                width: iw,
+                height: ih,
+                child: _TiledWatermark(
+                  key: ValueKey<String>('wmTiles:${layer.id}'),
+                  layer: layer,
+                  accent: accent,
+                  selected: isSelected,
+                  onTap: () { onSelect(layer); onSelected?.call(); },
+                ),
+              );
+            }
+            if (layer.isImage) {
+              final double side = iw * 0.30 * layer.placement.scale;
+              return Positioned(
+                left: dx + layer.placement.pctX * iw - side / 2,
+                top: dy + layer.placement.pctY * ih - side / 2,
+                width: side,
+                height: side,
+                child: GestureDetector(
+                  behavior: HitTestBehavior.opaque,
+                  onTap: () { onSelect(layer); onSelected?.call(); },
+                  onPanStart: (_) {},
+                  onPanUpdate: (d) {
+                    final scale = transformController?.value.getMaxScaleOnAxis() ?? 1.0;
+                    onDrag(layer, d.delta.dx / scale, d.delta.dy / scale);
+                  },
+                  child: Container(
+                    decoration: isSelected
+                        ? BoxDecoration(border: Border.all(color: accent, width: 1.5), borderRadius: BorderRadius.circular(4))
+                        : null,
+                    child: Transform.rotate(
+                      angle: layer.placement.rotationDegrees * 3.14159 / 180,
+                      child: Opacity(
+                        opacity: layer.opacity.clamp(0.0, 1.0).toDouble(),
+                        child: Image.file(File(layer.imagePath!), fit: BoxFit.contain, errorBuilder: (_, __, ___) => const SizedBox.shrink()),
+                      ),
+                    ),
+                  ),
+                ),
+              );
+            }
             final fontWeight = layer.bold ? FontWeight.w700 : FontWeight.w400;
             final fontStyle = layer.italic ? FontStyle.italic : FontStyle.normal;
             final decoration = layer.underline ? TextDecoration.underline : TextDecoration.none;
@@ -557,6 +603,79 @@ class WatermarkOverlayPage extends StatelessWidget {
   }
 }
 
+
+/// A watermark repeated over the whole page. Drawn by the same code as the
+/// exported page, so the preview matches the printout.
+class _TiledWatermark extends StatefulWidget {
+  const _TiledWatermark({super.key, required this.layer, required this.accent, required this.selected, required this.onTap});
+  final WatermarkLayer layer;
+  final Color accent;
+  final bool selected;
+  final VoidCallback onTap;
+
+  @override
+  State<_TiledWatermark> createState() => _TiledWatermarkState();
+}
+
+class _TiledWatermarkState extends State<_TiledWatermark> {
+  ui.Image? _logo;
+  String? _loadedPath;
+
+  @override
+  void initState() {
+    super.initState();
+    _maybeLoad();
+  }
+
+  @override
+  void didUpdateWidget(covariant _TiledWatermark old) {
+    super.didUpdateWidget(old);
+    _maybeLoad();
+  }
+
+  Future<void> _maybeLoad() async {
+    final String? path = widget.layer.isImage ? widget.layer.imagePath : null;
+    if (path == null || path == _loadedPath) return;
+    _loadedPath = path;
+    try {
+      final Uint8List bytes = await File(path).readAsBytes();
+      final ui.Codec codec = await ui.instantiateImageCodec(bytes, targetWidth: 512);
+      final ui.Image im = (await codec.getNextFrame()).image;
+      if (!mounted) return;
+      setState(() => _logo = im);
+    } catch (_) {}
+  }
+
+  @override
+  void dispose() {
+    _logo?.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    // Covers the whole page, so it must not take touches from the signatures,
+    // marks and stamps under it. It is chosen and changed from the tool bar.
+    return IgnorePointer(
+      child: Container(
+        decoration: widget.selected ? BoxDecoration(border: Border.all(color: widget.accent, width: 1.5)) : null,
+        child: CustomPaint(painter: _TilesPainter(widget.layer, _logo), size: Size.infinite),
+      ),
+    );
+  }
+}
+
+class _TilesPainter extends CustomPainter {
+  _TilesPainter(this.layer, this.logo);
+  final WatermarkLayer layer;
+  final ui.Image? logo;
+
+  @override
+  void paint(Canvas canvas, Size size) => paintWatermarkTiles(canvas, size, layer, logo: logo);
+
+  @override
+  bool shouldRepaint(covariant _TilesPainter old) => old.layer != layer || old.logo != logo;
+}
 
 // === StampOverlayPage: renders text stamps as live overlay ===
 

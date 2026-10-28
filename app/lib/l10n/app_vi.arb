@@ -717,5 +717,18 @@
   "signatureNewOne": "Vẽ hoặc nhập chữ ký mới",
   "signatureDeleteSaved": "Xóa chữ ký đã lưu",
   "annotationModeSelect": "Chọn",
-  "annotationModeEraser": "Cục tẩy"
+  "annotationModeEraser": "Cục tẩy",
+  "watermarkKindText": "Văn bản",
+  "watermarkKindImage": "Hình ảnh",
+  "watermarkChooseImage": "Chọn hình ảnh",
+  "watermarkLayoutLabel": "Bố cục",
+  "watermarkLayoutSingle": "Đơn",
+  "watermarkLayoutDiagonal": "Chéo",
+  "watermarkLayoutTiled": "Lát gạch",
+  "watermarkPagesLabel": "Trang",
+  "watermarkPagesThis": "Trang này",
+  "watermarkPagesAll": "Tất cả trang",
+  "watermarkPagesRange": "Phạm vi",
+  "watermarkPagesRangeHint": "vd: 1-3, 5",
+  "watermarkPagesInvalid": "Kiểm tra các trang (tài liệu có {count} trang)"
 }

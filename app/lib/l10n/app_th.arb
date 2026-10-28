@@ -717,5 +717,18 @@
   "signatureNewOne": "วาดหรือพิมพ์ใหม่",
   "signatureDeleteSaved": "ลบลายเซ็นที่บันทึกไว้",
   "annotationModeSelect": "เลือก",
-  "annotationModeEraser": "ยางลบ"
+  "annotationModeEraser": "ยางลบ",
+  "watermarkKindText": "ข้อความ",
+  "watermarkKindImage": "รูปภาพ",
+  "watermarkChooseImage": "เลือกรูปภาพ",
+  "watermarkLayoutLabel": "เลย์เอาต์",
+  "watermarkLayoutSingle": "เดี่ยว",
+  "watermarkLayoutDiagonal": "แนวทแยง",
+  "watermarkLayoutTiled": "ซ้ำทั้งหน้า",
+  "watermarkPagesLabel": "หน้า",
+  "watermarkPagesThis": "หน้านี้",
+  "watermarkPagesAll": "ทุกหน้า",
+  "watermarkPagesRange": "ช่วง",
+  "watermarkPagesRangeHint": "เช่น 1-3, 5",
+  "watermarkPagesInvalid": "ตรวจสอบหน้า (เอกสารมี {count} หน้า)"
 }

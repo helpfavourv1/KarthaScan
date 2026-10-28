@@ -717,5 +717,18 @@
   "signatureNewOne": "Намалювати або ввести новий",
   "signatureDeleteSaved": "Видалити збережений підпис",
   "annotationModeSelect": "Вибрати",
-  "annotationModeEraser": "Гумка"
+  "annotationModeEraser": "Гумка",
+  "watermarkKindText": "Текст",
+  "watermarkKindImage": "Зображення",
+  "watermarkChooseImage": "Вибрати зображення",
+  "watermarkLayoutLabel": "Розташування",
+  "watermarkLayoutSingle": "Одиночний",
+  "watermarkLayoutDiagonal": "Діагональний",
+  "watermarkLayoutTiled": "Мозаїка",
+  "watermarkPagesLabel": "Сторінки",
+  "watermarkPagesThis": "Ця сторінка",
+  "watermarkPagesAll": "Усі сторінки",
+  "watermarkPagesRange": "Діапазон",
+  "watermarkPagesRangeHint": "напр. 1-3, 5",
+  "watermarkPagesInvalid": "Перевірте сторінки (у документі {count} стор.)"
 }

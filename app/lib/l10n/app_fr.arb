@@ -624,5 +624,18 @@
   "signatureNewOne": "Dessiner ou saisir une nouvelle",
   "signatureDeleteSaved": "Supprimer la signature enregistrée",
   "annotationModeSelect": "Sélectionner",
-  "annotationModeEraser": "Gomme"
+  "annotationModeEraser": "Gomme",
+  "watermarkKindText": "Texte",
+  "watermarkKindImage": "Image",
+  "watermarkChooseImage": "Choisir une image",
+  "watermarkLayoutLabel": "Disposition",
+  "watermarkLayoutSingle": "Unique",
+  "watermarkLayoutDiagonal": "Diagonal",
+  "watermarkLayoutTiled": "En mosaïque",
+  "watermarkPagesLabel": "Pages",
+  "watermarkPagesThis": "Cette page",
+  "watermarkPagesAll": "Toutes les pages",
+  "watermarkPagesRange": "Plage",
+  "watermarkPagesRangeHint": "p. ex. 1-3, 5",
+  "watermarkPagesInvalid": "Vérifiez les pages (le document compte {count} pages)"
 }

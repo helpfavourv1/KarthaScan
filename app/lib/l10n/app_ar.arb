@@ -624,5 +624,18 @@
   "signatureNewOne": "ارسم أو اكتب توقيعًا جديدًا",
   "signatureDeleteSaved": "إزالة التوقيع المحفوظ",
   "annotationModeSelect": "تحديد",
-  "annotationModeEraser": "ممحاة"
+  "annotationModeEraser": "ممحاة",
+  "watermarkKindText": "نص",
+  "watermarkKindImage": "صورة",
+  "watermarkChooseImage": "اختر صورة",
+  "watermarkLayoutLabel": "التخطيط",
+  "watermarkLayoutSingle": "مفرد",
+  "watermarkLayoutDiagonal": "قطري",
+  "watermarkLayoutTiled": "مكرر",
+  "watermarkPagesLabel": "الصفحات",
+  "watermarkPagesThis": "هذه الصفحة",
+  "watermarkPagesAll": "كل الصفحات",
+  "watermarkPagesRange": "نطاق",
+  "watermarkPagesRangeHint": "مثال: 1-3, 5",
+  "watermarkPagesInvalid": "تحقق من الصفحات (المستند يحتوي على {count} صفحة)"
 }

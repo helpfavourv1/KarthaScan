@@ -717,5 +717,18 @@
   "signatureNewOne": "Tegn eller skriv en ny",
   "signatureDeleteSaved": "Fjern gemt underskrift",
   "annotationModeSelect": "Vælg",
-  "annotationModeEraser": "Viskelæder"
+  "annotationModeEraser": "Viskelæder",
+  "watermarkKindText": "Tekst",
+  "watermarkKindImage": "Billede",
+  "watermarkChooseImage": "Vælg billede",
+  "watermarkLayoutLabel": "Layout",
+  "watermarkLayoutSingle": "Enkelt",
+  "watermarkLayoutDiagonal": "Diagonal",
+  "watermarkLayoutTiled": "Gentaget",
+  "watermarkPagesLabel": "Sider",
+  "watermarkPagesThis": "Denne side",
+  "watermarkPagesAll": "Alle sider",
+  "watermarkPagesRange": "Interval",
+  "watermarkPagesRangeHint": "f.eks. 1-3, 5",
+  "watermarkPagesInvalid": "Tjek siderne (dokumentet har {count} sider)"
 }

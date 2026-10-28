@@ -717,5 +717,18 @@
   "signatureNewOne": "Narysuj lub wpisz nowy",
   "signatureDeleteSaved": "Usuń zapisany podpis",
   "annotationModeSelect": "Zaznacz",
-  "annotationModeEraser": "Gumka"
+  "annotationModeEraser": "Gumka",
+  "watermarkKindText": "Tekst",
+  "watermarkKindImage": "Obraz",
+  "watermarkChooseImage": "Wybierz obraz",
+  "watermarkLayoutLabel": "Układ",
+  "watermarkLayoutSingle": "Pojedynczy",
+  "watermarkLayoutDiagonal": "Ukośny",
+  "watermarkLayoutTiled": "Kafelkowany",
+  "watermarkPagesLabel": "Strony",
+  "watermarkPagesThis": "Ta strona",
+  "watermarkPagesAll": "Wszystkie strony",
+  "watermarkPagesRange": "Zakres",
+  "watermarkPagesRangeHint": "np. 1-3, 5",
+  "watermarkPagesInvalid": "Sprawdź strony (dokument ma {count} str.)"
 }

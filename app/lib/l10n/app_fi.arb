@@ -717,5 +717,18 @@
   "signatureNewOne": "Piirrä tai kirjoita uusi",
   "signatureDeleteSaved": "Poista tallennettu allekirjoitus",
   "annotationModeSelect": "Valitse",
-  "annotationModeEraser": "Pyyhekumi"
+  "annotationModeEraser": "Pyyhekumi",
+  "watermarkKindText": "Teksti",
+  "watermarkKindImage": "Kuva",
+  "watermarkChooseImage": "Valitse kuva",
+  "watermarkLayoutLabel": "Asettelu",
+  "watermarkLayoutSingle": "Yksittäinen",
+  "watermarkLayoutDiagonal": "Viisto",
+  "watermarkLayoutTiled": "Toistuva",
+  "watermarkPagesLabel": "Sivut",
+  "watermarkPagesThis": "Tämä sivu",
+  "watermarkPagesAll": "Kaikki sivut",
+  "watermarkPagesRange": "Väli",
+  "watermarkPagesRangeHint": "esim. 1-3, 5",
+  "watermarkPagesInvalid": "Tarkista sivut (asiakirjassa on {count} sivua)"
 }

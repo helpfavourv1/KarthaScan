@@ -303,6 +303,9 @@ class AnnotationOverlayState extends State<AnnotationOverlay> {
       color: widget.paper ? Colors.white : null,
       child: GestureDetector(
         behavior: HitTestBehavior.opaque,
+        // A line starts where the finger touched down, not where the drag was
+        // recognised (about 18 px later), so the first part of a stroke is not lost.
+        dragStartBehavior: DragStartBehavior.down,
         onPanStart: _onPanStart,
         onPanUpdate: _onPanUpdate,
         onPanEnd: _onPanEnd,

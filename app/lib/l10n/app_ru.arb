@@ -717,5 +717,18 @@
   "signatureNewOne": "Нарисовать или ввести новую",
   "signatureDeleteSaved": "Удалить сохранённую подпись",
   "annotationModeSelect": "Выбрать",
-  "annotationModeEraser": "Ластик"
+  "annotationModeEraser": "Ластик",
+  "watermarkKindText": "Текст",
+  "watermarkKindImage": "Изображение",
+  "watermarkChooseImage": "Выбрать изображение",
+  "watermarkLayoutLabel": "Расположение",
+  "watermarkLayoutSingle": "Одиночный",
+  "watermarkLayoutDiagonal": "По диагонали",
+  "watermarkLayoutTiled": "Мозаика",
+  "watermarkPagesLabel": "Страницы",
+  "watermarkPagesThis": "Эта страница",
+  "watermarkPagesAll": "Все страницы",
+  "watermarkPagesRange": "Диапазон",
+  "watermarkPagesRangeHint": "напр. 1-3, 5",
+  "watermarkPagesInvalid": "Проверьте страницы (в документе {count} стр.)"
 }

@@ -717,5 +717,18 @@
   "signatureNewOne": "Lukis atau taip yang baharu",
   "signatureDeleteSaved": "Alih keluar tandatangan disimpan",
   "annotationModeSelect": "Pilih",
-  "annotationModeEraser": "Pemadam"
+  "annotationModeEraser": "Pemadam",
+  "watermarkKindText": "Teks",
+  "watermarkKindImage": "Imej",
+  "watermarkChooseImage": "Pilih imej",
+  "watermarkLayoutLabel": "Susun atur",
+  "watermarkLayoutSingle": "Tunggal",
+  "watermarkLayoutDiagonal": "Pepenjuru",
+  "watermarkLayoutTiled": "Berjubin",
+  "watermarkPagesLabel": "Halaman",
+  "watermarkPagesThis": "Halaman ini",
+  "watermarkPagesAll": "Semua halaman",
+  "watermarkPagesRange": "Julat",
+  "watermarkPagesRangeHint": "cth. 1-3, 5",
+  "watermarkPagesInvalid": "Semak halaman (dokumen ada {count} halaman)"
 }

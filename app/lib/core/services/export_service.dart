@@ -1,5 +1,6 @@
 import '../utils/csv_utils.dart';
 import '../utils/seal_draw.dart';
+import '../utils/watermark_draw.dart';
 import 'debug_log_service.dart';
 import 'dart:ui' as ui;
 import 'dart:convert';
@@ -504,6 +505,17 @@ class ExportService {
         }
       }
       for (final wm in watermarkLayers) {
+        if (wm.isTiled) {
+          decoded = await _compositeWatermarkTiles(decoded, wm);
+          continue;
+        }
+        if (wm.isImage) {
+          final logo = await _readWatermarkLogo(wm);
+          if (logo != null) {
+            decoded = _compositeSignature(decoded, logo, wm.placement, widthFraction: 0.30, boxHeightFraction: 0.30);
+          }
+          continue;
+        }
         final wmBytes = await _renderWatermarkText(wm, decoded.width);
         if (wmBytes != null) {
           final wmImage = img.decodePng(wmBytes);
@@ -1169,6 +1181,58 @@ class ExportService {
     } catch (error, stackTrace) {
       _logError('exportIdCardPdf', error, stackTrace);
       throw ExportFailedException('Could not build the ID card PDF.');
+    }
+  }
+
+  /// A logo watermark's picture with its opacity applied, or null if the file is gone.
+  Future<img.Image?> _readWatermarkLogo(WatermarkLayer wm) async {
+    try {
+      final Uint8List bytes = await _readBytes(wm.imagePath!);
+      final img.Image? logo = img.decodeImage(bytes);
+      if (logo == null) return null;
+      final img.Image rgba = logo.numChannels == 4 ? logo : logo.convert(numChannels: 4);
+      if (wm.opacity < 1) {
+        for (final img.Pixel px in rgba) {
+          px.a = px.a * wm.opacity;
+        }
+      }
+      return rgba;
+    } catch (error, stackTrace) {
+      _logError('_readWatermarkLogo', error, stackTrace);
+      return null;
+    }
+  }
+
+  /// A repeated watermark: drawn once over a page-sized transparent picture with
+  /// the same code the preview uses, then laid over the page.
+  Future<img.Image> _compositeWatermarkTiles(img.Image page, WatermarkLayer wm) async {
+    ui.Image? logo;
+    try {
+      if (wm.isImage) {
+        final Uint8List bytes = await _readBytes(wm.imagePath!);
+        final ui.Codec codec = await ui.instantiateImageCodec(bytes, targetWidth: 512);
+        logo = (await codec.getNextFrame()).image;
+      }
+      final ui.PictureRecorder recorder = ui.PictureRecorder();
+      final ui.Canvas canvas = ui.Canvas(recorder);
+      paintWatermarkTiles(canvas, ui.Size(page.width.toDouble(), page.height.toDouble()), wm, logo: logo);
+      final ui.Image over = await recorder.endRecording().toImage(page.width, page.height);
+      final ByteData? data = await over.toByteData(format: ui.ImageByteFormat.rawStraightRgba);
+      over.dispose();
+      if (data == null) return page;
+      final img.Image layer = img.Image.fromBytes(
+        width: page.width,
+        height: page.height,
+        bytes: data.buffer,
+        numChannels: 4,
+        order: img.ChannelOrder.rgba,
+      );
+      return img.compositeImage(page, layer);
+    } catch (error, stackTrace) {
+      _logError('_compositeWatermarkTiles', error, stackTrace);
+      return page;
+    } finally {
+      logo?.dispose();
     }
   }
 

@@ -97,6 +97,8 @@ class SignatureCanvasState extends State<SignatureCanvas> {
               key: _boundaryKey,
               child: GestureDetector(
                 behavior: HitTestBehavior.opaque,
+                // Start the line where the finger touched down, not about 18 px later.
+                dragStartBehavior: DragStartBehavior.down,
                 onPanStart: _onPanStart,
                 onPanUpdate: _onPanUpdate,
                 child: CustomPaint(

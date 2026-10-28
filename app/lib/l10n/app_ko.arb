@@ -624,5 +624,18 @@
   "signatureNewOne": "새로 그리거나 입력하기",
   "signatureDeleteSaved": "저장된 서명 삭제",
   "annotationModeSelect": "선택",
-  "annotationModeEraser": "지우개"
+  "annotationModeEraser": "지우개",
+  "watermarkKindText": "텍스트",
+  "watermarkKindImage": "이미지",
+  "watermarkChooseImage": "이미지 선택",
+  "watermarkLayoutLabel": "배치",
+  "watermarkLayoutSingle": "단일",
+  "watermarkLayoutDiagonal": "대각선",
+  "watermarkLayoutTiled": "타일형",
+  "watermarkPagesLabel": "페이지",
+  "watermarkPagesThis": "이 페이지",
+  "watermarkPagesAll": "모든 페이지",
+  "watermarkPagesRange": "범위",
+  "watermarkPagesRangeHint": "예: 1-3, 5",
+  "watermarkPagesInvalid": "페이지를 확인하세요 (문서는 {count}페이지입니다)"
 }

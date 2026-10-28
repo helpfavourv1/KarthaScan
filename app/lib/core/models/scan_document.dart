@@ -155,6 +155,8 @@ class WatermarkLayer {
     this.shadowOffsetY = 0,
     this.shadowColor,
     this.align = 'center',
+    this.layout = 'single',
+    this.imagePath,
   });
 
   /// Unique per watermark, so the same text can sit in several places on a page.
@@ -177,6 +179,16 @@ class WatermarkLayer {
   final int? shadowColor;
   final String align;
 
+  /// 'single' puts one watermark at [placement]; 'tiled' repeats it across the
+  /// whole page (turned by the placement's rotation).
+  final String layout;
+
+  /// A logo picture (PNG in the app's folder) shown instead of [text].
+  final String? imagePath;
+
+  bool get isTiled => layout == 'tiled';
+  bool get isImage => imagePath != null && imagePath!.isNotEmpty;
+
   Map<String, dynamic> toJson() => {
     'id': id,
     'pageIndex': pageIndex,
@@ -198,6 +210,8 @@ class WatermarkLayer {
     'shadowOffsetY': shadowOffsetY,
     'shadowColor': shadowColor,
     'align': align,
+    'layout': layout,
+    'imagePath': imagePath,
   };
 
   factory WatermarkLayer.fromJson(Map<String, dynamic> json) {
@@ -227,6 +241,8 @@ class WatermarkLayer {
       shadowOffsetY: (json['shadowOffsetY'] as num?)?.toDouble() ?? 0,
       shadowColor: json['shadowColor'] as int?,
       align: json['align'] as String? ?? 'center',
+      layout: json['layout'] as String? ?? 'single',
+      imagePath: json['imagePath'] as String?,
     );
   }
 
@@ -248,6 +264,9 @@ class WatermarkLayer {
     double? shadowOffsetY,
     int? shadowColor,
     String? align,
+    String? layout,
+    String? imagePath,
+    bool clearImage = false,
   }) {
     return WatermarkLayer(
       id: id ?? this.id,
@@ -267,6 +286,8 @@ class WatermarkLayer {
       shadowOffsetY: shadowOffsetY ?? this.shadowOffsetY,
       shadowColor: shadowColor ?? this.shadowColor,
       align: align ?? this.align,
+      layout: layout ?? this.layout,
+      imagePath: clearImage ? null : (imagePath ?? this.imagePath),
     );
   }
 }

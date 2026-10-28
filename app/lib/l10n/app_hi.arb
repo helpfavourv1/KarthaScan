@@ -624,5 +624,18 @@
   "signatureNewOne": "नया बनाएँ या टाइप करें",
   "signatureDeleteSaved": "सहेजा हस्ताक्षर हटाएँ",
   "annotationModeSelect": "चुनें",
-  "annotationModeEraser": "इरेज़र"
+  "annotationModeEraser": "इरेज़र",
+  "watermarkKindText": "टेक्स्ट",
+  "watermarkKindImage": "छवि",
+  "watermarkChooseImage": "छवि चुनें",
+  "watermarkLayoutLabel": "लेआउट",
+  "watermarkLayoutSingle": "एकल",
+  "watermarkLayoutDiagonal": "तिरछा",
+  "watermarkLayoutTiled": "टाइल्ड",
+  "watermarkPagesLabel": "पृष्ठ",
+  "watermarkPagesThis": "यह पृष्ठ",
+  "watermarkPagesAll": "सभी पृष्ठ",
+  "watermarkPagesRange": "सीमा",
+  "watermarkPagesRangeHint": "जैसे 1-3, 5",
+  "watermarkPagesInvalid": "पृष्ठ जाँचें (दस्तावेज़ में {count} पृष्ठ हैं)"
 }

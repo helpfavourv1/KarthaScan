@@ -28,6 +28,7 @@ import '../core/services/print_service.dart';
 import '../core/services/share_service.dart';
 import '../l10n/app_localizations.dart';
 import '../core/utils/annotation_items.dart' show AnnotateResult;
+import '../core/utils/page_range.dart';
 import 'annotate_sheet.dart';
 import 'eraser_overlay.dart';
 import 'filter_preview_sheet.dart';
@@ -162,21 +163,24 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
   Future<void> addWatermarkNow() async {
     final doc = document;
     if (doc == null || doc.pagePaths.isEmpty) return;
+    final ValueNotifier<String> pages = ValueNotifier<String>('current');
     final config = await showModalBottomSheet<WatermarkLayer>(
       context: context,
       isScrollControlled: true,
-      builder: (context) => const WatermarkSheet(),
+      builder: (context) => WatermarkSheet(pages: pages, pageCount: doc.pagePaths.length),
     );
     if (config == null || !mounted) return;
-    final layer = config.copyWith(
-      id: scanProvider.newWatermarkId(),
-      pageIndex: currentPageIndex,
-      placement: const SignaturePlacement(pctX: 0.5, pctY: 0.5),
-    );
-    await scanProvider.addWatermarkLayer(doc.id, layer);
+    final int total = doc.pagePaths.length;
+    final List<int> targets = pages.value == 'current'
+        ? <int>[currentPageIndex]
+        : (parsePageRange(pages.value, total) ?? <int>[currentPageIndex]);
+    final List<String> ids = await scanProvider.addWatermarkLayersToPages(doc.id, config, targets);
+    if (ids.isEmpty) return;
+    final int here = targets.toSet().toList().indexWhere((int p) => p == currentPageIndex);
+    final String shown = ids[here >= 0 ? here : 0];
     if (mounted) {
       editMode = TrayEditMode.watermark;
-      onLayerAdded(TrayEditMode.watermark, layer.id);
+      onLayerAdded(TrayEditMode.watermark, shown);
     }
   }
 
@@ -189,11 +193,7 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
       builder: (context) => WatermarkSheet(initialConfig: existing),
     );
     if (config == null || !mounted) return;
-    final updated = config.copyWith(
-      pageIndex: existing.pageIndex,
-      placement: existing.placement,
-    );
-    await scanProvider.replaceWatermarkLayer(doc.id, existing, updated);
+    await scanProvider.replaceWatermarkLayer(doc.id, existing, applyWatermarkEdit(existing, config));
   }
 
   Future<void> copyWatermarkToAllPages(WatermarkLayer layer) async {

@@ -717,5 +717,18 @@
   "signatureNewOne": "Rita eller skriv en ny",
   "signatureDeleteSaved": "Ta bort sparad signatur",
   "annotationModeSelect": "Markera",
-  "annotationModeEraser": "Suddgummi"
+  "annotationModeEraser": "Suddgummi",
+  "watermarkKindText": "Text",
+  "watermarkKindImage": "Bild",
+  "watermarkChooseImage": "Välj bild",
+  "watermarkLayoutLabel": "Layout",
+  "watermarkLayoutSingle": "Enkel",
+  "watermarkLayoutDiagonal": "Diagonal",
+  "watermarkLayoutTiled": "Upprepad",
+  "watermarkPagesLabel": "Sidor",
+  "watermarkPagesThis": "Den här sidan",
+  "watermarkPagesAll": "Alla sidor",
+  "watermarkPagesRange": "Intervall",
+  "watermarkPagesRangeHint": "t.ex. 1-3, 5",
+  "watermarkPagesInvalid": "Kontrollera sidorna (dokumentet har {count} sidor)"
 }

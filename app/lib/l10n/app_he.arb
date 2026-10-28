@@ -624,5 +624,18 @@
   "signatureNewOne": "ציור או הקלדה של חדשה",
   "signatureDeleteSaved": "הסרת חתימה שמורה",
   "annotationModeSelect": "בחירה",
-  "annotationModeEraser": "מחק"
+  "annotationModeEraser": "מחק",
+  "watermarkKindText": "טקסט",
+  "watermarkKindImage": "תמונה",
+  "watermarkChooseImage": "בחירת תמונה",
+  "watermarkLayoutLabel": "פריסה",
+  "watermarkLayoutSingle": "יחיד",
+  "watermarkLayoutDiagonal": "אלכסוני",
+  "watermarkLayoutTiled": "מרוצף",
+  "watermarkPagesLabel": "עמודים",
+  "watermarkPagesThis": "עמוד זה",
+  "watermarkPagesAll": "כל העמודים",
+  "watermarkPagesRange": "טווח",
+  "watermarkPagesRangeHint": "לדוגמה 1-3, 5",
+  "watermarkPagesInvalid": "בדוק את העמודים (במסמך {count} עמודים)"
 }

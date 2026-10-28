@@ -124,8 +124,7 @@ class LayerControlPanel extends StatelessWidget {
             builder: (context) => WatermarkSheet(initialConfig: layer),
           );
           if (config != null) {
-            final updated = config.copyWith(pageIndex: layer.pageIndex, placement: layer.placement);
-            await scanProvider.replaceWatermarkLayer(document.id, layer, updated);
+            await scanProvider.replaceWatermarkLayer(document.id, layer, applyWatermarkEdit(layer, config));
           }
         },
         onCopyAll: () => scanProvider.addWatermarkLayerToPages(
