@@ -10,6 +10,7 @@
 
 import 'dart:async' show Completer, unawaited;
 import '../services/conversion_workspace.dart';
+import '../services/overlay_files.dart';
 import 'dart:io' show File, Directory;
 import 'dart:typed_data';
 import 'dart:ui' show Rect;
@@ -89,6 +90,14 @@ class ScanProvider {
         keep.add(d.thumbnailPath);
       }
       await (await ConversionWorkspace.create()).sweep(keep: keep);
+    } catch (_) {}
+    try {
+      final Set<String> used = <String>{};
+      for (final ScanDocument d in documents.value) {
+        used.addAll(d.annotateLayers.map((AnnotateLayer l) => l.bytesPath));
+        used.addAll(d.watermarkLayers.where((WatermarkLayer l) => l.isImage).map((WatermarkLayer l) => l.imagePath!));
+      }
+      await sweepOrphanOverlayFiles(await getApplicationDocumentsDirectory(), referenced: used);
     } catch (_) {}
   }
 
@@ -451,12 +460,14 @@ class ScanProvider {
         stillUsed
           ..addAll(d.pagePaths)
           ..add(d.thumbnailPath)
-          ..addAll(d.annotateLayers.map((AnnotateLayer l) => l.bytesPath));
+          ..addAll(d.annotateLayers.map((AnnotateLayer l) => l.bytesPath))
+          ..addAll(d.watermarkLayers.where((WatermarkLayer l) => l.isImage).map((WatermarkLayer l) => l.imagePath!));
       }
       final Set<String> candidates = <String>{
         ...doomed.pagePaths,
         doomed.thumbnailPath,
         ...doomed.annotateLayers.map((AnnotateLayer l) => l.bytesPath),
+        ...doomed.watermarkLayers.where((WatermarkLayer l) => l.isImage).map((WatermarkLayer l) => l.imagePath!),
       };
       for (final String path in candidates) {
         if (path.isEmpty || stillUsed.contains(path)) continue;
