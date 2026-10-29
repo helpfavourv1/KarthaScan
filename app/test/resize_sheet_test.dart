@@ -80,7 +80,7 @@ void main() {
     } catch (e, st) {
       // ignore: avoid_print
       print('XXXERR $e\n${st.toString().split("\n").take(8).join("\n")}');
-      rethrow;
+      fail('XXXERR ${e.toString().split("\n").first} @ ${st.toString().split("\n").take(3).join(" | ")}');
     }
   });
 }

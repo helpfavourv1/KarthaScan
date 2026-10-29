@@ -266,8 +266,7 @@ class ExportService {
   /// True when the page has any edit that changes what is exported.
   bool pageHasEdits(ScanDocument document, int pageIndex) {
     final PageTransform? t = document.pageTransforms[pageIndex];
-    final bool transformed = t != null &&
-        (t.filter != FilterType.none || t.rotationTurns != 0 || t.cropRect != null || t.resizeWidth != null || t.eraserStrokes.isNotEmpty);
+    final bool transformed = t != null && !t.isEmpty;
     return transformed ||
         document.signatureLayers.any((l) => l.pageIndex == pageIndex) ||
         document.annotateLayers.any((l) => l.pageIndex == pageIndex) ||
@@ -432,7 +431,7 @@ class ExportService {
     final inkMap = <String, SignatureInk>{
       if (documentInks != null) for (final ink in documentInks) ink.id: ink,
     };
-    final hasTransform = pageTransform != null && (pageTransform.filter != FilterType.none || pageTransform.rotationTurns != 0 || pageTransform.cropRect != null || pageTransform.resizeWidth != null || pageTransform.eraserStrokes.isNotEmpty);
+    final hasTransform = pageTransform != null && (pageTransform.filter != FilterType.none || pageTransform.rotationTurns != 0 || pageTransform.cropRect != null || pageTransform.cropQuad != null || pageTransform.straightenDegrees != 0 || pageTransform.brightness != 0 || pageTransform.contrast != 0 || pageTransform.resizeWidth != null || pageTransform.eraserStrokes.isNotEmpty);
     if (filter == FilterType.none && !hasTransform && layers.isEmpty && annotateLayers.isEmpty && watermarkLayers.isEmpty && stampLayers.isEmpty) {
       return original;
     }
