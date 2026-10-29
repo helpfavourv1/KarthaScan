@@ -649,5 +649,8 @@
   "filterContrastLabel": "对比度",
   "resizeUpscaleWarning": "放大不会增加细节，页面可能显得模糊。",
   "eraserAutoColorTooltip": "自动匹配页面颜色",
-  "eraserZoomTooltip": "缩放和移动(双指)"
+  "eraserZoomTooltip": "缩放和移动(双指)",
+  "pagesSelectTooltip": "选择页面",
+  "pagesDeleteCount": "删除 {count}",
+  "pagesDeleteConfirm": "删除 {count} 页？保存后将被移除。"
 }

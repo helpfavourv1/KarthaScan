@@ -742,5 +742,8 @@
   "filterContrastLabel": "Kontrast",
   "resizeUpscaleWarning": "Förstoring tillför inga detaljer – sidan kan se suddig ut.",
   "eraserAutoColorTooltip": "Matcha sidans färg automatiskt",
-  "eraserZoomTooltip": "Zooma och flytta (nyp)"
+  "eraserZoomTooltip": "Zooma och flytta (nyp)",
+  "pagesSelectTooltip": "Välj sidor",
+  "pagesDeleteCount": "Ta bort {count}",
+  "pagesDeleteConfirm": "Ta bort {count} sidor? De tas bort när du sparar."
 }

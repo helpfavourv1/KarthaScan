@@ -742,5 +742,8 @@
   "filterContrastLabel": "Контраст",
   "resizeUpscaleWarning": "Збільшення не додає деталей — сторінка може виглядати розмитою.",
   "eraserAutoColorTooltip": "Підбирати колір сторінки автоматично",
-  "eraserZoomTooltip": "Масштаб і переміщення (щипок)"
+  "eraserZoomTooltip": "Масштаб і переміщення (щипок)",
+  "pagesSelectTooltip": "Вибрати сторінки",
+  "pagesDeleteCount": "Видалити {count}",
+  "pagesDeleteConfirm": "Видалити сторінок: {count}? Їх буде видалено після збереження."
 }

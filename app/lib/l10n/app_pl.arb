@@ -742,5 +742,8 @@
   "filterContrastLabel": "Kontrast",
   "resizeUpscaleWarning": "Powiększenie nie dodaje szczegółów — strona może wyglądać na nieostrą.",
   "eraserAutoColorTooltip": "Dopasuj kolor strony automatycznie",
-  "eraserZoomTooltip": "Powiększ i przesuń (uszczypnięcie)"
+  "eraserZoomTooltip": "Powiększ i przesuń (uszczypnięcie)",
+  "pagesSelectTooltip": "Zaznacz strony",
+  "pagesDeleteCount": "Usuń {count}",
+  "pagesDeleteConfirm": "Usunąć {count} stron? Zostaną usunięte po zapisaniu."
 }

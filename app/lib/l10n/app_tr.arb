@@ -742,5 +742,8 @@
   "filterContrastLabel": "Kontrast",
   "resizeUpscaleWarning": "Büyütmek ayrıntı eklemez — sayfa bulanık görünebilir.",
   "eraserAutoColorTooltip": "Sayfa rengine otomatik uydur",
-  "eraserZoomTooltip": "Yakınlaştır ve kaydır (çimdikle)"
+  "eraserZoomTooltip": "Yakınlaştır ve kaydır (çimdikle)",
+  "pagesSelectTooltip": "Sayfaları seç",
+  "pagesDeleteCount": "{count} sil",
+  "pagesDeleteConfirm": "{count} sayfa silinsin mi? Kaydettiğinizde kaldırılır."
 }

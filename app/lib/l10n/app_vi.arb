@@ -742,5 +742,8 @@
   "filterContrastLabel": "Độ tương phản",
   "resizeUpscaleWarning": "Phóng to không thêm chi tiết — trang có thể bị mờ.",
   "eraserAutoColorTooltip": "Tự động khớp màu trang",
-  "eraserZoomTooltip": "Thu phóng và di chuyển (chụm)"
+  "eraserZoomTooltip": "Thu phóng và di chuyển (chụm)",
+  "pagesSelectTooltip": "Chọn trang",
+  "pagesDeleteCount": "Xóa {count}",
+  "pagesDeleteConfirm": "Xóa {count} trang? Chúng bị xóa khi bạn lưu."
 }

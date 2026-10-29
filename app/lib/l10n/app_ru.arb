@@ -742,5 +742,8 @@
   "filterContrastLabel": "Контраст",
   "resizeUpscaleWarning": "Увеличение не добавляет деталей — страница может выглядеть размытой.",
   "eraserAutoColorTooltip": "Подбирать цвет страницы автоматически",
-  "eraserZoomTooltip": "Масштаб и перемещение (щипок)"
+  "eraserZoomTooltip": "Масштаб и перемещение (щипок)",
+  "pagesSelectTooltip": "Выбрать страницы",
+  "pagesDeleteCount": "Удалить {count}",
+  "pagesDeleteConfirm": "Удалить страниц: {count}? Они будут удалены при сохранении."
 }

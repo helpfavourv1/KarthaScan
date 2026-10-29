@@ -649,5 +649,8 @@
   "filterContrastLabel": "ניגודיות",
   "resizeUpscaleWarning": "הגדלה לא מוסיפה פרטים — הדף עלול להיראות מטושטש.",
   "eraserAutoColorTooltip": "התאמת צבע הדף אוטומטית",
-  "eraserZoomTooltip": "זום והזזה (צביטה)"
+  "eraserZoomTooltip": "זום והזזה (צביטה)",
+  "pagesSelectTooltip": "בחירת עמודים",
+  "pagesDeleteCount": "מחיקת {count}",
+  "pagesDeleteConfirm": "למחוק {count} עמודים? הם יוסרו בעת השמירה."
 }

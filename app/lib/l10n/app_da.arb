@@ -742,5 +742,8 @@
   "filterContrastLabel": "Kontrast",
   "resizeUpscaleWarning": "Forstørrelse tilføjer ingen detaljer – siden kan se sløret ud.",
   "eraserAutoColorTooltip": "Match sidens farve automatisk",
-  "eraserZoomTooltip": "Zoom og flyt (knib)"
+  "eraserZoomTooltip": "Zoom og flyt (knib)",
+  "pagesSelectTooltip": "Vælg sider",
+  "pagesDeleteCount": "Slet {count}",
+  "pagesDeleteConfirm": "Slet {count} sider? De fjernes, når du gemmer."
 }

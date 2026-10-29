@@ -615,6 +615,10 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
       builder: (ctx) => PagesManagerSheet(
         pagePaths: doc.pagePaths,
         allDocuments: scanProvider.documents.value,
+        transformsByPath: <String, PageTransform>{
+          for (int i = 0; i < doc.pagePaths.length; i++)
+            if (doc.pageTransforms[i] != null) doc.pagePaths[i]: doc.pageTransforms[i]!,
+        },
         onExtract: (int index, String path) async {
           if (!mounted) return;
           // `index` is the tile's position in the sheet, which may have been

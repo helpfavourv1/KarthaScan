@@ -1,14 +1,18 @@
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:file_picker/file_picker.dart';
+import 'package:flutter/foundation.dart' show compute;
 import 'package:flutter/material.dart';
 import '../core/utils/constants.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
 
+import '../core/models/page_transform.dart';
 import '../core/models/scan_document.dart';
 import '../l10n/app_localizations.dart';
+import 'document_canvas.dart' show PagePreviewJob, renderPagePreview;
 
 /// What the Pages manager hands back on Save: the pages in their new order,
 /// and for each page file the quarter turns added with "Rotate 90".
@@ -24,7 +28,12 @@ class PagesManagerSheet extends StatefulWidget {
     required this.pagePaths,
     required this.allDocuments,
     this.onExtract,
+    this.transformsByPath = const <String, PageTransform>{},
   });
+
+  /// The edits each page file already has (crop, tilt, filter...), so its thumbnail
+  /// shows the page as it will be exported.
+  final Map<String, PageTransform> transformsByPath;
 
   final List<String> pagePaths;
   final List<ScanDocument> allDocuments;
@@ -42,6 +51,9 @@ class PagesManagerSheetState extends State<PagesManagerSheet> {
   // Whatever is not kept when the sheet closes is deleted again.
   final List<String> _created = <String>[];
   bool _saved = false;
+  bool _selecting = false;
+  final Set<String> _selected = <String>{};
+  final Map<String, Future<Uint8List?>> _thumbs = <String, Future<Uint8List?>>{};
 
   @override
   void dispose() {
@@ -78,6 +90,54 @@ class PagesManagerSheetState extends State<PagesManagerSheet> {
     _pages = List<String>.from(widget.pagePaths);
   }
 
+  /// The page as edited, small. Pages without edits show the plain file.
+  Future<Uint8List?> _editedThumb(String path, PageTransform t) {
+    return _thumbs.putIfAbsent(path, () async {
+      final Uint8List bytes = await File(path).readAsBytes();
+      return compute(renderPagePreview, PagePreviewJob(bytes, t));
+    });
+  }
+
+  Widget _thumb(String path) {
+    final PageTransform? t = widget.transformsByPath[path];
+    final int turns = ((t?.rotationTurns ?? 0) + (_turnsByPath[path] ?? 0)) % 4;
+    final bool edited = t != null && !t.isEmpty;
+    final Widget picture = !edited
+        ? Image.file(File(path), fit: BoxFit.cover, cacheWidth: 144)
+        : FutureBuilder<Uint8List?>(
+            future: _editedThumb(path, t),
+            builder: (BuildContext context, AsyncSnapshot<Uint8List?> snap) {
+              final Uint8List? bytes = snap.data;
+              if (bytes == null) return Image.file(File(path), fit: BoxFit.cover, cacheWidth: 144);
+              return Image.memory(bytes, fit: BoxFit.cover, cacheWidth: 144, key: const Key('editedThumb'));
+            },
+          );
+    return RotatedBox(quarterTurns: turns, child: picture);
+  }
+
+  Future<void> _deleteSelected() async {
+    final AppLocalizations l10n = AppLocalizations.of(context);
+    // At least one page must stay.
+    final List<String> doomed = _pages.where(_selected.contains).toList();
+    if (doomed.isEmpty || doomed.length >= _pages.length) return;
+    final bool? ok = await showDialog<bool>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        content: Text(l10n.pagesDeleteConfirm(doomed.length)),
+        actions: [
+          TextButton(onPressed: () => Navigator.pop(ctx, false), child: Text(l10n.commonCancel)),
+          TextButton(key: const Key('pagesDeleteConfirmYes'), onPressed: () => Navigator.pop(ctx, true), child: Text(l10n.pagesDeleteCount(doomed.length), style: const TextStyle(color: Colors.red))),
+        ],
+      ),
+    );
+    if (ok != true || !mounted) return;
+    setState(() {
+      _pages.removeWhere(doomed.contains);
+      _selected.clear();
+      _selecting = false;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
@@ -100,7 +160,18 @@ class PagesManagerSheetState extends State<PagesManagerSheet> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(AppLocalizations.of(context).managePagesTitle, style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600, color: textPrimary)),
-                  IconButton(icon: const Icon(Icons.close), onPressed: () => Navigator.pop(context)),
+                  Row(mainAxisSize: MainAxisSize.min, children: [
+                    IconButton(
+                      key: const Key('pagesSelect'),
+                      icon: Icon(Icons.checklist, color: _selecting ? accent : null),
+                      tooltip: AppLocalizations.of(context).pagesSelectTooltip,
+                      onPressed: _pages.length < 2 ? null : () => setState(() {
+                            _selecting = !_selecting;
+                            _selected.clear();
+                          }),
+                    ),
+                    IconButton(icon: const Icon(Icons.close), onPressed: () => Navigator.pop(context)),
+                  ]),
                 ],
               ),
             ),
@@ -131,6 +202,21 @@ class PagesManagerSheetState extends State<PagesManagerSheet> {
                 },
               ),
             ),
+            if (_selecting)
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Row(children: [
+                  Expanded(
+                    child: OutlinedButton.icon(
+                      key: const Key('pagesDeleteSelected'),
+                      icon: const Icon(Icons.delete_outline, color: Colors.red),
+                      label: Text(AppLocalizations.of(context).pagesDeleteCount(_selected.length)),
+                      // Deleting every page is not allowed: one must stay.
+                      onPressed: (_selected.isEmpty || _selected.length >= _pages.length) ? null : _deleteSelected,
+                    ),
+                  ),
+                ]),
+              ),
             Padding(
               padding: const EdgeInsets.all(16),
               child: Row(
@@ -165,19 +251,27 @@ class PagesManagerSheetState extends State<PagesManagerSheet> {
         borderRadius: BorderRadius.circular(12),
       ),
       child: ListTile(
+        onTap: _selecting
+            ? () => setState(() {
+                  final String path = _pages[index];
+                  if (!_selected.remove(path)) _selected.add(path);
+                })
+            : null,
         leading: ClipRRect(
           borderRadius: BorderRadius.circular(8),
           child: SizedBox(
             width: 48,
             height: 64,
-            child: RotatedBox(
-              quarterTurns: (_turnsByPath[_pages[index]] ?? 0) % 4,
-              child: Image.file(File(_pages[index]), fit: BoxFit.cover, cacheWidth: 144),
-            ),
+            child: _thumb(_pages[index]),
           ),
         ),
         title: Text(AppLocalizations.of(context).pageLabel(index + 1), style: TextStyle(color: textPrimary, fontWeight: FontWeight.w600)),
-        trailing: Row(
+        trailing: _selecting
+            ? Checkbox(key: Key('pageCheck:$index'), value: _selected.contains(_pages[index]), onChanged: (_) => setState(() {
+                  final String path = _pages[index];
+                  if (!_selected.remove(path)) _selected.add(path);
+                }))
+            : Row(
           mainAxisSize: MainAxisSize.min,
           children: [
             IconButton(

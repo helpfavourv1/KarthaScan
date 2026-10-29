@@ -742,5 +742,8 @@
   "filterContrastLabel": "Kontrasti",
   "resizeUpscaleWarning": "Suurentaminen ei lisää yksityiskohtia – sivu voi näyttää pehmeältä.",
   "eraserAutoColorTooltip": "Sovita sivun väriin automaattisesti",
-  "eraserZoomTooltip": "Zoomaa ja siirrä (nipistä)"
+  "eraserZoomTooltip": "Zoomaa ja siirrä (nipistä)",
+  "pagesSelectTooltip": "Valitse sivuja",
+  "pagesDeleteCount": "Poista {count}",
+  "pagesDeleteConfirm": "Poistetaanko {count} sivua? Ne poistetaan tallennettaessa."
 }

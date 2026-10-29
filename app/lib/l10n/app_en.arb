@@ -943,5 +943,27 @@
   "eraserZoomTooltip": "Zoom and move (pinch)",
   "@eraserZoomTooltip": {
     "description": "Eraser toggle: pinch to zoom the page instead of drawing"
+  },
+  "pagesSelectTooltip": "Select pages",
+  "@pagesSelectTooltip": {
+    "description": "Pages manager: turns on multi-select"
+  },
+  "pagesDeleteCount": "Delete {count}",
+  "@pagesDeleteCount": {
+    "description": "Pages manager: delete the selected pages; count is how many",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "pagesDeleteConfirm": "Delete {count} pages? They are removed when you save.",
+  "@pagesDeleteConfirm": {
+    "description": "Pages manager: confirm deleting the selected pages",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
   }
 }

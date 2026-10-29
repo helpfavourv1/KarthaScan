@@ -742,5 +742,8 @@
   "filterContrastLabel": "Contrast",
   "resizeUpscaleWarning": "Vergroten voegt geen detail toe — de pagina kan er zacht uitzien.",
   "eraserAutoColorTooltip": "Paginakleur automatisch aanpassen",
-  "eraserZoomTooltip": "Zoomen en verschuiven (knijpen)"
+  "eraserZoomTooltip": "Zoomen en verschuiven (knijpen)",
+  "pagesSelectTooltip": "Pagina's selecteren",
+  "pagesDeleteCount": "{count} verwijderen",
+  "pagesDeleteConfirm": "{count} pagina's verwijderen? Ze worden verwijderd bij opslaan."
 }

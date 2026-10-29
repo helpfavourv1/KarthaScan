@@ -649,5 +649,8 @@
   "filterContrastLabel": "Kontrast",
   "resizeUpscaleWarning": "Vergrößern fügt keine Details hinzu – die Seite kann unscharf wirken.",
   "eraserAutoColorTooltip": "Seitenfarbe automatisch anpassen",
-  "eraserZoomTooltip": "Zoomen und verschieben (Pinch)"
+  "eraserZoomTooltip": "Zoomen und verschieben (Pinch)",
+  "pagesSelectTooltip": "Seiten auswählen",
+  "pagesDeleteCount": "{count} löschen",
+  "pagesDeleteConfirm": "{count} Seiten löschen? Sie werden beim Speichern entfernt."
 }

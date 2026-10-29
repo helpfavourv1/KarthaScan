@@ -742,5 +742,8 @@
   "filterContrastLabel": "বৈসাদৃশ্য",
   "resizeUpscaleWarning": "বড় করলে বিস্তারিত বাড়ে না; পৃষ্ঠাটি ঝাপসা দেখাতে পারে।",
   "eraserAutoColorTooltip": "পৃষ্ঠার রঙের সাথে স্বয়ংক্রিয়ভাবে মেলান",
-  "eraserZoomTooltip": "জুম ও সরান (দুই আঙুলে চিমটি)"
+  "eraserZoomTooltip": "জুম ও সরান (দুই আঙুলে চিমটি)",
+  "pagesSelectTooltip": "পৃষ্ঠা নির্বাচন করুন",
+  "pagesDeleteCount": "মুছুন {count}",
+  "pagesDeleteConfirm": "{count}টি পৃষ্ঠা মুছবেন? সংরক্ষণ করলে সরানো হবে।"
 }

@@ -649,5 +649,8 @@
   "filterContrastLabel": "대비",
   "resizeUpscaleWarning": "확대해도 디테일이 늘어나지 않아 페이지가 흐릿해 보일 수 있습니다.",
   "eraserAutoColorTooltip": "페이지 색상에 자동으로 맞추기",
-  "eraserZoomTooltip": "확대·이동(핀치)"
+  "eraserZoomTooltip": "확대·이동(핀치)",
+  "pagesSelectTooltip": "페이지 선택",
+  "pagesDeleteCount": "{count}개 삭제",
+  "pagesDeleteConfirm": "{count}페이지를 삭제할까요? 저장하면 제거됩니다."
 }

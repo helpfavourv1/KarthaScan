@@ -649,5 +649,8 @@
   "filterContrastLabel": "Contraste",
   "resizeUpscaleWarning": "Ampliar não acrescenta detalhes — a página pode ficar desfocada.",
   "eraserAutoColorTooltip": "Combinar com a cor da página automaticamente",
-  "eraserZoomTooltip": "Zoom e mover (pinça)"
+  "eraserZoomTooltip": "Zoom e mover (pinça)",
+  "pagesSelectTooltip": "Selecionar páginas",
+  "pagesDeleteCount": "Excluir {count}",
+  "pagesDeleteConfirm": "Excluir {count} páginas? Elas são removidas ao salvar."
 }

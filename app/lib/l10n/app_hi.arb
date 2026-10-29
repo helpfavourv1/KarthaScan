@@ -649,5 +649,8 @@
   "filterContrastLabel": "कंट्रास्ट",
   "resizeUpscaleWarning": "बड़ा करने से विवरण नहीं बढ़ता; पेज धुंधला दिख सकता है।",
   "eraserAutoColorTooltip": "पेज के रंग से अपने आप मिलाएँ",
-  "eraserZoomTooltip": "ज़ूम और खिसकाएँ (पिंच)"
+  "eraserZoomTooltip": "ज़ूम और खिसकाएँ (पिंच)",
+  "pagesSelectTooltip": "पेज चुनें",
+  "pagesDeleteCount": "{count} हटाएँ",
+  "pagesDeleteConfirm": "{count} पेज हटाएँ? सहेजने पर वे हट जाएँगे।"
 }
