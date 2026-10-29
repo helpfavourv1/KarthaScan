@@ -646,5 +646,6 @@
   "straightenLabel": "校正倾斜",
   "filterMagicColor": "魔术色彩",
   "filterBrightnessLabel": "亮度",
-  "filterContrastLabel": "对比度"
+  "filterContrastLabel": "对比度",
+  "resizeUpscaleWarning": "放大不会增加细节，页面可能显得模糊。"
 }

@@ -739,5 +739,6 @@
   "straightenLabel": "সোজা করুন",
   "filterMagicColor": "ম্যাজিক রঙ",
   "filterBrightnessLabel": "উজ্জ্বলতা",
-  "filterContrastLabel": "বৈসাদৃশ্য"
+  "filterContrastLabel": "বৈসাদৃশ্য",
+  "resizeUpscaleWarning": "বড় করলে বিস্তারিত বাড়ে না; পৃষ্ঠাটি ঝাপসা দেখাতে পারে।"
 }

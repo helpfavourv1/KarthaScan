@@ -739,5 +739,6 @@
   "straightenLabel": "Raddrizza",
   "filterMagicColor": "Colore magico",
   "filterBrightnessLabel": "Luminosità",
-  "filterContrastLabel": "Contrasto"
+  "filterContrastLabel": "Contrasto",
+  "resizeUpscaleWarning": "Ingrandire non aggiunge dettagli: la pagina può apparire sfocata."
 }

@@ -646,5 +646,6 @@
   "straightenLabel": "Endireitar",
   "filterMagicColor": "Cor mágica",
   "filterBrightnessLabel": "Brilho",
-  "filterContrastLabel": "Contraste"
+  "filterContrastLabel": "Contraste",
+  "resizeUpscaleWarning": "Ampliar não acrescenta detalhes — a página pode ficar desfocada."
 }

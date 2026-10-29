@@ -739,5 +739,6 @@
   "straightenLabel": "Rechtzetten",
   "filterMagicColor": "Magische kleur",
   "filterBrightnessLabel": "Helderheid",
-  "filterContrastLabel": "Contrast"
+  "filterContrastLabel": "Contrast",
+  "resizeUpscaleWarning": "Vergroten voegt geen detail toe — de pagina kan er zacht uitzien."
 }

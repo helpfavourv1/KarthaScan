@@ -646,5 +646,6 @@
   "straightenLabel": "Geraderichten",
   "filterMagicColor": "Magische Farbe",
   "filterBrightnessLabel": "Helligkeit",
-  "filterContrastLabel": "Kontrast"
+  "filterContrastLabel": "Kontrast",
+  "resizeUpscaleWarning": "Vergrößern fügt keine Details hinzu – die Seite kann unscharf wirken."
 }

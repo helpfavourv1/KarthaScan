@@ -1,6 +1,13 @@
 import 'dart:io';
 
+import 'dart:async';
+import 'dart:typed_data';
+
+import 'package:flutter/foundation.dart' show compute;
 import 'package:flutter/material.dart';
+import '../core/models/page_transform.dart';
+import '../core/utils/smooth_resize.dart' show resizeSmooth;
+import 'document_canvas.dart' show PagePreviewJob, renderPagePreview;
 import '../core/utils/constants.dart';
 import '../core/utils/smooth_resize.dart' show straightenZoom;
 import 'package:image/image.dart' as img;
@@ -28,11 +35,15 @@ class RotateResizeSheet extends StatefulWidget {
     this.initialTurns = 0,
     this.initialStraighten = 0,
     this.baseSize,
+    this.transform,
   });
 
   /// Size of the page as it is now (the cropped area, if the page is cropped).
   /// Resize starts from this, not from the full photo.
   final Size? baseSize;
+
+  /// The page's edits, used to estimate the file size of the page as it is now.
+  final PageTransform? transform;
 
   final RotateResizeMode mode;
   final String imagePath;
@@ -62,6 +73,12 @@ class RotateResizeSheetState extends State<RotateResizeSheet> {
   double _origAspect = 1.0;
   int _baseW = 1;
   int _baseH = 1;
+  int _origBytes = 0;
+  Uint8List? _sample; // the page as it is now, at most 2000 px, for size estimates
+  int? _estBytes;
+  Timer? _estTimer;
+  String? _paper;
+  int _dpi = 300;
 
   static const int _maxSide = 10000;
   static const int _maxPixels = 40000000;
@@ -82,6 +99,11 @@ class RotateResizeSheetState extends State<RotateResizeSheet> {
     try {
       final bytes = await File(widget.imagePath).readAsBytes();
       _originalImage = img.decodeImage(bytes);
+      _origBytes = bytes.length;
+      if (widget.mode == RotateResizeMode.resize) {
+        final PageTransform t = (widget.transform ?? const PageTransform()).copyWith(clearResize: true, straightenDegrees: 0, brightness: 0, contrast: 0);
+        _sample = await compute(renderPagePreview, PagePreviewJob(bytes, t));
+      }
       if (_originalImage != null) {
         final Size? base = widget.baseSize;
         _baseW = (base != null && base.width >= 1) ? base.width.round() : _originalImage!.width;
@@ -91,13 +113,28 @@ class RotateResizeSheetState extends State<RotateResizeSheet> {
         _origAspect = _baseW / _baseH;
       }
       if (mounted) setState(() => _loading = false);
+      _scheduleEstimate();
     } catch (_) {
       if (mounted) setState(() => _loading = false);
     }
   }
 
+  void _scheduleEstimate() {
+    _estTimer?.cancel();
+    _estTimer = Timer(const Duration(milliseconds: 350), _estimate);
+  }
+
+  Future<void> _estimate() async {
+    final Uint8List? sample = _sample;
+    final int? w = int.tryParse(_widthCtrl.text), h = int.tryParse(_heightCtrl.text);
+    if (sample == null || w == null || h == null || !_sizeValid) return;
+    final int est = await compute(_estimateBytes, <String, dynamic>{'bytes': sample, 'w': w, 'h': h});
+    if (mounted && int.tryParse(_widthCtrl.text) == w && int.tryParse(_heightCtrl.text) == h) setState(() => _estBytes = est);
+  }
+
   @override
   void dispose() {
+    _estTimer?.cancel();
     _widthCtrl.dispose();
     _heightCtrl.dispose();
     super.dispose();
@@ -179,6 +216,21 @@ class RotateResizeSheetState extends State<RotateResizeSheet> {
     );
   }
 
+  /// Sets the size so the page fits a paper size at the chosen dpi (same shape).
+  void _applyPaper(String key) {
+    const Map<String, (double, double)> inches = {'a4': (8.27, 11.69), 'a5': (5.83, 8.27), 'letter': (8.5, 11.0)};
+    final (double pw0, double ph0) = inches[key]!;
+    final bool landscape = _baseW > _baseH;
+    final double pw = (landscape ? ph0 : pw0) * _dpi, ph = (landscape ? pw0 : ph0) * _dpi;
+    final double k = (pw / _baseW) < (ph / _baseH) ? pw / _baseW : ph / _baseH;
+    setState(() {
+      _paper = key;
+      _widthCtrl.text = (_baseW * k).round().toString();
+      _heightCtrl.text = (_baseH * k).round().toString();
+    });
+    _scheduleEstimate();
+  }
+
   Widget _buildRotatePreview(Color textSecondary) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -248,11 +300,11 @@ class RotateResizeSheetState extends State<RotateResizeSheet> {
     final origH = _baseH;
     final newW = int.tryParse(_widthCtrl.text) ?? origW;
     final newH = int.tryParse(_heightCtrl.text) ?? origH;
-    final origBytes = File(widget.imagePath).lengthSync();
     final ratio = (newW * newH) / (origW * origH);
-    final estBytes = (origBytes * ratio).round();
+    final estBytes = _estBytes ?? (_origBytes * ratio).round();
     final estMB = (estBytes / (1024 * 1024)).toStringAsFixed(2);
     final pctChange = ((ratio - 1) * 100).round();
+    final bool enlarging = newW * newH > origW * origH * 1.05;
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -271,7 +323,8 @@ class RotateResizeSheetState extends State<RotateResizeSheet> {
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(labelText: AppLocalizations.of(context).widthLabel, border: OutlineInputBorder()),
                 onChanged: (v) {
-                  setState(() {});
+                  setState(() => _paper = null);
+                  _scheduleEstimate();
                   if (_aspectLock) {
                     final w = int.tryParse(v);
                     if (w != null) _heightCtrl.text = (w / _origAspect).round().toString();
@@ -287,7 +340,8 @@ class RotateResizeSheetState extends State<RotateResizeSheet> {
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(labelText: AppLocalizations.of(context).heightLabel, border: OutlineInputBorder()),
                 onChanged: (v) {
-                  setState(() {});
+                  setState(() => _paper = null);
+                  _scheduleEstimate();
                   if (_aspectLock) {
                     final h = int.tryParse(v);
                     if (h != null) _widthCtrl.text = (h * _origAspect).round().toString();
@@ -308,13 +362,32 @@ class RotateResizeSheetState extends State<RotateResizeSheet> {
             ChoiceChip(
               label: Text('${(pct * 100).round()}%'),
               selected: false,
-              onSelected: (_) => setState(() {
-                _widthCtrl.text = (origW * pct).round().toString();
-                _heightCtrl.text = (origH * pct).round().toString();
-              }),
+              onSelected: (_) {
+                setState(() {
+                  _paper = null;
+                  _widthCtrl.text = (origW * pct).round().toString();
+                  _heightCtrl.text = (origH * pct).round().toString();
+                });
+                _scheduleEstimate();
+              },
             ),
         ]),
+        const SizedBox(height: 8),
+        Wrap(spacing: 8, children: [
+          for (final String k in ['a4', 'a5', 'letter'])
+            ChoiceChip(key: Key('paper:$k'), label: Text(k == 'letter' ? 'Letter' : k.toUpperCase()), selected: _paper == k, onSelected: (_) => _applyPaper(k)),
+          for (final int d in [150, 300])
+            ChoiceChip(key: Key('dpi:$d'), label: Text('$d dpi'), selected: _dpi == d, onSelected: (_) {
+              setState(() => _dpi = d);
+              if (_paper != null) _applyPaper(_paper!);
+            }),
+        ]),
         const SizedBox(height: 12),
+        if (enlarging)
+          Padding(
+            padding: const EdgeInsets.only(bottom: 8),
+            child: Text(AppLocalizations.of(context).resizeUpscaleWarning, key: const Key('upscaleWarning'), style: const TextStyle(fontSize: 12, color: Colors.orange)),
+          ),
         if (!_sizeValid)
           Padding(
             padding: const EdgeInsets.only(bottom: 8),
@@ -358,4 +431,24 @@ class _GridPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(_GridPainter old) => false;
+}
+
+
+/// Real JPEG size of the page at the new pixel size: a sample of the page is resized
+/// to the target (or as near as the sample allows) and encoded, then scaled by
+/// pixel count when the target is bigger than the sample.
+int _estimateBytes(Map<String, dynamic> args) {
+  final img.Image? sample = img.decodeImage(args['bytes'] as Uint8List);
+  final int w = args['w'] as int, h = args['h'] as int;
+  if (sample == null) return 0;
+  final double k = (w >= sample.width || h >= sample.height) ? 1.0 : 0.0;
+  img.Image im = sample;
+  double scale = 1;
+  if (k == 0.0) {
+    im = resizeSmooth(sample, width: w, height: h);
+  } else {
+    // Target is larger than the sample: encode the sample, scale by pixel count.
+    scale = (w * h) / (sample.width * sample.height);
+  }
+  return (img.encodeJpg(im, quality: 85).length * scale).round();
 }

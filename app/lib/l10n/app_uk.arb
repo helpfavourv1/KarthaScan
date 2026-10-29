@@ -739,5 +739,6 @@
   "straightenLabel": "Вирівняти",
   "filterMagicColor": "Магія кольору",
   "filterBrightnessLabel": "Яскравість",
-  "filterContrastLabel": "Контраст"
+  "filterContrastLabel": "Контраст",
+  "resizeUpscaleWarning": "Збільшення не додає деталей — сторінка може виглядати розмитою."
 }

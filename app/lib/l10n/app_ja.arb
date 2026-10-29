@@ -646,5 +646,6 @@
   "straightenLabel": "傾き補正",
   "filterMagicColor": "マジックカラー",
   "filterBrightnessLabel": "明るさ",
-  "filterContrastLabel": "コントラスト"
+  "filterContrastLabel": "コントラスト",
+  "resizeUpscaleWarning": "拡大しても細部は増えません。ページがぼやける場合があります。"
 }

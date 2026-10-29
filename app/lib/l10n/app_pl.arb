@@ -739,5 +739,6 @@
   "straightenLabel": "Wyrównaj",
   "filterMagicColor": "Magiczny kolor",
   "filterBrightnessLabel": "Jasność",
-  "filterContrastLabel": "Kontrast"
+  "filterContrastLabel": "Kontrast",
+  "resizeUpscaleWarning": "Powiększenie nie dodaje szczegółów — strona może wyglądać na nieostrą."
 }

@@ -646,5 +646,6 @@
   "straightenLabel": "सीधा करें",
   "filterMagicColor": "मैजिक रंग",
   "filterBrightnessLabel": "चमक",
-  "filterContrastLabel": "कंट्रास्ट"
+  "filterContrastLabel": "कंट्रास्ट",
+  "resizeUpscaleWarning": "बड़ा करने से विवरण नहीं बढ़ता; पेज धुंधला दिख सकता है।"
 }

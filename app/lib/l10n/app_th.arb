@@ -739,5 +739,6 @@
   "straightenLabel": "ปรับให้ตรง",
   "filterMagicColor": "สีมหัศจรรย์",
   "filterBrightnessLabel": "ความสว่าง",
-  "filterContrastLabel": "คอนทราสต์"
+  "filterContrastLabel": "คอนทราสต์",
+  "resizeUpscaleWarning": "การขยายไม่เพิ่มรายละเอียด หน้าอาจดูเบลอ"
 }

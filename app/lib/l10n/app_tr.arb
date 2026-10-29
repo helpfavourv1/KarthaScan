@@ -739,5 +739,6 @@
   "straightenLabel": "Düzelt",
   "filterMagicColor": "Sihirli renk",
   "filterBrightnessLabel": "Parlaklık",
-  "filterContrastLabel": "Kontrast"
+  "filterContrastLabel": "Kontrast",
+  "resizeUpscaleWarning": "Büyütmek ayrıntı eklemez — sayfa bulanık görünebilir."
 }

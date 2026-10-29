@@ -646,5 +646,6 @@
   "straightenLabel": "Enderezar",
   "filterMagicColor": "Color mágico",
   "filterBrightnessLabel": "Brillo",
-  "filterContrastLabel": "Contraste"
+  "filterContrastLabel": "Contraste",
+  "resizeUpscaleWarning": "Ampliar no añade detalle: la página puede verse borrosa."
 }

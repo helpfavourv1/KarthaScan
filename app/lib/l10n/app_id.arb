@@ -646,5 +646,6 @@
   "straightenLabel": "Luruskan",
   "filterMagicColor": "Warna ajaib",
   "filterBrightnessLabel": "Kecerahan",
-  "filterContrastLabel": "Kontras"
+  "filterContrastLabel": "Kontras",
+  "resizeUpscaleWarning": "Memperbesar tidak menambah detail — halaman bisa tampak buram."
 }

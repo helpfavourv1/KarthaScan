@@ -646,5 +646,6 @@
   "straightenLabel": "تسوية الميل",
   "filterMagicColor": "ألوان سحرية",
   "filterBrightnessLabel": "السطوع",
-  "filterContrastLabel": "التباين"
+  "filterContrastLabel": "التباين",
+  "resizeUpscaleWarning": "التكبير لا يضيف تفاصيل، وقد تبدو الصفحة ضبابية."
 }

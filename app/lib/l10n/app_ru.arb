@@ -739,5 +739,6 @@
   "straightenLabel": "Выровнять",
   "filterMagicColor": "Магия цвета",
   "filterBrightnessLabel": "Яркость",
-  "filterContrastLabel": "Контраст"
+  "filterContrastLabel": "Контраст",
+  "resizeUpscaleWarning": "Увеличение не добавляет деталей — страница может выглядеть размытой."
 }

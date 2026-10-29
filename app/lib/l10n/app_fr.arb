@@ -646,5 +646,6 @@
   "straightenLabel": "Redresser",
   "filterMagicColor": "Couleur magique",
   "filterBrightnessLabel": "Luminosité",
-  "filterContrastLabel": "Contraste"
+  "filterContrastLabel": "Contraste",
+  "resizeUpscaleWarning": "Agrandir n'ajoute pas de détails : la page peut paraître floue."
 }

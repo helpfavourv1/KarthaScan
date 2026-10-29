@@ -739,5 +739,6 @@
   "straightenLabel": "Rett opp",
   "filterMagicColor": "Magisk farge",
   "filterBrightnessLabel": "Lysstyrke",
-  "filterContrastLabel": "Kontrast"
+  "filterContrastLabel": "Kontrast",
+  "resizeUpscaleWarning": "Forstørring legger ikke til detaljer – siden kan se uskarp ut."
 }

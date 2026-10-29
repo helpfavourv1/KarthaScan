@@ -931,5 +931,9 @@
   "filterContrastLabel": "Contrast",
   "@filterContrastLabel": {
     "description": "Slider label"
+  },
+  "resizeUpscaleWarning": "Enlarging doesn't add detail — the page may look soft.",
+  "@resizeUpscaleWarning": {
+    "description": "Shown when the new size has more pixels than the page"
   }
 }

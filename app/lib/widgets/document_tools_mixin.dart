@@ -592,6 +592,7 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
           mode: RotateResizeMode.resize,
           imagePath: doc.pagePaths[currentPageIndex],
           baseSize: doc.pageTransforms[currentPageIndex]?.croppedSize,
+          transform: doc.pageTransforms[currentPageIndex],
         ),
       ),
     );

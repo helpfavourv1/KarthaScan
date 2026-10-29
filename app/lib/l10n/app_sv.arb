@@ -739,5 +739,6 @@
   "straightenLabel": "Räta upp",
   "filterMagicColor": "Magisk färg",
   "filterBrightnessLabel": "Ljusstyrka",
-  "filterContrastLabel": "Kontrast"
+  "filterContrastLabel": "Kontrast",
+  "resizeUpscaleWarning": "Förstoring tillför inga detaljer – sidan kan se suddig ut."
 }

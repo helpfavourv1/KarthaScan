@@ -646,5 +646,6 @@
   "straightenLabel": "기울기 보정",
   "filterMagicColor": "매직 컬러",
   "filterBrightnessLabel": "밝기",
-  "filterContrastLabel": "대비"
+  "filterContrastLabel": "대비",
+  "resizeUpscaleWarning": "확대해도 디테일이 늘어나지 않아 페이지가 흐릿해 보일 수 있습니다."
 }

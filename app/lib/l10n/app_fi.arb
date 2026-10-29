@@ -739,5 +739,6 @@
   "straightenLabel": "Suorista",
   "filterMagicColor": "Taikaväri",
   "filterBrightnessLabel": "Kirkkaus",
-  "filterContrastLabel": "Kontrasti"
+  "filterContrastLabel": "Kontrasti",
+  "resizeUpscaleWarning": "Suurentaminen ei lisää yksityiskohtia – sivu voi näyttää pehmeältä."
 }

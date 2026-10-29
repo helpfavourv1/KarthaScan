@@ -646,5 +646,6 @@
   "straightenLabel": "יישור",
   "filterMagicColor": "צבע קסם",
   "filterBrightnessLabel": "בהירות",
-  "filterContrastLabel": "ניגודיות"
+  "filterContrastLabel": "ניגודיות",
+  "resizeUpscaleWarning": "הגדלה לא מוסיפה פרטים — הדף עלול להיראות מטושטש."
 }
