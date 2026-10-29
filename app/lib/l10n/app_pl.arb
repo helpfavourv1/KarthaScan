@@ -740,5 +740,7 @@
   "filterMagicColor": "Magiczny kolor",
   "filterBrightnessLabel": "Jasność",
   "filterContrastLabel": "Kontrast",
-  "resizeUpscaleWarning": "Powiększenie nie dodaje szczegółów — strona może wyglądać na nieostrą."
+  "resizeUpscaleWarning": "Powiększenie nie dodaje szczegółów — strona może wyglądać na nieostrą.",
+  "eraserAutoColorTooltip": "Dopasuj kolor strony automatycznie",
+  "eraserZoomTooltip": "Powiększ i przesuń (uszczypnięcie)"
 }

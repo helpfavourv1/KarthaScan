@@ -647,5 +647,7 @@
   "filterMagicColor": "Color mágico",
   "filterBrightnessLabel": "Brillo",
   "filterContrastLabel": "Contraste",
-  "resizeUpscaleWarning": "Ampliar no añade detalle: la página puede verse borrosa."
+  "resizeUpscaleWarning": "Ampliar no añade detalle: la página puede verse borrosa.",
+  "eraserAutoColorTooltip": "Igualar el color de la página automáticamente",
+  "eraserZoomTooltip": "Zoom y mover (pellizcar)"
 }

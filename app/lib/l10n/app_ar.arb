@@ -647,5 +647,7 @@
   "filterMagicColor": "ألوان سحرية",
   "filterBrightnessLabel": "السطوع",
   "filterContrastLabel": "التباين",
-  "resizeUpscaleWarning": "التكبير لا يضيف تفاصيل، وقد تبدو الصفحة ضبابية."
+  "resizeUpscaleWarning": "التكبير لا يضيف تفاصيل، وقد تبدو الصفحة ضبابية.",
+  "eraserAutoColorTooltip": "مطابقة لون الصفحة تلقائيًا",
+  "eraserZoomTooltip": "تكبير وتحريك (قرص بإصبعين)"
 }

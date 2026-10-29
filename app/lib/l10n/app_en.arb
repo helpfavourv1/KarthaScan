@@ -935,5 +935,13 @@
   "resizeUpscaleWarning": "Enlarging doesn't add detail — the page may look soft.",
   "@resizeUpscaleWarning": {
     "description": "Shown when the new size has more pixels than the page"
+  },
+  "eraserAutoColorTooltip": "Match the page colour automatically",
+  "@eraserAutoColorTooltip": {
+    "description": "Eraser toggle: paint with the colour around the spot"
+  },
+  "eraserZoomTooltip": "Zoom and move (pinch)",
+  "@eraserZoomTooltip": {
+    "description": "Eraser toggle: pinch to zoom the page instead of drawing"
   }
 }

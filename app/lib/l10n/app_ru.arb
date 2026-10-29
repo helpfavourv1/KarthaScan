@@ -740,5 +740,7 @@
   "filterMagicColor": "Магия цвета",
   "filterBrightnessLabel": "Яркость",
   "filterContrastLabel": "Контраст",
-  "resizeUpscaleWarning": "Увеличение не добавляет деталей — страница может выглядеть размытой."
+  "resizeUpscaleWarning": "Увеличение не добавляет деталей — страница может выглядеть размытой.",
+  "eraserAutoColorTooltip": "Подбирать цвет страницы автоматически",
+  "eraserZoomTooltip": "Масштаб и перемещение (щипок)"
 }

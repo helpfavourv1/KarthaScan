@@ -647,5 +647,7 @@
   "filterMagicColor": "צבע קסם",
   "filterBrightnessLabel": "בהירות",
   "filterContrastLabel": "ניגודיות",
-  "resizeUpscaleWarning": "הגדלה לא מוסיפה פרטים — הדף עלול להיראות מטושטש."
+  "resizeUpscaleWarning": "הגדלה לא מוסיפה פרטים — הדף עלול להיראות מטושטש.",
+  "eraserAutoColorTooltip": "התאמת צבע הדף אוטומטית",
+  "eraserZoomTooltip": "זום והזזה (צביטה)"
 }

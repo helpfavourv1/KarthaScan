@@ -740,5 +740,7 @@
   "filterMagicColor": "Magische kleur",
   "filterBrightnessLabel": "Helderheid",
   "filterContrastLabel": "Contrast",
-  "resizeUpscaleWarning": "Vergroten voegt geen detail toe — de pagina kan er zacht uitzien."
+  "resizeUpscaleWarning": "Vergroten voegt geen detail toe — de pagina kan er zacht uitzien.",
+  "eraserAutoColorTooltip": "Paginakleur automatisch aanpassen",
+  "eraserZoomTooltip": "Zoomen en verschuiven (knijpen)"
 }

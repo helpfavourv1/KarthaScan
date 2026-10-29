@@ -740,5 +740,7 @@
   "filterMagicColor": "Taikaväri",
   "filterBrightnessLabel": "Kirkkaus",
   "filterContrastLabel": "Kontrasti",
-  "resizeUpscaleWarning": "Suurentaminen ei lisää yksityiskohtia – sivu voi näyttää pehmeältä."
+  "resizeUpscaleWarning": "Suurentaminen ei lisää yksityiskohtia – sivu voi näyttää pehmeältä.",
+  "eraserAutoColorTooltip": "Sovita sivun väriin automaattisesti",
+  "eraserZoomTooltip": "Zoomaa ja siirrä (nipistä)"
 }

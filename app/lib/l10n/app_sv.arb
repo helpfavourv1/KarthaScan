@@ -740,5 +740,7 @@
   "filterMagicColor": "Magisk färg",
   "filterBrightnessLabel": "Ljusstyrka",
   "filterContrastLabel": "Kontrast",
-  "resizeUpscaleWarning": "Förstoring tillför inga detaljer – sidan kan se suddig ut."
+  "resizeUpscaleWarning": "Förstoring tillför inga detaljer – sidan kan se suddig ut.",
+  "eraserAutoColorTooltip": "Matcha sidans färg automatiskt",
+  "eraserZoomTooltip": "Zooma och flytta (nyp)"
 }

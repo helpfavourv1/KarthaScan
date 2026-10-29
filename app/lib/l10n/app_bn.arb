@@ -740,5 +740,7 @@
   "filterMagicColor": "ম্যাজিক রঙ",
   "filterBrightnessLabel": "উজ্জ্বলতা",
   "filterContrastLabel": "বৈসাদৃশ্য",
-  "resizeUpscaleWarning": "বড় করলে বিস্তারিত বাড়ে না; পৃষ্ঠাটি ঝাপসা দেখাতে পারে।"
+  "resizeUpscaleWarning": "বড় করলে বিস্তারিত বাড়ে না; পৃষ্ঠাটি ঝাপসা দেখাতে পারে।",
+  "eraserAutoColorTooltip": "পৃষ্ঠার রঙের সাথে স্বয়ংক্রিয়ভাবে মেলান",
+  "eraserZoomTooltip": "জুম ও সরান (দুই আঙুলে চিমটি)"
 }

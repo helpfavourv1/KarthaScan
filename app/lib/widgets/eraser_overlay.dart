@@ -1,7 +1,9 @@
 import '../core/utils/smooth_resize.dart';
 import 'dart:io';
 
+import 'package:flutter/gestures.dart' show DragStartBehavior;
 import 'package:flutter/material.dart';
+import '../core/utils/eraser_fill.dart';
 import '../core/utils/constants.dart';
 import 'package:image/image.dart' as img;
 import '../l10n/app_localizations.dart';
@@ -29,10 +31,27 @@ class _EraserSheetState extends State<EraserSheet> {
   double _width = 40;
   bool _marqueeMode = false;
   bool _sampleMode = false;
+  bool _handMode = false; // pinch to zoom / drag to move instead of erasing
+  bool _autoColor = true; // paint with the colour around the spot
+  final TransformationController _zoom = TransformationController();
   bool _loading = true;
   img.Image? _sampleImage;
   double _displayW = 0;
   double _displayH = 0;
+
+  @override
+  void dispose() {
+    _zoom.dispose();
+    super.dispose();
+  }
+
+  /// With auto colour on, a finished mark takes the colour of the page around it.
+  _Stroke _finish(_Stroke s) {
+    final img.Image? page = _sampleImage;
+    if (!_autoColor || page == null) return s;
+    final int? c = autoFillColor(page, points: s.points, width: s.width, isBox: s.isRect, displayW: _displayW, displayH: _displayH);
+    return c == null ? s : _Stroke(s.points, c, s.width, s.isRect);
+  }
 
   static const List<int> _swatches = [0xFFFFFFFF, 0xFFF2F2F7, 0xFFE8E8ED, 0xFF111111];
 
@@ -68,6 +87,7 @@ class _EraserSheetState extends State<EraserSheet> {
     final b = p.b.toInt().clamp(0, 255);
     setState(() {
       _colorInt = (a << 24) | (r << 16) | (g << 8) | b;
+      _autoColor = false;
       _sampleMode = false;
     });
   }
@@ -129,24 +149,34 @@ class _EraserSheetState extends State<EraserSheet> {
                             child: SizedBox(
                               width: displayW,
                               height: displayH,
-                              child: GestureDetector(
+                              child: InteractiveViewer(
+                                transformationController: _zoom,
+                                minScale: 1,
+                                maxScale: 6,
+                                panEnabled: _handMode,
+                                scaleEnabled: _handMode,
+                                child: SizedBox(
+                                width: displayW,
+                                height: displayH,
+                                child: GestureDetector(
+                                dragStartBehavior: DragStartBehavior.down,
                                 onTapDown: (d) {
                                   if (_sampleMode) _sampleAt(d.localPosition);
                                 },
                                 // A single tap erases a small square the size of the brush.
                                 onTapUp: (d) {
-                                  if (_sampleMode || _marqueeMode) return;
+                                  if (_sampleMode || _marqueeMode || _handMode) return;
                                   final h = _width / 2;
-                                  setState(() => _strokes.add(_Stroke(
+                                  setState(() => _strokes.add(_finish(_Stroke(
                                         [d.localPosition - Offset(h, h), d.localPosition + Offset(h, h)],
-                                        _colorInt, _width, true)));
+                                        _colorInt, _width, true))));
                                 },
                                 onPanStart: (d) {
-                                  if (_sampleMode) return;
+                                  if (_sampleMode || _handMode) return;
                                   setState(() => _active = _Stroke([d.localPosition, if (_marqueeMode) d.localPosition], _colorInt, _width, _marqueeMode));
                                 },
                                 onPanUpdate: (d) {
-                                  if (_sampleMode || _active == null) return;
+                                  if (_sampleMode || _handMode || _active == null) return;
                                   setState(() {
                                     if (_active!.isRect) {
                                       if (_active!.points.length >= 2) {
@@ -162,7 +192,7 @@ class _EraserSheetState extends State<EraserSheet> {
                                 onPanEnd: (d) {
                                   if (_active == null) return;
                                   setState(() {
-                                    _strokes.add(_active!);
+                                    _strokes.add(_finish(_active!));
                                     _active = null;
                                   });
                                 },
@@ -188,6 +218,8 @@ class _EraserSheetState extends State<EraserSheet> {
                                 ),
                               ),
                             ),
+                            ),
+                            ),
                           );
                         },
                       ),
@@ -199,7 +231,7 @@ class _EraserSheetState extends State<EraserSheet> {
                 children: [
                   Text(AppLocalizations.of(context).commonSize, style: TextStyle(fontSize: 12)),
                   Expanded(
-                    child: Slider(value: _width, min: 10, max: 120, onChanged: (v) => setState(() => _width = v)),
+                    child: Slider(value: _width, min: 4, max: 120, onChanged: (v) => setState(() => _width = v)),
                   ),
                   Text(_width.round().toString(), style: const TextStyle(fontSize: 12)),
                 ],
@@ -215,13 +247,28 @@ class _EraserSheetState extends State<EraserSheet> {
                     onPressed: () => setState(() => _sampleMode = !_sampleMode),
                   ),
                   IconButton(
+                    key: const Key('eraserHand'),
+                    icon: Icon(Icons.zoom_in_map, color: _handMode ? accent : textPrimary),
+                    tooltip: AppLocalizations.of(context).eraserZoomTooltip,
+                    onPressed: () => setState(() => _handMode = !_handMode),
+                  ),
+                  IconButton(
+                    key: const Key('eraserAuto'),
+                    icon: Icon(Icons.auto_fix_high, color: _autoColor ? accent : textPrimary),
+                    tooltip: AppLocalizations.of(context).eraserAutoColorTooltip,
+                    onPressed: () => setState(() => _autoColor = !_autoColor),
+                  ),
+                  IconButton(
                     icon: Icon(Icons.crop_square, color: _marqueeMode ? accent : textPrimary),
                     tooltip: AppLocalizations.of(context).marqueeEraseTooltip,
                     onPressed: () => setState(() => _marqueeMode = !_marqueeMode),
                   ),
                   for (final sw in _swatches)
                     GestureDetector(
-                      onTap: () => setState(() => _colorInt = sw),
+                      onTap: () => setState(() {
+                        _colorInt = sw;
+                        _autoColor = false;
+                      }),
                       child: Container(
                         width: 28,
                         height: 28,

@@ -740,5 +740,7 @@
   "filterMagicColor": "Warna ajaib",
   "filterBrightnessLabel": "Kecerahan",
   "filterContrastLabel": "Kontras",
-  "resizeUpscaleWarning": "Pembesaran tidak menambah butiran — halaman mungkin kelihatan kabur."
+  "resizeUpscaleWarning": "Pembesaran tidak menambah butiran — halaman mungkin kelihatan kabur.",
+  "eraserAutoColorTooltip": "Padankan warna halaman secara automatik",
+  "eraserZoomTooltip": "Zum dan alih (cubit)"
 }

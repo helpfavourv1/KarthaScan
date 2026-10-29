@@ -740,5 +740,7 @@
   "filterMagicColor": "Sihirli renk",
   "filterBrightnessLabel": "Parlaklık",
   "filterContrastLabel": "Kontrast",
-  "resizeUpscaleWarning": "Büyütmek ayrıntı eklemez — sayfa bulanık görünebilir."
+  "resizeUpscaleWarning": "Büyütmek ayrıntı eklemez — sayfa bulanık görünebilir.",
+  "eraserAutoColorTooltip": "Sayfa rengine otomatik uydur",
+  "eraserZoomTooltip": "Yakınlaştır ve kaydır (çimdikle)"
 }

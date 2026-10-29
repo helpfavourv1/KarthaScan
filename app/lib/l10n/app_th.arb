@@ -740,5 +740,7 @@
   "filterMagicColor": "สีมหัศจรรย์",
   "filterBrightnessLabel": "ความสว่าง",
   "filterContrastLabel": "คอนทราสต์",
-  "resizeUpscaleWarning": "การขยายไม่เพิ่มรายละเอียด หน้าอาจดูเบลอ"
+  "resizeUpscaleWarning": "การขยายไม่เพิ่มรายละเอียด หน้าอาจดูเบลอ",
+  "eraserAutoColorTooltip": "จับคู่สีของหน้าอัตโนมัติ",
+  "eraserZoomTooltip": "ซูมและเลื่อน (ใช้สองนิ้ว)"
 }

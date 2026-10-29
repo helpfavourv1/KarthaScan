@@ -647,5 +647,7 @@
   "filterMagicColor": "Warna ajaib",
   "filterBrightnessLabel": "Kecerahan",
   "filterContrastLabel": "Kontras",
-  "resizeUpscaleWarning": "Memperbesar tidak menambah detail — halaman bisa tampak buram."
+  "resizeUpscaleWarning": "Memperbesar tidak menambah detail — halaman bisa tampak buram.",
+  "eraserAutoColorTooltip": "Samakan warna halaman otomatis",
+  "eraserZoomTooltip": "Zoom dan geser (cubit)"
 }

@@ -647,5 +647,7 @@
   "filterMagicColor": "マジックカラー",
   "filterBrightnessLabel": "明るさ",
   "filterContrastLabel": "コントラスト",
-  "resizeUpscaleWarning": "拡大しても細部は増えません。ページがぼやける場合があります。"
+  "resizeUpscaleWarning": "拡大しても細部は増えません。ページがぼやける場合があります。",
+  "eraserAutoColorTooltip": "ページの色に自動で合わせる",
+  "eraserZoomTooltip": "ズーム・移動(ピンチ)"
 }

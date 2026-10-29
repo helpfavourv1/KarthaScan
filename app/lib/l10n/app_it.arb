@@ -740,5 +740,7 @@
   "filterMagicColor": "Colore magico",
   "filterBrightnessLabel": "Luminosità",
   "filterContrastLabel": "Contrasto",
-  "resizeUpscaleWarning": "Ingrandire non aggiunge dettagli: la pagina può apparire sfocata."
+  "resizeUpscaleWarning": "Ingrandire non aggiunge dettagli: la pagina può apparire sfocata.",
+  "eraserAutoColorTooltip": "Adatta automaticamente al colore della pagina",
+  "eraserZoomTooltip": "Zoom e sposta (pizzica)"
 }

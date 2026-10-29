@@ -740,5 +740,7 @@
   "filterMagicColor": "Magisk farve",
   "filterBrightnessLabel": "Lysstyrke",
   "filterContrastLabel": "Kontrast",
-  "resizeUpscaleWarning": "Forstørrelse tilføjer ingen detaljer – siden kan se sløret ud."
+  "resizeUpscaleWarning": "Forstørrelse tilføjer ingen detaljer – siden kan se sløret ud.",
+  "eraserAutoColorTooltip": "Match sidens farve automatisk",
+  "eraserZoomTooltip": "Zoom og flyt (knib)"
 }

@@ -647,5 +647,7 @@
   "filterMagicColor": "Cor mágica",
   "filterBrightnessLabel": "Brilho",
   "filterContrastLabel": "Contraste",
-  "resizeUpscaleWarning": "Ampliar não acrescenta detalhes — a página pode ficar desfocada."
+  "resizeUpscaleWarning": "Ampliar não acrescenta detalhes — a página pode ficar desfocada.",
+  "eraserAutoColorTooltip": "Combinar com a cor da página automaticamente",
+  "eraserZoomTooltip": "Zoom e mover (pinça)"
 }

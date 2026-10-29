@@ -647,5 +647,7 @@
   "filterMagicColor": "मैजिक रंग",
   "filterBrightnessLabel": "चमक",
   "filterContrastLabel": "कंट्रास्ट",
-  "resizeUpscaleWarning": "बड़ा करने से विवरण नहीं बढ़ता; पेज धुंधला दिख सकता है।"
+  "resizeUpscaleWarning": "बड़ा करने से विवरण नहीं बढ़ता; पेज धुंधला दिख सकता है।",
+  "eraserAutoColorTooltip": "पेज के रंग से अपने आप मिलाएँ",
+  "eraserZoomTooltip": "ज़ूम और खिसकाएँ (पिंच)"
 }
