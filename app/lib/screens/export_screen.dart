@@ -665,17 +665,10 @@ class _ExportScreenState extends State<ExportScreen> {
                                           _selectedStampId = null;
                                           _exportEditMode = TrayEditMode.annotate;
                                         }),
-                                        onDrag: (layer, dxDelta, dyDelta) {
-                                          final doc = _documents.first;
-                                          _scanProvider.updateAnnotateLayer(doc.id, AnnotateLayer(
-                                            id: layer.id, pageIndex: layer.pageIndex, bytesPath: layer.bytesPath,
-                                            placement: SignaturePlacement(
-                                              pctX: (layer.placement.pctX + dxDelta / iw).clamp(0.0, 1.0),
-                                              pctY: (layer.placement.pctY + dyDelta / ih).clamp(0.0, 1.0),
-                                              rotationDegrees: layer.placement.rotationDegrees, scale: layer.placement.scale,
-                                            ),
-                                          ));
-                                        },
+                                        onPlace: (layer, np) {
+final doc = _documents.first;
+_scanProvider.updateAnnotateLayer(doc.id, layer.copyWith(placement: np));
+},
                                       ),
                                     if (_documents.first.watermarkLayers.isNotEmpty)
                                       WatermarkOverlayPage(
@@ -691,16 +684,10 @@ class _ExportScreenState extends State<ExportScreen> {
                                           _selectedStampId = null;
                                           _exportEditMode = TrayEditMode.watermark;
                                         }),
-                                        onDrag: (layer, dxDelta, dyDelta) {
-                                          final doc = _documents.first;
-                                          _scanProvider.updateWatermarkLayer(doc.id, layer.copyWith(
-                                            placement: SignaturePlacement(
-                                              pctX: (layer.placement.pctX + dxDelta / iw).clamp(0.0, 1.0),
-                                              pctY: (layer.placement.pctY + dyDelta / ih).clamp(0.0, 1.0),
-                                              rotationDegrees: layer.placement.rotationDegrees, scale: layer.placement.scale,
-                                            ),
-                                          ));
-                                        },
+                                        onPlace: (layer, np) {
+final doc = _documents.first;
+_scanProvider.updateWatermarkLayer(doc.id, layer.copyWith(placement: np));
+},
                                       ),
                                     if (_documents.first.stampLayers.isNotEmpty)
                                       StampOverlayPage(
@@ -716,16 +703,10 @@ class _ExportScreenState extends State<ExportScreen> {
                                           _selectedWatermarkText = null;
                                           _exportEditMode = layer.kind == 'text' ? TrayEditMode.text : (layer.kind == 'note' ? TrayEditMode.note : (layer.kind == 'date' ? TrayEditMode.date : (layer.kind == 'checkbox' ? TrayEditMode.checkbox : TrayEditMode.seal)));
                                         }),
-                                        onDrag: (layer, dxDelta, dyDelta) {
-                                          final doc = _documents.first;
-                                          _scanProvider.updateStampLayer(doc.id, layer.copyWith(
-                                            placement: SignaturePlacement(
-                                              pctX: (layer.placement.pctX + dxDelta / iw).clamp(0.0, 1.0),
-                                              pctY: (layer.placement.pctY + dyDelta / ih).clamp(0.0, 1.0),
-                                              rotationDegrees: layer.placement.rotationDegrees, scale: layer.placement.scale,
-                                            ),
-                                          ));
-                                        },
+                                        onPlace: (layer, np) {
+final doc = _documents.first;
+_scanProvider.updateStampLayer(doc.id, layer.copyWith(placement: np));
+},
                                       ),
 
 

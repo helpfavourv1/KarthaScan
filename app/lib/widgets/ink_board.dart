@@ -2,6 +2,7 @@ import 'dart:async' show unawaited;
 import 'dart:io';
 import 'dart:typed_data';
 import 'dart:ui' as ui;
+import 'package:flutter/gestures.dart' show DragStartBehavior;
 import 'package:flutter/material.dart';
 import 'package:image/image.dart' as img;
 import 'package:path/path.dart' as p;
@@ -319,23 +320,13 @@ class InkOverlayPage extends StatelessWidget {
             return Positioned(
               left: dx + pl.pctX * iw - sigW / 2,
               top: dy + pl.pctY * ih - sigH / 2,
-              child: GestureDetector(
-                behavior: HitTestBehavior.opaque,
+              child: PlacedItemGesture(
+                placement: pl,
+                iw: iw,
+                ih: ih,
+                zoom: transformController,
                 onTap: () { controller.setEditInk(entry.key); onSelectedCallback?.call(); },
-                onPanStart: (_) {},
-                onPanUpdate: (d) {
-                  final scale = transformController?.value.getMaxScaleOnAxis() ?? 1.0;
-                  controller.updatePlacement(
-                  entry.key,
-                  pageIndex,
-                  SignaturePlacement(
-                    pctX: (pl.pctX + (d.delta.dx / scale) / iw).clamp(0.0, 1.0),
-                    pctY: (pl.pctY + (d.delta.dy / scale) / ih).clamp(0.0, 1.0),
-                    rotationDegrees: pl.rotationDegrees,
-                    scale: pl.scale,
-                  ),
-                  );
-                },
+                onChanged: (np) => controller.updatePlacement(entry.key, pageIndex, np),
                 child: Container(
                                     decoration: isEdit
                       ? BoxDecoration(
@@ -357,6 +348,80 @@ class InkOverlayPage extends StatelessWidget {
   }
 }
 
+/// One touch gesture on a placed item (signature, mark, watermark, stamp...):
+/// start where the finger lands, drag with one finger, pinch to resize and twist
+/// with two. Calls [onChanged] with the full new placement on every move, so the
+/// caller never has to merge a drag and a pinch itself. Rotation snaps to the
+/// upright and quarter-turn positions when it is within 3 degrees of them.
+class PlacedItemGesture extends StatefulWidget {
+  const PlacedItemGesture({
+    super.key,
+    required this.placement,
+    required this.iw,
+    required this.ih,
+    required this.onChanged,
+    required this.child,
+    this.zoom,
+    this.onTap,
+    this.onDoubleTap,
+  });
+
+  final SignaturePlacement placement;
+  final double iw, ih;
+  final ValueChanged<SignaturePlacement> onChanged;
+  final Widget child;
+  final TransformationController? zoom;
+  final VoidCallback? onTap;
+  final VoidCallback? onDoubleTap;
+
+  /// Rotation after snapping to upright / quarter turns within 3 degrees.
+  static double snapDegrees(double deg) {
+    double d = deg;
+    while (d > 180) { d -= 360; }
+    while (d < -180) { d += 360; }
+    for (final double target in const <double>[-180, -90, 0, 90, 180]) {
+      if ((d - target).abs() <= 3) return target;
+    }
+    return d;
+  }
+
+  @override
+  State<PlacedItemGesture> createState() => _PlacedItemGestureState();
+}
+
+class _PlacedItemGestureState extends State<PlacedItemGesture> {
+  double _x = 0, _y = 0, _scale = 1, _rot = 0;
+  late SignaturePlacement _start;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      dragStartBehavior: DragStartBehavior.down,
+      onTap: widget.onTap,
+      onDoubleTap: widget.onDoubleTap,
+      onScaleStart: (_) {
+        _start = widget.placement;
+        _x = _start.pctX;
+        _y = _start.pctY;
+        _scale = _start.scale;
+        _rot = _start.rotationDegrees;
+      },
+      onScaleUpdate: (d) {
+        final double zoom = widget.zoom?.value.getMaxScaleOnAxis() ?? 1.0;
+        _x = (_x + (d.focalPointDelta.dx / zoom) / widget.iw).clamp(0.0, 1.0).toDouble();
+        _y = (_y + (d.focalPointDelta.dy / zoom) / widget.ih).clamp(0.0, 1.0).toDouble();
+        final double scale = (_start.scale * d.scale).clamp(0.1, 5.0).toDouble();
+        final double rot = d.pointerCount >= 2 ? PlacedItemGesture.snapDegrees(_start.rotationDegrees + d.rotation * 180 / 3.141592653589793) : _start.rotationDegrees;
+        _scale = scale;
+        _rot = rot;
+        widget.onChanged(SignaturePlacement(pctX: _x, pctY: _y, rotationDegrees: rot, scale: scale));
+      },
+      child: widget.child,
+    );
+  }
+}
+
 // === AnnotateOverlayPage: renders annotate layers for one page ===
 
 class AnnotateOverlayPage extends StatefulWidget {
@@ -371,7 +436,7 @@ class AnnotateOverlayPage extends StatefulWidget {
     required this.accent,
     required this.selectedId,
     required this.onSelect,
-    required this.onDrag,
+    required this.onPlace,
     this.onSelected,
     this.transformController,
   });
@@ -382,7 +447,7 @@ class AnnotateOverlayPage extends StatefulWidget {
   final Color accent;
   final String? selectedId;
   final void Function(AnnotateLayer layer) onSelect;
-  final void Function(AnnotateLayer layer, double dxDelta, double dyDelta) onDrag;
+  final void Function(AnnotateLayer layer, SignaturePlacement placement) onPlace;
   final VoidCallback? onSelected;
   final TransformationController? transformController;
 
@@ -436,14 +501,13 @@ class _AnnotateOverlayPageState extends State<AnnotateOverlayPage> {
             return Positioned(
               left: widget.dx + layer.placement.pctX * widget.iw - sigW / 2,
               top: widget.dy + layer.placement.pctY * widget.ih - sigH / 2,
-              child: GestureDetector(
-                behavior: HitTestBehavior.opaque,
+              child: PlacedItemGesture(
+                placement: layer.placement,
+                iw: widget.iw,
+                ih: widget.ih,
+                zoom: widget.transformController,
                 onTap: () { widget.onSelect(layer); widget.onSelected?.call(); },
-                onPanStart: (_) {},
-                onPanUpdate: (d) {
-                  final scale = widget.transformController?.value.getMaxScaleOnAxis() ?? 1.0;
-                  widget.onDrag(layer, d.delta.dx / scale, d.delta.dy / scale);
-                },
+                onChanged: (np) => widget.onPlace(layer, np),
                 child: Container(
                                     decoration: isSelected
                       ? BoxDecoration(
@@ -480,7 +544,7 @@ class WatermarkOverlayPage extends StatelessWidget {
     required this.accent,
     required this.selectedText,
     required this.onSelect,
-    required this.onDrag,
+    required this.onPlace,
     this.onSelected,
     this.transformController,
   });
@@ -491,7 +555,7 @@ class WatermarkOverlayPage extends StatelessWidget {
   final Color accent;
   final String? selectedText;
   final void Function(WatermarkLayer layer) onSelect;
-  final void Function(WatermarkLayer layer, double dxDelta, double dyDelta) onDrag;
+  final void Function(WatermarkLayer layer, SignaturePlacement placement) onPlace;
   final VoidCallback? onSelected;
   final TransformationController? transformController;
 
@@ -524,14 +588,13 @@ class WatermarkOverlayPage extends StatelessWidget {
                 top: dy + layer.placement.pctY * ih - side / 2,
                 width: side,
                 height: side,
-                child: GestureDetector(
-                  behavior: HitTestBehavior.opaque,
+                child: PlacedItemGesture(
+                  placement: layer.placement,
+                  iw: iw,
+                  ih: ih,
+                  zoom: transformController,
                   onTap: () { onSelect(layer); onSelected?.call(); },
-                  onPanStart: (_) {},
-                  onPanUpdate: (d) {
-                    final scale = transformController?.value.getMaxScaleOnAxis() ?? 1.0;
-                    onDrag(layer, d.delta.dx / scale, d.delta.dy / scale);
-                  },
+                  onChanged: (np) => onPlace(layer, np),
                   child: Container(
                     decoration: isSelected
                         ? BoxDecoration(border: Border.all(color: accent, width: 1.5), borderRadius: BorderRadius.circular(4))
@@ -561,14 +624,13 @@ class WatermarkOverlayPage extends StatelessWidget {
               top: dy + layer.placement.pctY * ih - boxH / 2,
               width: boxW,
               height: boxH,
-              child: GestureDetector(
-                behavior: HitTestBehavior.opaque,
+              child: PlacedItemGesture(
+                placement: layer.placement,
+                iw: iw,
+                ih: ih,
+                zoom: transformController,
                 onTap: () { onSelect(layer); onSelected?.call(); },
-                onPanStart: (_) {},
-                onPanUpdate: (d) {
-                  final scale = transformController?.value.getMaxScaleOnAxis() ?? 1.0;
-                  onDrag(layer, d.delta.dx / scale, d.delta.dy / scale);
-                },
+                onChanged: (np) => onPlace(layer, np),
                 child: Container(
                   decoration: isSelected
                       ? BoxDecoration(
@@ -743,7 +805,7 @@ class StampOverlayPage extends StatefulWidget {
     required this.accent,
     required this.selectedId,
     required this.onSelect,
-    required this.onDrag,
+    required this.onPlace,
     this.onSelected,
     this.onDoubleTap,
     this.transformController,
@@ -755,7 +817,7 @@ class StampOverlayPage extends StatefulWidget {
   final Color accent;
   final String? selectedId;
   final void Function(StampLayer layer) onSelect;
-  final void Function(StampLayer layer, double dxDelta, double dyDelta) onDrag;
+  final void Function(StampLayer layer, SignaturePlacement placement) onPlace;
   final VoidCallback? onSelected;
   final void Function(StampLayer layer)? onDoubleTap;
   final TransformationController? transformController;
@@ -828,15 +890,14 @@ class _StampOverlayPageState extends State<StampOverlayPage> {
       top: widget.dy + layer.placement.pctY * widget.ih,
       child: FractionalTranslation(
         translation: const Offset(-0.5, -0.5),
-        child: GestureDetector(
-          behavior: HitTestBehavior.opaque,
+        child: PlacedItemGesture(
+          placement: layer.placement,
+          iw: widget.iw,
+          ih: widget.ih,
+          zoom: widget.transformController,
           onTap: () { widget.onSelect(layer); widget.onSelected?.call(); },
           onDoubleTap: widget.onDoubleTap == null ? null : () => widget.onDoubleTap!(layer),
-          onPanStart: (_) {},
-          onPanUpdate: (d) {
-            final scale = widget.transformController?.value.getMaxScaleOnAxis() ?? 1.0;
-            widget.onDrag(layer, d.delta.dx / scale, d.delta.dy / scale);
-          },
+          onChanged: (np) => widget.onPlace(layer, np),
           child: Transform.rotate(
             angle: layer.placement.rotationDegrees * 3.14159 / 180,
             child: Container(
@@ -875,14 +936,13 @@ class _StampOverlayPageState extends State<StampOverlayPage> {
               return Positioned(
                 left: widget.dx + layer.placement.pctX * widget.iw - size / 2,
                 top: widget.dy + layer.placement.pctY * widget.ih - size / 2,
-                child: GestureDetector(
-                  behavior: HitTestBehavior.opaque,
+                child: PlacedItemGesture(
+                  placement: layer.placement,
+                  iw: widget.iw,
+                  ih: widget.ih,
+                  zoom: widget.transformController,
                   onTap: () { widget.onSelect(layer); widget.onSelected?.call(); },
-                  onPanStart: (_) {},
-                  onPanUpdate: (d) {
-                    final scale = widget.transformController?.value.getMaxScaleOnAxis() ?? 1.0;
-                    widget.onDrag(layer, d.delta.dx / scale, d.delta.dy / scale);
-                  },
+                  onChanged: (np) => widget.onPlace(layer, np),
                   child: Container(
                                         decoration: isSelected ? BoxDecoration(border: Border.all(color: widget.accent, width: 1.5), borderRadius: BorderRadius.circular(4)) : null,
                     child: Transform.rotate(
@@ -911,14 +971,13 @@ class _StampOverlayPageState extends State<StampOverlayPage> {
               return Positioned(
                 left: widget.dx + layer.placement.pctX * widget.iw - size / 2,
                 top: widget.dy + layer.placement.pctY * widget.ih - size / 2,
-                child: GestureDetector(
-                  behavior: HitTestBehavior.opaque,
+                child: PlacedItemGesture(
+                  placement: layer.placement,
+                  iw: widget.iw,
+                  ih: widget.ih,
+                  zoom: widget.transformController,
                   onTap: () { widget.onSelect(layer); widget.onSelected?.call(); },
-                  onPanStart: (_) {},
-                  onPanUpdate: (d) {
-                    final scale = widget.transformController?.value.getMaxScaleOnAxis() ?? 1.0;
-                    widget.onDrag(layer, d.delta.dx / scale, d.delta.dy / scale);
-                  },
+                  onChanged: (np) => widget.onPlace(layer, np),
                   child: Container(
                                         decoration: isSelected ? BoxDecoration(border: Border.all(color: widget.accent, width: 1.5), borderRadius: BorderRadius.circular(4)) : null,
                     child: Transform.rotate(
@@ -945,14 +1004,13 @@ class _StampOverlayPageState extends State<StampOverlayPage> {
               top: widget.dy + layer.placement.pctY * widget.ih - boxH / 2,
               width: boxW,
               height: boxH,
-              child: GestureDetector(
-                behavior: HitTestBehavior.opaque,
+              child: PlacedItemGesture(
+                placement: layer.placement,
+                iw: widget.iw,
+                ih: widget.ih,
+                zoom: widget.transformController,
                 onTap: () { widget.onSelect(layer); widget.onSelected?.call(); },
-                onPanStart: (_) {},
-                onPanUpdate: (d) {
-                  final scale = widget.transformController?.value.getMaxScaleOnAxis() ?? 1.0;
-                  widget.onDrag(layer, d.delta.dx / scale, d.delta.dy / scale);
-                },
+                onChanged: (np) => widget.onPlace(layer, np),
                 child: Container(
                   decoration: BoxDecoration(
                     color: layer.kind == 'note' && layer.noteBgColor != null ? Color(layer.noteBgColor!).withValues(alpha: layer.opacity) : null,

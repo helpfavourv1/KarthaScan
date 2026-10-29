@@ -412,19 +412,9 @@ class _PageWithInkState extends State<_PageWithInk> {
                                       selectedId: widget.selectedAnnotateId,
                                       onSelect: (layer) => widget.onAnnotateSelect?.call(layer),
                                       transformController: _transformController,
-                                      onDrag: (layer, dxDelta, dyDelta) {
-                                        widget.onAnnotateUpdate?.call(widget.pageIndex, AnnotateLayer(
-                                          id: layer.id,
-                                          pageIndex: layer.pageIndex,
-                                          bytesPath: layer.bytesPath,
-                                          placement: SignaturePlacement(
-                                            pctX: (layer.placement.pctX + dxDelta / originalW).clamp(0.0, 1.0),
-                                            pctY: (layer.placement.pctY + dyDelta / originalH).clamp(0.0, 1.0),
-                                            rotationDegrees: layer.placement.rotationDegrees,
-                                            scale: layer.placement.scale,
-                                          ),
-                                        ));
-                                      },
+                                      onPlace: (layer, np) {
+widget.onAnnotateUpdate?.call(widget.pageIndex, layer.copyWith(placement: np));
+},
                                     ),
                                   if (widget.watermarkLayers.isNotEmpty)
                                     WatermarkOverlayPage(
@@ -435,16 +425,9 @@ class _PageWithInkState extends State<_PageWithInk> {
                                       selectedText: widget.selectedWatermarkText,
                                       onSelect: (layer) { widget.onWatermarkSelected?.call(layer); widget.onWatermarkSelect?.call(); },
                                       transformController: _transformController,
-                                      onDrag: (layer, dxDelta, dyDelta) {
-                                        widget.onWatermarkLayerUpdate?.call(widget.pageIndex, layer.copyWith(
-                                          placement: SignaturePlacement(
-                                            pctX: (layer.placement.pctX + dxDelta / originalW).clamp(0.0, 1.0),
-                                            pctY: (layer.placement.pctY + dyDelta / originalH).clamp(0.0, 1.0),
-                                            rotationDegrees: layer.placement.rotationDegrees,
-                                            scale: layer.placement.scale,
-                                          ),
-                                        ));
-                                      },
+                                      onPlace: (layer, np) {
+widget.onWatermarkLayerUpdate?.call(widget.pageIndex, layer.copyWith(placement: np));
+},
                                     ),
                                   if (widget.stampLayers.isNotEmpty)
                                     StampOverlayPage(
@@ -456,16 +439,9 @@ class _PageWithInkState extends State<_PageWithInk> {
                                       onSelect: (layer) { widget.onStampSelected?.call(layer); widget.onStampSelect?.call(); },
                                       onDoubleTap: widget.onStampDoubleTap,
                                       transformController: _transformController,
-                                      onDrag: (layer, dxDelta, dyDelta) {
-                                        widget.onStampLayerUpdate?.call(widget.pageIndex, layer.copyWith(
-                                          placement: SignaturePlacement(
-                                            pctX: (layer.placement.pctX + dxDelta / originalW).clamp(0.0, 1.0),
-                                            pctY: (layer.placement.pctY + dyDelta / originalH).clamp(0.0, 1.0),
-                                            rotationDegrees: layer.placement.rotationDegrees,
-                                            scale: layer.placement.scale,
-                                          ),
-                                        ));
-                                      },
+                                      onPlace: (layer, np) {
+widget.onStampLayerUpdate?.call(widget.pageIndex, layer.copyWith(placement: np));
+},
                                     ),
                                   if (widget.fillGhostText != null && widget.fillGhostPctX != null && widget.fillGhostPctY != null)
                                     Positioned(
