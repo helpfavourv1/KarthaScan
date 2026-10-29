@@ -227,21 +227,23 @@ class _PerspectiveCropSheetState extends State<PerspectiveCropSheet> {
           ),
           SizedBox(
             height: 48,
-            child: ListView(
+            child: SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               padding: const EdgeInsets.symmetric(horizontal: 12),
-              children: <Widget>[
-                for (final MapEntry<String, double?> e in chips)
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 6),
-                    child: ChoiceChip(
-                      key: Key('cropAspect:${e.key}'),
-                      label: Text(label(e.key)),
-                      selected: e.value == null ? _aspect == null : (_aspect != null && (_aspect! - _shape(e.value!)).abs() < 1e-6),
-                      onSelected: (_) => setState(() => _aspect = e.value == null ? null : _shape(e.value!)),
+              child: Row(
+                children: <Widget>[
+                  for (final MapEntry<String, double?> e in chips)
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 6),
+                      child: ChoiceChip(
+                        key: Key('cropAspect:${e.key}'),
+                        label: Text(label(e.key)),
+                        selected: e.value == null ? _aspect == null : (_aspect != null && (_aspect! - _shape(e.value!)).abs() < 1e-6),
+                        onSelected: (_) => setState(() => _aspect = e.value == null ? null : _shape(e.value!)),
+                      ),
                     ),
-                  ),
-              ],
+                ],
+              ),
             ),
           ),
           Padding(
