@@ -2,7 +2,6 @@
 library;
 
 import 'dart:io';
-import 'dart:ui' show Offset;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
