@@ -285,12 +285,14 @@ void main() {
             ok = paperRight.r == paperRight.g && paperRight.g == paperRight.b;
           case FilterType.colorEnhance:
             ok = paperRight.g > 100;
+          case FilterType.magicColor:
+            ok = paperRight.g > 200 && inkLeft.g < 140;
           case FilterType.none:
             ok = true;
         }
         check('F5-${ft.name}', ok && o.width == w, '12 MP page in $ms ms; paper right ${paperRight.r.toInt()}, ink ${inkLeft.r.toInt()}');
       }
-      note('F5-total', 'INFO', 'all four filters on 12 MP: ${DateTime.now().difference(t0).inSeconds} s');
+      note('F5-total', 'INFO', 'every filter on 12 MP: ${DateTime.now().difference(t0).inSeconds} s');
     });
 
     // ---- F6: ID card mode: front + back as a finished document in every format ----
