@@ -173,3 +173,12 @@ Done and checked by CI unit/widget tests (dart-check green); emulator run pendin
 - Bug found and fixed on the way: pages edited only by tilt or brightness/contrast were skipped on export.
 
 Still owed: native review of the new strings (cropAuto, cropAspectFree/Id/Square, cropNoPageFound, straightenLabel, filterMagicColor, filterBrightnessLabel, filterContrastLabel, resizeUpscaleWarning); phone checks (dragging crop corners with a real finger, straighten feel, Magic colour on a real photo); the editor Crop overlaps the scanner's own edge detection at capture — decide whether to keep both.
+
+## Eraser / Pages upgrade (Oct 2026)
+
+Checked by CI unit/widget tests (dart-check green); emulator run pending at time of writing:
+- Eraser: zoom/move mode (pinch), strokes start at the touch-down point, "auto colour" paints with the median colour of the page around the mark (`eraser_fill.dart`), brush down to 4 px, toolbar split so it fits a phone.
+- Pages: thumbnails show the page as edited (crop, tilt, filter), multi-select delete with confirmation (one page always stays; deletions apply on Save, Cancel discards).
+- Not built: content-aware (texture) fill — auto colour only suits plain paper; the eraser still shows the whole uncropped photo; deletions cannot be undone after Save.
+- New strings needing native review: eraserAutoColorTooltip, eraserZoomTooltip, pagesSelectTooltip, pagesDeleteCount, pagesDeleteConfirm.
+- Phone check owed: pinch-zoom + erase feel, auto colour on a coloured page, thumbnails of edited pages on a long document (speed).
