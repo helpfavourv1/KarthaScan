@@ -263,6 +263,22 @@ class _EraserSheetState extends State<EraserSheet> {
                     tooltip: AppLocalizations.of(context).marqueeEraseTooltip,
                     onPressed: () => setState(() => _marqueeMode = !_marqueeMode),
                   ),
+                  const Spacer(),
+                  IconButton(
+                    icon: const Icon(Icons.undo),
+                    onPressed: _strokes.isEmpty ? null : () => setState(() => _strokes.removeLast()),
+                  ),
+                  IconButton(
+                    icon: const Icon(Icons.delete_outline),
+                    onPressed: _strokes.isEmpty ? null : () => setState(() => _strokes.clear()),
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+              child: Row(
+                children: [
                   for (final sw in _swatches)
                     GestureDetector(
                       onTap: () => setState(() {
@@ -280,15 +296,6 @@ class _EraserSheetState extends State<EraserSheet> {
                         ),
                       ),
                     ),
-                  const Spacer(),
-                  IconButton(
-                    icon: const Icon(Icons.undo),
-                    onPressed: _strokes.isEmpty ? null : () => setState(() => _strokes.removeLast()),
-                  ),
-                  IconButton(
-                    icon: const Icon(Icons.delete_outline),
-                    onPressed: _strokes.isEmpty ? null : () => setState(() => _strokes.clear()),
-                  ),
                 ],
               ),
             ),
