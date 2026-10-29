@@ -735,5 +735,6 @@
   "cropAspectFree": "Libero",
   "cropAspectId": "Carta d'identità",
   "cropAspectSquare": "Quadrato",
-  "cropNoPageFound": "Bordi non trovati. Trascina gli angoli."
+  "cropNoPageFound": "Bordi non trovati. Trascina gli angoli.",
+  "straightenLabel": "Raddrizza"
 }

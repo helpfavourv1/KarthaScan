@@ -884,6 +884,24 @@ class ScanProvider {
     return _replaceAndSave(updated);
   }
 
+  /// Changes several pages' transforms as ONE edit (one undo step). Only for changes
+  /// that do not move the crop, such as turning or tilting.
+  Future<bool> updatePageTransforms(String id, Map<int, PageTransform> changes) async {
+    final ScanDocument? existing = _findById(id);
+    if (existing == null || changes.isEmpty) return false;
+    final Map<int, PageTransform> next = Map<int, PageTransform>.from(existing.pageTransforms);
+    changes.forEach((int page, PageTransform t) {
+      if (t.isEmpty) {
+        next.remove(page);
+      } else {
+        next[page] = t;
+      }
+    });
+    final ScanDocument updated = existing.copyWith(pageTransforms: next, updatedAt: DateTime.now());
+    _recordOverlayUndo(existing, updated, null);
+    return _replaceAndSave(updated);
+  }
+
   Future<bool> revertPageTransform(String id, int pageIndex) async {
     return updatePageTransform(id, pageIndex, const PageTransform());
   }

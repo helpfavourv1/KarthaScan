@@ -642,5 +642,6 @@
   "cropAspectFree": "חופשי",
   "cropAspectId": "תעודה",
   "cropAspectSquare": "ריבוע",
-  "cropNoPageFound": "לא נמצאו קצוות הדף. גררו את הפינות."
+  "cropNoPageFound": "לא נמצאו קצוות הדף. גררו את הפינות.",
+  "straightenLabel": "יישור"
 }

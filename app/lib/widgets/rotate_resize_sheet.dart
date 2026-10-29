@@ -2,11 +2,22 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import '../core/utils/constants.dart';
+import '../core/utils/smooth_resize.dart' show straightenZoom;
 import 'package:image/image.dart' as img;
 import '../l10n/app_localizations.dart';
 
 
 enum RotateResizeMode { rotate, resize }
+
+/// What the rotate sheet returns: the NEW quarter turns (0 to 3) and the page's
+/// tilt correction in degrees (replaces the old one), and whether to use both on
+/// every page.
+class RotateResult {
+  const RotateResult(this.turns, this.straighten, this.applyAll);
+  final int turns;
+  final double straighten;
+  final bool applyAll;
+}
 
 class RotateResizeSheet extends StatefulWidget {
   const RotateResizeSheet({
@@ -15,6 +26,7 @@ class RotateResizeSheet extends StatefulWidget {
     required this.imagePath,
     this.onApplyAll,
     this.initialTurns = 0,
+    this.initialStraighten = 0,
     this.baseSize,
   });
 
@@ -30,13 +42,18 @@ class RotateResizeSheet extends StatefulWidget {
   /// orientation; the sheet still returns only the NEW turns (0 to 3).
   final int initialTurns;
 
+  /// Tilt correction the page already has, in degrees.
+  final double initialStraighten;
+
   @override
   State<RotateResizeSheet> createState() => RotateResizeSheetState();
 }
 
 class RotateResizeSheetState extends State<RotateResizeSheet> {
   int _quarterTurns = 0;
+  late double _tilt = widget.initialStraighten;
   bool _applyAll = false;
+  bool _gridOn = false;
   img.Image? _originalImage;
   bool _loading = true;
   final TextEditingController _widthCtrl = TextEditingController();
@@ -139,7 +156,7 @@ class RotateResizeSheetState extends State<RotateResizeSheet> {
                     onPressed: (widget.mode == RotateResizeMode.resize && !_sizeValid) ? null : () {
                       if (widget.mode == RotateResizeMode.rotate) {
                         widget.onApplyAll?.call(_applyAll);
-                        Navigator.pop(context, _quarterTurns);
+                        Navigator.pop(context, RotateResult(_quarterTurns, _tilt, _applyAll));
                       } else {
                         final w = int.tryParse(_widthCtrl.text) ?? _baseW;
                         final h = int.tryParse(_heightCtrl.text) ?? _baseH;
@@ -169,9 +186,43 @@ class RotateResizeSheetState extends State<RotateResizeSheet> {
         Expanded(
           child: RotatedBox(
             quarterTurns: (widget.initialTurns + _quarterTurns) % 4,
-            child: Image.file(File(widget.imagePath), fit: BoxFit.contain),
+            child: Center(
+              child: AspectRatio(
+                aspectRatio: _originalImage!.width / _originalImage!.height,
+                child: ClipRect(
+                  child: Stack(fit: StackFit.expand, children: [
+                    Transform.scale(
+                      scale: straightenZoom(_tilt, _originalImage!.width, _originalImage!.height),
+                      child: Transform.rotate(
+                        angle: _tilt * 3.141592653589793 / 180,
+                        child: Image.file(File(widget.imagePath), fit: BoxFit.fill),
+                      ),
+                    ),
+                    if (_tilt != 0 || _gridOn) IgnorePointer(child: CustomPaint(painter: _GridPainter())),
+                  ]),
+                ),
+              ),
+            ),
           ),
         ),
+        Row(children: [
+          Text(AppLocalizations.of(context).straightenLabel, style: TextStyle(color: textSecondary)),
+          Expanded(
+            child: Slider(
+              key: const Key('straightenSlider'),
+              min: -45,
+              max: 45,
+              divisions: 180,
+              value: _tilt.clamp(-45.0, 45.0).toDouble(),
+              label: '${_tilt.toStringAsFixed(1)}°',
+              onChangeStart: (_) => setState(() => _gridOn = true),
+              onChangeEnd: (_) => setState(() => _gridOn = false),
+              onChanged: (v) => setState(() => _tilt = v),
+            ),
+          ),
+          SizedBox(width: 48, child: Text('${_tilt.toStringAsFixed(1)}°', key: const Key('straightenValue'), style: TextStyle(color: textSecondary))),
+          IconButton(key: const Key('straightenReset'), icon: const Icon(Icons.restart_alt), onPressed: _tilt == 0 ? null : () => setState(() => _tilt = 0)),
+        ]),
         const SizedBox(height: 16),
         Text('${((widget.initialTurns + _quarterTurns) % 4) * 90}°', style: TextStyle(fontSize: 24, fontWeight: FontWeight.w700, color: textSecondary)),
         const SizedBox(height: 12),
@@ -283,4 +334,28 @@ class RotateResizeSheetState extends State<RotateResizeSheet> {
       ],
     );
   }
+}
+
+
+/// A thin grid over the picture while the tilt is being set, to line text up.
+class _GridPainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    final Paint p = Paint()
+      ..color = const Color(0x99FFFFFF)
+      ..strokeWidth = 1;
+    final Paint shadow = Paint()
+      ..color = const Color(0x55000000)
+      ..strokeWidth = 2;
+    for (int i = 1; i < 8; i++) {
+      final double x = size.width * i / 8, y = size.height * i / 8;
+      for (final Paint q in [shadow, p]) {
+        canvas.drawLine(Offset(x, 0), Offset(x, size.height), q);
+        canvas.drawLine(Offset(0, y), Offset(size.width, y), q);
+      }
+    }
+  }
+
+  @override
+  bool shouldRepaint(_GridPainter old) => false;
 }

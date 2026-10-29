@@ -491,6 +491,11 @@ class ExportService {
       if (pageTransform != null && (pageTransform.resizeWidth ?? 0) > 0 && (pageTransform.resizeHeight ?? 0) > 0) {
         decoded = resizeSmooth(decoded, width: pageTransform.resizeWidth!, height: pageTransform.resizeHeight!);
       }
+      if (pageTransform != null && pageTransform.straightenDegrees != 0) {
+        final img.Image forTilt = decoded;
+        final double tilt = pageTransform.straightenDegrees;
+        decoded = await Isolate.run(() => straightenFill(forTilt, tilt));
+      }
       if (effectiveFilter != FilterType.none) {
         final img.Image forFilter = decoded;
         final double intensity = (!useExportFilter && pageTransform != null) ? pageTransform.filterIntensity : 1.0;

@@ -533,33 +533,34 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
     final doc = document;
     if (doc == null || doc.pagePaths.isEmpty) return;
 
-    bool applyAll = false;
-    final turns = await showModalBottomSheet<int>(
+    final RotateResult? res = await showModalBottomSheet<RotateResult>(
       context: context,
       isScrollControlled: true,
       builder: (ctx) => RotateResizeSheet(
         mode: RotateResizeMode.rotate,
         imagePath: doc.pagePaths[currentPageIndex],
         initialTurns: doc.pageTransforms[currentPageIndex]?.rotationTurns ?? 0,
-        onApplyAll: (bool value) => applyAll = value,
+        initialStraighten: doc.pageTransforms[currentPageIndex]?.straightenDegrees ?? 0,
       ),
     );
-    if (turns == null || turns == 0 || !mounted) return;
+    if (res == null || !mounted) return;
+    final double oldTilt = doc.pageTransforms[currentPageIndex]?.straightenDegrees ?? 0;
+    if (res.turns == 0 && res.straighten == oldTilt) return;
 
-    final List<int> indicesToRotate = applyAll
-        ? List<int>.generate(doc.pagePaths.length, (i) => i)
-        : [currentPageIndex];
-
-    for (final idx in indicesToRotate) {
-      final currentDoc = document;
-      if (currentDoc == null) return;
-      final existing = currentDoc.pageTransforms[idx] ?? const PageTransform();
-      final updated = existing.copyWith(rotationTurns: (existing.rotationTurns + turns) % 4);
-      await scanProvider.updatePageTransform(currentDoc.id, idx, updated);
+    final List<int> indices = res.applyAll ? List<int>.generate(doc.pagePaths.length, (i) => i) : [currentPageIndex];
+    final Map<int, PageTransform> changes = <int, PageTransform>{};
+    for (final int idx in indices) {
+      final PageTransform existing = doc.pageTransforms[idx] ?? const PageTransform();
+      changes[idx] = existing.copyWith(
+        rotationTurns: (existing.rotationTurns + res.turns) % 4,
+        straightenDegrees: (idx == currentPageIndex || res.applyAll) ? res.straighten : existing.straightenDegrees,
+      );
     }
+    // One edit for every page, so a single undo reverses it all.
+    await scanProvider.updatePageTransforms(doc.id, changes);
 
     if (mounted) {
-      final msg = applyAll ? AppLocalizations.of(context).rotationAllPages : AppLocalizations.of(context).rotationPage;
+      final msg = res.applyAll ? AppLocalizations.of(context).rotationAllPages : AppLocalizations.of(context).rotationPage;
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(msg)));
     }
   }

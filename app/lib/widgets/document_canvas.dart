@@ -276,7 +276,7 @@ class _PageWithInkState extends State<_PageWithInk> {
       // decoded (in a background isolate) when there are edits to bake in.
       final transform = widget.pageTransforms[widget.pageIndex];
       final bool needsProcessing = transform != null &&
-          (transform.cropRect != null || transform.resizeWidth != null || transform.filter != FilterType.none || transform.eraserStrokes.isNotEmpty);
+          (transform.cropRect != null || transform.straightenDegrees != 0 || transform.resizeWidth != null || transform.filter != FilterType.none || transform.eraserStrokes.isNotEmpty);
       final img.DecodeInfo? info = img.findDecoderForData(bytes)?.startDecode(bytes);
       final int? width = info?.width;
       final int? height = info?.height;
@@ -575,6 +575,9 @@ Uint8List? renderPagePreview(PagePreviewJob job) {
       processed = processed.width >= processed.height
           ? resizeSmooth(processed, width: kPreviewMaxSide)
           : resizeSmooth(processed, height: kPreviewMaxSide);
+    }
+    if (transform.straightenDegrees != 0) {
+      processed = straightenFill(processed, transform.straightenDegrees);
     }
     if (transform.filter != FilterType.none) {
       processed = FilterService.applyToImage(processed, transform.filter, intensity: transform.filterIntensity);

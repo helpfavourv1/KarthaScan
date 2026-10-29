@@ -735,5 +735,6 @@
   "cropAspectFree": "Serbest",
   "cropAspectId": "Kimlik kartı",
   "cropAspectSquare": "Kare",
-  "cropNoPageFound": "Sayfa kenarları bulunamadı. Köşeleri sürükleyin."
+  "cropNoPageFound": "Sayfa kenarları bulunamadı. Köşeleri sürükleyin.",
+  "straightenLabel": "Düzelt"
 }

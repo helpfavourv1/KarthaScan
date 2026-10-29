@@ -735,5 +735,6 @@
   "cropAspectFree": "Dowolny",
   "cropAspectId": "Dowód",
   "cropAspectSquare": "Kwadrat",
-  "cropNoPageFound": "Nie znaleziono krawędzi. Przeciągnij rogi."
+  "cropNoPageFound": "Nie znaleziono krawędzi. Przeciągnij rogi.",
+  "straightenLabel": "Wyrównaj"
 }

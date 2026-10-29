@@ -735,5 +735,6 @@
   "cropAspectFree": "Tự do",
   "cropAspectId": "Thẻ ID",
   "cropAspectSquare": "Vuông",
-  "cropNoPageFound": "Không tìm thấy mép trang. Hãy kéo các góc."
+  "cropNoPageFound": "Không tìm thấy mép trang. Hãy kéo các góc.",
+  "straightenLabel": "Chỉnh thẳng"
 }

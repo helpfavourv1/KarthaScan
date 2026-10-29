@@ -642,5 +642,6 @@
   "cropAspectFree": "Frei",
   "cropAspectId": "Ausweis",
   "cropAspectSquare": "Quadrat",
-  "cropNoPageFound": "Seitenränder nicht gefunden. Ziehen Sie die Ecken."
+  "cropNoPageFound": "Seitenränder nicht gefunden. Ziehen Sie die Ecken.",
+  "straightenLabel": "Geraderichten"
 }

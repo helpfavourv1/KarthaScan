@@ -642,5 +642,6 @@
   "cropAspectFree": "自由",
   "cropAspectId": "证件",
   "cropAspectSquare": "正方形",
-  "cropNoPageFound": "未找到页面边缘，请拖动四角。"
+  "cropNoPageFound": "未找到页面边缘，请拖动四角。",
+  "straightenLabel": "校正倾斜"
 }

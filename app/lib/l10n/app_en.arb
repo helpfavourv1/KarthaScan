@@ -915,5 +915,9 @@
   "cropNoPageFound": "Couldn't find the page edges. Drag the corners.",
   "@cropNoPageFound": {
     "description": "Shown when auto-detect cannot find the page"
+  },
+  "straightenLabel": "Straighten",
+  "@straightenLabel": {
+    "description": "Slider that corrects a small tilt of the page, in degrees"
   }
 }

@@ -60,4 +60,12 @@ void main() {
     expect(back.croppedSize!.width / back.croppedSize!.height, closeTo(0.7, 0.01));
     expect(t.copyWith(clearCropQuad: true).cropQuad, isNull);
   });
+
+  test('tilt is saved with the page and counts as an edit', () {
+    const t = PageTransform(straightenDegrees: -3.5);
+    expect(t.isEmpty, isFalse);
+    expect(PageTransform.fromJson(t.toJson()).straightenDegrees, -3.5);
+    expect(const PageTransform().isEmpty, isTrue);
+    expect(PageTransform.fromJson({'straightenDegrees': 99}).straightenDegrees, 45);
+  });
 }

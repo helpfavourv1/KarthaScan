@@ -65,16 +65,14 @@ class _AnnotateSheetState extends State<AnnotateSheet> {
         if (info != null && info.width > 0 && info.height > 0) {
           final int w = info.width, h = info.height;
           final PageTransform? t = widget.pageTransform;
-          if (t?.cropQuad != null) {
-            // A straightened page: draw over the straightened picture.
-            final List<ui.Offset> quad = t!.cropQuad!;
-            final double? asp = t.cropAspect;
-            final Uint8List? png = await compute(_straightenForBackdrop, _StraightenJob(bytes, quad, asp));
+          if (t != null && (t.cropQuad != null || t.straightenDegrees != 0)) {
+            // A straightened or tilt-corrected page: draw over that picture.
+            final Uint8List? png = await compute(_straightenForBackdrop, _StraightenJob(bytes, t.cropQuad, t.cropAspect, t.cropRect, t.straightenDegrees));
             if (png != null) {
               final ui.Codec c2 = await ui.instantiateImageCodec(png);
               final ui.Image straight = (await c2.getNextFrame()).image;
               double aspect = straight.width / straight.height;
-              double exportW = t.croppedSize!.width;
+              double exportW = t.croppedSize?.width ?? w.toDouble();
               final int? rw = t.resizeWidth, rh = t.resizeHeight;
               if (rw != null && rh != null && rw > 0 && rh > 0) {
                 aspect = rw / rh;
@@ -386,18 +384,26 @@ class _BackdropPainter extends CustomPainter {
 
 
 class _StraightenJob {
-  const _StraightenJob(this.bytes, this.quad, this.aspect);
+  const _StraightenJob(this.bytes, this.quad, this.aspect, this.cropRect, this.degrees);
   final Uint8List bytes;
-  final List<ui.Offset> quad;
+  final List<ui.Offset>? quad;
   final double? aspect;
+  final ui.Rect? cropRect;
+  final double degrees;
 }
 
-/// Straightens the photo and shrinks it to a drawing-size PNG.
+/// Applies the straightening crop and tilt, then shrinks to a drawing-size PNG.
 Uint8List? _straightenForBackdrop(_StraightenJob job) {
-  final img.Image? src = img.decodeImage(job.bytes);
-  if (src == null) return null;
-  img.Image? out = warpQuad(src, job.quad, aspect: job.aspect);
+  img.Image? out = img.decodeImage(job.bytes);
   if (out == null) return null;
+  if (job.quad != null) {
+    out = warpQuad(out, job.quad!, aspect: job.aspect);
+    if (out == null) return null;
+  } else if (job.cropRect != null && job.cropRect!.width > 0 && job.cropRect!.height > 0) {
+    final ui.Rect r = job.cropRect!;
+    out = img.copyCrop(out, x: r.left.round(), y: r.top.round(), width: r.width.round(), height: r.height.round());
+  }
+  if (job.degrees != 0) out = straightenFill(out, job.degrees);
   if (out.width > 1600 || out.height > 1600) {
     out = out.width >= out.height ? resizeSmooth(out, width: 1600) : resizeSmooth(out, height: 1600);
   }

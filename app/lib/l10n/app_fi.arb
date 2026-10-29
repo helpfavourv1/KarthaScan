@@ -735,5 +735,6 @@
   "cropAspectFree": "Vapaa",
   "cropAspectId": "Henkilökortti",
   "cropAspectSquare": "Neliö",
-  "cropNoPageFound": "Sivun reunoja ei löytynyt. Vedä kulmia."
+  "cropNoPageFound": "Sivun reunoja ei löytynyt. Vedä kulmia.",
+  "straightenLabel": "Suorista"
 }

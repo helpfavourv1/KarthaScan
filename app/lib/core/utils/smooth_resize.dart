@@ -68,3 +68,45 @@ img.Image rotateSmooth(img.Image src, num degrees) {
   }
   return img.Image.fromBytes(width: ow, height: oh, bytes: out.buffer, numChannels: 4, order: img.ChannelOrder.rgba);
 }
+
+/// Tilts [src] clockwise by [degrees] (-45..45) and keeps its size: the picture is
+/// enlarged just enough that no empty corner shows. Sampled bilinearly.
+img.Image straightenFill(img.Image src, double degrees) {
+  if (degrees == 0) return src;
+  final double a = degrees * math.pi / 180;
+  final double c = math.cos(a), sn = math.sin(a);
+  final int w = src.width, h = src.height;
+  final double ac = c.abs(), as = sn.abs();
+  final double k = math.min(w / (w * ac + h * as), h / (w * as + h * ac));
+  final img.Image base = (src.format == img.Format.uint8 && src.numChannels == 4) ? src : src.convert(format: img.Format.uint8, numChannels: 4);
+  final Uint8List s = base.getBytes(order: img.ChannelOrder.rgba);
+  final Uint8List out = Uint8List(w * h * 4);
+  final double cx = w / 2, cy = h / 2;
+  int o = 0;
+  for (int y = 0; y < h; y++) {
+    for (int x = 0; x < w; x++) {
+      final double u = (x + 0.5 - cx) * k, v = (y + 0.5 - cy) * k;
+      double fx = u * c + v * sn + cx - 0.5, fy = -u * sn + v * c + cy - 0.5;
+      fx = fx < 0 ? 0 : (fx > w - 1 ? w - 1.0 : fx);
+      fy = fy < 0 ? 0 : (fy > h - 1 ? h - 1.0 : fy);
+      final int x0 = fx.floor(), y0 = fy.floor();
+      final int x1 = x0 + 1 > w - 1 ? x0 : x0 + 1, y1 = y0 + 1 > h - 1 ? y0 : y0 + 1;
+      final double tx = fx - x0, ty = fy - y0;
+      final int i00 = (y0 * w + x0) * 4, i10 = (y0 * w + x1) * 4, i01 = (y1 * w + x0) * 4, i11 = (y1 * w + x1) * 4;
+      for (int ch = 0; ch < 4; ch++) {
+        final double top = s[i00 + ch] * (1 - tx) + s[i10 + ch] * tx;
+        final double bot = s[i01 + ch] * (1 - tx) + s[i11 + ch] * tx;
+        out[o + ch] = (top * (1 - ty) + bot * ty + 0.5).toInt();
+      }
+      o += 4;
+    }
+  }
+  return img.Image.fromBytes(width: w, height: h, bytes: out.buffer, numChannels: 4, order: img.ChannelOrder.rgba);
+}
+
+/// The enlargement [straightenFill] applies for a tilt of [degrees] on a w x h page.
+double straightenZoom(double degrees, int w, int h) {
+  final double a = degrees * math.pi / 180;
+  final double ac = math.cos(a).abs(), as = math.sin(a).abs();
+  return 1 / math.min(w / (w * ac + h * as), h / (w * as + h * ac));
+}

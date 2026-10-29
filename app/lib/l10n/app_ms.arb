@@ -735,5 +735,6 @@
   "cropAspectFree": "Bebas",
   "cropAspectId": "Kad ID",
   "cropAspectSquare": "Segi empat sama",
-  "cropNoPageFound": "Tepi halaman tidak ditemui. Seret bucu."
+  "cropNoPageFound": "Tepi halaman tidak ditemui. Seret bucu.",
+  "straightenLabel": "Luruskan"
 }

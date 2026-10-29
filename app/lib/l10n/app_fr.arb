@@ -642,5 +642,6 @@
   "cropAspectFree": "Libre",
   "cropAspectId": "Carte d'identité",
   "cropAspectSquare": "Carré",
-  "cropNoPageFound": "Bords introuvables. Faites glisser les coins."
+  "cropNoPageFound": "Bords introuvables. Faites glisser les coins.",
+  "straightenLabel": "Redresser"
 }

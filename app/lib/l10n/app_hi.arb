@@ -642,5 +642,6 @@
   "cropAspectFree": "मुक्त",
   "cropAspectId": "आईडी कार्ड",
   "cropAspectSquare": "वर्ग",
-  "cropNoPageFound": "पेज के किनारे नहीं मिले। कोनों को खींचें।"
+  "cropNoPageFound": "पेज के किनारे नहीं मिले। कोनों को खींचें।",
+  "straightenLabel": "सीधा करें"
 }

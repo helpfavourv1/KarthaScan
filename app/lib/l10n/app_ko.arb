@@ -642,5 +642,6 @@
   "cropAspectFree": "자유",
   "cropAspectId": "신분증",
   "cropAspectSquare": "정사각형",
-  "cropNoPageFound": "페이지 가장자리를 찾지 못했습니다. 모서리를 드래그하세요."
+  "cropNoPageFound": "페이지 가장자리를 찾지 못했습니다. 모서리를 드래그하세요.",
+  "straightenLabel": "기울기 보정"
 }

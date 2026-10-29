@@ -735,5 +735,6 @@
   "cropAspectFree": "Свободно",
   "cropAspectId": "ID-карта",
   "cropAspectSquare": "Квадрат",
-  "cropNoPageFound": "Края страницы не найдены. Перетащите углы."
+  "cropNoPageFound": "Края страницы не найдены. Перетащите углы.",
+  "straightenLabel": "Выровнять"
 }

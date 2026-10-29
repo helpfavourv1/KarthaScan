@@ -642,5 +642,6 @@
   "cropAspectFree": "Libre",
   "cropAspectId": "Tarjeta ID",
   "cropAspectSquare": "Cuadrado",
-  "cropNoPageFound": "No se encontraron los bordes. Arrastra las esquinas."
+  "cropNoPageFound": "No se encontraron los bordes. Arrastra las esquinas.",
+  "straightenLabel": "Enderezar"
 }

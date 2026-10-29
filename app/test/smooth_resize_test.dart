@@ -48,4 +48,27 @@ void main() {
     }
     expect(soft, greaterThan(40), reason: 'anti-aliased edge pixels');
   });
+
+  test('straighten keeps the size, leaves no empty corner, and tilts the content', () {
+    final img.Image src = img.Image(width: 200, height: 100, numChannels: 4)..clear(img.ColorRgba8(255, 255, 255, 255));
+    // A black vertical bar in the middle.
+    img.fillRect(src, x1: 95, y1: 0, x2: 104, y2: 99, color: img.ColorRgba8(0, 0, 0, 255));
+    final img.Image t = straightenFill(src, 10);
+    expect(t.width, 200);
+    expect(t.height, 100);
+    for (final (int x, int y) in [(0, 0), (199, 0), (0, 99), (199, 99)]) {
+      expect(t.getPixel(x, y).a, 255, reason: 'corner $x,$y is filled');
+    }
+    // The bar is tilted: at the top it sits left of where it is at the bottom.
+    int barX(int y) {
+      for (int x = 0; x < 200; x++) {
+        if (t.getPixel(x, y).r < 100) return x;
+      }
+      return -1;
+    }
+    expect(barX(5), isNot(barX(94)));
+    expect(identical(straightenFill(src, 0), src), isTrue);
+    expect(straightenZoom(0, 200, 100), closeTo(1, 1e-9));
+    expect(straightenZoom(10, 200, 100), greaterThan(1));
+  });
 }

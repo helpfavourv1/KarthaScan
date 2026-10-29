@@ -735,5 +735,6 @@
   "cropAspectFree": "Fri",
   "cropAspectId": "ID-kort",
   "cropAspectSquare": "Kvadrat",
-  "cropNoPageFound": "Hittade inte sidkanterna. Dra i hörnen."
+  "cropNoPageFound": "Hittade inte sidkanterna. Dra i hörnen.",
+  "straightenLabel": "Räta upp"
 }

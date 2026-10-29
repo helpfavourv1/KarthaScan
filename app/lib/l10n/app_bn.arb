@@ -735,5 +735,6 @@
   "cropAspectFree": "মুক্ত",
   "cropAspectId": "আইডি কার্ড",
   "cropAspectSquare": "বর্গ",
-  "cropNoPageFound": "পৃষ্ঠার প্রান্ত পাওয়া যায়নি। কোণগুলো টেনে আনুন।"
+  "cropNoPageFound": "পৃষ্ঠার প্রান্ত পাওয়া যায়নি। কোণগুলো টেনে আনুন।",
+  "straightenLabel": "সোজা করুন"
 }

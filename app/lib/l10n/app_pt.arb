@@ -642,5 +642,6 @@
   "cropAspectFree": "Livre",
   "cropAspectId": "Cartão ID",
   "cropAspectSquare": "Quadrado",
-  "cropNoPageFound": "Não foi possível achar as bordas. Arraste os cantos."
+  "cropNoPageFound": "Não foi possível achar as bordas. Arraste os cantos.",
+  "straightenLabel": "Endireitar"
 }
