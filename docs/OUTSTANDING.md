@@ -161,3 +161,15 @@ Every layer kind now has the same three buttons: **Clear this** (the selected it
 - Housekeeping: drawings and logos no document uses are removed at start-up once older than a day (Undo needs them for a while).
 - Tests: test/signature_pad_test.dart, annotate_test.dart, watermark_test.dart, overlay_files_test.dart.
 - Open: 23 new strings need native review; not yet looked at on a real phone (typing/drawing feel, tiled preview speed on big pages); watermark text single-line preview vs export size still approximate; typed signatures are Latin-only; signature colour is fixed per saved picture.
+
+## Crop / Rotate / Filter / Resize upgrade (Oct 2026)
+
+Done and checked by CI unit/widget tests (dart-check green); emulator run pending at time of writing:
+- Smooth resizing everywhere (area average when shrinking, cubic when enlarging, soft-edged rotation) — `smooth_resize.dart`.
+- Crop: four corners with perspective straightening, auto-detect, magnifier, A4/Letter/ID/Square shapes, "Crop" wording, header-only size read — `perspective.dart`, `perspective_crop_sheet.dart`. Layers placed before a skewed crop are only approximately kept in place; layers added after are exact.
+- Rotate: ±45° straighten slider with grid (page keeps its size, edges trimmed); "all pages" is one undo step. Flip was NOT built: flipped pages would not match signatures/marks already placed.
+- Filter: Magic colour, brightness/contrast, preview built from the cropped/tilted page, last slider value always shown, apply to all pages (one undo). `FilterType` gets new values at the END only.
+- Resize: A4/A5/Letter + 150/300 dpi presets, size estimate from a real JPEG encode of a sample, enlarge warning.
+- Bug found and fixed on the way: pages edited only by tilt or brightness/contrast were skipped on export.
+
+Still owed: native review of the new strings (cropAuto, cropAspectFree/Id/Square, cropNoPageFound, straightenLabel, filterMagicColor, filterBrightnessLabel, filterContrastLabel, resizeUpscaleWarning); phone checks (dragging crop corners with a real finger, straighten feel, Magic colour on a real photo); the editor Crop overlaps the scanner's own edge detection at capture — decide whether to keep both.
