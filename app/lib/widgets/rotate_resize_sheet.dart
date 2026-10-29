@@ -352,10 +352,13 @@ class RotateResizeSheetState extends State<RotateResizeSheet> {
           ],
         ),
         const SizedBox(height: 8),
-        SwitchListTile(
-          title: Text(AppLocalizations.of(context).lockAspectRatio),
-          value: _aspectLock,
-          onChanged: (v) => setState(() => _aspectLock = v),
+        Material(
+          color: Colors.transparent,
+          child: SwitchListTile(
+            title: Text(AppLocalizations.of(context).lockAspectRatio),
+            value: _aspectLock,
+            onChanged: (v) => setState(() => _aspectLock = v),
+          ),
         ),
         Wrap(spacing: 8, children: [
           for (final pct in [0.25, 0.5, 0.75])
