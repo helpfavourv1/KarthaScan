@@ -637,5 +637,10 @@
   "watermarkPagesAll": "모든 페이지",
   "watermarkPagesRange": "범위",
   "watermarkPagesRangeHint": "예: 1-3, 5",
-  "watermarkPagesInvalid": "페이지를 확인하세요 (문서는 {count}페이지입니다)"
+  "watermarkPagesInvalid": "페이지를 확인하세요 (문서는 {count}페이지입니다)",
+  "cropAuto": "자동 감지",
+  "cropAspectFree": "자유",
+  "cropAspectId": "신분증",
+  "cropAspectSquare": "정사각형",
+  "cropNoPageFound": "페이지 가장자리를 찾지 못했습니다. 모서리를 드래그하세요."
 }

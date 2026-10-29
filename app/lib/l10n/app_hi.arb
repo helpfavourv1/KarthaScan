@@ -637,5 +637,10 @@
   "watermarkPagesAll": "सभी पृष्ठ",
   "watermarkPagesRange": "सीमा",
   "watermarkPagesRangeHint": "जैसे 1-3, 5",
-  "watermarkPagesInvalid": "पृष्ठ जाँचें (दस्तावेज़ में {count} पृष्ठ हैं)"
+  "watermarkPagesInvalid": "पृष्ठ जाँचें (दस्तावेज़ में {count} पृष्ठ हैं)",
+  "cropAuto": "स्वतः पहचानें",
+  "cropAspectFree": "मुक्त",
+  "cropAspectId": "आईडी कार्ड",
+  "cropAspectSquare": "वर्ग",
+  "cropNoPageFound": "पेज के किनारे नहीं मिले। कोनों को खींचें।"
 }

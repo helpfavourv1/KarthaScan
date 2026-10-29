@@ -35,6 +35,8 @@ import 'filter_preview_sheet.dart';
 import 'ink_board.dart';
 import 'pages_manager_sheet.dart';
 import 'region_select_sheet.dart';
+import 'perspective_crop_sheet.dart';
+import '../core/utils/perspective.dart';
 import 'rotate_resize_sheet.dart';
 import 'seal_stamp_sheet.dart';
 import 'text_stamp_sheet.dart';
@@ -460,11 +462,21 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
   Future<void> cropCurrentPage() async {
     final doc = document;
     if (doc == null || doc.pagePaths.isEmpty) return;
-    final rect = await showModalBottomSheet<Rect?>(context: context, isScrollControlled: true, builder: (context) => RegionSelectSheet(imagePath: doc.pagePaths[currentPageIndex]));
-    if (rect == null || !mounted) return;
     final existing = doc.pageTransforms[currentPageIndex] ?? const PageTransform();
+    final CropResult? res = await showModalBottomSheet<CropResult?>(
+      context: context,
+      isScrollControlled: true,
+      builder: (context) => PerspectiveCropSheet(imagePath: doc.pagePaths[currentPageIndex], initialQuad: existing.cropQuad, initialAspect: existing.cropAspect),
+    );
+    if (res == null || !mounted) return;
     // A new crop changes the page's size, so an older resize no longer fits.
-    final updated = existing.copyWith(cropRect: rect, clearResize: true);
+    final PageTransform updated;
+    if (isUprightRect(res.quad) && res.aspect == null) {
+      final Rect box = quadBounds(res.quad);
+      updated = existing.copyWith(cropRect: box, clearCropQuad: true, clearResize: true);
+    } else {
+      updated = existing.copyWith(cropRect: quadBounds(res.quad), cropQuad: res.quad, cropAspect: res.aspect, clearResize: true);
+    }
     await scanProvider.updatePageTransform(doc.id, currentPageIndex, updated);
     resyncInkFromDocument();
     if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.pageCropped)));
@@ -564,7 +576,7 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
         child: RotateResizeSheet(
           mode: RotateResizeMode.resize,
           imagePath: doc.pagePaths[currentPageIndex],
-          baseSize: doc.pageTransforms[currentPageIndex]?.cropRect?.size,
+          baseSize: doc.pageTransforms[currentPageIndex]?.croppedSize,
         ),
       ),
     );

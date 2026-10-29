@@ -730,5 +730,10 @@
   "watermarkPagesAll": "Tüm sayfalar",
   "watermarkPagesRange": "Aralık",
   "watermarkPagesRangeHint": "örn. 1-3, 5",
-  "watermarkPagesInvalid": "Sayfaları kontrol edin (belgede {count} sayfa var)"
+  "watermarkPagesInvalid": "Sayfaları kontrol edin (belgede {count} sayfa var)",
+  "cropAuto": "Otomatik algıla",
+  "cropAspectFree": "Serbest",
+  "cropAspectId": "Kimlik kartı",
+  "cropAspectSquare": "Kare",
+  "cropNoPageFound": "Sayfa kenarları bulunamadı. Köşeleri sürükleyin."
 }

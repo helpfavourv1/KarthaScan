@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart' show immutable;
-import 'dart:ui' show Rect;
+import 'dart:ui' show Offset, Rect, Size;
+import '../utils/perspective.dart';
 import '../services/export_service.dart' show FilterType;
 
 @immutable
@@ -12,9 +13,28 @@ class PageTransform {
     this.resizeWidth,
     this.resizeHeight,
     this.eraserStrokes = const [],
+    this.cropQuad,
+    this.cropAspect,
   });
 
+  /// The visible area in photo pixels. With a [cropQuad] this is the upright box
+  /// around it (used to keep layers over the same part of the page).
   final Rect? cropRect;
+
+  /// Four corners in photo pixels (top-left, top-right, bottom-right, bottom-left)
+  /// of a page that is straightened when shown or exported; null for a plain crop.
+  final List<Offset>? cropQuad;
+
+  /// Width / height the straightened page is forced to (A4, ID card...), or null.
+  final double? cropAspect;
+
+  /// The size of the page after cropping (straightened if needed), or null when
+  /// there is no crop.
+  Size? get croppedSize {
+    final List<Offset>? quad = cropQuad;
+    if (quad != null && quad.length == 4) return quadOutputSize(quad, aspect: cropAspect);
+    return cropRect?.size;
+  }
   final int rotationTurns;
   final FilterType filter;
   final double filterIntensity;
@@ -38,12 +58,17 @@ class PageTransform {
     int? resizeWidth,
     int? resizeHeight,
     List<Map<String, dynamic>>? eraserStrokes,
+    List<Offset>? cropQuad,
+    double? cropAspect,
     bool clearCrop = false,
+    bool clearCropQuad = false,
     bool clearResize = false,
     bool clearEraser = false,
   }) {
     return PageTransform(
       cropRect: clearCrop ? null : (cropRect ?? this.cropRect),
+      cropQuad: (clearCrop || clearCropQuad) ? null : (cropQuad ?? this.cropQuad),
+      cropAspect: (clearCrop || clearCropQuad) ? null : (cropAspect ?? this.cropAspect),
       rotationTurns: rotationTurns ?? this.rotationTurns,
       filter: filter ?? this.filter,
       filterIntensity: filterIntensity ?? this.filterIntensity,
@@ -61,6 +86,8 @@ class PageTransform {
         'width': cropRect!.width,
         'height': cropRect!.height,
       },
+      if (cropQuad != null) 'cropQuad': <double>[for (final Offset o in cropQuad!) ...<double>[o.dx, o.dy]],
+      if (cropAspect != null) 'cropAspect': cropAspect,
       'rotationTurns': rotationTurns,
       'filter': filter.index,
       if (filterIntensity != 1.0) 'filterIntensity': filterIntensity,
@@ -81,8 +108,17 @@ class PageTransform {
         (r['height'] as num).toDouble(),
       );
     }
+    List<Offset>? quad;
+    final List<dynamic>? rawQuad = json['cropQuad'] as List<dynamic>?;
+    if (rawQuad != null && rawQuad.length == 8) {
+      final List<double> v = <double>[for (final dynamic n in rawQuad) (n as num).toDouble()];
+      quad = <Offset>[for (int i = 0; i < 8; i += 2) Offset(v[i], v[i + 1])];
+      if (!isUsableQuad(quad, minSide: 1)) quad = null;
+    }
     return PageTransform(
       cropRect: crop,
+      cropQuad: quad,
+      cropAspect: quad == null ? null : (json['cropAspect'] as num?)?.toDouble(),
       rotationTurns: (json['rotationTurns'] as num?)?.toInt() ?? 0,
       filter: () {
         final int index = (json['filter'] as num?)?.toInt() ?? 0;

@@ -637,5 +637,10 @@
   "watermarkPagesAll": "Todas las páginas",
   "watermarkPagesRange": "Rango",
   "watermarkPagesRangeHint": "p. ej. 1-3, 5",
-  "watermarkPagesInvalid": "Revisa las páginas (el documento tiene {count} páginas)"
+  "watermarkPagesInvalid": "Revisa las páginas (el documento tiene {count} páginas)",
+  "cropAuto": "Detectar automáticamente",
+  "cropAspectFree": "Libre",
+  "cropAspectId": "Tarjeta ID",
+  "cropAspectSquare": "Cuadrado",
+  "cropNoPageFound": "No se encontraron los bordes. Arrastra las esquinas."
 }

@@ -730,5 +730,10 @@
   "watermarkPagesAll": "সব পৃষ্ঠা",
   "watermarkPagesRange": "পরিসর",
   "watermarkPagesRangeHint": "যেমন 1-3, 5",
-  "watermarkPagesInvalid": "পৃষ্ঠাগুলি দেখুন (নথিতে {count}টি পৃষ্ঠা আছে)"
+  "watermarkPagesInvalid": "পৃষ্ঠাগুলি দেখুন (নথিতে {count}টি পৃষ্ঠা আছে)",
+  "cropAuto": "স্বয়ংক্রিয় শনাক্তকরণ",
+  "cropAspectFree": "মুক্ত",
+  "cropAspectId": "আইডি কার্ড",
+  "cropAspectSquare": "বর্গ",
+  "cropNoPageFound": "পৃষ্ঠার প্রান্ত পাওয়া যায়নি। কোণগুলো টেনে আনুন।"
 }

@@ -1,3 +1,4 @@
+import '../core/utils/perspective.dart';
 import '../core/utils/smooth_resize.dart';
 import 'dart:io' show File;
 import 'dart:typed_data';
@@ -309,6 +310,8 @@ class _PageWithInkState extends State<_PageWithInk> {
         double effectiveAspect = _pageAspect;
         if (resizeW != null && resizeW > 0 && resizeH != null && resizeH > 0) {
           effectiveAspect = resizeW / resizeH;
+        } else if (transform?.croppedSize != null && transform!.croppedSize!.width > 0 && transform.croppedSize!.height > 0) {
+          effectiveAspect = transform.croppedSize!.width / transform.croppedSize!.height;
         } else if (cropRect != null && cropRect.width > 0 && cropRect.height > 0) {
           effectiveAspect = cropRect.width / cropRect.height;
         }
@@ -557,7 +560,11 @@ Uint8List? renderPagePreview(PagePreviewJob job) {
       }
     }
     final r = transform.cropRect;
-    if (r != null && r.width > 0 && r.height > 0) {
+    final quad = transform.cropQuad;
+    if (quad != null) {
+      final straight = warpQuad(processed, quad, aspect: transform.cropAspect);
+      if (straight != null) processed = straight;
+    } else if (r != null && r.width > 0 && r.height > 0) {
       processed = img.copyCrop(processed, x: r.left.round(), y: r.top.round(), width: r.width.round(), height: r.height.round());
     }
     if ((transform.resizeWidth ?? 0) > 0 && (transform.resizeHeight ?? 0) > 0) {

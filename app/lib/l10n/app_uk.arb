@@ -730,5 +730,10 @@
   "watermarkPagesAll": "Усі сторінки",
   "watermarkPagesRange": "Діапазон",
   "watermarkPagesRangeHint": "напр. 1-3, 5",
-  "watermarkPagesInvalid": "Перевірте сторінки (у документі {count} стор.)"
+  "watermarkPagesInvalid": "Перевірте сторінки (у документі {count} стор.)",
+  "cropAuto": "Визначити автоматично",
+  "cropAspectFree": "Вільно",
+  "cropAspectId": "ID-картка",
+  "cropAspectSquare": "Квадрат",
+  "cropNoPageFound": "Краї сторінки не знайдено. Перетягніть кути."
 }

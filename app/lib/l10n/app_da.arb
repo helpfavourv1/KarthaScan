@@ -730,5 +730,10 @@
   "watermarkPagesAll": "Alle sider",
   "watermarkPagesRange": "Interval",
   "watermarkPagesRangeHint": "f.eks. 1-3, 5",
-  "watermarkPagesInvalid": "Tjek siderne (dokumentet har {count} sider)"
+  "watermarkPagesInvalid": "Tjek siderne (dokumentet har {count} sider)",
+  "cropAuto": "Find automatisk",
+  "cropAspectFree": "Fri",
+  "cropAspectId": "ID-kort",
+  "cropAspectSquare": "Kvadrat",
+  "cropNoPageFound": "Kunne ikke finde sidens kanter. Træk i hjørnerne."
 }

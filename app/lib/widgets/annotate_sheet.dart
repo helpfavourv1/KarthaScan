@@ -9,6 +9,8 @@ import 'package:image/image.dart' as img;
 
 import '../core/models/page_transform.dart';
 import '../core/utils/annotation_items.dart';
+import '../core/utils/perspective.dart';
+import '../core/utils/smooth_resize.dart';
 import '../l10n/app_localizations.dart';
 import 'annotation_overlay.dart';
 import 'color_picker_dialog.dart';
@@ -62,6 +64,31 @@ class _AnnotateSheetState extends State<AnnotateSheet> {
         final img.DecodeInfo? info = img.findDecoderForData(bytes)?.startDecode(bytes);
         if (info != null && info.width > 0 && info.height > 0) {
           final int w = info.width, h = info.height;
+          final PageTransform? t = widget.pageTransform;
+          if (t?.cropQuad != null) {
+            // A straightened page: draw over the straightened picture.
+            final List<ui.Offset> quad = t!.cropQuad!;
+            final double? asp = t.cropAspect;
+            final Uint8List? png = await compute(_straightenForBackdrop, _StraightenJob(bytes, quad, asp));
+            if (png != null) {
+              final ui.Codec c2 = await ui.instantiateImageCodec(png);
+              final ui.Image straight = (await c2.getNextFrame()).image;
+              double aspect = straight.width / straight.height;
+              double exportW = t.croppedSize!.width;
+              final int? rw = t.resizeWidth, rh = t.resizeHeight;
+              if (rw != null && rh != null && rw > 0 && rh > 0) {
+                aspect = rw / rh;
+                exportW = rw.toDouble();
+              }
+              result = _Backdrop(straight, Rect.fromLTWH(0, 0, straight.width.toDouble(), straight.height.toDouble()), aspect.clamp(0.1, 10.0).toDouble(), math.min(exportW, 2400));
+              if (!mounted) return;
+              setState(() {
+                _backdrop = result;
+                _loading = false;
+              });
+              return;
+            }
+          }
           final ui.Codec codec = await ui.instantiateImageCodec(
             bytes,
             targetWidth: w >= h ? math.min(w, 1600) : null,
@@ -69,7 +96,6 @@ class _AnnotateSheetState extends State<AnnotateSheet> {
           );
           final ui.Image image = (await codec.getNextFrame()).image;
           final double f = image.width / w;
-          final PageTransform? t = widget.pageTransform;
           final Rect? crop = t?.cropRect;
           final Rect src = (crop != null && crop.width > 0 && crop.height > 0)
               ? Rect.fromLTRB(crop.left * f, crop.top * f, crop.right * f, crop.bottom * f)
@@ -356,4 +382,24 @@ class _BackdropPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(covariant _BackdropPainter old) => old.b != b;
+}
+
+
+class _StraightenJob {
+  const _StraightenJob(this.bytes, this.quad, this.aspect);
+  final Uint8List bytes;
+  final List<ui.Offset> quad;
+  final double? aspect;
+}
+
+/// Straightens the photo and shrinks it to a drawing-size PNG.
+Uint8List? _straightenForBackdrop(_StraightenJob job) {
+  final img.Image? src = img.decodeImage(job.bytes);
+  if (src == null) return null;
+  img.Image? out = warpQuad(src, job.quad, aspect: job.aspect);
+  if (out == null) return null;
+  if (out.width > 1600 || out.height > 1600) {
+    out = out.width >= out.height ? resizeSmooth(out, width: 1600) : resizeSmooth(out, height: 1600);
+  }
+  return Uint8List.fromList(img.encodePng(out));
 }

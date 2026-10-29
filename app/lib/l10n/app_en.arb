@@ -895,5 +895,25 @@
         "type": "int"
       }
     }
+  },
+  "cropAuto": "Auto-detect",
+  "@cropAuto": {
+    "description": "Button that finds the page edges automatically in the crop screen"
+  },
+  "cropAspectFree": "Free",
+  "@cropAspectFree": {
+    "description": "Crop shape choice: any proportions"
+  },
+  "cropAspectId": "ID card",
+  "@cropAspectId": {
+    "description": "Crop shape choice: ID card proportions"
+  },
+  "cropAspectSquare": "Square",
+  "@cropAspectSquare": {
+    "description": "Crop shape choice: square"
+  },
+  "cropNoPageFound": "Couldn't find the page edges. Drag the corners.",
+  "@cropNoPageFound": {
+    "description": "Shown when auto-detect cannot find the page"
   }
 }

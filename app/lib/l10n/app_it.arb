@@ -730,5 +730,10 @@
   "watermarkPagesAll": "Tutte le pagine",
   "watermarkPagesRange": "Intervallo",
   "watermarkPagesRangeHint": "es. 1-3, 5",
-  "watermarkPagesInvalid": "Controlla le pagine (il documento ha {count} pagine)"
+  "watermarkPagesInvalid": "Controlla le pagine (il documento ha {count} pagine)",
+  "cropAuto": "Rileva automaticamente",
+  "cropAspectFree": "Libero",
+  "cropAspectId": "Carta d'identità",
+  "cropAspectSquare": "Quadrato",
+  "cropNoPageFound": "Bordi non trovati. Trascina gli angoli."
 }

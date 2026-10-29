@@ -637,5 +637,10 @@
   "watermarkPagesAll": "Toutes les pages",
   "watermarkPagesRange": "Plage",
   "watermarkPagesRangeHint": "p. ex. 1-3, 5",
-  "watermarkPagesInvalid": "Vérifiez les pages (le document compte {count} pages)"
+  "watermarkPagesInvalid": "Vérifiez les pages (le document compte {count} pages)",
+  "cropAuto": "Détection auto",
+  "cropAspectFree": "Libre",
+  "cropAspectId": "Carte d'identité",
+  "cropAspectSquare": "Carré",
+  "cropNoPageFound": "Bords introuvables. Faites glisser les coins."
 }

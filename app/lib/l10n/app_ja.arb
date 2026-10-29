@@ -637,5 +637,10 @@
   "watermarkPagesAll": "すべてのページ",
   "watermarkPagesRange": "範囲",
   "watermarkPagesRangeHint": "例: 1-3, 5",
-  "watermarkPagesInvalid": "ページを確認してください（文書は{count}ページです）"
+  "watermarkPagesInvalid": "ページを確認してください（文書は{count}ページです）",
+  "cropAuto": "自動検出",
+  "cropAspectFree": "自由",
+  "cropAspectId": "IDカード",
+  "cropAspectSquare": "正方形",
+  "cropNoPageFound": "ページの端が見つかりません。角をドラッグしてください。"
 }

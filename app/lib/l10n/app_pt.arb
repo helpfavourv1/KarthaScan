@@ -637,5 +637,10 @@
   "watermarkPagesAll": "Todas as páginas",
   "watermarkPagesRange": "Intervalo",
   "watermarkPagesRangeHint": "ex.: 1-3, 5",
-  "watermarkPagesInvalid": "Verifique as páginas (o documento tem {count} páginas)"
+  "watermarkPagesInvalid": "Verifique as páginas (o documento tem {count} páginas)",
+  "cropAuto": "Detectar automaticamente",
+  "cropAspectFree": "Livre",
+  "cropAspectId": "Cartão ID",
+  "cropAspectSquare": "Quadrado",
+  "cropNoPageFound": "Não foi possível achar as bordas. Arraste os cantos."
 }

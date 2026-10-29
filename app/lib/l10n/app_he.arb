@@ -637,5 +637,10 @@
   "watermarkPagesAll": "כל העמודים",
   "watermarkPagesRange": "טווח",
   "watermarkPagesRangeHint": "לדוגמה 1-3, 5",
-  "watermarkPagesInvalid": "בדוק את העמודים (במסמך {count} עמודים)"
+  "watermarkPagesInvalid": "בדוק את העמודים (במסמך {count} עמודים)",
+  "cropAuto": "זיהוי אוטומטי",
+  "cropAspectFree": "חופשי",
+  "cropAspectId": "תעודה",
+  "cropAspectSquare": "ריבוע",
+  "cropNoPageFound": "לא נמצאו קצוות הדף. גררו את הפינות."
 }

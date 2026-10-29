@@ -1,3 +1,4 @@
+import '../utils/perspective.dart';
 import '../utils/smooth_resize.dart';
 import '../utils/csv_utils.dart';
 import '../utils/seal_draw.dart';
@@ -475,7 +476,15 @@ class ExportService {
           }
         }
       }
-      if (pageTransform != null && pageTransform.cropRect != null && pageTransform.cropRect!.width > 0 && pageTransform.cropRect!.height > 0) {
+      if (pageTransform != null && pageTransform.cropQuad != null) {
+        // A page photographed at an angle: straighten the marked four corners.
+        final img.Image forWarp = decoded;
+        final List<ui.Offset> quad = pageTransform.cropQuad!;
+        final double? aspect = pageTransform.cropAspect;
+        final img.Image? straight = await Isolate.run(() => warpQuad(forWarp, quad, aspect: aspect));
+        if (straight == null) throw ExportFailedException('Could not straighten page ${pageIndex + 1}.');
+        decoded = straight;
+      } else if (pageTransform != null && pageTransform.cropRect != null && pageTransform.cropRect!.width > 0 && pageTransform.cropRect!.height > 0) {
         final r = pageTransform.cropRect!;
         decoded = img.copyCrop(decoded, x: r.left.round(), y: r.top.round(), width: r.width.round(), height: r.height.round());
       }

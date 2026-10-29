@@ -637,5 +637,10 @@
   "watermarkPagesAll": "Alle Seiten",
   "watermarkPagesRange": "Bereich",
   "watermarkPagesRangeHint": "z. B. 1-3, 5",
-  "watermarkPagesInvalid": "Seiten prüfen (das Dokument hat {count} Seiten)"
+  "watermarkPagesInvalid": "Seiten prüfen (das Dokument hat {count} Seiten)",
+  "cropAuto": "Automatisch erkennen",
+  "cropAspectFree": "Frei",
+  "cropAspectId": "Ausweis",
+  "cropAspectSquare": "Quadrat",
+  "cropNoPageFound": "Seitenränder nicht gefunden. Ziehen Sie die Ecken."
 }

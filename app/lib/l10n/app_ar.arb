@@ -637,5 +637,10 @@
   "watermarkPagesAll": "كل الصفحات",
   "watermarkPagesRange": "نطاق",
   "watermarkPagesRangeHint": "مثال: 1-3, 5",
-  "watermarkPagesInvalid": "تحقق من الصفحات (المستند يحتوي على {count} صفحة)"
+  "watermarkPagesInvalid": "تحقق من الصفحات (المستند يحتوي على {count} صفحة)",
+  "cropAuto": "اكتشاف تلقائي",
+  "cropAspectFree": "حر",
+  "cropAspectId": "بطاقة هوية",
+  "cropAspectSquare": "مربع",
+  "cropNoPageFound": "لم يتم العثور على حواف الصفحة. اسحب الزوايا."
 }

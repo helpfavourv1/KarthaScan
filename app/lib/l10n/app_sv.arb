@@ -730,5 +730,10 @@
   "watermarkPagesAll": "Alla sidor",
   "watermarkPagesRange": "Intervall",
   "watermarkPagesRangeHint": "t.ex. 1-3, 5",
-  "watermarkPagesInvalid": "Kontrollera sidorna (dokumentet har {count} sidor)"
+  "watermarkPagesInvalid": "Kontrollera sidorna (dokumentet har {count} sidor)",
+  "cropAuto": "Hitta automatiskt",
+  "cropAspectFree": "Fri",
+  "cropAspectId": "ID-kort",
+  "cropAspectSquare": "Kvadrat",
+  "cropNoPageFound": "Hittade inte sidkanterna. Dra i hörnen."
 }

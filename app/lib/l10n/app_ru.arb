@@ -730,5 +730,10 @@
   "watermarkPagesAll": "Все страницы",
   "watermarkPagesRange": "Диапазон",
   "watermarkPagesRangeHint": "напр. 1-3, 5",
-  "watermarkPagesInvalid": "Проверьте страницы (в документе {count} стр.)"
+  "watermarkPagesInvalid": "Проверьте страницы (в документе {count} стр.)",
+  "cropAuto": "Определить автоматически",
+  "cropAspectFree": "Свободно",
+  "cropAspectId": "ID-карта",
+  "cropAspectSquare": "Квадрат",
+  "cropNoPageFound": "Края страницы не найдены. Перетащите углы."
 }

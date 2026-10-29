@@ -730,5 +730,10 @@
   "watermarkPagesAll": "Alle pagina's",
   "watermarkPagesRange": "Bereik",
   "watermarkPagesRangeHint": "bijv. 1-3, 5",
-  "watermarkPagesInvalid": "Controleer de pagina's (het document heeft {count} pagina's)"
+  "watermarkPagesInvalid": "Controleer de pagina's (het document heeft {count} pagina's)",
+  "cropAuto": "Automatisch detecteren",
+  "cropAspectFree": "Vrij",
+  "cropAspectId": "ID-kaart",
+  "cropAspectSquare": "Vierkant",
+  "cropNoPageFound": "Randen niet gevonden. Sleep de hoeken."
 }

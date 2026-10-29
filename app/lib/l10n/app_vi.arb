@@ -730,5 +730,10 @@
   "watermarkPagesAll": "Tất cả trang",
   "watermarkPagesRange": "Phạm vi",
   "watermarkPagesRangeHint": "vd: 1-3, 5",
-  "watermarkPagesInvalid": "Kiểm tra các trang (tài liệu có {count} trang)"
+  "watermarkPagesInvalid": "Kiểm tra các trang (tài liệu có {count} trang)",
+  "cropAuto": "Tự động phát hiện",
+  "cropAspectFree": "Tự do",
+  "cropAspectId": "Thẻ ID",
+  "cropAspectSquare": "Vuông",
+  "cropNoPageFound": "Không tìm thấy mép trang. Hãy kéo các góc."
 }
