@@ -250,7 +250,9 @@ class PagesManagerSheetState extends State<PagesManagerSheet> {
         color: isDark ? const Color(0xFF2C2C2E) : const Color(0xFFF2F2F7),
         borderRadius: BorderRadius.circular(12),
       ),
-      child: ListTile(
+      child: Material(
+        type: MaterialType.transparency,
+        child: ListTile(
         onTap: _selecting
             ? () => setState(() {
                   final String path = _pages[index];
@@ -286,6 +288,7 @@ class PagesManagerSheetState extends State<PagesManagerSheet> {
                   : null,
             ),
           ],
+        ),
         ),
       ),
     );
@@ -338,10 +341,13 @@ class PagesManagerSheetState extends State<PagesManagerSheet> {
         border: Border.all(color: accent, width: 2),
         borderRadius: BorderRadius.circular(12),
       ),
-      child: ListTile(
+      child: Material(
+        type: MaterialType.transparency,
+        child: ListTile(
         leading: Icon(Icons.add_circle_outline, color: accent, size: 48),
         title: Text(AppLocalizations.of(context).addPageTitle, style: TextStyle(color: accent, fontWeight: FontWeight.w600)),
         onTap: _showAddOptions,
+        ),
       ),
     );
   }
