@@ -171,7 +171,7 @@ class _PerspectiveCropSheetState extends State<PerspectiveCropSheet> {
 
   @override
   Widget build(BuildContext context) {
-    final AppLocalizations l10n = AppLocalizations.of(context)!;
+    final AppLocalizations l10n = AppLocalizations.of(context);
     final double height = MediaQuery.of(context).size.height * 0.92;
     final chips = <MapEntry<String, double?>>[
       MapEntry<String, double?>('free', null),
