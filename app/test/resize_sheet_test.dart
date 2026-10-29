@@ -65,18 +65,20 @@ void main() {
       double mb(String s) => double.parse(RegExp(r'≈ ([0-9.]+) MB').firstMatch(s)!.group(1)!);
       expect(mb(small), lessThan(mb(full)));
 
-      // A4 at 150 dpi: 8.27 x 11.69 in; the page (3:4) fits the height: 1754 px high.
+      // A4 at 150 dpi is 1240 x 1754 px; the page (3:4) is wider than A4's shape,
+      // so the width decides: 1240 x 1654, the same 3:4 shape.
       await tester.ensureVisible(find.byKey(const Key('paper:a4')));
       await tester.tap(find.byKey(const Key('paper:a4')));
       await tester.tap(find.byKey(const Key('dpi:150')));
       await wait();
-      expect(height(), '1754');
-      expect(width(), '1316');
+      expect(int.parse(width()), closeTo(1240, 1));
+      expect(int.parse(height()), closeTo(1654, 1));
       expect(find.byKey(const Key('upscaleWarning')), findsOneWidget, reason: 'bigger than the 600 x 800 page');
 
       await tester.tap(find.byType(ElevatedButton).last);
       await tester.pumpAndSettle();
-      expect(result, (1316, 1754));
+      expect(result!.$1, closeTo(1240, 1));
+      expect(result!.$2, closeTo(1654, 1));
     } catch (e, st) {
       // ignore: avoid_print
       print('XXXERR $e\n${st.toString().split("\n").take(8).join("\n")}');
