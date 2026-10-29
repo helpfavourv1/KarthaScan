@@ -19,7 +19,8 @@ void main() {
     expect(out.width, 49);
     expect(out.height, 39);
     expect(out.getPixel(0, 0).r, src.getPixel(10, 10).r);
-    expect(out.getPixel(48, 38).g, src.getPixel(58, 48).g);
+    // The last output pixel lands exactly on the bottom-right corner.
+    expect(out.getPixel(48, 38).g, src.getPixel(59, 49).g);
   });
 
   test('a tilted page is straightened and aspect forces the shape', () {

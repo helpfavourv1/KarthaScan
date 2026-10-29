@@ -14,6 +14,7 @@ void main() {
     tester.view.physicalSize = const Size(800, 1600);
     tester.view.devicePixelRatio = 2;
     addTearDown(tester.view.reset);
+    try {
     final Directory dir = Directory.systemTemp.createTempSync('crop');
     addTearDown(() => dir.deleteSync(recursive: true));
     final File f = File('${dir.path}/p.png');
@@ -63,5 +64,10 @@ void main() {
     expect(result!.aspect, 1.0);
     expect(result!.quad[0].dx, closeTo(110, 12), reason: 'the dragged corner moved about 30 screen px in photo units');
     expect(result!.quad[2].dx, closeTo(320, 10));
+    } catch (e, st) {
+      // ignore: avoid_print
+      print('XXXERR $e\n${st.toString().split("\n").take(8).join("\n")}');
+      rethrow;
+    }
   });
 }
