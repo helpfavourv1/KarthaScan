@@ -451,12 +451,26 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
   Future<void> applyFilterToPage() async {
     final doc = document;
     if (doc == null || doc.pagePaths.isEmpty) return;
-    final chosen = await showModalBottomSheet<FilterChoice>(context: context, isScrollControlled: true, builder: (ctx) => FilterPreviewSheet(imagePath: doc.pagePaths[currentPageIndex]));
+    final chosen = await showModalBottomSheet<FilterChoice>(
+      context: context,
+      isScrollControlled: true,
+      builder: (ctx) => FilterPreviewSheet(imagePath: doc.pagePaths[currentPageIndex], transform: doc.pageTransforms[currentPageIndex], pageCount: doc.pagePaths.length),
+    );
     if (chosen == null || !mounted) return;
-    final existing = doc.pageTransforms[currentPageIndex] ?? const PageTransform();
-    final updated = existing.copyWith(filter: chosen.filter, filterIntensity: chosen.intensity);
-    await scanProvider.updatePageTransform(doc.id, currentPageIndex, updated);
-    if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(chosen.filter == FilterType.none ? l10n.filterRemoved : l10n.filterApplied)));
+    final List<int> indices = chosen.applyAll ? List<int>.generate(doc.pagePaths.length, (i) => i) : [currentPageIndex];
+    final Map<int, PageTransform> changes = <int, PageTransform>{
+      for (final int idx in indices)
+        idx: (doc.pageTransforms[idx] ?? const PageTransform()).copyWith(
+          filter: chosen.filter,
+          filterIntensity: chosen.intensity,
+          brightness: chosen.brightness,
+          contrast: chosen.contrast,
+        ),
+    };
+    // One edit for all chosen pages, so one undo reverses it.
+    await scanProvider.updatePageTransforms(doc.id, changes);
+    final bool removed = chosen.filter == FilterType.none && chosen.brightness == 0 && chosen.contrast == 0;
+    if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(removed ? l10n.filterRemoved : l10n.filterApplied)));
   }
 
   Future<void> cropCurrentPage() async {
@@ -671,7 +685,7 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
                   isExpanded: true,
                   underline: const SizedBox.shrink(),
                   onChanged: (v) => setDialogState(() => filter = v!),
-                  items: FilterType.values.map((f) => DropdownMenuItem(value: f, child: Text(f == FilterType.none ? l10n.printFilterNone : f == FilterType.grayscale ? l10n.filterGrayscale : f == FilterType.blackAndWhite ? l10n.filterBlackAndWhite : f == FilterType.colorEnhance ? l10n.filterColorEnhance : l10n.filterShadowRemoval))).toList(),
+                  items: FilterType.values.map((f) => DropdownMenuItem(value: f, child: Text(f == FilterType.none ? l10n.printFilterNone : f == FilterType.grayscale ? l10n.filterGrayscale : f == FilterType.blackAndWhite ? l10n.filterBlackAndWhite : f == FilterType.colorEnhance ? l10n.filterColorEnhance : f == FilterType.magicColor ? l10n.filterMagicColor : l10n.filterShadowRemoval))).toList(),
                 ),
                 SwitchListTile(
                   title: Text(l10n.letterSizeUS),

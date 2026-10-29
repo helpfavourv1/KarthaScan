@@ -736,5 +736,8 @@
   "cropAspectId": "আইডি কার্ড",
   "cropAspectSquare": "বর্গ",
   "cropNoPageFound": "পৃষ্ঠার প্রান্ত পাওয়া যায়নি। কোণগুলো টেনে আনুন।",
-  "straightenLabel": "সোজা করুন"
+  "straightenLabel": "সোজা করুন",
+  "filterMagicColor": "ম্যাজিক রঙ",
+  "filterBrightnessLabel": "উজ্জ্বলতা",
+  "filterContrastLabel": "বৈসাদৃশ্য"
 }

@@ -736,5 +736,8 @@
   "cropAspectId": "ID-kort",
   "cropAspectSquare": "Kvadrat",
   "cropNoPageFound": "Hittade inte sidkanterna. Dra i hörnen.",
-  "straightenLabel": "Räta upp"
+  "straightenLabel": "Räta upp",
+  "filterMagicColor": "Magisk färg",
+  "filterBrightnessLabel": "Ljusstyrka",
+  "filterContrastLabel": "Kontrast"
 }

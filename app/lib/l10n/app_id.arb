@@ -643,5 +643,8 @@
   "cropAspectId": "Kartu ID",
   "cropAspectSquare": "Persegi",
   "cropNoPageFound": "Tepi halaman tidak ditemukan. Seret sudutnya.",
-  "straightenLabel": "Luruskan"
+  "straightenLabel": "Luruskan",
+  "filterMagicColor": "Warna ajaib",
+  "filterBrightnessLabel": "Kecerahan",
+  "filterContrastLabel": "Kontras"
 }

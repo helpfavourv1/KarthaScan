@@ -736,5 +736,8 @@
   "cropAspectId": "บัตรประจำตัว",
   "cropAspectSquare": "สี่เหลี่ยมจัตุรัส",
   "cropNoPageFound": "ไม่พบขอบหน้า ลากมุมเอง",
-  "straightenLabel": "ปรับให้ตรง"
+  "straightenLabel": "ปรับให้ตรง",
+  "filterMagicColor": "สีมหัศจรรย์",
+  "filterBrightnessLabel": "ความสว่าง",
+  "filterContrastLabel": "คอนทราสต์"
 }

@@ -736,5 +736,8 @@
   "cropAspectId": "Dowód",
   "cropAspectSquare": "Kwadrat",
   "cropNoPageFound": "Nie znaleziono krawędzi. Przeciągnij rogi.",
-  "straightenLabel": "Wyrównaj"
+  "straightenLabel": "Wyrównaj",
+  "filterMagicColor": "Magiczny kolor",
+  "filterBrightnessLabel": "Jasność",
+  "filterContrastLabel": "Kontrast"
 }

@@ -736,5 +736,8 @@
   "cropAspectId": "ID-картка",
   "cropAspectSquare": "Квадрат",
   "cropNoPageFound": "Краї сторінки не знайдено. Перетягніть кути.",
-  "straightenLabel": "Вирівняти"
+  "straightenLabel": "Вирівняти",
+  "filterMagicColor": "Магія кольору",
+  "filterBrightnessLabel": "Яскравість",
+  "filterContrastLabel": "Контраст"
 }

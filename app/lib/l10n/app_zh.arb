@@ -643,5 +643,8 @@
   "cropAspectId": "证件",
   "cropAspectSquare": "正方形",
   "cropNoPageFound": "未找到页面边缘，请拖动四角。",
-  "straightenLabel": "校正倾斜"
+  "straightenLabel": "校正倾斜",
+  "filterMagicColor": "魔术色彩",
+  "filterBrightnessLabel": "亮度",
+  "filterContrastLabel": "对比度"
 }

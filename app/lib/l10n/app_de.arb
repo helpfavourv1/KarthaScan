@@ -643,5 +643,8 @@
   "cropAspectId": "Ausweis",
   "cropAspectSquare": "Quadrat",
   "cropNoPageFound": "Seitenränder nicht gefunden. Ziehen Sie die Ecken.",
-  "straightenLabel": "Geraderichten"
+  "straightenLabel": "Geraderichten",
+  "filterMagicColor": "Magische Farbe",
+  "filterBrightnessLabel": "Helligkeit",
+  "filterContrastLabel": "Kontrast"
 }

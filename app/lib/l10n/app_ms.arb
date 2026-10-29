@@ -736,5 +736,8 @@
   "cropAspectId": "Kad ID",
   "cropAspectSquare": "Segi empat sama",
   "cropNoPageFound": "Tepi halaman tidak ditemui. Seret bucu.",
-  "straightenLabel": "Luruskan"
+  "straightenLabel": "Luruskan",
+  "filterMagicColor": "Warna ajaib",
+  "filterBrightnessLabel": "Kecerahan",
+  "filterContrastLabel": "Kontras"
 }

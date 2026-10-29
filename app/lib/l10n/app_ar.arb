@@ -643,5 +643,8 @@
   "cropAspectId": "بطاقة هوية",
   "cropAspectSquare": "مربع",
   "cropNoPageFound": "لم يتم العثور على حواف الصفحة. اسحب الزوايا.",
-  "straightenLabel": "تسوية الميل"
+  "straightenLabel": "تسوية الميل",
+  "filterMagicColor": "ألوان سحرية",
+  "filterBrightnessLabel": "السطوع",
+  "filterContrastLabel": "التباين"
 }

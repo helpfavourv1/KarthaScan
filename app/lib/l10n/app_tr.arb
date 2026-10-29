@@ -736,5 +736,8 @@
   "cropAspectId": "Kimlik kartı",
   "cropAspectSquare": "Kare",
   "cropNoPageFound": "Sayfa kenarları bulunamadı. Köşeleri sürükleyin.",
-  "straightenLabel": "Düzelt"
+  "straightenLabel": "Düzelt",
+  "filterMagicColor": "Sihirli renk",
+  "filterBrightnessLabel": "Parlaklık",
+  "filterContrastLabel": "Kontrast"
 }

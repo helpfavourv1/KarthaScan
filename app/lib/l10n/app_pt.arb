@@ -643,5 +643,8 @@
   "cropAspectId": "Cartão ID",
   "cropAspectSquare": "Quadrado",
   "cropNoPageFound": "Não foi possível achar as bordas. Arraste os cantos.",
-  "straightenLabel": "Endireitar"
+  "straightenLabel": "Endireitar",
+  "filterMagicColor": "Cor mágica",
+  "filterBrightnessLabel": "Brilho",
+  "filterContrastLabel": "Contraste"
 }

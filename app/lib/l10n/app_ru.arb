@@ -736,5 +736,8 @@
   "cropAspectId": "ID-карта",
   "cropAspectSquare": "Квадрат",
   "cropNoPageFound": "Края страницы не найдены. Перетащите углы.",
-  "straightenLabel": "Выровнять"
+  "straightenLabel": "Выровнять",
+  "filterMagicColor": "Магия цвета",
+  "filterBrightnessLabel": "Яркость",
+  "filterContrastLabel": "Контраст"
 }

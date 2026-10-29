@@ -51,7 +51,8 @@ enum IdCardLayout {
   fullWidth,
 }
 
-enum FilterType { none, grayscale, blackAndWhite, colorEnhance, shadowRemoval }
+// New filters go at the END: pages store the position.
+enum FilterType { none, grayscale, blackAndWhite, colorEnhance, shadowRemoval, magicColor }
 
 // SignaturePlacement is now in models/signature_placement.dart
 
@@ -501,6 +502,11 @@ class ExportService {
         final double intensity = (!useExportFilter && pageTransform != null) ? pageTransform.filterIntensity : 1.0;
         // Heavy pixel work runs on a background isolate so the screen keeps moving.
         decoded = await Isolate.run(() => FilterService.applyToImage(forFilter, effectiveFilter, intensity: intensity));
+      }
+      if (pageTransform != null && (pageTransform.brightness != 0 || pageTransform.contrast != 0)) {
+        final img.Image forAdjust = decoded;
+        final double b = pageTransform.brightness, c = pageTransform.contrast;
+        decoded = await Isolate.run(() => FilterService.adjust(forAdjust, brightness: b, contrast: c));
       }
       for (final layer in layers) {
         final ink = inkMap[layer.inkId];

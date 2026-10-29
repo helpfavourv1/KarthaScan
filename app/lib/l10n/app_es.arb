@@ -643,5 +643,8 @@
   "cropAspectId": "Tarjeta ID",
   "cropAspectSquare": "Cuadrado",
   "cropNoPageFound": "No se encontraron los bordes. Arrastra las esquinas.",
-  "straightenLabel": "Enderezar"
+  "straightenLabel": "Enderezar",
+  "filterMagicColor": "Color mágico",
+  "filterBrightnessLabel": "Brillo",
+  "filterContrastLabel": "Contraste"
 }

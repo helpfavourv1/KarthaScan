@@ -16,6 +16,8 @@ class PageTransform {
     this.cropQuad,
     this.cropAspect,
     this.straightenDegrees = 0,
+    this.brightness = 0,
+    this.contrast = 0,
   });
 
   /// The visible area in photo pixels. With a [cropQuad] this is the upright box
@@ -42,6 +44,10 @@ class PageTransform {
   final int rotationTurns;
   final FilterType filter;
   final double filterIntensity;
+
+  /// Levels adjustments, each -1..1, applied after the filter.
+  final double brightness;
+  final double contrast;
   final int? resizeWidth;
   final int? resizeHeight;
   final List<Map<String, dynamic>> eraserStrokes;
@@ -50,6 +56,8 @@ class PageTransform {
       cropRect == null &&
       rotationTurns == 0 &&
       straightenDegrees == 0 &&
+      brightness == 0 &&
+      contrast == 0 &&
       filter == FilterType.none &&
       resizeWidth == null &&
       resizeHeight == null &&
@@ -66,6 +74,8 @@ class PageTransform {
     List<Offset>? cropQuad,
     double? cropAspect,
     double? straightenDegrees,
+    double? brightness,
+    double? contrast,
     bool clearCrop = false,
     bool clearCropQuad = false,
     bool clearResize = false,
@@ -76,6 +86,8 @@ class PageTransform {
       cropQuad: (clearCrop || clearCropQuad) ? null : (cropQuad ?? this.cropQuad),
       cropAspect: (clearCrop || clearCropQuad) ? null : (cropAspect ?? this.cropAspect),
       straightenDegrees: straightenDegrees ?? this.straightenDegrees,
+      brightness: brightness ?? this.brightness,
+      contrast: contrast ?? this.contrast,
       rotationTurns: rotationTurns ?? this.rotationTurns,
       filter: filter ?? this.filter,
       filterIntensity: filterIntensity ?? this.filterIntensity,
@@ -96,6 +108,8 @@ class PageTransform {
       if (cropQuad != null) 'cropQuad': <double>[for (final Offset o in cropQuad!) ...<double>[o.dx, o.dy]],
       if (cropAspect != null) 'cropAspect': cropAspect,
       if (straightenDegrees != 0) 'straightenDegrees': straightenDegrees,
+      if (brightness != 0) 'brightness': brightness,
+      if (contrast != 0) 'contrast': contrast,
       'rotationTurns': rotationTurns,
       'filter': filter.index,
       if (filterIntensity != 1.0) 'filterIntensity': filterIntensity,
@@ -128,6 +142,8 @@ class PageTransform {
       cropQuad: quad,
       cropAspect: quad == null ? null : (json['cropAspect'] as num?)?.toDouble(),
       straightenDegrees: ((json['straightenDegrees'] as num?)?.toDouble() ?? 0).clamp(-45.0, 45.0).toDouble(),
+      brightness: ((json['brightness'] as num?)?.toDouble() ?? 0).clamp(-1.0, 1.0).toDouble(),
+      contrast: ((json['contrast'] as num?)?.toDouble() ?? 0).clamp(-1.0, 1.0).toDouble(),
       rotationTurns: (json['rotationTurns'] as num?)?.toInt() ?? 0,
       filter: () {
         final int index = (json['filter'] as num?)?.toInt() ?? 0;

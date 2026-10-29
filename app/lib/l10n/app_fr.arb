@@ -643,5 +643,8 @@
   "cropAspectId": "Carte d'identité",
   "cropAspectSquare": "Carré",
   "cropNoPageFound": "Bords introuvables. Faites glisser les coins.",
-  "straightenLabel": "Redresser"
+  "straightenLabel": "Redresser",
+  "filterMagicColor": "Couleur magique",
+  "filterBrightnessLabel": "Luminosité",
+  "filterContrastLabel": "Contraste"
 }

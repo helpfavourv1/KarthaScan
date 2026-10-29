@@ -498,7 +498,8 @@ class _ExportScreenState extends State<ExportScreen> {
                                 final label = f == FilterType.none ? AppLocalizations.of(context).filterOriginal :
                                              f == FilterType.grayscale ? AppLocalizations.of(context).filterGrayscale :
                                              f == FilterType.blackAndWhite ? AppLocalizations.of(context).filterBlackAndWhite :
-                                             f == FilterType.colorEnhance ? AppLocalizations.of(context).filterColor : AppLocalizations.of(context).filterShadow;
+                                             f == FilterType.colorEnhance ? AppLocalizations.of(context).filterColor :
+                                             f == FilterType.magicColor ? AppLocalizations.of(context).filterMagicColor : AppLocalizations.of(context).filterShadow;
                                 return _filterPill(f, label, accent, textPrimary, isDark);
                               }).toList(),
                             ),

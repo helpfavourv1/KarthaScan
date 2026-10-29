@@ -736,5 +736,8 @@
   "cropAspectId": "ID-kort",
   "cropAspectSquare": "Kvadrat",
   "cropNoPageFound": "Fant ikke sidekantene. Dra i hjørnene.",
-  "straightenLabel": "Rett opp"
+  "straightenLabel": "Rett opp",
+  "filterMagicColor": "Magisk farge",
+  "filterBrightnessLabel": "Lysstyrke",
+  "filterContrastLabel": "Kontrast"
 }

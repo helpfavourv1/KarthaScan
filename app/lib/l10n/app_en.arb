@@ -919,5 +919,17 @@
   "straightenLabel": "Straighten",
   "@straightenLabel": {
     "description": "Slider that corrects a small tilt of the page, in degrees"
+  },
+  "filterMagicColor": "Magic colour",
+  "@filterMagicColor": {
+    "description": "Filter name: removes shadows and keeps and lifts the colours"
+  },
+  "filterBrightnessLabel": "Brightness",
+  "@filterBrightnessLabel": {
+    "description": "Slider label"
+  },
+  "filterContrastLabel": "Contrast",
+  "@filterContrastLabel": {
+    "description": "Slider label"
   }
 }

@@ -643,5 +643,8 @@
   "cropAspectId": "IDカード",
   "cropAspectSquare": "正方形",
   "cropNoPageFound": "ページの端が見つかりません。角をドラッグしてください。",
-  "straightenLabel": "傾き補正"
+  "straightenLabel": "傾き補正",
+  "filterMagicColor": "マジックカラー",
+  "filterBrightnessLabel": "明るさ",
+  "filterContrastLabel": "コントラスト"
 }

@@ -39,6 +39,11 @@ abstract final class FilterService {
         _colorEnhance(src, out);
       case FilterType.shadowRemoval:
         _shadowRemoval(src, out, w, h);
+      case FilterType.magicColor:
+        // Even out the lighting, then stretch the levels and lift the colour.
+        final Uint8List flat = Uint8List(src.length);
+        _shadowRemoval(src, flat, w, h);
+        _colorEnhance(flat, out);
     }
     final double t = intensity.clamp(0.0, 2.0).toDouble();
     if (t != 1.0) {
@@ -52,6 +57,31 @@ abstract final class FilterService {
       }
     }
     return img.Image.fromBytes(width: w, height: h, bytes: out.buffer, numChannels: 4);
+  }
+
+  /// Brightness and contrast, each -1..1 (0 = unchanged). Brightness shifts every
+  /// level; contrast spreads the levels around mid-grey. Colour and transparency
+  /// are kept. Returns [source] itself when both are 0.
+  static img.Image adjust(img.Image source, {double brightness = 0, double contrast = 0}) {
+    if ((brightness == 0 && contrast == 0) || source.width == 0 || source.height == 0) return source;
+    final double b = brightness.clamp(-1.0, 1.0).toDouble() * 128;
+    final double k = 1 + contrast.clamp(-1.0, 1.0).toDouble() * 0.9;
+    final Uint8List lut = Uint8List(256);
+    for (int v = 0; v < 256; v++) {
+      lut[v] = _c((v - 128) * k + 128 + b);
+    }
+    final img.Image base = (source.format == img.Format.uint8 && source.numChannels == 4)
+        ? source
+        : source.convert(format: img.Format.uint8, numChannels: 4);
+    final Uint8List src = base.getBytes(order: img.ChannelOrder.rgba);
+    final Uint8List out = Uint8List(src.length);
+    for (int i = 0; i < src.length; i += 4) {
+      out[i] = lut[src[i]];
+      out[i + 1] = lut[src[i + 1]];
+      out[i + 2] = lut[src[i + 2]];
+      out[i + 3] = src[i + 3];
+    }
+    return img.Image.fromBytes(width: base.width, height: base.height, bytes: out.buffer, numChannels: 4, order: img.ChannelOrder.rgba);
   }
 
   static int _lum(int r, int g, int b) => ((r * 299 + g * 587 + b * 114) / 1000).round();

@@ -736,5 +736,8 @@
   "cropAspectId": "Carta d'identità",
   "cropAspectSquare": "Quadrato",
   "cropNoPageFound": "Bordi non trovati. Trascina gli angoli.",
-  "straightenLabel": "Raddrizza"
+  "straightenLabel": "Raddrizza",
+  "filterMagicColor": "Colore magico",
+  "filterBrightnessLabel": "Luminosità",
+  "filterContrastLabel": "Contrasto"
 }

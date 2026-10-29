@@ -276,7 +276,7 @@ class _PageWithInkState extends State<_PageWithInk> {
       // decoded (in a background isolate) when there are edits to bake in.
       final transform = widget.pageTransforms[widget.pageIndex];
       final bool needsProcessing = transform != null &&
-          (transform.cropRect != null || transform.straightenDegrees != 0 || transform.resizeWidth != null || transform.filter != FilterType.none || transform.eraserStrokes.isNotEmpty);
+          (transform.cropRect != null || transform.straightenDegrees != 0 || transform.brightness != 0 || transform.contrast != 0 || transform.resizeWidth != null || transform.filter != FilterType.none || transform.eraserStrokes.isNotEmpty);
       final img.DecodeInfo? info = img.findDecoderForData(bytes)?.startDecode(bytes);
       final int? width = info?.width;
       final int? height = info?.height;
@@ -581,6 +581,9 @@ Uint8List? renderPagePreview(PagePreviewJob job) {
     }
     if (transform.filter != FilterType.none) {
       processed = FilterService.applyToImage(processed, transform.filter, intensity: transform.filterIntensity);
+    }
+    if (transform.brightness != 0 || transform.contrast != 0) {
+      processed = FilterService.adjust(processed, brightness: transform.brightness, contrast: transform.contrast);
     }
     return Uint8List.fromList(img.encodeJpg(processed, quality: 85));
   } catch (_) {

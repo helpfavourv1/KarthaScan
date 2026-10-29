@@ -736,5 +736,8 @@
   "cropAspectId": "ID-kaart",
   "cropAspectSquare": "Vierkant",
   "cropNoPageFound": "Randen niet gevonden. Sleep de hoeken.",
-  "straightenLabel": "Rechtzetten"
+  "straightenLabel": "Rechtzetten",
+  "filterMagicColor": "Magische kleur",
+  "filterBrightnessLabel": "Helderheid",
+  "filterContrastLabel": "Contrast"
 }

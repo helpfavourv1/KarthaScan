@@ -643,5 +643,8 @@
   "cropAspectId": "תעודה",
   "cropAspectSquare": "ריבוע",
   "cropNoPageFound": "לא נמצאו קצוות הדף. גררו את הפינות.",
-  "straightenLabel": "יישור"
+  "straightenLabel": "יישור",
+  "filterMagicColor": "צבע קסם",
+  "filterBrightnessLabel": "בהירות",
+  "filterContrastLabel": "ניגודיות"
 }

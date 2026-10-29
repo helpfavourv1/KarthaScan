@@ -643,5 +643,8 @@
   "cropAspectId": "आईडी कार्ड",
   "cropAspectSquare": "वर्ग",
   "cropNoPageFound": "पेज के किनारे नहीं मिले। कोनों को खींचें।",
-  "straightenLabel": "सीधा करें"
+  "straightenLabel": "सीधा करें",
+  "filterMagicColor": "मैजिक रंग",
+  "filterBrightnessLabel": "चमक",
+  "filterContrastLabel": "कंट्रास्ट"
 }

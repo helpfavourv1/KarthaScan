@@ -248,4 +248,50 @@ void main() {
       expect(File(pdf.first).lengthSync(), greaterThan(500));
     });
   });
+
+  group('magic colour, brightness and contrast', () {
+    test('magic colour evens out the shadow and keeps writing dark and paper colour', () {
+      final img.Image page = shadowedPage(300, 200);
+      final img.Image out = FilterService.applyToImage(page, FilterType.magicColor);
+      // Paper at the shadowed right edge comes out as bright as at the left edge.
+      final int left = out.getPixel(10, 3).r.toInt(), right = out.getPixel(289, 3).r.toInt();
+      expect((left - right).abs(), lessThan(25));
+      expect(right, greaterThan(200));
+      expect(FilterType.values.last, FilterType.magicColor, reason: 'new filters are added at the end so saved pages keep their filter');
+    });
+
+    test('brightness and contrast move the levels and keep transparency', () {
+      final img.Image grey = img.Image(width: 4, height: 4, numChannels: 4)..clear(img.ColorRgba8(100, 100, 100, 200));
+      expect(identical(FilterService.adjust(grey), grey), isTrue);
+      final img.Image lighter = FilterService.adjust(grey, brightness: 0.5);
+      expect(lighter.getPixel(0, 0).r, greaterThan(150));
+      expect(lighter.getPixel(0, 0).a, 200);
+      expect(FilterService.adjust(grey, brightness: -0.5).getPixel(0, 0).r, lessThan(50));
+      final img.Image dark = FilterService.adjust(grey, contrast: 1);
+      expect(dark.getPixel(0, 0).r, lessThan(100), reason: 'below mid-grey goes darker');
+      final img.Image bright = FilterService.adjust(img.Image(width: 2, height: 2, numChannels: 4)..clear(img.ColorRgba8(180, 180, 180, 255)), contrast: 1);
+      expect(bright.getPixel(0, 0).r, greaterThan(180));
+    });
+
+    test('export applies the page brightness after the filter', () async {
+      final Directory tmp = Directory.systemTemp.createTempSync('adj_');
+      addTearDown(() => tmp.deleteSync(recursive: true));
+      final File f = File('${tmp.path}/p.png');
+      f.writeAsBytesSync(img.encodePng(img.Image(width: 80, height: 60, numChannels: 4)..clear(img.ColorRgba8(60, 60, 60, 255))));
+      Future<int> exportedRed(PageTransform t) async {
+        final DateTime now = DateTime(2026, 1, 1);
+        final ScanDocument doc = ScanDocument(
+          id: 'd', title: 'T', pageCount: 1, pagePaths: <String>[f.path],
+          createdAt: now, updatedAt: now, ocrText: '', thumbnailPath: f.path,
+          pageTransforms: <int, PageTransform>{0: t},
+        );
+        final Directory out = Directory('${tmp.path}/out${t.brightness}')..createSync();
+        final List<String> files = await ExportService().export(document: doc, format: ExportFormat.jpg, outputDirectoryPath: out.path);
+        return img.decodeImage(File(files.first).readAsBytesSync())!.getPixel(5, 5).r.toInt();
+      }
+      final int plain = await exportedRed(const PageTransform(contrast: 0.01));
+      final int lighter = await exportedRed(const PageTransform(brightness: 0.5));
+      expect(lighter, greaterThan(plain + 40));
+    });
+  });
 }
