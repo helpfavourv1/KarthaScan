@@ -90,7 +90,7 @@ void main() {
     // Wait for the real measurement.
     await settleMeasure(tester);
     expect(find.byType(CircularProgressIndicator), findsNothing);
-    expect(find.textContaining(RegExp(r'(MB|KB)$')), findsNWidgets(3));
+    expect(find.textContaining(RegExp(r'(MB|KB)$')), findsNWidgets(6), reason: 'three size cards plus the three max-size chips');
     await tester.tap(find.byKey(const ValueKey<String>('compressCard:small')));
     await tester.pump();
     await tester.tap(find.text('JPG'));
@@ -99,6 +99,7 @@ void main() {
     final Finder go = find.byKey(const ValueKey<String>('compressGo'));
     final String where = 'seg ${tester.getRect(find.byKey(const ValueKey<String>('compressFormat')))} card ${tester.getRect(find.byKey(const ValueKey<String>('compressCard:small')))} sheet ${tester.getRect(find.byType(CompressSheet))} '
         'go at ${tester.getRect(go)} screen ${tester.view.physicalSize / tester.view.devicePixelRatio} hit ${go.hitTestable().evaluate().length}';
+    await tester.ensureVisible(go);
     await tester.tap(go);
     await tester.pumpAndSettle();
     expect(find.byType(CompressSheet), findsNothing, reason: 'sheet did not close after Compress was tapped; $where');

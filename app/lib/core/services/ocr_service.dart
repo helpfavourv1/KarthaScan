@@ -218,7 +218,12 @@ class OcrService {
         return Uint8List.fromList(img.encodeJpg(FilterService.applyToImage(im, FilterType.magicColor), quality: 92));
       });
       if (out == null) return null;
-      final Directory tmp = await getTemporaryDirectory();
+      Directory tmp;
+      try {
+        tmp = await getTemporaryDirectory();
+      } catch (_) {
+        tmp = Directory.systemTemp;
+      }
       final String path = p.join(tmp.path, 'ocr_clean_${DateTime.now().microsecondsSinceEpoch}.jpg');
       await File(path).writeAsBytes(out);
       return path;
