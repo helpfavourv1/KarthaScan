@@ -436,6 +436,11 @@ void main() {
         await Future<void>.delayed(const Duration(seconds: 1));
         found = (await storage.searchDocuments('cherry')).any((ScanDocument x) => x.id == 'emu_b1');
       }
+      if (!found) {
+        final ScanDocument now = scan.documents.value.firstWhere((ScanDocument x) => x.id == 'emu_b1');
+        // ignore: avoid_print
+        print('XXXERR B1 stored text after wait: "${now.ocrText.replaceAll('\n', ' | ')}"');
+      }
       await scan.updateTags('emu_b1', <String>['invoicetag']);
       final bool tagFound = (await storage.searchDocuments('invoicetag')).any((ScanDocument x) => x.id == 'emu_b1');
       final ScanDocument? part = await scan.extractToNewDocument('emu_b1', <int>[0], 'Extract');

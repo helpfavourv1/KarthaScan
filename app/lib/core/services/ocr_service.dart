@@ -232,8 +232,10 @@ class OcrService {
     }
   }
 
-  /// Pages that read as nearly empty get a second try on a cleaned copy.
-  static bool worthCleaning(String text) => visibleLength(text) < 40;
+  /// Pages that read as nearly empty get a second try on a cleaned copy. Pages that
+  /// already gave a few words are left alone: a second pass costs a full recognition
+  /// per page and the emulator check showed it slowing page-text refresh.
+  static bool worthCleaning(String text) => visibleLength(text) < 12;
 
   Future<OcrResult> recognizeTextAuto({required String imagePath}) async {
     OcrResult best = await recognizeText(imagePath: imagePath, script: OcrScript.latin);
