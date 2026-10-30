@@ -207,3 +207,13 @@ Quick checks green; emulator pending at time of writing:
 - Print: page choice accepts "1, 3, 5-7" (same parser as watermark pages); paper A4 / A5 / Letter / Legal; margin None / Narrow / Normal; Fit page / Fill sheet (fill trims edges); 1, 2 or 4 pages per sheet (2 = sideways sheet, 4 = 2x2). Old From/To fields and the Letter switch were replaced.
 - Tested in CI: layout engine (page counts, paper sizes in the PDF, every margin/fit/per-sheet combination) and both option dialogs. NOT testable in CI: the system print screen and share sheet; phone check owed (print preview of A5/Legal, 2 and 4 per sheet; email attaches one PDF; size limit result).
 - Known limits: the old email body (OCR text) is gone; mailto fallback carries no attachment (unchanged). New strings (printPaperLabel, printMargin*, printFit*, printPerSheetLabel, emailMessageLabel/Hint, emailLimitMissed) need native review.
+
+## Detail / Full-screen / Export screens upgrade (Oct 2026)
+- Page carries: the three screens open on the page last viewed (in memory, `ScanProvider.viewedPage`) and show it again on return (`openRoute` + `returnedFromRoute` in the tools mixin).
+- Signatures: each screen re-reads the saved signature state when it comes back from another screen, so it no longer shows an old copy or writes it back over newer work.
+- Export preview now shows the edited page (crop, tilt, resize, eraser, filter, brightness/contrast, rotation) with the same renderer as the other screens; compare slider uses the same page without the filter. Reloads after returning from the editor.
+- Swipe between pages on detail and full screen (off while an editor is open or a fill text is being typed; a zoomed-in page keeps drags for panning). Tab swiping stays off. Arrow buttons remain.
+- Share = one tap, whole document as a PDF straight to the share sheet; Export = the options screen. Undo/redo added on the detail screen (history starts fresh on opening a document, as in full screen).
+- Full-screen header: page counter moved to its own row; Share/Export icons have tooltips; tray tools close an open editor first (as on detail). Detail: rename hint icon, dark-mode folder sheet.
+- Tested: widget tests for swipe on/off/zoomed; emulator flow test (integration_test/screens_flow_test.dart, run with emu_screens) drives real screens.
+- Not tested in CI: Android share sheet from the new Share button; phone check owed. Not done: export paper sizes A5/Legal (Print has them, Export still A4/Letter), thumbnail strip, OCR text editing.
