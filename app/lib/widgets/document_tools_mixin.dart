@@ -35,7 +35,6 @@ import 'eraser_overlay.dart';
 import 'filter_preview_sheet.dart';
 import 'ink_board.dart';
 import 'pages_manager_sheet.dart';
-import 'region_select_sheet.dart';
 import 'document_canvas.dart' show ViewCentre, PagePreviewJob, renderPagePreview;
 import 'perspective_crop_sheet.dart';
 import '../core/utils/perspective.dart';
