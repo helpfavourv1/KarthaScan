@@ -182,3 +182,13 @@ Checked by CI unit/widget tests (dart-check green); emulator run pending at time
 - Not built: content-aware (texture) fill — auto colour only suits plain paper; the eraser still shows the whole uncropped photo; deletions cannot be undone after Save.
 - New strings needing native review: eraserAutoColorTooltip, eraserZoomTooltip, pagesSelectTooltip, pagesDeleteCount, pagesDeleteConfirm.
 - Phone check owed: pinch-zoom + erase feel, auto colour on a coloured page, thumbnails of edited pages on a long document (speed).
+
+## Placed items / Text-Note-Date-Fill upgrade (Oct 2026)
+
+Checked by CI unit/widget tests (dart-check green); emulator run pending at time of writing:
+- Every placed item (signature, mark, watermark, text, note, date, checkbox, seal, Fill) uses one gesture (`PlacedItemGesture`): drag starts at touch-down, pinch resizes, two-finger twist rotates, rotation snaps to 0/90/180 within 3°. Flowing Fill text (set box width) drags/rotates but does not pinch-resize.
+- New text/note/date/checkbox items land at the middle of the visible (zoomed) part of the page; with no zoom, page centre. Not applied on quarter-turned pages (page centre there). Fill still places at the tap.
+- Handwriting fonts (DancingScript, Caveat) offered in Text/Note/Fill.
+- Written-out dates (long/medium) in the app language, via intl. Fill gets a custom colour picker.
+- Strings: reuses existing ones, no new l10n keys.
+- Phone checks owed: pinch/twist feel on a real page, snap feel, placement while zoomed, written date in a non-English language, handwriting font in exported PDF.
