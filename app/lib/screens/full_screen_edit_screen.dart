@@ -295,7 +295,7 @@ class _FullScreenEditScreenState extends State<FullScreenEditScreen> with Docume
                   bottom: false,
                   child: Row(
                     children: [
-                      IconButton(icon: const Icon(Icons.close), color: textPrimary, onPressed: () { _inkController.showSignatureAdIfPending(); context.pop(); }),
+                      IconButton(key: const ValueKey<String>('fullClose'), icon: const Icon(Icons.close), color: textPrimary, onPressed: () { _inkController.showSignatureAdIfPending(); context.pop(); }),
                       Expanded(
                         child: Text(
                           doc.title,

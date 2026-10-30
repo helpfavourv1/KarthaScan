@@ -119,14 +119,16 @@ void main() {
         <SignatureLayer>[...now1.signatureLayers, const SignatureLayer(pageIndex: 2, placement: SignaturePlacement(pctX: 0.4, pctY: 0.4), inkId: 'ink1')],
       );
       await pumpFor(500);
-      await tester.tap(find.byIcon(Icons.close).first);
+      await tester.tap(find.byKey(const ValueKey<String>('fullClose')));
       await pumpFor(2500);
+      final String where = router.routerDelegate.currentConfiguration.uri.toString();
+      row('after-close', find.byType(ScanPreviewCard).evaluate().isNotEmpty, 'route=$where, detail card present=${find.byType(ScanPreviewCard).evaluate().isNotEmpty}');
 
       // --- Back on detail: page 3 shown, and its signature controller knows the new placement.
       final bool backOnThree = find.text(pageText(3)).evaluate().isNotEmpty;
       row('page-back-to-detail', backOnThree, 'detail shows page 3=$backOnThree');
-      final ScanPreviewCard card = tester.widget<ScanPreviewCard>(find.byType(ScanPreviewCard));
-      final bool knows = card.inkController?.inkPlacements['ink1']?.containsKey(2) ?? false;
+      final Finder cardFinder = find.byType(ScanPreviewCard);
+      final bool knows = cardFinder.evaluate().isNotEmpty && (tester.widget<ScanPreviewCard>(cardFinder).inkController?.inkPlacements['ink1']?.containsKey(2) ?? false);
       row('signature-back-to-detail', knows, 'detail controller has the page-3 placement=$knows');
 
       // --- Undo on detail.
