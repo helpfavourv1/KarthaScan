@@ -652,5 +652,7 @@
   "eraserZoomTooltip": "ज़ूम और खिसकाएँ (पिंच)",
   "pagesSelectTooltip": "पेज चुनें",
   "pagesDeleteCount": "{count} हटाएँ",
-  "pagesDeleteConfirm": "{count} पेज हटाएँ? सहेजने पर वे हट जाएँगे।"
+  "pagesDeleteConfirm": "{count} पेज हटाएँ? सहेजने पर वे हट जाएँगे।",
+  "compressTargetLabel": "अधिकतम आकार",
+  "compressNoLimit": "कोई सीमा नहीं"
 }

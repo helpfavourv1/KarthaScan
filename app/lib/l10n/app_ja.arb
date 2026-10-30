@@ -652,5 +652,7 @@
   "eraserZoomTooltip": "ズーム・移動(ピンチ)",
   "pagesSelectTooltip": "ページを選択",
   "pagesDeleteCount": "{count}件を削除",
-  "pagesDeleteConfirm": "{count}ページを削除しますか？保存すると削除されます。"
+  "pagesDeleteConfirm": "{count}ページを削除しますか？保存すると削除されます。",
+  "compressTargetLabel": "最大サイズ",
+  "compressNoLimit": "制限なし"
 }

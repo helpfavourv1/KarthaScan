@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import 'core/models/export_job.dart';
+import 'core/services/export_service.dart' show FilterType;
 import 'screens/convert_screen.dart';
 import 'screens/debug_logs_screen.dart';
 import 'screens/export_screen.dart';
@@ -86,6 +87,8 @@ GoRouter buildRouter({String initialLocation = '/'}) {
           List<String> documentIds = const <String>[];
           ExportFormat? initialFormat;
           CompressionTier? initialCompression;
+          int? initialTargetMB;
+          FilterType? initialFilter;
           if (extra is List<String>) {
             documentIds = extra;
           } else if (extra is Map<String, dynamic>) {
@@ -97,6 +100,8 @@ GoRouter buildRouter({String initialLocation = '/'}) {
                 orElse: () => ExportFormat.pdf,
               );
             }
+            initialTargetMB = extra['targetMB'] as int?;
+            initialFilter = extra['filter'] == 'blackAndWhite' ? FilterType.blackAndWhite : null;
             final String? tierName = extra['compression'] as String?;
             if (tierName != null) {
               for (final CompressionTier t in CompressionTier.values) {
@@ -104,7 +109,7 @@ GoRouter buildRouter({String initialLocation = '/'}) {
               }
             }
           }
-          return ExportScreen(documentIds: documentIds, initialFormat: initialFormat, initialCompression: initialCompression);
+          return ExportScreen(documentIds: documentIds, initialFormat: initialFormat, initialCompression: initialCompression, initialTargetMB: initialTargetMB, initialFilter: initialFilter);
         },
       ),
       GoRoute(

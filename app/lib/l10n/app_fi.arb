@@ -745,5 +745,7 @@
   "eraserZoomTooltip": "Zoomaa ja siirrä (nipistä)",
   "pagesSelectTooltip": "Valitse sivuja",
   "pagesDeleteCount": "Poista {count}",
-  "pagesDeleteConfirm": "Poistetaanko {count} sivua? Ne poistetaan tallennettaessa."
+  "pagesDeleteConfirm": "Poistetaanko {count} sivua? Ne poistetaan tallennettaessa.",
+  "compressTargetLabel": "Enimmäiskoko",
+  "compressNoLimit": "Ei rajaa"
 }

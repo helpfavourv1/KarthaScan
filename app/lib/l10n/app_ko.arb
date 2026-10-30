@@ -652,5 +652,7 @@
   "eraserZoomTooltip": "확대·이동(핀치)",
   "pagesSelectTooltip": "페이지 선택",
   "pagesDeleteCount": "{count}개 삭제",
-  "pagesDeleteConfirm": "{count}페이지를 삭제할까요? 저장하면 제거됩니다."
+  "pagesDeleteConfirm": "{count}페이지를 삭제할까요? 저장하면 제거됩니다.",
+  "compressTargetLabel": "최대 크기",
+  "compressNoLimit": "제한 없음"
 }

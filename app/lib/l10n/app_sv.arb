@@ -745,5 +745,7 @@
   "eraserZoomTooltip": "Zooma och flytta (nyp)",
   "pagesSelectTooltip": "Välj sidor",
   "pagesDeleteCount": "Ta bort {count}",
-  "pagesDeleteConfirm": "Ta bort {count} sidor? De tas bort när du sparar."
+  "pagesDeleteConfirm": "Ta bort {count} sidor? De tas bort när du sparar.",
+  "compressTargetLabel": "Max. storlek",
+  "compressNoLimit": "Ingen gräns"
 }

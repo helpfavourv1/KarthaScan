@@ -27,7 +27,16 @@ List<Offset>? _detectJob(Uint8List bytes) {
 /// Crop with four draggable corners (so a page photographed at an angle is
 /// straightened), a magnifier while dragging, auto-detect and shape presets.
 class PerspectiveCropSheet extends StatefulWidget {
-  const PerspectiveCropSheet({super.key, required this.imagePath, this.initialQuad, this.initialAspect});
+  const PerspectiveCropSheet({super.key, required this.imagePath, this.initialQuad, this.initialAspect, this.title, this.autoDetect = true, this.showShapes = true});
+
+  /// Heading and confirm-button text; defaults to "Crop".
+  final String? title;
+
+  /// Look for the page edges when opened (off when picking a region of text).
+  final bool autoDetect;
+
+  /// Offer the A4 / ID card shape choices.
+  final bool showShapes;
   final String imagePath;
   final List<Offset>? initialQuad;
   final double? initialAspect;
@@ -74,7 +83,7 @@ class _PerspectiveCropSheetState extends State<PerspectiveCropSheet> {
       _quad = widget.initialQuad ?? _inset();
       if (!mounted) return;
       setState(() => _loading = false);
-      if (widget.initialQuad == null) _autoDetect(silent: true);
+      if (widget.initialQuad == null && widget.autoDetect) _autoDetect(silent: true);
     } catch (_) {
       if (mounted) Navigator.pop(context);
     }
@@ -194,7 +203,7 @@ class _PerspectiveCropSheetState extends State<PerspectiveCropSheet> {
           Padding(
             padding: const EdgeInsets.fromLTRB(16, 12, 8, 4),
             child: Row(children: <Widget>[
-              Expanded(child: Text(l10n.cropLabel, style: Theme.of(context).textTheme.titleMedium)),
+              Expanded(child: Text(widget.title ?? l10n.cropLabel, style: Theme.of(context).textTheme.titleMedium)),
               TextButton.icon(
                 key: const Key('cropAuto'),
                 onPressed: _busy || _loading ? null : () => _autoDetect(),
@@ -225,6 +234,7 @@ class _PerspectiveCropSheetState extends State<PerspectiveCropSheet> {
                     );
                   }),
           ),
+          if (widget.showShapes)
           SizedBox(
             height: 48,
             child: SingleChildScrollView(
@@ -255,7 +265,7 @@ class _PerspectiveCropSheetState extends State<PerspectiveCropSheet> {
                 child: FilledButton(
                   key: const Key('cropConfirm'),
                   onPressed: _loading || !_valid ? null : () => Navigator.pop(context, CropResult(_quad, _presetAspect)),
-                  child: Text(l10n.cropLabel),
+                  child: Text(widget.title ?? l10n.cropLabel),
                 ),
               ),
             ]),

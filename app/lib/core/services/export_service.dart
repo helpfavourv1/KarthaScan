@@ -324,6 +324,7 @@ class ExportService {
               signatureBytes: signatureBytes,
               signaturePlacements: signaturePlacements,
               compression: compression,
+              targetBytes: targetBytes,
             ),
           ];
         case ExportFormat.txt:
@@ -584,9 +585,40 @@ class ExportService {
 
   /// Re-encodes a page as a smaller JPG for PDF output: capped longest side
   /// and the tier's quality. Falls back to the original bytes if it fails.
-  Future<Uint8List> _compressForPdf(Uint8List bytes, CompressionTier tier) async {
+  Future<Uint8List> _compressForPdf(Uint8List bytes, CompressionTier tier, {int? targetBytes}) async {
     try {
+      if (targetBytes != null) return await Isolate.run(() => _compressToTargetSync(bytes, targetBytes));
       return await Isolate.run(() => _compressForPdfSync(bytes, tier));
+    } catch (_) {
+      return bytes;
+    }
+  }
+
+  /// One page squeezed to about [targetBytes]: the best JPEG quality that fits; if
+  /// even the lowest quality is too big, the picture is made smaller (down to 40%)
+  /// until it fits.
+  Uint8List _compressToTargetSync(Uint8List bytes, int targetBytes) {
+    try {
+      img.Image? decoded = img.decodeImage(bytes);
+      if (decoded == null) return bytes;
+      if (decoded.hasAlpha) {
+        final img.Image white = img.Image(width: decoded.width, height: decoded.height, numChannels: 3);
+        img.fill(white, color: img.ColorRgb8(255, 255, 255));
+        decoded = img.compositeImage(white, decoded);
+      }
+      final int longest = decoded.width > decoded.height ? decoded.width : decoded.height;
+      if (longest > 2400) {
+        decoded = decoded.width >= decoded.height ? resizeSmooth(decoded, width: 2400) : resizeSmooth(decoded, height: 2400);
+      }
+      Uint8List best = Uint8List.fromList(img.encodeJpg(decoded, quality: _findQualityForTarget(decoded, targetBytes)));
+      img.Image work = decoded;
+      for (int i = 0; i < 5 && best.length > targetBytes; i++) {
+        final int w = (work.width * 0.8).round();
+        if (w < decoded.width * 0.4 || w < 200) break;
+        work = resizeSmooth(work, width: w);
+        best = Uint8List.fromList(img.encodeJpg(work, quality: _findQualityForTarget(work, targetBytes)));
+      }
+      return best;
     } catch (_) {
       return bytes;
     }
@@ -625,6 +657,7 @@ class ExportService {
     Map<int, SignaturePlacement>? signaturePlacements,
     PdfPageFormat pageFormat = PdfPageFormat.a4,
     CompressionTier compression = CompressionTier.original,
+    int? targetBytes,
   }) async {
     final List<_PdfPageData> pages = <_PdfPageData>[];
     final Directory stage = await Directory(p.join(outDir, '.pdf_stage_${DateTime.now().microsecondsSinceEpoch}')).create(recursive: true);
@@ -651,7 +684,7 @@ class ExportService {
       // Every page goes in as a JPEG: the PDF library passes JPEG through, but
       // unpacks a PNG into raw pixels, which for many large pages runs a phone
       // out of memory. At the original tier the size is untouched and quality is 95.
-      final Uint8List embedBytes = await _compressForPdf(bytes, compression);
+      final Uint8List embedBytes = await _compressForPdf(bytes, compression, targetBytes: targetBytes == null ? null : (targetBytes / document.pagePaths.length).floor());
       final String stagedPath = p.join(stage.path, 'p$i.jpg');
       await File(stagedPath).writeAsBytes(embedBytes);
       final blocks = document.pageOcrBlocks[i] ?? const <OcrBlock>[];
@@ -1019,17 +1052,25 @@ class ExportService {
     if ((format != ExportFormat.pdf && format != ExportFormat.jpg) || document.pagePaths.isEmpty) {
       return <CompressionTier, int>{};
     }
-    final Uint8List page = await renderPageForOutput(document, 0, filter: filter);
     final int pages = document.pagePaths.length;
+    // Up to three pages (first, middle, last) stand for the whole document, so a
+    // mix of photo pages and near-empty pages is not judged by the first alone.
+    final Set<int> picks = <int>{0, pages ~/ 2, pages - 1};
+    final List<Uint8List> samples = <Uint8List>[
+      for (final int i in picks) await renderPageForOutput(document, i, filter: filter),
+    ];
     final Map<CompressionTier, int> out = <CompressionTier, int>{};
     for (final CompressionTier tier in CompressionTier.values) {
-      final int one = format == ExportFormat.pdf
-          ? (await _compressForPdf(page, tier)).length
-          : await Isolate.run(() {
-              final img.Image? d = img.decodeImage(page);
-              return d == null ? 0 : img.encodeJpg(d, quality: _qualityFor(tier)).length;
-            });
-      out[tier] = one * pages;
+      int sum = 0;
+      for (final Uint8List page in samples) {
+        sum += format == ExportFormat.pdf
+            ? (await _compressForPdf(page, tier)).length
+            : await Isolate.run(() {
+                final img.Image? d = img.decodeImage(page);
+                return d == null ? 0 : img.encodeJpg(d, quality: _qualityFor(tier)).length;
+              });
+      }
+      out[tier] = (sum / samples.length * pages).round();
     }
     return out;
   }

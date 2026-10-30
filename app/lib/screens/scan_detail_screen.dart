@@ -413,7 +413,7 @@ class _ScanDetailScreenState extends State<ScanDetailScreen>
                   );
                   if (c == null || !context.mounted) return;
                   _closeEditor();
-                  context.push('/export', extra: <String, dynamic>{'ids': <String>[document.id], 'format': c.format.name, 'compression': c.tier.name});
+                  context.push('/export', extra: <String, dynamic>{'ids': <String>[document.id], 'format': c.format.name, 'compression': c.tier.name, if (c.targetMB != null) 'targetMB': c.targetMB, if (c.blackWhite) 'filter': 'blackAndWhite'});
                 },
                 onRotate: () { _closeEditor(); rotatePage(); },
                 onResize: () { _closeEditor(); resizePage(); },

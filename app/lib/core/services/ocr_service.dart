@@ -1,4 +1,9 @@
 import 'dart:io';
+import 'dart:isolate';
+
+import 'package:image/image.dart' as img;
+import 'package:path/path.dart' as p;
+import 'package:path_provider/path_provider.dart' show getTemporaryDirectory;
 
 import 'package:flutter/services.dart';
 import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
@@ -6,6 +11,8 @@ import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart
 import 'debug_log_service.dart';
 import 'tess_data.dart';
 import '../models/ocr_block.dart';
+import 'filter_service.dart' show FilterService;
+import 'export_service.dart' show FilterType;
 import '../utils/constants.dart';
 import '../utils/app_locale.dart';
 
@@ -199,8 +206,45 @@ class OcrService {
   /// Recognizes text with the Latin script first. If that finds almost
   /// nothing, tries Chinese, Japanese and Korean (skipping scripts already
   /// known to be unavailable) and keeps the clearly better result.
+  /// A copy of the photo made easier to read: shadows and tinted light are
+  /// evened out and the levels are stretched. Same size and shape, so text
+  /// positions found on it match the original. Null if it cannot be made.
+  static Future<String?> cleanedCopy(String imagePath) async {
+    try {
+      final Uint8List bytes = await File(imagePath).readAsBytes();
+      final Uint8List? out = await Isolate.run(() {
+        final img.Image? im = img.decodeImage(bytes);
+        if (im == null) return null;
+        return Uint8List.fromList(img.encodeJpg(FilterService.applyToImage(im, FilterType.magicColor), quality: 92));
+      });
+      if (out == null) return null;
+      final Directory tmp = await getTemporaryDirectory();
+      final String path = p.join(tmp.path, 'ocr_clean_${DateTime.now().microsecondsSinceEpoch}.jpg');
+      await File(path).writeAsBytes(out);
+      return path;
+    } catch (_) {
+      return null;
+    }
+  }
+
+  /// Pages that read as nearly empty get a second try on a cleaned copy.
+  static bool worthCleaning(String text) => visibleLength(text) < 40;
+
   Future<OcrResult> recognizeTextAuto({required String imagePath}) async {
     OcrResult best = await recognizeText(imagePath: imagePath, script: OcrScript.latin);
+    if (worthCleaning(best.fullText)) {
+      final String? clean = await cleanedCopy(imagePath);
+      if (clean != null) {
+        try {
+          final OcrResult again = await recognizeText(imagePath: clean, script: OcrScript.latin);
+          if (isClearlyBetter(best.fullText, again.fullText)) best = again;
+        } catch (_) {
+          // keep the first result
+        } finally {
+          try { await File(clean).delete(); } catch (_) {}
+        }
+      }
+    }
     if (!needsScriptFallback(best.fullText)) {
       if (looksGarbled(best.fullText)) return _betterFromInstalledPacks(imagePath, best);
       return best;

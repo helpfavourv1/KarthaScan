@@ -652,5 +652,7 @@
   "eraserZoomTooltip": "זום והזזה (צביטה)",
   "pagesSelectTooltip": "בחירת עמודים",
   "pagesDeleteCount": "מחיקת {count}",
-  "pagesDeleteConfirm": "למחוק {count} עמודים? הם יוסרו בעת השמירה."
+  "pagesDeleteConfirm": "למחוק {count} עמודים? הם יוסרו בעת השמירה.",
+  "compressTargetLabel": "גודל מרבי",
+  "compressNoLimit": "ללא הגבלה"
 }

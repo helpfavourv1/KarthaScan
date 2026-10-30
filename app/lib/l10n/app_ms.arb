@@ -745,5 +745,7 @@
   "eraserZoomTooltip": "Zum dan alih (cubit)",
   "pagesSelectTooltip": "Pilih halaman",
   "pagesDeleteCount": "Padam {count}",
-  "pagesDeleteConfirm": "Padam {count} halaman? Ia dibuang apabila anda simpan."
+  "pagesDeleteConfirm": "Padam {count} halaman? Ia dibuang apabila anda simpan.",
+  "compressTargetLabel": "Saiz maks.",
+  "compressNoLimit": "Tiada had"
 }

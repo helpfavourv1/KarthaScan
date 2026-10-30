@@ -41,11 +41,13 @@ class _LeftClip extends CustomClipper<Rect> {
 }
 
 class ExportScreen extends StatefulWidget {
-  const ExportScreen({super.key, required this.documentIds, this.initialFormat, this.initialCompression});
+  const ExportScreen({super.key, required this.documentIds, this.initialFormat, this.initialCompression, this.initialTargetMB, this.initialFilter});
 
   final List<String> documentIds;
   final ExportFormat? initialFormat;
   final CompressionTier? initialCompression;
+  final int? initialTargetMB;
+  final FilterType? initialFilter;
 
   @override
   State<ExportScreen> createState() => _ExportScreenState();
@@ -112,6 +114,8 @@ class _ExportScreenState extends State<ExportScreen> {
       _selectedFormat = widget.initialFormat!;
     }
     if (widget.initialCompression != null) _selectedCompression = widget.initialCompression!;
+    if (widget.initialTargetMB != null) _targetMB = widget.initialTargetMB;
+    if (widget.initialFilter != null) _selectedFilter = widget.initialFilter!;
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (_isSingleDoc && _documents.isNotEmpty) {
         _inkController.seed(_documents.first);

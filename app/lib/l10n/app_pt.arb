@@ -652,5 +652,7 @@
   "eraserZoomTooltip": "Zoom e mover (pinça)",
   "pagesSelectTooltip": "Selecionar páginas",
   "pagesDeleteCount": "Excluir {count}",
-  "pagesDeleteConfirm": "Excluir {count} páginas? Elas são removidas ao salvar."
+  "pagesDeleteConfirm": "Excluir {count} páginas? Elas são removidas ao salvar.",
+  "compressTargetLabel": "Tamanho máx.",
+  "compressNoLimit": "Sem limite"
 }

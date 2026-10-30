@@ -745,5 +745,7 @@
   "eraserZoomTooltip": "Масштаб и перемещение (щипок)",
   "pagesSelectTooltip": "Выбрать страницы",
   "pagesDeleteCount": "Удалить {count}",
-  "pagesDeleteConfirm": "Удалить страниц: {count}? Они будут удалены при сохранении."
+  "pagesDeleteConfirm": "Удалить страниц: {count}? Они будут удалены при сохранении.",
+  "compressTargetLabel": "Макс. размер",
+  "compressNoLimit": "Без лимита"
 }

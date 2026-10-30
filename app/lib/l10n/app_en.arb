@@ -965,5 +965,13 @@
         "type": "int"
       }
     }
+  },
+  "compressTargetLabel": "Max size",
+  "@compressTargetLabel": {
+    "description": "Compress: choose a maximum file size"
+  },
+  "compressNoLimit": "No limit",
+  "@compressNoLimit": {
+    "description": "Compress: no maximum size"
   }
 }

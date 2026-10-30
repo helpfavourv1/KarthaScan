@@ -652,5 +652,7 @@
   "eraserZoomTooltip": "缩放和移动(双指)",
   "pagesSelectTooltip": "选择页面",
   "pagesDeleteCount": "删除 {count}",
-  "pagesDeleteConfirm": "删除 {count} 页？保存后将被移除。"
+  "pagesDeleteConfirm": "删除 {count} 页？保存后将被移除。",
+  "compressTargetLabel": "最大大小",
+  "compressNoLimit": "不限制"
 }

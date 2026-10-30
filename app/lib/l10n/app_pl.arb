@@ -745,5 +745,7 @@
   "eraserZoomTooltip": "Powiększ i przesuń (uszczypnięcie)",
   "pagesSelectTooltip": "Zaznacz strony",
   "pagesDeleteCount": "Usuń {count}",
-  "pagesDeleteConfirm": "Usunąć {count} stron? Zostaną usunięte po zapisaniu."
+  "pagesDeleteConfirm": "Usunąć {count} stron? Zostaną usunięte po zapisaniu.",
+  "compressTargetLabel": "Maks. rozmiar",
+  "compressNoLimit": "Bez limitu"
 }

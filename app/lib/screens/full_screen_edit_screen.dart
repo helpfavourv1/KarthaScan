@@ -496,7 +496,7 @@ class _FullScreenEditScreenState extends State<FullScreenEditScreen> with Docume
                         );
                         if (c == null || !context.mounted) return;
                         closeEditor();
-                        context.push('/export', extra: <String, dynamic>{'ids': <String>[doc.id], 'format': c.format.name, 'compression': c.tier.name});
+                        context.push('/export', extra: <String, dynamic>{'ids': <String>[doc.id], 'format': c.format.name, 'compression': c.tier.name, if (c.targetMB != null) 'targetMB': c.targetMB, if (c.blackWhite) 'filter': 'blackAndWhite'});
                       },
                       onRotate: rotatePage,
                       onResize: resizePage,

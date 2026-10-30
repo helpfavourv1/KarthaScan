@@ -745,5 +745,7 @@
   "eraserZoomTooltip": "Zoomen en verschuiven (knijpen)",
   "pagesSelectTooltip": "Pagina's selecteren",
   "pagesDeleteCount": "{count} verwijderen",
-  "pagesDeleteConfirm": "{count} pagina's verwijderen? Ze worden verwijderd bij opslaan."
+  "pagesDeleteConfirm": "{count} pagina's verwijderen? Ze worden verwijderd bij opslaan.",
+  "compressTargetLabel": "Max. grootte",
+  "compressNoLimit": "Geen limiet"
 }

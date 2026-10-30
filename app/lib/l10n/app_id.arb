@@ -652,5 +652,7 @@
   "eraserZoomTooltip": "Zoom dan geser (cubit)",
   "pagesSelectTooltip": "Pilih halaman",
   "pagesDeleteCount": "Hapus {count}",
-  "pagesDeleteConfirm": "Hapus {count} halaman? Dihapus saat Anda menyimpan."
+  "pagesDeleteConfirm": "Hapus {count} halaman? Dihapus saat Anda menyimpan.",
+  "compressTargetLabel": "Ukuran maks.",
+  "compressNoLimit": "Tanpa batas"
 }

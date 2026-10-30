@@ -745,5 +745,7 @@
   "eraserZoomTooltip": "Thu phóng và di chuyển (chụm)",
   "pagesSelectTooltip": "Chọn trang",
   "pagesDeleteCount": "Xóa {count}",
-  "pagesDeleteConfirm": "Xóa {count} trang? Chúng bị xóa khi bạn lưu."
+  "pagesDeleteConfirm": "Xóa {count} trang? Chúng bị xóa khi bạn lưu.",
+  "compressTargetLabel": "Kích thước tối đa",
+  "compressNoLimit": "Không giới hạn"
 }

@@ -7,9 +7,15 @@ import '../l10n/app_localizations.dart';
 
 /// What the person picked in the compress sheet.
 class CompressChoice {
-  const CompressChoice(this.format, this.tier);
+  const CompressChoice(this.format, this.tier, {this.targetMB, this.blackWhite = false});
   final ExportFormat format;
   final CompressionTier tier;
+
+  /// Largest file wanted, in MB (whole document for PDF, each picture for JPG); null = none.
+  final int? targetMB;
+
+  /// Turn pages pure black and white first: much smaller for text documents.
+  final bool blackWhite;
 }
 
 /// Opens when Compress is tapped in the tray: PDF or JPG, and three levels, each
@@ -28,6 +34,8 @@ class _CompressSheetState extends State<CompressSheet> {
   CompressionTier _tier = CompressionTier.medium;
   Map<CompressionTier, int>? _sizes;
   int _run = 0;
+  int? _targetMB;
+  bool _bw = false;
 
   @override
   void initState() {
@@ -40,7 +48,7 @@ class _CompressSheetState extends State<CompressSheet> {
     setState(() => _sizes = null);
     Map<CompressionTier, int> sizes;
     try {
-      sizes = await ExportService().estimateSizes(widget.document, _format);
+      sizes = await ExportService().estimateSizes(widget.document, _format, filter: _bw ? FilterType.blackAndWhite : FilterType.none);
     } catch (_) {
       sizes = <CompressionTier, int>{};
     }
@@ -133,10 +141,32 @@ class _CompressSheetState extends State<CompressSheet> {
               _card(l10n, CompressionTier.medium, accent),
               _card(l10n, CompressionTier.original, accent),
             ]),
-            const SizedBox(height: 14),
+            const SizedBox(height: 10),
+            Wrap(spacing: 8, runSpacing: 4, crossAxisAlignment: WrapCrossAlignment.center, children: [
+              Text(l10n.compressTargetLabel, style: const TextStyle(fontSize: 12)),
+              for (final int? mb in <int?>[null, 1, 2, 5])
+                ChoiceChip(
+                  key: ValueKey<String>('compressTarget:${mb ?? 0}'),
+                  label: Text(mb == null ? l10n.compressNoLimit : l10n.targetMbLabel(mb)),
+                  selected: _targetMB == mb,
+                  onSelected: (_) => setState(() => _targetMB = mb),
+                ),
+            ]),
+            SwitchListTile(
+              key: const ValueKey<String>('compressBw'),
+              dense: true,
+              contentPadding: EdgeInsets.zero,
+              title: Text(l10n.filterBlackAndWhite),
+              value: _bw,
+              onChanged: (bool v) {
+                setState(() => _bw = v);
+                _measure();
+              },
+            ),
+            const SizedBox(height: 6),
             FilledButton(
               key: const ValueKey<String>('compressGo'),
-              onPressed: () => Navigator.pop(context, CompressChoice(_format, _tier)),
+              onPressed: () => Navigator.pop(context, CompressChoice(_format, _tier, targetMB: _targetMB, blackWhite: _bw)),
               child: Text(l10n.compressLabel),
             ),
           ],

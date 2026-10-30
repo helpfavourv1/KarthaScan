@@ -652,5 +652,7 @@
   "eraserZoomTooltip": "Zoomer et déplacer (pincer)",
   "pagesSelectTooltip": "Sélectionner des pages",
   "pagesDeleteCount": "Supprimer {count}",
-  "pagesDeleteConfirm": "Supprimer {count} pages ? Elles sont retirées à l'enregistrement."
+  "pagesDeleteConfirm": "Supprimer {count} pages ? Elles sont retirées à l'enregistrement.",
+  "compressTargetLabel": "Taille max.",
+  "compressNoLimit": "Aucune limite"
 }

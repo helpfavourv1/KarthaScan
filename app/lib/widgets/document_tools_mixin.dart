@@ -7,6 +7,7 @@
 import 'dart:io' show File, Directory;
 import 'dart:typed_data';
 
+import 'package:flutter/foundation.dart' show compute;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show Clipboard, ClipboardData;
 import 'package:go_router/go_router.dart';
@@ -35,7 +36,7 @@ import 'filter_preview_sheet.dart';
 import 'ink_board.dart';
 import 'pages_manager_sheet.dart';
 import 'region_select_sheet.dart';
-import 'document_canvas.dart' show ViewCentre;
+import 'document_canvas.dart' show ViewCentre, PagePreviewJob, renderPagePreview;
 import 'perspective_crop_sheet.dart';
 import '../core/utils/perspective.dart';
 import 'rotate_resize_sheet.dart';
@@ -348,25 +349,33 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
     final doc = document;
     if (doc == null || doc.pagePaths.isEmpty) return;
 
-    final rect = await showModalBottomSheet<Rect?>(
+    // Read from the page as it looks now (cropped, tilted, resized), without
+    // filter or marks, so the box is drawn on what is seen.
+    final PageTransform? pt = doc.pageTransforms[currentPageIndex];
+    String sourcePath = doc.pagePaths[currentPageIndex];
+    if (pt != null && !pt.isEmpty) {
+      final Uint8List raw = await File(sourcePath).readAsBytes();
+      final Uint8List? edited = await compute(renderPagePreview, PagePreviewJob(raw, pt.copyWith(filter: FilterType.none, brightness: 0, contrast: 0, rotationTurns: 0)));
+      if (edited != null) {
+        final Directory td = await getTemporaryDirectory();
+        sourcePath = p.join(td.path, 'region_src_${DateTime.now().microsecondsSinceEpoch}.jpg');
+        await File(sourcePath).writeAsBytes(edited);
+      }
+    }
+    if (!mounted) return;
+    final CropResult? region = await showModalBottomSheet<CropResult?>(
       context: context,
       isScrollControlled: true,
-      builder: (context) => RegionSelectSheet(imagePath: doc.pagePaths[currentPageIndex]),
+      builder: (context) => PerspectiveCropSheet(imagePath: sourcePath, title: l10n.commonExtract, autoDetect: false, showShapes: false),
     );
-    if (rect == null || !mounted) return;
+    if (region == null || !mounted) return;
 
     try {
-      final originalBytes = await File(doc.pagePaths[currentPageIndex]).readAsBytes();
+      final originalBytes = await File(sourcePath).readAsBytes();
       final originalImage = img.decodeImage(originalBytes);
       if (originalImage == null) return;
-
-      final x = rect.left.toInt().clamp(0, originalImage.width);
-      final y = rect.top.toInt().clamp(0, originalImage.height);
-      final w = rect.width.toInt().clamp(0, originalImage.width - x);
-      final h = rect.height.toInt().clamp(0, originalImage.height - y);
-      if (w <= 0 || h <= 0) return;
-
-      final croppedImage = img.copyCrop(originalImage, x: x, y: y, width: w, height: h);
+      final img.Image? croppedImage = warpQuad(originalImage, region.quad);
+      if (croppedImage == null || croppedImage.width <= 0 || croppedImage.height <= 0) return;
       final croppedBytes = Uint8List.fromList(img.encodeJpg(croppedImage));
 
       final tempDir = await getTemporaryDirectory();

@@ -745,5 +745,7 @@
   "eraserZoomTooltip": "Zoom og flyt (knib)",
   "pagesSelectTooltip": "Vælg sider",
   "pagesDeleteCount": "Slet {count}",
-  "pagesDeleteConfirm": "Slet {count} sider? De fjernes, når du gemmer."
+  "pagesDeleteConfirm": "Slet {count} sider? De fjernes, når du gemmer.",
+  "compressTargetLabel": "Maks. størrelse",
+  "compressNoLimit": "Ingen grænse"
 }

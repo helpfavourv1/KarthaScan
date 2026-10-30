@@ -745,5 +745,7 @@
   "eraserZoomTooltip": "জুম ও সরান (দুই আঙুলে চিমটি)",
   "pagesSelectTooltip": "পৃষ্ঠা নির্বাচন করুন",
   "pagesDeleteCount": "মুছুন {count}",
-  "pagesDeleteConfirm": "{count}টি পৃষ্ঠা মুছবেন? সংরক্ষণ করলে সরানো হবে।"
+  "pagesDeleteConfirm": "{count}টি পৃষ্ঠা মুছবেন? সংরক্ষণ করলে সরানো হবে।",
+  "compressTargetLabel": "সর্বোচ্চ আকার",
+  "compressNoLimit": "কোনো সীমা নেই"
 }

@@ -652,5 +652,7 @@
   "eraserZoomTooltip": "Zoomen und verschieben (Pinch)",
   "pagesSelectTooltip": "Seiten auswählen",
   "pagesDeleteCount": "{count} löschen",
-  "pagesDeleteConfirm": "{count} Seiten löschen? Sie werden beim Speichern entfernt."
+  "pagesDeleteConfirm": "{count} Seiten löschen? Sie werden beim Speichern entfernt.",
+  "compressTargetLabel": "Höchstgröße",
+  "compressNoLimit": "Kein Limit"
 }

@@ -745,5 +745,7 @@
   "eraserZoomTooltip": "Yakınlaştır ve kaydır (çimdikle)",
   "pagesSelectTooltip": "Sayfaları seç",
   "pagesDeleteCount": "{count} sil",
-  "pagesDeleteConfirm": "{count} sayfa silinsin mi? Kaydettiğinizde kaldırılır."
+  "pagesDeleteConfirm": "{count} sayfa silinsin mi? Kaydettiğinizde kaldırılır.",
+  "compressTargetLabel": "En büyük boyut",
+  "compressNoLimit": "Sınır yok"
 }

@@ -652,5 +652,7 @@
   "eraserZoomTooltip": "تكبير وتحريك (قرص بإصبعين)",
   "pagesSelectTooltip": "تحديد صفحات",
   "pagesDeleteCount": "حذف {count}",
-  "pagesDeleteConfirm": "حذف {count} صفحات؟ تتم الإزالة عند الحفظ."
+  "pagesDeleteConfirm": "حذف {count} صفحات؟ تتم الإزالة عند الحفظ.",
+  "compressTargetLabel": "الحجم الأقصى",
+  "compressNoLimit": "بلا حد"
 }
