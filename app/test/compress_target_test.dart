@@ -52,7 +52,9 @@ void main() {
     final img.Image page = img.Image(width: 300, height: 200, numChannels: 3);
     for (final p in page) {
       final double shade = 1 - 0.5 * p.x / 299;
-      p..r = (235 * shade).round()..g = (230 * shade).round()..b = (220 * shade).round();
+      final bool ink = p.y % 20 < 3 && p.x > 20 && p.x < 280;
+      final double k = ink ? 0.15 : 1.0;
+      p..r = (235 * shade * k).round()..g = (230 * shade * k).round()..b = (220 * shade * k).round();
     }
     final File f = File('${tmp.path}/p.png')..writeAsBytesSync(img.encodePng(page));
     final String? clean = await OcrService.cleanedCopy(f.path);
@@ -60,7 +62,7 @@ void main() {
     final img.Image c = img.decodeImage(File(clean!).readAsBytesSync())!;
     expect(c.width, 300);
     expect(c.height, 200);
-    expect((c.getPixel(5, 100).r - c.getPixel(294, 100).r).abs(), lessThan(25));
+    expect((c.getPixel(10, 110).r - c.getPixel(290, 110).r).abs(), lessThan(25));
     expect(OcrService.worthCleaning('hi'), isTrue);
     expect(OcrService.worthCleaning('x' * 100), isFalse);
   });
