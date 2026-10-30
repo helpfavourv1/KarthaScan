@@ -359,6 +359,7 @@ class _FullScreenEditScreenState extends State<FullScreenEditScreen> with Docume
               // Canvas
               Expanded(
                 child: DocumentCanvas(
+                  viewCentre: viewCentre,
                   pagePaths: doc.pagePaths,
                   inkController: _inkController,
                   annotateLayers: doc.annotateLayers,

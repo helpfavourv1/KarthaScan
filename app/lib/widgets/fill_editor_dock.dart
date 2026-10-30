@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../core/models/fill_snippet.dart';
 import '../core/models/scan_document.dart';
 import '../l10n/app_localizations.dart';
+import 'color_picker_dialog.dart';
 
 /// The bar that sits above the keyboard while typing Fill text.
 ///
@@ -34,7 +35,7 @@ class FillEditorDock extends StatefulWidget {
   final Color textPrimary;
 
   static const List<int> swatches = <int>[0xFF111111, 0xFF1A44C2, 0xFFC62828, 0xFF2E7D32, 0xFF6A1B9A];
-  static const List<String> fonts = <String>['sans-serif', 'serif', 'monospace'];
+  static const List<String> fonts = <String>['sans-serif', 'serif', 'monospace', 'DancingScript', 'Caveat'];
 
   /// Today's date as DD-MM-YYYY, the same default the Date stamp uses.
   static String todayText([DateTime? now]) {
@@ -213,6 +214,10 @@ class _FillEditorDockState extends State<FillEditorDock> {
                       ),
                     ),
                   ),
+                _iconBtn(Icons.palette_outlined, () async {
+                  final Color? c = await showDialog<Color>(context: context, builder: (ctx) => ColorPickerDialog(initial: Color(d.color)));
+                  if (c != null) _emit(d.copyWith(color: c.toARGB32()));
+                }, tooltip: l10n.commonCustom),
               ],
             ),
           ],

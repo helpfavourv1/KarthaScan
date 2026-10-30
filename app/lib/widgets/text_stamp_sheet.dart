@@ -1,6 +1,7 @@
 import 'dart:typed_data';
 import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart' show DateFormat;
 import 'color_picker_dialog.dart';
 import '../core/models/scan_document.dart';
 import '../core/models/fill_snippet.dart';
@@ -124,7 +125,15 @@ class _TextStampSheetState extends State<TextStampSheet> {
       final d = _customDate;
       final dd = d.day.toString().padLeft(2, '0');
       final mm = d.month.toString().padLeft(2, '0');
-      text = _dateFormat == 'DD-MM-YYYY' ? '$dd-$mm-${d.year}' : _dateFormat == 'MM-DD-YYYY' ? '$mm-$dd-${d.year}' : _dateFormat == 'YYYY-MM-DD' ? '${d.year}-$mm-$dd' : '${d.year}/$mm/$dd';
+      final String loc = mounted ? Localizations.localeOf(context).toLanguageTag() : 'en';
+      String written(String pattern) {
+        try {
+          return DateFormat(pattern, loc).format(d);
+        } catch (_) {
+          return DateFormat(pattern).format(d);
+        }
+      }
+      text = _dateFormat == 'LONG' ? written('yMMMMd') : _dateFormat == 'MEDIUM' ? written('yMMMd') : _dateFormat == 'DD-MM-YYYY' ? '$dd-$mm-${d.year}' : _dateFormat == 'MM-DD-YYYY' ? '$mm-$dd-${d.year}' : _dateFormat == 'YYYY-MM-DD' ? '${d.year}-$mm-$dd' : '${d.year}/$mm/$dd';
       bg = const Color(0x00000000);
     } else if (widget.kind == 'note') {
       text = _controller.text.isEmpty ? 'Note' : _controller.text;
@@ -239,7 +248,7 @@ class _TextStampSheetState extends State<TextStampSheet> {
                     ),
                   ),
                 ),
-                Wrap(spacing: 8, children: ['DD-MM-YYYY', 'MM-DD-YYYY', 'YYYY-MM-DD', 'YYYY/MM/DD'].map((f) => ChoiceChip(label: Text(f, style: const TextStyle(fontSize: 10)), selected: _dateFormat == f, onSelected: (_) => setState(() => _dateFormat = f))).toList()),
+                Wrap(spacing: 8, children: ['DD-MM-YYYY', 'MM-DD-YYYY', 'YYYY-MM-DD', 'YYYY/MM/DD', 'LONG', 'MEDIUM'].map((f) => ChoiceChip(key: Key('dateFmt:$f'), label: Text(f == 'LONG' ? DateFormat.yMMMMd(Localizations.localeOf(context).toLanguageTag()).format(_customDate) : f == 'MEDIUM' ? DateFormat.yMMMd(Localizations.localeOf(context).toLanguageTag()).format(_customDate) : f, style: const TextStyle(fontSize: 10)), selected: _dateFormat == f, onSelected: (_) => setState(() => _dateFormat = f))).toList()),
               ],
               const SizedBox(height: 12),
               Row(children: [
@@ -260,7 +269,7 @@ class _TextStampSheetState extends State<TextStampSheet> {
                   TextButton(onPressed: () async { final c = await _pick(_noteBg); if (c != null) setState(() => _noteBg = c); }, child: Text(AppLocalizations.of(context).commonCustom)),
                 ]),
               const SizedBox(height: 8),
-              Wrap(spacing: 8, children: [AppLocalizations.of(context).fontSansSerif, AppLocalizations.of(context).fontSerif, AppLocalizations.of(context).fontMonospace].map((f) => ChoiceChip(label: Text(f), selected: _fontFamily == f, onSelected: (_) => setState(() => _fontFamily = f))).toList()),
+              Wrap(spacing: 8, children: [('sans-serif', AppLocalizations.of(context).fontSansSerif), ('serif', AppLocalizations.of(context).fontSerif), ('monospace', AppLocalizations.of(context).fontMonospace), ('DancingScript', AppLocalizations.of(context).signatureFontFlowing), ('Caveat', AppLocalizations.of(context).signatureFontHandwritten)].map((f) => ChoiceChip(key: Key('stampFont:${f.$1}'), label: Text(f.$2, style: TextStyle(fontFamily: f.$1)), selected: _fontFamily == f.$1, onSelected: (_) => setState(() => _fontFamily = f.$1))).toList()),
               const SizedBox(height: 8),
               Wrap(spacing: 8, children: [FontWeight.w400, FontWeight.w600, FontWeight.w700, FontWeight.w900].map((w) => ChoiceChip(label: Text(w.value.toString()), selected: _fontWeight == w, onSelected: (_) => setState(() => _fontWeight = w))).toList()),
               const SizedBox(height: 8),

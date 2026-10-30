@@ -13,8 +13,10 @@ import 'layer_control_panel.dart';
 import 'document_canvas.dart';
 
 class ScanPreviewCard extends StatefulWidget {
+  final ValueNotifier<ViewCentre?>? viewCentre;
   const ScanPreviewCard({
     super.key,
+    this.viewCentre,
     required this.document,
     required this.pagePaths,
     this.inkController,
@@ -236,6 +238,7 @@ class _ScanPreviewCardState extends State<ScanPreviewCard> {
           ),
           Expanded(
             child: DocumentCanvas(
+                viewCentre: widget.viewCentre,
                 pagePaths: widget.pagePaths,
                 inkController: widget.inkController,
                 annotateLayers: widget.annotateLayers,

@@ -16,6 +16,24 @@ import 'ink_board.dart';
 
 /// A pure, reusable canvas for displaying document pages with non-destructive overlays.
 /// Handles aspect ratio, layout math, and pan/zoom gestures.
+/// Where the middle of the visible part of a page is, as fractions of the page.
+class ViewCentre {
+  const ViewCentre(this.page, this.x, this.y);
+  final int page;
+  final double x, y;
+}
+
+/// The middle of what the viewer shows, as fractions (0..1) of the page, when the
+/// page picture is [pageBox] big and centred in a [viewport], and [matrix] is the
+/// zoom and pan. Clamped inside the page so a new item never lands off it.
+Offset visibleCentreFraction(Matrix4 matrix, Size viewport, Size pageBox) {
+  final Matrix4 inv = Matrix4.copy(matrix);
+  if (inv.invert() == 0) return const Offset(0.5, 0.5);
+  final Offset p = MatrixUtils.transformPoint(inv, Offset(viewport.width / 2, viewport.height / 2));
+  final double ox = (viewport.width - pageBox.width) / 2, oy = (viewport.height - pageBox.height) / 2;
+  return Offset(((p.dx - ox) / pageBox.width).clamp(0.1, 0.9).toDouble(), ((p.dy - oy) / pageBox.height).clamp(0.1, 0.9).toDouble());
+}
+
 class DocumentCanvas extends StatefulWidget {
   const DocumentCanvas({
     super.key,
@@ -46,7 +64,11 @@ class DocumentCanvas extends StatefulWidget {
     this.fillGhostText,
     this.fillGhostPctX,
     this.fillGhostPctY,
+    this.viewCentre,
   });
+
+  /// Updated with the middle of the visible part of the page whenever it is zoomed or moved.
+  final ValueNotifier<ViewCentre?>? viewCentre;
 
   final List<String> pagePaths;
   final InkController? inkController;
@@ -141,6 +163,7 @@ class _DocumentCanvasState extends State<DocumentCanvas> {
           return _PageWithInk(
             key: ValueKey<String>('${widget.pagePaths[index]}#$index'),
             pagePath: widget.pagePaths[index],
+            viewCentre: widget.viewCentre,
             controller: widget.inkController,
             pageIndex: index,
             textSecondary: textSecondary,
@@ -177,6 +200,7 @@ class _DocumentCanvasState extends State<DocumentCanvas> {
 class _PageWithInk extends StatefulWidget {
   const _PageWithInk({
     super.key,
+    this.viewCentre,
     required this.pagePath,
     required this.controller,
     required this.pageIndex,
@@ -237,12 +261,24 @@ class _PageWithInk extends StatefulWidget {
 }
 
 class _PageWithInkState extends State<_PageWithInk> {
+  Size _viewport = Size.zero, _pageBox = Size.zero;
+  bool _quarterTurned = false;
+
+  void _publishCentre() {
+    final ValueNotifier<ViewCentre?>? n = widget.viewCentre;
+    if (n == null || _viewport.isEmpty || _pageBox.isEmpty) return;
+    // A page turned a quarter has its own axes; use the page middle there.
+    final Offset c = _quarterTurned ? const Offset(0.5, 0.5) : visibleCentreFraction(_transformController.value, _viewport, _pageBox);
+    n.value = ViewCentre(widget.pageIndex, c.dx, c.dy);
+  }
+
   double _pageAspect = 0.75;
   final TransformationController _transformController = TransformationController();
   Uint8List? _filteredBytes;
 
   @override
   void dispose() {
+    _transformController.removeListener(_publishCentre);
     _transformController.dispose();
     super.dispose();
   }
@@ -250,6 +286,7 @@ class _PageWithInkState extends State<_PageWithInk> {
   @override
   void initState() {
     super.initState();
+    _transformController.addListener(_publishCentre);
     _loadPageAspect();
   }
 
@@ -326,6 +363,10 @@ class _PageWithInkState extends State<_PageWithInk> {
 
         final originalW = isRotated ? visualH : visualW;
         final originalH = isRotated ? visualW : visualH;
+        _viewport = Size(constraints.maxWidth, constraints.maxHeight);
+        _pageBox = Size(visualW, visualH);
+        _quarterTurned = isRotated;
+        WidgetsBinding.instance.addPostFrameCallback((_) { if (mounted) _publishCentre(); });
 
         Widget imageWidget = Center(
           child: SizedBox(

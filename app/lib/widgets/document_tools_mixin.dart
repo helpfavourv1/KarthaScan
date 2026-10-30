@@ -35,6 +35,7 @@ import 'filter_preview_sheet.dart';
 import 'ink_board.dart';
 import 'pages_manager_sheet.dart';
 import 'region_select_sheet.dart';
+import 'document_canvas.dart' show ViewCentre;
 import 'perspective_crop_sheet.dart';
 import '../core/utils/perspective.dart';
 import 'rotate_resize_sheet.dart';
@@ -63,6 +64,9 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
   OcrService get ocrService;
   ShareService get shareService;
   ScanDocument? get document;
+
+  /// Middle of the visible part of the page being looked at; new items land here.
+  final ValueNotifier<ViewCentre?> viewCentre = ValueNotifier<ViewCentre?>(null);
   int get currentPageIndex;
   set editMode(TrayEditMode mode);
   void closeEditor();
@@ -237,7 +241,10 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
       id: 'stamp_${DateTime.now().microsecondsSinceEpoch}',
       pageIndex: currentPageIndex,
       kind: kind,
-      placement: const SignaturePlacement(pctX: 0.5, pctY: 0.5),
+      placement: () {
+        final ViewCentre? vc = viewCentre.value;
+        return (vc != null && vc.page == currentPageIndex) ? SignaturePlacement(pctX: vc.x, pctY: vc.y) : const SignaturePlacement(pctX: 0.5, pctY: 0.5);
+      }(),
       opacity: 1.0,
       text: config.text,
       fontSize: config.fontSize,
