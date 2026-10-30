@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:image/image.dart' as img;
 import '../core/models/scan_document.dart';
 import '../core/models/page_transform.dart';
-import '../core/models/signature_placement.dart';
 import '../core/services/export_service.dart' show FilterType;
 import '../core/services/filter_service.dart';
 import '../core/utils/constants.dart';
@@ -198,6 +197,7 @@ class _DocumentCanvasState extends State<DocumentCanvas> {
 
 // === _PageWithInk: The core page renderer with overlays ===
 class _PageWithInk extends StatefulWidget {
+  final ValueNotifier<ViewCentre?>? viewCentre;
   const _PageWithInk({
     super.key,
     this.viewCentre,

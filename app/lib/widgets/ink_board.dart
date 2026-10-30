@@ -390,7 +390,7 @@ class PlacedItemGesture extends StatefulWidget {
 }
 
 class _PlacedItemGestureState extends State<PlacedItemGesture> {
-  double _x = 0, _y = 0, _scale = 1, _rot = 0;
+  double _x = 0, _y = 0;
   late SignaturePlacement _start;
 
   @override
@@ -404,8 +404,6 @@ class _PlacedItemGestureState extends State<PlacedItemGesture> {
         _start = widget.placement;
         _x = _start.pctX;
         _y = _start.pctY;
-        _scale = _start.scale;
-        _rot = _start.rotationDegrees;
       },
       onScaleUpdate: (d) {
         final double zoom = widget.zoom?.value.getMaxScaleOnAxis() ?? 1.0;
@@ -413,8 +411,6 @@ class _PlacedItemGestureState extends State<PlacedItemGesture> {
         _y = (_y + (d.focalPointDelta.dy / zoom) / widget.ih).clamp(0.0, 1.0).toDouble();
         final double scale = (_start.scale * d.scale).clamp(0.1, 5.0).toDouble();
         final double rot = d.pointerCount >= 2 ? PlacedItemGesture.snapDegrees(_start.rotationDegrees + d.rotation * 180 / 3.141592653589793) : _start.rotationDegrees;
-        _scale = scale;
-        _rot = rot;
         widget.onChanged(SignaturePlacement(pctX: _x, pctY: _y, rotationDegrees: rot, scale: scale));
       },
       child: widget.child,

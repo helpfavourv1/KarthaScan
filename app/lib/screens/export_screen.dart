@@ -27,7 +27,6 @@ import '../core/utils/constants.dart';
 import '../l10n/app_localizations.dart';
 import '../widgets/ink_board.dart';
 import '../widgets/layer_control_panel.dart';
-import '../core/models/signature_placement.dart';
 import '../widgets/signature_editor_bar.dart';
 import '../widgets/ios_pressable.dart';
 import '../core/services/engagement_service.dart';

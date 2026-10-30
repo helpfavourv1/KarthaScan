@@ -6,7 +6,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:katharscan/core/models/signature_placement.dart';
 import 'package:katharscan/widgets/document_canvas.dart' show visibleCentreFraction;
 import 'package:katharscan/widgets/ink_board.dart' show PlacedItemGesture;
-import 'package:vector_math/vector_math_64.dart' show Matrix4;
 
 void main() {
   test('rotation snaps to upright and quarter turns only when close', () {
@@ -23,12 +22,12 @@ void main() {
     expect(whole.dx, closeTo(0.5, 1e-9));
     expect(whole.dy, closeTo(0.5, 1e-9));
     // Zoom 2x anchored at the top-left of the viewport: the view middle is the 1/4,1/4 of the viewport.
-    final Matrix4 zoomed = Matrix4.identity()..scale(2.0);
+    final Matrix4 zoomed = Matrix4.identity()..scaleByDouble(2.0, 2.0, 2.0, 1.0);
     final Offset c = visibleCentreFraction(zoomed, view, page);
     expect(c.dx, closeTo(0.25, 1e-9));
     expect(c.dy, closeTo((800 / 4 - 100) / 600, 1e-9));
     // Far panned: clamped to stay on the page.
-    final Matrix4 far = Matrix4.identity()..translate(-5000.0, -5000.0)..scale(2.0);
+    final Matrix4 far = Matrix4.identity()..translateByDouble(-5000.0, -5000.0, 0.0, 1.0)..scaleByDouble(2.0, 2.0, 2.0, 1.0);
     final Offset f = visibleCentreFraction(far, view, page);
     expect(f.dx, lessThanOrEqualTo(0.9));
   });
