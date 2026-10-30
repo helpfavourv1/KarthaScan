@@ -192,3 +192,12 @@ Checked by CI unit/widget tests (dart-check green); emulator run pending at time
 - Written-out dates (long/medium) in the app language, via intl. Fill gets a custom colour picker.
 - Strings: reuses existing ones, no new l10n keys.
 - Phone checks owed: pinch/twist feel on a real page, snap feel, placement while zoomed, written date in a non-English language, handwriting font in exported PDF.
+
+## OCR / Compress upgrade (Oct 2026)
+
+Quick checks green; emulator pending at time of writing:
+- OCR runs once at scan time on the original photo (not re-run after crop/edit). New: pages that read almost empty (<40 visible chars) get a second try on a cleaned copy (shadow flatten + levels, same geometry) and the clearly better result is kept. Region OCR now reads from the page as currently edited (crop/tilt/resize, no filter/marks) and uses the corner-handle picker with magnifier (and perspective straightening of the chosen box).
+- Not done: re-running OCR for the whole page after a crop; stored OCR word boxes (searchable PDF) still refer to the original photo's geometry, so after a crop they may not line up.
+- Compress: max-size choice (No limit / 1 / 2 / 5 MB) — PDF: whole file (budget split equally per page, lower JPEG quality first, then smaller pictures down to 40%); JPG: each picture. Black-and-white switch. Size estimates now sample first/middle/last page.
+- New strings (native review): compressTargetLabel, compressNoLimit.
+- Phone checks owed: OCR on a shadowed photo, region box with the magnifier, a real PDF squeezed to 1 MB, B&W text page legibility.
