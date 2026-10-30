@@ -52,6 +52,8 @@ class _ScanDetailScreenState extends State<ScanDetailScreen>
     _ocrService = OcrService();
     _inkController = InkController(onChange: _persistSignature);
     _scanProvider.setActiveScan(widget.documentId);
+    _scanProvider.undoManager.clear();
+    _currentPageIndex = _scanProvider.viewedPageFor(widget.documentId);
     EngagementService.instance.markScanDetailViewed();
     _tabController = TabController(length: 2, vsync: this);
     _tabController.addListener(() { if (mounted) setState(() {}); });
@@ -100,6 +102,12 @@ class _ScanDetailScreenState extends State<ScanDetailScreen>
   set editMode(TrayEditMode mode) => setState(() => _editMode = mode);
   @override
   void closeEditor() => _closeEditor();
+
+  @override
+  void returnedFromRoute() {
+    // Another screen may have moved to a different page.
+    setState(() => _currentPageIndex = _scanProvider.viewedPageFor(widget.documentId));
+  }
 
   void _closeEditor() {
     if (_editMode == TrayEditMode.none) return;
@@ -187,14 +195,11 @@ class _ScanDetailScreenState extends State<ScanDetailScreen>
     context.pop();
   }
 
-  Future<void> _share(ScanDocument document) async {
-    if (!mounted) return;
-    context.push('/export', extra: <String>[document.id]);
-  }
+  Future<void> _share(ScanDocument document) => shareNow();
 
   Future<void> _export(ScanDocument document) async {
     if (!mounted) return;
-    context.push('/export', extra: <String>[document.id]);
+    await openRoute('/export', extra: <String>[document.id]);
   }
 
   void _copyOcrToClipboard(String text, AppLocalizations l10n) {
@@ -245,9 +250,19 @@ class _ScanDetailScreenState extends State<ScanDetailScreen>
                 elevation: 0,
                 title: GestureDetector(
                   onTap: () => _editTitle(document, l10n),
-                  child: Text(
-                    document.title,
-                    style: TextStyle(color: textPrimary, fontSize: AppTypography.title2Size),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Flexible(
+                        child: Text(
+                          document.title,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(color: textPrimary, fontSize: AppTypography.title2Size),
+                        ),
+                      ),
+                      const SizedBox(width: 6),
+                      Icon(Icons.edit_outlined, size: 15, color: textSecondary),
+                    ],
                   ),
                 ),
                 actions: [
@@ -286,18 +301,56 @@ class _ScanDetailScreenState extends State<ScanDetailScreen>
                   padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
                   decoration: BoxDecoration(color: bg, border: Border(bottom: BorderSide(color: border, width: 0.5))),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
+                ListenableBuilder(
+                  listenable: _scanProvider.undoManager.version,
+                  builder: (context, _) => Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      IconButton(
+                        key: const ValueKey<String>('detailUndo'),
+                        icon: const Icon(Icons.undo, size: 20),
+                        tooltip: l10n.undoTooltip,
+                        color: textPrimary,
+                        disabledColor: textSecondary.withValues(alpha: 0.4),
+                        onPressed: _scanProvider.undoManager.canUndo
+                            ? () async {
+                                await _scanProvider.undoManager.undo();
+                                resyncInkFromDocument();
+                              }
+                            : null,
+                      ),
+                      IconButton(
+                        key: const ValueKey<String>('detailRedo'),
+                        icon: const Icon(Icons.redo, size: 20),
+                        tooltip: l10n.redoTooltip,
+                        color: textPrimary,
+                        disabledColor: textSecondary.withValues(alpha: 0.4),
+                        onPressed: _scanProvider.undoManager.canRedo
+                            ? () async {
+                                await _scanProvider.undoManager.redo();
+                                resyncInkFromDocument();
+                              }
+                            : null,
+                      ),
+                    ],
+                  ),
+                ),
+                      Row(mainAxisSize: MainAxisSize.min, children: [
                       TextButton.icon(
+                        key: const ValueKey<String>('detailShare'),
                         onPressed: () => _share(document),
                         icon: const Icon(Icons.ios_share, size: 18),
                         label: Text(l10n.shareTooltip, style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600, color: accent)),
                       ),
                       TextButton.icon(
+                        key: const ValueKey<String>('detailExport'),
                         onPressed: () => _export(document),
                         icon: const Icon(Icons.file_download_outlined, size: 18),
                         label: Text(l10n.exportTooltip, style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600, color: accent)),
                       ),
+                      ]),
                     ],
                   ),
                 ),
@@ -313,7 +366,8 @@ class _ScanDetailScreenState extends State<ScanDetailScreen>
                             viewCentre: viewCentre,
                             document: document,
                             pagePaths: document.pagePaths,
-                            onPageChanged: (index) => setState(() => _currentPageIndex = index),
+                            initialPage: _currentPageIndex,
+                            onPageChanged: (index) { _scanProvider.viewedPage[document.id] = index; setState(() => _currentPageIndex = index); },
                             inkController: _inkController,
                             annotateLayers: document.annotateLayers,
                             editMode: _editMode,
@@ -349,7 +403,7 @@ class _ScanDetailScreenState extends State<ScanDetailScreen>
                             onCopyStampToAllPages: copyStampToAllPages,
                             onClearStampPage: clearStampPage,
                             onClearAllStampLayers: clearAllStampLayers,
-                            onEditFullscreen: () => context.push('/edit/${document.id}'),
+                            onEditFullscreen: () => openRoute('/edit/${document.id}'),
                             pageTransforms: document.pageTransforms,
                           ),
                         ),
@@ -413,7 +467,7 @@ class _ScanDetailScreenState extends State<ScanDetailScreen>
                   );
                   if (c == null || !context.mounted) return;
                   _closeEditor();
-                  context.push('/export', extra: <String, dynamic>{'ids': <String>[document.id], 'format': c.format.name, 'compression': c.tier.name, if (c.targetMB != null) 'targetMB': c.targetMB, if (c.blackWhite) 'filter': 'blackAndWhite'});
+                  await openRoute('/export', extra: <String, dynamic>{'ids': <String>[document.id], 'format': c.format.name, 'compression': c.tier.name, if (c.targetMB != null) 'targetMB': c.targetMB, if (c.blackWhite) 'filter': 'blackAndWhite'});
                 },
                 onRotate: () { _closeEditor(); rotatePage(); },
                 onResize: () { _closeEditor(); resizePage(); },
@@ -429,7 +483,7 @@ class _ScanDetailScreenState extends State<ScanDetailScreen>
                 onPrint: () { _closeEditor(); printDocument(); },
                 onEmail: () { _closeEditor(); emailDocument(); },
                 onErase: () { _closeEditor(); erasePage(); },
-                onFill: () { _closeEditor(); context.push('/edit/${document.id}', extra: <String, dynamic>{'fill': true}); },
+                onFill: () { _closeEditor(); openRoute('/edit/${document.id}', extra: <String, dynamic>{'fill': true}); },
               ),
             ],
           );
@@ -448,9 +502,9 @@ class _FolderPickerSheet extends StatelessWidget {
     final l10n = AppLocalizations.of(context);
     return SafeArea(
       child: Container(
-        decoration: const BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+        decoration: BoxDecoration(
+          color: Theme.of(context).brightness == Brightness.dark ? AppColors.bgSecondaryDark : AppColors.bgSecondaryLight,
+          borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
         ),
         padding: const EdgeInsets.all(16),
         child: Column(

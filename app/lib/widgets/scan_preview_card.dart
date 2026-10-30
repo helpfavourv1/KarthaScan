@@ -113,6 +113,11 @@ class _ScanPreviewCardState extends State<ScanPreviewCard> {
   @override
   void didUpdateWidget(ScanPreviewCard oldWidget) {
     super.didUpdateWidget(oldWidget);
+    // Another screen moved to a different page: follow it.
+    if (widget.initialPage != oldWidget.initialPage && widget.initialPage != _currentPage && _pageController.hasClients) {
+      final int target = widget.initialPage < 0 ? 0 : (widget.initialPage > _lastIndex ? _lastIndex : widget.initialPage);
+      _pageController.jumpToPage(target);
+    }
     if (widget.autoSelectAnnotateId != null && widget.autoSelectAnnotateId != oldWidget.autoSelectAnnotateId) {
       setState(() => _selectedAnnotateId = widget.autoSelectAnnotateId);
     }
@@ -259,6 +264,7 @@ class _ScanPreviewCardState extends State<ScanPreviewCard> {
                 onStampSelected: (layer) { setState(() { _selectedStampId = layer.id; _selectedAnnotateId = null; _selectedWatermarkText = null; }); widget.onStampSelect?.call(layer); },
                 onStampLayerUpdate: widget.onStampLayerUpdate,
                 physics: const NeverScrollableScrollPhysics(),
+                swipeEnabled: widget.editMode == TrayEditMode.none,
                 pageController: _pageController,
                 initialPage: _currentPage,
                 onPageChanged: (index) {

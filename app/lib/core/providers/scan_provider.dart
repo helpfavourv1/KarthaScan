@@ -506,6 +506,18 @@ class ScanProvider {
     return success;
   }
 
+  /// Page each document was last looked at (0-based), so the detail, full-screen and
+  /// export screens open on the same page. In memory only.
+  final Map<String, int> viewedPage = <String, int>{};
+
+  /// The remembered page for [id], kept inside the document's pages.
+  int viewedPageFor(String id) {
+    final ScanDocument? d = _findById(id);
+    final int last = d == null || d.pagePaths.isEmpty ? 0 : d.pagePaths.length - 1;
+    final int v = viewedPage[id] ?? 0;
+    return v < 0 ? 0 : (v > last ? last : v);
+  }
+
   void setActiveScan(String? id) {
     activeScan.value = id == null ? null : _findById(id);
   }

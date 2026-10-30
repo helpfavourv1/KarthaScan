@@ -1,3 +1,4 @@
+import 'dart:convert' show jsonEncode;
 import 'dart:io';
 import 'dart:typed_data';
 
@@ -19,12 +20,12 @@ import '../core/models/page_transform.dart';
 import '../core/models/scan_document.dart';
 import '../core/providers/scan_provider.dart';
 import '../core/services/export_service.dart';
-import '../core/services/filter_service.dart';
 import '../core/services/local_storage.dart';
 import '../core/services/share_service.dart';
 import '../core/services/downloads_service.dart';
 import '../core/utils/constants.dart';
 import '../l10n/app_localizations.dart';
+import '../widgets/document_canvas.dart' show PagePreviewJob, renderPagePreview;
 import '../widgets/ink_board.dart';
 import '../widgets/layer_control_panel.dart';
 import '../widgets/signature_editor_bar.dart';
@@ -110,6 +111,7 @@ class _ExportScreenState extends State<ExportScreen> {
     super.initState();
     _scanProvider = Provider.of<ScanProvider>(context, listen: false);
     _inkController = InkController(onChange: () { if (mounted) { setState(() {}); _persistSignature(); } });
+    if (widget.documentIds.length == 1) _previewPage = _scanProvider.viewedPageFor(widget.documentIds.first);
     if (widget.initialFormat != null) {
       _selectedFormat = widget.initialFormat!;
     }
@@ -138,43 +140,57 @@ class _ExportScreenState extends State<ExportScreen> {
     return result;
   }
 
+  /// The page as it will be exported: crop, tilt, resize, eraser, the page's own
+  /// filter and brightness, and rotation. "Original" keeps the page's own filter;
+  /// any other choice replaces it, and export does exactly the same.
   Future<void> _loadPreview(int pageIndex, FilterType filter) async {
     if (_documents.isEmpty) return;  // Empty-guard
     if (!_isSingleDoc) pageIndex = 0;
     final paths = _documents.first.pagePaths;
     if (paths.isEmpty) return;  // Empty-guard
     final idx = pageIndex.clamp(0, paths.length - 1);
-    // "Original" on this screen means each page's own filter from the editor;
-    // any other choice replaces it, and export does exactly the same.
-    final PageTransform? own = _documents.first.pageTransforms[idx];
-    final bool useOwn = filter == FilterType.none && own != null && own.filter != FilterType.none;
-    final FilterType shown = useOwn ? own.filter : filter;
-    final double strength = useOwn ? own.filterIntensity : 1.0;
-    final key = '${idx}_${shown.index}_$strength';
+    final PageTransform own = _documents.first.pageTransforms[idx] ?? const PageTransform();
+    final PageTransform shown = filter == FilterType.none ? own : own.copyWith(filter: filter, filterIntensity: 1.0);
+    final String key = '${paths[idx]}|${jsonEncode(shown.toJson())}';
     final cached = _previewCache[key];
     if (cached != null) {
       setState(() {
         _previewBytes = cached['bytes'] as Uint8List;
+        _originalPreviewBytes = cached['orig'] as Uint8List?;
         _previewW = cached['w'] as int;
         _previewH = cached['h'] as int;
       });
       return;
     }
     final bytes = await File(paths[idx]).readAsBytes();
-    _originalPreviewBytes = bytes;
-    final result = await compute(_previewIsolate, {'bytes': bytes, 'filter': shown.index, 'strength': strength});
+    final result = await compute(editedPreviewIsolate, <String, dynamic>{'bytes': bytes, 'transform': shown});
     if (!mounted) return;
+    // A newer request may have replaced this page while it was being drawn.
+    final int nowIdx = _isSingleDoc ? _previewPage.clamp(0, paths.length - 1) : 0;
     _previewCache[key] = result;
+    if (nowIdx != idx) return;
     setState(() {
       _previewBytes = result['bytes'] as Uint8List;
+      _originalPreviewBytes = result['orig'] as Uint8List?;
       _previewW = result['w'] as int;
       _previewH = result['h'] as int;
     });
   }
 
+  /// Opens the editor for this document and shows what changed there when back.
+  Future<void> _openFullscreenEditor() async {
+    final String id = _documents.first.id;
+    await context.push('/edit/$id');
+    if (!mounted) return;
+    _inkController.restoreFrom(_documents.first);
+    setState(() => _previewPage = _scanProvider.viewedPageFor(id));
+    await _loadPreview(_previewPage, _selectedFilter);
+  }
+
   void _onPreviewPageChanged(int newPage) {
     setState(() {
       _previewPage = newPage;
+      if (_isSingleDoc) _scanProvider.viewedPage[_documents.first.id] = newPage;
       _exportEditMode = TrayEditMode.none;
       _selectedAnnotateId = null;
       _selectedWatermarkText = null;
@@ -555,7 +571,7 @@ class _ExportScreenState extends State<ExportScreen> {
               ActionChip(
                 avatar: const Icon(Icons.open_in_full, size: 14),
                 label: Text(AppLocalizations.of(context).fullscreenLabel, style: TextStyle(fontSize: 11)),
-                onPressed: () => context.push('/edit/${_documents.first.id}'),
+                onPressed: _openFullscreenEditor,
               ),
             const Spacer(),
             IOSPressable(
@@ -999,15 +1015,30 @@ _scanProvider.updateStampLayer(doc.id, layer.copyWith(placement: np));
 
 
 
-Map<String, dynamic> _previewIsolate(Map<String, dynamic> args) {
-  final bytes = args['bytes'] as Uint8List;
-  final filter = FilterType.values[args['filter'] as int];
-  final decoded = img.decodeImage(bytes);
-  if (decoded == null) return {'bytes': bytes, 'w': 1, 'h': 1};
-  final filtered = FilterService.applyToImage(decoded, filter, intensity: (args['strength'] as double?) ?? 1.0);
-  return {
-    'bytes': Uint8List.fromList(img.encodeJpg(filtered, quality: 85)),
-    'w': filtered.width,
-    'h': filtered.height,
+/// Draws the edited preview of one page (see [renderPagePreview]) turned the way the
+/// export turns it. Also returns the same page without the filter, for the compare
+/// slider, so both pictures have the same shape.
+Map<String, dynamic> editedPreviewIsolate(Map<String, dynamic> args) {
+  final Uint8List bytes = args['bytes'] as Uint8List;
+  final PageTransform t = args['transform'] as PageTransform;
+  Uint8List? render(PageTransform pt) {
+    final Uint8List? jpg = renderPagePreview(PagePreviewJob(bytes, pt));
+    if (jpg == null) return null;
+    final int turns = pt.rotationTurns % 4;
+    if (turns == 0) return jpg;
+    final img.Image? im = img.decodeImage(jpg);
+    if (im == null) return jpg;
+    return Uint8List.fromList(img.encodeJpg(img.copyRotate(im, angle: turns * 90), quality: 85));
+  }
+
+  final Uint8List? main = render(t);
+  if (main == null) return <String, dynamic>{'bytes': bytes, 'orig': bytes, 'w': 1, 'h': 1};
+  final Uint8List? orig = (t.filter == FilterType.none) ? main : render(t.copyWith(filter: FilterType.none));
+  final img.Image? dims = img.decodeImage(main);
+  return <String, dynamic>{
+    'bytes': main,
+    'orig': orig ?? main,
+    'w': dims?.width ?? 1,
+    'h': dims?.height ?? 1,
   };
 }

@@ -71,8 +71,9 @@ class _FullScreenEditScreenState extends State<FullScreenEditScreen> with Docume
     _ocrService = OcrService();
     _shareService = ShareService();
     _localStorage = LocalStorageService();
-    _pageController = PageController();
     _scanProvider.setActiveScan(widget.documentId);
+    _currentPageIndex = _scanProvider.viewedPageFor(widget.documentId);
+    _pageController = PageController(initialPage: _currentPageIndex);
     _scanProvider.undoManager.clear();
     _loadFillSnippets();
     if (widget.startInFillMode) _editMode = TrayEditMode.fill;
@@ -210,6 +211,12 @@ class _FullScreenEditScreenState extends State<FullScreenEditScreen> with Docume
   @override
   set editMode(TrayEditMode mode) => setState(() => _editMode = mode);
   @override
+  void returnedFromRoute() {
+    final int page = _scanProvider.viewedPageFor(widget.documentId);
+    if (page != _currentPageIndex) _goToPage(page);
+  }
+
+  @override
   void closeEditor() {
     if (_fillDraft != null) unawaited(_commitFill());
     if (_editMode == TrayEditMode.none) return;
@@ -297,17 +304,6 @@ class _FullScreenEditScreenState extends State<FullScreenEditScreen> with Docume
                           overflow: TextOverflow.ellipsis,
                         ),
                       ),
-                      IconButton(
-                        icon: const Icon(Icons.chevron_left),
-                        color: _currentPageIndex > 0 ? accent : textSecondary,
-                        onPressed: _currentPageIndex > 0 ? () => _goToPage(_currentPageIndex - 1) : null,
-                      ),
-                      Text(AppLocalizations.of(context).pageIndicator(_currentPageIndex + 1, doc.pagePaths.length), style: TextStyle(color: textPrimary, fontSize: AppTypography.footnoteSize, fontWeight: FontWeight.w600)),
-                      IconButton(
-                        icon: const Icon(Icons.chevron_right),
-                        color: _currentPageIndex < doc.pagePaths.length - 1 ? accent : textSecondary,
-                        onPressed: _currentPageIndex < doc.pagePaths.length - 1 ? () => _goToPage(_currentPageIndex + 1) : null,
-                      ),
                       ListenableBuilder(
                         listenable: _scanProvider.undoManager.version,
                         builder: (context, _) => Row(
@@ -339,21 +335,46 @@ class _FullScreenEditScreenState extends State<FullScreenEditScreen> with Docume
                         ),
                       ),
                       IconButton(
+                        key: const ValueKey<String>('fullShare'),
                         icon: const Icon(Icons.ios_share, size: 20),
+                        tooltip: AppLocalizations.of(context).shareTooltip,
                         color: textPrimary,
-                        onPressed: () {
-                          final doc = document;
-                          if (doc != null) context.push('/export', extra: <String>[doc.id]);
-                        },
+                        onPressed: shareNow,
                       ),
                       IconButton(
+                        key: const ValueKey<String>('fullExport'),
                         icon: const Icon(Icons.file_download_outlined, size: 20),
+                        tooltip: AppLocalizations.of(context).exportTooltip,
                         color: textPrimary,
                         onPressed: exportDocument,
                       ),
 
                     ],
                   ),
+                ),
+              ),
+              // Page navigation
+              SizedBox(
+                height: 32,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    IconButton(
+                      key: const ValueKey<String>('fullPrev'),
+                      visualDensity: VisualDensity.compact,
+                      icon: const Icon(Icons.chevron_left),
+                      color: _currentPageIndex > 0 ? accent : textSecondary,
+                      onPressed: _currentPageIndex > 0 ? () => _goToPage(_currentPageIndex - 1) : null,
+                    ),
+                    Text(AppLocalizations.of(context).pageIndicator(_currentPageIndex + 1, doc.pagePaths.length), style: TextStyle(color: textPrimary, fontSize: AppTypography.footnoteSize, fontWeight: FontWeight.w600)),
+                    IconButton(
+                      key: const ValueKey<String>('fullNext'),
+                      visualDensity: VisualDensity.compact,
+                      icon: const Icon(Icons.chevron_right),
+                      color: _currentPageIndex < doc.pagePaths.length - 1 ? accent : textSecondary,
+                      onPressed: _currentPageIndex < doc.pagePaths.length - 1 ? () => _goToPage(_currentPageIndex + 1) : null,
+                    ),
+                  ],
                 ),
               ),
               // Canvas
@@ -391,8 +412,9 @@ class _FullScreenEditScreenState extends State<FullScreenEditScreen> with Docume
                   onStampDoubleTap: (layer) { if (layer.kind == 'fill') unawaited(_beginEditFill(layer)); },
                   pageController: _pageController,
                   physics: const NeverScrollableScrollPhysics(),
+                  swipeEnabled: _editMode == TrayEditMode.none && _fillDraft == null,
                   initialPage: _currentPageIndex,
-                  onPageChanged: (index) => setState(() { _currentPageIndex = index; }),
+                  onPageChanged: (index) { _scanProvider.viewedPage[widget.documentId] = index; setState(() { _currentPageIndex = index; }); },
                   pageTransforms: doc.pageTransforms,
                   onFillTap: _editMode == TrayEditMode.fill ? _onFillTap : null,
                   fillGhostText: _fillText,
@@ -483,11 +505,11 @@ class _FullScreenEditScreenState extends State<FullScreenEditScreen> with Docume
                     if (_fillDraft == null)
                     EditTray(
                       compact: true,
-                      onMarkup: annotateCurrentPage,
+                      onMarkup: () { closeEditor(); annotateCurrentPage(); },
                       onSign: signFromTray,
-                      onWatermark: addWatermarkNow,
-                      onOcr: regionOcr,
-                      onConvert: exportDocument,
+                      onWatermark: () { closeEditor(); addWatermarkNow(); },
+                      onOcr: () { closeEditor(); regionOcr(); },
+                      onConvert: () { closeEditor(); exportDocument(); },
                       onCompress: () async {
                         final CompressChoice? c = await showModalBottomSheet<CompressChoice>(
                           context: context,
@@ -496,22 +518,22 @@ class _FullScreenEditScreenState extends State<FullScreenEditScreen> with Docume
                         );
                         if (c == null || !context.mounted) return;
                         closeEditor();
-                        context.push('/export', extra: <String, dynamic>{'ids': <String>[doc.id], 'format': c.format.name, 'compression': c.tier.name, if (c.targetMB != null) 'targetMB': c.targetMB, if (c.blackWhite) 'filter': 'blackAndWhite'});
+                        await openRoute('/export', extra: <String, dynamic>{'ids': <String>[doc.id], 'format': c.format.name, 'compression': c.tier.name, if (c.targetMB != null) 'targetMB': c.targetMB, if (c.blackWhite) 'filter': 'blackAndWhite'});
                       },
-                      onRotate: rotatePage,
-                      onResize: resizePage,
-                      onPages: openPagesManager,
-                      onFilter: applyFilterToPage,
-                      onCrop: cropCurrentPage,
-                      onText: () => addStampNow('text'),
-                      onNote: () => addStampNow('note'),
-                      onDate: () => addStampNow('date'),
-                      onCheckbox: () => addStampNow('checkbox'),
-                      onSeal: () => addStampNow('seal'),
-                      onRevert: doc.pageTransforms[_currentPageIndex]?.isEmpty == false ? revertPage : null,
-                      onPrint: printDocument,
-                      onEmail: emailDocument,
-                      onErase: erasePage,
+                      onRotate: () { closeEditor(); rotatePage(); },
+                      onResize: () { closeEditor(); resizePage(); },
+                      onPages: () { closeEditor(); openPagesManager(); },
+                      onFilter: () { closeEditor(); applyFilterToPage(); },
+                      onCrop: () { closeEditor(); cropCurrentPage(); },
+                      onText: () { closeEditor(); addStampNow('text'); },
+                      onNote: () { closeEditor(); addStampNow('note'); },
+                      onDate: () { closeEditor(); addStampNow('date'); },
+                      onCheckbox: () { closeEditor(); addStampNow('checkbox'); },
+                      onSeal: () { closeEditor(); addStampNow('seal'); },
+                      onRevert: doc.pageTransforms[_currentPageIndex]?.isEmpty == false ? () { closeEditor(); revertPage(); } : null,
+                      onPrint: () { closeEditor(); printDocument(); },
+                      onEmail: () { closeEditor(); emailDocument(); },
+                      onErase: () { closeEditor(); erasePage(); },
                       onFill: () => setState(() { _editMode = TrayEditMode.fill; _fillGhostPctX = null; _fillGhostPctY = null; }),
                     ),
                   ],

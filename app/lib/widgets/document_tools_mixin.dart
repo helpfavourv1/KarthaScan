@@ -62,6 +62,20 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
     inkController.restoreFrom(d);
     if (mounted) setState(() {});
   }
+  /// Opens another screen and, when it closes, brings this one up to date: the
+  /// signature state is read again from the saved document (the other screen may
+  /// have changed it, and this screen must not write its old copy back) and the
+  /// page last viewed there is shown here.
+  Future<void> openRoute(String location, {Object? extra}) async {
+    await context.push(location, extra: extra);
+    if (!mounted) return;
+    resyncInkFromDocument();
+    returnedFromRoute();
+  }
+
+  /// Called after [openRoute] returns; screens show the page last viewed.
+  void returnedFromRoute() {}
+
   LocalStorageService get localStorage;
   OcrService get ocrService;
   ShareService get shareService;
@@ -107,7 +121,7 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
   Future<void> exportDocument() async {
     final doc = document;
     if (doc == null || !mounted) return;
-    context.push('/export', extra: <String>[doc.id]);
+    await openRoute('/export', extra: <String>[doc.id]);
   }
 
   // --- Annotate ---
@@ -692,6 +706,42 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
       );
     } catch (e) {
       if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('${l10n.printFailed}: $e')));
+    }
+  }
+
+  /// One tap: the finished document (edits included) as a PDF straight into the
+  /// share sheet. Format, quality and filter choices live on the Export screen.
+  Future<void> shareNow() async {
+    final doc = document;
+    if (doc == null || doc.pagePaths.isEmpty) return;
+    final NavigatorState nav = Navigator.of(context, rootNavigator: true);
+    final ScaffoldMessengerState messenger = ScaffoldMessenger.of(context);
+    final String failed = l10n.genericErrorMessage;
+    showDialog<void>(
+      context: context,
+      barrierDismissible: false,
+      builder: (_) => const PopScope(canPop: false, child: Center(child: CircularProgressIndicator())),
+    );
+    List<String> paths = const <String>[];
+    bool exported = false;
+    try {
+      final Directory tmp = await getTemporaryDirectory();
+      final Directory out = await Directory(p.join(tmp.path, 'share_${DateTime.now().millisecondsSinceEpoch}')).create(recursive: true);
+      paths = await ExportService().export(document: doc, format: ExportFormat.pdf, outputDirectoryPath: out.path);
+      exported = true;
+    } catch (_) {
+      exported = false;
+    } finally {
+      nav.pop();
+    }
+    if (!exported || paths.isEmpty) {
+      messenger.showSnackBar(SnackBar(content: Text(failed)));
+      return;
+    }
+    try {
+      await shareService.shareFiles(filePaths: paths, subject: doc.title);
+    } catch (_) {
+      messenger.showSnackBar(SnackBar(content: Text(failed)));
     }
   }
 

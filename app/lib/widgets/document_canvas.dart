@@ -55,6 +55,7 @@ class DocumentCanvas extends StatefulWidget {
     this.onStampDoubleTap,
     this.onStampLayerUpdate,
     this.physics = const AlwaysScrollableScrollPhysics(),
+    this.swipeEnabled = false,
     this.pageController,
     this.initialPage = 0,
     this.onPageChanged,
@@ -88,6 +89,11 @@ class DocumentCanvas extends StatefulWidget {
   final void Function(StampLayer layer)? onStampDoubleTap;
   final void Function(int pageIndex, StampLayer layer)? onStampLayerUpdate;
   final ScrollPhysics physics;
+
+  /// Lets a sideways swipe on the page turn to the next one. The owner switches it
+  /// off while something is being edited or selected; a zoomed-in page switches it
+  /// off by itself so panning the zoomed page is not taken for a swipe.
+  final bool swipeEnabled;
   final PageController? pageController;
   final int initialPage;
   final ValueChanged<int>? onPageChanged;
@@ -105,6 +111,7 @@ class _DocumentCanvasState extends State<DocumentCanvas> {
   late final PageController _pageController;
   final bool _ownsController;
   late int _currentPage;
+  bool _zoomed = false;
 
   int get _lastIndex => widget.pagePaths.isEmpty ? 0 : widget.pagePaths.length - 1;
 
@@ -152,10 +159,13 @@ class _DocumentCanvasState extends State<DocumentCanvas> {
       color: bg,
       child: PageView.builder(
         controller: _pageController,
-        physics: widget.physics,
+        physics: (widget.swipeEnabled && !_zoomed) ? const PageScrollPhysics() : widget.physics,
         itemCount: widget.pagePaths.length,
         onPageChanged: (int index) {
-          setState(() => _currentPage = index);
+          setState(() {
+            _currentPage = index;
+            _zoomed = false;
+          });
           widget.onPageChanged?.call(index);
         },
         itemBuilder: (BuildContext context, int index) {
@@ -163,6 +173,9 @@ class _DocumentCanvasState extends State<DocumentCanvas> {
             key: ValueKey<String>('${widget.pagePaths[index]}#$index'),
             pagePath: widget.pagePaths[index],
             viewCentre: widget.viewCentre,
+            onZoomChanged: (bool z) {
+              if (z != _zoomed && mounted) setState(() => _zoomed = z);
+            },
             controller: widget.inkController,
             pageIndex: index,
             textSecondary: textSecondary,
@@ -198,9 +211,11 @@ class _DocumentCanvasState extends State<DocumentCanvas> {
 // === _PageWithInk: The core page renderer with overlays ===
 class _PageWithInk extends StatefulWidget {
   final ValueNotifier<ViewCentre?>? viewCentre;
+  final ValueChanged<bool>? onZoomChanged;
   const _PageWithInk({
     super.key,
     this.viewCentre,
+    this.onZoomChanged,
     required this.pagePath,
     required this.controller,
     required this.pageIndex,
@@ -276,8 +291,18 @@ class _PageWithInkState extends State<_PageWithInk> {
   final TransformationController _transformController = TransformationController();
   Uint8List? _filteredBytes;
 
+  bool _zoomReported = false;
+
+  void _reportZoom() {
+    final bool zoomed = _transformController.value.getMaxScaleOnAxis() > 1.02;
+    if (zoomed == _zoomReported) return;
+    _zoomReported = zoomed;
+    widget.onZoomChanged?.call(zoomed);
+  }
+
   @override
   void dispose() {
+    _transformController.removeListener(_reportZoom);
     _transformController.removeListener(_publishCentre);
     _transformController.dispose();
     super.dispose();
@@ -287,6 +312,7 @@ class _PageWithInkState extends State<_PageWithInk> {
   void initState() {
     super.initState();
     _transformController.addListener(_publishCentre);
+    _transformController.addListener(_reportZoom);
     _loadPageAspect();
   }
 
