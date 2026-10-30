@@ -654,5 +654,17 @@
   "pagesDeleteCount": "Supprimer {count}",
   "pagesDeleteConfirm": "Supprimer {count} pages ? Elles sont retirées à l'enregistrement.",
   "compressTargetLabel": "Taille max.",
-  "compressNoLimit": "Aucune limite"
+  "compressNoLimit": "Aucune limite",
+  "printPaperLabel": "Papier",
+  "printMarginLabel": "Marge",
+  "printMarginNone": "Aucune",
+  "printMarginNarrow": "Étroite",
+  "printMarginNormal": "Normale",
+  "printFitLabel": "Ajustement",
+  "printFitFit": "Ajuster la page",
+  "printFitFill": "Remplir la feuille (rogne les bords)",
+  "printPerSheetLabel": "Pages par feuille",
+  "emailMessageLabel": "Message",
+  "emailMessageHint": "Ajoutez une note (facultatif)",
+  "emailLimitMissed": "Impossible de passer sous {mb} Mo ; la version la plus petite a été envoyée."
 }

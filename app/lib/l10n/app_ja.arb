@@ -654,5 +654,17 @@
   "pagesDeleteCount": "{count}件を削除",
   "pagesDeleteConfirm": "{count}ページを削除しますか？保存すると削除されます。",
   "compressTargetLabel": "最大サイズ",
-  "compressNoLimit": "制限なし"
+  "compressNoLimit": "制限なし",
+  "printPaperLabel": "用紙",
+  "printMarginLabel": "余白",
+  "printMarginNone": "なし",
+  "printMarginNarrow": "狭い",
+  "printMarginNormal": "標準",
+  "printFitLabel": "拡大縮小",
+  "printFitFit": "ページに収める",
+  "printFitFill": "用紙いっぱい（端は切れます）",
+  "printPerSheetLabel": "1枚あたりのページ数",
+  "emailMessageLabel": "メッセージ",
+  "emailMessageHint": "メモを追加（任意）",
+  "emailLimitMissed": "{mb} MB 未満にできなかったため、最小のバージョンを送信しました。"
 }

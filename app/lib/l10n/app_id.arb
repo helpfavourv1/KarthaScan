@@ -654,5 +654,17 @@
   "pagesDeleteCount": "Hapus {count}",
   "pagesDeleteConfirm": "Hapus {count} halaman? Dihapus saat Anda menyimpan.",
   "compressTargetLabel": "Ukuran maks.",
-  "compressNoLimit": "Tanpa batas"
+  "compressNoLimit": "Tanpa batas",
+  "printPaperLabel": "Kertas",
+  "printMarginLabel": "Margin",
+  "printMarginNone": "Tanpa",
+  "printMarginNarrow": "Sempit",
+  "printMarginNormal": "Normal",
+  "printFitLabel": "Penskalaan",
+  "printFitFit": "Muat halaman",
+  "printFitFill": "Penuhi lembar (memangkas tepi)",
+  "printPerSheetLabel": "Halaman per lembar",
+  "emailMessageLabel": "Pesan",
+  "emailMessageHint": "Tambahkan catatan (opsional)",
+  "emailLimitMissed": "Tidak bisa di bawah {mb} MB; versi terkecil dikirim."
 }

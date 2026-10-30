@@ -747,5 +747,17 @@
   "pagesDeleteCount": "Usuń {count}",
   "pagesDeleteConfirm": "Usunąć {count} stron? Zostaną usunięte po zapisaniu.",
   "compressTargetLabel": "Maks. rozmiar",
-  "compressNoLimit": "Bez limitu"
+  "compressNoLimit": "Bez limitu",
+  "printPaperLabel": "Papier",
+  "printMarginLabel": "Margines",
+  "printMarginNone": "Brak",
+  "printMarginNarrow": "Wąski",
+  "printMarginNormal": "Normalny",
+  "printFitLabel": "Skalowanie",
+  "printFitFit": "Dopasuj do strony",
+  "printFitFill": "Wypełnij arkusz (przycina brzegi)",
+  "printPerSheetLabel": "Stron na arkusz",
+  "emailMessageLabel": "Wiadomość",
+  "emailMessageHint": "Dodaj notatkę (opcjonalnie)",
+  "emailLimitMissed": "Nie udało się zejść poniżej {mb} MB; wysłano najmniejszą wersję."
 }

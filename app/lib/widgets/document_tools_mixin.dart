@@ -37,6 +37,8 @@ import 'ink_board.dart';
 import 'pages_manager_sheet.dart';
 import 'document_canvas.dart' show ViewCentre, PagePreviewJob, renderPagePreview;
 import 'perspective_crop_sheet.dart';
+import 'print_email_dialogs.dart';
+import '../core/models/export_job.dart' show ExportFormat;
 import '../core/utils/perspective.dart';
 import 'rotate_resize_sheet.dart';
 import 'seal_stamp_sheet.dart';
@@ -667,86 +669,22 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
     final doc = document;
     if (doc == null || doc.pagePaths.isEmpty) return;
 
-    String mode = 'all';
-    FilterType filter = FilterType.none;
-    bool letter = false;
-    final fromCtrl = TextEditingController(text: '1');
-    final toCtrl = TextEditingController(text: '${doc.pagePaths.length}');
-
-    final confirmed = await showDialog<bool>(
+    final PrintChoice? choice = await showDialog<PrintChoice>(
       context: context,
-      builder: (ctx) => StatefulBuilder(
-        builder: (ctx, setDialogState) => AlertDialog(
-          title: Text(l10n.printOptionsTitle),
-          content: SingleChildScrollView(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Wrap(
-                  spacing: 6,
-                  children: ['all', 'current', 'range'].map((m) => ChoiceChip(
-                    label: Text(m == 'all' ? l10n.printRangeAll : m == 'current' ? l10n.printRangeCurrent : l10n.printRangeRange),
-                    selected: mode == m,
-                    onSelected: (_) => setDialogState(() => mode = m),
-                  )).toList(),
-                ),
-                if (mode == 'range')
-                  Row(
-                    children: [
-                      SizedBox(width: 60, child: TextField(controller: fromCtrl, keyboardType: TextInputType.number, decoration: InputDecoration(labelText: l10n.fromPageLabel))),
-                      const SizedBox(width: 8),
-                      SizedBox(width: 60, child: TextField(controller: toCtrl, keyboardType: TextInputType.number, decoration: InputDecoration(labelText: l10n.toPageLabel))),
-                    ],
-                  ),
-                const SizedBox(height: 8),
-                DropdownButton<FilterType>(
-                  value: filter,
-                  isExpanded: true,
-                  underline: const SizedBox.shrink(),
-                  onChanged: (v) => setDialogState(() => filter = v!),
-                  items: FilterType.values.map((f) => DropdownMenuItem(value: f, child: Text(f == FilterType.none ? l10n.printFilterNone : f == FilterType.grayscale ? l10n.filterGrayscale : f == FilterType.blackAndWhite ? l10n.filterBlackAndWhite : f == FilterType.colorEnhance ? l10n.filterColorEnhance : f == FilterType.magicColor ? l10n.filterMagicColor : l10n.filterShadowRemoval))).toList(),
-                ),
-                SwitchListTile(
-                  title: Text(l10n.letterSizeUS),
-                  value: letter,
-                  onChanged: (v) => setDialogState(() => letter = v),
-                ),
-              ],
-            ),
-          ),
-          actions: [
-            TextButton(onPressed: () => Navigator.pop(ctx, false), child: Text(l10n.commonCancel)),
-            TextButton(onPressed: () => Navigator.pop(ctx, true), child: Text(l10n.commonPrint)),
-          ],
-        ),
-      ),
+      builder: (ctx) => PrintOptionsDialog(pageCount: doc.pagePaths.length, currentIndex: currentPageIndex),
     );
-    final fromText = fromCtrl.text;
-    final toText = toCtrl.text;
-    // The dialog's close animation may still read the controllers.
-    Future<void>.delayed(const Duration(milliseconds: 500), () {
-      fromCtrl.dispose();
-      toCtrl.dispose();
-    });
-    if (confirmed != true || !mounted) return;
-
-    List<int>? indices;
-    if (mode == 'current') {
-      indices = [currentPageIndex];
-    } else if (mode == 'range') {
-      final from = (int.tryParse(fromText) ?? 1).clamp(1, doc.pagePaths.length);
-      final to = (int.tryParse(toText) ?? doc.pagePaths.length).clamp(from, doc.pagePaths.length);
-      indices = List<int>.generate(to - from + 1, (i) => from - 1 + i);
-    }
+    if (choice == null || !mounted) return;
 
     try {
       final bytes = await PrintService.buildPdfBytes(
         doc.pagePaths,
-        pageIndices: indices,
-        filter: filter,
-        pageFormat: letter ? PdfPageFormat.letter : PdfPageFormat.a4,
-        pageBytes: (int i) => ExportService().renderPageForOutput(doc, i, filter: filter),
+        pageIndices: choice.indices,
+        filter: choice.filter,
+        pageFormat: choice.paper.format,
+        margin: choice.margin,
+        fit: choice.fit,
+        perSheet: choice.perSheet,
+        pageBytes: (int i) => ExportService().renderPageForOutput(doc, i, filter: choice.filter),
       );
       await Printing.layoutPdf(
         onLayout: (PdfPageFormat format) async => bytes,
@@ -761,28 +699,48 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
     final doc = document;
     if (doc == null) return;
 
+    final EmailChoice? choice = await showDialog<EmailChoice>(
+      context: context,
+      builder: (ctx) => const EmailOptionsDialog(),
+    );
+    if (choice == null || !mounted) return;
+
+    // One PDF with every page, not one attachment per page.
     final List<String> paths;
+    bool missedLimit = false;
     try {
-      paths = await ExportService().renderPagesForShare(doc);
+      final Directory tmp = await getTemporaryDirectory();
+      final Directory out = await Directory(p.join(tmp.path, 'email_${DateTime.now().millisecondsSinceEpoch}')).create(recursive: true);
+      final int? target = choice.targetMB == null ? null : choice.targetMB! * 1024 * 1024;
+      paths = await ExportService().export(
+        document: doc,
+        format: ExportFormat.pdf,
+        outputDirectoryPath: out.path,
+        targetBytes: target,
+      );
+      if (target != null && paths.isNotEmpty && await File(paths.first).length() > target) missedLimit = true;
     } on ExportFailedException {
       if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.genericErrorMessage)));
       return;
     }
 
+    final String message = choice.message;
     try {
       await shareService.shareFiles(
         filePaths: paths,
         subject: doc.title,
-        text: doc.ocrText.length > 500 ? '${doc.ocrText.substring(0, 500)}...' : doc.ocrText,
+        text: message.isEmpty ? null : message,
       );
+      if (missedLimit && mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.emailLimitMissed(choice.targetMB!))));
+      }
       return;
     } catch (_) {
       // Fall through to mailto fallback
     }
 
     final subject = Uri.encodeComponent(doc.title);
-    final bodyText = doc.ocrText.length > 500 ? '${doc.ocrText.substring(0, 500)}...' : doc.ocrText;
-    final body = Uri.encodeComponent(bodyText);
+    final body = Uri.encodeComponent(message);
     final uri = Uri.parse('mailto:?subject=$subject&body=$body');
     try {
       if (await canLaunchUrl(uri)) {

@@ -747,5 +747,17 @@
   "pagesDeleteCount": "Slett {count}",
   "pagesDeleteConfirm": "Slette {count} sider? De fjernes når du lagrer.",
   "compressTargetLabel": "Maks. størrelse",
-  "compressNoLimit": "Ingen grense"
+  "compressNoLimit": "Ingen grense",
+  "printPaperLabel": "Papir",
+  "printMarginLabel": "Marg",
+  "printMarginNone": "Ingen",
+  "printMarginNarrow": "Smal",
+  "printMarginNormal": "Normal",
+  "printFitLabel": "Tilpasning",
+  "printFitFit": "Tilpass siden",
+  "printFitFill": "Fyll arket (beskjærer kanter)",
+  "printPerSheetLabel": "Sider per ark",
+  "emailMessageLabel": "Melding",
+  "emailMessageHint": "Legg til et notat (valgfritt)",
+  "emailLimitMissed": "Kom ikke under {mb} MB; den minste versjonen ble sendt."
 }

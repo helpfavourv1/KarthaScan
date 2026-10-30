@@ -747,5 +747,17 @@
   "pagesDeleteCount": "{count} sil",
   "pagesDeleteConfirm": "{count} sayfa silinsin mi? Kaydettiğinizde kaldırılır.",
   "compressTargetLabel": "En büyük boyut",
-  "compressNoLimit": "Sınır yok"
+  "compressNoLimit": "Sınır yok",
+  "printPaperLabel": "Kağıt",
+  "printMarginLabel": "Kenar boşluğu",
+  "printMarginNone": "Yok",
+  "printMarginNarrow": "Dar",
+  "printMarginNormal": "Normal",
+  "printFitLabel": "Ölçekleme",
+  "printFitFit": "Sayfaya sığdır",
+  "printFitFill": "Sayfayı doldur (kenarları keser)",
+  "printPerSheetLabel": "Yaprak başına sayfa",
+  "emailMessageLabel": "Mesaj",
+  "emailMessageHint": "Not ekleyin (isteğe bağlı)",
+  "emailLimitMissed": "{mb} MB altına inilemedi; en küçük sürüm gönderildi."
 }

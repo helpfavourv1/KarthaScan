@@ -654,5 +654,17 @@
   "pagesDeleteCount": "删除 {count}",
   "pagesDeleteConfirm": "删除 {count} 页？保存后将被移除。",
   "compressTargetLabel": "最大大小",
-  "compressNoLimit": "不限制"
+  "compressNoLimit": "不限制",
+  "printPaperLabel": "纸张",
+  "printMarginLabel": "页边距",
+  "printMarginNone": "无",
+  "printMarginNarrow": "窄",
+  "printMarginNormal": "常规",
+  "printFitLabel": "缩放",
+  "printFitFit": "适应页面",
+  "printFitFill": "铺满纸张（裁切边缘）",
+  "printPerSheetLabel": "每张页数",
+  "emailMessageLabel": "留言",
+  "emailMessageHint": "添加备注（可选）",
+  "emailLimitMissed": "无法压缩到 {mb} MB 以下；已发送最小版本。"
 }

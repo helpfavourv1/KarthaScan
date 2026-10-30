@@ -973,5 +973,58 @@
   "compressNoLimit": "No limit",
   "@compressNoLimit": {
     "description": "Compress: no maximum size"
+  },
+  "printPaperLabel": "Paper",
+  "@printPaperLabel": {
+    "description": "Label for the paper size choice when printing"
+  },
+  "printMarginLabel": "Margin",
+  "@printMarginLabel": {
+    "description": "Label for the print margin choice"
+  },
+  "printMarginNone": "None",
+  "@printMarginNone": {
+    "description": "Print margin: none"
+  },
+  "printMarginNarrow": "Narrow",
+  "@printMarginNarrow": {
+    "description": "Print margin: narrow"
+  },
+  "printMarginNormal": "Normal",
+  "@printMarginNormal": {
+    "description": "Print margin: normal"
+  },
+  "printFitLabel": "Scaling",
+  "@printFitLabel": {
+    "description": "Label for how the scan is scaled onto the paper"
+  },
+  "printFitFit": "Fit page",
+  "@printFitFit": {
+    "description": "Scaling: whole scan visible"
+  },
+  "printFitFill": "Fill sheet (trims edges)",
+  "@printFitFill": {
+    "description": "Scaling: scan fills the sheet and may be trimmed"
+  },
+  "printPerSheetLabel": "Pages per sheet",
+  "@printPerSheetLabel": {
+    "description": "Label for how many document pages are printed on one sheet"
+  },
+  "emailMessageLabel": "Message",
+  "@emailMessageLabel": {
+    "description": "Label for the editable email message"
+  },
+  "emailMessageHint": "Add a note (optional)",
+  "@emailMessageHint": {
+    "description": "Hint in the email message field"
+  },
+  "emailLimitMissed": "Could not get under {mb} MB; sent the smallest version.",
+  "@emailLimitMissed": {
+    "description": "Note shown when the email PDF could not reach the chosen size limit",
+    "placeholders": {
+      "mb": {
+        "type": "int"
+      }
+    }
   }
 }

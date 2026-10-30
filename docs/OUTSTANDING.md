@@ -201,3 +201,9 @@ Quick checks green; emulator pending at time of writing:
 - Compress: max-size choice (No limit / 1 / 2 / 5 MB) — PDF: whole file (budget split equally per page, lower JPEG quality first, then smaller pictures down to 40%); JPG: each picture. Black-and-white switch. Size estimates now sample first/middle/last page.
 - New strings (native review): compressTargetLabel, compressNoLimit.
 - Phone checks owed: OCR on a shadowed photo, region box with the magnifier, a real PDF squeezed to 1 MB, B&W text page legibility.
+
+## Print / Email upgrade (Oct 2026)
+- Email now sends ONE PDF of the whole document (with edits), with an optional size limit (No limit / 1 / 2 / 5 MB) using the Compress target search. If the limit cannot be met, the smallest version is sent and a note says so. The body is an editable message (empty by default) instead of raw OCR text.
+- Print: page choice accepts "1, 3, 5-7" (same parser as watermark pages); paper A4 / A5 / Letter / Legal; margin None / Narrow / Normal; Fit page / Fill sheet (fill trims edges); 1, 2 or 4 pages per sheet (2 = sideways sheet, 4 = 2x2). Old From/To fields and the Letter switch were replaced.
+- Tested in CI: layout engine (page counts, paper sizes in the PDF, every margin/fit/per-sheet combination) and both option dialogs. NOT testable in CI: the system print screen and share sheet; phone check owed (print preview of A5/Legal, 2 and 4 per sheet; email attaches one PDF; size limit result).
+- Known limits: the old email body (OCR text) is gone; mailto fallback carries no attachment (unchanged). New strings (printPaperLabel, printMargin*, printFit*, printPerSheetLabel, emailMessageLabel/Hint, emailLimitMissed) need native review.

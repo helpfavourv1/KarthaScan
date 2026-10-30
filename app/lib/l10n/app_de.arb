@@ -654,5 +654,17 @@
   "pagesDeleteCount": "{count} löschen",
   "pagesDeleteConfirm": "{count} Seiten löschen? Sie werden beim Speichern entfernt.",
   "compressTargetLabel": "Höchstgröße",
-  "compressNoLimit": "Kein Limit"
+  "compressNoLimit": "Kein Limit",
+  "printPaperLabel": "Papier",
+  "printMarginLabel": "Rand",
+  "printMarginNone": "Keiner",
+  "printMarginNarrow": "Schmal",
+  "printMarginNormal": "Normal",
+  "printFitLabel": "Anpassung",
+  "printFitFit": "Seite einpassen",
+  "printFitFill": "Blatt füllen (beschneidet Ränder)",
+  "printPerSheetLabel": "Seiten pro Blatt",
+  "emailMessageLabel": "Nachricht",
+  "emailMessageHint": "Notiz hinzufügen (optional)",
+  "emailLimitMissed": "Unter {mb} MB war nicht möglich; die kleinste Version wurde gesendet."
 }

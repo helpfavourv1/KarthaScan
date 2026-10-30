@@ -654,5 +654,17 @@
   "pagesDeleteCount": "{count} हटाएँ",
   "pagesDeleteConfirm": "{count} पेज हटाएँ? सहेजने पर वे हट जाएँगे।",
   "compressTargetLabel": "अधिकतम आकार",
-  "compressNoLimit": "कोई सीमा नहीं"
+  "compressNoLimit": "कोई सीमा नहीं",
+  "printPaperLabel": "कागज़",
+  "printMarginLabel": "मार्जिन",
+  "printMarginNone": "कोई नहीं",
+  "printMarginNarrow": "संकरा",
+  "printMarginNormal": "सामान्य",
+  "printFitLabel": "फ़िट",
+  "printFitFit": "पृष्ठ में फ़िट करें",
+  "printFitFill": "शीट भरें (किनारे कटते हैं)",
+  "printPerSheetLabel": "प्रति शीट पृष्ठ",
+  "emailMessageLabel": "संदेश",
+  "emailMessageHint": "नोट जोड़ें (वैकल्पिक)",
+  "emailLimitMissed": "{mb} MB से कम नहीं हो सका; सबसे छोटा संस्करण भेजा गया।"
 }

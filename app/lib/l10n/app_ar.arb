@@ -654,5 +654,17 @@
   "pagesDeleteCount": "حذف {count}",
   "pagesDeleteConfirm": "حذف {count} صفحات؟ تتم الإزالة عند الحفظ.",
   "compressTargetLabel": "الحجم الأقصى",
-  "compressNoLimit": "بلا حد"
+  "compressNoLimit": "بلا حد",
+  "printPaperLabel": "الورق",
+  "printMarginLabel": "الهامش",
+  "printMarginNone": "بدون",
+  "printMarginNarrow": "ضيق",
+  "printMarginNormal": "عادي",
+  "printFitLabel": "الملاءمة",
+  "printFitFit": "ملاءمة الصفحة",
+  "printFitFill": "ملء الورقة (يقص الحواف)",
+  "printPerSheetLabel": "صفحات لكل ورقة",
+  "emailMessageLabel": "الرسالة",
+  "emailMessageHint": "أضف ملاحظة (اختياري)",
+  "emailLimitMissed": "تعذر الوصول إلى أقل من {mb} ميغابايت؛ تم إرسال أصغر نسخة."
 }

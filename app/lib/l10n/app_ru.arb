@@ -747,5 +747,17 @@
   "pagesDeleteCount": "Удалить {count}",
   "pagesDeleteConfirm": "Удалить страниц: {count}? Они будут удалены при сохранении.",
   "compressTargetLabel": "Макс. размер",
-  "compressNoLimit": "Без лимита"
+  "compressNoLimit": "Без лимита",
+  "printPaperLabel": "Бумага",
+  "printMarginLabel": "Поля",
+  "printMarginNone": "Нет",
+  "printMarginNarrow": "Узкие",
+  "printMarginNormal": "Обычные",
+  "printFitLabel": "Масштаб",
+  "printFitFit": "Вписать",
+  "printFitFill": "Заполнить лист (края обрезаются)",
+  "printPerSheetLabel": "Страниц на листе",
+  "emailMessageLabel": "Сообщение",
+  "emailMessageHint": "Добавьте заметку (необязательно)",
+  "emailLimitMissed": "Не удалось уложиться в {mb} МБ; отправлена самая маленькая версия."
 }

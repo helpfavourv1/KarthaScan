@@ -747,5 +747,17 @@
   "pagesDeleteCount": "Ta bort {count}",
   "pagesDeleteConfirm": "Ta bort {count} sidor? De tas bort när du sparar.",
   "compressTargetLabel": "Max. storlek",
-  "compressNoLimit": "Ingen gräns"
+  "compressNoLimit": "Ingen gräns",
+  "printPaperLabel": "Papper",
+  "printMarginLabel": "Marginal",
+  "printMarginNone": "Ingen",
+  "printMarginNarrow": "Smal",
+  "printMarginNormal": "Normal",
+  "printFitLabel": "Anpassning",
+  "printFitFit": "Anpassa sidan",
+  "printFitFill": "Fyll arket (beskär kanterna)",
+  "printPerSheetLabel": "Sidor per ark",
+  "emailMessageLabel": "Meddelande",
+  "emailMessageHint": "Lägg till en anteckning (valfritt)",
+  "emailLimitMissed": "Kunde inte komma under {mb} MB; den minsta versionen skickades."
 }

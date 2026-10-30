@@ -747,5 +747,17 @@
   "pagesDeleteCount": "Xóa {count}",
   "pagesDeleteConfirm": "Xóa {count} trang? Chúng bị xóa khi bạn lưu.",
   "compressTargetLabel": "Kích thước tối đa",
-  "compressNoLimit": "Không giới hạn"
+  "compressNoLimit": "Không giới hạn",
+  "printPaperLabel": "Giấy",
+  "printMarginLabel": "Lề",
+  "printMarginNone": "Không",
+  "printMarginNarrow": "Hẹp",
+  "printMarginNormal": "Thường",
+  "printFitLabel": "Tỷ lệ",
+  "printFitFit": "Vừa trang",
+  "printFitFill": "Lấp đầy tờ (cắt mép)",
+  "printPerSheetLabel": "Trang mỗi tờ",
+  "emailMessageLabel": "Tin nhắn",
+  "emailMessageHint": "Thêm ghi chú (tùy chọn)",
+  "emailLimitMissed": "Không thể xuống dưới {mb} MB; đã gửi bản nhỏ nhất."
 }

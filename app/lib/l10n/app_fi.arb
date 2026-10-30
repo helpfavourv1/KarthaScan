@@ -747,5 +747,17 @@
   "pagesDeleteCount": "Poista {count}",
   "pagesDeleteConfirm": "Poistetaanko {count} sivua? Ne poistetaan tallennettaessa.",
   "compressTargetLabel": "Enimmäiskoko",
-  "compressNoLimit": "Ei rajaa"
+  "compressNoLimit": "Ei rajaa",
+  "printPaperLabel": "Paperi",
+  "printMarginLabel": "Marginaali",
+  "printMarginNone": "Ei mitään",
+  "printMarginNarrow": "Kapea",
+  "printMarginNormal": "Normaali",
+  "printFitLabel": "Sovitus",
+  "printFitFit": "Sovita sivu",
+  "printFitFill": "Täytä arkki (rajaa reunat)",
+  "printPerSheetLabel": "Sivuja arkille",
+  "emailMessageLabel": "Viesti",
+  "emailMessageHint": "Lisää viesti (valinnainen)",
+  "emailLimitMissed": "{mb} MB:n alle ei päästy; lähetettiin pienin versio."
 }

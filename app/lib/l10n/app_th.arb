@@ -747,5 +747,17 @@
   "pagesDeleteCount": "ลบ {count}",
   "pagesDeleteConfirm": "ลบ {count} หน้า? จะถูกลบเมื่อคุณบันทึก",
   "compressTargetLabel": "ขนาดสูงสุด",
-  "compressNoLimit": "ไม่จำกัด"
+  "compressNoLimit": "ไม่จำกัด",
+  "printPaperLabel": "กระดาษ",
+  "printMarginLabel": "ขอบกระดาษ",
+  "printMarginNone": "ไม่มี",
+  "printMarginNarrow": "แคบ",
+  "printMarginNormal": "ปกติ",
+  "printFitLabel": "การปรับขนาด",
+  "printFitFit": "พอดีหน้า",
+  "printFitFill": "เต็มแผ่น (ตัดขอบ)",
+  "printPerSheetLabel": "หน้าต่อแผ่น",
+  "emailMessageLabel": "ข้อความ",
+  "emailMessageHint": "เพิ่มบันทึก (ไม่บังคับ)",
+  "emailLimitMissed": "ไม่สามารถลดให้ต่ำกว่า {mb} MB ได้ จึงส่งฉบับที่เล็กที่สุด"
 }

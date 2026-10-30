@@ -747,5 +747,17 @@
   "pagesDeleteCount": "মুছুন {count}",
   "pagesDeleteConfirm": "{count}টি পৃষ্ঠা মুছবেন? সংরক্ষণ করলে সরানো হবে।",
   "compressTargetLabel": "সর্বোচ্চ আকার",
-  "compressNoLimit": "কোনো সীমা নেই"
+  "compressNoLimit": "কোনো সীমা নেই",
+  "printPaperLabel": "কাগজ",
+  "printMarginLabel": "মার্জিন",
+  "printMarginNone": "কিছু নয়",
+  "printMarginNarrow": "সংকীর্ণ",
+  "printMarginNormal": "স্বাভাবিক",
+  "printFitLabel": "ফিটিং",
+  "printFitFit": "পাতা ফিট করুন",
+  "printFitFill": "শিট ভরান (কিনারা কাটে)",
+  "printPerSheetLabel": "প্রতি শিটে পাতা",
+  "emailMessageLabel": "বার্তা",
+  "emailMessageHint": "একটি নোট যোগ করুন (ঐচ্ছিক)",
+  "emailLimitMissed": "{mb} MB-এর নিচে আনা যায়নি; সবচেয়ে ছোট সংস্করণ পাঠানো হয়েছে।"
 }

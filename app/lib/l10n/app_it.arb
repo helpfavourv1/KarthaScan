@@ -747,5 +747,17 @@
   "pagesDeleteCount": "Elimina {count}",
   "pagesDeleteConfirm": "Eliminare {count} pagine? Vengono rimosse al salvataggio.",
   "compressTargetLabel": "Dimensione max",
-  "compressNoLimit": "Nessun limite"
+  "compressNoLimit": "Nessun limite",
+  "printPaperLabel": "Carta",
+  "printMarginLabel": "Margine",
+  "printMarginNone": "Nessuno",
+  "printMarginNarrow": "Stretto",
+  "printMarginNormal": "Normale",
+  "printFitLabel": "Adattamento",
+  "printFitFit": "Adatta pagina",
+  "printFitFill": "Riempi il foglio (taglia i bordi)",
+  "printPerSheetLabel": "Pagine per foglio",
+  "emailMessageLabel": "Messaggio",
+  "emailMessageHint": "Aggiungi una nota (facoltativo)",
+  "emailLimitMissed": "Impossibile scendere sotto {mb} MB; inviata la versione più piccola."
 }

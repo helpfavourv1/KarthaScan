@@ -747,5 +747,17 @@
   "pagesDeleteCount": "{count} verwijderen",
   "pagesDeleteConfirm": "{count} pagina's verwijderen? Ze worden verwijderd bij opslaan.",
   "compressTargetLabel": "Max. grootte",
-  "compressNoLimit": "Geen limiet"
+  "compressNoLimit": "Geen limiet",
+  "printPaperLabel": "Papier",
+  "printMarginLabel": "Marge",
+  "printMarginNone": "Geen",
+  "printMarginNarrow": "Smal",
+  "printMarginNormal": "Normaal",
+  "printFitLabel": "Schaling",
+  "printFitFit": "Pagina passend",
+  "printFitFill": "Vel vullen (snijdt randen af)",
+  "printPerSheetLabel": "Pagina's per vel",
+  "emailMessageLabel": "Bericht",
+  "emailMessageHint": "Voeg een notitie toe (optioneel)",
+  "emailLimitMissed": "Kon niet onder {mb} MB komen; de kleinste versie is verstuurd."
 }

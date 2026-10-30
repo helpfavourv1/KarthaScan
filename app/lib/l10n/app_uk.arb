@@ -747,5 +747,17 @@
   "pagesDeleteCount": "Видалити {count}",
   "pagesDeleteConfirm": "Видалити сторінок: {count}? Їх буде видалено після збереження.",
   "compressTargetLabel": "Макс. розмір",
-  "compressNoLimit": "Без ліміту"
+  "compressNoLimit": "Без ліміту",
+  "printPaperLabel": "Папір",
+  "printMarginLabel": "Поля",
+  "printMarginNone": "Немає",
+  "printMarginNarrow": "Вузькі",
+  "printMarginNormal": "Звичайні",
+  "printFitLabel": "Масштаб",
+  "printFitFit": "Вписати",
+  "printFitFill": "Заповнити аркуш (краї обрізаються)",
+  "printPerSheetLabel": "Сторінок на аркуші",
+  "emailMessageLabel": "Повідомлення",
+  "emailMessageHint": "Додайте нотатку (необов'язково)",
+  "emailLimitMissed": "Не вдалося вкластися в {mb} МБ; надіслано найменшу версію."
 }
