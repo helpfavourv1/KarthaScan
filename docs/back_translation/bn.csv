@@ -1,0 +1,542 @@
+score,key,english,translation,back_to_english,backtrans_score,labse_score
+0.282,watermarkLayoutTiled,Tiled,পুনরাবৃত্ত,,,0.282
+0.308,undoTooltip,Undo,পূর্বাবস্থা,,,0.308
+0.374,watermarkLayoutDiagonal,Diagonal,তির্যক,,,0.374
+0.386,sealCenterStar,Star,তারা,,,0.386
+0.405,sealFontSans,Clean,আধুনিক,,,0.405
+0.412,extractToNewDocAction,Extract to new doc,নতুন নথিতে নিষ্কাশন,Exclusion in the new document,0.412,0.820
+0.434,sealShapeOval,Oval,ডিম্বাকার,,,0.434
+0.452,signatureTabDraw,Draw,আঁকুন,,,0.452
+0.462,filterContrastLabel,Contrast,বৈসাদৃশ্য,,,0.462
+0.463,printFitLabel,Scaling,ফিটিং,,,0.463
+0.478,beepOnCaptureLabel,Beep on capture,ক্যাপচারে বিপ,,,0.478
+0.490,annotationModeEllipse,Ellipse,উপবৃত্ত,,,0.490
+0.492,printFitFill,Fill sheet (trims edges),শিট ভরান (কিনারা কাটে),Sheets of paper,0.492,0.797
+0.492,accentEmerald,Emerald,পান্না,,,0.492
+0.498,idStepFront,Step 1: Capture Front Side,ধাপ 1: সামনের দিক ধরুন,Step 1: Move forward,0.498,0.867
+0.502,sealSubtextLabel,Subtext (bottom arc / below),সাবটেক্সট (নিচের চাপ / নিচে),Subtext (pressure down / down),0.502,0.821
+0.520,sealMainTextLabel,Main text (top arc / box),মূল টেক্সট (উপরের চাপ / বাক্স),Original text (upper pressure / box),0.520,0.874
+0.521,eraserTitle,Eraser,ইরেজার,,,0.521
+0.521,annotationModeEraser,Eraser,ইরেজার,,,0.521
+0.522,deleteScanMessage,This can't be undone.,এটি পূর্বাবস্থায় ফেরানো যাবে না।,It cannot be reversed.,0.522,0.829
+0.532,paywallFeatureNoInterstitial,No more interstitial ads,আর কোনো ইন্টারস্টিশিয়াল বিজ্ঞাপন নেই,There's no more international advertising.,0.532,0.889
+0.541,filterGrayscale,Grayscale,গ্রেস্কেল,,,0.541
+0.543,batchExportEmptyMessage,No documents to batch export. Scan some first.,ব্যাচ রপ্তানির জন্য কোনো নথি নেই। আগে কিছু স্ক্যান করুন।,There's no documentation for batch shipments.,0.543,0.887
+0.549,frontSideCaptured,Front side captured. Now capture the back side.,সামনের দিক ধরা হয়েছে। এখন পিছনের দিক ধরুন।,We've got the front. Now take the back.,0.549,0.842
+0.552,fillCapsLabel,ALL CAPS,সব বড় হাতের,,,0.552
+0.558,alignLabel,Align,সারিবদ্ধ,,,0.558
+0.560,vibrateOnCaptureLabel,Vibrate on capture,ক্যাপচারে কম্পন,,,0.560
+0.563,accentCrimson,Crimson,গাঢ় লাল,,,0.563
+0.564,onboardingReplayIntro,Replay introduction,পরিচয় পুনরায় চালান,,,0.564
+0.567,valLabel,Val,মান,,,0.567
+0.567,satLabel,Sat,স্যাট,,,0.567
+0.568,tickerRevertToOriginal,REVERT TO ORIGINAL,আসলে ফিরে যান,,,0.568
+0.572,extractedAsNewDocument,Extracted as new document,নতুন নথি হিসাবে নিষ্কাশিত,Newly published as a document,0.572,0.879
+0.573,exportNoTextError,This document has no text yet. Run OCR on it first.,এই নথিতে এখনও কোনো লেখা নেই। আগে OCR চালান।,There's still no word on this document.,0.573,0.869
+0.597,exportGenericError,Something went wrong while exporting.,রপ্তানি করার সময় কিছু ভুল হয়েছে।,Something went wrong with the shipment.,0.597,0.872
+0.600,hueLabel,Hue,হিউ,,,0.600
+0.600,sealInkLook,Worn stamp look,পুরোনো স্ট্যাম্পের ছাপ,,,0.600
+0.606,captureBehaviorSectionLabel,CAPTURE BEHAVIOR,ক্যাপচার আচরণ,,,0.606
+0.608,printMarginLabel,Margin,মার্জিন,,,0.608
+0.609,watermarkDefaultText,CONFIDENTIAL,গোপনীয়,,,0.609
+0.611,watermarkLabel,Watermark,ওয়াটারমার্ক,,,0.611
+0.616,tickerUndoRedo,UNDO/REDO,পূর্বাবস্থা/পুনরায়,,,0.616
+0.619,tickerAccentThemes,ACCENT THEMES,অ্যাকসেন্ট থিম,,,0.619
+0.620,onboardingEditSubtitle,"Every edit stays reversible — undo, redo, and revert to original anytime.","প্রতিটি সম্পাদনা বিপরীতযোগ্য থাকে — পূর্বাবস্থা, পুনরায় এবং যেকোনো সময় আসলে ফিরে যান।","Each edition is reversible. Reverse, repeat and return to the original at any time.",0.620,0.895
+0.625,onboardingSignSubtitle,"E-sign contracts, type-to-fill forms, and stamp enterprise seals in seconds.","সেকেন্ডে চুক্তি ই-স্বাক্ষর, ফর্ম পূরণ এবং কর্পোরেট সীল স্ট্যাম্প করুন।","In seconds, e-sign the contract, fill out the form and stamp the corporate seal.",0.625,0.791
+0.627,captureFrontSide,Capture Front Side,সামনের দিক ধরুন,,,0.627
+0.628,commonExtract,Extract,নিষ্কাশন,,,0.628
+0.631,importAndConvertDocument,Import & Convert Document,আমদানি ও রূপান্তর,Imports and conversions,0.631,0.767
+0.632,pageToLabel,To page,শেষ পৃষ্ঠা,,,0.632
+0.634,revertToOriginalTitle,Revert to Original?,আসলে ফিরে যাবেন?,,,0.634
+0.641,annotateTitle,Annotate,টীকা,,,0.641
+0.649,watermarkLayoutLabel,Layout,লেআউট,,,0.649
+0.655,eraserZoomTooltip,Zoom and move (pinch),জুম ও সরান (দুই আঙুলে চিমটি),Zoom and move (two-fingered clam),0.696,0.655
+0.658,pageFromLabel,From page,শুরুর পৃষ্ঠা,,,0.658
+0.662,lockAspectRatio,Lock aspect ratio,অনুপাত লক,,,0.662
+0.664,cropLabel,Crop,কাট,,,0.664
+0.674,duplicateAction,Duplicate,নকল,,,0.674
+0.674,debugLogsLabel,Debug Logs,ডিবাগ লগ,,,0.674
+0.679,captionDocs,"Flexible crop: Original, Square, 4:3, 3:2, 16:9","নমনীয় কাট: আসল, বর্গ, 4:3, 3:2, 16:9","Flexible cuts: real, square, 4:3, 3:2, 16:9",0.679,0.903
+0.680,tickerFolders,FOLDERS,ফোল্ডার,,,0.680
+0.682,pageRevertedToOriginal,Page reverted to original,পৃষ্ঠা আসলে ফিরে গেছে,The page actually went back.,0.682,0.799
+0.687,resizeUpscaleWarning,Enlarging doesn't add detail — the page may look soft.,বড় করলে বিস্তারিত বাড়ে না; পৃষ্ঠাটি ঝাপসা দেখাতে পারে।,The size of the page does not increase the detail; the page may appear to be shiny.,0.687,0.793
+0.689,accentAmber,Amber,অ্যাম্বার,,,0.689
+0.690,sealShapeRound,Round,গোল,,,0.690
+0.690,ticker21ToolEditSuite,21-TOOL EDIT SUITE,21টি সম্পাদনা টুল,,,0.690
+0.691,idStepBack,Step 2: Capture Back Side,ধাপ 2: পিছনের দিক ধরুন,Step 2: Take the back.,0.691,0.915
+0.691,commonRevert,Revert,ফিরে যান,,,0.691
+0.694,printMarginNarrow,Narrow,সংকীর্ণ,,,0.694
+0.695,tickerCustomSeals,CUSTOM SEALS,কাস্টম সীল,,,0.695
+0.700,diagnosticsSectionLabel,DIAGNOSTICS,ডায়াগনস্টিক্স,,,0.700
+0.703,compressLabel,Compress,কম্প্রেস,,,0.703
+0.704,onboardingToolsSubtitle,"Annotate, sign, watermark, fill forms, seal, and more — every tool free and unlimited.","টীকা, স্বাক্ষর, ওয়াটারমার্ক, ফর্ম পূরণ, সীল এবং আরও অনেক কিছু — প্রতিটি টুল বিনামূল্যে এবং সীমাহীন।","Vaccines, signatures, watermarks, form filling, seals and more <unk> Each tool is free and unlimited.",0.704,0.876
+0.704,commonSkip,Skip,এড়িয়ে যান,,,0.704
+0.705,captionOcr,"Text crop: Original, Square, 4:3","টেক্সট কাট: আসল, বর্গ, 4:3","Text cut: real, square, 4:3",0.705,0.892
+0.708,signatureNewOne,Draw or type a new one,নতুন স্বাক্ষর আঁকুন বা টাইপ করুন,Draw or type a new signature,0.708,0.857
+0.710,idCardPdfGenerated,ID Card PDF Generated,আইডি কার্ড PDF তৈরি হয়েছে,I.D. card is PDF,0.710,0.868
+0.710,drawNewSignature,Draw New,নতুন আঁকুন,,,0.710
+0.713,cropDocumentTitle,Crop Document,নথি কাটুন,,,0.713
+0.715,captureBackSide,Capture Back Side,পিছনের দিক ধরুন,,,0.715
+0.717,clearThis,Clear this,এটি পরিষ্কার,,,0.717
+0.717,tickerFavorites,FAVORITES,প্রিয়,,,0.717
+0.717,couldNotCreateBackupError,Could not create the backup.,ব্যাকআপ তৈরি করা যায়নি।,No backup could be made.,0.717,0.889
+0.717,stampTickedLabel,Ticked,টিক চিহ্নিত,,,0.717
+0.722,signatureTabType,Type,টাইপ করুন,,,0.722
+0.722,fillTooltip,Fill,পূরণ,,,0.722
+0.732,accentViolet,Violet,বেগুনি,,,0.732
+0.734,tickerTapToTypeFilling,TAP-TO-TYPE FILLING,ট্যাপ-এন্ড-টাইপ পূরণ,,,0.734
+0.734,commonReset,Reset,রিসেট,,,0.734
+0.734,sealCreateTitle,Custom Seal,কাস্টম সীল,,,0.734
+0.734,sealCustom,Custom Seal,কাস্টম সীল,,,0.734
+0.735,commonCreate,Create,তৈরি,,,0.735
+0.740,sealSavedHeading,Saved seals,সংরক্ষিত সিল,,,0.740
+0.740,moveToFolderTitle,Move to Folder,ফোল্ডারে সরান,,,0.740
+0.744,resizeTitle,Resize,আকার পরিবর্তন,,,0.744
+0.744,tickerNoteStamps,NOTE STAMPS,নোট স্ট্যাম্প,,,0.744
+0.745,sealTextColorSame,Same as ring,রিংয়ের মতো,,,0.745
+0.746,checkShapeRounded,Rounded,গোলাকার,,,0.746
+0.748,redoTooltip,Redo,পুনরায়,,,0.748
+0.748,exportFormatCsvDescription,Spreadsheet data,স্প্রেডশিট ডেটা,,,0.748
+0.750,commonConfirm,Confirm,নিশ্চিত,,,0.750
+0.751,checkShapeSquare,Square,বর্গ,,,0.751
+0.751,cropAspectSquare,Square,বর্গ,,,0.751
+0.753,printMarginNone,None,কিছু নয়,,,0.753
+0.756,captionPassport,Passport crop: 4:3 or Original,পাসপোর্ট কাট: 4:3 বা আসল,Passport cut: 4:3 or original,0.756,0.865
+0.758,tickerBatchExport,BATCH EXPORT,ব্যাচ রপ্তানি,,,0.758
+0.758,ocrStatusOnDemand,On-demand,চাহিদা অনুযায়ী,,,0.758
+0.760,cropNoPageFound,Couldn't find the page edges. Drag the corners.,পৃষ্ঠার প্রান্ত পাওয়া যায়নি। কোণগুলো টেনে আনুন।,The edge of the page is missing.,0.760,0.910
+0.761,sealCenterNone,None,কিছুই না,,,0.761
+0.762,signatureFontFlowing,Flowing,প্রবহমান,,,0.762
+0.765,moveToFolderTooltip,Move to folder,ফোল্ডারে সরান,,,0.765
+0.767,accentIndigo,Indigo,ইন্ডিগো,,,0.767
+0.768,foldersSectionHeader,Folders,ফোল্ডার,,,0.768
+0.768,filterFolders,Folders,ফোল্ডার,,,0.768
+0.768,printFitFit,Fit page,পাতা ফিট করুন,,,0.768
+0.768,eraserApplied,Eraser applied,ইরেজার প্রয়োগ করা হয়েছে,,,0.768
+0.769,watermarkEditTitle,Edit Watermark,ওয়াটারমার্ক সম্পাদনা,,,0.769
+0.769,filterFavorites,Favorites,প্রিয়,,,0.769
+0.770,enableNotificationsSubtitle,Allow background reminders for unexported documents,রপ্তানি না করা নথির জন্য ব্যাকগ্রাউন্ড অনুস্মারক অনুমোদন করুন,Approve background reminders for non-exported documents,0.770,0.809
+0.770,onboardingBack,Back,পিছনে,,,0.770
+0.770,tickerPassportMode,PASSPORT MODE,পাসপোর্ট মোড,,,0.770
+0.772,signatureWidthLabel,Pen width,কলমের পুরুত্ব,,,0.772
+0.774,fillDeleteSnippet,Delete snippet?,স্নিপেট মুছবেন?,,,0.774
+0.776,tickerDarkMode,DARK MODE,গাঢ় মোড,,,0.776
+0.777,ocrStatusBuiltIn,Built-in,বিল্ট-ইন,,,0.777
+0.777,tickerNoWatermarks,NO WATERMARKS,কোনো ওয়াটারমার্ক নেই,,,0.777
+0.778,annotationModeRect,Rectangle,আয়তক্ষেত্র,,,0.778
+0.778,filterOriginal,Original,আসল,,,0.778
+0.779,sealSavedMessage,Seal saved,সিল সংরক্ষিত হয়েছে,,,0.779
+0.780,tickerTags,TAGS,ট্যাগ,,,0.780
+0.781,exportFormatSheetTitle,Export as,রপ্তানি করুন,,,0.781
+0.782,printRangeRange,Range,পরিসর,,,0.782
+0.782,watermarkPagesRange,Range,পরিসর,,,0.782
+0.782,cropIdCardTitle,Crop ID Card,আইডি কার্ড কাটুন,,,0.782
+0.783,storageSectionLabel,Storage,সংগ্রহস্থল,,,0.783
+0.785,ocrScriptKorean,Korean,কোরীয়,,,0.785
+0.785,extractedTextTitle,Extracted Text,নিষ্কাশিত টেক্সট,,,0.785
+0.788,annotationModeArrow,Arrow,তীর,,,0.788
+0.788,exportFormatPngDescription,"One image per page, lossless","প্রতি পৃষ্ঠায় একটি চিত্র, লসলেস","One image per page, without loss.",0.932,0.788
+0.790,scaleLabel,Scale,স্কেল,,,0.790
+0.790,ticker100OnDevicePrivacy,YOUR DOCUMENTS STAY ON YOUR DEVICE,আপনার ডকুমেন্ট আপনার ডিভাইসেই থাকে,Your documents are on your device.,0.873,0.790
+0.791,widthLabel,Width,প্রস্থ,,,0.791
+0.791,marqueeEraseTooltip,Marquee erase,মার্কি মুছুন,,,0.791
+0.793,tickerNonDestructiveEditing,NON-DESTRUCTIVE EDITING,অ-ধ্বংসাত্মক সম্পাদনা,,,0.793
+0.793,clearLogsTooltip,Clear logs,লগ পরিষ্কার,,,0.793
+0.796,filterSheetTitle,Filters,ফিল্টার,,,0.796
+0.796,clearedCount,Cleared {count},{count}টি মুছে ফেলা হয়েছে,,,0.796
+0.796,rotateLabel,Rotate,ঘোরান,,,0.796
+0.798,copiedToClipboard,Copied to clipboard,ক্লিপবোর্ডে কপি করা হয়েছে,,,0.798
+0.799,tickerTextStamps,TEXT STAMPS,টেক্সট স্ট্যাম্প,,,0.799
+0.800,engagementSectionLabel,ENGAGEMENT & NOTIFICATIONS,সম্পৃক্ততা ও বিজ্ঞপ্তি,,,0.800
+0.800,beepOnCaptureSubtitle,Play sound when scan completes,স্ক্যান সম্পন্ন হলে শব্দ চালান,Run the sound when the scan is complete.,0.800,0.873
+0.800,watermarkAddTitle,Add Watermark,ওয়াটারমার্ক যোগ,,,0.800
+0.800,darkThemeOption,Dark,গাঢ়,,,0.800
+0.801,batchExportTooltip,Batch export,ব্যাচ রপ্তানি,,,0.801
+0.802,tickerSearch,SEARCH,অনুসন্ধান,,,0.802
+0.803,tickerNoAccount,NO ACCOUNT,কোনো অ্যাকাউন্ট নেই,,,0.803
+0.803,couldNotOpenLinkError,Could not open link.,লিঙ্ক খোলা যায়নি।,The link is not open.,0.803,0.923
+0.805,billingUnavailableMessage,Billing unavailable — try again later.,বিলিং উপলব্ধ নয় — পরে আবার চেষ্টা করুন।,Billing is not available <unk> Try again later.,0.805,0.947
+0.806,buildingBackupStatus,Building backup…,ব্যাকআপ তৈরি হচ্ছে...,,,0.806
+0.806,sealEditTitle,Edit Custom Seal,কাস্টম সীল সম্পাদনা,,,0.806
+0.807,extractedPageDefaultTitle,Extracted Page,নিষ্কাশিত পৃষ্ঠা,,,0.807
+0.807,docxModeWithImages,With Images,চিত্র সহ,,,0.807
+0.808,tickerDeviceMigration,DEVICE MIGRATION,ডিভাইস মাইগ্রেশন,,,0.808
+0.809,pageResized,Page resized,পৃষ্ঠার আকার পরিবর্তন হয়েছে,,,0.809
+0.809,pageFormatLetter,Letter (US),লেটার (মার্কিন),,,0.809
+0.813,emailLimitMissed,Could not get under {mb} MB; sent the smallest version.,{mb} MB-এর নিচে আনা যায়নি; সবচেয়ে ছোট সংস্করণ পাঠানো হয়েছে।,No less than 5 MB; the smallest version has been sent.,0.813,0.937
+0.814,revertToOriginalMessage,"This will undo all filters, rotations, crops, resizes, and eraser strokes on this page.","এটি এই পৃষ্ঠার সমস্ত ফিল্টার, ঘূর্ণন, কাট, আকার পরিবর্তন এবং ইরেজার স্ট্রোক পূর্বাবস্থায় ফেরাবে।","It will reverse all filters, rotations, cuts, resizing and erasing strokes on this page.",0.814,0.839
+0.814,ocrStatusChecking,Checking...,পরীক্ষা হচ্ছে...,,,0.814
+0.817,clearAll,Clear all,সব পরিষ্কার,,,0.817
+0.817,annotationModeHighlighter,Highlighter,হাইলাইটার,,,0.817
+0.819,commonApply,Apply,প্রয়োগ,,,0.819
+0.820,chipSelectMultiple,Select Multiple,একাধিক নির্বাচন,,,0.820
+0.821,tickerESign,E-SIGN,ই-স্বাক্ষর,,,0.821
+0.822,watermarkLayoutSingle,Single,একক,,,0.822
+0.822,tickerGalleryImport,GALLERY IMPORT,গ্যালারি আমদানি,,,0.822
+0.822,appearanceSectionLabel,Appearance,চেহারা,,,0.822
+0.826,exportBackupButton,Export encrypted backup,এনক্রিপ্টেড ব্যাকআপ রপ্তানি,,,0.826
+0.826,exportFormatJpgDescription,One image per page,প্রতি পৃষ্ঠায় একটি চিত্র,A picture on each page,0.826,0.906
+0.828,onboardingWelcomeSubtitle,"Your entire document office — scan, edit, sign, and export — in one private app.","আপনার সম্পূর্ণ নথি অফিস — স্ক্যান, সম্পাদনা, স্বাক্ষর এবং রপ্তানি — একটি ব্যক্তিগত অ্যাপে।","Scan, edit, sign and export all your documents to a personal app.",0.828,0.906
+0.828,favoriteTooltip,Favorite,প্রিয়,,,0.828
+0.829,movedToFolderMessage,Moved to folder.,ফোল্ডারে সরানো হয়েছে।,,,0.829
+0.830,renameFolderTitle,Rename folder,ফোল্ডারের নাম পরিবর্তন,,,0.830
+0.830,stampCheckbox,Checkbox,চেকবক্স,,,0.830
+0.831,intensityLabel,Intensity,তীব্রতা,,,0.831
+0.832,stampTickLabel,Tick,টিক,,,0.832
+0.832,filterTitle,Filter,ফিল্টার,,,0.832
+0.832,enableReviewPromptsLabel,Enable Review Prompts,রিভিউ প্রম্পট সক্রিয় করুন,,,0.832
+0.833,useSavedSignature,Use Saved,সংরক্ষিত ব্যবহার,,,0.833
+0.834,tickerIdCardMode,ID CARD MODE,আইডি কার্ড মোড,,,0.834
+0.834,progressRasterizing,Rasterizing pages…,পৃষ্ঠা রাস্টারাইজ হচ্ছে...,,,0.834
+0.835,checkLabel,Check,চেক,,,0.835
+0.835,pageCropped,Page cropped,পৃষ্ঠা কাটা হয়েছে,,,0.835
+0.835,enableSharePromptsLabel,Enable Share Prompts,শেয়ার প্রম্পট সক্রিয় করুন,,,0.835
+0.836,checkShapeCircle,Circle,বৃত্ত,,,0.836
+0.837,onboardingSignTitle,"Sign, Fill & Seal","স্বাক্ষর, পূরণ ও সীল","Signature, filling and sealing",0.837,0.861
+0.837,sealRemoveWhite,Make white transparent,সাদা অংশ স্বচ্ছ করুন,,,0.837
+0.838,annotationModePen,Pen,কলম,,,0.838
+0.839,progressExtractingText,Extracting text…,টেক্সট নিষ্কাশন হচ্ছে...,,,0.839
+0.840,vibrateOnCaptureSubtitle,Haptic feedback when scan completes,স্ক্যান সম্পন্ন হলে হ্যাপটিক প্রতিক্রিয়া,Haptic response when the scan is completed,0.941,0.840
+0.841,sharePromptBody,Share it with friends who need a powerful document scanner.,যাদের শক্তিশালী নথি স্ক্যানার দরকার তাদের সাথে শেয়ার করুন।,Share with those who need a robust document scanner.,0.888,0.841
+0.842,annotationModeSelect,Select,নির্বাচন,,,0.842
+0.842,cropAuto,Auto-detect,স্বয়ংক্রিয় শনাক্তকরণ,,,0.842
+0.843,commonClear,Clear,পরিষ্কার,,,0.843
+0.843,printMarginNormal,Normal,স্বাভাবিক,,,0.843
+0.843,addToFavorites,Add to Favorites,প্রিয় তালিকায় যোগ করুন,,,0.843
+0.844,exportFormatTxtDescription,Plain OCR text only,শুধুমাত্র সাধারণ OCR টেক্সট,Only common OCR text,0.844,0.897
+0.845,tapToSampleColor,Tap a spot to sample its color,রঙের নমুনা নিতে একটি জায়গায় ট্যাপ করুন,Tap a spot to take a color sample,0.973,0.845
+0.846,commonCancel,Cancel,বাতিল,,,0.846
+0.846,cropAspectFree,Free,মুক্ত,,,0.846
+0.848,commonClose,Close,বন্ধ,,,0.848
+0.848,commonRename,Rename,নাম পরিবর্তন,,,0.848
+0.849,importFromGallery,Import from Gallery,গ্যালারি থেকে আমদানি,,,0.849
+0.849,importBackSide,Import Back Side,পিছনের দিক আমদানি,,,0.849
+0.850,stampBoxLabel,Box,বাক্স,,,0.850
+0.850,sealShapeBox,Box,বাক্স,,,0.850
+0.850,printPerSheetLabel,Pages per sheet,প্রতি শিটে পাতা,,,0.850
+0.851,filterApplied,Filter applied,ফিল্টার প্রয়োগ করা হয়েছে,,,0.851
+0.851,onboardingEditTitle,Non-Destructive Editing,অ-ধ্বংসাত্মক সম্পাদনা,,,0.851
+0.852,pagesLabel,Pages,পৃষ্ঠা,,,0.852
+0.852,watermarkPagesLabel,Pages,পৃষ্ঠা,,,0.852
+0.852,commonConvert,Convert,রূপান্তর,,,0.852
+0.853,whiteHaloLabel,White halo (readability),সাদা হ্যালো (পঠনযোগ্যতা),,,0.853
+0.853,filterShadow,Shadow,ছায়া,,,0.853
+0.854,reviewPromptNo,Send Feedback,প্রতিক্রিয়া পাঠান,,,0.854
+0.855,restorePurchasesButton,Restore purchases,ক্রয় পুনরুদ্ধার,,,0.855
+0.855,migrationTitle,Device Migration,ডিভাইস মাইগ্রেশন,,,0.855
+0.855,deviceMigrationLabel,Device Migration,ডিভাইস মাইগ্রেশন,,,0.855
+0.855,commonExport,Export,রপ্তানি,,,0.855
+0.855,exportTooltip,Export,রপ্তানি,,,0.855
+0.855,exportTitle,Export,রপ্তানি,,,0.855
+0.855,sealSaveToLibrary,Save this seal,এই সিল সংরক্ষণ করুন,,,0.855
+0.856,exportSavedToDownloads,Saved to Downloads,ডাউনলোডে সংরক্ষিত,,,0.856
+0.858,searchHint,Search your scans,আপনার স্ক্যান খুঁজুন,,,0.858
+0.859,progressEncodingPage,Encoding page {current} of {total}…,পৃষ্ঠা {current}/{total} এনকোড হচ্ছে...,Page 5/5 is encoded...,0.892,0.859
+0.859,compressSmall,Small,ছোট,,,0.859
+0.859,filterRemoved,Filter removed,ফিল্টার সরানো হয়েছে,,,0.859
+0.860,sealDefaultMainText,YOUR COMPANY,আপনার কোম্পানি,,,0.860
+0.860,copyAll,Copy all,সব কপি,,,0.860
+0.860,progressBuildingDocx,Building DOCX…,DOCX তৈরি হচ্ছে...,,,0.860
+0.861,captionIdCard,Two-sided ID capture: Front + Back,দ্বি-পার্শ্বীয় আইডি ক্যাপচার: সামনে + পিছনে,Two-sided ID capture: front + rear,0.939,0.861
+0.861,exportDoneStatus,Done,সম্পন্ন,,,0.861
+0.861,commonDone,Done,সম্পন্ন,,,0.861
+0.863,pagesUpdated,Pages updated,পৃষ্ঠা আপডেট হয়েছে,,,0.863
+0.864,idLayoutFullWidth,Full width,পূর্ণ প্রস্থ,,,0.864
+0.864,restoreCompleteMessage,Restore complete.,পুনরুদ্ধার সম্পন্ন।,,,0.864
+0.864,shareTooltip,Share,শেয়ার,,,0.864
+0.864,commonShare,Share,শেয়ার,,,0.864
+0.865,onboardingPrivacyTitle,Private by design,ডিজাইনেই ব্যক্তিগত,,,0.865
+0.865,documentsSectionHeader,Documents,নথি,,,0.865
+0.865,placeHereLabel,Place here,এখানে রাখুন,,,0.865
+0.865,fillSaveSnippet,Save as snippet,স্নিপেট হিসাবে সংরক্ষণ,,,0.865
+0.865,tickerRegionOcr,REGION OCR,আঞ্চলিক OCR,,,0.865
+0.866,setBackupPasswordTitle,Set a backup password,ব্যাকআপ পাসওয়ার্ড সেট করুন,Set the backup password,0.979,0.866
+0.867,onboardingPrivacySubtitle,"No account, no cloud, no watermarks. Your documents never leave your device.","কোনো অ্যাকাউন্ট নেই, কোনো ক্লাউড নেই, কোনো ওয়াটারমার্ক নেই। আপনার নথি কখনও আপনার ডিভাইস ছেড়ে যায় না।","No accounts, no clouds, no watermarks, your documents never leave your device.",0.950,0.867
+0.867,signatureFontHandwritten,Handwritten,হাতের লেখা,,,0.867
+0.867,batchExportSignatureDisabled,Batch export — signature placement disabled,ব্যাচ রপ্তানি — স্বাক্ষর স্থাপন নিষ্ক্রিয়,Batch exports <unk> Signature placement disabled,0.894,0.867
+0.868,errorReportIssue,Report issue,সমস্যা রিপোর্ট,,,0.868
+0.868,savedToDocumentText,Saved to document text,নথির টেক্সটে সংরক্ষিত,Save in the text of the document,0.908,0.868
+0.869,tickerWordExport,WORD EXPORT,WORD রপ্তানি,,,0.869
+0.869,fitToTargetMbLabel,Fit to target MB,লক্ষ্য MB-তে ফিট,Fits the target MB,0.923,0.869
+0.870,ocrStatusUnsupported,Unsupported,সমর্থিত নয়,,,0.870
+0.870,accentBlue,Blue,নীল,,,0.870
+0.870,docxModeTextOnly,Text Only,শুধু টেক্সট,,,0.870
+0.870,sharePromptTitle,Love KatharScan?,KatharScan পছন্দ করেন?,,,0.870
+0.870,straightenLabel,Straighten,সোজা করুন,,,0.870
+0.871,saveToDownloadsAction,Save to Downloads,ডাউনলোডে সংরক্ষণ,,,0.871
+0.871,fromAnotherDocument,From Another Document,অন্য নথি থেকে,,,0.871
+0.872,pagesDeleteConfirm,Delete {count} pages? They are removed when you save.,{count}টি পৃষ্ঠা মুছবেন? সংরক্ষণ করলে সরানো হবে।,Can you delete five pages? Save it and it will be removed.,0.886,0.872
+0.873,progressDecodingImage,Decoding image…,চিত্র ডিকোড হচ্ছে...,,,0.873
+0.873,accentColorTooltip,Accent Color,অ্যাকসেন্ট রঙ,,,0.873
+0.873,accentColorTitle,Accent Color,অ্যাকসেন্ট রঙ,,,0.873
+0.873,migrationExplainer,"This isn't automatic sync. Export creates a single encrypted backup file you move to your new device yourself, then import there.",এটি স্বয়ংক্রিয় সিঙ্ক নয়। রপ্তানি একটি একক এনক্রিপ্টেড ব্যাকআপ ফাইল তৈরি করে যা আপনি নিজেই আপনার নতুন ডিভাইসে স্থানান্তর করেন এবং সেখানে আমদানি করেন।,It's not automatic sync. Export creates a single encrypted backup file that you automatically transfer to your new device and import there.,0.984,0.873
+0.873,backupReadyStatus,Backup ready.,ব্যাকআপ প্রস্তুত।,,,0.873
+0.874,commonCustom,Custom,কাস্টম,,,0.874
+0.875,fillInputHint,Type text to fill,পূরণ করতে টেক্সট লিখুন,Fill in the text,0.875,0.920
+0.875,emptyFolders,No folders yet. Tap the folder icon to create one.,এখনও কোনো ফোল্ডার নেই। একটি তৈরি করতে ফোল্ডার আইকনে ট্যাপ করুন।,There is no folder yet. Tap the folder icon to create one.,0.941,0.875
+0.876,pricingLoadingError,Pricing is still loading — try again in a moment.,মূল্য এখনও লোড হচ্ছে — একটু পরে আবার চেষ্টা করুন।,Price is still loading. Try again later.,0.908,0.876
+0.876,openSourceLicensesLabel,Open-source licenses,ওপেন-সোর্স লাইসেন্স,,,0.876
+0.876,signatureSavedHeading,Saved signatures,সংরক্ষিত স্বাক্ষর,,,0.876
+0.876,adsRemovedLabel,Ads Removed,বিজ্ঞাপন সরানো হয়েছে,,,0.876
+0.876,paywallSuccessTitle,Ads Removed,বিজ্ঞাপন সরানো হয়েছে,,,0.876
+0.877,managePagesTitle,Manage Pages,পৃষ্ঠা পরিচালনা,,,0.877
+0.877,importFrontSide,Import Front Side,সামনের দিক আমদানি,,,0.877
+0.878,importBackupButton,Import from backup,ব্যাকআপ থেকে আমদানি,,,0.878
+0.878,whatsNewTitle,What's New,নতুন কী,,,0.878
+0.879,docScannerUnsupportedMessage,"Your device doesn't support the advanced document scanner. Take a photo with your Camera app, then tap Import below to crop and save it.","আপনার ডিভাইস উন্নত নথি স্ক্যানার সমর্থন করে না। ক্যামেরা অ্যাপ দিয়ে ছবি তুলুন, তারপর কাটতে এবং সংরক্ষণ করতে নিচের আমদানিতে ট্যাপ করুন।","Your device doesn't support advanced document scanner. Take pictures with the camera app, then tap on the import below to cut and save.",0.927,0.879
+0.879,sealTextColorLabel,Text colour,লেখার রং,,,0.879
+0.880,fromPageLabel,From,থেকে,,,0.880
+0.881,addCheckboxTitle,Add Checkbox,চেকবক্স যোগ,,,0.881
+0.881,pagesToReadTitle,Pages to read,পড়ার জন্য পৃষ্ঠা,,,0.881
+0.881,paywallLegalText,This is a non-consumable purchase. Restore it anytime on any device with the same store account.,এটি একটি অ-ব্যবহারযোগ্য ক্রয়। একই স্টোর অ্যাকাউন্ট সহ যেকোনো ডিভাইসে যেকোনো সময় এটি পুনরুদ্ধার করুন।,This is a non-usable purchase. Restore it at any time on any device with the same store account.,0.948,0.881
+0.881,fullscreenLabel,Fullscreen,পূর্ণ স্ক্রিন,,,0.881
+0.882,filterColorEnhance,Color enhance,রঙ বৃদ্ধি,,,0.882
+0.882,folderUnavailable,This folder is no longer available.,এই ফোল্ডার আর উপলব্ধ নয়।,This folder is no longer available.,1.000,0.882
+0.882,sealFontSerif,Classic,ক্লাসিক,,,0.882
+0.883,backupCorruptedError,This backup file looks corrupted.,এই ব্যাকআপ ফাইলটি ক্ষতিগ্রস্ত বলে মনে হচ্ছে।,This backup file appears damaged.,0.909,0.883
+0.883,filterShadowRemoval,Shadow removal,ছায়া অপসারণ,,,0.883
+0.883,commonUse,Use,ব্যবহার,,,0.883
+0.883,emptyFavorites,No favorites yet. Tap the star icon on a document to add it.,এখনও কোনো প্রিয় নেই। যোগ করতে নথিতে তারকা আইকনে ট্যাপ করুন।,No favorites yet. Tap the star icon in the document to add.,0.991,0.883
+0.884,fillTapHint,Tap the page where you want to type,যেখানে লিখতে চান পৃষ্ঠার সেই জায়গায় ট্যাপ করুন,Tap on the page where you want to type,0.987,0.884
+0.884,stampPaperLabel,Paper,কাগজ,,,0.884
+0.884,printPaperLabel,Paper,কাগজ,,,0.884
+0.884,removeAdsTitle,Remove Ads Forever,বিজ্ঞাপন চিরতরে সরান,,,0.884
+0.885,commonCopy,Copy,কপি,,,0.885
+0.885,ocrStatusInstalled,Installed,ইনস্টল করা হয়েছে,,,0.885
+0.885,cropAspectId,ID card,আইডি কার্ড,,,0.885
+0.886,progressReading,Reading…,পড়া হচ্ছে...,,,0.886
+0.886,signatureTitle,Signature,স্বাক্ষর,,,0.886
+0.886,filterBrightnessLabel,Brightness,উজ্জ্বলতা,,,0.886
+0.887,exportAndShareAction,Export & Share,রপ্তানি ও শেয়ার,,,0.887
+0.887,saveToDeviceButton,Save to Device,ডিভাইসে সংরক্ষণ,,,0.887
+0.887,enterBackupPasswordTitle,Enter backup password,ব্যাকআপ পাসওয়ার্ড লিখুন,,,0.887
+0.887,pdfImportedAsDocument,PDF imported as document,PDF নথি হিসাবে আমদানি করা হয়েছে,Imported as PDF document,0.984,0.887
+0.888,modePassport,Passport Mode,পাসপোর্ট মোড,,,0.888
+0.888,lightThemeOption,Light,হালকা,,,0.888
+0.888,idLayoutRealSize,Real size,আসল আকার,,,0.888
+0.888,enableNotificationsLabel,Enable Notifications,বিজ্ঞপ্তি সক্রিয় করুন,,,0.888
+0.889,renameDocumentTitle,Rename document,নথির নাম পরিবর্তন,,,0.889
+0.890,printRangeCurrent,Current,বর্তমান,,,0.890
+0.890,noFoldersYetHomeMessage,No folders yet. Create one from the home screen.,এখনও কোনো ফোল্ডার নেই। হোম স্ক্রিন থেকে একটি তৈরি করুন।,There's no folder yet. Create one from the home screen.,0.939,0.890
+0.891,watermarkKindImage,Image,ছবি,,,0.891
+0.891,progressBuildingPdf,Building PDF…,PDF তৈরি হচ্ছে...,,,0.891
+0.891,commonChange,Change,পরিবর্তন,,,0.891
+0.892,autoScan,Auto Scan,স্বয়ংক্রিয় স্ক্যান,,,0.892
+0.892,titleIdCard,ID Card,আইডি কার্ড,,,0.892
+0.893,chipAllFolders,All Folders,সব ফোল্ডার,,,0.893
+0.893,reviewPromptBody,Your feedback helps us grow and keeps the app free.,আপনার প্রতিক্রিয়া আমাদের বাড়তে সাহায্য করে এবং অ্যাপ বিনামূল্যে রাখে।,Your feedback helps us grow and keeps the app free.,1.000,0.893
+0.893,couldNotImportBackupError,Could not import this backup. Check the password and try again.,এই ব্যাকআপ আমদানি করা যায়নি। পাসওয়ার্ড পরীক্ষা করুন এবং আবার চেষ্টা করুন।,This backup could not be imported. Check the password and try again.,0.977,0.893
+0.894,newFolderTitle,New Folder,নতুন ফোল্ডার,,,0.894
+0.894,newFolderTooltip,New Folder,নতুন ফোল্ডার,,,0.894
+0.895,autoCopyOcrSubtitle,Copy text to clipboard after scan,স্ক্যানের পরে টেক্সট ক্লিপবোর্ডে কপি,Copy the text to the clipboard after the scan,0.974,0.895
+0.895,removeFromFavorites,Remove from Favorites,প্রিয় তালিকা থেকে সরান,,,0.895
+0.895,editLabel,Edit,সম্পাদনা,,,0.895
+0.896,whatsNewBody,"Welcome to KatharScan! This is the first public release featuring unlimited scanning, 29 languages, and export to PDF, Word, TXT, JPG, PNG, and CSV.","KatharScan-এ স্বাগতম! এটি প্রথম পাবলিক রিলিজ যেখানে আছে আনলিমিটেড স্ক্যানিং, ২৯টি ভাষা এবং PDF, Word, TXT, JPG, PNG ও CSV এক্সপোর্ট।","Welcome to KatharScan! It is the first public release with unlimited scanning, 29 languages and PDF, Word, TXT, JPG, PNG and CSV exports.",0.988,0.896
+0.897,conversionStarting,Starting…,শুরু হচ্ছে...,,,0.897
+0.897,progressCopying,Copying…,কপি হচ্ছে...,,,0.897
+0.897,commonSave,Save,সংরক্ষণ,,,0.897
+0.898,onboardingGetStarted,Get Started,শুরু করুন,,,0.898
+0.899,ocrNoInternetMessage,No internet. Connect once to download the language pack.,কোনো ইন্টারনেট নেই। ভাষা প্যাক ডাউনলোড করতে একবার সংযোগ করুন।,There is no internet. Connect once to download the language pack.,0.927,0.899
+0.900,noDocumentsInFolder,No documents in this folder yet.,এই ফোল্ডারে এখনও কোনো নথি নেই।,There are no documents in this folder yet.,0.955,0.900
+0.900,watermarkPagesInvalid,Check the pages (the document has {count} pages),পৃষ্ঠাগুলি দেখুন (নথিতে {count}টি পৃষ্ঠা আছে),See the pages (the document has 5 pages),0.900,0.938
+0.900,errorGenericTitle,Something went wrong,কিছু ভুল হয়েছে,,,0.900
+0.901,saveAsDocument,Save as Document,নথি হিসাবে সংরক্ষণ,,,0.901
+0.901,convertDocumentTitle,Convert Document,নথি রূপান্তর,,,0.901
+0.901,commonImport,Import,আমদানি,,,0.901
+0.901,paywallSuccessMessage,Thank you for supporting KatharScan.,KatharScan-কে সমর্থন করার জন্য ধন্যবাদ।,Thank you for supporting KatharScan.,1.000,0.901
+0.902,commonUpdate,Update,আপডেট,,,0.902
+0.902,progressSaving,Saving…,সংরক্ষণ হচ্ছে...,,,0.902
+0.903,tickerLanguages,{count} LANGUAGES,{count} ভাষা,,,0.903
+0.903,tickerAutoCopyOcr,AUTO-COPY OCR,স্বয়ংক্রিয় কপি OCR,,,0.903
+0.904,noTextRecognized,No text recognized.,কোনো টেক্সট শনাক্ত হয়নি।,,,0.904
+0.904,eraserAutoColorTooltip,Match the page colour automatically,পৃষ্ঠার রঙের সাথে স্বয়ংক্রিয়ভাবে মেলান,Automatically matches the page color,0.978,0.904
+0.904,filterRecent,Recent,সাম্প্রতিক,,,0.904
+0.905,selectRegionTitle,Select Region,অঞ্চল নির্বাচন,,,0.905
+0.905,rotationPage,Page rotated,পৃষ্ঠা ঘোরানো হয়েছে,,,0.905
+0.905,genericErrorPrefix,Error,ত্রুটি,,,0.905
+0.905,addTagsAction,Add Tags,ট্যাগ যোগ,,,0.905
+0.905,addSignature,Add Signature,স্বাক্ষর যোগ,,,0.905
+0.906,ocrLanguagePackNotReady,Language pack downloading or not ready. Try again shortly.,ভাষা প্যাক ডাউনলোড হচ্ছে বা প্রস্তুত নয়। একটু পরে আবার চেষ্টা করুন।,The language pack is downloading or not ready. Try again later.,0.981,0.906
+0.906,supportLabel,Support,সমর্থন,,,0.906
+0.907,deleteFolderTitle,Delete this folder?,এই ফোল্ডার মুছবেন?,,,0.907
+0.907,paywallSubtitle,Support KatharScan with a one-time purchase. All features remain free.,এককালীন ক্রয়ের মাধ্যমে KatharScan-কে সমর্থন করুন। সমস্ত বৈশিষ্ট্য বিনামূল্যে থাকবে।,Support KatharScan with one-time purchase. All features will be free.,0.989,0.907
+0.907,commonSize,Size,আকার,,,0.907
+0.908,scanPreviewNoPages,No pages to show.,প্রদর্শনের জন্য কোনো পৃষ্ঠা নেই।,There are no pages to display.,0.926,0.908
+0.908,printFilterNone,No filter,কোন ফিল্টার নেই,,,0.908
+0.908,onboardingOcrTitle,On-Device OCR,ডিভাইসে OCR,,,0.908
+0.909,printOptionsTitle,Print Options,প্রিন্ট বিকল্প,,,0.909
+0.909,deleteFolderTooltip,Delete folder,ফোল্ডার মুছুন,,,0.909
+0.910,scannerErrorPrefix,Scanner error,স্ক্যানার ত্রুটি,,,0.910
+0.910,importingStatus,Importing…,আমদানি হচ্ছে...,,,0.910
+0.911,settingsTooltip,Settings,সেটিংস,,,0.911
+0.911,settingsTitle,Settings,সেটিংস,,,0.911
+0.911,sealCenterText,Text,টেক্সট,,,0.911
+0.911,watermarkTextLabel,Text,টেক্সট,,,0.911
+0.911,textLabel,Text,টেক্সট,,,0.911
+0.911,watermarkKindText,Text,টেক্সট,,,0.911
+0.911,commonPrint,Print,প্রিন্ট,,,0.911
+0.912,removeFromFolderTooltip,Remove from folder,ফোল্ডার থেকে সরান,,,0.912
+0.912,signatureChoiceMessage,Use your saved signature or draw a new one?,সংরক্ষিত স্বাক্ষর ব্যবহার করবেন নাকি নতুন আঁকবেন?,Will you use the saved signature or paint a new one?,0.912,0.919
+0.912,noteLabel,Note,নোট,,,0.912
+0.912,ocrScriptChinese,Chinese,চীনা,,,0.912
+0.913,titleScan,Scan,স্ক্যান,,,0.913
+0.913,sealLogoReady,Logo ready,লোগো প্রস্তুত,,,0.913
+0.913,tickerPdfExport,PDF EXPORT,PDF রপ্তানি,,,0.913
+0.914,saveInsideAppWarning,"To save inside the app, choose JPG or PNG. Other targets are exported as files.",অ্যাপে সংরক্ষণ করতে JPG বা PNG বেছে নিন। অন্যান্য লক্ষ্য ফাইল হিসাবে রপ্তানি করা হয়।,Select JPG or PNG to save in the app. Other target files are exported.,0.932,0.914
+0.914,modeIdCard,ID Card Mode,আইডি কার্ড মোড,,,0.914
+0.914,commonRemove,Remove,সরান,,,0.914
+0.914,ocrUnavailableTooltip,OCR unavailable on this device.,এই ডিভাইসে OCR উপলব্ধ নয়।,OCR is not available on this device.,0.938,0.914
+0.914,emailMessageLabel,Message,বার্তা,,,0.914
+0.914,emailLabel,Email,ইমেল,,,0.914
+0.915,tickerFreeUnlimitedOcr,FREE UNLIMITED OCR,বিনামূল্যে সীমাহীন OCR,,,0.915
+0.915,sealCenterTextLabel,Center text,কেন্দ্রীয় টেক্সট,,,0.915
+0.915,addTextTitle,Add Text,টেক্সট যোগ,,,0.915
+0.916,ocrLanguagesLabel,OCR Languages,OCR ভাষা,,,0.916
+0.916,noFoldersYet,No folders yet,এখনও কোনো ফোল্ডার নেই,,,0.916
+0.917,letterSizeUS,Letter size (US),লেটার আকার (মার্কিন),,,0.917
+0.917,errorScreenProblem,KatharScan ran into a problem displaying this screen. Your scans are safe — they're stored on this device and this doesn't affect them.,KatharScan এই স্ক্রিন প্রদর্শন করতে সমস্যার সম্মুখীন হয়েছে। আপনার স্ক্যান নিরাপদ — সেগুলি এই ডিভাইসে সংরক্ষিত এবং এটি সেগুলিকে প্রভাবিত করে না।,KatharScan has a problem displaying this screen. Your scans are safe <unk> They are stored on this device and it does not affect them.,0.983,0.917
+0.918,exportingStatus,Exporting…,রপ্তানি হচ্ছে...,,,0.918
+0.919,saveAsNewDocumentAction,Save as new Document,নতুন নথি হিসাবে সংরক্ষণ,Save as new document,1.000,0.919
+0.919,paywallTitle,Remove Ads,বিজ্ঞাপন সরান,,,0.919
+0.920,signatureCanvasHint,Sign here,এখানে স্বাক্ষর করুন,,,0.920
+0.920,convertToLabel,Convert to:,রূপান্তর করুন:,,,0.920
+0.920,paywallFeatureNoBanner,No more banner ads,আর কোনো ব্যানার বিজ্ঞাপন নেই,No more banner ads.,0.967,0.920
+0.920,pagesSelectTooltip,Select pages,পৃষ্ঠা নির্বাচন করুন,,,0.920
+0.920,themeLabel,Theme,থিম,,,0.920
+0.920,clearPage,Clear page,পৃষ্ঠা মুছুন,,,0.920
+0.921,readingPageProgress,Page {page} of {total},পৃষ্ঠা {page} / {total},Page 5 / 5,0.944,0.921
+0.921,enableSharePromptsSubtitle,Allow the app to occasionally suggest sharing,অ্যাপটিকে মাঝে মাঝে শেয়ার করার পরামর্শ দিতে অনুমতি দিন,Allow the app to suggest sharing occasionally,0.994,0.921
+0.921,idPdfErrorPrefix,Error generating ID PDF,আইডি PDF তৈরি ত্রুটি,Error in creating ID PDF,0.921,0.937
+0.921,reviewPromptYes,Rate Us,আমাদের রেট করুন,,,0.921
+0.921,noteTextLabel,Note text,নোট টেক্সট,,,0.921
+0.922,modeDocument,Document Mode,নথি মোড,,,0.922
+0.922,sealCenterLogo,Logo,লোগো,,,0.922
+0.922,debugNoLogsYet,No logs yet,এখনও কোনো লগ নেই,,,0.922
+0.922,paywallFallbackPrice,$14.99 one-time,$14.99 এককালীন,,,0.922
+0.923,regionOcrFailed,Region OCR failed,আঞ্চলিক OCR ব্যর্থ,,,0.923
+0.923,subscriptionSectionLabel,Subscription,সাবস্ক্রিপশন,,,0.923
+0.924,enableReviewPromptsSubtitle,Allow the app to occasionally ask for a rating,অ্যাপটিকে মাঝে মাঝে রেটিং চাইতে অনুমতি দিন,Allow the app to ask for ratings occasionally,0.964,0.924
+0.924,deleteFolderMessage,Documents inside will not be deleted.,ভিতরের নথি মুছে ফেলা হবে না।,The documents inside will not be deleted.,0.973,0.924
+0.924,commonDelete,Delete,মুছুন,,,0.924
+0.924,deleteTooltip,Delete,মুছুন,,,0.924
+0.924,fillTypeHint,Type here,এখানে লিখুন,,,0.924
+0.924,tickerTxtExport,TXT EXPORT,TXT রপ্তানি,,,0.924
+0.924,cameraSource,Camera,ক্যামেরা,,,0.924
+0.924,tickerSearchablePdf,SEARCHABLE PDF,অনুসন্ধানযোগ্য PDF,,,0.924
+0.924,editDocumentAction,Edit Document,নথি সম্পাদনা,,,0.924
+0.925,filterMagicColor,Magic colour,ম্যাজিক রঙ,,,0.925
+0.925,compressMedium,Medium,মাঝারি,,,0.925
+0.925,emptyStateDefaultMessage,Tap the camera to scan your first document.,আপনার প্রথম নথি স্ক্যান করতে ক্যামেরায় ট্যাপ করুন।,Tap the camera to scan your first document.,1.000,0.925
+0.926,saveFailedBanner,Your latest changes could not be saved.,আপনার সাম্প্রতিক পরিবর্তনগুলি সংরক্ষণ করা যায়নি।,Your recent changes could not be saved.,0.959,0.926
+0.926,tryAgainButton,Try again,আবার চেষ্টা,,,0.926
+0.926,genericErrorMessage,Something went wrong. Please try again.,কিছু ভুল হয়েছে। আবার চেষ্টা করুন।,Something went wrong. Try again.,0.930,0.926
+0.926,tabImageLabel,Image,চিত্র,,,0.926
+0.926,heightLabel,Height,উচ্চতা,,,0.926
+0.926,docxWarningMessage,"DOCX sources render poorly as pages — save inside the app is limited to JPG/PNG from image, PDF, TXT or CSV sources. Use Export & Share for this file.","DOCX উৎস পৃষ্ঠা হিসাবে খারাপভাবে রেন্ডার হয় — অ্যাপে সংরক্ষণ চিত্র, PDF, TXT বা CSV উৎস থেকে শুধুমাত্র JPG/PNG-তে সীমাবদ্ধ। এই ফাইলের জন্য রপ্তানি ও শেয়ার ব্যবহার করুন।","DOCX is poorly rendered as source page <unk> save images in the app, PDF, TXT or CSV from source only to JPG/PNG. Use Export and Share for this file.",0.946,0.926
+0.926,autoCopyOcrLabel,Auto-copy OCR,স্বয়ংক্রিয় OCR কপি,,,0.926
+0.927,idGenerating,Generating PDF...,PDF তৈরি হচ্ছে...,,,0.927
+0.928,emailAttachmentNotIncluded,The pages could not be attached to the email. Use Share to send the pages.,পৃষ্ঠাগুলো ইমেইলে সংযুক্ত করা যায়নি। পৃষ্ঠা পাঠাতে শেয়ার ব্যবহার করুন।,The pages could not be linked to the e-mail. Use shares to send the page.,0.933,0.928
+0.928,opacityPercentLabel,Opacity: {percent}%,অস্বচ্ছতা: {percent}%,,,0.928
+0.929,sampleColorTooltip,Sample color from page,পৃষ্ঠা থেকে রঙের নমুনা,Sample of color from page to page,0.964,0.929
+0.929,reviewPromptTitle,Enjoying KatharScan?,KatharScan উপভোগ করছেন?,,,0.929
+0.930,customColorTitle,Custom Color,কাস্টম রঙ,,,0.930
+0.930,savedAsNewDocument,Saved as new document,নতুন নথি হিসাবে সংরক্ষিত,Saved as a new document,0.989,0.930
+0.930,documentSaved,Document saved,নথি সংরক্ষিত,,,0.930
+0.930,exportFormatPdfDescription,Best for sharing and printing,শেয়ারিং এবং প্রিন্টিংয়ের জন্য সেরা,Best for sharing and printing,1.000,0.930
+0.931,rotationAllPages,All pages rotated,সব পৃষ্ঠা ঘোরানো হয়েছে,,,0.931
+0.931,addNoteTitle,Add Note,নোট যোগ,,,0.931
+0.931,deleteScanTitle,Delete this scan?,এই স্ক্যান মুছবেন?,,,0.931
+0.931,compressNoLimit,No limit,কোনো সীমা নেই,,,0.931
+0.931,tickerJpgExport,JPG EXPORT,JPG রপ্তানি,,,0.931
+0.932,termsOfServiceLabel,Terms of Service,পরিষেবার শর্তাবলী,,,0.932
+0.932,pickErrorPrefix,Pick error,বাছাই ত্রুটি,,,0.932
+0.932,scanUnavailable,This scan is no longer available.,এই স্ক্যান আর উপলব্ধ নয়।,This scan is no longer available.,1.000,0.932
+0.933,emptySearch,No scans match your search.,আপনার অনুসন্ধানের সাথে কোনো স্ক্যান মেলে না।,No scans matched your search.,0.943,0.933
+0.934,exportFormatDocxDescription,Editable text document,সম্পাদনাযোগ্য টেক্সট নথি,,,0.934
+0.934,applyToAllPages,Apply to all pages,সব পৃষ্ঠায় প্রয়োগ,Apply to all pages,1.000,0.934
+0.935,continueButton,Continue,চালিয়ে যান,,,0.935
+0.935,onboardingContinue,Continue,চালিয়ে যান,,,0.935
+0.935,whatsNewContinue,Continue,চালিয়ে যান,,,0.935
+0.936,systemThemeOption,System,সিস্টেম,,,0.936
+0.936,readingPageEta,Page {page} of {total} · about {minutes} min left,পৃষ্ঠা {page} / {total} · প্রায় {minutes} মিনিট বাকি,Page 5 / 5 · About 5 minutes left,0.951,0.936
+0.936,aboutSectionLabel,About,সম্পর্কে,,,0.936
+0.936,onboardingToolsTitle,21 Free Pro Tools,21টি বিনামূল্যে Pro টুল,21 free Pro tools,1.000,0.936
+0.936,compressTargetLabel,Max size,সর্বোচ্চ আকার,,,0.936
+0.937,privacyOptionsLabel,Privacy settings,গোপনীয়তা সেটিংস,,,0.937
+0.937,ocrScriptJapanese,Japanese,জাপানি,,,0.937
+0.937,tickerCsvExport,CSV EXPORT,CSV রপ্তানি,,,0.937
+0.937,pagesToReadHint,This PDF has {count} pages. Pages that are pictures are read with OCR (about 10 seconds each); pages with real text are instant.,এই PDF-এ {count}টি পৃষ্ঠা আছে। ছবির পৃষ্ঠা OCR দিয়ে পড়া হয় (প্রতিটি প্রায় ১০ সেকেন্ড); আসল লেখার পৃষ্ঠা তাৎক্ষণিক।,This PDF has 5 pages. The image page is read with OCR (about 10 seconds each); the original text page is instantaneous.,0.937,0.944
+0.937,sharePdf,Share PDF,PDF শেয়ার,,,0.937
+0.938,conversionFailedPrefix,Conversion failed,রূপান্তর ব্যর্থ,,,0.938
+0.938,importErrorPrefix,Import error,আমদানি ত্রুটি,,,0.938
+0.939,sharePromptAction,Share App,অ্যাপ শেয়ার,,,0.939
+0.940,addTagTitle,Add tag,ট্যাগ যোগ করুন,,,0.940
+0.941,emailMessageHint,Add a note (optional),একটি নোট যোগ করুন (ঐচ্ছিক),Add a note (optional),1.000,0.941
+0.941,languageSectionLabel,Language,ভাষা,,,0.941
+0.942,tickerPngExport,PNG EXPORT,PNG রপ্তানি,,,0.942
+0.942,emptyDocumentMessage,This document has no pages.,এই নথিতে কোনো পৃষ্ঠা নেই।,There are no pages in this document.,0.951,0.942
+0.944,cameraErrorPrefix,Camera error,ক্যামেরা ত্রুটি,,,0.944
+0.945,dateLabel,Date,তারিখ,,,0.945
+0.945,noEmailAppFound,No email app found,কোনো ইমেল অ্যাপ পাওয়া যায়নি,No email app found.,0.945,0.961
+0.945,signerLabel,Signer {index},স্বাক্ষরকারী {index},,,0.945
+0.947,documentNotFound,Document not found,নথি পাওয়া যায়নি,,,0.947
+0.947,addPageTitle,Add Page,পৃষ্ঠা যোগ,,,0.947
+0.948,paywallFeatureFreeForever,All features free forever,সমস্ত বৈশিষ্ট্য চিরতরে বিনামূল্যে,All features are free forever.,0.948,0.954
+0.948,sharePromptDismiss,Not now,এখন নয়,,,0.948
+0.949,watermarkPagesThis,This page,এই পৃষ্ঠা,,,0.949
+0.949,ocrScriptDevanagari,"Hindi, Marathi (Devanagari)","হিন্দি, মারাঠি (দেবনাগরী)",,,0.949
+0.949,onboardingOcrSubtitle,Use KatharScan in {count} languages. OCR runs on your phone — nothing ever leaves your device.,KatharScan ব্যবহার করুন {count}টি ভাষায়। OCR আপনার ফোনে চলে — কিছুই আপনার ডিভাইস ছাড়ে না।,"Use KatharScan in 5 languages. OCR runs on your phone, nothing leaves your device.",0.994,0.949
+0.951,emailFailed,Email failed,ইমেল ব্যর্থ,,,0.951
+0.951,signatureDeleteSaved,Remove saved signature,সংরক্ষিত স্বাক্ষর সরান,,,0.951
+0.951,signatureTypeHint,Type your name,আপনার নাম লিখুন,,,0.951
+0.952,commonAdd,Add,যোগ করুন,,,0.952
+0.953,addDateTitle,Add Date,তারিখ যোগ,,,0.953
+0.954,ocrNoTextFound,No text found,কোনো টেক্সট পাওয়া যায়নি,,,0.954
+0.955,clearAllPages,Clear all pages,সব পৃষ্ঠা মুছুন,,,0.955
+0.955,sealTextSizePercent,Text size {percent}%,লেখার আকার {percent}%,,,0.955
+0.957,ocrScriptLatin,"Latin (English, European)","ল্যাটিন (ইংরেজি, ইউরোপীয়)",,,0.957
+0.957,privacyPolicyLabel,Privacy policy,গোপনীয়তা নীতি,,,0.957
+0.958,ocrStatusDownloading,Downloading…,ডাউনলোড হচ্ছে…,,,0.958
+0.959,moreOptionsTooltip,More options,আরও বিকল্প,,,0.959
+0.959,actionLabel,Action:,অ্যাকশন:,,,0.959
+0.960,homeLanguageTooltip,App Language,অ্যাপ ভাষা,,,0.960
+0.960,appLanguageTitle,App Language,অ্যাপ ভাষা,,,0.960
+0.960,printFailed,Print failed,প্রিন্ট ব্যর্থ,,,0.960
+0.960,convertedDocTitle,Converted {date},রূপান্তরিত {date},,,0.960
+0.962,watermarkChooseImage,Choose image,ছবি বেছে নিন,,,0.962
+0.962,tabOcrTextLabel,OCR Text,OCR টেক্সট,,,0.962
+0.963,appLanguageLabel,App language,অ্যাপ ভাষা,,,0.963
+0.963,saveFailedPrefix,Save failed:,সংরক্ষণ ব্যর্থ:,,,0.963
+0.965,textSizeLabel,Text size: {size},টেক্সট আকার: {size},,,0.965
+0.965,onboardingWelcomeTitle,Welcome to KatharScan,KatharScan-এ স্বাগতম,,,0.965
+0.967,pageLabel,Page {index},পৃষ্ঠা {index},,,0.967
+0.968,exportEstimatedSize,Estimated size: {mb} MB,আনুমানিক আকার: {mb} MB,Estimated size: 5 MB,1.000,0.968
+0.970,titlePdfImport,PDF Import,PDF আমদানি,,,0.970
+0.970,originalDimensions,Original: {w}×{h},আসল: {w}×{h},,,0.970
+0.972,exportFormatTxtLabel,Text (.txt),টেক্সট (.txt),,,0.972
+0.972,pagesDeleteCount,Delete {count},মুছুন {count},,,0.972
+0.973,modeOcr,OCR Mode,OCR মোড,,,0.973
+0.973,pdfImportErrorPrefix,PDF import error,PDF আমদানি ত্রুটি,,,0.973
+0.974,rotate90Action,Rotate 90°,90° ঘোরান,,,0.974
+0.974,printRangeAll,All pages,সব পৃষ্ঠা,,,0.974
+0.974,watermarkPagesAll,All pages,সব পৃষ্ঠা,,,0.974
+0.980,pageIndicator,Page {current} / {total},পৃষ্ঠা {current} / {total},Page 5 / 5,1.000,0.980
+0.984,sizePtLabel,Size: {size}pt,আকার: {size}pt,,,0.984
+1.000,exportFormatPdfLabel,PDF,PDF,,,1.000
+1.000,ocrScriptArabic,العربية (Arabic),العربية (Arabic),,,1.000
+1.000,ocrSectionLabel,OCR,OCR,,,1.000
+1.000,fontMonospace,monospace,monospace,,,1.000
+1.000,ocrScriptHebrew,עברית (Hebrew),עברית (Hebrew),,,1.000
+1.000,exportFormatDocxLabel,Word (.docx),Word (.docx),,,1.000
+1.000,exportFormatJpgLabel,JPG,JPG,,,1.000
+1.000,proBadgeLabel,PRO,PRO,,,1.000
+1.000,ocrScriptRussian,Русский (Russian),Русский (Russian),,,1.000
+1.000,ocrScriptUkrainian,Українська (Ukrainian),Українська (Ukrainian),,,1.000
+1.000,ocrScriptBengali,বাংলা (Bengali),বাংলা (Bengali),,,1.000
+1.000,exportFormatPngLabel,PNG,PNG,,,1.000
+1.000,fontSerif,serif,serif,,,1.000
+1.000,formatCsv,CSV,CSV,,,1.000
+1.000,ocrScriptGreek,Ελληνικά (Greek),Ελληνικά (Greek),,,1.000
+1.000,ocrScriptThai,ไทย (Thai),ไทย (Thai),,,1.000
+1.000,fontSansSerif,sans-serif,sans-serif,,,1.000

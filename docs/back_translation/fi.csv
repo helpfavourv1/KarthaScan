@@ -1,0 +1,545 @@
+score,key,english,translation,back_to_english,backtrans_score,labse_score
+0.083,ticker100OnDevicePrivacy,YOUR DOCUMENTS STAY ON YOUR DEVICE,ASIAKIRJASI PYSYVÄT LAITTEELLASI,Keep your promise,0.083,0.667
+0.109,batchExportSignatureDisabled,Batch export — signature placement disabled,Erävienti — allekirjoituksen sijoittelu pois käytöstä,Dispatch <unk> Decommissioning,0.109,0.801
+0.182,captionOcr,"Text crop: Original, Square, 4:3","Tekstirajaus: Alkuperäinen, Neliö, 4:3",I'm not sure what the hell happened to you.,0.182,0.911
+0.182,idPdfErrorPrefix,Error generating ID PDF,Henkilökortin PDF-generointivirhe,This is the maximum amount of time required to complete the validation of the validity of the identity card.,0.182,0.857
+0.216,importAndConvertDocument,Import & Convert Document,Tuo ja muunna asiakirja,That and the other document .,0.216,0.908
+0.237,billingUnavailableMessage,Billing unavailable — try again later.,Laskutus ei ole käytettävissä — yritä myöhemmin uudelleen.,Calculation is not available <unk> Try again later.,0.237,0.960
+0.264,captionPassport,Passport crop: 4:3 or Original,Passirajaus: 4:3 tai Alkuperäinen,Pass control: 4:3 or Original,0.264,0.836
+0.271,annotationModeEraser,Eraser,Pyyhekumi,,,0.271
+0.271,eraserTitle,Eraser,Pyyhekumi,,,0.271
+0.281,printMarginNarrow,Narrow,Kapea,,,0.281
+0.295,watermarkLayoutDiagonal,Diagonal,Viisto,,,0.295
+0.305,batchExportTooltip,Batch export,Erävienti,,,0.305
+0.319,commonExtract,Extract,Pura,,,0.319
+0.323,accentAmber,Amber,Meripihka,,,0.323
+0.328,hueLabel,Hue,Sävy,,,0.328
+0.331,exportFormatPngDescription,"One image per page, lossless","Yksi kuva sivua kohden, häviötön","One shot per page, unbeaten.",0.331,0.961
+0.334,printFitLabel,Scaling,Sovitus,,,0.334
+0.341,commonReset,Reset,Nollaa,,,0.341
+0.345,sealShapeOval,Oval,Soikio,,,0.345
+0.349,signatureFontFlowing,Flowing,Soljuva,,,0.349
+0.354,satLabel,Sat,Kyll,,,0.354
+0.355,duplicateAction,Duplicate,Monista,,,0.355
+0.365,filterMagicColor,Magic colour,Taikaväri,,,0.365
+0.371,watermarkLayoutTiled,Tiled,Toistuva,,,0.371
+0.384,stampTickLabel,Tick,Rasti,,,0.384
+0.386,foldersSectionHeader,Folders,Kansiot,,,0.386
+0.386,filterFolders,Folders,Kansiot,,,0.386
+0.392,printRangeRange,Range,Alue,,,0.392
+0.395,modePassport,Passport Mode,Passitila,,,0.395
+0.397,tickerBatchExport,BATCH EXPORT,ERÄVIENTI,,,0.397
+0.402,tickerESign,E-SIGN,SÄHKÖINEN ALLEKIRJOITUS,,,0.402
+0.404,marqueeEraseTooltip,Marquee erase,Valintapyyhintä,,,0.404
+0.416,commonExport,Export,Vie,,,0.416
+0.416,exportTooltip,Export,Vie,,,0.416
+0.416,exportTitle,Export,Vie,,,0.416
+0.433,sealSubtextLabel,Subtext (bottom arc / below),Alateksti (alakaari / alla),Subtitle (alphabet / below),0.433,0.888
+0.444,cropLabel,Crop,Rajaa,,,0.444
+0.445,alignLabel,Align,Tasaus,,,0.445
+0.446,lightThemeOption,Light,Vaalea,,,0.446
+0.451,tickerDarkMode,DARK MODE,TUMMA TILA,,,0.451
+0.451,filterShadow,Shadow,Varjo,,,0.451
+0.451,commonSkip,Skip,Ohita,,,0.451
+0.457,undoTooltip,Undo,Kumoa,,,0.457
+0.458,modeIdCard,ID Card Mode,Henkilökorttitila,,,0.458
+0.467,annotationModeRect,Rectangle,Suorakulmio,,,0.467
+0.468,batchExportEmptyMessage,No documents to batch export. Scan some first.,Ei vietäviä asiakirjoja. Skannaa ensin joitakin.,"I don't want to carry any documents, so scan some of them first.",0.468,0.784
+0.495,stampCheckbox,Checkbox,Valintaruutu,,,0.495
+0.496,tickerIdCardMode,ID CARD MODE,HENKILÖKORTTI-TILA,,,0.496
+0.499,stampTickedLabel,Ticked,Rastattu,,,0.499
+0.501,deleteScanMessage,This can't be undone.,Tätä ei voi kumota.,You can't turn this down.,0.501,0.871
+0.508,extractToNewDocAction,Extract to new doc,Pura uuteen asiakirjaan,You 're gonna have to dig into a new document .,0.508,0.827
+0.510,annotationModePen,Pen,Kynä,,,0.510
+0.514,printFitFill,Fill sheet (trims edges),Täytä arkki (rajaa reunat),Fill the box (limit the edges),0.514,0.798
+0.520,idStepBack,Step 2: Capture Back Side,Vaihe 2: Kaappaa takapuoli,"Step two , grab the butt .",0.520,0.912
+0.522,debugLogsLabel,Debug Logs,Virheenkorjauslokit,,,0.522
+0.522,annotationModeArrow,Arrow,Nuoli,,,0.522
+0.536,vibrateOnCaptureLabel,Vibrate on capture,Tärinä kaappauksessa,,,0.536
+0.537,exportingStatus,Exporting…,Viedään...,,,0.537
+0.538,vibrateOnCaptureSubtitle,Haptic feedback when scan completes,Haptinen palaute skannauksen valmistuessa,Funny feedback at the end of the scan .,0.538,0.857
+0.539,commonImport,Import,Tuo,,,0.539
+0.546,tickerRevertToOriginal,REVERT TO ORIGINAL,PALAUTA ALKUPERÄISEEN,,,0.546
+0.546,noteLabel,Note,Muistiinpano,,,0.546
+0.550,watermarkDefaultText,CONFIDENTIAL,LUOTTAMUKSELLINEN,,,0.550
+0.550,checkLabel,Check,Rasti,,,0.550
+0.554,tickerNoteStamps,NOTE STAMPS,MUISTIINPANO-LEIMAT,,,0.554
+0.558,compressLabel,Compress,Pakkaa,,,0.558
+0.558,tickerSearch,SEARCH,HAKU,,,0.558
+0.560,tickerAccentThemes,ACCENT THEMES,KOROSTUSTEEMAT,,,0.560
+0.562,tickerDeviceMigration,DEVICE MIGRATION,LAITTEEN SIIRTO,,,0.562
+0.564,scaleLabel,Scale,Skaalaa,,,0.564
+0.568,extractedAsNewDocument,Extracted as new document,Purettu uudeksi asiakirjaksi,Deleted as a new document,0.568,0.812
+0.572,docxModeWithImages,With Images,Kuvilla,,,0.572
+0.574,couldNotCreateBackupError,Could not create the backup.,Varmuuskopiota ei voitu luoda.,There was no backup.,0.574,0.918
+0.574,beepOnCaptureSubtitle,Play sound when scan completes,Toista ääni skannauksen valmistuessa,Repeat when the scan is complete .,0.574,0.895
+0.581,tickerFolders,FOLDERS,KANSIOT,,,0.581
+0.582,captionDocs,"Flexible crop: Original, Square, 4:3, 3:2, 16:9","Joustava rajaus: Alkuperäinen, Neliö, 4:3, 3:2, 16:9","Flexible boundary: original, four, 4:3, 3:2, 16:9",0.582,0.918
+0.584,tickerTapToTypeFilling,TAP-TO-TYPE FILLING,NAPAUTA-KIRJOITA TÄYTTÖ,,,0.584
+0.589,sealInkLook,Worn stamp look,Kulunut leimasinjälki,,,0.589
+0.592,genericErrorMessage,Something went wrong. Please try again.,Jotain meni pieleen. Yritä uudelleen.,Something went wrong.,0.592,0.957
+0.597,eraserApplied,Eraser applied,Pyyhekumi käytetty,,,0.597
+0.597,watermarkLabel,Watermark,Vesileima,,,0.597
+0.599,watermarkPagesRange,Range,Väli,,,0.599
+0.601,tickerTags,TAGS,TUNNISTEET,,,0.601
+0.602,darkThemeOption,Dark,Tumma,,,0.602
+0.606,accentCrimson,Crimson,Karmiini,,,0.606
+0.606,sealMainTextLabel,Main text (top arc / box),Pääteksti (yläkaari / laatikko),Title (top box),0.606,0.857
+0.611,sealCenterTextLabel,Center text,Keskusteksti,,,0.611
+0.614,tickerWordExport,WORD EXPORT,WORD-VIENTI,,,0.614
+0.620,signatureTabType,Type,Kirjoita,,,0.620
+0.621,progressEncodingPage,Encoding page {current} of {total}…,Koodataan sivua {current}/{total}...,Let's code the page 5/5...,0.621,0.848
+0.625,tickerFavorites,FAVORITES,SUOSIKIT,,,0.625
+0.634,enableReviewPromptsSubtitle,Allow the app to occasionally ask for a rating,Salli sovelluksen pyytää arviota ajoittain,Allow the app to request an evaluation from time to time,0.634,0.921
+0.636,valLabel,Val,Arvo,,,0.636
+0.637,scannerErrorPrefix,Scanner error,Skannerivirhe,,,0.637
+0.637,captureBehaviorSectionLabel,CAPTURE BEHAVIOR,KAAPPAUSKÄYTTÄYTYMINEN,,,0.637
+0.644,titleIdCard,ID Card,Henkilökortti,,,0.644
+0.647,exportFormatSheetTitle,Export as,Vie muodossa,,,0.647
+0.647,annotationModeHighlighter,Highlighter,Korostuskynä,,,0.647
+0.648,applyToAllPages,Apply to all pages,Käytä kaikille sivuille,Use it on all pages.,0.648,0.935
+0.651,accentEmerald,Emerald,Smaragdi,,,0.651
+0.652,exportEstimatedSize,Estimated size: {mb} MB,Arvioitu koko: {mb} Mt,Estimated size: 5 Mt,0.652,0.834
+0.653,cropAspectId,ID card,Henkilökortti,,,0.653
+0.654,tickerCustomSeals,CUSTOM SEALS,MUKAUTETUT SINETIT,,,0.654
+0.655,revertToOriginalMessage,"This will undo all filters, rotations, crops, resizes, and eraser strokes on this page.","Tämä kumoaa kaikki suodattimet, kierrot, rajaukset, kokomuutokset ja pyyhkäisyt tällä sivulla.","This will cancel all filters, rounds, limitations, size changes and deletions on this page.",0.655,0.887
+0.656,signatureFontHandwritten,Handwritten,Käsiala,,,0.656
+0.658,fillCapsLabel,ALL CAPS,KAIKKI ISOT KIRJAIMET,,,0.658
+0.662,ocrLanguagePackNotReady,Language pack downloading or not ready. Try again shortly.,Kielipaketti latautuu tai ei ole valmis. Yritä hetken kuluttua uudelleen.,The language packet will be loaded or not ready.,0.662,0.868
+0.666,signatureWidthLabel,Pen width,Kynän paksuus,,,0.666
+0.669,tickerUndoRedo,UNDO/REDO,KUMOA/TEE UUDELLEEN,,,0.669
+0.672,printPerSheetLabel,Pages per sheet,Sivuja arkille,,,0.672
+0.672,emailMessageHint,Add a note (optional),Lisää viesti (valinnainen),Additional message (optional),0.672,0.860
+0.673,onboardingEditSubtitle,"Every edit stays reversible — undo, redo, and revert to original anytime.","Jokainen muokkaus pysyy peruutettavana — kumoa, tee uudelleen ja palauta alkuperäiseen milloin tahansa.","Any modification shall remain revocable <unk> withdrawn, re-made and returned to the original at any time.",0.673,0.926
+0.675,signatureTabDraw,Draw,Piirrä,,,0.675
+0.678,sealFontSans,Clean,Selkeä,,,0.678
+0.678,sealCreateTitle,Custom Seal,Mukautettu sinetti,,,0.678
+0.678,sealCustom,Custom Seal,Mukautettu sinetti,,,0.678
+0.680,cropIdCardTitle,Crop ID Card,Rajaa henkilökortti,,,0.680
+0.681,frontSideCaptured,Front side captured. Now capture the back side.,Etupuoli kaapattu. Kaappaa nyt takapuoli.,"The front is kidnapped, now kidnapp the back.",0.681,0.761
+0.682,pdfImportErrorPrefix,PDF import error,PDF-tuontivirhe,,,0.682
+0.683,straightenLabel,Straighten,Suorista,,,0.683
+0.684,pricingLoadingError,Pricing is still loading — try again in a moment.,Hinnat latautuvat vielä — yritä hetken kuluttua uudelleen.,The prices are still charging <unk> try again in a moment.,0.684,0.932
+0.686,importBackSide,Import Back Side,Tuo takapuoli,,,0.686
+0.696,sealSavedHeading,Saved seals,Tallennetut sinetit,,,0.696
+0.701,tickerJpgExport,JPG EXPORT,JPG-VIENTI,,,0.701
+0.704,exportNoTextError,This document has no text yet. Run OCR on it first.,Tässä asiakirjassa ei ole vielä tekstiä. Suorita ensin tekstintunnistus.,There's still no text in this document.,0.704,0.839
+0.706,savedAsNewDocument,Saved as new document,Tallennettu uudeksi asiakirjaksi,Recorded as a new document,0.706,0.907
+0.708,tickerPassportMode,PASSPORT MODE,PASSI-TILA,,,0.708
+0.708,savedToDocumentText,Saved to document text,Tallennettu asiakirjan tekstiin,Recorded in the text of the document,0.708,0.901
+0.711,importingStatus,Importing…,Tuodaan...,,,0.711
+0.711,onboardingReplayIntro,Replay introduction,Toista esittely,,,0.711
+0.711,sealSavedMessage,Seal saved,Sinetti tallennettu,,,0.711
+0.712,paywallFeatureNoInterstitial,No more interstitial ads,Ei enää välimainoksia,No more intermediate advertising,0.712,0.731
+0.712,subscriptionSectionLabel,Subscription,Tilaus,,,0.712
+0.713,idStepFront,Step 1: Capture Front Side,Vaihe 1: Kaappaa etupuoli,Step 1: Take the front .,0.713,0.892
+0.714,couldNotImportBackupError,Could not import this backup. Check the password and try again.,Tätä varmuuskopiota ei voitu tuoda. Tarkista salasana ja yritä uudelleen.,"We couldn't get this back-up, so check the password and try again.",0.714,0.919
+0.716,beepOnCaptureLabel,Beep on capture,Piippaus kaappauksessa,,,0.716
+0.717,cropDocumentTitle,Crop Document,Rajaa asiakirja,,,0.717
+0.717,filterApplied,Filter applied,Suodatin käytössä,,,0.717
+0.717,emptyFolders,No folders yet. Tap the folder icon to create one.,Ei kansioita vielä. Napauta kansio-kuvaketta luodaksesi yhden.,"No files yet, so press the file image to create one.",0.717,0.907
+0.718,cropNoPageFound,Couldn't find the page edges. Drag the corners.,Sivun reunoja ei löytynyt. Vedä kulmia.,The edges of the page were not found.,0.718,0.893
+0.720,ocrStatusOnDemand,On-demand,Pyydettäessä,,,0.720
+0.722,annotateTitle,Annotate,Merkitse,,,0.722
+0.733,onboardingWelcomeSubtitle,"Your entire document office — scan, edit, sign, and export — in one private app.","Koko asiakirjatoimistosi — skannaa, muokkaa, allekirjoita ja vie — yhdessä yksityisessä sovelluksessa.","Scan, edit, sign and download all of your documentation office <unk> in one private application.",0.733,0.916
+0.733,commonCreate,Create,Luo,,,0.733
+0.734,filterShadowRemoval,Shadow removal,Varjojen poisto,,,0.734
+0.736,restoreCompleteMessage,Restore complete.,Palautus valmis.,,,0.736
+0.738,lockAspectRatio,Lock aspect ratio,Lukitse kuvasuhde,,,0.738
+0.741,checkShapeCircle,Circle,Ympyrä,,,0.741
+0.741,importFrontSide,Import Front Side,Tuo etupuoli,,,0.741
+0.742,captionIdCard,Two-sided ID capture: Front + Back,Kaksipuolinen henkilökorttikaappaus: Etu- + takapuoli,Two-sided ID card: front + rear,0.742,0.878
+0.745,checkShapeSquare,Square,Neliö,,,0.745
+0.745,cropAspectSquare,Square,Neliö,,,0.745
+0.748,tickerTxtExport,TXT EXPORT,TXT-VIENTI,,,0.748
+0.749,ticker21ToolEditSuite,21-TOOL EDIT SUITE,21 MUOKKAUSTYÖKALUA,,,0.749
+0.750,watermarkLayoutLabel,Layout,Asettelu,,,0.750
+0.750,compressMedium,Medium,Keskikoko,,,0.750
+0.750,tickerGalleryImport,GALLERY IMPORT,GALLERIA-TUONTI,,,0.750
+0.751,progressReading,Reading…,Luetaan...,,,0.751
+0.752,exportFormatCsvDescription,Spreadsheet data,Taulukkotiedot,,,0.752
+0.753,tickerPngExport,PNG EXPORT,PNG-VIENTI,,,0.753
+0.754,autoCopyOcrSubtitle,Copy text to clipboard after scan,Kopioi teksti leikepöydälle skannauksen jälkeen,Copy the text to the dashboard after the scan,0.754,0.926
+0.755,tickerNoWatermarks,NO WATERMARKS,EI VESILEIMOJA,,,0.755
+0.756,captureFrontSide,Capture Front Side,Kaappaa etupuoli,,,0.756
+0.759,pageRevertedToOriginal,Page reverted to original,Sivu palautettu alkuperäiseen,Back to the original page,0.759,0.938
+0.760,buildingBackupStatus,Building backup…,Rakennetaan varmuuskopiota...,,,0.760
+0.760,commonClose,Close,Sulje,,,0.760
+0.762,captureBackSide,Capture Back Side,Kaappaa takapuoli,,,0.762
+0.763,genericErrorPrefix,Error,Virhe,,,0.763
+0.763,tickerPdfExport,PDF EXPORT,PDF-VIENTI,,,0.763
+0.769,progressExtractingText,Extracting text…,Puretaan tekstiä...,,,0.769
+0.770,couldNotOpenLinkError,Could not open link.,Linkkiä ei voitu avata.,They couldn't open the link.,0.770,0.965
+0.772,fitToTargetMbLabel,Fit to target MB,Sovita tavoite-MB:hen,Set the target MB,0.772,0.854
+0.772,noFoldersYetHomeMessage,No folders yet. Create one from the home screen.,Ei kansioita vielä. Luo yksi aloitusnäytöltä.,"No files yet, just create one from the start screen.",0.772,0.884
+0.773,folderUnavailable,This folder is no longer available.,Tämä kansio ei ole enää käytettävissä.,This file is no longer available.,0.773,0.905
+0.773,deleteFolderMessage,Documents inside will not be deleted.,Sisällä olevia asiakirjoja ei poisteta.,The documents contained therein shall not be deleted.,0.773,0.944
+0.774,filterTitle,Filter,Suodatin,,,0.774
+0.776,filterGrayscale,Grayscale,Harmaasävy,,,0.776
+0.776,onboardingSignSubtitle,"E-sign contracts, type-to-fill forms, and stamp enterprise seals in seconds.","Sähköisesti allekirjoita sopimuksia, täytä lomakkeita ja leimaa yrityssinettejä sekunneissa.","Electronically sign contracts, fill out forms, and stamp company stamps in seconds.",0.776,0.835
+0.777,ocrScriptChinese,Chinese,Kiina,,,0.777
+0.777,importBackupButton,Import from backup,Tuo varmuuskopiosta,,,0.777
+0.778,tickerTextStamps,TEXT STAMPS,TEKSTILEIMAT,,,0.778
+0.780,docScannerUnsupportedMessage,"Your device doesn't support the advanced document scanner. Take a photo with your Camera app, then tap Import below to crop and save it.",Laitteesi ei tue edistynyttä asiakirjaskanneria. Ota kuva Kamera-sovelluksella ja napauta sitten Tuo alla rajataksesi ja tallentaaksesi sen.,"Your device doesn't support an advanced document scanner, so take a picture with the Camera app, and then tap Bring under your limit and save it.",0.780,0.930
+0.780,compressTargetLabel,Max size,Enimmäiskoko,,,0.780
+0.784,fillDeleteSnippet,Delete snippet?,Poistetaanko katkelma?,,,0.784
+0.785,tickerNonDestructiveEditing,NON-DESTRUCTIVE EDITING,EI-TUHOISA MUOKKAUS,,,0.785
+0.785,sampleColorTooltip,Sample color from page,Ota värinäyte sivulta,Take a color sample from the page .,0.878,0.785
+0.786,enableSharePromptsSubtitle,Allow the app to occasionally suggest sharing,Salli sovelluksen ehdottaa jakamista ajoittain,Allow the application to propose sharing periodically,0.786,0.930
+0.787,tickerNoAccount,NO ACCOUNT,EI TILIÄ,,,0.787
+0.789,onboardingPrivacyTitle,Private by design,Yksityinen jo suunnittelussa,,,0.789
+0.789,conversionStarting,Starting…,Aloitetaan...,,,0.789
+0.794,idCardPdfGenerated,ID Card PDF Generated,Henkilökortin PDF luotu,PDF of the identity card created,0.794,0.864
+0.795,redoTooltip,Redo,Tee uudelleen,,,0.795
+0.797,commonApply,Apply,Käytä,,,0.797
+0.798,modeDocument,Document Mode,Asiakirjatila,,,0.798
+0.798,fillInputHint,Type text to fill,Kirjoita teksti täyttääksesi,Write the text to fill it out,0.798,0.944
+0.798,accentColorTitle,Accent Color,Korostusväri,,,0.798
+0.798,accentColorTooltip,Accent Color,Korostusväri,,,0.798
+0.799,fillTapHint,Tap the page where you want to type,"Napauta sivua kohdassa, johon haluat kirjoittaa",Click on the page where you want to type,0.799,0.929
+0.801,placeHereLabel,Place here,Aseta tähän,,,0.801
+0.802,importErrorPrefix,Import error,Tuontivirhe,,,0.802
+0.803,pageCropped,Page cropped,Sivu rajattu,,,0.803
+0.803,fullscreenLabel,Fullscreen,Koko näyttö,,,0.803
+0.803,sealEditTitle,Edit Custom Seal,Muokkaa mukautettua sinettiä,,,0.803
+0.805,eraserAutoColorTooltip,Match the page colour automatically,Sovita sivun väriin automaattisesti,Adjust the page color automatically,0.805,0.941
+0.805,ocrStatusDownloading,Downloading…,Ladataan…,,,0.805
+0.807,exportBackupButton,Export encrypted backup,Vie salattu varmuuskopio,,,0.807
+0.807,exportAndShareAction,Export & Share,Vie ja jaa,,,0.807
+0.809,languageSectionLabel,Language,Kieli,,,0.809
+0.811,emailLimitMissed,Could not get under {mb} MB; sent the smallest version.,{mb} MB:n alle ei päästy; lähetettiin pienin versio.,No less than 5 MB was available; a smaller version was sent.,0.811,0.962
+0.814,sealTextColorSame,Same as ring,Kuten rengas,,,0.814
+0.819,watermarkAddTitle,Add Watermark,Lisää vesileima,,,0.819
+0.820,tickerRegionOcr,REGION OCR,ALUEELLINEN OCR,,,0.820
+0.823,commonAdd,Add,Lisää,,,0.823
+0.824,noteTextLabel,Note text,Muistiinpanon teksti,,,0.824
+0.825,tapToSampleColor,Tap a spot to sample its color,Napauta kohtaa ottaaksesi värinäytteen,Tap the spot to take a color sample,0.962,0.825
+0.826,progressDecodingImage,Decoding image…,Dekoodataan kuvaa...,,,0.826
+0.826,tickerCsvExport,CSV EXPORT,CSV-VIENTI,,,0.826
+0.828,watermarkEditTitle,Edit Watermark,Muokkaa vesileimaa,,,0.828
+0.829,printOptionsTitle,Print Options,Tulostusasetukset,,,0.829
+0.829,onboardingSignTitle,"Sign, Fill & Seal","Allekirjoita, täytä ja sinetöi","Sign, fill and seal",0.986,0.829
+0.829,emailMessageLabel,Message,Viesti,,,0.829
+0.830,sealDefaultMainText,YOUR COMPANY,YRITYKSESI,,,0.830
+0.830,exportFormatTxtDescription,Plain OCR text only,Vain pelkkä OCR-teksti,Only the OCR text,0.830,0.929
+0.833,copiedToClipboard,Copied to clipboard,Kopioitu leikepöydälle,,,0.833
+0.833,extractedTextTitle,Extracted Text,Purettu teksti,,,0.833
+0.839,filterSheetTitle,Filters,Suodattimet,,,0.839
+0.840,commonConvert,Convert,Muunna,,,0.840
+0.842,engagementSectionLabel,ENGAGEMENT & NOTIFICATIONS,SITOUTUMINEN JA ILMOITUKSET,,,0.842
+0.844,emailAttachmentNotIncluded,The pages could not be attached to the email. Use Share to send the pages.,Sivuja ei voitu liittää sähköpostiin. Lähetä sivut Jaa-toiminnolla.,The pages could not be linked to the e-mail.,0.844,0.934
+0.845,titleScan,Scan,Skannaa,,,0.845
+0.847,noDocumentsInFolder,No documents in this folder yet.,Tässä kansiossa ei ole vielä asiakirjoja.,There are no documents in this file yet.,0.847,0.951
+0.848,ocrStatusChecking,Checking...,Tarkistetaan...,,,0.848
+0.849,errorReportIssue,Report issue,Ilmoita ongelma,,,0.849
+0.852,commonRevert,Revert,Palauta,,,0.852
+0.853,filterBrightnessLabel,Brightness,Kirkkaus,,,0.853
+0.856,exportGenericError,Something went wrong while exporting.,Jotain meni pieleen viennin aikana.,Something went wrong during the export.,0.922,0.856
+0.856,printRangeCurrent,Current,Nykyinen,,,0.856
+0.857,paywallLegalText,This is a non-consumable purchase. Restore it anytime on any device with the same store account.,Tämä on ei-kulutettava osto. Palauta se milloin tahansa millä tahansa laitteella samalla kaupan tilillä.,"This is a non-consumable purchase, return it at any time on any device with the same store's account.",0.857,0.926
+0.857,cropAuto,Auto-detect,Tunnista automaattisesti,,,0.857
+0.857,saveInsideAppWarning,"To save inside the app, choose JPG or PNG. Other targets are exported as files.","Tallentaaksesi sovellukseen, valitse JPG tai PNG. Muut kohteet viedään tiedostoina.","To save to the app, select JPG or PNG.",0.857,0.917
+0.859,resizeTitle,Resize,Muuta kokoa,,,0.859
+0.860,saveFailedBanner,Your latest changes could not be saved.,Viimeisimpiä muutoksia ei voitu tallentaa.,The most recent changes could not be saved.,0.860,0.932
+0.860,resizeUpscaleWarning,Enlarging doesn't add detail — the page may look soft.,Suurentaminen ei lisää yksityiskohtia – sivu voi näyttää pehmeältä.,Enlargement does not add details <unk> The page may look soft.,0.860,0.941
+0.862,importFromGallery,Import from Gallery,Tuo galleriasta,,,0.862
+0.862,watermarkLayoutSingle,Single,Yksittäinen,,,0.862
+0.863,commonCancel,Cancel,Peruuta,,,0.863
+0.863,ocrScriptKorean,Korean,Korea,,,0.863
+0.863,backupReadyStatus,Backup ready.,Varmuuskopio valmis.,,,0.863
+0.866,idLayoutFullWidth,Full width,Koko leveys,,,0.866
+0.866,convertToLabel,Convert to:,Muunna muotoon:,,,0.866
+0.867,sealCenterStar,Star,Tähti,,,0.867
+0.869,commonClear,Clear,Tyhjennä,,,0.869
+0.869,actionLabel,Action:,Toiminto:,,,0.869
+0.870,ocrScriptJapanese,Japanese,Japani,,,0.870
+0.871,fillSaveSnippet,Save as snippet,Tallenna katkelmaksi,,,0.871
+0.871,onboardingOcrTitle,On-Device OCR,OCR laitteessa,,,0.871
+0.872,migrationTitle,Device Migration,Laitteen siirto,,,0.872
+0.872,deviceMigrationLabel,Device Migration,Laitteen siirto,,,0.872
+0.872,commonCustom,Custom,Mukautettu,,,0.872
+0.873,fromPageLabel,From,Alkaen,,,0.873
+0.873,storageSectionLabel,Storage,Tallennus,,,0.873
+0.874,eraserZoomTooltip,Zoom and move (pinch),Zoomaa ja siirrä (nipistä),Zoom and move (by tip),0.874,0.891
+0.874,onboardingEditTitle,Non-Destructive Editing,Ei-tuhoisa muokkaus,,,0.874
+0.875,pickErrorPrefix,Pick error,Valintavirhe,,,0.875
+0.875,enableReviewPromptsLabel,Enable Review Prompts,Ota arvostelukehotteet käyttöön,,,0.875
+0.876,sealCenterNone,None,Ei mitään,,,0.876
+0.876,printMarginNone,None,Ei mitään,,,0.876
+0.877,cameraErrorPrefix,Camera error,Kameravirhe,,,0.877
+0.877,ocrNoInternetMessage,No internet. Connect once to download the language pack.,Ei internetiä. Yhdistä kerran ladataksesi kielipaketin.,"No internet, just connect once to download a language packet.",0.877,0.940
+0.879,pageToLabel,To page,Sivulle asti,,,0.879
+0.880,convertDocumentTitle,Convert Document,Muunna asiakirja,,,0.880
+0.880,tickerSearchablePdf,SEARCHABLE PDF,HAETTAVA PDF,,,0.880
+0.881,clearLogsTooltip,Clear logs,Tyhjennä lokit,,,0.881
+0.881,termsOfServiceLabel,Terms of Service,Käyttöehdot,,,0.881
+0.882,enableSharePromptsLabel,Enable Share Prompts,Ota jakokehotteet käyttöön,,,0.882
+0.882,sealSaveToLibrary,Save this seal,Tallenna tämä sinetti,,,0.882
+0.883,progressSaving,Saving…,Tallennetaan...,,,0.883
+0.885,onboardingToolsSubtitle,"Annotate, sign, watermark, fill forms, seal, and more — every tool free and unlimited.","Merkitse, allekirjoita, vesileimaa, täytä lomakkeita, sinetöi ja paljon muuta — jokainen työkalu ilmainen ja rajoittamaton.","Mark, sign, watermark, fill out forms, seal and much more <unk> every tool free and unlimited.",0.885,0.909
+0.886,debugNoLogsYet,No logs yet,Ei lokeja vielä,,,0.886
+0.886,whatsNewTitle,What's New,Uutta,,,0.886
+0.887,printFitFit,Fit page,Sovita sivu,,,0.887
+0.887,checkShapeRounded,Rounded,Pyöristetty,,,0.887
+0.887,printFilterNone,No filter,Ei suodatinta,,,0.887
+0.889,sealRemoveWhite,Make white transparent,Tee valkoisesta läpinäkyvä,,,0.889
+0.890,whiteHaloLabel,White halo (readability),Valkoinen halo (luettavuus),,,0.890
+0.890,addTagsAction,Add Tags,Lisää tunnisteita,,,0.890
+0.892,movedToFolderMessage,Moved to folder.,Siirretty kansioon.,,,0.892
+0.892,addTagTitle,Add tag,Lisää tunniste,,,0.892
+0.892,shareTooltip,Share,Jaa,,,0.892
+0.892,commonShare,Share,Jaa,,,0.892
+0.893,enableNotificationsSubtitle,Allow background reminders for unexported documents,Salli taustamuistutukset viemättömille asiakirjoille,Allow background reminders for non-transferable documents,0.904,0.893
+0.893,renameFolderTitle,Rename folder,Nimeä kansio uudelleen,,,0.893
+0.893,moveToFolderTitle,Move to Folder,Siirrä kansioon,,,0.893
+0.893,diagnosticsSectionLabel,DIAGNOSTICS,DIIAGNOSTIIKKA,,,0.893
+0.894,progressBuildingDocx,Building DOCX…,Rakennetaan DOCX:ää...,,,0.894
+0.894,appearanceSectionLabel,Appearance,Ulkoasu,,,0.894
+0.894,moveToFolderTooltip,Move to folder,Siirrä kansioon,,,0.894
+0.895,conversionFailedPrefix,Conversion failed,Muunnos epäonnistui,,,0.895
+0.895,sharePromptBody,Share it with friends who need a powerful document scanner.,"Jaa se ystävien kanssa, jotka tarvitsevat tehokkaan asiakirjaskannerin.",Share it with friends who need an effective document scanner.,0.976,0.895
+0.896,tickerLanguages,{count} LANGUAGES,{count} KIELTÄ,,,0.896
+0.896,pageResized,Page resized,Sivun kokoa muutettu,,,0.896
+0.896,drawNewSignature,Draw New,Piirrä uusi,,,0.896
+0.897,filterRecent,Recent,Viimeisimmät,,,0.897
+0.897,openSourceLicensesLabel,Open-source licenses,Avoimen lähdekoodin lisenssit,,,0.897
+0.897,exportDoneStatus,Done,Valmis,,,0.897
+0.897,commonDone,Done,Valmis,,,0.897
+0.898,pagesToReadHint,This PDF has {count} pages. Pages that are pictures are read with OCR (about 10 seconds each); pages with real text are instant.,Tässä PDF:ssä on {count} sivua. Kuvasivut luetaan tekstintunnistuksella (noin 10 sekuntia per sivu); oikeaa tekstiä sisältävät sivut heti.,This PDF has 5 pages. Images are read with a text tag (about 10 seconds per page); pages with the right text are read immediately.,0.898,0.929
+0.899,addToFavorites,Add to Favorites,Lisää suosikkeihin,,,0.899
+0.899,filterColorEnhance,Color enhance,Värien parannus,,,0.899
+0.900,docxWarningMessage,"DOCX sources render poorly as pages — save inside the app is limited to JPG/PNG from image, PDF, TXT or CSV sources. Use Export & Share for this file.","DOCX-lähteet renderöityvät huonosti sivuina — tallennus sovelluksessa on rajoitettu JPG/PNG-muotoon kuvasta, PDF:stä, TXT:stä tai CSV-lähteistä. Käytä Vie ja jaa tälle tiedostolle.","DOCX sources are rendered poorly on pages <unk> The storage in the application is limited to image, PDF, TXT, or CSV sources in JPG/PNG format.",0.900,0.937
+0.901,sealShapeRound,Round,Pyöreä,,,0.901
+0.901,opacityPercentLabel,Opacity: {percent}%,Läpinäkymättömyys: {percent}%,,,0.901
+0.902,pdfImportedAsDocument,PDF imported as document,PDF tuotu asiakirjaksi,PDF imported as document,1.000,0.902
+0.903,progressCopying,Copying…,Kopioidaan...,,,0.903
+0.903,migrationExplainer,"This isn't automatic sync. Export creates a single encrypted backup file you move to your new device yourself, then import there.","Tämä ei ole automaattinen synkronointi. Vienti luo yhden salatun varmuuskopiotiedoston, jonka siirrät itse uudelle laitteellesi ja tuot sitten siellä.","This isn't automatic sync, but the export creates one encrypted backup file, which you transfer yourself to your new device, and then you bring it back there.",0.971,0.903
+0.904,sharePromptTitle,Love KatharScan?,Pidätkö KatharScanista?,,,0.904
+0.904,revertToOriginalTitle,Revert to Original?,Palautetaanko alkuperäiseen?,,,0.904
+0.905,stampBoxLabel,Box,Laatikko,,,0.905
+0.905,sealShapeBox,Box,Laatikko,,,0.905
+0.905,stampPaperLabel,Paper,Paperi,,,0.905
+0.905,printPaperLabel,Paper,Paperi,,,0.905
+0.906,searchHint,Search your scans,Hae skannauksistasi,,,0.906
+0.907,signatureNewOne,Draw or type a new one,Piirrä tai kirjoita uusi,Draw or write a new one,0.907,0.931
+0.908,noEmailAppFound,No email app found,Sähköpostisovellusta ei löytynyt,No e-mail application found,0.908,0.938
+0.908,rotateLabel,Rotate,Kierrä,,,0.908
+0.908,privacyOptionsLabel,Privacy settings,Tietosuoja-asetukset,,,0.908
+0.908,progressRasterizing,Rasterizing pages…,Rasterisoidaan sivuja...,,,0.908
+0.909,annotationModeEllipse,Ellipse,Ellipsi,,,0.909
+0.910,removeFromFolderTooltip,Remove from folder,Poista kansiosta,,,0.910
+0.910,printMarginLabel,Margin,Marginaali,,,0.910
+0.910,backupCorruptedError,This backup file looks corrupted.,Tämä varmuuskopiotiedosto näyttää vioittuneelta.,This backup file looks damaged.,0.928,0.910
+0.911,ocrUnavailableTooltip,OCR unavailable on this device.,OCR ei ole käytettävissä tällä laitteella.,The OCR is not available on this device.,0.911,0.949
+0.912,progressBuildingPdf,Building PDF…,Rakennetaan PDF:ää...,,,0.912
+0.912,commonRename,Rename,Nimeä uudelleen,,,0.912
+0.913,compressNoLimit,No limit,Ei rajaa,,,0.913
+0.914,fromAnotherDocument,From Another Document,Toisesta asiakirjasta,,,0.914
+0.914,pageFromLabel,From page,Alkaen sivulta,,,0.914
+0.915,signerLabel,Signer {index},Allekirjoittaja {index},,,0.915
+0.916,addCheckboxTitle,Add Checkbox,Lisää valintaruutu,,,0.916
+0.917,emptySearch,No scans match your search.,Yksikään skannaus ei vastaa hakuasi.,No scans match your search.,1.000,0.917
+0.918,pagesDeleteConfirm,Delete {count} pages? They are removed when you save.,Poistetaanko {count} sivua? Ne poistetaan tallennettaessa.,"If you want to delete five pages, you can delete them when you save them.",0.918,0.919
+0.918,privacyPolicyLabel,Privacy policy,Tietosuojakäytäntö,,,0.918
+0.918,filterRemoved,Filter removed,Suodatin poistettu,,,0.918
+0.919,signatureSavedHeading,Saved signatures,Tallennetut allekirjoitukset,,,0.919
+0.919,commonSize,Size,Koko,,,0.919
+0.919,paywallFallbackPrice,$14.99 one-time,$14.99 kertamaksu,,,0.919
+0.920,onboardingPrivacySubtitle,"No account, no cloud, no watermarks. Your documents never leave your device.","Ei tiliä, ei pilveä, ei vesileimoja. Asiakirjasi eivät koskaan poistu laitteestasi.","No account, no clouds, no watermarks, and your documents never leave your device.",0.961,0.920
+0.921,setBackupPasswordTitle,Set a backup password,Aseta varmuuskopion salasana,Set the backup password,0.979,0.921
+0.921,addNoteTitle,Add Note,Lisää muistiinpano,,,0.921
+0.921,regionOcrFailed,Region OCR failed,Alueellinen OCR epäonnistui,,,0.921
+0.922,paywallSubtitle,Support KatharScan with a one-time purchase. All features remain free.,Tue KatharScania kertaluonteisella ostolla. Kaikki ominaisuudet pysyvät ilmaiseksi.,Support KatharScan with a one-time purchase.,0.922,0.946
+0.922,deleteScanTitle,Delete this scan?,Poistetaanko tämä skannaus?,,,0.922
+0.923,enableNotificationsLabel,Enable Notifications,Ota ilmoitukset käyttöön,,,0.923
+0.923,documentSaved,Document saved,Asiakirja tallennettu,,,0.923
+0.924,aboutSectionLabel,About,Tietoja,,,0.924
+0.924,saveAsNewDocumentAction,Save as new Document,Tallenna uudeksi asiakirjaksi,Save as a new document,0.992,0.924
+0.924,fillTypeHint,Type here,Kirjoita tähän,,,0.924
+0.924,noTextRecognized,No text recognized.,Tekstiä ei tunnistettu.,,,0.924
+0.924,renameDocumentTitle,Rename document,Nimeä asiakirja uudelleen,,,0.924
+0.925,enterBackupPasswordTitle,Enter backup password,Syötä varmuuskopion salasana,,,0.925
+0.926,extractedPageDefaultTitle,Extracted Page,Poimittu sivu,,,0.926
+0.927,restorePurchasesButton,Restore purchases,Palauta ostokset,,,0.927
+0.927,deleteFolderTitle,Delete this folder?,Poistetaanko tämä kansio?,,,0.927
+0.927,ocrStatusBuiltIn,Built-in,Sisäänrakennettu,,,0.927
+0.927,reviewPromptTitle,Enjoying KatharScan?,Nautitko KatharScanista?,,,0.927
+0.928,commonPrint,Print,Tulosta,,,0.928
+0.929,widthLabel,Width,Leveys,,,0.929
+0.930,exportSavedToDownloads,Saved to Downloads,Tallennettu Latauksiin,,,0.930
+0.930,useSavedSignature,Use Saved,Käytä tallennettua,,,0.930
+0.932,accentBlue,Blue,Sininen,,,0.932
+0.932,reviewPromptBody,Your feedback helps us grow and keeps the app free.,Palautteesi auttaa meitä kasvamaan ja pitää sovelluksen ilmaisena.,Your feedback will help us grow and keep the app free.,0.961,0.932
+0.932,filterFavorites,Favorites,Suosikit,,,0.932
+0.932,chipAllFolders,All Folders,Kaikki kansiot,,,0.932
+0.933,commonChange,Change,Vaihda,,,0.933
+0.933,readingPageProgress,Page {page} of {total},Sivu {page} / {total},Page 5 / 5,0.944,0.933
+0.934,documentsSectionHeader,Documents,Asiakirjat,,,0.934
+0.934,fillTooltip,Fill,Täytä,,,0.934
+0.934,emptyFavorites,No favorites yet. Tap the star icon on a document to add it.,Ei suosikkeja vielä. Napauta tähti-kuvaketta asiakirjassa lisätäksesi sen.,"No favorites yet, so press the star image on the document to add it.",0.955,0.934
+0.934,ocrStatusInstalled,Installed,Asennettu,,,0.934
+0.934,removeFromFavorites,Remove from Favorites,Poista suosikeista,,,0.934
+0.935,paywallFeatureNoBanner,No more banner ads,Ei enää bannerimainoksia,No more banner ads,1.000,0.935
+0.935,exportFormatDocxDescription,Editable text document,Muokattava tekstiasiakirja,,,0.935
+0.935,signatureTitle,Signature,Allekirjoitus,,,0.935
+0.935,addSignature,Add Signature,Lisää allekirjoitus,,,0.935
+0.936,errorScreenProblem,KatharScan ran into a problem displaying this screen. Your scans are safe — they're stored on this device and this doesn't affect them.,KatharScan kohtasi ongelman näyttäessään tätä näyttöä. Skannauksesi ovat turvassa — ne tallennetaan tälle laitteelle eikä tämä vaikuta niihin.,"KatharScan encountered a problem when it showed you this screen, and your scans are safe, and they're stored on this device, and it won't affect them.",0.963,0.936
+0.936,idGenerating,Generating PDF...,Luodaan PDF:ää...,,,0.936
+0.936,pagesToReadTitle,Pages to read,Luettavat sivut,,,0.936
+0.937,signatureDeleteSaved,Remove saved signature,Poista tallennettu allekirjoitus,,,0.937
+0.938,scanUnavailable,This scan is no longer available.,Tämä skannaus ei ole enää käytettävissä.,This scan is no longer available.,1.000,0.938
+0.939,saveAsDocument,Save as Document,Tallenna asiakirjaksi,,,0.939
+0.939,chipSelectMultiple,Select Multiple,Valitse useita,,,0.939
+0.940,reviewPromptYes,Rate Us,Arvostele meidät,,,0.940
+0.940,deleteFolderTooltip,Delete folder,Poista kansio,,,0.940
+0.940,appLanguageLabel,App language,Sovelluksen kieli,,,0.940
+0.940,homeLanguageTooltip,App Language,Sovelluksen kieli,,,0.940
+0.940,appLanguageTitle,App Language,Sovelluksen kieli,,,0.940
+0.941,autoCopyOcrLabel,Auto-copy OCR,Kopioi OCR automaattisesti,,,0.941
+0.941,newFolderTitle,New Folder,Uusi kansio,,,0.941
+0.941,newFolderTooltip,New Folder,Uusi kansio,,,0.941
+0.942,saveToDeviceButton,Save to Device,Tallenna laitteeseen,,,0.942
+0.942,cropAspectFree,Free,Vapaa,,,0.942
+0.943,filterContrastLabel,Contrast,Kontrasti,,,0.943
+0.943,ocrStatusUnsupported,Unsupported,Ei tuettu,,,0.943
+0.944,saveFailedPrefix,Save failed:,Tallennus epäonnistui:,,,0.944
+0.944,customColorTitle,Custom Color,Mukautettu väri,,,0.944
+0.944,saveToDownloadsAction,Save to Downloads,Tallenna Latauksiin,,,0.944
+0.944,signatureCanvasHint,Sign here,Allekirjoita tässä,,,0.944
+0.944,accentViolet,Violet,Violetti,,,0.944
+0.944,onboardingBack,Back,Takaisin,,,0.944
+0.945,annotationModeSelect,Select,Valitse,,,0.945
+0.945,letterSizeUS,Letter size (US),Letter-koko (USA),,,0.945
+0.945,onboardingToolsTitle,21 Free Pro Tools,21 ilmaista Pro-työkalua,21 free Pro tool,0.976,0.945
+0.945,emptyStateDefaultMessage,Tap the camera to scan your first document.,Napauta kameraa skannataksesi ensimmäisen asiakirjasi.,Press the camera to scan your first document.,0.964,0.945
+0.945,onboardingGetStarted,Get Started,Aloita,,,0.945
+0.945,commonSave,Save,Tallenna,,,0.945
+0.946,paywallSuccessMessage,Thank you for supporting KatharScan.,Kiitos KatharScanin tukemisesta.,Thank you for your support of KatharScan.,0.946,0.946
+0.946,intensityLabel,Intensity,Intensiteetti,,,0.946
+0.947,scanPreviewNoPages,No pages to show.,Ei näytettäviä sivuja.,No pages to show.,1.000,0.947
+0.947,managePagesTitle,Manage Pages,Hallitse sivuja,,,0.947
+0.947,autoScan,Auto Scan,Automaattinen skannaus,,,0.947
+0.947,removeAdsTitle,Remove Ads Forever,Poista mainokset ikuisesti,,,0.947
+0.949,sealLogoReady,Logo ready,Logo valmis,,,0.949
+0.949,favoriteTooltip,Favorite,Suosikki,,,0.949
+0.950,noFoldersYet,No folders yet,Ei kansioita vielä,,,0.950
+0.950,signatureChoiceMessage,Use your saved signature or draw a new one?,Käytä tallennettua allekirjoitusta vai piirrä uusi?,Do you want to use a saved signature or draw a new one?,0.970,0.950
+0.951,emptyDocumentMessage,This document has no pages.,Tässä asiakirjassa ei ole sivuja.,There are no pages in this document.,0.951,0.963
+0.951,readingPageEta,Page {page} of {total} · about {minutes} min left,Sivu {page} / {total} · noin {minutes} min jäljellä,Page 5 / 5 · about 5 minutes left,0.951,0.951
+0.951,reviewPromptNo,Send Feedback,Lähetä palautetta,,,0.951
+0.952,emailLabel,Email,Sähköposti,,,0.952
+0.953,convertedDocTitle,Converted {date},Muunnettu {date},,,0.953
+0.953,onboardingOcrSubtitle,Use KatharScan in {count} languages. OCR runs on your phone — nothing ever leaves your device.,Käytä KatharScania {count} kielellä. OCR toimii puhelimessasi — mikään ei poistu laitteestasi.,Use KatharScan in five languages. OCR works on your phone.,0.971,0.953
+0.953,pagesLabel,Pages,Sivut,,,0.953
+0.953,watermarkPagesLabel,Pages,Sivut,,,0.953
+0.953,docxModeTextOnly,Text Only,Vain teksti,,,0.953
+0.955,tabImageLabel,Image,Kuva,,,0.955
+0.955,watermarkKindImage,Image,Kuva,,,0.955
+0.955,paywallFeatureFreeForever,All features free forever,Kaikki ominaisuudet ilmaiseksi ikuisesti,All features free forever,1.000,0.955
+0.955,titlePdfImport,PDF Import,PDF-tuonti,,,0.955
+0.955,tickerAutoCopyOcr,AUTO-COPY OCR,AUTO-KOPIOI OCR,,,0.955
+0.956,idLayoutRealSize,Real size,Todellinen koko,,,0.956
+0.956,sealFontSerif,Classic,Klassinen,,,0.956
+0.956,filterOriginal,Original,Alkuperäinen,,,0.956
+0.957,documentNotFound,Document not found,Asiakirjaa ei löytynyt,,,0.957
+0.958,clearThis,Clear this,Tyhjennä tämä,,,0.958
+0.958,watermarkPagesInvalid,Check the pages (the document has {count} pages),Tarkista sivut (asiakirjassa on {count} sivua),Check the pages (the document has 5 pages),1.000,0.958
+0.958,moreOptionsTooltip,More options,Lisää vaihtoehtoja,,,0.958
+0.958,printMarginNormal,Normal,Normaali,,,0.958
+0.958,selectRegionTitle,Select Region,Valitse alue,,,0.958
+0.959,emailFailed,Email failed,Sähköposti epäonnistui,,,0.959
+0.959,whatsNewBody,"Welcome to KatharScan! This is the first public release featuring unlimited scanning, 29 languages, and export to PDF, Word, TXT, JPG, PNG, and CSV.","Tervetuloa KatharScaniin! Tämä on ensimmäinen julkinen versio, jossa on rajaton skannaus, 29 kieltä ja vienti muotoihin PDF, Word, TXT, JPG, PNG ja CSV.","Welcome to KatharScan! This is the first public version with unlimited scanning, 29 languages and export to PDF, Word, TXT, JPG, PNG and CSV.",0.966,0.959
+0.960,addDateTitle,Add Date,Lisää päivämäärä,,,0.960
+0.960,themeLabel,Theme,Teema,,,0.960
+0.961,commonUpdate,Update,Päivitä,,,0.961
+0.961,modeOcr,OCR Mode,OCR-tila,,,0.961
+0.961,errorGenericTitle,Something went wrong,Jotain meni pieleen,,,0.961
+0.961,commonDelete,Delete,Poista,,,0.961
+0.961,deleteTooltip,Delete,Poista,,,0.961
+0.961,editLabel,Edit,Muokkaa,,,0.961
+0.961,commonCopy,Copy,Kopioi,,,0.961
+0.962,clearedCount,Cleared {count},Tyhjennetty {count},,,0.962
+0.962,ocrScriptLatin,"Latin (English, European)","Latinalainen (englanti, eurooppalainen)",,,0.962
+0.962,rotationPage,Page rotated,Sivu kierretty,,,0.962
+0.963,sealCenterText,Text,Teksti,,,0.963
+0.963,watermarkTextLabel,Text,Teksti,,,0.963
+0.963,textLabel,Text,Teksti,,,0.963
+0.963,watermarkKindText,Text,Teksti,,,0.963
+0.963,rotationAllPages,All pages rotated,Kaikki sivut kierretty,,,0.963
+0.964,tickerFreeUnlimitedOcr,FREE UNLIMITED OCR,ILMAINEN RAJOITTAMATON OCR,,,0.964
+0.964,commonUse,Use,Käytä,,,0.964
+0.964,addTextTitle,Add Text,Lisää teksti,,,0.964
+0.965,sealTextSizePercent,Text size {percent}%,Tekstin koko {percent} %,,,0.965
+0.965,exportFormatPdfDescription,Best for sharing and printing,Paras jakamiseen ja tulostamiseen,Best for sharing and printing,1.000,0.965
+0.966,systemThemeOption,System,Järjestelmä,,,0.966
+0.966,ocrNoTextFound,No text found,Tekstiä ei löytynyt,,,0.966
+0.966,pagesUpdated,Pages updated,Sivut päivitetty,,,0.966
+0.966,sharePromptAction,Share App,Jaa sovellus,,,0.966
+0.967,ocrScriptDevanagari,"Hindi, Marathi (Devanagari)","Hindi, marathi (devanagari)",,,0.967
+0.967,dateLabel,Date,Päivämäärä,,,0.967
+0.967,compressSmall,Small,Pieni,,,0.967
+0.968,supportLabel,Support,Tuki,,,0.968
+0.968,editDocumentAction,Edit Document,Muokkaa asiakirjaa,,,0.968
+0.969,printFailed,Print failed,Tulostus epäonnistui,,,0.969
+0.970,commonConfirm,Confirm,Vahvista,,,0.970
+0.970,tabOcrTextLabel,OCR Text,OCR-teksti,,,0.970
+0.970,heightLabel,Height,Korkeus,,,0.970
+0.971,watermarkChooseImage,Choose image,Valitse kuva,,,0.971
+0.971,adsRemovedLabel,Ads Removed,Mainokset poistettu,,,0.971
+0.971,paywallSuccessTitle,Ads Removed,Mainokset poistettu,,,0.971
+0.972,exportFormatJpgDescription,One image per page,Yksi kuva sivua kohden,One image per page,1.000,0.972
+0.972,commonRemove,Remove,Poista,,,0.972
+0.973,onboardingWelcomeTitle,Welcome to KatharScan,Tervetuloa KatharScaniin,,,0.973
+0.973,addPageTitle,Add Page,Lisää sivu,,,0.973
+0.974,pagesDeleteCount,Delete {count},Poista {count},,,0.974
+0.974,continueButton,Continue,Jatka,,,0.974
+0.974,onboardingContinue,Continue,Jatka,,,0.974
+0.974,whatsNewContinue,Continue,Jatka,,,0.974
+0.974,clearPage,Clear page,Tyhjennä sivu,,,0.974
+0.974,ocrLanguagesLabel,OCR Languages,OCR-kielet,,,0.974
+0.974,tryAgainButton,Try again,Yritä uudelleen,,,0.974
+0.975,clearAll,Clear all,Tyhjennä kaikki,,,0.975
+0.975,cameraSource,Camera,Kamera,,,0.975
+0.975,signatureTypeHint,Type your name,Kirjoita nimesi,,,0.975
+0.976,copyAll,Copy all,Kopioi kaikki,,,0.976
+0.976,textSizeLabel,Text size: {size},Tekstin koko: {size},,,0.976
+0.977,sealTextColorLabel,Text colour,Tekstin väri,,,0.977
+0.978,watermarkPagesThis,This page,Tämä sivu,,,0.978
+0.979,pagesSelectTooltip,Select pages,Valitse sivuja,,,0.979
+0.979,sharePromptDismiss,Not now,Ei nyt,,,0.979
+0.981,paywallTitle,Remove Ads,Poista mainokset,,,0.981
+0.981,pageFormatLetter,Letter (US),Letter (USA),,,0.981
+0.981,settingsTooltip,Settings,Asetukset,,,0.981
+0.981,settingsTitle,Settings,Asetukset,,,0.981
+0.982,pageLabel,Page {index},Sivu {index},,,0.982
+0.982,filterAll,All,Kaikki,,,0.982
+0.982,printRangeAll,All pages,Kaikki sivut,,,0.982
+0.982,watermarkPagesAll,All pages,Kaikki sivut,,,0.982
+0.983,originalDimensions,Original: {w}×{h},Alkuperäinen: {w}×{h},,,0.983
+0.984,clearAllPages,Clear all pages,Tyhjennä kaikki sivut,,,0.984
+0.985,exportFormatTxtLabel,Text (.txt),Teksti (.txt),,,0.985
+0.985,commonColor,Color,Väri,,,0.985
+0.985,filterColor,Color,Väri,,,0.985
+0.987,pageIndicator,Page {current} / {total},Sivu {current} / {total},Page 5 / 5,1.000,0.987
+0.988,rotate90Action,Rotate 90°,Kierrä 90°,,,0.988
+0.988,sizePtLabel,Size: {size}pt,Koko: {size}pt,,,0.988
+0.989,sharePdf,Share PDF,Jaa PDF,,,0.989
+1.000,exportFormatPdfLabel,PDF,PDF,,,1.000
+1.000,fontMonospace,monospace,monospace,,,1.000
+1.000,ocrScriptArabic,العربية (Arabic),العربية (Arabic),,,1.000
+1.000,ocrSectionLabel,OCR,OCR,,,1.000
+1.000,ocrScriptHebrew,עברית (Hebrew),עברית (Hebrew),,,1.000
+1.000,exportFormatJpgLabel,JPG,JPG,,,1.000
+1.000,proBadgeLabel,PRO,PRO,,,1.000
+1.000,accentIndigo,Indigo,Indigo,,,1.000
+1.000,ocrScriptRussian,Русский (Russian),Русский (Russian),,,1.000
+1.000,ocrScriptUkrainian,Українська (Ukrainian),Українська (Ukrainian),,,1.000
+1.000,ocrScriptBengali,বাংলা (Bengali),বাংলা (Bengali),,,1.000
+1.000,exportFormatDocxLabel,Word (.docx),Word (.docx),,,1.000
+1.000,exportFormatPngLabel,PNG,PNG,,,1.000
+1.000,sealCenterLogo,Logo,Logo,,,1.000
+1.000,fontSerif,serif,serif,,,1.000
+1.000,formatCsv,CSV,CSV,,,1.000
+1.000,ocrScriptGreek,Ελληνικά (Greek),Ελληνικά (Greek),,,1.000
+1.000,ocrScriptThai,ไทย (Thai),ไทย (Thai),,,1.000
+1.000,fontSansSerif,sans-serif,sans-serif,,,1.000

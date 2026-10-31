@@ -1,0 +1,545 @@
+score,key,english,translation,back_to_english,backtrans_score,labse_score
+0.259,ticker100OnDevicePrivacy,YOUR DOCUMENTS STAY ON YOUR DEVICE,DOKUMEN ANDA TETAP DI PERANGKAT ANDA,DOCUMEN You are on your feet,0.259,0.895
+0.260,genericErrorMessage,Something went wrong. Please try again.,Terjadi kesalahan. Silakan coba lagi.,There's been a mistake.,0.260,0.931
+0.338,annotationModeArrow,Arrow,Panah,,,0.338
+0.341,titleScan,Scan,Pindai,,,0.341
+0.351,checkShapeSquare,Square,Persegi,,,0.351
+0.351,cropAspectSquare,Square,Persegi,,,0.351
+0.354,annotationModeHighlighter,Highlighter,Stabilo,,,0.354
+0.356,watermarkLayoutTiled,Tiled,Berulang,,,0.356
+0.374,ocrStatusBuiltIn,Built-in,Bawaan,,,0.374
+0.376,accentIndigo,Indigo,Nila,,,0.376
+0.378,watermarkDefaultText,CONFIDENTIAL,RAHASIA,,,0.378
+0.389,accentViolet,Violet,Ungu,,,0.389
+0.407,captionOcr,"Text crop: Original, Square, 4:3","Potongan teks: Asli, Kotak, 4:3","Original, Boxed, 4:3",0.407,0.888
+0.411,printMarginNarrow,Narrow,Sempit,,,0.411
+0.416,hueLabel,Hue,Rona,,,0.416
+0.426,tickerTapToTypeFilling,TAP-TO-TYPE FILLING,KETUK UNTUK MENGISI,,,0.426
+0.430,satLabel,Sat,Saturasi,,,0.430
+0.448,stampTickLabel,Tick,Centang,,,0.448
+0.452,annotationModeRect,Rectangle,Persegi Panjang,,,0.452
+0.452,sealShapeRound,Round,Bulat,,,0.452
+0.452,onboardingSignTitle,"Sign, Fill & Seal","Tanda Tangani, Isi, & Stempel","Handwriting, filling, & stamps",0.452,0.846
+0.460,widthLabel,Width,Lebar,,,0.460
+0.478,signatureFontFlowing,Flowing,Mengalir,,,0.478
+0.482,commonSkip,Skip,Lewati,,,0.482
+0.485,fillCapsLabel,ALL CAPS,HURUF KAPITAL,,,0.485
+0.508,checkLabel,Check,Centang,,,0.508
+0.512,marqueeEraseTooltip,Marquee erase,Hapus pilihan,,,0.512
+0.516,tickerBatchExport,BATCH EXPORT,EKSPOR MASSAL,,,0.516
+0.521,captureBehaviorSectionLabel,CAPTURE BEHAVIOR,Perilaku penangkapan,,,0.521
+0.527,sharePromptDismiss,Not now,Nanti saja,,,0.527
+0.533,onboardingSignSubtitle,"E-sign contracts, type-to-fill forms, and stamp enterprise seals in seconds.","Tanda tangani kontrak secara elektronik, isi formulir, stempel perusahaan dalam hitungan detik.","Sign the contract electronically, fill out the form, stamp the company in seconds.",0.533,0.826
+0.535,straightenLabel,Straighten,Luruskan,,,0.535
+0.541,tickerCustomSeals,CUSTOM SEALS,STEMPEL KUSTOM,,,0.541
+0.543,undoTooltip,Undo,Urungkan,,,0.543
+0.549,deleteScanMessage,This can't be undone.,Tindakan ini tidak dapat dibatalkan.,This action cannot be reversed.,0.549,0.832
+0.561,tickerSearch,SEARCH,CARI,,,0.561
+0.564,sealSubtextLabel,Subtext (bottom arc / below),Sub-teks (lengkungan bawah / di bawahnya),Sub-text (undercurved / under),0.564,0.919
+0.565,signatureTabDraw,Draw,Gambar,,,0.565
+0.566,rotateLabel,Rotate,Putar,,,0.566
+0.567,signatureNewOne,Draw or type a new one,Gambar atau ketik yang baru,New images or type,0.567,0.822
+0.574,fillTooltip,Fill,Isi,,,0.574
+0.578,sealCreateTitle,Custom Seal,Stempel kustom,,,0.578
+0.578,sealCustom,Custom Seal,Stempel kustom,,,0.578
+0.587,signatureWidthLabel,Pen width,Tebal pena,,,0.587
+0.602,filterShadow,Shadow,Bayangan,,,0.602
+0.612,valLabel,Val,Nilai,,,0.612
+0.615,reviewPromptYes,Rate Us,Beri Nilai,,,0.615
+0.624,commonCopy,Copy,Salin,,,0.624
+0.625,accentCrimson,Crimson,Kirmizi,,,0.625
+0.627,printFitFit,Fit page,Muat halaman,,,0.627
+0.629,captionDocs,"Flexible crop: Original, Square, 4:3, 3:2, 16:9","Potongan fleksibel: Asli, Kotak, 4:3, 3:2, 16:9","Flexible pieces: Original, Boxed, 4:3, 3:2, 16:9",0.629,0.891
+0.632,printFitFill,Fill sheet (trims edges),Penuhi lembar (memangkas tepi),Fill the sheet.,0.632,0.878
+0.636,accentEmerald,Emerald,Zamrud,,,0.636
+0.649,batchExportEmptyMessage,No documents to batch export. Scan some first.,Tidak ada dokumen untuk ekspor massal. Pindai beberapa terlebih dahulu.,There are no mass export documents.,0.649,0.829
+0.651,tickerDeviceMigration,DEVICE MIGRATION,MIGRASI PERANGKAT,,,0.651
+0.655,frontSideCaptured,Front side captured. Now capture the back side.,Sisi depan diambil. Sekarang ambil sisi belakang.,"The front is taken, now the back.",0.655,0.880
+0.661,lockAspectRatio,Lock aspect ratio,Kunci rasio aspek,,,0.661
+0.663,ocrStatusInstalled,Installed,Terpasang,,,0.663
+0.671,alignLabel,Align,Sejajarkan,,,0.671
+0.672,importBackupButton,Import from backup,Impor dari cadangan,,,0.672
+0.684,batchExportSignatureDisabled,Batch export — signature placement disabled,Ekspor massal — penempatan tanda tangan dinonaktifkan,Mass exports <unk> Signature placement deactivated,0.684,0.835
+0.687,printFitLabel,Scaling,Penskalaan,,,0.687
+0.687,letterSizeUS,Letter size (US),Letter (AS),,,0.687
+0.690,filterGrayscale,Grayscale,Skala abu-abu,,,0.690
+0.691,signatureTabType,Type,Ketik,,,0.691
+0.694,onboardingEditSubtitle,"Every edit stays reversible — undo, redo, and revert to original anytime.","Setiap edit dapat dibatalkan — urungkan, ulangi, kembalikan ke asli kapan saja.","Any edit can be canceled <unk> deleted, repeated, restored to the original at any time.",0.694,0.904
+0.706,drawNewSignature,Draw New,Gambar baru,,,0.706
+0.706,annotateTitle,Annotate,Anotasi,,,0.706
+0.707,lightThemeOption,Light,Terang,,,0.707
+0.712,commonImport,Import,Impor,,,0.712
+0.719,errorGenericTitle,Something went wrong,Terjadi Kesalahan,,,0.719
+0.719,compressLabel,Compress,Kompres,,,0.719
+0.720,exportFormatTxtDescription,Plain OCR text only,Hanya teks OCR biasa,Just the usual OCR text.,0.720,0.902
+0.721,importBackSide,Import Back Side,Impor Sisi Belakang,,,0.721
+0.724,emptyFavorites,No favorites yet. Tap the star icon on a document to add it.,Belum ada favorit. Ketuk ikon bintang pada dokumen untuk menambahkannya.,Tap the star icon on the document to add it.,0.724,0.938
+0.725,stampTickedLabel,Ticked,Dicentang,,,0.725
+0.727,vibrateOnCaptureLabel,Vibrate on capture,Getar saat menangkap,,,0.727
+0.730,captionPassport,Passport crop: 4:3 or Original,Potongan paspor: 4:3 atau Asli,Passport cuts: 4:3 or Original,0.730,0.890
+0.733,editLabel,Edit,Ubah,,,0.733
+0.734,fitToTargetMbLabel,Fit to target MB,Sesuai target MB,According to the MB target,0.734,0.936
+0.735,idStepFront,Step 1: Capture Front Side,Langkah 1: Ambil Sisi Depan,Step 1: Take the front,0.735,0.923
+0.737,eraserZoomTooltip,Zoom and move (pinch),Zoom dan geser (cubit),Zoom and slide,0.737,0.863
+0.745,darkThemeOption,Dark,Gelap,,,0.745
+0.745,checkShapeRounded,Rounded,Membulat,,,0.745
+0.748,revertToOriginalMessage,"This will undo all filters, rotations, crops, resizes, and eraser strokes on this page.","Ini akan membatalkan semua filter, rotasi, pemotongan, perubahan ukuran, dan sapuan penghapus pada halaman ini.","It will cancel all filters, rotations, cuts, size changes, and deleting cheats on this page.",0.748,0.857
+0.751,signatureChoiceMessage,Use your saved signature or draw a new one?,Gunakan tanda tangan tersimpan atau gambar yang baru?,Use a stored signature or a new image?,0.751,0.865
+0.751,filterContrastLabel,Contrast,Kontras,,,0.751
+0.753,autoScan,Auto Scan,Pindai otomatis,,,0.753
+0.754,backupReadyStatus,Backup ready.,Cadangan siap.,,,0.754
+0.760,cropNoPageFound,Couldn't find the page edges. Drag the corners.,Tepi halaman tidak ditemukan. Seret sudutnya.,The edge of the page is missing.,0.760,0.863
+0.763,annotationModePen,Pen,Pena,,,0.763
+0.766,printMarginNone,None,Tanpa,,,0.766
+0.766,annotationModeEllipse,Ellipse,Elips,,,0.766
+0.767,removeAdsTitle,Remove Ads Forever,Hapus iklan,,,0.767
+0.767,onboardingPrivacyTitle,Private by design,Privat sejak dirancang,,,0.767
+0.769,printRangeCurrent,Current,Saat ini,,,0.769
+0.771,onboardingWelcomeSubtitle,"Your entire document office — scan, edit, sign, and export — in one private app.","Kantor dokumen lengkap Anda — pindai, edit, tanda tangani, ekspor — dalam satu aplikasi pribadi.","Your full document office <unk> scan, edit, sign, export <unk> in one personal application.",0.771,0.881
+0.773,buildingBackupStatus,Building backup…,Membuat cadangan…,,,0.773
+0.777,enableSharePromptsLabel,Enable Share Prompts,Aktifkan permintaan berbagi,,,0.777
+0.780,exportNoTextError,This document has no text yet. Run OCR on it first.,Dokumen ini belum memiliki teks. Jalankan OCR terlebih dahulu.,This document doesn't have text yet.,0.780,0.914
+0.781,sealInkLook,Worn stamp look,Tampilan stempel usang,,,0.781
+0.781,sealMainTextLabel,Main text (top arc / box),Teks utama (lengkungan atas / kotak),Main text (upper curve/box),0.781,0.923
+0.782,cropLabel,Crop,Potong,,,0.782
+0.782,sealEditTitle,Edit Custom Seal,Edit stempel kustom,,,0.782
+0.784,couldNotImportBackupError,Could not import this backup. Check the password and try again.,Tidak dapat mengimpor cadangan ini. Periksa kata sandi dan coba lagi.,I can't import these backups.,0.784,0.916
+0.784,idStepBack,Step 2: Capture Back Side,Langkah 2: Ambil Sisi Belakang,Step 2: Take the back side,0.784,0.934
+0.785,tickerWordExport,WORD EXPORT,EKSPOR WORD,,,0.785
+0.785,searchHint,Search your scans,Cari pindaian Anda,,,0.785
+0.785,onboardingToolsSubtitle,"Annotate, sign, watermark, fill forms, seal, and more — every tool free and unlimited.","Anotasi, tanda tangan, tanda air, isi formulir, stempel, dan lainnya — semuanya gratis dan tanpa batas.","Annotations, signatures, watermarks, filling out forms, stamps, etc. <unk> are all free and unlimited.",0.785,0.852
+0.789,importFrontSide,Import Front Side,Impor Sisi Depan,,,0.789
+0.790,ocrStatusOnDemand,On-demand,Sesuai permintaan,,,0.790
+0.791,exportBackupButton,Export encrypted backup,Ekspor cadangan terenkripsi,,,0.791
+0.791,redoTooltip,Redo,Ulangi,,,0.791
+0.792,saveAsNewDocumentAction,Save as new Document,Simpan sebagai dokumen baru,Keep it as a new document,0.792,0.932
+0.794,stampCheckbox,Checkbox,Kotak centang,,,0.794
+0.795,cropDocumentTitle,Crop Document,Potong Dokumen,,,0.795
+0.796,onboardingReplayIntro,Replay introduction,Putar ulang intro,,,0.796
+0.796,docxWarningMessage,"DOCX sources render poorly as pages — save inside the app is limited to JPG/PNG from image, PDF, TXT or CSV sources. Use Export & Share for this file.","Sumber DOCX tidak dapat ditampilkan dengan baik sebagai halaman — penyimpanan dalam aplikasi terbatas pada JPG/PNG dari gambar, PDF, TXT, atau CSV. Gunakan Ekspor & bagikan untuk file ini.","The DOCX source cannot be displayed as well as the <unk> storage page in a limited JPG/PNG application of an image, PDF, TXT, or CSV. Use Export & Share for this file.",0.796,0.928
+0.797,enableReviewPromptsLabel,Enable Review Prompts,Aktifkan permintaan ulasan,,,0.797
+0.800,enableNotificationsSubtitle,Allow background reminders for unexported documents,Izinkan pengingat latar belakang untuk dokumen yang belum diekspor,Allow background reminders for documents that have not been exported,0.800,0.830
+0.800,couldNotCreateBackupError,Could not create the backup.,Tidak dapat membuat cadangan.,Can't make a backup.,0.860,0.800
+0.800,chipSelectMultiple,Select Multiple,Pilih beberapa,,,0.800
+0.801,paywallFeatureNoInterstitial,No more interstitial ads,Tidak ada lagi iklan interstisial,No more interstitial advertising.,0.801,0.922
+0.802,batchExportTooltip,Batch export,Ekspor massal,,,0.802
+0.803,copiedToClipboard,Copied to clipboard,Disalin ke papan klip,,,0.803
+0.803,tapToSampleColor,Tap a spot to sample its color,Ketuk titik untuk mengambil sampel warna,Tap the dot to take a color sample,0.803,0.805
+0.804,emailLimitMissed,Could not get under {mb} MB; sent the smallest version.,Tidak bisa di bawah {mb} MB; versi terkecil dikirim.,Couldn't be less than 5 MB; the smallest version was shipped.,0.804,0.921
+0.805,reviewPromptNo,Send Feedback,Kirim Masukan,,,0.805
+0.806,signerLabel,Signer {index},Penanda tangan {index},,,0.806
+0.808,commonCustom,Custom,Kustom,,,0.808
+0.809,beepOnCaptureLabel,Beep on capture,Bip saat menangkap,,,0.809
+0.809,noFoldersYetHomeMessage,No folders yet. Create one from the home screen.,Belum ada folder. Buat satu dari layar beranda.,There's no folder yet.,0.809,0.865
+0.810,tickerUndoRedo,UNDO/REDO,URUNGKAN/ULANGI,,,0.810
+0.811,resizeUpscaleWarning,Enlarging doesn't add detail — the page may look soft.,Memperbesar tidak menambah detail — halaman bisa tampak buram.,Enlarging doesn't add details <unk> pages can look blurry.,0.811,0.897
+0.811,tickerNoteStamps,NOTE STAMPS,STEMPEL CATATAN,,,0.811
+0.812,clearedCount,Cleared {count},{count} dihapus,,,0.812
+0.812,fromPageLabel,From,Dari,,,0.812
+0.814,ticker21ToolEditSuite,21-TOOL EDIT SUITE,SUIT 21 ALAT EDIT,,,0.814
+0.814,progressCopying,Copying…,Menyalin…,,,0.814
+0.819,tickerDarkMode,DARK MODE,MODE GELAP,,,0.819
+0.823,tickerTextStamps,TEXT STAMPS,STEMPEL TEKS,,,0.823
+0.823,exportGenericError,Something went wrong while exporting.,Terjadi kesalahan saat mengekspor.,There was a mistake in exporting.,0.823,0.826
+0.824,tickerTags,TAGS,TAG,,,0.824
+0.825,commonCancel,Cancel,Batal,,,0.825
+0.827,ocrNoInternetMessage,No internet. Connect once to download the language pack.,Tidak ada internet. Hubungkan sekali untuk mengunduh paket bahasa.,"There's no Internet, so just connect once to download the language packages.",0.827,0.894
+0.830,pageResized,Page resized,Ukuran halaman diubah,,,0.830
+0.830,resizeTitle,Resize,Ubah Ukuran,,,0.830
+0.832,captureFrontSide,Capture Front Side,Ambil Sisi Depan,,,0.832
+0.833,tickerGalleryImport,GALLERY IMPORT,IMPOR GALERI,,,0.833
+0.834,ocrLanguagePackNotReady,Language pack downloading or not ready. Try again shortly.,Paket bahasa sedang diunduh atau belum siap. Coba lagi sebentar.,The language packet is being downloaded or it's not ready.,0.834,0.879
+0.834,tickerSearchablePdf,SEARCHABLE PDF,PDF DAPAT DICARI,,,0.834
+0.835,appearanceSectionLabel,Appearance,Tampilan,,,0.835
+0.835,exportFormatPngDescription,"One image per page, lossless","Satu gambar per halaman, tanpa kehilangan kualitas","One image per page, without losing quality",0.842,0.835
+0.836,scannerErrorPrefix,Scanner error,Kesalahan pemindai,,,0.836
+0.837,scaleLabel,Scale,Skala,,,0.837
+0.838,tickerAccentThemes,ACCENT THEMES,TEMA AKSEN,,,0.838
+0.839,diagnosticsSectionLabel,DIAGNOSTICS,Diagnostik,,,0.839
+0.840,sealSavedHeading,Saved seals,Segel tersimpan,,,0.840
+0.840,tickerAutoCopyOcr,AUTO-COPY OCR,SALIN OTOMATIS OCR,,,0.840
+0.840,importFromGallery,Import from Gallery,Impor dari galeri,,,0.840
+0.841,commonRevert,Revert,Kembalikan,,,0.841
+0.846,restoreCompleteMessage,Restore complete.,Pemulihan selesai.,,,0.846
+0.846,whiteHaloLabel,White halo (readability),Halo putih (keterbacaan),,,0.846
+0.846,sampleColorTooltip,Sample color from page,Ambil sampel warna dari halaman,Take a color sample from the page,0.949,0.846
+0.847,watermarkLayoutLabel,Layout,Tata letak,,,0.847
+0.848,checkShapeCircle,Circle,Lingkaran,,,0.848
+0.849,watermarkLabel,Watermark,Tanda air,,,0.849
+0.849,tickerNoWatermarks,NO WATERMARKS,TANPA TANDA AIR,,,0.849
+0.850,renameFolderTitle,Rename folder,Ganti nama folder,,,0.850
+0.852,ocrStatusDownloading,Downloading…,Mengunduh…,,,0.852
+0.852,duplicateAction,Duplicate,Duplikat,,,0.852
+0.852,cropIdCardTitle,Crop ID Card,Potong Kartu ID,,,0.852
+0.852,captureBackSide,Capture Back Side,Ambil Sisi Belakang,,,0.852
+0.852,modePassport,Passport Mode,Mode Paspor,,,0.852
+0.853,scanUnavailable,This scan is no longer available.,Pindaian ini tidak lagi tersedia.,These scans are no longer available.,0.908,0.853
+0.854,sharePromptBody,Share it with friends who need a powerful document scanner.,Bagikan dengan teman yang membutuhkan pemindai dokumen canggih.,Share it with friends who need advanced document scans.,0.912,0.854
+0.854,tickerJpgExport,JPG EXPORT,EKSPOR JPG,,,0.854
+0.856,eraserTitle,Eraser,Penghapus,,,0.856
+0.856,annotationModeEraser,Eraser,Penghapus,,,0.856
+0.857,pagesToReadTitle,Pages to read,Halaman yang dibaca,,,0.857
+0.857,openSourceLicensesLabel,Open-source licenses,Lisensi sumber terbuka,,,0.857
+0.857,errorReportIssue,Report issue,Laporkan masalah,,,0.857
+0.858,vibrateOnCaptureSubtitle,Haptic feedback when scan completes,Umpan balik haptik saat pemindaian selesai,Haptic feedback when the scan is complete.,0.951,0.858
+0.858,filterRecent,Recent,Terbaru,,,0.858
+0.859,tickerRevertToOriginal,REVERT TO ORIGINAL,KEMBALI KE ASLI,,,0.859
+0.859,commonConvert,Convert,Konversi,,,0.859
+0.860,progressRasterizing,Rasterizing pages…,Meraster halaman…,,,0.860
+0.861,tickerPngExport,PNG EXPORT,EKSPOR PNG,,,0.861
+0.862,paywallLegalText,This is a non-consumable purchase. Restore it anytime on any device with the same store account.,Ini adalah pembelian non-habis pakai. Pulihkan kapan saja di perangkat mana pun dengan akun toko yang sama.,"It's a non-used purchase, recover anytime on any device with the same store account.",0.862,0.915
+0.863,ocrScriptKorean,Korean,Korea,,,0.863
+0.863,commonClear,Clear,Bersihkan,,,0.863
+0.864,enterBackupPasswordTitle,Enter backup password,Masukkan kata sandi cadangan,,,0.864
+0.865,setBackupPasswordTitle,Set a backup password,Atur kata sandi cadangan,Set the backup password,0.979,0.865
+0.865,tickerTxtExport,TXT EXPORT,EKSPOR TXT,,,0.865
+0.865,watermarkLayoutSingle,Single,Tunggal,,,0.865
+0.866,signatureCanvasHint,Sign here,Tanda tangan di sini,,,0.866
+0.867,sealSavedMessage,Seal saved,Segel disimpan,,,0.867
+0.869,docScannerUnsupportedMessage,"Your device doesn't support the advanced document scanner. Take a photo with your Camera app, then tap Import below to crop and save it.","Perangkat Anda tidak mendukung pemindai dokumen canggih. Ambil foto dengan aplikasi Kamera, lalu ketuk Impor di bawah untuk memotong dan menyimpannya.","Your device doesn't support advanced document scanning, so take photos with the Camera app, and then tap Import below to cut and save them.",0.869,0.893
+0.869,autoCopyOcrSubtitle,Copy text to clipboard after scan,Salin teks ke papan klip setelah memindai,Copy the text to the clipboard after scanning,0.967,0.869
+0.870,pdfImportedAsDocument,PDF imported as document,PDF diimpor sebagai dokumen,PDFs are imported as documents,0.870,0.911
+0.871,importingStatus,Importing…,Mengimpor…,,,0.871
+0.871,pageFormatLetter,Letter (US),Letter (AS),,,0.871
+0.871,tickerPdfExport,PDF EXPORT,EKSPOR PDF,,,0.871
+0.871,progressDecodingImage,Decoding image…,Mendekode gambar…,,,0.871
+0.872,ocrScriptChinese,Chinese,Cina,,,0.872
+0.872,tickerPassportMode,PASSPORT MODE,MODE PASPOR,,,0.872
+0.873,emailMessageLabel,Message,Pesan,,,0.873
+0.873,emptyFolders,No folders yet. Tap the folder icon to create one.,Belum ada folder. Ketuk ikon folder untuk membuat satu.,Tap the folder icon to create one.,0.873,0.898
+0.873,rotationPage,Page rotated,Halaman diputar,,,0.873
+0.873,noTextRecognized,No text recognized.,Tidak ada teks yang dikenali.,,,0.873
+0.874,fillDeleteSnippet,Delete snippet?,Hapus cuplikan?,,,0.874
+0.875,commonApply,Apply,Terapkan,,,0.875
+0.875,signatureSavedHeading,Saved signatures,Tanda tangan tersimpan,,,0.875
+0.875,reviewPromptBody,Your feedback helps us grow and keeps the app free.,Ulasan Anda membantu kami berkembang dan menjaga aplikasi tetap gratis.,Your reviews helped us grow and keep the app free.,0.890,0.875
+0.876,signatureTitle,Signature,Tanda tangan,,,0.876
+0.876,beepOnCaptureSubtitle,Play sound when scan completes,Putar suara saat pemindaian selesai,Play the sound when the scan is complete.,0.876,0.896
+0.878,idLayoutRealSize,Real size,Ukuran asli,,,0.878
+0.878,extractToNewDocAction,Extract to new doc,Ekstrak ke dokumen baru,Extract to the new document,0.880,0.878
+0.878,fillSaveSnippet,Save as snippet,Simpan sebagai cuplikan,,,0.878
+0.878,commonRename,Rename,Ganti nama,,,0.878
+0.879,emptySearch,No scans match your search.,Tidak ada pindaian yang cocok dengan pencarian Anda.,No scans matched your search.,0.943,0.879
+0.879,clearLogsTooltip,Clear logs,Bersihkan log,,,0.879
+0.880,heightLabel,Height,Tinggi,,,0.880
+0.880,filterBrightnessLabel,Brightness,Kecerahan,,,0.880
+0.880,renameDocumentTitle,Rename document,Ganti nama dokumen,,,0.880
+0.881,tickerNoAccount,NO ACCOUNT,TANPA AKUN,,,0.881
+0.882,emailAttachmentNotIncluded,The pages could not be attached to the email. Use Share to send the pages.,Halaman tidak dapat dilampirkan ke email. Gunakan Bagikan untuk mengirim halaman.,The page cannot be attached to the email. Use Share to send the page.,0.882,0.921
+0.883,extractedTextTitle,Extracted Text,Teks yang diekstrak,,,0.883
+0.885,idCardPdfGenerated,ID Card PDF Generated,PDF Kartu ID dibuat,PDF ID card is created,0.922,0.885
+0.885,migrationExplainer,"This isn't automatic sync. Export creates a single encrypted backup file you move to your new device yourself, then import there.","Ini bukan sinkronisasi otomatis. Ekspor membuat satu file cadangan terenkripsi yang Anda pindahkan sendiri ke perangkat baru, lalu impor di sana.","It's not automatic synchronization. Export creates an encrypted backup file that you move yourself to a new device, and then you import it there.",0.943,0.885
+0.886,importAndConvertDocument,Import & Convert Document,Impor dan konversi dokumen,Import and conversion of documents,0.918,0.886
+0.887,managePagesTitle,Manage Pages,Kelola halaman,,,0.887
+0.888,compressNoLimit,No limit,Tanpa batas,,,0.888
+0.888,onboardingEditTitle,Non-Destructive Editing,Edit Non-Destruktif,,,0.888
+0.889,tickerFreeUnlimitedOcr,FREE UNLIMITED OCR,OCR GRATIS TANPA BATAS,,,0.889
+0.889,enableReviewPromptsSubtitle,Allow the app to occasionally ask for a rating,Izinkan aplikasi sesekali meminta penilaian,Allow applications to occasionally request a rating,0.889,0.915
+0.890,moveToFolderTitle,Move to Folder,Pindahkan ke folder,,,0.890
+0.890,onboardingGetStarted,Get Started,Mulai,,,0.890
+0.890,backupCorruptedError,This backup file looks corrupted.,File cadangan ini tampaknya rusak.,This backup file appears to be damaged.,0.908,0.890
+0.891,deleteScanTitle,Delete this scan?,Hapus pindaian ini?,,,0.891
+0.892,titlePdfImport,PDF Import,Impor PDF,,,0.892
+0.892,pagesDeleteConfirm,Delete {count} pages? They are removed when you save.,Hapus {count} halaman? Dihapus saat Anda menyimpan.,Delete 5 pages? Delete while you save.,0.892,0.938
+0.893,deleteFolderMessage,Documents inside will not be deleted.,Dokumen di dalamnya tidak akan dihapus.,The documents in it will not be deleted.,0.906,0.893
+0.893,couldNotOpenLinkError,Could not open link.,Tidak dapat membuka tautan.,Can't open the link.,0.893,0.939
+0.893,commonExtract,Extract,Ekstrak,,,0.893
+0.893,pageRevertedToOriginal,Page reverted to original,Halaman dikembalikan ke asli,Page returned to original,0.893,0.941
+0.893,pageToLabel,To page,Sampai halaman,,,0.893
+0.894,readingPageEta,Page {page} of {total} · about {minutes} min left,Halaman {page} dari {total} · sekitar {minutes} mnt lagi,Page 5 of 5 · about 5 minutes more,0.894,0.940
+0.894,rotationAllPages,All pages rotated,Semua halaman diputar,,,0.894
+0.895,pricingLoadingError,Pricing is still loading — try again in a moment.,Harga masih dimuat — coba lagi sebentar.,The price is still loaded. Try again.,0.895,0.908
+0.895,extractedPageDefaultTitle,Extracted Page,Halaman diekstrak,,,0.895
+0.895,addCheckboxTitle,Add Checkbox,Tambah Kotak Centang,,,0.895
+0.895,watermarkEditTitle,Edit Watermark,Edit tanda air,,,0.895
+0.897,filterSheetTitle,Filters,Filter,,,0.897
+0.897,enableNotificationsLabel,Enable Notifications,Aktifkan notifikasi,,,0.897
+0.899,ocrScriptJapanese,Japanese,Jepang,,,0.899
+0.899,folderUnavailable,This folder is no longer available.,Folder ini tidak lagi tersedia.,This folder is no longer available.,1.000,0.899
+0.899,foldersSectionHeader,Folders,Folder,,,0.899
+0.899,filterFolders,Folders,Folder,,,0.899
+0.899,savedToDocumentText,Saved to document text,Disimpan ke teks dokumen,Saved to the text of the document,0.944,0.899
+0.899,tickerFolders,FOLDERS,FOLDER,,,0.899
+0.901,docxModeWithImages,With Images,Dengan gambar,,,0.901
+0.902,progressBuildingDocx,Building DOCX…,Membangun DOCX…,,,0.902
+0.902,cropAuto,Auto-detect,Deteksi otomatis,,,0.902
+0.903,watermarkAddTitle,Add Watermark,Tambah tanda air,,,0.903
+0.903,fromAnotherDocument,From Another Document,Dari dokumen lain,,,0.903
+0.903,debugLogsLabel,Debug Logs,Log debug,,,0.903
+0.903,printRangeRange,Range,Rentang,,,0.903
+0.903,watermarkPagesRange,Range,Rentang,,,0.903
+0.904,idPdfErrorPrefix,Error generating ID PDF,Kesalahan pembuatan PDF ID,Errors in making a PDF ID,0.904,0.947
+0.904,tickerCsvExport,CSV EXPORT,EKSPOR CSV,,,0.904
+0.904,moreOptionsTooltip,More options,Opsi lainnya,,,0.904
+0.905,stampBoxLabel,Box,Kotak,,,0.905
+0.905,sealShapeBox,Box,Kotak,,,0.905
+0.905,signatureFontHandwritten,Handwritten,Tulisan tangan,,,0.905
+0.906,eraserApplied,Eraser applied,Penghapus diterapkan,,,0.906
+0.906,sealSaveToLibrary,Save this seal,Simpan segel ini,,,0.906
+0.907,exportSavedToDownloads,Saved to Downloads,Disimpan ke Unduhan,,,0.907
+0.907,pagesLabel,Pages,Halaman,,,0.907
+0.907,watermarkPagesLabel,Pages,Halaman,,,0.907
+0.907,convertDocumentTitle,Convert Document,Konversi dokumen,,,0.907
+0.907,exportFormatCsvDescription,Spreadsheet data,Data spreadsheet,,,0.907
+0.908,commonReset,Reset,Setel ulang,,,0.908
+0.908,noDocumentsInFolder,No documents in this folder yet.,Belum ada dokumen di folder ini.,There are no documents in this folder yet.,0.955,0.908
+0.908,cropAspectId,ID card,Kartu ID,,,0.908
+0.908,onboardingOcrTitle,On-Device OCR,OCR Di Perangkat,,,0.908
+0.909,revertToOriginalTitle,Revert to Original?,Kembali ke asli?,,,0.909
+0.909,pagesUpdated,Pages updated,Halaman diperbarui,,,0.909
+0.909,exportFormatDocxDescription,Editable text document,Dokumen teks yang dapat diedit,,,0.909
+0.910,accentColorTitle,Accent Color,Warna aksen,,,0.910
+0.910,accentColorTooltip,Accent Color,Warna aksen,,,0.910
+0.910,onboardingPrivacySubtitle,"No account, no cloud, no watermarks. Your documents never leave your device.","Tanpa akun, tanpa cloud, tanpa tanda air. Dokumen Anda tidak pernah meninggalkan perangkat.","No account, no cloud, no watermark, your documents never leave the device.",0.967,0.910
+0.910,ocrStatusChecking,Checking...,Memeriksa...,,,0.910
+0.911,saveToDownloadsAction,Save to Downloads,Simpan ke Unduhan,,,0.911
+0.912,progressExtractingText,Extracting text…,Mengekstrak teks…,,,0.912
+0.912,importErrorPrefix,Import error,Kesalahan impor,,,0.912
+0.913,movedToFolderMessage,Moved to folder.,Dipindahkan ke folder.,,,0.913
+0.913,saveInsideAppWarning,"To save inside the app, choose JPG or PNG. Other targets are exported as files.","Untuk menyimpan di dalam aplikasi, pilih JPG atau PNG. Target lain diekspor sebagai file.","To save in the app, select JPG or PNG. The other target is exported as a file.",0.935,0.913
+0.914,tickerNonDestructiveEditing,NON-DESTRUCTIVE EDITING,EDIT NON-DESTRUKTIF,,,0.914
+0.914,filterShadowRemoval,Shadow removal,Penghapusan bayangan,,,0.914
+0.915,pageCropped,Page cropped,Halaman dipotong,,,0.915
+0.915,moveToFolderTooltip,Move to folder,Pindahkan ke folder,,,0.915
+0.915,exportDoneStatus,Done,Selesai,,,0.915
+0.915,commonDone,Done,Selesai,,,0.915
+0.916,fullscreenLabel,Fullscreen,Layar penuh,,,0.916
+0.916,migrationTitle,Device Migration,Migrasi perangkat,,,0.916
+0.916,deviceMigrationLabel,Device Migration,Migrasi perangkat,,,0.916
+0.916,pickErrorPrefix,Pick error,Kesalahan pemilihan,,,0.916
+0.917,subscriptionSectionLabel,Subscription,Langganan,,,0.917
+0.917,captionIdCard,Two-sided ID capture: Front + Back,Penangkapan ID dua sisi: Depan + Belakang,Two-sided ID capture: front + rear,0.939,0.917
+0.918,removeFromFolderTooltip,Remove from folder,Hapus dari folder,,,0.918
+0.918,sealCenterNone,None,Tidak ada,,,0.918
+0.918,placeHereLabel,Place here,Letakkan di sini,,,0.918
+0.921,sealDefaultMainText,YOUR COMPANY,PERUSAHAAN ANDA,,,0.921
+0.921,copyAll,Copy all,Salin semua,,,0.921
+0.921,progressEncodingPage,Encoding page {current} of {total}…,Mengkode halaman {current} dari {total}…,Encoding page five of five...,0.959,0.921
+0.921,commonCreate,Create,Buat,,,0.921
+0.922,paywallSubtitle,Support KatharScan with a one-time purchase. All features remain free.,Dukung KatharScan dengan pembelian sekali. Semua fitur tetap gratis.,Support KatharScan with a one-time purchase.,0.922,0.954
+0.922,sharePromptTitle,Love KatharScan?,Suka KatharScan?,,,0.922
+0.922,noEmailAppFound,No email app found,Tidak ada aplikasi email ditemukan,No e-mail app found.,0.922,0.957
+0.923,privacyPolicyLabel,Privacy policy,Kebijakan privasi,,,0.923
+0.923,errorScreenProblem,KatharScan ran into a problem displaying this screen. Your scans are safe — they're stored on this device and this doesn't affect them.,KatharScan mengalami masalah saat menampilkan layar ini. Pindaian Anda aman — disimpan di perangkat ini dan tidak terpengaruh.,KatharScan has a problem displaying this screen. Your scan is secure <unk> stored on this device and unaffected.,0.923,0.936
+0.923,scanPreviewNoPages,No pages to show.,Tidak ada halaman untuk ditampilkan.,No pages to display.,0.930,0.923
+0.923,debugNoLogsYet,No logs yet,Belum ada log,,,0.923
+0.923,sealCenterStar,Star,Bintang,,,0.923
+0.924,extractedAsNewDocument,Extracted as new document,Diekstrak sebagai dokumen baru,Extracted as a new document,0.989,0.924
+0.924,clearPage,Clear page,Hapus halaman,,,0.924
+0.924,paywallFallbackPrice,$14.99 one-time,$14.99 sekali,,,0.924
+0.925,termsOfServiceLabel,Terms of Service,Ketentuan Layanan,,,0.925
+0.925,billingUnavailableMessage,Billing unavailable — try again later.,Penagihan tidak tersedia — coba lagi nanti.,Billing is not available. Try again later.,0.925,0.937
+0.925,emailMessageHint,Add a note (optional),Tambahkan catatan (opsional),Add notes (optional),0.925,0.929
+0.926,accentBlue,Blue,Biru,,,0.926
+0.926,addToFavorites,Add to Favorites,Tambah ke favorit,,,0.926
+0.926,whatsNewBody,"Welcome to KatharScan! This is the first public release featuring unlimited scanning, 29 languages, and export to PDF, Word, TXT, JPG, PNG, and CSV.","Selamat datang di KatharScan! Ini adalah rilis publik pertama dengan pemindaian tanpa batas, 29 bahasa, dan ekspor ke PDF, Word, TXT, JPG, PNG, dan CSV.","Welcome to KatharScan! This is the first public release with unlimited scanning, 29 languages, and export to PDF, Word, TXT, JPG, PNG, and CSV.",0.996,0.926
+0.927,addTagsAction,Add Tags,Tambah tag,,,0.927
+0.927,commonChange,Change,Ubah,,,0.927
+0.927,filterOriginal,Original,Asli,,,0.927
+0.927,useSavedSignature,Use Saved,Gunakan yang tersimpan,,,0.927
+0.927,tickerIdCardMode,ID CARD MODE,MODE KARTU ID,,,0.927
+0.927,titleIdCard,ID Card,Kartu ID,,,0.927
+0.928,progressBuildingPdf,Building PDF…,Membangun PDF…,,,0.928
+0.928,documentSaved,Document saved,Dokumen disimpan,,,0.928
+0.929,saveAsDocument,Save as Document,Simpan sebagai dokumen,,,0.929
+0.929,sealCenterTextLabel,Center text,Teks tengah,,,0.929
+0.929,saveToDeviceButton,Save to Device,Simpan ke perangkat,,,0.929
+0.930,compressMedium,Medium,Sedang,,,0.930
+0.930,tickerRegionOcr,REGION OCR,OCR WILAYAH,,,0.930
+0.930,paywallFeatureNoBanner,No more banner ads,Tidak ada lagi iklan banner,No more banner ads.,0.967,0.930
+0.930,noteLabel,Note,Catatan,,,0.930
+0.931,regionOcrFailed,Region OCR failed,OCR wilayah gagal,,,0.931
+0.931,onboardingBack,Back,Kembali,,,0.931
+0.931,engagementSectionLabel,ENGAGEMENT & NOTIFICATIONS,KETERLIBATAN & NOTIFIKASI,,,0.931
+0.932,adsRemovedLabel,Ads Removed,Iklan dihapus,,,0.932
+0.932,sealTextColorSame,Same as ring,Sama dengan cincin,,,0.932
+0.933,signatureDeleteSaved,Remove saved signature,Hapus tanda tangan tersimpan,,,0.933
+0.933,ocrUnavailableTooltip,OCR unavailable on this device.,OCR tidak tersedia di perangkat ini.,OCR is not available on this device.,0.938,0.933
+0.933,paywallSuccessMessage,Thank you for supporting KatharScan.,Terima kasih telah mendukung KatharScan.,Thank you for supporting KatharScan.,1.000,0.933
+0.933,saveFailedBanner,Your latest changes could not be saved.,Perubahan terbaru Anda tidak dapat disimpan.,Your latest changes cannot be saved.,0.954,0.933
+0.933,exportFormatPdfDescription,Best for sharing and printing,Terbaik untuk berbagi dan mencetak,Best to share and print,0.953,0.933
+0.934,sealRemoveWhite,Make white transparent,Jadikan putih transparan,,,0.934
+0.934,rotate90Action,Rotate 90°,Putar 90°,,,0.934
+0.935,emptyDocumentMessage,This document has no pages.,Dokumen ini tidak memiliki halaman.,This document has no pages.,1.000,0.935
+0.935,enableSharePromptsSubtitle,Allow the app to occasionally suggest sharing,Izinkan aplikasi sesekali menyarankan berbagi,Allow the app to occasionally suggest sharing,1.000,0.935
+0.935,pagesSelectTooltip,Select pages,Pilih halaman,,,0.935
+0.935,conversionFailedPrefix,Conversion failed,Konversi gagal,,,0.935
+0.935,filterFavorites,Favorites,Favorit,,,0.935
+0.936,commonExport,Export,Ekspor,,,0.936
+0.936,exportTooltip,Export,Ekspor,,,0.936
+0.936,exportTitle,Export,Ekspor,,,0.936
+0.936,watermarkTextLabel,Text,Teks,,,0.936
+0.936,sealCenterText,Text,Teks,,,0.936
+0.936,textLabel,Text,Teks,,,0.936
+0.936,watermarkKindText,Text,Teks,,,0.936
+0.937,docxModeTextOnly,Text Only,Hanya teks,,,0.937
+0.937,progressReading,Reading…,Membaca…,,,0.937
+0.937,homeLanguageTooltip,App Language,Bahasa aplikasi,,,0.937
+0.937,appLanguageTitle,App Language,Bahasa aplikasi,,,0.937
+0.937,noFoldersYet,No folders yet,Belum ada folder,,,0.937
+0.937,modeIdCard,ID Card Mode,Mode Kartu ID,,,0.937
+0.937,restorePurchasesButton,Restore purchases,Pulihkan pembelian,,,0.937
+0.937,chipAllFolders,All Folders,Semua folder,,,0.937
+0.937,privacyOptionsLabel,Privacy settings,Pengaturan privasi,,,0.937
+0.938,noteTextLabel,Note text,Teks Catatan,,,0.938
+0.938,eraserAutoColorTooltip,Match the page colour automatically,Samakan warna halaman otomatis,Automatically match page colors,0.956,0.938
+0.938,removeFromFavorites,Remove from Favorites,Hapus dari favorit,,,0.938
+0.938,exportingStatus,Exporting…,Mengekspor…,,,0.938
+0.939,printFilterNone,No filter,Tanpa filter,,,0.939
+0.939,exportFormatSheetTitle,Export as,Ekspor sebagai,,,0.939
+0.940,fillInputHint,Type text to fill,Ketik teks untuk diisi,Type the text to be filled in,0.940,0.942
+0.940,clearAllPages,Clear all pages,Hapus semua halaman,,,0.940
+0.940,filterApplied,Filter applied,Filter diterapkan,,,0.940
+0.940,paywallSuccessTitle,Ads Removed,Iklan Dihapus,,,0.940
+0.940,progressSaving,Saving…,Menyimpan…,,,0.940
+0.941,autoCopyOcrLabel,Auto-copy OCR,Salin OCR otomatis,,,0.941
+0.941,appLanguageLabel,App language,Bahasa aplikasi,,,0.941
+0.941,tickerFavorites,FAVORITES,FAVORIT,,,0.941
+0.942,filterRemoved,Filter removed,Filter dihapus,,,0.942
+0.942,paywallFeatureFreeForever,All features free forever,Semua fitur gratis selamanya,All the features are free forever,0.964,0.942
+0.942,documentsSectionHeader,Documents,Dokumen,,,0.942
+0.942,emptyStateDefaultMessage,Tap the camera to scan your first document.,Ketuk kamera untuk memindai dokumen pertama Anda.,Tap the camera to scan your first document.,1.000,0.942
+0.942,filterMagicColor,Magic colour,Warna ajaib,,,0.942
+0.943,cropAspectFree,Free,Bebas,,,0.943
+0.943,pagesToReadHint,This PDF has {count} pages. Pages that are pictures are read with OCR (about 10 seconds each); pages with real text are instant.,PDF ini memiliki {count} halaman. Halaman berupa gambar dibaca dengan OCR (sekitar 10 detik per halaman); halaman teks asli instan.,This PDF has 5 pages. The image page is read with OCR (about 10 seconds per page); the original text page is instant.,0.943,0.951
+0.943,convertedDocTitle,Converted {date},Dikonversi {date},,,0.943
+0.944,convertToLabel,Convert to:,Konversi ke:,,,0.944
+0.944,ocrLanguagesLabel,OCR Languages,Bahasa OCR,,,0.944
+0.944,sealLogoReady,Logo ready,Logo siap,,,0.944
+0.945,applyToAllPages,Apply to all pages,Terapkan ke semua halaman,Apply to all pages,1.000,0.945
+0.945,addSignature,Add Signature,Tambah tanda tangan,,,0.945
+0.946,newFolderTitle,New Folder,Folder baru,,,0.946
+0.946,newFolderTooltip,New Folder,Folder baru,,,0.946
+0.946,pageFromLabel,From page,Dari halaman,,,0.946
+0.946,commonUpdate,Update,Perbarui,,,0.946
+0.947,clearThis,Clear this,Bersihkan ini,,,0.947
+0.947,idGenerating,Generating PDF...,Membuat PDF...,,,0.947
+0.947,idLayoutFullWidth,Full width,Lebar penuh,,,0.947
+0.947,fillTapHint,Tap the page where you want to type,Ketuk halaman di tempat Anda ingin mengetik,Tap the page where you want to type,1.000,0.947
+0.947,tabImageLabel,Image,Gambar,,,0.947
+0.947,watermarkKindImage,Image,Gambar,,,0.947
+0.948,savedAsNewDocument,Saved as new document,Disimpan sebagai dokumen baru,Saved as a new document,0.989,0.948
+0.948,modeDocument,Document Mode,Mode Dokumen,,,0.948
+0.948,deleteFolderTitle,Delete this folder?,Hapus folder ini?,,,0.948
+0.948,saveFailedPrefix,Save failed:,Gagal menyimpan:,,,0.948
+0.949,opacityPercentLabel,Opacity: {percent}%,Opasitas: {percent}%,,,0.949
+0.949,fillTypeHint,Type here,Ketik di sini,,,0.949
+0.950,customColorTitle,Custom Color,Warna kustom,,,0.950
+0.950,commonRemove,Remove,Hapus,,,0.950
+0.950,exportAndShareAction,Export & Share,Ekspor & bagikan,,,0.950
+0.950,printOptionsTitle,Print Options,Opsi cetak,,,0.950
+0.950,filterColorEnhance,Color enhance,Peningkatan warna,,,0.950
+0.951,sealFontSans,Clean,Bersih,,,0.951
+0.951,actionLabel,Action:,Tindakan:,,,0.951
+0.951,onboardingOcrSubtitle,Use KatharScan in {count} languages. OCR runs on your phone — nothing ever leaves your device.,Gunakan KatharScan dalam {count} bahasa. OCR berjalan di ponsel Anda — tidak ada yang meninggalkan perangkat.,Use KatharScan in 5 languages. The OCR runs on your phone <unk> no one leaves the device.,0.963,0.951
+0.951,whatsNewTitle,What's New,Apa yang Baru,,,0.951
+0.951,sharePromptAction,Share App,Bagikan Aplikasi,,,0.951
+0.952,paywallTitle,Remove Ads,Hapus Iklan,,,0.952
+0.954,onboardingWelcomeTitle,Welcome to KatharScan,Selamat datang di KatharScan,,,0.954
+0.954,ocrStatusUnsupported,Unsupported,Tidak didukung,,,0.954
+0.954,ocrNoTextFound,No text found,Tidak ada teks ditemukan,,,0.954
+0.954,themeLabel,Theme,Tema,,,0.954
+0.954,stampPaperLabel,Paper,Kertas,,,0.954
+0.954,printPaperLabel,Paper,Kertas,,,0.954
+0.955,addNoteTitle,Add Note,Tambah Catatan,,,0.955
+0.955,genericErrorPrefix,Error,Kesalahan,,,0.955
+0.955,commonClose,Close,Tutup,,,0.955
+0.955,compressTargetLabel,Max size,Ukuran maks.,,,0.955
+0.955,continueButton,Continue,Lanjutkan,,,0.955
+0.955,onboardingContinue,Continue,Lanjutkan,,,0.955
+0.955,whatsNewContinue,Continue,Lanjutkan,,,0.955
+0.956,exportFormatJpgDescription,One image per page,Satu gambar per halaman,One image per page,1.000,0.956
+0.956,commonConfirm,Confirm,Konfirmasi,,,0.956
+0.956,editDocumentAction,Edit Document,Edit dokumen,,,0.956
+0.956,commonPrint,Print,Cetak,,,0.956
+0.957,printPerSheetLabel,Pages per sheet,Halaman per lembar,,,0.957
+0.957,settingsTooltip,Settings,Pengaturan,,,0.957
+0.957,settingsTitle,Settings,Pengaturan,,,0.957
+0.957,selectRegionTitle,Select Region,Pilih wilayah,,,0.957
+0.959,clearAll,Clear all,Bersihkan semua,,,0.959
+0.959,printFailed,Print failed,Gagal mencetak,,,0.959
+0.959,conversionStarting,Starting…,Memulai…,,,0.959
+0.961,documentNotFound,Document not found,Dokumen tidak ditemukan,,,0.961
+0.962,deleteFolderTooltip,Delete folder,Hapus folder,,,0.962
+0.962,emailFailed,Email failed,Email gagal,,,0.962
+0.962,storageSectionLabel,Storage,Penyimpanan,,,0.962
+0.963,signatureTypeHint,Type your name,Ketik nama Anda,,,0.963
+0.964,watermarkPagesInvalid,Check the pages (the document has {count} pages),Periksa halaman (dokumen memiliki {count} halaman),Check the page (the document has 5 pages),0.972,0.964
+0.964,commonDelete,Delete,Hapus,,,0.964
+0.964,deleteTooltip,Delete,Hapus,,,0.964
+0.964,addTextTitle,Add Text,Tambah Teks,,,0.964
+0.964,addPageTitle,Add Page,Tambah halaman,,,0.964
+0.965,shareTooltip,Share,Bagikan,,,0.965
+0.965,commonShare,Share,Bagikan,,,0.965
+0.965,intensityLabel,Intensity,Intensitas,,,0.965
+0.966,commonSave,Save,Simpan,,,0.966
+0.966,sealTextColorLabel,Text colour,Warna teks,,,0.966
+0.967,commonUse,Use,Gunakan,,,0.967
+0.967,sealFontSerif,Classic,Klasik,,,0.967
+0.968,addDateTitle,Add Date,Tambah Tanggal,,,0.968
+0.968,addTagTitle,Add tag,Tambah tag,,,0.968
+0.969,pdfImportErrorPrefix,PDF import error,Kesalahan impor PDF,,,0.969
+0.969,reviewPromptTitle,Enjoying KatharScan?,Menikmati KatharScan?,,,0.969
+0.970,cameraErrorPrefix,Camera error,Kesalahan kamera,,,0.970
+0.970,watermarkPagesThis,This page,Halaman ini,,,0.970
+0.972,pagesDeleteCount,Delete {count},Hapus {count},,,0.972
+0.972,onboardingToolsTitle,21 Free Pro Tools,21 Alat Pro Gratis,21 free pro tools,1.000,0.972
+0.972,commonAdd,Add,Tambah,,,0.972
+0.972,languageSectionLabel,Language,Bahasa,,,0.972
+0.972,commonSize,Size,Ukuran,,,0.972
+0.973,textSizeLabel,Text size: {size},Ukuran teks: {size},,,0.973
+0.974,watermarkChooseImage,Choose image,Pilih gambar,,,0.974
+0.975,sealTextSizePercent,Text size {percent}%,Ukuran teks {percent}%,,,0.975
+0.975,cameraSource,Camera,Kamera,,,0.975
+0.976,tabOcrTextLabel,OCR Text,Teks OCR,,,0.976
+0.976,exportEstimatedSize,Estimated size: {mb} MB,Perkiraan ukuran: {mb} MB,Estimated size: 5 MB,1.000,0.976
+0.976,compressSmall,Small,Kecil,,,0.976
+0.977,readingPageProgress,Page {page} of {total},Halaman {page} dari {total},Page 5 of 5,1.000,0.977
+0.977,dateLabel,Date,Tanggal,,,0.977
+0.977,ocrScriptLatin,"Latin (English, European)","Latin (Inggris, Eropa)",,,0.977
+0.979,supportLabel,Support,Dukungan,,,0.979
+0.980,sharePdf,Share PDF,Bagikan PDF,,,0.980
+0.980,aboutSectionLabel,About,Tentang,,,0.980
+0.981,annotationModeSelect,Select,Pilih,,,0.981
+0.982,pageLabel,Page {index},Halaman {index},,,0.982
+0.983,systemThemeOption,System,Sistem,,,0.983
+0.984,exportFormatTxtLabel,Text (.txt),Teks (.txt),,,0.984
+0.985,commonColor,Color,Warna,,,0.985
+0.985,filterColor,Color,Warna,,,0.985
+0.985,favoriteTooltip,Favorite,Favorit,,,0.985
+0.985,tryAgainButton,Try again,Coba lagi,,,0.985
+0.987,pageIndicator,Page {current} / {total},Halaman {current} / {total},Page 5 / 5,1.000,0.987
+0.987,printRangeAll,All pages,Semua halaman,,,0.987
+0.987,watermarkPagesAll,All pages,Semua halaman,,,0.987
+0.987,originalDimensions,Original: {w}×{h},Asli: {w}×{h},,,0.987
+0.988,filterAll,All,Semua,,,0.988
+0.988,modeOcr,OCR Mode,Mode OCR,,,0.988
+0.988,sizePtLabel,Size: {size}pt,Ukuran: {size}pt,,,0.988
+1.000,fontMonospace,monospace,monospace,,,1.000
+1.000,ocrScriptArabic,العربية (Arabic),العربية (Arabic),,,1.000
+1.000,formatCsv,CSV,CSV,,,1.000
+1.000,ocrScriptHebrew,עברית (Hebrew),עברית (Hebrew),,,1.000
+1.000,exportFormatPdfLabel,PDF,PDF,,,1.000
+1.000,exportFormatJpgLabel,JPG,JPG,,,1.000
+1.000,exportFormatPngLabel,PNG,PNG,,,1.000
+1.000,proBadgeLabel,PRO,PRO,,,1.000
+1.000,ocrSectionLabel,OCR,OCR,,,1.000
+1.000,filterTitle,Filter,Filter,,,1.000
+1.000,tickerESign,E-SIGN,E-SIGN,,,1.000
+1.000,ocrScriptDevanagari,"Hindi, Marathi (Devanagari)","Hindi, Marathi (Devanagari)",,,1.000
+1.000,ocrScriptRussian,Русский (Russian),Русский (Russian),,,1.000
+1.000,ocrScriptUkrainian,Українська (Ukrainian),Українська (Ukrainian),,,1.000
+1.000,ocrScriptBengali,বাংলা (Bengali),বাংলা (Bengali),,,1.000
+1.000,watermarkLayoutDiagonal,Diagonal,Diagonal,,,1.000
+1.000,exportFormatDocxLabel,Word (.docx),Word (.docx),,,1.000
+1.000,sealShapeOval,Oval,Oval,,,1.000
+1.000,sealCenterLogo,Logo,Logo,,,1.000
+1.000,fontSerif,serif,serif,,,1.000
+1.000,emailLabel,Email,Email,,,1.000
+1.000,accentAmber,Amber,Amber,,,1.000
+1.000,tickerLanguages,{count} LANGUAGES,{count} LANGUAGES,,,1.000
+1.000,ocrScriptGreek,Ελληνικά (Greek),Ελληνικά (Greek),,,1.000
+1.000,fontSansSerif,sans-serif,sans-serif,,,1.000
+1.000,ocrScriptThai,ไทย (Thai),ไทย (Thai),,,1.000
+1.000,printMarginLabel,Margin,Margin,,,1.000
+1.000,printMarginNormal,Normal,Normal,,,1.000

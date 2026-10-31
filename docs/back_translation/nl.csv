@@ -1,0 +1,545 @@
+score,key,english,translation,back_to_english,backtrans_score,labse_score
+0.246,marqueeEraseTooltip,Marquee erase,Selectiegum,,,0.246
+0.302,eraserTitle,Eraser,Gum,,,0.302
+0.302,annotationModeEraser,Eraser,Gum,,,0.302
+0.337,renameFolderTitle,Rename folder,Map hernoemen,,,0.337
+0.344,satLabel,Sat,Verz,,,0.344
+0.363,signatureWidthLabel,Pen width,Pendikte,,,0.363
+0.387,annotationModeHighlighter,Highlighter,Markeerstift,,,0.387
+0.389,frontSideCaptured,Front side captured. Now capture the back side.,Voorkant vastgelegd. Leg nu de achterkant vast.,Now get the back.,0.389,0.788
+0.424,accentCrimson,Crimson,Karmozijn,,,0.424
+0.429,commonClear,Clear,Wissen,,,0.429
+0.445,sealFontSans,Clean,Strak,,,0.445
+0.451,printMarginNarrow,Narrow,Smal,,,0.451
+0.471,signatureNewOne,Draw or type a new one,Nieuwe tekenen of typen,New signs or types,0.471,0.818
+0.483,darkThemeOption,Dark,Donker,,,0.483
+0.494,checkShapeRounded,Rounded,Afgerond,,,0.494
+0.497,filterShadow,Shadow,Schaduw,,,0.497
+0.499,scaleLabel,Scale,Schalen,,,0.499
+0.504,captureBehaviorSectionLabel,CAPTURE BEHAVIOR,VASTLEGGEDRAG,,,0.504
+0.505,tickerTapToTypeFilling,TAP-TO-TYPE FILLING,TIK-OM-IN-TE-VULLEN,,,0.505
+0.513,commonCreate,Create,Maken,,,0.513
+0.529,sealSubtextLabel,Subtext (bottom arc / below),Subtekst (onderboog / eronder),Subtitle (below / below),0.529,0.917
+0.532,filterGrayscale,Grayscale,Grijstinten,,,0.532
+0.534,fromPageLabel,From,Van,,,0.534
+0.537,paywallLegalText,This is a non-consumable purchase. Restore it anytime on any device with the same store account.,Dit is een niet-verbruikbare aankoop. Herstel het op elk moment op elk apparaat met hetzelfde winkelaccount.,This is a non-consumable purchase.,0.537,0.913
+0.540,cropLabel,Crop,Bijsnijden,,,0.540
+0.543,appearanceSectionLabel,Appearance,Uiterlijk,,,0.543
+0.550,stampBoxLabel,Box,Vakje,,,0.550
+0.550,sealShapeBox,Box,Vakje,,,0.550
+0.552,captionOcr,"Text crop: Original, Square, 4:3","Tekstbijsnijden: Origineel, Vierkant, 4:3","Original, square, 4:3",0.552,0.929
+0.553,annotationModeArrow,Arrow,Pijl,,,0.553
+0.553,printFitFill,Fill sheet (trims edges),Vel vullen (snijdt randen af),Filling of leather (cutting edges),0.553,0.748
+0.562,sealMainTextLabel,Main text (top arc / box),Hoofdtekst (bovenboog / vakje),Headings (top/box),0.562,0.918
+0.564,watermarkLayoutLabel,Layout,Indeling,,,0.564
+0.571,aboutSectionLabel,About,Over,,,0.571
+0.576,tickerFolders,FOLDERS,MAPPEN,,,0.576
+0.577,sealCenterStar,Star,Ster,,,0.577
+0.578,watermarkLayoutTiled,Tiled,Betegeld,,,0.578
+0.593,checkLabel,Check,Vinkje,,,0.593
+0.596,deleteScanMessage,This can't be undone.,Dit kan niet ongedaan worden gemaakt.,This cannot be reversed.,0.596,0.922
+0.597,fillCapsLabel,ALL CAPS,ALLES IN HOOFDLETTERS,,,0.597
+0.597,tickerSearch,SEARCH,ZOEKEN,,,0.597
+0.598,widthLabel,Width,Breedte,,,0.598
+0.601,printFitLabel,Scaling,Schaling,,,0.601
+0.602,onboardingEditSubtitle,"Every edit stays reversible — undo, redo, and revert to original anytime.","Elke bewerking blijft omkeerbaar — ongedaan maken, opnieuw en terugzetten naar origineel op elk moment.","Each operation shall remain reversible <unk> repair, repair and return to the original at any time.",0.602,0.907
+0.604,resizeTitle,Resize,Formaat wijzigen,,,0.604
+0.606,exportFormatPdfDescription,Best for sharing and printing,Ideaal voor delen en afdrukken,Ideal for cutting and printing,0.606,0.841
+0.607,commonRename,Rename,Hernoemen,,,0.607
+0.613,alignLabel,Align,Uitlijning,,,0.613
+0.614,tickerBatchExport,BATCH EXPORT,BATCHEXPORT,,,0.614
+0.618,hueLabel,Hue,Tint,,,0.618
+0.636,valLabel,Val,Waarde,,,0.636
+0.639,undoTooltip,Undo,Ongedaan maken,,,0.639
+0.639,tickerDeviceMigration,DEVICE MIGRATION,APPARAATMIGRATIE,,,0.639
+0.641,captionIdCard,Two-sided ID capture: Front + Back,Tweezijdige ID-vastlegging: Voorkant + Achterkant,Two-sided identification: front + rear,0.641,0.894
+0.647,paywallFeatureFreeForever,All features free forever,Alle functies voor altijd gratis,All functions are free forever,0.647,0.920
+0.652,pricingLoadingError,Pricing is still loading — try again in a moment.,Prijzen worden nog geladen — probeer het zo opnieuw.,Prices are still charging <unk> try it again like this.,0.652,0.861
+0.653,tickerAccentThemes,ACCENT THEMES,ACCENTTHEMA'S,,,0.653
+0.653,pickErrorPrefix,Pick error,Selectiefout,,,0.653
+0.656,eraserApplied,Eraser applied,Gum toegepast,,,0.656
+0.656,signatureFontFlowing,Flowing,Vloeiend,,,0.656
+0.657,commonApply,Apply,Toepassen,,,0.657
+0.659,commonExtract,Extract,Extraheren,,,0.659
+0.663,progressReading,Reading…,Lezen...,,,0.663
+0.665,printMarginLabel,Margin,Marge,,,0.665
+0.671,cropNoPageFound,Couldn't find the page edges. Drag the corners.,Randen niet gevonden. Sleep de hoeken.,I can't find the edges.,0.671,0.776
+0.675,stampTickedLabel,Ticked,Aangevinkt,,,0.675
+0.679,compressSmall,Small,Klein,,,0.679
+0.684,tickerDarkMode,DARK MODE,DONKERE MODUS,,,0.684
+0.688,stampTickLabel,Tick,Vinkje,,,0.688
+0.689,idStepFront,Step 1: Capture Front Side,Stap 1: Voorkant vastleggen,Step 1: Hold the front,0.689,0.916
+0.690,savedToDocumentText,Saved to document text,Opgeslagen in documenttekst,Printed in document text,0.690,0.865
+0.690,sealSavedHeading,Saved seals,Bewaarde zegels,,,0.690
+0.694,foldersSectionHeader,Folders,Mappen,,,0.694
+0.694,filterFolders,Folders,Mappen,,,0.694
+0.705,pageToLabel,To page,Tot pagina,,,0.705
+0.706,tickerRevertToOriginal,REVERT TO ORIGINAL,TERUGZETTEN NAAR ORIGINEEL,,,0.706
+0.708,eraserZoomTooltip,Zoom and move (pinch),Zoomen en verschuiven (knijpen),Zoom and shift (clicking),0.708,0.924
+0.710,ticker21ToolEditSuite,21-TOOL EDIT SUITE,21 BEWERKINGSTOOLS,,,0.710
+0.717,tickerUndoRedo,UNDO/REDO,ONGEDAAN MAKEN/OPNIEUW,,,0.717
+0.718,printRangeRange,Range,Bereik,,,0.718
+0.718,watermarkPagesRange,Range,Bereik,,,0.718
+0.720,emailMessageLabel,Message,Bericht,,,0.720
+0.720,savedAsNewDocument,Saved as new document,Opgeslagen als nieuw document,Updated as a new document,0.720,0.935
+0.726,lockAspectRatio,Lock aspect ratio,Beeldverhouding vergrendelen,,,0.726
+0.727,clearAll,Clear all,Alles wissen,,,0.727
+0.728,idStepBack,Step 2: Capture Back Side,Stap 2: Achterkant vastleggen,Step 2: Hold the back,0.728,0.956
+0.728,captionDocs,"Flexible crop: Original, Square, 4:3, 3:2, 16:9","Flexibel bijsnijden: Origineel, Vierkant, 4:3, 3:2, 16:9","Flexible cutting: original, square, 4:3, 3:2, 16:9",0.728,0.920
+0.730,captionPassport,Passport crop: 4:3 or Original,Paspoortbijsnijden: 4:3 of Origineel,Passport cuts: 4:3 or Original,0.730,0.910
+0.730,stampCheckbox,Checkbox,Selectievakje,,,0.730
+0.735,fitToTargetMbLabel,Fit to target MB,Aanpassen aan doel-MB,Adaptation to target MB,0.735,0.846
+0.735,vibrateOnCaptureLabel,Vibrate on capture,Trillen bij vastleggen,,,0.735
+0.737,accentEmerald,Emerald,Smaragd,,,0.737
+0.739,deleteFolderTooltip,Delete folder,Map verwijderen,,,0.739
+0.740,fillTooltip,Fill,Invullen,,,0.740
+0.741,sealShapeOval,Oval,Ovaal,,,0.741
+0.745,tickerCustomSeals,CUSTOM SEALS,AANGEPASTE ZEGELS,,,0.745
+0.749,migrationTitle,Device Migration,Apparaatmigratie,,,0.749
+0.749,deviceMigrationLabel,Device Migration,Apparaatmigratie,,,0.749
+0.749,exportNoTextError,This document has no text yet. Run OCR on it first.,Dit document bevat nog geen tekst. Voer eerst OCR uit.,This document does not yet contain text.,0.749,0.924
+0.751,watermarkLayoutSingle,Single,Enkel,,,0.751
+0.755,annotationModeRect,Rectangle,Rechthoek,,,0.755
+0.756,filterShadowRemoval,Shadow removal,Schaduwverwijdering,,,0.756
+0.757,commonConvert,Convert,Converteren,,,0.757
+0.758,captureFrontSide,Capture Front Side,Voorkant vastleggen,,,0.758
+0.759,clearPage,Clear page,Pagina wissen,,,0.759
+0.762,tickerNoteStamps,NOTE STAMPS,NOTITIESTEMPELS,,,0.762
+0.763,exportBackupButton,Export encrypted backup,Versleutelde back-up exporteren,,,0.763
+0.767,commonSkip,Skip,Overslaan,,,0.767
+0.770,enableReviewPromptsSubtitle,Allow the app to occasionally ask for a rating,De app toestaan af en toe om een beoordeling te vragen,Allow the app to occasionally request a review,0.770,0.909
+0.773,tickerPassportMode,PASSPORT MODE,PASPOORTMODUS,,,0.773
+0.774,cameraErrorPrefix,Camera error,Camerafout,,,0.774
+0.776,drawNewSignature,Draw New,Nieuwe tekenen,,,0.776
+0.777,onboardingGetStarted,Get Started,Aan de slag,,,0.777
+0.779,sealDefaultMainText,YOUR COMPANY,UW BEDRIJF,,,0.779
+0.779,extractedPageDefaultTitle,Extracted Page,Geëxtraheerde pagina,,,0.779
+0.782,watermarkDefaultText,CONFIDENTIAL,VERTROUWELIJK,,,0.782
+0.784,compressLabel,Compress,Comprimeren,,,0.784
+0.785,onboardingSignTitle,"Sign, Fill & Seal","Ondertekenen, invullen en verzegelen","Signature, filling in and sealing",0.829,0.785
+0.789,importBackupButton,Import from backup,Uit back-up importeren,,,0.789
+0.789,beepOnCaptureLabel,Beep on capture,Piep bij vastleggen,,,0.789
+0.790,cropDocumentTitle,Crop Document,Document bijsnijden,,,0.790
+0.792,storageSectionLabel,Storage,Opslag,,,0.792
+0.794,sampleColorTooltip,Sample color from page,Kleur van pagina bemonsteren,Sampling of page colour,0.889,0.794
+0.799,signatureTabDraw,Draw,Tekenen,,,0.799
+0.799,letterSizeUS,Letter size (US),Letterformaat (VS),,,0.799
+0.800,pageResized,Page resized,Paginaformaat gewijzigd,,,0.800
+0.806,importErrorPrefix,Import error,Importfout,,,0.806
+0.807,tickerNonDestructiveEditing,NON-DESTRUCTIVE EDITING,NIET-DESTRUCTIEF BEWERKEN,,,0.807
+0.809,errorReportIssue,Report issue,Probleem melden,,,0.809
+0.809,exportDoneStatus,Done,Klaar,,,0.809
+0.809,commonDone,Done,Klaar,,,0.809
+0.811,billingUnavailableMessage,Billing unavailable — try again later.,Facturering niet beschikbaar — probeer het later opnieuw.,Billing not available <unk> Try again later.,0.811,0.943
+0.811,importFrontSide,Import Front Side,Voorkant importeren,,,0.811
+0.811,ocrLanguagePackNotReady,Language pack downloading or not ready. Try again shortly.,Taalpakket wordt gedownload of is niet klaar. Probeer het zo opnieuw.,The language packet is either downloaded or not ready.,0.811,0.854
+0.814,redoTooltip,Redo,Opnieuw,,,0.814
+0.815,sealInkLook,Worn stamp look,Versleten stempellook,,,0.815
+0.815,extractedTextTitle,Extracted Text,Geëxtraheerde tekst,,,0.815
+0.815,migrationExplainer,"This isn't automatic sync. Export creates a single encrypted backup file you move to your new device yourself, then import there.",Dit is geen automatische synchronisatie. Exporteren maakt één versleuteld back-upbestand dat je zelf naar je nieuwe apparaat verplaatst en daar importeert.,Exporting creates one encrypted backup file that you move yourself to your new device and import there.,0.815,0.874
+0.816,clearAllPages,Clear all pages,Alle pagina's wissen,,,0.816
+0.816,enableReviewPromptsLabel,Enable Review Prompts,Beoordelingsprompts inschakelen,,,0.816
+0.816,straightenLabel,Straighten,Rechtzetten,,,0.816
+0.817,sealTextColorSame,Same as ring,Zoals de ring,,,0.817
+0.817,cropIdCardTitle,Crop ID Card,ID-kaart bijsnijden,,,0.817
+0.818,continueButton,Continue,Doorgaan,,,0.818
+0.818,onboardingContinue,Continue,Doorgaan,,,0.818
+0.818,whatsNewContinue,Continue,Doorgaan,,,0.818
+0.821,clearedCount,Cleared {count},{count} gewist,,,0.821
+0.822,moveToFolderTooltip,Move to folder,Naar map verplaatsen,,,0.822
+0.823,tickerSearchablePdf,SEARCHABLE PDF,DOORZOEKBARE PDF,,,0.823
+0.823,compressMedium,Medium,Gemiddeld,,,0.823
+0.824,setBackupPasswordTitle,Set a backup password,Back-upwachtwoord instellen,Set the back-up password,0.845,0.824
+0.824,onboardingToolsSubtitle,"Annotate, sign, watermark, fill forms, seal, and more — every tool free and unlimited.","Annoteren, ondertekenen, watermerk, formulieren invullen, verzegelen en meer — elke tool gratis en onbeperkt.","Register, sign, watermark, fill out forms, seal and more <unk> any tool free and unlimited.",0.824,0.915
+0.825,signatureChoiceMessage,Use your saved signature or draw a new one?,Opgeslagen handtekening gebruiken of nieuwe tekenen?,Use a new signature or use a new one?,0.825,0.890
+0.825,couldNotCreateBackupError,Could not create the backup.,Kon back-up niet maken.,Couldn't make a backup.,0.825,0.862
+0.825,useSavedSignature,Use Saved,Opgeslagen gebruiken,,,0.825
+0.826,watermarkLayoutDiagonal,Diagonal,Diagonaal,,,0.826
+0.826,moveToFolderTitle,Move to Folder,Naar map verplaatsen,,,0.826
+0.827,commonCancel,Cancel,Annuleren,,,0.827
+0.828,movedToFolderMessage,Moved to folder.,Naar map verplaatst.,,,0.828
+0.829,commonRevert,Revert,Terugzetten,,,0.829
+0.830,enableSharePromptsLabel,Enable Share Prompts,Deelprompts inschakelen,,,0.830
+0.830,eraserAutoColorTooltip,Match the page colour automatically,Paginakleur automatisch aanpassen,Automatically adjust the page colour,0.830,0.886
+0.832,sealCreateTitle,Custom Seal,Aangepast zegel,,,0.832
+0.832,sealCustom,Custom Seal,Aangepast zegel,,,0.832
+0.835,noteTextLabel,Note text,Notitietekst,,,0.835
+0.835,commonConfirm,Confirm,Bevestigen,,,0.835
+0.836,progressSaving,Saving…,Opslaan...,,,0.836
+0.837,onboardingReplayIntro,Replay introduction,Introductie opnieuw afspelen,,,0.837
+0.839,signatureSavedHeading,Saved signatures,Opgeslagen handtekeningen,,,0.839
+0.839,checkShapeCircle,Circle,Cirkel,,,0.839
+0.839,tickerIdCardMode,ID CARD MODE,ID-KAARTMODUS,,,0.839
+0.840,buildingBackupStatus,Building backup…,Back-up maken...,,,0.840
+0.840,extractToNewDocAction,Extract to new doc,Naar nieuw document extraheren,Extract to new document,0.882,0.840
+0.841,noteLabel,Note,Notitie,,,0.841
+0.841,printPerSheetLabel,Pages per sheet,Pagina's per vel,,,0.841
+0.843,enterBackupPasswordTitle,Enter backup password,Back-upwachtwoord invoeren,,,0.843
+0.846,onboardingEditTitle,Non-Destructive Editing,Niet-destructief bewerken,,,0.846
+0.847,emailAttachmentNotIncluded,The pages could not be attached to the email. Use Share to send the pages.,De pagina's konden niet aan de e-mail worden toegevoegd. Gebruik Delen om de pagina's te versturen.,The pages could not be added to the e-mail.,0.847,0.929
+0.848,paywallFeatureNoInterstitial,No more interstitial ads,Geen interstitiële advertenties meer,No more interstitial advertising,0.848,0.925
+0.852,copiedToClipboard,Copied to clipboard,Gekopieerd naar klembord,,,0.852
+0.853,checkShapeSquare,Square,Vierkant,,,0.853
+0.853,cropAspectSquare,Square,Vierkant,,,0.853
+0.853,signatureTabType,Type,Typen,,,0.853
+0.854,cropAspectFree,Free,Vrij,,,0.854
+0.854,progressExtractingText,Extracting text…,Tekst extraheren...,,,0.854
+0.855,tapToSampleColor,Tap a spot to sample its color,Tik op een plek om de kleur te bemonsteren,Type a spot to sample the color,0.855,0.864
+0.857,clearLogsTooltip,Clear logs,Logboeken wissen,,,0.857
+0.858,commonSave,Save,Opslaan,,,0.858
+0.859,enableNotificationsSubtitle,Allow background reminders for unexported documents,Achtergrondherinneringen toestaan voor niet-geëxporteerde documenten,Allow background reminders for non-exported documents,0.859,0.888
+0.860,saveFailedBanner,Your latest changes could not be saved.,Je laatste wijzigingen konden niet worden opgeslagen.,Your last changes couldn't be saved.,0.860,0.931
+0.860,ocrStatusChecking,Checking...,Controleren...,,,0.860
+0.860,restorePurchasesButton,Restore purchases,Aankopen herstellen,,,0.860
+0.860,exportGenericError,Something went wrong while exporting.,Er is iets misgegaan bij het exporteren.,Something went wrong with the export.,0.943,0.860
+0.861,duplicateAction,Duplicate,Dupliceren,,,0.861
+0.861,signatureFontHandwritten,Handwritten,Handschrift,,,0.861
+0.861,newFolderTitle,New Folder,Nieuwe map,,,0.861
+0.861,newFolderTooltip,New Folder,Nieuwe map,,,0.861
+0.861,deleteFolderMessage,Documents inside will not be deleted.,Documenten erin worden niet verwijderd.,Documents are not deleted.,0.861,0.878
+0.863,sealSavedMessage,Seal saved,Zegel bewaard,,,0.863
+0.864,folderUnavailable,This folder is no longer available.,Deze map is niet meer beschikbaar.,This folder is no longer available.,1.000,0.864
+0.865,batchExportSignatureDisabled,Batch export — signature placement disabled,Batchexport — handtekeningplaatsing uitgeschakeld,Batch export <unk> Signature placement deactivated,0.875,0.865
+0.866,onboardingSignSubtitle,"E-sign contracts, type-to-fill forms, and stamp enterprise seals in seconds.","Contracten e-ondertekenen, formulieren invullen en bedrijfszegels stempelen in seconden.","E-signing contracts, filling out forms and stamping company seals in seconds.",0.915,0.866
+0.866,opacityPercentLabel,Opacity: {percent}%,Dekking: {percent}%,,,0.866
+0.867,restoreCompleteMessage,Restore complete.,Herstel voltooid.,,,0.867
+0.869,renameDocumentTitle,Rename document,Document hernoemen,,,0.869
+0.870,genericErrorPrefix,Error,Fout,,,0.870
+0.870,conversionStarting,Starting…,Starten...,,,0.870
+0.871,heightLabel,Height,Hoogte,,,0.871
+0.871,captureBackSide,Capture Back Side,Achterkant vastleggen,,,0.871
+0.871,rotateLabel,Rotate,Draaien,,,0.871
+0.872,convertedDocTitle,Converted {date},Geconverteerd {date},,,0.872
+0.872,engagementSectionLabel,ENGAGEMENT & NOTIFICATIONS,BETROKKENHEID & MELDINGEN,,,0.872
+0.874,sealSaveToLibrary,Save this seal,Dit zegel bewaren,,,0.874
+0.874,pageRevertedToOriginal,Page reverted to original,Pagina teruggezet naar origineel,Page restored to original,0.874,0.946
+0.875,convertDocumentTitle,Convert Document,Document converteren,,,0.875
+0.875,titleScan,Scan,Scannen,,,0.875
+0.876,backupCorruptedError,This backup file looks corrupted.,Dit back-upbestand lijkt beschadigd.,This backup file seems damaged.,0.902,0.876
+0.877,exportFormatTxtDescription,Plain OCR text only,Alleen platte OCR-tekst,Flat OCR text only,0.877,0.902
+0.877,progressRasterizing,Rasterizing pages…,Pagina's rasteren...,,,0.877
+0.880,clearThis,Clear this,Dit wissen,,,0.880
+0.880,extractedAsNewDocument,Extracted as new document,Geëxtraheerd als nieuw document,Extracted as a new document,0.989,0.880
+0.881,backupReadyStatus,Backup ready.,Back-up klaar.,,,0.881
+0.881,revertToOriginalMessage,"This will undo all filters, rotations, crops, resizes, and eraser strokes on this page.","Dit zal alle filters, rotaties, bijsnijdingen, formaatwijzigingen en gumstreken op deze pagina ongedaan maken.","This will undo all filters, rotations, page cuts, format changes and gum lines on this page.",0.884,0.881
+0.882,annotateTitle,Annotate,Annoteren,,,0.882
+0.882,removeFromFolderTooltip,Remove from folder,Uit map verwijderen,,,0.882
+0.883,tickerTextStamps,TEXT STAMPS,TEKSTSTEMPELS,,,0.883
+0.884,exportSavedToDownloads,Saved to Downloads,Opgeslagen in Downloads,,,0.884
+0.886,emptyFavorites,No favorites yet. Tap the star icon on a document to add it.,Nog geen favorieten. Tik op het sterpictogram op een document om het toe te voegen.,No favorites yet. Tap the death icon on a document to add it.,0.886,0.925
+0.886,fullscreenLabel,Fullscreen,Volledig scherm,,,0.886
+0.887,signatureTitle,Signature,Handtekening,,,0.887
+0.887,resizeUpscaleWarning,Enlarging doesn't add detail — the page may look soft.,Vergroten voegt geen detail toe — de pagina kan er zacht uitzien.,Enlarging doesn't add any detail <unk> the page can look soft.,0.887,0.925
+0.887,progressEncodingPage,Encoding page {current} of {total}…,Pagina {current} van {total} coderen...,Page 5 of 5 encoding...,0.937,0.887
+0.887,fillDeleteSnippet,Delete snippet?,Fragment verwijderen?,,,0.887
+0.887,sealEditTitle,Edit Custom Seal,Aangepast zegel bewerken,,,0.887
+0.887,pdfImportErrorPrefix,PDF import error,PDF-importfout,,,0.887
+0.888,modePassport,Passport Mode,Paspoortmodus,,,0.888
+0.891,emailLimitMissed,Could not get under {mb} MB; sent the smallest version.,Kon niet onder {mb} MB komen; de kleinste versie is verstuurd.,Couldn't get below 5 MB; the smallest version has been shipped.,0.891,0.958
+0.894,pageFormatLetter,Letter (US),Letter (VS),,,0.894
+0.895,autoScan,Auto Scan,Automatisch scannen,,,0.895
+0.896,debugLogsLabel,Debug Logs,Debuglogboeken,,,0.896
+0.896,sharePromptBody,Share it with friends who need a powerful document scanner.,Deel het met vrienden die een krachtige documentscanner nodig hebben.,Share it with friends who need a powerful document scanner.,1.000,0.896
+0.898,onboardingOcrTitle,On-Device OCR,OCR op apparaat,,,0.898
+0.898,enableNotificationsLabel,Enable Notifications,Meldingen inschakelen,,,0.898
+0.898,addCheckboxTitle,Add Checkbox,Selectievakje toevoegen,,,0.898
+0.898,vibrateOnCaptureSubtitle,Haptic feedback when scan completes,Haptische feedback wanneer scan voltooid is,Haptic feedback when the scan is complete,0.980,0.898
+0.899,tickerLanguages,{count} LANGUAGES,{count} TALEN,,,0.899
+0.900,exportFormatDocxDescription,Editable text document,Bewerkbaar tekstdocument,,,0.900
+0.900,commonCustom,Custom,Aangepast,,,0.900
+0.900,docxWarningMessage,"DOCX sources render poorly as pages — save inside the app is limited to JPG/PNG from image, PDF, TXT or CSV sources. Use Export & Share for this file.","DOCX-bronnen worden slecht weergegeven als pagina's — opslaan in de app is beperkt tot JPG/PNG van afbeelding, PDF, TXT of CSV-bronnen. Gebruik Exporteren en delen voor dit bestand.","DOCX sources are poorly displayed if pages <unk> save in the app is limited to JPG/PNG of image, PDF, TXT or CSV sources.",0.900,0.948
+0.901,printFitFit,Fit page,Pagina passend,,,0.901
+0.901,sharePromptTitle,Love KatharScan?,Hou je van KatharScan?,,,0.901
+0.902,batchExportEmptyMessage,No documents to batch export. Scan some first.,Geen documenten om batch te exporteren. Scan er eerst een paar.,"No documents to export batch, scan a few first.",0.981,0.902
+0.902,printRangeCurrent,Current,Huidige,,,0.902
+0.902,pageFromLabel,From page,Van pagina,,,0.902
+0.903,reviewPromptYes,Rate Us,Beoordeel ons,,,0.903
+0.903,emptyFolders,No folders yet. Tap the folder icon to create one.,Nog geen mappen. Tik op het mappictogram om er een te maken.,"No folders yet, just tap the folder icon to create one.",0.995,0.903
+0.904,ocrStatusOnDemand,On-demand,Op aanvraag,,,0.904
+0.904,couldNotOpenLinkError,Could not open link.,Kon link niet openen.,Couldn't open the link.,0.904,0.956
+0.904,genericErrorMessage,Something went wrong. Please try again.,Er is iets misgegaan. Probeer het opnieuw.,"Something went wrong, try again.",0.904,0.931
+0.904,pagesDeleteCount,Delete {count},{count} verwijderen,,,0.904
+0.906,idCardPdfGenerated,ID Card PDF Generated,ID-kaart PDF gegenereerd,Identification card generated by PDF,0.906,0.934
+0.907,progressDecodingImage,Decoding image…,Afbeelding decoderen...,,,0.907
+0.907,docScannerUnsupportedMessage,"Your device doesn't support the advanced document scanner. Take a photo with your Camera app, then tap Import below to crop and save it.",Je apparaat ondersteunt de geavanceerde documentscanner niet. Maak een foto met de Camera-app en tik dan op Importeren hieronder om bij te snijden en op te slaan.,"Your device doesn't support the advanced document scanner, so take a picture with the Camera app, and then tap Import below to cut and save.",0.907,0.916
+0.907,reviewPromptTitle,Enjoying KatharScan?,Geniet je van KatharScan?,,,0.907
+0.907,saveToDownloadsAction,Save to Downloads,Opslaan in Downloads,,,0.907
+0.908,noFoldersYetHomeMessage,No folders yet. Create one from the home screen.,Nog geen mappen. Maak er een vanuit het startscherm.,"No folders yet, just make one from the home screen.",0.971,0.908
+0.908,autoCopyOcrSubtitle,Copy text to clipboard after scan,Tekst naar klembord kopiëren na scan,Copy text to clipboard after scan,1.000,0.908
+0.910,removeAdsTitle,Remove Ads Forever,Advertenties voor altijd verwijderen,,,0.910
+0.912,ocrStatusBuiltIn,Built-in,Ingebouwd,,,0.912
+0.913,signatureDeleteSaved,Remove saved signature,Opgeslagen handtekening verwijderen,,,0.913
+0.914,scannerErrorPrefix,Scanner error,Scannerfout,,,0.914
+0.914,fillSaveSnippet,Save as snippet,Opslaan als fragment,,,0.914
+0.915,saveToDeviceButton,Save to Device,Opslaan op apparaat,,,0.915
+0.915,annotationModeSelect,Select,Selecteren,,,0.915
+0.916,pageCropped,Page cropped,Pagina bijgesneden,,,0.916
+0.916,sealTextColorLabel,Text colour,Tekstkleur,,,0.916
+0.918,importFromGallery,Import from Gallery,Uit galerij importeren,,,0.918
+0.918,deleteFolderTitle,Delete this folder?,Deze map verwijderen?,,,0.918
+0.918,openSourceLicensesLabel,Open-source licenses,Open-source licenties,,,0.918
+0.918,convertToLabel,Convert to:,Converteren naar:,,,0.918
+0.918,onboardingPrivacySubtitle,"No account, no cloud, no watermarks. Your documents never leave your device.","Geen account, geen cloud, geen watermerken. Je documenten verlaten nooit je apparaat.","No account, no cloud, no watermarks, your documents never leave your device.",0.977,0.918
+0.919,scanUnavailable,This scan is no longer available.,Deze scan is niet meer beschikbaar.,This scan is no longer available.,1.000,0.919
+0.919,regionOcrFailed,Region OCR failed,Regionale OCR mislukt,,,0.919
+0.919,whatsNewTitle,What's New,Wat is nieuw,,,0.919
+0.919,progressCopying,Copying…,Kopiëren...,,,0.919
+0.920,tickerGalleryImport,GALLERY IMPORT,GALERIJ-IMPORT,,,0.920
+0.920,paywallSuccessMessage,Thank you for supporting KatharScan.,Bedankt voor het ondersteunen van KatharScan.,Thank you for supporting KatharScan.,1.000,0.920
+0.920,onboardingWelcomeSubtitle,"Your entire document office — scan, edit, sign, and export — in one private app.","Je hele documentenkantoor — scannen, bewerken, ondertekenen en exporteren — in één privé-app.","Your entire document office can scan, edit, sign and export documents in one private app.",0.940,0.920
+0.920,cropAuto,Auto-detect,Automatisch detecteren,,,0.920
+0.920,chipSelectMultiple,Select Multiple,Meerdere selecteren,,,0.920
+0.921,accentBlue,Blue,Blauw,,,0.921
+0.921,couldNotImportBackupError,Could not import this backup. Check the password and try again.,Kon deze back-up niet importeren. Controleer het wachtwoord en probeer opnieuw.,"Couldn't import this backup, so check the password and try again.",0.991,0.921
+0.921,editLabel,Edit,Bewerken,,,0.921
+0.921,commonClose,Close,Sluiten,,,0.921
+0.922,paywallSubtitle,Support KatharScan with a one-time purchase. All features remain free.,Ondersteun KatharScan met een eenmalige aankoop. Alle functies blijven gratis.,Support KatharScan with a one-time purchase.,0.922,0.949
+0.922,enableSharePromptsSubtitle,Allow the app to occasionally suggest sharing,De app toestaan af en toe delen voor te stellen,Allow the app to occasionally suggest sharing,1.000,0.922
+0.922,watermarkLabel,Watermark,Watermerk,,,0.922
+0.923,pagesLabel,Pages,Pagina's,,,0.923
+0.923,watermarkPagesLabel,Pages,Pagina's,,,0.923
+0.923,debugNoLogsYet,No logs yet,Nog geen logboeken,,,0.923
+0.924,errorGenericTitle,Something went wrong,Er is iets misgegaan,,,0.924
+0.924,lightThemeOption,Light,Licht,,,0.924
+0.924,signatureCanvasHint,Sign here,Hier ondertekenen,,,0.924
+0.925,chipAllFolders,All Folders,Alle mappen,,,0.925
+0.925,sealShapeRound,Round,Rond,,,0.925
+0.925,batchExportTooltip,Batch export,Batchexport,,,0.925
+0.925,watermarkEditTitle,Edit Watermark,Watermerk bewerken,,,0.925
+0.925,importBackSide,Import Back Side,Achterkant importeren,,,0.925
+0.926,reviewPromptBody,Your feedback helps us grow and keeps the app free.,Je feedback helpt ons groeien en houdt de app gratis.,Your feedback helps us grow and keeps the app free.,1.000,0.926
+0.926,filterBrightnessLabel,Brightness,Helderheid,,,0.926
+0.926,ticker100OnDevicePrivacy,YOUR DOCUMENTS STAY ON YOUR DEVICE,UW DOCUMENTEN BLIJVEN OP UW APPARAAT,Keep your documents on your device,0.942,0.926
+0.927,saveFailedPrefix,Save failed:,Opslaan mislukt:,,,0.927
+0.928,beepOnCaptureSubtitle,Play sound when scan completes,Geluid afspelen wanneer scan voltooid is,Playback of sound when the scan is complete,0.928,0.946
+0.928,exportAndShareAction,Export & Share,Exporteren en delen,,,0.928
+0.928,saveInsideAppWarning,"To save inside the app, choose JPG or PNG. Other targets are exported as files.","Om in de app op te slaan, kies JPG of PNG. Andere doelen worden als bestanden geëxporteerd.","To save in the app, select JPG or PNG. Other purposes are exported as files.",0.928,0.944
+0.929,filterColorEnhance,Color enhance,Kleurverbetering,,,0.929
+0.929,ocrNoInternetMessage,No internet. Connect once to download the language pack.,Geen internet. Verbind een keer om het taalpakket te downloaden.,"No Internet, just connect once to download the language package.",0.930,0.929
+0.929,emailMessageHint,Add a note (optional),Voeg een notitie toe (optioneel),Add a note (optional),1.000,0.929
+0.932,fromAnotherDocument,From Another Document,Uit ander document,,,0.932
+0.932,sealRemoveWhite,Make white transparent,Wit transparant maken,,,0.932
+0.933,commonChange,Change,Wijzigen,,,0.933
+0.933,emptySearch,No scans match your search.,Geen scans komen overeen met je zoekopdracht.,No scans match your search.,1.000,0.933
+0.933,importAndConvertDocument,Import & Convert Document,Document importeren en converteren,Import and conversion of document,0.967,0.933
+0.933,termsOfServiceLabel,Terms of Service,Servicevoorwaarden,,,0.933
+0.933,addSignature,Add Signature,Handtekening toevoegen,,,0.933
+0.933,pagesDeleteConfirm,Delete {count} pages? They are removed when you save.,{count} pagina's verwijderen? Ze worden verwijderd bij opslaan.,5 pages are deleted when you save them.,0.934,0.933
+0.934,noDocumentsInFolder,No documents in this folder yet.,Nog geen documenten in deze map.,No documents in this folder yet.,1.000,0.934
+0.934,commonUpdate,Update,Bijwerken,,,0.934
+0.935,exportFormatPngDescription,"One image per page, lossless","Eén afbeelding per pagina, verliesvrij","One image per page, without loss",0.961,0.935
+0.935,actionLabel,Action:,Actie:,,,0.935
+0.935,sealCenterTextLabel,Center text,Centrale tekst,,,0.935
+0.936,readingPageEta,Page {page} of {total} · about {minutes} min left,Pagina {page} van {total} · nog ca. {minutes} min,Page 5 of 5 · about 5 min,0.975,0.936
+0.936,annotationModeEllipse,Ellipse,Ellips,,,0.936
+0.936,pdfImportedAsDocument,PDF imported as document,PDF geïmporteerd als document,PDF imported as document,1.000,0.936
+0.936,languageSectionLabel,Language,Taal,,,0.936
+0.936,managePagesTitle,Manage Pages,Pagina's beheren,,,0.936
+0.937,idLayoutRealSize,Real size,Werkelijke grootte,,,0.937
+0.937,addNoteTitle,Add Note,Notitie toevoegen,,,0.937
+0.937,revertToOriginalTitle,Revert to Original?,Terugzetten naar origineel?,,,0.937
+0.937,documentsSectionHeader,Documents,Documenten,,,0.937
+0.937,autoCopyOcrLabel,Auto-copy OCR,OCR automatisch kopiëren,,,0.937
+0.937,tickerNoWatermarks,NO WATERMARKS,GEEN WATERMERKEN,,,0.937
+0.938,docxModeTextOnly,Text Only,Alleen tekst,,,0.938
+0.938,pagesToReadTitle,Pages to read,Te lezen pagina's,,,0.938
+0.939,onboardingPrivacyTitle,Private by design,Privé door ontwerp,,,0.939
+0.939,commonUse,Use,Gebruiken,,,0.939
+0.940,tickerAutoCopyOcr,AUTO-COPY OCR,AUTOMATISCH KOPIËREN OCR,,,0.940
+0.941,tickerRegionOcr,REGION OCR,REGIONALE OCR,,,0.941
+0.941,noTextRecognized,No text recognized.,Geen tekst herkend.,,,0.941
+0.941,commonCopy,Copy,Kopiëren,,,0.941
+0.941,emptyStateDefaultMessage,Tap the camera to scan your first document.,Tik op de camera om je eerste document te scannen.,Tap on the camera to scan your first document.,0.994,0.941
+0.941,ocrStatusUnsupported,Unsupported,Niet ondersteund,,,0.941
+0.942,noEmailAppFound,No email app found,Geen e-mailapp gevonden,No e-mail app found,0.963,0.942
+0.942,paywallFeatureNoBanner,No more banner ads,Geen banneradvertenties meer,No more banner ads,1.000,0.942
+0.942,progressBuildingPdf,Building PDF…,PDF bouwen...,,,0.942
+0.942,customColorTitle,Custom Color,Aangepaste kleur,,,0.942
+0.943,ocrStatusDownloading,Downloading…,Downloaden…,,,0.943
+0.943,sealCenterNone,None,Geen,,,0.943
+0.943,printMarginNone,None,Geen,,,0.943
+0.943,sealLogoReady,Logo ready,Logo klaar,,,0.943
+0.944,scanPreviewNoPages,No pages to show.,Geen pagina's om weer te geven.,No pages to show.,1.000,0.944
+0.944,commonPrint,Print,Afdrukken,,,0.944
+0.945,modeIdCard,ID Card Mode,ID-kaartmodus,,,0.945
+0.945,signerLabel,Signer {index},Ondertekenaar {index},,,0.945
+0.946,copyAll,Copy all,Alles kopiëren,,,0.946
+0.946,importingStatus,Importing…,Importeren...,,,0.946
+0.946,commonDelete,Delete,Verwijderen,,,0.946
+0.946,deleteTooltip,Delete,Verwijderen,,,0.946
+0.946,progressBuildingDocx,Building DOCX…,DOCX bouwen...,,,0.946
+0.946,filterMagicColor,Magic colour,Magische kleur,,,0.946
+0.947,applyToAllPages,Apply to all pages,Op alle pagina's toepassen,Apply to all pages,1.000,0.947
+0.947,tickerFreeUnlimitedOcr,FREE UNLIMITED OCR,GRATIS ONBEPERKTE OCR,,,0.947
+0.947,errorScreenProblem,KatharScan ran into a problem displaying this screen. Your scans are safe — they're stored on this device and this doesn't affect them.,KatharScan had een probleem bij het weergeven van dit scherm. Je scans zijn veilig — ze zijn opgeslagen op dit apparaat en dit heeft er geen invloed op.,KatharScan had a problem with displaying this screen. Your scans are safe <unk> they're stored on this device and this doesn't affect it.,0.984,0.947
+0.947,rotationPage,Page rotated,Pagina gedraaid,,,0.947
+0.948,noFoldersYet,No folders yet,Nog geen mappen,,,0.948
+0.949,fillInputHint,Type text to fill,Typ tekst om in te vullen,Type text to be filled in,0.965,0.949
+0.949,deleteScanTitle,Delete this scan?,Deze scan verwijderen?,,,0.949
+0.949,saveAsNewDocumentAction,Save as new Document,Opslaan als nieuw document,Save as a new document,0.992,0.949
+0.950,rotationAllPages,All pages rotated,Alle pagina's gedraaid,,,0.950
+0.950,saveAsDocument,Save as Document,Opslaan als document,,,0.950
+0.950,fillTapHint,Tap the page where you want to type,Tik op de pagina waar je wilt typen,Tap on the page where you want to type,0.987,0.950
+0.951,intensityLabel,Intensity,Intensiteit,,,0.951
+0.951,idPdfErrorPrefix,Error generating ID PDF,Fout bij genereren ID PDF,Error when generating ID PDF,0.985,0.951
+0.951,tickerWordExport,WORD EXPORT,WORD-EXPORT,,,0.951
+0.952,filterOriginal,Original,Origineel,,,0.952
+0.952,exportingStatus,Exporting…,Exporteren...,,,0.952
+0.952,ocrUnavailableTooltip,OCR unavailable on this device.,OCR niet beschikbaar op dit apparaat.,OCR not available on this device.,0.967,0.952
+0.952,removeFromFavorites,Remove from Favorites,Verwijderen uit favorieten,,,0.952
+0.952,privacyPolicyLabel,Privacy policy,Privacybeleid,,,0.952
+0.953,addToFavorites,Add to Favorites,Toevoegen aan favorieten,,,0.953
+0.954,emptyDocumentMessage,This document has no pages.,Dit document heeft geen pagina's.,This document has no pages.,1.000,0.954
+0.954,conversionFailedPrefix,Conversion failed,Conversie mislukt,,,0.954
+0.954,compressNoLimit,No limit,Geen limiet,,,0.954
+0.954,placeHereLabel,Place here,Hier plaatsen,,,0.954
+0.955,paywallFallbackPrice,$14.99 one-time,$14.99 eenmalig,,,0.955
+0.955,filterApplied,Filter applied,Filter toegepast,,,0.955
+0.955,idLayoutFullWidth,Full width,Volledige breedte,,,0.955
+0.956,watermarkAddTitle,Add Watermark,Watermerk toevoegen,,,0.956
+0.956,pagesToReadHint,This PDF has {count} pages. Pages that are pictures are read with OCR (about 10 seconds each); pages with real text are instant.,Deze pdf heeft {count} pagina's. Pagina's die afbeeldingen zijn worden met OCR gelezen (ongeveer 10 seconden per pagina); pagina's met echte tekst direct.,This pdf has 5 pages. Pages that are images are read with OCR (about 10 seconds per page); pages with real text instantly.,0.985,0.956
+0.956,ocrScriptLatin,"Latin (English, European)","Latijn (Engels, Europees)",,,0.956
+0.956,exportFormatCsvDescription,Spreadsheet data,Spreadsheetgegevens,,,0.956
+0.957,commonReset,Reset,Resetten,,,0.957
+0.957,stampPaperLabel,Paper,Papier,,,0.957
+0.957,printPaperLabel,Paper,Papier,,,0.957
+0.957,titleIdCard,ID Card,ID-kaart,,,0.957
+0.957,onboardingWelcomeTitle,Welcome to KatharScan,Welkom bij KatharScan,,,0.957
+0.957,subscriptionSectionLabel,Subscription,Abonnement,,,0.957
+0.958,tickerFavorites,FAVORITES,FAVORIETEN,,,0.958
+0.958,whiteHaloLabel,White halo (readability),Witte halo (leesbaarheid),,,0.958
+0.958,docxModeWithImages,With Images,Met afbeeldingen,,,0.958
+0.959,whatsNewBody,"Welcome to KatharScan! This is the first public release featuring unlimited scanning, 29 languages, and export to PDF, Word, TXT, JPG, PNG, and CSV.","Welkom bij KatharScan! Dit is de eerste publieke release met onbeperkt scannen, 29 talen en export naar PDF, Word, TXT, JPG, PNG en CSV.","Welcome to KatharScan! This is the first public release with unlimited scanning, 29 languages and export to PDF, Word, TXT, JPG, PNG and CSV.",0.996,0.959
+0.959,reviewPromptNo,Send Feedback,Feedback verzenden,,,0.959
+0.959,searchHint,Search your scans,Zoek je scans,,,0.959
+0.959,sealFontSerif,Classic,Klassiek,,,0.959
+0.959,exportFormatSheetTitle,Export as,Exporteren als,,,0.959
+0.959,emailFailed,Email failed,E-mail mislukt,,,0.959
+0.959,ocrScriptKorean,Korean,Koreaans,,,0.959
+0.960,privacyOptionsLabel,Privacy settings,Privacyinstellingen,,,0.960
+0.960,filterRemoved,Filter removed,Filter verwijderd,,,0.960
+0.960,printFilterNone,No filter,Geen filter,,,0.960
+0.960,pagesUpdated,Pages updated,Pagina's bijgewerkt,,,0.960
+0.960,printFailed,Print failed,Afdrukken mislukt,,,0.960
+0.961,cropAspectId,ID card,ID-kaart,,,0.961
+0.961,diagnosticsSectionLabel,DIAGNOSTICS,DIAGNOSTIEK,,,0.961
+0.961,supportLabel,Support,Ondersteuning,,,0.961
+0.961,filterFavorites,Favorites,Favorieten,,,0.961
+0.961,commonRemove,Remove,Verwijderen,,,0.961
+0.962,commonSize,Size,Grootte,,,0.962
+0.962,tabImageLabel,Image,Afbeelding,,,0.962
+0.962,watermarkKindImage,Image,Afbeelding,,,0.962
+0.962,addTagTitle,Add tag,Tag toevoegen,,,0.962
+0.962,commonExport,Export,Exporteren,,,0.962
+0.962,exportTooltip,Export,Exporteren,,,0.962
+0.962,exportTitle,Export,Exporteren,,,0.962
+0.963,tryAgainButton,Try again,Opnieuw proberen,,,0.963
+0.963,printOptionsTitle,Print Options,Afdrukopties,,,0.963
+0.963,exportFormatJpgDescription,One image per page,Eén afbeelding per pagina,One image per page,1.000,0.963
+0.963,commonAdd,Add,Toevoegen,,,0.963
+0.964,onboardingBack,Back,Terug,,,0.964
+0.964,sealTextSizePercent,Text size {percent}%,Tekstgrootte {percent}%,,,0.964
+0.964,adsRemovedLabel,Ads Removed,Advertenties verwijderd,,,0.964
+0.964,paywallSuccessTitle,Ads Removed,Advertenties verwijderd,,,0.964
+0.964,tickerJpgExport,JPG EXPORT,JPG-EXPORT,,,0.964
+0.964,filterAll,All,Alles,,,0.964
+0.965,addDateTitle,Add Date,Datum toevoegen,,,0.965
+0.965,favoriteTooltip,Favorite,Favoriet,,,0.965
+0.965,rotate90Action,Rotate 90°,90° draaien,,,0.965
+0.965,printMarginNormal,Normal,Normaal,,,0.965
+0.965,pagesSelectTooltip,Select pages,Pagina's selecteren,,,0.965
+0.966,readingPageProgress,Page {page} of {total},Pagina {page} van {total},Page 5 of 5,1.000,0.966
+0.966,ocrStatusInstalled,Installed,Geïnstalleerd,,,0.966
+0.966,commonImport,Import,Importeren,,,0.966
+0.966,paywallTitle,Remove Ads,Advertenties verwijderen,,,0.966
+0.966,editDocumentAction,Edit Document,Document bewerken,,,0.966
+0.967,themeLabel,Theme,Thema,,,0.967
+0.967,documentSaved,Document saved,Document opgeslagen,,,0.967
+0.967,tabOcrTextLabel,OCR Text,OCR-tekst,,,0.967
+0.968,addPageTitle,Add Page,Pagina toevoegen,,,0.968
+0.968,tickerTxtExport,TXT EXPORT,TXT-EXPORT,,,0.968
+0.968,settingsTooltip,Settings,Instellingen,,,0.968
+0.968,settingsTitle,Settings,Instellingen,,,0.968
+0.968,emailLabel,Email,E-mail,,,0.968
+0.968,idGenerating,Generating PDF...,PDF genereren...,,,0.968
+0.970,accentColorTooltip,Accent Color,Accentkleur,,,0.970
+0.970,accentColorTitle,Accent Color,Accentkleur,,,0.970
+0.971,tickerPngExport,PNG EXPORT,PNG-EXPORT,,,0.971
+0.971,addTextTitle,Add Text,Tekst toevoegen,,,0.971
+0.971,exportEstimatedSize,Estimated size: {mb} MB,Geschatte grootte: {mb} MB,Estimated size: 5 MB,1.000,0.971
+0.971,watermarkPagesInvalid,Check the pages (the document has {count} pages),Controleer de pagina's (het document heeft {count} pagina's),Check the pages (the document has 5 pages),1.000,0.971
+0.971,sharePromptAction,Share App,App delen,,,0.971
+0.971,addTagsAction,Add Tags,Tags toevoegen,,,0.971
+0.972,compressTargetLabel,Max size,Max. grootte,,,0.972
+0.972,selectRegionTitle,Select Region,Regio selecteren,,,0.972
+0.972,shareTooltip,Share,Delen,,,0.972
+0.972,commonShare,Share,Delen,,,0.972
+0.973,onboardingOcrSubtitle,Use KatharScan in {count} languages. OCR runs on your phone — nothing ever leaves your device.,Gebruik KatharScan in {count} talen. OCR draait op je telefoon — niets verlaat je apparaat.,Use KatharScan in 5 languages. OCR runs on your phone <unk> nothing leaves your device.,0.976,0.973
+0.973,onboardingToolsTitle,21 Free Pro Tools,21 gratis Pro-tools,21 free pro tools,1.000,0.973
+0.973,sealCenterText,Text,Tekst,,,0.973
+0.973,watermarkTextLabel,Text,Tekst,,,0.973
+0.973,textLabel,Text,Tekst,,,0.973
+0.973,watermarkKindText,Text,Tekst,,,0.973
+0.973,ocrScriptChinese,Chinese,Chinees,,,0.973
+0.974,ocrLanguagesLabel,OCR Languages,OCR-talen,,,0.974
+0.975,watermarkPagesThis,This page,Deze pagina,,,0.975
+0.975,systemThemeOption,System,Systeem,,,0.975
+0.975,signatureTypeHint,Type your name,Typ je naam,,,0.975
+0.975,tickerNoAccount,NO ACCOUNT,GEEN ACCOUNT,,,0.975
+0.975,textSizeLabel,Text size: {size},Tekstgrootte: {size},,,0.975
+0.976,homeLanguageTooltip,App Language,App-taal,,,0.976
+0.976,appLanguageTitle,App Language,App-taal,,,0.976
+0.976,moreOptionsTooltip,More options,Meer opties,,,0.976
+0.976,fillTypeHint,Type here,Typ hier,,,0.976
+0.977,sharePdf,Share PDF,PDF delen,,,0.977
+0.977,printRangeAll,All pages,Alle pagina's,,,0.977
+0.977,watermarkPagesAll,All pages,Alle pagina's,,,0.977
+0.978,modeDocument,Document Mode,Documentmodus,,,0.978
+0.978,ocrScriptJapanese,Japanese,Japans,,,0.978
+0.978,appLanguageLabel,App language,App-taal,,,0.978
+0.979,documentNotFound,Document not found,Document niet gevonden,,,0.979
+0.980,pageLabel,Page {index},Pagina {index},,,0.980
+0.980,ocrNoTextFound,No text found,Geen tekst gevonden,,,0.980
+0.982,watermarkChooseImage,Choose image,Afbeelding kiezen,,,0.982
+0.983,commonColor,Color,Kleur,,,0.983
+0.983,filterColor,Color,Kleur,,,0.983
+0.984,sharePromptDismiss,Not now,Niet nu,,,0.984
+0.984,tickerPdfExport,PDF EXPORT,PDF-EXPORT,,,0.984
+0.985,dateLabel,Date,Datum,,,0.985
+0.985,exportFormatTxtLabel,Text (.txt),Tekst (.txt),,,0.985
+0.986,originalDimensions,Original: {w}×{h},Origineel: {w}×{h},,,0.986
+0.986,titlePdfImport,PDF Import,PDF-import,,,0.986
+0.986,pageIndicator,Page {current} / {total},Pagina {current} / {total},Page 5 / 5,1.000,0.986
+0.986,modeOcr,OCR Mode,OCR-modus,,,0.986
+0.989,sizePtLabel,Size: {size}pt,Grootte: {size}pt,,,0.989
+0.989,tickerCsvExport,CSV EXPORT,CSV-EXPORT,,,0.989
+1.000,exportFormatPdfLabel,PDF,PDF,,,1.000
+1.000,ocrScriptArabic,العربية (Arabic),العربية (Arabic),,,1.000
+1.000,ocrSectionLabel,OCR,OCR,,,1.000
+1.000,fontMonospace,monospace,monospace,,,1.000
+1.000,ocrScriptHebrew,עברית (Hebrew),עברית (Hebrew),,,1.000
+1.000,exportFormatJpgLabel,JPG,JPG,,,1.000
+1.000,proBadgeLabel,PRO,PRO,,,1.000
+1.000,cameraSource,Camera,Camera,,,1.000
+1.000,filterTitle,Filter,Filter,,,1.000
+1.000,tickerESign,E-SIGN,E-SIGN,,,1.000
+1.000,ocrScriptDevanagari,"Hindi, Marathi (Devanagari)","Hindi, Marathi (Devanagari)",,,1.000
+1.000,accentIndigo,Indigo,Indigo,,,1.000
+1.000,ocrScriptRussian,Русский (Russian),Русский (Russian),,,1.000
+1.000,ocrScriptUkrainian,Українська (Ukrainian),Українська (Ukrainian),,,1.000
+1.000,ocrScriptBengali,বাংলা (Bengali),বাংলা (Bengali),,,1.000
+1.000,exportFormatDocxLabel,Word (.docx),Word (.docx),,,1.000
+1.000,exportFormatPngLabel,PNG,PNG,,,1.000
+1.000,filterSheetTitle,Filters,Filters,,,1.000
+1.000,sealCenterLogo,Logo,Logo,,,1.000
+1.000,tickerTags,TAGS,TAGS,,,1.000
+1.000,filterRecent,Recent,Recent,,,1.000
+1.000,fontSerif,serif,serif,,,1.000
+1.000,formatCsv,CSV,CSV,,,1.000
+1.000,annotationModePen,Pen,Pen,,,1.000
+1.000,accentAmber,Amber,Amber,,,1.000
+1.000,accentViolet,Violet,Violet,,,1.000
+1.000,ocrScriptGreek,Ελληνικά (Greek),Ελληνικά (Greek),,,1.000
+1.000,fontSansSerif,sans-serif,sans-serif,,,1.000
+1.000,ocrScriptThai,ไทย (Thai),ไทย (Thai),,,1.000
+1.000,filterContrastLabel,Contrast,Contrast,,,1.000

@@ -1,0 +1,391 @@
+score,key,english,translation,back_to_english,backtrans_score,labse_score
+0.115,sealSubtextLabel,Subtext (bottom arc / below),副文本（下弧/下方）,This is a list of articles that have been translated into English.,0.115,0.920
+0.171,batchExportSignatureDisabled,Batch export — signature placement disabled,批量导出——签名放置已禁用,Import of lithium in bulk is banned,0.171,0.867
+0.230,satLabel,Sat,饱和度,,,0.230
+0.327,tickerTapToTypeFilling,TAP-TO-TYPE FILLING,点击填写,,,0.327
+0.335,eraserTitle,Eraser,橡皮擦,,,0.335
+0.335,annotationModeEraser,Eraser,橡皮擦,,,0.335
+0.475,printFitFill,Fill sheet (trims edges),铺满纸张（裁切边缘）,"It's a piece of paper, cutting edges.",0.475,0.810
+0.476,straightenLabel,Straighten,校正倾斜,,,0.476
+0.486,signatureNewOne,Draw or type a new one,手写或键入新签名,Write or type a new signature,0.486,0.732
+0.490,printMarginLabel,Margin,页边距,,,0.490
+0.526,deleteScanMessage,This can't be undone.,此操作无法撤销。,This operation cannot be revoked.,0.526,0.857
+0.541,eraserZoomTooltip,Zoom and move (pinch),缩放和移动(双指),Scaling and Moving Fingers,0.541,0.785
+0.542,signatureWidthLabel,Pen width,笔画粗细,,,0.542
+0.546,emptyFavorites,No favorites yet. Tap the star icon on a document to add it.,还没有收藏。点击文档上的星号图标添加。,There is no collection yet. Click on the star-shaped icon on the document.,0.546,0.866
+0.547,captureBehaviorSectionLabel,CAPTURE BEHAVIOR,捕获行为,,,0.547
+0.549,onboardingToolsSubtitle,"Annotate, sign, watermark, fill forms, seal, and more — every tool free and unlimited.",批注、签名、水印、填写表单、盖章等 — 全部免费无限制。,"All of the stamps, signatures, watermarks, filling out forms and stamps are free and unlimited.",0.549,0.809
+0.556,fillTapHint,Tap the page where you want to type,点按页面上要输入文字的位置,Click on the page to enter the text location,0.556,0.779
+0.561,paywallFeatureNoInterstitial,No more interstitial ads,无插页式广告,Unplugged page ads,0.561,0.715
+0.566,watermarkPagesInvalid,Check the pages (the document has {count} pages),请检查页码（文档共 {count} 页）,Please check the page codes (five pages in total),0.566,0.836
+0.579,annotationModeHighlighter,Highlighter,荧光笔,,,0.579
+0.585,progressEncodingPage,Encoding page {current} of {total}…,正在编码第{current}页，共{total}页…,"I'm coding page five, five pages...",0.585,0.892
+0.588,onboardingSignSubtitle,"E-sign contracts, type-to-fill forms, and stamp enterprise seals in seconds.",电子签署合同、点击填写表单、几秒内加盖企业印章。,"Electronically sign the contract, click on the form to fill out, and seal the company within seconds.",0.588,0.801
+0.592,tickerTextStamps,TEXT STAMPS,文字印章,,,0.592
+0.595,tickerBatchExport,BATCH EXPORT,批量导出,,,0.595
+0.603,sealMainTextLabel,Main text (top arc / box),主文本（上弧/框）,The main text (s),0.603,0.923
+0.614,sealInkLook,Worn stamp look,磨损印章效果,,,0.614
+0.614,idStepFront,Step 1: Capture Front Side,第1步：捕获正面,Step 1: Capture the positive,0.614,0.905
+0.624,tickerNoteStamps,NOTE STAMPS,笔记印章,,,0.624
+0.629,marqueeEraseTooltip,Marquee erase,选区擦除,,,0.629
+0.642,noDocumentsInFolder,No documents in this folder yet.,此文件夹中还没有文档。,There is no documentation in this folder.,0.642,0.934
+0.642,tickerAccentThemes,ACCENT THEMES,强调主题,,,0.642
+0.644,pageToLabel,To page,结束页,,,0.644
+0.645,pageFromLabel,From page,起始页,,,0.645
+0.647,signatureFontFlowing,Flowing,流畅体,,,0.647
+0.647,onboardingEditSubtitle,"Every edit stays reversible — undo, redo, and revert to original anytime.",每次编辑都可逆 — 随时撤销、重做、恢复原始。,"Each edition is reversible, and the original can be revoked, reworked, and restored at any time.",0.647,0.916
+0.656,tickerGalleryImport,GALLERY IMPORT,图库导入,,,0.656
+0.664,enableReviewPromptsSubtitle,Allow the app to occasionally ask for a rating,允许应用偶尔请求评分,Allows applications to occasionally request scores,0.664,0.746
+0.667,stampTickedLabel,Ticked,已勾选,,,0.667
+0.669,tickerCustomSeals,CUSTOM SEALS,自定义印章,,,0.669
+0.673,tickerUndoRedo,UNDO/REDO,撤销/重做,,,0.673
+0.680,extractedAsNewDocument,Extracted as new document,提取为新文档,Extracted for new documentation,0.680,0.839
+0.680,pricingLoadingError,Pricing is still loading — try again in a moment.,价格信息加载中，请稍后重试。,Please try again later in the price information load.,0.680,0.760
+0.682,errorGenericTitle,Something went wrong,出错了,,,0.682
+0.689,filterContrastLabel,Contrast,对比度,,,0.689
+0.694,revertToOriginalMessage,"This will undo all filters, rotations, crops, resizes, and eraser strokes on this page.",这将撤销此页面上的所有滤镜、旋转、裁剪、调整大小和橡皮擦笔触。,"This will eliminate all filters, rotations, cuts, sizing adjustments, and scrubbing pencils on this page.",0.694,0.878
+0.695,onboardingSignTitle,"Sign, Fill & Seal",签名、填写、盖章,"Signing, filling, stamping",0.695,0.793
+0.699,tickerDarkMode,DARK MODE,深色模式,,,0.699
+0.708,tickerRevertToOriginal,REVERT TO ORIGINAL,恢复原始,,,0.708
+0.709,sealTextColorSame,Same as ring,与外圈相同,,,0.709
+0.718,vibrateOnCaptureSubtitle,Haptic feedback when scan completes,扫描完成时触觉反馈,"When the scan is complete, feedback is felt.",0.718,0.819
+0.719,captionDocs,"Flexible crop: Original, Square, 4:3, 3:2, 16:9",灵活裁剪：原始、方形、4:3、3:2、16:9,"Flexible cutting: original, square, 4:3, 3:2, 16:9.",0.719,0.897
+0.719,systemThemeOption,System,跟随系统,,,0.719
+0.719,pageIndicator,Page {current} / {total},第{current}页 / 共{total}页,Page 5 / Total of 5 pages,0.719,0.913
+0.719,tapToSampleColor,Tap a spot to sample its color,点击某处以采样其颜色,Click somewhere to sample the color.,0.719,0.868
+0.724,tickerNoWatermarks,NO WATERMARKS,无水印,,,0.724
+0.726,eraserApplied,Eraser applied,橡皮擦已应用,,,0.726
+0.730,captionPassport,Passport crop: 4:3 or Original,护照裁剪：4:3 或原始,Passport cuts: 4:3 or original,0.730,0.881
+0.730,watermarkPagesThis,This page,当前页,,,0.730
+0.730,tickerFolders,FOLDERS,文件夹,,,0.730
+0.733,beepOnCaptureLabel,Beep on capture,捕获时哔声,,,0.733
+0.740,tickerPassportMode,PASSPORT MODE,护照模式,,,0.740
+0.741,tickerIdCardMode,ID CARD MODE,身份证模式,,,0.741
+0.743,genericErrorMessage,Something went wrong. Please try again.,出了点问题，请重试。,"The problem is out, please try again.",0.743,0.871
+0.746,onboardingReplayIntro,Replay introduction,重看介绍,,,0.746
+0.750,lockAspectRatio,Lock aspect ratio,锁定宽高比,,,0.750
+0.751,emailLimitMissed,Could not get under {mb} MB; sent the smallest version.,无法压缩到 {mb} MB 以下；已发送最小版本。,It cannot be compressed to less than 5 MB; the minimum version has been sent.,0.751,0.892
+0.754,exportGenericError,Something went wrong while exporting.,导出过程中出了点问题。,There are some problems in the export process.,0.820,0.754
+0.754,onboardingPrivacyTitle,Private by design,设计即私密,,,0.754
+0.755,stampCheckbox,Checkbox,复选框,,,0.755
+0.758,captureFrontSide,Capture Front Side,捕获正面,,,0.758
+0.759,ocrNoInternetMessage,No internet. Connect once to download the language pack.,无互联网。请连接一次以下载语言包。,There is no internet. Please connect one of the following language packages:,0.759,0.866
+0.759,removeAdsTitle,Remove Ads Forever,移除广告,,,0.759
+0.763,emailAttachmentNotIncluded,The pages could not be attached to the email. Use Share to send the pages.,无法将页面附加到邮件。请使用分享来发送页面。,I can't add the page to the email. Please use sharing to send the page.,0.763,0.893
+0.765,exportFormatSheetTitle,Export as,导出为,,,0.765
+0.767,batchExportEmptyMessage,No documents to batch export. Scan some first.,没有可批量导出的文档。请先扫描一些。,There are no documents available for export in bulk. Please scan some first.,0.767,0.895
+0.770,engagementSectionLabel,ENGAGEMENT & NOTIFICATIONS,互动与通知,,,0.770
+0.772,captureBackSide,Capture Back Side,捕获背面,,,0.772
+0.775,onboardingWelcomeSubtitle,"Your entire document office — scan, edit, sign, and export — in one private app.",您的整个文档办公室 — 扫描、编辑、签名、导出 — 尽在一个私密应用。,"Your entire documentation office is scanned, edited, signed, exported, and stored in a private application.",0.775,0.919
+0.775,whatsNewTitle,What's New,新功能,,,0.775
+0.777,tickerWordExport,WORD EXPORT,Word导出,,,0.777
+0.777,accentViolet,Violet,紫罗兰,,,0.777
+0.777,tickerDeviceMigration,DEVICE MIGRATION,设备迁移,,,0.777
+0.782,paywallFeatureNoBanner,No more banner ads,无横幅广告,No banner ads,0.870,0.782
+0.785,ticker100OnDevicePrivacy,YOUR DOCUMENTS STAY ON YOUR DEVICE,您的文档只保留在您的设备上,Your documents are only stored on your device,0.859,0.785
+0.785,saveFailedBanner,Your latest changes could not be saved.,无法保存您最近的更改。,I can't save your recent changes.,0.785,0.943
+0.785,captionOcr,"Text crop: Original, Square, 4:3",文本裁剪：原始、方形、4:3,"Text cuts: original, square, 4:3",0.785,0.911
+0.786,fitToTargetMbLabel,Fit to target MB,适配目标MB,Targeted MB,0.786,0.913
+0.787,debugLogsLabel,Debug Logs,调试日志,,,0.787
+0.789,cropAspectSquare,Square,正方形,,,0.789
+0.794,exportFormatCsvDescription,Spreadsheet data,电子表格数据,,,0.794
+0.796,enableReviewPromptsLabel,Enable Review Prompts,启用评论提示,,,0.796
+0.800,vibrateOnCaptureLabel,Vibrate on capture,捕获时振动,,,0.800
+0.802,saveInsideAppWarning,"To save inside the app, choose JPG or PNG. Other targets are exported as files.",要在应用内保存，请选择 JPG 或 PNG。其他目标将导出为文件。,"If you want to save it in the application, select JPG or PNG. Other goals will be exported to the file.",0.802,0.953
+0.803,tickerNoAccount,NO ACCOUNT,无需账户,,,0.803
+0.806,docxWarningMessage,"DOCX sources render poorly as pages — save inside the app is limited to JPG/PNG from image, PDF, TXT or CSV sources. Use Export & Share for this file.",DOCX 源作为页面渲染效果差——应用内保存仅限来自图像、PDF、TXT 或 CSV 的 JPG/PNG。此文件请使用导出并分享。,"The DOCX source is stored as a JPG/PNG only from images, PDF, TXT or CSV. Please use this file to export and share it.",0.806,0.932
+0.809,noteTextLabel,Note text,备注文本,,,0.809
+0.811,idStepBack,Step 2: Capture Back Side,第2步：捕获背面,Step 2: Catch the back,0.811,0.933
+0.811,tickerNonDestructiveEditing,NON-DESTRUCTIVE EDITING,非破坏性编辑,,,0.811
+0.811,noFoldersYetHomeMessage,No folders yet. Create one from the home screen.,还没有文件夹。从主屏幕创建一个。,There is no folder yet.,0.811,0.897
+0.813,cropDocumentTitle,Crop Document,裁剪文档,,,0.813
+0.813,saveAsNewDocumentAction,Save as new Document,保存为新文档,Save as new documentation,0.813,0.933
+0.813,paywallLegalText,This is a non-consumable purchase. Restore it anytime on any device with the same store account.,这是一次性购买。使用同一商店帐户即可随时在任何设备上恢复。,This is a one-time purchase. The same store account can be restored to any device at any time.,0.813,0.876
+0.814,titleIdCard,ID Card,身份证,,,0.814
+0.814,tickerESign,E-SIGN,电子签名,,,0.814
+0.815,signatureFontHandwritten,Handwritten,手写体,,,0.815
+0.817,sealCreateTitle,Custom Seal,自定义印章,,,0.817
+0.817,sealCustom,Custom Seal,自定义印章,,,0.817
+0.818,resizeUpscaleWarning,Enlarging doesn't add detail — the page may look soft.,放大不会增加细节，页面可能显得模糊。,"The page may appear blurred, but the enlargement does not add details.",0.818,0.833
+0.819,extractToNewDocAction,Extract to new doc,提取到新文档,Extracted from new documents,0.819,0.866
+0.822,autoCopyOcrSubtitle,Copy text to clipboard after scan,扫描后将文本复制到剪贴板,"After scanning, copy the text to the clipboard",0.948,0.822
+0.822,ticker21ToolEditSuite,21-TOOL EDIT SUITE,21工具编辑套件,,,0.822
+0.822,sealSavedMessage,Seal saved,印章已保存,,,0.822
+0.824,sealSavedHeading,Saved seals,已保存的印章,,,0.824
+0.830,openSourceLicensesLabel,Open-source licenses,开源许可证,,,0.830
+0.830,modeIdCard,ID Card Mode,身份证模式,,,0.830
+0.831,ocrScriptDevanagari,"Hindi, Marathi (Devanagari)",印地语、马拉地语(天城文),,,0.831
+0.834,savedToDocumentText,Saved to document text,已保存到文档文本,Save to document text,0.974,0.834
+0.834,pdfImportedAsDocument,PDF imported as document,PDF已作为文档导入,PDFs have been imported as documents,0.834,0.930
+0.837,enableSharePromptsSubtitle,Allow the app to occasionally suggest sharing,允许应用偶尔建议分享,Allows apps to occasionally recommend sharing,0.874,0.837
+0.838,printPerSheetLabel,Pages per sheet,每张页数,,,0.838
+0.839,couldNotOpenLinkError,Could not open link.,无法打开链接。,I can't open the link.,0.839,0.950
+0.841,enableNotificationsSubtitle,Allow background reminders for unexported documents,允许对未导出的文档进行后台提醒,Allow background reminders for unimported documents,0.992,0.841
+0.843,buildingBackupStatus,Building backup…,正在生成备份…,,,0.843
+0.845,exportBackupButton,Export encrypted backup,导出加密备份,,,0.845
+0.846,emptyStateDefaultMessage,Tap the camera to scan your first document.,点击相机图标扫描你的第一份文档。,Click on the camera icon to scan your first document.,0.942,0.846
+0.848,migrationExplainer,"This isn't automatic sync. Export creates a single encrypted backup file you move to your new device yourself, then import there.",这不是自动同步。导出会创建一个加密备份文件，你需要自己将它转移到新设备，然后在那里导入。,"It's not automatic sync. When you create an encrypted backup file, you need to move it to a new device and then import it there.",0.848,0.903
+0.850,progressRasterizing,Rasterizing pages…,正在光栅化页面…,,,0.850
+0.850,importFromGallery,Import from Gallery,从图库导入,,,0.850
+0.851,importFrontSide,Import Front Side,导入正面,,,0.851
+0.851,foldersSectionHeader,Folders,文件夹,,,0.851
+0.851,filterFolders,Folders,文件夹,,,0.851
+0.853,resizeTitle,Resize,调整大小,,,0.853
+0.854,batchExportTooltip,Batch export,批量导出,,,0.854
+0.855,beepOnCaptureSubtitle,Play sound when scan completes,扫描完成时播放声音,Sound when the scan is complete,0.855,0.913
+0.855,cropNoPageFound,Couldn't find the page edges. Drag the corners.,未找到页面边缘，请拖动四角。,"If you can't find the edge of the page, please drag the four corners.",0.909,0.855
+0.856,newFolderTitle,New Folder,新建文件夹,,,0.856
+0.856,newFolderTooltip,New Folder,新建文件夹,,,0.856
+0.856,enableSharePromptsLabel,Enable Share Prompts,启用分享提示,,,0.856
+0.857,importBackSide,Import Back Side,导入背面,,,0.857
+0.860,idPdfErrorPrefix,Error generating ID PDF,生成ID PDF错误,Generate an ID error in PDF,0.860,0.954
+0.861,exportFormatPngDescription,"One image per page, lossless",每页一张图片，无损画质,"One image per page, without any loss of quality",0.861,0.884
+0.862,sharePromptTitle,Love KatharScan?,喜欢 KatharScan 吗？,,,0.862
+0.863,sealEditTitle,Edit Custom Seal,编辑自定义印章,,,0.863
+0.863,frontSideCaptured,Front side captured. Now capture the back side.,正面已捕获。现在捕获背面。,The front is captured. Now the back is captured.,0.863,0.872
+0.863,debugNoLogsYet,No logs yet,暂无日志,,,0.863
+0.863,accentColorTooltip,Accent Color,强调色,,,0.863
+0.863,accentColorTitle,Accent Color,强调色,,,0.863
+0.867,sealLogoReady,Logo ready,徽标已就绪,,,0.867
+0.869,renameDocumentTitle,Rename document,重命名文档,,,0.869
+0.869,docScannerUnsupportedMessage,"Your device doesn't support the advanced document scanner. Take a photo with your Camera app, then tap Import below to crop and save it.",您的设备不支持高级文档扫描仪。请使用相机应用拍照，然后点击下方的“导入”进行裁剪和保存。,"Your device does not support advanced document scanning. Please use the camera app to take photos, and click on the filter input filter below for cutting and saving.",0.869,0.900
+0.869,docxModeWithImages,With Images,带图像,,,0.869
+0.869,noTextRecognized,No text recognized.,未识别到文本。,,,0.869
+0.870,renameFolderTitle,Rename folder,重命名文件夹,,,0.870
+0.870,commonCustom,Custom,自定义,,,0.870
+0.870,fillSaveSnippet,Save as snippet,保存为片段,,,0.870
+0.871,placeHereLabel,Place here,放置于此,,,0.871
+0.871,saveToDownloadsAction,Save to Downloads,保存到下载,,,0.871
+0.871,sealRemoveWhite,Make white transparent,将白色设为透明,,,0.871
+0.871,commonRename,Rename,重命名,,,0.871
+0.871,whatsNewBody,"Welcome to KatharScan! This is the first public release featuring unlimited scanning, 29 languages, and export to PDF, Word, TXT, JPG, PNG, and CSV.",欢迎使用 KatharScan！这是首个公开版本，支持无限扫描、29 种语言，并可导出为 PDF、Word、TXT、JPG、PNG 和 CSV。,"Welcome to KatharScan! which is the first open-source version that supports unlimited scanning in 29 languages and can be exported to PDF, Word, TXT, JPG, PNG and CSV.",0.871,0.955
+0.872,deleteFolderMessage,Documents inside will not be deleted.,文件夹内的文档不会被删除。,Documents in the folder will not be deleted.,0.877,0.872
+0.872,exportFormatPdfDescription,Best for sharing and printing,最适合分享和打印,Best for sharing and printing,1.000,0.872
+0.872,watermarkEditTitle,Edit Watermark,编辑水印,,,0.872
+0.873,fillTypeHint,Type here,在此输入,,,0.873
+0.873,progressBuildingDocx,Building DOCX…,正在生成DOCX…,,,0.873
+0.873,copiedToClipboard,Copied to clipboard,已复制到剪贴板,,,0.873
+0.873,ocrStatusDownloading,Downloading…,正在下载…,,,0.873
+0.873,billingUnavailableMessage,Billing unavailable — try again later.,计费不可用 — 请稍后重试。,No billing is available. Please try again later.,0.873,0.925
+0.874,pageRevertedToOriginal,Page reverted to original,页面已恢复到原始,Page restored to original,0.874,0.901
+0.874,ocrUnavailableTooltip,OCR unavailable on this device.,此设备不支持OCR。,This device does not support OCR.,0.874,0.877
+0.875,emptyFolders,No folders yet. Tap the folder icon to create one.,还没有文件夹。点击文件夹图标创建一个。,There is no folder yet. Click on the folder icon to create one.,0.907,0.875
+0.875,exportSavedToDownloads,Saved to Downloads,已保存到下载,,,0.875
+0.875,scanUnavailable,This scan is no longer available.,此扫描件已不可用。,This scan is no longer available.,1.000,0.875
+0.876,exportFormatJpgDescription,One image per page,每页一张图片,One image per page,1.000,0.876
+0.878,clearedCount,Cleared {count},已清除 {count} 项,,,0.878
+0.878,fillInputHint,Type text to fill,输入要填充的文本,Text to be filled in,0.878,0.880
+0.879,filterShadowRemoval,Shadow removal,去除阴影,,,0.879
+0.880,pagesDeleteConfirm,Delete {count} pages? They are removed when you save.,删除 {count} 页？保存后将被移除。,5 pages will be deleted after being saved.,0.880,0.904
+0.882,progressExtractingText,Extracting text…,正在提取文本…,,,0.882
+0.883,emailMessageHint,Add a note (optional),添加备注（可选）,Added notes (optional),0.883,0.937
+0.885,pageResized,Page resized,页面大小已调整,,,0.885
+0.886,folderUnavailable,This folder is no longer available.,此文件夹已不可用。,This folder is no longer available.,1.000,0.886
+0.886,reviewPromptTitle,Enjoying KatharScan?,喜欢使用 KatharScan 吗？,,,0.886
+0.887,addCheckboxTitle,Add Checkbox,添加复选框,,,0.887
+0.887,modePassport,Passport Mode,护照模式,,,0.887
+0.889,extractedPageDefaultTitle,Extracted Page,提取的页面,,,0.889
+0.889,exportEstimatedSize,Estimated size: {mb} MB,预计大小：{mb} MB,Expected size: 5 MB,0.889,0.969
+0.890,pageFormatLetter,Letter (US),信件（美国）,,,0.890
+0.890,onboardingToolsTitle,21 Free Pro Tools,21 个免费专业工具,21 free professional tools,0.890,0.939
+0.890,sharePromptBody,Share it with friends who need a powerful document scanner.,与需要强大文档扫描仪的朋友分享。,Share with friends who need a powerful document scanner.,0.952,0.890
+0.891,watermarkAddTitle,Add Watermark,添加水印,,,0.891
+0.891,cropIdCardTitle,Crop ID Card,裁剪ID卡,,,0.891
+0.892,letterSizeUS,Letter size (US),信件大小（美国）,,,0.892
+0.892,saveAsDocument,Save as Document,另存为文档,,,0.892
+0.893,reviewPromptYes,Rate Us,给我们评分,,,0.893
+0.893,sealCenterTextLabel,Center text,中心文本,,,0.893
+0.893,setBackupPasswordTitle,Set a backup password,设置备份密码,Set the backup password,0.979,0.893
+0.893,exportingStatus,Exporting…,正在导出…,,,0.893
+0.893,couldNotCreateBackupError,Could not create the backup.,无法创建备份。,I can't create a backup.,0.893,0.925
+0.894,appLanguageLabel,App language,应用语言,,,0.894
+0.894,filterMagicColor,Magic colour,魔术色彩,,,0.894
+0.894,whiteHaloLabel,White halo (readability),白色光晕（可读性）,,,0.894
+0.894,printFilterNone,No filter,无滤镜,,,0.894
+0.894,importingStatus,Importing…,正在导入…,,,0.894
+0.894,backupCorruptedError,This backup file looks corrupted.,此备份文件似乎已损坏。,This backup file appears to be damaged.,0.908,0.894
+0.895,homeLanguageTooltip,App Language,应用语言,,,0.895
+0.895,appLanguageTitle,App Language,应用语言,,,0.895
+0.895,sealDefaultMainText,YOUR COMPANY,您的公司,,,0.895
+0.896,tickerRegionOcr,REGION OCR,区域OCR,,,0.896
+0.896,restorePurchasesButton,Restore purchases,恢复购买,,,0.896
+0.897,compressNoLimit,No limit,不限制,,,0.897
+0.897,ocrLanguagePackNotReady,Language pack downloading or not ready. Try again shortly.,语言包正在下载或未就绪。请稍后再试。,The language package is being downloaded or not ready. Please try again later.,0.911,0.897
+0.897,filterApplied,Filter applied,滤镜已应用,,,0.897
+0.897,errorReportIssue,Report issue,报告问题,,,0.897
+0.897,sealSaveToLibrary,Save this seal,保存此印章,,,0.897
+0.898,searchHint,Search your scans,搜索你的扫描件,,,0.898
+0.899,backupReadyStatus,Backup ready.,备份已就绪。,,,0.899
+0.899,fromAnotherDocument,From Another Document,从其他文档,,,0.899
+0.900,tickerJpgExport,JPG EXPORT,JPG导出,,,0.900
+0.901,printFitFit,Fit page,适应页面,,,0.901
+0.901,extractedTextTitle,Extracted Text,提取的文本,,,0.901
+0.903,eraserAutoColorTooltip,Match the page colour automatically,自动匹配页面颜色,Automatically matching page colors,0.938,0.903
+0.903,sampleColorTooltip,Sample color from page,从页面采样颜色,From page color sampling,0.903,0.904
+0.903,revertToOriginalTitle,Revert to Original?,恢复到原始？,,,0.903
+0.905,signatureChoiceMessage,Use your saved signature or draw a new one?,使用已保存的签名还是绘制新的签名？,Using a saved signature or drawing a new signature?,0.933,0.905
+0.906,clearLogsTooltip,Clear logs,清除日志,,,0.906
+0.907,onboardingGetStarted,Get Started,开始使用,,,0.907
+0.907,paywallFeatureFreeForever,All features free forever,所有功能永久免费,All features are permanently free,0.907,0.941
+0.907,movedToFolderMessage,Moved to folder.,已移动到文件夹。,,,0.907
+0.907,savedAsNewDocument,Saved as new document,已保存为新文档,Saved as a new document,0.989,0.907
+0.907,tickerPdfExport,PDF EXPORT,PDF导出,,,0.907
+0.907,scanPreviewNoPages,No pages to show.,没有可显示的页面。,No pages to be displayed.,0.910,0.907
+0.908,managePagesTitle,Manage Pages,管理页面,,,0.908
+0.909,noFoldersYet,No folders yet,还没有文件夹,,,0.909
+0.910,conversionStarting,Starting…,正在开始…,,,0.910
+0.910,onboardingEditTitle,Non-Destructive Editing,非破坏性编辑,,,0.910
+0.910,rotationPage,Page rotated,已旋转页面,,,0.910
+0.912,enterBackupPasswordTitle,Enter backup password,输入备份密码,,,0.912
+0.912,progressBuildingPdf,Building PDF…,正在生成PDF…,,,0.912
+0.912,tickerPngExport,PNG EXPORT,PNG导出,,,0.912
+0.912,pagesToReadHint,This PDF has {count} pages. Pages that are pictures are read with OCR (about 10 seconds each); pages with real text are instant.,此 PDF 共 {count} 页。图片页面使用 OCR 读取(每页约 10 秒);含真实文字的页面则立即完成。,The PDF has 5 pages. The image page is read by OCR (about 10 seconds per page); the page containing the actual text is completed immediately.,0.912,0.945
+0.913,progressSaving,Saving…,保存中…,,,0.913
+0.913,progressDecodingImage,Decoding image…,正在解码图像…,,,0.913
+0.914,removeFromFavorites,Remove from Favorites,从收藏中移除,,,0.914
+0.914,enableNotificationsLabel,Enable Notifications,启用通知,,,0.914
+0.914,exportFormatTxtDescription,Plain OCR text only,仅纯 OCR 文本,Only pure OCR text,0.924,0.914
+0.914,exportDoneStatus,Done,已完成,,,0.914
+0.915,tickerAutoCopyOcr,AUTO-COPY OCR,自动复制OCR,,,0.915
+0.916,actionLabel,Action:,操作：,,,0.916
+0.916,importBackupButton,Import from backup,从备份导入,,,0.916
+0.916,addToFavorites,Add to Favorites,添加到收藏,,,0.916
+0.916,signatureCanvasHint,Sign here,请在此签名,,,0.916
+0.916,moveToFolderTooltip,Move to folder,移动到文件夹,,,0.916
+0.916,signerLabel,Signer {index},签名者 {index},,,0.916
+0.916,pagesUpdated,Pages updated,页面已更新,,,0.916
+0.917,pageCropped,Page cropped,页面已裁剪,,,0.917
+0.917,readingPageEta,Page {page} of {total} · about {minutes} min left,第 {page} / {total} 页 · 约剩 {minutes} 分钟,Page 5 / 5 · About five minutes left,0.958,0.917
+0.917,clearPage,Clear page,清除本页,,,0.917
+0.917,ocrNoTextFound,No text found,未找到文本,,,0.917
+0.917,onboardingOcrTitle,On-Device OCR,设备端 OCR,,,0.917
+0.918,opacityPercentLabel,Opacity: {percent}%,不透明度：{percent}%,,,0.918
+0.918,addTagTitle,Add tag,添加标签,,,0.918
+0.919,reviewPromptBody,Your feedback helps us grow and keeps the app free.,您的反馈有助于我们成长并保持应用免费。,Your feedback helps us grow and keep the app free.,0.995,0.919
+0.919,fillDeleteSnippet,Delete snippet?,删除片段？,,,0.919
+0.919,editDocumentAction,Edit Document,编辑文档,,,0.919
+0.919,ocrStatusUnsupported,Unsupported,不支持,,,0.919
+0.920,scannerErrorPrefix,Scanner error,扫描仪错误,,,0.920
+0.920,clearThis,Clear this,清除此项,,,0.920
+0.920,signatureDeleteSaved,Remove saved signature,删除已保存的签名,,,0.920
+0.920,exportFormatDocxDescription,Editable text document,可编辑的文本文档,,,0.920
+0.921,documentNotFound,Document not found,未找到文档,,,0.921
+0.922,exportAndShareAction,Export & Share,导出并分享,,,0.922
+0.923,docxModeTextOnly,Text Only,仅文本,,,0.923
+0.925,migrationTitle,Device Migration,设备迁移,,,0.925
+0.925,deviceMigrationLabel,Device Migration,设备迁移,,,0.925
+0.926,idLayoutRealSize,Real size,实际大小,,,0.926
+0.926,moveToFolderTitle,Move to Folder,移动到文件夹,,,0.926
+0.927,filterRemoved,Filter removed,滤镜已移除,,,0.927
+0.927,progressCopying,Copying…,复制中…,,,0.927
+0.928,tickerSearchablePdf,SEARCHABLE PDF,可搜索PDF,,,0.928
+0.929,emptyDocumentMessage,This document has no pages.,此文档没有页面。,This document has no pages.,1.000,0.929
+0.929,onboardingOcrSubtitle,Use KatharScan in {count} languages. OCR runs on your phone — nothing ever leaves your device.,KatharScan 支持 {count} 种语言。OCR 在您的手机上运行——任何内容都不会离开您的设备。,KatharScan supports 5 languages. OCR runs on your phone and no content leaves your device.,0.939,0.929
+0.930,tickerTxtExport,TXT EXPORT,TXT导出,,,0.930
+0.930,rotationAllPages,All pages rotated,已旋转所有页面,,,0.930
+0.930,cropAuto,Auto-detect,自动检测,,,0.930
+0.930,captionIdCard,Two-sided ID capture: Front + Back,双面ID捕获：正面 + 背面,Double-sided ID capture: front + back,0.981,0.930
+0.930,exportNoTextError,This document has no text yet. Run OCR on it first.,此文档还没有文字。请先运行 OCR。,The document has no text yet. Please run OCR first.,0.964,0.930
+0.931,adsRemovedLabel,Ads Removed,已移除广告,,,0.931
+0.931,paywallSuccessTitle,Ads Removed,已移除广告,,,0.931
+0.932,drawNewSignature,Draw New,绘制新的,,,0.932
+0.932,signatureTypeHint,Type your name,输入您的姓名,,,0.932
+0.932,paywallFallbackPrice,$14.99 one-time,$14.99 一次性,,,0.932
+0.932,onboardingPrivacySubtitle,"No account, no cloud, no watermarks. Your documents never leave your device.",无账户、无云、无水印。您的文档永不离开设备。,"There are no accounts, no clouds, no watermarks. Your documents never leave your device.",0.963,0.932
+0.932,deleteFolderTooltip,Delete folder,删除文件夹,,,0.932
+0.932,couldNotImportBackupError,Could not import this backup. Check the password and try again.,无法导入此备份。请检查密码后重试。,This backup cannot be imported. Please try again after checking the password.,0.969,0.932
+0.933,documentSaved,Document saved,文档已保存,,,0.933
+0.933,ocrScriptLatin,"Latin (English, European)",拉丁文（英语、欧洲）,,,0.933
+0.933,restoreCompleteMessage,Restore complete.,恢复完成。,,,0.933
+0.933,ocrStatusChecking,Checking...,检查中...,,,0.933
+0.934,removeFromFolderTooltip,Remove from folder,从文件夹中移除,,,0.934
+0.934,applyToAllPages,Apply to all pages,应用到所有页面,Applied to all pages,0.940,0.934
+0.935,signatureSavedHeading,Saved signatures,已保存的签名,,,0.935
+0.935,useSavedSignature,Use Saved,使用已保存,,,0.935
+0.935,sharePromptAction,Share App,分享应用,,,0.935
+0.937,progressReading,Reading…,读取中…,,,0.937
+0.938,convertDocumentTitle,Convert Document,转换文档,,,0.938
+0.938,paywallTitle,Remove Ads,移除广告,,,0.938
+0.938,autoScan,Auto Scan,自动扫描,,,0.938
+0.938,emptySearch,No scans match your search.,没有与您的搜索匹配的扫描。,No scans matched your search.,0.943,0.938
+0.939,saveToDeviceButton,Save to Device,保存到设备,,,0.939
+0.940,tickerCsvExport,CSV EXPORT,CSV导出,,,0.940
+0.940,pagesToReadTitle,Pages to read,要读取的页面,,,0.940
+0.942,importAndConvertDocument,Import & Convert Document,导入并转换文档,Import and convert documents,0.951,0.942
+0.942,pagesSelectTooltip,Select pages,选择页面,,,0.942
+0.943,paywallSubtitle,Support KatharScan with a one-time purchase. All features remain free.,通过一次性购买支持 KatharScan。所有功能保持免费。,KatharScan is supported by a one-time purchase. All features are free.,0.946,0.943
+0.943,addTextTitle,Add Text,添加文本,,,0.943
+0.944,errorScreenProblem,KatharScan ran into a problem displaying this screen. Your scans are safe — they're stored on this device and this doesn't affect them.,KatharScan 在显示此屏幕时遇到问题。您的扫描是安全的——它们存储在此设备上，这不会影响它们。,"KatharScan encounters a problem when it displays this screen. Your scans are safe and they are stored on this device, which will not affect them.",0.986,0.944
+0.944,addNoteTitle,Add Note,添加备注,,,0.944
+0.944,addDateTitle,Add Date,添加日期,,,0.944
+0.945,conversionFailedPrefix,Conversion failed,转换失败,,,0.945
+0.945,deleteScanTitle,Delete this scan?,要删除此扫描件吗？,,,0.945
+0.945,importErrorPrefix,Import error,导入错误,,,0.945
+0.945,copyAll,Copy all,复制全部,,,0.945
+0.945,addTagsAction,Add Tags,添加标签,,,0.945
+0.946,tickerFreeUnlimitedOcr,FREE UNLIMITED OCR,免费无限OCR,,,0.946
+0.947,compressTargetLabel,Max size,最大大小,,,0.947
+0.947,selectRegionTitle,Select Region,选择区域,,,0.947
+0.947,deleteFolderTitle,Delete this folder?,要删除此文件夹吗？,,,0.947
+0.947,addSignature,Add Signature,添加签名,,,0.947
+0.947,noEmailAppFound,No email app found,未找到电子邮件应用,Email app not found,0.956,0.947
+0.948,cameraErrorPrefix,Camera error,相机错误,,,0.948
+0.948,chipAllFolders,All Folders,所有文件夹,,,0.948
+0.949,paywallSuccessMessage,Thank you for supporting KatharScan.,感谢您支持 KatharScan。,Thank you for supporting KatharScan.,1.000,0.949
+0.949,onboardingWelcomeTitle,Welcome to KatharScan,欢迎使用 KatharScan,,,0.949
+0.950,pickErrorPrefix,Pick error,选择错误,,,0.950
+0.950,customColorTitle,Custom Color,自定义颜色,,,0.950
+0.951,idGenerating,Generating PDF...,正在生成PDF...,,,0.951
+0.951,termsOfServiceLabel,Terms of Service,服务条款,,,0.951
+0.951,sealTextColorLabel,Text colour,文字颜色,,,0.951
+0.951,modeDocument,Document Mode,文档模式,,,0.951
+0.955,filterColorEnhance,Color enhance,色彩增强,,,0.955
+0.956,originalDimensions,Original: {w}×{h},原始尺寸：{w}×{h},,,0.956
+0.957,ocrStatusInstalled,Installed,已安装,,,0.957
+0.957,regionOcrFailed,Region OCR failed,区域OCR失败,,,0.957
+0.958,privacyPolicyLabel,Privacy policy,隐私政策,,,0.958
+0.958,convertToLabel,Convert to:,转换为：,,,0.958
+0.959,reviewPromptNo,Send Feedback,发送反馈,,,0.959
+0.960,watermarkChooseImage,Choose image,选择图片,,,0.960
+0.960,privacyOptionsLabel,Privacy settings,隐私设置,,,0.960
+0.962,textSizeLabel,Text size: {size},文本大小：{size},,,0.962
+0.962,titlePdfImport,PDF Import,PDF 导入,,,0.962
+0.962,addPageTitle,Add Page,添加页面,,,0.962
+0.962,idCardPdfGenerated,ID Card PDF Generated,ID卡PDF已生成,ID card PDF has been generated,0.981,0.962
+0.964,ocrLanguagesLabel,OCR Languages,OCR 语言,,,0.964
+0.964,tabOcrTextLabel,OCR Text,OCR文本,,,0.964
+0.965,printRangeAll,All pages,所有页面,,,0.965
+0.965,watermarkPagesAll,All pages,所有页面,,,0.965
+0.967,printOptionsTitle,Print Options,打印选项,,,0.967
+0.967,clearAllPages,Clear all pages,清除所有页,,,0.967
+0.968,printFailed,Print failed,打印失败,,,0.968
+0.969,emailFailed,Email failed,电子邮件失败,,,0.969
+0.969,sealTextSizePercent,Text size {percent}%,文字大小 {percent}%,,,0.969
+0.969,autoCopyOcrLabel,Auto-copy OCR,自动复制OCR,,,0.969
+0.971,convertedDocTitle,Converted {date},已转换 {date},,,0.971
+0.973,pdfImportErrorPrefix,PDF import error,PDF导入错误,,,0.973
+0.973,saveFailedPrefix,Save failed:,保存失败：,,,0.973
+0.974,clearAll,Clear all,清除全部,,,0.974
+0.977,exportFormatTxtLabel,Text (.txt),文本 (.txt),,,0.977
+0.980,moreOptionsTooltip,More options,更多选项,,,0.980
+0.983,sizePtLabel,Size: {size}pt,大小：{size}pt,,,0.983
+0.983,sharePdf,Share PDF,分享PDF,,,0.983
+0.984,modeOcr,OCR Mode,OCR 模式,,,0.984
+1.000,ocrScriptArabic,العربية (Arabic),العربية (Arabic),,,1.000
+1.000,fontMonospace,monospace,monospace,,,1.000
+1.000,formatCsv,CSV,CSV,,,1.000
+1.000,exportFormatPdfLabel,PDF,PDF,,,1.000
+1.000,exportFormatJpgLabel,JPG,JPG,,,1.000
+1.000,proBadgeLabel,PRO,PRO,,,1.000
+1.000,ocrSectionLabel,OCR,OCR,,,1.000
+1.000,fontSansSerif,sans-serif,sans-serif,,,1.000
+1.000,tickerLanguages,{count} LANGUAGES,{count} LANGUAGES,,,1.000
+1.000,ocrScriptRussian,Русский (Russian),Русский (Russian),,,1.000
+1.000,ocrScriptUkrainian,Українська (Ukrainian),Українська (Ukrainian),,,1.000
+1.000,ocrScriptBengali,বাংলা (Bengali),বাংলা (Bengali),,,1.000
+1.000,exportFormatDocxLabel,Word (.docx),Word (.docx),,,1.000
+1.000,exportFormatPngLabel,PNG,PNG,,,1.000
+1.000,fontSerif,serif,serif,,,1.000
+1.000,ocrScriptGreek,Ελληνικά (Greek),Ελληνικά (Greek),,,1.000
+1.000,ocrScriptHebrew,עברית (Hebrew),עברית (Hebrew),,,1.000
+1.000,ocrScriptThai,ไทย (Thai),ไทย (Thai),,,1.000

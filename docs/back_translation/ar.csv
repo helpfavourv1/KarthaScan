@@ -1,0 +1,536 @@
+score,key,english,translation,back_to_english,backtrans_score,labse_score
+0.245,sealShapeOval,Oval,بيضاوي,,,0.245
+0.269,satLabel,Sat,التشبع,,,0.269
+0.302,accentIndigo,Indigo,نيلي,,,0.302
+0.305,tickerAccentThemes,ACCENT THEMES,سمات التمييز,,,0.305
+0.346,accentAmber,Amber,كهرماني,,,0.346
+0.351,printMarginLabel,Margin,الهامش,,,0.351
+0.356,vibrateOnCaptureSubtitle,Haptic feedback when scan completes,ردود فعل لمسية عند اكتمال المسح,Touch reactions upon completion of the survey .,0.356,0.809
+0.360,scaleLabel,Scale,تحجيم,,,0.360
+0.372,annotationModeEllipse,Ellipse,شكل بيضاوي,,,0.372
+0.377,tickerTags,TAGS,وسوم,,,0.377
+0.382,checkShapeRounded,Rounded,مدور,,,0.382
+0.388,eraserZoomTooltip,Zoom and move (pinch),تكبير وتحريك (قرص بإصبعين),Enlarge and move a two-fingered disc .,0.388,0.768
+0.388,signatureFontFlowing,Flowing,انسيابي,,,0.388
+0.404,noFoldersYetHomeMessage,No folders yet. Create one from the home screen.,لا توجد مجلدات بعد. أنشئ واحدًا من الشاشة الرئيسية.,There are no volumes yet.,0.404,0.911
+0.414,tickerRegionOcr,REGION OCR,تعرف ضوئي للمنطقة,,,0.414
+0.419,widthLabel,Width,العرض,,,0.419
+0.420,batchExportEmptyMessage,No documents to batch export. Scan some first.,لا توجد مستندات للتصدير بالجملة. امسح بعضًا أولاً.,There's no documentation for wholesale exports.,0.420,0.855
+0.430,printFitLabel,Scaling,الملاءمة,,,0.430
+0.431,eraserTitle,Eraser,ممحاة,,,0.431
+0.431,annotationModeEraser,Eraser,ممحاة,,,0.431
+0.431,enableSharePromptsSubtitle,Allow the app to occasionally suggest sharing,السماح للتطبيق بالاقتراح للمشاركة من حين لآخر,Allowing the application to propose to participate from time to time,0.431,0.871
+0.435,annotationModeArrow,Arrow,سهم,,,0.435
+0.436,sealFontSans,Clean,عصري,,,0.436
+0.449,straightenLabel,Straighten,تسوية الميل,,,0.449
+0.456,tickerTapToTypeFilling,TAP-TO-TYPE FILLING,ملء بالنقر,,,0.456
+0.462,watermarkLayoutTiled,Tiled,مكرر,,,0.462
+0.464,captureBehaviorSectionLabel,CAPTURE BEHAVIOR,سلوك الالتقاط,,,0.464
+0.464,deleteScanMessage,This can't be undone.,لا يمكن التراجع عن هذا الإجراء.,There's no turning back on this.,0.464,0.796
+0.474,themeLabel,Theme,السمة,,,0.474
+0.484,beepOnCaptureLabel,Beep on capture,صوت عند الالتقاط,,,0.484
+0.488,tickerBatchExport,BATCH EXPORT,تصدير بالجملة,,,0.488
+0.503,enableReviewPromptsSubtitle,Allow the app to occasionally ask for a rating,السماح للتطبيق بطلب تقييم من حين لآخر,Allowing the application to request an evaluation from time to time,0.503,0.895
+0.513,onboardingOcrTitle,On-Device OCR,تعرف ضوئي على الجهاز,,,0.513
+0.519,darkThemeOption,Dark,داكن,,,0.519
+0.521,proBadgeLabel,PRO,برو,,,0.521
+0.528,watermarkDefaultText,CONFIDENTIAL,سري,,,0.528
+0.535,couldNotOpenLinkError,Could not open link.,تعذّر فتح الرابط.,Excuse me for opening the link.,0.535,0.725
+0.541,stampTickedLabel,Ticked,موضع علامة,,,0.541
+0.542,annotateTitle,Annotate,تعليق,,,0.542
+0.543,readingPageEta,Page {page} of {total} · about {minutes} min left,الصفحة {page} من {total} · تبقّى نحو {minutes} د,Page 5 out of 5 ... stays around 5D .,0.543,0.890
+0.543,progressEncodingPage,Encoding page {current} of {total}…,جارٍ ترميز الصفحة {current} من {total}…,Page five of five.,0.543,0.860
+0.547,ocrUnavailableTooltip,OCR unavailable on this device.,التعرف الضوئي غير متاح على هذا الجهاز.,Photo-recognition is not available on this device.,0.547,0.809
+0.549,tickerPassportMode,PASSPORT MODE,وضع جواز السفر,,,0.549
+0.550,fitToTargetMbLabel,Fit to target MB,مطابقة الحجم المستهدف,Matching the target size .,0.550,0.611
+0.551,valLabel,Val,القيمة,,,0.551
+0.552,captionOcr,"Text crop: Original, Square, 4:3",قص النص: أصلي، مربع، 4:3,"Original, square, 4:3",0.552,0.922
+0.557,undoTooltip,Undo,تراجع,,,0.557
+0.557,watermarkLayoutDiagonal,Diagonal,قطري,,,0.557
+0.561,batchExportSignatureDisabled,Batch export — signature placement disabled,تصدير بالجملة — تم تعطيل وضع التوقيع,Wholesale exports . Signature is disabled .,0.561,0.790
+0.570,lightThemeOption,Light,فاتح,,,0.570
+0.572,saveFailedBanner,Your latest changes could not be saved.,تعذّر حفظ آخر تغييراتك.,Sorry to save your last change.,0.572,0.724
+0.574,hueLabel,Hue,الصبغة,,,0.574
+0.575,filterBrightnessLabel,Brightness,السطوع,,,0.575
+0.576,tickerDarkMode,DARK MODE,الوضع الداكن,,,0.576
+0.577,fillCapsLabel,ALL CAPS,أحرف كبيرة,,,0.577
+0.586,modeOcr,OCR Mode,وضع التعرف الضوئي,,,0.586
+0.586,sealTextColorSame,Same as ring,مثل الإطار,,,0.586
+0.598,tapToSampleColor,Tap a spot to sample its color,انقر على بقعة لأخذ لون منها,Click on a spot to get a color from it.,0.598,0.856
+0.602,annotationModeHighlighter,Highlighter,قلم تمييز,,,0.602
+0.603,printFitFill,Fill sheet (trims edges),ملء الورقة (يقص الحواف),Fill out the paper . Cut the edges .,0.603,0.813
+0.604,sampleColorTooltip,Sample color from page,أخذ لون من الصفحة,He took the color off the page.,0.604,0.804
+0.604,rotateLabel,Rotate,تدوير,,,0.604
+0.606,signatureTabType,Type,كتابة,,,0.606
+0.606,signatureWidthLabel,Pen width,عرض القلم,,,0.606
+0.609,filterGrayscale,Grayscale,تدرج رمادي,,,0.609
+0.610,frontSideCaptured,Front side captured. Now capture the back side.,تم التقاط الجانب الأمامي. الآن التقط الجانب الخلفي.,Now pick up the back side.,0.610,0.926
+0.617,ocrStatusInstalled,Installed,مثبّت,,,0.617
+0.618,couldNotCreateBackupError,Could not create the backup.,تعذّر إنشاء النسخة الاحتياطية.,Sorry to create a backup.,0.718,0.618
+0.622,onboardingEditSubtitle,"Every edit stays reversible — undo, redo, and revert to original anytime.",كل تعديل يبقى قابلًا للتراجع — تراجع وأعد وعُد إلى الأصل في أي وقت.,Each amendment remains reversible. Reverse and restore at any time.,0.622,0.914
+0.622,savedToDocumentText,Saved to document text,تم الحفظ في نص المستند,It was saved in the document.,0.622,0.897
+0.624,checkLabel,Check,تحديد,,,0.624
+0.628,captionIdCard,Two-sided ID capture: Front + Back,التقاط وجهي الهوية: أمامي + خلفي,I.D. capture my face: front + back,0.628,0.846
+0.629,tickerFreeUnlimitedOcr,FREE UNLIMITED OCR,تعرف ضوئي غير محدود مجاني,,,0.629
+0.630,ocrStatusBuiltIn,Built-in,مدمج,,,0.630
+0.637,idStepBack,Step 2: Capture Back Side,الخطوة 2: التقط الجانب الخلفي,"Step two, pick up the back.",0.637,0.959
+0.638,sealMainTextLabel,Main text (top arc / box),النص الرئيسي (القوس العلوي / المربع),The main text .,0.638,0.943
+0.638,tickerTextStamps,TEXT STAMPS,طوابع نصية,,,0.638
+0.642,tickerNoteStamps,NOTE STAMPS,طوابع ملاحظات,,,0.642
+0.643,marqueeEraseTooltip,Marquee erase,محو محدد,,,0.643
+0.643,tickerUndoRedo,UNDO/REDO,تراجع/إعادة,,,0.643
+0.651,signatureNewOne,Draw or type a new one,ارسم أو اكتب توقيعًا جديدًا,Draw or write a new signature .,0.651,0.860
+0.655,billingUnavailableMessage,Billing unavailable — try again later.,الفوترة غير متاحة — أعد المحاولة لاحقًا.,The bill is not available. I'll try again later.,0.655,0.855
+0.655,titleScan,Scan,مسح ضوئي,,,0.655
+0.656,paywallFeatureNoBanner,No more banner ads,لا مزيد من الإعلانات الشريطية,No more commercials .,0.656,0.883
+0.656,accentCrimson,Crimson,قرمزي,,,0.656
+0.658,idStepFront,Step 1: Capture Front Side,الخطوة 1: التقط الجانب الأمامي,Step one: pick up the front side.,0.658,0.952
+0.659,stampTickLabel,Tick,علامة,,,0.659
+0.667,searchHint,Search your scans,ابحث في مستنداتك الممسوحة,,,0.667
+0.667,ocrScriptKorean,Korean,كوري,,,0.667
+0.667,tickerGalleryImport,GALLERY IMPORT,استيراد من المعرض,,,0.667
+0.668,applyToAllPages,Apply to all pages,تطبيق على جميع الصفحات,App to all pages,0.668,0.958
+0.672,tickerAutoCopyOcr,AUTO-COPY OCR,نسخ تلقائي,,,0.672
+0.672,modePassport,Passport Mode,وضع جواز السفر,,,0.672
+0.673,sealSubtextLabel,Subtext (bottom arc / below),نص فرعي (القوس السفلي / أسفله),Sub-text of the lower arch .,0.673,0.910
+0.675,commonSkip,Skip,تخطي,,,0.675
+0.680,tickerIdCardMode,ID CARD MODE,وضع بطاقة الهوية,,,0.680
+0.681,autoCopyOcrSubtitle,Copy text to clipboard after scan,نسخ النص إلى الحافظة بعد المسح,Copy the text to the wallet after the scan.,0.681,0.920
+0.681,onboardingSignTitle,"Sign, Fill & Seal",وقّع واملأ واختم,Sign and fill and fill .,0.808,0.681
+0.691,filterColor,Color,ملون,,,0.691
+0.700,revertToOriginalMessage,"This will undo all filters, rotations, crops, resizes, and eraser strokes on this page.",سيؤدي هذا إلى التراجع عن جميع الفلاتر والتدوير والاقتصاص وتغيير الحجم ومحو هذه الصفحة.,"This will cause all filters, rotation, cutting, resizing and deleting this page.",0.700,0.812
+0.704,accentEmerald,Emerald,زمردي,,,0.704
+0.709,eraserAutoColorTooltip,Match the page colour automatically,مطابقة لون الصفحة تلقائيًا,It matches the color of the page automatically .,0.709,0.945
+0.709,useSavedSignature,Use Saved,استخدام المحفوظ,,,0.709
+0.710,fullscreenLabel,Fullscreen,ملء الشاشة,,,0.710
+0.714,vibrateOnCaptureLabel,Vibrate on capture,اهتزاز عند الالتقاط,,,0.714
+0.717,tickerESign,E-SIGN,توقيع إلكتروني,,,0.717
+0.717,idLayoutFullWidth,Full width,العرض الكامل,,,0.717
+0.718,cropNoPageFound,Couldn't find the page edges. Drag the corners.,لم يتم العثور على حواف الصفحة. اسحب الزوايا.,The edges of the page were not found.,0.718,0.915
+0.719,filterContrastLabel,Contrast,التباين,,,0.719
+0.720,alignLabel,Align,محاذاة,,,0.720
+0.723,fillInputHint,Type text to fill,اكتب نصًا لملئه,Write a text to fill it out.,0.723,0.820
+0.723,onboardingReplayIntro,Replay introduction,إعادة المقدمة,,,0.723
+0.724,stampCheckbox,Checkbox,مربع اختيار,,,0.724
+0.724,compressLabel,Compress,ضغط,,,0.724
+0.724,lockAspectRatio,Lock aspect ratio,قفل نسبة العرض إلى الارتفاع,,,0.724
+0.728,accentViolet,Violet,بنفسجي,,,0.728
+0.728,tickerNonDestructiveEditing,NON-DESTRUCTIVE EDITING,تحرير غير مدمر,,,0.728
+0.729,modeIdCard,ID Card Mode,وضع بطاقة الهوية,,,0.729
+0.730,duplicateAction,Duplicate,تكرار,,,0.730
+0.731,sealInkLook,Worn stamp look,مظهر ختم مستعمل,,,0.731
+0.733,exportFormatPngDescription,"One image per page, lossless",صورة واحدة لكل صفحة، بلا فقدان جودة,"One photo per page, without loss of quality.",0.733,0.918
+0.733,emptyFavorites,No favorites yet. Tap the star icon on a document to add it.,لا توجد مفضلات بعد. اضغط على أيقونة النجمة على مستند لإضافته.,No preferences yet. Hit the star icon on a document to add it.,0.733,0.906
+0.735,paywallFeatureNoInterstitial,No more interstitial ads,لا مزيد من الإعلانات البينية,No more intermittent ads .,0.735,0.928
+0.739,scanUnavailable,This scan is no longer available.,هذا المستند الممسوح لم يعد متاحًا.,This scanned document is no longer available.,0.855,0.739
+0.741,captionDocs,"Flexible crop: Original, Square, 4:3, 3:2, 16:9",قص مرن: أصلي، مربع، 4:3، 3:2، 16:9,"Flexible cut: original, square, 4:3, 3:2, 16:9",0.741,0.918
+0.741,cropDocumentTitle,Crop Document,قص المستند,,,0.741
+0.741,tickerDeviceMigration,DEVICE MIGRATION,نقل الجهاز,,,0.741
+0.743,dateLabel,Date,تاريخ,,,0.743
+0.745,migrationTitle,Device Migration,نقل البيانات بين الأجهزة,,,0.745
+0.745,deviceMigrationLabel,Device Migration,نقل البيانات بين الأجهزة,,,0.745
+0.745,tickerFolders,FOLDERS,مجلدات,,,0.745
+0.746,modeDocument,Document Mode,وضع المستند,,,0.746
+0.750,captionPassport,Passport crop: 4:3 or Original,قص الجواز: 4:3 أو أصلي,Passport cut: 4:3 or original.,0.750,0.905
+0.751,continueButton,Continue,متابعة,,,0.751
+0.751,onboardingContinue,Continue,متابعة,,,0.751
+0.751,whatsNewContinue,Continue,متابعة,,,0.751
+0.753,watermarkLabel,Watermark,علامة مائية,,,0.753
+0.753,stampBoxLabel,Box,مربع,,,0.753
+0.753,sealShapeBox,Box,مربع,,,0.753
+0.755,pageRevertedToOriginal,Page reverted to original,تمت إعادة الصفحة إلى الأصل,The page has been restored to the original .,0.755,0.942
+0.756,commonClear,Clear,مسح,,,0.756
+0.757,printMarginNone,None,بدون,,,0.757
+0.757,sealCenterNone,None,بدون,,,0.757
+0.757,onboardingSignSubtitle,"E-sign contracts, type-to-fill forms, and stamp enterprise seals in seconds.",وقّع العقود إلكترونيًا، املأ النماذج بالنقر، واختم بأختام مؤسسية في ثوانٍ.,"Sign contracts electronically, fill out the forms with a click, and seal corporate seals in seconds.",0.757,0.803
+0.759,compressNoLimit,No limit,بلا حد,,,0.759
+0.760,regionOcrFailed,Region OCR failed,فشل التعرف الضوئي على المنطقة,,,0.760
+0.761,tickerNoWatermarks,NO WATERMARKS,بدون علامات مائية,,,0.761
+0.761,emailLimitMissed,Could not get under {mb} MB; sent the smallest version.,تعذر الوصول إلى أقل من {mb} ميغابايت؛ تم إرسال أصغر نسخة.,Less than 5 megabytes is unavailable; a smaller version has been sent.,0.761,0.905
+0.762,saveAsNewDocumentAction,Save as new Document,حفظ كمستند جديد,Save it as a new document .,0.762,0.953
+0.763,cropIdCardTitle,Crop ID Card,قص بطاقة الهوية,,,0.763
+0.764,annotationModeSelect,Select,تحديد,,,0.764
+0.766,tickerCustomSeals,CUSTOM SEALS,أختام مخصصة,,,0.766
+0.770,importAndConvertDocument,Import & Convert Document,استيراد وتحويل المستند,Import and transfer of the document,0.770,0.957
+0.770,tickerRevertToOriginal,REVERT TO ORIGINAL,العودة إلى الأصل,,,0.770
+0.771,signatureFontHandwritten,Handwritten,خط اليد,,,0.771
+0.771,batchExportTooltip,Batch export,تصدير مجمّع,,,0.771
+0.772,onboardingGetStarted,Get Started,ابدأ الآن,,,0.772
+0.772,watermarkLayoutLabel,Layout,التخطيط,,,0.772
+0.774,beepOnCaptureSubtitle,Play sound when scan completes,تشغيل صوت عند اكتمال المسح,Sound when the scan is complete.,0.774,0.900
+0.775,engagementSectionLabel,ENGAGEMENT & NOTIFICATIONS,التفاعل والإشعارات,,,0.775
+0.778,tickerNoAccount,NO ACCOUNT,بدون حساب,,,0.778
+0.780,onboardingBack,Back,رجوع,,,0.780
+0.780,exportNoTextError,This document has no text yet. Run OCR on it first.,لا يحتوي هذا المستند على نص بعد. شغّل التعرف على النص أولاً.,This document doesn't have text yet.,0.780,0.825
+0.782,ocrScriptDevanagari,"Hindi, Marathi (Devanagari)",الهندية والماراثية (ديفاناغاري),,,0.782
+0.784,addTagsAction,Add Tags,إضافة وسوم,,,0.784
+0.785,savedAsNewDocument,Saved as new document,تم الحفظ كمستند جديد,It 's saved as a new document .,0.785,0.953
+0.785,extractedAsNewDocument,Extracted as new document,تم الاستخراج كمستند جديد,It was extracted as a new document .,0.785,0.912
+0.787,filterTitle,Filter,فلتر,,,0.787
+0.787,errorScreenProblem,KatharScan ran into a problem displaying this screen. Your scans are safe — they're stored on this device and this doesn't affect them.,واجه KatharScan مشكلة في عرض هذه الشاشة. عمليات المسح الضوئي آمنة - فهي مخزنة على هذا الجهاز ولا يؤثر هذا عليها.,KatharScan encountered a problem with displaying this screen.,0.787,0.939
+0.787,paywallLegalText,This is a non-consumable purchase. Restore it anytime on any device with the same store account.,هذا شراء غير قابل للاستهلاك. استعده في أي وقت على أي جهاز بنفس حساب المتجر.,This is a non-consumable purchase. Buy it anytime on any device with the same store account.,0.787,0.896
+0.788,commonRevert,Revert,إرجاع,,,0.788
+0.789,sealLogoReady,Logo ready,الشعار جاهز,,,0.789
+0.793,backupReadyStatus,Backup ready.,النسخة الاحتياطية جاهزة.,,,0.793
+0.794,filterApplied,Filter applied,تم تطبيق الفلتر,,,0.794
+0.794,whiteHaloLabel,White halo (readability),هالة بيضاء (للوضوح),,,0.794
+0.794,tickerSearch,SEARCH,بحث,,,0.794
+0.796,onboardingPrivacyTitle,Private by design,خصوصية بالتصميم,,,0.796
+0.796,setBackupPasswordTitle,Set a backup password,تعيين كلمة مرور النسخة الاحتياطية,Set the backup password .,0.796,0.835
+0.799,signatureTabDraw,Draw,رسم,,,0.799
+0.800,debugLogsLabel,Debug Logs,سجلات التصحيح,,,0.800
+0.801,tickerFavorites,FAVORITES,مفضلة,,,0.801
+0.802,ticker21ToolEditSuite,21-TOOL EDIT SUITE,مجموعة 21 أداة تحرير,,,0.802
+0.803,removeAdsTitle,Remove Ads Forever,إزالة الإعلانات,,,0.803
+0.803,accentColorTooltip,Accent Color,لون التمييز,,,0.803
+0.803,accentColorTitle,Accent Color,لون التمييز,,,0.803
+0.804,deleteScanTitle,Delete this scan?,حذف هذا المستند الممسوح؟,,,0.804
+0.805,fillTapHint,Tap the page where you want to type,اضغط على الصفحة حيث تريد الكتابة,Press the page where you want to type.,0.805,0.913
+0.805,intensityLabel,Intensity,الشدة,,,0.805
+0.807,pagesToReadHint,This PDF has {count} pages. Pages that are pictures are read with OCR (about 10 seconds each); pages with real text are instant.,يحتوي هذا الملف على {count} صفحة. الصفحات المصورة تُقرأ بالتعرف الضوئي (نحو 10 ثوانٍ لكل صفحة)، أما الصفحات النصية فتُقرأ فورًا.,"This file contains 5 pages. The illustrated pages are read by photo recognition (about 10 seconds per page), while the text pages are read instantly.",0.807,0.890
+0.808,resizeTitle,Resize,تغيير الحجم,,,0.808
+0.808,checkShapeCircle,Circle,دائرة,,,0.808
+0.809,buildingBackupStatus,Building backup…,جارٍ إنشاء النسخة الاحتياطية…,,,0.809
+0.810,exportGenericError,Something went wrong while exporting.,حدث خطأ أثناء التصدير.,There was a mistake during export.,0.810,0.871
+0.811,eraserApplied,Eraser applied,تم تطبيق الممحاة,,,0.811
+0.811,signerLabel,Signer {index},الموقّع {index},,,0.811
+0.811,onboardingEditTitle,Non-Destructive Editing,تحرير غير مدمر,,,0.811
+0.812,emptySearch,No scans match your search.,لا توجد عمليات مسح تطابق بحثك.,There are no scans that match your research.,0.812,0.922
+0.813,checkShapeSquare,Square,مربع,,,0.813
+0.813,cropAspectSquare,Square,مربع,,,0.813
+0.816,commonExtract,Extract,استخراج,,,0.816
+0.816,copiedToClipboard,Copied to clipboard,تم النسخ إلى الحافظة,,,0.816
+0.819,tickerWordExport,WORD EXPORT,تصدير Word,,,0.819
+0.821,pdfImportedAsDocument,PDF imported as document,تم استيراد PDF كمستند,PDF was imported as a document .,0.821,0.934
+0.822,ticker100OnDevicePrivacy,YOUR DOCUMENTS STAY ON YOUR DEVICE,مستنداتك تبقى على جهازك,Your documents stay on your device .,0.985,0.822
+0.823,sealCenterLogo,Logo,شعار,,,0.823
+0.824,sealEditTitle,Edit Custom Seal,تحرير الختم المخصص,,,0.824
+0.828,ocrScriptChinese,Chinese,صيني,,,0.828
+0.828,sizePtLabel,Size: {size}pt,الحجم: {size} نقطة,,,0.828
+0.828,addTagTitle,Add tag,إضافة وسم,,,0.828
+0.828,exportFormatTxtDescription,Plain OCR text only,نص OCR فقط بدون تنسيق,"OCR text only , uncoordinated",0.828,0.876
+0.829,chipSelectMultiple,Select Multiple,تحديد متعدد,,,0.829
+0.831,importFromGallery,Import from Gallery,استيراد من المعرض,,,0.831
+0.831,couldNotImportBackupError,Could not import this backup. Check the password and try again.,تعذّر استيراد هذه النسخة الاحتياطية. تحقق من كلمة المرور وحاول مرة أخرى.,Excuse me for importing this backup. Check the password and try again.,0.975,0.831
+0.832,enableReviewPromptsLabel,Enable Review Prompts,تفعيل طلبات التقييم,,,0.832
+0.832,redoTooltip,Redo,إعادة,,,0.832
+0.833,exportFormatJpgDescription,One image per page,صورة واحدة لكل صفحة,One photo for each page.,0.833,0.963
+0.834,diagnosticsSectionLabel,DIAGNOSTICS,التشخيصات,,,0.834
+0.835,watermarkPagesInvalid,Check the pages (the document has {count} pages),تحقق من الصفحات (المستند يحتوي على {count} صفحة),Check the pages. The document has five pages.,0.835,0.959
+0.836,onboardingToolsSubtitle,"Annotate, sign, watermark, fill forms, seal, and more — every tool free and unlimited.",علّق، وقّع، ضع علامة مائية، املأ النماذج، اختم، والمزيد — كل الأدوات مجانية وغير محدودة.,"Hang, sign, watermark, fill out the forms, seal, and more. All tools are free and unlimited.",0.836,0.867
+0.837,reviewPromptYes,Rate Us,قيمنا,,,0.837
+0.837,noEmailAppFound,No email app found,لم يتم العثور على تطبيق بريد إلكتروني,The e-mail application was not found.,0.837,0.932
+0.837,autoScan,Auto Scan,مسح تلقائي,,,0.837
+0.837,progressDecodingImage,Decoding image…,جارٍ فك ترميز الصورة…,,,0.837
+0.838,printMarginNarrow,Narrow,ضيق,,,0.838
+0.838,enableSharePromptsLabel,Enable Share Prompts,تفعيل طلبات المشاركة,,,0.838
+0.839,sealShapeRound,Round,دائري,,,0.839
+0.840,filterMagicColor,Magic colour,ألوان سحرية,,,0.840
+0.840,exportBackupButton,Export encrypted backup,تصدير نسخة احتياطية مشفرة,,,0.840
+0.842,commonConvert,Convert,تحويل,,,0.842
+0.843,progressRasterizing,Rasterizing pages…,جارٍ معالجة الصفحات…,,,0.843
+0.845,printFitFit,Fit page,ملاءمة الصفحة,,,0.845
+0.846,reviewPromptNo,Send Feedback,إرسال ملاحظات,,,0.846
+0.847,ocrNoInternetMessage,No internet. Connect once to download the language pack.,لا يوجد إنترنت. اتصل مرة واحدة لتنزيل حزمة اللغة.,There's no Internet. Call once to download the language package.,0.847,0.866
+0.847,idCardPdfGenerated,ID Card PDF Generated,تم إنشاء PDF لبطاقة الهوية,A PDF was created for the ID card.,0.847,0.912
+0.849,documentNotFound,Document not found,المستند غير موجود,,,0.849
+0.849,filterRecent,Recent,الأخيرة,,,0.849
+0.850,extractToNewDocAction,Extract to new doc,استخراج إلى مستند جديد,Extracted to a new document.,0.850,0.895
+0.850,clearLogsTooltip,Clear logs,مسح السجلات,,,0.850
+0.851,errorReportIssue,Report issue,الإبلاغ عن مشكلة,,,0.851
+0.852,scannerErrorPrefix,Scanner error,خطأ في الماسح الضوئي,,,0.852
+0.853,onboardingWelcomeSubtitle,"Your entire document office — scan, edit, sign, and export — in one private app.",مكتب مستنداتك الكامل — امسح وحرر ووقّع وصدّر — في تطبيق خاص واحد.,"Your full documentation office can be scanned, edited, signed and issued in one private app.",0.853,0.896
+0.853,sealCreateTitle,Custom Seal,ختم مخصص,,,0.853
+0.853,sealCustom,Custom Seal,ختم مخصص,,,0.853
+0.853,sealSavedHeading,Saved seals,الأختام المحفوظة,,,0.853
+0.854,annotationModeRect,Rectangle,مستطيل,,,0.854
+0.856,watermarkLayoutSingle,Single,مفرد,,,0.856
+0.857,ocrStatusOnDemand,On-demand,عند الطلب,,,0.857
+0.858,printFilterNone,No filter,بدون فلتر,,,0.858
+0.858,reviewPromptBody,Your feedback helps us grow and keeps the app free.,تعليقاتك تساعدنا على النمو وتحافظ على التطبيق مجانًا.,Your comments help us grow and keep the app free.,0.858,0.914
+0.860,readingPageProgress,Page {page} of {total},الصفحة {page} من {total},Page five out of five .,0.860,0.985
+0.860,enterBackupPasswordTitle,Enter backup password,أدخل كلمة مرور النسخة الاحتياطية,,,0.860
+0.861,errorGenericTitle,Something went wrong,حدث خطأ ما,,,0.861
+0.861,systemThemeOption,System,النظام,,,0.861
+0.861,importingStatus,Importing…,جارٍ الاستيراد…,,,0.861
+0.862,onboardingToolsTitle,21 Free Pro Tools,21 أداة احترافية مجانية,21 free professional tools .,0.862,0.913
+0.863,pageFormatLetter,Letter (US),خطاب (أمريكا),,,0.863
+0.863,pageCropped,Page cropped,تم اقتصاص الصفحة,,,0.863
+0.863,selectRegionTitle,Select Region,تحديد المنطقة,,,0.863
+0.863,pageResized,Page resized,تم تغيير حجم الصفحة,,,0.863
+0.864,letterSizeUS,Letter size (US),حجم الرسالة (الولايات المتحدة),,,0.864
+0.864,backupCorruptedError,This backup file looks corrupted.,يبدو أن ملف النسخة الاحتياطية هذا تالف.,Looks like this backup file is broken.,0.864,0.876
+0.864,resizeUpscaleWarning,Enlarging doesn't add detail — the page may look soft.,التكبير لا يضيف تفاصيل، وقد تبدو الصفحة ضبابية.,"Enlargement doesn't add details, and the page may look blurry.",0.875,0.864
+0.865,emailMessageHint,Add a note (optional),أضف ملاحظة (اختياري),Add my optional note.,0.865,0.967
+0.866,watermarkEditTitle,Edit Watermark,تحرير العلامة المائية,,,0.866
+0.866,subscriptionSectionLabel,Subscription,الاشتراك,,,0.866
+0.866,commonApply,Apply,تطبيق,,,0.866
+0.867,idPdfErrorPrefix,Error generating ID PDF,خطأ في إنشاء PDF للهوية,Error in creating an ID PDF .,0.905,0.867
+0.867,exportEstimatedSize,Estimated size: {mb} MB,الحجم المقدر: {mb} ميغابايت,Estimated size: 5 megabytes,0.869,0.867
+0.868,filterRemoved,Filter removed,تمت إزالة الفلتر,,,0.868
+0.869,watermarkAddTitle,Add Watermark,إضافة علامة مائية,,,0.869
+0.871,pricingLoadingError,Pricing is still loading — try again in a moment.,الأسعار ما زالت قيد التحميل — أعد المحاولة بعد قليل.,Prices are still loading. I'll try again in a minute.,0.871,0.912
+0.873,signatureCanvasHint,Sign here,وقّع هنا,,,0.873
+0.874,onboardingOcrSubtitle,Use KatharScan in {count} languages. OCR runs on your phone — nothing ever leaves your device.,استخدم KatharScan بـ {count} لغة. يعمل التعرف على النص على هاتفك — لا شيء يغادر جهازك.,Use KatharScan in five languages. Text recognition works on your phone.,0.874,0.879
+0.875,extractedTextTitle,Extracted Text,النص المستخرج,,,0.875
+0.875,emailMessageLabel,Message,الرسالة,,,0.875
+0.875,addCheckboxTitle,Add Checkbox,إضافة مربع اختيار,,,0.875
+0.876,sharePromptTitle,Love KatharScan?,هل تحب KatharScan؟,,,0.876
+0.879,commonCopy,Copy,نسخ,,,0.879
+0.879,exportFormatPdfDescription,Best for sharing and printing,الأفضل للمشاركة والطباعة,Best for sharing and printing .,0.958,0.879
+0.879,compressMedium,Medium,متوسط,,,0.879
+0.881,annotationModePen,Pen,قلم,,,0.881
+0.883,filterSheetTitle,Filters,المرشحات,,,0.883
+0.884,foldersSectionHeader,Folders,المجلدات,,,0.884
+0.884,filterFolders,Folders,المجلدات,,,0.884
+0.885,whatsNewTitle,What's New,الجديد,,,0.885
+0.886,sealSavedMessage,Seal saved,تم حفظ الختم,,,0.886
+0.887,fromAnotherDocument,From Another Document,من مستند آخر,,,0.887
+0.887,extractedPageDefaultTitle,Extracted Page,صفحة مستخرجة,,,0.887
+0.887,deleteFolderMessage,Documents inside will not be deleted.,لن تُحذف المستندات الموجودة بداخله.,You won't delete the documents inside it.,0.887,0.938
+0.888,importBackupButton,Import from backup,استيراد من نسخة احتياطية,,,0.888
+0.888,actionLabel,Action:,الإجراء:,,,0.888
+0.889,printRangeRange,Range,نطاق,,,0.889
+0.889,watermarkPagesRange,Range,نطاق,,,0.889
+0.889,pickErrorPrefix,Pick error,خطأ في الاختيار,,,0.889
+0.891,drawNewSignature,Draw New,رسم جديد,,,0.891
+0.892,filterShadowRemoval,Shadow removal,إزالة الظل,,,0.892
+0.892,editLabel,Edit,تعديل,,,0.892
+0.893,exportFormatCsvDescription,Spreadsheet data,بيانات جدول,,,0.893
+0.893,commonRename,Rename,إعادة تسمية,,,0.893
+0.894,fillSaveSnippet,Save as snippet,حفظ كمقتطف,,,0.894
+0.894,progressSaving,Saving…,جارٍ الحفظ…,,,0.894
+0.894,placeHereLabel,Place here,ضع هنا,,,0.894
+0.895,onboardingPrivacySubtitle,"No account, no cloud, no watermarks. Your documents never leave your device.",بدون حساب، بدون سحابة، بدون علامات مائية. مستنداتك لا تغادر جهازك.,"No account, no cloud, no watermarks, your documents don't leave your device.",0.970,0.895
+0.895,commonReset,Reset,إعادة تعيين,,,0.895
+0.895,printMarginNormal,Normal,عادي,,,0.895
+0.895,whatsNewBody,"Welcome to KatharScan! This is the first public release featuring unlimited scanning, 29 languages, and export to PDF, Word, TXT, JPG, PNG, and CSV.",مرحبًا بك في KatharScan! هذا هو الإصدار العام الأول بمسح غير محدود و29 لغة وتصدير إلى PDF وWord وTXT وJPG وPNG وCSV.,"Welcome to KatharScan! This is the first public release with unlimited scanning and 29 languages and export to PDF, Word, TXT, JPG, PNG and CSV.",0.993,0.895
+0.896,progressBuildingDocx,Building DOCX…,جارٍ إنشاء DOCX…,,,0.896
+0.897,opacityPercentLabel,Opacity: {percent}%,الشفافية: {percent}%,,,0.897
+0.897,moveToFolderTooltip,Move to folder,نقل إلى مجلد,,,0.897
+0.898,saveAsDocument,Save as Document,حفظ كمستند,,,0.898
+0.898,sealDefaultMainText,YOUR COMPANY,شركتك,,,0.898
+0.899,exportFormatSheetTitle,Export as,تصدير كـ,,,0.899
+0.899,docxWarningMessage,"DOCX sources render poorly as pages — save inside the app is limited to JPG/PNG from image, PDF, TXT or CSV sources. Use Export & Share for this file.",تُعرض مصادر DOCX بشكل سيئ كصفحات — يقتصر الحفظ داخل التطبيق على JPG/PNG من الصور أو PDF أو TXT أو CSV. استخدم تصدير ومشاركة لهذا الملف.,"DOCX sources are poorly displayed as <unk> pages that are limited to JPG/PNG storage within the application of images, PDF, TXT or CSV. Use export and share this file.",0.899,0.961
+0.899,filterColorEnhance,Color enhance,تحسين الألوان,,,0.899
+0.899,emptyFolders,No folders yet. Tap the folder icon to create one.,لا توجد مجلدات بعد. اضغط على أيقونة المجلد لإنشاء واحد.,No folders yet. Hit the folder icon to create one.,0.968,0.899
+0.900,enableNotificationsSubtitle,Allow background reminders for unexported documents,السماح بالتذكيرات في الخلفية للمستندات غير المصدرة,Allow reminders in the background of non-issued documents,0.916,0.900
+0.902,emailLabel,Email,بريد إلكتروني,,,0.902
+0.902,accentBlue,Blue,أزرق,,,0.902
+0.903,ocrLanguagePackNotReady,Language pack downloading or not ready. Try again shortly.,حزمة اللغة قيد التنزيل أو غير جاهزة. حاول مجددًا بعد قليل.,The language package is being downloaded or not ready. Try again soon.,0.903,0.930
+0.903,cropAuto,Auto-detect,اكتشاف تلقائي,,,0.903
+0.903,fillDeleteSnippet,Delete snippet?,حذف المقتطف؟,,,0.903
+0.903,docScannerUnsupportedMessage,"Your device doesn't support the advanced document scanner. Take a photo with your Camera app, then tap Import below to crop and save it.",جهازك لا يدعم ماسح المستندات المتقدم. التقط صورة بتطبيق الكاميرا، ثم اضغط على استيراد أدناه لقصها وحفظها.,"Your device doesn't support an advanced document scanner. Take a picture with the camera app, then press Import below to cut and save it.",0.914,0.903
+0.904,moveToFolderTitle,Move to Folder,نقل إلى مجلد,,,0.904
+0.904,movedToFolderMessage,Moved to folder.,تم النقل إلى المجلد.,,,0.904
+0.905,exportFormatDocxDescription,Editable text document,مستند نصي قابل للتحرير,,,0.905
+0.906,signatureDeleteSaved,Remove saved signature,إزالة التوقيع المحفوظ,,,0.906
+0.906,stampPaperLabel,Paper,ورق,,,0.906
+0.907,progressCopying,Copying…,جارٍ النسخ…,,,0.907
+0.908,pagesSelectTooltip,Select pages,تحديد صفحات,,,0.908
+0.908,pageToLabel,To page,إلى الصفحة,,,0.908
+0.909,renameFolderTitle,Rename folder,إعادة تسمية المجلد,,,0.909
+0.909,ocrStatusUnsupported,Unsupported,غير مدعوم,,,0.909
+0.910,pagesDeleteConfirm,Delete {count} pages? They are removed when you save.,حذف {count} صفحات؟ تتم الإزالة عند الحفظ.,5 pages are deleted when saved.,0.910,0.952
+0.911,importErrorPrefix,Import error,خطأ في الاستيراد,,,0.911
+0.911,restoreCompleteMessage,Restore complete.,اكتملت الاستعادة.,,,0.911
+0.912,progressReading,Reading…,جارٍ القراءة…,,,0.912
+0.912,rotationAllPages,All pages rotated,تم تدوير جميع الصفحات,,,0.912
+0.913,emailAttachmentNotIncluded,The pages could not be attached to the email. Use Share to send the pages.,تعذر إرفاق الصفحات بالبريد. استخدم المشاركة لإرسال الصفحات.,Pages can't be attached by mail. Use Share to send pages.,0.913,0.913
+0.913,signatureChoiceMessage,Use your saved signature or draw a new one?,استخدم توقيعك المحفوظ أو ارسم واحدًا جديدًا؟,Use your saved signature or draw a new one?,1.000,0.913
+0.914,sharePromptBody,Share it with friends who need a powerful document scanner.,شاركه مع الأصدقاء الذين يحتاجون إلى ماسح مستندات قوي.,Share it with friends who need a solid document scanner.,0.967,0.914
+0.914,sealCenterTextLabel,Center text,نص الوسط,,,0.914
+0.914,genericErrorMessage,Something went wrong. Please try again.,حدث خطأ ما. يرجى المحاولة مرة أخرى.,Something went wrong. Please try again.,1.000,0.914
+0.914,saveToDeviceButton,Save to Device,حفظ على الجهاز,,,0.914
+0.915,captureFrontSide,Capture Front Side,التقاط الجانب الأمامي,,,0.915
+0.915,captureBackSide,Capture Back Side,التقاط الجانب الخلفي,,,0.915
+0.916,reviewPromptTitle,Enjoying KatharScan?,هل تستمتع بـ KatharScan؟,,,0.916
+0.917,tickerSearchablePdf,SEARCHABLE PDF,PDF قابل للبحث,,,0.917
+0.917,commonSave,Save,حفظ,,,0.917
+0.917,exportSavedToDownloads,Saved to Downloads,تم الحفظ في التنزيلات,,,0.917
+0.918,openSourceLicensesLabel,Open-source licenses,تراخيص مفتوحة المصدر,,,0.918
+0.918,restorePurchasesButton,Restore purchases,استعادة المشتريات,,,0.918
+0.918,rotationPage,Page rotated,تم تدوير الصفحة,,,0.918
+0.919,ocrStatusChecking,Checking...,جارٍ التحقق...,,,0.919
+0.919,sealCenterStar,Star,نجمة,,,0.919
+0.921,addDateTitle,Add Date,إضافة تاريخ,,,0.921
+0.921,noteTextLabel,Note text,نص الملاحظة,,,0.921
+0.921,signatureSavedHeading,Saved signatures,التوقيعات المحفوظة,,,0.921
+0.922,emptyStateDefaultMessage,Tap the camera to scan your first document.,اضغط على الكاميرا لمسح أول مستند لك.,Press the camera to scan your first document.,0.964,0.922
+0.922,tryAgainButton,Try again,إعادة المحاولة,,,0.922
+0.922,tickerPdfExport,PDF EXPORT,تصدير PDF,,,0.922
+0.922,clearedCount,Cleared {count},تم مسح {count},,,0.922
+0.922,renameDocumentTitle,Rename document,إعادة تسمية المستند,,,0.922
+0.922,shareTooltip,Share,مشاركة,,,0.922
+0.922,commonShare,Share,مشاركة,,,0.922
+0.923,scanPreviewNoPages,No pages to show.,لا توجد صفحات لعرضها.,There are no pages to show.,0.939,0.923
+0.923,ocrScriptLatin,"Latin (English, European)",لاتيني (إنجليزي، أوروبي),,,0.923
+0.923,moreOptionsTooltip,More options,خيارات إضافية,,,0.923
+0.923,migrationExplainer,"This isn't automatic sync. Export creates a single encrypted backup file you move to your new device yourself, then import there.",هذه ليست مزامنة تلقائية. يُنشئ التصدير ملف نسخة احتياطية واحدًا مشفرًا تنقله بنفسك إلى جهازك الجديد، ثم تستورده هناك.,"This isn't automatic synchronization. Exporting creates a single encrypted backup file that you yourself transfer to your new device, and then you import it there.",0.978,0.923
+0.923,clearAll,Clear all,مسح الكل,,,0.923
+0.925,convertDocumentTitle,Convert Document,تحويل المستند,,,0.925
+0.926,paywallFeatureFreeForever,All features free forever,جميع الميزات مجانية للأبد,All the features are forever free.,0.926,0.950
+0.927,noTextRecognized,No text recognized.,لم يتم التعرف على أي نص.,,,0.927
+0.927,favoriteTooltip,Favorite,مفضلة,,,0.927
+0.927,clearThis,Clear this,مسح هذا,,,0.927
+0.928,progressBuildingPdf,Building PDF…,جارٍ إنشاء PDF…,,,0.928
+0.928,pagesToReadTitle,Pages to read,الصفحات المراد قراءتها,,,0.928
+0.928,commonCustom,Custom,مخصص,,,0.928
+0.928,folderUnavailable,This folder is no longer available.,هذا المجلد لم يعد متاحًا.,This folder is no longer available.,1.000,0.928
+0.928,exportingStatus,Exporting…,جارٍ التصدير…,,,0.928
+0.928,commonImport,Import,استيراد,,,0.928
+0.929,signatureTitle,Signature,التوقيع,,,0.929
+0.930,copyAll,Copy all,نسخ الكل,,,0.930
+0.930,commonConfirm,Confirm,تأكيد,,,0.930
+0.930,paywallSuccessMessage,Thank you for supporting KatharScan.,شكراً لدعم KatharScan.,Thank you for supporting KatharScan.,1.000,0.930
+0.930,conversionStarting,Starting…,جارٍ البدء…,,,0.930
+0.931,fillTooltip,Fill,ملء,,,0.931
+0.931,tickerJpgExport,JPG EXPORT,تصدير JPG,,,0.931
+0.931,compressSmall,Small,صغير,,,0.931
+0.931,sealSaveToLibrary,Save this seal,حفظ هذا الختم,,,0.931
+0.932,tabImageLabel,Image,صورة,,,0.932
+0.932,watermarkKindImage,Image,صورة,,,0.932
+0.932,commonExport,Export,تصدير,,,0.932
+0.932,exportTooltip,Export,تصدير,,,0.932
+0.932,exportTitle,Export,تصدير,,,0.932
+0.932,revertToOriginalTitle,Revert to Original?,العودة إلى الأصل؟,,,0.932
+0.933,printPaperLabel,Paper,الورق,,,0.933
+0.933,tickerTxtExport,TXT EXPORT,تصدير TXT,,,0.933
+0.933,progressExtractingText,Extracting text…,جارٍ استخراج النص…,,,0.933
+0.934,docxModeWithImages,With Images,مع الصور,,,0.934
+0.934,editDocumentAction,Edit Document,تحرير المستند,,,0.934
+0.934,saveToDownloadsAction,Save to Downloads,حفظ في التنزيلات,,,0.934
+0.935,conversionFailedPrefix,Conversion failed,فشل التحويل,,,0.935
+0.935,emptyDocumentMessage,This document has no pages.,لا يحتوي هذا المستند على صفحات.,This document has no pages.,1.000,0.935
+0.936,commonUse,Use,استخدام,,,0.936
+0.936,watermarkPagesThis,This page,هذه الصفحة,,,0.936
+0.936,ocrStatusDownloading,Downloading…,جارٍ التنزيل…,,,0.936
+0.937,idGenerating,Generating PDF...,جارٍ إنشاء PDF...,,,0.937
+0.937,watermarkTextLabel,Text,النص,,,0.937
+0.937,cropAspectId,ID card,بطاقة هوية,,,0.937
+0.938,noFoldersYet,No folders yet,لا توجد مجلدات بعد,,,0.938
+0.938,appearanceSectionLabel,Appearance,المظهر,,,0.938
+0.938,commonCreate,Create,إنشاء,,,0.938
+0.939,titleIdCard,ID Card,بطاقة الهوية,,,0.939
+0.939,languageSectionLabel,Language,اللغة,,,0.939
+0.940,paywallFallbackPrice,$14.99 one-time,$14.99 لمرة واحدة,,,0.940
+0.941,commonCancel,Cancel,إلغاء,,,0.941
+0.941,pageFromLabel,From page,من الصفحة,,,0.941
+0.941,printPerSheetLabel,Pages per sheet,صفحات لكل ورقة,,,0.941
+0.941,enableNotificationsLabel,Enable Notifications,تفعيل الإشعارات,,,0.941
+0.942,ocrScriptJapanese,Japanese,ياباني,,,0.942
+0.942,appLanguageLabel,App language,لغة التطبيق,,,0.942
+0.942,sealFontSerif,Classic,كلاسيكي,,,0.942
+0.942,commonPrint,Print,طباعة,,,0.942
+0.942,chipAllFolders,All Folders,جميع المجلدات,,,0.942
+0.943,clearPage,Clear page,مسح الصفحة,,,0.943
+0.943,managePagesTitle,Manage Pages,إدارة الصفحات,,,0.943
+0.943,rotate90Action,Rotate 90°,تدوير 90°,,,0.943
+0.943,removeFromFolderTooltip,Remove from folder,إزالة من المجلد,,,0.943
+0.944,tickerCsvExport,CSV EXPORT,تصدير CSV,,,0.944
+0.944,importBackSide,Import Back Side,استيراد الجانب الخلفي,,,0.944
+0.945,aboutSectionLabel,About,حول,,,0.945
+0.945,commonDelete,Delete,حذف,,,0.945
+0.945,deleteTooltip,Delete,حذف,,,0.945
+0.945,filterFavorites,Favorites,المفضلة,,,0.945
+0.945,documentsSectionHeader,Documents,المستندات,,,0.945
+0.945,deleteFolderTooltip,Delete folder,حذف المجلد,,,0.945
+0.946,genericErrorPrefix,Error,خطأ,,,0.946
+0.946,tickerPngExport,PNG EXPORT,تصدير PNG,,,0.946
+0.946,docxModeTextOnly,Text Only,نص فقط,,,0.946
+0.946,noteLabel,Note,ملاحظة,,,0.946
+0.946,homeLanguageTooltip,App Language,لغة التطبيق,,,0.946
+0.946,appLanguageTitle,App Language,لغة التطبيق,,,0.946
+0.946,debugNoLogsYet,No logs yet,لا توجد سجلات بعد,,,0.946
+0.947,sealRemoveWhite,Make white transparent,جعل الأبيض شفافًا,,,0.947
+0.948,newFolderTitle,New Folder,مجلد جديد,,,0.948
+0.948,newFolderTooltip,New Folder,مجلد جديد,,,0.948
+0.949,privacyPolicyLabel,Privacy policy,سياسة الخصوصية,,,0.949
+0.949,printRangeCurrent,Current,الحالية,,,0.949
+0.950,convertToLabel,Convert to:,تحويل إلى:,,,0.950
+0.950,fillTypeHint,Type here,اكتب هنا,,,0.950
+0.951,convertedDocTitle,Converted {date},تم تحويل {date},,,0.951
+0.951,commonClose,Close,إغلاق,,,0.951
+0.952,sharePromptAction,Share App,مشاركة التطبيق,,,0.952
+0.953,importFrontSide,Import Front Side,استيراد الجانب الأمامي,,,0.953
+0.954,cameraErrorPrefix,Camera error,خطأ في الكاميرا,,,0.954
+0.955,pagesLabel,Pages,صفحات,,,0.955
+0.955,filterAll,All,الكل,,,0.955
+0.955,noDocumentsInFolder,No documents in this folder yet.,لا توجد مستندات في هذا المجلد بعد.,There are no documents in this folder yet.,0.955,0.958
+0.957,saveFailedPrefix,Save failed:,فشل الحفظ:,,,0.957
+0.958,documentSaved,Document saved,تم حفظ المستند,,,0.958
+0.958,adsRemovedLabel,Ads Removed,تمت إزالة الإعلانات,,,0.958
+0.958,paywallSuccessTitle,Ads Removed,تمت إزالة الإعلانات,,,0.958
+0.959,autoCopyOcrLabel,Auto-copy OCR,نسخ OCR تلقائيًا,,,0.959
+0.959,compressTargetLabel,Max size,الحجم الأقصى,,,0.959
+0.960,deleteFolderTitle,Delete this folder?,حذف هذا المجلد؟,,,0.960
+0.961,removeFromFavorites,Remove from Favorites,إزالة من المفضلة,,,0.961
+0.961,ocrNoTextFound,No text found,لم يتم العثور على نص,,,0.961
+0.961,addToFavorites,Add to Favorites,إضافة إلى المفضلة,,,0.961
+0.961,commonRemove,Remove,إزالة,,,0.961
+0.962,paywallSubtitle,Support KatharScan with a one-time purchase. All features remain free.,ادعم KatharScan بعملية شراء لمرة واحدة. تظل جميع الميزات مجانية.,Support KatharScan with a one-time purchase. All features remain free.,1.000,0.962
+0.962,addTextTitle,Add Text,إضافة نص,,,0.962
+0.962,emailFailed,Email failed,فشل البريد الإلكتروني,,,0.962
+0.963,onboardingWelcomeTitle,Welcome to KatharScan,مرحبًا بك في KatharScan,,,0.963
+0.963,idLayoutRealSize,Real size,الحجم الحقيقي,,,0.963
+0.964,pagesUpdated,Pages updated,تم تحديث الصفحات,,,0.964
+0.964,watermarkPagesLabel,Pages,الصفحات,,,0.964
+0.964,saveInsideAppWarning,"To save inside the app, choose JPG or PNG. Other targets are exported as files.",للحفظ داخل التطبيق، اختر JPG أو PNG. يتم تصدير الأهداف الأخرى كملفات.,"To save within the app, select JPG or PNG. Other targets are exported as files.",0.986,0.964
+0.964,addSignature,Add Signature,إضافة توقيع,,,0.964
+0.964,commonChange,Change,تغيير,,,0.964
+0.964,commonUpdate,Update,تحديث,,,0.964
+0.964,addPageTitle,Add Page,إضافة صفحة,,,0.964
+0.965,addNoteTitle,Add Note,إضافة ملاحظة,,,0.965
+0.965,sealTextColorLabel,Text colour,لون النص,,,0.965
+0.965,cameraSource,Camera,الكاميرا,,,0.965
+0.965,filterOriginal,Original,الأصلي,,,0.965
+0.965,privacyOptionsLabel,Privacy settings,إعدادات الخصوصية,,,0.965
+0.966,settingsTooltip,Settings,الإعدادات,,,0.966
+0.966,settingsTitle,Settings,الإعدادات,,,0.966
+0.966,exportAndShareAction,Export & Share,تصدير ومشاركة,,,0.966
+0.968,clearAllPages,Clear all pages,مسح كل الصفحات,,,0.968
+0.969,heightLabel,Height,الارتفاع,,,0.969
+0.969,customColorTitle,Custom Color,لون مخصص,,,0.969
+0.969,printFailed,Print failed,فشلت الطباعة,,,0.969
+0.969,printRangeAll,All pages,كل الصفحات,,,0.969
+0.969,watermarkPagesAll,All pages,كل الصفحات,,,0.969
+0.969,watermarkChooseImage,Choose image,اختر صورة,,,0.969
+0.969,printOptionsTitle,Print Options,خيارات الطباعة,,,0.969
+0.969,commonColor,Color,اللون,,,0.969
+0.970,sharePromptDismiss,Not now,ليس الآن,,,0.970
+0.970,termsOfServiceLabel,Terms of Service,شروط الخدمة,,,0.970
+0.970,storageSectionLabel,Storage,التخزين,,,0.970
+0.971,sealTextSizePercent,Text size {percent}%,حجم النص {percent}%,,,0.971
+0.971,exportFormatTxtLabel,Text (.txt),نص ‏(.txt),,,0.971
+0.971,commonAdd,Add,إضافة,,,0.971
+0.972,pdfImportErrorPrefix,PDF import error,خطأ في استيراد PDF,,,0.972
+0.972,sharePdf,Share PDF,مشاركة PDF,,,0.972
+0.974,commonSize,Size,الحجم,,,0.974
+0.974,tabOcrTextLabel,OCR Text,نص OCR,,,0.974
+0.975,pagesDeleteCount,Delete {count},حذف {count},,,0.975
+0.976,supportLabel,Support,الدعم,,,0.976
+0.977,textSizeLabel,Text size: {size},حجم النص: {size},,,0.977
+0.979,signatureTypeHint,Type your name,اكتب اسمك,,,0.979
+0.982,paywallTitle,Remove Ads,إزالة الإعلانات,,,0.982
+0.983,titlePdfImport,PDF Import,استيراد PDF,,,0.983
+0.985,ocrLanguagesLabel,OCR Languages,لغات OCR,,,0.985
+0.985,pageIndicator,Page {current} / {total},الصفحة {current} / {total},Page 5 / 5,1.000,0.985
+0.987,pageLabel,Page {index},الصفحة {index},,,0.987
+0.995,originalDimensions,Original: {w}×{h},الأصلي: {w}×{h},,,0.995
+1.000,fontMonospace,monospace,monospace,,,1.000
+1.000,ocrScriptArabic,العربية (Arabic),العربية (Arabic),,,1.000
+1.000,formatCsv,CSV,CSV,,,1.000
+1.000,ocrScriptHebrew,עברית (Hebrew),עברית (Hebrew),,,1.000
+1.000,exportFormatPdfLabel,PDF,PDF,,,1.000
+1.000,exportFormatDocxLabel,Word (.docx),Word ‏(.docx),,,1.000
+1.000,exportFormatJpgLabel,JPG,JPG,,,1.000
+1.000,exportFormatPngLabel,PNG,PNG,,,1.000
+1.000,ocrSectionLabel,OCR,OCR,,,1.000
+1.000,ocrScriptRussian,Русский (Russian),Русский (Russian),,,1.000
+1.000,ocrScriptUkrainian,Українська (Ukrainian),Українська (Ukrainian),,,1.000
+1.000,ocrScriptBengali,বাংলা (Bengali),বাংলা (Bengali),,,1.000
+1.000,fontSerif,serif,serif,,,1.000
+1.000,tickerLanguages,{count} LANGUAGES,{count} LANGUAGES,,,1.000
+1.000,ocrScriptGreek,Ελληνικά (Greek),Ελληνικά (Greek),,,1.000
+1.000,fontSansSerif,sans-serif,sans-serif,,,1.000
+1.000,ocrScriptThai,ไทย (Thai),ไทย (Thai),,,1.000

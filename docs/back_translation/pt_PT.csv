@@ -1,0 +1,157 @@
+score,key,english,translation,back_to_english,backtrans_score,labse_score
+0.260,genericErrorMessage,Something went wrong. Please try again.,Ocorreu um erro. Tente novamente.,There's been a mistake.,0.260,0.882
+0.461,deleteScanMessage,This can't be undone.,Esta ação não pode ser anulada.,This action cannot be annulled.,0.461,0.819
+0.548,appearanceSectionLabel,Appearance,Aspeto,,,0.548
+0.572,couldNotOpenLinkError,Could not open link.,Não foi possível abrir a ligação.,We couldn't open the connection.,0.572,0.897
+0.574,cropLabel,Crop,Recortar,,,0.574
+0.576,commonReset,Reset,Repor,,,0.576
+0.577,cropNoPageFound,Couldn't find the page edges. Drag the corners.,Não foi possível encontrar as margens. Arraste os cantos.,You couldn't find the edges.,0.577,0.852
+0.585,signatureTabType,Type,Escrever,,,0.585
+0.597,rotateLabel,Rotate,Rodar,,,0.597
+0.606,beepOnCaptureLabel,Beep on capture,Sinal sonoro ao capturar,,,0.606
+0.609,enableReviewPromptsSubtitle,Allow the app to occasionally ask for a rating,Permitir que a aplicação peça uma avaliação ocasionalmente,Allow the application to occasionally request an evaluation,0.609,0.903
+0.622,filterGrayscale,Grayscale,Tons de cinzento,,,0.622
+0.628,autoCopyOcrSubtitle,Copy text to clipboard after scan,Copiar texto para a área de transferência após digitalizar,Copy text to the transfer area after digitization,0.628,0.805
+0.628,billingUnavailableMessage,Billing unavailable — try again later.,Faturação indisponível — tente novamente mais tarde.,Invoicing unavailable <unk> Try again later.,0.628,0.945
+0.630,settingsTooltip,Settings,Definições,,,0.630
+0.630,settingsTitle,Settings,Definições,,,0.630
+0.635,ticker100OnDevicePrivacy,YOUR DOCUMENTS STAY ON YOUR DEVICE,OS SEUS DOCUMENTOS FICAM NO SEU DISPOSITIVO,Your documents are at your disposal .,0.635,0.919
+0.654,scanUnavailable,This scan is no longer available.,Esta digitalização já não está disponível.,This digitization is no longer available.,0.654,0.809
+0.661,fullscreenLabel,Fullscreen,Ecrã inteiro,,,0.661
+0.667,onboardingEditSubtitle,"Every edit stays reversible — undo, redo, and revert to original anytime.","Todas as edições são reversíveis — anule, refaça e volte ao original quando quiser.","All editions are reversible. Cancel, re-write, and return to the original whenever you want.",0.667,0.850
+0.668,onboardingSignSubtitle,"E-sign contracts, type-to-fill forms, and stamp enterprise seals in seconds.","Assine contratos, preencha formulários e aplique selos em segundos.","Sign contracts, fill out forms and apply stamps in seconds.",0.668,0.745
+0.670,captureBackSide,Capture Back Side,Capturar verso,,,0.670
+0.695,cameraSource,Camera,Câmara,,,0.695
+0.697,vibrateOnCaptureSubtitle,Haptic feedback when scan completes,Resposta tátil quando a digitalização terminar,Tactile response when scanning is complete,0.772,0.697
+0.699,pricingLoadingError,Pricing is still loading — try again in a moment.,Os preços ainda estão a carregar — tente novamente dentro de instantes.,Prices are still charging <unk> try again in a few moments.,0.699,0.910
+0.703,onboardingToolsSubtitle,"Annotate, sign, watermark, fill forms, seal, and more — every tool free and unlimited.","Anote, assine, marca de água, preencha formulários, carimbe e muito mais — tudo grátis e sem limites.","Take notes, sign, watermark, fill out forms, stamp and more <unk> all free and unlimited.",0.703,0.860
+0.704,importBackSide,Import Back Side,Importar verso,,,0.704
+0.716,commonSkip,Skip,Saltar,,,0.716
+0.716,ocrNoInternetMessage,No internet. Connect once to download the language pack.,Sem internet. Ligue-se uma vez para transferir o pacote de idioma.,"No internet, just call once to transfer the language packet.",0.716,0.862
+0.716,revertToOriginalMessage,"This will undo all filters, rotations, crops, resizes, and eraser strokes on this page.","Isto anula todos os filtros, rotações, recortes, redimensionamentos e traços de borracha nesta página.","This cancels all filters, rotations, cuts, resizing and rubber traces on this page.",0.716,0.850
+0.718,exportSavedToDownloads,Saved to Downloads,Guardado em Transferências,,,0.718
+0.722,backupReadyStatus,Backup ready.,Cópia de segurança pronta.,,,0.722
+0.740,ocrLanguagePackNotReady,Language pack downloading or not ready. Try again shortly.,Pacote de idioma a transferir ou ainda não pronto. Tente novamente em breve.,Language packet to transfer or not yet ready. Try again soon.,0.740,0.886
+0.741,captionDocs,"Flexible crop: Original, Square, 4:3, 3:2, 16:9","Recorte flexível: original, quadrado, 4:3, 3:2, 16:9","Flexible cut: original, square, 4:3, 3:2, 16:9",0.741,0.936
+0.751,cropDocumentTitle,Crop Document,Recortar documento,,,0.751
+0.755,saveToDownloadsAction,Save to Downloads,Guardar em Transferências,,,0.755
+0.756,captionPassport,Passport crop: 4:3 or Original,Recorte de passaporte: 4:3 ou original,Passport cut: 4:3 or original,0.756,0.916
+0.768,cropIdCardTitle,Crop ID Card,Recortar cartão de ID,,,0.768
+0.769,onboardingWelcomeSubtitle,"Your entire document office — scan, edit, sign, and export — in one private app.","Todo o seu escritório de documentos — digitalize, edite, assine e exporte — numa aplicação privada.","Your entire document office <unk> digitize, edit, sign and export <unk> in a private application.",0.769,0.882
+0.773,deleteFolderTooltip,Delete folder,Eliminar pasta,,,0.773
+0.779,ocrStatusDownloading,Downloading…,A transferir…,,,0.779
+0.785,captionOcr,"Text crop: Original, Square, 4:3","Recorte de texto: original, quadrado, 4:3","Text cuts: original, square, 4:3",0.785,0.943
+0.787,cropAuto,Auto-detect,Detetar automaticamente,,,0.787
+0.788,importBackupButton,Import from backup,Importar de uma cópia de segurança,,,0.788
+0.792,savedToDocumentText,Saved to document text,Guardado no texto do documento,Stored in the text of the document,0.792,0.875
+0.797,searchHint,Search your scans,Pesquisar nas suas digitalizações,,,0.797
+0.797,debugLogsLabel,Debug Logs,Registos de depuração,,,0.797
+0.800,printFitFill,Fill sheet (trims edges),Preencher folha (corta as margens),Filling sheet (cutting margins),0.800,0.821
+0.804,enableReviewPromptsLabel,Enable Review Prompts,Ativar pedidos de avaliação,,,0.804
+0.804,watermarkLabel,Watermark,Marca de água,,,0.804
+0.807,buildingBackupStatus,Building backup…,A criar cópia de segurança…,,,0.807
+0.824,enableSharePromptsLabel,Enable Share Prompts,Ativar pedidos de partilha,,,0.824
+0.825,watermarkEditTitle,Edit Watermark,Editar marca de água,,,0.825
+0.826,tickerLanguages,{count} LANGUAGES,{count} IDIOMAS,,,0.826
+0.827,setBackupPasswordTitle,Set a backup password,Definir palavra-passe da cópia de segurança,Define the password of the backup,0.873,0.827
+0.832,paywallFeatureFreeForever,All features free forever,Todas as funcionalidades gratuitas para sempre,All free functionality forever,0.832,0.932
+0.834,idStepBack,Step 2: Capture Back Side,Passo 2: capture o verso,Step 2: Capture the reverse,0.834,0.889
+0.837,fillInputHint,Type text to fill,Escreva o texto a preencher,Write the text to be filled in,0.837,0.906
+0.840,privacyOptionsLabel,Privacy settings,Definições de privacidade,,,0.840
+0.841,signatureSavedHeading,Saved signatures,Assinaturas guardadas,,,0.841
+0.844,fillSaveSnippet,Save as snippet,Guardar como excerto,,,0.844
+0.846,enterBackupPasswordTitle,Enter backup password,Introduza a palavra-passe da cópia de segurança,,,0.846
+0.847,saveInsideAppWarning,"To save inside the app, choose JPG or PNG. Other targets are exported as files.","Para guardar na aplicação, escolha JPG ou PNG. Os outros destinos são exportados como ficheiros.","To save in the application, select JPG or PNG. The other destinations are exported as files.",0.847,0.896
+0.848,beepOnCaptureSubtitle,Play sound when scan completes,Reproduzir som quando a digitalização terminar,Playing sound when scanning is over,0.848,0.855
+0.850,exportBackupButton,Export encrypted backup,Exportar cópia de segurança encriptada,,,0.850
+0.850,noFoldersYetHomeMessage,No folders yet. Create one from the home screen.,Ainda sem pastas. Crie uma no ecrã inicial.,"No folders yet, create one on the home screen.",0.992,0.850
+0.850,captureFrontSide,Capture Front Side,Capturar frente,,,0.850
+0.852,deleteFolderMessage,Documents inside will not be deleted.,Os documentos que contém não serão eliminados.,The documents it contains will not be deleted.,0.885,0.852
+0.854,errorReportIssue,Report issue,Comunicar problema,,,0.854
+0.858,migrationExplainer,"This isn't automatic sync. Export creates a single encrypted backup file you move to your new device yourself, then import there.",Isto não é sincronização automática. A exportação cria um único ficheiro de cópia de segurança encriptado que transfere para o novo dispositivo e importa lá.,This isn't automatic synchronization. Exporting creates a single encrypted backup file that is transferred to the new device and imported there.,0.967,0.858
+0.861,backupCorruptedError,This backup file looks corrupted.,Este ficheiro de cópia de segurança parece estar danificado.,This backup file seems damaged.,0.902,0.861
+0.864,saveFailedPrefix,Save failed:,Falha ao guardar:,,,0.864
+0.866,exportFormatPdfDescription,Best for sharing and printing,Ideal para partilhar e imprimir,Ideal for sharing and printing,0.946,0.866
+0.866,signatureNewOne,Draw or type a new one,Desenhar ou escrever uma nova,Drawing or writing a new one,0.866,0.915
+0.868,tickerNoWatermarks,NO WATERMARKS,SEM MARCAS DE ÁGUA,,,0.868
+0.868,emptyFolders,No folders yet. Tap the folder icon to create one.,Ainda sem pastas. Toque no ícone de pasta para criar uma.,No folders yet. Tap the folder icon to create one.,1.000,0.868
+0.870,managePagesTitle,Manage Pages,Gerir páginas,,,0.870
+0.876,batchExportEmptyMessage,No documents to batch export. Scan some first.,Nenhum documento para exportar em lote. Digitalize alguns primeiro.,No documents to export in batches.,0.912,0.876
+0.877,docxWarningMessage,"DOCX sources render poorly as pages — save inside the app is limited to JPG/PNG from image, PDF, TXT or CSV sources. Use Export & Share for this file.","As origens DOCX são mal apresentadas como páginas — guardar na aplicação está limitado a JPG/PNG de imagem, PDF, TXT ou CSV. Use Exportar e partilhar para este ficheiro.","DOCX originals are poorly presented as pages <unk> save in the application is limited to image JPG/PNG, PDF, TXT or CSV. Use Export and share to this file.",0.877,0.935
+0.879,tapToSampleColor,Tap a spot to sample its color,Toque num ponto para amostrar a cor,Touch a point to sample the color,0.879,0.879
+0.880,couldNotCreateBackupError,Could not create the backup.,Não foi possível criar a cópia de segurança.,It was not possible to create the backup.,0.906,0.880
+0.881,ocrStatusOnDemand,On-demand,A pedido,,,0.881
+0.881,watermarkAddTitle,Add Watermark,Adicionar marca de água,,,0.881
+0.881,deleteScanTitle,Delete this scan?,Eliminar esta digitalização?,,,0.881
+0.884,rotationPage,Page rotated,Página rodada,,,0.884
+0.886,couldNotImportBackupError,Could not import this backup. Check the password and try again.,Não foi possível importar esta cópia de segurança. Verifique a palavra-passe e tente novamente.,"You couldn't import this backup, so check the password and try again.",0.988,0.886
+0.888,folderUnavailable,This folder is no longer available.,Esta pasta já não está disponível.,This folder is no longer available.,1.000,0.888
+0.889,importFrontSide,Import Front Side,Importar frente,,,0.889
+0.889,sharePromptBody,Share it with friends who need a powerful document scanner.,Partilhe com amigos que precisam de um scanner de documentos poderoso.,Share it with friends who need a powerful document scanner.,1.000,0.889
+0.890,ocrStatusChecking,Checking...,A verificar...,,,0.890
+0.891,fillDeleteSnippet,Delete snippet?,Eliminar excerto?,,,0.891
+0.895,clearLogsTooltip,Clear logs,Limpar registos,,,0.895
+0.896,progressBuildingDocx,Building DOCX…,A criar DOCX…,,,0.896
+0.896,emailLimitMissed,Could not get under {mb} MB; sent the smallest version.,Não foi possível ficar abaixo de {mb} MB; foi enviada a versão mais pequena.,It was not possible to get below 5 MB; the smaller version was sent.,0.896,0.936
+0.900,progressSaving,Saving…,A guardar…,,,0.900
+0.901,frontSideCaptured,Front side captured. Now capture the back side.,Lado da frente capturado. Agora capture o verso.,Front side captured. Now capture the rear.,0.949,0.901
+0.903,fillTypeHint,Type here,Escreva aqui,,,0.903
+0.904,docScannerUnsupportedMessage,"Your device doesn't support the advanced document scanner. Take a photo with your Camera app, then tap Import below to crop and save it.",O seu dispositivo não suporta o scanner avançado de documentos. Tire uma fotografia com a aplicação Câmara e toque em Importar abaixo para recortar e guardar.,"Your device doesn't support the advanced document scanner, so take a picture with the Camera app and tap Import below to cut and save.",0.904,0.911
+0.904,pageToLabel,To page,Até à página,,,0.904
+0.906,deleteFolderTitle,Delete this folder?,Eliminar esta pasta?,,,0.906
+0.907,letterSizeUS,Letter size (US),Tamanho Carta (EUA),,,0.907
+0.908,noEmailAppFound,No email app found,Nenhuma aplicação de e-mail encontrada,No e-mail application found,0.908,0.957
+0.909,exportGenericError,Something went wrong while exporting.,Algo correu mal durante a exportação.,Something went wrong during the export.,0.922,0.909
+0.909,eraserAutoColorTooltip,Match the page colour automatically,Corresponder automaticamente à cor da página,Automatically match the page color,0.986,0.909
+0.912,pageCropped,Page cropped,Página recortada,,,0.912
+0.912,emptyFavorites,No favorites yet. Tap the star icon on a document to add it.,Ainda sem favoritos. Toque no ícone de estrela num documento para o adicionar.,No favorites yet. Tap the star icon on a document to add it.,1.000,0.912
+0.915,reviewPromptBody,Your feedback helps us grow and keeps the app free.,O seu feedback ajuda-nos a crescer e mantém a aplicação gratuita.,Your feedback helps us grow and keeps the app free.,1.000,0.915
+0.916,exportFormatTxtDescription,Plain OCR text only,Apenas texto OCR simples,Only plain OCR text,0.980,0.916
+0.917,progressReading,Reading…,A ler…,,,0.917
+0.919,signatureDeleteSaved,Remove saved signature,Remover assinatura guardada,,,0.919
+0.920,debugNoLogsYet,No logs yet,Ainda sem registos,,,0.920
+0.920,signatureChoiceMessage,Use your saved signature or draw a new one?,Usar a sua assinatura guardada ou desenhar uma nova?,Use your saved signature or design a new one?,0.920,0.937
+0.921,errorScreenProblem,KatharScan ran into a problem displaying this screen. Your scans are safe — they're stored on this device and this doesn't affect them.,O KatharScan teve um problema ao apresentar este ecrã. As suas digitalizações estão seguras — ficam guardadas neste dispositivo e isto não as afeta.,KatharScan had a problem presenting this screen. Their scans are secure <unk> they're stored on this device and this doesn't affect them.,0.950,0.921
+0.922,paywallSubtitle,Support KatharScan with a one-time purchase. All features remain free.,Apoie o KatharScan com uma compra única. Todas as funcionalidades continuam gratuitas.,Support KatharScan with a one-time purchase.,0.922,0.928
+0.922,progressBuildingPdf,Building PDF…,A criar PDF…,,,0.922
+0.923,progressDecodingImage,Decoding image…,A descodificar imagem…,,,0.923
+0.926,emptyStateDefaultMessage,Tap the camera to scan your first document.,Toque na câmara para digitalizar o seu primeiro documento.,Tap the camera to scan your first document.,1.000,0.926
+0.928,rotationAllPages,All pages rotated,Todas as páginas rodadas,,,0.928
+0.929,onboardingPrivacySubtitle,"No account, no cloud, no watermarks. Your documents never leave your device.","Sem conta, sem nuvem, sem marcas de água. Os seus documentos nunca saem do dispositivo.","No account, no cloud, no watermarks, your documents never leave the device.",0.975,0.929
+0.930,saveToDeviceButton,Save to Device,Guardar no dispositivo,,,0.930
+0.938,emailAttachmentNotIncluded,The pages could not be attached to the email. Use Share to send the pages.,Não foi possível anexar as páginas ao e-mail. Use Partilhar para enviar as páginas.,It was not possible to attach the pages to the email. Use Share to send the pages.,0.948,0.938
+0.938,enableSharePromptsSubtitle,Allow the app to occasionally suggest sharing,Permitir que a aplicação sugira a partilha ocasionalmente,Allow the application to suggest sharing occasionally,0.938,0.941
+0.938,exportAndShareAction,Export & Share,Exportar e partilhar,,,0.938
+0.939,useSavedSignature,Use Saved,Usar guardada,,,0.939
+0.940,progressCopying,Copying…,A copiar…,,,0.940
+0.940,idStepFront,Step 1: Capture Front Side,Passo 1: capture o lado da frente,Step 1: Capture the front side,0.969,0.940
+0.940,progressEncodingPage,Encoding page {current} of {total}…,A codificar página {current} de {total}…,Encoding page five of five...,0.959,0.940
+0.944,onboardingOcrSubtitle,Use KatharScan in {count} languages. OCR runs on your phone — nothing ever leaves your device.,Use o KatharScan em {count} idiomas. O OCR corre no seu telemóvel — nada sai do seu dispositivo.,Use KatharScan in five languages. The OCR runs on your phone <unk> nothing comes out of your device.,0.961,0.944
+0.946,signatureTypeHint,Type your name,Escreva o seu nome,,,0.946
+0.948,rotate90Action,Rotate 90°,Rodar 90°,,,0.948
+0.949,appLanguageTitle,App Language,Idioma da aplicação,,,0.949
+0.949,homeLanguageTooltip,App Language,Idioma da aplicação,,,0.949
+0.949,commonSave,Save,Guardar,,,0.949
+0.951,appLanguageLabel,App language,Idioma da aplicação,,,0.951
+0.954,exportingStatus,Exporting…,A exportar…,,,0.954
+0.954,progressRasterizing,Rasterizing pages…,A rasterizar páginas…,,,0.954
+0.956,errorGenericTitle,Something went wrong,Algo correu mal,,,0.956
+0.956,conversionStarting,Starting…,A iniciar…,,,0.956
+0.956,documentSaved,Document saved,Documento guardado,,,0.956
+0.957,addTagsAction,Add Tags,Adicionar etiquetas,,,0.957
+0.957,pagesDeleteConfirm,Delete {count} pages? They are removed when you save.,Eliminar {count} páginas? São removidas ao guardar.,Remove five pages? They're removed when you save.,0.957,0.958
+0.959,importingStatus,Importing…,A importar…,,,0.959
+0.962,commonDelete,Delete,Eliminar,,,0.962
+0.962,deleteTooltip,Delete,Eliminar,,,0.962
+0.965,sharePromptAction,Share App,Partilhar a app,,,0.965
+0.966,readingPageEta,Page {page} of {total} · about {minutes} min left,Página {page} de {total} · faltam cerca de {minutes} min,Page 5 of 5 · about 5 min,0.975,0.966
+0.967,progressExtractingText,Extracting text…,A extrair texto…,,,0.967
+0.968,saveAsDocument,Save as Document,Guardar como documento,,,0.968
+0.968,cameraErrorPrefix,Camera error,Erro de câmara,,,0.968
+0.970,saveAsNewDocumentAction,Save as new Document,Guardar como novo documento,Save as a new document,0.992,0.970
+0.971,savedAsNewDocument,Saved as new document,Guardado como novo documento,Saved as a new document,0.989,0.971
+0.974,pagesDeleteCount,Delete {count},Eliminar {count},,,0.974
+0.974,shareTooltip,Share,Partilhar,,,0.974
+0.974,commonShare,Share,Partilhar,,,0.974
+0.980,idGenerating,Generating PDF...,A gerar PDF...,,,0.980
+0.981,sharePdf,Share PDF,Partilhar PDF,,,0.981

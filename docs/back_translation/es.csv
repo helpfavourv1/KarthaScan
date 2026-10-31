@@ -1,0 +1,545 @@
+score,key,english,translation,back_to_english,backtrans_score,labse_score
+0.228,signatureWidthLabel,Pen width,Grosor,,,0.228
+0.270,widthLabel,Width,Ancho,,,0.270
+0.355,commonSkip,Skip,Omitir,,,0.355
+0.358,checkLabel,Check,Casilla,,,0.358
+0.361,straightenLabel,Straighten,Enderezar,,,0.361
+0.377,satLabel,Sat,Saturación,,,0.377
+0.393,printFitLabel,Scaling,Ajuste,,,0.393
+0.399,filterBrightnessLabel,Brightness,Brillo,,,0.399
+0.406,commonClear,Clear,Borrar,,,0.406
+0.430,fillTooltip,Fill,Rellenar,,,0.430
+0.438,fillCapsLabel,ALL CAPS,MAYÚSCULAS,,,0.438
+0.452,exportDoneStatus,Done,Listo,,,0.452
+0.452,commonDone,Done,Listo,,,0.452
+0.457,accentCrimson,Crimson,Carmesí,,,0.457
+0.458,cropNoPageFound,Couldn't find the page edges. Drag the corners.,No se encontraron los bordes. Arrastra las esquinas.,They didn't find the edges.,0.458,0.880
+0.461,lightThemeOption,Light,Claro,,,0.461
+0.498,eraserTitle,Eraser,Borrador,,,0.498
+0.498,annotationModeEraser,Eraser,Borrador,,,0.498
+0.499,hueLabel,Hue,Tono,,,0.499
+0.499,signatureTitle,Signature,Firma,,,0.499
+0.504,stampTickLabel,Tick,Marca,,,0.504
+0.509,marqueeEraseTooltip,Marquee erase,Borrado de selección,,,0.509
+0.522,tickerTapToTypeFilling,TAP-TO-TYPE FILLING,TOCAR PARA LLENAR,,,0.522
+0.535,undoTooltip,Undo,Deshacer,,,0.535
+0.540,printMarginNarrow,Narrow,Estrecho,,,0.540
+0.544,tryAgainButton,Try again,Reintentar,,,0.544
+0.564,annotationModeHighlighter,Highlighter,Resaltador,,,0.564
+0.565,tapToSampleColor,Tap a spot to sample its color,Toca un punto para muestrear su color,Touch a dot to show its color,0.565,0.900
+0.569,watermarkLayoutTiled,Tiled,En mosaico,,,0.569
+0.569,titleScan,Scan,Escaneo,,,0.569
+0.574,cropLabel,Crop,Recortar,,,0.574
+0.575,heightLabel,Height,Alto,,,0.575
+0.582,annotationModePen,Pen,Pluma,,,0.582
+0.585,annotationModeArrow,Arrow,Flecha,,,0.585
+0.586,printRangeRange,Range,Rango,,,0.586
+0.586,watermarkPagesRange,Range,Rango,,,0.586
+0.587,filterRecent,Recent,Recientes,,,0.587
+0.589,setBackupPasswordTitle,Set a backup password,Establecer contraseña de la copia,Establish the copy password,0.589,0.815
+0.592,genericErrorMessage,Something went wrong. Please try again.,Algo salió mal. Inténtalo de nuevo.,Something went wrong.,0.592,0.947
+0.601,sealFontSans,Clean,Limpio,,,0.601
+0.605,signatureTabType,Type,Escribir,,,0.605
+0.644,sealShapeOval,Oval,Óvalo,,,0.644
+0.649,batchExportSignatureDisabled,Batch export — signature placement disabled,Exportación por lotes — colocación de firma deshabilitada,Export by lot <unk> Signature deactivated,0.649,0.898
+0.651,signatureFontFlowing,Flowing,Fluida,,,0.651
+0.652,saveFailedBanner,Your latest changes could not be saved.,No se pudieron guardar tus últimos cambios.,They couldn't save your last change.,0.652,0.955
+0.653,ticker100OnDevicePrivacy,YOUR DOCUMENTS STAY ON YOUR DEVICE,TUS DOCUMENTOS SE QUEDAN EN TU DISPOSITIVO,Your documents are at your disposal,0.653,0.926
+0.657,onboardingEditSubtitle,"Every edit stays reversible — undo, redo, and revert to original anytime.","Cada edición es reversible — deshaz, rehaz y vuelve al original cuando quieras.","Each edition is reversible <unk> undo, rework and return to the original whenever you want.",0.657,0.899
+0.658,idStepBack,Step 2: Capture Back Side,Paso 2: captura el lado trasero,"Step two, grab the back.",0.658,0.960
+0.667,idLayoutFullWidth,Full width,Ancho completo,,,0.667
+0.670,foldersSectionHeader,Folders,Carpetas,,,0.670
+0.670,filterFolders,Folders,Carpetas,,,0.670
+0.672,ticker21ToolEditSuite,21-TOOL EDIT SUITE,SUITE DE 21 HERRAMIENTAS,,,0.672
+0.675,backupReadyStatus,Backup ready.,Copia de seguridad lista.,,,0.675
+0.680,tickerFolders,FOLDERS,CARPETAS,,,0.680
+0.683,lockAspectRatio,Lock aspect ratio,Bloquear relación de aspecto,,,0.683
+0.684,tickerBatchExport,BATCH EXPORT,EXPORTAR EN LOTE,,,0.684
+0.689,filterShadow,Shadow,Sombra,,,0.689
+0.693,scaleLabel,Scale,Escalar,,,0.693
+0.701,accentEmerald,Emerald,Esmeralda,,,0.701
+0.711,redoTooltip,Redo,Rehacer,,,0.711
+0.713,onboardingSignSubtitle,"E-sign contracts, type-to-fill forms, and stamp enterprise seals in seconds.","Firma contratos, llena formularios y estampa sellos en segundos.","Sign contracts, fill out forms and stamp stamp stamps in seconds.",0.713,0.778
+0.716,appearanceSectionLabel,Appearance,Apariencia,,,0.716
+0.717,emailAttachmentNotIncluded,The pages could not be attached to the email. Use Share to send the pages.,No se pudieron adjuntar las páginas al correo. Usa Compartir para enviar las páginas.,They couldn't attach the pages to the mail.,0.717,0.954
+0.722,sealShapeRound,Round,Redondo,,,0.722
+0.722,valLabel,Val,Valor,,,0.722
+0.731,accentAmber,Amber,Ámbar,,,0.731
+0.735,captionOcr,"Text crop: Original, Square, 4:3","Recorte de texto: original, cuadrado, 4:3","Text cutoff: original, square, 4:3",0.735,0.951
+0.740,commonExtract,Extract,Extraer,,,0.740
+0.741,autoCopyOcrSubtitle,Copy text to clipboard after scan,Copiar texto al portapapeles tras escanear,Copying text to the spreadsheet after scanning,0.741,0.910
+0.741,captionDocs,"Flexible crop: Original, Square, 4:3, 3:2, 16:9","Recorte flexible: original, cuadrado, 4:3, 3:2, 16:9","Flexible cut: original, square, 4:3, 3:2, 16:9",0.741,0.951
+0.743,tickerUndoRedo,UNDO/REDO,DESHACER/REHACER,,,0.743
+0.745,ocrScriptChinese,Chinese,Chino,,,0.745
+0.751,accentIndigo,Indigo,Índigo,,,0.751
+0.751,cropDocumentTitle,Crop Document,Recortar documento,,,0.751
+0.752,captureBehaviorSectionLabel,CAPTURE BEHAVIOR,COMPORTAMIENTO DE CAPTURA,,,0.752
+0.754,ocrStatusUnsupported,Unsupported,No compatible,,,0.754
+0.754,debugLogsLabel,Debug Logs,Registros de depuración,,,0.754
+0.755,commonRename,Rename,Renombrar,,,0.755
+0.755,eraserZoomTooltip,Zoom and move (pinch),Zoom y mover (pellizcar),Zoom and move (pick),0.755,0.905
+0.755,deleteScanMessage,This can't be undone.,Esto no se puede deshacer.,You can't undo this.,0.755,0.939
+0.756,captionPassport,Passport crop: 4:3 or Original,Recorte de pasaporte: 4:3 u original,Passport cut: 4:3 or original,0.756,0.814
+0.759,stampCheckbox,Checkbox,Casilla de verificación,,,0.759
+0.759,autoScan,Auto Scan,Escaneo automático,,,0.759
+0.761,checkShapeRounded,Rounded,Redondeado,,,0.761
+0.762,printFitFit,Fit page,Ajustar página,,,0.762
+0.764,exportNoTextError,This document has no text yet. Run OCR on it first.,Este documento aún no tiene texto. Ejecuta primero el OCR.,This document has no text yet.,0.764,0.948
+0.765,cropIdCardTitle,Crop ID Card,Recortar tarjeta de ID,,,0.765
+0.773,deleteFolderMessage,Documents inside will not be deleted.,Los documentos que contiene no se eliminarán.,The documents contained therein shall not be deleted.,0.773,0.869
+0.777,tickerESign,E-SIGN,E-FIRMA,,,0.777
+0.780,clearedCount,Cleared {count},{count} borrados,,,0.780
+0.780,watermarkLayoutLabel,Layout,Disposición,,,0.780
+0.783,printRangeCurrent,Current,Actual,,,0.783
+0.783,fitToTargetMbLabel,Fit to target MB,Ajustar a MB objetivo,Adjust to the target MB,0.783,0.793
+0.783,printMarginLabel,Margin,Margen,,,0.783
+0.786,reviewPromptYes,Rate Us,Califícanos,,,0.786
+0.787,ocrStatusOnDemand,On-demand,Bajo demanda,,,0.787
+0.787,sealLogoReady,Logo ready,Logo listo,,,0.787
+0.788,eraserApplied,Eraser applied,Borrador aplicado,,,0.788
+0.789,alignLabel,Align,Alineación,,,0.789
+0.789,onboardingReplayIntro,Replay introduction,Repetir introducción,,,0.789
+0.795,sampleColorTooltip,Sample color from page,Muestrear color de la página,Displaying the page color,0.796,0.795
+0.795,billingUnavailableMessage,Billing unavailable — try again later.,Facturación no disponible — inténtalo más tarde.,Billing not available <unk> Try it later.,0.795,0.939
+0.798,tickerNonDestructiveEditing,NON-DESTRUCTIVE EDITING,EDICIÓN NO DESTRUCTIVA,,,0.798
+0.800,removeAdsTitle,Remove Ads Forever,Eliminar anuncios,,,0.800
+0.801,onboardingToolsSubtitle,"Annotate, sign, watermark, fill forms, seal, and more — every tool free and unlimited.","Anota, firma, marca de agua, llena formularios, sella y más — todo gratis e ilimitado.","Note, sign, watermark, fill out forms, seal and more <unk> all free and unlimited.",0.801,0.893
+0.802,enableSharePromptsLabel,Enable Share Prompts,Habilitar solicitudes de compartir,,,0.802
+0.802,sealInkLook,Worn stamp look,Aspecto de sello gastado,,,0.802
+0.802,tickerTags,TAGS,ETIQUETAS,,,0.802
+0.805,watermarkLabel,Watermark,Marca de agua,,,0.805
+0.811,beepOnCaptureLabel,Beep on capture,Pitido al capturar,,,0.811
+0.811,darkThemeOption,Dark,Oscuro,,,0.811
+0.814,sealTextColorSame,Same as ring,Como el anillo,,,0.814
+0.815,sealSavedMessage,Seal saved,Sello guardado,,,0.815
+0.815,batchExportEmptyMessage,No documents to batch export. Scan some first.,No hay documentos para exportar por lotes. Escanee algunos primero.,There are no documents to export in batches.,0.815,0.893
+0.817,sealSavedHeading,Saved seals,Sellos guardados,,,0.817
+0.821,couldNotImportBackupError,Could not import this backup. Check the password and try again.,No se pudo importar esta copia. Comprueba la contraseña e inténtalo de nuevo.,You couldn't import this copy. Check the password and try again.,0.821,0.904
+0.823,ocrStatusBuiltIn,Built-in,Integrado,,,0.823
+0.824,paywallFeatureFreeForever,All features free forever,Todas las funciones gratis para siempre,All the functionality is free forever,0.824,0.922
+0.828,pageFormatLetter,Letter (US),Carta (EE. UU.),,,0.828
+0.828,tickerTextStamps,TEXT STAMPS,SELLOS DE TEXTO,,,0.828
+0.830,pageResized,Page resized,Tamaño de página cambiado,,,0.830
+0.831,stampBoxLabel,Box,Caja,,,0.831
+0.831,sealShapeBox,Box,Caja,,,0.831
+0.832,annotateTitle,Annotate,Anotar,,,0.832
+0.832,enableReviewPromptsLabel,Enable Review Prompts,Habilitar solicitudes de reseña,,,0.832
+0.834,pageRevertedToOriginal,Page reverted to original,Página revertida al original,Page reversed to the original,0.834,0.944
+0.834,annotationModeEllipse,Ellipse,Elipse,,,0.834
+0.835,sealCenterStar,Star,Estrella,,,0.835
+0.835,enterBackupPasswordTitle,Enter backup password,Introduce la contraseña de la copia,,,0.835
+0.837,captionIdCard,Two-sided ID capture: Front + Back,Captura de ID por ambas caras: frontal + trasera,ID capture from both sides: front + rear,0.837,0.927
+0.837,whatsNewTitle,What's New,Novedades,,,0.837
+0.837,resizeUpscaleWarning,Enlarging doesn't add detail — the page may look soft.,Ampliar no añade detalle: la página puede verse borrosa.,Enlargement does not add details: the page may look blurry.,0.878,0.837
+0.839,sealCreateTitle,Custom Seal,Sello personalizado,,,0.839
+0.839,sealCustom,Custom Seal,Sello personalizado,,,0.839
+0.839,ocrLanguagePackNotReady,Language pack downloading or not ready. Try again shortly.,El paquete de idioma se está descargando o no está listo. Inténtalo en breve.,The language packet is downloading or it's not ready.,0.839,0.890
+0.840,onboardingEditTitle,Non-Destructive Editing,Edición no destructiva,,,0.840
+0.840,vibrateOnCaptureLabel,Vibrate on capture,Vibrar al capturar,,,0.840
+0.840,renameFolderTitle,Rename folder,Cambiar nombre de la carpeta,,,0.840
+0.842,clearLogsTooltip,Clear logs,Borrar registros,,,0.842
+0.843,buildingBackupStatus,Building backup…,Creando copia de seguridad…,,,0.843
+0.845,watermarkEditTitle,Edit Watermark,Editar marca de agua,,,0.845
+0.845,moveToFolderTitle,Move to Folder,Mover a carpeta,,,0.845
+0.845,watermarkLayoutSingle,Single,Único,,,0.845
+0.846,filterShadowRemoval,Shadow removal,Eliminar sombras,,,0.846
+0.846,pricingLoadingError,Pricing is still loading — try again in a moment.,Los precios aún se están cargando; inténtalo de nuevo en un momento.,Prices are still charging; try again in a moment.,0.846,0.882
+0.848,vibrateOnCaptureSubtitle,Haptic feedback when scan completes,Retroalimentación háptica al completar el escaneo,Haptic feedback when completing the scan,0.972,0.848
+0.848,exportFormatTxtDescription,Plain OCR text only,Solo texto OCR sin formato,Only unformatted OCR text,0.848,0.887
+0.850,extractToNewDocAction,Extract to new doc,Extraer a nuevo documento,Extract a new document,0.872,0.850
+0.850,noEmailAppFound,No email app found,No se encontró aplicación de correo,No mail application found,0.850,0.952
+0.851,signatureTabDraw,Draw,Dibujar,,,0.851
+0.851,tickerNoteStamps,NOTE STAMPS,SELLOS DE NOTA,,,0.851
+0.852,moveToFolderTooltip,Move to folder,Mover a carpeta,,,0.852
+0.853,emailLimitMissed,Could not get under {mb} MB; sent the smallest version.,No se pudo bajar de {mb} MB; se envió la versión más pequeña.,It couldn't download 5 MB; the smaller version was sent.,0.853,0.946
+0.854,tickerDarkMode,DARK MODE,MODO OSCURO,,,0.854
+0.856,resizeTitle,Resize,Redimensionar,,,0.856
+0.857,filterGrayscale,Grayscale,Escala de grises,,,0.857
+0.857,checkShapeSquare,Square,Cuadrado,,,0.857
+0.857,cropAspectSquare,Square,Cuadrado,,,0.857
+0.857,revertToOriginalMessage,"This will undo all filters, rotations, crops, resizes, and eraser strokes on this page.","Esto deshace todos los filtros, rotaciones, recortes, cambios de tamaño y trazos de borrador en esta página.","This undoes all filters, rotations, cuts, size changes, and drafts on this page.",0.871,0.857
+0.857,accentViolet,Violet,Violeta,,,0.857
+0.857,errorReportIssue,Report issue,Reportar problema,,,0.857
+0.858,signerLabel,Signer {index},Firmante {index},,,0.858
+0.858,reviewPromptBody,Your feedback helps us grow and keeps the app free.,Tus comentarios nos ayudan a crecer y mantienen la app gratis.,Your comments help us grow and keep the app free.,0.858,0.926
+0.859,tickerNoAccount,NO ACCOUNT,SIN CUENTA,,,0.859
+0.859,enableNotificationsSubtitle,Allow background reminders for unexported documents,Permitir recordatorios en segundo plano para documentos no exportados,Allow background reminders for non-exported documents,0.859,0.861
+0.859,stampTickedLabel,Ticked,Marcado,,,0.859
+0.860,tickerIdCardMode,ID CARD MODE,MODO TARJETA ID,,,0.860
+0.861,tickerCustomSeals,CUSTOM SEALS,SELLOS PERSONALIZADOS,,,0.861
+0.862,exportBackupButton,Export encrypted backup,Exportar copia de seguridad cifrada,,,0.862
+0.864,conversionFailedPrefix,Conversion failed,Conversión fallida,,,0.864
+0.866,signatureNewOne,Draw or type a new one,Dibujar o escribir una nueva,Drawing or writing a new one,0.866,0.929
+0.866,onboardingGetStarted,Get Started,Comenzar,,,0.866
+0.867,tickerAccentThemes,ACCENT THEMES,TEMAS DE ACENTO,,,0.867
+0.867,fillInputHint,Type text to fill,Escribe texto para rellenar,Write text to fill in,0.867,0.935
+0.867,idPdfErrorPrefix,Error generating ID PDF,Error al generar PDF de identificación,Error when generating identification PDF,0.867,0.949
+0.868,clearThis,Clear this,Borrar esto,,,0.868
+0.869,docxWarningMessage,"DOCX sources render poorly as pages — save inside the app is limited to JPG/PNG from image, PDF, TXT or CSV sources. Use Export & Share for this file.","Las fuentes DOCX se muestran mal como páginas; el guardado en la app se limita a JPG/PNG de imagen, PDF, TXT o CSV. Use Exportar y compartir para este archivo.","DOCX fonts are poorly displayed as pages; the saved in the app is limited to image JPG/PNG, PDF, TXT or CSV. Use Export and Share for this file.",0.869,0.953
+0.869,exportFormatPdfDescription,Best for sharing and printing,Ideal para compartir e imprimir,Ideal for sharing and printing,0.946,0.869
+0.871,frontSideCaptured,Front side captured. Now capture the back side.,Lado frontal capturado. Ahora capture el lado posterior.,Now capture the back side.,0.871,0.950
+0.872,tickerPassportMode,PASSPORT MODE,MODO PASAPORTE,,,0.872
+0.873,searchHint,Search your scans,Busca en tus escaneos,,,0.873
+0.876,copiedToClipboard,Copied to clipboard,Copiado al portapapeles,,,0.876
+0.877,openSourceLicensesLabel,Open-source licenses,Licencias de código abierto,,,0.877
+0.879,compressMedium,Medium,Mediano,,,0.879
+0.879,scannerErrorPrefix,Scanner error,Error del escáner,,,0.879
+0.880,savedToDocumentText,Saved to document text,Guardado en el texto del documento,Saved in the text of the document,0.923,0.880
+0.880,printFitFill,Fill sheet (trims edges),Llenar hoja (recorta bordes),Filling sheet (cutting edges),0.880,0.884
+0.881,saveFailedPrefix,Save failed:,Error al guardar:,,,0.881
+0.881,tickerNoWatermarks,NO WATERMARKS,SIN MARCAS DE AGUA,,,0.881
+0.882,couldNotOpenLinkError,Could not open link.,No se pudo abrir el enlace.,The link couldn't be opened.,0.882,0.971
+0.882,reviewPromptNo,Send Feedback,Enviar comentarios,,,0.882
+0.884,importBackupButton,Import from backup,Importar desde copia de seguridad,,,0.884
+0.884,renameDocumentTitle,Rename document,Cambiar nombre del documento,,,0.884
+0.885,emailFailed,Email failed,Correo fallido,,,0.885
+0.885,accentBlue,Blue,Azul,,,0.885
+0.885,idCardPdfGenerated,ID Card PDF Generated,PDF de tarjeta de identificación generado,PDF of generated identification card,0.885,0.935
+0.887,tickerSearch,SEARCH,BUSCAR,,,0.887
+0.888,sharePromptTitle,Love KatharScan?,¿Te encanta KatharScan?,,,0.888
+0.888,restoreCompleteMessage,Restore complete.,Restauración completa.,,,0.888
+0.891,movedToFolderMessage,Moved to folder.,Movido a la carpeta.,,,0.891
+0.892,watermarkAddTitle,Add Watermark,Añadir marca de agua,,,0.892
+0.892,docScannerUnsupportedMessage,"Your device doesn't support the advanced document scanner. Take a photo with your Camera app, then tap Import below to crop and save it.",Tu dispositivo no soporta el escáner avanzado de documentos. Toma una foto con la app Cámara y luego pulsa Importar abajo para recortarla y guardarla.,"Your device doesn't support the advanced document scanner, so take a photo with the Camera app, and then press Import Down to cut it and save it.",0.892,0.930
+0.894,sealEditTitle,Edit Custom Seal,Editar sello personalizado,,,0.894
+0.895,progressBuildingDocx,Building DOCX…,Creando DOCX…,,,0.895
+0.896,engagementSectionLabel,ENGAGEMENT & NOTIFICATIONS,PARTICIPACIÓN Y NOTIFICACIONES,,,0.896
+0.896,sealRemoveWhite,Make white transparent,Hacer transparente el blanco,,,0.896
+0.898,tickerWordExport,WORD EXPORT,EXPORTAR WORD,,,0.898
+0.898,signatureFontHandwritten,Handwritten,Manuscrita,,,0.898
+0.900,fullscreenLabel,Fullscreen,Pantalla completa,,,0.900
+0.901,exportFormatCsvDescription,Spreadsheet data,Datos de hoja de cálculo,,,0.901
+0.901,onboardingSignTitle,"Sign, Fill & Seal","Firma, llena y sella","Sign, fill and seal",0.986,0.901
+0.901,letterSizeUS,Letter size (US),Tamaño carta (EE. UU.),,,0.901
+0.902,onboardingBack,Back,Atrás,,,0.902
+0.906,addCheckboxTitle,Add Checkbox,Agregar casilla,,,0.906
+0.906,batchExportTooltip,Batch export,Exportación por lotes,,,0.906
+0.906,progressSaving,Saving…,Guardando…,,,0.906
+0.907,readingPageEta,Page {page} of {total} · about {minutes} min left,Página {page} de {total} · unos {minutes} min restantes,Page 5 of 5 · about 5 min remaining,0.907,0.966
+0.907,onboardingOcrTitle,On-Device OCR,OCR en el dispositivo,,,0.907
+0.907,printFailed,Print failed,Impresión fallida,,,0.907
+0.908,saveInsideAppWarning,"To save inside the app, choose JPG or PNG. Other targets are exported as files.","Para guardar en la app, elija JPG o PNG. Otros destinos se exportan como archivos.","To save in the app, select JPG or PNG. Other destinations are exported as files.",0.908,0.932
+0.908,filterColorEnhance,Color enhance,Mejora de color,,,0.908
+0.908,cropAuto,Auto-detect,Detectar automáticamente,,,0.908
+0.908,pickErrorPrefix,Pick error,Error de selección,,,0.908
+0.911,signatureSavedHeading,Saved signatures,Firmas guardadas,,,0.911
+0.912,tickerRevertToOriginal,REVERT TO ORIGINAL,VOLVER AL ORIGINAL,,,0.912
+0.912,pageCropped,Page cropped,Página recortada,,,0.912
+0.913,filterApplied,Filter applied,Filtro aplicado,,,0.913
+0.913,commonReset,Reset,Restablecer,,,0.913
+0.913,compressLabel,Compress,Comprimir,,,0.913
+0.913,dateLabel,Date,Fecha,,,0.913
+0.914,backupCorruptedError,This backup file looks corrupted.,Este archivo de copia de seguridad parece dañado.,This backup file looks damaged.,0.928,0.914
+0.915,sealSaveToLibrary,Save this seal,Guardar este sello,,,0.915
+0.915,tickerGalleryImport,GALLERY IMPORT,IMPORTAR GALERÍA,,,0.915
+0.915,fillTypeHint,Type here,Escribe aquí,,,0.915
+0.915,couldNotCreateBackupError,Could not create the backup.,No se pudo crear la copia de seguridad.,The backup could not be created.,0.963,0.915
+0.916,pageToLabel,To page,Hasta la página,,,0.916
+0.917,beepOnCaptureSubtitle,Play sound when scan completes,Reproducir sonido al completar el escaneo,Playing sound when completing the scan,0.932,0.917
+0.917,commonCustom,Custom,Personalizado,,,0.917
+0.917,placeHereLabel,Place here,Colocar aquí,,,0.917
+0.917,fillDeleteSnippet,Delete snippet?,¿Eliminar fragmento?,,,0.917
+0.920,annotationModeRect,Rectangle,Rectángulo,,,0.920
+0.920,exportGenericError,Something went wrong while exporting.,Algo salió mal durante la exportación.,Something went wrong during the export.,0.922,0.920
+0.920,migrationExplainer,"This isn't automatic sync. Export creates a single encrypted backup file you move to your new device yourself, then import there.",Esto no es sincronización automática. Exportar crea un único archivo de copia de seguridad cifrado que tú mismo mueves a tu nuevo dispositivo y luego importas allí.,This isn't automatic sync. Export creates a single encrypted backup file that you move yourself to your new device and then import there.,0.998,0.920
+0.921,emptyFolders,No folders yet. Tap the folder icon to create one.,Aún no hay carpetas. Toca el icono de carpeta para crear una.,There are no folders yet. Tap the folder icon to create one.,0.981,0.921
+0.921,captureBackSide,Capture Back Side,Capturar lado trasero,,,0.921
+0.921,sharePromptBody,Share it with friends who need a powerful document scanner.,Compártelo con amigos que necesiten un potente escáner de documentos.,Share it with friends who need a powerful document scanner.,1.000,0.921
+0.922,paywallSubtitle,Support KatharScan with a one-time purchase. All features remain free.,Apoya a KatharScan con una compra única. Todas las funciones siguen siendo gratuitas.,Support KatharScan with a one-time purchase.,0.922,0.933
+0.922,tickerJpgExport,JPG EXPORT,EXPORTAR JPG,,,0.922
+0.922,paywallLegalText,This is a non-consumable purchase. Restore it anytime on any device with the same store account.,Esta es una compra no consumible. Restáurala en cualquier momento en cualquier dispositivo con la misma cuenta de la tienda.,This is a non-consumable purchase. Restore it at any time on any device with the same store account.,0.994,0.922
+0.922,sizePtLabel,Size: {size}pt,Tamaño: {size} pt,,,0.922
+0.922,removeFromFolderTooltip,Remove from folder,Quitar de la carpeta,,,0.922
+0.924,onboardingWelcomeSubtitle,"Your entire document office — scan, edit, sign, and export — in one private app.","Toda tu oficina de documentos — escanea, edita, firma y exporta — en una app privada.","Your entire office documents scan, edit, sign and export into a private app.",0.931,0.924
+0.924,noFoldersYetHomeMessage,No folders yet. Create one from the home screen.,Aún no hay carpetas. Crea una desde la pantalla de inicio.,There are no folders yet. Create one from the home screen.,0.971,0.924
+0.924,emailLabel,Email,Correo,,,0.924
+0.924,paywallFeatureNoInterstitial,No more interstitial ads,No más anuncios intersticiales,No more interstitial ads,1.000,0.924
+0.925,folderUnavailable,This folder is no longer available.,Esta carpeta ya no está disponible.,This folder is no longer available.,1.000,0.925
+0.925,clearPage,Clear page,Borrar página,,,0.925
+0.925,cropAspectId,ID card,Tarjeta ID,,,0.925
+0.926,onboardingPrivacyTitle,Private by design,Privado por diseño,,,0.926
+0.927,enableReviewPromptsSubtitle,Allow the app to occasionally ask for a rating,Permitir que la app pida una calificación ocasionalmente,Allow the app to ask for a rating occasionally,0.996,0.927
+0.928,importBackSide,Import Back Side,Importar lado trasero,,,0.928
+0.928,progressBuildingPdf,Building PDF…,Creando PDF…,,,0.928
+0.928,exportSavedToDownloads,Saved to Downloads,Guardado en Descargas,,,0.928
+0.928,printPerSheetLabel,Pages per sheet,Páginas por hoja,,,0.928
+0.929,signatureDeleteSaved,Remove saved signature,Quitar firma guardada,,,0.929
+0.930,checkShapeCircle,Circle,Círculo,,,0.930
+0.930,eraserAutoColorTooltip,Match the page colour automatically,Igualar el color de la página automáticamente,Automatically match the page color,0.986,0.930
+0.930,tickerPdfExport,PDF EXPORT,EXPORTAR PDF,,,0.930
+0.931,stampPaperLabel,Paper,Papel,,,0.931
+0.931,printPaperLabel,Paper,Papel,,,0.931
+0.932,fillSaveSnippet,Save as snippet,Guardar como fragmento,,,0.932
+0.932,deleteScanTitle,Delete this scan?,¿Eliminar este escaneo?,,,0.932
+0.932,pagesDeleteConfirm,Delete {count} pages? They are removed when you save.,¿Eliminar {count} páginas? Se quitan al guardar.,"Remove five pages, they're removed when saved.",0.932,0.956
+0.935,ocrNoInternetMessage,No internet. Connect once to download the language pack.,Sin internet. Conéctate una vez para descargar el paquete de idioma.,No internet. Connect once to download the language package.,0.961,0.935
+0.935,fillTapHint,Tap the page where you want to type,Toca la página donde quieras escribir,Tap the page where you want to type,1.000,0.935
+0.935,rotationPage,Page rotated,Página rotada,,,0.935
+0.935,extractedPageDefaultTitle,Extracted Page,Página extraída,,,0.935
+0.936,commonRevert,Revert,Revertir,,,0.936
+0.937,sealDefaultMainText,YOUR COMPANY,SU EMPRESA,,,0.937
+0.937,scanUnavailable,This scan is no longer available.,Este escaneo ya no está disponible.,This scan is no longer available.,1.000,0.937
+0.937,privacyOptionsLabel,Privacy settings,Ajustes de privacidad,,,0.937
+0.937,emptySearch,No scans match your search.,Ningún escaneo coincide con tu búsqueda.,No scans match your search.,1.000,0.937
+0.937,saveToDownloadsAction,Save to Downloads,Guardar en Descargas,,,0.937
+0.937,tickerTxtExport,TXT EXPORT,EXPORTAR TXT,,,0.937
+0.937,migrationTitle,Device Migration,Migración de dispositivo,,,0.937
+0.937,deviceMigrationLabel,Device Migration,Migración de dispositivo,,,0.937
+0.938,regionOcrFailed,Region OCR failed,OCR de región fallido,,,0.938
+0.938,revertToOriginalTitle,Revert to Original?,¿Volver al original?,,,0.938
+0.938,autoCopyOcrLabel,Auto-copy OCR,Copiar OCR automáticamente,,,0.938
+0.938,noTextRecognized,No text recognized.,No se reconoció texto.,,,0.938
+0.938,scanPreviewNoPages,No pages to show.,No hay páginas para mostrar.,There are no pages to show.,0.939,0.938
+0.938,progressReading,Reading…,Leyendo…,,,0.938
+0.938,chipSelectMultiple,Select Multiple,Seleccionar varios,,,0.938
+0.938,reviewPromptTitle,Enjoying KatharScan?,¿Disfrutas KatharScan?,,,0.938
+0.939,saveToDeviceButton,Save to Device,Guardar en dispositivo,,,0.939
+0.939,debugNoLogsYet,No logs yet,Aún no hay registros,,,0.939
+0.939,useSavedSignature,Use Saved,Usar guardada,,,0.939
+0.940,captureFrontSide,Capture Front Side,Capturar lado frontal,,,0.940
+0.940,importFromGallery,Import from Gallery,Importar de galería,,,0.940
+0.940,privacyPolicyLabel,Privacy policy,Política de privacidad,,,0.940
+0.941,exportFormatPngDescription,"One image per page, lossless","Una imagen por página, sin pérdida","One image per page, without loss",0.961,0.941
+0.941,onboardingPrivacySubtitle,"No account, no cloud, no watermarks. Your documents never leave your device.","Sin cuenta, sin nube, sin marcas de agua. Tus documentos nunca salen de tu dispositivo.","No account, no cloud, no watermarks, your documents never leave your device.",0.977,0.941
+0.941,rotationAllPages,All pages rotated,Todas las páginas rotadas,,,0.941
+0.942,progressRasterizing,Rasterizing pages…,Rasterizando páginas…,,,0.942
+0.942,enableSharePromptsSubtitle,Allow the app to occasionally suggest sharing,Permitir que la app sugiera compartir ocasionalmente,Allow the app to suggest sharing occasionally,0.994,0.942
+0.942,chipAllFolders,All Folders,Todas las carpetas,,,0.942
+0.942,subscriptionSectionLabel,Subscription,Suscripción,,,0.942
+0.943,rotateLabel,Rotate,Rotar,,,0.943
+0.943,exportAndShareAction,Export & Share,Exportar y compartir,,,0.943
+0.943,extractedTextTitle,Extracted Text,Texto extraído,,,0.943
+0.944,deleteFolderTooltip,Delete folder,Eliminar carpeta,,,0.944
+0.944,tickerPngExport,PNG EXPORT,EXPORTAR PNG,,,0.944
+0.944,errorGenericTitle,Something went wrong,Algo salió mal,,,0.944
+0.944,commonCopy,Copy,Copiar,,,0.944
+0.945,docxModeTextOnly,Text Only,Solo texto,,,0.945
+0.945,paywallSuccessMessage,Thank you for supporting KatharScan.,Gracias por apoyar a KatharScan.,Thank you for supporting KatharScan.,1.000,0.945
+0.945,whiteHaloLabel,White halo (readability),Halo blanco (legibilidad),,,0.945
+0.946,addSignature,Add Signature,Agregar firma,,,0.946
+0.946,importFrontSide,Import Front Side,Importar lado frontal,,,0.946
+0.946,drawNewSignature,Draw New,Dibujar nueva,,,0.946
+0.946,diagnosticsSectionLabel,DIAGNOSTICS,DIAGNÓSTICOS,,,0.946
+0.946,paywallFallbackPrice,$14.99 one-time,$14.99 una vez,,,0.946
+0.947,titleIdCard,ID Card,Tarjeta de ID,,,0.947
+0.948,commonChange,Change,Cambiar,,,0.948
+0.948,importAndConvertDocument,Import & Convert Document,Importar y convertir documento,Import and convert document,0.997,0.948
+0.948,signatureChoiceMessage,Use your saved signature or draw a new one?,¿Usar tu firma guardada o dibujar una nueva?,Use your saved signature or draw a new one?,1.000,0.948
+0.948,sharePromptDismiss,Not now,Ahora no,,,0.948
+0.948,modePassport,Passport Mode,Modo pasaporte,,,0.948
+0.949,clearAll,Clear all,Borrar todo,,,0.949
+0.949,progressEncodingPage,Encoding page {current} of {total}…,Codificando página {current} de {total}…,Encoding page 5 of 5...,0.986,0.949
+0.949,languageSectionLabel,Language,Idioma,,,0.949
+0.949,importErrorPrefix,Import error,Error de importación,,,0.949
+0.949,onboardingOcrSubtitle,Use KatharScan in {count} languages. OCR runs on your phone — nothing ever leaves your device.,Usa KatharScan en {count} idiomas. El OCR funciona en tu teléfono: nada sale de tu dispositivo.,Use KatharScan in 5 languages. The OCR works on your phone: nothing comes out of your device.,0.978,0.949
+0.949,commonSave,Save,Guardar,,,0.949
+0.949,applyToAllPages,Apply to all pages,Aplicar a todas las páginas,Apply to all pages,1.000,0.949
+0.949,accentColorTooltip,Accent Color,Color de acento,,,0.949
+0.949,accentColorTitle,Accent Color,Color de acento,,,0.949
+0.949,tickerFreeUnlimitedOcr,FREE UNLIMITED OCR,OCR ILIMITADO GRATIS,,,0.949
+0.949,duplicateAction,Duplicate,Duplicar,,,0.949
+0.949,printMarginNone,None,Ninguno,,,0.949
+0.949,sealCenterNone,None,Ninguno,,,0.949
+0.950,ocrScriptKorean,Korean,Coreano,,,0.950
+0.951,removeFromFavorites,Remove from Favorites,Quitar de favoritos,,,0.951
+0.951,emptyStateDefaultMessage,Tap the camera to scan your first document.,Toca la cámara para escanear tu primer documento.,Touch the camera to scan your first document.,0.969,0.951
+0.951,tickerSearchablePdf,SEARCHABLE PDF,PDF BUSCABLE,,,0.951
+0.951,signatureCanvasHint,Sign here,Firma aquí,,,0.951
+0.951,printFilterNone,No filter,Sin filtro,,,0.951
+0.951,commonApply,Apply,Aplicar,,,0.951
+0.952,compressNoLimit,No limit,Sin límite,,,0.952
+0.952,supportLabel,Support,Soporte,,,0.952
+0.952,errorScreenProblem,KatharScan ran into a problem displaying this screen. Your scans are safe — they're stored on this device and this doesn't affect them.,KatharScan tuvo un problema al mostrar esta pantalla. Tus escaneos están a salvo: se almacenan en este dispositivo y esto no les afecta.,KatharScan had a problem showing this screen. Your scans are safe: they're stored on this device and it doesn't affect them.,0.989,0.952
+0.952,cameraSource,Camera,Cámara,,,0.952
+0.952,deleteFolderTitle,Delete this folder?,¿Eliminar esta carpeta?,,,0.952
+0.952,ocrScriptDevanagari,"Hindi, Marathi (Devanagari)","Hindi, maratí (devanagari)",,,0.952
+0.952,tickerRegionOcr,REGION OCR,OCR DE REGIÓN,,,0.952
+0.953,fromAnotherDocument,From Another Document,De otro documento,,,0.953
+0.953,noFoldersYet,No folders yet,Aún no hay carpetas,,,0.953
+0.953,sealCenterTextLabel,Center text,Texto central,,,0.953
+0.954,tickerCsvExport,CSV EXPORT,EXPORTAR CSV,,,0.954
+0.954,commonClose,Close,Cerrar,,,0.954
+0.954,themeLabel,Theme,Tema,,,0.954
+0.954,pdfImportedAsDocument,PDF imported as document,PDF importado como documento,PDF imported as a document,0.991,0.954
+0.954,addTagsAction,Add Tags,Añadir etiquetas,,,0.954
+0.955,paywallFeatureNoBanner,No more banner ads,No más anuncios de banner,No more banner ads,1.000,0.955
+0.955,emailMessageLabel,Message,Mensaje,,,0.955
+0.955,enableNotificationsLabel,Enable Notifications,Habilitar notificaciones,,,0.955
+0.955,noDocumentsInFolder,No documents in this folder yet.,Aún no hay documentos en esta carpeta.,There are no documents in this folder yet.,0.955,0.962
+0.956,modeIdCard,ID Card Mode,Modo tarjeta de ID,,,0.956
+0.956,commonCancel,Cancel,Cancelar,,,0.956
+0.956,pagesUpdated,Pages updated,Páginas actualizadas,,,0.956
+0.956,documentSaved,Document saved,Documento guardado,,,0.956
+0.957,termsOfServiceLabel,Terms of Service,Términos de servicio,,,0.957
+0.957,commonConvert,Convert,Convertir,,,0.957
+0.957,sealSubtextLabel,Subtext (bottom arc / below),Subtexto (arco inferior / debajo),Subtext (lower arc / below),0.957,0.959
+0.957,addDateTitle,Add Date,Agregar fecha,,,0.957
+0.957,extractedAsNewDocument,Extracted as new document,Extraído como nuevo documento,Extracted as new document,1.000,0.957
+0.957,addNoteTitle,Add Note,Agregar nota,,,0.957
+0.958,filterRemoved,Filter removed,Filtro eliminado,,,0.958
+0.958,sealFontSerif,Classic,Clásico,,,0.958
+0.958,managePagesTitle,Manage Pages,Administrar páginas,,,0.958
+0.958,sealTextColorLabel,Text colour,Color del texto,,,0.958
+0.958,whatsNewBody,"Welcome to KatharScan! This is the first public release featuring unlimited scanning, 29 languages, and export to PDF, Word, TXT, JPG, PNG, and CSV.","¡Bienvenido a KatharScan! Esta es la primera versión pública con escaneo ilimitado, 29 idiomas y exportación a PDF, Word, TXT, JPG, PNG y CSV.","Welcome to KatharScan! This is the first public version with unlimited scanning, 29 languages and export to PDF, Word, TXT, JPG, PNG and CSV.",0.966,0.958
+0.959,ocrStatusChecking,Checking...,Comprobando...,,,0.959
+0.959,emptyFavorites,No favorites yet. Tap the star icon on a document to add it.,Aún no hay favoritos. Toca el icono de estrella en un documento para añadirlo.,There are no favorites yet. Tap the star icon on a document to add it.,0.983,0.959
+0.959,compressSmall,Small,Pequeño,,,0.959
+0.959,tickerAutoCopyOcr,AUTO-COPY OCR,AUTO-COPIAR OCR,,,0.959
+0.960,cropAspectFree,Free,Libre,,,0.960
+0.960,newFolderTitle,New Folder,Nueva carpeta,,,0.960
+0.960,newFolderTooltip,New Folder,Nueva carpeta,,,0.960
+0.960,progressDecodingImage,Decoding image…,Decodificando imagen…,,,0.960
+0.960,aboutSectionLabel,About,Acerca de,,,0.960
+0.960,storageSectionLabel,Storage,Almacenamiento,,,0.960
+0.960,settingsTooltip,Settings,Ajustes,,,0.960
+0.960,settingsTitle,Settings,Ajustes,,,0.960
+0.960,conversionStarting,Starting…,Iniciando…,,,0.960
+0.961,exportFormatSheetTitle,Export as,Exportar como,,,0.961
+0.961,editLabel,Edit,Editar,,,0.961
+0.961,emailMessageHint,Add a note (optional),Añade una nota (opcional),Add a note (optional),1.000,0.961
+0.962,signatureTypeHint,Type your name,Escribe tu nombre,,,0.962
+0.962,noteTextLabel,Note text,Texto de nota,,,0.962
+0.962,commonDelete,Delete,Eliminar,,,0.962
+0.962,deleteTooltip,Delete,Eliminar,,,0.962
+0.962,fromPageLabel,From,Desde,,,0.962
+0.963,exportFormatDocxDescription,Editable text document,Documento de texto editable,,,0.963
+0.963,progressCopying,Copying…,Copiando…,,,0.963
+0.964,onboardingToolsTitle,21 Free Pro Tools,21 herramientas Pro gratis,21 Pro tools for free,0.964,0.964
+0.964,addTagTitle,Add tag,Añadir etiqueta,,,0.964
+0.964,copyAll,Copy all,Copiar todo,,,0.964
+0.964,progressExtractingText,Extracting text…,Extrayendo texto…,,,0.964
+0.964,importingStatus,Importing…,Importando…,,,0.964
+0.965,commonRemove,Remove,Eliminar,,,0.965
+0.965,filterTitle,Filter,Filtro,,,0.965
+0.965,emptyDocumentMessage,This document has no pages.,Este documento no tiene páginas.,This document has no pages.,1.000,0.965
+0.965,idStepFront,Step 1: Capture Front Side,Paso 1: captura el lado frontal,Step 1: Capture the front side,0.969,0.965
+0.965,filterSheetTitle,Filters,Filtros,,,0.965
+0.966,editDocumentAction,Edit Document,Editar documento,,,0.966
+0.966,filterMagicColor,Magic colour,Color mágico,,,0.966
+0.966,commonUpdate,Update,Actualizar,,,0.966
+0.966,pdfImportErrorPrefix,PDF import error,Error de importación de PDF,,,0.966
+0.967,sealMainTextLabel,Main text (top arc / box),Texto principal (arco superior / caja),Main text (top arc / box),1.000,0.967
+0.967,tickerDeviceMigration,DEVICE MIGRATION,MIGRACIÓN DE DISPOSITIVO,,,0.967
+0.967,pageFromLabel,From page,Desde la página,,,0.967
+0.967,commonPrint,Print,Imprimir,,,0.967
+0.967,ocrScriptLatin,"Latin (English, European)","Latino (inglés, europeo)",,,0.967
+0.967,addTextTitle,Add Text,Agregar texto,,,0.967
+0.967,ocrUnavailableTooltip,OCR unavailable on this device.,OCR no disponible en este dispositivo.,OCR not available on this device.,0.967,0.967
+0.968,sealCenterText,Text,Texto,,,0.968
+0.968,watermarkTextLabel,Text,Texto,,,0.968
+0.968,textLabel,Text,Texto,,,0.968
+0.968,watermarkKindText,Text,Texto,,,0.968
+0.968,compressTargetLabel,Max size,Tamaño máximo,,,0.968
+0.968,selectRegionTitle,Select Region,Seleccionar región,,,0.968
+0.968,homeLanguageTooltip,App Language,Idioma de la app,,,0.968
+0.968,appLanguageTitle,App Language,Idioma de la app,,,0.968
+0.968,adsRemovedLabel,Ads Removed,Anuncios eliminados,,,0.968
+0.968,paywallSuccessTitle,Ads Removed,Anuncios eliminados,,,0.968
+0.968,saveAsDocument,Save as Document,Guardar como documento,,,0.968
+0.968,ocrNoTextFound,No text found,No se encontró texto,,,0.968
+0.968,addPageTitle,Add Page,Agregar página,,,0.968
+0.969,clearAllPages,Clear all pages,Borrar todas las páginas,,,0.969
+0.969,titlePdfImport,PDF Import,Importación de PDF,,,0.969
+0.969,onboardingWelcomeTitle,Welcome to KatharScan,Bienvenido a KatharScan,,,0.969
+0.969,printOptionsTitle,Print Options,Opciones de impresión,,,0.969
+0.969,noteLabel,Note,Nota,,,0.969
+0.969,appLanguageLabel,App language,Idioma de la app,,,0.969
+0.969,idLayoutRealSize,Real size,Tamaño real,,,0.969
+0.970,convertDocumentTitle,Convert Document,Convertir documento,,,0.970
+0.970,opacityPercentLabel,Opacity: {percent}%,Opacidad: {percent} %,,,0.970
+0.970,modeDocument,Document Mode,Modo documento,,,0.970
+0.970,exportFormatJpgDescription,One image per page,Una imagen por página,One image per page,1.000,0.970
+0.971,favoriteTooltip,Favorite,Favorito,,,0.971
+0.971,documentsSectionHeader,Documents,Documentos,,,0.971
+0.971,restorePurchasesButton,Restore purchases,Restaurar compras,,,0.971
+0.971,commonExport,Export,Exportar,,,0.971
+0.971,exportTooltip,Export,Exportar,,,0.971
+0.971,exportTitle,Export,Exportar,,,0.971
+0.971,ocrStatusInstalled,Installed,Instalado,,,0.971
+0.971,customColorTitle,Custom Color,Color personalizado,,,0.971
+0.971,filterAll,All,Todos,,,0.971
+0.972,cameraErrorPrefix,Camera error,Error de cámara,,,0.972
+0.972,convertToLabel,Convert to:,Convertir a:,,,0.972
+0.972,actionLabel,Action:,Acción:,,,0.972
+0.972,pagesLabel,Pages,Páginas,,,0.972
+0.972,watermarkPagesLabel,Pages,Páginas,,,0.972
+0.972,saveAsNewDocumentAction,Save as new Document,Guardar como nuevo documento,Save as a new document,0.992,0.972
+0.972,intensityLabel,Intensity,Intensidad,,,0.972
+0.972,pagesToReadHint,This PDF has {count} pages. Pages that are pictures are read with OCR (about 10 seconds each); pages with real text are instant.,Este PDF tiene {count} páginas. Las páginas que son imágenes se leen con OCR (unos 10 segundos cada una); las de texto real son instantáneas.,This PDF has 5 pages. The pages that are images are read with OCR (about 10 seconds each); those with real text are instantaneous.,0.972,0.976
+0.973,pagesToReadTitle,Pages to read,Páginas a leer,,,0.973
+0.974,watermarkPagesThis,This page,Esta página,,,0.974
+0.974,docxModeWithImages,With Images,Con imágenes,,,0.974
+0.974,shareTooltip,Share,Compartir,,,0.974
+0.974,commonShare,Share,Compartir,,,0.974
+0.974,pagesDeleteCount,Delete {count},Eliminar {count},,,0.974
+0.974,ocrLanguagesLabel,OCR Languages,Idiomas de OCR,,,0.974
+0.975,commonAdd,Add,Añadir,,,0.975
+0.975,savedAsNewDocument,Saved as new document,Guardado como nuevo documento,Saved as a new document,0.989,0.975
+0.976,addToFavorites,Add to Favorites,Añadir a favoritos,,,0.976
+0.977,filterFavorites,Favorites,Favoritos,,,0.977
+0.978,sealTextSizePercent,Text size {percent}%,Tamaño del texto {percent} %,,,0.978
+0.978,ocrScriptJapanese,Japanese,Japonés,,,0.978
+0.978,commonUse,Use,Usar,,,0.978
+0.979,documentNotFound,Document not found,Documento no encontrado,,,0.979
+0.979,ocrStatusDownloading,Downloading…,Descargando…,,,0.979
+0.980,commonCreate,Create,Crear,,,0.980
+0.980,commonSize,Size,Tamaño,,,0.980
+0.980,readingPageProgress,Page {page} of {total},Página {page} de {total},Page 5 of 5,1.000,0.980
+0.981,commonImport,Import,Importar,,,0.981
+0.981,tabOcrTextLabel,OCR Text,Texto OCR,,,0.981
+0.981,paywallTitle,Remove Ads,Eliminar anuncios,,,0.981
+0.983,textSizeLabel,Text size: {size},Tamaño de texto: {size},,,0.983
+0.983,pageLabel,Page {index},Página {index},,,0.983
+0.983,pagesSelectTooltip,Select pages,Seleccionar páginas,,,0.983
+0.983,commonConfirm,Confirm,Confirmar,,,0.983
+0.984,modeOcr,OCR Mode,Modo OCR,,,0.984
+0.984,sharePromptAction,Share App,Compartir App,,,0.984
+0.984,watermarkPagesInvalid,Check the pages (the document has {count} pages),Revisa las páginas (el documento tiene {count} páginas),Check the pages (the document has 5 pages),1.000,0.984
+0.984,continueButton,Continue,Continuar,,,0.984
+0.984,onboardingContinue,Continue,Continuar,,,0.984
+0.984,whatsNewContinue,Continue,Continuar,,,0.984
+0.984,watermarkDefaultText,CONFIDENTIAL,CONFIDENCIAL,,,0.984
+0.984,systemThemeOption,System,Sistema,,,0.984
+0.985,moreOptionsTooltip,More options,Más opciones,,,0.985
+0.985,annotationModeSelect,Select,Seleccionar,,,0.985
+0.986,pageIndicator,Page {current} / {total},Página {current} / {total},Page 5 / 5,1.000,0.986
+0.986,tabImageLabel,Image,Imagen,,,0.986
+0.986,watermarkKindImage,Image,Imagen,,,0.986
+0.987,printRangeAll,All pages,Todas las páginas,,,0.987
+0.987,watermarkPagesAll,All pages,Todas las páginas,,,0.987
+0.988,exportEstimatedSize,Estimated size: {mb} MB,Tamaño estimado: {mb} MB,Estimated size: 5 MB,1.000,0.988
+0.988,sharePdf,Share PDF,Compartir PDF,,,0.988
+0.988,exportingStatus,Exporting…,Exportando…,,,0.988
+0.989,watermarkChooseImage,Choose image,Elegir imagen,,,0.989
+0.991,filterContrastLabel,Contrast,Contraste,,,0.991
+0.991,convertedDocTitle,Converted {date},Convertido {date},,,0.991
+0.991,exportFormatTxtLabel,Text (.txt),Texto (.txt),,,0.991
+0.992,idGenerating,Generating PDF...,Generando PDF...,,,0.992
+0.996,tickerFavorites,FAVORITES,FAVORITOS,,,0.996
+0.997,rotate90Action,Rotate 90°,Rotar 90°,,,0.997
+1.000,fontMonospace,monospace,monospace,,,1.000
+1.000,ocrScriptArabic,العربية (Arabic),العربية (Arabic),,,1.000
+1.000,genericErrorPrefix,Error,Error,,,1.000
+1.000,formatCsv,CSV,CSV,,,1.000
+1.000,ocrScriptHebrew,עברית (Hebrew),עברית (Hebrew),,,1.000
+1.000,exportFormatPdfLabel,PDF,PDF,,,1.000
+1.000,exportFormatDocxLabel,Word (.docx),Word (.docx),,,1.000
+1.000,exportFormatJpgLabel,JPG,JPG,,,1.000
+1.000,exportFormatPngLabel,PNG,PNG,,,1.000
+1.000,filterOriginal,Original,Original,,,1.000
+1.000,proBadgeLabel,PRO,PRO,,,1.000
+1.000,originalDimensions,Original: {w}×{h},Original: {w}×{h},,,1.000
+1.000,ocrSectionLabel,OCR,OCR,,,1.000
+1.000,tickerLanguages,{count} LANGUAGES,{count} LANGUAGES,,,1.000
+1.000,ocrScriptRussian,Русский (Russian),Русский (Russian),,,1.000
+1.000,ocrScriptBengali,বাংলা (Bengali),বাংলা (Bengali),,,1.000
+1.000,watermarkLayoutDiagonal,Diagonal,Diagonal,,,1.000
+1.000,commonColor,Color,Color,,,1.000
+1.000,sealCenterLogo,Logo,Logo,,,1.000
+1.000,filterColor,Color,Color,,,1.000
+1.000,fontSerif,serif,serif,,,1.000
+1.000,ocrScriptUkrainian,Українська (Ukrainian),Українська (Ukrainian),,,1.000
+1.000,ocrScriptGreek,Ελληνικά (Greek),Ελληνικά (Greek),,,1.000
+1.000,fontSansSerif,sans-serif,sans-serif,,,1.000
+1.000,ocrScriptThai,ไทย (Thai),ไทย (Thai),,,1.000
+1.000,printMarginNormal,Normal,Normal,,,1.000

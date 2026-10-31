@@ -1,0 +1,544 @@
+score,key,english,translation,back_to_english,backtrans_score,labse_score
+0.274,printFitLabel,Scaling,फ़िट,,,0.274
+0.283,accentEmerald,Emerald,पन्ना,,,0.283
+0.309,satLabel,Sat,संतृप्ति,,,0.309
+0.336,watermarkLayoutDiagonal,Diagonal,तिरछा,,,0.336
+0.459,annotationModeEllipse,Ellipse,दीर्घवृत्त,,,0.459
+0.487,printMarginNarrow,Narrow,संकरा,,,0.487
+0.506,signatureTabDraw,Draw,बनाएँ,,,0.506
+0.516,tickerTapToTypeFilling,TAP-TO-TYPE FILLING,टैप करके भरें,,,0.516
+0.522,deleteScanMessage,This can't be undone.,इसे पूर्ववत नहीं किया जा सकता।,It cannot be reversed.,0.522,0.891
+0.534,eraserTitle,Eraser,इरेज़र,,,0.534
+0.534,annotationModeEraser,Eraser,इरेज़र,,,0.534
+0.538,checkShapeCircle,Circle,वृत्त,,,0.538
+0.540,fillCapsLabel,ALL CAPS,बड़े अक्षर,,,0.540
+0.542,marqueeEraseTooltip,Marquee erase,चयनित मिटाएं,,,0.542
+0.548,sealFontSans,Clean,सादा,,,0.548
+0.567,signatureNewOne,Draw or type a new one,नया बनाएँ या टाइप करें,Create or type new,0.567,0.873
+0.571,annotationModeRect,Rectangle,आयत,,,0.571
+0.572,valLabel,Val,मान,,,0.572
+0.585,tickerAccentThemes,ACCENT THEMES,एक्सेंट थीम,,,0.585
+0.586,sealInkLook,Worn stamp look,घिसी मुहर जैसा रूप,,,0.586
+0.607,captureBehaviorSectionLabel,CAPTURE BEHAVIOR,कैप्चर व्यवहार,,,0.607
+0.610,extractToNewDocAction,Extract to new doc,नए दस्तावेज़ में निकालें,Remove to new document,0.610,0.801
+0.613,tickerUndoRedo,UNDO/REDO,पूर्ववत/फिर से करें,,,0.613
+0.614,checkShapeSquare,Square,वर्ग,,,0.614
+0.614,cropAspectSquare,Square,वर्ग,,,0.614
+0.614,watermarkDefaultText,CONFIDENTIAL,गोपनीय,,,0.614
+0.615,vibrateOnCaptureLabel,Vibrate on capture,कैप्चर पर कंपन,,,0.615
+0.621,filterGrayscale,Grayscale,ग्रेस्केल,,,0.621
+0.627,darkThemeOption,Dark,गहरा,,,0.627
+0.632,printRangeRange,Range,श्रेणी,,,0.632
+0.638,cropLabel,Crop,क्रॉप,,,0.638
+0.642,watermarkPagesRange,Range,सीमा,,,0.642
+0.647,printFitFit,Fit page,पृष्ठ में फ़िट करें,,,0.647
+0.660,commonSkip,Skip,छोड़ें,,,0.660
+0.661,checkShapeRounded,Rounded,गोल,,,0.661
+0.665,commonDone,Done,हो गया,,,0.665
+0.677,beepOnCaptureLabel,Beep on capture,कैप्चर पर बीप,,,0.677
+0.682,accentCrimson,Crimson,क्रिमसन,,,0.682
+0.683,exportDoneStatus,Done,पूर्ण,,,0.683
+0.690,filterContrastLabel,Contrast,कंट्रास्ट,,,0.690
+0.694,annotateTitle,Annotate,एनोटेट करें,,,0.694
+0.694,commonClear,Clear,मिटाएं,,,0.694
+0.698,alignLabel,Align,संरेखण,,,0.698
+0.701,idCardPdfGenerated,ID Card PDF Generated,आईडी कार्ड PDF बनाया गया,I.D. card made PDF,0.701,0.887
+0.707,onboardingReplayIntro,Replay introduction,परिचय दोबारा देखें,,,0.707
+0.708,cropDocumentTitle,Crop Document,दस्तावेज़ क्रॉप करें,,,0.708
+0.710,hueLabel,Hue,रंगत,,,0.710
+0.710,commonExtract,Extract,निकालें,,,0.710
+0.710,sealShapeOval,Oval,अंडाकार,,,0.710
+0.711,accentViolet,Violet,बैंगनी,,,0.711
+0.711,redoTooltip,Redo,फिर से करें,,,0.711
+0.712,appearanceSectionLabel,Appearance,दिखावट,,,0.712
+0.712,debugLogsLabel,Debug Logs,डीबग लॉग,,,0.712
+0.713,tickerBatchExport,BATCH EXPORT,बैच निर्यात,,,0.713
+0.721,tickerFolders,FOLDERS,फ़ोल्डर,,,0.721
+0.723,paywallFeatureNoInterstitial,No more interstitial ads,कोई इंटरस्टिशियल विज्ञापन नहीं,No interstitial advertising,0.723,0.835
+0.724,diagnosticsSectionLabel,DIAGNOSTICS,निदान,,,0.724
+0.728,tickerCustomSeals,CUSTOM SEALS,कस्टम सील,,,0.728
+0.728,duplicateAction,Duplicate,डुप्लिकेट,,,0.728
+0.735,compressLabel,Compress,संपीड़ित करें,,,0.735
+0.737,ocrStatusUnsupported,Unsupported,असमर्थित,,,0.737
+0.737,eraserZoomTooltip,Zoom and move (pinch),ज़ूम और खिसकाएँ (पिंच),Zoom and slide,0.737,0.781
+0.739,signatureFontFlowing,Flowing,प्रवाही,,,0.739
+0.740,supportLabel,Support,सहायता,,,0.740
+0.741,removeAdsTitle,Remove Ads Forever,विज्ञापन हटाएं,,,0.741
+0.741,undoTooltip,Undo,पूर्ववत करें,,,0.741
+0.742,signatureTabType,Type,टाइप करें,,,0.742
+0.743,engagementSectionLabel,ENGAGEMENT & NOTIFICATIONS,सहभागिता और सूचनाएं,,,0.743
+0.750,tickerNoteStamps,NOTE STAMPS,नोट स्टैम्प,,,0.750
+0.754,annotationModeHighlighter,Highlighter,हाइलाइटर,,,0.754
+0.756,annotationModeArrow,Arrow,तीर,,,0.756
+0.763,sealShapeRound,Round,गोल,,,0.763
+0.763,exportFormatSheetTitle,Export as,इस रूप में निर्यात करें,,,0.763
+0.764,drawNewSignature,Draw New,नया बनाएं,,,0.764
+0.764,accentAmber,Amber,एंबर,,,0.764
+0.765,buildingBackupStatus,Building backup…,बैकअप बनाया जा रहा है…,,,0.765
+0.766,ocrStatusChecking,Checking...,जांच जारी...,,,0.766
+0.767,tickerRevertToOriginal,REVERT TO ORIGINAL,मूल पर लौटें,,,0.767
+0.768,printMarginLabel,Margin,मार्जिन,,,0.768
+0.770,scaleLabel,Scale,स्केल,,,0.770
+0.771,eraserApplied,Eraser applied,इरेज़र लागू किया गया,,,0.771
+0.772,watermarkLayoutTiled,Tiled,टाइल्ड,,,0.772
+0.774,cropIdCardTitle,Crop ID Card,आईडी कार्ड क्रॉप करें,,,0.774
+0.777,stampTickedLabel,Ticked,टिक किया,,,0.777
+0.779,intensityLabel,Intensity,तीव्रता,,,0.779
+0.779,moveToFolderTitle,Move to Folder,फ़ोल्डर में ले जाएं,,,0.779
+0.782,tickerPassportMode,PASSPORT MODE,पासपोर्ट मोड,,,0.782
+0.784,filterBrightnessLabel,Brightness,चमक,,,0.784
+0.787,commonRevert,Revert,वापस लें,,,0.787
+0.787,sealTextColorSame,Same as ring,रिंग जैसा,,,0.787
+0.787,signatureWidthLabel,Pen width,कलम की मोटाई,,,0.787
+0.789,filterRecent,Recent,हालिया,,,0.789
+0.790,revertToOriginalMessage,"This will undo all filters, rotations, crops, resizes, and eraser strokes on this page.","यह इस पृष्ठ पर सभी फ़िल्टर, घुमाव, कटाई, आकार बदलाव और इरेज़र स्ट्रोक को पूर्ववत कर देगा।","It will reverse all filters, twists, cuts, resize changes and erasure strokes on this page.",0.790,0.837
+0.790,resizeTitle,Resize,आकार बदलें,,,0.790
+0.790,foldersSectionHeader,Folders,फ़ोल्डर,,,0.790
+0.790,filterFolders,Folders,फ़ोल्डर,,,0.790
+0.791,stampTickLabel,Tick,टिक,,,0.791
+0.791,movedToFolderMessage,Moved to folder.,फ़ोल्डर में ले जाया गया।,,,0.791
+0.793,exportFormatPngDescription,"One image per page, lossless","प्रति पृष्ठ एक चित्र, बिना गुणवत्ता हानि के","One picture per page, without loss of quality",0.793,0.802
+0.795,ticker100OnDevicePrivacy,YOUR DOCUMENTS STAY ON YOUR DEVICE,आपके दस्तावेज़ आपके डिवाइस पर ही रहते हैं,Your documents remain on your device.,0.951,0.795
+0.795,cropAuto,Auto-detect,स्वतः पहचानें,,,0.795
+0.796,resizeUpscaleWarning,Enlarging doesn't add detail — the page may look soft.,बड़ा करने से विवरण नहीं बढ़ता; पेज धुंधला दिख सकता है।,Enlargement does not increase the detail; the page may appear blurred.,0.835,0.796
+0.797,onboardingPrivacySubtitle,"No account, no cloud, no watermarks. Your documents never leave your device.","कोई खाता नहीं, कोई क्लाउड नहीं, कोई वॉटरमार्क नहीं। आपके दस्तावेज़ आपके डिवाइस पर ही रहते हैं।","No account, no cloud, no watermark. Your documents stay on your device.",0.981,0.797
+0.798,tickerNonDestructiveEditing,NON-DESTRUCTIVE EDITING,गैर-विनाशकारी संपादन,,,0.798
+0.799,sealCenterNone,None,कोई नहीं,,,0.799
+0.799,printMarginNone,None,कोई नहीं,,,0.799
+0.800,tickerTextStamps,TEXT STAMPS,टेक्स्ट स्टैम्प,,,0.800
+0.800,lockAspectRatio,Lock aspect ratio,पहलू अनुपात लॉक करें,,,0.800
+0.801,tickerTags,TAGS,टैग,,,0.801
+0.802,captionDocs,"Flexible crop: Original, Square, 4:3, 3:2, 16:9","लचीला क्रॉप: मूल, वर्ग, 4:3, 3:2, 16:9","Flexible crop: root, square, 4:3, 3:2, 16:9",0.926,0.802
+0.803,ocrStatusBuiltIn,Built-in,अंतर्निहित,,,0.803
+0.803,copiedToClipboard,Copied to clipboard,क्लिपबोर्ड पर कॉपी किया गया,,,0.803
+0.805,tickerDeviceMigration,DEVICE MIGRATION,डिवाइस माइग्रेशन,,,0.805
+0.805,lightThemeOption,Light,हल्का,,,0.805
+0.807,moveToFolderTooltip,Move to folder,फ़ोल्डर में ले जाएं,,,0.807
+0.807,captureFrontSide,Capture Front Side,सामने का भाग कैप्चर करें,,,0.807
+0.807,fitToTargetMbLabel,Fit to target MB,लक्ष्य MB में फ़िट करें,Fit to target MB,1.000,0.807
+0.808,printFitFill,Fill sheet (trims edges),शीट भरें (किनारे कटते हैं),Fill the sheets (cutting edges),0.808,0.830
+0.810,onboardingSignSubtitle,"E-sign contracts, type-to-fill forms, and stamp enterprise seals in seconds.","अनुबंधों पर ई-साइन, फ़ॉर्म भरें, सेकंडों में एंटरप्राइज़ सील लगाएं।","E-sign contracts, fill out forms, enterprise seal in seconds.",0.893,0.810
+0.813,accentIndigo,Indigo,इंडिगो,,,0.813
+0.814,ocrStatusOnDemand,On-demand,मांग पर,,,0.814
+0.817,tickerSearch,SEARCH,खोज,,,0.817
+0.818,enableSharePromptsLabel,Enable Share Prompts,साझा संकेत सक्षम करें,,,0.818
+0.819,eraserAutoColorTooltip,Match the page colour automatically,पेज के रंग से अपने आप मिलाएँ,Automatically blend the page color,0.819,0.838
+0.819,captureBackSide,Capture Back Side,पीछे का भाग कैप्चर करें,,,0.819
+0.819,onboardingEditSubtitle,"Every edit stays reversible — undo, redo, and revert to original anytime.","हर संपादन उत्क्रमणीय — कभी भी पूर्ववत, फिर से करें, मूल पर लौटें।","Every editing is reversible <unk> Any time deferred, repeat, return to the original.",0.819,0.893
+0.819,onboardingWelcomeSubtitle,"Your entire document office — scan, edit, sign, and export — in one private app.","आपका पूरा दस्तावेज़ कार्यालय — स्कैन, संपादन, हस्ताक्षर, निर्यात — एक निजी ऐप में।","Your entire document office <unk> scan, edit, sign, export <unk> in a private app.",0.819,0.895
+0.820,sealCreateTitle,Custom Seal,कस्टम सील,,,0.820
+0.820,sealCustom,Custom Seal,कस्टम सील,,,0.820
+0.821,tickerNoAccount,NO ACCOUNT,कोई खाता नहीं,,,0.821
+0.821,tickerDarkMode,DARK MODE,डार्क मोड,,,0.821
+0.823,backupCorruptedError,This backup file looks corrupted.,यह बैकअप फ़ाइल खराब लगती है।,This backup file looks corrupt.,0.989,0.823
+0.823,tickerESign,E-SIGN,ई-हस्ताक्षर,,,0.823
+0.823,renameFolderTitle,Rename folder,फ़ोल्डर का नाम बदलें,,,0.823
+0.824,placeHereLabel,Place here,यहाँ रखें,,,0.824
+0.825,tickerFavorites,FAVORITES,पसंदीदा,,,0.825
+0.827,pageResized,Page resized,पृष्ठ का आकार बदला गया,,,0.827
+0.828,billingUnavailableMessage,Billing unavailable — try again later.,बिलिंग अनुपलब्ध — बाद में पुनः प्रयास करें।,Billing unavailable <unk> Try again later.,0.828,0.950
+0.828,enableReviewPromptsLabel,Enable Review Prompts,समीक्षा संकेत सक्षम करें,,,0.828
+0.829,progressBuildingDocx,Building DOCX…,DOCX बन रहा है…,,,0.829
+0.829,filterMagicColor,Magic colour,मैजिक रंग,,,0.829
+0.832,migrationExplainer,"This isn't automatic sync. Export creates a single encrypted backup file you move to your new device yourself, then import there.","यह स्वचालित सिंक नहीं है। निर्यात एक एन्क्रिप्टेड बैकअप फ़ाइल बनाता है जिसे आप स्वयं अपने नए डिवाइस पर ले जाते हैं, फिर वहां आयात करते हैं।","It's not automatic sync. Export creates an encrypted backup file that you yourself take to your new device, then import there.",0.982,0.832
+0.832,progressEncodingPage,Encoding page {current} of {total}…,पृष्ठ {current} / {total} एन्कोड हो रहा है…,Page 5 / 5 is being encoded...,0.890,0.832
+0.833,commonClose,Close,बंद करें,,,0.833
+0.833,stampCheckbox,Checkbox,चेकबॉक्स,,,0.833
+0.833,frontSideCaptured,Front side captured. Now capture the back side.,सामने का भाग कैप्चर किया गया। अब पीछे का भाग कैप्चर करें।,The front is captured. Now capture the back.,0.908,0.833
+0.836,progressRasterizing,Rasterizing pages…,पृष्ठ रेस्टराइज़ हो रहे हैं…,,,0.836
+0.838,couldNotCreateBackupError,Could not create the backup.,बैकअप नहीं बन सका।,Backup could not be made.,0.924,0.838
+0.838,watermarkLabel,Watermark,वॉटरमार्क,,,0.838
+0.839,clearedCount,Cleared {count},{count} साफ़ किए गए,,,0.839
+0.840,tapToSampleColor,Tap a spot to sample its color,रंग नमूने के लिए किसी स्थान पर टैप करें,Tap on a spot for color sample,0.955,0.840
+0.840,watermarkLayoutSingle,Single,एकल,,,0.840
+0.840,titleScan,Scan,स्कैन,,,0.840
+0.840,enableNotificationsSubtitle,Allow background reminders for unexported documents,निर्यात न किए गए दस्तावेज़ों के लिए पृष्ठभूमि अनुस्मारक की अनुमति दें,Allow background reminder for unexported documents,0.991,0.840
+0.842,sealRemoveWhite,Make white transparent,सफ़ेद को पारदर्शी करें,,,0.842
+0.842,sharePromptBody,Share it with friends who need a powerful document scanner.,इसे उन दोस्तों के साथ साझा करें जिन्हें एक शक्तिशाली दस्तावेज़ स्कैनर की आवश्यकता है।,Share it with friends who need a powerful document scanner.,1.000,0.842
+0.843,straightenLabel,Straighten,सीधा करें,,,0.843
+0.843,ocrScriptChinese,Chinese,चीनी,,,0.843
+0.843,paywallFeatureNoBanner,No more banner ads,कोई बैनर विज्ञापन नहीं,No banner ads,0.870,0.843
+0.844,tickerNoWatermarks,NO WATERMARKS,कोई वॉटरमार्क नहीं,,,0.844
+0.845,filterShadowRemoval,Shadow removal,छाया हटाना,,,0.845
+0.846,onboardingEditTitle,Non-Destructive Editing,गैर-विनाशकारी संपादन,,,0.846
+0.846,clearLogsTooltip,Clear logs,लॉग साफ़ करें,,,0.846
+0.846,savedToDocumentText,Saved to document text,दस्तावेज़ टेक्स्ट में सहेजा गया,The document is saved in text,0.911,0.846
+0.846,subscriptionSectionLabel,Subscription,सदस्यता,,,0.846
+0.847,filterOriginal,Original,मूल,,,0.847
+0.847,ocrStatusInstalled,Installed,इंस्टॉल है,,,0.847
+0.847,enableNotificationsLabel,Enable Notifications,सूचनाएं सक्षम करें,,,0.847
+0.847,storageSectionLabel,Storage,संग्रहण,,,0.847
+0.847,openSourceLicensesLabel,Open-source licenses,ओपन-सोर्स लाइसेंस,,,0.847
+0.847,onboardingSignTitle,"Sign, Fill & Seal","साइन, फिल और सील","Sign, fill and seal",0.986,0.847
+0.848,errorReportIssue,Report issue,समस्या की रिपोर्ट करें,,,0.848
+0.848,pagesLabel,Pages,पृष्ठ,,,0.848
+0.848,watermarkPagesLabel,Pages,पृष्ठ,,,0.848
+0.851,sealCenterStar,Star,तारा,,,0.851
+0.851,folderUnavailable,This folder is no longer available.,यह फ़ोल्डर अब उपलब्ध नहीं है।,This folder is no longer available.,1.000,0.851
+0.851,docScannerUnsupportedMessage,"Your device doesn't support the advanced document scanner. Take a photo with your Camera app, then tap Import below to crop and save it.","आपका डिवाइस उन्नत दस्तावेज़ स्कैनर का समर्थन नहीं करता। कैमरा ऐप से फ़ोटो लें, फिर नीचे आयात पर टैप करके काटें और सहेजें।","Your device does not support an advanced document scanner. Take photos from the camera app, then tap the import below to cut and save.",0.925,0.851
+0.851,exportGenericError,Something went wrong while exporting.,निर्यात के दौरान कुछ गड़बड़ हुई।,Something went wrong during export.,0.964,0.851
+0.852,pagesToReadTitle,Pages to read,पढ़ने के लिए पृष्ठ,,,0.852
+0.852,exportSavedToDownloads,Saved to Downloads,डाउनलोड में सहेजा गया,,,0.852
+0.853,ocrNoInternetMessage,No internet. Connect once to download the language pack.,इंटरनेट नहीं। भाषा पैक डाउनलोड करने के लिए एक बार कनेक्ट करें।,Not the Internet. Connect once to download the language pack.,0.904,0.853
+0.854,fromAnotherDocument,From Another Document,दूसरे दस्तावेज़ से,,,0.854
+0.855,accentColorTooltip,Accent Color,एक्सेंट रंग,,,0.855
+0.855,accentColorTitle,Accent Color,एक्सेंट रंग,,,0.855
+0.855,checkLabel,Check,चेक,,,0.855
+0.855,tickerGalleryImport,GALLERY IMPORT,गैलरी आयात,,,0.855
+0.855,revertToOriginalTitle,Revert to Original?,मूल पर वापस जाएं?,,,0.855
+0.856,sealSubtextLabel,Subtext (bottom arc / below),उप-पाठ (निचला चाप / नीचे),Sub-text (lower arc / down),0.856,0.906
+0.856,commonRename,Rename,नाम बदलें,,,0.856
+0.856,pricingLoadingError,Pricing is still loading — try again in a moment.,कीमतें अभी लोड हो रही हैं — कुछ देर में फिर कोशिश करें।,Prices are loading right now. Try again later.,0.856,0.877
+0.857,sharePromptTitle,Love KatharScan?,क्या आपको KatharScan पसंद है?,,,0.857
+0.858,accentBlue,Blue,नीला,,,0.858
+0.858,batchExportSignatureDisabled,Batch export — signature placement disabled,बैच निर्यात — हस्ताक्षर स्थान अक्षम,Batch export <unk> signature location disabled,0.858,0.900
+0.858,whatsNewBody,"Welcome to KatharScan! This is the first public release featuring unlimited scanning, 29 languages, and export to PDF, Word, TXT, JPG, PNG, and CSV.","KatharScan में आपका स्वागत है! यह पहला सार्वजनिक रिलीज़ है जिसमें असीमित स्कैनिंग, 29 भाषाएँ और PDF, Word, TXT, JPG, PNG व CSV निर्यात शामिल है।","Welcome to KatharScan! This is the first public release to include unlimited scanning, 29 languages and PDF, Word, TXT, JPG, PNG and CSV exports.",0.982,0.858
+0.858,compressSmall,Small,छोटा,,,0.858
+0.859,filterColorEnhance,Color enhance,रंग सुधार,,,0.859
+0.859,tickerIdCardMode,ID CARD MODE,आईडी कार्ड मोड,,,0.859
+0.859,convertToLabel,Convert to:,इसमें कनवर्ट करें:,,,0.859
+0.859,whatsNewTitle,What's New,नया क्या है,,,0.859
+0.859,sealCenterText,Text,पाठ,,,0.859
+0.859,textLabel,Text,पाठ,,,0.859
+0.859,progressBuildingPdf,Building PDF…,PDF बन रहा है…,,,0.859
+0.860,filterShadow,Shadow,छाया,,,0.860
+0.860,captionOcr,"Text crop: Original, Square, 4:3","टेक्स्ट क्रॉप: मूल, वर्ग, 4:3","Text crop: original, square, 4:3",1.000,0.860
+0.860,clearThis,Clear this,यह साफ़ करें,,,0.860
+0.861,commonConvert,Convert,कनवर्ट करें,,,0.861
+0.861,fillDeleteSnippet,Delete snippet?,स्निपेट हटाएं?,,,0.861
+0.861,importBackSide,Import Back Side,पीछे का भाग आयात करें,,,0.861
+0.862,tickerWordExport,WORD EXPORT,Word निर्यात,,,0.862
+0.862,cropNoPageFound,Couldn't find the page edges. Drag the corners.,पेज के किनारे नहीं मिले। कोनों को खींचें।,The edge of the page is not found. Drag the corners.,0.913,0.862
+0.862,printMarginNormal,Normal,सामान्य,,,0.862
+0.863,onboardingToolsSubtitle,"Annotate, sign, watermark, fill forms, seal, and more — every tool free and unlimited.","एनोटेट, साइन, वॉटरमार्क, फ़ॉर्म भरें, सील और बहुत कुछ — सब मुफ़्त और असीमित।","Annotate, sign, watermark, fill out forms, seal and more <unk> all free and unlimited.",0.915,0.863
+0.863,sealSavedHeading,Saved seals,सहेजी गई सीलें,,,0.863
+0.863,importFrontSide,Import Front Side,सामने का भाग आयात करें,,,0.863
+0.863,convertedDocTitle,Converted {date},कनवर्टेड {date},,,0.863
+0.864,renameDocumentTitle,Rename document,दस्तावेज़ का नाम बदलें,,,0.864
+0.864,filterSheetTitle,Filters,फ़िल्टर,,,0.864
+0.866,commonSize,Size,आकार,,,0.866
+0.866,progressExtractingText,Extracting text…,टेक्स्ट निकाला जा रहा है…,,,0.866
+0.866,exportBackupButton,Export encrypted backup,एन्क्रिप्टेड बैकअप निर्यात करें,,,0.866
+0.866,onboardingGetStarted,Get Started,शुरू करें,,,0.866
+0.866,onboardingBack,Back,वापस,,,0.866
+0.867,progressSaving,Saving…,सहेजा जा रहा है…,,,0.867
+0.867,printPerSheetLabel,Pages per sheet,प्रति शीट पृष्ठ,,,0.867
+0.868,tickerRegionOcr,REGION OCR,क्षेत्र OCR,,,0.868
+0.868,emptyFolders,No folders yet. Tap the folder icon to create one.,अभी तक कोई फ़ोल्डर नहीं। एक बनाने के लिए फ़ोल्डर आइकन टैप करें।,No folder yet. Tap the folder icon to create one.,0.966,0.868
+0.869,exportFormatCsvDescription,Spreadsheet data,स्प्रेडशीट डेटा,,,0.869
+0.869,documentsSectionHeader,Documents,दस्तावेज़,,,0.869
+0.869,sealEditTitle,Edit Custom Seal,कस्टम सील संपादित करें,,,0.869
+0.869,autoScan,Auto Scan,स्वचालित स्कैन,,,0.869
+0.869,captionPassport,Passport crop: 4:3 or Original,पासपोर्ट क्रॉप: 4:3 या मूल,Passport crop: 4:3 or original,1.000,0.869
+0.869,setBackupPasswordTitle,Set a backup password,बैकअप पासवर्ड सेट करें,Set the backup password,0.979,0.869
+0.870,saveToDownloadsAction,Save to Downloads,डाउनलोड में सहेजें,,,0.870
+0.870,batchExportEmptyMessage,No documents to batch export. Scan some first.,बैच निर्यात के लिए कोई दस्तावेज़ नहीं हैं। पहले कुछ स्कैन करें।,There are no documents for batch export. Scan some first.,0.902,0.870
+0.871,watermarkLayoutLabel,Layout,लेआउट,,,0.871
+0.871,sealDefaultMainText,YOUR COMPANY,आपकी कंपनी,,,0.871
+0.871,autoCopyOcrSubtitle,Copy text to clipboard after scan,स्कैन के बाद टेक्स्ट क्लिपबोर्ड पर कॉपी करें,Copy text to clipboard after scan,1.000,0.871
+0.871,commonCustom,Custom,कस्टम,,,0.871
+0.872,searchHint,Search your scans,अपने स्कैन खोजें,,,0.872
+0.872,pageCropped,Page cropped,पृष्ठ काटा गया,,,0.872
+0.872,printPaperLabel,Paper,कागज़,,,0.872
+0.872,migrationTitle,Device Migration,डिवाइस माइग्रेशन,,,0.872
+0.872,deviceMigrationLabel,Device Migration,डिवाइस माइग्रेशन,,,0.872
+0.873,rotateLabel,Rotate,घुमाएं,,,0.873
+0.873,progressDecodingImage,Decoding image…,इमेज डीकोड हो रही है…,,,0.873
+0.873,commonApply,Apply,लागू करें,,,0.873
+0.873,commonReset,Reset,रीसेट करें,,,0.873
+0.873,paywallLegalText,This is a non-consumable purchase. Restore it anytime on any device with the same store account.,यह एक गैर-उपभोज्य खरीद है। इसे किसी भी समय किसी भी डिवाइस पर उसी स्टोर खाते से पुनर्स्थापित करें।,This is a non - consumable purchase. Restore it from the same store account on any device at any time.,0.980,0.873
+0.874,backupReadyStatus,Backup ready.,बैकअप तैयार है।,,,0.874
+0.875,importBackupButton,Import from backup,बैकअप से आयात करें,,,0.875
+0.875,watermarkTextLabel,Text,टेक्स्ट,,,0.875
+0.875,watermarkKindText,Text,टेक्स्ट,,,0.875
+0.876,aboutSectionLabel,About,के बारे में,,,0.876
+0.876,reviewPromptBody,Your feedback helps us grow and keeps the app free.,आपकी प्रतिक्रिया हमें बढ़ने में मदद करती है और ऐप को मुफ्त रखती है।,Your feedback helps us grow and keep the app free.,0.995,0.876
+0.876,ocrLanguagePackNotReady,Language pack downloading or not ready. Try again shortly.,भाषा पैक डाउनलोड हो रहा है या तैयार नहीं। शीघ्र ही पुनः प्रयास करें।,The language pack is downloading or not ready. Try again as soon as possible.,0.977,0.876
+0.876,emptyFavorites,No favorites yet. Tap the star icon on a document to add it.,अभी तक कोई पसंदीदा नहीं। इसे जोड़ने के लिए किसी दस्तावेज़ पर स्टार आइकन टैप करें।,Not a favorite yet. Tap the star icon on a document to add it.,0.876,0.879
+0.877,ticker21ToolEditSuite,21-TOOL EDIT SUITE,21-टूल एडिट सूट,,,0.877
+0.877,signatureFontHandwritten,Handwritten,हस्तलिखित,,,0.877
+0.877,pageRevertedToOriginal,Page reverted to original,पृष्ठ मूल पर वापस लाया गया,Page returned to the original,0.877,0.883
+0.877,fullscreenLabel,Fullscreen,पूर्ण स्क्रीन,,,0.877
+0.878,progressReading,Reading…,पढ़ा जा रहा है…,,,0.878
+0.878,batchExportTooltip,Batch export,बैच निर्यात,,,0.878
+0.878,extractedAsNewDocument,Extracted as new document,नए दस्तावेज़ के रूप में निकाला गया,Extracted as new document,1.000,0.878
+0.878,restorePurchasesButton,Restore purchases,खरीदारी पुनर्स्थापित करें,,,0.878
+0.878,exportTitle,Export,निर्यात,,,0.878
+0.879,enterBackupPasswordTitle,Enter backup password,बैकअप पासवर्ड दर्ज करें,,,0.879
+0.879,commonCreate,Create,बनाएं,,,0.879
+0.879,annotationModePen,Pen,पेन,,,0.879
+0.879,stampPaperLabel,Paper,पेपर,,,0.879
+0.879,pageToLabel,To page,पृष्ठ तक,,,0.879
+0.880,idGenerating,Generating PDF...,PDF बन रहा है...,,,0.880
+0.880,sampleColorTooltip,Sample color from page,पृष्ठ से रंग नमूना लें,Take a color sample from the page,0.949,0.880
+0.880,filterFavorites,Favorites,पसंदीदा,,,0.880
+0.881,onboardingPrivacyTitle,Private by design,डिज़ाइन से ही निजी,,,0.881
+0.882,sealSavedMessage,Seal saved,सील सहेजी गई,,,0.882
+0.882,fillTapHint,Tap the page where you want to type,पृष्ठ पर जहाँ लिखना चाहते हैं वहाँ टैप करें,Tap where you want to type on the page,0.979,0.882
+0.883,saveAsDocument,Save as Document,दस्तावेज़ के रूप में सहेजें,,,0.883
+0.883,reviewPromptTitle,Enjoying KatharScan?,क्या आप KatharScan का आनंद ले रहे हैं?,,,0.883
+0.883,fillSaveSnippet,Save as snippet,स्निपेट के रूप में सहेजें,,,0.883
+0.883,scanUnavailable,This scan is no longer available.,यह स्कैन अब उपलब्ध नहीं है।,This scan is no longer available.,1.000,0.883
+0.883,extractedTextTitle,Extracted Text,निकाला गया टेक्स्ट,,,0.883
+0.885,watermarkPagesInvalid,Check the pages (the document has {count} pages),पृष्ठ जाँचें (दस्तावेज़ में {count} पृष्ठ हैं),Page checks (the document has 5 pages),0.885,0.961
+0.885,emailAttachmentNotIncluded,The pages could not be attached to the email. Use Share to send the pages.,पेज ईमेल में संलग्न नहीं हो सके। पेज भेजने के लिए शेयर का उपयोग करें।,Page cannot be attached to the email. Use share to send the page.,0.893,0.885
+0.886,saveToDeviceButton,Save to Device,डिवाइस पर सहेजें,,,0.886
+0.887,docxModeWithImages,With Images,छवियों के साथ,,,0.887
+0.887,captionIdCard,Two-sided ID capture: Front + Back,दो तरफा ID कैप्चर: सामने + पीछे,Two-way ID capture: front + back,0.951,0.887
+0.888,printRangeCurrent,Current,वर्तमान,,,0.888
+0.888,couldNotImportBackupError,Could not import this backup. Check the password and try again.,यह बैकअप आयात नहीं हो सका। पासवर्ड जांचें और फिर से कोशिश करें।,This backup could not be imported. Check the password and try again.,0.977,0.888
+0.888,enableReviewPromptsSubtitle,Allow the app to occasionally ask for a rating,ऐप को कभी-कभी रेटिंग मांगने की अनुमति दें,Allow the app to ask for ratings sometimes,0.962,0.888
+0.889,exportFormatPdfDescription,Best for sharing and printing,साझा करने और प्रिंट करने के लिए सबसे अच्छा,Best for sharing and printing,1.000,0.889
+0.890,modePassport,Passport Mode,पासपोर्ट मोड,,,0.890
+0.890,restoreCompleteMessage,Restore complete.,पुनर्स्थापन पूर्ण।,,,0.890
+0.890,noteTextLabel,Note text,नोट पाठ,,,0.890
+0.891,commonChange,Change,बदलें,,,0.891
+0.891,extractedPageDefaultTitle,Extracted Page,निकाला गया पृष्ठ,,,0.891
+0.891,paywallSuccessMessage,Thank you for supporting KatharScan.,KatharScan का समर्थन करने के लिए धन्यवाद।,Thank you for supporting KatharScan.,1.000,0.891
+0.892,filterApplied,Filter applied,फ़िल्टर लागू किया गया,,,0.892
+0.892,noFoldersYetHomeMessage,No folders yet. Create one from the home screen.,अभी तक कोई फ़ोल्डर नहीं। होम स्क्रीन से एक बनाएं।,No folder yet. Create one from the home screen.,0.957,0.892
+0.892,noDocumentsInFolder,No documents in this folder yet.,इस फ़ोल्डर में अभी तक कोई दस्तावेज़ नहीं है।,There is no document in this folder yet.,0.916,0.892
+0.892,docxModeTextOnly,Text Only,केवल टेक्स्ट,,,0.892
+0.893,stampBoxLabel,Box,बॉक्स,,,0.893
+0.893,sealShapeBox,Box,बॉक्स,,,0.893
+0.894,reviewPromptNo,Send Feedback,प्रतिक्रिया भेजें,,,0.894
+0.895,managePagesTitle,Manage Pages,पृष्ठ प्रबंधित करें,,,0.895
+0.895,vibrateOnCaptureSubtitle,Haptic feedback when scan completes,स्कैन पूरा होने पर हैप्टिक फीडबैक,Haptic feedback when the scan is completed,0.983,0.895
+0.896,chipAllFolders,All Folders,सभी फ़ोल्डर,,,0.896
+0.896,signatureTitle,Signature,हस्ताक्षर,,,0.896
+0.897,reviewPromptYes,Rate Us,हमें रेट करें,,,0.897
+0.897,convertDocumentTitle,Convert Document,दस्तावेज़ कनवर्ट करें,,,0.897
+0.899,newFolderTitle,New Folder,नया फ़ोल्डर,,,0.899
+0.899,newFolderTooltip,New Folder,नया फ़ोल्डर,,,0.899
+0.899,pickErrorPrefix,Pick error,चयन त्रुटि,,,0.899
+0.899,noTextRecognized,No text recognized.,कोई टेक्स्ट पहचाना नहीं गया।,,,0.899
+0.900,sealCenterTextLabel,Center text,केंद्र पाठ,,,0.900
+0.900,idLayoutFullWidth,Full width,पूरी चौड़ाई,,,0.900
+0.900,removeFromFolderTooltip,Remove from folder,फ़ोल्डर से हटाएं,,,0.900
+0.900,whiteHaloLabel,White halo (readability),सफेद हैलो (पठनीयता),,,0.900
+0.901,importAndConvertDocument,Import & Convert Document,दस्तावेज़ आयात और कनवर्ट करें,Import and convert documents,0.951,0.901
+0.901,modeDocument,Document Mode,दस्तावेज़ मोड,,,0.901
+0.901,emptyDocumentMessage,This document has no pages.,इस दस्तावेज़ में कोई पृष्ठ नहीं है।,There is no page in this document.,0.901,0.917
+0.902,sealCenterLogo,Logo,लोगो,,,0.902
+0.902,exportNoTextError,This document has no text yet. Run OCR on it first.,इस दस्तावेज़ में अभी कोई टेक्स्ट नहीं है। पहले OCR चलाएँ।,There is no text in this document yet. First run OCR.,0.940,0.902
+0.902,beepOnCaptureSubtitle,Play sound when scan completes,स्कैन पूरा होने पर ध्वनि चलाएं,Play the sound when the scan is complete,0.942,0.902
+0.902,idLayoutRealSize,Real size,वास्तविक आकार,,,0.902
+0.903,exportAndShareAction,Export & Share,निर्यात और साझा करें,,,0.903
+0.903,commonExport,Export,निर्यात करें,,,0.903
+0.903,exportTooltip,Export,निर्यात करें,,,0.903
+0.904,fillTypeHint,Type here,यहाँ लिखें,,,0.904
+0.904,actionLabel,Action:,क्रिया:,,,0.904
+0.904,genericErrorMessage,Something went wrong. Please try again.,कुछ गड़बड़ हुई। कृपया फिर से कोशिश करें।,Something went wrong. Please try again.,1.000,0.904
+0.905,saveInsideAppWarning,"To save inside the app, choose JPG or PNG. Other targets are exported as files.","ऐप में सहेजने के लिए, JPG या PNG चुनें। अन्य लक्ष्य फ़ाइलों के रूप में निर्यात होते हैं।","To save in the app, select JPG or PNG. Other target files are exported as files.",0.956,0.905
+0.905,scanPreviewNoPages,No pages to show.,दिखाने के लिए कोई पृष्ठ नहीं है।,There is no page to show.,0.905,0.908
+0.905,conversionStarting,Starting…,प्रारंभ हो रहा है…,,,0.905
+0.905,pagesUpdated,Pages updated,पृष्ठ अपडेट किए गए,,,0.905
+0.906,watermarkEditTitle,Edit Watermark,वॉटरमार्क संपादित करें,,,0.906
+0.906,pagesDeleteCount,Delete {count},{count} हटाएँ,,,0.906
+0.906,idStepFront,Step 1: Capture Front Side,चरण 1: सामने का भाग कैप्चर करें,Step 1: Capture the front part,0.906,0.924
+0.906,exportingStatus,Exporting…,निर्यात हो रहा है…,,,0.906
+0.907,savedAsNewDocument,Saved as new document,नए दस्तावेज़ के रूप में सहेजा गया,Saved as a new document,0.989,0.907
+0.907,deleteFolderTooltip,Delete folder,फ़ोल्डर मिटाएं,,,0.907
+0.907,sealTextColorLabel,Text colour,टेक्स्ट का रंग,,,0.907
+0.907,widthLabel,Width,चौड़ाई,,,0.907
+0.907,signatureCanvasHint,Sign here,यहां हस्ताक्षर करें,,,0.907
+0.908,saveAsNewDocumentAction,Save as new Document,नए दस्तावेज़ के रूप में सहेजें,Save as new document,1.000,0.908
+0.908,printOptionsTitle,Print Options,प्रिंट विकल्प,,,0.908
+0.908,commonUse,Use,उपयोग करें,,,0.908
+0.909,deleteFolderMessage,Documents inside will not be deleted.,इसके अंदर के दस्तावेज़ नहीं मिटाए जाएंगे।,The documents inside it will not be deleted.,0.949,0.909
+0.909,cropAspectFree,Free,मुक्त,,,0.909
+0.909,paywallSubtitle,Support KatharScan with a one-time purchase. All features remain free.,एक बार की खरीदारी के साथ KatharScan का समर्थन करें। सभी सुविधाएँ मुफ्त रहेंगी।,Support KatharScan with a one-time purchase. All features will be free.,0.986,0.909
+0.909,exportFormatTxtDescription,Plain OCR text only,केवल सादा OCR टेक्स्ट,Only plain OCR text,0.980,0.909
+0.909,emptySearch,No scans match your search.,आपकी खोज से मेल खाते कोई स्कैन नहीं।,No scans matching your search.,0.978,0.909
+0.910,docxWarningMessage,"DOCX sources render poorly as pages — save inside the app is limited to JPG/PNG from image, PDF, TXT or CSV sources. Use Export & Share for this file.","DOCX स्रोत पृष्ठों के रूप में खराब दिखते हैं — ऐप के भीतर सहेजना इमेज, PDF, TXT या CSV से JPG/PNG तक सीमित है। इस फ़ाइल के लिए निर्यात और साझा करें उपयोग करें।","DOCX source pages look as bad as <unk> Save within the app from images, PDF, TXT or CSV to JPG/PNG. Use export and share for this file.",0.910,0.919
+0.910,emptyStateDefaultMessage,Tap the camera to scan your first document.,अपना पहला दस्तावेज़ स्कैन करने के लिए कैमरे पर टैप करें।,Tap on the camera to scan your first document.,0.994,0.910
+0.910,progressCopying,Copying…,कॉपी हो रहा है…,,,0.910
+0.910,commonDelete,Delete,हटाएं,,,0.910
+0.910,pageFromLabel,From page,पृष्ठ से,,,0.910
+0.910,ocrUnavailableTooltip,OCR unavailable on this device.,इस डिवाइस पर OCR उपलब्ध नहीं है।,OCR is not available on this device.,0.938,0.910
+0.910,heightLabel,Height,ऊंचाई,,,0.910
+0.910,compressMedium,Medium,मध्यम,,,0.910
+0.911,importingStatus,Importing…,आयात हो रहा है…,,,0.911
+0.911,errorGenericTitle,Something went wrong,कुछ गलत हो गया,,,0.911
+0.911,fillTooltip,Fill,भरें,,,0.911
+0.911,filterTitle,Filter,फ़िल्टर,,,0.911
+0.911,addCheckboxTitle,Add Checkbox,चेकबॉक्स जोड़ें,,,0.911
+0.912,addToFavorites,Add to Favorites,पसंदीदा में जोड़ें,,,0.912
+0.912,readingPageProgress,Page {page} of {total},पृष्ठ {page} / {total},Page 5 / 5,0.944,0.912
+0.913,commonCopy,Copy,कॉपी करें,,,0.913
+0.913,genericErrorPrefix,Error,त्रुटि,,,0.913
+0.914,tickerSearchablePdf,SEARCHABLE PDF,खोजने योग्य PDF,,,0.914
+0.914,letterSizeUS,Letter size (US),पत्र आकार (यूएस),,,0.914
+0.915,tickerFreeUnlimitedOcr,FREE UNLIMITED OCR,मुफ्त असीमित OCR,,,0.915
+0.915,enableSharePromptsSubtitle,Allow the app to occasionally suggest sharing,ऐप को कभी-कभी साझा करने का सुझाव देने की अनुमति दें,Allow the app to suggest sharing occasionally,0.994,0.915
+0.915,commonCancel,Cancel,रद्द करें,,,0.915
+0.915,pagesSelectTooltip,Select pages,पेज चुनें,,,0.915
+0.915,signatureChoiceMessage,Use your saved signature or draw a new one?,अपना सहेजा गया हस्ताक्षर उपयोग करें या नया बनाएं?,Use your saved signature or create a new one?,0.915,0.915
+0.915,sharePromptDismiss,Not now,अभी नहीं,,,0.915
+0.915,cropAspectId,ID card,आईडी कार्ड,,,0.915
+0.915,sealSaveToLibrary,Save this seal,यह सील सहेजें,,,0.915
+0.915,pdfImportedAsDocument,PDF imported as document,PDF को दस्तावेज़ के रूप में आयात किया गया,PDF is imported as a document,0.926,0.915
+0.916,titleIdCard,ID Card,आईडी कार्ड,,,0.916
+0.916,chipSelectMultiple,Select Multiple,एकाधिक चुनें,,,0.916
+0.916,errorScreenProblem,KatharScan ran into a problem displaying this screen. Your scans are safe — they're stored on this device and this doesn't affect them.,इस स्क्रीन को प्रदर्शित करने में KatharScan को समस्या हुई। आपके स्कैन सुरक्षित हैं — वे इस डिवाइस पर संग्रहीत हैं और इसका उन पर कोई प्रभाव नहीं पड़ता।,KatharScan had a problem with displaying this screen. Your scans are safe. They are stored on this device and it has no effect on them.,0.988,0.916
+0.917,customColorTitle,Custom Color,कस्टम रंग,,,0.917
+0.917,paywallFeatureFreeForever,All features free forever,सभी सुविधाएँ हमेशा के लिए मुफ्त,All features are forever free,0.975,0.917
+0.918,sealLogoReady,Logo ready,लोगो तैयार,,,0.918
+0.918,noFoldersYet,No folders yet,अभी तक कोई फ़ोल्डर नहीं,,,0.918
+0.918,debugNoLogsYet,No logs yet,अभी तक कोई लॉग नहीं,,,0.918
+0.919,clearAll,Clear all,सभी साफ़ करें,,,0.919
+0.920,favoriteTooltip,Favorite,पसंदीदा,,,0.920
+0.920,signatureDeleteSaved,Remove saved signature,सहेजा हस्ताक्षर हटाएँ,,,0.920
+0.921,themeLabel,Theme,थीम,,,0.921
+0.921,idStepBack,Step 2: Capture Back Side,चरण 2: पीछे का भाग कैप्चर करें,Step 2: Capture the back,0.921,0.937
+0.921,selectRegionTitle,Select Region,क्षेत्र चुनें,,,0.921
+0.921,emailLimitMissed,Could not get under {mb} MB; sent the smallest version.,{mb} MB से कम नहीं हो सका; सबसे छोटा संस्करण भेजा गया।,Could not be less than 5 MB; smallest version sent.,0.921,0.930
+0.921,idPdfErrorPrefix,Error generating ID PDF,आईडी PDF बनाने में त्रुटि,Error in creating ID PDF,0.921,0.932
+0.921,tickerPdfExport,PDF EXPORT,PDF निर्यात,,,0.921
+0.921,couldNotOpenLinkError,Could not open link.,लिंक नहीं खोला जा सका।,Link could not be opened.,0.954,0.921
+0.921,commonColor,Color,रंग,,,0.921
+0.921,filterColor,Color,रंग,,,0.921
+0.922,removeFromFavorites,Remove from Favorites,पसंदीदा से हटाएं,,,0.922
+0.923,addTagsAction,Add Tags,टैग जोड़ें,,,0.923
+0.924,continueButton,Continue,जारी रखें,,,0.924
+0.924,onboardingContinue,Continue,जारी रखें,,,0.924
+0.924,whatsNewContinue,Continue,जारी रखें,,,0.924
+0.924,filterRemoved,Filter removed,फ़िल्टर हटाया गया,,,0.924
+0.924,compressNoLimit,No limit,कोई सीमा नहीं,,,0.924
+0.924,useSavedSignature,Use Saved,सहेजा हुआ उपयोग करें,,,0.924
+0.924,onboardingOcrSubtitle,Use KatharScan in {count} languages. OCR runs on your phone — nothing ever leaves your device.,KatharScan को {count} भाषाओं में उपयोग करें। OCR आपके फ़ोन पर चलता है — कुछ भी आपके डिवाइस से बाहर नहीं जाता।,Use KatharScan in 5 languages. OCR runs on your phone. Nothing goes out of your device.,0.986,0.924
+0.924,deleteTooltip,Delete,मिटाएं,,,0.924
+0.925,importFromGallery,Import from Gallery,गैलरी से आयात करें,,,0.925
+0.925,commonImport,Import,आयात करें,,,0.925
+0.925,watermarkAddTitle,Add Watermark,वॉटरमार्क जोड़ें,,,0.925
+0.925,emailMessageHint,Add a note (optional),नोट जोड़ें (वैकल्पिक),Add notes (optional),0.925,0.937
+0.926,shareTooltip,Share,साझा करें,,,0.926
+0.926,commonShare,Share,साझा करें,,,0.926
+0.927,modeIdCard,ID Card Mode,आईडी कार्ड मोड,,,0.927
+0.927,commonSave,Save,सहेजें,,,0.927
+0.927,commonPrint,Print,प्रिंट करें,,,0.927
+0.928,signatureSavedHeading,Saved signatures,सहेजे गए हस्ताक्षर,,,0.928
+0.928,sealMainTextLabel,Main text (top arc / box),मुख्य पाठ (शीर्ष चाप / बॉक्स),Main text (top arc / box),1.000,0.928
+0.928,paywallTitle,Remove Ads,विज्ञापन हटाएँ,,,0.928
+0.928,fillInputHint,Type text to fill,भरने के लिए टेक्स्ट टाइप करें,Type text to fill in,0.989,0.928
+0.928,regionOcrFailed,Region OCR failed,क्षेत्र OCR विफल,,,0.928
+0.928,exportFormatJpgDescription,One image per page,प्रति पृष्ठ एक चित्र,One picture per page,0.931,0.928
+0.928,exportFormatDocxDescription,Editable text document,संपादन योग्य टेक्स्ट दस्तावेज़,,,0.928
+0.929,scannerErrorPrefix,Scanner error,स्कैनर त्रुटि,,,0.929
+0.929,printFilterNone,No filter,कोई फ़िल्टर नहीं,,,0.929
+0.929,rotationPage,Page rotated,पृष्ठ घुमाया गया,,,0.929
+0.930,tickerTxtExport,TXT EXPORT,TXT निर्यात,,,0.930
+0.930,documentSaved,Document saved,दस्तावेज़ सहेजा गया,,,0.930
+0.930,signerLabel,Signer {index},हस्ताक्षरकर्ता {index},,,0.930
+0.930,readingPageEta,Page {page} of {total} · about {minutes} min left,पृष्ठ {page} / {total} · लगभग {minutes} मिनट शेष,Page 5 / 5 · about 5 minutes left,0.951,0.930
+0.930,termsOfServiceLabel,Terms of Service,सेवा की शर्तें,,,0.930
+0.930,filterAll,All,सभी,,,0.930
+0.931,pagesDeleteConfirm,Delete {count} pages? They are removed when you save.,{count} पेज हटाएँ? सहेजने पर वे हट जाएँगे।,Delete 5 pages? They will be deleted when saved.,0.940,0.931
+0.932,deleteFolderTitle,Delete this folder?,इस फ़ोल्डर को मिटाएं?,,,0.932
+0.932,compressTargetLabel,Max size,अधिकतम आकार,,,0.932
+0.932,ocrNoTextFound,No text found,कोई टेक्स्ट नहीं मिला,,,0.932
+0.934,commonRemove,Remove,हटाएं,,,0.934
+0.934,tryAgainButton,Try again,फिर से कोशिश करें,,,0.934
+0.934,languageSectionLabel,Language,भाषा,,,0.934
+0.934,cameraSource,Camera,कैमरा,,,0.934
+0.935,privacyOptionsLabel,Privacy settings,गोपनीयता सेटिंग्स,,,0.935
+0.935,noteLabel,Note,नोट,,,0.935
+0.935,emailLabel,Email,ईमेल,,,0.935
+0.935,emailMessageLabel,Message,संदेश,,,0.935
+0.935,tickerAutoCopyOcr,AUTO-COPY OCR,ऑटो-कॉपी OCR,,,0.935
+0.935,autoCopyOcrLabel,Auto-copy OCR,स्वचालित OCR कॉपी,,,0.935
+0.936,paywallSuccessTitle,Ads Removed,विज्ञापन हटा दिए गए,,,0.936
+0.936,addTextTitle,Add Text,पाठ जोड़ें,,,0.936
+0.936,saveFailedBanner,Your latest changes could not be saved.,आपके नवीनतम बदलाव सहेजे नहीं जा सके।,Your latest changes could not be saved.,1.000,0.936
+0.936,opacityPercentLabel,Opacity: {percent}%,अस्पष्टता: {percent}%,,,0.936
+0.937,tickerJpgExport,JPG EXPORT,JPG निर्यात,,,0.937
+0.939,sealFontSerif,Classic,क्लासिक,,,0.939
+0.939,importErrorPrefix,Import error,आयात त्रुटि,,,0.939
+0.939,addTagTitle,Add tag,टैग जोड़ें,,,0.939
+0.940,editDocumentAction,Edit Document,दस्तावेज़ संपादित करें,,,0.940
+0.940,systemThemeOption,System,सिस्टम,,,0.940
+0.940,pageFormatLetter,Letter (US),लेटर (यूएस),,,0.940
+0.940,ocrScriptKorean,Korean,कोरियाई,,,0.940
+0.940,pagesToReadHint,This PDF has {count} pages. Pages that are pictures are read with OCR (about 10 seconds each); pages with real text are instant.,इस PDF में {count} पृष्ठ हैं। चित्र वाले पृष्ठ OCR से पढ़े जाते हैं (प्रत्येक लगभग 10 सेकंड); असली टेक्स्ट वाले पृष्ठ तुरंत।,This PDF has 5 pages. The pages with images are read from OCR (each about 10 seconds); the pages with real text are read instantly.,0.978,0.940
+0.941,emailFailed,Email failed,ईमेल विफल,,,0.941
+0.941,adsRemovedLabel,Ads Removed,विज्ञापन हटाए गए,,,0.941
+0.941,applyToAllPages,Apply to all pages,सभी पृष्ठों पर लागू करें,Apply to all pages,1.000,0.941
+0.942,privacyPolicyLabel,Privacy policy,गोपनीयता नीति,,,0.942
+0.942,ocrStatusDownloading,Downloading…,डाउनलोड हो रहा है…,,,0.942
+0.942,addSignature,Add Signature,हस्ताक्षर जोड़ें,,,0.942
+0.942,tabImageLabel,Image,छवि,,,0.942
+0.942,watermarkKindImage,Image,छवि,,,0.942
+0.943,copyAll,Copy all,सभी कॉपी करें,,,0.943
+0.943,commonConfirm,Confirm,पुष्टि करें,,,0.943
+0.943,commonAdd,Add,जोड़ें,,,0.943
+0.944,dateLabel,Date,तिथि,,,0.944
+0.944,watermarkPagesThis,This page,यह पृष्ठ,,,0.944
+0.944,annotationModeSelect,Select,चुनें,,,0.944
+0.944,tickerCsvExport,CSV EXPORT,CSV निर्यात,,,0.944
+0.944,deleteScanTitle,Delete this scan?,इस स्कैन को मिटाएं?,,,0.944
+0.944,clearPage,Clear page,पेज साफ़ करें,,,0.944
+0.945,documentNotFound,Document not found,दस्तावेज़ नहीं मिला,,,0.945
+0.945,rotationAllPages,All pages rotated,सभी पृष्ठ घुमाए गए,,,0.945
+0.945,saveFailedPrefix,Save failed:,सहेजना विफल:,,,0.945
+0.946,onboardingWelcomeTitle,Welcome to KatharScan,KatharScan में आपका स्वागत है,,,0.946
+0.947,tickerPngExport,PNG EXPORT,PNG निर्यात,,,0.947
+0.947,cameraErrorPrefix,Camera error,कैमरा त्रुटि,,,0.947
+0.948,conversionFailedPrefix,Conversion failed,रूपांतरण विफल,,,0.948
+0.949,commonUpdate,Update,अपडेट करें,,,0.949
+0.949,onboardingToolsTitle,21 Free Pro Tools,21 मुफ़्त प्रो टूल,21 free pro tools,1.000,0.949
+0.950,editLabel,Edit,संपादित करें,,,0.950
+0.950,signatureTypeHint,Type your name,अपना नाम लिखें,,,0.950
+0.950,printFailed,Print failed,प्रिंट विफल,,,0.950
+0.950,sharePromptAction,Share App,ऐप साझा करें,,,0.950
+0.951,ocrScriptDevanagari,"Hindi, Marathi (Devanagari)","हिन्दी, मराठी (देवनागरी)",,,0.951
+0.953,ocrScriptJapanese,Japanese,जापानी,,,0.953
+0.954,addNoteTitle,Add Note,नोट जोड़ें,,,0.954
+0.955,appLanguageLabel,App language,ऐप की भाषा,,,0.955
+0.955,noEmailAppFound,No email app found,कोई ईमेल ऐप नहीं मिला,No email app found,1.000,0.955
+0.957,settingsTooltip,Settings,सेटिंग्स,,,0.957
+0.957,settingsTitle,Settings,सेटिंग्स,,,0.957
+0.957,onboardingOcrTitle,On-Device OCR,ऑन-डिवाइस OCR,,,0.957
+0.958,moreOptionsTooltip,More options,अधिक विकल्प,,,0.958
+0.959,homeLanguageTooltip,App Language,ऐप भाषा,,,0.959
+0.959,appLanguageTitle,App Language,ऐप भाषा,,,0.959
+0.960,tabOcrTextLabel,OCR Text,OCR टेक्स्ट,,,0.960
+0.962,exportFormatTxtLabel,Text (.txt),टेक्स्ट (.txt),,,0.962
+0.962,sealTextSizePercent,Text size {percent}%,टेक्स्ट आकार {percent}%,,,0.962
+0.962,addDateTitle,Add Date,तिथि जोड़ें,,,0.962
+0.963,addPageTitle,Add Page,पृष्ठ जोड़ें,,,0.963
+0.965,paywallFallbackPrice,$14.99 one-time,$14.99 एक बार,,,0.965
+0.967,ocrScriptLatin,"Latin (English, European)","लैटिन (अंग्रेज़ी, यूरोपीय)",,,0.967
+0.968,textSizeLabel,Text size: {size},पाठ आकार: {size},,,0.968
+0.969,ocrLanguagesLabel,OCR Languages,OCR भाषाएं,,,0.969
+0.969,clearAllPages,Clear all pages,सभी पेज साफ़ करें,,,0.969
+0.970,sharePdf,Share PDF,PDF साझा करें,,,0.970
+0.970,pdfImportErrorPrefix,PDF import error,PDF आयात त्रुटि,,,0.970
+0.973,printRangeAll,All pages,सभी पृष्ठ,,,0.973
+0.973,watermarkPagesAll,All pages,सभी पृष्ठ,,,0.973
+0.975,pageLabel,Page {index},पृष्ठ {index},,,0.975
+0.975,modeOcr,OCR Mode,OCR मोड,,,0.975
+0.975,rotate90Action,Rotate 90°,90° घुमाएं,,,0.975
+0.976,titlePdfImport,PDF Import,PDF आयात,,,0.976
+0.978,sizePtLabel,Size: {size}pt,आकार: {size}pt,,,0.978
+0.978,watermarkChooseImage,Choose image,छवि चुनें,,,0.978
+0.980,originalDimensions,Original: {w}×{h},मूल: {w}×{h},,,0.980
+0.982,exportEstimatedSize,Estimated size: {mb} MB,अनुमानित आकार: {mb} MB,Estimated size: 5 MB,1.000,0.982
+0.983,pageIndicator,Page {current} / {total},पृष्ठ {current} / {total},Page 5 / 5,1.000,0.983
+1.000,exportFormatPdfLabel,PDF,PDF,,,1.000
+1.000,fontMonospace,monospace,monospace,,,1.000
+1.000,ocrScriptArabic,العربية (Arabic),العربية (Arabic),,,1.000
+1.000,ocrSectionLabel,OCR,OCR,,,1.000
+1.000,ocrScriptHebrew,עברית (Hebrew),עברית (Hebrew),,,1.000
+1.000,exportFormatJpgLabel,JPG,JPG,,,1.000
+1.000,proBadgeLabel,PRO,PRO,,,1.000
+1.000,ocrScriptRussian,Русский (Russian),Русский (Russian),,,1.000
+1.000,ocrScriptUkrainian,Українська (Ukrainian),Українська (Ukrainian),,,1.000
+1.000,ocrScriptBengali,বাংলা (Bengali),বাংলা (Bengali),,,1.000
+1.000,exportFormatDocxLabel,Word (.docx),Word (.docx),,,1.000
+1.000,exportFormatPngLabel,PNG,PNG,,,1.000
+1.000,fontSerif,serif,serif,,,1.000
+1.000,formatCsv,CSV,CSV,,,1.000
+1.000,tickerLanguages,{count} LANGUAGES,{count} LANGUAGES,,,1.000
+1.000,ocrScriptGreek,Ελληνικά (Greek),Ελληνικά (Greek),,,1.000
+1.000,fontSansSerif,sans-serif,sans-serif,,,1.000
+1.000,ocrScriptThai,ไทย (Thai),ไทย (Thai),,,1.000

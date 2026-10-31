@@ -1,0 +1,544 @@
+score,key,english,translation,back_to_english,backtrans_score,labse_score
+0.198,accentViolet,Violet,Menekşe,,,0.198
+0.202,stampTickLabel,Tick,Onay,,,0.202
+0.238,watermarkLayoutDiagonal,Diagonal,Çapraz,,,0.238
+0.259,noteTextLabel,Note text,Not metni,,,0.259
+0.304,titleScan,Scan,Tara,,,0.304
+0.314,importBackupButton,Import from backup,Yedekten içe aktar,,,0.314
+0.319,deleteScanMessage,This can't be undone.,Bu geri alınamaz.,This is irrevocable.,0.319,0.925
+0.324,eraserZoomTooltip,Zoom and move (pinch),Yakınlaştır ve kaydır (çimdikle),Bring it up and slide it down (with a slide),0.324,0.845
+0.327,checkLabel,Check,Onay,,,0.327
+0.349,darkThemeOption,Dark,Koyu,,,0.349
+0.349,watermarkLabel,Watermark,Filigran,,,0.349
+0.350,satLabel,Sat,Doy,,,0.350
+0.362,commonDone,Done,Bitti,,,0.362
+0.368,tickerTapToTypeFilling,TAP-TO-TYPE FILLING,DOKUN-YAZ DOLDURMA,,,0.368
+0.369,commonSkip,Skip,Atla,,,0.369
+0.370,tickerNoteStamps,NOTE STAMPS,NOT DAMGALARI,,,0.370
+0.372,accentIndigo,Indigo,Çivit,,,0.372
+0.381,noteLabel,Note,Not,,,0.381
+0.384,eraserTitle,Eraser,Silgi,,,0.384
+0.384,annotationModeEraser,Eraser,Silgi,,,0.384
+0.386,sealFontSans,Clean,Sade,,,0.386
+0.391,tickerBatchExport,BATCH EXPORT,TOPLU DIŞA AKTARMA,,,0.391
+0.397,filterRecent,Recent,Son,,,0.397
+0.398,hueLabel,Hue,Ton,,,0.398
+0.419,tickerSearch,SEARCH,ARA,,,0.419
+0.420,printRangeRange,Range,Aralık,,,0.420
+0.420,watermarkPagesRange,Range,Aralık,,,0.420
+0.420,printMarginNarrow,Narrow,Dar,,,0.420
+0.422,fromPageLabel,From,Kimden,,,0.422
+0.422,valLabel,Val,Değ,,,0.422
+0.436,tickerDeviceMigration,DEVICE MIGRATION,CİHAZ TAŞIMA,,,0.436
+0.463,accentColorTooltip,Accent Color,Vurgu Rengi,,,0.463
+0.463,accentColorTitle,Accent Color,Vurgu Rengi,,,0.463
+0.467,checkShapeCircle,Circle,Daire,,,0.467
+0.468,printFitFill,Fill sheet (trims edges),Sayfayı doldur (kenarları keser),Fill the page (cutting the sidebar),0.468,0.781
+0.472,beepOnCaptureLabel,Beep on capture,Yakalamada bip sesi,,,0.472
+0.482,signatureTabType,Type,Yaz,,,0.482
+0.484,compressLabel,Compress,Sıkıştır,,,0.484
+0.486,annotationModePen,Pen,Kalem,,,0.486
+0.495,printMarginLabel,Margin,Kenar boşluğu,,,0.495
+0.500,lightThemeOption,Light,Açık,,,0.500
+0.509,rotateLabel,Rotate,Döndür,,,0.509
+0.512,commonUse,Use,Kullan,,,0.512
+0.518,sealSubtextLabel,Subtext (bottom arc / below),Alt metin (alt yay / aşağıda),Subtitle (under / below),0.518,0.902
+0.523,tickerTextStamps,TEXT STAMPS,METİN DAMGALARI,,,0.523
+0.524,captionDocs,"Flexible crop: Original, Square, 4:3, 3:2, 16:9","Esnek kırpma: Orijinal, Kare, 4:3, 3:2, 16:9","Flexible braking: original, square, 4:3, 3:2, 16:9",0.524,0.914
+0.529,annotateTitle,Annotate,Açıklama Ekle,,,0.529
+0.529,ocrStatusInstalled,Installed,Yüklü,,,0.529
+0.530,undoTooltip,Undo,Geri Al,,,0.530
+0.537,accentAmber,Amber,Kehribar,,,0.537
+0.539,extractToNewDocAction,Extract to new doc,Yeni belgeye çıkar,Upload to the new document,0.539,0.794
+0.545,commonDelete,Delete,Sil,,,0.545
+0.545,deleteTooltip,Delete,Sil,,,0.545
+0.550,captionOcr,"Text crop: Original, Square, 4:3","Metin kırpması: Orijinal, Kare, 4:3","It's the original, square, 4:3",0.550,0.942
+0.555,redoTooltip,Redo,Yinele,,,0.555
+0.573,signatureTitle,Signature,İmza,,,0.573
+0.574,couldNotCreateBackupError,Could not create the backup.,Yedek oluşturulamadı.,There was no backup.,0.574,0.875
+0.574,diagnosticsSectionLabel,DIAGNOSTICS,TANILAMA,,,0.574
+0.574,duplicateAction,Duplicate,Çoğalt,,,0.574
+0.576,idPdfErrorPrefix,Error generating ID PDF,Kimlik PDF oluşturma hatası,Authentication error when creating a PDF,0.576,0.917
+0.592,extractedAsNewDocument,Extracted as new document,Yeni belge olarak çıkarıldı,Removed as a new document,0.592,0.896
+0.596,captureBehaviorSectionLabel,CAPTURE BEHAVIOR,YAKALAMA DAVRANIŞI,,,0.596
+0.600,alignLabel,Align,Hizalama,,,0.600
+0.604,pagesDeleteCount,Delete {count},{count} sil,,,0.604
+0.606,commonExtract,Extract,Çıkar,,,0.606
+0.612,tickerRevertToOriginal,REVERT TO ORIGINAL,ORİJİNALE DÖN,,,0.612
+0.612,fillCapsLabel,ALL CAPS,TÜMÜ BÜYÜK HARF,,,0.612
+0.616,marqueeEraseTooltip,Marquee erase,Seçerek sil,,,0.616
+0.616,pageToLabel,To page,Bitiş sayfası,,,0.616
+0.617,tickerFolders,FOLDERS,KLASÖRLER,,,0.617
+0.619,cropLabel,Crop,Kırp,,,0.619
+0.620,watermarkEditTitle,Edit Watermark,Filigranı Düzenle,,,0.620
+0.622,signatureFontFlowing,Flowing,Akıcı,,,0.622
+0.624,foldersSectionHeader,Folders,Klasörler,,,0.624
+0.624,filterFolders,Folders,Klasörler,,,0.624
+0.625,filterGrayscale,Grayscale,Gri tonlamalı,,,0.625
+0.626,annotationModeRect,Rectangle,Dikdörtgen,,,0.626
+0.627,moveToFolderTooltip,Move to folder,Klasöre taşı,,,0.627
+0.630,captionPassport,Passport crop: 4:3 or Original,Pasaport kırpması: 4:3 veya Orijinal,Passport cracking: 4:3 or Original,0.630,0.900
+0.631,lockAspectRatio,Lock aspect ratio,En-boy oranını kilitle,,,0.631
+0.632,tickerWordExport,WORD EXPORT,WORD DIŞA AKTARMA,,,0.632
+0.634,sealInkLook,Worn stamp look,Yıpranmış mühür görünümü,,,0.634
+0.636,watermarkLayoutSingle,Single,Tek,,,0.636
+0.637,tickerDarkMode,DARK MODE,KOYU MOD,,,0.637
+0.637,pageFromLabel,From page,Başlangıç sayfası,,,0.637
+0.637,accentEmerald,Emerald,Zümrüt,,,0.637
+0.642,checkShapeSquare,Square,Kare,,,0.642
+0.642,cropAspectSquare,Square,Kare,,,0.642
+0.643,onboardingPrivacyTitle,Private by design,Tasarımdan gizli,,,0.643
+0.648,exportBackupButton,Export encrypted backup,Şifreli yedeği dışa aktar,,,0.648
+0.651,intensityLabel,Intensity,Yoğunluk,,,0.651
+0.652,annotationModeHighlighter,Highlighter,Vurgulayıcı,,,0.652
+0.657,signatureTabDraw,Draw,Çiz,,,0.657
+0.658,ticker100OnDevicePrivacy,YOUR DOCUMENTS STAY ON YOUR DEVICE,BELGELERİNİZ CİHAZINIZDA KALIR,Keep your documents in your purse,0.658,0.819
+0.662,printRangeCurrent,Current,Geçerli,,,0.662
+0.664,importingStatus,Importing…,İçe aktarılıyor...,,,0.664
+0.666,watermarkDefaultText,CONFIDENTIAL,GİZLİ,,,0.666
+0.666,movedToFolderMessage,Moved to folder.,Klasöre taşındı.,,,0.666
+0.666,couldNotOpenLinkError,Could not open link.,Bağlantı açılamadı.,Couldn't connect.,0.666,0.881
+0.668,tickerUndoRedo,UNDO/REDO,GERİ AL/YİNELE,,,0.668
+0.669,onboardingEditSubtitle,"Every edit stays reversible — undo, redo, and revert to original anytime.","Her düzenleme geri alınabilir — geri al, yinele ve istediğiniz zaman orijinale dön.","Any editing can be retrieved <unk> retrieve, repeat and return to the original whenever you want.",0.669,0.877
+0.669,sealCreateTitle,Custom Seal,Özel Mühür,,,0.669
+0.669,sealCustom,Custom Seal,Özel Mühür,,,0.669
+0.677,vibrateOnCaptureLabel,Vibrate on capture,Yakalamada titreşim,,,0.677
+0.679,exportFormatSheetTitle,Export as,Şu şekilde dışa aktar,,,0.679
+0.682,watermarkLayoutTiled,Tiled,Döşemeli,,,0.682
+0.682,sealSavedHeading,Saved seals,Kayıtlı mühürler,,,0.682
+0.682,frontSideCaptured,Front side captured. Now capture the back side.,Ön yüz yakalandı. Şimdi arka yüzü yakalayın.,The front face is captured.,0.682,0.907
+0.683,saveFailedBanner,Your latest changes could not be saved.,Son değişiklikleriniz kaydedilemedi.,Your last changes were not recorded.,0.683,0.904
+0.684,ticker21ToolEditSuite,21-TOOL EDIT SUITE,21 DÜZENLEME ARACI,,,0.684
+0.685,clearLogsTooltip,Clear logs,Günlükleri temizle,,,0.685
+0.689,ocrScriptKorean,Korean,Korece,,,0.689
+0.693,straightenLabel,Straighten,Düzelt,,,0.693
+0.693,printFitFit,Fit page,Sayfaya sığdır,,,0.693
+0.694,debugLogsLabel,Debug Logs,Hata Ayıklama Günlükleri,,,0.694
+0.698,checkShapeRounded,Rounded,Yuvarlak,,,0.698
+0.699,exportNoTextError,This document has no text yet. Run OCR on it first.,Bu belgede henüz metin yok. Önce OCR çalıştırın.,There's no text in this document yet.,0.699,0.941
+0.701,genericErrorPrefix,Error,Hata,,,0.701
+0.701,idStepBack,Step 2: Capture Back Side,Adım 2: Arka Yüzü Yakala,Step two: Catch the back face,0.701,0.935
+0.703,emptySearch,No scans match your search.,Aramanıza uyan tarama yok.,There's no scan that matches your call.,0.703,0.843
+0.705,accentCrimson,Crimson,Kızıl,,,0.705
+0.708,onboardingReplayIntro,Replay introduction,Tanıtımı tekrar oynat,,,0.708
+0.714,commonRevert,Revert,Geri Dön,,,0.714
+0.714,progressEncodingPage,Encoding page {current} of {total}…,Sayfa {current}/{total} kodlanıyor...,The page is coding 5/5...,0.714,0.820
+0.714,buildingBackupStatus,Building backup…,Yedek oluşturuluyor...,,,0.714
+0.716,moveToFolderTitle,Move to Folder,Klasöre Taşı,,,0.716
+0.720,batchExportTooltip,Batch export,Toplu dışa aktarma,,,0.720
+0.723,tickerNoWatermarks,NO WATERMARKS,FİLİGRAN YOK,,,0.723
+0.723,batchExportEmptyMessage,No documents to batch export. Scan some first.,Toplu dışa aktarılacak belge yok. Önce biraz tarayın.,There's no document to export in bulk.,0.723,0.836
+0.724,tickerCustomSeals,CUSTOM SEALS,ÖZEL MÜHÜRLER,,,0.724
+0.724,paywallFeatureNoInterstitial,No more interstitial ads,Artık geçiş reklamı yok,No more transit ads,0.724,0.801
+0.725,migrationExplainer,"This isn't automatic sync. Export creates a single encrypted backup file you move to your new device yourself, then import there.","Bu otomatik senkronizasyon değil. Dışa aktarma, yeni cihazınıza kendinizin taşıyacağı ve orada içe aktaracağı tek bir şifreli yedek dosyası oluşturur.","It's not automatic synchronization, but it's an outgoing backup file that you'll be able to upload to your new device and then you'll be able to upload it.",0.725,0.859
+0.726,commonImport,Import,İçe Aktar,,,0.726
+0.727,stampCheckbox,Checkbox,Onay kutusu,,,0.727
+0.727,watermarkAddTitle,Add Watermark,Filigran Ekle,,,0.727
+0.727,commonPrint,Print,Yazdır,,,0.727
+0.729,cropIdCardTitle,Crop ID Card,Kimlik Kartını Kırp,,,0.729
+0.730,signatureChoiceMessage,Use your saved signature or draw a new one?,Kayıtlı imza kullanılsın mı yoksa yeni mi çizilsin?,Do you want to use a registered signature or a new one?,0.730,0.884
+0.730,signatureWidthLabel,Pen width,Kalem kalınlığı,,,0.730
+0.731,onboardingSignSubtitle,"E-sign contracts, type-to-fill forms, and stamp enterprise seals in seconds.","Sözleşmeleri e-imzala, formları doldur ve kurumsal mühürleri saniyeler içinde damgala.","E-sign the contracts, fill out the forms and stamp the corporate seals in seconds.",0.731,0.837
+0.732,tickerNonDestructiveEditing,NON-DESTRUCTIVE EDITING,TAHRİBATSIZ DÜZENLEME,,,0.732
+0.733,commonCustom,Custom,Özel,,,0.733
+0.735,idStepFront,Step 1: Capture Front Side,Adım 1: Ön Yüzü Yakala,Step 1: Catch the front face,0.735,0.918
+0.736,watermarkLayoutLabel,Layout,Düzen,,,0.736
+0.740,sealSavedMessage,Seal saved,Mühür kaydedildi,,,0.740
+0.740,tickerTags,TAGS,ETİKETLER,,,0.740
+0.741,sealShapeRound,Round,Yuvarlak,,,0.741
+0.741,billingUnavailableMessage,Billing unavailable — try again later.,Faturalandırma kullanılamıyor — daha sonra tekrar deneyin.,Billing can't be used <unk> Try again later.,0.741,0.896
+0.741,commonConfirm,Confirm,Onayla,,,0.741
+0.743,onboardingWelcomeSubtitle,"Your entire document office — scan, edit, sign, and export — in one private app.","Tüm belge ofisiniz — tara, düzenle, imzala ve dışa aktar — tek bir gizli uygulamada.","Your entire document office <unk> download, edit, sign and export <unk> in a single hidden application.",0.743,0.872
+0.743,languageSectionLabel,Language,Dil,,,0.743
+0.745,eraserApplied,Eraser applied,Silgi uygulandı,,,0.745
+0.748,cropDocumentTitle,Crop Document,Belgeyi Kırp,,,0.748
+0.749,backupReadyStatus,Backup ready.,Yedek hazır.,,,0.749
+0.751,signatureNewOne,Draw or type a new one,Yeni çiz veya yaz,New drawing or writing,0.751,0.881
+0.752,exportingStatus,Exporting…,Dışa aktarılıyor...,,,0.752
+0.754,batchExportSignatureDisabled,Batch export — signature placement disabled,Toplu dışa aktarma — imza yerleşimi devre dışı,Bulk export <unk> Signature location disabled,0.754,0.832
+0.758,exportFormatCsvDescription,Spreadsheet data,Elektronik tablo verileri,,,0.758
+0.759,captureFrontSide,Capture Front Side,Ön Yüzü Yakala,,,0.759
+0.763,tickerJpgExport,JPG EXPORT,JPG DIŞA AKTARMA,,,0.763
+0.764,importBackSide,Import Back Side,Arka Yüzü İçe Aktar,,,0.764
+0.764,tickerGalleryImport,GALLERY IMPORT,GALERİ İÇE AKTARMA,,,0.764
+0.766,annotationModeEllipse,Ellipse,Elips,,,0.766
+0.766,scaleLabel,Scale,Ölçekle,,,0.766
+0.769,captureBackSide,Capture Back Side,Arka Yüzü Yakala,,,0.769
+0.771,ocrStatusBuiltIn,Built-in,Yerleşik,,,0.771
+0.771,renameFolderTitle,Rename folder,Klasörü yeniden adlandır,,,0.771
+0.771,autoCopyOcrSubtitle,Copy text to clipboard after scan,Taramadan sonra metni panoya kopyala,Copy text to the dashboard after scan,0.771,0.841
+0.771,commonReset,Reset,Sıfırla,,,0.771
+0.773,commonClose,Close,Kapat,,,0.773
+0.776,tickerLanguages,{count} LANGUAGES,{count} DİL,,,0.776
+0.777,importFromGallery,Import from Gallery,Galeriden içe aktar,,,0.777
+0.777,importFrontSide,Import Front Side,Ön Yüzü İçe Aktar,,,0.777
+0.778,tickerAccentThemes,ACCENT THEMES,VURGULA TEMALAR,,,0.778
+0.778,progressSaving,Saving…,Kaydediliyor...,,,0.778
+0.779,ocrStatusOnDemand,On-demand,İsteğe bağlı,,,0.779
+0.781,enableReviewPromptsSubtitle,Allow the app to occasionally ask for a rating,Uygulamanın ara sıra derecelendirme istemesine izin ver,Allow the app to ask for an occasional ranking,0.781,0.867
+0.782,sealEditTitle,Edit Custom Seal,Özel Mührü Düzenle,,,0.782
+0.782,exportGenericError,Something went wrong while exporting.,Dışa aktarma sırasında bir sorun oluştu.,There's been a problem with the export.,0.837,0.782
+0.783,appearanceSectionLabel,Appearance,Görünüm,,,0.783
+0.783,idCardPdfGenerated,ID Card PDF Generated,Kimlik kartı PDF oluşturuldu,I.D. card created in PDF,0.783,0.884
+0.784,paywallLegalText,This is a non-consumable purchase. Restore it anytime on any device with the same store account.,Bu tüketilemez bir satın alımdır. Aynı mağaza hesabıyla istediğiniz zaman herhangi bir cihazda geri yükleyin.,"It's an inexhaustible purchase, and you can download it back to any device you want with the same store account.",0.784,0.911
+0.784,tickerPdfExport,PDF EXPORT,PDF DIŞA AKTARMA,,,0.784
+0.787,resizeUpscaleWarning,Enlarging doesn't add detail — the page may look soft.,Büyütmek ayrıntı eklemez — sayfa bulanık görünebilir.,Enlargement does not add details <unk> The page may appear blurred.,0.787,0.873
+0.787,progressDecodingImage,Decoding image…,Resim kodu çözülüyor...,,,0.787
+0.788,printFitLabel,Scaling,Ölçekleme,,,0.788
+0.788,editLabel,Edit,Düzenle,,,0.788
+0.789,onboardingEditTitle,Non-Destructive Editing,Tahribatsız Düzenleme,,,0.789
+0.790,tabOcrTextLabel,OCR Text,OCR Metni,,,0.790
+0.790,dateLabel,Date,Tarih,,,0.790
+0.791,chipAllFolders,All Folders,Tüm Klasörler,,,0.791
+0.793,pageRevertedToOriginal,Page reverted to original,Sayfa orijinale geri döndürüldü,The page has been restored to the original,0.793,0.917
+0.794,deleteFolderTooltip,Delete folder,Klasörü sil,,,0.794
+0.795,genericErrorMessage,Something went wrong. Please try again.,Bir sorun oluştu. Lütfen tekrar deneyin.,There's been a problem. Please try again.,0.795,0.878
+0.795,vibrateOnCaptureSubtitle,Haptic feedback when scan completes,Tarama tamamlandığında dokunsal geri bildirim,Tactile feedback when the scan is complete,0.868,0.795
+0.796,scannerErrorPrefix,Scanner error,Tarayıcı hatası,,,0.796
+0.796,sealMainTextLabel,Main text (top arc / box),Ana metin (üst yay / kutu),Main text (top bow / box),0.796,0.936
+0.796,revertToOriginalMessage,"This will undo all filters, rotations, crops, resizes, and eraser strokes on this page.","Bu, bu sayfadaki tüm filtreleri, döndürmeleri, kırpmaları, yeniden boyutlandırmaları ve silgi vuruşlarını geri alacaktır.","This will take back all the filters, spins, cropping, resizing and deletions on this page.",0.796,0.870
+0.799,addSignature,Add Signature,İmza Ekle,,,0.799
+0.799,stampTickedLabel,Ticked,İşaretli,,,0.799
+0.799,debugNoLogsYet,No logs yet,Henüz günlük yok,,,0.799
+0.801,commonExport,Export,Dışa Aktar,,,0.801
+0.801,exportTooltip,Export,Dışa Aktar,,,0.801
+0.801,exportTitle,Export,Dışa Aktar,,,0.801
+0.803,noTextRecognized,No text recognized.,Metin tanınamadı.,,,0.803
+0.806,beepOnCaptureSubtitle,Play sound when scan completes,Tarama tamamlandığında ses çal,Play when the scan is complete,0.806,0.926
+0.806,useSavedSignature,Use Saved,Kayıtlıyı kullan,,,0.806
+0.806,folderUnavailable,This folder is no longer available.,Bu klasör artık kullanılamıyor.,This folder is no longer usable.,0.912,0.806
+0.806,sealSaveToLibrary,Save this seal,Bu mührü kaydet,,,0.806
+0.807,tickerPngExport,PNG EXPORT,PNG DIŞA AKTARMA,,,0.807
+0.807,emailAttachmentNotIncluded,The pages could not be attached to the email. Use Share to send the pages.,Sayfalar e-postaya eklenemedi. Sayfaları göndermek için Paylaş'ı kullanın.,The pages couldn't be added to the e-mail.,0.807,0.914
+0.808,newFolderTitle,New Folder,Yeni Klasör,,,0.808
+0.808,newFolderTooltip,New Folder,Yeni Klasör,,,0.808
+0.810,copiedToClipboard,Copied to clipboard,Panoya kopyalandı,,,0.810
+0.811,searchHint,Search your scans,Taramalarınızda ara,,,0.811
+0.812,tickerTxtExport,TXT EXPORT,TXT DIŞA AKTARMA,,,0.812
+0.813,exportFormatJpgDescription,One image per page,Sayfa başına bir resim,A picture for each page,0.813,0.949
+0.813,fillDeleteSnippet,Delete snippet?,Parçacık silinsin mi?,,,0.813
+0.814,progressExtractingText,Extracting text…,Metin çıkarılıyor...,,,0.814
+0.814,tickerCsvExport,CSV EXPORT,CSV DIŞA AKTARMA,,,0.814
+0.815,removeFromFolderTooltip,Remove from folder,Klasörden kaldır,,,0.815
+0.816,fitToTargetMbLabel,Fit to target MB,Hedef MB'ye sığdır,Fits the target MB,0.923,0.816
+0.817,addCheckboxTitle,Add Checkbox,Onay Kutusu Ekle,,,0.817
+0.818,setBackupPasswordTitle,Set a backup password,Yedek şifresi belirle,Determine the backup password,0.818,0.835
+0.818,enableSharePromptsLabel,Enable Share Prompts,Paylaşım istemlerini etkinleştir,,,0.818
+0.819,eraserAutoColorTooltip,Match the page colour automatically,Sayfa rengine otomatik uydur,Automatically adjust the page color,0.819,0.908
+0.825,enableReviewPromptsLabel,Enable Review Prompts,İnceleme istemlerini etkinleştir,,,0.825
+0.825,ocrNoInternetMessage,No internet. Connect once to download the language pack.,İnternet yok. Dil paketini indirmek için bir kez bağlanın.,"There's no internet, so please connect once to download the language packet.",0.825,0.917
+0.827,progressBuildingDocx,Building DOCX…,DOCX oluşturuluyor...,,,0.827
+0.827,resizeTitle,Resize,Yeniden Boyutlandır,,,0.827
+0.828,pricingLoadingError,Pricing is still loading — try again in a moment.,Fiyatlar hâlâ yükleniyor — birazdan tekrar deneyin.,Prices are still charging. Try again soon.,0.828,0.915
+0.829,docScannerUnsupportedMessage,"Your device doesn't support the advanced document scanner. Take a photo with your Camera app, then tap Import below to crop and save it.","Cihazınız gelişmiş belge tarayıcısını desteklemiyor. Kamera uygulamasıyla fotoğraf çekin, ardından kırpmak ve kaydetmek için aşağıdaki İçe Aktar'a dokunun.","Your device doesn't support the advanced document scanner, so take a photo with the camera app, and then tap the Inbox below to crack and save.",0.829,0.899
+0.830,onboardingToolsSubtitle,"Annotate, sign, watermark, fill forms, seal, and more — every tool free and unlimited.","Açıklama ekle, imzala, filigran ekle, formları doldur, mühürle ve daha fazlası — her araç ücretsiz ve sınırsız.","Add explanation, sign, add watermark, fill out forms, seal, and more <unk> every tool is free and unlimited.",0.830,0.834
+0.832,pagesDeleteConfirm,Delete {count} pages? They are removed when you save.,{count} sayfa silinsin mi? Kaydettiğinizde kaldırılır.,Can you delete five pages?,0.832,0.881
+0.832,subscriptionSectionLabel,Subscription,Abonelik,,,0.832
+0.834,cropNoPageFound,Couldn't find the page edges. Drag the corners.,Sayfa kenarları bulunamadı. Köşeleri sürükleyin.,"No edges found, drag the corners.",0.834,0.917
+0.839,sealCenterTextLabel,Center text,Orta metin,,,0.839
+0.839,sealTextColorSame,Same as ring,Halkayla aynı,,,0.839
+0.841,restoreCompleteMessage,Restore complete.,Geri yükleme tamamlandı.,,,0.841
+0.842,tickerRegionOcr,REGION OCR,BÖLGESEL OCR,,,0.842
+0.842,importErrorPrefix,Import error,İçe aktarma hatası,,,0.842
+0.843,savedToDocumentText,Saved to document text,Belge metnine kaydedildi,The document is saved to text,0.935,0.843
+0.845,emptyFolders,No folders yet. Tap the folder icon to create one.,Henüz klasör yok. Bir tane oluşturmak için klasör simgesine dokunun.,There's no folder yet. Tap the folder icon to create one.,0.946,0.845
+0.845,exportDoneStatus,Done,Tamamlandı,,,0.845
+0.845,whatsNewTitle,What's New,Yenilikler,,,0.845
+0.846,exportAndShareAction,Export & Share,Dışa aktar ve paylaş,,,0.846
+0.847,commonCopy,Copy,Kopyala,,,0.847
+0.848,sealCenterText,Text,Metin,,,0.848
+0.848,watermarkTextLabel,Text,Metin,,,0.848
+0.848,textLabel,Text,Metin,,,0.848
+0.848,watermarkKindText,Text,Metin,,,0.848
+0.850,exportSavedToDownloads,Saved to Downloads,İndirilenler'e kaydedildi,,,0.850
+0.850,ocrStatusChecking,Checking...,Kontrol ediliyor...,,,0.850
+0.850,commonClear,Clear,Temizle,,,0.850
+0.850,filterShadowRemoval,Shadow removal,Gölge kaldırma,,,0.850
+0.850,deviceMigrationLabel,Device Migration,Cihaz Taşıma,,,0.850
+0.850,migrationTitle,Device Migration,Cihaz Taşıma,,,0.850
+0.851,conversionStarting,Starting…,Başlatılıyor...,,,0.851
+0.852,errorReportIssue,Report issue,Sorun bildir,,,0.852
+0.852,progressCopying,Copying…,Kopyalanıyor...,,,0.852
+0.853,scanUnavailable,This scan is no longer available.,Bu tarama artık kullanılamıyor.,This scan is no longer usable.,0.918,0.853
+0.853,onboardingBack,Back,Geri,,,0.853
+0.855,progressBuildingPdf,Building PDF…,PDF oluşturuluyor...,,,0.855
+0.858,noFoldersYet,No folders yet,Henüz klasör yok,,,0.858
+0.858,signatureSavedHeading,Saved signatures,Kayıtlı imzalar,,,0.858
+0.859,progressReading,Reading…,Okunuyor...,,,0.859
+0.859,enterBackupPasswordTitle,Enter backup password,Yedek şifresini girin,,,0.859
+0.859,reviewPromptTitle,Enjoying KatharScan?,KatharScan'dan memnun musun?,,,0.859
+0.860,clearedCount,Cleared {count},{count} temizlendi,,,0.860
+0.860,tickerIdCardMode,ID CARD MODE,KİMLİK KARTI MODU,,,0.860
+0.860,sharePromptBody,Share it with friends who need a powerful document scanner.,Güçlü bir belge tarayıcıya ihtiyacı olan arkadaşlarınla paylaş.,Share it with your friends who need a powerful document scanner.,0.992,0.860
+0.861,extractedPageDefaultTitle,Extracted Page,Çıkarılan sayfa,,,0.861
+0.861,watermarkKindImage,Image,Görsel,,,0.861
+0.863,progressRasterizing,Rasterizing pages…,Sayfalar rasterleştiriliyor...,,,0.863
+0.865,noFoldersYetHomeMessage,No folders yet. Create one from the home screen.,Henüz klasör yok. Ana ekrandan bir tane oluşturun.,There's no folder yet. Create one from the home screen.,0.939,0.865
+0.867,deleteFolderTitle,Delete this folder?,Bu klasör silinsin mi?,,,0.867
+0.867,revertToOriginalTitle,Revert to Original?,Orijinale geri dönülsün mü?,,,0.867
+0.869,tapToSampleColor,Tap a spot to sample its color,Rengi örneklemek için bir noktaya dokunun,Tap a dot to sample the color,0.872,0.869
+0.870,extractedTextTitle,Extracted Text,Çıkarılan Metin,,,0.870
+0.872,signerLabel,Signer {index},İmzalayan {index},,,0.872
+0.872,removeAdsTitle,Remove Ads Forever,Reklamları sonsuza kadar kaldır,,,0.872
+0.872,ocrLanguagesLabel,OCR Languages,OCR Dilleri,,,0.872
+0.872,pageResized,Page resized,Sayfa yeniden boyutlandırıldı,,,0.872
+0.873,noDocumentsInFolder,No documents in this folder yet.,Bu klasörde henüz belge yok.,There's no document in this folder yet.,0.925,0.873
+0.873,removeFromFavorites,Remove from Favorites,Favorilerden çıkar,,,0.873
+0.873,regionOcrFailed,Region OCR failed,Bölgesel OCR başarısız oldu,,,0.873
+0.875,printPerSheetLabel,Pages per sheet,Yaprak başına sayfa,,,0.875
+0.876,titlePdfImport,PDF Import,PDF İçe Aktarma,,,0.876
+0.876,fillSaveSnippet,Save as snippet,Parçacık olarak kaydet,,,0.876
+0.877,stampBoxLabel,Box,Kutu,,,0.877
+0.877,sealShapeBox,Box,Kutu,,,0.877
+0.878,filterColorEnhance,Color enhance,Renk iyileştirme,,,0.878
+0.879,tickerESign,E-SIGN,E-İMZA,,,0.879
+0.879,commonCreate,Create,Oluştur,,,0.879
+0.880,commonApply,Apply,Uygula,,,0.880
+0.881,docxWarningMessage,"DOCX sources render poorly as pages — save inside the app is limited to JPG/PNG from image, PDF, TXT or CSV sources. Use Export & Share for this file.","DOCX kaynakları sayfa olarak kötü render edilir — uygulama içi kaydetme, resim, PDF, TXT veya CSV kaynaklarından yalnızca JPG/PNG ile sınırlıdır. Bu dosya için Dışa Aktar ve Paylaş'ı kullanın.","DOCX resources render poorly as pages <unk> In-app savings, images, PDF, TXT, or CSV resources are limited to JPG/PNG only. Use Export and Share for this file.",0.881,0.922
+0.881,commonRemove,Remove,Kaldır,,,0.881
+0.881,filterShadow,Shadow,Gölge,,,0.881
+0.883,enableNotificationsSubtitle,Allow background reminders for unexported documents,Dışa aktarılmamış belgeler için arka plan hatırlatıcılarına izin ver,Allow background reminders for unimported documents,0.992,0.883
+0.883,couldNotImportBackupError,Could not import this backup. Check the password and try again.,Bu yedek içe aktarılamadı. Şifreyi kontrol edip tekrar deneyin.,"This backup couldn't be imported, so check the password and try again.",0.974,0.883
+0.884,documentSaved,Document saved,Belge kaydedildi,,,0.884
+0.884,fillTooltip,Fill,Doldur,,,0.884
+0.885,reviewPromptBody,Your feedback helps us grow and keeps the app free.,Geri bildiriminiz büyümeye yardımcı olur ve uygulamayı ücretsiz tutar.,Your feedback helps grow and keeps the app free.,0.971,0.885
+0.886,pageCropped,Page cropped,Sayfa kırpıldı,,,0.886
+0.888,onboardingPrivacySubtitle,"No account, no cloud, no watermarks. Your documents never leave your device.","Hesap yok, bulut yok, filigran yok. Belgeleriniz cihazınızı asla terk etmez.","No account, no cloud, no watermark, your documents will never leave your device.",0.971,0.888
+0.888,autoScan,Auto Scan,Otomatik Tarama,,,0.888
+0.888,printOptionsTitle,Print Options,Yazdırma Seçenekleri,,,0.888
+0.888,exportFormatPngDescription,"One image per page, lossless","Sayfa başına bir resim, kayıpsız","One picture per page, without loss",0.888,0.941
+0.890,drawNewSignature,Draw New,Yeni çiz,,,0.890
+0.891,filterMagicColor,Magic colour,Sihirli renk,,,0.891
+0.891,backupCorruptedError,This backup file looks corrupted.,Bu yedek dosyası bozuk görünüyor.,This backup file looks broken.,0.925,0.891
+0.891,scanPreviewNoPages,No pages to show.,Gösterilecek sayfa yok.,There's no page to show.,0.891,0.909
+0.891,reviewPromptYes,Rate Us,Bizi Değerlendir,,,0.891
+0.892,commonRename,Rename,Yeniden Adlandır,,,0.892
+0.892,reviewPromptNo,Send Feedback,Geri Bildirim Gönder,,,0.892
+0.893,sealCenterStar,Star,Yıldız,,,0.893
+0.893,saveToDownloadsAction,Save to Downloads,İndirilenler'e Kaydet,,,0.893
+0.893,ocrLanguagePackNotReady,Language pack downloading or not ready. Try again shortly.,Dil paketi indiriliyor veya hazır değil. Birazdan tekrar deneyin.,The language packet is downloaded or not ready. Try again in a minute.,0.901,0.893
+0.894,errorGenericTitle,Something went wrong,Bir şeyler ters gitti,,,0.894
+0.894,sealCenterNone,None,Yok,,,0.894
+0.894,printMarginNone,None,Yok,,,0.894
+0.895,engagementSectionLabel,ENGAGEMENT & NOTIFICATIONS,ETKİLEŞİM VE BİLDİRİMLER,,,0.895
+0.896,onboardingGetStarted,Get Started,Başla,,,0.896
+0.897,noEmailAppFound,No email app found,E-posta uygulaması bulunamadı,Email application not found,0.897,0.957
+0.897,cropAuto,Auto-detect,Otomatik algıla,,,0.897
+0.897,deleteScanTitle,Delete this scan?,Bu tarama silinsin mi?,,,0.897
+0.897,idGenerating,Generating PDF...,PDF oluşturuluyor...,,,0.897
+0.899,signatureFontHandwritten,Handwritten,El yazısı,,,0.899
+0.899,whatsNewBody,"Welcome to KatharScan! This is the first public release featuring unlimited scanning, 29 languages, and export to PDF, Word, TXT, JPG, PNG, and CSV.","KatharScan'a hoş geldiniz! Bu, sınırsız tarama, 29 dil ve PDF, Word, TXT, JPG, PNG, CSV dışa aktarımı sunan ilk genel sürümdür.","Welcome to KatharScan! It's the first general release to offer unlimited browsing, 29 languages, and the first to export PDF, Word, TXT, JPG, PNG, CSV.",0.900,0.899
+0.900,sharePromptTitle,Love KatharScan?,KatharScan'ı seviyor musun?,,,0.900
+0.900,chipSelectMultiple,Select Multiple,Çoklu Seç,,,0.900
+0.900,fullscreenLabel,Fullscreen,Tam Ekran,,,0.900
+0.901,openSourceLicensesLabel,Open-source licenses,Açık kaynak lisansları,,,0.901
+0.901,enableSharePromptsSubtitle,Allow the app to occasionally suggest sharing,Uygulamanın ara sıra paylaşım önermesine izin ver,Allow the app to suggest sharing occasionally,0.994,0.901
+0.902,editDocumentAction,Edit Document,Belgeyi Düzenle,,,0.902
+0.903,paywallFeatureNoBanner,No more banner ads,Artık banner reklam yok,No more banner ads,1.000,0.903
+0.904,storageSectionLabel,Storage,Depolama,,,0.904
+0.904,paywallSuccessMessage,Thank you for supporting KatharScan.,KatharScan'ı desteklediğiniz için teşekkürler.,Thank you for your support of KatharScan.,0.946,0.904
+0.904,onboardingSignTitle,"Sign, Fill & Seal","İmzala, Doldur ve Mühürle","Sign, Fill and Seal",0.986,0.904
+0.905,fillTapHint,Tap the page where you want to type,Yazmak istediğiniz yere sayfaya dokunun,Tap the page where you want to type,1.000,0.905
+0.905,termsOfServiceLabel,Terms of Service,Hizmet Koşulları,,,0.905
+0.905,ocrUnavailableTooltip,OCR unavailable on this device.,Bu cihazda OCR kullanılamıyor.,OCR is not available on this device.,0.938,0.905
+0.906,convertToLabel,Convert to:,Şuna dönüştür:,,,0.906
+0.906,emptyDocumentMessage,This document has no pages.,Bu belgenin sayfası yok.,This document doesn't have a page.,0.906,0.917
+0.906,importAndConvertDocument,Import & Convert Document,Belge İçe Aktar ve Dönüştür,Importing and converting documents,0.926,0.906
+0.906,pdfImportedAsDocument,PDF imported as document,PDF belge olarak içe aktarıldı,Imported as a PDF document,0.973,0.906
+0.907,saveInsideAppWarning,"To save inside the app, choose JPG or PNG. Other targets are exported as files.",Uygulama içinde kaydetmek için JPG veya PNG seçin. Diğer hedefler dosya olarak dışa aktarılır.,Select JPG or PNG to save in the app. Other targets are exported as files.,0.953,0.907
+0.907,addTagsAction,Add Tags,Etiket Ekle,,,0.907
+0.907,rotationPage,Page rotated,Sayfa döndürüldü,,,0.907
+0.908,appLanguageTitle,App Language,Uygulama Dili,,,0.908
+0.908,sealRemoveWhite,Make white transparent,Beyazı saydam yap,,,0.908
+0.908,homeLanguageTooltip,App Language,Uygulama dili,,,0.908
+0.909,pickErrorPrefix,Pick error,Seçim hatası,,,0.909
+0.909,signatureDeleteSaved,Remove saved signature,Kayıtlı imzayı kaldır,,,0.909
+0.911,appLanguageLabel,App language,Uygulama dili,,,0.911
+0.911,renameDocumentTitle,Rename document,Belgeyi yeniden adlandır,,,0.911
+0.912,documentsSectionHeader,Documents,Belgeler,,,0.912
+0.912,filterApplied,Filter applied,Filtre uygulandı,,,0.912
+0.913,tickerAutoCopyOcr,AUTO-COPY OCR,OTOMATİK KOPYALA OCR,,,0.913
+0.914,printFailed,Print failed,Yazdırma başarısız oldu,,,0.914
+0.914,deleteFolderMessage,Documents inside will not be deleted.,İçindeki belgeler silinmeyecek.,The documents inside will not be deleted.,0.973,0.914
+0.914,commonSize,Size,Boyut,,,0.914
+0.916,emptyFavorites,No favorites yet. Tap the star icon on a document to add it.,Henüz favori yok. Eklemek için bir belgedeki yıldız simgesine dokunun.,"No favorites yet, so just tap the star icon on a document to add it.",0.987,0.916
+0.916,autoCopyOcrLabel,Auto-copy OCR,OCR'yi otomatik kopyala,,,0.916
+0.916,readingPageProgress,Page {page} of {total},Sayfa {page} / {total},Page 5 / 5,0.944,0.916
+0.916,restorePurchasesButton,Restore purchases,Satın almaları geri yükle,,,0.916
+0.917,compressTargetLabel,Max size,En büyük boyut,,,0.917
+0.918,customColorTitle,Custom Color,Özel Renk,,,0.918
+0.918,onboardingOcrTitle,On-Device OCR,Cihazda OCR,,,0.918
+0.918,rotationAllPages,All pages rotated,Tüm sayfalar döndürüldü,,,0.918
+0.919,modeDocument,Document Mode,Belge Modu,,,0.919
+0.919,ocrStatusUnsupported,Unsupported,Desteklenmiyor,,,0.919
+0.919,modePassport,Passport Mode,Pasaport Modu,,,0.919
+0.919,signatureCanvasHint,Sign here,Buraya imzalayın,,,0.919
+0.920,cropAspectFree,Free,Serbest,,,0.920
+0.920,convertDocumentTitle,Convert Document,Belgeyi Dönüştür,,,0.920
+0.920,modeIdCard,ID Card Mode,Kimlik Kartı Modu,,,0.920
+0.920,emailLimitMissed,Could not get under {mb} MB; sent the smallest version.,{mb} MB altına inilemedi; en küçük sürüm gönderildi.,Couldn't get below 5 MB; the smallest version was sent.,0.959,0.920
+0.920,exportFormatPdfDescription,Best for sharing and printing,Paylaşım ve yazdırma için en iyisi,Best for sharing and printing,1.000,0.920
+0.921,savedAsNewDocument,Saved as new document,Yeni belge olarak kaydedildi,Saved as a new document,0.989,0.921
+0.922,fillInputHint,Type text to fill,Doldurmak için metin yazın,Type the text to fill in,0.950,0.922
+0.922,paywallSubtitle,Support KatharScan with a one-time purchase. All features remain free.,Tek seferlik satın alımla KatharScan'ı destekleyin. Tüm özellikler ücretsiz kalır.,Support KatharScan with a one-time purchase.,0.922,0.934
+0.924,sampleColorTooltip,Sample color from page,Sayfadan renk örnekle,Color sample from the page,0.973,0.924
+0.924,commonConvert,Convert,Dönüştür,,,0.924
+0.925,filterAll,All,Tümü,,,0.925
+0.925,clearThis,Clear this,Bunu temizle,,,0.925
+0.925,emptyStateDefaultMessage,Tap the camera to scan your first document.,İlk belgenizi taramak için kameraya dokunun.,Touch the camera to scan your first document.,0.969,0.925
+0.926,readingPageEta,Page {page} of {total} · about {minutes} min left,Sayfa {page} / {total} · yaklaşık {minutes} dk kaldı,Page 5 / 5 · about 5 minutes left,0.951,0.926
+0.926,placeHereLabel,Place here,Buraya yerleştir,,,0.926
+0.926,ocrScriptChinese,Chinese,Çince,,,0.926
+0.926,tickerPassportMode,PASSPORT MODE,PASAPORT MODU,,,0.926
+0.926,fromAnotherDocument,From Another Document,Başka bir belgeden,,,0.926
+0.926,pdfImportErrorPrefix,PDF import error,PDF içe aktarma hatası,,,0.926
+0.927,filterTitle,Filter,Filtre,,,0.927
+0.928,saveFailedPrefix,Save failed:,Kaydetme başarısız:,,,0.928
+0.928,exportFormatTxtDescription,Plain OCR text only,Yalnızca düz OCR metni,Just plain OCR text,0.928,0.944
+0.928,widthLabel,Width,Genişlik,,,0.928
+0.929,addTagTitle,Add tag,Etiket ekle,,,0.929
+0.929,commonSave,Save,Kaydet,,,0.929
+0.929,fillTypeHint,Type here,Buraya yazın,,,0.929
+0.932,filterBrightnessLabel,Brightness,Parlaklık,,,0.932
+0.932,saveToDeviceButton,Save to Device,Cihaza Kaydet,,,0.932
+0.932,favoriteTooltip,Favorite,Favori,,,0.932
+0.932,errorScreenProblem,KatharScan ran into a problem displaying this screen. Your scans are safe — they're stored on this device and this doesn't affect them.,KatharScan bu ekranı görüntülerken bir sorunla karşılaştı. Taramalarınız güvende — bu cihazda saklanıyorlar ve bu onları etkilemiyor.,"KatharScan encountered a problem while viewing this screen, your scans are safe, they're hidden on this device, and it doesn't affect them.",0.976,0.932
+0.933,clearAll,Clear all,Tümünü temizle,,,0.933
+0.933,tickerNoAccount,NO ACCOUNT,HESAP YOK,,,0.933
+0.933,accentBlue,Blue,Mavi,,,0.933
+0.933,conversionFailedPrefix,Conversion failed,Dönüştürme başarısız oldu,,,0.933
+0.934,idLayoutRealSize,Real size,Gerçek boyut,,,0.934
+0.934,addDateTitle,Add Date,Tarih Ekle,,,0.934
+0.936,tickerFreeUnlimitedOcr,FREE UNLIMITED OCR,ÜCRETSİZ SINIRSIZ OCR,,,0.936
+0.937,captionIdCard,Two-sided ID capture: Front + Back,Çift taraflı kimlik yakalama: Ön + Arka,Double-sided ID capture: Front + Back,0.981,0.937
+0.937,privacyOptionsLabel,Privacy settings,Gizlilik ayarları,,,0.937
+0.937,saveAsNewDocumentAction,Save as new Document,Yeni belge olarak kaydet,Save as a new document,0.992,0.937
+0.937,stampPaperLabel,Paper,Kağıt,,,0.937
+0.937,printPaperLabel,Paper,Kağıt,,,0.937
+0.937,enableNotificationsLabel,Enable Notifications,Bildirimleri etkinleştir,,,0.937
+0.938,filterFavorites,Favorites,Favoriler,,,0.938
+0.938,whiteHaloLabel,White halo (readability),Beyaz halo (okunabilirlik),,,0.938
+0.938,onboardingToolsTitle,21 Free Pro Tools,21 Ücretsiz Pro Araç,21 Free Pro Tool,0.976,0.938
+0.940,docxModeTextOnly,Text Only,Yalnızca Metin,,,0.940
+0.940,titleIdCard,ID Card,Kimlik Kartı,,,0.940
+0.940,paywallFeatureFreeForever,All features free forever,Tüm özellikler sonsuza kadar ücretsiz,All the features are forever free,0.956,0.940
+0.940,docxModeWithImages,With Images,Resimlerle,,,0.940
+0.940,filterSheetTitle,Filters,Filtreler,,,0.940
+0.941,cropAspectId,ID card,Kimlik kartı,,,0.941
+0.941,saveAsDocument,Save as Document,Belge Olarak Kaydet,,,0.941
+0.941,onboardingOcrSubtitle,Use KatharScan in {count} languages. OCR runs on your phone — nothing ever leaves your device.,KatharScan'i {count} dilde kullanın. OCR telefonunuzda çalışır — hiçbir şey cihazınızdan çıkmaz.,Use KatharScan in five languages. OCR works on your phone <unk> nothing comes out of your device.,0.958,0.941
+0.942,letterSizeUS,Letter size (US),Letter boyutu (ABD),,,0.942
+0.943,heightLabel,Height,Yükseklik,,,0.943
+0.943,idLayoutFullWidth,Full width,Tam genişlik,,,0.943
+0.944,clearPage,Clear page,Sayfayı temizle,,,0.944
+0.944,sharePromptAction,Share App,Uygulamayı Paylaş,,,0.944
+0.944,tabImageLabel,Image,Resim,,,0.944
+0.944,ocrNoTextFound,No text found,Metin bulunamadı,,,0.944
+0.945,commonChange,Change,Değiştir,,,0.945
+0.945,pagesToReadHint,This PDF has {count} pages. Pages that are pictures are read with OCR (about 10 seconds each); pages with real text are instant.,Bu PDF {count} sayfa içeriyor. Resim olan sayfalar OCR ile okunur (sayfa başına yaklaşık 10 saniye); gerçek metinli sayfalar anında okunur.,This PDF contains 5 pages. Pages with an image are read with OCR (about 10 seconds per page); real-text pages are read instantly.,0.970,0.945
+0.945,compressMedium,Medium,Orta,,,0.945
+0.947,tickerSearchablePdf,SEARCHABLE PDF,ARANABİLİR PDF,,,0.947
+0.947,documentNotFound,Document not found,Belge bulunamadı,,,0.947
+0.948,sealLogoReady,Logo ready,Logo hazır,,,0.948
+0.948,printFilterNone,No filter,Filtre yok,,,0.948
+0.948,addToFavorites,Add to Favorites,Favorilere ekle,,,0.948
+0.949,ocrStatusDownloading,Downloading…,İndiriliyor…,,,0.949
+0.949,watermarkChooseImage,Choose image,Görsel seç,,,0.949
+0.950,applyToAllPages,Apply to all pages,Tüm sayfalara uygula,Apply to all pages,1.000,0.950
+0.950,onboardingWelcomeTitle,Welcome to KatharScan,KatharScan'a Hoş Geldiniz,,,0.950
+0.953,actionLabel,Action:,Eylem:,,,0.953
+0.953,emailFailed,Email failed,E-posta başarısız oldu,,,0.953
+0.954,commonUpdate,Update,Güncelle,,,0.954
+0.954,sharePdf,Share PDF,PDF Paylaş,,,0.954
+0.954,themeLabel,Theme,Tema,,,0.954
+0.954,exportFormatDocxDescription,Editable text document,Düzenlenebilir metin belgesi,,,0.954
+0.955,commonCancel,Cancel,İptal,,,0.955
+0.955,emailMessageHint,Add a note (optional),Not ekleyin (isteğe bağlı),Add a note (optional),1.000,0.955
+0.955,privacyPolicyLabel,Privacy policy,Gizlilik politikası,,,0.955
+0.956,pagesUpdated,Pages updated,Sayfalar güncellendi,,,0.956
+0.956,filterContrastLabel,Contrast,Kontrast,,,0.956
+0.956,selectRegionTitle,Select Region,Bölge Seç,,,0.956
+0.957,pagesToReadTitle,Pages to read,Okunacak sayfalar,,,0.957
+0.957,managePagesTitle,Manage Pages,Sayfaları Yönet,,,0.957
+0.958,copyAll,Copy all,Tümünü kopyala,,,0.958
+0.959,sealTextSizePercent,Text size {percent}%,Metin boyutu %{percent},,,0.959
+0.960,opacityPercentLabel,Opacity: {percent}%,Opaklık: %{percent},,,0.960
+0.960,rotate90Action,Rotate 90°,90° döndür,,,0.960
+0.960,paywallFallbackPrice,$14.99 one-time,$14.99 tek seferlik,,,0.960
+0.960,sharePromptDismiss,Not now,Şimdi değil,,,0.960
+0.960,compressNoLimit,No limit,Sınır yok,,,0.960
+0.961,addNoteTitle,Add Note,Not Ekle,,,0.961
+0.961,tickerFavorites,FAVORITES,FAVORİLER,,,0.961
+0.961,cameraErrorPrefix,Camera error,Kamera hatası,,,0.961
+0.961,settingsTooltip,Settings,Ayarlar,,,0.961
+0.961,settingsTitle,Settings,Ayarlar,,,0.961
+0.962,addTextTitle,Add Text,Metin Ekle,,,0.962
+0.962,sealDefaultMainText,YOUR COMPANY,ŞİRKETİNİZ,,,0.962
+0.963,paywallSuccessTitle,Ads Removed,Reklamlar Kaldırıldı,,,0.963
+0.963,paywallTitle,Remove Ads,Reklamları Kaldır,,,0.963
+0.963,aboutSectionLabel,About,Hakkında,,,0.963
+0.963,adsRemovedLabel,Ads Removed,Reklamlar kaldırıldı,,,0.963
+0.964,emailLabel,Email,E-posta,,,0.964
+0.964,filterOriginal,Original,Orijinal,,,0.964
+0.964,commonAdd,Add,Ekle,,,0.964
+0.964,compressSmall,Small,Küçük,,,0.964
+0.964,signatureTypeHint,Type your name,Adınızı yazın,,,0.964
+0.965,commonColor,Color,Renk,,,0.965
+0.965,filterColor,Color,Renk,,,0.965
+0.965,pagesLabel,Pages,Sayfalar,,,0.965
+0.965,watermarkPagesLabel,Pages,Sayfalar,,,0.965
+0.965,pageFormatLetter,Letter (US),Letter (ABD),,,0.965
+0.965,clearAllPages,Clear all pages,Tüm sayfaları temizle,,,0.965
+0.967,filterRemoved,Filter removed,Filtre kaldırıldı,,,0.967
+0.967,sealFontSerif,Classic,Klasik,,,0.967
+0.968,moreOptionsTooltip,More options,Daha fazla seçenek,,,0.968
+0.968,watermarkPagesInvalid,Check the pages (the document has {count} pages),Sayfaları kontrol edin (belgede {count} sayfa var),Check the pages (the document has 5 pages),1.000,0.968
+0.968,continueButton,Continue,Devam,,,0.968
+0.968,onboardingContinue,Continue,Devam,,,0.968
+0.968,whatsNewContinue,Continue,Devam,,,0.968
+0.968,ocrScriptJapanese,Japanese,Japonca,,,0.968
+0.969,emailMessageLabel,Message,Mesaj,,,0.969
+0.969,sealTextColorLabel,Text colour,Metin rengi,,,0.969
+0.970,convertedDocTitle,Converted {date},Dönüştürüldü {date},,,0.970
+0.970,shareTooltip,Share,Paylaş,,,0.970
+0.970,commonShare,Share,Paylaş,,,0.970
+0.973,textSizeLabel,Text size: {size},Metin boyutu: {size},,,0.973
+0.975,exportEstimatedSize,Estimated size: {mb} MB,Tahmini boyut: {mb} MB,Estimated size: 5 MB,1.000,0.975
+0.975,cameraSource,Camera,Kamera,,,0.975
+0.976,modeOcr,OCR Mode,OCR Modu,,,0.976
+0.976,pagesSelectTooltip,Select pages,Sayfaları seç,,,0.976
+0.976,addPageTitle,Add Page,Sayfa Ekle,,,0.976
+0.976,pageLabel,Page {index},Sayfa {index},,,0.976
+0.977,ocrScriptLatin,"Latin (English, European)","Latin (İngilizce, Avrupa)",,,0.977
+0.977,ocrScriptDevanagari,"Hindi, Marathi (Devanagari)","Hintçe, Marathi (Devanagari)",,,0.977
+0.978,annotationModeSelect,Select,Seç,,,0.978
+0.979,watermarkPagesThis,This page,Bu sayfa,,,0.979
+0.979,tryAgainButton,Try again,Tekrar dene,,,0.979
+0.980,exportFormatTxtLabel,Text (.txt),Metin (.txt),,,0.980
+0.982,printRangeAll,All pages,Tüm sayfalar,,,0.982
+0.982,watermarkPagesAll,All pages,Tüm sayfalar,,,0.982
+0.983,supportLabel,Support,Destek,,,0.983
+0.983,systemThemeOption,System,Sistem,,,0.983
+0.983,sizePtLabel,Size: {size}pt,Boyut: {size}pt,,,0.983
+0.985,pageIndicator,Page {current} / {total},Sayfa {current} / {total},Page 5 / 5,1.000,0.985
+0.989,originalDimensions,Original: {w}×{h},Orijinal: {w}×{h},,,0.989
+1.000,exportFormatPdfLabel,PDF,PDF,,,1.000
+1.000,fontMonospace,monospace,monospace,,,1.000
+1.000,ocrScriptArabic,العربية (Arabic),العربية (Arabic),,,1.000
+1.000,ocrSectionLabel,OCR,OCR,,,1.000
+1.000,ocrScriptHebrew,עברית (Hebrew),עברית (Hebrew),,,1.000
+1.000,exportFormatJpgLabel,JPG,JPG,,,1.000
+1.000,proBadgeLabel,PRO,PRO,,,1.000
+1.000,ocrScriptRussian,Русский (Russian),Русский (Russian),,,1.000
+1.000,ocrScriptUkrainian,Українська (Ukrainian),Українська (Ukrainian),,,1.000
+1.000,ocrScriptBengali,বাংলা (Bengali),বাংলা (Bengali),,,1.000
+1.000,exportFormatDocxLabel,Word (.docx),Word (.docx),,,1.000
+1.000,exportFormatPngLabel,PNG,PNG,,,1.000
+1.000,sealCenterLogo,Logo,Logo,,,1.000
+1.000,fontSerif,serif,serif,,,1.000
+1.000,formatCsv,CSV,CSV,,,1.000
+1.000,ocrScriptGreek,Ελληνικά (Greek),Ελληνικά (Greek),,,1.000
+1.000,sealShapeOval,Oval,Oval,,,1.000
+1.000,fontSansSerif,sans-serif,sans-serif,,,1.000
+1.000,ocrScriptThai,ไทย (Thai),ไทย (Thai),,,1.000
+1.000,printMarginNormal,Normal,Normal,,,1.000

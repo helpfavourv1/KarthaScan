@@ -1,0 +1,538 @@
+score,key,english,translation,back_to_english,backtrans_score,labse_score
+0.142,accentIndigo,Indigo,คราม,,,0.142
+0.166,printFitFill,Fill sheet (trims edges),เต็มแผ่น (ตัดขอบ),The whole plate.,0.166,0.785
+0.201,batchExportSignatureDisabled,Batch export — signature placement disabled,ส่งออกเป็นชุด — การวางลายเซ็นถูกปิดใช้งาน,Delivered as a kit. Signage is off-limits.,0.201,0.722
+0.210,exportFormatJpgDescription,One image per page,หนึ่งภาพต่อหน้า,One shot ahead.,0.210,0.846
+0.214,fillInputHint,Type text to fill,พิมพ์ข้อความเพื่อกรอก,Print the message to filter.,0.214,0.856
+0.224,watermarkLayoutTiled,Tiled,ซ้ำทั้งหน้า,,,0.224
+0.235,watermarkDefaultText,CONFIDENTIAL,ลับ,,,0.235
+0.247,pageRevertedToOriginal,Page reverted to original,หน้ากลับสู่ต้นฉบับแล้ว,Back to the drawing board.,0.247,0.816
+0.294,annotationModeEllipse,Ellipse,วงรี,,,0.294
+0.312,fillTapHint,Tap the page where you want to type,แตะที่หน้าตรงตำแหน่งที่ต้องการพิมพ์,Hit the page right where you want to print.,0.312,0.862
+0.323,emailMessageHint,Add a note (optional),เพิ่มบันทึก (ไม่บังคับ),Add the record.,0.323,0.817
+0.350,satLabel,Sat,อิ่มตัว,,,0.350
+0.359,checkLabel,Check,เครื่องหมายถูก,,,0.359
+0.365,printMarginLabel,Margin,ขอบกระดาษ,,,0.365
+0.384,batchExportEmptyMessage,No documents to batch export. Scan some first.,ไม่มีเอกสารให้ส่งออกเป็นชุด สแกนบางส่วนก่อน,No papers to ship in a suit. First scan some of them.,0.384,0.776
+0.385,enableNotificationsSubtitle,Allow background reminders for unexported documents,อนุญาตการเตือนเบื้องหลังสำหรับเอกสารที่ยังไม่ได้ส่งออก,Permission for back-end warnings for documents that have not been shipped.,0.385,0.812
+0.386,watermarkPagesInvalid,Check the pages (the document has {count} pages),ตรวจสอบหน้า (เอกสารมี {count} หน้า),Check the page.,0.386,0.941
+0.396,pdfImportedAsDocument,PDF imported as document,นำเข้า PDF เป็นเอกสารแล้ว,I'm going to file a PDF.,0.396,0.873
+0.411,signatureNewOne,Draw or type a new one,วาดหรือพิมพ์ใหม่,Re-painted or reprinted.,0.411,0.850
+0.417,stampTickLabel,Tick,เครื่องหมายถูก,,,0.417
+0.424,tickerBatchExport,BATCH EXPORT,ส่งออกเป็นชุด,,,0.424
+0.426,billingUnavailableMessage,Billing unavailable — try again later.,การเรียกเก็บเงินไม่พร้อมใช้งาน — ลองอีกครั้งในภายหลัง,The collection isn't ready for use. Try again later.,0.426,0.888
+0.437,idCardPdfGenerated,ID Card PDF Generated,สร้าง PDF บัตรประจำตัวแล้ว,"I've created a PDF, an I.D.",0.437,0.785
+0.442,annotationModeHighlighter,Highlighter,ปากกาเน้นข้อความ,,,0.442
+0.447,extractedPageDefaultTitle,Extracted Page,หน้าที่แยกออกมา,,,0.447
+0.451,tickerTapToTypeFilling,TAP-TO-TYPE FILLING,กรอกแบบแตะและพิมพ์,,,0.451
+0.468,paywallFeatureFreeForever,All features free forever,คุณสมบัติทั้งหมดฟรีตลอดไป,All the qualifications are forever free.,0.468,0.908
+0.475,tickerNoteStamps,NOTE STAMPS,ตราประทับบันทึก,,,0.475
+0.476,cropNoPageFound,Couldn't find the page edges. Drag the corners.,ไม่พบขอบหน้า ลากมุมเอง,"I can't find the front edge, the angle itself.",0.476,0.687
+0.476,watermarkLayoutLabel,Layout,เลย์เอาต์,,,0.476
+0.483,sealShapeOval,Oval,วงรี,,,0.483
+0.498,exportGenericError,Something went wrong while exporting.,มีบางอย่างผิดปกติขณะส่งออก,There's something wrong with the shipment.,0.498,0.804
+0.498,marqueeEraseTooltip,Marquee erase,ลบพื้นที่เลือก,,,0.498
+0.500,accentEmerald,Emerald,มรกต,,,0.500
+0.501,annotateTitle,Annotate,คำอธิบายประกอบ,,,0.501
+0.505,captureBehaviorSectionLabel,CAPTURE BEHAVIOR,พฤติกรรมการจับภาพ,,,0.505
+0.506,reviewPromptBody,Your feedback helps us grow and keeps the app free.,ความคิดเห็นของคุณช่วยให้เราเติบโตและทำให้แอปฟรี,Your opinions help us grow and make us free.,0.506,0.856
+0.507,tickerFolders,FOLDERS,โฟลเดอร์,,,0.507
+0.512,couldNotOpenLinkError,Could not open link.,ไม่สามารถเปิดลิงก์ได้,I can't get the link.,0.512,0.842
+0.518,watermarkLayoutDiagonal,Diagonal,แนวทแยง,,,0.518
+0.518,tickerAccentThemes,ACCENT THEMES,ธีมเน้น,,,0.518
+0.519,progressEncodingPage,Encoding page {current} of {total}…,กำลังเข้ารหัสหน้า {current}/{total}...,I'm encrypting the page 5/5...,0.519,0.763
+0.524,tickerTextStamps,TEXT STAMPS,ตราประทับข้อความ,,,0.524
+0.524,signatureTitle,Signature,ลายเซ็น,,,0.524
+0.527,commonExtract,Extract,แยก,,,0.527
+0.529,scaleLabel,Scale,ปรับขนาด,,,0.529
+0.533,accentAmber,Amber,อำพัน,,,0.533
+0.535,progressRasterizing,Rasterizing pages…,กำลังแรสเตอร์หน้า...,,,0.535
+0.540,watermarkLabel,Watermark,ลายน้ำ,,,0.540
+0.546,annotationModeRect,Rectangle,สี่เหลี่ยมผืนผ้า,,,0.546
+0.546,exportFormatPngDescription,"One image per page, lossless",หนึ่งภาพต่อหน้า ไม่สูญเสียคุณภาพ,"One picture ahead, no loss of quality.",0.546,0.747
+0.549,eraserTitle,Eraser,ยางลบ,,,0.549
+0.549,annotationModeEraser,Eraser,ยางลบ,,,0.549
+0.552,sealSubtextLabel,Subtext (bottom arc / below),ข้อความรอง (โค้งด้านล่าง / ด้านล่าง),Subtitles (curved below/below),0.552,0.850
+0.553,debugLogsLabel,Debug Logs,บันทึกการดีบัก,,,0.553
+0.556,accentViolet,Violet,ม่วง,,,0.556
+0.560,printFitLabel,Scaling,การปรับขนาด,,,0.560
+0.562,sealMainTextLabel,Main text (top arc / box),ข้อความหลัก (โค้งด้านบน / กล่อง),The main message (top curve/box),0.562,0.905
+0.569,captionOcr,"Text crop: Original, Square, 4:3",การตัดข้อความ: ต้นฉบับ สี่เหลี่ยม 4:3,Cutting the text: the square root of 4:3.,0.569,0.833
+0.570,applyToAllPages,Apply to all pages,ใช้กับทุกหน้า,Use it on every page.,0.570,0.845
+0.574,sealInkLook,Worn stamp look,ลายตราประทับเก่า,,,0.574
+0.575,sampleColorTooltip,Sample color from page,สุ่มตัวอย่างสีจากหน้า,Pull the color samples from the face.,0.575,0.834
+0.581,stampTickedLabel,Ticked,ทำเครื่องหมายแล้ว,,,0.581
+0.585,valLabel,Val,ค่า,,,0.585
+0.587,foldersSectionHeader,Folders,โฟลเดอร์,,,0.587
+0.587,filterFolders,Folders,โฟลเดอร์,,,0.587
+0.588,noEmailAppFound,No email app found,ไม่พบแอปอีเมล,I didn't find an email.,0.588,0.935
+0.588,tickerUndoRedo,UNDO/REDO,เลิกทำ/ทำซ้ำ,,,0.588
+0.589,tickerCustomSeals,CUSTOM SEALS,ตราประทับที่กำหนดเอง,,,0.589
+0.589,deleteScanMessage,This can't be undone.,การกระทำนี้ไม่สามารถย้อนกลับได้,This action is irreversible.,0.589,0.811
+0.590,savedToDocumentText,Saved to document text,บันทึกไปยังข้อความเอกสารแล้ว,Recorded to the document message.,0.590,0.827
+0.591,paywallLegalText,This is a non-consumable purchase. Restore it anytime on any device with the same store account.,นี่คือการซื้อแบบไม่ใช้หมด กู้คืนได้ทุกเวลาบนอุปกรณ์ใดก็ได้ด้วยบัญชีร้านเดียวกัน,"This is an all-you-can-eat, all-you-can-eat purchase on any device with the same store account.",0.591,0.882
+0.592,extractToNewDocAction,Extract to new doc,แยกออกเป็นเอกสารใหม่,Separated as a new document.,0.592,0.736
+0.593,tickerESign,E-SIGN,ลายเซ็นอิเล็กทรอนิกส์,,,0.593
+0.596,tickerGalleryImport,GALLERY IMPORT,นำเข้าจากแกลเลอรี,,,0.596
+0.604,accentCrimson,Crimson,แดงเข้ม,,,0.604
+0.605,checkShapeRounded,Rounded,โค้งมน,,,0.605
+0.605,frontSideCaptured,Front side captured. Now capture the back side.,จับภาพด้านหน้าแล้ว ตอนนี้จับภาพด้านหลัง,"Take the front, now take the back.",0.605,0.753
+0.606,captionDocs,"Flexible crop: Original, Square, 4:3, 3:2, 16:9",การตัดแบบยืดหยุ่น: ต้นฉบับ สี่เหลี่ยม 4:3 3:2 16:9,Flexible cutting: square root of 4:3 3:2 16:9,0.606,0.846
+0.606,saveFailedBanner,Your latest changes could not be saved.,ไม่สามารถบันทึกการเปลี่ยนแปลงล่าสุดของคุณได้,I can't record your last change.,0.606,0.869
+0.611,beepOnCaptureLabel,Beep on capture,เสียงบีบเมื่อจับภาพ,,,0.611
+0.611,saveAsNewDocumentAction,Save as new Document,บันทึกเป็นเอกสารใหม่,The record is a new document.,0.611,0.900
+0.612,annotationModeArrow,Arrow,ลูกศร,,,0.612
+0.615,fillCapsLabel,ALL CAPS,ตัวพิมพ์ใหญ่ทั้งหมด,,,0.615
+0.620,signatureTabType,Type,พิมพ์,,,0.620
+0.624,openSourceLicensesLabel,Open-source licenses,ใบอนุญาตโอเพนซอร์ส,,,0.624
+0.624,cropAspectSquare,Square,สี่เหลี่ยมจัตุรัส,,,0.624
+0.625,ocrStatusBuiltIn,Built-in,ในตัว,,,0.625
+0.628,onboardingSignSubtitle,"E-sign contracts, type-to-fill forms, and stamp enterprise seals in seconds.",เซ็นสัญญาอิเล็กทรอนิกส์ กรอกแบบฟอร์ม และประทับตราบริษัทในไม่กี่วินาที,"Sign an electronic contract, fill out a form, and seal the company's seal in seconds.",0.628,0.730
+0.628,sharePromptBody,Share it with friends who need a powerful document scanner.,แชร์กับเพื่อนที่ต้องการสแกนเนอร์เอกสารที่มีประสิทธิภาพ,Char and a friend needed an effective document scanner.,0.628,0.805
+0.628,sealFontSerif,Classic,คลาสสิก,,,0.628
+0.629,lockAspectRatio,Lock aspect ratio,ล็อกอัตราส่วน,,,0.629
+0.632,exportFormatCsvDescription,Spreadsheet data,ข้อมูลสเปรดชีต,,,0.632
+0.636,noTextRecognized,No text recognized.,ไม่รู้จักข้อความ,,,0.636
+0.637,onboardingSignTitle,"Sign, Fill & Seal",เซ็นชื่อ กรอก และประทับตรา,"Sign the name, seal and stamp.",0.637,0.680
+0.639,pageCropped,Page cropped,ตัดหน้าแล้ว,,,0.639
+0.640,onboardingReplayIntro,Replay introduction,เล่นการแนะนำอีกครั้ง,,,0.640
+0.641,extractedTextTitle,Extracted Text,ข้อความที่แยกออกมา,,,0.641
+0.642,ocrScriptDevanagari,"Hindi, Marathi (Devanagari)",ฮินดี มราฐี (เทวนาครี),,,0.642
+0.646,eraserApplied,Eraser applied,ใช้ยางลบแล้ว,,,0.646
+0.648,savedAsNewDocument,Saved as new document,บันทึกเป็นเอกสารใหม่แล้ว,The record is a new document.,0.648,0.894
+0.649,sealSavedHeading,Saved seals,ตราที่บันทึกไว้,,,0.649
+0.651,straightenLabel,Straighten,ปรับให้ตรง,,,0.651
+0.652,onboardingEditSubtitle,"Every edit stays reversible — undo, redo, and revert to original anytime.",การแก้ไขแต่ละครั้งสามารถย้อนกลับได้ — เลิกทำ ทำซ้ำ และกลับสู่ต้นฉบับได้ตลอดเวลา,"Each correction can be reversed, stopped, repeated, and back to the original all the time.",0.652,0.879
+0.653,onboardingToolsSubtitle,"Annotate, sign, watermark, fill forms, seal, and more — every tool free and unlimited.",คำอธิบายประกอบ เซ็นชื่อ ลายน้ำ กรอกแบบฟอร์ม ตราประทับ และอื่นๆ — ทุกเครื่องมือฟรีและไม่จำกัด,"Description of the composition, name sensing, drainage, form type, stamping, etc. All tools are free and unlimited.",0.653,0.764
+0.657,paywallFeatureNoInterstitial,No more interstitial ads,ไม่มีโฆษณาคั่นหน้าอีกต่อไป,No more headline ads.,0.657,0.856
+0.657,stampCheckbox,Checkbox,ช่องทำเครื่องหมาย,,,0.657
+0.657,tickerIdCardMode,ID CARD MODE,โหมดบัตรประจำตัว,,,0.657
+0.658,duplicateAction,Duplicate,ทำสำเนา,,,0.658
+0.661,tickerDeviceMigration,DEVICE MIGRATION,ย้ายอุปกรณ์,,,0.661
+0.662,emailAttachmentNotIncluded,The pages could not be attached to the email. Use Share to send the pages.,ไม่สามารถแนบหน้าเอกสารกับอีเมลได้ ใช้การแชร์เพื่อส่งหน้าเอกสาร,"I can't attach a document to an email, use a share to send a document.",0.662,0.763
+0.665,extractedAsNewDocument,Extracted as new document,แยกออกเป็นเอกสารใหม่,Separated as a new document.,0.665,0.828
+0.668,backupReadyStatus,Backup ready.,ข้อมูลสำรองพร้อม,,,0.668
+0.669,exportFormatTxtDescription,Plain OCR text only,เฉพาะข้อความ OCR ธรรมดา,Just a simple OCR message.,0.669,0.891
+0.670,rotationPage,Page rotated,หมุนหน้าแล้ว,,,0.670
+0.671,noteLabel,Note,บันทึก,,,0.671
+0.672,resizeUpscaleWarning,Enlarging doesn't add detail — the page may look soft.,การขยายไม่เพิ่มรายละเอียด หน้าอาจดูเบลอ,The expansion doesn't add details. The page may look bad.,0.672,0.752
+0.672,batchExportTooltip,Batch export,ส่งออกเป็นชุด,,,0.672
+0.676,filterApplied,Filter applied,ใช้ตัวกรองแล้ว,,,0.676
+0.677,couldNotCreateBackupError,Could not create the backup.,ไม่สามารถสร้างข้อมูลสำรองได้,Can't back up the data.,0.677,0.805
+0.677,signatureChoiceMessage,Use your saved signature or draw a new one?,ใช้ลายเซ็นที่บันทึกไว้หรือวาดใหม่?,Using a recorded signature or redrawing?,0.677,0.886
+0.681,cropIdCardTitle,Crop ID Card,ตัดบัตรประจำตัว,,,0.681
+0.681,filterSheetTitle,Filters,ตัวกรอง,,,0.681
+0.684,commonApply,Apply,ใช้,,,0.684
+0.686,filterGrayscale,Grayscale,ระดับสีเทา,,,0.686
+0.686,tickerNonDestructiveEditing,NON-DESTRUCTIVE EDITING,การแก้ไขแบบไม่ทำลาย,,,0.686
+0.687,printFitFit,Fit page,พอดีหน้า,,,0.687
+0.688,idStepBack,Step 2: Capture Back Side,ขั้นตอนที่ 2: จับภาพด้านหลัง,"Step two, take a picture of the back.",0.688,0.907
+0.690,printPerSheetLabel,Pages per sheet,หน้าต่อแผ่น,,,0.690
+0.691,sealSavedMessage,Seal saved,บันทึกตราแล้ว,,,0.691
+0.692,vibrateOnCaptureSubtitle,Haptic feedback when scan completes,การตอบสนองแบบสัมผัสเมื่อการสแกนเสร็จสิ้น,Touch response when the scan is complete.,0.692,0.744
+0.692,annotationModePen,Pen,ปากกา,,,0.692
+0.692,commonSkip,Skip,ข้าม,,,0.692
+0.694,filterContrastLabel,Contrast,คอนทราสต์,,,0.694
+0.701,ticker21ToolEditSuite,21-TOOL EDIT SUITE,เครื่องมือแก้ไข 21 ชิ้น,,,0.701
+0.702,signatureFontHandwritten,Handwritten,ลายมือ,,,0.702
+0.703,onboardingPrivacySubtitle,"No account, no cloud, no watermarks. Your documents never leave your device.",ไม่มีบัญชี ไม่มีคลาวด์ ไม่มีลายน้ำ เอกสารของคุณไม่ออกจากอุปกรณ์ของคุณ,"No accounts, no clouds, no water spills, your documents are not out of your equipment.",0.703,0.838
+0.703,tickerPassportMode,PASSPORT MODE,โหมดหนังสือเดินทาง,,,0.703
+0.703,movedToFolderMessage,Moved to folder.,ย้ายไปยังโฟลเดอร์แล้ว,,,0.703
+0.704,autoCopyOcrSubtitle,Copy text to clipboard after scan,คัดลอกข้อความไปยังคลิปบอร์ดหลังการสแกน,Copy the message to the clipboard after the scan.,0.704,0.848
+0.707,revertToOriginalMessage,"This will undo all filters, rotations, crops, resizes, and eraser strokes on this page.",การดำเนินการนี้จะย้อนกลับตัวกรอง การหมุน การตัด การปรับขนาด และการลบลายเส้นทั้งหมดในหน้านี้,"This process will reverse back up, rotate, cut, scale, and delete all the lines on this page.",0.707,0.843
+0.712,importFromGallery,Import from Gallery,นำเข้าจากแกลเลอรี,,,0.712
+0.712,vibrateOnCaptureLabel,Vibrate on capture,สั่นเมื่อจับภาพ,,,0.712
+0.712,undoTooltip,Undo,เลิกทำ,,,0.712
+0.713,filterTitle,Filter,ตัวกรอง,,,0.713
+0.713,tapToSampleColor,Tap a spot to sample its color,แตะที่จุดเพื่อสุ่มตัวอย่างสี,Hit the dot to randomly sample the color.,0.713,0.849
+0.716,docxWarningMessage,"DOCX sources render poorly as pages — save inside the app is limited to JPG/PNG from image, PDF, TXT or CSV sources. Use Export & Share for this file.","แหล่งที่มา DOCX แสดงผลเป็นหน้าได้ไม่ดี — การบันทึกในแอปจำกัดเฉพาะ JPG/PNG จากภาพ, PDF, TXT หรือ CSV ใช้ส่งออกและแชร์สำหรับไฟล์นี้","Sources that DOCX came to show were not good for the page. The recording in a limited JPG/PNG application from images, PDF, TXT or CSV is used to export and share this file.",0.716,0.880
+0.716,signatureWidthLabel,Pen width,ความหนาปากกา,,,0.716
+0.716,printMarginNarrow,Narrow,แคบ,,,0.716
+0.717,pagesDeleteConfirm,Delete {count} pages? They are removed when you save.,ลบ {count} หน้า? จะถูกลบเมื่อคุณบันทึก,Minus 5 pages? It will be deleted when you record.,0.717,0.899
+0.718,exportBackupButton,Export encrypted backup,ส่งออกข้อมูลสำรองที่เข้ารหัส,,,0.718
+0.718,diagnosticsSectionLabel,DIAGNOSTICS,การวินิจฉัย,,,0.718
+0.722,eraserZoomTooltip,Zoom and move (pinch),ซูมและเลื่อน (ใช้สองนิ้ว),Zoom and move.,0.722,0.744
+0.724,commonCopy,Copy,คัดลอก,,,0.724
+0.726,noFoldersYetHomeMessage,No folders yet. Create one from the home screen.,ยังไม่มีโฟลเดอร์ สร้างจากหน้าแรก,There's no folder built from the first page yet.,0.728,0.726
+0.726,alignLabel,Align,จัดแนว,,,0.726
+0.727,pageResized,Page resized,ปรับขนาดหน้าแล้ว,,,0.727
+0.731,idStepFront,Step 1: Capture Front Side,ขั้นตอนที่ 1: จับภาพด้านหน้า,Step one: Take a picture of the front.,0.731,0.901
+0.731,printRangeRange,Range,ช่วง,,,0.731
+0.731,watermarkPagesRange,Range,ช่วง,,,0.731
+0.732,compressLabel,Compress,บีบอัด,,,0.732
+0.733,clearPage,Clear page,ล้างหน้า,,,0.733
+0.735,cropLabel,Crop,ตัด,,,0.735
+0.736,renameFolderTitle,Rename folder,เปลี่ยนชื่อโฟลเดอร์,,,0.736
+0.736,subscriptionSectionLabel,Subscription,การสมัครสมาชิก,,,0.736
+0.737,commonReset,Reset,รีเซ็ต,,,0.737
+0.739,appearanceSectionLabel,Appearance,ลักษณะที่ปรากฏ,,,0.739
+0.739,signatureSavedHeading,Saved signatures,ลายเซ็นที่บันทึกไว้,,,0.739
+0.739,clearLogsTooltip,Clear logs,ล้างบันทึก,,,0.739
+0.740,checkShapeSquare,Square,สี่เหลี่ยม,,,0.740
+0.742,docScannerUnsupportedMessage,"Your device doesn't support the advanced document scanner. Take a photo with your Camera app, then tap Import below to crop and save it.",อุปกรณ์ของคุณไม่รองรับสแกนเนอร์เอกสารขั้นสูง ถ่ายภาพด้วยแอปกล้อง แล้วแตะนำเข้าด้านล่างเพื่อตัดและบันทึก,"Your device doesn't support a sophisticated document scanner, takes pictures with a camera cap and then touches the bottom to cut and record.",0.742,0.795
+0.743,sealCreateTitle,Custom Seal,ตราประทับที่กำหนดเอง,,,0.743
+0.743,sealCustom,Custom Seal,ตราประทับที่กำหนดเอง,,,0.743
+0.744,cropDocumentTitle,Crop Document,ตัดเอกสาร,,,0.744
+0.744,captionPassport,Passport crop: 4:3 or Original,การตัดหนังสือเดินทาง: 4:3 หรือต้นฉบับ,Passport cut: 4:3 or the original.,0.744,0.852
+0.745,progressExtractingText,Extracting text…,กำลังแยกข้อความ...,,,0.745
+0.749,restoreCompleteMessage,Restore complete.,การกู้คืนเสร็จสมบูรณ์,,,0.749
+0.750,intensityLabel,Intensity,ความเข้ม,,,0.750
+0.751,tickerDarkMode,DARK MODE,โหมดมืด,,,0.751
+0.752,ocrStatusOnDemand,On-demand,ตามต้องการ,,,0.752
+0.753,fillTooltip,Fill,กรอก,,,0.753
+0.755,copiedToClipboard,Copied to clipboard,คัดลอกไปยังคลิปบอร์ดแล้ว,,,0.755
+0.756,sealTextColorSame,Same as ring,เหมือนวงแหวน,,,0.756
+0.756,engagementSectionLabel,ENGAGEMENT & NOTIFICATIONS,การมีส่วนร่วมและการแจ้งเตือน,,,0.756
+0.756,eraserAutoColorTooltip,Match the page colour automatically,จับคู่สีของหน้าอัตโนมัติ,Automatically capture the color pairs of the page.,0.756,0.905
+0.757,commonRevert,Revert,ย้อนกลับ,,,0.757
+0.758,ticker100OnDevicePrivacy,YOUR DOCUMENTS STAY ON YOUR DEVICE,เอกสารของคุณอยู่บนอุปกรณ์ของคุณ,Your documents are on your device.,0.873,0.758
+0.758,modeIdCard,ID Card Mode,โหมดบัตรประจำตัว,,,0.758
+0.760,redoTooltip,Redo,ทำซ้ำ,,,0.760
+0.763,themeLabel,Theme,ธีม,,,0.763
+0.765,enableReviewPromptsSubtitle,Allow the app to occasionally ask for a rating,อนุญาตให้แอปขอคะแนนเป็นครั้งคราว,Allow the app to ask for a score once in a while.,0.765,0.827
+0.766,captureBackSide,Capture Back Side,จับภาพด้านหลัง,,,0.766
+0.767,regionOcrFailed,Region OCR failed,OCR ระดับภูมิภาคล้มเหลว,,,0.767
+0.767,whiteHaloLabel,White halo (readability),รัศมีสีขาว (ความสามารถในการอ่าน),,,0.767
+0.767,sealFontSans,Clean,เรียบ,,,0.767
+0.769,fillSaveSnippet,Save as snippet,บันทึกเป็นสคริปต์,,,0.769
+0.774,captureFrontSide,Capture Front Side,จับภาพด้านหน้า,,,0.774
+0.775,tickerNoWatermarks,NO WATERMARKS,ไม่มีลายน้ำ,,,0.775
+0.776,noteTextLabel,Note text,ข้อความบันทึก,,,0.776
+0.777,onboardingEditTitle,Non-Destructive Editing,การแก้ไขแบบไม่ทำลาย,,,0.777
+0.778,reviewPromptYes,Rate Us,ให้คะแนนเรา,,,0.778
+0.779,progressDecodingImage,Decoding image…,กำลังถอดรหัสภาพ...,,,0.779
+0.779,watermarkEditTitle,Edit Watermark,แก้ไขลายน้ำ,,,0.779
+0.780,importBackSide,Import Back Side,นำเข้าด้านหลัง,,,0.780
+0.784,rotationAllPages,All pages rotated,หมุนทุกหน้าแล้ว,,,0.784
+0.785,readingPageEta,Page {page} of {total} · about {minutes} min left,หน้า {page} จาก {total} · เหลือประมาณ {minutes} นาที,Page 5 out of 5... about five minutes left.,0.785,0.969
+0.786,fitToTargetMbLabel,Fit to target MB,พอดีกับ MB เป้าหมาย,It fits the MB target.,0.786,0.882
+0.786,tickerRevertToOriginal,REVERT TO ORIGINAL,กลับสู่ต้นฉบับ,,,0.786
+0.786,filterMagicColor,Magic colour,สีมหัศจรรย์,,,0.786
+0.787,folderUnavailable,This folder is no longer available.,โฟลเดอร์นี้ไม่สามารถใช้งานได้อีกต่อไป,This folder is no longer usable.,0.912,0.787
+0.790,pagesToReadTitle,Pages to read,หน้าที่จะอ่าน,,,0.790
+0.792,emptyFolders,No folders yet. Tap the folder icon to create one.,ยังไม่มีโฟลเดอร์ แตะไอคอนโฟลเดอร์เพื่อสร้าง,There's no folder yet. Touch the icon folder to create.,0.812,0.792
+0.795,enableReviewPromptsLabel,Enable Review Prompts,เปิดใช้งานคำขอรีวิว,,,0.795
+0.796,buildingBackupStatus,Building backup…,กำลังสร้างข้อมูลสำรอง...,,,0.796
+0.798,sealSaveToLibrary,Save this seal,บันทึกตรานี้,,,0.798
+0.799,managePagesTitle,Manage Pages,จัดการหน้า,,,0.799
+0.799,pricingLoadingError,Pricing is still loading — try again in a moment.,ราคายังคงโหลดอยู่ — ลองอีกครั้งในอีกสักครู่,The price is still charging. Try again in a minute.,0.799,0.862
+0.800,textLabel,Text,ข้อความ,,,0.800
+0.800,watermarkKindText,Text,ข้อความ,,,0.800
+0.800,sealCenterText,Text,ข้อความ,,,0.800
+0.800,watermarkTextLabel,Text,ข้อความ,,,0.800
+0.802,emptyFavorites,No favorites yet. Tap the star icon on a document to add it.,ยังไม่มีรายการโปรด แตะไอคอนดาวบนเอกสารเพื่อเพิ่ม,There's still no favorites. Touch the icon on the document to add.,0.896,0.802
+0.802,ocrNoInternetMessage,No internet. Connect once to download the language pack.,ไม่มีอินเทอร์เน็ต เชื่อมต่อหนึ่งครั้งเพื่อดาวน์โหลดแพ็คเกจภาษา,No Internet connection once to download language packages.,0.814,0.802
+0.803,filterColorEnhance,Color enhance,เพิ่มสี,,,0.803
+0.803,printRangeAll,All pages,ทุกหน้า,,,0.803
+0.803,watermarkPagesAll,All pages,ทุกหน้า,,,0.803
+0.804,signatureFontFlowing,Flowing,ลื่นไหล,,,0.804
+0.804,commonConvert,Convert,แปลง,,,0.804
+0.805,tickerTags,TAGS,แท็ก,,,0.805
+0.806,progressSaving,Saving…,กำลังบันทึก...,,,0.806
+0.806,tickerWordExport,WORD EXPORT,ส่งออก WORD,,,0.806
+0.807,errorGenericTitle,Something went wrong,มีบางอย่างผิดปกติ,,,0.807
+0.808,exportSavedToDownloads,Saved to Downloads,บันทึกไปยังดาวน์โหลดแล้ว,,,0.808
+0.809,storageSectionLabel,Storage,พื้นที่จัดเก็บ,,,0.809
+0.809,enableSharePromptsLabel,Enable Share Prompts,เปิดใช้งานคำขอแชร์,,,0.809
+0.810,commonClear,Clear,ล้าง,,,0.810
+0.810,pageToLabel,To page,ถึงหน้า,,,0.810
+0.811,addNoteTitle,Add Note,เพิ่มบันทึก,,,0.811
+0.812,sealEditTitle,Edit Custom Seal,แก้ไขตราประทับที่กำหนดเอง,,,0.812
+0.812,accentColorTooltip,Accent Color,สีเน้น,,,0.812
+0.812,accentColorTitle,Accent Color,สีเน้น,,,0.812
+0.813,filterRemoved,Filter removed,ลบตัวกรองแล้ว,,,0.813
+0.813,watermarkLayoutSingle,Single,เดี่ยว,,,0.813
+0.813,migrationTitle,Device Migration,ย้ายอุปกรณ์,,,0.813
+0.813,deviceMigrationLabel,Device Migration,ย้ายอุปกรณ์,,,0.813
+0.814,lightThemeOption,Light,สว่าง,,,0.814
+0.815,tickerFavorites,FAVORITES,รายการโปรด,,,0.815
+0.816,captionIdCard,Two-sided ID capture: Front + Back,การจับบัตรประจำตัวสองด้าน: หน้า + หลัง,Two-sided ID: front and back.,0.816,0.866
+0.817,docxModeTextOnly,Text Only,เฉพาะข้อความ,,,0.817
+0.820,commonSave,Save,บันทึก,,,0.820
+0.821,sealShapeRound,Round,วงกลม,,,0.821
+0.822,fullscreenLabel,Fullscreen,เต็มหน้าจอ,,,0.822
+0.823,pagesLabel,Pages,หน้า,,,0.823
+0.823,watermarkPagesLabel,Pages,หน้า,,,0.823
+0.823,filterShadowRemoval,Shadow removal,ลบเงา,,,0.823
+0.824,tickerNoAccount,NO ACCOUNT,ไม่มีบัญชี,,,0.824
+0.825,scanPreviewNoPages,No pages to show.,ไม่มีหน้าให้แสดง,No pages to show.,1.000,0.825
+0.827,scanUnavailable,This scan is no longer available.,การสแกนนี้ไม่สามารถใช้งานได้อีกต่อไป,This scan is no longer working.,0.918,0.827
+0.827,sealCenterTextLabel,Center text,ข้อความกลาง,,,0.827
+0.827,tickerSearch,SEARCH,ค้นหา,,,0.827
+0.828,deleteFolderTooltip,Delete folder,ลบโฟลเดอร์,,,0.828
+0.828,importFrontSide,Import Front Side,นำเข้าด้านหน้า,,,0.828
+0.828,progressCopying,Copying…,กำลังคัดลอก...,,,0.828
+0.829,addSignature,Add Signature,เพิ่มลายเซ็น,,,0.829
+0.829,compressMedium,Medium,กลาง,,,0.829
+0.830,checkShapeCircle,Circle,วงกลม,,,0.830
+0.832,onboardingPrivacyTitle,Private by design,เป็นส่วนตัวโดยการออกแบบ,,,0.832
+0.832,exportDoneStatus,Done,เสร็จสิ้น,,,0.832
+0.832,commonDone,Done,เสร็จสิ้น,,,0.832
+0.832,darkThemeOption,Dark,มืด,,,0.832
+0.833,newFolderTitle,New Folder,โฟลเดอร์ใหม่,,,0.833
+0.833,newFolderTooltip,New Folder,โฟลเดอร์ใหม่,,,0.833
+0.833,exportEstimatedSize,Estimated size: {mb} MB,ขนาดโดยประมาณ: {mb} MB,The size is approximately: 5 MB.,0.833,0.921
+0.835,fillDeleteSnippet,Delete snippet?,ลบสคริปต์หรือไม่?,,,0.835
+0.838,documentSaved,Document saved,บันทึกเอกสารแล้ว,,,0.838
+0.838,filterShadow,Shadow,เงา,,,0.838
+0.839,commonRename,Rename,เปลี่ยนชื่อ,,,0.839
+0.839,resizeTitle,Resize,ปรับขนาด,,,0.839
+0.839,moveToFolderTooltip,Move to folder,ย้ายไปยังโฟลเดอร์,,,0.839
+0.839,moveToFolderTitle,Move to Folder,ย้ายไปยังโฟลเดอร์,,,0.839
+0.839,importBackupButton,Import from backup,นำเข้าจากข้อมูลสำรอง,,,0.839
+0.840,signatureCanvasHint,Sign here,เซ็นชื่อที่นี่,,,0.840
+0.840,clearAllPages,Clear all pages,ล้างทุกหน้า,,,0.840
+0.840,filterBrightnessLabel,Brightness,ความสว่าง,,,0.840
+0.841,pagesUpdated,Pages updated,อัปเดตหน้าแล้ว,,,0.841
+0.842,titleScan,Scan,สแกน,,,0.842
+0.842,chipAllFolders,All Folders,โฟลเดอร์ทั้งหมด,,,0.842
+0.842,saveToDownloadsAction,Save to Downloads,บันทึกไปยังดาวน์โหลด,,,0.842
+0.843,useSavedSignature,Use Saved,ใช้ที่บันทึกไว้,,,0.843
+0.843,sealCenterLogo,Logo,โลโก้,,,0.843
+0.843,pageFromLabel,From page,จากหน้า,,,0.843
+0.843,signatureTabDraw,Draw,วาด,,,0.843
+0.844,printRangeCurrent,Current,ปัจจุบัน,,,0.844
+0.844,sealDefaultMainText,YOUR COMPANY,บริษัทของคุณ,,,0.844
+0.844,tickerRegionOcr,REGION OCR,OCR ระดับภูมิภาค,,,0.844
+0.845,exportFormatDocxDescription,Editable text document,เอกสารข้อความที่แก้ไขได้,,,0.845
+0.845,modePassport,Passport Mode,โหมดหนังสือเดินทาง,,,0.845
+0.845,setBackupPasswordTitle,Set a backup password,ตั้งรหัสผ่านข้อมูลสำรอง,Set the password through the backup.,0.845,0.894
+0.845,backupCorruptedError,This backup file looks corrupted.,ไฟล์ข้อมูลสำรองนี้ดูเหมือนเสียหาย,This backup file seems to be corrupt.,0.967,0.845
+0.846,migrationExplainer,"This isn't automatic sync. Export creates a single encrypted backup file you move to your new device yourself, then import there.",นี่ไม่ใช่การซิงค์อัตโนมัติ การส่งออกจะสร้างไฟล์สำรองที่เข้ารหัสไฟล์เดียวที่คุณย้ายไปยังอุปกรณ์ใหม่ด้วยตัวเองแล้วนำเข้าที่นั่น,"This isn't automatic syncing, exporting creates a backup file that encodes a single file that you automatically move to a new device and import there.",0.912,0.846
+0.846,addCheckboxTitle,Add Checkbox,เพิ่มช่องทำเครื่องหมาย,,,0.846
+0.846,emailLimitMissed,Could not get under {mb} MB; sent the smallest version.,ไม่สามารถลดให้ต่ำกว่า {mb} MB ได้ จึงส่งฉบับที่เล็กที่สุด,"It couldn't be less than 5 MB, so I sent the smallest version.",0.901,0.846
+0.847,rotateLabel,Rotate,หมุน,,,0.847
+0.847,saveInsideAppWarning,"To save inside the app, choose JPG or PNG. Other targets are exported as files.",เพื่อบันทึกในแอป ให้เลือก JPG หรือ PNG เป้าหมายอื่นจะถูกส่งออกเป็นไฟล์,"To save in the app, select JPG or PNG, and the other object will be exported as a file.",0.847,0.869
+0.848,chipSelectMultiple,Select Multiple,เลือกหลายรายการ,,,0.848
+0.848,cropAspectFree,Free,อิสระ,,,0.848
+0.849,sealCenterStar,Star,ดาว,,,0.849
+0.849,adsRemovedLabel,Ads Removed,ลบโฆษณาแล้ว,,,0.849
+0.849,paywallSuccessTitle,Ads Removed,ลบโฆษณาแล้ว,,,0.849
+0.851,titleIdCard,ID Card,บัตรประจำตัว,,,0.851
+0.851,couldNotImportBackupError,Could not import this backup. Check the password and try again.,ไม่สามารถนำเข้าข้อมูลสำรองนี้ได้ ตรวจสอบรหัสผ่านแล้วลองอีกครั้ง,"Couldn't import this backup, check the password, and try again.",0.988,0.851
+0.851,deleteFolderMessage,Documents inside will not be deleted.,เอกสารภายในจะไม่ถูกลบ,The internal documents will not be deleted.,0.896,0.851
+0.852,onboardingToolsTitle,21 Free Pro Tools,เครื่องมือ Pro ฟรี 21 ชิ้น,21 free pro tools.,0.979,0.852
+0.853,pagesToReadHint,This PDF has {count} pages. Pages that are pictures are read with OCR (about 10 seconds each); pages with real text are instant.,PDF นี้มี {count} หน้า หน้าที่เป็นรูปภาพจะอ่านด้วย OCR (ประมาณ 10 วินาทีต่อหน้า) ส่วนหน้าที่มีข้อความจริงอ่านได้ทันที,This PDF has five pages of images that can be read by OCR (about 10 seconds ahead) and the pages with the facts can be read instantly.,0.853,0.933
+0.855,emptySearch,No scans match your search.,ไม่มีการสแกนที่ตรงกับการค้นหาของคุณ,No scans matched your search.,0.943,0.855
+0.856,enableSharePromptsSubtitle,Allow the app to occasionally suggest sharing,อนุญาตให้แอปแนะนำการแชร์เป็นครั้งคราว,Allow the app to recommend Sharing once in a while.,0.856,0.897
+0.857,ocrLanguagePackNotReady,Language pack downloading or not ready. Try again shortly.,แพ็คเกจภาษากำลังดาวน์โหลดหรือไม่พร้อม ลองอีกครั้งในอีกสักครู่,The language package is downloading or not ready. Try again in a minute.,0.927,0.857
+0.858,removeAdsTitle,Remove Ads Forever,ลบโฆษณาตลอดไป,,,0.858
+0.858,exportNoTextError,This document has no text yet. Run OCR on it first.,เอกสารนี้ยังไม่มีข้อความ โปรดเรียกใช้ OCR ก่อน,This document has no message yet. Please call OCR first.,0.901,0.858
+0.859,renameDocumentTitle,Rename document,เปลี่ยนชื่อเอกสาร,,,0.859
+0.860,readingPageProgress,Page {page} of {total},หน้า {page} จาก {total},Page five out of five.,0.860,0.950
+0.860,restorePurchasesButton,Restore purchases,กู้คืนการซื้อ,,,0.860
+0.860,watermarkAddTitle,Add Watermark,เพิ่มลายน้ำ,,,0.860
+0.860,noFoldersYet,No folders yet,ยังไม่มีโฟลเดอร์,,,0.860
+0.860,fromAnotherDocument,From Another Document,จากเอกสารอื่น,,,0.860
+0.861,commonCustom,Custom,กำหนดเอง,,,0.861
+0.861,genericErrorMessage,Something went wrong. Please try again.,มีบางอย่างผิดปกติ กรุณาลองอีกครั้ง,Something's wrong. Please try again.,0.887,0.861
+0.862,whatsNewTitle,What's New,มีอะไรใหม่,,,0.862
+0.863,enableNotificationsLabel,Enable Notifications,เปิดใช้งานการแจ้งเตือน,,,0.863
+0.863,signerLabel,Signer {index},ผู้เซ็น {index},,,0.863
+0.864,accentBlue,Blue,น้ำเงิน,,,0.864
+0.865,exportFormatSheetTitle,Export as,ส่งออกเป็น,,,0.865
+0.866,termsOfServiceLabel,Terms of Service,ข้อกำหนดการให้บริการ,,,0.866
+0.867,printPaperLabel,Paper,กระดาษ,,,0.867
+0.867,stampPaperLabel,Paper,กระดาษ,,,0.867
+0.867,debugNoLogsYet,No logs yet,ยังไม่มีบันทึก,,,0.867
+0.868,drawNewSignature,Draw New,วาดใหม่,,,0.868
+0.868,sharePromptTitle,Love KatharScan?,ชอบ KatharScan หรือไม่?,,,0.868
+0.869,scannerErrorPrefix,Scanner error,ข้อผิดพลาดของสแกนเนอร์,,,0.869
+0.869,reviewPromptNo,Send Feedback,ส่งความคิดเห็น,,,0.869
+0.869,searchHint,Search your scans,ค้นหาการสแกนของคุณ,,,0.869
+0.870,emptyDocumentMessage,This document has no pages.,เอกสารนี้ไม่มีหน้า,This document has no pages.,1.000,0.870
+0.870,signatureDeleteSaved,Remove saved signature,ลบลายเซ็นที่บันทึกไว้,,,0.870
+0.871,fillTypeHint,Type here,พิมพ์ที่นี่,,,0.871
+0.871,idPdfErrorPrefix,Error generating ID PDF,ข้อผิดพลาดการสร้าง PDF บัตรประจำตัว,Error in creating a PDF ID.,0.885,0.871
+0.872,tickerSearchablePdf,SEARCHABLE PDF,PDF ที่ค้นหาได้,,,0.872
+0.873,saveToDeviceButton,Save to Device,บันทึกไปยังอุปกรณ์,,,0.873
+0.873,cropAspectId,ID card,บัตรประจำตัว,,,0.873
+0.873,addTextTitle,Add Text,เพิ่มข้อความ,,,0.873
+0.874,ocrScriptChinese,Chinese,จีน,,,0.874
+0.874,idLayoutFullWidth,Full width,เต็มความกว้าง,,,0.874
+0.875,conversionFailedPrefix,Conversion failed,การแปลงล้มเหลว,,,0.875
+0.875,ocrScriptKorean,Korean,เกาหลี,,,0.875
+0.875,sealRemoveWhite,Make white transparent,ทำให้สีขาวโปร่งใส,,,0.875
+0.875,removeFromFolderTooltip,Remove from folder,ลบออกจากโฟลเดอร์,,,0.875
+0.876,sealCenterNone,None,ไม่มี,,,0.876
+0.876,printMarginNone,None,ไม่มี,,,0.876
+0.877,widthLabel,Width,ความกว้าง,,,0.877
+0.877,conversionStarting,Starting…,กำลังเริ่ม...,,,0.877
+0.879,tickerAutoCopyOcr,AUTO-COPY OCR,คัดลอก OCR อัตโนมัติ,,,0.879
+0.879,favoriteTooltip,Favorite,รายการโปรด,,,0.879
+0.880,stampBoxLabel,Box,กล่อง,,,0.880
+0.880,sealShapeBox,Box,กล่อง,,,0.880
+0.880,paywallSuccessMessage,Thank you for supporting KatharScan.,ขอบคุณที่สนับสนุน KatharScan,Thank you for supporting KatharScan.,1.000,0.880
+0.880,progressBuildingDocx,Building DOCX…,กำลังสร้าง DOCX...,,,0.880
+0.881,sealLogoReady,Logo ready,โลโก้พร้อม,,,0.881
+0.882,tickerPdfExport,PDF EXPORT,ส่งออก PDF,,,0.882
+0.882,autoScan,Auto Scan,สแกนอัตโนมัติ,,,0.882
+0.882,ocrNoTextFound,No text found,ไม่พบข้อความ,,,0.882
+0.884,noDocumentsInFolder,No documents in this folder yet.,ยังไม่มีเอกสารในโฟลเดอร์นี้,There are no documents in this folder yet.,0.955,0.884
+0.884,ocrStatusUnsupported,Unsupported,ไม่รองรับ,,,0.884
+0.885,commonCancel,Cancel,ยกเลิก,,,0.885
+0.885,cropAuto,Auto-detect,ตรวจจับอัตโนมัติ,,,0.885
+0.885,onboardingOcrSubtitle,Use KatharScan in {count} languages. OCR runs on your phone — nothing ever leaves your device.,ใช้ KatharScan ได้ {count} ภาษา OCR ทำงานบนโทรศัพท์ของคุณ — ไม่มีอะไรออกจากอุปกรณ์,KatharScan has five OCR languages working on your phone.,0.928,0.885
+0.886,errorScreenProblem,KatharScan ran into a problem displaying this screen. Your scans are safe — they're stored on this device and this doesn't affect them.,KatharScan พบปัญหาในการแสดงหน้าจอนี้ การสแกนของคุณปลอดภัย — ถูกจัดเก็บบนอุปกรณ์นี้และไม่ได้รับผลกระทบ,KatharScan found a problem with displaying this screen your scanning is safe,0.915,0.886
+0.886,saveAsDocument,Save as Document,บันทึกเป็นเอกสาร,,,0.886
+0.888,printFilterNone,No filter,ไม่มีตัวกรอง,,,0.888
+0.888,exportAndShareAction,Export & Share,ส่งออกและแชร์,,,0.888
+0.888,onboardingGetStarted,Get Started,เริ่มต้น,,,0.888
+0.888,exportTitle,Export,ส่งออก,,,0.888
+0.888,commonExport,Export,ส่งออก,,,0.888
+0.888,exportTooltip,Export,ส่งออก,,,0.888
+0.889,onboardingOcrTitle,On-Device OCR,OCR บนอุปกรณ์,,,0.889
+0.889,tickerLanguages,{count} LANGUAGES,{count} ภาษา,,,0.889
+0.889,enterBackupPasswordTitle,Enter backup password,ใส่รหัสผ่านข้อมูลสำรอง,,,0.889
+0.890,docxModeWithImages,With Images,พร้อมภาพ,,,0.890
+0.890,errorReportIssue,Report issue,รายงานปัญหา,,,0.890
+0.890,tickerJpgExport,JPG EXPORT,ส่งออก JPG,,,0.890
+0.890,beepOnCaptureSubtitle,Play sound when scan completes,เล่นเสียงเมื่อการสแกนเสร็จสิ้น,Play audio when the scan is complete.,0.890,0.914
+0.891,watermarkKindImage,Image,รูปภาพ,,,0.891
+0.891,continueButton,Continue,ดำเนินการต่อ,,,0.891
+0.891,onboardingContinue,Continue,ดำเนินการต่อ,,,0.891
+0.891,whatsNewContinue,Continue,ดำเนินการต่อ,,,0.891
+0.891,addToFavorites,Add to Favorites,เพิ่มในรายการโปรด,,,0.891
+0.891,addTagsAction,Add Tags,เพิ่มแท็ก,,,0.891
+0.892,filterRecent,Recent,ล่าสุด,,,0.892
+0.892,progressBuildingPdf,Building PDF…,กำลังสร้าง PDF...,,,0.892
+0.892,compressNoLimit,No limit,ไม่จำกัด,,,0.892
+0.893,filterOriginal,Original,ต้นฉบับ,,,0.893
+0.894,revertToOriginalTitle,Revert to Original?,กลับสู่ต้นฉบับหรือไม่?,,,0.894
+0.894,sealTextColorLabel,Text colour,สีข้อความ,,,0.894
+0.894,progressReading,Reading…,กำลังอ่าน...,,,0.894
+0.895,onboardingWelcomeSubtitle,"Your entire document office — scan, edit, sign, and export — in one private app.",สำนักงานเอกสารทั้งหมดของคุณ — สแกน แก้ไข เซ็นชื่อ และส่งออก — ในแอปส่วนตัวเดียว,"Your office scanned, edited, scanned, and exported all your documents in one private app.",0.915,0.895
+0.895,paywallSubtitle,Support KatharScan with a one-time purchase. All features remain free.,สนับสนุน KatharScan ด้วยการซื้อครั้งเดียว คุณสมบัติทั้งหมดยังคงฟรี,Support KatharScan with a one-time purchase. All features remain free.,1.000,0.895
+0.896,removeFromFavorites,Remove from Favorites,ลบออกจากรายการโปรด,,,0.896
+0.896,importAndConvertDocument,Import & Convert Document,นำเข้าและแปลงเอกสาร,Import and convert documents.,0.903,0.896
+0.896,editLabel,Edit,แก้ไข,,,0.896
+0.897,ocrUnavailableTooltip,OCR unavailable on this device.,OCR ไม่พร้อมใช้งานบนอุปกรณ์นี้,OCR's not ready for use on this device.,0.897,0.910
+0.897,copyAll,Copy all,คัดลอกทั้งหมด,,,0.897
+0.899,printMarginNormal,Normal,ปกติ,,,0.899
+0.899,filterFavorites,Favorites,รายการโปรด,,,0.899
+0.900,genericErrorPrefix,Error,ข้อผิดพลาด,,,0.900
+0.900,whatsNewBody,"Welcome to KatharScan! This is the first public release featuring unlimited scanning, 29 languages, and export to PDF, Word, TXT, JPG, PNG, and CSV.","ยินดีต้อนรับสู่ KatharScan! นี่คือเวอร์ชันสาธารณะแรกที่มาพร้อมการสแกนไม่จำกัด 29 ภาษา และการส่งออก PDF, Word, TXT, JPG, PNG และ CSV","Welcome to KatharScan! This is the first public version that comes with unlimited scanning in 29 languages and exporting PDF, Word, TXT, JPG, PNG and CSV.",0.950,0.900
+0.900,clearedCount,Cleared {count},ล้างแล้ว {count},,,0.900
+0.900,convertDocumentTitle,Convert Document,แปลงเอกสาร,,,0.900
+0.900,signatureTypeHint,Type your name,พิมพ์ชื่อของคุณ,,,0.900
+0.901,importingStatus,Importing…,กำลังนำเข้า...,,,0.901
+0.901,emptyStateDefaultMessage,Tap the camera to scan your first document.,แตะที่กล้องเพื่อสแกนเอกสารแรกของคุณ,Hit the camera to scan your first document.,0.945,0.901
+0.902,paywallFeatureNoBanner,No more banner ads,ไม่มีโฆษณาแบนเนอร์อีกต่อไป,No more banner ads.,0.967,0.902
+0.904,ocrScriptJapanese,Japanese,ญี่ปุ่น,,,0.904
+0.906,settingsTooltip,Settings,การตั้งค่า,,,0.906
+0.906,settingsTitle,Settings,การตั้งค่า,,,0.906
+0.906,tickerTxtExport,TXT EXPORT,ส่งออก TXT,,,0.906
+0.907,deleteFolderTitle,Delete this folder?,ลบโฟลเดอร์นี้หรือไม่?,,,0.907
+0.907,emailMessageLabel,Message,ข้อความ,,,0.907
+0.907,cameraSource,Camera,กล้อง,,,0.907
+0.907,pagesSelectTooltip,Select pages,เลือกหน้า,,,0.907
+0.908,privacyOptionsLabel,Privacy settings,การตั้งค่าความเป็นส่วนตัว,,,0.908
+0.909,exportFormatPdfDescription,Best for sharing and printing,ดีที่สุดสำหรับการแชร์และการพิมพ์,Best for sharing and printing.,0.958,0.909
+0.909,clearThis,Clear this,ล้างสิ่งนี้,,,0.909
+0.909,cameraErrorPrefix,Camera error,ข้อผิดพลาดของกล้อง,,,0.909
+0.909,commonPrint,Print,พิมพ์,,,0.909
+0.909,tickerFreeUnlimitedOcr,FREE UNLIMITED OCR,OCR ฟรีไม่จำกัด,,,0.909
+0.911,commonUse,Use,ใช้,,,0.911
+0.911,homeLanguageTooltip,App Language,ภาษาแอป,,,0.911
+0.911,appLanguageTitle,App Language,ภาษาแอป,,,0.911
+0.912,exportingStatus,Exporting…,กำลังส่งออก...,,,0.912
+0.912,saveFailedPrefix,Save failed:,บันทึกไม่สำเร็จ:,,,0.912
+0.913,tickerPngExport,PNG EXPORT,ส่งออก PNG,,,0.913
+0.913,documentsSectionHeader,Documents,เอกสาร,,,0.913
+0.913,supportLabel,Support,การสนับสนุน,,,0.913
+0.913,pickErrorPrefix,Pick error,ข้อผิดพลาดการเลือก,,,0.913
+0.914,convertToLabel,Convert to:,แปลงเป็น:,,,0.914
+0.914,appLanguageLabel,App language,ภาษาแอป,,,0.914
+0.914,commonClose,Close,ปิด,,,0.914
+0.916,modeDocument,Document Mode,โหมดเอกสาร,,,0.916
+0.916,reviewPromptTitle,Enjoying KatharScan?,เพลิดเพลินกับ KatharScan หรือไม่?,,,0.916
+0.916,dateLabel,Date,วันที่,,,0.916
+0.916,ocrStatusInstalled,Installed,ติดตั้งแล้ว,,,0.916
+0.916,addPageTitle,Add Page,เพิ่มหน้า,,,0.916
+0.917,printOptionsTitle,Print Options,ตัวเลือกการพิมพ์,,,0.917
+0.917,customColorTitle,Custom Color,สีที่กำหนดเอง,,,0.917
+0.917,ocrScriptLatin,"Latin (English, European)",ละติน (อังกฤษ ยุโรป),,,0.917
+0.917,fromPageLabel,From,จาก,,,0.917
+0.917,editDocumentAction,Edit Document,แก้ไขเอกสาร,,,0.917
+0.917,privacyPolicyLabel,Privacy policy,นโยบายความเป็นส่วนตัว,,,0.917
+0.918,tabOcrTextLabel,OCR Text,ข้อความ OCR,,,0.918
+0.918,printFailed,Print failed,การพิมพ์ล้มเหลว,,,0.918
+0.920,tickerCsvExport,CSV EXPORT,ส่งออก CSV,,,0.920
+0.925,commonChange,Change,เปลี่ยน,,,0.925
+0.927,opacityPercentLabel,Opacity: {percent}%,ความทึบ: {percent}%,,,0.927
+0.927,compressSmall,Small,เล็ก,,,0.927
+0.927,emailFailed,Email failed,อีเมลล้มเหลว,,,0.927
+0.929,paywallTitle,Remove Ads,ลบโฆษณา,,,0.929
+0.929,commonImport,Import,นำเข้า,,,0.929
+0.929,tabImageLabel,Image,ภาพ,,,0.929
+0.931,placeHereLabel,Place here,วางที่นี่,,,0.931
+0.931,ocrLanguagesLabel,OCR Languages,ภาษา OCR,,,0.931
+0.932,ocrStatusChecking,Checking...,กำลังตรวจสอบ...,,,0.932
+0.932,heightLabel,Height,ความสูง,,,0.932
+0.932,idGenerating,Generating PDF...,กำลังสร้าง PDF...,,,0.932
+0.932,importErrorPrefix,Import error,ข้อผิดพลาดการนำเข้า,,,0.932
+0.934,languageSectionLabel,Language,ภาษา,,,0.934
+0.934,commonCreate,Create,สร้าง,,,0.934
+0.934,addTagTitle,Add tag,เพิ่มแท็ก,,,0.934
+0.934,autoCopyOcrLabel,Auto-copy OCR,คัดลอก OCR อัตโนมัติ,,,0.934
+0.934,convertedDocTitle,Converted {date},แปลงแล้ว {date},,,0.934
+0.935,commonAdd,Add,เพิ่ม,,,0.935
+0.937,ocrStatusDownloading,Downloading…,กำลังดาวน์โหลด…,,,0.937
+0.937,actionLabel,Action:,การกระทำ:,,,0.937
+0.937,documentNotFound,Document not found,ไม่พบเอกสาร,,,0.937
+0.939,deleteScanTitle,Delete this scan?,ลบการสแกนนี้หรือไม่?,,,0.939
+0.943,addDateTitle,Add Date,เพิ่มวันที่,,,0.943
+0.943,compressTargetLabel,Max size,ขนาดสูงสุด,,,0.943
+0.944,onboardingBack,Back,ย้อนกลับ,,,0.944
+0.944,clearAll,Clear all,ล้างทั้งหมด,,,0.944
+0.944,watermarkPagesThis,This page,หน้านี้,,,0.944
+0.945,idLayoutRealSize,Real size,ขนาดจริง,,,0.945
+0.945,letterSizeUS,Letter size (US),ขนาด Letter (สหรัฐอเมริกา),,,0.945
+0.945,commonConfirm,Confirm,ยืนยัน,,,0.945
+0.946,commonUpdate,Update,อัปเดต,,,0.946
+0.947,titlePdfImport,PDF Import,นำเข้า PDF,,,0.947
+0.948,pageFormatLetter,Letter (US),Letter (สหรัฐอเมริกา),,,0.948
+0.949,onboardingWelcomeTitle,Welcome to KatharScan,ยินดีต้อนรับสู่ KatharScan,,,0.949
+0.950,selectRegionTitle,Select Region,เลือกภูมิภาค,,,0.950
+0.951,systemThemeOption,System,ระบบ,,,0.951
+0.952,shareTooltip,Share,แชร์,,,0.952
+0.952,commonShare,Share,แชร์,,,0.952
+0.953,sharePromptAction,Share App,แชร์แอป,,,0.953
+0.953,exportFormatTxtLabel,Text (.txt),ข้อความ (.txt),,,0.953
+0.955,textSizeLabel,Text size: {size},ขนาดข้อความ: {size},,,0.955
+0.956,aboutSectionLabel,About,เกี่ยวกับ,,,0.956
+0.957,sealTextSizePercent,Text size {percent}%,ขนาดข้อความ {percent}%,,,0.957
+0.959,moreOptionsTooltip,More options,ตัวเลือกเพิ่มเติม,,,0.959
+0.961,sharePromptDismiss,Not now,ไม่ใช่ตอนนี้,,,0.961
+0.964,watermarkChooseImage,Choose image,เลือกรูปภาพ,,,0.964
+0.964,paywallFallbackPrice,$14.99 one-time,$14.99 ครั้งเดียว,,,0.964
+0.964,tryAgainButton,Try again,ลองอีกครั้ง,,,0.964
+0.966,commonSize,Size,ขนาด,,,0.966
+0.966,pdfImportErrorPrefix,PDF import error,ข้อผิดพลาดการนำเข้า PDF,,,0.966
+0.966,emailLabel,Email,อีเมล,,,0.966
+0.967,modeOcr,OCR Mode,โหมด OCR,,,0.967
+0.967,pageLabel,Page {index},หน้า {index},,,0.967
+0.973,filterAll,All,ทั้งหมด,,,0.973
+0.977,annotationModeSelect,Select,เลือก,,,0.977
+0.979,sharePdf,Share PDF,แชร์ PDF,,,0.979
+0.981,originalDimensions,Original: {w}×{h},ต้นฉบับ: {w}×{h},,,0.981
+0.982,pageIndicator,Page {current} / {total},หน้า {current} / {total},Page 5 / 5,1.000,0.982
+0.984,rotate90Action,Rotate 90°,หมุน 90°,,,0.984
+0.986,sizePtLabel,Size: {size}pt,ขนาด: {size}pt,,,0.986
+1.000,ocrScriptArabic,العربية (Arabic),العربية (Arabic),,,1.000
+1.000,fontMonospace,monospace,monospace,,,1.000
+1.000,formatCsv,CSV,CSV,,,1.000
+1.000,exportFormatPdfLabel,PDF,PDF,,,1.000
+1.000,exportFormatJpgLabel,JPG,JPG,,,1.000
+1.000,exportFormatPngLabel,PNG,PNG,,,1.000
+1.000,proBadgeLabel,PRO,PRO,,,1.000
+1.000,ocrSectionLabel,OCR,OCR,,,1.000
+1.000,ocrScriptRussian,Русский (Russian),Русский (Russian),,,1.000
+1.000,ocrScriptUkrainian,Українська (Ukrainian),Українська (Ukrainian),,,1.000
+1.000,ocrScriptBengali,বাংলা (Bengali),বাংলা (Bengali),,,1.000
+1.000,exportFormatDocxLabel,Word (.docx),Word (.docx),,,1.000
+1.000,fontSerif,serif,serif,,,1.000
+1.000,ocrScriptGreek,Ελληνικά (Greek),Ελληνικά (Greek),,,1.000
+1.000,ocrScriptHebrew,עברית (Hebrew),עברית (Hebrew),,,1.000
+1.000,ocrScriptThai,ไทย (Thai),ไทย (Thai),,,1.000
+1.000,fontSansSerif,sans-serif,sans-serif,,,1.000

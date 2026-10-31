@@ -1,0 +1,461 @@
+score,key,english,translation,back_to_english,backtrans_score,labse_score
+0.279,exportGenericError,Something went wrong while exporting.,書き出し中に問題が発生しました。,There was a problem with the writing.,0.279,0.687
+0.286,watermarkLayoutTiled,Tiled,繰り返し,,,0.286
+0.354,watermarkPagesInvalid,Check the pages (the document has {count} pages),ページを確認してください（文書は{count}ページです）,I'll take a look at the page.,0.354,0.931
+0.360,readingPageProgress,Page {page} of {total},{page}/{total}ページ,Five and a half.,0.360,0.864
+0.370,watermarkLabel,Watermark,透かし,,,0.370
+0.379,tickerTapToTypeFilling,TAP-TO-TYPE FILLING,タップして入力,,,0.379
+0.419,watermarkDefaultText,CONFIDENTIAL,社外秘,,,0.419
+0.419,straightenLabel,Straighten,傾き補正,,,0.419
+0.422,pricingLoadingError,Pricing is still loading — try again in a moment.,価格を読み込み中です。しばらくしてからもう一度お試しください。,I'm reading the price.,0.422,0.787
+0.455,printFitFill,Fill sheet (trims edges),用紙いっぱい（端は切れます）,I'm going to cut the edges.,0.455,0.721
+0.465,captionOcr,"Text crop: Original, Square, 4:3",テキストトリミング: オリジナル、正方形、4:3,"The original, the square, the 4:3.",0.465,0.893
+0.475,frontSideCaptured,Front side captured. Now capture the back side.,表面をキャプチャしました。裏面をキャプチャしてください。,I've captured the surface.,0.475,0.670
+0.497,stampTickLabel,Tick,チェック,,,0.497
+0.505,exportFormatSheetTitle,Export as,書き出し形式,,,0.505
+0.526,eraserTitle,Eraser,消しゴム,,,0.526
+0.526,annotationModeEraser,Eraser,消しゴム,,,0.526
+0.530,batchExportTooltip,Batch export,一括書き出し,,,0.530
+0.536,batchExportEmptyMessage,No documents to batch export. Scan some first.,一括エクスポートするドキュメントがありません。まずスキャンしてください。,I don't have any documentation to export.,0.536,0.851
+0.536,captureFrontSide,Capture Front Side,表面をキャプチャ,,,0.536
+0.546,captureBehaviorSectionLabel,CAPTURE BEHAVIOR,キャプチャ動作,,,0.546
+0.550,accentCrimson,Crimson,クリムソン,,,0.550
+0.553,fillCapsLabel,ALL CAPS,大文字,,,0.553
+0.557,cropNoPageFound,Couldn't find the page edges. Drag the corners.,ページの端が見つかりません。角をドラッグしてください。,I can't find the end of the page.,0.557,0.885
+0.558,commonExport,Export,書き出す,,,0.558
+0.558,exportTooltip,Export,書き出す,,,0.558
+0.564,commonSkip,Skip,スキップ,,,0.564
+0.566,billingUnavailableMessage,Billing unavailable — try again later.,課金を利用できません — 後で再試行してください。,I can't use the fee. Try again later.,0.566,0.921
+0.566,deleteScanMessage,This can't be undone.,この操作は取り消せません。,I can't undo this operation.,0.566,0.788
+0.566,stampTickedLabel,Ticked,チェック済み,,,0.566
+0.568,subscriptionSectionLabel,Subscription,サブスクリプション,,,0.568
+0.572,marqueeEraseTooltip,Marquee erase,選択範囲消去,,,0.572
+0.575,ocrStatusOnDemand,On-demand,オンデマンド,,,0.575
+0.575,tickerNoteStamps,NOTE STAMPS,ノートスタンプ,,,0.575
+0.577,resizeUpscaleWarning,Enlarging doesn't add detail — the page may look soft.,拡大しても細部は増えません。ページがぼやける場合があります。,"If you expand it, you don't get any more detail.",0.577,0.796
+0.580,vibrateOnCaptureSubtitle,Haptic feedback when scan completes,スキャン完了時に触覚フィードバック,I'll have a touchback when the scan's complete.,0.580,0.888
+0.580,cropLabel,Crop,トリミング,,,0.580
+0.596,batchExportSignatureDisabled,Batch export — signature placement disabled,一括エクスポート—署名配置は無効,The total export license signature is disabled.,0.596,0.824
+0.603,filterShadow,Shadow,シャドウ,,,0.603
+0.605,couldNotOpenLinkError,Could not open link.,リンクを開けませんでした。,I didn't open the link.,0.605,0.928
+0.608,extractToNewDocAction,Extract to new doc,新しいドキュメントに抽出,It's been extracted into a new document.,0.608,0.871
+0.617,fillInputHint,Type text to fill,入力するテキストを入力,Enter the input text.,0.617,0.836
+0.620,onboardingSignSubtitle,"E-sign contracts, type-to-fill forms, and stamp enterprise seals in seconds.",契約書に電子署名、フォーム入力、企業シールを数秒で。,"You can sign the contract electronically, enter the form, seal the company in seconds.",0.620,0.849
+0.622,onboardingPrivacySubtitle,"No account, no cloud, no watermarks. Your documents never leave your device.",アカウント不要、クラウド不要、透かしなし。文書はデバイスから出ません。,"There's no account, no cloud, no penetration.",0.622,0.819
+0.622,idCardPdfGenerated,ID Card PDF Generated,IDカードPDFが生成されました,I've created an ID card.,0.622,0.877
+0.623,readingPageEta,Page {page} of {total} · about {minutes} min left,{page}/{total}ページ・残り約{minutes}分,"Five-fifths of a page, about five minutes.",0.623,0.885
+0.627,printFitFit,Fit page,ページに収める,,,0.627
+0.636,idStepFront,Step 1: Capture Front Side,ステップ1: 表面をキャプチャ,Step 1: Capture the surface.,0.636,0.819
+0.640,tickerNoWatermarks,NO WATERMARKS,透かしなし,,,0.640
+0.640,sealInkLook,Worn stamp look,かすれたスタンプ風,,,0.640
+0.641,enableNotificationsSubtitle,Allow background reminders for unexported documents,未エクスポートのドキュメントに対するバックグラウンド通知を許可する,Allow background notifications for documents not exported.,0.641,0.848
+0.645,signatureFontFlowing,Flowing,流れる書体,,,0.645
+0.647,signatureNewOne,Draw or type a new one,新しく描く・入力する,I'm going to draw and type.,0.647,0.811
+0.648,pageToLabel,To page,終了ページ,,,0.648
+0.649,commonImport,Import,読み込む,,,0.649
+0.650,tickerUndoRedo,UNDO/REDO,元に戻す/やり直し,,,0.650
+0.652,paywallFeatureNoInterstitial,No more interstitial ads,全画面広告なし,No full-screen ads.,0.666,0.652
+0.653,pageFormatLetter,Letter (US),レター（米国）,,,0.653
+0.656,tickerCustomSeals,CUSTOM SEALS,カスタムシール,,,0.656
+0.657,applyToAllPages,Apply to all pages,すべてのページに適用,It applies to every page.,0.657,0.927
+0.657,onboardingToolsSubtitle,"Annotate, sign, watermark, fill forms, seal, and more — every tool free and unlimited.",注釈、署名、透かし、フォーム入力、シールなど — すべて無料で無制限。,"Notes, signatures, passwords, forms, seals, all of which are free and unlimited.",0.657,0.821
+0.657,annotationModeHighlighter,Highlighter,ハイライター,,,0.657
+0.662,idStepBack,Step 2: Capture Back Side,ステップ2: 裏面をキャプチャ,Step two: Capture the background.,0.662,0.931
+0.666,undoTooltip,Undo,元に戻す,,,0.666
+0.669,accentAmber,Amber,アンバー,,,0.669
+0.673,tickerAccentThemes,ACCENT THEMES,アクセントテーマ,,,0.673
+0.673,pageRevertedToOriginal,Page reverted to original,ページが元に戻されました,The page has been restored.,0.673,0.839
+0.675,pageFromLabel,From page,開始ページ,,,0.675
+0.679,cropDocumentTitle,Crop Document,書類をトリミング,,,0.679
+0.681,printFitLabel,Scaling,拡大縮小,,,0.681
+0.682,reviewPromptYes,Rate Us,評価する,,,0.682
+0.684,revertToOriginalTitle,Revert to Original?,元に戻しますか？,,,0.684
+0.684,importFrontSide,Import Front Side,表面をインポート,,,0.684
+0.685,tickerFolders,FOLDERS,フォルダ,,,0.685
+0.686,captionDocs,"Flexible crop: Original, Square, 4:3, 3:2, 16:9",柔軟なトリミング: オリジナル、正方形、4:3、3:2、16:9,"So, we're going to do a flexible trimming: original, square, 4:3, 3:2, 16:9.",0.686,0.916
+0.696,enableSharePromptsSubtitle,Allow the app to occasionally suggest sharing,アプリが時々共有を提案することを許可する,It allows the app to sometimes suggest sharing.,0.696,0.925
+0.699,emptyFolders,No folders yet. Tap the folder icon to create one.,フォルダはまだありません。フォルダアイコンをタップして作成します。,I don't have the folder yet.,0.699,0.886
+0.699,noteLabel,Note,ノート,,,0.699
+0.704,filterContrastLabel,Contrast,コントラスト,,,0.704
+0.706,sealCreateTitle,Custom Seal,カスタムシール,,,0.706
+0.706,sealCustom,Custom Seal,カスタムシール,,,0.706
+0.712,redoTooltip,Redo,やり直す,,,0.712
+0.714,beepOnCaptureLabel,Beep on capture,キャプチャ時にビープ音,,,0.714
+0.714,exportingStatus,Exporting…,書き出し中…,,,0.714
+0.718,emailMessageHint,Add a note (optional),メモを追加（任意）,Add the note.,0.718,0.921
+0.721,fitToTargetMbLabel,Fit to target MB,目標MBに合わせる,It's going to match the target MB.,0.721,0.920
+0.721,filterGrayscale,Grayscale,グレースケール,,,0.721
+0.722,onboardingSignTitle,"Sign, Fill & Seal",署名・入力・シール,"Sign, enter, seal.",0.772,0.722
+0.723,genericErrorMessage,Something went wrong. Please try again.,問題が発生しました。もう一度お試しください。,I have a problem. Please try again.,0.723,0.896
+0.724,accentViolet,Violet,バイオレット,,,0.724
+0.725,sealSavedHeading,Saved seals,保存したシール,,,0.725
+0.725,noFoldersYetHomeMessage,No folders yet. Create one from the home screen.,フォルダがありません。ホーム画面から作成してください。,I don't have a folder.,0.725,0.838
+0.726,savedAsNewDocument,Saved as new document,新しいドキュメントとして保存しました,I saved it as a new document.,0.726,0.944
+0.729,importingStatus,Importing…,読み込み中…,,,0.729
+0.729,exportFormatPngDescription,"One image per page, lossless",1ページにつき1枚の画像、非可逆圧縮なし,"One image per page, no reverse compression.",0.729,0.844
+0.731,watermarkEditTitle,Edit Watermark,透かしを編集,,,0.731
+0.733,annotationModeRect,Rectangle,四角形,,,0.733
+0.733,errorGenericTitle,Something went wrong,問題が発生しました,,,0.733
+0.733,errorScreenProblem,KatharScan ran into a problem displaying this screen. Your scans are safe — they're stored on this device and this doesn't affect them.,この画面の表示中にKatharScanで問題が発生しました。スキャンは安全です。このデバイスに保存されており、影響はありません。,There was a problem with the KatharScan during the display of this screen.,0.733,0.892
+0.735,revertToOriginalMessage,"This will undo all filters, rotations, crops, resizes, and eraser strokes on this page.",これにより、このページのすべてのフィルター、回転、トリミング、サイズ変更、消しゴムストロークが元に戻されます。,"This will bring back all the filters, rotations, trimming, sizing, and removing the rubber strokes on this page.",0.735,0.853
+0.736,removeAdsTitle,Remove Ads Forever,広告を削除,,,0.736
+0.736,onboardingOcrTitle,On-Device OCR,オンデバイスOCR,,,0.736
+0.740,paywallFallbackPrice,$14.99 one-time,$14.99 買い切り,,,0.740
+0.740,progressReading,Reading…,読み込み中…,,,0.740
+0.742,enableReviewPromptsSubtitle,Allow the app to occasionally ask for a rating,アプリが時々評価を求めることを許可する,It allows the app to ask for ratings sometimes.,0.742,0.901
+0.742,darkThemeOption,Dark,ダーク,,,0.742
+0.743,tickerBatchExport,BATCH EXPORT,バッチエクスポート,,,0.743
+0.743,pagesToReadHint,This PDF has {count} pages. Pages that are pictures are read with OCR (about 10 seconds each); pages with real text are instant.,このPDFは{count}ページです。画像のページはOCRで読み取ります(1ページ約10秒)。テキストのページは即時です。,This is a five-page PDF. The page of the image is OCR-readable.,0.743,0.915
+0.745,exportNoTextError,This document has no text yet. Run OCR on it first.,この書類にはまだテキストがありません。先にOCRを実行してください。,I'm not sure if this document has any text yet.,0.745,0.889
+0.747,captionPassport,Passport crop: 4:3 or Original,パスポートトリミング: 4:3 またはオリジナル,Passport trimming: 4:3 or original,0.747,0.889
+0.747,backupReadyStatus,Backup ready.,バックアップの準備ができました。,,,0.747
+0.748,exportBackupButton,Export encrypted backup,暗号化バックアップを書き出す,,,0.748
+0.750,onboardingToolsTitle,21 Free Pro Tools,21の無料プロツール,Twenty-one free tools.,0.750,0.893
+0.751,foldersSectionHeader,Folders,フォルダ,,,0.751
+0.751,filterFolders,Folders,フォルダ,,,0.751
+0.751,ocrStatusBuiltIn,Built-in,組み込み,,,0.751
+0.752,vibrateOnCaptureLabel,Vibrate on capture,キャプチャ時にバイブレーション,,,0.752
+0.752,exportFormatCsvDescription,Spreadsheet data,スプレッドシートデータ,,,0.752
+0.759,cropIdCardTitle,Crop ID Card,IDカードをトリミング,,,0.759
+0.761,emptyFavorites,No favorites yet. Tap the star icon on a document to add it.,お気に入りはまだありません。ドキュメントの星アイコンをタップして追加します。,I don't have my favorite yet. I'll just tap the star icon and add it.,0.761,0.913
+0.762,saveAsNewDocumentAction,Save as new Document,新しいドキュメントとして保存,Save it as a new document.,0.762,0.929
+0.764,lockAspectRatio,Lock aspect ratio,アスペクト比をロック,,,0.764
+0.765,accentEmerald,Emerald,エメラルド,,,0.765
+0.767,ticker100OnDevicePrivacy,YOUR DOCUMENTS STAY ON YOUR DEVICE,書類はあなたの端末に残ります,The documents will remain on your device.,0.916,0.767
+0.767,sealSavedMessage,Seal saved,シールを保存しました,,,0.767
+0.768,eraserZoomTooltip,Zoom and move (pinch),ズーム・移動(ピンチ),"Zoom, move, pinch.",0.890,0.768
+0.770,tickerDeviceMigration,DEVICE MIGRATION,デバイスマイグレーション,,,0.770
+0.772,captureBackSide,Capture Back Side,裏面をキャプチャ,,,0.772
+0.772,watermarkAddTitle,Add Watermark,透かしを追加,,,0.772
+0.774,paywallFeatureNoBanner,No more banner ads,バナー広告なし,There's no banner ads.,0.774,0.798
+0.775,tickerWordExport,WORD EXPORT,Wordエクスポート,,,0.775
+0.781,eraserAutoColorTooltip,Match the page colour automatically,ページの色に自動で合わせる,It automatically matches the color of the page.,0.781,0.920
+0.781,importBackupButton,Import from backup,バックアップから読み込む,,,0.781
+0.782,whatsNewTitle,What's New,新機能,,,0.782
+0.782,clearedCount,Cleared {count},{count}件をクリアしました,,,0.782
+0.785,scanPreviewNoPages,No pages to show.,表示するページがありません。,I don't have a page to show.,0.785,0.902
+0.785,savedToDocumentText,Saved to document text,ドキュメントテキストに保存しました,I saved it to document text.,0.785,0.900
+0.785,extractedAsNewDocument,Extracted as new document,新しいドキュメントとして抽出されました,It was extracted as a new document.,0.785,0.920
+0.786,eraserApplied,Eraser applied,消しゴムが適用されました,,,0.786
+0.787,commonRevert,Revert,元に戻す,,,0.787
+0.788,sealEditTitle,Edit Custom Seal,カスタムシールを編集,,,0.788
+0.789,cropAspectSquare,Square,正方形,,,0.789
+0.789,tickerTextStamps,TEXT STAMPS,テキストスタンプ,,,0.789
+0.790,resizeTitle,Resize,サイズ変更,,,0.790
+0.792,tickerNoAccount,NO ACCOUNT,アカウント不要,,,0.792
+0.793,captionIdCard,Two-sided ID capture: Front + Back,両面IDキャプチャ: 表面 + 裏面,The two-sided ID capture: surface + background.,0.793,0.867
+0.794,ocrScriptDevanagari,"Hindi, Marathi (Devanagari)",ヒンディー語、マラーティー語(デーヴァナーガリー),,,0.794
+0.795,letterSizeUS,Letter size (US),レターサイズ（米国）,,,0.795
+0.796,setBackupPasswordTitle,Set a backup password,バックアップのパスワードを設定,Set the backup password.,0.796,0.891
+0.797,tickerFavorites,FAVORITES,お気に入り,,,0.797
+0.798,noteTextLabel,Note text,ノートテキスト,,,0.798
+0.799,paywallFeatureFreeForever,All features free forever,すべての機能が永久に無料,All the functionality is forever free.,0.799,0.928
+0.802,copiedToClipboard,Copied to clipboard,クリップボードにコピーしました,,,0.802
+0.802,tickerRevertToOriginal,REVERT TO ORIGINAL,オリジナルに戻す,,,0.802
+0.802,tickerNonDestructiveEditing,NON-DESTRUCTIVE EDITING,非破壊編集,,,0.802
+0.803,noFoldersYet,No folders yet,フォルダがありません,,,0.803
+0.805,tickerGalleryImport,GALLERY IMPORT,ギャラリーインポート,,,0.805
+0.805,beepOnCaptureSubtitle,Play sound when scan completes,スキャン完了時に音を再生,Play back the sound when the scan is complete.,0.805,0.956
+0.806,tapToSampleColor,Tap a spot to sample its color,スポットをタップして色をサンプリング,I'll tap the spot and sample the color.,0.869,0.806
+0.807,convertToLabel,Convert to:,変換先:,,,0.807
+0.807,migrationExplainer,"This isn't automatic sync. Export creates a single encrypted backup file you move to your new device yourself, then import there.",これは自動同期ではありません。書き出すと暗号化されたバックアップファイルが1つ作成されるので、それをご自身で新しいデバイスに移動し、そこで読み込んでください。,"This isn't automatic sync. When you write it, you create an encrypted backup file, so you move it to your own new device and you read it there.",0.807,0.826
+0.807,ticker21ToolEditSuite,21-TOOL EDIT SUITE,21ツール編集スイート,,,0.807
+0.809,fillTapHint,Tap the page where you want to type,文字を入力したい場所をタップしてください,Please tap where you want to type.,0.809,0.817
+0.809,sampleColorTooltip,Sample color from page,ページから色をサンプリング,I'm taking a color sample from the page.,0.809,0.837
+0.809,signatureFontHandwritten,Handwritten,手書き風,,,0.809
+0.809,scaleLabel,Scale,スケール,,,0.809
+0.809,clearLogsTooltip,Clear logs,ログをクリア,,,0.809
+0.811,emailAttachmentNotIncluded,The pages could not be attached to the email. Use Share to send the pages.,ページをメールに添付できませんでした。共有を使ってページを送信してください。,I couldn't attach the page to the email.,0.811,0.880
+0.811,onboardingPrivacyTitle,Private by design,設計段階からプライベート,,,0.811
+0.813,pageResized,Page resized,ページのサイズが変更されました,,,0.813
+0.813,debugLogsLabel,Debug Logs,デバッグログ,,,0.813
+0.814,tickerDarkMode,DARK MODE,ダークモード,,,0.814
+0.814,onboardingOcrSubtitle,Use KatharScan in {count} languages. OCR runs on your phone — nothing ever leaves your device.,KatharScanを{count}言語で利用可能。OCRはスマートフォン上で動作し、何も端末の外に出ません。,"It's available in five languages, and OCR works on smartphones, and nothing comes out of the device.",0.814,0.878
+0.814,onboardingReplayIntro,Replay introduction,紹介を再再生,,,0.814
+0.814,noEmailAppFound,No email app found,メールアプリが見つかりません,I can't find an email app.,0.814,0.941
+0.815,pdfImportedAsDocument,PDF imported as document,PDFがドキュメントとしてインポートされました,The PDF was imported as a document.,0.815,0.928
+0.815,tickerESign,E-SIGN,電子署名,,,0.815
+0.818,enableSharePromptsLabel,Enable Share Prompts,共有依頼を有効にする,,,0.818
+0.818,filterColorEnhance,Color enhance,カラー補正,,,0.818
+0.819,accentIndigo,Indigo,インディゴ,,,0.819
+0.819,exportFormatTxtDescription,Plain OCR text only,OCRテキストのみ,It's only OCR text.,0.819,0.883
+0.821,ocrStatusUnsupported,Unsupported,非対応,,,0.821
+0.822,searchHint,Search your scans,スキャンを検索,,,0.822
+0.826,renameFolderTitle,Rename folder,フォルダ名を変更,,,0.826
+0.827,saveInsideAppWarning,"To save inside the app, choose JPG or PNG. Other targets are exported as files.",アプリ内に保存するにはJPGまたはPNGを選択してください。その他の形式はファイルとしてエクスポートされます。,"If you want to save it in the app, select JPG or PNG.",0.827,0.852
+0.833,tickerPassportMode,PASSPORT MODE,パスポートモード,,,0.833
+0.833,enableReviewPromptsLabel,Enable Review Prompts,レビュー依頼を有効にする,,,0.833
+0.833,paywallSubtitle,Support KatharScan with a one-time purchase. All features remain free.,一回の購入でKatharScanをサポート。すべての機能は永久に無料です。,It supports KatharScan with a single purchase.,0.833,0.874
+0.835,filterSheetTitle,Filters,フィルター,,,0.835
+0.836,ocrScriptLatin,"Latin (English, European)",ラテン文字（英語、欧州）,,,0.836
+0.836,onboardingWelcomeSubtitle,"Your entire document office — scan, edit, sign, and export — in one private app.",スキャン・編集・署名・エクスポート — すべてが1つのプライベートアプリに。,"Scan, edit, sign, export, all in one private app.",0.845,0.836
+0.837,ocrUnavailableTooltip,OCR unavailable on this device.,このデバイスではOCRを利用できません。,This device doesn't use OCR.,0.837,0.855
+0.837,importBackSide,Import Back Side,裏面をインポート,,,0.837
+0.839,progressRasterizing,Rasterizing pages…,ページをラスタライズ中…,,,0.839
+0.840,buildingBackupStatus,Building backup…,バックアップを作成中…,,,0.840
+0.840,fillDeleteSnippet,Delete snippet?,スニペットを削除しますか？,,,0.840
+0.841,onboardingEditSubtitle,"Every edit stays reversible — undo, redo, and revert to original anytime.",すべての編集は可逆的 — いつでも元に戻す・やり直し・オリジナル復元。,"All the edits are reversible, and they're always going to be restored, restored, and restored to the original.",0.841,0.926
+0.841,storageSectionLabel,Storage,ストレージ,,,0.841
+0.843,chipSelectMultiple,Select Multiple,複数選択,,,0.843
+0.843,couldNotImportBackupError,Could not import this backup. Check the password and try again.,このバックアップを読み込めませんでした。パスワードを確認してもう一度お試しください。,I couldn't read this backup. Please check the password and try again.,0.863,0.843
+0.844,deleteFolderMessage,Documents inside will not be deleted.,フォルダ内の書類は削除されません。,Documents in the folder will not be deleted.,0.877,0.844
+0.844,sealSaveToLibrary,Save this seal,このシールを保存,,,0.844
+0.845,commonRename,Rename,名前を変更,,,0.845
+0.845,movedToFolderMessage,Moved to folder.,フォルダに移動しました。,,,0.845
+0.845,docxWarningMessage,"DOCX sources render poorly as pages — save inside the app is limited to JPG/PNG from image, PDF, TXT or CSV sources. Use Export & Share for this file.",DOCXソースはページとして正しく表示されません—アプリ内保存は画像、PDF、TXT、CSVからのJPG/PNGに限定されます。このファイルはエクスポートと共有を使用してください。,"The DOCX source doesn't show up as a page correctly, and the storage in the app is limited to JPG/PNG from images, PDFs, TXTs, CSVs.",0.845,0.895
+0.846,autoCopyOcrSubtitle,Copy text to clipboard after scan,スキャン後にテキストをクリップボードにコピー,"After the scan, copy the text to the clipboard.",0.846,0.893
+0.846,pageCropped,Page cropped,ページがトリミングされました,,,0.846
+0.847,sealFontSans,Clean,すっきり,,,0.847
+0.847,engagementSectionLabel,ENGAGEMENT & NOTIFICATIONS,エンゲージメントと通知,,,0.847
+0.847,tickerAutoCopyOcr,AUTO-COPY OCR,自動コピーOCR,,,0.847
+0.850,continueButton,Continue,続ける,,,0.850
+0.850,onboardingContinue,Continue,続ける,,,0.850
+0.850,tickerIdCardMode,ID CARD MODE,IDカードモード,,,0.850
+0.851,filterBrightnessLabel,Brightness,明るさ,,,0.851
+0.852,signatureWidthLabel,Pen width,ペンの太さ,,,0.852
+0.853,sealDefaultMainText,YOUR COMPANY,あなたの会社,,,0.853
+0.854,paywallLegalText,This is a non-consumable purchase. Restore it anytime on any device with the same store account.,これは非消耗型の購入です。同じストアアカウントで、いつでもどのデバイスでも復元できます。,This is a non-consumption purchase. You can restore it to any device at any time with the same store account.,0.895,0.854
+0.855,drawNewSignature,Draw New,新規描画,,,0.855
+0.856,exportFormatPdfDescription,Best for sharing and printing,共有や印刷に最適,It's perfect for sharing and printing.,0.856,0.903
+0.857,addNoteTitle,Add Note,ノートを追加,,,0.857
+0.857,openSourceLicensesLabel,Open-source licenses,オープンソースライセンス,,,0.857
+0.858,importFromGallery,Import from Gallery,ギャラリーからインポート,,,0.858
+0.858,restoreCompleteMessage,Restore complete.,復元が完了しました。,,,0.858
+0.859,printPerSheetLabel,Pages per sheet,1枚あたりのページ数,,,0.859
+0.859,signatureChoiceMessage,Use your saved signature or draw a new one?,保存した署名を使用しますか、それとも新しい署名を描画しますか？,"Do you want to use a preserved signature, or do you want to draw a new signature?",0.859,0.897
+0.861,moveToFolderTitle,Move to Folder,フォルダに移動,,,0.861
+0.862,noTextRecognized,No text recognized.,テキストが認識されませんでした。,,,0.862
+0.863,termsOfServiceLabel,Terms of Service,利用規約,,,0.863
+0.863,pagesToReadTitle,Pages to read,読み取るページ,,,0.863
+0.864,docScannerUnsupportedMessage,"Your device doesn't support the advanced document scanner. Take a photo with your Camera app, then tap Import below to crop and save it.",お使いのデバイスは高度なドキュメントスキャナーに対応していません。カメラアプリで写真を撮影し、下の「インポート」をタップしてトリミングして保存してください。,"The device you're using doesn't support a sophisticated document scanner, so take pictures with the camera app, tap ""Import"" below, trim and save.",0.864,0.869
+0.866,folderUnavailable,This folder is no longer available.,このフォルダは利用できなくなりました。,This folder is no longer available.,1.000,0.866
+0.866,clearThis,Clear this,これをクリア,,,0.866
+0.866,filterTitle,Filter,フィルター,,,0.866
+0.868,commonCustom,Custom,カスタム,,,0.868
+0.868,pagesDeleteCount,Delete {count},{count}件を削除,,,0.868
+0.871,sharePromptTitle,Love KatharScan?,KatharScanを気に入っていますか？,,,0.871
+0.872,lightThemeOption,Light,ライト,,,0.872
+0.873,ocrLanguagePackNotReady,Language pack downloading or not ready. Try again shortly.,言語パックをダウンロード中または準備できていません。まもなく再試行してください。,The language packs are not downloaded or ready. Please try again soon.,0.941,0.873
+0.873,backupCorruptedError,This backup file looks corrupted.,このバックアップファイルは破損しているようです。,This backup file seems to be broken.,0.873,0.900
+0.873,ocrNoInternetMessage,No internet. Connect once to download the language pack.,インターネット接続がありません。言語パックをダウンロードするため一度接続してください。,There's no internet connection. Please connect once to download the language pack.,0.917,0.873
+0.874,tickerRegionOcr,REGION OCR,領域OCR,,,0.874
+0.874,commonCopy,Copy,コピー,,,0.874
+0.875,rotationPage,Page rotated,ページを回転しました,,,0.875
+0.875,pagesLabel,Pages,ページ,,,0.875
+0.875,watermarkPagesLabel,Pages,ページ,,,0.875
+0.876,progressBuildingDocx,Building DOCX…,DOCXを作成中…,,,0.876
+0.877,pagesUpdated,Pages updated,ページが更新されました,,,0.877
+0.877,progressEncodingPage,Encoding page {current} of {total}…,ページ {current}/{total} をエンコード中…,Page 5/5 is encoded...,0.892,0.877
+0.878,reviewPromptBody,Your feedback helps us grow and keeps the app free.,あなたのフィードバックは私たちの成長を助け、アプリを無料で維持します。,Your feedback helps us grow and keep our apps free.,0.967,0.878
+0.878,placeHereLabel,Place here,ここに配置,,,0.878
+0.879,stampCheckbox,Checkbox,チェックボックス,,,0.879
+0.879,fillTypeHint,Type here,ここに入力,,,0.879
+0.879,filterFavorites,Favorites,お気に入り,,,0.879
+0.880,couldNotCreateBackupError,Could not create the backup.,バックアップを作成できませんでした。,I couldn't create a backup.,0.880,0.914
+0.880,checkLabel,Check,チェック,,,0.880
+0.881,exportSavedToDownloads,Saved to Downloads,ダウンロードに保存しました,,,0.881
+0.882,fillSaveSnippet,Save as snippet,スニペットとして保存,,,0.882
+0.882,sealShapeBox,Box,ボックス,,,0.882
+0.882,sealMainTextLabel,Main text (top arc / box),メインテキスト（上部アーク／ボックス）,The main text: upper arc/box,0.882,0.941
+0.883,moveToFolderTooltip,Move to folder,フォルダに移動,,,0.883
+0.883,titleScan,Scan,スキャン,,,0.883
+0.884,docxModeWithImages,With Images,画像付き,,,0.884
+0.884,sharePromptBody,Share it with friends who need a powerful document scanner.,強力なドキュメントスキャナーを必要としている友達と共有してください。,Please share it with your friends who need a powerful document scanner.,0.938,0.884
+0.885,sealSubtextLabel,Subtext (bottom arc / below),サブテキスト（下部アーク／下）,Subtext: lower arc/down,0.885,0.915
+0.886,exportAndShareAction,Export & Share,エクスポートと共有,,,0.886
+0.887,accentColorTooltip,Accent Color,アクセントカラー,,,0.887
+0.887,accentColorTitle,Accent Color,アクセントカラー,,,0.887
+0.887,chipAllFolders,All Folders,すべてのフォルダ,,,0.887
+0.888,progressDecodingImage,Decoding image…,画像をデコード中…,,,0.888
+0.889,scanUnavailable,This scan is no longer available.,このスキャンは利用できなくなりました。,This scanner is no longer available.,0.890,0.889
+0.889,rotationAllPages,All pages rotated,すべてのページを回転しました,,,0.889
+0.891,saveFailedBanner,Your latest changes could not be saved.,最新の変更を保存できませんでした。,I couldn't save the latest changes.,0.891,0.915
+0.891,commonReset,Reset,リセット,,,0.891
+0.892,renameDocumentTitle,Rename document,書類名を変更,,,0.892
+0.893,exportFormatJpgDescription,One image per page,1ページにつき1枚の画像,One image per page.,0.958,0.893
+0.894,importAndConvertDocument,Import & Convert Document,ドキュメントのインポートと変換,Importing and converting documents.,0.894,0.913
+0.894,sealRemoveWhite,Make white transparent,白を透明にする,,,0.894
+0.895,moreOptionsTooltip,More options,その他のオプション,,,0.895
+0.895,migrationTitle,Device Migration,デバイス移行,,,0.895
+0.895,deviceMigrationLabel,Device Migration,デバイス移行,,,0.895
+0.895,ocrStatusChecking,Checking...,確認中...,,,0.895
+0.895,removeFromFolderTooltip,Remove from folder,フォルダから削除,,,0.895
+0.896,newFolderTitle,New Folder,新規フォルダ,,,0.896
+0.896,newFolderTooltip,New Folder,新規フォルダ,,,0.896
+0.897,watermarkLayoutLabel,Layout,レイアウト,,,0.897
+0.897,deleteFolderTooltip,Delete folder,フォルダを削除,,,0.897
+0.897,adsRemovedLabel,Ads Removed,広告削除済み,,,0.897
+0.898,errorReportIssue,Report issue,問題を報告,,,0.898
+0.900,pickErrorPrefix,Pick error,選択エラー,,,0.900
+0.900,exportTitle,Export,エクスポート,,,0.900
+0.901,fromAnotherDocument,From Another Document,別のドキュメントから,,,0.901
+0.901,tickerPdfExport,PDF EXPORT,PDFエクスポート,,,0.901
+0.901,onboardingGetStarted,Get Started,はじめる,,,0.901
+0.902,clearAll,Clear all,すべてクリア,,,0.902
+0.902,emailLimitMissed,Could not get under {mb} MB; sent the smallest version.,{mb} MB 未満にできなかったため、最小のバージョンを送信しました。,"I sent the smallest version, because it couldn't be less than 5 MB.",0.903,0.902
+0.903,importErrorPrefix,Import error,インポートエラー,,,0.903
+0.903,enterBackupPasswordTitle,Enter backup password,バックアップのパスワードを入力,,,0.903
+0.904,commonCancel,Cancel,キャンセル,,,0.904
+0.904,docxModeTextOnly,Text Only,テキストのみ,,,0.904
+0.904,signerLabel,Signer {index},署名者 {index},,,0.904
+0.905,signatureCanvasHint,Sign here,ここに署名,,,0.905
+0.905,pagesDeleteConfirm,Delete {count} pages? They are removed when you save.,{count}ページを削除しますか？保存すると削除されます。,"So, if you want to delete five pages, you save them.",0.905,0.914
+0.905,saveToDeviceButton,Save to Device,デバイスに保存,,,0.905
+0.905,onboardingEditTitle,Non-Destructive Editing,非破壊編集,,,0.905
+0.905,modePassport,Passport Mode,パスポートモード,,,0.905
+0.905,progressBuildingPdf,Building PDF…,PDFを作成中…,,,0.905
+0.906,extractedPageDefaultTitle,Extracted Page,抽出されたページ,,,0.906
+0.907,fullscreenLabel,Fullscreen,全画面,,,0.907
+0.907,tryAgainButton,Try again,再試行,,,0.907
+0.907,emptyStateDefaultMessage,Tap the camera to scan your first document.,カメラをタップして最初の書類をスキャンしましょう。,Let's tap the camera and scan the first document.,0.964,0.907
+0.908,whiteHaloLabel,White halo (readability),白いハロー（可読性）,,,0.908
+0.908,accentBlue,Blue,ブルー,,,0.908
+0.908,ocrNoTextFound,No text found,テキストが見つかりません,,,0.908
+0.909,genericErrorPrefix,Error,エラー,,,0.909
+0.909,scannerErrorPrefix,Scanner error,スキャナーエラー,,,0.909
+0.910,filterApplied,Filter applied,フィルターが適用されました,,,0.910
+0.910,emailFailed,Email failed,メールに失敗しました,,,0.910
+0.910,paywallSuccessTitle,Ads Removed,広告が削除されました,,,0.910
+0.910,ocrScriptKorean,Korean,韓国語,,,0.910
+0.912,emptySearch,No scans match your search.,検索に一致するスキャンがありません。,There's no scan that matches the search.,0.916,0.912
+0.912,emailLabel,Email,メール,,,0.912
+0.913,progressSaving,Saving…,保存中…,,,0.913
+0.913,saveToDownloadsAction,Save to Downloads,ダウンロードに保存,,,0.913
+0.913,reviewPromptNo,Send Feedback,フィードバックを送信,,,0.913
+0.913,filterMagicColor,Magic colour,マジックカラー,,,0.913
+0.914,managePagesTitle,Manage Pages,ページを管理,,,0.914
+0.914,progressCopying,Copying…,コピー中…,,,0.914
+0.915,debugNoLogsYet,No logs yet,ログはまだありません,,,0.915
+0.915,conversionFailedPrefix,Conversion failed,変換に失敗しました,,,0.915
+0.916,tickerJpgExport,JPG EXPORT,JPGエクスポート,,,0.916
+0.916,reviewPromptTitle,Enjoying KatharScan?,KatharScanを楽しんでいますか？,,,0.916
+0.916,privacyOptionsLabel,Privacy settings,プライバシー設定,,,0.916
+0.916,extractedTextTitle,Extracted Text,抽出されたテキスト,,,0.916
+0.916,privacyPolicyLabel,Privacy policy,プライバシーポリシー,,,0.916
+0.917,commonClose,Close,閉じる,,,0.917
+0.917,opacityPercentLabel,Opacity: {percent}%,不透明度: {percent}%,,,0.917
+0.917,noDocumentsInFolder,No documents in this folder yet.,このフォルダにはまだ書類がありません。,There are no documents in this folder yet.,0.955,0.917
+0.918,deleteFolderTitle,Delete this folder?,このフォルダを削除しますか？,,,0.918
+0.918,filterShadowRemoval,Shadow removal,影の除去,,,0.918
+0.918,tickerTxtExport,TXT EXPORT,TXTエクスポート,,,0.918
+0.918,addToFavorites,Add to Favorites,お気に入りに追加,,,0.918
+0.918,signatureSavedHeading,Saved signatures,保存済みの署名,,,0.918
+0.919,tickerPngExport,PNG EXPORT,PNGエクスポート,,,0.919
+0.920,sealLogoReady,Logo ready,ロゴ準備完了,,,0.920
+0.920,saveAsDocument,Save as Document,ドキュメントとして保存,,,0.920
+0.920,ocrStatusInstalled,Installed,インストール済み,,,0.920
+0.921,paywallTitle,Remove Ads,広告を削除,,,0.921
+0.921,convertDocumentTitle,Convert Document,ドキュメントを変換,,,0.921
+0.922,regionOcrFailed,Region OCR failed,領域OCRが失敗しました,,,0.922
+0.923,printFilterNone,No filter,フィルターなし,,,0.923
+0.923,tickerSearchablePdf,SEARCHABLE PDF,検索可能PDF,,,0.923
+0.924,favoriteTooltip,Favorite,お気に入り,,,0.924
+0.924,restorePurchasesButton,Restore purchases,購入を復元,,,0.924
+0.924,sealTextColorSame,Same as ring,リングと同じ,,,0.924
+0.924,cameraSource,Camera,カメラ,,,0.924
+0.925,customColorTitle,Custom Color,カスタムカラー,,,0.925
+0.925,tickerCsvExport,CSV EXPORT,CSVエクスポート,,,0.925
+0.925,copyAll,Copy all,すべてコピー,,,0.925
+0.925,supportLabel,Support,サポート,,,0.925
+0.925,printOptionsTitle,Print Options,印刷オプション,,,0.925
+0.925,signatureTypeHint,Type your name,名前を入力,,,0.925
+0.926,clearPage,Clear page,ページをクリア,,,0.926
+0.926,enableNotificationsLabel,Enable Notifications,通知を有効にする,,,0.926
+0.926,cameraErrorPrefix,Camera error,カメラエラー,,,0.926
+0.926,addTagsAction,Add Tags,タグを追加,,,0.926
+0.927,sealFontSerif,Classic,クラシック,,,0.927
+0.927,editDocumentAction,Edit Document,ドキュメントを編集,,,0.927
+0.928,filterOriginal,Original,オリジナル,,,0.928
+0.928,pagesSelectTooltip,Select pages,ページを選択,,,0.928
+0.930,sealCenterTextLabel,Center text,中央テキスト,,,0.930
+0.930,signatureDeleteSaved,Remove saved signature,保存した署名を削除,,,0.930
+0.930,clearAllPages,Clear all pages,全ページをクリア,,,0.930
+0.930,progressExtractingText,Extracting text…,テキストを抽出中…,,,0.930
+0.930,addCheckboxTitle,Add Checkbox,チェックボックスを追加,,,0.930
+0.931,documentNotFound,Document not found,ドキュメントが見つかりません,,,0.931
+0.932,sealCenterText,Text,テキスト,,,0.932
+0.932,watermarkTextLabel,Text,テキスト,,,0.932
+0.932,textLabel,Text,テキスト,,,0.932
+0.932,modeDocument,Document Mode,ドキュメントモード,,,0.932
+0.934,sealTextColorLabel,Text colour,文字色,,,0.934
+0.936,modeIdCard,ID Card Mode,IDカードモード,,,0.936
+0.936,autoScan,Auto Scan,自動スキャン,,,0.936
+0.936,idGenerating,Generating PDF...,PDFを作成中...,,,0.936
+0.936,addSignature,Add Signature,署名を追加,,,0.936
+0.937,selectRegionTitle,Select Region,領域を選択,,,0.937
+0.937,addTagTitle,Add tag,タグを追加,,,0.937
+0.937,conversionStarting,Starting…,開始中…,,,0.937
+0.938,themeLabel,Theme,テーマ,,,0.938
+0.938,systemThemeOption,System,システム,,,0.938
+0.939,emailMessageLabel,Message,メッセージ,,,0.939
+0.939,removeFromFavorites,Remove from Favorites,お気に入りから削除,,,0.939
+0.940,documentSaved,Document saved,ドキュメントが保存されました,,,0.940
+0.940,useSavedSignature,Use Saved,保存済みを使用,,,0.940
+0.941,titleIdCard,ID Card,IDカード,,,0.941
+0.942,ocrScriptChinese,Chinese,中国語,,,0.942
+0.942,tickerFreeUnlimitedOcr,FREE UNLIMITED OCR,無料無制限OCR,,,0.942
+0.942,filterAll,All,すべて,,,0.942
+0.943,emptyDocumentMessage,This document has no pages.,このドキュメントにはページがありません。,This document has no pages.,1.000,0.943
+0.944,deleteScanTitle,Delete this scan?,このスキャンを削除しますか？,,,0.944
+0.944,addTextTitle,Add Text,テキストを追加,,,0.944
+0.945,filterRemoved,Filter removed,フィルターが削除されました,,,0.945
+0.945,cropAspectId,ID card,IDカード,,,0.945
+0.945,printFailed,Print failed,印刷に失敗しました,,,0.945
+0.945,sharePromptAction,Share App,アプリを共有,,,0.945
+0.945,saveFailedPrefix,Save failed:,保存に失敗しました：,,,0.945
+0.945,exportFormatDocxDescription,Editable text document,編集可能なテキスト文書,,,0.945
+0.946,paywallSuccessMessage,Thank you for supporting KatharScan.,KatharScanをご支援いただきありがとうございます。,Thank you for your support of KatharScan.,0.946,0.953
+0.947,homeLanguageTooltip,App Language,アプリの言語,,,0.947
+0.947,appLanguageTitle,App Language,アプリの言語,,,0.947
+0.948,ocrStatusDownloading,Downloading…,ダウンロード中…,,,0.948
+0.949,actionLabel,Action:,アクション:,,,0.949
+0.949,originalDimensions,Original: {w}×{h},元のサイズ: {w}×{h},,,0.949
+0.950,filterColor,Color,カラー,,,0.950
+0.951,whatsNewBody,"Welcome to KatharScan! This is the first public release featuring unlimited scanning, 29 languages, and export to PDF, Word, TXT, JPG, PNG, and CSV.",KatharScanへようこそ！無制限スキャン、29言語、PDF・Word・TXT・JPG・PNG・CSVへのエクスポートを備えた最初の公開リリースです。,"Welcome to KatharScan! It's the first public release with unlimited scanning, 29 languages, PDF Word, TXT, JPG, PNG, CSV.",0.979,0.951
+0.951,addDateTitle,Add Date,日付を追加,,,0.951
+0.952,appLanguageLabel,App language,アプリの言語,,,0.952
+0.953,compressNoLimit,No limit,制限なし,,,0.953
+0.953,cropAuto,Auto-detect,自動検出,,,0.953
+0.953,autoCopyOcrLabel,Auto-copy OCR,OCR自動コピー,,,0.953
+0.954,idPdfErrorPrefix,Error generating ID PDF,ID PDF生成エラー,ID PDF generating error,0.966,0.954
+0.955,titlePdfImport,PDF Import,PDFインポート,,,0.955
+0.956,exportEstimatedSize,Estimated size: {mb} MB,推定サイズ: {mb} MB,The estimated size: 5 MB.,0.956,0.988
+0.958,watermarkPagesThis,This page,このページ,,,0.958
+0.960,addPageTitle,Add Page,ページを追加,,,0.960
+0.960,compressTargetLabel,Max size,最大サイズ,,,0.960
+0.960,pdfImportErrorPrefix,PDF import error,PDFインポートエラー,,,0.960
+0.961,commonSize,Size,サイズ,,,0.961
+0.961,tabOcrTextLabel,OCR Text,OCRテキスト,,,0.961
+0.961,ocrScriptJapanese,Japanese,日本語,,,0.961
+0.964,onboardingWelcomeTitle,Welcome to KatharScan,KatharScanへようこそ,,,0.964
+0.964,convertedDocTitle,Converted {date},変換済み {date},,,0.964
+0.966,pageLabel,Page {index},ページ {index},,,0.966
+0.966,sealTextSizePercent,Text size {percent}%,文字サイズ {percent}%,,,0.966
+0.967,ocrLanguagesLabel,OCR Languages,OCR言語,,,0.967
+0.969,sharePdf,Share PDF,PDFを共有,,,0.969
+0.971,exportFormatTxtLabel,Text (.txt),テキスト (.txt),,,0.971
+0.972,textSizeLabel,Text size: {size},テキストサイズ: {size},,,0.972
+0.973,modeOcr,OCR Mode,OCRモード,,,0.973
+0.973,printRangeAll,All pages,すべてのページ,,,0.973
+0.973,watermarkPagesAll,All pages,すべてのページ,,,0.973
+0.977,pageIndicator,Page {current} / {total},ページ {current} / {total},Page 5 / 5,1.000,0.977
+0.981,watermarkChooseImage,Choose image,画像を選択,,,0.981
+0.989,sizePtLabel,Size: {size}pt,サイズ: {size}pt,,,0.989
+1.000,exportFormatPdfLabel,PDF,PDF,,,1.000
+1.000,ocrScriptArabic,العربية (Arabic),العربية (Arabic),,,1.000
+1.000,ocrSectionLabel,OCR,OCR,,,1.000
+1.000,fontMonospace,monospace,monospace,,,1.000
+1.000,exportFormatJpgLabel,JPG,JPG,,,1.000
+1.000,proBadgeLabel,PRO,PRO,,,1.000
+1.000,tickerLanguages,{count} LANGUAGES,{count} LANGUAGES,,,1.000
+1.000,ocrScriptRussian,Русский (Russian),Русский (Russian),,,1.000
+1.000,ocrScriptUkrainian,Українська (Ukrainian),Українська (Ukrainian),,,1.000
+1.000,ocrScriptBengali,বাংলা (Bengali),বাংলা (Bengali),,,1.000
+1.000,exportFormatDocxLabel,Word (.docx),Word (.docx),,,1.000
+1.000,exportFormatPngLabel,PNG,PNG,,,1.000
+1.000,fontSerif,serif,serif,,,1.000
+1.000,formatCsv,CSV,CSV,,,1.000
+1.000,ocrScriptGreek,Ελληνικά (Greek),Ελληνικά (Greek),,,1.000
+1.000,ocrScriptHebrew,עברית (Hebrew),עברית (Hebrew),,,1.000
+1.000,fontSansSerif,sans-serif,sans-serif,,,1.000
+1.000,ocrScriptThai,ไทย (Thai),ไทย (Thai),,,1.000

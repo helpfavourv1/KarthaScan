@@ -1,0 +1,544 @@
+score,key,english,translation,back_to_english,backtrans_score,labse_score
+0.283,captionIdCard,Two-sided ID capture: Front + Back,Двусторонний захват удостоверения: Лицо + Оборот,Two-way seizure of the certificate: Face + Turnover,0.283,0.820
+0.289,printFitFit,Fit page,Вписать,,,0.289
+0.323,eraserTitle,Eraser,Ластик,,,0.323
+0.323,annotationModeEraser,Eraser,Ластик,,,0.323
+0.343,printMarginLabel,Margin,Поля,,,0.343
+0.360,satLabel,Sat,Нас,,,0.360
+0.406,checkLabel,Check,Галочка,,,0.406
+0.414,batchExportEmptyMessage,No documents to batch export. Scan some first.,Нет документов для пакетного экспорта. Сначала отсканируйте несколько.,There's no documentation for the package exports.,0.414,0.889
+0.424,valLabel,Val,Знач,,,0.424
+0.429,idCardPdfGenerated,ID Card PDF Generated,PDF удостоверения создан,PDF credentials created,0.429,0.825
+0.440,lockAspectRatio,Lock aspect ratio,Зафиксировать пропорции,,,0.440
+0.445,sealFontSans,Clean,Строгий,,,0.445
+0.454,captureBehaviorSectionLabel,CAPTURE BEHAVIOR,ПОВЕДЕНИЕ ПРИ ЗАХВАТЕ,,,0.454
+0.459,watermarkLayoutTiled,Tiled,Мозаика,,,0.459
+0.475,annotationModeHighlighter,Highlighter,Маркер,,,0.475
+0.500,idStepBack,Step 2: Capture Back Side,Шаг 2: Захватите оборотную,Step two: Grab the rotary,0.500,0.881
+0.503,eraserZoomTooltip,Zoom and move (pinch),Масштаб и перемещение (щипок),Scale and movement (snaps),0.503,0.798
+0.515,beepOnCaptureLabel,Beep on capture,Звуковой сигнал при захвате,,,0.515
+0.515,couldNotOpenLinkError,Could not open link.,Не удалось открыть ссылку.,Couldn't find the link.,0.515,0.951
+0.517,signatureTabType,Type,Ввод,,,0.517
+0.524,captureBackSide,Capture Back Side,Захватить оборотную,,,0.524
+0.525,captionOcr,"Text crop: Original, Square, 4:3","Обрезка текста: Оригинал, Квадрат, 4:3","The original, Square, 4:3",0.525,0.939
+0.528,signatureFontFlowing,Flowing,Плавный,,,0.528
+0.530,sealInkLook,Worn stamp look,Эффект потёртой печати,,,0.530
+0.533,stampTickLabel,Tick,Галочка,,,0.533
+0.538,tickerTapToTypeFilling,TAP-TO-TYPE FILLING,ЗАПОЛНЕНИЕ НАЖМИ-И-НАБЕРИ,,,0.538
+0.541,marqueeEraseTooltip,Marquee erase,Стереть выделением,,,0.541
+0.555,annotationModePen,Pen,Перо,,,0.555
+0.557,tickerIdCardMode,ID CARD MODE,РЕЖИМ УДОСТОВЕРЕНИЯ,,,0.557
+0.564,idStepFront,Step 1: Capture Front Side,Шаг 1: Захватите лицевую сторону,Step 1: Grab the facial side,0.564,0.907
+0.570,accentCrimson,Crimson,Малиновый,,,0.570
+0.574,sealEditTitle,Edit Custom Seal,Редактировать печать,,,0.574
+0.577,deleteScanMessage,This can't be undone.,Это действие нельзя отменить.,This action cannot be cancelled.,0.577,0.843
+0.578,tickerCustomSeals,CUSTOM SEALS,ПОЛЬЗОВАТЕЛЬСКИЕ ПЕЧАТИ,,,0.578
+0.583,idPdfErrorPrefix,Error generating ID PDF,Ошибка создания PDF удостоверения,Error in creating PDF credentials,0.583,0.896
+0.589,accentAmber,Amber,Янтарь,,,0.589
+0.589,foldersSectionHeader,Folders,Папки,,,0.589
+0.589,filterFolders,Folders,Папки,,,0.589
+0.592,billingUnavailableMessage,Billing unavailable — try again later.,Платежи недоступны — попробуйте позже.,Payments are not available <unk> try later.,0.592,0.921
+0.598,filterGrayscale,Grayscale,Оттенки серого,,,0.598
+0.611,emptyFavorites,No favorites yet. Tap the star icon on a document to add it.,"Нет избранного. Нажмите на иконку звезды в документе, чтобы добавить.",No one's selected. Click the star icon in the document to add.,0.611,0.855
+0.612,tapToSampleColor,Tap a spot to sample its color,Нажмите на место для образца цвета,Click on the location for the color sample,0.612,0.846
+0.617,annotateTitle,Annotate,Аннотация,,,0.617
+0.619,cropIdCardTitle,Crop ID Card,Обрезать удостоверение,,,0.619
+0.622,ticker100OnDevicePrivacy,YOUR DOCUMENTS STAY ON YOUR DEVICE,ВАШИ ДОКУМЕНТЫ ОСТАЮТСЯ НА ВАШЕМ УСТРОЙСТВЕ,Your documents are on your library .,0.622,0.865
+0.625,commonReset,Reset,Сброс,,,0.625
+0.627,stampCheckbox,Checkbox,Флажок,,,0.627
+0.632,printFitLabel,Scaling,Масштаб,,,0.632
+0.635,batchExportSignatureDisabled,Batch export — signature placement disabled,Пакетный экспорт — размещение подписи отключено,Package export <unk> Signature placement off,0.635,0.855
+0.638,revertToOriginalMessage,"This will undo all filters, rotations, crops, resizes, and eraser strokes on this page.","Это отменит все фильтры, повороты, обрезки, изменения размера и штрихи ластика на этой странице.","It will eliminate all filters, turns, cuts, size changes and rubber strips on this page.",0.638,0.876
+0.640,fillTapHint,Tap the page where you want to type,"Нажмите на страницу там, где хотите ввести текст",Click on the page where you want to enter text,0.640,0.846
+0.645,frontSideCaptured,Front side captured. Now capture the back side.,Лицевая сторона захвачена. Теперь захватите оборотную.,"The facial side is captured, now take the reverse.",0.645,0.830
+0.651,tickerFavorites,FAVORITES,ИЗБРАННОЕ,,,0.651
+0.652,titleIdCard,ID Card,Удостоверение,,,0.652
+0.654,watermarkLayoutLabel,Layout,Расположение,,,0.654
+0.659,stampBoxLabel,Box,Поле,,,0.659
+0.659,sealShapeBox,Box,Поле,,,0.659
+0.660,captureFrontSide,Capture Front Side,Захватить лицевую,,,0.660
+0.668,debugLogsLabel,Debug Logs,Журналы отладки,,,0.668
+0.668,sealCreateTitle,Custom Seal,Пользовательская печать,,,0.668
+0.668,sealCustom,Custom Seal,Пользовательская печать,,,0.668
+0.671,aboutSectionLabel,About,О приложении,,,0.671
+0.674,modeIdCard,ID Card Mode,Режим удостоверения,,,0.674
+0.675,buildingBackupStatus,Building backup…,Создание копии...,,,0.675
+0.676,extractToNewDocAction,Extract to new doc,Извлечь в новый документ,Download to the new document,0.676,0.866
+0.677,fitToTargetMbLabel,Fit to target MB,Подогнать под целевые МБ,Push below target MBs,0.677,0.852
+0.678,tickerDeviceMigration,DEVICE MIGRATION,ПЕРЕНОС УСТРОЙСТВА,,,0.678
+0.679,tickerSearch,SEARCH,ПОИСК,,,0.679
+0.680,onboardingSignTitle,"Sign, Fill & Seal","Подписать, заполнить и опечатать","Sign, fill in and stamp",0.680,0.795
+0.683,tickerTags,TAGS,ТЕГИ,,,0.683
+0.685,filterShadow,Shadow,Тень,,,0.685
+0.686,compressLabel,Compress,Сжать,,,0.686
+0.687,backupReadyStatus,Backup ready.,Копия готова.,,,0.687
+0.690,printPerSheetLabel,Pages per sheet,Страниц на листе,,,0.690
+0.691,fillTypeHint,Type here,Введите текст,,,0.691
+0.692,sealSaveToLibrary,Save this seal,Сохранить печать,,,0.692
+0.698,tickerDarkMode,DARK MODE,ТЁМНЫЙ РЕЖИМ,,,0.698
+0.699,alignLabel,Align,Выравнивание,,,0.699
+0.702,tickerNoteStamps,NOTE STAMPS,ШТАМПЫ ЗАМЕТОК,,,0.702
+0.709,tickerGalleryImport,GALLERY IMPORT,ИМПОРТ ИЗ ГАЛЕРЕИ,,,0.709
+0.712,duplicateAction,Duplicate,Дублировать,,,0.712
+0.714,onboardingPrivacyTitle,Private by design,Приватность по замыслу,,,0.714
+0.716,importBackSide,Import Back Side,Импорт оборотной,,,0.716
+0.726,pricingLoadingError,Pricing is still loading — try again in a moment.,Цены всё ещё загружаются — попробуйте через минуту.,Prices are still charging. Try it in a minute.,0.726,0.900
+0.727,cropDocumentTitle,Crop Document,Обрезать документ,,,0.727
+0.729,ocrLanguagePackNotReady,Language pack downloading or not ready. Try again shortly.,Языковой пакет загружается или не готов. Попробуйте через минуту.,The language packet is loaded or not ready.,0.729,0.866
+0.732,importBackupButton,Import from backup,Импортировать из копии,,,0.732
+0.733,tickerRevertToOriginal,REVERT TO ORIGINAL,ВЕРНУТЬ К ОРИГИНАЛУ,,,0.733
+0.733,hueLabel,Hue,Оттенок,,,0.733
+0.736,favoriteTooltip,Favorite,Избранное,,,0.736
+0.738,sealSavedHeading,Saved seals,Сохранённые печати,,,0.738
+0.740,tickerBatchExport,BATCH EXPORT,ПАКЕТНЫЙ ЭКСПОРТ,,,0.740
+0.741,captionDocs,"Flexible crop: Original, Square, 4:3, 3:2, 16:9","Гибкая обрезка: Оригинал, Квадрат, 4:3, 3:2, 16:9","Flexible cut: Original, Square, 4:3, 3:2, 16:9",0.741,0.922
+0.745,signatureWidthLabel,Pen width,Толщина пера,,,0.745
+0.746,vibrateOnCaptureSubtitle,Haptic feedback when scan completes,Тактильный отклик при завершении сканирования,Tactile response at the end of the scan,0.746,0.830
+0.748,enableReviewPromptsSubtitle,Allow the app to occasionally ask for a rating,Разрешить приложению иногда запрашивать оценку,Allow the app sometimes to ask for an assessment,0.748,0.917
+0.750,searchHint,Search your scans,Поиск по сканам,,,0.750
+0.750,scaleLabel,Scale,Масштаб,,,0.750
+0.751,sealSavedMessage,Seal saved,Печать сохранена,,,0.751
+0.751,ticker21ToolEditSuite,21-TOOL EDIT SUITE,21 ИНСТРУМЕНТ РЕДАКТИРОВАНИЯ,,,0.751
+0.753,tickerFolders,FOLDERS,ПАПКИ,,,0.753
+0.756,captionPassport,Passport crop: 4:3 or Original,Обрезка паспорта: 4:3 или Оригинал,Passport cut: 4:3 or Original,0.756,0.908
+0.758,cropLabel,Crop,Обрезать,,,0.758
+0.760,cropNoPageFound,Couldn't find the page edges. Drag the corners.,Края страницы не найдены. Перетащите углы.,The edge of the page is missing.,0.760,0.909
+0.764,sampleColorTooltip,Sample color from page,Образец цвета со страницы,Color pattern from the page,0.764,0.942
+0.766,paywallFeatureNoInterstitial,No more interstitial ads,Больше никаких полноэкранных объявлений,No more full-screen ads,0.766,0.853
+0.767,watermarkDefaultText,CONFIDENTIAL,КОНФИДЕНЦИАЛЬНО,,,0.767
+0.773,tickerUndoRedo,UNDO/REDO,ОТМЕНА/ПОВТОР,,,0.773
+0.775,onboardingReplayIntro,Replay introduction,Воспроизвести введение,,,0.775
+0.779,filterFavorites,Favorites,Избранные,,,0.779
+0.780,annotationModeArrow,Arrow,Стрелка,,,0.780
+0.785,accentEmerald,Emerald,Изумруд,,,0.785
+0.785,vibrateOnCaptureLabel,Vibrate on capture,Вибрация при захвате,,,0.785
+0.786,accentIndigo,Indigo,Индиго,,,0.786
+0.786,exportBackupButton,Export encrypted backup,Экспортировать зашифрованную копию,,,0.786
+0.789,fillCapsLabel,ALL CAPS,ВСЕ ЗАГЛАВНЫЕ,,,0.789
+0.789,watermarkLayoutDiagonal,Diagonal,По диагонали,,,0.789
+0.789,eraserApplied,Eraser applied,Ластик применён,,,0.789
+0.790,cropAuto,Auto-detect,Определить автоматически,,,0.790
+0.795,printMarginNarrow,Narrow,Узкие,,,0.795
+0.796,sealTextColorSame,Same as ring,Как у кольца,,,0.796
+0.798,paywallFeatureNoBanner,No more banner ads,Больше никаких баннеров,No more banners.,0.798,0.913
+0.798,tickerNoAccount,NO ACCOUNT,БЕЗ АККАУНТА,,,0.798
+0.799,stampTickedLabel,Ticked,Отмечено,,,0.799
+0.802,tickerAccentThemes,ACCENT THEMES,ТЕМЫ АКЦЕНТА,,,0.802
+0.803,resizeTitle,Resize,Изменить размер,,,0.803
+0.804,commonRevert,Revert,Вернуть,,,0.804
+0.806,enableReviewPromptsLabel,Enable Review Prompts,Включить запросы отзывов,,,0.806
+0.807,resizeUpscaleWarning,Enlarging doesn't add detail — the page may look soft.,Увеличение не добавляет деталей — страница может выглядеть размытой.,Enlargement does not add details <unk> The page may look blurred.,0.807,0.884
+0.807,redoTooltip,Redo,Повторить,,,0.807
+0.807,annotationModeEllipse,Ellipse,Эллипс,,,0.807
+0.808,onboardingEditSubtitle,"Every edit stays reversible — undo, redo, and revert to original anytime.","Каждое редактирование остаётся обратимым — отмена, повтор и возврат к оригиналу в любой момент.","Each editing remains reversible <unk> cancellation, repetition, and return to the original at any time.",0.808,0.929
+0.811,moreOptionsTooltip,More options,Дополнительные параметры,,,0.811
+0.811,onboardingSignSubtitle,"E-sign contracts, type-to-fill forms, and stamp enterprise seals in seconds.","Э-подписывайте контракты, заполняйте формы и штамповуйте корпоративные печати за секунды.","E-sign contracts, fill out forms, and stamp corporate stamps in seconds.",0.811,0.813
+0.812,couldNotImportBackupError,Could not import this backup. Check the password and try again.,Не удалось импортировать эту копию. Проверьте пароль и попробуйте снова.,"Couldn't import this copy, so check the password and try again.",0.812,0.871
+0.812,editLabel,Edit,Изменить,,,0.812
+0.813,copiedToClipboard,Copied to clipboard,Скопировано в буфер обмена,,,0.813
+0.815,commonSkip,Skip,Пропустить,,,0.815
+0.819,printFitFill,Fill sheet (trims edges),Заполнить лист (края обрезаются),Fill out the sheet (the edges are cut),0.838,0.819
+0.819,whiteHaloLabel,White halo (readability),Белый ореол (читаемость),,,0.819
+0.819,letterSizeUS,Letter size (US),Формат Letter (США),,,0.819
+0.821,exportAndShareAction,Export & Share,Экспорт и отправка,,,0.821
+0.822,storageSectionLabel,Storage,Хранилище,,,0.822
+0.823,tickerTextStamps,TEXT STAMPS,ТЕКСТОВЫЕ ШТАМПЫ,,,0.823
+0.825,couldNotCreateBackupError,Could not create the backup.,Не удалось создать резервную копию.,Couldn't make a backup.,0.825,0.920
+0.825,enableSharePromptsLabel,Enable Share Prompts,Включить запросы поделиться,,,0.825
+0.825,tickerNonDestructiveEditing,NON-DESTRUCTIVE EDITING,НЕРАЗРУШАЮЩЕЕ РЕДАКТИРОВАНИЕ,,,0.825
+0.831,batchExportTooltip,Batch export,Пакетный экспорт,,,0.831
+0.831,eraserAutoColorTooltip,Match the page colour automatically,Подбирать цвет страницы автоматически,Select the page color automatically,0.831,0.851
+0.831,emailAttachmentNotIncluded,The pages could not be attached to the email. Use Share to send the pages.,"Не удалось прикрепить страницы к письму. Используйте «Поделиться», чтобы отправить страницы.",Couldn't attach the page to the mail. Use <unk>Share<unk> to send the page.,0.831,0.885
+0.831,straightenLabel,Straighten,Выровнять,,,0.831
+0.833,autoCopyOcrSubtitle,Copy text to clipboard after scan,Копировать текст в буфер после сканирования,Copy text to buffer after scanning,0.833,0.912
+0.834,commonCustom,Custom,Пользовательский,,,0.834
+0.838,tickerPassportMode,PASSPORT MODE,РЕЖИМ ПАСПОРТА,,,0.838
+0.839,onboardingWelcomeSubtitle,"Your entire document office — scan, edit, sign, and export — in one private app.","Весь ваш офис документов — сканирование, редактирование, подпись и экспорт — в одном приватном приложении.","Your entire office documents <unk> scan, edit, sign and export <unk> in one private app.",0.839,0.908
+0.839,rotateLabel,Rotate,Повернуть,,,0.839
+0.841,emailFailed,Email failed,Отправка письма не удалась,,,0.841
+0.845,reviewPromptTitle,Enjoying KatharScan?,Нравится KatharScan?,,,0.845
+0.848,clearedCount,Cleared {count},Очищено: {count},,,0.848
+0.848,systemThemeOption,System,Системная,,,0.848
+0.851,watermarkLabel,Watermark,Водяной знак,,,0.851
+0.851,fillInputHint,Type text to fill,Введите текст для заполнения,Enter the text to be filled in,0.851,0.942
+0.851,filterShadowRemoval,Shadow removal,Удаление теней,,,0.851
+0.853,filterContrastLabel,Contrast,Контраст,,,0.853
+0.853,idLayoutFullWidth,Full width,Во всю ширину,,,0.853
+0.854,diagnosticsSectionLabel,DIAGNOSTICS,ДИАГНОСТИКА,,,0.854
+0.854,sealCenterNone,None,Нет,,,0.854
+0.854,printMarginNone,None,Нет,,,0.854
+0.854,onboardingToolsSubtitle,"Annotate, sign, watermark, fill forms, seal, and more — every tool free and unlimited.","Аннотирование, подпись, водяные знаки, заполнение форм, печать и многое другое — каждый инструмент бесплатный и безлимитный.","Annotation, signature, watermarks, filling out forms, printing and much more <unk> every tool is free and unlimited.",0.854,0.882
+0.855,enableNotificationsSubtitle,Allow background reminders for unexported documents,Разрешить фоновые напоминания о неэкспортированных документах,Allow background reminders of non-exported documents,0.855,0.891
+0.855,restoreCompleteMessage,Restore complete.,Восстановление завершено.,,,0.855
+0.856,commonExtract,Extract,Извлечь,,,0.856
+0.857,accentViolet,Violet,Фиолетовый,,,0.857
+0.859,saveFailedBanner,Your latest changes could not be saved.,Не удалось сохранить последние изменения.,The latest changes have not been saved.,0.859,0.917
+0.860,emptySearch,No scans match your search.,"Нет сканов, соответствующих вашему поиску.",There are no scans that match your search.,0.946,0.860
+0.860,tickerSearchablePdf,SEARCHABLE PDF,ПОИСКОВЫЙ PDF,,,0.860
+0.861,importFrontSide,Import Front Side,Импорт лицевой,,,0.861
+0.861,errorReportIssue,Report issue,Сообщить о проблеме,,,0.861
+0.862,pageResized,Page resized,Размер страницы изменён,,,0.862
+0.862,termsOfServiceLabel,Terms of Service,Условия использования,,,0.862
+0.863,tickerESign,E-SIGN,Э-ПОДПИСЬ,,,0.863
+0.864,signatureTabDraw,Draw,Рисовать,,,0.864
+0.865,addCheckboxTitle,Add Checkbox,Добавить флажок,,,0.865
+0.865,exportingStatus,Exporting…,Экспортируется...,,,0.865
+0.866,signatureFontHandwritten,Handwritten,Рукописный,,,0.866
+0.866,exportEstimatedSize,Estimated size: {mb} MB,Расчётный размер: {mb} МБ,Calculated size: 5 MB,0.866,0.899
+0.867,tickerNoWatermarks,NO WATERMARKS,БЕЗ ВОДЯНЫХ ЗНАКОВ,,,0.867
+0.868,pagesToReadHint,This PDF has {count} pages. Pages that are pictures are read with OCR (about 10 seconds each); pages with real text are instant.,В этом PDF {count} стр. Страницы-изображения читаются с помощью OCR (около 10 секунд каждая); страницы с настоящим текстом — мгновенно.,"In this PDF, the image pages are read by OCR (about 10 seconds each); the pages with the actual text are read instantly.",0.868,0.935
+0.868,sharePromptTitle,Love KatharScan?,Нравится KatharScan?,,,0.868
+0.870,scanUnavailable,This scan is no longer available.,Этот скан больше недоступен.,This scan is no longer available.,1.000,0.870
+0.871,commonClear,Clear,Очистить,,,0.871
+0.875,tickerWordExport,WORD EXPORT,ЭКСПОРТ WORD,,,0.875
+0.876,moveToFolderTitle,Move to Folder,Переместить в папку,,,0.876
+0.877,pageRevertedToOriginal,Page reverted to original,Страница возвращена к оригиналу,Page returned to the original,0.877,0.944
+0.878,docScannerUnsupportedMessage,"Your device doesn't support the advanced document scanner. Take a photo with your Camera app, then tap Import below to crop and save it.","Ваше устройство не поддерживает расширенный сканер документов. Сделайте фото приложением Камера, затем нажмите Импорт ниже, чтобы обрезать и сохранить.","Your device doesn't support an extended document scanner. Take a photo with the Camera app, then click Import below to cut and save.",0.878,0.891
+0.878,sealMainTextLabel,Main text (top arc / box),Основной текст (верхняя дуга / поле),The main text (top arc / field),0.878,0.929
+0.878,moveToFolderTooltip,Move to folder,Переместить в папку,,,0.878
+0.879,exportFormatCsvDescription,Spreadsheet data,Данные таблицы,,,0.879
+0.879,chipSelectMultiple,Select Multiple,Выбрать несколько,,,0.879
+0.880,printMarginNormal,Normal,Обычные,,,0.880
+0.880,adsRemovedLabel,Ads Removed,Реклама удалена,,,0.880
+0.880,paywallSuccessTitle,Ads Removed,Реклама удалена,,,0.880
+0.880,noTextRecognized,No text recognized.,Текст не распознан.,,,0.880
+0.880,removeAdsTitle,Remove Ads Forever,Удалить рекламу навсегда,,,0.880
+0.880,signatureNewOne,Draw or type a new one,Нарисовать или ввести новую,Draw or insert a new one,0.880,0.931
+0.880,lightThemeOption,Light,Светлая,,,0.880
+0.882,progressBuildingDocx,Building DOCX…,Создание DOCX...,,,0.882
+0.882,filterMagicColor,Magic colour,Магия цвета,,,0.882
+0.883,exportSavedToDownloads,Saved to Downloads,Сохранено в Загрузки,,,0.883
+0.883,intensityLabel,Intensity,Интенсивность,,,0.883
+0.883,pageToLabel,To page,По страницу,,,0.883
+0.884,movedToFolderMessage,Moved to folder.,Перемещено в папку.,,,0.884
+0.884,ocrStatusOnDemand,On-demand,По запросу,,,0.884
+0.885,migrationTitle,Device Migration,Перенос устройства,,,0.885
+0.885,deviceMigrationLabel,Device Migration,Перенос устройства,,,0.885
+0.885,noFoldersYetHomeMessage,No folders yet. Create one from the home screen.,Папок ещё нет. Создайте одну с главного экрана.,There's no folder yet. Make one from the main screen.,0.885,0.914
+0.885,beepOnCaptureSubtitle,Play sound when scan completes,Воспроизвести звук при завершении сканирования,Play back the sound when the scan is complete,0.885,0.930
+0.886,migrationExplainer,"This isn't automatic sync. Export creates a single encrypted backup file you move to your new device yourself, then import there.","Это не автоматическая синхронизация. Экспорт создаёт один зашифрованный файл резервной копии, который вы сами переносите на новое устройство и там импортируете.",It's not automatic synchronization. Export creates one encrypted backup file that you transfer to a new device and import there.,0.940,0.886
+0.886,checkShapeSquare,Square,Квадрат,,,0.886
+0.886,cropAspectSquare,Square,Квадрат,,,0.886
+0.887,clearLogsTooltip,Clear logs,Очистить журналы,,,0.887
+0.887,sealShapeOval,Oval,Овал,,,0.887
+0.888,conversionStarting,Starting…,Запуск...,,,0.888
+0.891,sharePromptBody,Share it with friends who need a powerful document scanner.,"Поделитесь с друзьями, которым нужен мощный сканер документов.",Share it with friends who need a powerful document scanner.,1.000,0.891
+0.891,emptyFolders,No folders yet. Tap the folder icon to create one.,"Папок ещё нет. Нажмите на иконку папки, чтобы создать.",There's no folder yet. Click the folder icon to create.,0.920,0.891
+0.892,openSourceLicensesLabel,Open-source licenses,Лицензии с открытым исходным кодом,,,0.892
+0.892,folderUnavailable,This folder is no longer available.,Эта папка больше недоступна.,This folder is no longer available.,1.000,0.892
+0.893,pageCropped,Page cropped,Страница обрезана,,,0.893
+0.893,ocrNoInternetMessage,No internet. Connect once to download the language pack.,"Нет интернета. Подключитесь один раз, чтобы загрузить языковой пакет.",There's no Internet. Connect once to download the language packet.,0.893,0.895
+0.894,exportDoneStatus,Done,Готово,,,0.894
+0.894,commonDone,Done,Готово,,,0.894
+0.895,docxWarningMessage,"DOCX sources render poorly as pages — save inside the app is limited to JPG/PNG from image, PDF, TXT or CSV sources. Use Export & Share for this file.","Источники DOCX плохо отображаются как страницы — сохранение в приложении ограничено JPG/PNG из изображений, PDF, TXT или CSV. Используйте Экспорт и отправка для этого файла.","DOCX sources are poorly displayed as pages <unk> the storage in the application is limited to JPG/PNG from images, PDF, TXT or CSV. Use Export and Ship for this file.",0.895,0.948
+0.895,annotationModeRect,Rectangle,Прямоугольник,,,0.895
+0.895,filterTitle,Filter,Фильтр,,,0.895
+0.896,savedToDocumentText,Saved to document text,Сохранено в текст документа,Saved to text,0.896,0.896
+0.896,debugNoLogsYet,No logs yet,Журналов ещё нет,,,0.896
+0.896,watermarkPagesInvalid,Check the pages (the document has {count} pages),Проверьте страницы (в документе {count} стр.),"Check the pages (in the document, page 5)",0.932,0.896
+0.896,tickerAutoCopyOcr,AUTO-COPY OCR,АВТО-КОПИРОВАНИЕ OCR,,,0.896
+0.896,paywallLegalText,This is a non-consumable purchase. Restore it anytime on any device with the same store account.,Это непотребительская покупка. Восстановите её в любое время на любом устройстве с той же учётной записью магазина.,It's an unnecessary purchase. Restore it anytime on any device with the same store account.,0.912,0.896
+0.896,onboardingEditTitle,Non-Destructive Editing,Неразрушающее редактирование,,,0.896
+0.897,exportFormatSheetTitle,Export as,Экспортировать как,,,0.897
+0.897,rotationPage,Page rotated,Страница повёрнута,,,0.897
+0.897,sealSubtextLabel,Subtext (bottom arc / below),Подтекст (нижняя дуга / ниже),Subtext (lower arc / lower),0.909,0.897
+0.897,pagesDeleteConfirm,Delete {count} pages? They are removed when you save.,Удалить страниц: {count}? Они будут удалены при сохранении.,Delete pages: 5? They will be deleted when saved.,0.927,0.897
+0.898,placeHereLabel,Place here,Разместить здесь,,,0.898
+0.898,commonUpdate,Update,Обновить,,,0.898
+0.899,renameFolderTitle,Rename folder,Переименовать папку,,,0.899
+0.900,readingPageEta,Page {page} of {total} · about {minutes} min left,Страница {page} из {total} · осталось около {minutes} мин,Page 5 out of 5 · about 5 minutes left,0.900,0.954
+0.901,appearanceSectionLabel,Appearance,Внешний вид,,,0.901
+0.902,fillDeleteSnippet,Delete snippet?,Удалить фрагмент?,,,0.902
+0.902,saveToDownloadsAction,Save to Downloads,Сохранить в Загрузки,,,0.902
+0.902,deleteScanTitle,Delete this scan?,Удалить этот скан?,,,0.902
+0.903,backupCorruptedError,This backup file looks corrupted.,Этот файл резервной копии выглядит повреждённым.,This backup file looks damaged.,0.928,0.903
+0.903,commonConvert,Convert,Преобразовать,,,0.903
+0.903,reviewPromptNo,Send Feedback,Отправить отзыв,,,0.903
+0.903,enableSharePromptsSubtitle,Allow the app to occasionally suggest sharing,Разрешить приложению иногда предлагать поделиться,Allow the app to sometimes share,0.903,0.914
+0.903,printOptionsTitle,Print Options,Параметры печати,,,0.903
+0.904,genericErrorMessage,Something went wrong. Please try again.,Что-то пошло не так. Попробуйте снова.,"Something went wrong, try again.",0.904,0.960
+0.905,reviewPromptBody,Your feedback helps us grow and keeps the app free.,Ваш отзыв помогает нам расти и поддерживает приложение бесплатным.,Your feedback helps us grow and keep the app free.,0.995,0.905
+0.906,pickErrorPrefix,Pick error,Ошибка выбора,,,0.906
+0.906,undoTooltip,Undo,Отменить,,,0.906
+0.907,watermarkLayoutSingle,Single,Одиночный,,,0.907
+0.908,signerLabel,Signer {index},Подписант {index},,,0.908
+0.908,importFromGallery,Import from Gallery,Импорт из галереи,,,0.908
+0.909,titleScan,Scan,Сканировать,,,0.909
+0.909,exportGenericError,Something went wrong while exporting.,Что-то пошло не так при экспорте.,Something went wrong with the export.,0.943,0.909
+0.910,readingPageProgress,Page {page} of {total},Страница {page} из {total},Page 5 out of 5,0.910,0.971
+0.912,onboardingPrivacySubtitle,"No account, no cloud, no watermarks. Your documents never leave your device.","Без аккаунта, без облака, без водяных знаков. Ваши документы никогда не покидают ваше устройство.","No account, no cloud, no watermarks, your documents never leave your device.",0.977,0.912
+0.912,signatureTypeHint,Type your name,Введите имя,,,0.912
+0.912,progressBuildingPdf,Building PDF…,Создание PDF...,,,0.912
+0.912,emailMessageHint,Add a note (optional),Добавьте заметку (необязательно),Add a note (not required),0.912,0.938
+0.912,conversionFailedPrefix,Conversion failed,Преобразование не удалось,,,0.912
+0.912,sealShapeRound,Round,Круглый,,,0.912
+0.912,progressEncodingPage,Encoding page {current} of {total}…,Кодирование страницы {current} из {total}...,Encoding page 5 out of 5...,0.967,0.912
+0.913,progressDecodingImage,Decoding image…,Декодирование изображения...,,,0.913
+0.913,stampPaperLabel,Paper,Бумага,,,0.913
+0.913,printPaperLabel,Paper,Бумага,,,0.913
+0.914,deleteFolderTooltip,Delete folder,Удалить папку,,,0.914
+0.914,printRangeCurrent,Current,Текущая,,,0.914
+0.914,emptyStateDefaultMessage,Tap the camera to scan your first document.,"Нажмите на камеру, чтобы отсканировать первый документ.",Press the camera to scan the first document.,0.959,0.914
+0.914,fromAnotherDocument,From Another Document,Из другого документа,,,0.914
+0.914,rotationAllPages,All pages rotated,Все страницы повёрнуты,,,0.914
+0.915,fillSaveSnippet,Save as snippet,Сохранить как фрагмент,,,0.915
+0.915,watermarkEditTitle,Edit Watermark,Редактировать водяной знак,,,0.915
+0.915,tickerRegionOcr,REGION OCR,РЕГИОНАЛЬНЫЙ OCR,,,0.915
+0.916,filterColorEnhance,Color enhance,Улучшение цвета,,,0.916
+0.916,useSavedSignature,Use Saved,Использовать сохранённую,,,0.916
+0.916,noteTextLabel,Note text,Текст заметки,,,0.916
+0.917,exportFormatPdfDescription,Best for sharing and printing,Лучше всего для обмена и печати,Best for sharing and printing,1.000,0.917
+0.917,engagementSectionLabel,ENGAGEMENT & NOTIFICATIONS,ВЗАИМОДЕЙСТВИЕ И УВЕДОМЛЕНИЯ,,,0.917
+0.917,removeFromFolderTooltip,Remove from folder,Удалить из папки,,,0.917
+0.918,noDocumentsInFolder,No documents in this folder yet.,В этой папке ещё нет документов.,There are no documents in this folder yet.,0.955,0.918
+0.918,removeFromFavorites,Remove from Favorites,Удалить из избранного,,,0.918
+0.919,signatureChoiceMessage,Use your saved signature or draw a new one?,Использовать сохранённую подпись или нарисовать новую?,Should I use a saved signature or draw a new one?,0.965,0.919
+0.919,paywallTitle,Remove Ads,Удалить рекламу,,,0.919
+0.919,progressSaving,Saving…,Сохранение...,,,0.919
+0.919,commonChange,Change,Изменить,,,0.919
+0.920,importingStatus,Importing…,Импорт...,,,0.920
+0.920,filterApplied,Filter applied,Фильтр применён,,,0.920
+0.920,extractedPageDefaultTitle,Extracted Page,Извлечённая страница,,,0.920
+0.920,convertDocumentTitle,Convert Document,Преобразовать документ,,,0.920
+0.920,exportNoTextError,This document has no text yet. Run OCR on it first.,В этом документе пока нет текста. Сначала запустите распознавание (OCR).,There's no text in this document yet. Start with OCR.,0.920,0.929
+0.920,saveFailedPrefix,Save failed:,Не удалось сохранить:,,,0.920
+0.921,opacityPercentLabel,Opacity: {percent}%,Непрозрачность: {percent}%,,,0.921
+0.921,progressReading,Reading…,Чтение...,,,0.921
+0.921,printRangeRange,Range,Диапазон,,,0.921
+0.921,watermarkPagesRange,Range,Диапазон,,,0.921
+0.921,ocrStatusInstalled,Installed,Установлено,,,0.921
+0.921,importAndConvertDocument,Import & Convert Document,Импортировать и преобразовать документ,Import and convert the document,0.982,0.921
+0.921,drawNewSignature,Draw New,Нарисовать новую,,,0.921
+0.922,paywallSubtitle,Support KatharScan with a one-time purchase. All features remain free.,Поддержите KatharScan разовой покупкой. Все функции останутся бесплатными.,Support KatharScan with a one-time purchase.,0.922,0.943
+0.922,commonCopy,Copy,Копировать,,,0.922
+0.922,ocrStatusUnsupported,Unsupported,Не поддерживается,,,0.922
+0.923,commonApply,Apply,Применить,,,0.923
+0.923,saveInsideAppWarning,"To save inside the app, choose JPG or PNG. Other targets are exported as files.","Чтобы сохранить в приложении, выберите JPG или PNG. Другие цели экспортируются как файлы.","To save in the app, select JPG or PNG. Other purposes are exported as files.",0.928,0.923
+0.923,onboardingOcrTitle,On-Device OCR,OCR на устройстве,,,0.923
+0.923,signatureDeleteSaved,Remove saved signature,Удалить сохранённую подпись,,,0.923
+0.924,sealLogoReady,Logo ready,Логотип готов,,,0.924
+0.925,fullscreenLabel,Fullscreen,Полный экран,,,0.925
+0.925,checkShapeRounded,Rounded,Скруглённый,,,0.925
+0.925,tickerPdfExport,PDF EXPORT,ЭКСПОРТ PDF,,,0.925
+0.925,tickerTxtExport,TXT EXPORT,ЭКСПОРТ TXT,,,0.925
+0.925,importErrorPrefix,Import error,Ошибка импорта,,,0.925
+0.926,filterSheetTitle,Filters,Фильтры,,,0.926
+0.926,pdfImportedAsDocument,PDF imported as document,PDF импортирован как документ,PDF is imported as a document,0.926,0.932
+0.926,scanPreviewNoPages,No pages to show.,Нет страниц для отображения.,There are no pages to display.,0.926,0.927
+0.926,accentBlue,Blue,Синий,,,0.926
+0.926,modePassport,Passport Mode,Режим паспорта,,,0.926
+0.926,regionOcrFailed,Region OCR failed,Региональный OCR не удался,,,0.926
+0.927,tickerJpgExport,JPG EXPORT,ЭКСПОРТ JPG,,,0.927
+0.927,sealRemoveWhite,Make white transparent,Сделать белый прозрачным,,,0.927
+0.928,paywallSuccessMessage,Thank you for supporting KatharScan.,Спасибо за поддержку KatharScan.,Thank you for supporting KatharScan.,1.000,0.928
+0.928,exportFormatTxtDescription,Plain OCR text only,Только обычный текст OCR,Just plain OCR text,0.928,0.941
+0.928,scannerErrorPrefix,Scanner error,Ошибка сканера,,,0.928
+0.928,watermarkAddTitle,Add Watermark,Добавить водяной знак,,,0.928
+0.929,noFoldersYet,No folders yet,Папок ещё нет,,,0.929
+0.929,saveToDeviceButton,Save to Device,Сохранить на устройство,,,0.929
+0.929,ocrScriptDevanagari,"Hindi, Marathi (Devanagari)","Хинди, маратхи (деванагари)",,,0.929
+0.930,checkShapeCircle,Circle,Круг,,,0.930
+0.930,progressRasterizing,Rasterizing pages…,Растеризация страниц...,,,0.930
+0.930,deleteFolderMessage,Documents inside will not be deleted.,Документы внутри не будут удалены.,The documents inside will not be deleted.,0.973,0.930
+0.930,selectRegionTitle,Select Region,Выбрать область,,,0.930
+0.930,customColorTitle,Custom Color,Пользовательский цвет,,,0.930
+0.931,noteLabel,Note,Заметка,,,0.931
+0.931,managePagesTitle,Manage Pages,Управление страницами,,,0.931
+0.931,ocrScriptChinese,Chinese,Китайский,,,0.931
+0.932,setBackupPasswordTitle,Set a backup password,Установить пароль резервной копии,Set the password for the backup,0.959,0.932
+0.932,filterBrightnessLabel,Brightness,Яркость,,,0.932
+0.933,commonClose,Close,Закрыть,,,0.933
+0.934,tickerPngExport,PNG EXPORT,ЭКСПОРТ PNG,,,0.934
+0.934,paywallFeatureFreeForever,All features free forever,Все функции бесплатны навсегда,All the features are free forever,0.964,0.934
+0.934,deleteFolderTitle,Delete this folder?,Удалить эту папку?,,,0.934
+0.934,docxModeTextOnly,Text Only,Только текст,,,0.934
+0.935,ocrStatusDownloading,Downloading…,Загрузка…,,,0.935
+0.935,cropAspectFree,Free,Свободно,,,0.935
+0.935,ocrScriptKorean,Korean,Корейский,,,0.935
+0.935,whatsNewBody,"Welcome to KatharScan! This is the first public release featuring unlimited scanning, 29 languages, and export to PDF, Word, TXT, JPG, PNG, and CSV.","Добро пожаловать в KatharScan! Это первый публичный релиз с неограниченным сканированием, 29 языками и экспортом в PDF, Word, TXT, JPG, PNG и CSV.","Welcome to KatharScan! It's the first public release with unlimited scanning, 29 languages and export to PDF, Word, TXT, JPG, PNG and CSV.",0.993,0.935
+0.935,emailLimitMissed,Could not get under {mb} MB; sent the smallest version.,Не удалось уложиться в {mb} МБ; отправлена самая маленькая версия.,Couldn't get to 5 MB; the smallest version was sent.,0.935,0.938
+0.936,autoScan,Auto Scan,Автосканирование,,,0.936
+0.936,enableNotificationsLabel,Enable Notifications,Включить уведомления,,,0.936
+0.936,commonCancel,Cancel,Отмена,,,0.936
+0.937,signatureSavedHeading,Saved signatures,Сохранённые подписи,,,0.937
+0.937,darkThemeOption,Dark,Тёмная,,,0.937
+0.937,sealCenterTextLabel,Center text,Центральный текст,,,0.937
+0.937,chipAllFolders,All Folders,Все папки,,,0.937
+0.937,clearThis,Clear this,Очистить это,,,0.937
+0.938,ocrUnavailableTooltip,OCR unavailable on this device.,OCR недоступен на этом устройстве.,OCR is not available on this device.,0.938,0.944
+0.938,revertToOriginalTitle,Revert to Original?,Вернуть к оригиналу?,,,0.938
+0.938,tickerFreeUnlimitedOcr,FREE UNLIMITED OCR,БЕСПЛАТНЫЙ БЕЗЛИМИТНЫЙ OCR,,,0.938
+0.939,exportFormatDocxDescription,Editable text document,Редактируемый текстовый документ,,,0.939
+0.939,reviewPromptYes,Rate Us,Оценить нас,,,0.939
+0.939,addToFavorites,Add to Favorites,Добавить в избранное,,,0.939
+0.939,whatsNewTitle,What's New,Что нового,,,0.939
+0.939,enterBackupPasswordTitle,Enter backup password,Введите пароль резервной копии,,,0.939
+0.940,commonExport,Export,Экспорт,,,0.940
+0.940,exportTooltip,Export,Экспорт,,,0.940
+0.940,exportTitle,Export,Экспорт,,,0.940
+0.941,progressCopying,Copying…,Копирование...,,,0.941
+0.941,exportFormatPngDescription,"One image per page, lossless","Одно изображение на страницу, без потерь",One image per page without loss,0.969,0.941
+0.941,onboardingGetStarted,Get Started,Начать,,,0.941
+0.941,errorScreenProblem,KatharScan ran into a problem displaying this screen. Your scans are safe — they're stored on this device and this doesn't affect them.,"KatharScan столкнулся с проблемой при отображении этого экрана. Ваши сканы в безопасности — они хранятся на этом устройстве, и это не влияет на них.","KatharScan has a problem with displaying this screen. Your scans are safe <unk> they're stored on this device, and it doesn't affect them.",0.982,0.941
+0.941,commonPrint,Print,Печать,,,0.941
+0.942,filterRemoved,Filter removed,Фильтр удалён,,,0.942
+0.943,clearAll,Clear all,Очистить всё,,,0.943
+0.943,newFolderTitle,New Folder,Новая папка,,,0.943
+0.943,newFolderTooltip,New Folder,Новая папка,,,0.943
+0.943,commonImport,Import,Импорт,,,0.943
+0.943,addTagTitle,Add tag,Добавить тег,,,0.943
+0.943,copyAll,Copy all,Копировать всё,,,0.943
+0.943,sizePtLabel,Size: {size}pt,Размер: {size}пт,,,0.943
+0.943,sealDefaultMainText,YOUR COMPANY,ВАША КОМПАНИЯ,,,0.943
+0.944,extractedTextTitle,Extracted Text,Извлечённый текст,,,0.944
+0.944,paywallFallbackPrice,$14.99 one-time,$14.99 разовая,,,0.944
+0.944,tickerCsvExport,CSV EXPORT,ЭКСПОРТ CSV,,,0.944
+0.944,clearPage,Clear page,Очистить страницу,,,0.944
+0.945,subscriptionSectionLabel,Subscription,Подписка,,,0.945
+0.945,signatureCanvasHint,Sign here,Подпишите здесь,,,0.945
+0.946,sealCenterStar,Star,Звезда,,,0.946
+0.946,compressMedium,Medium,Средний,,,0.946
+0.947,errorGenericTitle,Something went wrong,Что-то пошло не так,,,0.947
+0.947,addSignature,Add Signature,Добавить подпись,,,0.947
+0.947,progressExtractingText,Extracting text…,Извлечение текста...,,,0.947
+0.947,sealCenterLogo,Logo,Логотип,,,0.947
+0.947,pagesToReadTitle,Pages to read,Страницы для чтения,,,0.947
+0.948,emailMessageLabel,Message,Сообщение,,,0.948
+0.948,cropAspectId,ID card,ID-карта,,,0.948
+0.948,ocrStatusChecking,Checking...,Проверка...,,,0.948
+0.949,convertToLabel,Convert to:,Преобразовать в:,,,0.949
+0.949,emailLabel,Email,Эл. почта,,,0.949
+0.950,commonRemove,Remove,Удалить,,,0.950
+0.950,signatureTitle,Signature,Подпись,,,0.950
+0.951,emptyDocumentMessage,This document has no pages.,В этом документе нет страниц.,There are no pages in this document.,0.951,0.958
+0.951,onboardingOcrSubtitle,Use KatharScan in {count} languages. OCR runs on your phone — nothing ever leaves your device.,Используйте KatharScan на {count} языках. OCR работает на телефоне — ничего не покидает устройство.,Use KatharScan in 5 languages. OCR works on the phone <unk> nothing leaves the device.,0.956,0.951
+0.951,homeLanguageTooltip,App Language,Язык приложения,,,0.951
+0.951,appLanguageTitle,App Language,Язык приложения,,,0.951
+0.951,commonUse,Use,Использовать,,,0.951
+0.951,sharePromptAction,Share App,Поделиться приложением,,,0.951
+0.951,privacyOptionsLabel,Privacy settings,Настройки конфиденциальности,,,0.951
+0.952,autoCopyOcrLabel,Auto-copy OCR,Автокопирование OCR,,,0.952
+0.952,ocrNoTextFound,No text found,Текст не найден,,,0.952
+0.952,onboardingToolsTitle,21 Free Pro Tools,21 бесплатный Pro-инструмент,21 free Pro tool,0.976,0.952
+0.952,appLanguageLabel,App language,Язык приложения,,,0.952
+0.952,commonDelete,Delete,Удалить,,,0.952
+0.952,deleteTooltip,Delete,Удалить,,,0.952
+0.952,genericErrorPrefix,Error,Ошибка,,,0.952
+0.953,idLayoutRealSize,Real size,Реальный размер,,,0.953
+0.954,ocrStatusBuiltIn,Built-in,Встроенный,,,0.954
+0.954,themeLabel,Theme,Тема,,,0.954
+0.954,accentColorTooltip,Accent Color,Цвет акцента,,,0.954
+0.954,accentColorTitle,Accent Color,Цвет акцента,,,0.954
+0.954,commonSave,Save,Сохранить,,,0.954
+0.955,savedAsNewDocument,Saved as new document,Сохранено как новый документ,Saved as a new document,0.989,0.955
+0.955,printFailed,Print failed,Печать не удалась,,,0.955
+0.955,compressNoLimit,No limit,Без лимита,,,0.955
+0.956,actionLabel,Action:,Действие:,,,0.956
+0.956,widthLabel,Width,Ширина,,,0.956
+0.956,applyToAllPages,Apply to all pages,Применить ко всем страницам,Apply to all pages,1.000,0.956
+0.956,saveAsNewDocumentAction,Save as new Document,Сохранить как новый документ,Save as a new document,0.992,0.956
+0.956,sealFontSerif,Classic,Классический,,,0.956
+0.957,pdfImportErrorPrefix,PDF import error,Ошибка импорта PDF,,,0.957
+0.957,printFilterNone,No filter,Без фильтра,,,0.957
+0.957,saveAsDocument,Save as Document,Сохранить как документ,,,0.957
+0.957,privacyPolicyLabel,Privacy policy,Политика конфиденциальности,,,0.957
+0.958,filterRecent,Recent,Недавние,,,0.958
+0.958,pagesDeleteCount,Delete {count},Удалить {count},,,0.958
+0.959,onboardingWelcomeTitle,Welcome to KatharScan,Добро пожаловать в KatharScan,,,0.959
+0.959,compressSmall,Small,Маленький,,,0.959
+0.959,renameDocumentTitle,Rename document,Переименовать документ,,,0.959
+0.960,cameraErrorPrefix,Camera error,Ошибка камеры,,,0.960
+0.960,continueButton,Continue,Продолжить,,,0.960
+0.960,onboardingContinue,Continue,Продолжить,,,0.960
+0.960,whatsNewContinue,Continue,Продолжить,,,0.960
+0.960,pagesUpdated,Pages updated,Страницы обновлены,,,0.960
+0.960,exportFormatJpgDescription,One image per page,Одно изображение на страницу,One image per page,1.000,0.960
+0.960,fillTooltip,Fill,Заполнить,,,0.960
+0.961,filterOriginal,Original,Оригинал,,,0.961
+0.961,extractedAsNewDocument,Extracted as new document,Извлечено как новый документ,Extracted as a new document,0.989,0.961
+0.961,documentSaved,Document saved,Документ сохранён,,,0.961
+0.961,restorePurchasesButton,Restore purchases,Восстановить покупки,,,0.961
+0.961,addNoteTitle,Add Note,Добавить заметку,,,0.961
+0.962,heightLabel,Height,Высота,,,0.962
+0.962,editDocumentAction,Edit Document,Редактировать документ,,,0.962
+0.962,addDateTitle,Add Date,Добавить дату,,,0.962
+0.963,idGenerating,Generating PDF...,Создание PDF...,,,0.963
+0.963,commonRename,Rename,Переименовать,,,0.963
+0.963,rotate90Action,Rotate 90°,Повернуть на 90°,,,0.963
+0.963,noEmailAppFound,No email app found,Не найдено приложение электронной почты,No e-mail app found,0.963,0.975
+0.963,addTagsAction,Add Tags,Добавить теги,,,0.963
+0.963,languageSectionLabel,Language,Язык,,,0.963
+0.965,pageFromLabel,From page,С страницы,,,0.965
+0.965,onboardingBack,Back,Назад,,,0.965
+0.966,addPageTitle,Add Page,Добавить страницу,,,0.966
+0.967,modeDocument,Document Mode,Режим документа,,,0.967
+0.967,ocrScriptLatin,"Latin (English, European)","Латиница (английский, европейский)",,,0.967
+0.967,convertedDocTitle,Converted {date},Преобразовано {date},,,0.967
+0.967,sealCenterText,Text,Текст,,,0.967
+0.967,watermarkTextLabel,Text,Текст,,,0.967
+0.967,textLabel,Text,Текст,,,0.967
+0.967,watermarkKindText,Text,Текст,,,0.967
+0.968,shareTooltip,Share,Поделиться,,,0.968
+0.968,commonShare,Share,Поделиться,,,0.968
+0.968,pagesLabel,Pages,Страницы,,,0.968
+0.968,watermarkPagesLabel,Pages,Страницы,,,0.968
+0.968,addTextTitle,Add Text,Добавить текст,,,0.968
+0.968,commonCreate,Create,Создать,,,0.968
+0.968,watermarkPagesThis,This page,Эта страница,,,0.968
+0.969,ocrScriptJapanese,Japanese,Японский,,,0.969
+0.969,clearAllPages,Clear all pages,Очистить все страницы,,,0.969
+0.969,tryAgainButton,Try again,Попробовать снова,,,0.969
+0.969,commonAdd,Add,Добавить,,,0.969
+0.970,cameraSource,Camera,Камера,,,0.970
+0.970,ocrLanguagesLabel,OCR Languages,Языки OCR,,,0.970
+0.970,settingsTooltip,Settings,Настройки,,,0.970
+0.970,settingsTitle,Settings,Настройки,,,0.970
+0.971,sealTextColorLabel,Text colour,Цвет текста,,,0.971
+0.975,commonSize,Size,Размер,,,0.975
+0.976,supportLabel,Support,Поддержка,,,0.976
+0.976,compressTargetLabel,Max size,Макс. размер,,,0.976
+0.976,commonConfirm,Confirm,Подтвердить,,,0.976
+0.976,sharePromptDismiss,Not now,Не сейчас,,,0.976
+0.976,tabImageLabel,Image,Изображение,,,0.976
+0.976,watermarkKindImage,Image,Изображение,,,0.976
+0.978,pageLabel,Page {index},Страница {index},,,0.978
+0.978,docxModeWithImages,With Images,С изображениями,,,0.978
+0.978,annotationModeSelect,Select,Выбрать,,,0.978
+0.978,documentsSectionHeader,Documents,Документы,,,0.978
+0.979,tabOcrTextLabel,OCR Text,Текст OCR,,,0.979
+0.979,titlePdfImport,PDF Import,Импорт PDF,,,0.979
+0.979,tickerLanguages,{count} LANGUAGES,{count} ЯЗЫКОВ,,,0.979
+0.980,documentNotFound,Document not found,Документ не найден,,,0.980
+0.980,commonColor,Color,Цвет,,,0.980
+0.980,filterColor,Color,Цвет,,,0.980
+0.980,filterAll,All,Все,,,0.980
+0.981,pagesSelectTooltip,Select pages,Выбрать страницы,,,0.981
+0.982,modeOcr,OCR Mode,Режим OCR,,,0.982
+0.982,textSizeLabel,Text size: {size},Размер текста: {size},,,0.982
+0.983,sealTextSizePercent,Text size {percent}%,Размер текста {percent}%,,,0.983
+0.984,pageFormatLetter,Letter (US),Letter (США),,,0.984
+0.984,dateLabel,Date,Дата,,,0.984
+0.985,sharePdf,Share PDF,Поделиться PDF,,,0.985
+0.986,watermarkChooseImage,Choose image,Выбрать изображение,,,0.986
+0.986,pageIndicator,Page {current} / {total},Страница {current} / {total},Page 5 / 5,1.000,0.986
+0.987,exportFormatTxtLabel,Text (.txt),Текст (.txt),,,0.987
+0.988,printRangeAll,All pages,Все страницы,,,0.988
+0.988,watermarkPagesAll,All pages,Все страницы,,,0.988
+0.988,originalDimensions,Original: {w}×{h},Оригинал: {w}×{h},,,0.988
+1.000,exportFormatPdfLabel,PDF,PDF,,,1.000
+1.000,ocrScriptArabic,العربية (Arabic),العربية (Arabic),,,1.000
+1.000,ocrSectionLabel,OCR,OCR,,,1.000
+1.000,fontMonospace,monospace,monospace,,,1.000
+1.000,exportFormatJpgLabel,JPG,JPG,,,1.000
+1.000,proBadgeLabel,PRO,PRO,,,1.000
+1.000,ocrScriptRussian,Русский (Russian),Русский (Russian),,,1.000
+1.000,ocrScriptUkrainian,Українська (Ukrainian),Українська (Ukrainian),,,1.000
+1.000,ocrScriptBengali,বাংলা (Bengali),বাংলা (Bengali),,,1.000
+1.000,exportFormatDocxLabel,Word (.docx),Word (.docx),,,1.000
+1.000,exportFormatPngLabel,PNG,PNG,,,1.000
+1.000,fontSerif,serif,serif,,,1.000
+1.000,formatCsv,CSV,CSV,,,1.000
+1.000,ocrScriptGreek,Ελληνικά (Greek),Ελληνικά (Greek),,,1.000
+1.000,ocrScriptHebrew,עברית (Hebrew),עברית (Hebrew),,,1.000
+1.000,ocrScriptThai,ไทย (Thai),ไทย (Thai),,,1.000
+1.000,fontSansSerif,sans-serif,sans-serif,,,1.000

@@ -1,0 +1,541 @@
+score,key,english,translation,back_to_english,backtrans_score,labse_score
+0.117,ticker100OnDevicePrivacy,YOUR DOCUMENTS STAY ON YOUR DEVICE,TÀI LIỆU CỦA BẠN Ở LẠI TRÊN THIẾT BỊ CỦA BẠN,Your Life is on the Way to Your Life,0.117,0.798
+0.124,accentIndigo,Indigo,Chàm,,,0.124
+0.244,compressLabel,Compress,Nén,,,0.244
+0.252,accentViolet,Violet,Tím,,,0.252
+0.280,watermarkLayoutDiagonal,Diagonal,Chéo,,,0.280
+0.285,batchExportEmptyMessage,No documents to batch export. Scan some first.,Không có tài liệu để xuất hàng loạt. Quét vài cái trước.,There's no paperwork for the serial.,0.285,0.794
+0.301,savedToDocumentText,Saved to document text,Đã lưu vào văn bản tài liệu,Inscribed in the documentation,0.301,0.834
+0.310,resizeUpscaleWarning,Enlarging doesn't add detail — the page may look soft.,Phóng to không thêm chi tiết — trang có thể bị mờ.,The amplification without adding details may be blurred.,0.310,0.824
+0.317,satLabel,Sat,Bão hòa,,,0.317
+0.317,accentAmber,Amber,Hổ phách,,,0.317
+0.333,cropNoPageFound,Couldn't find the page edges. Drag the corners.,Không tìm thấy mép trang. Hãy kéo các góc.,I can't find the map.,0.333,0.899
+0.337,filterOriginal,Original,Gốc,,,0.337
+0.355,accentEmerald,Emerald,Ngọc lục bảo,,,0.355
+0.359,eraserZoomTooltip,Zoom and move (pinch),Thu phóng và di chuyển (chụm),Release and movement (switching),0.359,0.818
+0.361,checkShapeSquare,Square,Vuông,,,0.361
+0.361,cropAspectSquare,Square,Vuông,,,0.361
+0.365,printFitLabel,Scaling,Tỷ lệ,,,0.365
+0.365,deleteScanMessage,This can't be undone.,Không thể hoàn tác.,Can't finish it.,0.365,0.724
+0.373,exportGenericError,Something went wrong while exporting.,Đã xảy ra lỗi khi xuất.,There's been an error on the way out.,0.373,0.770
+0.376,rotateLabel,Rotate,Xoay,,,0.376
+0.389,signatureFontFlowing,Flowing,Mềm mại,,,0.389
+0.408,tickerTextStamps,TEXT STAMPS,DẤU VĂN BẢN,,,0.408
+0.421,tickerPassportMode,PASSPORT MODE,CHẾ ĐỘ HỘ CHIẾU,,,0.421
+0.422,watermarkLabel,Watermark,Hình mờ,,,0.422
+0.428,tickerNoteStamps,NOTE STAMPS,DẤU GHI CHÚ,,,0.428
+0.434,tickerTapToTypeFilling,TAP-TO-TYPE FILLING,ĐIỀN CHẠM-VÀ-GÕ,,,0.434
+0.436,extractToNewDocAction,Extract to new doc,Trích xuất sang tài liệu mới,It's good for the new document.,0.436,0.824
+0.440,tickerRevertToOriginal,REVERT TO ORIGINAL,KHÔI PHỤC VỀ BẢN GỐC,,,0.440
+0.441,undoTooltip,Undo,Hoàn tác,,,0.441
+0.442,captureBehaviorSectionLabel,CAPTURE BEHAVIOR,HÀNH VI CHỤP,,,0.442
+0.445,duplicateAction,Duplicate,Nhân bản,,,0.445
+0.450,captionOcr,"Text crop: Original, Square, 4:3","Cắt văn bản: Gốc, Vuông, 4:3","Cut the text: Screw, Screw, 4:3",0.450,0.809
+0.451,tickerGalleryImport,GALLERY IMPORT,NHẬP TỪ THƯ VIỆN,,,0.451
+0.456,commonDone,Done,Xong,,,0.456
+0.477,printMarginNarrow,Narrow,Hẹp,,,0.477
+0.487,captionDocs,"Flexible crop: Original, Square, 4:3, 3:2, 16:9","Cắt linh hoạt: Gốc, Vuông, 4:3, 3:2, 16:9","Flexible cutting: cork, wool, 4:3, 3:2, 16:9",0.487,0.812
+0.490,annotationModeHighlighter,Highlighter,Bút đánh dấu,,,0.490
+0.498,annotationModePen,Pen,Bút,,,0.498
+0.500,filterShadow,Shadow,Bóng,,,0.500
+0.501,onboardingSignSubtitle,"E-sign contracts, type-to-fill forms, and stamp enterprise seals in seconds.","Ký số hợp đồng, điền biểu mẫu và đóng dấu doanh nghiệp trong vài giây.","Number the contract, fill out the form and seal the deal in seconds.",0.501,0.718
+0.503,diagnosticsSectionLabel,DIAGNOSTICS,CHẨN ĐOÁN,,,0.503
+0.505,tickerCustomSeals,CUSTOM SEALS,CON DẤU TÙY CHỈNH,,,0.505
+0.507,readingPageProgress,Page {page} of {total},Trang {page}/{total},What is the Bible? 5/5,0.507,0.922
+0.512,sealInkLook,Worn stamp look,Kiểu con dấu cũ,,,0.512
+0.523,tickerDeviceMigration,DEVICE MIGRATION,DI CHUYỂN THIẾT BỊ,,,0.523
+0.534,tickerDarkMode,DARK MODE,CHẾ ĐỘ TỐI,,,0.534
+0.534,watermarkLayoutTiled,Tiled,Lát gạch,,,0.534
+0.552,tickerESign,E-SIGN,CHỮ KÝ SỐ,,,0.552
+0.552,tickerFavorites,FAVORITES,YÊU THÍCH,,,0.552
+0.556,tickerFolders,FOLDERS,THƯ MỤC,,,0.556
+0.562,scaleLabel,Scale,Tỷ lệ,,,0.562
+0.563,fillCapsLabel,ALL CAPS,TẤT CẢ CHỮ HOA,,,0.563
+0.564,darkThemeOption,Dark,Tối,,,0.564
+0.568,marqueeEraseTooltip,Marquee erase,Tẩy vùng chọn,,,0.568
+0.569,signatureTabType,Type,Nhập,,,0.569
+0.572,idStepFront,Step 1: Capture Front Side,Bước 1: Chụp mặt trước,Step 1: Take a picture of your face,0.572,0.907
+0.572,frontSideCaptured,Front side captured. Now capture the back side.,Đã chụp mặt trước. Bây giờ chụp mặt sau.,"I took the front, now the back.",0.572,0.831
+0.575,valLabel,Val,Giá trị,,,0.575
+0.582,annotationModeArrow,Arrow,Mũi tên,,,0.582
+0.591,sealTextColorSame,Same as ring,Giống viền,,,0.591
+0.592,printFitFit,Fit page,Vừa trang,,,0.592
+0.594,annotationModeEraser,Eraser,Cục tẩy,,,0.594
+0.608,tickerNonDestructiveEditing,NON-DESTRUCTIVE EDITING,CHỈNH SỬA KHÔNG PHÁ HỦY,,,0.608
+0.609,watermarkDefaultText,CONFIDENTIAL,BẢO MẬT,,,0.609
+0.609,sealFontSans,Clean,Gọn,,,0.609
+0.615,tickerAccentThemes,ACCENT THEMES,CHỦ ĐỀ NHẤN,,,0.615
+0.625,tickerIdCardMode,ID CARD MODE,CHẾ ĐỘ THẺ CĂN CƯỚC,,,0.625
+0.625,signatureWidthLabel,Pen width,Độ dày nét,,,0.625
+0.627,tickerTags,TAGS,THẺ,,,0.627
+0.632,progressEncodingPage,Encoding page {current} of {total}…,Đang mã hóa trang {current}/{total}...,I'm coding the 5/5 page...,0.632,0.827
+0.634,appearanceSectionLabel,Appearance,Giao diện,,,0.634
+0.638,captionPassport,Passport crop: 4:3 or Original,Cắt hộ chiếu: 4:3 hoặc Gốc,Passport cut: 4:3 or Gok,0.638,0.759
+0.641,lightThemeOption,Light,Sáng,,,0.641
+0.642,noDocumentsInFolder,No documents in this folder yet.,Chưa có tài liệu trong thư mục này.,There is no documentation in this folder.,0.642,0.875
+0.642,sealShapeOval,Oval,Hình bầu dục,,,0.642
+0.645,hueLabel,Hue,Sắc độ,,,0.645
+0.645,titleScan,Scan,Quét,,,0.645
+0.647,watermarkEditTitle,Edit Watermark,Chỉnh sửa hình mờ,,,0.647
+0.648,sealSubtextLabel,Subtext (bottom arc / below),Văn bản phụ (vòng cung dưới / bên dưới),Subtitles (under / below arc),0.648,0.873
+0.654,emptyFavorites,No favorites yet. Tap the star icon on a document to add it.,Chưa có yêu thích. Chạm vào biểu tượng sao trên tài liệu để thêm.,Touch the star symbol on the document to add it.,0.654,0.897
+0.655,pagesDeleteConfirm,Delete {count} pages? They are removed when you save.,Xóa {count} trang? Chúng bị xóa khi bạn lưu.,They're deleted when you save them.,0.655,0.953
+0.660,aboutSectionLabel,About,Giới thiệu,,,0.660
+0.666,revertToOriginalMessage,"This will undo all filters, rotations, crops, resizes, and eraser strokes on this page.","Điều này sẽ hoàn tác tất cả bộ lọc, xoay, cắt, thay đổi kích thước và nét tẩy trên trang này.","This will complete all the filters, turns, cuts, resize, and scrubs on this page.",0.666,0.844
+0.671,accentCrimson,Crimson,Đỏ thẫm,,,0.671
+0.674,tickerBatchExport,BATCH EXPORT,XUẤT HÀNG LOẠT,,,0.674
+0.674,signatureNewOne,Draw or type a new one,Vẽ hoặc nhập chữ ký mới,New drawing or signature,0.674,0.895
+0.674,vibrateOnCaptureSubtitle,Haptic feedback when scan completes,Phản hồi xúc giác khi quét hoàn tất,Sensory response when the scan is complete,0.674,0.851
+0.680,batchExportSignatureDisabled,Batch export — signature placement disabled,Xuất hàng loạt — đặt chữ ký bị tắt,Out of the batch. Signature is off.,0.680,0.814
+0.681,vibrateOnCaptureLabel,Vibrate on capture,Rung khi chụp,,,0.681
+0.684,printFitFill,Fill sheet (trims edges),Lấp đầy tờ (cắt mép),Fill out the sheet (beard cut),0.684,0.772
+0.691,ocrStatusBuiltIn,Built-in,Tích hợp sẵn,,,0.691
+0.695,commonRevert,Revert,Khôi phục,,,0.695
+0.697,extractedAsNewDocument,Extracted as new document,Đã trích xuất thành tài liệu mới,Extracted as new material.,0.697,0.900
+0.700,watermarkAddTitle,Add Watermark,Thêm hình mờ,,,0.700
+0.700,ticker21ToolEditSuite,21-TOOL EDIT SUITE,21 CÔNG CỤ CHỈNH SỬA,,,0.700
+0.703,pdfImportedAsDocument,PDF imported as document,PDF đã nhập làm tài liệu,The PDF was entered as a document.,0.703,0.924
+0.704,watermarkLayoutSingle,Single,Đơn,,,0.704
+0.705,alignLabel,Align,Căn chỉnh,,,0.705
+0.707,lockAspectRatio,Lock aspect ratio,Khóa tỷ lệ,,,0.707
+0.707,idStepBack,Step 2: Capture Back Side,Bước 2: Chụp mặt sau,Step two: Take a picture of the back.,0.707,0.920
+0.713,onboardingEditSubtitle,"Every edit stays reversible — undo, redo, and revert to original anytime.","Mỗi chỉnh sửa đều có thể đảo ngược — hoàn tác, làm lại và khôi phục về bản gốc bất cứ lúc nào.","Each modification can reverse the original, rework and restore the original at any time.",0.713,0.910
+0.714,fitToTargetMbLabel,Fit to target MB,Vừa với MB mục tiêu,Just with the MB target.,0.714,0.794
+0.714,eraserTitle,Eraser,Tẩy,,,0.714
+0.720,exportBackupButton,Export encrypted backup,Xuất bản sao lưu mã hóa,,,0.720
+0.727,beepOnCaptureLabel,Beep on capture,Kêu bip khi chụp,,,0.727
+0.729,annotateTitle,Annotate,Chú thích,,,0.729
+0.729,enableReviewPromptsSubtitle,Allow the app to occasionally ask for a rating,Cho phép ứng dụng thỉnh thoảng yêu cầu đánh giá,Allow the app to occasionally request evaluation,0.729,0.892
+0.729,ocrLanguagePackNotReady,Language pack downloading or not ready. Try again shortly.,Gói ngôn ngữ đang tải hoặc chưa sẵn sàng. Thử lại sau.,The language packet is loaded or not ready.,0.729,0.848
+0.731,annotationModeEllipse,Ellipse,Hình elip,,,0.731
+0.732,importFromGallery,Import from Gallery,Nhập từ Thư viện,,,0.732
+0.732,commonExtract,Extract,Trích xuất,,,0.732
+0.737,onboardingSignTitle,"Sign, Fill & Seal","Ký, Điền & Đóng dấu",Filling and Sealing,0.737,0.871
+0.739,cropIdCardTitle,Crop ID Card,Cắt thẻ căn cước,,,0.739
+0.740,billingUnavailableMessage,Billing unavailable — try again later.,Thanh toán không khả dụng — thử lại sau.,Payment is not available. Try again later.,0.740,0.929
+0.742,clearLogsTooltip,Clear logs,Xóa nhật ký,,,0.742
+0.742,couldNotImportBackupError,Could not import this backup. Check the password and try again.,Không thể nhập bản sao lưu này. Kiểm tra mật khẩu và thử lại.,"I can't back this up, check the password and try again.",0.742,0.883
+0.743,filterShadowRemoval,Shadow removal,Loại bỏ bóng,,,0.743
+0.744,enableReviewPromptsLabel,Enable Review Prompts,Bật lời nhắc đánh giá,,,0.744
+0.745,foldersSectionHeader,Folders,Thư mục,,,0.745
+0.745,filterFolders,Folders,Thư mục,,,0.745
+0.746,captionIdCard,Two-sided ID capture: Front + Back,Chụp thẻ căn cước hai mặt: Mặt trước + Mặt sau,Draw two-sided ID cards: Front + Back,0.746,0.832
+0.746,cropDocumentTitle,Crop Document,Cắt tài liệu,,,0.746
+0.748,exportFormatSheetTitle,Export as,Xuất dưới dạng,,,0.748
+0.749,importBackupButton,Import from backup,Nhập từ bản sao lưu,,,0.749
+0.755,paywallFeatureNoInterstitial,No more interstitial ads,Không còn quảng cáo toàn màn hình,No more full-screen ads.,0.760,0.755
+0.757,emailMessageHint,Add a note (optional),Thêm ghi chú (tùy chọn),Additional notes (options),0.757,0.934
+0.761,buildingBackupStatus,Building backup…,Đang tạo bản sao lưu...,,,0.761
+0.766,enableSharePromptsLabel,Enable Share Prompts,Bật lời nhắc chia sẻ,,,0.766
+0.766,onboardingToolsSubtitle,"Annotate, sign, watermark, fill forms, seal, and more — every tool free and unlimited.","Chú thích, ký, hình mờ, điền biểu mẫu, đóng dấu và hơn thế nữa — mỗi công cụ miễn phí và không giới hạn.","Like, sign, blur, fill out forms, stamp, and more -- every tool is free and unlimited.",0.766,0.894
+0.769,subscriptionSectionLabel,Subscription,Đăng ký,,,0.769
+0.771,idPdfErrorPrefix,Error generating ID PDF,Lỗi tạo PDF thẻ căn cước,Error in creating an ID card PDF,0.771,0.862
+0.776,sealSavedHeading,Saved seals,Con dấu đã lưu,,,0.776
+0.776,commonImport,Import,Nhập,,,0.776
+0.778,tickerWordExport,WORD EXPORT,XUẤT WORD,,,0.778
+0.778,noFoldersYetHomeMessage,No folders yet. Create one from the home screen.,Chưa có thư mục. Tạo một cái từ màn hình chính.,Not a directory yet. Create one from the main screen.,0.778,0.859
+0.779,sealCenterText,Text,Văn bản,,,0.779
+0.779,watermarkTextLabel,Text,Văn bản,,,0.779
+0.779,textLabel,Text,Văn bản,,,0.779
+0.779,watermarkKindText,Text,Văn bản,,,0.779
+0.781,progressRasterizing,Rasterizing pages…,Đang raster hóa trang...,,,0.781
+0.781,importingStatus,Importing…,Đang nhập...,,,0.781
+0.782,onboardingOcrSubtitle,Use KatharScan in {count} languages. OCR runs on your phone — nothing ever leaves your device.,Dùng KatharScan với {count} ngôn ngữ. OCR chạy trên điện thoại — không gì rời khỏi thiết bị.,I'm using KatharScan in five languages.,0.782,0.900
+0.782,readingPageEta,Page {page} of {total} · about {minutes} min left,Trang {page}/{total} · còn khoảng {minutes} phút,Page 5 - about five minutes.,0.782,0.936
+0.782,debugLogsLabel,Debug Logs,Nhật ký gỡ lỗi,,,0.782
+0.783,importBackSide,Import Back Side,Nhập mặt sau,,,0.783
+0.783,ocrNoInternetMessage,No internet. Connect once to download the language pack.,Không có internet. Kết nối một lần để tải gói ngôn ngữ.,There's no Internet. One-time connection to download language packages.,0.783,0.895
+0.785,intensityLabel,Intensity,Cường độ,,,0.785
+0.786,watermarkPagesInvalid,Check the pages (the document has {count} pages),Kiểm tra các trang (tài liệu có {count} trang),Check the pages (five-page documentation),0.786,0.960
+0.786,filterContrastLabel,Contrast,Độ tương phản,,,0.786
+0.787,tickerNoWatermarks,NO WATERMARKS,KHÔNG HÌNH MỜ,,,0.787
+0.787,cropLabel,Crop,Cắt,,,0.787
+0.788,filterGrayscale,Grayscale,Thang độ xám,,,0.788
+0.789,exportingStatus,Exporting…,Đang xuất...,,,0.789
+0.789,genericErrorMessage,Something went wrong. Please try again.,Đã xảy ra lỗi. Vui lòng thử lại.,"There's been an error, please try again.",0.789,0.885
+0.789,ocrScriptChinese,Chinese,Trung Quốc,,,0.789
+0.789,onboardingEditTitle,Non-Destructive Editing,Chỉnh sửa không phá hủy,,,0.789
+0.790,letterSizeUS,Letter size (US),Khổ Letter (Mỹ),,,0.790
+0.791,sealCreateTitle,Custom Seal,Con dấu tùy chỉnh,,,0.791
+0.791,sealCustom,Custom Seal,Con dấu tùy chỉnh,,,0.791
+0.792,importFrontSide,Import Front Side,Nhập mặt trước,,,0.792
+0.793,modeIdCard,ID Card Mode,Chế độ thẻ căn cước,,,0.793
+0.794,resizeTitle,Resize,Thay đổi kích thước,,,0.794
+0.794,migrationExplainer,"This isn't automatic sync. Export creates a single encrypted backup file you move to your new device yourself, then import there.",Đây không phải đồng bộ tự động. Xuất tạo một tệp sao lưu mã hóa duy nhất mà bạn tự chuyển sang thiết bị mới rồi nhập ở đó.,This isn't automatic sync. It creates a single encrypted backup file that you automatically transfer to a new device and then you type in there.,0.794,0.872
+0.795,extractedTextTitle,Extracted Text,Văn bản đã trích xuất,,,0.795
+0.797,commonSave,Save,Lưu,,,0.797
+0.799,tickerRegionOcr,REGION OCR,OCR VÙNG,,,0.799
+0.801,addTagsAction,Add Tags,Thêm thẻ,,,0.801
+0.803,pagesLabel,Pages,Trang,,,0.803
+0.803,watermarkPagesLabel,Pages,Trang,,,0.803
+0.805,pricingLoadingError,Pricing is still loading — try again in a moment.,Giá vẫn đang tải — thử lại sau.,The price is still charging. Try again later.,0.805,0.843
+0.806,captureBackSide,Capture Back Side,Chụp mặt sau,,,0.806
+0.807,openSourceLicensesLabel,Open-source licenses,Giấy phép mã nguồn mở,,,0.807
+0.807,batchExportTooltip,Batch export,Xuất hàng loạt,,,0.807
+0.807,onboardingPrivacyTitle,Private by design,Riêng tư từ thiết kế,,,0.807
+0.807,pageRevertedToOriginal,Page reverted to original,Đã khôi phục trang về bản gốc,Restored the page to the original,0.807,0.870
+0.807,commonSkip,Skip,Bỏ qua,,,0.807
+0.809,sealSavedMessage,Seal saved,Đã lưu con dấu,,,0.809
+0.810,cropAspectFree,Free,Tự do,,,0.810
+0.811,modePassport,Passport Mode,Chế độ hộ chiếu,,,0.811
+0.812,onboardingReplayIntro,Replay introduction,Phát lại giới thiệu,,,0.812
+0.812,captureFrontSide,Capture Front Side,Chụp mặt trước,,,0.812
+0.812,errorGenericTitle,Something went wrong,Đã xảy ra lỗi,,,0.812
+0.813,printFailed,Print failed,In thất bại,,,0.813
+0.815,paywallLegalText,This is a non-consumable purchase. Restore it anytime on any device with the same store account.,Đây là mua hàng không tiêu thụ. Khôi phục bất cứ lúc nào trên bất kỳ thiết bị nào với cùng tài khoản cửa hàng.,This is a consumable airline purchase. Restore anytime on any device with the same store account.,0.815,0.909
+0.815,tickerNoAccount,NO ACCOUNT,KHÔNG TÀI KHOẢN,,,0.815
+0.815,sealCenterTextLabel,Center text,Văn bản trung tâm,,,0.815
+0.818,checkShapeRounded,Rounded,Bo tròn,,,0.818
+0.818,checkShapeCircle,Circle,Tròn,,,0.818
+0.820,tickerUndoRedo,UNDO/REDO,HOÀN TÁC/LÀM LẠI,,,0.820
+0.820,ocrScriptKorean,Korean,Hàn Quốc,,,0.820
+0.820,commonClear,Clear,Xóa sạch,,,0.820
+0.822,pageResized,Page resized,Đã thay đổi kích thước trang,,,0.822
+0.823,idCardPdfGenerated,ID Card PDF Generated,Đã tạo PDF thẻ căn cước,I've created a PDF ID card.,0.823,0.861
+0.828,eraserApplied,Eraser applied,Đã áp dụng tẩy,,,0.828
+0.828,tapToSampleColor,Tap a spot to sample its color,Chạm vào một điểm để lấy mẫu màu,Touch a point to take a color sample.,0.828,0.859
+0.830,sealEditTitle,Edit Custom Seal,Chỉnh sửa con dấu tùy chỉnh,,,0.830
+0.832,ocrStatusOnDemand,On-demand,Theo yêu cầu,,,0.832
+0.833,autoScan,Auto Scan,Quét tự động,,,0.833
+0.834,exportDoneStatus,Done,Hoàn tất,,,0.834
+0.834,fillSaveSnippet,Save as snippet,Lưu làm đoạn,,,0.834
+0.835,commonReset,Reset,Đặt lại,,,0.835
+0.835,saveToDownloadsAction,Save to Downloads,Lưu vào Tải xuống,,,0.835
+0.837,redoTooltip,Redo,Làm lại,,,0.837
+0.837,emptyFolders,No folders yet. Tap the folder icon to create one.,Chưa có thư mục. Chạm vào biểu tượng thư mục để tạo.,No directory yet. Tap the directory icon to create it.,0.837,0.862
+0.838,noTextRecognized,No text recognized.,Không nhận dạng được văn bản.,,,0.838
+0.839,tickerSearchablePdf,SEARCHABLE PDF,PDF CÓ THỂ TÌM KIẾM,,,0.839
+0.839,signatureSavedHeading,Saved signatures,Chữ ký đã lưu,,,0.839
+0.841,annotationModeRect,Rectangle,Hình chữ nhật,,,0.841
+0.842,tickerSearch,SEARCH,TÌM KIẾM,,,0.842
+0.844,backupReadyStatus,Backup ready.,Bản sao lưu sẵn sàng.,,,0.844
+0.844,onboardingWelcomeSubtitle,"Your entire document office — scan, edit, sign, and export — in one private app.","Toàn bộ văn phòng tài liệu của bạn — quét, chỉnh sửa, ký và xuất — trong một ứng dụng riêng tư.","Your entire office documents are scanned, edited, signed and published in a private app.",0.844,0.883
+0.844,printPerSheetLabel,Pages per sheet,Trang mỗi tờ,,,0.844
+0.844,sealMainTextLabel,Main text (top arc / box),Văn bản chính (vòng cung trên / hộp),Main text (upper arc/box),0.966,0.844
+0.845,noteTextLabel,Note text,Văn bản ghi chú,,,0.845
+0.847,stampTickedLabel,Ticked,Đã đánh dấu,,,0.847
+0.847,filterSheetTitle,Filters,Bộ lọc,,,0.847
+0.847,pageCropped,Page cropped,Đã cắt trang,,,0.847
+0.849,straightenLabel,Straighten,Chỉnh thẳng,,,0.849
+0.849,docxModeWithImages,With Images,Có hình ảnh,,,0.849
+0.850,printRangeCurrent,Current,Hiện tại,,,0.850
+0.851,fillInputHint,Type text to fill,Nhập văn bản để điền,Enter the text to be filled in,0.851,0.877
+0.851,movedToFolderMessage,Moved to folder.,Đã di chuyển đến thư mục.,,,0.851
+0.852,progressSaving,Saving…,Đang lưu...,,,0.852
+0.853,fillTapHint,Tap the page where you want to type,Chạm vào trang tại vị trí bạn muốn nhập,Tap on the page where you want to type,0.987,0.853
+0.853,backupCorruptedError,This backup file looks corrupted.,Tệp sao lưu này có vẻ bị hỏng.,This backup file looks damaged.,0.928,0.853
+0.853,stampTickLabel,Tick,Dấu tick,,,0.853
+0.854,addTagTitle,Add tag,Thêm thẻ,,,0.854
+0.854,progressExtractingText,Extracting text…,Đang trích xuất văn bản...,,,0.854
+0.854,engagementSectionLabel,ENGAGEMENT & NOTIFICATIONS,TƯƠNG TÁC & THÔNG BÁO,,,0.854
+0.854,commonConvert,Convert,Chuyển đổi,,,0.854
+0.854,applyToAllPages,Apply to all pages,Áp dụng cho tất cả trang,Applies to all pages,0.854,0.930
+0.855,renameFolderTitle,Rename folder,Đổi tên thư mục,,,0.855
+0.855,beepOnCaptureSubtitle,Play sound when scan completes,Phát âm thanh khi quét hoàn tất,Sound when the scan is complete,0.855,0.931
+0.856,paywallFeatureNoBanner,No more banner ads,Không còn quảng cáo biểu ngữ,No more banner ads.,0.967,0.856
+0.856,exportFormatPngDescription,"One image per page, lossless","Một hình ảnh mỗi trang, không mất dữ liệu","One image per page, no data loss",0.932,0.856
+0.856,emailLimitMissed,Could not get under {mb} MB; sent the smallest version.,Không thể xuống dưới {mb} MB; đã gửi bản nhỏ nhất.,Couldn't get below 5 MB; sent the smallest copy.,0.856,0.927
+0.857,couldNotCreateBackupError,Could not create the backup.,Không thể tạo bản sao lưu.,Can't make a backup.,0.860,0.857
+0.858,clearThis,Clear this,Xóa cái này,,,0.858
+0.859,moveToFolderTitle,Move to Folder,Di chuyển đến thư mục,,,0.859
+0.859,ocrScriptJapanese,Japanese,Nhật Bản,,,0.859
+0.860,fromAnotherDocument,From Another Document,Từ tài liệu khác,,,0.860
+0.860,placeHereLabel,Place here,Đặt tại đây,,,0.860
+0.860,printOptionsTitle,Print Options,Tùy chọn in,,,0.860
+0.861,migrationTitle,Device Migration,Di chuyển thiết bị,,,0.861
+0.861,deviceMigrationLabel,Device Migration,Di chuyển thiết bị,,,0.861
+0.861,saveFailedBanner,Your latest changes could not be saved.,Không thể lưu các thay đổi gần nhất của bạn.,Can't save your most recent changes.,0.861,0.916
+0.861,sealSaveToLibrary,Save this seal,Lưu con dấu này,,,0.861
+0.861,filterTitle,Filter,Bộ lọc,,,0.861
+0.862,reviewPromptBody,Your feedback helps us grow and keeps the app free.,Phản hồi của bạn giúp chúng tôi phát triển và giữ ứng dụng miễn phí.,Your feedback helps us develop and maintain free apps.,0.887,0.862
+0.862,sharePromptBody,Share it with friends who need a powerful document scanner.,Chia sẻ với bạn bè cần máy quét tài liệu mạnh mẽ.,Share with friends who need a powerful document scanner.,0.952,0.862
+0.863,eraserAutoColorTooltip,Match the page colour automatically,Tự động khớp màu trang,Automatically matching page colors,0.938,0.863
+0.864,titleIdCard,ID Card,Thẻ căn cước,,,0.864
+0.864,reviewPromptTitle,Enjoying KatharScan?,Thích KatharScan?,,,0.864
+0.864,titlePdfImport,PDF Import,Nhập PDF,,,0.864
+0.865,sealTextColorLabel,Text colour,Màu chữ,,,0.865
+0.866,exportSavedToDownloads,Saved to Downloads,Đã lưu vào Tải xuống,,,0.866
+0.866,exportFormatCsvDescription,Spreadsheet data,Dữ liệu bảng tính,,,0.866
+0.866,pagesToReadHint,This PDF has {count} pages. Pages that are pictures are read with OCR (about 10 seconds each); pages with real text are instant.,PDF này có {count} trang. Trang là hình ảnh được đọc bằng OCR (khoảng 10 giây mỗi trang); trang có văn bản thật thì tức thì.,This is a five-page PDF. The page is an OCR image (about 10 seconds per page); the page has real text instantly.,0.866,0.936
+0.867,setBackupPasswordTitle,Set a backup password,Đặt mật khẩu sao lưu,Set the backup password,0.979,0.867
+0.867,exportFormatDocxDescription,Editable text document,Tài liệu văn bản có thể chỉnh sửa,,,0.867
+0.868,commonExport,Export,Xuất,,,0.868
+0.868,exportTooltip,Export,Xuất,,,0.868
+0.868,exportTitle,Export,Xuất,,,0.868
+0.868,originalDimensions,Original: {w}×{h},Gốc: {w}×{h},,,0.868
+0.868,printMarginNormal,Normal,Thường,,,0.868
+0.869,accentColorTooltip,Accent Color,Màu nhấn,,,0.869
+0.869,accentColorTitle,Accent Color,Màu nhấn,,,0.869
+0.869,sealTextSizePercent,Text size {percent}%,Cỡ chữ {percent}%,,,0.869
+0.869,editLabel,Edit,Sửa,,,0.869
+0.870,sampleColorTooltip,Sample color from page,Lấy mẫu màu từ trang,Take a color sample from the page.,0.878,0.870
+0.871,importErrorPrefix,Import error,Lỗi nhập,,,0.871
+0.871,fillTypeHint,Type here,Nhập tại đây,,,0.871
+0.871,compressMedium,Medium,Trung bình,,,0.871
+0.872,searchHint,Search your scans,Tìm kiếm bản quét của bạn,,,0.872
+0.872,signatureFontHandwritten,Handwritten,Chữ viết tay,,,0.872
+0.873,stampCheckbox,Checkbox,Hộp kiểm,,,0.873
+0.874,sealCenterNone,None,Không,,,0.874
+0.874,printMarginNone,None,Không,,,0.874
+0.874,conversionStarting,Starting…,Đang bắt đầu...,,,0.874
+0.874,dateLabel,Date,Ngày,,,0.874
+0.875,whatsNewTitle,What's New,Có gì mới,,,0.875
+0.875,watermarkLayoutLabel,Layout,Bố cục,,,0.875
+0.875,moveToFolderTooltip,Move to folder,Di chuyển đến thư mục,,,0.875
+0.875,emailAttachmentNotIncluded,The pages could not be attached to the email. Use Share to send the pages.,Không thể đính kèm các trang vào email. Hãy dùng Chia sẻ để gửi các trang.,You can't attach pages to emails. Use Share to send pages.,0.875,0.909
+0.875,tickerLanguages,{count} LANGUAGES,{count} NGÔN NGỮ,,,0.875
+0.876,extractedPageDefaultTitle,Extracted Page,Trang được trích xuất,,,0.876
+0.877,enableNotificationsSubtitle,Allow background reminders for unexported documents,Cho phép nhắc nhở nền cho các tài liệu chưa xuất,Allow background reminders for unpublished documents,0.877,0.877
+0.877,docScannerUnsupportedMessage,"Your device doesn't support the advanced document scanner. Take a photo with your Camera app, then tap Import below to crop and save it.","Thiết bị của bạn không hỗ trợ máy quét tài liệu nâng cao. Chụp ảnh bằng ứng dụng Máy ảnh, sau đó chạm Nhập bên dưới để cắt và lưu.","Your device doesn't support an advanced document scanner. Take pictures with the Camera app, then tap Enter below to cut and save.",0.913,0.877
+0.878,noFoldersYet,No folders yet,Chưa có thư mục,,,0.878
+0.878,tickerPdfExport,PDF EXPORT,XUẤT PDF,,,0.878
+0.878,whiteHaloLabel,White halo (readability),Hào quang trắng (độ đọc),,,0.878
+0.879,filterFavorites,Favorites,Yêu thích,,,0.879
+0.879,enterBackupPasswordTitle,Enter backup password,Nhập mật khẩu sao lưu,,,0.879
+0.880,onboardingPrivacySubtitle,"No account, no cloud, no watermarks. Your documents never leave your device.","Không tài khoản, không đám mây, không hình mờ. Tài liệu của bạn không bao giờ rời khỏi thiết bị.","No account, no cloud, no cloud, your documents never leave the device.",0.899,0.880
+0.880,copiedToClipboard,Copied to clipboard,Đã sao chép vào clipboard,,,0.880
+0.881,moreOptionsTooltip,More options,Tùy chọn khác,,,0.881
+0.882,pagesUpdated,Pages updated,Đã cập nhật trang,,,0.882
+0.883,docxWarningMessage,"DOCX sources render poorly as pages — save inside the app is limited to JPG/PNG from image, PDF, TXT or CSV sources. Use Export & Share for this file.","Nguồn DOCX hiển thị kém dưới dạng trang — lưu trong ứng dụng chỉ giới hạn ở JPG/PNG từ hình ảnh, PDF, TXT hoặc CSV. Sử dụng Xuất & Chia sẻ cho tệp này.","The DOCX source is poorly displayed as a cache page in applications limited to JPG/PNG from images, PDF, TXT, or CSV. Use Export & Share for this file.",0.883,0.927
+0.883,modeDocument,Document Mode,Chế độ tài liệu,,,0.883
+0.883,folderUnavailable,This folder is no longer available.,Thư mục này không còn khả dụng.,This folder is no longer available.,1.000,0.883
+0.884,enableNotificationsLabel,Enable Notifications,Bật thông báo,,,0.884
+0.885,tickerJpgExport,JPG EXPORT,XUẤT JPG,,,0.885
+0.885,filterRecent,Recent,Gần đây,,,0.885
+0.885,filterMagicColor,Magic colour,Màu thần kỳ,,,0.885
+0.885,docxModeTextOnly,Text Only,Chỉ văn bản,,,0.885
+0.886,progressDecodingImage,Decoding image…,Đang giải mã hình ảnh...,,,0.886
+0.886,saveAsNewDocumentAction,Save as new Document,Lưu làm tài liệu mới,Save for a new document,0.967,0.886
+0.886,tickerPngExport,PNG EXPORT,XUẤT PNG,,,0.886
+0.887,onboardingOcrTitle,On-Device OCR,OCR trên thiết bị,,,0.887
+0.887,autoCopyOcrSubtitle,Copy text to clipboard after scan,Sao chép văn bản vào clipboard sau khi quét,Copy the text to the clipboard after scanning,0.967,0.887
+0.888,clearAll,Clear all,Xóa tất cả,,,0.888
+0.888,scanUnavailable,This scan is no longer available.,Bản quét này không còn khả dụng.,This scan is no longer available.,1.000,0.888
+0.889,scannerErrorPrefix,Scanner error,Lỗi máy quét,,,0.889
+0.889,addTextTitle,Add Text,Thêm văn bản,,,0.889
+0.889,tickerTxtExport,TXT EXPORT,XUẤT TXT,,,0.889
+0.889,chipAllFolders,All Folders,Tất cả thư mục,,,0.889
+0.890,useSavedSignature,Use Saved,Dùng đã lưu,,,0.890
+0.891,scanPreviewNoPages,No pages to show.,Không có trang để hiển thị.,There's no page to show.,0.891,0.919
+0.891,removeFromFolderTooltip,Remove from folder,Xóa khỏi thư mục,,,0.891
+0.891,reviewPromptYes,Rate Us,Đánh giá chúng tôi,,,0.891
+0.891,deleteFolderTooltip,Delete folder,Xóa thư mục,,,0.891
+0.892,progressReading,Reading…,Đang đọc...,,,0.892
+0.892,newFolderTitle,New Folder,Thư mục mới,,,0.892
+0.892,newFolderTooltip,New Folder,Thư mục mới,,,0.892
+0.892,saveInsideAppWarning,"To save inside the app, choose JPG or PNG. Other targets are exported as files.","Để lưu trong ứng dụng, chọn JPG hoặc PNG. Các mục tiêu khác được xuất dưới dạng tệp.","To save in the application, select JPG or PNG. Other targets are exported as files.",0.932,0.892
+0.892,tickerAutoCopyOcr,AUTO-COPY OCR,TỰ ĐỘNG SAO CHÉP OCR,,,0.892
+0.893,sealShapeRound,Round,Tròn,,,0.893
+0.893,couldNotOpenLinkError,Could not open link.,Không thể mở liên kết.,Can't open the link.,0.893,0.924
+0.893,cameraSource,Camera,Máy ảnh,,,0.893
+0.894,removeAdsTitle,Remove Ads Forever,Xóa quảng cáo vĩnh viễn,,,0.894
+0.894,fullscreenLabel,Fullscreen,Toàn màn hình,,,0.894
+0.895,filterApplied,Filter applied,Đã áp dụng bộ lọc,,,0.895
+0.896,accentBlue,Blue,Xanh dương,,,0.896
+0.897,emptySearch,No scans match your search.,Không có bản quét nào khớp với tìm kiếm của bạn.,No scans matched your search.,0.943,0.897
+0.897,storageSectionLabel,Storage,Lưu trữ,,,0.897
+0.897,clearPage,Clear page,Xóa trang,,,0.897
+0.898,restorePurchasesButton,Restore purchases,Khôi phục mua hàng,,,0.898
+0.899,debugNoLogsYet,No logs yet,Chưa có nhật ký,,,0.899
+0.899,commonCopy,Copy,Sao chép,,,0.899
+0.899,paywallFeatureFreeForever,All features free forever,Tất cả tính năng miễn phí vĩnh viễn,All the features are free forever.,0.932,0.899
+0.900,sharePromptTitle,Love KatharScan?,Thích KatharScan?,,,0.900
+0.900,privacyOptionsLabel,Privacy settings,Cài đặt quyền riêng tư,,,0.900
+0.900,commonApply,Apply,Áp dụng,,,0.900
+0.900,importAndConvertDocument,Import & Convert Document,Nhập & Chuyển đổi tài liệu,Import and convert documents,0.951,0.900
+0.900,pageToLabel,To page,Đến trang,,,0.900
+0.900,signatureChoiceMessage,Use your saved signature or draw a new one?,Dùng chữ ký đã lưu hay vẽ mới?,Using a saved signature or a new one?,0.900,0.908
+0.901,documentsSectionHeader,Documents,Tài liệu,,,0.901
+0.901,convertDocumentTitle,Convert Document,Chuyển đổi tài liệu,,,0.901
+0.901,progressCopying,Copying…,Đang sao chép...,,,0.901
+0.901,progressBuildingDocx,Building DOCX…,Đang xây dựng DOCX...,,,0.901
+0.902,deleteFolderMessage,Documents inside will not be deleted.,Tài liệu bên trong sẽ không bị xóa.,The documents inside will not be deleted.,0.973,0.902
+0.902,documentSaved,Document saved,Đã lưu tài liệu,,,0.902
+0.903,sealRemoveWhite,Make white transparent,Làm trong suốt màu trắng,,,0.903
+0.903,fillDeleteSnippet,Delete snippet?,Xóa đoạn?,,,0.903
+0.904,revertToOriginalTitle,Revert to Original?,Khôi phục về bản gốc?,,,0.904
+0.904,noEmailAppFound,No email app found,Không tìm thấy ứng dụng email,Couldn't find the email app,0.904,0.945
+0.906,emptyStateDefaultMessage,Tap the camera to scan your first document.,Chạm vào máy ảnh để quét tài liệu đầu tiên của bạn.,Tap on the camera to scan your first document.,0.994,0.906
+0.908,privacyPolicyLabel,Privacy policy,Chính sách bảo mật,,,0.908
+0.908,savedAsNewDocument,Saved as new document,Đã lưu làm tài liệu mới,Saved as a new document,0.989,0.908
+0.908,paywallSuccessMessage,Thank you for supporting KatharScan.,Cảm ơn bạn đã hỗ trợ KatharScan.,Thank you for supporting KatharScan.,1.000,0.908
+0.909,commonCustom,Custom,Tùy chỉnh,,,0.909
+0.909,filterBrightnessLabel,Brightness,Độ sáng,,,0.909
+0.909,saveAsDocument,Save as Document,Lưu làm tài liệu,,,0.909
+0.909,fillTooltip,Fill,Điền,,,0.909
+0.910,conversionFailedPrefix,Conversion failed,Chuyển đổi thất bại,,,0.910
+0.911,adsRemovedLabel,Ads Removed,Đã xóa quảng cáo,,,0.911
+0.911,paywallSuccessTitle,Ads Removed,Đã xóa quảng cáo,,,0.911
+0.911,commonCancel,Cancel,Hủy,,,0.911
+0.911,chipSelectMultiple,Select Multiple,Chọn nhiều,,,0.911
+0.911,tabOcrTextLabel,OCR Text,Văn bản OCR,,,0.911
+0.911,managePagesTitle,Manage Pages,Quản lý trang,,,0.911
+0.912,onboardingBack,Back,Quay lại,,,0.912
+0.912,addToFavorites,Add to Favorites,Thêm vào yêu thích,,,0.912
+0.912,paywallSubtitle,Support KatharScan with a one-time purchase. All features remain free.,Hỗ trợ KatharScan bằng mua hàng một lần. Tất cả tính năng vẫn miễn phí.,Support KatharScan with a one-time purchase.,0.922,0.912
+0.912,rotationPage,Page rotated,Đã xoay trang,,,0.912
+0.912,ocrStatusInstalled,Installed,Đã cài đặt,,,0.912
+0.913,clearedCount,Cleared {count},Đã xóa {count},,,0.913
+0.913,rotationAllPages,All pages rotated,Đã xoay tất cả trang,,,0.913
+0.913,progressBuildingPdf,Building PDF…,Đang xây dựng PDF...,,,0.913
+0.913,editDocumentAction,Edit Document,Chỉnh sửa tài liệu,,,0.913
+0.913,favoriteTooltip,Favorite,Yêu thích,,,0.913
+0.915,renameDocumentTitle,Rename document,Đổi tên tài liệu,,,0.915
+0.915,exportNoTextError,This document has no text yet. Run OCR on it first.,Tài liệu này chưa có văn bản. Hãy chạy OCR trước.,This document has no text yet. Run the OCR first.,0.991,0.915
+0.917,cropAspectId,ID card,Thẻ ID,,,0.917
+0.918,saveFailedPrefix,Save failed:,Lưu không thành công:,,,0.918
+0.918,drawNewSignature,Draw New,Vẽ mới,,,0.918
+0.919,restoreCompleteMessage,Restore complete.,Khôi phục hoàn tất.,,,0.919
+0.920,whatsNewBody,"Welcome to KatharScan! This is the first public release featuring unlimited scanning, 29 languages, and export to PDF, Word, TXT, JPG, PNG, and CSV.","Chào mừng đến với KatharScan! Đây là bản phát hành công khai đầu tiên với quét không giới hạn, 29 ngôn ngữ và xuất ra PDF, Word, TXT, JPG, PNG, CSV.","Welcome to KatharScan! This is the first public release with unlimited scanning, 29 languages and comes in PDF, Word, TXT, JPG, PNG, CSV.",0.985,0.920
+0.920,printRangeRange,Range,Phạm vi,,,0.920
+0.920,watermarkPagesRange,Range,Phạm vi,,,0.920
+0.920,filterRemoved,Filter removed,Đã xóa bộ lọc,,,0.920
+0.920,enableSharePromptsSubtitle,Allow the app to occasionally suggest sharing,Cho phép ứng dụng thỉnh thoảng đề xuất chia sẻ,Allow apps to occasionally suggest sharing,0.972,0.920
+0.921,paywallTitle,Remove Ads,Xóa quảng cáo,,,0.921
+0.922,pageFromLabel,From page,Từ trang,,,0.922
+0.923,exportFormatPdfDescription,Best for sharing and printing,Tốt nhất để chia sẻ và in ấn,Best for sharing and printing,1.000,0.923
+0.923,sealFontSerif,Classic,Cổ điển,,,0.923
+0.923,signerLabel,Signer {index},Người ký {index},,,0.923
+0.923,signatureDeleteSaved,Remove saved signature,Xóa chữ ký đã lưu,,,0.923
+0.924,ocrNoTextFound,No text found,Không tìm thấy văn bản,,,0.924
+0.924,tickerCsvExport,CSV EXPORT,XUẤT CSV,,,0.924
+0.924,exportFormatTxtDescription,Plain OCR text only,Chỉ văn bản OCR thuần túy,Only pure OCR text,0.924,0.928
+0.925,saveToDeviceButton,Save to Device,Lưu vào thiết bị,,,0.925
+0.925,stampBoxLabel,Box,Hộp,,,0.925
+0.925,sealShapeBox,Box,Hộp,,,0.925
+0.925,clearAllPages,Clear all pages,Xóa tất cả trang,,,0.925
+0.925,sealCenterStar,Star,Ngôi sao,,,0.925
+0.925,commonClose,Close,Đóng,,,0.925
+0.926,commonConfirm,Confirm,Xác nhận,,,0.926
+0.926,settingsTooltip,Settings,Cài đặt,,,0.926
+0.926,settingsTitle,Settings,Cài đặt,,,0.926
+0.926,cameraErrorPrefix,Camera error,Lỗi máy ảnh,,,0.926
+0.926,tickerFreeUnlimitedOcr,FREE UNLIMITED OCR,OCR MIỄN PHÍ KHÔNG GIỚI HẠN,,,0.926
+0.926,removeFromFavorites,Remove from Favorites,Xóa khỏi yêu thích,,,0.926
+0.927,idGenerating,Generating PDF...,Đang tạo PDF...,,,0.927
+0.927,widthLabel,Width,Chiều rộng,,,0.927
+0.927,regionOcrFailed,Region OCR failed,OCR vùng thất bại,,,0.927
+0.928,pickErrorPrefix,Pick error,Lỗi chọn,,,0.928
+0.929,commonRename,Rename,Đổi tên,,,0.929
+0.930,ocrStatusChecking,Checking...,Đang kiểm tra...,,,0.930
+0.930,onboardingGetStarted,Get Started,Bắt đầu,,,0.930
+0.930,termsOfServiceLabel,Terms of Service,Điều khoản dịch vụ,,,0.930
+0.930,rotate90Action,Rotate 90°,Xoay 90°,,,0.930
+0.930,stampPaperLabel,Paper,Giấy,,,0.930
+0.930,printPaperLabel,Paper,Giấy,,,0.930
+0.930,exportAndShareAction,Export & Share,Xuất & Chia sẻ,,,0.930
+0.930,errorScreenProblem,KatharScan ran into a problem displaying this screen. Your scans are safe — they're stored on this device and this doesn't affect them.,KatharScan gặp sự cố khi hiển thị màn hình này. Bản quét của bạn an toàn — chúng được lưu trên thiết bị này và điều này không ảnh hưởng đến chúng.,KatharScan has a problem displaying this screen. Your scanner is safe and they're stored on this device and this doesn't affect them.,0.938,0.930
+0.931,ocrUnavailableTooltip,OCR unavailable on this device.,OCR không khả dụng trên thiết bị này.,OCR is not available on this device.,0.938,0.931
+0.931,pagesSelectTooltip,Select pages,Chọn trang,,,0.931
+0.931,commonRemove,Remove,Xóa,,,0.931
+0.932,addDateTitle,Add Date,Thêm ngày,,,0.932
+0.933,signatureTitle,Signature,Chữ ký,,,0.933
+0.933,emptyDocumentMessage,This document has no pages.,Tài liệu này không có trang.,This document has no pages.,1.000,0.933
+0.933,errorReportIssue,Report issue,Báo cáo vấn đề,,,0.933
+0.933,paywallFallbackPrice,$14.99 one-time,$14.99 một lần,,,0.933
+0.934,documentNotFound,Document not found,Không tìm thấy tài liệu,,,0.934
+0.934,ocrStatusUnsupported,Unsupported,Không được hỗ trợ,,,0.934
+0.935,commonDelete,Delete,Xóa,,,0.935
+0.935,deleteTooltip,Delete,Xóa,,,0.935
+0.936,convertToLabel,Convert to:,Chuyển đổi sang:,,,0.936
+0.936,themeLabel,Theme,Chủ đề,,,0.936
+0.936,pagesToReadTitle,Pages to read,Các trang cần đọc,,,0.936
+0.936,appLanguageLabel,App language,Ngôn ngữ ứng dụng,,,0.936
+0.936,deleteFolderTitle,Delete this folder?,Xóa thư mục này?,,,0.936
+0.937,homeLanguageTooltip,App Language,Ngôn ngữ ứng dụng,,,0.937
+0.937,appLanguageTitle,App Language,Ngôn ngữ ứng dụng,,,0.937
+0.937,signatureTypeHint,Type your name,Nhập tên của bạn,,,0.937
+0.938,pdfImportErrorPrefix,PDF import error,Lỗi nhập PDF,,,0.938
+0.939,compressNoLimit,No limit,Không giới hạn,,,0.939
+0.941,addCheckboxTitle,Add Checkbox,Thêm hộp kiểm,,,0.941
+0.942,genericErrorPrefix,Error,Lỗi,,,0.942
+0.943,exportFormatJpgDescription,One image per page,Một hình ảnh mỗi trang,One image per page,1.000,0.943
+0.943,emailMessageLabel,Message,Tin nhắn,,,0.943
+0.943,cropAuto,Auto-detect,Tự động phát hiện,,,0.943
+0.944,sealLogoReady,Logo ready,Logo sẵn sàng,,,0.944
+0.944,idLayoutFullWidth,Full width,Toàn chiều rộng,,,0.944
+0.945,textSizeLabel,Text size: {size},Kích thước văn bản: {size},,,0.945
+0.945,copyAll,Copy all,Sao chép tất cả,,,0.945
+0.945,filterColorEnhance,Color enhance,Tăng cường màu,,,0.945
+0.945,opacityPercentLabel,Opacity: {percent}%,Độ mờ: {percent}%,,,0.945
+0.947,ocrLanguagesLabel,OCR Languages,Ngôn ngữ OCR,,,0.947
+0.947,printFilterNone,No filter,Không có bộ lọc,,,0.947
+0.947,tabImageLabel,Image,Hình ảnh,,,0.947
+0.947,watermarkKindImage,Image,Hình ảnh,,,0.947
+0.948,reviewPromptNo,Send Feedback,Gửi phản hồi,,,0.948
+0.948,convertedDocTitle,Converted {date},Đã chuyển đổi {date},,,0.948
+0.949,ocrScriptLatin,"Latin (English, European)","Latinh (Anh, Châu Âu)",,,0.949
+0.949,checkLabel,Check,Kiểm tra,,,0.949
+0.949,sealDefaultMainText,YOUR COMPANY,CÔNG TY CỦA BẠN,,,0.949
+0.950,addSignature,Add Signature,Thêm chữ ký,,,0.950
+0.951,deleteScanTitle,Delete this scan?,Xóa bản quét này?,,,0.951
+0.951,customColorTitle,Custom Color,Màu tùy chỉnh,,,0.951
+0.951,selectRegionTitle,Select Region,Chọn vùng,,,0.951
+0.952,addNoteTitle,Add Note,Thêm ghi chú,,,0.952
+0.952,actionLabel,Action:,Hành động:,,,0.952
+0.952,sharePromptAction,Share App,Chia sẻ ứng dụng,,,0.952
+0.953,onboardingWelcomeTitle,Welcome to KatharScan,Chào mừng đến KatharScan,,,0.953
+0.953,signatureCanvasHint,Sign here,Ký tại đây,,,0.953
+0.954,exportFormatTxtLabel,Text (.txt),Văn bản (.txt),,,0.954
+0.955,pageFormatLetter,Letter (US),Letter (Mỹ),,,0.955
+0.956,emailFailed,Email failed,Email thất bại,,,0.956
+0.957,commonAdd,Add,Thêm,,,0.957
+0.958,noteLabel,Note,Ghi chú,,,0.958
+0.958,autoCopyOcrLabel,Auto-copy OCR,Tự động sao chép OCR,,,0.958
+0.958,ocrStatusDownloading,Downloading…,Đang tải xuống…,,,0.958
+0.958,watermarkPagesThis,This page,Trang này,,,0.958
+0.960,onboardingToolsTitle,21 Free Pro Tools,21 công cụ Pro miễn phí,21 free Pro tools,1.000,0.960
+0.961,compressSmall,Small,Nhỏ,,,0.961
+0.962,heightLabel,Height,Chiều cao,,,0.962
+0.964,commonCreate,Create,Tạo,,,0.964
+0.964,languageSectionLabel,Language,Ngôn ngữ,,,0.964
+0.964,tryAgainButton,Try again,Thử lại,,,0.964
+0.964,idLayoutRealSize,Real size,Kích thước thật,,,0.964
+0.966,compressTargetLabel,Max size,Kích thước tối đa,,,0.966
+0.966,addPageTitle,Add Page,Thêm trang,,,0.966
+0.968,modeOcr,OCR Mode,Chế độ OCR,,,0.968
+0.968,commonUpdate,Update,Cập nhật,,,0.968
+0.969,commonUse,Use,Dùng,,,0.969
+0.969,systemThemeOption,System,Hệ thống,,,0.969
+0.970,pageLabel,Page {index},Trang {index},,,0.970
+0.971,watermarkChooseImage,Choose image,Chọn hình ảnh,,,0.971
+0.972,filterAll,All,Tất cả,,,0.972
+0.972,sharePromptDismiss,Not now,Không phải bây giờ,,,0.972
+0.972,pagesDeleteCount,Delete {count},Xóa {count},,,0.972
+0.973,commonChange,Change,Thay đổi,,,0.973
+0.973,shareTooltip,Share,Chia sẻ,,,0.973
+0.973,commonShare,Share,Chia sẻ,,,0.973
+0.974,commonSize,Size,Kích thước,,,0.974
+0.974,printRangeAll,All pages,Tất cả các trang,,,0.974
+0.975,supportLabel,Support,Hỗ trợ,,,0.975
+0.978,watermarkPagesAll,All pages,Tất cả trang,,,0.978
+0.979,sharePdf,Share PDF,Chia sẻ PDF,,,0.979
+0.980,commonColor,Color,Màu,,,0.980
+0.980,filterColor,Color,Màu,,,0.980
+0.981,pageIndicator,Page {current} / {total},Trang {current} / {total},Page 5 / 5,1.000,0.981
+0.981,exportEstimatedSize,Estimated size: {mb} MB,Kích thước ước tính: {mb} MB,Estimated size: 5 MB,1.000,0.981
+0.984,continueButton,Continue,Tiếp tục,,,0.984
+0.984,onboardingContinue,Continue,Tiếp tục,,,0.984
+0.984,whatsNewContinue,Continue,Tiếp tục,,,0.984
+0.987,annotationModeSelect,Select,Chọn,,,0.987
+0.987,sizePtLabel,Size: {size}pt,Kích thước: {size}pt,,,0.987
+0.989,ocrScriptDevanagari,"Hindi, Marathi (Devanagari)","Tiếng Hindi, Marathi (Devanagari)",,,0.989
+1.000,exportFormatPdfLabel,PDF,PDF,,,1.000
+1.000,ocrScriptArabic,العربية (Arabic),العربية (Arabic),,,1.000
+1.000,ocrSectionLabel,OCR,OCR,,,1.000
+1.000,fontMonospace,monospace,monospace,,,1.000
+1.000,ocrScriptHebrew,עברית (Hebrew),עברית (Hebrew),,,1.000
+1.000,exportFormatJpgLabel,JPG,JPG,,,1.000
+1.000,proBadgeLabel,PRO,PRO,,,1.000
+1.000,ocrScriptRussian,Русский (Russian),Русский (Russian),,,1.000
+1.000,ocrScriptUkrainian,Українська (Ukrainian),Українська (Ukrainian),,,1.000
+1.000,ocrScriptBengali,বাংলা (Bengali),বাংলা (Bengali),,,1.000
+1.000,exportFormatDocxLabel,Word (.docx),Word (.docx),,,1.000
+1.000,exportFormatPngLabel,PNG,PNG,,,1.000
+1.000,sealCenterLogo,Logo,Logo,,,1.000
+1.000,fontSerif,serif,serif,,,1.000
+1.000,formatCsv,CSV,CSV,,,1.000
+1.000,emailLabel,Email,Email,,,1.000
+1.000,ocrScriptGreek,Ελληνικά (Greek),Ελληνικά (Greek),,,1.000
+1.000,ocrScriptThai,ไทย (Thai),ไทย (Thai),,,1.000
+1.000,fontSansSerif,sans-serif,sans-serif,,,1.000

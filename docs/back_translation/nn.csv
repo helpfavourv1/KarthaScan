@@ -1,0 +1,544 @@
+score,key,english,translation,back_to_english,backtrans_score,labse_score
+0.167,exportFormatCsvDescription,Spreadsheet data,Reknearkdata,,,0.167
+0.258,ticker100OnDevicePrivacy,YOUR DOCUMENTS STAY ON YOUR DEVICE,DOKUMENTA DINE BLIR PÅ EININGA DI,DOCUMENT YOUR BLOWS ON THE ONE,0.258,0.677
+0.278,applyToAllPages,Apply to all pages,Bruk på alle sider,Use on all sides,0.278,0.876
+0.307,watermarkChooseImage,Choose image,Vel bilete,,,0.307
+0.338,accentAmber,Amber,Raudgul,,,0.338
+0.352,commonConfirm,Confirm,Stadfest,,,0.352
+0.367,satLabel,Sat,Metn.,,,0.367
+0.379,captionPassport,Passport crop: 4:3 or Original,Passbeskjering: 4:3 eller original,Pass size: 4:3 or original,0.379,0.880
+0.380,undoTooltip,Undo,Angre,,,0.380
+0.382,tabImageLabel,Image,Bilete,,,0.382
+0.382,watermarkKindImage,Image,Bilete,,,0.382
+0.401,resizeUpscaleWarning,Enlarging doesn't add detail — the page may look soft.,Forstørring gir ikkje fleire detaljar — sida kan sjå uskarp ut.,Expansion doesn't give more details. The side may look unsharp.,0.401,0.851
+0.402,stampTickedLabel,Ticked,Avkryssa,,,0.402
+0.404,eraserTitle,Eraser,Viskelêr,,,0.404
+0.404,annotationModeEraser,Eraser,Viskelêr,,,0.404
+0.409,tickerDeviceMigration,DEVICE MIGRATION,FLYTTING TIL NY EINING,,,0.409
+0.410,signatureTabDraw,Draw,Teikn,,,0.410
+0.411,checkShapeSquare,Square,Firkant,,,0.411
+0.414,appearanceSectionLabel,Appearance,Utsjånad,,,0.414
+0.429,cropLabel,Crop,Beskjer,,,0.429
+0.435,checkLabel,Check,Hake,,,0.435
+0.436,annotationModeSelect,Select,Vel,,,0.436
+0.451,printMarginNarrow,Narrow,Smal,,,0.451
+0.452,tickerTags,TAGS,MERKELAPPAR,,,0.452
+0.464,captureBehaviorSectionLabel,CAPTURE BEHAVIOR,OPPFØRSEL VED SKANNING,,,0.464
+0.465,sealFontSans,Clean,Reint,,,0.465
+0.472,accentCrimson,Crimson,Karmosinraud,,,0.472
+0.472,stampTickLabel,Tick,Hake,,,0.472
+0.476,redoTooltip,Redo,Gjer om,,,0.476
+0.476,filterShadow,Shadow,Skugge,,,0.476
+0.480,fillCapsLabel,ALL CAPS,STORE BOKSTAVAR,,,0.480
+0.483,signatureWidthLabel,Pen width,Pennebreidd,,,0.483
+0.490,revertToOriginalMessage,"This will undo all filters, rotations, crops, resizes, and eraser strokes on this page.","Dette angrar alle filter, rotasjonar, beskjeringar, storleiksendringar og viskestrøk på denne sida.","This affects all filters, rotations, adjustments, size changes and viscosity on this page.",0.490,0.873
+0.496,valLabel,Val,Verdi,,,0.496
+0.506,migrationTitle,Device Migration,Flytting til ny eining,,,0.506
+0.506,deviceMigrationLabel,Device Migration,Flytting til ny eining,,,0.506
+0.512,printRangeCurrent,Current,Gjeldande,,,0.512
+0.520,savedToDocumentText,Saved to document text,Lagra i dokumentteksten,Included in the document text,0.520,0.810
+0.522,tickerTapToTypeFilling,TAP-TO-TYPE FILLING,TRYKK-OG-SKRIV UTFYLLING,,,0.522
+0.530,checkShapeRounded,Rounded,Avrunda,,,0.530
+0.537,signatureNewOne,Draw or type a new one,Teikn eller skriv ein ny,Sign or write a new one,0.537,0.930
+0.537,annotationModeArrow,Arrow,Pil,,,0.537
+0.546,tickerDarkMode,DARK MODE,MØRKT TEMA,,,0.546
+0.551,lightThemeOption,Light,Lyst,,,0.551
+0.552,progressDecodingImage,Decoding image…,Dekodar bilete…,,,0.552
+0.552,extractedPageDefaultTitle,Extracted Page,Uthenta side,,,0.552
+0.555,eraserAutoColorTooltip,Match the page colour automatically,Tilpass fargen til sida automatisk,Customise the color of the side automatically,0.555,0.890
+0.556,sampleColorTooltip,Sample color from page,Hent farge frå sida,Get the color from the side,0.556,0.771
+0.556,backupCorruptedError,This backup file looks corrupted.,Denne sikkerheitskopifila ser ut til å vere skadd.,This security copy appears to be damaged.,0.556,0.816
+0.559,accentViolet,Violet,Fiolett,,,0.559
+0.560,watermarkLabel,Watermark,Vassmerke,,,0.560
+0.560,pagesSelectTooltip,Select pages,Vel sider,,,0.560
+0.566,cropAspectFree,Free,Fri,,,0.566
+0.571,captureBackSide,Capture Back Side,Ta baksida,,,0.571
+0.573,whiteHaloLabel,White halo (readability),Kvit glorie (lesbarheit),,,0.573
+0.574,commonReset,Reset,Nullstill,,,0.574
+0.575,deleteScanMessage,This can't be undone.,Dette kan ikkje angrast.,This cannot be regretted.,0.575,0.895
+0.579,tickerAccentThemes,ACCENT THEMES,AKSENTTEMA,,,0.579
+0.581,setBackupPasswordTitle,Set a backup password,Vel passord for sikkerheitskopien,Select the password for the security copy,0.581,0.725
+0.584,tickerFolders,FOLDERS,MAPPER,,,0.584
+0.586,tickerBatchExport,BATCH EXPORT,BATCHEKSPORT,,,0.586
+0.591,extractToNewDocAction,Extract to new doc,Hent ut til nytt dokument,Released to new document,0.591,0.855
+0.591,batchExportSignatureDisabled,Batch export — signature placement disabled,Batcheksport — plassering av signatur er slått av,Batcheksport <unk> Signature is switched off,0.591,0.856
+0.594,sealSubtextLabel,Subtext (bottom arc / below),Undertekst (nedre bue / under),Subtitle (lower arch / below),0.594,0.939
+0.595,chipSelectMultiple,Select Multiple,Vel fleire,,,0.595
+0.596,annotationModeHighlighter,Highlighter,Markeringspenn,,,0.596
+0.596,tapToSampleColor,Tap a spot to sample its color,Trykk på eit punkt for å hente fargen,Press a point to get the color.,0.596,0.776
+0.598,foldersSectionHeader,Folders,Mapper,,,0.598
+0.598,filterFolders,Folders,Mapper,,,0.598
+0.602,billingUnavailableMessage,Billing unavailable — try again later.,Betaling er ikkje tilgjengeleg — prøv igjen seinare.,Payment is not available <unk> try again later.,0.602,0.921
+0.602,commonDelete,Delete,Slett,,,0.602
+0.602,deleteTooltip,Delete,Slett,,,0.602
+0.608,fillTapHint,Tap the page where you want to type,Trykk på sida kor du vil skrive,Click on the page where you want to write,0.608,0.924
+0.609,extractedAsNewDocument,Extracted as new document,Uthenta som nytt dokument,Listed as a new document,0.609,0.859
+0.610,alignLabel,Align,Justering,,,0.610
+0.611,noEmailAppFound,No email app found,Fann ingen e-postapp,Didn't find an e-mail,0.611,0.902
+0.612,pageResized,Page resized,Sidestorleiken er endra,,,0.612
+0.612,scaleLabel,Scale,Skalering,,,0.612
+0.612,onboardingPrivacyTitle,Private by design,Privat frå grunnen av,,,0.612
+0.614,progressEncodingPage,Encoding page {current} of {total}…,Kodar side {current} av {total}…,Codes page 5 of 5...,0.614,0.906
+0.617,printMarginLabel,Margin,Marg,,,0.617
+0.617,vibrateOnCaptureLabel,Vibrate on capture,Vibrer ved skanning,,,0.617
+0.619,pickErrorPrefix,Pick error,Valfeil,,,0.619
+0.621,couldNotCreateBackupError,Could not create the backup.,Kunne ikkje lage sikkerheitskopi.,Could not make a security copy.,0.621,0.868
+0.622,ticker21ToolEditSuite,21-TOOL EDIT SUITE,REDIGERINGSPAKKE MED 21 VERKTØY,,,0.622
+0.623,frontSideCaptured,Front side captured. Now capture the back side.,Framsida er teken. Ta no baksida.,The front is drawn. Now take the back.,0.623,0.720
+0.624,docxModeWithImages,With Images,Med bilete,,,0.624
+0.628,captionOcr,"Text crop: Original, Square, 4:3","Tekstbeskjering: original, kvadrat, 4:3","Text description: original, square, 4:3",0.628,0.948
+0.631,intensityLabel,Intensity,Styrke,,,0.631
+0.632,cropNoPageFound,Couldn't find the page edges. Drag the corners.,Fann ikkje kantane på sida. Dra i hjørna.,Didn't find the edges.,0.632,0.783
+0.634,signatureSavedHeading,Saved signatures,Lagra signaturar,,,0.634
+0.635,tickerNoWatermarks,NO WATERMARKS,INGE VASSMERKE,,,0.635
+0.643,hueLabel,Hue,Fargetone,,,0.643
+0.646,marqueeEraseTooltip,Marquee erase,Viskeut markering,,,0.646
+0.646,captionDocs,"Flexible crop: Original, Square, 4:3, 3:2, 16:9","Fleksibel beskjering: original, kvadrat, 4:3, 3:2, 16:9","Flexible description: original, square, 4:3, 3:2, 16:9",0.646,0.914
+0.647,sealSavedHeading,Saved seals,Lagra segl,,,0.647
+0.648,signatureTabType,Type,Skriv,,,0.648
+0.657,idLayoutRealSize,Real size,Verkeleg storleik,,,0.657
+0.658,checkShapeCircle,Circle,Sirkel,,,0.658
+0.659,sealRemoveWhite,Make white transparent,Gjer kvitt gjennomsiktig,,,0.659
+0.662,renameFolderTitle,Rename folder,Gi mappa nytt namn,,,0.662
+0.662,eraserApplied,Eraser applied,Viskelêr brukt,,,0.662
+0.662,pageCropped,Page cropped,Sida er beskoren,,,0.662
+0.663,beepOnCaptureLabel,Beep on capture,Pip ved skanning,,,0.663
+0.665,widthLabel,Width,Breidd,,,0.665
+0.666,tickerCustomSeals,CUSTOM SEALS,EIGENDEFINERTE SEGL,,,0.666
+0.668,fitToTargetMbLabel,Fit to target MB,Tilpass til mål-MB,Adaptation to target-MB,0.668,0.843
+0.675,pricingLoadingError,Pricing is still loading — try again in a moment.,Prisane lastar framleis — prøv igjen om eit øyeblikk.,Prices are still charging <unk> try again in a minute.,0.675,0.902
+0.680,watermarkLayoutSingle,Single,Enkelt,,,0.680
+0.681,openSourceLicensesLabel,Open-source licenses,Lisensar for open kjeldekode,,,0.681
+0.683,sealInkLook,Worn stamp look,Utsjånad som slite stempel,,,0.683
+0.691,idStepBack,Step 2: Capture Back Side,Steg 2: Ta baksida,Step 2: Take the back.,0.691,0.945
+0.691,continueButton,Continue,Hald fram,,,0.691
+0.691,onboardingContinue,Continue,Hald fram,,,0.691
+0.691,whatsNewContinue,Continue,Hald fram,,,0.691
+0.694,ocrStatusOnDemand,On-demand,Ved behov,,,0.694
+0.697,commonExtract,Extract,Hent ut,,,0.697
+0.697,commonClear,Clear,Tøm,,,0.697
+0.697,watermarkLayoutLabel,Layout,Oppsett,,,0.697
+0.701,stampBoxLabel,Box,Boks,,,0.701
+0.701,sealShapeBox,Box,Boks,,,0.701
+0.702,enableReviewPromptsSubtitle,Allow the app to occasionally ask for a rating,La appen av og til be om ei vurdering,Leave the app occasionally to ask for an assessment,0.702,0.903
+0.702,tickerNonDestructiveEditing,NON-DESTRUCTIVE EDITING,IKKJE-DESTRUKTIV REDIGERING,,,0.702
+0.707,selectRegionTitle,Select Region,Vel område,,,0.707
+0.708,onboardingSignSubtitle,"E-sign contracts, type-to-fill forms, and stamp enterprise seals in seconds.","E-signer avtalar, fyll ut skjema ved å skrive og set bedriftssegl på sekund.","E-signers agree, fill out the form by writing and set the company seal in seconds.",0.708,0.822
+0.709,commonApply,Apply,Bruk,,,0.709
+0.709,backupReadyStatus,Backup ready.,Sikkerheitskopien er klar.,,,0.709
+0.712,filterGrayscale,Grayscale,Gråtonar,,,0.712
+0.713,idStepFront,Step 1: Capture Front Side,Steg 1: Ta framsida,Step 1: Take the front.,0.713,0.923
+0.714,docxModeTextOnly,Text Only,Berre tekst,,,0.714
+0.715,lockAspectRatio,Lock aspect ratio,Lås sideforholdet,,,0.715
+0.717,noteTextLabel,Note text,Notattekst,,,0.717
+0.718,stampCheckbox,Checkbox,Avkryssingsboks,,,0.718
+0.723,compressLabel,Compress,Komprimer,,,0.723
+0.723,watermarkEditTitle,Edit Watermark,Rediger vassmerke,,,0.723
+0.726,onboardingEditSubtitle,"Every edit stays reversible — undo, redo, and revert to original anytime.","Alle endringar kan reverserast — angre, gjer om og gå tilbake til originalen når som helst.","All changes can be reversed, reversed, and returned to the original at any time.",0.726,0.856
+0.726,pagesLabel,Pages,Sider,,,0.726
+0.726,watermarkPagesLabel,Pages,Sider,,,0.726
+0.728,onboardingReplayIntro,Replay introduction,Spel av introduksjonen igjen,,,0.728
+0.729,vibrateOnCaptureSubtitle,Haptic feedback when scan completes,Kjenslefeedback når skanninga er ferdig,Feedback when the scan is complete,0.729,0.802
+0.730,sealCreateTitle,Custom Seal,Eigendefinert segl,,,0.730
+0.730,sealCustom,Custom Seal,Eigendefinert segl,,,0.730
+0.732,progressReading,Reading…,Les…,,,0.732
+0.733,captionIdCard,Two-sided ID capture: Front + Back,ID-skanning av begge sider: framside + bakside,ID-scan of both sides: front side + back side,0.733,0.835
+0.735,ocrStatusUnsupported,Unsupported,Ikkje støtta,,,0.735
+0.737,accentEmerald,Emerald,Smaragd,,,0.737
+0.741,eraserZoomTooltip,Zoom and move (pinch),Zoom og flytt (knip),Zoom and move (knip),0.741,0.914
+0.741,commonSkip,Skip,Hopp over,,,0.741
+0.743,annotationModePen,Pen,Penn,,,0.743
+0.745,debugLogsLabel,Debug Logs,Feilsøkingslogg,,,0.745
+0.746,drawNewSignature,Draw New,Teikn ny,,,0.746
+0.748,savedAsNewDocument,Saved as new document,Lagra som nytt dokument,Added as a new document,0.748,0.906
+0.751,tickerSearch,SEARCH,SØK,,,0.751
+0.756,sealMainTextLabel,Main text (top arc / box),Hovudtekst (øvre bue / boks),Main text (upper bow/box),0.756,0.818
+0.757,printRangeRange,Range,Område,,,0.757
+0.757,watermarkPagesRange,Range,Område,,,0.757
+0.758,tickerUndoRedo,UNDO/REDO,ANGRE/GJER OM,,,0.758
+0.759,reviewPromptYes,Rate Us,Gi oss omtale,,,0.759
+0.761,extractedTextTitle,Extracted Text,Uthenta tekst,,,0.761
+0.763,straightenLabel,Straighten,Rett opp,,,0.763
+0.763,exportFormatPdfDescription,Best for sharing and printing,Best for deling og utskrift,Best for distribution and printing,0.763,0.954
+0.765,commonRename,Rename,Gi nytt namn,,,0.765
+0.765,importBackupButton,Import from backup,Importer frå sikkerheitskopi,,,0.765
+0.765,tickerPassportMode,PASSPORT MODE,PASSMODUS,,,0.765
+0.766,paywallFeatureNoInterstitial,No more interstitial ads,Ingen fleire fullskjermsannonsar,No more full-screen ads,0.766,0.839
+0.766,commonRevert,Revert,Tilbakestill,,,0.766
+0.766,watermarkLayoutTiled,Tiled,Flislagt,,,0.766
+0.768,cropDocumentTitle,Crop Document,Beskjer dokument,,,0.768
+0.769,emailMessageLabel,Message,Melding,,,0.769
+0.769,cropIdCardTitle,Crop ID Card,Beskjer ID-kort,,,0.769
+0.769,watermarkAddTitle,Add Watermark,Legg til vassmerke,,,0.769
+0.770,printFitLabel,Scaling,Skalering,,,0.770
+0.772,enableReviewPromptsLabel,Enable Review Prompts,Slå på førespurnader om omtale,,,0.772
+0.773,filterRecent,Recent,Nyleg,,,0.773
+0.773,buildingBackupStatus,Building backup…,Lagar sikkerheitskopi…,,,0.773
+0.773,exportNoTextError,This document has no text yet. Run OCR on it first.,Dette dokumentet har ingen tekst enno. Køyr OCR på det først.,This document doesn't have any text yet.,0.773,0.920
+0.778,signatureFontFlowing,Flowing,Flytande,,,0.778
+0.778,couldNotOpenLinkError,Could not open link.,Kunne ikkje opne lenkja.,Couldn't open the link.,0.904,0.778
+0.779,titleScan,Scan,Skanning,,,0.779
+0.781,paywallLegalText,This is a non-consumable purchase. Restore it anytime on any device with the same store account.,Dette er eit kjøp som ikkje blir brukt opp. Gjenopprett det når som helst på kva som helst eining med same butikkonto.,This is an unused purchase. Recover it at any time on any unit with the same store account.,0.781,0.876
+0.781,printFitFit,Fit page,Tilpass til sida,,,0.781
+0.782,saveToDeviceButton,Save to Device,Lagre på eininga,,,0.782
+0.784,sealSavedMessage,Seal saved,Seglet er lagra,,,0.784
+0.785,captureFrontSide,Capture Front Side,Ta framsida,,,0.785
+0.785,tickerNoteStamps,NOTE STAMPS,NOTATSTEMPEL,,,0.785
+0.786,tickerSearchablePdf,SEARCHABLE PDF,PDF MED SØK,,,0.786
+0.787,commonSave,Save,Lagre,,,0.787
+0.792,moreOptionsTooltip,More options,Fleire val,,,0.792
+0.794,printFitFill,Fill sheet (trims edges),Fyll arket (kuttar kantane),Fill the sheet (cutting the edges),0.850,0.794
+0.795,annotateTitle,Annotate,Merk opp,,,0.795
+0.796,resizeTitle,Resize,Endre storleik,,,0.796
+0.796,tickerIdCardMode,ID CARD MODE,ID-KORTMODUS,,,0.796
+0.798,onboardingToolsSubtitle,"Annotate, sign, watermark, fill forms, seal, and more — every tool free and unlimited.","Merk opp, signer, set på vassmerke, fyll ut skjema, set segl og mykje meir — alle verktøy er gratis og ubegrensa.","Note, sign, set on watermarks, fill out the form, set seals and much more. All tools are free and unlimited.",0.798,0.877
+0.800,scannerErrorPrefix,Scanner error,Skannarfeil,,,0.800
+0.800,enterBackupPasswordTitle,Enter backup password,Skriv inn passordet for sikkerheitskopien,,,0.800
+0.802,clearLogsTooltip,Clear logs,Tøm loggen,,,0.802
+0.802,actionLabel,Action:,Handling:,,,0.802
+0.803,cropAuto,Auto-detect,Finn automatisk,,,0.803
+0.807,pagesDeleteCount,Delete {count},Slett {count},,,0.807
+0.809,couldNotImportBackupError,Could not import this backup. Check the password and try again.,Kunne ikkje importere denne sikkerheitskopien. Sjekk passordet og prøv igjen.,Could not import this security copy. Check the password and try again.,0.809,0.904
+0.810,regionOcrFailed,Region OCR failed,OCR for området feila,,,0.810
+0.812,enableSharePromptsLabel,Enable Share Prompts,Slå på delingsførespurnader,,,0.812
+0.814,filterApplied,Filter applied,Filteret er brukt,,,0.814
+0.815,movedToFolderMessage,Moved to folder.,Flytta til mappe.,,,0.815
+0.816,privacyPolicyLabel,Privacy policy,Personvernerklæring,,,0.816
+0.816,modePassport,Passport Mode,Passmodus,,,0.816
+0.818,sealDefaultMainText,YOUR COMPANY,FIRMAET DITT,,,0.818
+0.819,addPageTitle,Add Page,Legg til side,,,0.819
+0.819,exportSavedToDownloads,Saved to Downloads,Lagra i Nedlastingar,,,0.819
+0.820,engagementSectionLabel,ENGAGEMENT & NOTIFICATIONS,ENGASJEMENT OG VARSEL,,,0.820
+0.821,saveFailedPrefix,Save failed:,Lagring feila:,,,0.821
+0.822,heightLabel,Height,Høgd,,,0.822
+0.822,shareTooltip,Share,Del,,,0.822
+0.822,commonShare,Share,Del,,,0.822
+0.824,termsOfServiceLabel,Terms of Service,Vilkår for bruk,,,0.824
+0.826,pageRevertedToOriginal,Page reverted to original,Sida er tilbakestilt til originalen,The page is restored to the original,0.826,0.917
+0.827,rotateLabel,Rotate,Roter,,,0.827
+0.827,exportBackupButton,Export encrypted backup,Eksporter kryptert sikkerheitskopi,,,0.827
+0.829,commonClose,Close,Lukk,,,0.829
+0.829,duplicateAction,Duplicate,Dupliser,,,0.829
+0.829,restoreCompleteMessage,Restore complete.,Gjenopprettinga er fullført.,,,0.829
+0.829,noteLabel,Note,Notat,,,0.829
+0.829,sharePromptBody,Share it with friends who need a powerful document scanner.,Del appen med vener som treng ein kraftig dokumentskannar.,Share the app with friends who need a powerful document scanner.,0.864,0.829
+0.832,signatureTitle,Signature,Signatur,,,0.832
+0.832,enableNotificationsSubtitle,Allow background reminders for unexported documents,Tillat påminningar i bakgrunnen for dokument som ikkje er eksporterte,Allow reminders in the background for documents not exported,0.832,0.832
+0.832,onboardingSignTitle,"Sign, Fill & Seal","Signer, fyll ut og set segl","Sign, fill out, and set a seal",0.864,0.832
+0.832,printOptionsTitle,Print Options,Utskriftsval,,,0.832
+0.833,onboardingOcrTitle,On-Device OCR,OCR på eininga,,,0.833
+0.834,progressBuildingDocx,Building DOCX…,Lagar DOCX…,,,0.834
+0.834,batchExportEmptyMessage,No documents to batch export. Scan some first.,Ingen dokument å eksportere. Skann nokre først.,No documents to export. Scan some first.,0.895,0.834
+0.834,exportDoneStatus,Done,Ferdig,,,0.834
+0.834,commonDone,Done,Ferdig,,,0.834
+0.837,sealEditTitle,Edit Custom Seal,Rediger eigendefinert segl,,,0.837
+0.837,fillInputHint,Type text to fill,Skriv teksten som skal fyllast inn,Write the text to be filled in,0.837,0.922
+0.838,filterShadowRemoval,Shadow removal,Skuggefjerning,,,0.838
+0.839,enableNotificationsLabel,Enable Notifications,Slå på varsel,,,0.839
+0.840,idGenerating,Generating PDF...,Lagar PDF...,,,0.840
+0.841,tickerRegionOcr,REGION OCR,OCR FOR OMRÅDE,,,0.841
+0.842,folderUnavailable,This folder is no longer available.,Denne mappa er ikkje lenger tilgjengeleg.,This folder is no longer available.,1.000,0.842
+0.843,saveAsNewDocumentAction,Save as new Document,Lagre som nytt dokument,Stored as a new document,0.843,0.951
+0.844,filterBrightnessLabel,Brightness,Lysstyrke,,,0.844
+0.844,fillSaveSnippet,Save as snippet,Lagre som tekstbit,,,0.844
+0.845,importBackSide,Import Back Side,Importer baksida,,,0.845
+0.847,commonConvert,Convert,Konverter,,,0.847
+0.847,fillDeleteSnippet,Delete snippet?,Slette tekstbit?,,,0.847
+0.848,paywallFallbackPrice,$14.99 one-time,$14.99 eingongskjøp,,,0.848
+0.848,reviewPromptTitle,Enjoying KatharScan?,Trivst du med KatharScan?,,,0.848
+0.850,renameDocumentTitle,Rename document,Gi dokumentet nytt namn,,,0.850
+0.850,emptyFavorites,No favorites yet. Tap the star icon on a document to add it.,Ingen favorittar enno. Trykk på stjerneikonet på eit dokument for å leggje det til.,No one's favorite yet. Click the star icon on a document to add it.,0.850,0.915
+0.850,commonCustom,Custom,Eigendefinert,,,0.850
+0.851,ocrLanguagePackNotReady,Language pack downloading or not ready. Try again shortly.,Språkpakka lastar ned eller er ikkje klar. Prøv igjen om litt.,The language packet is loading or not ready. Try again a little later.,0.851,0.873
+0.852,sealLogoReady,Logo ready,Logoen er klar,,,0.852
+0.853,idCardPdfGenerated,ID Card PDF Generated,PDF for ID-kort er laga,PDFs for ID cards are made,0.867,0.853
+0.856,addTagTitle,Add tag,Legg til merkelapp,,,0.856
+0.856,paywallSuccessTitle,Ads Removed,Annonsane er fjerna,,,0.856
+0.856,tickerTextStamps,TEXT STAMPS,TEKSTSTEMPEL,,,0.856
+0.857,emailLimitMissed,Could not get under {mb} MB; sent the smallest version.,Fekk ikkje filea under {mb} MB; den minste versjonen vart send.,Don't get the file under 5 MB; the smallest version was sent.,0.857,0.917
+0.857,deleteFolderTooltip,Delete folder,Slett mappe,,,0.857
+0.857,signatureFontHandwritten,Handwritten,Handskrift,,,0.857
+0.857,onboardingPrivacySubtitle,"No account, no cloud, no watermarks. Your documents never leave your device.","Inga konto, ingen sky, inge vassmerke. Dokumenta dine forlèt aldri eininga di.","No account, no cloud, no watermark. Your documents never leave your unit.",0.909,0.857
+0.858,enableSharePromptsSubtitle,Allow the app to occasionally suggest sharing,La appen av og til foreslå deling,Leave the app off to suggest sharing,0.858,0.916
+0.858,paywallSubtitle,Support KatharScan with a one-time purchase. All features remain free.,Støtt KatharScan med eit eingongskjøp. Alle funksjonar held fram å vere gratis.,Support KatharScan with a one-time purchase. All features continue to be free.,0.993,0.858
+0.858,addCheckboxTitle,Add Checkbox,Legg til avkryssingsboks,,,0.858
+0.861,adsRemovedLabel,Ads Removed,Annonsar fjerna,,,0.861
+0.861,exportFormatTxtDescription,Plain OCR text only,Berre enkel OCR-tekst,Simply simple OCR text,0.861,0.897
+0.862,sizePtLabel,Size: {size}pt,Storleik: {size} pt,,,0.862
+0.863,cropAspectSquare,Square,Kvadrat,,,0.863
+0.864,fromPageLabel,From,Frå,,,0.864
+0.865,ocrUnavailableTooltip,OCR unavailable on this device.,OCR er ikkje tilgjengeleg på denne eininga.,OCR is not available on this unit.,0.865,0.893
+0.866,saveFailedBanner,Your latest changes could not be saved.,Dei siste endringane dine kunne ikkje lagrast.,Your last changes could not be stored.,0.866,0.917
+0.867,addTagsAction,Add Tags,Legg til merkelappar,,,0.867
+0.867,storageSectionLabel,Storage,Lagring,,,0.867
+0.867,onboardingWelcomeSubtitle,"Your entire document office — scan, edit, sign, and export — in one private app.","Heile dokumentkontoret ditt — skann, rediger, signer og eksporter — i éin privat app.","Your entire document office is scanning, editing, signing and exporting documents in one private app.",0.867,0.918
+0.868,commonCancel,Cancel,Avbryt,,,0.868
+0.869,tickerFreeUnlimitedOcr,FREE UNLIMITED OCR,GRATIS OG UBEGRENSA OCR,,,0.869
+0.869,copiedToClipboard,Copied to clipboard,Kopiert til utklippstavla,,,0.869
+0.871,progressBuildingPdf,Building PDF…,Lagar PDF…,,,0.871
+0.871,noFoldersYetHomeMessage,No folders yet. Create one from the home screen.,Ingen mapper enno. Opprett éi frå startskjermen.,No folder yet. Set one from the start screen.,0.871,0.889
+0.872,commonPrint,Print,Skriv ut,,,0.872
+0.875,errorReportIssue,Report issue,Rapporter problem,,,0.875
+0.875,compressMedium,Medium,Middels,,,0.875
+0.875,commonImport,Import,Importer,,,0.875
+0.875,sealCenterTextLabel,Center text,Tekst i midten,,,0.875
+0.875,watermarkDefaultText,CONFIDENTIAL,KONFIDENSIELT,,,0.875
+0.876,tickerLanguages,{count} LANGUAGES,{count} SPRÅK,,,0.876
+0.876,emptyFolders,No folders yet. Tap the folder icon to create one.,Ingen mapper enno. Trykk på mappeikonet for å opprette éi.,No folder yet. Click the folder icon to create one.,0.928,0.876
+0.877,tickerGalleryImport,GALLERY IMPORT,IMPORT FRÅ GALLERIET,,,0.877
+0.877,useSavedSignature,Use Saved,Bruk lagra,,,0.877
+0.879,clearThis,Clear this,Tøm denne,,,0.879
+0.881,tickerRevertToOriginal,REVERT TO ORIGINAL,TILBAKE TIL ORIGINALEN,,,0.881
+0.882,deleteFolderTitle,Delete this folder?,Slette denne mappa?,,,0.882
+0.882,ocrNoInternetMessage,No internet. Connect once to download the language pack.,Ingen internett. Kople til éin gong for å laste ned språkpakka.,No internet. One couple of times to download the language package.,0.888,0.882
+0.882,exportGenericError,Something went wrong while exporting.,Noko gjekk gale under eksporten.,Something went wrong during the export.,0.922,0.882
+0.883,migrationExplainer,"This isn't automatic sync. Export creates a single encrypted backup file you move to your new device yourself, then import there.",Dette er ikkje automatisk synkronisering. Eksporten lagar éi kryptert sikkerheitskopi som du sjølv flyttar til den nye eininga di og importerer der.,This isn't automatic synchronization. Export makes an encrypted security copy that you move to your new device and import there.,0.950,0.883
+0.883,revertToOriginalTitle,Revert to Original?,Tilbake til originalen?,,,0.883
+0.883,noDocumentsInFolder,No documents in this folder yet.,Ingen dokument i denne mappa enno.,No documents in this folder yet.,1.000,0.883
+0.884,accentColorTooltip,Accent Color,Aksentfarge,,,0.884
+0.884,accentColorTitle,Accent Color,Aksentfarge,,,0.884
+0.884,pageToLabel,To page,Til side,,,0.884
+0.885,idPdfErrorPrefix,Error generating ID PDF,Feil ved laging av ID-PDF,Error at the usual ID-PDF,0.885,0.938
+0.886,filterColorEnhance,Color enhance,Fargeforbetring,,,0.886
+0.886,emailAttachmentNotIncluded,The pages could not be attached to the email. Use Share to send the pages.,Sidene kunne ikkje leggjast ved e-posten. Bruk Del for å sende sidene.,The pages couldn't be added to the e-mail. Use Part to send the pages.,0.886,0.939
+0.886,cameraErrorPrefix,Camera error,Kamerafeil,,,0.886
+0.889,sealSaveToLibrary,Save this seal,Lagre dette seglet,,,0.889
+0.889,reviewPromptBody,Your feedback helps us grow and keeps the app free.,Tilbakemeldinga di hjelper oss å vekse og held appen gratis.,Your feedback helps us grow and keep the app free.,0.995,0.889
+0.890,onboardingEditTitle,Non-Destructive Editing,Ikkje-destruktiv redigering,,,0.890
+0.892,importFromGallery,Import from Gallery,Importer frå galleriet,,,0.892
+0.893,tickerESign,E-SIGN,E-SIGNATUR,,,0.893
+0.894,commonExport,Export,Eksporter,,,0.894
+0.894,exportTooltip,Export,Eksporter,,,0.894
+0.894,exportTitle,Export,Eksporter,,,0.894
+0.895,opacityPercentLabel,Opacity: {percent}%,Ugjennomsiktigheit: {percent}%,,,0.895
+0.895,exportFormatSheetTitle,Export as,Eksporter som,,,0.895
+0.896,documentSaved,Document saved,Dokumentet er lagra,,,0.896
+0.897,filterSheetTitle,Filters,Filter,,,0.897
+0.897,filterRemoved,Filter removed,Filteret er fjerna,,,0.897
+0.899,clearPage,Clear page,Tøm sida,,,0.899
+0.899,signatureCanvasHint,Sign here,Signer her,,,0.899
+0.899,signatureChoiceMessage,Use your saved signature or draw a new one?,Bruke den lagra signaturen eller teikne ein ny?,Use the stored signature or draw a new one?,0.909,0.899
+0.899,newFolderTitle,New Folder,Ny mappe,,,0.899
+0.899,newFolderTooltip,New Folder,Ny mappe,,,0.899
+0.899,paywallFeatureFreeForever,All features free forever,Alle funksjonar er gratis for alltid,All features are free forever.,0.948,0.899
+0.899,emptySearch,No scans match your search.,Ingen skanningar samsvarar med søket ditt.,No scans match your search.,1.000,0.899
+0.900,documentsSectionHeader,Documents,Dokument,,,0.900
+0.901,searchHint,Search your scans,Søk i skanningane dine,,,0.901
+0.903,debugNoLogsYet,No logs yet,Ingen loggar enno,,,0.903
+0.904,commonCreate,Create,Opprett,,,0.904
+0.905,printFailed,Print failed,Utskrifta mislukkast,,,0.905
+0.905,chipAllFolders,All Folders,Alle mapper,,,0.905
+0.906,sharePromptTitle,Love KatharScan?,Glad i KatharScan?,,,0.906
+0.906,rotationAllPages,All pages rotated,Alle sider er roterte,,,0.906
+0.907,exportAndShareAction,Export & Share,Eksporter og del,,,0.907
+0.908,pagesUpdated,Pages updated,Sidene er oppdaterte,,,0.908
+0.908,commonCopy,Copy,Kopier,,,0.908
+0.908,importAndConvertDocument,Import & Convert Document,Importer og konverter dokument,Import and convert documents,0.951,0.908
+0.908,tickerWordExport,WORD EXPORT,WORD-EKSPORT,,,0.908
+0.909,rotationPage,Page rotated,Sida er rotert,,,0.909
+0.909,restorePurchasesButton,Restore purchases,Gjenopprett kjøp,,,0.909
+0.910,printPerSheetLabel,Pages per sheet,Sider per ark,,,0.910
+0.911,commonChange,Change,Endre,,,0.911
+0.911,letterSizeUS,Letter size (US),Letter-storleik (USA),,,0.911
+0.912,exportFormatPngDescription,"One image per page, lossless","Eitt bilete per side, tapsfritt","One image per page, without loss",0.961,0.912
+0.912,docxWarningMessage,"DOCX sources render poorly as pages — save inside the app is limited to JPG/PNG from image, PDF, TXT or CSV sources. Use Export & Share for this file.","DOCX-kjelder vert vist dårleg som sider — lagring i appen er avgrensa til JPG/PNG frå bilete, PDF, TXT eller CSV. Bruk Eksporter og del for denne fila.","DOCX sources are shown poorly as pages <unk> storage in the app is limited to JPG/PNG from images, PDF, TXT or CSV. Use Exporter and share for this file.",0.914,0.912
+0.913,importErrorPrefix,Import error,Importfeil,,,0.913
+0.913,progressSaving,Saving…,Lagrar…,,,0.913
+0.913,commonSize,Size,Storleik,,,0.913
+0.913,docScannerUnsupportedMessage,"Your device doesn't support the advanced document scanner. Take a photo with your Camera app, then tap Import below to crop and save it.","Eininga di støttar ikkje den avanserte dokumentskannaren. Ta eit bilete med kameraappen, og trykk deretter på Importer under for å beskjere og lagre det.","Your device doesn't support the advanced document scanner. Take a picture with the camera app, and then press Importer below to cut and save it.",0.926,0.913
+0.913,saveToDownloadsAction,Save to Downloads,Lagre i Nedlastingar,,,0.913
+0.913,beepOnCaptureSubtitle,Play sound when scan completes,Spel av lyd når skanninga er ferdig,Play of sound when the scan is complete,0.942,0.913
+0.914,whatsNewTitle,What's New,Kva er nytt,,,0.914
+0.914,signatureDeleteSaved,Remove saved signature,Fjern lagra signatur,,,0.914
+0.914,paywallSuccessMessage,Thank you for supporting KatharScan.,Takk for at du støttar KatharScan.,Thank you for supporting KatharScan.,1.000,0.914
+0.915,importingStatus,Importing…,Importerer…,,,0.915
+0.916,moveToFolderTooltip,Move to folder,Flytt til mappe,,,0.916
+0.917,autoCopyOcrSubtitle,Copy text to clipboard after scan,Kopier tekst til utklippstavla etter skanning,Copy text to the clipboard after scanning,0.973,0.917
+0.917,clearAll,Clear all,Tøm alt,,,0.917
+0.917,moveToFolderTitle,Move to Folder,Flytt til mappe,,,0.917
+0.918,onboardingGetStarted,Get Started,Kom i gang,,,0.918
+0.919,genericErrorMessage,Something went wrong. Please try again.,Noko gjekk gale. Prøv igjen.,Something went wrong. Try again.,0.930,0.919
+0.920,conversionFailedPrefix,Conversion failed,Konverteringa mislukkast,,,0.920
+0.920,noFoldersYet,No folders yet,Ingen mapper enno,,,0.920
+0.921,annotationModeRect,Rectangle,Rektangel,,,0.921
+0.921,pagesDeleteConfirm,Delete {count} pages? They are removed when you save.,Slette {count} sider? Dei blir fjerna når du lagrar.,Delete 5 pages? They're deleted when you store.,0.921,0.957
+0.921,placeHereLabel,Place here,Plasser her,,,0.921
+0.921,emptyStateDefaultMessage,Tap the camera to scan your first document.,Trykk på kameraet for å skanne det første dokumentet ditt.,Press the camera to scan your first document.,0.964,0.921
+0.921,deleteFolderMessage,Documents inside will not be deleted.,Dokumenta inni blir ikkje sletta.,The documents inside are not deleted.,0.926,0.921
+0.922,exportFormatJpgDescription,One image per page,Eitt bilete per side,One image per page,1.000,0.922
+0.923,pageFromLabel,From page,Frå side,,,0.923
+0.924,batchExportTooltip,Batch export,Batcheksport,,,0.924
+0.924,scanUnavailable,This scan is no longer available.,Denne skanninga er ikkje lenger tilgjengeleg.,This scan is no longer available.,1.000,0.924
+0.924,tickerJpgExport,JPG EXPORT,JPG-EKSPORT,,,0.924
+0.925,noTextRecognized,No text recognized.,Ingen tekst gjenkjend.,,,0.925
+0.926,sealCenterStar,Star,Stjerne,,,0.926
+0.926,ocrLanguagesLabel,OCR Languages,OCR-språk,,,0.926
+0.926,saveInsideAppWarning,"To save inside the app, choose JPG or PNG. Other targets are exported as files.","For å lagre i appen, vel JPG eller PNG. Andre mål blir eksporterte som filer.","To store in the app, choose JPG or PNG. Other targets are exported as files.",0.933,0.926
+0.929,privacyOptionsLabel,Privacy settings,Personverninnstillingar,,,0.929
+0.929,homeLanguageTooltip,App Language,Appspråk,,,0.929
+0.929,appLanguageTitle,App Language,Appspråk,,,0.929
+0.929,progressExtractingText,Extracting text…,Hentar ut tekst…,,,0.929
+0.929,removeAdsTitle,Remove Ads Forever,Fjern annonsar for alltid,,,0.929
+0.930,appLanguageLabel,App language,Appspråk,,,0.930
+0.930,emailMessageHint,Add a note (optional),Legg til ein merknad (valfritt),Add a note (optional),1.000,0.930
+0.930,errorScreenProblem,KatharScan ran into a problem displaying this screen. Your scans are safe — they're stored on this device and this doesn't affect them.,KatharScan fekk eit problem med å vise denne skjermen. Skanningane dine er trygge — dei er lagra på denne eininga og blir ikkje påverka.,KatharScan had a problem with displaying this screen. Your scans are safe <unk> they're stored on this unit and won't be affected.,0.971,0.930
+0.932,tickerAutoCopyOcr,AUTO-COPY OCR,AUTOMATISK KOPIERING AV OCR,,,0.932
+0.932,fillTypeHint,Type here,Skriv her,,,0.932
+0.933,removeFromFolderTooltip,Remove from folder,Fjern frå mappe,,,0.933
+0.933,clearedCount,Cleared {count},Tømde {count},,,0.933
+0.933,readingPageEta,Page {page} of {total} · about {minutes} min left,Side {page} av {total} · omtrent {minutes} min att,Page 5 of 5 · about 5 minutes back,0.933,0.951
+0.933,fromAnotherDocument,From Another Document,Frå eit anna dokument,,,0.933
+0.934,stampPaperLabel,Paper,Papir,,,0.934
+0.934,printPaperLabel,Paper,Papir,,,0.934
+0.935,onboardingOcrSubtitle,Use KatharScan in {count} languages. OCR runs on your phone — nothing ever leaves your device.,Bruk KatharScan på {count} språk. OCR køyrer på telefonen din — ingenting forlèt eininga di.,Use KatharScan in 5 languages. OCR runs on your phone.,0.978,0.935
+0.935,darkThemeOption,Dark,Mørkt,,,0.935
+0.936,emailLabel,Email,E-post,,,0.936
+0.937,tickerFavorites,FAVORITES,FAVORITTAR,,,0.937
+0.937,ocrStatusDownloading,Downloading…,Lastar ned…,,,0.937
+0.937,sealTextColorSame,Same as ring,Same som ringen,,,0.937
+0.938,ocrStatusBuiltIn,Built-in,Innebygd,,,0.938
+0.938,customColorTitle,Custom Color,Eigendefinert farge,,,0.938
+0.938,autoCopyOcrLabel,Auto-copy OCR,Kopier OCR automatisk,,,0.938
+0.938,dateLabel,Date,Dato,,,0.938
+0.938,documentNotFound,Document not found,Fann ikkje dokumentet,,,0.938
+0.938,autoScan,Auto Scan,Automatisk skanning,,,0.938
+0.938,progressCopying,Copying…,Kopierer…,,,0.938
+0.938,convertToLabel,Convert to:,Konverter til:,,,0.938
+0.939,fullscreenLabel,Fullscreen,Fullskjerm,,,0.939
+0.939,cropAspectId,ID card,ID-kort,,,0.939
+0.940,emailFailed,Email failed,E-posten mislukkast,,,0.940
+0.940,paywallFeatureNoBanner,No more banner ads,Ingen fleire bannerannonsar,No more banner ads,1.000,0.940
+0.940,tickerTxtExport,TXT EXPORT,TXT-EKSPORT,,,0.940
+0.940,pageIndicator,Page {current} / {total},Side {current} / {total},Page 5 / 5,1.000,0.940
+0.941,importFrontSide,Import Front Side,Importer framsida,,,0.941
+0.942,sealCenterNone,None,Ingen,,,0.942
+0.942,printMarginNone,None,Ingen,,,0.942
+0.942,pageLabel,Page {index},Side {index},,,0.942
+0.942,titleIdCard,ID Card,ID-kort,,,0.942
+0.943,genericErrorPrefix,Error,Feil,,,0.943
+0.943,tickerPngExport,PNG EXPORT,PNG-EKSPORT,,,0.943
+0.943,sharePromptDismiss,Not now,Ikkje no,,,0.943
+0.943,fillTooltip,Fill,Fyll ut,,,0.943
+0.943,clearAllPages,Clear all pages,Tøm alle sider,,,0.943
+0.944,whatsNewBody,"Welcome to KatharScan! This is the first public release featuring unlimited scanning, 29 languages, and export to PDF, Word, TXT, JPG, PNG, and CSV.","Velkomen til KatharScan! Dette er den første offentlege utgåva med ubegrensa skanning, 29 språk og eksport til PDF, Word, TXT, JPG, PNG og CSV.","Welcome to KatharScan! This is the first public edition with unlimited scanning, 29 languages and export to PDF, Word, TXT, JPG, PNG and CSV.",0.977,0.944
+0.944,scanPreviewNoPages,No pages to show.,Ingen sider å vise.,No pages to show.,1.000,0.944
+0.945,deleteScanTitle,Delete this scan?,Slette denne skanninga?,,,0.945
+0.946,pdfImportErrorPrefix,PDF import error,PDF-importfeil,,,0.946
+0.947,pdfImportedAsDocument,PDF imported as document,PDF importert som dokument,PDF imported as a document,0.991,0.947
+0.947,convertDocumentTitle,Convert Document,Konverter dokument,,,0.947
+0.948,modeIdCard,ID Card Mode,ID-kortmodus,,,0.948
+0.948,ocrStatusChecking,Checking...,Sjekkar...,,,0.948
+0.948,ocrScriptChinese,Chinese,Kinesisk,,,0.948
+0.949,sealShapeRound,Round,Rund,,,0.949
+0.951,errorGenericTitle,Something went wrong,Noko gjekk gale,,,0.951
+0.951,addToFavorites,Add to Favorites,Legg til i favorittar,,,0.951
+0.951,watermarkLayoutDiagonal,Diagonal,Diagonalt,,,0.951
+0.951,compressTargetLabel,Max size,Maks storleik,,,0.951
+0.953,filterMagicColor,Magic colour,Magisk farge,,,0.953
+0.953,commonUpdate,Update,Oppdater,,,0.953
+0.953,tickerPdfExport,PDF EXPORT,PDF-EKSPORT,,,0.953
+0.954,managePagesTitle,Manage Pages,Administrer sider,,,0.954
+0.954,tickerNoAccount,NO ACCOUNT,INGEN KONTO,,,0.954
+0.954,themeLabel,Theme,Tema,,,0.954
+0.956,filterFavorites,Favorites,Favorittar,,,0.956
+0.956,onboardingWelcomeTitle,Welcome to KatharScan,Velkomen til KatharScan,,,0.956
+0.956,filterContrastLabel,Contrast,Kontrast,,,0.956
+0.956,compressNoLimit,No limit,Ingen grense,,,0.956
+0.956,exportingStatus,Exporting…,Eksporterer…,,,0.956
+0.957,editLabel,Edit,Rediger,,,0.957
+0.957,addNoteTitle,Add Note,Legg til notat,,,0.957
+0.957,ocrScriptGreek,Ελληνικά (Greek),Ελληνικά (gresk),,,0.957
+0.957,subscriptionSectionLabel,Subscription,Abonnement,,,0.957
+0.958,convertedDocTitle,Converted {date},Konvertert {date},,,0.958
+0.958,removeFromFavorites,Remove from Favorites,Fjern frå favorittar,,,0.958
+0.958,signatureTypeHint,Type your name,Skriv namnet ditt,,,0.958
+0.959,pagesToReadHint,This PDF has {count} pages. Pages that are pictures are read with OCR (about 10 seconds each); pages with real text are instant.,Denne PDF-en har {count} sider. Sider som er bilete blir lesne med OCR (omtrent 10 sekund kvar); sider med ekte tekst går med ein gong.,This PDF has 5 pages. Pages that are images are read with OCR (about 10 seconds each); pages with real text go at once.,0.971,0.959
+0.959,onboardingBack,Back,Tilbake,,,0.959
+0.960,saveAsDocument,Save as Document,Lagre som dokument,,,0.960
+0.960,sharePdf,Share PDF,Del PDF,,,0.960
+0.960,idLayoutFullWidth,Full width,Full breidd,,,0.960
+0.960,textSizeLabel,Text size: {size},Tekststorleik: {size},,,0.960
+0.961,sealTextSizePercent,Text size {percent}%,Tekststorleik {percent}%,,,0.961
+0.961,accentBlue,Blue,Blå,,,0.961
+0.961,onboardingToolsTitle,21 Free Pro Tools,21 gratis Pro-verktøy,21 free Pro tools,1.000,0.961
+0.961,tickerCsvExport,CSV EXPORT,CSV-EKSPORT,,,0.961
+0.962,pagesToReadTitle,Pages to read,Sider som skal lesast,,,0.962
+0.962,progressRasterizing,Rasterizing pages…,Rasteriserer sider…,,,0.962
+0.962,addSignature,Add Signature,Legg til signatur,,,0.962
+0.962,emptyDocumentMessage,This document has no pages.,Dette dokumentet har ingen sider.,This document has no pages.,1.000,0.962
+0.963,copyAll,Copy all,Kopier alt,,,0.963
+0.963,editDocumentAction,Edit Document,Rediger dokument,,,0.963
+0.965,compressSmall,Small,Liten,,,0.965
+0.966,settingsTooltip,Settings,Innstillingar,,,0.966
+0.966,settingsTitle,Settings,Innstillingar,,,0.966
+0.966,watermarkPagesThis,This page,Denne sida,,,0.966
+0.966,reviewPromptNo,Send Feedback,Send tilbakemelding,,,0.966
+0.967,ocrScriptDevanagari,"Hindi, Marathi (Devanagari)","Hindi, marathi (devanagari)",,,0.967
+0.967,supportLabel,Support,Støtte,,,0.967
+0.967,sharePromptAction,Share App,Del appen,,,0.967
+0.967,tabOcrTextLabel,OCR Text,OCR-tekst,,,0.967
+0.967,addTextTitle,Add Text,Legg til tekst,,,0.967
+0.967,ocrNoTextFound,No text found,Fann ingen tekst,,,0.967
+0.968,exportFormatDocxDescription,Editable text document,Redigerbart tekstdokument,,,0.968
+0.969,ocrScriptHebrew,עברית (Hebrew),עברית (hebraisk),,,0.969
+0.969,conversionStarting,Starting…,Startar…,,,0.969
+0.969,sealFontSerif,Classic,Klassisk,,,0.969
+0.969,languageSectionLabel,Language,Språk,,,0.969
+0.969,modeDocument,Document Mode,Dokumentmodus,,,0.969
+0.970,commonRemove,Remove,Fjern,,,0.970
+0.970,diagnosticsSectionLabel,DIAGNOSTICS,DIAGNOSTIKK,,,0.970
+0.970,addDateTitle,Add Date,Legg til dato,,,0.970
+0.970,commonAdd,Add,Legg til,,,0.970
+0.971,printFilterNone,No filter,Inga filter,,,0.971
+0.971,favoriteTooltip,Favorite,Favoritt,,,0.971
+0.972,ocrScriptLatin,"Latin (English, European)","Latinsk (engelsk, europeisk)",,,0.972
+0.972,filterAll,All,Alle,,,0.972
+0.973,sealCenterText,Text,Tekst,,,0.973
+0.973,watermarkTextLabel,Text,Tekst,,,0.973
+0.973,textLabel,Text,Tekst,,,0.973
+0.973,watermarkKindText,Text,Tekst,,,0.973
+0.973,ocrScriptJapanese,Japanese,Japansk,,,0.973
+0.973,exportEstimatedSize,Estimated size: {mb} MB,Estimert storleik: {mb} MB,Estimated size: 5 MB,1.000,0.973
+0.974,printRangeAll,All pages,Alle sider,,,0.974
+0.974,watermarkPagesAll,All pages,Alle sider,,,0.974
+0.974,commonUse,Use,Bruk,,,0.974
+0.975,commonColor,Color,Farge,,,0.975
+0.975,filterColor,Color,Farge,,,0.975
+0.975,cameraSource,Camera,Kamera,,,0.975
+0.976,sealTextColorLabel,Text colour,Tekstfarge,,,0.976
+0.976,watermarkPagesInvalid,Check the pages (the document has {count} pages),Sjekk sidene (dokumentet har {count} sider),Check the pages (the document has 5 pages),1.000,0.976
+0.978,tryAgainButton,Try again,Prøv igjen,,,0.978
+0.980,ocrScriptKorean,Korean,Koreansk,,,0.980
+0.980,ocrStatusInstalled,Installed,Installert,,,0.980
+0.980,paywallTitle,Remove Ads,Fjern annonsar,,,0.980
+0.980,rotate90Action,Rotate 90°,Roter 90°,,,0.980
+0.981,pageFormatLetter,Letter (US),Letter (USA),,,0.981
+0.982,ocrScriptUkrainian,Українська (Ukrainian),Українська (ukrainsk),,,0.982
+0.982,signerLabel,Signer {index},Signatar {index},,,0.982
+0.982,ocrScriptThai,ไทย (Thai),ไทย (thai),,,0.982
+0.983,readingPageProgress,Page {page} of {total},Side {page} av {total},Page 5 of 5,1.000,0.983
+0.985,exportFormatTxtLabel,Text (.txt),Tekst (.txt),,,0.985
+0.986,titlePdfImport,PDF Import,PDF-import,,,0.986
+0.986,ocrScriptBengali,বাংলা (Bengali),বাংলা (bengali),,,0.986
+0.986,modeOcr,OCR Mode,OCR-modus,,,0.986
+0.988,ocrScriptRussian,Русский (Russian),Русский (russisk),,,0.988
+0.988,ocrScriptArabic,العربية (Arabic),العربية (arabisk),,,0.988
+1.000,exportFormatPdfLabel,PDF,PDF,,,1.000
+1.000,fontMonospace,monospace,monospace,,,1.000
+1.000,ocrSectionLabel,OCR,OCR,,,1.000
+1.000,exportFormatJpgLabel,JPG,JPG,,,1.000
+1.000,filterOriginal,Original,Original,,,1.000
+1.000,proBadgeLabel,PRO,PRO,,,1.000
+1.000,originalDimensions,Original: {w}×{h},Original: {w}×{h},,,1.000
+1.000,filterTitle,Filter,Filter,,,1.000
+1.000,accentIndigo,Indigo,Indigo,,,1.000
+1.000,exportFormatDocxLabel,Word (.docx),Word (.docx),,,1.000
+1.000,exportFormatPngLabel,PNG,PNG,,,1.000
+1.000,sealCenterLogo,Logo,Logo,,,1.000
+1.000,fontSerif,serif,serif,,,1.000
+1.000,formatCsv,CSV,CSV,,,1.000
+1.000,annotationModeEllipse,Ellipse,Ellipse,,,1.000
+1.000,systemThemeOption,System,System,,,1.000
+1.000,sealShapeOval,Oval,Oval,,,1.000
+1.000,fontSansSerif,sans-serif,sans-serif,,,1.000
+1.000,printMarginNormal,Normal,Normal,,,1.000

@@ -1,0 +1,544 @@
+score,key,english,translation,back_to_english,backtrans_score,labse_score
+0.214,eraserTitle,Eraser,Viskelæder,,,0.214
+0.214,annotationModeEraser,Eraser,Viskelæder,,,0.214
+0.260,accentAmber,Amber,Rav,,,0.260
+0.272,captionOcr,"Text crop: Original, Square, 4:3","Tekstbeskæring: Original, Firkant, 4:3","Original, Firkant, 4:3",0.272,0.913
+0.278,applyToAllPages,Apply to all pages,Anvend på alle sider,Use on all sides,0.278,0.918
+0.363,stampTickLabel,Tick,Kryds,,,0.363
+0.405,commonClear,Clear,Ryd,,,0.405
+0.411,checkShapeSquare,Square,Firkant,,,0.411
+0.415,checkLabel,Check,Kryds,,,0.415
+0.422,sealFontSans,Clean,Moderne,,,0.422
+0.428,undoTooltip,Undo,Fortryd,,,0.428
+0.451,printMarginNarrow,Narrow,Smal,,,0.451
+0.456,commonRevert,Revert,Gendan,,,0.456
+0.463,cropLabel,Crop,Beskær,,,0.463
+0.469,commonReset,Reset,Nulstil,,,0.469
+0.471,emailMessageLabel,Message,Besked,,,0.471
+0.471,printFitLabel,Scaling,Tilpasning,,,0.471
+0.479,annotationModeHighlighter,Highlighter,Fremhævningspen,,,0.479
+0.481,satLabel,Sat,Met,,,0.481
+0.494,redoTooltip,Redo,Gentag,,,0.494
+0.509,revertToOriginalMessage,"This will undo all filters, rotations, crops, resizes, and eraser strokes on this page.","Dette vil fortryde alle filtre, rotationer, beskæringer, størrelsesændringer og viskestreger på denne side.","This will regret all filters, rotations, cuts, sizing changes and viscosities on this page.",0.509,0.889
+0.511,watermarkLayoutTiled,Tiled,Gentaget,,,0.511
+0.517,savedToDocumentText,Saved to document text,Gemt i dokumenttekst,Hidden in document text,0.517,0.892
+0.525,tickerTapToTypeFilling,TAP-TO-TYPE FILLING,TRYK-OG-SKRIV UDFYLDNING,,,0.525
+0.529,clearPage,Clear page,Ryd side,,,0.529
+0.537,annotationModeArrow,Arrow,Pil,,,0.537
+0.539,tickerDeviceMigration,DEVICE MIGRATION,ENHEDSOVERFØRSEL,,,0.539
+0.550,commonSkip,Skip,Spring over,,,0.550
+0.551,lightThemeOption,Light,Lyst,,,0.551
+0.561,captureBehaviorSectionLabel,CAPTURE BEHAVIOR,FANGSTADFÆRD,,,0.561
+0.565,extractedAsNewDocument,Extracted as new document,Udtrukket som nyt dokument,Drawn up as a new document,0.565,0.907
+0.566,cropAspectFree,Free,Fri,,,0.566
+0.572,filterShadow,Shadow,Skygge,,,0.572
+0.575,stampCheckbox,Checkbox,Afkrydsningsfelt,,,0.575
+0.575,deleteScanMessage,This can't be undone.,Dette kan ikke fortrydes.,This cannot be regretted.,0.575,0.929
+0.577,valLabel,Val,Vær,,,0.577
+0.584,tickerFolders,FOLDERS,MAPPER,,,0.584
+0.586,tickerBatchExport,BATCH EXPORT,BATCHEKSPORT,,,0.586
+0.588,frontSideCaptured,Front side captured. Now capture the back side.,Forside fanget. Fang nu bagsiden.,"The front is trapped, now get the back.",0.588,0.890
+0.590,accentCrimson,Crimson,Karmoisin,,,0.590
+0.592,genericErrorMessage,Something went wrong. Please try again.,Noget gik galt. Prøv igen.,Something went wrong.,0.592,0.946
+0.597,scaleLabel,Scale,Skaler,,,0.597
+0.597,commonRename,Rename,Omdøb,,,0.597
+0.598,foldersSectionHeader,Folders,Mapper,,,0.598
+0.598,filterFolders,Folders,Mapper,,,0.598
+0.599,commonSave,Save,Gem,,,0.599
+0.600,onboardingPrivacyTitle,Private by design,Privat fra start,,,0.600
+0.603,signatureTabDraw,Draw,Tegn,,,0.603
+0.608,progressEncodingPage,Encoding page {current} of {total}…,Koder side {current} af {total}...,Code page five of five...,0.608,0.857
+0.610,alignLabel,Align,Justering,,,0.610
+0.615,savedAsNewDocument,Saved as new document,Gemt som nyt dokument,Hidden as a new document,0.615,0.963
+0.622,onboardingSignTitle,"Sign, Fill & Seal","Underskriv, udfyld og forseglet","Signed, completed and sealed",0.622,0.811
+0.625,tickerUndoRedo,UNDO/REDO,FORTRYD/GENTAG,,,0.625
+0.631,marqueeEraseTooltip,Marquee erase,Markeringsviskning,,,0.631
+0.632,straightenLabel,Straighten,Ret op,,,0.632
+0.636,sealSubtextLabel,Subtext (bottom arc / below),Undertekst (nedre bue / under),Subtitles (lower arc/under),0.636,0.939
+0.637,printRangeRange,Range,Interval,,,0.637
+0.637,watermarkPagesRange,Range,Interval,,,0.637
+0.647,saveFailedBanner,Your latest changes could not be saved.,Dine seneste ændringer kunne ikke gemmes.,Your recent changes couldn't be hidden.,0.647,0.957
+0.648,signatureTabType,Type,Skriv,,,0.648
+0.652,signatureFontFlowing,Flowing,flydende,,,0.652
+0.655,cropNoPageFound,Couldn't find the page edges. Drag the corners.,Kunne ikke finde sidens kanter. Træk i hjørnerne.,I couldn't find the edges.,0.655,0.935
+0.660,fillCapsLabel,ALL CAPS,ALLE STORE BOGSTAVER,,,0.660
+0.660,eraserApplied,Eraser applied,Viskelæder anvendt,,,0.660
+0.661,appLanguageLabel,App language,Appsprog,,,0.661
+0.670,homeLanguageTooltip,App Language,Appsprog,,,0.670
+0.670,appLanguageTitle,App Language,Appsprog,,,0.670
+0.671,tickerPassportMode,PASSPORT MODE,PAS-tilstand,,,0.671
+0.673,exportFormatCsvDescription,Spreadsheet data,Regnearksdata,,,0.673
+0.680,watermarkLayoutSingle,Single,Enkelt,,,0.680
+0.681,sealCreateTitle,Custom Seal,Tilpasset segl,,,0.681
+0.681,sealCustom,Custom Seal,Tilpasset segl,,,0.681
+0.683,tickerAccentThemes,ACCENT THEMES,ACCENTTEMAER,,,0.683
+0.687,commonDelete,Delete,Slet,,,0.687
+0.687,deleteTooltip,Delete,Slet,,,0.687
+0.695,eraserZoomTooltip,Zoom and move (pinch),Zoom og flyt (knib),Zoom and move (knib),0.695,0.916
+0.698,migrationTitle,Device Migration,Enhedsoverførsel,,,0.698
+0.698,deviceMigrationLabel,Device Migration,Enhedsoverførsel,,,0.698
+0.700,progressSaving,Saving…,Gemmer...,,,0.700
+0.700,hueLabel,Hue,Farvetone,,,0.700
+0.701,stampBoxLabel,Box,Boks,,,0.701
+0.701,sealShapeBox,Box,Boks,,,0.701
+0.708,stampTickedLabel,Ticked,Afkrydset,,,0.708
+0.709,tickerSearch,SEARCH,SØG,,,0.709
+0.712,watermarkDefaultText,CONFIDENTIAL,FORTROLIGT,,,0.712
+0.713,sampleColorTooltip,Sample color from page,Tag farveprøve fra side,Take a color sample from the side,0.713,0.833
+0.713,ticker21ToolEditSuite,21-TOOL EDIT SUITE,21 REDIGERINGVÆRKTØJER,,,0.713
+0.713,ocrStatusOnDemand,On-demand,Efter forespørgsel,,,0.713
+0.714,tickerCustomSeals,CUSTOM SEALS,TILPASSEDE SEGL,,,0.714
+0.717,noteTextLabel,Note text,Notattekst,,,0.717
+0.721,whatsNewTitle,What's New,Nyheder,,,0.721
+0.723,compressLabel,Compress,Komprimer,,,0.723
+0.724,tapToSampleColor,Tap a spot to sample its color,Tryk på et sted for at tage farveprøve,Press somewhere to take a color sample,0.724,0.855
+0.726,tickerDarkMode,DARK MODE,MØRK tilstand,,,0.726
+0.726,pagesLabel,Pages,Sider,,,0.726
+0.726,watermarkPagesLabel,Pages,Sider,,,0.726
+0.728,captionDocs,"Flexible crop: Original, Square, 4:3, 3:2, 16:9","Fleksibel beskæring: Original, Firkant, 4:3, 3:2, 16:9","Flexible cutting: original, square, 4:3, 3:2, 16:9",0.728,0.907
+0.730,sealDefaultMainText,YOUR COMPANY,DIT FIRMA,,,0.730
+0.730,resizeUpscaleWarning,Enlarging doesn't add detail — the page may look soft.,Forstørrelse tilføjer ingen detaljer – siden kan se sløret ud.,Enlargement adds no details <unk> the page may look veiled.,0.730,0.860
+0.736,signatureChoiceMessage,Use your saved signature or draw a new one?,Brug gemt underskrift eller tegn en ny?,Use a hidden signature or sign a new one?,0.736,0.922
+0.737,accentEmerald,Emerald,Smaragd,,,0.737
+0.737,modePassport,Passport Mode,Pas-tilstand,,,0.737
+0.737,cropDocumentTitle,Crop Document,Beskær dokument,,,0.737
+0.739,enableSharePromptsLabel,Enable Share Prompts,Aktivér delingsprompter,,,0.739
+0.741,paywallLegalText,This is a non-consumable purchase. Restore it anytime on any device with the same store account.,Dette er et ikke-forbrugskøb. Gendan det når som helst på hvilken som helst enhed med samme butikskonto.,"This is a non-consumer purchase, repeat it anytime on any device with the same store account.",0.741,0.912
+0.742,filterShadowRemoval,Shadow removal,Skyggfjernelse,,,0.742
+0.743,captureFrontSide,Capture Front Side,Fang forside,,,0.743
+0.745,clearAll,Clear all,Ryd alt,,,0.745
+0.746,lockAspectRatio,Lock aspect ratio,Lås størrelsesforhold,,,0.746
+0.750,debugLogsLabel,Debug Logs,Fejlsøgningslogfiler,,,0.750
+0.750,ticker100OnDevicePrivacy,YOUR DOCUMENTS STAY ON YOUR DEVICE,DINE DOKUMENTER BLIVER PÅ DIN ENHED,Your Documents Will Stay with You,0.750,0.871
+0.755,vibrateOnCaptureLabel,Vibrate on capture,Vibrer ved fangst,,,0.755
+0.756,captionPassport,Passport crop: 4:3 or Original,Pas-beskæring: 4:3 eller Original,Passport cut: 4:3 or Original,0.756,0.895
+0.756,sealMainTextLabel,Main text (top arc / box),Hovedtekst (øvre bue / boks),Main text (upper bow/box),0.756,0.877
+0.763,exportFormatPdfDescription,Best for sharing and printing,Bedst til deling og udskrivning,Best for distribution and printing,0.763,0.947
+0.764,exportNoTextError,This document has no text yet. Run OCR on it first.,Dette dokument har endnu ingen tekst. Kør OCR på det først.,This document has no text yet.,0.764,0.960
+0.767,captureBackSide,Capture Back Side,Fang bagside,,,0.767
+0.767,enableReviewPromptsLabel,Enable Review Prompts,Aktivér anmeldelsesprompter,,,0.767
+0.769,idStepFront,Step 1: Capture Front Side,Trin 1: Fang forside,Step 1: Catch the front,0.769,0.907
+0.772,clearLogsTooltip,Clear logs,Ryd logfiler,,,0.772
+0.774,cropIdCardTitle,Crop ID Card,Beskær ID-kort,,,0.774
+0.774,onboardingReplayIntro,Replay introduction,Afspil introduktion igen,,,0.774
+0.775,enableReviewPromptsSubtitle,Allow the app to occasionally ask for a rating,Tillad at appen af og til beder om en bedømmelse,Allow the app to occasionally ask for an evaluation,0.775,0.928
+0.775,sealInkLook,Worn stamp look,Slidt stempellook,,,0.775
+0.777,filterGrayscale,Grayscale,Gråtoner,,,0.777
+0.783,backupReadyStatus,Backup ready.,Sikkerhedskopi klar.,,,0.783
+0.783,printMarginLabel,Margin,Margen,,,0.783
+0.785,sealSavedHeading,Saved seals,Gemte segl,,,0.785
+0.788,extractToNewDocAction,Extract to new doc,Udtræk til nyt dokument,Extracts for new document,0.788,0.829
+0.790,backupCorruptedError,This backup file looks corrupted.,Denne sikkerhedskopifil ser ud til at være beskadiget.,This backup appears to be damaged.,0.790,0.902
+0.790,renameFolderTitle,Rename folder,Omdøb mappe,,,0.790
+0.792,pagesDeleteCount,Delete {count},Slet {count},,,0.792
+0.796,onboardingWelcomeSubtitle,"Your entire document office — scan, edit, sign, and export — in one private app.","Hele dit dokumentkontor — scan, rediger, underskriv og eksporter — i en privat app.","Your entire document office <unk> scan, edit, sign and export <unk> in a private app.",0.796,0.920
+0.797,clearedCount,Cleared {count},Ryddet {count},,,0.797
+0.797,captionIdCard,Two-sided ID capture: Front + Back,Tosidig ID-fangst: Forside + Bagside,Two-sided ID capture: Front + Back,1.000,0.797
+0.798,importBackSide,Import Back Side,Importer bagside,,,0.798
+0.798,cropAuto,Auto-detect,Find automatisk,,,0.798
+0.799,onboardingEditSubtitle,"Every edit stays reversible — undo, redo, and revert to original anytime.","Hver redigering forbliver reversibel — fortryd, gentag og gendan til original når som helst.","Each edit remains reversible <unk> cancel, repeat and return to original at any time.",0.799,0.935
+0.799,renameDocumentTitle,Rename document,Omdøb dokument,,,0.799
+0.800,paywallFeatureNoInterstitial,No more interstitial ads,Ingen flere interstitialannoncer,No more interstitial ads,1.000,0.800
+0.801,resizeTitle,Resize,Ændre størrelse,,,0.801
+0.801,sealSaveToLibrary,Save this seal,Gem dette segl,,,0.801
+0.802,actionLabel,Action:,Handling:,,,0.802
+0.802,compressSmall,Small,Lille,,,0.802
+0.803,tickerIdCardMode,ID CARD MODE,ID-KORT-tilstand,,,0.803
+0.806,ocrStatusDownloading,Downloading…,Henter…,,,0.806
+0.808,sealTextColorSame,Same as ring,Som ringen,,,0.808
+0.809,openSourceLicensesLabel,Open-source licenses,Open source-licenser,,,0.809
+0.809,commonExtract,Extract,Udtræk,,,0.809
+0.810,ocrStatusChecking,Checking...,Kontrollerer...,,,0.810
+0.810,conversionStarting,Starting…,Starter...,,,0.810
+0.811,billingUnavailableMessage,Billing unavailable — try again later.,Fakturering ikke tilgængelig — prøv igen senere.,Billing not available <unk> try again later.,0.811,0.958
+0.811,reviewPromptYes,Rate Us,Bedøm os,,,0.811
+0.811,idStepBack,Step 2: Capture Back Side,Trin 2: Fang bagside,Step 2: Catch the back,0.811,0.943
+0.811,rotationPage,Page rotated,Side roteret,,,0.811
+0.813,sealEditTitle,Edit Custom Seal,Rediger tilpasset segl,,,0.813
+0.813,pricingLoadingError,Pricing is still loading — try again in a moment.,Priser indlæses stadig — prøv igen om et øjeblik.,Prices are still charging. Try again in a minute.,0.813,0.941
+0.813,fitToTargetMbLabel,Fit to target MB,Tilpas til mål-MB,Adapted to target MB,0.813,0.897
+0.814,tickerGalleryImport,GALLERY IMPORT,GALLERIIMPORT,,,0.814
+0.815,fillTapHint,Tap the page where you want to type,"Tryk på siden, hvor du vil skrive",Press the page where you want to type,0.815,0.925
+0.816,extractedPageDefaultTitle,Extracted Page,Udtrukket side,,,0.816
+0.817,saveToDownloadsAction,Save to Downloads,Gem i Downloads,,,0.817
+0.818,fillDeleteSnippet,Delete snippet?,Slet fragment?,,,0.818
+0.819,migrationExplainer,"This isn't automatic sync. Export creates a single encrypted backup file you move to your new device yourself, then import there.",Dette er ikke automatisk synkronisering. Eksport opretter en enkelt krypteret sikkerhedskopi som du selv flytter til din nye enhed og derefter importerer der.,Export creates a single encrypted backup that you move to your new device and then import there.,0.819,0.913
+0.821,watermarkLabel,Watermark,Vandmærke,,,0.821
+0.822,tickerNoWatermarks,NO WATERMARKS,INGEN VANDMÆRKER,,,0.822
+0.822,tickerLanguages,{count} LANGUAGES,{count} SPROG,,,0.822
+0.822,shareTooltip,Share,Del,,,0.822
+0.822,commonShare,Share,Del,,,0.822
+0.823,beepOnCaptureLabel,Beep on capture,Bip ved fangst,,,0.823
+0.823,copiedToClipboard,Copied to clipboard,Kopieret til udklipsholder,,,0.823
+0.824,pageResized,Page resized,Side størrelse ændret,,,0.824
+0.827,rotateLabel,Rotate,Roter,,,0.827
+0.828,addCheckboxTitle,Add Checkbox,Tilføj afkrydsningsfelt,,,0.828
+0.829,noteLabel,Note,Notat,,,0.829
+0.830,duplicateAction,Duplicate,Dupliker,,,0.830
+0.831,commonCustom,Custom,Tilpasset,,,0.831
+0.836,pagesDeleteConfirm,Delete {count} pages? They are removed when you save.,"Slet {count} sider? De fjernes, når du gemmer.",Five pages are deleted when you hide them.,0.836,0.963
+0.836,signatureFontHandwritten,Handwritten,Håndskrift,,,0.836
+0.839,checkShapeCircle,Circle,Cirkel,,,0.839
+0.840,printRangeCurrent,Current,Aktuel,,,0.840
+0.840,importFrontSide,Import Front Side,Importer forside,,,0.840
+0.844,filterBrightnessLabel,Brightness,Lysstyrke,,,0.844
+0.847,commonConvert,Convert,Konverter,,,0.847
+0.847,printFitFit,Fit page,Tilpas siden,,,0.847
+0.847,pageCropped,Page cropped,Side beskåret,,,0.847
+0.849,ocrLanguagePackNotReady,Language pack downloading or not ready. Try again shortly.,Sprogpakke downloades eller er ikke klar. Prøv igen om et øjeblik.,Language packages are downloaded or not ready.,0.849,0.923
+0.849,tickerESign,E-SIGN,E-UNDERSKRIFT,,,0.849
+0.853,setBackupPasswordTitle,Set a backup password,Angiv adgangskode til sikkerhedskopi,Enter the password for the backup,0.853,0.865
+0.853,importBackupButton,Import from backup,Importer fra sikkerhedskopi,,,0.853
+0.856,onboardingToolsSubtitle,"Annotate, sign, watermark, fill forms, seal, and more — every tool free and unlimited.","Annoter, underskriv, vandmærk, udfyld formularer, forseglet og mere — hvert værktøj gratis og ubegrænset.","Notes, signature, watermark, fill out forms, seal and more <unk> every tool free and unlimited.",0.856,0.920
+0.857,printFitFill,Fill sheet (trims edges),Fyld arket (beskærer kanter),Fill the sheet (cutting edges),0.857,0.883
+0.858,extractedTextTitle,Extracted Text,Udtrukket tekst,,,0.858
+0.859,enableNotificationsSubtitle,Allow background reminders for unexported documents,Tillad baggrundspåmindelser for ikke-eksporterede dokumenter,Allow background reminders for non-exported documents,0.859,0.881
+0.859,printOptionsTitle,Print Options,Udskriftsindstillinger,,,0.859
+0.863,cropAspectSquare,Square,Kvadrat,,,0.863
+0.865,reviewPromptTitle,Enjoying KatharScan?,Kan du lide KatharScan?,,,0.865
+0.865,commonApply,Apply,Anvend,,,0.865
+0.865,tickerNoteStamps,NOTE STAMPS,NOTATSTEMPLER,,,0.865
+0.866,drawNewSignature,Draw New,Tegn ny,,,0.866
+0.866,restorePurchasesButton,Restore purchases,Gendan køb,,,0.866
+0.867,storageSectionLabel,Storage,Lagring,,,0.867
+0.867,fillInputHint,Type text to fill,Skriv tekst for at udfylde,Write text to fill in,0.867,0.921
+0.870,sealSavedMessage,Seal saved,Segl gemt,,,0.870
+0.872,onboardingSignSubtitle,"E-sign contracts, type-to-fill forms, and stamp enterprise seals in seconds.","E-underskriv kontrakter, udfyld formularer og stempel virksomhedssegl på sekunder.","E-sign contracts, fill out forms and stamp company seals in seconds.",0.888,0.872
+0.873,fillSaveSnippet,Save as snippet,Gem som fragment,,,0.873
+0.873,exportBackupButton,Export encrypted backup,Eksporter krypteret sikkerhedskopi,,,0.873
+0.873,tickerNonDestructiveEditing,NON-DESTRUCTIVE EDITING,IKKE-DESTRUKTIV REDIGERING,,,0.873
+0.874,pageRevertedToOriginal,Page reverted to original,Side gendannet til original,Page restored to original,0.874,0.939
+0.875,batchExportSignatureDisabled,Batch export — signature placement disabled,Batcheksport — underskriftplacering deaktiveret,Batch export <unk> Signature placement deactivated,0.875,0.914
+0.875,errorReportIssue,Report issue,Rapporter problem,,,0.875
+0.875,commonImport,Import,Importer,,,0.875
+0.875,fullscreenLabel,Fullscreen,Fuld skærm,,,0.875
+0.875,modeIdCard,ID Card Mode,ID-kort-tilstand,,,0.875
+0.879,buildingBackupStatus,Building backup…,Bygger sikkerhedskopi...,,,0.879
+0.880,modeDocument,Document Mode,Dokumenttilstand,,,0.880
+0.880,chipSelectMultiple,Select Multiple,Vælg flere,,,0.880
+0.881,sharePromptTitle,Love KatharScan?,Kan du lide KatharScan?,,,0.881
+0.882,clearThis,Clear this,Ryd dette,,,0.882
+0.882,emailAttachmentNotIncluded,The pages could not be attached to the email. Use Share to send the pages.,Siderne kunne ikke vedhæftes e-mailen. Brug Del for at sende siderne.,The pages could not be attached to the e-mail.,0.882,0.955
+0.882,tickerSearchablePdf,SEARCHABLE PDF,SØGBAR PDF,,,0.882
+0.884,pageToLabel,To page,Til side,,,0.884
+0.885,restoreCompleteMessage,Restore complete.,Gendannelse fuldført.,,,0.885
+0.885,emailLimitMissed,Could not get under {mb} MB; sent the smallest version.,Kunne ikke komme under {mb} MB; den mindste version blev sendt.,Couldn't get below 5 MB; the smallest version was shipped.,0.885,0.966
+0.887,privacyOptionsLabel,Privacy settings,Privatlivsindstillinger,,,0.887
+0.887,watermarkEditTitle,Edit Watermark,Rediger vandmærke,,,0.887
+0.888,tickerFavorites,FAVORITES,FAVORITTER,,,0.888
+0.890,sealLogoReady,Logo ready,Logo klar,,,0.890
+0.891,enterBackupPasswordTitle,Enter backup password,Indtast adgangskode til sikkerhedskopi,,,0.891
+0.892,onboardingEditTitle,Non-Destructive Editing,Ikke-destruktiv redigering,,,0.892
+0.892,tickerTextStamps,TEXT STAMPS,TEKSTSTEMPLER,,,0.892
+0.893,filterRecent,Recent,Seneste,,,0.893
+0.894,deleteFolderTooltip,Delete folder,Slet mappe,,,0.894
+0.894,commonExport,Export,Eksporter,,,0.894
+0.894,exportTooltip,Export,Eksporter,,,0.894
+0.894,exportTitle,Export,Eksporter,,,0.894
+0.895,paywallFallbackPrice,$14.99 one-time,$14.99 engangskøb,,,0.895
+0.895,exportFormatSheetTitle,Export as,Eksporter som,,,0.895
+0.895,onboardingOcrTitle,On-Device OCR,OCR på enheden,,,0.895
+0.895,importingStatus,Importing…,Importerer...,,,0.895
+0.896,docScannerUnsupportedMessage,"Your device doesn't support the advanced document scanner. Take a photo with your Camera app, then tap Import below to crop and save it.",Din enhed understøtter ikke den avancerede dokumentscanner. Tag et foto med Kamera-appen og tryk derefter på Importer nedenfor for at beskære og gemme det.,"Your device does not support the advanced document scanner, so take a photo with the Camera app, and then press Imports below to cut and save it.",0.896,0.928
+0.896,autoCopyOcrSubtitle,Copy text to clipboard after scan,Kopier tekst til udklipsholder efter scanning,Copy text to clip holders after scanning,0.896,0.917
+0.898,tickerRevertToOriginal,REVERT TO ORIGINAL,GENDAN TIL ORIGINAL,,,0.898
+0.899,exportFormatTxtDescription,Plain OCR text only,Kun simpel OCR-tekst,Only plain OCR text,0.980,0.899
+0.899,newFolderTitle,New Folder,Ny mappe,,,0.899
+0.899,newFolderTooltip,New Folder,Ny mappe,,,0.899
+0.901,batchExportEmptyMessage,No documents to batch export. Scan some first.,Ingen dokumenter at batcheksportere. Scan nogle først.,No documents to export batches.,0.901,0.928
+0.901,folderUnavailable,This folder is no longer available.,Denne mappe er ikke længere tilgængelig.,This folder is no longer available.,1.000,0.901
+0.904,couldNotOpenLinkError,Could not open link.,Kunne ikke åbne link.,Couldn't open the link.,0.904,0.969
+0.905,emptyFolders,No folders yet. Tap the folder icon to create one.,Ingen mapper endnu. Tryk på mappeikonet for at oprette en.,"No folders yet, so press the folder icon to create one.",0.966,0.905
+0.905,commonPrint,Print,Udskriv,,,0.905
+0.905,commonClose,Close,Luk,,,0.905
+0.905,whiteHaloLabel,White halo (readability),Hvid halo (læsbarhed),,,0.905
+0.905,chipAllFolders,All Folders,Alle mapper,,,0.905
+0.906,exportFormatPngDescription,"One image per page, lossless","Et billede pr. side, tabsfri","One image per page, without loss",0.961,0.906
+0.906,beepOnCaptureSubtitle,Play sound when scan completes,Afspil lyd når scanning er fuldført,Play audio when scanning is complete,0.906,0.946
+0.907,placeHereLabel,Place here,Placer her,,,0.907
+0.907,exportAndShareAction,Export & Share,Eksporter og del,,,0.907
+0.907,movedToFolderMessage,Moved to folder.,Flyttet til mappe.,,,0.907
+0.907,signatureNewOne,Draw or type a new one,Tegn eller skriv en ny,Draw or write a new one,0.907,0.929
+0.908,languageSectionLabel,Language,Sprog,,,0.908
+0.908,signatureWidthLabel,Pen width,Penbredde,,,0.908
+0.908,filterColorEnhance,Color enhance,Farveforbedring,,,0.908
+0.908,commonCopy,Copy,Kopier,,,0.908
+0.908,deleteScanTitle,Delete this scan?,Slet denne scanning?,,,0.908
+0.908,importAndConvertDocument,Import & Convert Document,Importer og konverter dokument,Importing and converting document,0.974,0.908
+0.908,tickerWordExport,WORD EXPORT,WORD-EKSPORT,,,0.908
+0.909,progressDecodingImage,Decoding image…,Afkoder billede...,,,0.909
+0.910,filterApplied,Filter applied,Filter anvendt,,,0.910
+0.910,saveToDeviceButton,Save to Device,Gem til enhed,,,0.910
+0.911,exportDoneStatus,Done,Færdig,,,0.911
+0.911,commonDone,Done,Færdig,,,0.911
+0.913,moveToFolderTooltip,Move to folder,Flyt til mappe,,,0.913
+0.913,checkShapeRounded,Rounded,Afrundet,,,0.913
+0.914,moveToFolderTitle,Move to Folder,Flyt til mappe,,,0.914
+0.915,progressReading,Reading…,Læser...,,,0.915
+0.916,importFromGallery,Import from Gallery,Importer fra galleri,,,0.916
+0.916,sharePromptBody,Share it with friends who need a powerful document scanner.,Del det med venner der har brug for en kraftig dokumentscanner.,Share it with friends who need a powerful document scanner.,1.000,0.916
+0.917,rotationAllPages,All pages rotated,Alle sider roteret,,,0.917
+0.917,pickErrorPrefix,Pick error,Vælgfejl,,,0.917
+0.917,progressCopying,Copying…,Kopierer...,,,0.917
+0.917,watermarkAddTitle,Add Watermark,Tilføj vandmærke,,,0.917
+0.917,regionOcrFailed,Region OCR failed,Regional OCR mislykkedes,,,0.917
+0.918,appearanceSectionLabel,Appearance,Udseende,,,0.918
+0.918,convertedDocTitle,Converted {date},Konverteret {date},,,0.918
+0.918,signatureCanvasHint,Sign here,Underskriv her,,,0.918
+0.918,onboardingGetStarted,Get Started,Kom i gang,,,0.918
+0.919,noFoldersYetHomeMessage,No folders yet. Create one from the home screen.,Ingen mapper endnu. Opret en fra startskærmen.,"No folders yet, create one from the home screen.",0.996,0.919
+0.919,clearAllPages,Clear all pages,Ryd alle sider,,,0.919
+0.921,exportingStatus,Exporting…,Eksporterer...,,,0.921
+0.921,annotationModeRect,Rectangle,Rektangel,,,0.921
+0.922,paywallSubtitle,Support KatharScan with a one-time purchase. All features remain free.,Støt KatharScan med et engangskøb. Alle funktioner forbliver gratis.,Support KatharScan with a one-time purchase.,0.922,0.928
+0.922,exportGenericError,Something went wrong while exporting.,Noget gik galt under eksport.,Something went wrong during the export.,0.922,0.936
+0.922,searchHint,Search your scans,Søg i dine scanninger,,,0.922
+0.924,ocrNoInternetMessage,No internet. Connect once to download the language pack.,Ingen internet. Opret forbindelse en gang for at downloade sprogpakken.,"No internet, just connect once to download the language package.",0.930,0.924
+0.924,batchExportTooltip,Batch export,Batcheksport,,,0.924
+0.924,scannerErrorPrefix,Scanner error,Scannerfejl,,,0.924
+0.924,tickerJpgExport,JPG EXPORT,JPG-EKSPORT,,,0.924
+0.924,deleteFolderTitle,Delete this folder?,Slet denne mappe?,,,0.924
+0.925,scanPreviewNoPages,No pages to show.,Ingen sider at vise.,No pages to show.,1.000,0.925
+0.925,couldNotCreateBackupError,Could not create the backup.,Kunne ikke oprette sikkerhedskopi.,Couldn't create a backup.,0.946,0.925
+0.926,sealCenterStar,Star,Stjerne,,,0.926
+0.926,enableNotificationsLabel,Enable Notifications,Aktivér notifikationer,,,0.926
+0.928,vibrateOnCaptureSubtitle,Haptic feedback when scan completes,Haptisk feedback når scanning er fuldført,Haptic feedback when scanning is completed,0.962,0.928
+0.929,removeFromFolderTooltip,Remove from folder,Fjern fra mappe,,,0.929
+0.929,reviewPromptBody,Your feedback helps us grow and keeps the app free.,Din feedback hjælper os med at vokse og holder appen gratis.,Your feedback helps us grow and keeps the app free.,1.000,0.929
+0.929,commonCancel,Cancel,Annuller,,,0.929
+0.930,pageFromLabel,From page,Fra side,,,0.930
+0.930,conversionFailedPrefix,Conversion failed,Konvertering mislykkedes,,,0.930
+0.930,autoCopyOcrLabel,Auto-copy OCR,Automatisk kopiering af OCR,,,0.930
+0.931,emptyFavorites,No favorites yet. Tap the star icon on a document to add it.,Ingen favoritter endnu. Tryk på stjerneikonet på et dokument for at tilføje det.,"No favorites yet, so press the star icon on a document to add it.",0.979,0.931
+0.932,fillTypeHint,Type here,Skriv her,,,0.932
+0.932,genericErrorPrefix,Error,Fejl,,,0.932
+0.932,paywallSuccessMessage,Thank you for supporting KatharScan.,Tak fordi du støtter KatharScan.,Thank you for supporting KatharScan.,1.000,0.932
+0.933,printPerSheetLabel,Pages per sheet,Sider pr. ark,,,0.933
+0.933,customColorTitle,Custom Color,Tilpasset farve,,,0.933
+0.934,stampPaperLabel,Paper,Papir,,,0.934
+0.934,printPaperLabel,Paper,Papir,,,0.934
+0.934,couldNotImportBackupError,Could not import this backup. Check the password and try again.,Kunne ikke importere denne sikkerhedskopi. Tjek adgangskoden og prøv igen.,"Couldn't import this backup, so check the password and try again.",0.991,0.934
+0.934,scanUnavailable,This scan is no longer available.,Denne scanning er ikke længere tilgængelig.,This scan is no longer available.,1.000,0.934
+0.934,autoScan,Auto Scan,Automatisk scanning,,,0.934
+0.935,darkThemeOption,Dark,Mørkt,,,0.935
+0.935,commonUpdate,Update,Opdater,,,0.935
+0.935,cameraErrorPrefix,Camera error,Kamerafejl,,,0.935
+0.936,fromAnotherDocument,From Another Document,Fra andet dokument,,,0.936
+0.936,enableSharePromptsSubtitle,Allow the app to occasionally suggest sharing,Tillad at appen af og til foreslår deling,Allow the app to occasionally propose sharing,0.936,0.941
+0.936,paywallFeatureFreeForever,All features free forever,Alle funktioner gratis for altid,All features are free forever.,0.948,0.936
+0.936,importErrorPrefix,Import error,Importfejl,,,0.936
+0.936,revertToOriginalTitle,Revert to Original?,Gendan til original?,,,0.936
+0.937,sealRemoveWhite,Make white transparent,Gør hvid gennemsigtig,,,0.937
+0.937,sealCenterTextLabel,Center text,Central tekst,,,0.937
+0.937,signatureTitle,Signature,Underskrift,,,0.937
+0.937,modeOcr,OCR Mode,OCR-tilstand,,,0.937
+0.938,dateLabel,Date,Dato,,,0.938
+0.938,convertToLabel,Convert to:,Konverter til:,,,0.938
+0.939,idCardPdfGenerated,ID Card PDF Generated,ID-kort PDF genereret,ID card PDF generated,1.000,0.939
+0.939,cropAspectId,ID card,ID-kort,,,0.939
+0.940,tickerTxtExport,TXT EXPORT,TXT-EKSPORT,,,0.940
+0.940,pageIndicator,Page {current} / {total},Side {current} / {total},Page 5 / 5,1.000,0.940
+0.941,docxWarningMessage,"DOCX sources render poorly as pages — save inside the app is limited to JPG/PNG from image, PDF, TXT or CSV sources. Use Export & Share for this file.","DOCX-kilder gengives dårligt som sider — gemning i appen er begrænset til JPG/PNG fra billede, PDF, TXT eller CSV-kilder. Brug Eksporter og del for denne fil.","DOCX sources are poorly rendered as pages <unk> save in the app is limited to JPG/PNG from image, PDF, TXT or CSV sources.",0.941,0.961
+0.941,useSavedSignature,Use Saved,Brug gemt,,,0.941
+0.941,commonCreate,Create,Opret,,,0.941
+0.941,compressNoLimit,No limit,Ingen grænse,,,0.941
+0.942,exportSavedToDownloads,Saved to Downloads,Gemt i Downloads,,,0.942
+0.942,removeAdsTitle,Remove Ads Forever,Fjern annoncer for altid,,,0.942
+0.942,sealCenterNone,None,Ingen,,,0.942
+0.942,printMarginNone,None,Ingen,,,0.942
+0.942,pageLabel,Page {index},Side {index},,,0.942
+0.942,onboardingPrivacySubtitle,"No account, no cloud, no watermarks. Your documents never leave your device.","Ingen konto, ingen sky, ingen vandmærker. Dine dokumenter forlader aldrig din enhed.","No account, no cloud, no watermarks, your documents never leave your device.",0.977,0.942
+0.942,titleIdCard,ID Card,ID-kort,,,0.942
+0.943,signatureSavedHeading,Saved signatures,Gemte underskrifter,,,0.943
+0.943,saveInsideAppWarning,"To save inside the app, choose JPG or PNG. Other targets are exported as files.","For at gemme i appen, vælg JPG eller PNG. Andre mål eksporteres som filer.","To save in the app, select JPG or PNG. Other targets are exported as files.",0.973,0.943
+0.943,tickerPngExport,PNG EXPORT,PNG-EKSPORT,,,0.943
+0.943,fillTooltip,Fill,Udfyld,,,0.943
+0.943,deleteFolderMessage,Documents inside will not be deleted.,Dokumenter indeni vil ikke blive slettet.,Documents inside will not be deleted.,1.000,0.943
+0.943,emptyStateDefaultMessage,Tap the camera to scan your first document.,Tryk på kameraet for at scanne dit første dokument.,Press the camera to scan your first document.,0.964,0.943
+0.943,ocrStatusUnsupported,Unsupported,Ikke understøttet,,,0.943
+0.944,ocrLanguagesLabel,OCR Languages,OCR-sprog,,,0.944
+0.945,widthLabel,Width,Bredde,,,0.945
+0.945,progressBuildingDocx,Building DOCX…,Bygger DOCX...,,,0.945
+0.945,tickerAutoCopyOcr,AUTO-COPY OCR,AUTO-KOPIER OCR,,,0.945
+0.945,tickerFreeUnlimitedOcr,FREE UNLIMITED OCR,GRATIS UBEGRENSET OCR,,,0.945
+0.945,debugNoLogsYet,No logs yet,Ingen logfiler endnu,,,0.945
+0.946,filterSheetTitle,Filters,Filtre,,,0.946
+0.946,tickerRegionOcr,REGION OCR,REGIONAL OCR,,,0.946
+0.946,diagnosticsSectionLabel,DIAGNOSTICS,DIAGNOSTIK,,,0.946
+0.946,saveFailedPrefix,Save failed:,Lagring mislykkedes:,,,0.946
+0.947,paywallFeatureNoBanner,No more banner ads,Ingen flere bannerannoncer,No more banner ads,1.000,0.947
+0.947,docxModeTextOnly,Text Only,Kun tekst,,,0.947
+0.947,pdfImportedAsDocument,PDF imported as document,PDF importeret som dokument,PDF imported as document,1.000,0.947
+0.947,emailMessageHint,Add a note (optional),Tilføj en note (valgfrit),Add a note (optional),1.000,0.947
+0.947,convertDocumentTitle,Convert Document,Konverter dokument,,,0.947
+0.947,idLayoutRealSize,Real size,Faktisk størrelse,,,0.947
+0.947,printFailed,Print failed,Udskrivning mislykkedes,,,0.947
+0.948,commonChange,Change,Ændre,,,0.948
+0.948,docxModeWithImages,With Images,Med billeder,,,0.948
+0.948,ocrScriptChinese,Chinese,Kinesisk,,,0.948
+0.949,emailFailed,Email failed,E-mail mislykkedes,,,0.949
+0.949,filterFavorites,Favorites,Favoritter,,,0.949
+0.949,sealShapeRound,Round,Rund,,,0.949
+0.949,heightLabel,Height,Højde,,,0.949
+0.949,progressExtractingText,Extracting text…,Udtrækker tekst...,,,0.949
+0.950,progressBuildingPdf,Building PDF…,Bygger PDF...,,,0.950
+0.950,settingsTooltip,Settings,Indstillinger,,,0.950
+0.950,settingsTitle,Settings,Indstillinger,,,0.950
+0.951,privacyPolicyLabel,Privacy policy,Privatlivspolitik,,,0.951
+0.951,pdfImportErrorPrefix,PDF import error,PDF-importfejl,,,0.951
+0.952,addSignature,Add Signature,Tilføj underskrift,,,0.952
+0.952,noTextRecognized,No text recognized.,Ingen tekst genkendt.,,,0.952
+0.952,noFoldersYet,No folders yet,Ingen mapper endnu,,,0.952
+0.953,saveAsDocument,Save as Document,Gem som dokument,,,0.953
+0.953,signatureDeleteSaved,Remove saved signature,Fjern gemt underskrift,,,0.953
+0.953,fromPageLabel,From,Fra,,,0.953
+0.953,tickerPdfExport,PDF EXPORT,PDF-EKSPORT,,,0.953
+0.954,idLayoutFullWidth,Full width,Fuld bredde,,,0.954
+0.954,managePagesTitle,Manage Pages,Administrer sider,,,0.954
+0.954,noDocumentsInFolder,No documents in this folder yet.,Ingen dokumenter i denne mappe endnu.,No documents in this folder yet.,1.000,0.954
+0.954,eraserAutoColorTooltip,Match the page colour automatically,Match sidens farve automatisk,Match the page color automatically,0.993,0.954
+0.954,progressRasterizing,Rasterizing pages…,Rasteriserer sider...,,,0.954
+0.954,tickerNoAccount,NO ACCOUNT,INGEN KONTO,,,0.954
+0.954,removeFromFavorites,Remove from Favorites,Fjern fra favoritter,,,0.954
+0.954,themeLabel,Theme,Tema,,,0.954
+0.954,moreOptionsTooltip,More options,Flere muligheder,,,0.954
+0.955,ocrUnavailableTooltip,OCR unavailable on this device.,OCR ikke tilgængelig på denne enhed.,OCR not available on this device.,0.967,0.955
+0.955,addToFavorites,Add to Favorites,Tilføj til favoritter,,,0.955
+0.955,idPdfErrorPrefix,Error generating ID PDF,Fejl ved generering af ID PDF,Error in generating ID PDF,0.986,0.955
+0.955,addNoteTitle,Add Note,Tilføj notat,,,0.955
+0.955,filterMagicColor,Magic colour,Magisk farve,,,0.955
+0.956,onboardingBack,Back,Tilbage,,,0.956
+0.956,filterContrastLabel,Contrast,Kontrast,,,0.956
+0.956,errorGenericTitle,Something went wrong,Noget gik galt,,,0.956
+0.956,readingPageEta,Page {page} of {total} · about {minutes} min left,Side {page} af {total} · ca. {minutes} min tilbage,Page 5 of 5 · About 5 minutes left,0.979,0.956
+0.957,editLabel,Edit,Rediger,,,0.957
+0.957,addTagsAction,Add Tags,Tilføj tags,,,0.957
+0.957,subscriptionSectionLabel,Subscription,Abonnement,,,0.957
+0.957,signatureTypeHint,Type your name,Skriv dit navn,,,0.957
+0.958,emptySearch,No scans match your search.,Ingen scanninger matcher din søgning.,No scans match your search.,1.000,0.958
+0.958,errorScreenProblem,KatharScan ran into a problem displaying this screen. Your scans are safe — they're stored on this device and this doesn't affect them.,KatharScan stødte på et problem med at vise denne skærm. Dine scanninger er sikre — de gemmes på denne enhed og dette påvirker dem ikke.,KatharScan encountered a problem with displaying this screen. Your scans are secure <unk> they are stored on this device and this does not affect them.,0.974,0.958
+0.958,saveAsNewDocumentAction,Save as new Document,Gem som nyt dokument,Save as new document,1.000,0.958
+0.959,onboardingToolsTitle,21 Free Pro Tools,21 gratis Pro-værktøjer,21 free Pro tools,1.000,0.959
+0.959,exportFormatJpgDescription,One image per page,Et billede pr. side,One image per page,1.000,0.959
+0.959,addPageTitle,Add Page,Tilføj side,,,0.959
+0.959,ocrStatusBuiltIn,Built-in,Indbygget,,,0.959
+0.960,sharePdf,Share PDF,Del PDF,,,0.960
+0.960,commonUse,Use,Brug,,,0.960
+0.960,documentSaved,Document saved,Dokument gemt,,,0.960
+0.961,termsOfServiceLabel,Terms of Service,Servicevilkår,,,0.961
+0.961,accentBlue,Blue,Blå,,,0.961
+0.961,idGenerating,Generating PDF...,Genererer PDF...,,,0.961
+0.961,tickerCsvExport,CSV EXPORT,CSV-EKSPORT,,,0.961
+0.961,signerLabel,Signer {index},Undertegner {index},,,0.961
+0.962,sharePromptAction,Share App,Del app,,,0.962
+0.963,noEmailAppFound,No email app found,Ingen e-mail-app fundet,No e-mail app found,0.963,0.966
+0.963,copyAll,Copy all,Kopier alt,,,0.963
+0.963,editDocumentAction,Edit Document,Rediger dokument,,,0.963
+0.964,addTextTitle,Add Text,Tilføj tekst,,,0.964
+0.964,addDateTitle,Add Date,Tilføj dato,,,0.964
+0.965,filterRemoved,Filter removed,Filter fjernet,,,0.965
+0.965,pagesToReadTitle,Pages to read,Sider der skal læses,,,0.965
+0.965,annotateTitle,Annotate,Annoter,,,0.965
+0.965,sealTextColorLabel,Text colour,Tekstfarve,,,0.965
+0.965,whatsNewBody,"Welcome to KatharScan! This is the first public release featuring unlimited scanning, 29 languages, and export to PDF, Word, TXT, JPG, PNG, and CSV.","Velkommen til KatharScan! Dette er den første offentlige version med ubegrænset scanning, 29 sprog og eksport til PDF, Word, TXT, JPG, PNG og CSV.","Welcome to KatharScan! This is the first public version with unlimited scanning, 29 languages and export to PDF, Word, TXT, JPG, PNG and CSV.",0.966,0.965
+0.966,letterSizeUS,Letter size (US),Letter-størrelse (USA),,,0.966
+0.966,documentsSectionHeader,Documents,Dokumenter,,,0.966
+0.967,watermarkPagesThis,This page,Denne side,,,0.967
+0.967,ocrScriptDevanagari,"Hindi, Marathi (Devanagari)","Hindi, marathi (devanagari)",,,0.967
+0.967,adsRemovedLabel,Ads Removed,Annonser fjernet,,,0.967
+0.967,tabOcrTextLabel,OCR Text,OCR-tekst,,,0.967
+0.968,printFilterNone,No filter,Ingen filter,,,0.968
+0.968,exportFormatDocxDescription,Editable text document,Redigerbart tekstdokument,,,0.968
+0.968,emailLabel,Email,E-mail,,,0.968
+0.968,onboardingWelcomeTitle,Welcome to KatharScan,Velkommen til KatharScan,,,0.968
+0.968,emptyDocumentMessage,This document has no pages.,Dette dokument har ingen sider.,This document has no pages.,1.000,0.968
+0.969,sealFontSerif,Classic,Klassisk,,,0.969
+0.969,accentColorTooltip,Accent Color,Accentfarve,,,0.969
+0.969,accentColorTitle,Accent Color,Accentfarve,,,0.969
+0.969,continueButton,Continue,Fortsæt,,,0.969
+0.969,onboardingContinue,Continue,Fortsæt,,,0.969
+0.969,whatsNewContinue,Continue,Fortsæt,,,0.969
+0.970,commonRemove,Remove,Fjern,,,0.970
+0.970,engagementSectionLabel,ENGAGEMENT & NOTIFICATIONS,ENGAGEMENT OG NOTIFIKATIONER,,,0.970
+0.971,selectRegionTitle,Select Region,Vælg region,,,0.971
+0.971,commonAdd,Add,Tilføj,,,0.971
+0.972,filterAll,All,Alle,,,0.972
+0.972,ocrScriptLatin,"Latin (English, European)","Latinsk (engelsk, europæisk)",,,0.972
+0.972,documentNotFound,Document not found,Dokument ikke fundet,,,0.972
+0.973,onboardingOcrSubtitle,Use KatharScan in {count} languages. OCR runs on your phone — nothing ever leaves your device.,Brug KatharScan på {count} sprog. OCR kører på din telefon — intet forlader din enhed.,Use KatharScan in 5 languages. OCR runs on your phone <unk> nothing leaves your device.,0.976,0.973
+0.973,sealCenterText,Text,Tekst,,,0.973
+0.973,watermarkTextLabel,Text,Tekst,,,0.973
+0.973,textLabel,Text,Tekst,,,0.973
+0.973,watermarkKindText,Text,Tekst,,,0.973
+0.973,ocrScriptJapanese,Japanese,Japansk,,,0.973
+0.973,opacityPercentLabel,Opacity: {percent}%,Opacitet: {percent}%,,,0.973
+0.974,printRangeAll,All pages,Alle sider,,,0.974
+0.974,watermarkPagesAll,All pages,Alle sider,,,0.974
+0.974,ocrNoTextFound,No text found,Ingen tekst fundet,,,0.974
+0.975,watermarkPagesInvalid,Check the pages (the document has {count} pages),Tjek siderne (dokumentet har {count} sider),Check the pages (the document has 5 pages),1.000,0.975
+0.975,ocrStatusInstalled,Installed,Installeret,,,0.975
+0.975,cameraSource,Camera,Kamera,,,0.975
+0.975,addTagTitle,Add tag,Tilføj tag,,,0.975
+0.977,pagesUpdated,Pages updated,Sider opdateret,,,0.977
+0.977,pagesToReadHint,This PDF has {count} pages. Pages that are pictures are read with OCR (about 10 seconds each); pages with real text are instant.,Denne PDF har {count} sider. Sider der er billeder læses med OCR (ca. 10 sekunder hver); sider med rigtig tekst er øjeblikkelige.,This PDF has 5 pages. Pages that have images are read with OCR (about 10 seconds each); pages with real text are instant.,0.990,0.977
+0.977,commonConfirm,Confirm,Bekræft,,,0.977
+0.977,tabImageLabel,Image,Billede,,,0.977
+0.977,watermarkKindImage,Image,Billede,,,0.977
+0.978,watermarkChooseImage,Choose image,Vælg billede,,,0.978
+0.978,pagesSelectTooltip,Select pages,Vælg sider,,,0.978
+0.978,compressTargetLabel,Max size,Maks. størrelse,,,0.978
+0.979,paywallTitle,Remove Ads,Fjern annoncer,,,0.979
+0.979,tryAgainButton,Try again,Prøv igen,,,0.979
+0.980,ocrScriptKorean,Korean,Koreansk,,,0.980
+0.980,commonSize,Size,Størrelse,,,0.980
+0.980,paywallSuccessTitle,Ads Removed,Annoncer fjernet,,,0.980
+0.980,rotate90Action,Rotate 90°,Roter 90°,,,0.980
+0.981,pageFormatLetter,Letter (US),Letter (USA),,,0.981
+0.983,commonColor,Color,Farve,,,0.983
+0.983,filterColor,Color,Farve,,,0.983
+0.983,sealTextSizePercent,Text size {percent}%,Tekststørrelse {percent} %,,,0.983
+0.983,readingPageProgress,Page {page} of {total},Side {page} af {total},Page 5 of 5,1.000,0.983
+0.983,intensityLabel,Intensity,Intensitet,,,0.983
+0.984,sharePromptDismiss,Not now,Ikke nu,,,0.984
+0.985,favoriteTooltip,Favorite,Favorit,,,0.985
+0.985,exportFormatTxtLabel,Text (.txt),Tekst (.txt),,,0.985
+0.985,exportEstimatedSize,Estimated size: {mb} MB,Estimeret størrelse: {mb} MB,Estimated size: 5 MB,1.000,0.985
+0.986,titlePdfImport,PDF Import,PDF-import,,,0.986
+0.987,textSizeLabel,Text size: {size},Tekststørrelse: {size},,,0.987
+0.988,reviewPromptNo,Send Feedback,Send feedback,,,0.988
+0.989,annotationModeSelect,Select,Vælg,,,0.989
+0.989,sizePtLabel,Size: {size}pt,Størrelse: {size}pt,,,0.989
+1.000,exportFormatPdfLabel,PDF,PDF,,,1.000
+1.000,fontMonospace,monospace,monospace,,,1.000
+1.000,compressMedium,Medium,Medium,,,1.000
+1.000,ocrScriptArabic,العربية (Arabic),العربية (Arabic),,,1.000
+1.000,ocrSectionLabel,OCR,OCR,,,1.000
+1.000,ocrScriptHebrew,עברית (Hebrew),עברית (Hebrew),,,1.000
+1.000,exportFormatJpgLabel,JPG,JPG,,,1.000
+1.000,filterOriginal,Original,Original,,,1.000
+1.000,proBadgeLabel,PRO,PRO,,,1.000
+1.000,originalDimensions,Original: {w}×{h},Original: {w}×{h},,,1.000
+1.000,filterTitle,Filter,Filter,,,1.000
+1.000,accentIndigo,Indigo,Indigo,,,1.000
+1.000,ocrScriptRussian,Русский (Russian),Русский (Russian),,,1.000
+1.000,ocrScriptUkrainian,Українська (Ukrainian),Українська (Ukrainian),,,1.000
+1.000,ocrScriptBengali,বাংলা (Bengali),বাংলা (Bengali),,,1.000
+1.000,watermarkLayoutLabel,Layout,Layout,,,1.000
+1.000,watermarkLayoutDiagonal,Diagonal,Diagonal,,,1.000
+1.000,exportFormatDocxLabel,Word (.docx),Word (.docx),,,1.000
+1.000,exportFormatPngLabel,PNG,PNG,,,1.000
+1.000,supportLabel,Support,Support,,,1.000
+1.000,sealCenterLogo,Logo,Logo,,,1.000
+1.000,tickerTags,TAGS,TAGS,,,1.000
+1.000,titleScan,Scan,Scan,,,1.000
+1.000,fontSerif,serif,serif,,,1.000
+1.000,formatCsv,CSV,CSV,,,1.000
+1.000,annotationModePen,Pen,Pen,,,1.000
+1.000,annotationModeEllipse,Ellipse,Ellipse,,,1.000
+1.000,accentViolet,Violet,Violet,,,1.000
+1.000,ocrScriptGreek,Ελληνικά (Greek),Ελληνικά (Greek),,,1.000
+1.000,systemThemeOption,System,System,,,1.000
+1.000,sealShapeOval,Oval,Oval,,,1.000
+1.000,fontSansSerif,sans-serif,sans-serif,,,1.000
+1.000,ocrScriptThai,ไทย (Thai),ไทย (Thai),,,1.000
+1.000,printMarginNormal,Normal,Normal,,,1.000

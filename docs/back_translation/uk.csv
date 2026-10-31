@@ -1,0 +1,545 @@
+score,key,english,translation,back_to_english,backtrans_score,labse_score
+0.228,eraserZoomTooltip,Zoom and move (pinch),Масштаб і переміщення (щипок),Scale and displacement (spots),0.228,0.816
+0.250,watermarkLayoutTiled,Tiled,Мозаїка,,,0.250
+0.299,printFitFit,Fit page,Вписати,,,0.299
+0.312,eraserTitle,Eraser,Гумка,,,0.312
+0.312,annotationModeEraser,Eraser,Гумка,,,0.312
+0.334,accentCrimson,Crimson,Малиновий,,,0.334
+0.343,printMarginLabel,Margin,Поля,,,0.343
+0.360,satLabel,Sat,Нас,,,0.360
+0.393,stampCheckbox,Checkbox,Прапорець,,,0.393
+0.406,checkLabel,Check,Галочка,,,0.406
+0.424,valLabel,Val,Знач,,,0.424
+0.428,batchExportEmptyMessage,No documents to batch export. Scan some first.,Немає документів для пакетного експорту. Спочатку відскануйте кілька.,There's no documentation to export the package.,0.428,0.883
+0.442,cropAspectFree,Free,Вільно,,,0.442
+0.445,sealFontSans,Clean,Строгий,,,0.445
+0.453,captureBehaviorSectionLabel,CAPTURE BEHAVIOR,ПОВЕДІНКА ПРИ ЗАХОПЛЕННІ,,,0.453
+0.459,beepOnCaptureLabel,Beep on capture,Звуковий сигнал при захопленні,,,0.459
+0.475,annotationModeHighlighter,Highlighter,Маркер,,,0.475
+0.480,titleIdCard,ID Card,Посвідчення,,,0.480
+0.481,extractToNewDocAction,Extract to new doc,Витягнути в новий документ,Drawn into a new document,0.481,0.868
+0.487,printRangeCurrent,Current,Поточна,,,0.487
+0.489,lockAspectRatio,Lock aspect ratio,Зафіксувати пропорції,,,0.489
+0.493,tickerTapToTypeFilling,TAP-TO-TYPE FILLING,ЗАПОВНЕННЯ НАТИСНИ-І-НАБЕРИ,,,0.493
+0.494,frontSideCaptured,Front side captured. Now capture the back side.,Лицьову сторону захоплено. Тепер захопіть зворотну.,Now grab the back of the face.,0.494,0.824
+0.496,annotateTitle,Annotate,Анотація,,,0.496
+0.502,captionDocs,"Flexible crop: Original, Square, 4:3, 3:2, 16:9","Гнучка обрізка: Оригінал, Квадрат, 4:3, 3:2, 16:9","The original, Square, 4:3, 3:2, 16:9",0.502,0.887
+0.509,signatureTabType,Type,Ввести,,,0.509
+0.511,signatureFontFlowing,Flowing,Плавний,,,0.511
+0.515,idCardPdfGenerated,ID Card PDF Generated,PDF посвідчення створено,PDF certificate created,0.515,0.856
+0.515,couldNotOpenLinkError,Could not open link.,Не вдалося відкрити посилання.,Couldn't find the link.,0.515,0.946
+0.524,accentAmber,Amber,Бурштин,,,0.524
+0.525,captionOcr,"Text crop: Original, Square, 4:3","Обрізка тексту: Оригінал, Квадрат, 4:3","The original, Square, 4:3",0.525,0.918
+0.532,captionIdCard,Two-sided ID capture: Front + Back,Двостороннє захоплення посвідчення: Обличчя + Зворот,The two-sided capture of a certificate: Face + Turn,0.532,0.856
+0.533,stampTickLabel,Tick,Галочка,,,0.533
+0.534,favoriteTooltip,Favorite,Вибране,,,0.534
+0.539,sealInkLook,Worn stamp look,Ефект потертої печатки,,,0.539
+0.541,couldNotImportBackupError,Could not import this backup. Check the password and try again.,Не вдалося імпортувати цю копію. Перевірте пароль і спробуйте знову.,I couldn't import this copy.,0.541,0.871
+0.549,deleteScanMessage,This can't be undone.,Цю дію не можна скасувати.,This action cannot be reversed.,0.549,0.863
+0.551,tickerFavorites,FAVORITES,ВИБРАНЕ,,,0.551
+0.555,annotationModePen,Pen,Перо,,,0.555
+0.558,cropNoPageFound,Couldn't find the page edges. Drag the corners.,Краї сторінки не знайдено. Перетягніть кути.,The end of the page is missing.,0.558,0.921
+0.562,duplicateAction,Duplicate,Дублювати,,,0.562
+0.568,tickerCustomSeals,CUSTOM SEALS,КОРИСТУВАЦЬКІ ПЕЧАТКИ,,,0.568
+0.569,sealCreateTitle,Custom Seal,Користувацька печатка,,,0.569
+0.569,sealCustom,Custom Seal,Користувацька печатка,,,0.569
+0.569,checkShapeCircle,Circle,Коло,,,0.569
+0.570,tickerIdCardMode,ID CARD MODE,РЕЖИМ ПОСВІДЧЕННЯ,,,0.570
+0.580,titleScan,Scan,Сканувати,,,0.580
+0.583,fitToTargetMbLabel,Fit to target MB,Підігнати під цільові МБ,Lift under target MB,0.583,0.821
+0.589,foldersSectionHeader,Folders,Папки,,,0.589
+0.589,filterFolders,Folders,Папки,,,0.589
+0.589,marqueeEraseTooltip,Marquee erase,Стерти виділенням,,,0.589
+0.600,fillTapHint,Tap the page where you want to type,"Торкніться сторінки там, де хочете ввести текст",Scroll the pages where you want to enter the text,0.600,0.868
+0.605,emptyFavorites,No favorites yet. Tap the star icon on a document to add it.,"Немає вибраного. Натисніть на іконку зірки в документі, щоб додати.",No one's selected. Press the star icon in the document to add.,0.605,0.843
+0.605,enableReviewPromptsSubtitle,Allow the app to occasionally ask for a rating,Дозволити застосунку іноді просити оцінку,Allowing an application to sometimes ask for evaluation,0.605,0.911
+0.615,idPdfErrorPrefix,Error generating ID PDF,Помилка створення PDF посвідчення,Error in creating a PDF certificate,0.615,0.921
+0.618,commonReset,Reset,Скинути,,,0.618
+0.619,idStepFront,Step 1: Capture Front Side,Крок 1: Захопіть лицьову сторону,Step 1: Catch the side of the face,0.619,0.935
+0.623,fillCapsLabel,ALL CAPS,ВСІ ВЕЛИКІ ЛІТЕРИ,,,0.623
+0.624,ticker100OnDevicePrivacy,YOUR DOCUMENTS STAY ON YOUR DEVICE,ВАШІ ДОКУМЕНТИ ЗАЛИШАЮТЬСЯ НА ВАШОМУ ПРИСТРОЇ,Your documents will be stored in your library,0.624,0.813
+0.627,commonCustom,Custom,Користувацький,,,0.627
+0.629,accentEmerald,Emerald,Смарагд,,,0.629
+0.632,printFitLabel,Scaling,Масштаб,,,0.632
+0.635,watermarkLayoutLabel,Layout,Розташування,,,0.635
+0.640,cropIdCardTitle,Crop ID Card,Обрізати посвідчення,,,0.640
+0.648,revertToOriginalMessage,"This will undo all filters, rotations, crops, resizes, and eraser strokes on this page.","Це скасує всі фільтри, повороти, обрізки, зміни розміру та штрихи гумки на цій сторінці.","It eliminates all filters, twists, cuts, size changes and rubber bars on this page.",0.648,0.863
+0.651,sampleColorTooltip,Sample color from page,Зразок кольору зі сторінки,The color scheme on the page,0.651,0.929
+0.655,filterFavorites,Favorites,Вибрані,,,0.655
+0.656,backupReadyStatus,Backup ready.,Копія готова.,,,0.656
+0.659,stampBoxLabel,Box,Поле,,,0.659
+0.659,sealShapeBox,Box,Поле,,,0.659
+0.668,debugLogsLabel,Debug Logs,Журнали налагодження,,,0.668
+0.668,sealEditTitle,Edit Custom Seal,Редагувати печатку,,,0.668
+0.669,onboardingReplayIntro,Replay introduction,Відтворити введення,,,0.669
+0.671,tickerBatchExport,BATCH EXPORT,ПАКЕТНИЙ ЕКСПОРТ,,,0.671
+0.672,aboutSectionLabel,About,Про додаток,,,0.672
+0.672,tickerDarkMode,DARK MODE,ТЕМНИЙ РЕЖИМ,,,0.672
+0.673,sealSubtextLabel,Subtext (bottom arc / below),Підтекст (нижня дуга / нижче),Subtitle (lower arc / lower),0.673,0.902
+0.674,batchExportSignatureDisabled,Batch export — signature placement disabled,Пакетний експорт — розміщення підпису вимкнено,Package export <unk> Signature placement turned off,0.674,0.851
+0.675,tickerNoteStamps,NOTE STAMPS,ШТАМПИ НОТАТОК,,,0.675
+0.681,tickerDeviceMigration,DEVICE MIGRATION,ПЕРЕНЕСЕННЯ ПРИСТРОЮ,,,0.681
+0.682,tickerLanguages,{count} LANGUAGES,{count} МОВ,,,0.682
+0.683,docScannerUnsupportedMessage,"Your device doesn't support the advanced document scanner. Take a photo with your Camera app, then tap Import below to crop and save it.","Ваш пристрій не підтримує розширений сканер документів. Зробіть фото додатком Камера, потім натисніть Імпорт нижче, щоб обрізати та зберегти.",Your device doesn't support an extended document scanner.,0.683,0.921
+0.683,tickerTags,TAGS,ТЕГИ,,,0.683
+0.686,fillTypeHint,Type here,Введіть текст,,,0.686
+0.686,buildingBackupStatus,Building backup…,Створення копії...,,,0.686
+0.688,resizeUpscaleWarning,Enlarging doesn't add detail — the page may look soft.,Збільшення не додає деталей — сторінка може виглядати розмитою.,The increase does not add details <unk> The page may look blurred.,0.688,0.879
+0.691,captionPassport,Passport crop: 4:3 or Original,Обрізка паспорта: 4:3 або Оригінал,Passport cutoff: 4:3 or Original,0.691,0.896
+0.693,vibrateOnCaptureLabel,Vibrate on capture,Вібрація при захопленні,,,0.693
+0.694,captureFrontSide,Capture Front Side,Захопити лицьову,,,0.694
+0.698,filterGrayscale,Grayscale,Відтінки сірого,,,0.698
+0.706,tickerSearch,SEARCH,ПОШУК,,,0.706
+0.709,tapToSampleColor,Tap a spot to sample its color,Торкніться місця для зразка кольору,Turn the spots for the color sample,0.709,0.820
+0.710,alignLabel,Align,Вирівнювання,,,0.710
+0.710,eraserApplied,Eraser applied,Гумку застосовано,,,0.710
+0.711,onboardingPrivacyTitle,Private by design,Приватність за задумом,,,0.711
+0.712,straightenLabel,Straighten,Вирівняти,,,0.712
+0.715,paywallLegalText,This is a non-consumable purchase. Restore it anytime on any device with the same store account.,Це неспоживча покупка. Відновіть її будь-коли на будь-якому пристрої з тим самим акаунтом магазину.,It's an unwanted purchase. Renew it anytime on any device with the same store account.,0.715,0.917
+0.717,idStepBack,Step 2: Capture Back Side,Крок 2: Захопіть зворотну,Step 2: Grab the reverse,0.717,0.927
+0.720,signatureWidthLabel,Pen width,Товщина пера,,,0.720
+0.721,watermarkPagesInvalid,Check the pages (the document has {count} pages),Перевірте сторінки (у документі {count} стор.),Check the pages (see page 5),0.721,0.903
+0.726,pricingLoadingError,Pricing is still loading — try again in a moment.,Ціни все ще завантажуються — спробуйте через хвилину.,Prices are still charging. Try it in a minute.,0.726,0.881
+0.727,emailAttachmentNotIncluded,The pages could not be attached to the email. Use Share to send the pages.,"Не вдалося додати сторінки до листа. Використайте «Поділитися», щоб надіслати сторінки.",Couldn't add pages to the list. Use <unk>Share<unk> to send pages.,0.727,0.870
+0.729,ocrLanguagePackNotReady,Language pack downloading or not ready. Try again shortly.,Мовний пакет завантажується або не готовий. Спробуйте через хвилину.,The language packet is loaded or not ready.,0.729,0.762
+0.730,printFailed,Print failed,Друк не вдався,,,0.730
+0.731,annotationModeArrow,Arrow,Стрілка,,,0.731
+0.733,ticker21ToolEditSuite,21-TOOL EDIT SUITE,21 ІНСТРУМЕНТ РЕДАГУВАННЯ,,,0.733
+0.734,tickerUndoRedo,UNDO/REDO,СКАСУВАННЯ/ПОВТОР,,,0.734
+0.736,tickerGalleryImport,GALLERY IMPORT,ІМПОРТ З ГАЛЕРЕЇ,,,0.736
+0.738,tickerRevertToOriginal,REVERT TO ORIGINAL,ПОВЕРНУТИ ДО ОРИГІНАЛУ,,,0.738
+0.738,annotationModeEllipse,Ellipse,Еліпс,,,0.738
+0.741,rotateLabel,Rotate,Повернути,,,0.741
+0.742,compressLabel,Compress,Стиснути,,,0.742
+0.743,hueLabel,Hue,Відтінок,,,0.743
+0.746,cropDocumentTitle,Crop Document,Обрізати документ,,,0.746
+0.748,billingUnavailableMessage,Billing unavailable — try again later.,Платежі недоступні — спробуйте пізніше.,Payments are unavailable. Try later.,0.748,0.920
+0.750,scaleLabel,Scale,Масштаб,,,0.750
+0.752,sealTextColorSame,Same as ring,Як у кільця,,,0.752
+0.753,tickerFolders,FOLDERS,ПАПКИ,,,0.753
+0.753,intensityLabel,Intensity,Інтенсивність,,,0.753
+0.754,commonExtract,Extract,Витягнути,,,0.754
+0.758,importBackupButton,Import from backup,Імпортувати з копії,,,0.758
+0.758,printFitFill,Fill sheet (trims edges),Заповнити аркуш (краї обрізаються),Fill the sheet (the sides are cut),0.758,0.808
+0.762,modeIdCard,ID Card Mode,Режим посвідчення,,,0.762
+0.763,filterShadow,Shadow,Тінь,,,0.763
+0.766,paywallFeatureNoInterstitial,No more interstitial ads,Більше ніяких повноекранних оголошень,No more full-screen ads,0.766,0.866
+0.768,onboardingEditSubtitle,"Every edit stays reversible — undo, redo, and revert to original anytime.","Кожне редагування залишається оборотним — скасування, повтор та повернення до оригіналу будь-коли.","Each editing remains reverse <unk> cancellation, repetition, and return to the original at any time.",0.768,0.933
+0.769,searchHint,Search your scans,Пошук у сканах,,,0.769
+0.770,watermarkDefaultText,CONFIDENTIAL,КОНФІДЕНЦІЙНО,,,0.770
+0.773,enableSharePromptsSubtitle,Allow the app to occasionally suggest sharing,Дозволити застосунку іноді пропонувати поділитися,Allowing the application to sometimes offer to share,0.773,0.915
+0.773,tickerNonDestructiveEditing,NON-DESTRUCTIVE EDITING,НЕРУЙНІВНЕ РЕДАГУВАННЯ,,,0.773
+0.775,cropAuto,Auto-detect,Визначити автоматично,,,0.775
+0.782,captureBackSide,Capture Back Side,Захопити зворотну,,,0.782
+0.784,cropLabel,Crop,Обрізати,,,0.784
+0.785,sealSavedMessage,Seal saved,Печатку збережено,,,0.785
+0.787,sealSaveToLibrary,Save this seal,Зберегти печатку,,,0.787
+0.788,commonPrint,Print,Друк,,,0.788
+0.788,editLabel,Edit,Змінити,,,0.788
+0.789,storageSectionLabel,Storage,Сховище,,,0.789
+0.792,savedToDocumentText,Saved to document text,Збережено в текст документа,Stored in the text of the document,0.792,0.916
+0.794,accentIndigo,Indigo,Індиго,,,0.794
+0.796,diagnosticsSectionLabel,DIAGNOSTICS,ДІАГНОСТИКА,,,0.796
+0.797,emailFailed,Email failed,Надсилання листа не вдалося,,,0.797
+0.799,signatureTabDraw,Draw,Малювати,,,0.799
+0.800,importBackSide,Import Back Side,Імпорт зворотної,,,0.800
+0.803,ocrStatusOnDemand,On-demand,На запит,,,0.803
+0.803,resizeTitle,Resize,Змінити розмір,,,0.803
+0.804,saveFailedBanner,Your latest changes could not be saved.,Не вдалося зберегти останні зміни.,The last changes were not saved.,0.804,0.915
+0.804,ocrNoInternetMessage,No internet. Connect once to download the language pack.,"Немає інтернету. Підключіться один раз, щоб завантажити мовний пакет.","There's no Internet, so you just have to connect once to download the language packet.",0.804,0.909
+0.805,undoTooltip,Undo,Скасувати,,,0.805
+0.806,onboardingWelcomeSubtitle,"Your entire document office — scan, edit, sign, and export — in one private app.","Весь ваш офіс документів — сканування, редагування, підпис та експорт — в одному приватному додатку.","Your entire office documents <unk> scan, edit, sign and export <unk> in one private application.",0.806,0.916
+0.806,copiedToClipboard,Copied to clipboard,Скопійовано в буфер обміну,,,0.806
+0.806,exportBackupButton,Export encrypted backup,Експортувати зашифровану копію,,,0.806
+0.807,tickerAccentThemes,ACCENT THEMES,ТЕМИ АКЦЕНТУ,,,0.807
+0.809,importAndConvertDocument,Import & Convert Document,Імпортувати та перетворити документ,Importing and Transforming a Document,0.809,0.930
+0.809,onboardingEditTitle,Non-Destructive Editing,Неруйнівне редагування,,,0.809
+0.810,enableReviewPromptsLabel,Enable Review Prompts,Увімкнути запити відгуків,,,0.810
+0.811,onboardingSignSubtitle,"E-sign contracts, type-to-fill forms, and stamp enterprise seals in seconds.","Е-підписуйте контракти, заповнюйте форми та штампуйте корпоративні печатки за секунди.","E-sign contracts, fill out forms, and stamp corporate stamps in seconds.",0.811,0.827
+0.813,stampTickedLabel,Ticked,Позначено,,,0.813
+0.814,moreOptionsTooltip,More options,Додаткові параметри,,,0.814
+0.815,printMarginNarrow,Narrow,Вузькі,,,0.815
+0.816,redoTooltip,Redo,Повторити,,,0.816
+0.816,vibrateOnCaptureSubtitle,Haptic feedback when scan completes,Тактильний відгук при завершенні сканування,Tactile feedback at the end of the scan,0.816,0.854
+0.817,exportAndShareAction,Export & Share,Експорт та надсилання,,,0.817
+0.817,commonSkip,Skip,Пропустити,,,0.817
+0.817,paywallFeatureNoBanner,No more banner ads,Більше ніяких банерів,No more banners,0.817,0.900
+0.819,letterSizeUS,Letter size (US),Формат Letter (США),,,0.819
+0.822,onboardingSignTitle,"Sign, Fill & Seal","Підписати, заповнити та запечатати","Sign, fill, and seal",0.965,0.822
+0.823,beepOnCaptureSubtitle,Play sound when scan completes,Відтворити звук при завершенні сканування,Recover the sound when the scan is complete,0.823,0.934
+0.826,pageRevertedToOriginal,Page reverted to original,Сторінку повернуто до оригіналу,The page is restored to the original,0.826,0.953
+0.826,enableSharePromptsLabel,Enable Share Prompts,Увімкнути запити поділитися,,,0.826
+0.829,emailLimitMissed,Could not get under {mb} MB; sent the smallest version.,Не вдалося вкластися в {mb} МБ; надіслано найменшу версію.,Couldn't fit 5MB; the smallest version was sent.,0.829,0.911
+0.830,printPerSheetLabel,Pages per sheet,Сторінок на аркуші,,,0.830
+0.830,accentViolet,Violet,Фіолетовий,,,0.830
+0.831,eraserAutoColorTooltip,Match the page colour automatically,Підбирати колір сторінки автоматично,Select the page color automatically,0.831,0.856
+0.831,tickerNoAccount,NO ACCOUNT,БЕЗ АКАУНТА,,,0.831
+0.831,removeFromFavorites,Remove from Favorites,Видалити з обраного,,,0.831
+0.831,commonCopy,Copy,Копіювати,,,0.831
+0.831,addToFavorites,Add to Favorites,Додати до обраного,,,0.831
+0.833,customColorTitle,Custom Color,Користувацький колір,,,0.833
+0.834,errorReportIssue,Report issue,Повідомити про проблему,,,0.834
+0.836,filterMagicColor,Magic colour,Магія кольору,,,0.836
+0.836,importFrontSide,Import Front Side,Імпорт лицьової,,,0.836
+0.836,ocrLanguagesLabel,OCR Languages,Мови OCR,,,0.836
+0.837,autoCopyOcrSubtitle,Copy text to clipboard after scan,Копіювати текст у буфер після сканування,Copy text to the buffer after scanning,0.837,0.919
+0.838,tickerPassportMode,PASSPORT MODE,РЕЖИМ ПАСПОРТА,,,0.838
+0.838,tickerTextStamps,TEXT STAMPS,ТЕКСТОВІ ШТАМПИ,,,0.838
+0.839,noteLabel,Note,Нотатка,,,0.839
+0.846,tickerESign,E-SIGN,Е-ПІДПИС,,,0.846
+0.847,commonRevert,Revert,Повернути,,,0.847
+0.847,whiteHaloLabel,White halo (readability),Білий ореол (читабельність),,,0.847
+0.848,batchExportTooltip,Batch export,Пакетний експорт,,,0.848
+0.848,clearedCount,Cleared {count},Очищено: {count},,,0.848
+0.849,watermarkLabel,Watermark,Водяний знак,,,0.849
+0.849,ocrScriptDevanagari,"Hindi, Marathi (Devanagari)","Гінді, маратхі (деванагарі)",,,0.849
+0.850,exportFormatCsvDescription,Spreadsheet data,Дані таблиці,,,0.850
+0.851,reviewPromptTitle,Enjoying KatharScan?,Подобається KatharScan?,,,0.851
+0.851,engagementSectionLabel,ENGAGEMENT & NOTIFICATIONS,ВЗАЄМОДІЯ ТА СПОВІЩЕННЯ,,,0.851
+0.851,fillInputHint,Type text to fill,Введіть текст для заповнення,Enter the text to be filled in,0.851,0.944
+0.851,commonCancel,Cancel,Скасувати,,,0.851
+0.853,filterContrastLabel,Contrast,Контраст,,,0.853
+0.853,tickerNoWatermarks,NO WATERMARKS,БЕЗ ВОДЯНИХ ЗНАКІВ,,,0.853
+0.855,sealSavedHeading,Saved seals,Збережені печатки,,,0.855
+0.855,chipSelectMultiple,Select Multiple,Вибрати кілька,,,0.855
+0.856,openSourceLicensesLabel,Open-source licenses,Ліцензії з відкритим кодом,,,0.856
+0.857,rotationPage,Page rotated,Сторінку повернуто,,,0.857
+0.857,idLayoutFullWidth,Full width,На всю ширину,,,0.857
+0.857,setBackupPasswordTitle,Set a backup password,Встановити пароль резервної копії,Install the backup password,0.857,0.934
+0.859,drawNewSignature,Draw New,Намалювати новий,,,0.859
+0.859,enableNotificationsSubtitle,Allow background reminders for unexported documents,Дозволити фонові нагадування для неекспортованих документів,Allow background reminders for non-exported documents,0.859,0.911
+0.860,commonClear,Clear,Очистити,,,0.860
+0.861,pageResized,Page resized,Розмір сторінки змінено,,,0.861
+0.861,saveInsideAppWarning,"To save inside the app, choose JPG or PNG. Other targets are exported as files.","Щоб зберегти в додатку, виберіть JPG або PNG. Інші цілі експортуються як файли.","To save in the application, select JPG or PNG. Other objects are exported as files.",0.861,0.949
+0.864,onboardingToolsSubtitle,"Annotate, sign, watermark, fill forms, seal, and more — every tool free and unlimited.","Анотування, підпис, водяні знаки, заповнення форм, печатка та багато іншого — кожен інструмент безкоштовний та необмежений.","Annotation, signature, watermarks, filling out forms, stamping, and more <unk> each tool is free and unlimited.",0.864,0.882
+0.865,tickerWordExport,WORD EXPORT,ЕКСПОРТ WORD,,,0.865
+0.866,exportEstimatedSize,Estimated size: {mb} MB,Розрахунковий розмір: {mb} МБ,Calculated size: 5 MB,0.866,0.895
+0.866,signatureFontHandwritten,Handwritten,Рукописний,,,0.866
+0.867,signatureNewOne,Draw or type a new one,Намалювати або ввести новий,Draw or insert a new one,0.880,0.867
+0.867,restoreCompleteMessage,Restore complete.,Відновлення завершено.,,,0.867
+0.867,annotationModeRect,Rectangle,Прямокутник,,,0.867
+0.867,termsOfServiceLabel,Terms of Service,Умови використання,,,0.867
+0.868,exportFormatJpgDescription,One image per page,Одне зображення на сторінку,One image on the page,0.868,0.946
+0.868,clearLogsTooltip,Clear logs,Очистити журнали,,,0.868
+0.870,sharePromptTitle,Love KatharScan?,Подобається KatharScan?,,,0.870
+0.871,movedToFolderMessage,Moved to folder.,Переміщено в папку.,,,0.871
+0.872,moveToFolderTitle,Move to Folder,Перемістити в папку,,,0.872
+0.872,tickerSearchablePdf,SEARCHABLE PDF,ПОШУКОВИЙ PDF,,,0.872
+0.872,progressCopying,Copying…,Копіювання...,,,0.872
+0.872,moveToFolderTooltip,Move to folder,Перемістити в папку,,,0.872
+0.872,exportNoTextError,This document has no text yet. Run OCR on it first.,У цьому документі ще немає тексту. Спочатку запустіть розпізнавання (OCR).,"There's no text yet in this document, so start with OCR.",0.872,0.938
+0.873,pagesToReadHint,This PDF has {count} pages. Pages that are pictures are read with OCR (about 10 seconds each); pages with real text are instant.,У цьому PDF {count} стор. Сторінки-зображення читаються через OCR (близько 10 секунд кожна); сторінки зі справжнім текстом — миттєво.,"In this PDF, 5 pages of images are read via OCR (about 10 seconds each); pages with real text <unk> instantly.",0.873,0.936
+0.877,scanUnavailable,This scan is no longer available.,Цей скан більше недоступний.,This scan is no longer available.,1.000,0.877
+0.881,emptySearch,No scans match your search.,"Немає сканів, що відповідають вашому пошуку.",There are no scans that match your search.,0.946,0.881
+0.881,rotationAllPages,All pages rotated,Усі сторінки повернуто,,,0.881
+0.882,migrationTitle,Device Migration,Перенесення пристрою,,,0.882
+0.882,deviceMigrationLabel,Device Migration,Перенесення пристрою,,,0.882
+0.882,removeAdsTitle,Remove Ads Forever,Видалити рекламу назавжди,,,0.882
+0.882,progressBuildingDocx,Building DOCX…,Створення DOCX...,,,0.882
+0.882,sealCenterNone,None,Немає,,,0.882
+0.882,printMarginNone,None,Немає,,,0.882
+0.883,conversionFailedPrefix,Conversion failed,Перетворення не вдалося,,,0.883
+0.884,scanPreviewNoPages,No pages to show.,Немає сторінок для відображення.,There's no page to display.,0.884,0.935
+0.884,filterBrightnessLabel,Brightness,Яскравість,,,0.884
+0.884,adsRemovedLabel,Ads Removed,Рекламу видалено,,,0.884
+0.884,paywallSuccessTitle,Ads Removed,Рекламу видалено,,,0.884
+0.885,commonClose,Close,Закрити,,,0.885
+0.885,noTextRecognized,No text recognized.,Текст не розпізнано.,,,0.885
+0.886,stampPaperLabel,Paper,Папір,,,0.886
+0.886,printPaperLabel,Paper,Папір,,,0.886
+0.886,filterShadowRemoval,Shadow removal,Видалення тіней,,,0.886
+0.886,checkShapeSquare,Square,Квадрат,,,0.886
+0.886,cropAspectSquare,Square,Квадрат,,,0.886
+0.887,tickerAutoCopyOcr,AUTO-COPY OCR,АВТО-КОПІЮВАННЯ OCR,,,0.887
+0.887,sealShapeOval,Oval,Овал,,,0.887
+0.888,conversionStarting,Starting…,Запуск...,,,0.888
+0.888,noDocumentsInFolder,No documents in this folder yet.,У цій папці ще немає документів.,There are no documents in this folder yet.,0.955,0.888
+0.888,exportFormatDocxDescription,Editable text document,Редагований текстовий документ,,,0.888
+0.891,compressNoLimit,No limit,Без ліміту,,,0.891
+0.892,tickerJpgExport,JPG EXPORT,ЕКСПОРТ JPG,,,0.892
+0.892,lightThemeOption,Light,Світла,,,0.892
+0.893,printMarginNormal,Normal,Звичайні,,,0.893
+0.893,importFromGallery,Import from Gallery,Імпорт з галереї,,,0.893
+0.894,pagesDeleteConfirm,Delete {count} pages? They are removed when you save.,Видалити сторінок: {count}? Їх буде видалено після збереження.,Delete page: 5? They will be deleted after saving.,0.916,0.894
+0.894,debugNoLogsYet,No logs yet,Журналів ще немає,,,0.894
+0.894,exportDoneStatus,Done,Готово,,,0.894
+0.894,commonDone,Done,Готово,,,0.894
+0.894,commonConvert,Convert,Перетворити,,,0.894
+0.895,printRangeRange,Range,Діапазон,,,0.895
+0.895,watermarkPagesRange,Range,Діапазон,,,0.895
+0.895,sharePromptBody,Share it with friends who need a powerful document scanner.,"Поділіться з друзями, яким потрібен потужний сканер документів.",Share it with friends who need a powerful document scanner.,1.000,0.895
+0.896,pageCropped,Page cropped,Сторінку обрізано,,,0.896
+0.897,progressDecodingImage,Decoding image…,Декодування зображення...,,,0.897
+0.897,watermarkLayoutDiagonal,Diagonal,Діагональний,,,0.897
+0.898,systemThemeOption,System,Системна,,,0.898
+0.898,tickerPngExport,PNG EXPORT,ЕКСПОРТ PNG,,,0.898
+0.898,watermarkLayoutSingle,Single,Одиночний,,,0.898
+0.898,renameFolderTitle,Rename folder,Перейменувати папку,,,0.898
+0.899,emailMessageLabel,Message,Повідомлення,,,0.899
+0.899,saveToDownloadsAction,Save to Downloads,Зберегти в Завантаження,,,0.899
+0.899,folderUnavailable,This folder is no longer available.,Ця папка більше недоступна.,This folder is no longer available.,1.000,0.899
+0.900,noFoldersYetHomeMessage,No folders yet. Create one from the home screen.,Папок ще немає. Створіть одну з головного екрана.,There's no folder yet. Create one from the home screen.,0.939,0.900
+0.900,addTagTitle,Add tag,Додати тег,,,0.900
+0.901,tickerTxtExport,TXT EXPORT,ЕКСПОРТ TXT,,,0.901
+0.902,tickerPdfExport,PDF EXPORT,ЕКСПОРТ PDF,,,0.902
+0.903,emptyStateDefaultMessage,Tap the camera to scan your first document.,"Торкніться камери, щоб відсканувати перший документ.",Turn the cameras to scan the first document.,0.903,0.910
+0.903,appearanceSectionLabel,Appearance,Зовнішній вигляд,,,0.903
+0.903,tickerRegionOcr,REGION OCR,РЕГІОНАЛЬНИЙ OCR,,,0.903
+0.903,extractedPageDefaultTitle,Extracted Page,Витягнута сторінка,,,0.903
+0.905,addCheckboxTitle,Add Checkbox,Додати прапорець,,,0.905
+0.906,emptyFolders,No folders yet. Tap the folder icon to create one.,"Папок ще немає. Натисніть на іконку папки, щоб створити.",There's no folder yet. Press the folder icon to create it.,0.917,0.906
+0.906,progressBuildingPdf,Building PDF…,Створення PDF...,,,0.906
+0.906,printOptionsTitle,Print Options,Параметри друку,,,0.906
+0.907,extractedTextTitle,Extracted Text,Витягнутий текст,,,0.907
+0.907,exportSavedToDownloads,Saved to Downloads,Збережено в Завантаження,,,0.907
+0.907,darkThemeOption,Dark,Темна,,,0.907
+0.908,sealMainTextLabel,Main text (top arc / box),Основний текст (верхня дуга / поле),Main text (top of the arc/field),0.908,0.927
+0.908,placeHereLabel,Place here,Розмістити тут,,,0.908
+0.908,regionOcrFailed,Region OCR failed,Регіональний OCR не вдався,,,0.908
+0.909,reviewPromptNo,Send Feedback,Надіслати відгук,,,0.909
+0.910,enableNotificationsLabel,Enable Notifications,Увімкнути сповіщення,,,0.910
+0.910,fillDeleteSnippet,Delete snippet?,Видалити фрагмент?,,,0.910
+0.910,commonApply,Apply,Застосувати,,,0.910
+0.911,checkShapeRounded,Rounded,Заокруглений,,,0.911
+0.912,emailMessageHint,Add a note (optional),Додайте нотатку (необов'язково),Add a note (not required),0.912,0.942
+0.913,migrationExplainer,"This isn't automatic sync. Export creates a single encrypted backup file you move to your new device yourself, then import there.","Це не автоматична синхронізація. Експорт створює один зашифрований файл резервної копії, який ви самі переносите на новий пристрій і там імпортуєте.",It's not automatic synchronization. Export creates a single encrypted backup file that you yourself transfer to your new device and import there.,0.972,0.913
+0.913,opacityPercentLabel,Opacity: {percent}%,Непрозорість: {percent}%,,,0.913
+0.913,exportGenericError,Something went wrong while exporting.,Щось пішло не так під час експорту.,Something went wrong during the export.,0.922,0.913
+0.914,actionLabel,Action:,Дія:,,,0.914
+0.914,tickerCsvExport,CSV EXPORT,ЕКСПОРТ CSV,,,0.914
+0.914,sealShapeRound,Round,Круглий,,,0.914
+0.914,errorGenericTitle,Something went wrong,Щось пішло не так,,,0.914
+0.917,signatureChoiceMessage,Use your saved signature or draw a new one?,Використати збережений підпис чи намалювати новий?,Using a saved signature or drawing a new one?,0.962,0.917
+0.918,signatureTitle,Signature,Підпис,,,0.918
+0.918,clearThis,Clear this,Очистити це,,,0.918
+0.918,saveFailedPrefix,Save failed:,Не вдалося зберегти:,,,0.918
+0.918,couldNotCreateBackupError,Could not create the backup.,Не вдалося створити резервну копію.,Couldn't create a backup.,0.946,0.918
+0.919,progressSaving,Saving…,Збереження...,,,0.919
+0.919,copyAll,Copy all,Копіювати все,,,0.919
+0.919,reviewPromptBody,Your feedback helps us grow and keeps the app free.,Ваш відгук допомагає нам рости та підтримує додаток безкоштовним.,Your feedback helps us grow and support the app for free.,0.965,0.919
+0.920,paywallTitle,Remove Ads,Видалити рекламу,,,0.920
+0.920,importingStatus,Importing…,Імпорт...,,,0.920
+0.920,pickErrorPrefix,Pick error,Помилка вибору,,,0.920
+0.920,paywallFallbackPrice,$14.99 one-time,$14.99 разова,,,0.920
+0.921,fillSaveSnippet,Save as snippet,Зберегти як фрагмент,,,0.921
+0.921,ocrStatusInstalled,Installed,Установлено,,,0.921
+0.921,filterApplied,Filter applied,Фільтр застосовано,,,0.921
+0.921,ocrStatusUnsupported,Unsupported,Не підтримується,,,0.921
+0.921,deleteScanTitle,Delete this scan?,Видалити цей скан?,,,0.921
+0.922,paywallSubtitle,Support KatharScan with a one-time purchase. All features remain free.,Підтримайте KatharScan разовою покупкою. Усі функції залишаться безкоштовними.,Support KatharScan with a one-time purchase.,0.922,0.941
+0.922,exportFormatPngDescription,"One image per page, lossless","Одне зображення на сторінку, без втрат","One image per page, without loss",0.961,0.922
+0.922,signerLabel,Signer {index},Підписант {index},,,0.922
+0.922,fullscreenLabel,Fullscreen,Повний екран,,,0.922
+0.922,autoScan,Auto Scan,Автосканування,,,0.922
+0.923,filterColorEnhance,Color enhance,Покращення кольору,,,0.923
+0.924,backupCorruptedError,This backup file looks corrupted.,Цей файл резервної копії виглядає пошкодженим.,This backup file looks damaged.,0.928,0.924
+0.924,exportFormatPdfDescription,Best for sharing and printing,Найкраще для обміну та друку,Best for sharing and printing,1.000,0.924
+0.925,onboardingOcrTitle,On-Device OCR,OCR на пристрої,,,0.925
+0.926,deleteFolderTooltip,Delete folder,Видалити папку,,,0.926
+0.926,convertDocumentTitle,Convert Document,Перетворити документ,,,0.926
+0.926,pdfImportedAsDocument,PDF imported as document,PDF імпортовано як документ,PDF is imported as a document,0.926,0.931
+0.926,paywallSuccessMessage,Thank you for supporting KatharScan.,Дякуємо за підтримку KatharScan.,Thank you for supporting KatharScan.,1.000,0.926
+0.926,filterTitle,Filter,Фільтр,,,0.926
+0.926,modePassport,Passport Mode,Режим паспорта,,,0.926
+0.927,sealLogoReady,Logo ready,Логотип готовий,,,0.927
+0.927,signatureSavedHeading,Saved signatures,Збережені підписи,,,0.927
+0.927,noFoldersYet,No folders yet,Папок ще немає,,,0.927
+0.928,useSavedSignature,Use Saved,Використати збережений,,,0.928
+0.929,whatsNewBody,"Welcome to KatharScan! This is the first public release featuring unlimited scanning, 29 languages, and export to PDF, Word, TXT, JPG, PNG, and CSV.","Вітаємо у KatharScan! Це перший публічний реліз з необмеженим скануванням, 29 мовами та експортом у PDF, Word, TXT, JPG, PNG і CSV.","Welcome to KatharScan! It is the first public release with unlimited scanning, 29 languages and export to PDF, Word, TXT, JPG, PNG and CSV.",0.994,0.929
+0.929,watermarkEditTitle,Edit Watermark,Редагувати водяний знак,,,0.929
+0.929,progressExtractingText,Extracting text…,Витягування тексту...,,,0.929
+0.930,signatureDeleteSaved,Remove saved signature,Видалити збережений підпис,,,0.930
+0.930,genericErrorMessage,Something went wrong. Please try again.,Щось пішло не так. Спробуйте знову.,Something went wrong. Try again.,0.930,0.952
+0.930,exportFormatTxtDescription,Plain OCR text only,Лише звичайний текст OCR,Just plain text OCR,0.930,0.949
+0.931,commonChange,Change,Змінити,,,0.931
+0.931,scannerErrorPrefix,Scanner error,Помилка сканера,,,0.931
+0.931,removeFromFolderTooltip,Remove from folder,Видалити з папки,,,0.931
+0.931,exportTooltip,Export,Експорт,,,0.931
+0.931,exportTitle,Export,Експорт,,,0.931
+0.931,reviewPromptYes,Rate Us,Оцінити нас,,,0.931
+0.932,revertToOriginalTitle,Revert to Original?,Повернути до оригіналу?,,,0.932
+0.932,compressSmall,Small,Малий,,,0.932
+0.932,sealCenterTextLabel,Center text,Центральний текст,,,0.932
+0.933,watermarkAddTitle,Add Watermark,Додати водяний знак,,,0.933
+0.933,continueButton,Continue,Продовжити,,,0.933
+0.933,onboardingContinue,Continue,Продовжити,,,0.933
+0.933,whatsNewContinue,Continue,Продовжити,,,0.933
+0.933,ocrScriptChinese,Chinese,Китайська,,,0.933
+0.933,ocrScriptKorean,Korean,Корейська,,,0.933
+0.933,filterRemoved,Filter removed,Фільтр видалено,,,0.933
+0.934,addSignature,Add Signature,Додати підпис,,,0.934
+0.934,importErrorPrefix,Import error,Помилка імпорту,,,0.934
+0.935,fromAnotherDocument,From Another Document,З іншого документа,,,0.935
+0.935,progressEncodingPage,Encoding page {current} of {total}…,Кодування сторінки {current} з {total}...,The encoding of page 5 out of 5...,0.953,0.935
+0.935,paywallFeatureFreeForever,All features free forever,Усі функції безкоштовні назавжди,All features are free forever,0.982,0.935
+0.935,sealCenterStar,Star,Зірка,,,0.935
+0.935,onboardingPrivacySubtitle,"No account, no cloud, no watermarks. Your documents never leave your device.","Без акаунта, без хмари, без водяних знаків. Ваші документи ніколи не залишають ваш пристрій.","No account, no cloud, no watermarks, your documents never leave your device.",0.977,0.935
+0.935,enterBackupPasswordTitle,Enter backup password,Введіть пароль резервної копії,,,0.935
+0.937,sealDefaultMainText,YOUR COMPANY,ВАША КОМПАНІЯ,,,0.937
+0.937,accentBlue,Blue,Синій,,,0.937
+0.937,sealRemoveWhite,Make white transparent,Зробити білий прозорим,,,0.937
+0.937,chipAllFolders,All Folders,Усі папки,,,0.937
+0.938,ocrUnavailableTooltip,OCR unavailable on this device.,OCR недоступний на цьому пристрої.,OCR is not available on this device.,0.938,0.949
+0.938,extractedAsNewDocument,Extracted as new document,Витягнуто як новий документ,Extracted as a new document,0.989,0.938
+0.938,progressRasterizing,Rasterizing pages…,Растеризація сторінок...,,,0.938
+0.938,sizePtLabel,Size: {size}pt,Розмір: {size}пт,,,0.938
+0.938,selectRegionTitle,Select Region,Вибрати область,,,0.938
+0.938,genericErrorPrefix,Error,Помилка,,,0.938
+0.939,onboardingGetStarted,Get Started,Почати,,,0.939
+0.940,signatureCanvasHint,Sign here,Підпишіть тут,,,0.940
+0.940,filterSheetTitle,Filters,Фільтри,,,0.940
+0.941,printFilterNone,No filter,Без фільтра,,,0.941
+0.941,commonImport,Import,Імпортувати,,,0.941
+0.942,commonUse,Use,Використати,,,0.942
+0.942,restorePurchasesButton,Restore purchases,Відновити покупки,,,0.942
+0.942,newFolderTitle,New Folder,Нова папка,,,0.942
+0.942,newFolderTooltip,New Folder,Нова папка,,,0.942
+0.942,saveToDeviceButton,Save to Device,Зберегти на пристрій,,,0.942
+0.942,docxWarningMessage,"DOCX sources render poorly as pages — save inside the app is limited to JPG/PNG from image, PDF, TXT or CSV sources. Use Export & Share for this file.","Джерела DOCX погано відображаються як сторінки — збереження в додатку обмежене JPG/PNG із зображень, PDF, TXT або CSV. Використовуйте Експорт та надсилання для цього файлу.","DOCX sources are poorly displayed as pages <unk> save in the app limited JPG/PNG with images, PDF, TXT or CSV. Use Export and forwarding for this file.",0.942,0.943
+0.942,signatureTypeHint,Type your name,Введіть своє ім’я,,,0.942
+0.942,subscriptionSectionLabel,Subscription,Підписка,,,0.942
+0.943,managePagesTitle,Manage Pages,Керування сторінками,,,0.943
+0.943,deleteFolderMessage,Documents inside will not be deleted.,Документи всередині не будуть видалені.,The documents inside will not be deleted.,0.973,0.943
+0.943,commonDelete,Delete,Видалити,,,0.943
+0.943,deleteTooltip,Delete,Видалити,,,0.943
+0.945,rotate90Action,Rotate 90°,Повернути на 90°,,,0.945
+0.945,clearAll,Clear all,Очистити все,,,0.945
+0.945,filterRecent,Recent,Нещодавні,,,0.945
+0.945,convertToLabel,Convert to:,Перетворити в:,,,0.945
+0.945,ocrScriptLatin,"Latin (English, European)","Латиниця (англійська, європейська)",,,0.945
+0.945,whatsNewTitle,What's New,Що нового,,,0.945
+0.946,cropAspectId,ID card,ID-картка,,,0.946
+0.946,readingPageEta,Page {page} of {total} · about {minutes} min left,Сторінка {page} з {total} · залишилось близько {minutes} хв,Page 5 of 5 · left about 5 minutes,0.949,0.946
+0.946,docxModeTextOnly,Text Only,Лише текст,,,0.946
+0.947,addNoteTitle,Add Note,Додати нотатку,,,0.947
+0.947,sealCenterLogo,Logo,Логотип,,,0.947
+0.947,ocrStatusDownloading,Downloading…,Завантаження…,,,0.947
+0.947,exportingStatus,Exporting…,Експортується...,,,0.947
+0.947,deleteFolderTitle,Delete this folder?,Видалити цю папку?,,,0.947
+0.948,clearPage,Clear page,Очистити сторінку,,,0.948
+0.948,ocrStatusChecking,Checking...,Перевірка...,,,0.948
+0.949,accentColorTooltip,Accent Color,Колір акценту,,,0.949
+0.949,accentColorTitle,Accent Color,Колір акценту,,,0.949
+0.950,noteTextLabel,Note text,Текст нотатки,,,0.950
+0.950,privacyPolicyLabel,Privacy policy,Політика конфіденційності,,,0.950
+0.950,compressMedium,Medium,Середній,,,0.950
+0.950,pagesLabel,Pages,Сторінки,,,0.950
+0.950,watermarkPagesLabel,Pages,Сторінки,,,0.950
+0.950,onboardingOcrSubtitle,Use KatharScan in {count} languages. OCR runs on your phone — nothing ever leaves your device.,Використовуйте KatharScan {count} мовами. OCR працює на телефоні — нічого не залишає пристрій.,Use KatharScan in 5 languages. OCR works on the phone <unk> leaves nothing on the device.,0.954,0.950
+0.950,errorScreenProblem,KatharScan ran into a problem displaying this screen. Your scans are safe — they're stored on this device and this doesn't affect them.,"KatharScan зіткнувся з проблемою при відображенні цього екрана. Ваші скани в безпеці — вони зберігаються на цьому пристрої, і це не впливає на них.","KatharScan has encountered a problem with displaying this screen. Your scans are safe <unk> they are stored on this device, and it doesn't affect them.",0.982,0.950
+0.951,commonRemove,Remove,Видалити,,,0.951
+0.951,emptyDocumentMessage,This document has no pages.,У цьому документі немає сторінок.,There are no pages in this document.,0.951,0.962
+0.951,commonCreate,Create,Створити,,,0.951
+0.951,tickerFreeUnlimitedOcr,FREE UNLIMITED OCR,БЕЗКОШТОВНИЙ НЕОБМЕЖЕНИЙ OCR,,,0.951
+0.951,commonSave,Save,Зберегти,,,0.951
+0.952,emailLabel,Email,Ел. пошта,,,0.952
+0.953,convertedDocTitle,Converted {date},Перетворено {date},,,0.953
+0.953,ocrStatusBuiltIn,Built-in,Вбудований,,,0.953
+0.953,ocrNoTextFound,No text found,Текст не знайдено,,,0.953
+0.953,homeLanguageTooltip,App Language,Мова додатку,,,0.953
+0.953,appLanguageTitle,App Language,Мова додатку,,,0.953
+0.953,progressReading,Reading…,Читання...,,,0.953
+0.953,appLanguageLabel,App language,Мова додатку,,,0.953
+0.954,filterOriginal,Original,Оригінал,,,0.954
+0.954,commonExport,Export,Експортувати,,,0.954
+0.954,themeLabel,Theme,Тема,,,0.954
+0.954,heightLabel,Height,Висота,,,0.954
+0.955,applyToAllPages,Apply to all pages,Застосувати до всіх сторінок,Apply to All Pages,1.000,0.955
+0.955,idLayoutRealSize,Real size,Реальний розмір,,,0.955
+0.956,widthLabel,Width,Ширина,,,0.956
+0.956,privacyOptionsLabel,Privacy settings,Налаштування конфіденційності,,,0.956
+0.956,onboardingToolsTitle,21 Free Pro Tools,21 безкоштовний Pro-інструмент,21 free Pro tool,0.976,0.956
+0.956,renameDocumentTitle,Rename document,Перейменувати документ,,,0.956
+0.956,autoCopyOcrLabel,Auto-copy OCR,Автокопіювання OCR,,,0.956
+0.957,exportFormatSheetTitle,Export as,Експортувати як,,,0.957
+0.957,idGenerating,Generating PDF...,Створення PDF...,,,0.957
+0.958,commonShare,Share,Поділитися,,,0.958
+0.958,shareTooltip,Share,Поділитися,,,0.958
+0.958,pagesToReadTitle,Pages to read,Сторінки для читання,,,0.958
+0.958,fromPageLabel,From,Від,,,0.958
+0.958,sealFontSerif,Classic,Класичний,,,0.958
+0.958,commonRename,Rename,Перейменувати,,,0.958
+0.959,tryAgainButton,Try again,Спробувати знову,,,0.959
+0.959,fillTooltip,Fill,Заповнити,,,0.959
+0.959,saveAsNewDocumentAction,Save as new Document,Зберегти як новий документ,Save as a new document,0.992,0.959
+0.960,sharePromptAction,Share App,Поділитися додатком,,,0.960
+0.961,cameraErrorPrefix,Camera error,Помилка камери,,,0.961
+0.961,saveAsDocument,Save as Document,Зберегти як документ,,,0.961
+0.961,addDateTitle,Add Date,Додати дату,,,0.961
+0.962,savedAsNewDocument,Saved as new document,Збережено як новий документ,Saved as a new document,0.989,0.962
+0.963,noEmailAppFound,No email app found,Не знайдено додаток електронної пошти,No e-mail app found,0.963,0.964
+0.963,onboardingWelcomeTitle,Welcome to KatharScan,Ласкаво просимо до KatharScan,,,0.963
+0.965,commonUpdate,Update,Оновити,,,0.965
+0.965,onboardingBack,Back,Назад,,,0.965
+0.966,readingPageProgress,Page {page} of {total},Сторінка {page} з {total},Page 5 of 5,1.000,0.966
+0.967,modeDocument,Document Mode,Режим документа,,,0.967
+0.967,addTagsAction,Add Tags,Додати теги,,,0.967
+0.967,sealCenterText,Text,Текст,,,0.967
+0.967,watermarkTextLabel,Text,Текст,,,0.967
+0.967,textLabel,Text,Текст,,,0.967
+0.967,watermarkKindText,Text,Текст,,,0.967
+0.968,documentSaved,Document saved,Документ збережено,,,0.968
+0.968,addTextTitle,Add Text,Додати текст,,,0.968
+0.968,pageLabel,Page {index},Сторінка {index},,,0.968
+0.969,pageFromLabel,From page,Зі сторінки,,,0.969
+0.969,pagesUpdated,Pages updated,Сторінки оновлено,,,0.969
+0.969,addPageTitle,Add Page,Додати сторінку,,,0.969
+0.969,pagesDeleteCount,Delete {count},Видалити {count},,,0.969
+0.970,cameraSource,Camera,Камера,,,0.970
+0.970,ocrScriptJapanese,Japanese,Японська,,,0.970
+0.970,pageToLabel,To page,До сторінки,,,0.970
+0.970,editDocumentAction,Edit Document,Редагувати документ,,,0.970
+0.971,tabImageLabel,Image,Зображення,,,0.971
+0.971,watermarkKindImage,Image,Зображення,,,0.971
+0.972,commonConfirm,Confirm,Підтвердити,,,0.972
+0.972,commonAdd,Add,Додати,,,0.972
+0.972,watermarkPagesThis,This page,Ця сторінка,,,0.972
+0.973,commonSize,Size,Розмір,,,0.973
+0.973,clearAllPages,Clear all pages,Очистити всі сторінки,,,0.973
+0.973,sealTextColorLabel,Text colour,Колір тексту,,,0.973
+0.973,filterAll,All,Усі,,,0.973
+0.974,pdfImportErrorPrefix,PDF import error,Помилка імпорту PDF,,,0.974
+0.974,settingsTitle,Settings,Налаштування,,,0.974
+0.974,settingsTooltip,Settings,Налаштування,,,0.974
+0.975,languageSectionLabel,Language,Мова,,,0.975
+0.975,titlePdfImport,PDF Import,Імпорт PDF,,,0.975
+0.975,documentsSectionHeader,Documents,Документи,,,0.975
+0.976,compressTargetLabel,Max size,Макс. розмір,,,0.976
+0.977,pageIndicator,Page {current} / {total},Сторінка {current} / {total},Page 5 / 5,1.000,0.977
+0.977,commonColor,Color,Колір,,,0.977
+0.977,filterColor,Color,Колір,,,0.977
+0.978,annotationModeSelect,Select,Вибрати,,,0.978
+0.978,supportLabel,Support,Підтримка,,,0.978
+0.979,tabOcrTextLabel,OCR Text,Текст OCR,,,0.979
+0.979,docxModeWithImages,With Images,З зображеннями,,,0.979
+0.980,sharePromptDismiss,Not now,Не зараз,,,0.980
+0.980,textSizeLabel,Text size: {size},Розмір тексту: {size},,,0.980
+0.981,documentNotFound,Document not found,Документ не знайдено,,,0.981
+0.982,modeOcr,OCR Mode,Режим OCR,,,0.982
+0.982,sealTextSizePercent,Text size {percent}%,Розмір тексту {percent}%,,,0.982
+0.983,pagesSelectTooltip,Select pages,Вибрати сторінки,,,0.983
+0.984,pageFormatLetter,Letter (US),Letter (США),,,0.984
+0.984,originalDimensions,Original: {w}×{h},Оригінал: {w}×{h},,,0.984
+0.984,dateLabel,Date,Дата,,,0.984
+0.985,printRangeAll,All pages,Усі сторінки,,,0.985
+0.985,watermarkPagesAll,All pages,Усі сторінки,,,0.985
+0.986,watermarkChooseImage,Choose image,Вибрати зображення,,,0.986
+0.987,exportFormatTxtLabel,Text (.txt),Текст (.txt),,,0.987
+0.989,sharePdf,Share PDF,Поділитися PDF,,,0.989
+1.000,exportFormatPdfLabel,PDF,PDF,,,1.000
+1.000,fontMonospace,monospace,monospace,,,1.000
+1.000,ocrScriptArabic,العربية (Arabic),العربية (Arabic),,,1.000
+1.000,ocrSectionLabel,OCR,OCR,,,1.000
+1.000,exportFormatDocxLabel,Word (.docx),Word (.docx),,,1.000
+1.000,exportFormatJpgLabel,JPG,JPG,,,1.000
+1.000,proBadgeLabel,PRO,PRO,,,1.000
+1.000,ocrScriptRussian,Русский (Russian),Русский (Russian),,,1.000
+1.000,ocrScriptUkrainian,Українська (Ukrainian),Українська (Ukrainian),,,1.000
+1.000,ocrScriptBengali,বাংলা (Bengali),বাংলা (Bengali),,,1.000
+1.000,exportFormatPngLabel,PNG,PNG,,,1.000
+1.000,fontSerif,serif,serif,,,1.000
+1.000,formatCsv,CSV,CSV,,,1.000
+1.000,ocrScriptGreek,Ελληνικά (Greek),Ελληνικά (Greek),,,1.000
+1.000,ocrScriptHebrew,עברית (Hebrew),עברית (Hebrew),,,1.000
+1.000,ocrScriptThai,ไทย (Thai),ไทย (Thai),,,1.000
+1.000,fontSansSerif,sans-serif,sans-serif,,,1.000
