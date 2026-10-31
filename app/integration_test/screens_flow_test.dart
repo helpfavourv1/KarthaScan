@@ -89,6 +89,11 @@ void main() {
     final ScanProvider scan = Provider.of<ScanProvider>(ctx, listen: false);
 
     String pageText(int n) => l10n.pageIndicator(n, 3);
+    String stack(String label) {
+      final List<String> m = router.routerDelegate.currentConfiguration.matches.map((dynamic x) => x.toString().split('\n').first).toList();
+      bool has(String t) => find.byWidgetPredicate((Widget w) => w.runtimeType.toString() == t).evaluate().isNotEmpty;
+      return '$label: uri=${router.routerDelegate.currentConfiguration.uri} matches=${m.length} detail=${has('ScanDetailScreen')} full=${has('FullScreenEditScreen')} home=${has('HomeScreen')} unavailable=${find.text(l10n.scanUnavailable).evaluate().isNotEmpty}';
+    }
 
     try {
       // --- Detail: swipe to page 2; the tab must stay on the page view.
@@ -102,8 +107,10 @@ void main() {
       row('swipe-page', onTwo && bar.controller!.index == 0, 'page 2 shown=$onTwo, tab index=${bar.controller!.index}');
 
       // --- Detail to full screen keeps the page.
+      row('stack-before-open', true, stack('before'));
       await tester.tap(find.byIcon(Icons.open_in_full).first);
       await pumpFor(2500);
+      row('stack-after-open', true, stack('after open'));
       final bool fullOnTwo = find.text(pageText(2)).evaluate().isNotEmpty;
       row('page-to-fullscreen', fullOnTwo, 'full screen shows page 2=$fullOnTwo');
 
@@ -121,6 +128,7 @@ void main() {
       await pumpFor(500);
       await tester.tap(find.byKey(const ValueKey<String>('fullClose')));
       await pumpFor(2500);
+      row('stack-after-close', true, stack('after close'));
       final String where = router.routerDelegate.currentConfiguration.uri.toString();
       row('after-close', find.byType(ScanPreviewCard).evaluate().isNotEmpty, 'route=$where, detail card present=${find.byType(ScanPreviewCard).evaluate().isNotEmpty}');
 
