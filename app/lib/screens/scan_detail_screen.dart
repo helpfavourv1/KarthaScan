@@ -337,7 +337,7 @@ class _ScanDetailScreenState extends State<ScanDetailScreen>
                     ],
                   ),
                 ),
-                      Row(mainAxisSize: MainAxisSize.min, children: [
+                      Flexible(child: FittedBox(fit: BoxFit.scaleDown, alignment: Alignment.centerRight, child: Row(mainAxisSize: MainAxisSize.min, children: [
                       TextButton.icon(
                         key: const ValueKey<String>('detailShare'),
                         onPressed: () => _share(document),
@@ -350,7 +350,7 @@ class _ScanDetailScreenState extends State<ScanDetailScreen>
                         icon: const Icon(Icons.file_download_outlined, size: 18),
                         label: Text(l10n.exportTooltip, style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600, color: accent)),
                       ),
-                      ]),
+                      ]))),
                     ],
                   ),
                 ),
