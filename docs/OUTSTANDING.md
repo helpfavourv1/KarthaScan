@@ -72,7 +72,7 @@ Left: nothing in code. 5.1 (undo/database hardening) and 3.6 wait for the phone 
 ## 5.3 Bundled PDF fonts (phone check)
 - Noto Sans + Noto Sans Arabic (SIL OFL, from notofonts GitHub) bundled in `app/assets/fonts/`, used by TXT/CSV/DOCX-to-PDF, the searchable-PDF text layer and the empty-doc page.
 - Check: convert a TXT with Cyrillic, Greek and Arabic lines to PDF; no empty boxes.
-- Not covered: Chinese/Japanese/Korean (fonts are 8-16 MB each) and Hindi (the pdf package cannot shape Devanagari joins). Add the OFL licence text to the in-app licences page before launch.
+- Not covered: Chinese/Japanese/Korean (fonts are 8-16 MB each) and Hindi (the pdf package cannot shape Devanagari joins). The OFL licence texts (Noto Sans, Noto Sans Arabic, Noto CJK, Plus Jakarta Sans, Dancing Script, Caveat) are registered in `main.dart` and show on the Licences page (phone check owed).
 
 ## AdMob console: everything still to do (owner)
 App IDs already in the build: Android `ca-app-pub-2731774500195310~5515913454` (AndroidManifest), iOS `ca-app-pub-2731774500195310~7132336744` (Info.plist). Check both exist in AdMob under Apps and match.
@@ -226,3 +226,9 @@ Quick checks green; emulator pending at time of writing:
 - Tested in CI: file completeness, placeholders, script/word checks per variant, locale mapping, date fallbacks.
 - OWED: native review of zh_Hant, pt_PT, nn (and all earlier new strings). Users who already saved pt/zh/no keep that choice. Hong Kong Traditional wording differs from Taiwan wording; not separate. iOS Info.plist lists no localizations, so iOS may not offer the variants to the system.
 - Still missing from the 41-language list: Urdu, Persian, Tamil, Telugu, Marathi, Gujarati, Swahili, Romanian, Greek, Czech, Hungarian, Slovak, Bulgarian, Catalan, Filipino.
+
+## System language / first install (Oct 2026)
+- Bug found and fixed: a fresh install always started in English. The phone-language default only applied to old saved settings that lacked a language; with nothing saved the app used the fixed default `en`. Now `LocalStorageService.firstRunSettings()` picks the phone's language (via `AppLocales.fromDevice`) and the settings provider starts from it.
+- Emulator test `integration_test/locale_system_test.dart` (workflow input `emu_locale`): sets the emulator language (zh-TW, zh-CN, zh-HK, pt-PT, pt-BR, nb-NO, nn-NO, fr-FR, ar-EG, ja-JP, sw-KE), then checks fresh-install language, manual override, and that the stored choice is read back. A real process restart is not simulated; storage read-back stands in for it.
+- Back-translation screen: `.github/workflows/back-translation.yml` (manual) runs NLLB-200 on CPU, translates every string back to English and scores it against the original. Low score = look at it; not a verdict. Covers all 28 non-English files incl. the three variants (NLLB has zho_Hant and nno_Latn). Still needs native speakers for naturalness.
+- Not decided: `ITSAppUsesNonExemptEncryption` (owner decision; backups are password-encrypted).
