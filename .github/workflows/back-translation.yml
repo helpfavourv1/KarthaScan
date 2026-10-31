@@ -9,7 +9,7 @@ on:
         required: false
         default: ''
 permissions:
-  contents: read
+  contents: write
 jobs:
   screen:
     runs-on: ubuntu-latest
@@ -44,14 +44,14 @@ jobs:
           import csv, glob, os
           print('## Back-translation screen\n')
           if os.path.exists('bt_out/summary.csv'):
-              print('| language | strings | below 0.6 | mean |\n|---|---|---|---|')
+              print('| language | strings | below 0.5 | mean |\n|---|---|---|---|')
               for r in csv.DictReader(open('bt_out/summary.csv')):
-                  print(f"| {r['language']} | {r['strings']} | {r['below_0.6']} | {r['mean_score']} |")
+                  print(f"| {r['language']} | {r['strings']} | {r['below_0.5']} | {r['mean_score']} |")
           for f in sorted(glob.glob('bt_out/*.csv')):
               if f.endswith('summary.csv'): continue
               print(f"\n### {os.path.basename(f)[:-4]} - lowest 12\n")
               rows = list(csv.reader(open(f, encoding='utf-8')))[1:13]
-              for s, k, en, t, b in rows:
+              for s, k, en, t, b, *_ in rows:
                   print(f"- {s} `{k}`: **{en}** -> {t} -> _{b}_")
           PY
       - name: Annotate lowest strings (readable without downloads)
@@ -64,9 +64,15 @@ jobs:
               code = os.path.basename(f)[:-4]
               if code == 'summary': continue
               rows = list(csv.reader(open(f, encoding='utf-8')))[1:9]
-              body = '\n'.join(f"BT {code} | {s} | {k} | {en} | {t} | {b}" for s, k, en, t, b in rows)
+              body = '\n'.join(f"BT {code} | {s} | {k} | {en} | {t} | {b}" for s, k, en, t, b, *_ in rows)
               print('::notice title=bt %s::%s' % (code, esc(body[:3500])))
           PY
+      - name: Commit the full report to docs/back_translation
+        if: always()
+        run: |
+          mkdir -p docs/back_translation && cp bt_out/*.csv docs/back_translation/
+          git config user.name "github-actions"; git config user.email "actions@users.noreply.github.com"
+          git add docs/back_translation && git commit -m "Back-translation report" && git pull --rebase -q && git push -q || true
       - uses: actions/upload-artifact@v4
         if: always()
         with:
