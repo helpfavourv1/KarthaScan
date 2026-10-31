@@ -4,9 +4,11 @@
 // storing and looking up each variant works.
 import 'dart:convert';
 import 'dart:io';
-import 'dart:ui' show Locale;
-
+import 'package:flutter/cupertino.dart' show CupertinoLocalizations;
+import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:katharscan/core/utils/locale_fallback.dart';
 import 'package:katharscan/core/utils/constants.dart';
 import 'package:katharscan/core/utils/date_formatter.dart';
 import 'package:katharscan/core/utils/language_names.dart';
@@ -26,6 +28,7 @@ List<String> placeholders(String s) => RegExp(r'\{([A-Za-z_][A-Za-z0-9_]*)\}', u
 
 void main() {
   final Map<String, String> en = arb('en');
+  nynorskWidgetStrings();
 
   test('each variant file declares its own locale', () {
     expect(locale('zh_Hant'), 'zh_Hant');
@@ -163,5 +166,29 @@ void main() {
     expect(AppDateFormatter.formatSmartDate(d, localeCode: 'zh_Hant', now: d), '今天');
     expect(AppDateFormatter.formatSmartDate(d, localeCode: 'nn', now: d), 'I dag');
     expect(AppDateFormatter.formatSmartDate(d, localeCode: 'pt_PT', now: d), 'Hoje');
+  });
+}
+
+// Flutter has no widget strings for Nynorsk; the app must still start in it.
+void nynorskWidgetStrings() {
+  testWidgets('Nynorsk gets Norwegian strings for Flutter widgets', (WidgetTester tester) async {
+    late MaterialLocalizations m;
+    await tester.pumpWidget(MaterialApp(
+      locale: const Locale('nn'),
+      supportedLocales: AppLocalizations.supportedLocales,
+      localizationsDelegates: <LocalizationsDelegate<dynamic>>[
+        AppLocalizations.delegate,
+        FallbackLocalizationsDelegate<MaterialLocalizations>(GlobalMaterialLocalizations.delegate),
+        FallbackLocalizationsDelegate<CupertinoLocalizations>(GlobalCupertinoLocalizations.delegate),
+        FallbackLocalizationsDelegate<WidgetsLocalizations>(GlobalWidgetsLocalizations.delegate),
+      ],
+      home: Builder(builder: (BuildContext c) {
+        m = MaterialLocalizations.of(c);
+        return Text(AppLocalizations.of(c).deleteScanMessage);
+      }),
+    ));
+    await tester.pumpAndSettle();
+    expect(find.text('Dette kan ikkje angrast.'), findsOneWidget);
+    expect(m.okButtonLabel, isNotEmpty);
   });
 }

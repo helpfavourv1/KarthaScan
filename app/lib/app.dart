@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart' show CupertinoLocalizations;
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'core/services/engagement_service.dart';
 import 'widgets/share_prompt_sheet.dart';
 import 'widgets/review_sentiment_sheet.dart';
@@ -14,6 +16,7 @@ import 'core/providers/scan_provider.dart';
 import 'core/providers/settings_provider.dart';
 import 'core/providers/theme_provider.dart';
 import 'core/utils/constants.dart';
+import 'core/utils/locale_fallback.dart';
 import 'l10n/app_localizations.dart';
 import 'router.dart';
 
@@ -103,7 +106,12 @@ class _KatharScanAppState extends State<KatharScanApp> with WidgetsBindingObserv
           routerConfig: _router,
           locale: locale,
           supportedLocales: AppLocalizations.supportedLocales,
-          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          localizationsDelegates: <LocalizationsDelegate<dynamic>>[
+            AppLocalizations.delegate,
+            FallbackLocalizationsDelegate<MaterialLocalizations>(GlobalMaterialLocalizations.delegate),
+            FallbackLocalizationsDelegate<CupertinoLocalizations>(GlobalCupertinoLocalizations.delegate),
+            FallbackLocalizationsDelegate<WidgetsLocalizations>(GlobalWidgetsLocalizations.delegate),
+          ],
           builder: (BuildContext context, Widget? child) {
             return Directionality(
               textDirection: isRtl ? TextDirection.rtl : TextDirection.ltr,

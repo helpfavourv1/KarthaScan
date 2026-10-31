@@ -23,7 +23,7 @@ import 'package:katharscan/core/services/doc_scanner_service.dart';
 import 'package:katharscan/core/services/export_service.dart';
 import 'package:katharscan/core/services/local_storage.dart';
 import 'package:katharscan/core/services/ocr_service.dart';
-import 'package:katharscan/l10n/app_localizations.dart';
+import 'package:katharscan/core/utils/constants.dart';
 import 'package:katharscan/main.dart' as app;
 import 'package:katharscan/widgets/edit_tray.dart';
 import 'package:path/path.dart' as p;
@@ -114,7 +114,7 @@ void main() {
 
     final Map<String, List<String>> bad = <String, List<String>>{};
     final Map<String, Set<String>> groups = <String, Set<String>>{};
-    final List<String> locales = AppLocalizations.supportedLocales.map((Locale l) => l.languageCode).toList();
+    final List<String> locales = AppLocales.supportedLanguageCodes;
     int combos = 0;
     for (final String lang in locales) {
       await settings.setLanguage(lang);
