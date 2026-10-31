@@ -6,6 +6,7 @@ import 'package:flutter/foundation.dart' show debugPrint;
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
 import 'dart:typed_data';
+import 'dart:ui' show PlatformDispatcher;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sqflite/sqflite.dart';
 import '../models/folder.dart';
@@ -14,6 +15,7 @@ import '../models/signature_placement.dart';
 import '../models/page_transform.dart';
 import '../models/ocr_block.dart';
 import '../models/user_settings.dart';
+import '../utils/constants.dart' show AppLocales;
 import '../models/fill_snippet.dart';
 
 class LocalStorageService {
@@ -472,12 +474,17 @@ class LocalStorageService {
     );
   }
 
+  /// Settings for someone who has not changed anything yet: the app starts in the
+  /// phone's language (when the app has it), not always in English.
+  static UserSettings firstRunSettings() =>
+      UserSettings(language: AppLocales.fromDevice(PlatformDispatcher.instance.locale));
+
   Future<UserSettings> loadSettings() async {
     try {
       final SharedPreferences prefs = await SharedPreferences.getInstance();
       final String? jsonString = prefs.getString(_settingsPrefsKey);
       if (jsonString == null) {
-        return _memorySettings ?? const UserSettings();
+        return _memorySettings ?? firstRunSettings();
       }
       final UserSettings settings = UserSettings.fromJson(
         jsonDecode(jsonString) as Map<String, dynamic>,
@@ -486,7 +493,7 @@ class LocalStorageService {
       return settings;
     } catch (error, stackTrace) {
       _logError('loadSettings', error, stackTrace);
-      return _memorySettings ?? const UserSettings();
+      return _memorySettings ?? firstRunSettings();
     }
   }
 

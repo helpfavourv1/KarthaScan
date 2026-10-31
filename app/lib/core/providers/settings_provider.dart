@@ -30,7 +30,7 @@ class SettingsProvider {
   final LocalStorageService _storage;
 
   final ValueNotifier<UserSettings> settings =
-      ValueNotifier<UserSettings>(const UserSettings());
+      ValueNotifier<UserSettings>(LocalStorageService.firstRunSettings());
 
   /// True while the initial load from storage is in flight. Screens can
   /// use this to avoid flashing default settings before the real ones
