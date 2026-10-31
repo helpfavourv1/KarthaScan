@@ -217,3 +217,12 @@ Quick checks green; emulator pending at time of writing:
 - Full-screen header: page counter moved to its own row; Share/Export icons have tooltips; tray tools close an open editor first (as on detail). Detail: rename hint icon, dark-mode folder sheet.
 - Tested: widget tests for swipe on/off/zoomed; emulator flow test (integration_test/screens_flow_test.dart, run with emu_screens) drives real screens.
 - Not tested in CI: Android share sheet from the new Share button; phone check owed. Not done: export paper sizes A5/Legal (Print has them, Export still A4/Letter), thumbnail strip, OCR text editing.
+
+## Language variants (Oct 2026)
+- App now has 29 languages. Both forms exist for: Chinese (Simplified `zh`, Traditional `zh_Hant`), Portuguese (Brazil `pt`, Portugal `pt_PT`), Norwegian (Bokmål `no`, Nynorsk `nn`). Picker shows native names (简体中文, 繁體中文, Português (Brasil), Português (Portugal), Norsk bokmål, Norsk nynorsk).
+- Phone language picks the variant on first run: zh-Hant / TW / HK / MO -> Traditional; pt-PT and Portuguese-speaking countries other than Brazil -> European; Android `nb` -> Bokmål (was falling to English before); `nn` -> Nynorsk.
+- European Portuguese holds only the strings that differ (156); the rest comes from Brazilian Portuguese. Traditional Chinese was machine-converted (Taiwan wording) then hand-corrected; Nynorsk written from the Bokmål text.
+- Fixed on the way: Brazilian file had European words mixed in and an English leftover; Bengali "what's new" said 2 languages.
+- Tested in CI: file completeness, placeholders, script/word checks per variant, locale mapping, date fallbacks.
+- OWED: native review of zh_Hant, pt_PT, nn (and all earlier new strings). Users who already saved pt/zh/no keep that choice. Hong Kong Traditional wording differs from Taiwan wording; not separate. iOS Info.plist lists no localizations, so iOS may not offer the variants to the system.
+- Still missing from the 41-language list: Urdu, Persian, Tamil, Telugu, Marathi, Gujarati, Swahili, Romanian, Greek, Czech, Hungarian, Slovak, Bulgarian, Catalan, Filipino.
