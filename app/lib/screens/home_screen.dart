@@ -657,25 +657,7 @@ class _LanguagePickerSheet extends StatelessWidget {
   const _LanguagePickerSheet({required this.current});
   final String current;
 
-  static const Map<String, String> _labels = {
-    'en': 'English', 'es': 'Español', 'fr': 'Français', 'de': 'Deutsch', 'pt': 'Português',
-    'ar': 'العربية', 'hi': 'हिन्दी', 'ja': '日本語', 'ko': '한국어', 'zh': '中文', 'he': 'עברית',
-    'id': 'Bahasa Indonesia',
-    'it': 'Italiano',
-    'nl': 'Nederlands',
-    'tr': 'Türkçe',
-    'sv': 'Svenska',
-    'no': 'Norsk',
-    'da': 'Dansk',
-    'fi': 'Suomi',
-    'ms': 'Bahasa Melayu',
-    'pl': 'Polski',
-    'ru': 'Русский',
-    'uk': 'Українська',
-    'vi': 'Tiếng Việt',
-    'bn': 'বাংলা',
-    'th': 'ไทย',
-  };
+  static const Map<String, String> _labels = kLanguageNativeNames;
 
   @override
   Widget build(BuildContext context) {

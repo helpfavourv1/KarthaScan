@@ -561,7 +561,7 @@
   "whatsNewContinue": "Продовжити",
   "tickerTxtExport": "ЕКСПОРТ TXT",
   "tickerCsvExport": "ЕКСПОРТ CSV",
-  "whatsNewBody": "Вітаємо у KatharScan! Це перший публічний реліз з необмеженим скануванням, 26 мовами та експортом у PDF, Word, TXT, JPG, PNG і CSV.",
+  "whatsNewBody": "Вітаємо у KatharScan! Це перший публічний реліз з необмеженим скануванням, 29 мовами та експортом у PDF, Word, TXT, JPG, PNG і CSV.",
   "engagementSectionLabel": "ВЗАЄМОДІЯ ТА СПОВІЩЕННЯ",
   "enableNotificationsLabel": "Увімкнути сповіщення",
   "enableNotificationsSubtitle": "Дозволити фонові нагадування для неекспортованих документів",

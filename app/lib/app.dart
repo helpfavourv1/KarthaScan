@@ -88,7 +88,7 @@ class _KatharScanAppState extends State<KatharScanApp> with WidgetsBindingObserv
       ]),
       builder: (BuildContext context, Widget? _) {
         final String languageCode = settingsProvider.settings.value.language;
-        final Locale locale = Locale(languageCode);
+        final Locale locale = AppLocales.toLocale(languageCode);
         final bool isRtl = AppLocales.isRtl(languageCode);
         final Color accentColor = themeProvider.accentColor.value;
         final AccentPalette? match = kAccentPalettes.cast<AccentPalette?>().firstWhere((p) => p!.light == accentColor, orElse: () => null);

@@ -561,7 +561,7 @@
   "whatsNewContinue": "Fortsæt",
   "tickerTxtExport": "TXT-EKSPORT",
   "tickerCsvExport": "CSV-EKSPORT",
-  "whatsNewBody": "Velkommen til KatharScan! Dette er den første offentlige version med ubegrænset scanning, 26 sprog og eksport til PDF, Word, TXT, JPG, PNG og CSV.",
+  "whatsNewBody": "Velkommen til KatharScan! Dette er den første offentlige version med ubegrænset scanning, 29 sprog og eksport til PDF, Word, TXT, JPG, PNG og CSV.",
   "engagementSectionLabel": "ENGAGEMENT OG NOTIFIKATIONER",
   "enableNotificationsLabel": "Aktivér notifikationer",
   "enableNotificationsSubtitle": "Tillad baggrundspåmindelser for ikke-eksporterede dokumenter",

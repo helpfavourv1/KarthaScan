@@ -11,25 +11,46 @@ import 'package:intl/intl.dart';
 /// context-free — no reliance on `Localizations.localeOf(context)`, which
 /// would pull a BuildContext into core/.
 abstract final class AppDateFormatter {
+  /// Format names to try for an app language, best first. Traditional Chinese
+  /// (`zh_Hant`) may be known to the date data as `zh_TW`; a language the date data
+  /// does not know falls back to its base language, then English, instead of failing.
+  static List<String> _tags(String code) => <String>[
+        code,
+        if (code == 'zh_Hant') 'zh_TW',
+        if (code.contains('_')) code.split('_').first,
+        'en',
+      ];
+
+  static String _format(String code, DateFormat Function(String tag) make, DateTime date) {
+    for (final String tag in _tags(code)) {
+      try {
+        return make(tag).format(date);
+      } catch (_) {
+        // Try the next name.
+      }
+    }
+    return date.toIso8601String();
+  }
+
   /// Short numeric date, e.g. "8/9/26" (en) or locale-appropriate
   /// equivalent. Used in dense list rows (scan_list_tile.dart).
   static String formatShortDate(DateTime date, {required String localeCode}) {
-    return DateFormat.yMd(localeCode).format(date);
+    return _format(localeCode, (String tag) => DateFormat.yMd(tag), date);
   }
 
   /// Long date, e.g. "August 9, 2026". Used in scan_detail_screen.dart.
   static String formatLongDate(DateTime date, {required String localeCode}) {
-    return DateFormat.yMMMMd(localeCode).format(date);
+    return _format(localeCode, (String tag) => DateFormat.yMMMMd(tag), date);
   }
 
   /// Time only, e.g. "3:45 PM", respecting the locale's 12h/24h convention.
   static String formatTime(DateTime date, {required String localeCode}) {
-    return DateFormat.jm(localeCode).format(date);
+    return _format(localeCode, (String tag) => DateFormat.jm(tag), date);
   }
 
   /// Combined date + time, e.g. "Aug 9, 2026, 3:45 PM".
   static String formatDateTime(DateTime date, {required String localeCode}) {
-    return DateFormat.yMMMd(localeCode).add_jm().format(date);
+    return _format(localeCode, (String tag) => DateFormat.yMMMd(tag).add_jm(), date);
   }
 
   /// "Smart" relative label for recent activity: "Today", "Yesterday", or a
@@ -74,6 +95,7 @@ abstract final class AppDateFormatter {
       case 'de':
         return 'Heute';
       case 'pt':
+      case 'pt_PT':
         return 'Hoje';
       case 'ar':
         return 'اليوم';
@@ -84,7 +106,12 @@ abstract final class AppDateFormatter {
       case 'ko':
         return '오늘';
       case 'zh':
+      case 'zh_Hant':
         return '今天';
+      case 'no':
+        return 'I dag';
+      case 'nn':
+        return 'I dag';
       case 'he':
         return 'היום';
       case 'en':
@@ -102,6 +129,7 @@ abstract final class AppDateFormatter {
       case 'de':
         return 'Gestern';
       case 'pt':
+      case 'pt_PT':
         return 'Ontem';
       case 'ar':
         return 'أمس';
@@ -113,6 +141,12 @@ abstract final class AppDateFormatter {
         return '어제';
       case 'zh':
         return '昨天';
+      case 'zh_Hant':
+        return '昨天';
+      case 'no':
+        return 'I går';
+      case 'nn':
+        return 'I går';
       case 'he':
         return 'אתמול';
       case 'en':

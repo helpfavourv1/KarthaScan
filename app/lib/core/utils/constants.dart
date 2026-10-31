@@ -216,17 +216,22 @@ abstract final class AppPluginFailureCopy {
 }
 
 abstract final class AppLocales {
+  /// The app languages a person can pick. Three languages come in two forms: Chinese
+  /// (Simplified `zh`, Traditional `zh_Hant`), Portuguese (Brazil `pt`, Portugal `pt_PT`)
+  /// and Norwegian (Bokmål `no`, Nynorsk `nn`).
   static const List<String> supportedLanguageCodes = [
     'en',
     'es',
     'fr',
     'de',
     'pt',
+    'pt_PT',
     'ar',
     'hi',
     'ja',
     'ko',
     'zh',
+    'zh_Hant',
     'he',
     'id',
     'it',
@@ -234,6 +239,7 @@ abstract final class AppLocales {
     'tr',
     'sv',
     'no',
+    'nn',
     'da',
     'fi',
     'ms',
@@ -246,7 +252,49 @@ abstract final class AppLocales {
   ];
   static const List<String> rtlLanguageCodes = ['ar', 'he'];
   static const String defaultLanguageCode = 'en';
+
+  /// The language a saved choice such as `zh_Hant` belongs to (`zh`).
+  static String baseLanguage(String code) => code.split('_').first;
+
   static bool isRtl(String languageCode) =>
-      rtlLanguageCodes.contains(languageCode);
+      rtlLanguageCodes.contains(baseLanguage(languageCode));
+
+  /// The Flutter locale for a saved choice: `zh_Hant` is Chinese in the Traditional
+  /// script, `pt_PT` is Portuguese for Portugal.
+  static Locale toLocale(String code) {
+    switch (code) {
+      case 'zh_Hant':
+        return const Locale.fromSubtags(languageCode: 'zh', scriptCode: 'Hant');
+      case 'pt_PT':
+        return const Locale('pt', 'PT');
+      default:
+        return Locale(code);
+    }
+  }
+
+  /// The date and number format name for a saved choice. Traditional Chinese uses
+  /// the Taiwan formats.
+  static String intlTag(String code) => code == 'zh_Hant' ? 'zh_TW' : code;
+
+  /// The app language that best fits a phone's language setting.
+  /// Norwegian phones report Bokmål as `nb`; Traditional Chinese comes as script
+  /// `Hant` or as Taiwan, Hong Kong or Macau; European Portuguese as Portugal
+  /// and the Portuguese-speaking countries of Africa and Asia that follow it.
+  static String fromDevice(Locale device) {
+    final String lang = device.languageCode;
+    final String? script = device.scriptCode;
+    final String? country = device.countryCode;
+    if (lang == 'zh') {
+      if (script == 'Hant' || (script == null && const <String>{'TW', 'HK', 'MO'}.contains(country))) return 'zh_Hant';
+      return 'zh';
+    }
+    if (lang == 'pt') {
+      return const <String>{'PT', 'AO', 'MZ', 'CV', 'GW', 'ST', 'TL', 'MO'}.contains(country) ? 'pt_PT' : 'pt';
+    }
+    if (lang == 'nb') return 'no';
+    if (lang == 'nn') return 'nn';
+    return supportedLanguageCodes.contains(lang) ? lang : defaultLanguageCode;
+  }
+
   AppLocales._();
 }

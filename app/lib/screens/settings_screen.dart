@@ -149,7 +149,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               listenable: _settingsProvider.settings,
               builder: (context, _) => Column(
                 children: [
-                  _settingsTile(title: l10n.appLanguageLabel, trailing: Text(_settingsProvider.settings.value.language.toUpperCase(), style: TextStyle(color: textSecondary)), onTap: _pickLanguage, textPrimary: textPrimary, border: border),
+                  _settingsTile(title: l10n.appLanguageLabel, trailing: Text(kLanguageNativeNames[_settingsProvider.settings.value.language] ?? _settingsProvider.settings.value.language, style: TextStyle(color: textSecondary)), onTap: _pickLanguage, textPrimary: textPrimary, border: border),
                 ],
               ),
             ),
@@ -318,25 +318,7 @@ class _LanguagePickerSheet extends StatelessWidget {
   const _LanguagePickerSheet({required this.current});
   final String current;
 
-  static const Map<String, String> _labels = {
-    'en': 'English', 'es': 'Español', 'fr': 'Français', 'de': 'Deutsch', 'pt': 'Português',
-    'ar': 'العربية', 'hi': 'हिन्दी', 'ja': '日本語', 'ko': '한국어', 'zh': '中文', 'he': 'עברית',
-    'id': 'Bahasa Indonesia',
-    'it': 'Italiano',
-    'nl': 'Nederlands',
-    'tr': 'Türkçe',
-    'sv': 'Svenska',
-    'no': 'Norsk',
-    'da': 'Dansk',
-    'fi': 'Suomi',
-    'ms': 'Bahasa Melayu',
-    'pl': 'Polski',
-    'ru': 'Русский',
-    'uk': 'Українська',
-    'vi': 'Tiếng Việt',
-    'bn': 'বাংলা',
-    'th': 'ไทย',
-  };
+  static const Map<String, String> _labels = kLanguageNativeNames;
 
   @override
   Widget build(BuildContext context) {

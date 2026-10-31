@@ -26,6 +26,7 @@ import '../models/signature_placement.dart';
 import 'filter_service.dart' show FilterService;
 import 'pdf_fonts.dart';
 import '../../l10n/app_localizations.dart';
+import '../utils/constants.dart' show AppLocales;
 
 /// The document has no recognized text, so a text export would be empty.
 class ExportNoTextException extends ExportFailedException {
@@ -705,11 +706,7 @@ class ExportService {
 
     String emptyMsg = '';
     if (document.pagePaths.isEmpty) {
-      final deviceLocale = ui.PlatformDispatcher.instance.locale;
-      final matchLocale = AppLocalizations.supportedLocales.firstWhere(
-        (l) => l.languageCode == deviceLocale.languageCode,
-        orElse: () => AppLocalizations.supportedLocales.first,
-      );
+      final ui.Locale matchLocale = AppLocales.toLocale(AppLocales.fromDevice(ui.PlatformDispatcher.instance.locale));
       emptyMsg = lookupAppLocalizations(matchLocale).emptyDocumentMessage;
     }
 

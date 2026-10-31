@@ -83,13 +83,7 @@ class UserSettings {
     return UserSettings(
       themeMode: ThemeMode.values.byName(json['themeMode'] as String? ?? ThemeMode.system.name),
       accentColor: json['accentColorArgb'] == null ? AppColors.accentLight : _colorFromArgb(json['accentColorArgb'] as int),
-      language: json['language'] as String? ?? (() {
-        final deviceLocale = PlatformDispatcher.instance.locale;
-        return AppLocales.supportedLanguageCodes.firstWhere(
-          (code) => code == deviceLocale.languageCode,
-          orElse: () => 'en',
-        );
-      })(),
+      language: json['language'] as String? ?? AppLocales.fromDevice(PlatformDispatcher.instance.locale),
       adsRemoved: adsRemovedValue,
       autoCopyOcr: json['autoCopyOcr'] as bool? ?? false,
       beepOnCapture: json['beepOnCapture'] as bool? ?? false,
