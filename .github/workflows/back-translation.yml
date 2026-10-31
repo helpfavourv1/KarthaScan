@@ -1,0 +1,74 @@
+# Back-translation screen of the app's translations. Manual run only. Builds and uploads nothing
+# but a report (CSV per language + a list of the lowest-scoring strings in the run summary).
+name: Back-translation screen
+on:
+  workflow_dispatch:
+    inputs:
+      only:
+        description: 'Comma list of language codes (empty = all 28)'
+        required: false
+        default: ''
+permissions:
+  contents: read
+jobs:
+  screen:
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install
+        run: |
+          pip install --quiet torch --index-url https://download.pytorch.org/whl/cpu
+          pip install --quiet ctranslate2 transformers sentencepiece sentence-transformers
+      - name: Convert NLLB-200 (distilled 600M) to a fast CPU model
+        run: |
+          ct2-transformers-converter --model facebook/nllb-200-distilled-600M --output_dir nllb_ct2 --quantization int8
+          python - <<'PY'
+          import transformers
+          transformers.AutoTokenizer.from_pretrained('facebook/nllb-200-distilled-600M').save_pretrained('nllb_tok')
+          PY
+      - name: Back-translate and score
+        env:
+          NLLB_TOK: nllb_tok
+          NLLB_CT2: nllb_ct2
+          ONLY: ${{ github.event.inputs.only }}
+          OUT_DIR: bt_out
+        run: python tools/back_translation/run.py
+      - name: Summary
+        if: always()
+        run: |
+          python - <<'PY' >> "$GITHUB_STEP_SUMMARY"
+          import csv, glob, os
+          print('## Back-translation screen\n')
+          if os.path.exists('bt_out/summary.csv'):
+              print('| language | strings | below 0.6 | mean |\n|---|---|---|---|')
+              for r in csv.DictReader(open('bt_out/summary.csv')):
+                  print(f"| {r['language']} | {r['strings']} | {r['below_0.6']} | {r['mean_score']} |")
+          for f in sorted(glob.glob('bt_out/*.csv')):
+              if f.endswith('summary.csv'): continue
+              print(f"\n### {os.path.basename(f)[:-4]} - lowest 12\n")
+              rows = list(csv.reader(open(f, encoding='utf-8')))[1:13]
+              for s, k, en, t, b in rows:
+                  print(f"- {s} `{k}`: **{en}** -> {t} -> _{b}_")
+          PY
+      - name: Annotate lowest strings (readable without downloads)
+        if: always()
+        run: |
+          python - <<'PY'
+          import csv, glob, os
+          def esc(s): return s.replace('%','%25').replace('\r','%0D').replace('\n','%0A')
+          for f in sorted(glob.glob('bt_out/*.csv')):
+              code = os.path.basename(f)[:-4]
+              if code == 'summary': continue
+              rows = list(csv.reader(open(f, encoding='utf-8')))[1:9]
+              body = '\n'.join(f"BT {code} | {s} | {k} | {en} | {t} | {b}" for s, k, en, t, b in rows)
+              print('::notice title=bt %s::%s' % (code, esc(body[:3500])))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: back-translation
+          path: bt_out
