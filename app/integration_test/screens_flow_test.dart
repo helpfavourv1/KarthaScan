@@ -129,6 +129,8 @@ void main() {
       await tester.tap(find.byKey(const ValueKey<String>('fullClose')));
       await pumpFor(2500);
       row('stack-after-close', true, stack('after close'));
+      final Object? thrown = tester.takeException();
+      row('exception-after-close', thrown == null, 'exception=${thrown.toString().split('\n').first} errorWidgets=${find.byType(ErrorWidget).evaluate().length}');
       final String where = router.routerDelegate.currentConfiguration.uri.toString();
       row('after-close', find.byType(ScanPreviewCard).evaluate().isNotEmpty, 'route=$where, detail card present=${find.byType(ScanPreviewCard).evaluate().isNotEmpty}');
 

@@ -114,9 +114,13 @@ class _ScanPreviewCardState extends State<ScanPreviewCard> {
   void didUpdateWidget(ScanPreviewCard oldWidget) {
     super.didUpdateWidget(oldWidget);
     // Another screen moved to a different page: follow it.
-    if (widget.initialPage != oldWidget.initialPage && widget.initialPage != _currentPage && _pageController.hasClients) {
+    if (widget.initialPage != oldWidget.initialPage && widget.initialPage != _currentPage) {
       final int target = widget.initialPage < 0 ? 0 : (widget.initialPage > _lastIndex ? _lastIndex : widget.initialPage);
-      _pageController.jumpToPage(target);
+      // Not now: moving the pager while the screen is being built would call back
+      // into setState during the build.
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted && _pageController.hasClients && target != _currentPage) _pageController.jumpToPage(target);
+      });
     }
     if (widget.autoSelectAnnotateId != null && widget.autoSelectAnnotateId != oldWidget.autoSelectAnnotateId) {
       setState(() => _selectedAnnotateId = widget.autoSelectAnnotateId);
