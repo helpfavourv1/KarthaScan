@@ -117,7 +117,7 @@
   "fromPageLabel": "Desde",
   "toPageLabel": "Hasta",
   "pdfImportedAsDocument": "PDF importado como documento",
-  "frontSideCaptured": "Lado frontal capturado. Ahora capture el lado posterior.",
+  "frontSideCaptured": "Lado frontal capturado. Ahora captura el lado trasero.",
   "idCardPdfGenerated": "PDF de tarjeta de identificación generado",
   "sharePdf": "Compartir PDF",
   "saveAsDocument": "Guardar como documento",
@@ -146,9 +146,9 @@
   "whiteHaloLabel": "Halo blanco (legibilidad)",
   "commonCreate": "Crear",
   "homeLanguageTooltip": "Idioma de la app",
-  "removeAdsTitle": "Eliminar anuncios",
+  "removeAdsTitle": "Eliminar anuncios para siempre",
   "newFolderTitle": "Nueva carpeta",
-  "batchExportEmptyMessage": "No hay documentos para exportar por lotes. Escanee algunos primero.",
+  "batchExportEmptyMessage": "No hay documentos para exportar por lotes. Escanea algunos primero.",
   "newFolderTooltip": "Nueva carpeta",
   "accentColorTooltip": "Color de acento",
   "moveToFolderTitle": "Mover a carpeta",
@@ -208,8 +208,8 @@
   "actionLabel": "Acción:",
   "saveAsNewDocumentAction": "Guardar como nuevo documento",
   "exportAndShareAction": "Exportar y compartir",
-  "docxWarningMessage": "Las fuentes DOCX se muestran mal como páginas; el guardado en la app se limita a JPG/PNG de imagen, PDF, TXT o CSV. Use Exportar y compartir para este archivo.",
-  "saveInsideAppWarning": "Para guardar en la app, elija JPG o PNG. Otros destinos se exportan como archivos.",
+  "docxWarningMessage": "Las fuentes DOCX se muestran mal como páginas; el guardado en la app se limita a JPG/PNG de imagen, PDF, TXT o CSV. Usa Exportar y compartir para este archivo.",
+  "saveInsideAppWarning": "Para guardar en la app, elige JPG o PNG. Otros destinos se exportan como archivos.",
   "commonConvert": "Convertir",
   "conversionStarting": "Iniciando…",
   "convertedDocTitle": "Convertido {date}",
@@ -321,7 +321,7 @@
   "onboardingWelcomeTitle": "Bienvenido a KatharScan",
   "onboardingWelcomeSubtitle": "Toda tu oficina de documentos — escanea, edita, firma y exporta — en una app privada.",
   "onboardingToolsTitle": "21 herramientas Pro gratis",
-  "onboardingToolsSubtitle": "Anota, firma, marca de agua, llena formularios, sella y más — todo gratis e ilimitado.",
+  "onboardingToolsSubtitle": "Anota, firma, añade marcas de agua, rellena formularios, sella y más — todo gratis e ilimitado.",
   "onboardingOcrTitle": "OCR en el dispositivo",
   "onboardingOcrSubtitle": "Usa KatharScan en {count} idiomas. El OCR funciona en tu teléfono: nada sale de tu dispositivo.",
   "onboardingSignTitle": "Firma, llena y sella",
@@ -402,7 +402,7 @@
   "sharePromptBody": "Compártelo con amigos que necesiten un potente escáner de documentos.",
   "sharePromptAction": "Compartir App",
   "sharePromptDismiss": "Ahora no",
-  "reviewPromptTitle": "¿Disfrutas KatharScan?",
+  "reviewPromptTitle": "¿Disfrutas de KatharScan?",
   "reviewPromptBody": "Tus comentarios nos ayudan a crecer y mantienen la app gratis.",
   "reviewPromptYes": "Califícanos",
   "reviewPromptNo": "Enviar comentarios",
@@ -447,7 +447,7 @@
   "accentCrimson": "Carmesí",
   "accentAmber": "Ámbar",
   "accentViolet": "Violeta",
-  "tickerLanguages": "{count} LANGUAGES",
+  "tickerLanguages": "{count} IDIOMAS",
   "@tickerLanguages": {
     "placeholders": {
       "count": {
@@ -488,7 +488,7 @@
   "@emailAttachmentNotIncluded": {
     "description": "Localized string for emailAttachmentNotIncluded"
   },
-  "sealDefaultMainText": "SU EMPRESA",
+  "sealDefaultMainText": "TU EMPRESA",
   "@sealDefaultMainText": {
     "description": "Localized string for sealDefaultMainText"
   },
