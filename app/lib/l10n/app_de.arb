@@ -339,7 +339,7 @@
   "paywallSubtitle": "Unterstützen Sie KatharScan mit einem einmaligen Kauf. Alle Funktionen bleiben kostenlos.",
   "paywallFallbackPrice": "$14.99 einmalig",
   "paywallFeatureNoBanner": "Keine Bannerwerbung mehr",
-  "paywallFeatureNoInterstitial": "Keine Zwischenschaltungen mehr",
+  "paywallFeatureNoInterstitial": "Keine Vollbildanzeigen mehr",
   "paywallFeatureFreeForever": "Alle Funktionen für immer kostenlos",
   "paywallLegalText": "Dies ist ein nicht verbrauchbarer Kauf. Stellen Sie ihn jederzeit auf jedem Gerät mit demselben Store-Konto wieder her.",
   "paywallSuccessTitle": "Werbung entfernt",
