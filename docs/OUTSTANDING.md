@@ -234,3 +234,10 @@ Quick checks green; emulator pending at time of writing:
 - Not decided: `ITSAppUsesNonExemptEncryption` (owner decision; backups are password-encrypted).
 - Result of the first back-translation run (reports in `docs/back_translation/`): 14,313 string pairs, 494 scored low, and all that I read were correct translations (single-word labels such as Eraser, Violet, Tiled, Diagonal score low in any engine; NLLB invents sentences for one- and two-word inputs, worst for zh_Hant and nn). No confirmed wrong string. The screen finds little in short UI labels; native speakers remain the only real check of wording.
 - Emulator system-language run: every locale tried passed (fresh install in phone language, manual override, stored choice read back) except zh-TW, which returned no result row (zh-HK -> Traditional passed; zh-TW mapping is unit-tested only).
+
+## Full translation review (Nov 2026)
+Every string in all 27 non-English languages was read against English and fixed where definitely wrong (about 1,000 edits).
+Main fixes: "capture"/"region" wording, leftover English in tickerLanguages, removeAdsTitle "Forever", Norwegian/Nynorsk extract and scan terms, Arabic plurals (=2/few/many), Russian/Ukrainian `one` plural forms, German Sie register, Taiwan wording for zh_Hant, 15 pt_PT overrides.
+Not applied (style choices, need a native speaker): Hindi पाठ/टेक्स्ट, Japanese Export/Import terms, Ukrainian favourites/ID-card consistency, Italian "Ancora nessun…" order, Spanish Agregar/Añadir, pagesDeleteConfirm plural edge cases, paywallFallbackPrice wording, Russian paywallLegalText, minor Hebrew/Polish phrasing.
+Caveat: the review was done by Claude, so it shares Claude's blind spots. Native review is still needed.
+zh-TW is not proven on the emulator (unit-tested only).
