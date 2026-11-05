@@ -1,0 +1,3362 @@
+[
+{
+"key": "privacyOptionsLabel",
+"english": "Privacy settings",
+"target": "Privacyinstellingen",
+"backtrans": "Privacy settings"
+},
+{
+"key": "commonCancel",
+"english": "Cancel",
+"target": "Annuleren",
+"backtrans": "Cancel"
+},
+{
+"key": "commonDelete",
+"english": "Delete",
+"target": "Verwijderen",
+"backtrans": "Delete"
+},
+{
+"key": "commonSave",
+"english": "Save",
+"target": "Opslaan",
+"backtrans": "Save"
+},
+{
+"key": "commonAdd",
+"english": "Add",
+"target": "Toevoegen",
+"backtrans": "Add"
+},
+{
+"key": "commonExport",
+"english": "Export",
+"target": "Exporteren",
+"backtrans": "Export"
+},
+{
+"key": "commonImport",
+"english": "Import",
+"target": "Importeren",
+"backtrans": "Import"
+},
+{
+"key": "commonSkip",
+"english": "Skip",
+"target": "Overslaan",
+"backtrans": "Skip"
+},
+{
+"key": "commonClear",
+"english": "Clear",
+"target": "Wissen",
+"backtrans": "Erase"
+},
+{
+"key": "emptyStateDefaultMessage",
+"english": "Tap the camera to scan your first document.",
+"target": "Tik op de camera om je eerste document te scannen.",
+"backtrans": "Tap the camera to scan your first document."
+},
+{
+"key": "exportFormatSheetTitle",
+"english": "Export as",
+"target": "Exporteren als",
+"backtrans": "Export as"
+},
+{
+"key": "exportFormatPdfLabel",
+"english": "PDF",
+"target": "PDF",
+"backtrans": "PDF"
+},
+{
+"key": "exportFormatPdfDescription",
+"english": "Best for sharing and printing",
+"target": "Ideaal voor delen en afdrukken",
+"backtrans": "Ideal for sharing and printing"
+},
+{
+"key": "exportFormatDocxLabel",
+"english": "Word (.docx)",
+"target": "Word (.docx)",
+"backtrans": "Word (.docx)"
+},
+{
+"key": "exportFormatDocxDescription",
+"english": "Editable text document",
+"target": "Bewerkbaar tekstdocument",
+"backtrans": "Editable text document"
+},
+{
+"key": "exportFormatTxtLabel",
+"english": "Text (.txt)",
+"target": "Tekst (.txt)",
+"backtrans": "Text (.txt)"
+},
+{
+"key": "exportFormatTxtDescription",
+"english": "Plain OCR text only",
+"target": "Alleen platte OCR-tekst",
+"backtrans": "Only plain OCR text"
+},
+{
+"key": "exportFormatJpgLabel",
+"english": "JPG",
+"target": "JPG",
+"backtrans": "JPG"
+},
+{
+"key": "exportFormatJpgDescription",
+"english": "One image per page",
+"target": "Eén afbeelding per pagina",
+"backtrans": "One image per page"
+},
+{
+"key": "exportFormatPngLabel",
+"english": "PNG",
+"target": "PNG",
+"backtrans": "PNG"
+},
+{
+"key": "exportFormatPngDescription",
+"english": "One image per page, lossless",
+"target": "Eén afbeelding per pagina, verliesvrij",
+"backtrans": "One image per page, lossless"
+},
+{
+"key": "filterSheetTitle",
+"english": "Filters",
+"target": "Filters",
+"backtrans": "Filters"
+},
+{
+"key": "filterOriginal",
+"english": "Original",
+"target": "Origineel",
+"backtrans": "Original"
+},
+{
+"key": "filterGrayscale",
+"english": "Grayscale",
+"target": "Grijstinten",
+"backtrans": "Shades of gray"
+},
+{
+"key": "filterBlackAndWhite",
+"english": "B&W",
+"target": "Z&W",
+"backtrans": "B&W"
+},
+{
+"key": "filterColorEnhance",
+"english": "Color enhance",
+"target": "Kleurverbetering",
+"backtrans": "Color improvement"
+},
+{
+"key": "filterShadowRemoval",
+"english": "Shadow removal",
+"target": "Schaduwverwijdering",
+"backtrans": "Shadow removal"
+},
+{
+"key": "proBadgeLabel",
+"english": "PRO",
+"target": "PRO",
+"backtrans": "PRO"
+},
+{
+"key": "scanListPageCount",
+"english": "{count, plural, =1{1 page} other{{count} pages}}",
+"target": "{count, plural, =1{1 pagina} other{{count} pagina's}}",
+"backtrans": "{count, plural, =1{1 page} other{{count} pages}}"
+},
+{
+"key": "scanPreviewNoPages",
+"english": "No pages to show.",
+"target": "Geen pagina's om weer te geven.",
+"backtrans": "No pages to display."
+},
+{
+"key": "shareTooltip",
+"english": "Share",
+"target": "Delen",
+"backtrans": "Share"
+},
+{
+"key": "signatureCanvasHint",
+"english": "Sign here",
+"target": "Hier ondertekenen",
+"backtrans": "Sign here"
+},
+{
+"key": "folderDocumentCount",
+"english": "{count, plural, =1{1 document} other{{count} documents}}",
+"target": "{count, plural, =1{1 document} other{{count} documenten}}",
+"backtrans": "{count, plural, =1{1 document} other{{count} documents}}"
+},
+{
+"key": "selectedCount",
+"english": "{count, plural, =1{1 selected} other{{count} selected}}",
+"target": "{count, plural, =1{1 geselecteerd} other{{count} geselecteerd}}",
+"backtrans": "{count, plural, =1{1 selected} other{{count} selected}}"
+},
+{
+"key": "batchExportTooltip",
+"english": "Batch export",
+"target": "Batchexport",
+"backtrans": "Batch export"
+},
+{
+"key": "deleteTooltip",
+"english": "Delete",
+"target": "Verwijderen",
+"backtrans": "Delete"
+},
+{
+"key": "searchHint",
+"english": "Search your scans",
+"target": "Zoek je scans",
+"backtrans": "Search your scans"
+},
+{
+"key": "settingsTooltip",
+"english": "Settings",
+"target": "Instellingen",
+"backtrans": "Settings"
+},
+{
+"key": "foldersSectionHeader",
+"english": "Folders",
+"target": "Mappen",
+"backtrans": "Folders"
+},
+{
+"key": "documentsSectionHeader",
+"english": "Documents",
+"target": "Documenten",
+"backtrans": "Documents"
+},
+{
+"key": "exportingStatus",
+"english": "Exporting…",
+"target": "Exporteren...",
+"backtrans": "Exporting..."
+},
+{
+"key": "exportDoneStatus",
+"english": "Done",
+"target": "Klaar",
+"backtrans": "Done"
+},
+{
+"key": "exportGenericError",
+"english": "Something went wrong while exporting.",
+"target": "Er is iets misgegaan bij het exporteren.",
+"backtrans": "Something went wrong while exporting."
+},
+{
+"key": "deleteFolderTitle",
+"english": "Delete this folder?",
+"target": "Deze map verwijderen?",
+"backtrans": "Delete this folder?"
+},
+{
+"key": "deleteFolderMessage",
+"english": "Documents inside will not be deleted.",
+"target": "Documenten erin worden niet verwijderd.",
+"backtrans": "Documents in it will not be deleted."
+},
+{
+"key": "deleteFolderTooltip",
+"english": "Delete folder",
+"target": "Map verwijderen",
+"backtrans": "Delete folder"
+},
+{
+"key": "renameFolderTitle",
+"english": "Rename folder",
+"target": "Map hernoemen",
+"backtrans": "Rename folder"
+},
+{
+"key": "removeFromFolderTooltip",
+"english": "Remove from folder",
+"target": "Uit map verwijderen",
+"backtrans": "Remove from folder"
+},
+{
+"key": "noDocumentsInFolder",
+"english": "No documents in this folder yet.",
+"target": "Nog geen documenten in deze map.",
+"backtrans": "No documents in this folder yet."
+},
+{
+"key": "folderUnavailable",
+"english": "This folder is no longer available.",
+"target": "Deze map is niet meer beschikbaar.",
+"backtrans": "This folder is no longer available."
+},
+{
+"key": "migrationTitle",
+"english": "Device Migration",
+"target": "Apparaatmigratie",
+"backtrans": "Device migration"
+},
+{
+"key": "migrationExplainer",
+"english": "This isn't automatic sync. Export creates a single encrypted backup file you move to your new device yourself, then import there.",
+"target": "Dit is geen automatische synchronisatie. Exporteren maakt één versleuteld back-upbestand dat je zelf naar je nieuwe apparaat verplaatst en daar importeert.",
+"backtrans": "This is not automatic synchronization. Exporting creates one encrypted backup file that you move to your new device yourself and import there."
+},
+{
+"key": "exportBackupButton",
+"english": "Export encrypted backup",
+"target": "Versleutelde back-up exporteren",
+"backtrans": "Export encrypted backup"
+},
+{
+"key": "importBackupButton",
+"english": "Import from backup",
+"target": "Uit back-up importeren",
+"backtrans": "Import from backup"
+},
+{
+"key": "setBackupPasswordTitle",
+"english": "Set a backup password",
+"target": "Back-upwachtwoord instellen",
+"backtrans": "Set backup password"
+},
+{
+"key": "enterBackupPasswordTitle",
+"english": "Enter backup password",
+"target": "Back-upwachtwoord invoeren",
+"backtrans": "Enter backup password"
+},
+{
+"key": "buildingBackupStatus",
+"english": "Building backup…",
+"target": "Back-up maken...",
+"backtrans": "Making backup..."
+},
+{
+"key": "backupReadyStatus",
+"english": "Backup ready.",
+"target": "Back-up klaar.",
+"backtrans": "Backup ready."
+},
+{
+"key": "couldNotCreateBackupError",
+"english": "Could not create the backup.",
+"target": "Kon back-up niet maken.",
+"backtrans": "Could not make backup."
+},
+{
+"key": "importingStatus",
+"english": "Importing…",
+"target": "Importeren...",
+"backtrans": "Importing..."
+},
+{
+"key": "couldNotImportBackupError",
+"english": "Could not import this backup. Check the password and try again.",
+"target": "Kon deze back-up niet importeren. Controleer het wachtwoord en probeer opnieuw.",
+"backtrans": "Could not import this backup. Check the password and try again."
+},
+{
+"key": "backupCorruptedError",
+"english": "This backup file looks corrupted.",
+"target": "Dit back-upbestand lijkt beschadigd.",
+"backtrans": "This backup file seems damaged."
+},
+{
+"key": "importedCount",
+"english": "{count, plural, =1{1 document imported} other{{count} documents imported}}",
+"target": "{count, plural, =1{1 document geïmporteerd} other{{count} documenten geïmporteerd}}",
+"backtrans": "{count, plural, =1{1 document imported} other{{count} documents imported}}"
+},
+{
+"key": "continueButton",
+"english": "Continue",
+"target": "Doorgaan",
+"backtrans": "Continue"
+},
+{
+"key": "restorePurchasesButton",
+"english": "Restore purchases",
+"target": "Aankopen herstellen",
+"backtrans": "Restore purchases"
+},
+{
+"key": "pricingLoadingError",
+"english": "Pricing is still loading — try again in a moment.",
+"target": "Prijzen worden nog geladen — probeer het zo opnieuw.",
+"backtrans": "Prices are still loading — try again in a moment."
+},
+{
+"key": "renameDocumentTitle",
+"english": "Rename document",
+"target": "Document hernoemen",
+"backtrans": "Rename document"
+},
+{
+"key": "addTagTitle",
+"english": "Add tag",
+"target": "Tag toevoegen",
+"backtrans": "Add tag"
+},
+{
+"key": "moveToFolderTooltip",
+"english": "Move to folder",
+"target": "Naar map verplaatsen",
+"backtrans": "Move to folder"
+},
+{
+"key": "exportTooltip",
+"english": "Export",
+"target": "Exporteren",
+"backtrans": "Export"
+},
+{
+"key": "deleteScanTitle",
+"english": "Delete this scan?",
+"target": "Deze scan verwijderen?",
+"backtrans": "Delete this scan?"
+},
+{
+"key": "deleteScanMessage",
+"english": "This can't be undone.",
+"target": "Dit kan niet ongedaan worden gemaakt.",
+"backtrans": "This cannot be undone."
+},
+{
+"key": "movedToFolderMessage",
+"english": "Moved to folder.",
+"target": "Naar map verplaatst.",
+"backtrans": "Moved to folder."
+},
+{
+"key": "noTextRecognized",
+"english": "No text recognized.",
+"target": "Geen tekst herkend.",
+"backtrans": "No text recognized."
+},
+{
+"key": "scanUnavailable",
+"english": "This scan is no longer available.",
+"target": "Deze scan is niet meer beschikbaar.",
+"backtrans": "This scan is no longer available."
+},
+{
+"key": "settingsTitle",
+"english": "Settings",
+"target": "Instellingen",
+"backtrans": "Settings"
+},
+{
+"key": "appearanceSectionLabel",
+"english": "Appearance",
+"target": "Uiterlijk",
+"backtrans": "Appearance"
+},
+{
+"key": "themeLabel",
+"english": "Theme",
+"target": "Thema",
+"backtrans": "Theme"
+},
+{
+"key": "systemThemeOption",
+"english": "System",
+"target": "Systeem",
+"backtrans": "System"
+},
+{
+"key": "lightThemeOption",
+"english": "Light",
+"target": "Licht",
+"backtrans": "Light"
+},
+{
+"key": "darkThemeOption",
+"english": "Dark",
+"target": "Donker",
+"backtrans": "Dark"
+},
+{
+"key": "languageSectionLabel",
+"english": "Language",
+"target": "Taal",
+"backtrans": "Language"
+},
+{
+"key": "appLanguageLabel",
+"english": "App language",
+"target": "App-taal",
+"backtrans": "App language"
+},
+{
+"key": "storageSectionLabel",
+"english": "Storage",
+"target": "Opslag",
+"backtrans": "Storage"
+},
+{
+"key": "deviceMigrationLabel",
+"english": "Device Migration",
+"target": "Apparaatmigratie",
+"backtrans": "Device migration"
+},
+{
+"key": "subscriptionSectionLabel",
+"english": "Subscription",
+"target": "Abonnement",
+"backtrans": "Subscription"
+},
+{
+"key": "aboutSectionLabel",
+"english": "About",
+"target": "Over",
+"backtrans": "About"
+},
+{
+"key": "privacyPolicyLabel",
+"english": "Privacy policy",
+"target": "Privacybeleid",
+"backtrans": "Privacy policy"
+},
+{
+"key": "supportLabel",
+"english": "Support",
+"target": "Ondersteuning",
+"backtrans": "Support [??: could read as \"support/endorsement\" rather than customer support, ambiguous]"
+},
+{
+"key": "couldNotOpenLinkError",
+"english": "Could not open link.",
+"target": "Kon link niet openen.",
+"backtrans": "Could not open link."
+},
+{
+"key": "restoreCompleteMessage",
+"english": "Restore complete.",
+"target": "Herstel voltooid.",
+"backtrans": "Restore completed."
+},
+{
+"key": "genericErrorMessage",
+"english": "Something went wrong. Please try again.",
+"target": "Er is iets misgegaan. Probeer het opnieuw.",
+"backtrans": "Something went wrong. Try again."
+},
+{
+"key": "homeLanguageTooltip",
+"english": "App Language",
+"target": "App-taal",
+"backtrans": "App language"
+},
+{
+"key": "removeAdsTitle",
+"english": "Remove Ads Forever",
+"target": "Advertenties voor altijd verwijderen",
+"backtrans": "Remove ads forever"
+},
+{
+"key": "extractedTextTitle",
+"english": "Extracted Text",
+"target": "Geëxtraheerde tekst",
+"backtrans": "Extracted text"
+},
+{
+"key": "commonClose",
+"english": "Close",
+"target": "Sluiten",
+"backtrans": "Close"
+},
+{
+"key": "commonCopy",
+"english": "Copy",
+"target": "Kopiëren",
+"backtrans": "Copy"
+},
+{
+"key": "savedToDocumentText",
+"english": "Saved to document text",
+"target": "Opgeslagen in documenttekst",
+"backtrans": "Saved in document text"
+},
+{
+"key": "regionOcrFailed",
+"english": "Region OCR failed",
+"target": "OCR van selectie mislukt",
+"backtrans": "OCR of selection failed"
+},
+{
+"key": "filterRemoved",
+"english": "Filter removed",
+"target": "Filter verwijderd",
+"backtrans": "Filter removed"
+},
+{
+"key": "filterApplied",
+"english": "Filter applied",
+"target": "Filter toegepast",
+"backtrans": "Filter applied"
+},
+{
+"key": "pageCropped",
+"english": "Page cropped",
+"target": "Pagina bijgesneden",
+"backtrans": "Page cropped"
+},
+{
+"key": "revertToOriginalTitle",
+"english": "Revert to Original?",
+"target": "Terugzetten naar origineel?",
+"backtrans": "Put back to original?"
+},
+{
+"key": "revertToOriginalMessage",
+"english": "This will undo all filters, rotations, crops, resizes, and eraser strokes on this page.",
+"target": "Dit zal alle filters, rotaties, bijsnijdingen, formaatwijzigingen en gumstreken op deze pagina ongedaan maken.",
+"backtrans": "This will undo all filters, rotations, crops, size changes and eraser strokes on this page. [??: \"gumstreken\" is literally \"eraser strokes\"]"
+},
+{
+"key": "commonRevert",
+"english": "Revert",
+"target": "Terugzetten",
+"backtrans": "Put back"
+},
+{
+"key": "pageRevertedToOriginal",
+"english": "Page reverted to original",
+"target": "Pagina teruggezet naar origineel",
+"backtrans": "Page put back to original"
+},
+{
+"key": "eraserApplied",
+"english": "Eraser applied",
+"target": "Gum toegepast",
+"backtrans": "Eraser applied"
+},
+{
+"key": "pageResized",
+"english": "Page resized",
+"target": "Paginaformaat gewijzigd",
+"backtrans": "Page size changed"
+},
+{
+"key": "extractedAsNewDocument",
+"english": "Extracted as new document",
+"target": "Geëxtraheerd als nieuw document",
+"backtrans": "Extracted as new document"
+},
+{
+"key": "pagesUpdated",
+"english": "Pages updated",
+"target": "Pagina's bijgewerkt",
+"backtrans": "Pages updated"
+},
+{
+"key": "printOptionsTitle",
+"english": "Print Options",
+"target": "Afdrukopties",
+"backtrans": "Print options"
+},
+{
+"key": "letterSizeUS",
+"english": "Letter size (US)",
+"target": "Letterformaat (VS)",
+"backtrans": "Letter size (US)"
+},
+{
+"key": "commonPrint",
+"english": "Print",
+"target": "Afdrukken",
+"backtrans": "Print"
+},
+{
+"key": "printFailed",
+"english": "Print failed",
+"target": "Afdrukken mislukt",
+"backtrans": "Printing failed"
+},
+{
+"key": "noEmailAppFound",
+"english": "No email app found",
+"target": "Geen e-mailapp gevonden",
+"backtrans": "No email app found"
+},
+{
+"key": "emailFailed",
+"english": "Email failed",
+"target": "E-mail mislukt",
+"backtrans": "Email failed"
+},
+{
+"key": "fromPageLabel",
+"english": "From",
+"target": "Van",
+"backtrans": "From"
+},
+{
+"key": "toPageLabel",
+"english": "To",
+"target": "Tot",
+"backtrans": "To"
+},
+{
+"key": "pdfImportedAsDocument",
+"english": "PDF imported as document",
+"target": "PDF geïmporteerd als document",
+"backtrans": "PDF imported as document"
+},
+{
+"key": "frontSideCaptured",
+"english": "Front side captured. Now capture the back side.",
+"target": "Voorkant vastgelegd. Leg nu de achterkant vast.",
+"backtrans": "Front captured. Now capture the back."
+},
+{
+"key": "idCardPdfGenerated",
+"english": "ID Card PDF Generated",
+"target": "ID-kaart PDF gegenereerd",
+"backtrans": "ID card PDF generated"
+},
+{
+"key": "sharePdf",
+"english": "Share PDF",
+"target": "PDF delen",
+"backtrans": "Share PDF"
+},
+{
+"key": "saveAsDocument",
+"english": "Save as Document",
+"target": "Opslaan als document",
+"backtrans": "Save as document"
+},
+{
+"key": "commonDone",
+"english": "Done",
+"target": "Klaar",
+"backtrans": "Done"
+},
+{
+"key": "documentSaved",
+"english": "Document saved",
+"target": "Document opgeslagen",
+"backtrans": "Document saved"
+},
+{
+"key": "commonReset",
+"english": "Reset",
+"target": "Resetten",
+"backtrans": "Reset"
+},
+{
+"key": "autoScan",
+"english": "Auto Scan",
+"target": "Automatisch scannen",
+"backtrans": "Scan automatically"
+},
+{
+"key": "importAndConvertDocument",
+"english": "Import & Convert Document",
+"target": "Document importeren en converteren",
+"backtrans": "Import and convert document"
+},
+{
+"key": "signatureTitle",
+"english": "Signature",
+"target": "Handtekening",
+"backtrans": "Signature"
+},
+{
+"key": "signatureChoiceMessage",
+"english": "Use your saved signature or draw a new one?",
+"target": "Opgeslagen handtekening gebruiken of nieuwe tekenen?",
+"backtrans": "Use saved signature or draw a new one?"
+},
+{
+"key": "useSavedSignature",
+"english": "Use Saved",
+"target": "Opgeslagen gebruiken",
+"backtrans": "Use saved one"
+},
+{
+"key": "drawNewSignature",
+"english": "Draw New",
+"target": "Nieuwe tekenen",
+"backtrans": "Draw new one"
+},
+{
+"key": "copyAll",
+"english": "Copy all",
+"target": "Alles kopiëren",
+"backtrans": "Copy all"
+},
+{
+"key": "clearThis",
+"english": "Clear this",
+"target": "Dit wissen",
+"backtrans": "Erase this"
+},
+{
+"key": "commonRemove",
+"english": "Remove",
+"target": "Verwijderen",
+"backtrans": "Remove"
+},
+{
+"key": "clearAll",
+"english": "Clear all",
+"target": "Alles wissen",
+"backtrans": "Erase all"
+},
+{
+"key": "addSignature",
+"english": "Add Signature",
+"target": "Handtekening toevoegen",
+"backtrans": "Add signature"
+},
+{
+"key": "commonUse",
+"english": "Use",
+"target": "Gebruiken",
+"backtrans": "Use"
+},
+{
+"key": "stampTickedLabel",
+"english": "Ticked",
+"target": "Aangevinkt",
+"backtrans": "Ticked"
+},
+{
+"key": "stampBoxLabel",
+"english": "Box",
+"target": "Vakje",
+"backtrans": "Little box"
+},
+{
+"key": "stampTickLabel",
+"english": "Tick",
+"target": "Vinkje",
+"backtrans": "Check mark"
+},
+{
+"key": "commonCustom",
+"english": "Custom",
+"target": "Aangepast",
+"backtrans": "Custom"
+},
+{
+"key": "commonChange",
+"english": "Change",
+"target": "Wijzigen",
+"backtrans": "Change"
+},
+{
+"key": "commonColor",
+"english": "Color",
+"target": "Kleur",
+"backtrans": "Color"
+},
+{
+"key": "stampPaperLabel",
+"english": "Paper",
+"target": "Papier",
+"backtrans": "Paper"
+},
+{
+"key": "whiteHaloLabel",
+"english": "White halo (readability)",
+"target": "Witte halo (leesbaarheid)",
+"backtrans": "White halo (legibility)"
+},
+{
+"key": "commonCreate",
+"english": "Create",
+"target": "Maken",
+"backtrans": "Make"
+},
+{
+"key": "newFolderTitle",
+"english": "New Folder",
+"target": "Nieuwe map",
+"backtrans": "New folder"
+},
+{
+"key": "batchExportEmptyMessage",
+"english": "No documents to batch export. Scan some first.",
+"target": "Geen documenten om batch te exporteren. Scan er eerst een paar.",
+"backtrans": "No documents to batch export. Scan a few first."
+},
+{
+"key": "newFolderTooltip",
+"english": "New Folder",
+"target": "Nieuwe map",
+"backtrans": "New folder"
+},
+{
+"key": "accentColorTooltip",
+"english": "Accent Color",
+"target": "Accentkleur",
+"backtrans": "Accent color"
+},
+{
+"key": "moveToFolderTitle",
+"english": "Move to Folder",
+"target": "Naar map verplaatsen",
+"backtrans": "Move to folder"
+},
+{
+"key": "noFoldersYetHomeMessage",
+"english": "No folders yet. Create one from the home screen.",
+"target": "Nog geen mappen. Maak er een vanuit het startscherm.",
+"backtrans": "No folders yet. Make one from the start screen."
+},
+{
+"key": "appLanguageTitle",
+"english": "App Language",
+"target": "App-taal",
+"backtrans": "App language"
+},
+{
+"key": "accentColorTitle",
+"english": "Accent Color",
+"target": "Accentkleur",
+"backtrans": "Accent color"
+},
+{
+"key": "sealEditTitle",
+"english": "Edit Custom Seal",
+"target": "Aangepast zegel bewerken",
+"backtrans": "Edit custom seal"
+},
+{
+"key": "sealCreateTitle",
+"english": "Custom Seal",
+"target": "Aangepast zegel",
+"backtrans": "Custom seal"
+},
+{
+"key": "sealMainTextLabel",
+"english": "Main text (top arc / box)",
+"target": "Hoofdtekst (bovenboog / vakje)",
+"backtrans": "Main text (upper arc / little box)"
+},
+{
+"key": "sealSubtextLabel",
+"english": "Subtext (bottom arc / below)",
+"target": "Subtekst (onderboog / eronder)",
+"backtrans": "Subtext (lower arc / below it)"
+},
+{
+"key": "sealShapeOval",
+"english": "Oval",
+"target": "Ovaal",
+"backtrans": "Oval"
+},
+{
+"key": "sealShapeBox",
+"english": "Box",
+"target": "Vakje",
+"backtrans": "Little box"
+},
+{
+"key": "sealCenterStar",
+"english": "Star",
+"target": "Ster",
+"backtrans": "Star"
+},
+{
+"key": "sealCenterText",
+"english": "Text",
+"target": "Tekst",
+"backtrans": "Text"
+},
+{
+"key": "sealCenterLogo",
+"english": "Logo",
+"target": "Logo",
+"backtrans": "Logo"
+},
+{
+"key": "sealCenterNone",
+"english": "None",
+"target": "Geen",
+"backtrans": "None"
+},
+{
+"key": "sealCenterTextLabel",
+"english": "Center text",
+"target": "Centrale tekst",
+"backtrans": "Central text"
+},
+{
+"key": "sealLogoReady",
+"english": "Logo ready",
+"target": "Logo klaar",
+"backtrans": "Logo ready"
+},
+{
+"key": "textSizeLabel",
+"english": "Text size: {size}",
+"target": "Tekstgrootte: {size}",
+"backtrans": "Text size: {size}"
+},
+{
+"key": "commonUpdate",
+"english": "Update",
+"target": "Bijwerken",
+"backtrans": "Update"
+},
+{
+"key": "managePagesTitle",
+"english": "Manage Pages",
+"target": "Pagina's beheren",
+"backtrans": "Manage pages"
+},
+{
+"key": "pageLabel",
+"english": "Page {index}",
+"target": "Pagina {index}",
+"backtrans": "Page {index}"
+},
+{
+"key": "duplicateAction",
+"english": "Duplicate",
+"target": "Dupliceren",
+"backtrans": "Duplicate"
+},
+{
+"key": "rotate90Action",
+"english": "Rotate 90°",
+"target": "90° draaien",
+"backtrans": "Rotate 90°"
+},
+{
+"key": "extractToNewDocAction",
+"english": "Extract to new doc",
+"target": "Naar nieuw document extraheren",
+"backtrans": "Extract to new document"
+},
+{
+"key": "addPageTitle",
+"english": "Add Page",
+"target": "Pagina toevoegen",
+"backtrans": "Add page"
+},
+{
+"key": "cameraSource",
+"english": "Camera",
+"target": "Camera",
+"backtrans": "Camera"
+},
+{
+"key": "importFromGallery",
+"english": "Import from Gallery",
+"target": "Uit galerij importeren",
+"backtrans": "Import from gallery"
+},
+{
+"key": "fromAnotherDocument",
+"english": "From Another Document",
+"target": "Uit ander document",
+"backtrans": "From other document"
+},
+{
+"key": "pageCountLabel",
+"english": "{count, plural, =0{No pages} =1{1 page} other{{count} pages}}",
+"target": "{count, plural, =0{Geen pagina's} =1{1 pagina} other{{count} pagina's}}",
+"backtrans": "{count, plural, =0{No pages} =1{1 page} other{{count} pages}}"
+},
+{
+"key": "commonConfirm",
+"english": "Confirm",
+"target": "Bevestigen",
+"backtrans": "Confirm"
+},
+{
+"key": "applyToAllPages",
+"english": "Apply to all pages",
+"target": "Op alle pagina's toepassen",
+"backtrans": "Apply to all pages"
+},
+{
+"key": "widthLabel",
+"english": "Width",
+"target": "Breedte",
+"backtrans": "Width"
+},
+{
+"key": "heightLabel",
+"english": "Height",
+"target": "Hoogte",
+"backtrans": "Height"
+},
+{
+"key": "lockAspectRatio",
+"english": "Lock aspect ratio",
+"target": "Beeldverhouding vergrendelen",
+"backtrans": "Lock aspect ratio"
+},
+{
+"key": "originalDimensions",
+"english": "Original: {w}×{h}",
+"target": "Origineel: {w}×{h}",
+"backtrans": "Original: {w}×{h}"
+},
+{
+"key": "ocrSectionLabel",
+"english": "OCR",
+"target": "OCR",
+"backtrans": "OCR"
+},
+{
+"key": "ocrLanguagesLabel",
+"english": "OCR Languages",
+"target": "OCR-talen",
+"backtrans": "OCR languages"
+},
+{
+"key": "captureBehaviorSectionLabel",
+"english": "CAPTURE BEHAVIOR",
+"target": "GEDRAG BIJ SCANNEN",
+"backtrans": "BEHAVIOR WHEN SCANNING"
+},
+{
+"key": "autoCopyOcrLabel",
+"english": "Auto-copy OCR",
+"target": "OCR automatisch kopiëren",
+"backtrans": "Copy OCR automatically"
+},
+{
+"key": "autoCopyOcrSubtitle",
+"english": "Copy text to clipboard after scan",
+"target": "Tekst naar klembord kopiëren na scan",
+"backtrans": "Copy text to clipboard after scan"
+},
+{
+"key": "beepOnCaptureLabel",
+"english": "Beep on capture",
+"target": "Piep bij vastleggen",
+"backtrans": "Beep on capture"
+},
+{
+"key": "beepOnCaptureSubtitle",
+"english": "Play sound when scan completes",
+"target": "Geluid afspelen wanneer scan voltooid is",
+"backtrans": "Play sound when scan is completed"
+},
+{
+"key": "vibrateOnCaptureLabel",
+"english": "Vibrate on capture",
+"target": "Trillen bij vastleggen",
+"backtrans": "Vibrate on capture"
+},
+{
+"key": "vibrateOnCaptureSubtitle",
+"english": "Haptic feedback when scan completes",
+"target": "Haptische feedback wanneer scan voltooid is",
+"backtrans": "Haptic feedback when scan is completed"
+},
+{
+"key": "adsRemovedLabel",
+"english": "Ads Removed",
+"target": "Advertenties verwijderd",
+"backtrans": "Ads removed"
+},
+{
+"key": "diagnosticsSectionLabel",
+"english": "DIAGNOSTICS",
+"target": "DIAGNOSTIEK",
+"backtrans": "DIAGNOSTICS"
+},
+{
+"key": "debugLogsLabel",
+"english": "Debug Logs",
+"target": "Debuglogboeken",
+"backtrans": "Debug logbooks"
+},
+{
+"key": "logEntriesLabel",
+"english": "{count, plural, =0{No entries} =1{1 entry} other{{count} entries}}",
+"target": "{count, plural, =0{Geen items} =1{1 item} other{{count} items}}",
+"backtrans": "{count, plural, =0{No items} =1{1 item} other{{count} items}}"
+},
+{
+"key": "ocrStatusBuiltIn",
+"english": "Built-in",
+"target": "Ingebouwd",
+"backtrans": "Built-in"
+},
+{
+"key": "ocrStatusChecking",
+"english": "Checking...",
+"target": "Controleren...",
+"backtrans": "Checking..."
+},
+{
+"key": "ocrStatusOnDemand",
+"english": "On-demand",
+"target": "Op aanvraag",
+"backtrans": "On request"
+},
+{
+"key": "savedAsNewDocument",
+"english": "Saved as new document",
+"target": "Opgeslagen als nieuw document",
+"backtrans": "Saved as new document"
+},
+{
+"key": "conversionFailedPrefix",
+"english": "Conversion failed",
+"target": "Conversie mislukt",
+"backtrans": "Conversion failed"
+},
+{
+"key": "convertDocumentTitle",
+"english": "Convert Document",
+"target": "Document converteren",
+"backtrans": "Convert document"
+},
+{
+"key": "convertToLabel",
+"english": "Convert to:",
+"target": "Converteren naar:",
+"backtrans": "Convert to:"
+},
+{
+"key": "actionLabel",
+"english": "Action:",
+"target": "Actie:",
+"backtrans": "Action:"
+},
+{
+"key": "saveAsNewDocumentAction",
+"english": "Save as new Document",
+"target": "Opslaan als nieuw document",
+"backtrans": "Save as new document"
+},
+{
+"key": "exportAndShareAction",
+"english": "Export & Share",
+"target": "Exporteren en delen",
+"backtrans": "Export and share"
+},
+{
+"key": "docxWarningMessage",
+"english": "DOCX sources render poorly as pages — save inside the app is limited to JPG/PNG from image, PDF, TXT or CSV sources. Use Export & Share for this file.",
+"target": "DOCX-bronnen worden slecht weergegeven als pagina's — opslaan in de app is beperkt tot JPG/PNG van afbeelding, PDF, TXT of CSV-bronnen. Gebruik Exporteren en delen voor dit bestand.",
+"backtrans": "DOCX sources are displayed poorly as pages — saving in the app is limited to JPG/PNG from image, PDF, TXT or CSV sources. Use Export and share for this file. [??: awkward/garbled phrasing \"JPG/PNG van afbeelding\"]"
+},
+{
+"key": "saveInsideAppWarning",
+"english": "To save inside the app, choose JPG or PNG. Other targets are exported as files.",
+"target": "Kies JPG of PNG om in de app op te slaan. Andere doelen worden als bestanden geëxporteerd.",
+"backtrans": "Choose JPG or PNG to save in the app. Other targets are exported as files."
+},
+{
+"key": "commonConvert",
+"english": "Convert",
+"target": "Converteren",
+"backtrans": "Convert"
+},
+{
+"key": "conversionStarting",
+"english": "Starting…",
+"target": "Starten...",
+"backtrans": "Starting..."
+},
+{
+"key": "convertedDocTitle",
+"english": "Converted {date}",
+"target": "Geconverteerd {date}",
+"backtrans": "Converted {date}"
+},
+{
+"key": "progressReading",
+"english": "Reading…",
+"target": "Lezen...",
+"backtrans": "Reading..."
+},
+{
+"key": "progressCopying",
+"english": "Copying…",
+"target": "Kopiëren...",
+"backtrans": "Copying..."
+},
+{
+"key": "progressBuildingPdf",
+"english": "Building PDF…",
+"target": "PDF bouwen...",
+"backtrans": "Building PDF..."
+},
+{
+"key": "progressBuildingDocx",
+"english": "Building DOCX…",
+"target": "DOCX bouwen...",
+"backtrans": "Building DOCX..."
+},
+{
+"key": "progressDecodingImage",
+"english": "Decoding image…",
+"target": "Afbeelding decoderen...",
+"backtrans": "Decoding image..."
+},
+{
+"key": "progressExtractingText",
+"english": "Extracting text…",
+"target": "Tekst extraheren...",
+"backtrans": "Extracting text..."
+},
+{
+"key": "progressSaving",
+"english": "Saving…",
+"target": "Opslaan...",
+"backtrans": "Saving..."
+},
+{
+"key": "progressRasterizing",
+"english": "Rasterizing pages…",
+"target": "Pagina's rasteren...",
+"backtrans": "Rasterizing pages..."
+},
+{
+"key": "progressEncodingPage",
+"english": "Encoding page {current} of {total}…",
+"target": "Pagina {current} van {total} coderen...",
+"backtrans": "Encoding page {current} of {total}..."
+},
+{
+"key": "watermarkEditTitle",
+"english": "Edit Watermark",
+"target": "Watermerk bewerken",
+"backtrans": "Edit watermark"
+},
+{
+"key": "watermarkAddTitle",
+"english": "Add Watermark",
+"target": "Watermerk toevoegen",
+"backtrans": "Add watermark"
+},
+{
+"key": "watermarkTextLabel",
+"english": "Text",
+"target": "Tekst",
+"backtrans": "Text"
+},
+{
+"key": "opacityPercentLabel",
+"english": "Opacity: {percent}%",
+"target": "Dekking: {percent}%",
+"backtrans": "Opacity: {percent}%"
+},
+{
+"key": "sizePtLabel",
+"english": "Size: {size}pt",
+"target": "Grootte: {size}pt",
+"backtrans": "Size: {size}pt"
+},
+{
+"key": "alignLabel",
+"english": "Align",
+"target": "Uitlijning",
+"backtrans": "Alignment"
+},
+{
+"key": "exportSavedToDownloads",
+"english": "Saved to Downloads",
+"target": "Opgeslagen in Downloads",
+"backtrans": "Saved in Downloads"
+},
+{
+"key": "commonShare",
+"english": "Share",
+"target": "Delen",
+"backtrans": "Share"
+},
+{
+"key": "exportTitle",
+"english": "Export",
+"target": "Exporteren",
+"backtrans": "Export"
+},
+{
+"key": "targetMbLabel",
+"english": "{mb} MB",
+"target": "{mb} MB",
+"backtrans": "{mb} MB"
+},
+{
+"key": "filterColor",
+"english": "Color",
+"target": "Kleur",
+"backtrans": "Color"
+},
+{
+"key": "filterShadow",
+"english": "Shadow",
+"target": "Schaduw",
+"backtrans": "Shadow"
+},
+{
+"key": "docxModeTextOnly",
+"english": "Text Only",
+"target": "Alleen tekst",
+"backtrans": "Text only"
+},
+{
+"key": "docxModeWithImages",
+"english": "With Images",
+"target": "Met afbeeldingen",
+"backtrans": "With images"
+},
+{
+"key": "saveToDeviceButton",
+"english": "Save to Device",
+"target": "Opslaan op apparaat",
+"backtrans": "Save on device"
+},
+{
+"key": "pageIndicator",
+"english": "Page {current} / {total}",
+"target": "Pagina {current} / {total}",
+"backtrans": "Page {current} / {total}"
+},
+{
+"key": "fullscreenLabel",
+"english": "Fullscreen",
+"target": "Volledig scherm",
+"backtrans": "Full screen"
+},
+{
+"key": "batchExportSignatureDisabled",
+"english": "Batch export — signature placement disabled",
+"target": "Batchexport — handtekeningplaatsing uitgeschakeld",
+"backtrans": "Batch export — signature placement disabled"
+},
+{
+"key": "fitToTargetMbLabel",
+"english": "Fit to target MB",
+"target": "Aanpassen aan doel-MB",
+"backtrans": "Adjust to target MB"
+},
+{
+"key": "moreOptionsTooltip",
+"english": "More options",
+"target": "Meer opties",
+"backtrans": "More options"
+},
+{
+"key": "commonRename",
+"english": "Rename",
+"target": "Hernoemen",
+"backtrans": "Rename"
+},
+{
+"key": "addTagsAction",
+"english": "Add Tags",
+"target": "Tags toevoegen",
+"backtrans": "Add tags"
+},
+{
+"key": "editDocumentAction",
+"english": "Edit Document",
+"target": "Document bewerken",
+"backtrans": "Edit document"
+},
+{
+"key": "copiedToClipboard",
+"english": "Copied to clipboard",
+"target": "Gekopieerd naar klembord",
+"backtrans": "Copied to clipboard"
+},
+{
+"key": "favoriteTooltip",
+"english": "Favorite",
+"target": "Favoriet",
+"backtrans": "Favorite"
+},
+{
+"key": "noFoldersYet",
+"english": "No folders yet",
+"target": "Nog geen mappen",
+"backtrans": "No folders yet"
+},
+{
+"key": "rotateLabel",
+"english": "Rotate",
+"target": "Draaien",
+"backtrans": "Rotate"
+},
+{
+"key": "scaleLabel",
+"english": "Scale",
+"target": "Schalen",
+"backtrans": "Scale"
+},
+{
+"key": "eraserTitle",
+"english": "Eraser",
+"target": "Gum",
+"backtrans": "Eraser"
+},
+{
+"key": "tapToSampleColor",
+"english": "Tap a spot to sample its color",
+"target": "Tik op een plek om de kleur te bemonsteren",
+"backtrans": "Tap a spot to sample the color"
+},
+{
+"key": "commonSize",
+"english": "Size",
+"target": "Grootte",
+"backtrans": "Size"
+},
+{
+"key": "sampleColorTooltip",
+"english": "Sample color from page",
+"target": "Kleur van pagina bemonsteren",
+"backtrans": "Sample color from page"
+},
+{
+"key": "marqueeEraseTooltip",
+"english": "Marquee erase",
+"target": "Selectiegum",
+"backtrans": "Selection eraser"
+},
+{
+"key": "commonApply",
+"english": "Apply",
+"target": "Toepassen",
+"backtrans": "Apply"
+},
+{
+"key": "filterTitle",
+"english": "Filter",
+"target": "Filter",
+"backtrans": "Filter"
+},
+{
+"key": "intensityLabel",
+"english": "Intensity",
+"target": "Intensiteit",
+"backtrans": "Intensity"
+},
+{
+"key": "selectRegionTitle",
+"english": "Select Region",
+"target": "Gebied selecteren",
+"backtrans": "Select area"
+},
+{
+"key": "commonExtract",
+"english": "Extract",
+"target": "Extraheren",
+"backtrans": "Extract"
+},
+{
+"key": "customColorTitle",
+"english": "Custom Color",
+"target": "Aangepaste kleur",
+"backtrans": "Custom color"
+},
+{
+"key": "documentNotFound",
+"english": "Document not found",
+"target": "Document niet gevonden",
+"backtrans": "Document not found"
+},
+{
+"key": "clearLogsTooltip",
+"english": "Clear logs",
+"target": "Logboeken wissen",
+"backtrans": "Erase logbooks"
+},
+{
+"key": "placeHereLabel",
+"english": "Place here",
+"target": "Hier plaatsen",
+"backtrans": "Place here"
+},
+{
+"key": "tryAgainButton",
+"english": "Try again",
+"target": "Opnieuw proberen",
+"backtrans": "Try again"
+},
+{
+"key": "emptyDocumentMessage",
+"english": "This document has no pages.",
+"target": "Dit document heeft geen pagina's.",
+"backtrans": "This document has no pages."
+},
+{
+"key": "cameraErrorPrefix",
+"english": "Camera error",
+"target": "Camerafout",
+"backtrans": "Camera error"
+},
+{
+"key": "importErrorPrefix",
+"english": "Import error",
+"target": "Importfout",
+"backtrans": "Import error"
+},
+{
+"key": "pdfImportErrorPrefix",
+"english": "PDF import error",
+"target": "PDF-importfout",
+"backtrans": "PDF import error"
+},
+{
+"key": "pickErrorPrefix",
+"english": "Pick error",
+"target": "Selectiefout",
+"backtrans": "Selection error"
+},
+{
+"key": "scannerErrorPrefix",
+"english": "Scanner error",
+"target": "Scannerfout",
+"backtrans": "Scanner error"
+},
+{
+"key": "idPdfErrorPrefix",
+"english": "Error generating ID PDF",
+"target": "Fout bij genereren ID PDF",
+"backtrans": "Error when generating ID PDF"
+},
+{
+"key": "genericErrorPrefix",
+"english": "Error",
+"target": "Fout",
+"backtrans": "Error"
+},
+{
+"key": "annotateTitle",
+"english": "Annotate",
+"target": "Annoteren",
+"backtrans": "Annotate"
+},
+{
+"key": "placementsCountLabel",
+"english": "{count, plural, =0{Nothing placed} =1{1 placed} other{{count} placed}}",
+"target": "{count, plural, =0{Niets geplaatst} =1{1 geplaatst} other{{count} geplaatst}}",
+"backtrans": "{count, plural, =0{Nothing placed} =1{1 placed} other{{count} placed}}"
+},
+{
+"key": "ocrUnavailableTooltip",
+"english": "OCR unavailable on this device.",
+"target": "OCR niet beschikbaar op dit apparaat.",
+"backtrans": "OCR not available on this device."
+},
+{
+"key": "docScannerUnsupportedMessage",
+"english": "Your device doesn't support the advanced document scanner. Take a photo with your Camera app, then tap Import below to crop and save it.",
+"target": "Je apparaat ondersteunt de geavanceerde documentscanner niet. Maak een foto met de Camera-app en tik dan op Importeren hieronder om bij te snijden en op te slaan.",
+"backtrans": "Your device does not support the advanced document scanner. Take a photo with the Camera app and then tap Import below to crop and save."
+},
+{
+"key": "billingUnavailableMessage",
+"english": "Billing unavailable — try again later.",
+"target": "Facturering niet beschikbaar — probeer het later opnieuw.",
+"backtrans": "Billing not available — try again later."
+},
+{
+"key": "ocrNoInternetMessage",
+"english": "No internet. Connect once to download the language pack.",
+"target": "Geen internet. Maak eenmalig verbinding om het taalpakket te downloaden.",
+"backtrans": "No internet. Connect once to download the language pack."
+},
+{
+"key": "ocrLanguagePackNotReady",
+"english": "Language pack downloading or not ready. Try again shortly.",
+"target": "Taalpakket wordt gedownload of is niet klaar. Probeer het zo opnieuw.",
+"backtrans": "Language pack is being downloaded or is not ready. Try again in a moment."
+},
+{
+"key": "undoTooltip",
+"english": "Undo",
+"target": "Ongedaan maken",
+"backtrans": "Undo"
+},
+{
+"key": "redoTooltip",
+"english": "Redo",
+"target": "Opnieuw",
+"backtrans": "Again [??: \"Opnieuw\" means \"again/anew\", not the standard \"Redo\"]"
+},
+{
+"key": "fillInputHint",
+"english": "Type text to fill",
+"target": "Typ tekst om in te vullen",
+"backtrans": "Type text to fill in"
+},
+{
+"key": "fillCapsLabel",
+"english": "ALL CAPS",
+"target": "ALLES IN HOOFDLETTERS",
+"backtrans": "EVERYTHING IN CAPITAL LETTERS"
+},
+{
+"key": "fillSaveSnippet",
+"english": "Save as snippet",
+"target": "Opslaan als fragment",
+"backtrans": "Save as fragment"
+},
+{
+"key": "fillDeleteSnippet",
+"english": "Delete snippet?",
+"target": "Fragment verwijderen?",
+"backtrans": "Delete fragment?"
+},
+{
+"key": "fillTooltip",
+"english": "Fill",
+"target": "Invullen",
+"backtrans": "Fill in"
+},
+{
+"key": "tickerFreeUnlimitedOcr",
+"english": "FREE UNLIMITED OCR",
+"target": "GRATIS ONBEPERKTE OCR",
+"backtrans": "FREE UNLIMITED OCR"
+},
+{
+"key": "ticker100OnDevicePrivacy",
+"english": "YOUR DOCUMENTS STAY ON YOUR DEVICE",
+"target": "JE DOCUMENTEN BLIJVEN OP JE APPARAAT",
+"backtrans": "YOUR DOCUMENTS STAY ON YOUR DEVICE"
+},
+{
+"key": "tickerNoAccount",
+"english": "NO ACCOUNT",
+"target": "GEEN ACCOUNT",
+"backtrans": "NO ACCOUNT"
+},
+{
+"key": "tickerNoWatermarks",
+"english": "NO WATERMARKS",
+"target": "GEEN WATERMERKEN",
+"backtrans": "NO WATERMARKS"
+},
+{
+"key": "ticker21ToolEditSuite",
+"english": "21-TOOL EDIT SUITE",
+"target": "21 BEWERKINGSTOOLS",
+"backtrans": "21 EDITING TOOLS"
+},
+{
+"key": "tickerNonDestructiveEditing",
+"english": "NON-DESTRUCTIVE EDITING",
+"target": "NIET-DESTRUCTIEF BEWERKEN",
+"backtrans": "NON-DESTRUCTIVE EDITING"
+},
+{
+"key": "tickerUndoRedo",
+"english": "UNDO/REDO",
+"target": "ONGEDAAN MAKEN/OPNIEUW",
+"backtrans": "UNDO/AGAIN [??: \"OPNIEUW\" = again, not Redo]"
+},
+{
+"key": "tickerRevertToOriginal",
+"english": "REVERT TO ORIGINAL",
+"target": "TERUGZETTEN NAAR ORIGINEEL",
+"backtrans": "PUT BACK TO ORIGINAL"
+},
+{
+"key": "tickerTapToTypeFilling",
+"english": "TAP-TO-TYPE FILLING",
+"target": "TIKKEN EN INVULLEN",
+"backtrans": "TAP AND FILL IN"
+},
+{
+"key": "tickerESign",
+"english": "E-SIGN",
+"target": "E-ONDERTEKENEN",
+"backtrans": "E-SIGNING"
+},
+{
+"key": "tickerCustomSeals",
+"english": "CUSTOM SEALS",
+"target": "AANGEPASTE ZEGELS",
+"backtrans": "CUSTOM SEALS"
+},
+{
+"key": "tickerTextStamps",
+"english": "TEXT STAMPS",
+"target": "TEKSTSTEMPELS",
+"backtrans": "TEXT STAMPS"
+},
+{
+"key": "tickerNoteStamps",
+"english": "NOTE STAMPS",
+"target": "NOTITIESTEMPELS",
+"backtrans": "NOTE STAMPS"
+},
+{
+"key": "tickerSearchablePdf",
+"english": "SEARCHABLE PDF",
+"target": "DOORZOEKBARE PDF",
+"backtrans": "SEARCHABLE PDF"
+},
+{
+"key": "tickerRegionOcr",
+"english": "REGION OCR",
+"target": "OCR VAN SELECTIE",
+"backtrans": "OCR OF SELECTION"
+},
+{
+"key": "tickerAutoCopyOcr",
+"english": "AUTO-COPY OCR",
+"target": "OCR AUTOMATISCH KOPIËREN",
+"backtrans": "COPY OCR AUTOMATICALLY"
+},
+{
+"key": "tickerIdCardMode",
+"english": "ID CARD MODE",
+"target": "ID-KAARTMODUS",
+"backtrans": "ID CARD MODE"
+},
+{
+"key": "tickerPassportMode",
+"english": "PASSPORT MODE",
+"target": "PASPOORTMODUS",
+"backtrans": "PASSPORT MODE"
+},
+{
+"key": "tickerGalleryImport",
+"english": "GALLERY IMPORT",
+"target": "GALERIJ-IMPORT",
+"backtrans": "GALLERY IMPORT"
+},
+{
+"key": "tickerPdfExport",
+"english": "PDF EXPORT",
+"target": "PDF-EXPORT",
+"backtrans": "PDF EXPORT"
+},
+{
+"key": "tickerWordExport",
+"english": "WORD EXPORT",
+"target": "WORD-EXPORT",
+"backtrans": "WORD EXPORT"
+},
+{
+"key": "tickerJpgExport",
+"english": "JPG EXPORT",
+"target": "JPG-EXPORT",
+"backtrans": "JPG EXPORT"
+},
+{
+"key": "tickerPngExport",
+"english": "PNG EXPORT",
+"target": "PNG-EXPORT",
+"backtrans": "PNG EXPORT"
+},
+{
+"key": "tickerBatchExport",
+"english": "BATCH EXPORT",
+"target": "BATCHEXPORT",
+"backtrans": "BATCH EXPORT"
+},
+{
+"key": "tickerFolders",
+"english": "FOLDERS",
+"target": "MAPPEN",
+"backtrans": "FOLDERS"
+},
+{
+"key": "tickerTags",
+"english": "TAGS",
+"target": "TAGS",
+"backtrans": "TAGS"
+},
+{
+"key": "tickerFavorites",
+"english": "FAVORITES",
+"target": "FAVORIETEN",
+"backtrans": "FAVORITES"
+},
+{
+"key": "tickerSearch",
+"english": "SEARCH",
+"target": "ZOEKEN",
+"backtrans": "SEARCH"
+},
+{
+"key": "tickerDarkMode",
+"english": "DARK MODE",
+"target": "DONKERE MODUS",
+"backtrans": "DARK MODE"
+},
+{
+"key": "tickerAccentThemes",
+"english": "ACCENT THEMES",
+"target": "ACCENTTHEMA'S",
+"backtrans": "ACCENT THEMES"
+},
+{
+"key": "tickerDeviceMigration",
+"english": "DEVICE MIGRATION",
+"target": "APPARAATMIGRATIE",
+"backtrans": "DEVICE MIGRATION"
+},
+{
+"key": "onboardingWelcomeTitle",
+"english": "Welcome to KatharScan",
+"target": "Welkom bij KatharScan",
+"backtrans": "Welcome to KatharScan"
+},
+{
+"key": "onboardingWelcomeSubtitle",
+"english": "Your entire document office — scan, edit, sign, and export — in one private app.",
+"target": "Je hele documentenkantoor — scannen, bewerken, ondertekenen en exporteren — in één privé-app.",
+"backtrans": "Your whole document office — scanning, editing, signing and exporting — in one private app."
+},
+{
+"key": "onboardingToolsTitle",
+"english": "21 Free Pro Tools",
+"target": "21 gratis Pro-tools",
+"backtrans": "21 free Pro tools"
+},
+{
+"key": "onboardingToolsSubtitle",
+"english": "Annotate, sign, watermark, fill forms, seal, and more — every tool free and unlimited.",
+"target": "Annoteren, ondertekenen, watermerk, formulieren invullen, verzegelen en meer — elke tool gratis en onbeperkt.",
+"backtrans": "Annotate, sign, watermark, fill in forms, seal and more — every tool free and unlimited."
+},
+{
+"key": "onboardingOcrTitle",
+"english": "On-Device OCR",
+"target": "OCR op apparaat",
+"backtrans": "OCR on device"
+},
+{
+"key": "onboardingOcrSubtitle",
+"english": "Use KatharScan in {count} languages. OCR runs on your phone — nothing ever leaves your device.",
+"target": "Gebruik KatharScan in {count} talen. OCR draait op je telefoon — niets verlaat je apparaat.",
+"backtrans": "Use KatharScan in {count} languages. OCR runs on your phone — nothing leaves your device. [??: first sentence is a non-sequitur for OCR]"
+},
+{
+"key": "onboardingSignTitle",
+"english": "Sign, Fill & Seal",
+"target": "Ondertekenen, invullen en verzegelen",
+"backtrans": "Sign, fill in and seal"
+},
+{
+"key": "onboardingSignSubtitle",
+"english": "E-sign contracts, type-to-fill forms, and stamp enterprise seals in seconds.",
+"target": "Contracten e-ondertekenen, formulieren invullen en bedrijfszegels stempelen in seconden.",
+"backtrans": "E-sign contracts, fill in forms and stamp company seals in seconds."
+},
+{
+"key": "onboardingEditTitle",
+"english": "Non-Destructive Editing",
+"target": "Niet-destructief bewerken",
+"backtrans": "Non-destructive editing"
+},
+{
+"key": "onboardingEditSubtitle",
+"english": "Every edit stays reversible — undo, redo, and revert to original anytime.",
+"target": "Elke bewerking blijft omkeerbaar — ongedaan maken, opnieuw en terugzetten naar origineel op elk moment.",
+"backtrans": "Every edit stays reversible — undo, again and put back to original at any moment."
+},
+{
+"key": "onboardingPrivacyTitle",
+"english": "Private by design",
+"target": "Privacy ingebouwd",
+"backtrans": "Privacy built in"
+},
+{
+"key": "onboardingPrivacySubtitle",
+"english": "No account, no cloud, no watermarks. Your documents never leave your device.",
+"target": "Geen account, geen cloud, geen watermerken. Je documenten verlaten nooit je apparaat.",
+"backtrans": "No account, no cloud, no watermarks. Your documents never leave your device."
+},
+{
+"key": "onboardingContinue",
+"english": "Continue",
+"target": "Doorgaan",
+"backtrans": "Continue"
+},
+{
+"key": "onboardingGetStarted",
+"english": "Get Started",
+"target": "Aan de slag",
+"backtrans": "Get started"
+},
+{
+"key": "onboardingBack",
+"english": "Back",
+"target": "Terug",
+"backtrans": "Back"
+},
+{
+"key": "onboardingReplayIntro",
+"english": "Replay introduction",
+"target": "Introductie opnieuw afspelen",
+"backtrans": "Play introduction again"
+},
+{
+"key": "saveToDownloadsAction",
+"english": "Save to Downloads",
+"target": "Opslaan in Downloads",
+"backtrans": "Save in Downloads"
+},
+{
+"key": "paywallTitle",
+"english": "Remove Ads",
+"target": "Advertenties verwijderen",
+"backtrans": "Remove ads"
+},
+{
+"key": "paywallSubtitle",
+"english": "Support KatharScan with a one-time purchase. All features remain free.",
+"target": "Ondersteun KatharScan met een eenmalige aankoop. Alle functies blijven gratis.",
+"backtrans": "Support KatharScan with a one-time purchase. All features stay free."
+},
+{
+"key": "paywallFallbackPrice",
+"english": "$14.99 one-time",
+"target": "$14.99 eenmalig",
+"backtrans": "$14.99 one-time"
+},
+{
+"key": "paywallFeatureNoBanner",
+"english": "No more banner ads",
+"target": "Geen banneradvertenties meer",
+"backtrans": "No more banner ads"
+},
+{
+"key": "paywallFeatureNoInterstitial",
+"english": "No more interstitial ads",
+"target": "Geen interstitiële advertenties meer",
+"backtrans": "No more interstitial ads"
+},
+{
+"key": "paywallFeatureFreeForever",
+"english": "All features free forever",
+"target": "Alle functies voor altijd gratis",
+"backtrans": "All features free forever"
+},
+{
+"key": "paywallLegalText",
+"english": "This is a non-consumable purchase. Restore it anytime on any device with the same store account.",
+"target": "Dit is een niet-verbruikbare aankoop. Herstel het op elk moment op elk apparaat met hetzelfde app-storeaccount.",
+"backtrans": "This is a non-consumable purchase. Restore it at any moment on any device with the same app store account."
+},
+{
+"key": "paywallSuccessTitle",
+"english": "Ads Removed",
+"target": "Advertenties verwijderd",
+"backtrans": "Ads removed"
+},
+{
+"key": "paywallSuccessMessage",
+"english": "Thank you for supporting KatharScan.",
+"target": "Bedankt voor het ondersteunen van KatharScan.",
+"backtrans": "Thanks for supporting KatharScan."
+},
+{
+"key": "errorGenericTitle",
+"english": "Something went wrong",
+"target": "Er is iets misgegaan",
+"backtrans": "Something went wrong"
+},
+{
+"key": "errorScreenProblem",
+"english": "KatharScan ran into a problem displaying this screen. Your scans are safe — they're stored on this device and this doesn't affect them.",
+"target": "KatharScan had een probleem bij het weergeven van dit scherm. Je scans zijn veilig — ze zijn opgeslagen op dit apparaat en dit heeft er geen invloed op.",
+"backtrans": "KatharScan had a problem displaying this screen. Your scans are safe — they are saved on this device and this has no effect on them."
+},
+{
+"key": "errorReportIssue",
+"english": "Report issue",
+"target": "Probleem melden",
+"backtrans": "Report problem"
+},
+{
+"key": "filterAll",
+"english": "All",
+"target": "Alles",
+"backtrans": "All"
+},
+{
+"key": "filterFolders",
+"english": "Folders",
+"target": "Mappen",
+"backtrans": "Folders"
+},
+{
+"key": "filterRecent",
+"english": "Recent",
+"target": "Recent",
+"backtrans": "Recent"
+},
+{
+"key": "filterFavorites",
+"english": "Favorites",
+"target": "Favorieten",
+"backtrans": "Favorites"
+},
+{
+"key": "chipAllFolders",
+"english": "All Folders",
+"target": "Alle mappen",
+"backtrans": "All folders"
+},
+{
+"key": "chipSelectMultiple",
+"english": "Select Multiple",
+"target": "Meerdere selecteren",
+"backtrans": "Select multiple"
+},
+{
+"key": "emptySearch",
+"english": "No scans match your search.",
+"target": "Geen scans komen overeen met je zoekopdracht.",
+"backtrans": "No scans match your search."
+},
+{
+"key": "emptyFolders",
+"english": "No folders yet. Tap the folder icon to create one.",
+"target": "Nog geen mappen. Tik op het mappictogram om er een te maken.",
+"backtrans": "No folders yet. Tap the folder icon to make one."
+},
+{
+"key": "emptyFavorites",
+"english": "No favorites yet. Tap the star icon on a document to add it.",
+"target": "Nog geen favorieten. Tik op het sterpictogram op een document om het toe te voegen.",
+"backtrans": "No favorites yet. Tap the star icon on a document to add it."
+},
+{
+"key": "modeDocument",
+"english": "Document Mode",
+"target": "Documentmodus",
+"backtrans": "Document mode"
+},
+{
+"key": "modeOcr",
+"english": "OCR Mode",
+"target": "OCR-modus",
+"backtrans": "OCR mode"
+},
+{
+"key": "modeIdCard",
+"english": "ID Card Mode",
+"target": "ID-kaartmodus",
+"backtrans": "ID card mode"
+},
+{
+"key": "modePassport",
+"english": "Passport Mode",
+"target": "Paspoortmodus",
+"backtrans": "Passport mode"
+},
+{
+"key": "titlePdfImport",
+"english": "PDF Import",
+"target": "PDF-import",
+"backtrans": "PDF import"
+},
+{
+"key": "titleIdCard",
+"english": "ID Card",
+"target": "ID-kaart",
+"backtrans": "ID card"
+},
+{
+"key": "titleScan",
+"english": "Scan",
+"target": "Scannen",
+"backtrans": "Scan"
+},
+{
+"key": "exportEstimatedSize",
+"english": "Estimated size: {mb} MB",
+"target": "Geschatte grootte: {mb} MB",
+"backtrans": "Estimated size: {mb} MB"
+},
+{
+"key": "debugNoLogsYet",
+"english": "No logs yet",
+"target": "Nog geen logboeken",
+"backtrans": "No logbooks yet"
+},
+{
+"key": "textBold",
+"english": "B",
+"target": "V",
+"backtrans": "V [??: Dutch abbreviation for Vet (bold)]"
+},
+{
+"key": "textItalic",
+"english": "I",
+"target": "C",
+"backtrans": "C [??: Dutch abbreviation for Cursief (italic)]"
+},
+{
+"key": "textUnderline",
+"english": "U",
+"target": "O",
+"backtrans": "O [??: Dutch abbreviation for Onderstreept (underline)]"
+},
+{
+"key": "textFontLetterA",
+"english": "A",
+"target": "A",
+"backtrans": "A"
+},
+{
+"key": "multiplySymbol",
+"english": "×",
+"target": "×",
+"backtrans": "×"
+},
+{
+"key": "signerLabel",
+"english": "Signer {index}",
+"target": "Ondertekenaar {index}",
+"backtrans": "Signer {index}"
+},
+{
+"key": "stampCheckbox",
+"english": "Checkbox",
+"target": "Selectievakje",
+"backtrans": "Checkbox"
+},
+{
+"key": "fontSansSerif",
+"english": "sans-serif",
+"target": "sans-serif",
+"backtrans": "sans-serif"
+},
+{
+"key": "fontSerif",
+"english": "serif",
+"target": "serif",
+"backtrans": "serif"
+},
+{
+"key": "fontMonospace",
+"english": "monospace",
+"target": "monospace",
+"backtrans": "monospace"
+},
+{
+"key": "sealCustom",
+"english": "Custom Seal",
+"target": "Aangepast zegel",
+"backtrans": "Custom seal"
+},
+{
+"key": "formatCsv",
+"english": "CSV",
+"target": "CSV",
+"backtrans": "CSV"
+},
+{
+"key": "ocrNoTextFound",
+"english": "No text found",
+"target": "Geen tekst gevonden",
+"backtrans": "No text found"
+},
+{
+"key": "rotationAllPages",
+"english": "All pages rotated",
+"target": "Alle pagina's gedraaid",
+"backtrans": "All pages rotated"
+},
+{
+"key": "rotationPage",
+"english": "Page rotated",
+"target": "Pagina gedraaid",
+"backtrans": "Page rotated"
+},
+{
+"key": "resizeTitle",
+"english": "Resize",
+"target": "Formaat wijzigen",
+"backtrans": "Change size"
+},
+{
+"key": "addTextTitle",
+"english": "Add Text",
+"target": "Tekst toevoegen",
+"backtrans": "Add text"
+},
+{
+"key": "addNoteTitle",
+"english": "Add Note",
+"target": "Notitie toevoegen",
+"backtrans": "Add note"
+},
+{
+"key": "addDateTitle",
+"english": "Add Date",
+"target": "Datum toevoegen",
+"backtrans": "Add date"
+},
+{
+"key": "addCheckboxTitle",
+"english": "Add Checkbox",
+"target": "Selectievakje toevoegen",
+"backtrans": "Add checkbox"
+},
+{
+"key": "noteTextLabel",
+"english": "Note text",
+"target": "Notitietekst",
+"backtrans": "Note text"
+},
+{
+"key": "textLabel",
+"english": "Text",
+"target": "Tekst",
+"backtrans": "Text"
+},
+{
+"key": "checkShapeRounded",
+"english": "Rounded",
+"target": "Afgerond",
+"backtrans": "Rounded"
+},
+{
+"key": "checkShapeSquare",
+"english": "Square",
+"target": "Vierkant",
+"backtrans": "Square"
+},
+{
+"key": "checkShapeCircle",
+"english": "Circle",
+"target": "Cirkel",
+"backtrans": "Circle"
+},
+{
+"key": "hueLabel",
+"english": "Hue",
+"target": "Tint",
+"backtrans": "Hue"
+},
+{
+"key": "satLabel",
+"english": "Sat",
+"target": "Verz",
+"backtrans": "Sat"
+},
+{
+"key": "valLabel",
+"english": "Val",
+"target": "Waarde",
+"backtrans": "Value"
+},
+{
+"key": "annotationModePen",
+"english": "Pen",
+"target": "Pen",
+"backtrans": "Pen"
+},
+{
+"key": "annotationModeHighlighter",
+"english": "Highlighter",
+"target": "Markeerstift",
+"backtrans": "Highlighter"
+},
+{
+"key": "annotationModeRect",
+"english": "Rectangle",
+"target": "Rechthoek",
+"backtrans": "Rectangle"
+},
+{
+"key": "annotationModeArrow",
+"english": "Arrow",
+"target": "Pijl",
+"backtrans": "Arrow"
+},
+{
+"key": "annotationModeEllipse",
+"english": "Ellipse",
+"target": "Ellips",
+"backtrans": "Ellipse"
+},
+{
+"key": "sharePromptTitle",
+"english": "Love KatharScan?",
+"target": "Hou je van KatharScan?",
+"backtrans": "Do you love KatharScan?"
+},
+{
+"key": "sharePromptBody",
+"english": "Share it with friends who need a powerful document scanner.",
+"target": "Deel het met vrienden die een krachtige documentscanner nodig hebben.",
+"backtrans": "Share it with friends who need a powerful document scanner."
+},
+{
+"key": "sharePromptAction",
+"english": "Share App",
+"target": "App delen",
+"backtrans": "Share app"
+},
+{
+"key": "sharePromptDismiss",
+"english": "Not now",
+"target": "Niet nu",
+"backtrans": "Not now"
+},
+{
+"key": "reviewPromptTitle",
+"english": "Enjoying KatharScan?",
+"target": "Geniet je van KatharScan?",
+"backtrans": "Are you enjoying KatharScan?"
+},
+{
+"key": "reviewPromptBody",
+"english": "Your feedback helps us grow and keeps the app free.",
+"target": "Je feedback helpt ons groeien en houdt de app gratis.",
+"backtrans": "Your feedback helps us grow and keeps the app free."
+},
+{
+"key": "reviewPromptYes",
+"english": "Rate Us",
+"target": "Beoordeel ons",
+"backtrans": "Rate us"
+},
+{
+"key": "reviewPromptNo",
+"english": "Send Feedback",
+"target": "Feedback verzenden",
+"backtrans": "Send feedback"
+},
+{
+"key": "watermarkLabel",
+"english": "Watermark",
+"target": "Watermerk",
+"backtrans": "Watermark"
+},
+{
+"key": "compressLabel",
+"english": "Compress",
+"target": "Comprimeren",
+"backtrans": "Compress"
+},
+{
+"key": "pagesLabel",
+"english": "Pages",
+"target": "Pagina's",
+"backtrans": "Pages"
+},
+{
+"key": "cropLabel",
+"english": "Crop",
+"target": "Bijsnijden",
+"backtrans": "Crop"
+},
+{
+"key": "emailLabel",
+"english": "Email",
+"target": "E-mail",
+"backtrans": "Email"
+},
+{
+"key": "checkLabel",
+"english": "Check",
+"target": "Vinkje",
+"backtrans": "Check mark"
+},
+{
+"key": "captionDocs",
+"english": "Flexible crop: Original, Square, 4:3, 3:2, 16:9",
+"target": "Flexibel bijsnijden: Origineel, Vierkant, 4:3, 3:2, 16:9",
+"backtrans": "Flexible cropping: Original, Square, 4:3, 3:2, 16:9"
+},
+{
+"key": "captionOcr",
+"english": "Text crop: Original, Square, 4:3",
+"target": "Tekst bijsnijden: Origineel, Vierkant, 4:3",
+"backtrans": "Crop text: Original, Square, 4:3"
+},
+{
+"key": "captionIdCard",
+"english": "Two-sided ID capture: Front + Back",
+"target": "Tweezijdige ID-vastlegging: Voorkant + Achterkant",
+"backtrans": "Two-sided ID capture: Front + Back"
+},
+{
+"key": "captionPassport",
+"english": "Passport crop: 4:3 or Original",
+"target": "Paspoort bijsnijden: 4:3 of Origineel",
+"backtrans": "Crop passport: 4:3 or Original"
+},
+{
+"key": "idStepFront",
+"english": "Step 1: Capture Front Side",
+"target": "Stap 1: Voorkant vastleggen",
+"backtrans": "Step 1: Capture front"
+},
+{
+"key": "idStepBack",
+"english": "Step 2: Capture Back Side",
+"target": "Stap 2: Achterkant vastleggen",
+"backtrans": "Step 2: Capture back"
+},
+{
+"key": "idGenerating",
+"english": "Generating PDF...",
+"target": "PDF genereren...",
+"backtrans": "Generating PDF..."
+},
+{
+"key": "captureFrontSide",
+"english": "Capture Front Side",
+"target": "Voorkant vastleggen",
+"backtrans": "Capture front"
+},
+{
+"key": "captureBackSide",
+"english": "Capture Back Side",
+"target": "Achterkant vastleggen",
+"backtrans": "Capture back"
+},
+{
+"key": "importFrontSide",
+"english": "Import Front Side",
+"target": "Voorkant importeren",
+"backtrans": "Import front"
+},
+{
+"key": "importBackSide",
+"english": "Import Back Side",
+"target": "Achterkant importeren",
+"backtrans": "Import back"
+},
+{
+"key": "cropDocumentTitle",
+"english": "Crop Document",
+"target": "Document bijsnijden",
+"backtrans": "Crop document"
+},
+{
+"key": "cropIdCardTitle",
+"english": "Crop ID Card",
+"target": "ID-kaart bijsnijden",
+"backtrans": "Crop ID card"
+},
+{
+"key": "tabImageLabel",
+"english": "Image",
+"target": "Afbeelding",
+"backtrans": "Image"
+},
+{
+"key": "tabOcrTextLabel",
+"english": "OCR Text",
+"target": "OCR-tekst",
+"backtrans": "OCR text"
+},
+{
+"key": "compressSmall",
+"english": "Small",
+"target": "Klein",
+"backtrans": "Small"
+},
+{
+"key": "compressMedium",
+"english": "Medium",
+"target": "Gemiddeld",
+"backtrans": "Medium"
+},
+{
+"key": "pageFormatLetter",
+"english": "Letter (US)",
+"target": "Letter (VS)",
+"backtrans": "Letter (US)"
+},
+{
+"key": "ocrScriptLatin",
+"english": "Latin (English, European)",
+"target": "Latijn (Engels, Europees)",
+"backtrans": "Latin (English, European)"
+},
+{
+"key": "ocrScriptChinese",
+"english": "Chinese",
+"target": "Chinees",
+"backtrans": "Chinese"
+},
+{
+"key": "ocrScriptKorean",
+"english": "Korean",
+"target": "Koreaans",
+"backtrans": "Korean"
+},
+{
+"key": "ocrScriptJapanese",
+"english": "Japanese",
+"target": "Japans",
+"backtrans": "Japanese"
+},
+{
+"key": "ocrScriptDevanagari",
+"english": "Hindi, Marathi (Devanagari)",
+"target": "Hindi, Marathi (Devanagari)",
+"backtrans": "Hindi, Marathi (Devanagari)"
+},
+{
+"key": "ocrStatusUnsupported",
+"english": "Unsupported",
+"target": "Niet ondersteund",
+"backtrans": "Not supported"
+},
+{
+"key": "noteLabel",
+"english": "Note",
+"target": "Notitie",
+"backtrans": "Note"
+},
+{
+"key": "dateLabel",
+"english": "Date",
+"target": "Datum",
+"backtrans": "Date"
+},
+{
+"key": "accentBlue",
+"english": "Blue",
+"target": "Blauw",
+"backtrans": "Blue"
+},
+{
+"key": "accentIndigo",
+"english": "Indigo",
+"target": "Indigo",
+"backtrans": "Indigo"
+},
+{
+"key": "accentEmerald",
+"english": "Emerald",
+"target": "Smaragd",
+"backtrans": "Emerald"
+},
+{
+"key": "accentCrimson",
+"english": "Crimson",
+"target": "Karmozijn",
+"backtrans": "Crimson"
+},
+{
+"key": "accentAmber",
+"english": "Amber",
+"target": "Amber",
+"backtrans": "Amber"
+},
+{
+"key": "accentViolet",
+"english": "Violet",
+"target": "Violet",
+"backtrans": "Violet"
+},
+{
+"key": "tickerLanguages",
+"english": "{count} LANGUAGES",
+"target": "{count} TALEN",
+"backtrans": "{count} LANGUAGES"
+},
+{
+"key": "termsOfServiceLabel",
+"english": "Terms of Service",
+"target": "Servicevoorwaarden",
+"backtrans": "Service terms"
+},
+{
+"key": "openSourceLicensesLabel",
+"english": "Open-source licenses",
+"target": "Open-sourcelicenties",
+"backtrans": "Open-source licenses"
+},
+{
+"key": "whatsNewTitle",
+"english": "What's New",
+"target": "Wat is nieuw",
+"backtrans": "What is new"
+},
+{
+"key": "whatsNewContinue",
+"english": "Continue",
+"target": "Doorgaan",
+"backtrans": "Continue"
+},
+{
+"key": "tickerTxtExport",
+"english": "TXT EXPORT",
+"target": "TXT-EXPORT",
+"backtrans": "TXT EXPORT"
+},
+{
+"key": "tickerCsvExport",
+"english": "CSV EXPORT",
+"target": "CSV-EXPORT",
+"backtrans": "CSV EXPORT"
+},
+{
+"key": "whatsNewBody",
+"english": "Welcome to KatharScan! This is the first public release featuring unlimited scanning, 29 languages, and export to PDF, Word, TXT, JPG, PNG, and CSV.",
+"target": "Welkom bij KatharScan! Dit is de eerste publieke release met onbeperkt scannen, 29 talen en export naar PDF, Word, TXT, JPG, PNG en CSV.",
+"backtrans": "Welcome to KatharScan! This is the first public release with unlimited scanning, 29 languages and export to PDF, Word, TXT, JPG, PNG and CSV."
+},
+{
+"key": "engagementSectionLabel",
+"english": "ENGAGEMENT & NOTIFICATIONS",
+"target": "BETROKKENHEID & MELDINGEN",
+"backtrans": "INVOLVEMENT & NOTIFICATIONS"
+},
+{
+"key": "enableNotificationsLabel",
+"english": "Enable Notifications",
+"target": "Meldingen inschakelen",
+"backtrans": "Enable notifications"
+},
+{
+"key": "enableNotificationsSubtitle",
+"english": "Allow background reminders for unexported documents",
+"target": "Achtergrondherinneringen toestaan voor niet-geëxporteerde documenten",
+"backtrans": "Allow background reminders for non-exported documents"
+},
+{
+"key": "enableReviewPromptsLabel",
+"english": "Enable Review Prompts",
+"target": "Beoordelingsprompts inschakelen",
+"backtrans": "Enable review prompts"
+},
+{
+"key": "enableReviewPromptsSubtitle",
+"english": "Allow the app to occasionally ask for a rating",
+"target": "De app toestaan af en toe om een beoordeling te vragen",
+"backtrans": "Allow the app to occasionally ask for a review"
+},
+{
+"key": "enableSharePromptsLabel",
+"english": "Enable Share Prompts",
+"target": "Deelprompts inschakelen",
+"backtrans": "Enable share prompts"
+},
+{
+"key": "enableSharePromptsSubtitle",
+"english": "Allow the app to occasionally suggest sharing",
+"target": "De app toestaan af en toe delen voor te stellen",
+"backtrans": "Allow the app to occasionally suggest sharing [??: \"delen voor te stellen\" looks like a typo/garbled for \"te delen voor te stellen\" / \"voor te stellen te delen\"; word order unnatural]"
+},
+{
+"key": "exportFormatCsvDescription",
+"english": "Spreadsheet data",
+"target": "Spreadsheetgegevens",
+"backtrans": "Spreadsheet data"
+},
+{
+"key": "watermarkDefaultText",
+"english": "CONFIDENTIAL",
+"target": "VERTROUWELIJK",
+"backtrans": "CONFIDENTIAL"
+},
+{
+"key": "emailAttachmentNotIncluded",
+"english": "The pages could not be attached to the email. Use Share to send the pages.",
+"target": "De pagina's konden niet aan de e-mail worden toegevoegd. Gebruik Delen om de pagina's te versturen.",
+"backtrans": "The pages could not be added to the email. Use Share to send the pages."
+},
+{
+"key": "sealDefaultMainText",
+"english": "YOUR COMPANY",
+"target": "UW BEDRIJF",
+"backtrans": "YOUR COMPANY [??: uses formal \"UW\" while rest of UI uses informal \"je\"]"
+},
+{
+"key": "extractedPageDefaultTitle",
+"english": "Extracted Page",
+"target": "Geëxtraheerde pagina",
+"backtrans": "Extracted page"
+},
+{
+"key": "printRangeAll",
+"english": "All pages",
+"target": "Alle pagina's",
+"backtrans": "All pages"
+},
+{
+"key": "printRangeCurrent",
+"english": "Current",
+"target": "Huidige",
+"backtrans": "Current"
+},
+{
+"key": "printRangeRange",
+"english": "Range",
+"target": "Bereik",
+"backtrans": "Range"
+},
+{
+"key": "printFilterNone",
+"english": "No filter",
+"target": "Geen filter",
+"backtrans": "No filter"
+},
+{
+"key": "removeFromFavorites",
+"english": "Remove from Favorites",
+"target": "Verwijderen uit favorieten",
+"backtrans": "Remove from favorites"
+},
+{
+"key": "addToFavorites",
+"english": "Add to Favorites",
+"target": "Toevoegen aan favorieten",
+"backtrans": "Add to favorites"
+},
+{
+"key": "saveFailedPrefix",
+"english": "Save failed:",
+"target": "Opslaan mislukt:",
+"backtrans": "Saving failed:"
+},
+{
+"key": "ocrScriptArabic",
+"english": "العربية (Arabic)",
+"target": "العربية (Arabic)",
+"backtrans": "العربية (Arabic)"
+},
+{
+"key": "ocrScriptRussian",
+"english": "Русский (Russian)",
+"target": "Русский (Russian)",
+"backtrans": "Русский (Russian)"
+},
+{
+"key": "ocrScriptUkrainian",
+"english": "Українська (Ukrainian)",
+"target": "Українська (Ukrainian)",
+"backtrans": "Українська (Ukrainian)"
+},
+{
+"key": "ocrScriptGreek",
+"english": "Ελληνικά (Greek)",
+"target": "Ελληνικά (Greek)",
+"backtrans": "Ελληνικά (Greek)"
+},
+{
+"key": "ocrScriptHebrew",
+"english": "עברית (Hebrew)",
+"target": "עברית (Hebrew)",
+"backtrans": "עברית (Hebrew)"
+},
+{
+"key": "ocrScriptThai",
+"english": "ไทย (Thai)",
+"target": "ไทย (Thai)",
+"backtrans": "ไทย (Thai)"
+},
+{
+"key": "ocrScriptBengali",
+"english": "বাংলা (Bengali)",
+"target": "বাংলা (Bengali)",
+"backtrans": "বাংলা (Bengali)"
+},
+{
+"key": "ocrStatusInstalled",
+"english": "Installed",
+"target": "Geïnstalleerd",
+"backtrans": "Installed"
+},
+{
+"key": "ocrStatusDownloading",
+"english": "Downloading…",
+"target": "Downloaden…",
+"backtrans": "Downloading…"
+},
+{
+"key": "exportNoTextError",
+"english": "This document has no text yet. Run OCR on it first.",
+"target": "Dit document bevat nog geen tekst. Voer eerst OCR uit.",
+"backtrans": "This document does not contain any text yet. Run OCR first."
+},
+{
+"key": "saveFailedBanner",
+"english": "Your latest changes could not be saved.",
+"target": "Je laatste wijzigingen konden niet worden opgeslagen.",
+"backtrans": "Your latest changes could not be saved."
+},
+{
+"key": "editLabel",
+"english": "Edit",
+"target": "Bewerken",
+"backtrans": "Edit"
+},
+{
+"key": "fillTapHint",
+"english": "Tap the page where you want to type",
+"target": "Tik op de pagina waar je wilt typen",
+"backtrans": "Tap on the page where you want to type"
+},
+{
+"key": "fillTypeHint",
+"english": "Type here",
+"target": "Typ hier",
+"backtrans": "Type here"
+},
+{
+"key": "clearPage",
+"english": "Clear page",
+"target": "Pagina wissen",
+"backtrans": "Erase page"
+},
+{
+"key": "clearAllPages",
+"english": "Clear all pages",
+"target": "Alle pagina's wissen",
+"backtrans": "Erase all pages"
+},
+{
+"key": "clearedCount",
+"english": "Cleared {count}",
+"target": "{count} gewist",
+"backtrans": "{count} erased"
+},
+{
+"key": "idLayoutRealSize",
+"english": "Real size",
+"target": "Werkelijke grootte",
+"backtrans": "Actual size"
+},
+{
+"key": "idLayoutFullWidth",
+"english": "Full width",
+"target": "Volledige breedte",
+"backtrans": "Full width"
+},
+{
+"key": "pagesToReadTitle",
+"english": "Pages to read",
+"target": "Te lezen pagina's",
+"backtrans": "Pages to read"
+},
+{
+"key": "pagesToReadHint",
+"english": "This PDF has {count} pages. Pages that are pictures are read with OCR (about 10 seconds each); pages with real text are instant.",
+"target": "Deze PDF heeft {count} pagina's. Pagina's die afbeeldingen zijn worden met OCR gelezen (ongeveer 10 seconden per pagina); pagina's met echte tekst direct.",
+"backtrans": "This PDF has {count} pages. Pages that are images are read with OCR (about 10 seconds per page); pages with real text directly."
+},
+{
+"key": "pageFromLabel",
+"english": "From page",
+"target": "Van pagina",
+"backtrans": "From page"
+},
+{
+"key": "pageToLabel",
+"english": "To page",
+"target": "Tot pagina",
+"backtrans": "To page"
+},
+{
+"key": "readingPageProgress",
+"english": "Page {page} of {total}",
+"target": "Pagina {page} van {total}",
+"backtrans": "Page {page} of {total}"
+},
+{
+"key": "readingPageEta",
+"english": "Page {page} of {total} · about {minutes} min left",
+"target": "Pagina {page} van {total} · nog ca. {minutes} min",
+"backtrans": "Page {page} of {total} · about {minutes} min still to go"
+},
+{
+"key": "sealShapeRound",
+"english": "Round",
+"target": "Rond",
+"backtrans": "Round"
+},
+{
+"key": "sealFontSans",
+"english": "Clean",
+"target": "Strak",
+"backtrans": "Sleek"
+},
+{
+"key": "sealFontSerif",
+"english": "Classic",
+"target": "Klassiek",
+"backtrans": "Classic"
+},
+{
+"key": "sealInkLook",
+"english": "Worn stamp look",
+"target": "Versleten stempellook",
+"backtrans": "Worn stamp look"
+},
+{
+"key": "sealSaveToLibrary",
+"english": "Save this seal",
+"target": "Dit zegel bewaren",
+"backtrans": "Keep this seal"
+},
+{
+"key": "sealSavedHeading",
+"english": "Saved seals",
+"target": "Bewaarde zegels",
+"backtrans": "Kept seals"
+},
+{
+"key": "sealTextColorLabel",
+"english": "Text colour",
+"target": "Tekstkleur",
+"backtrans": "Text color"
+},
+{
+"key": "sealTextColorSame",
+"english": "Same as ring",
+"target": "Zoals de ring",
+"backtrans": "Like the ring"
+},
+{
+"key": "sealTextSizePercent",
+"english": "Text size {percent}%",
+"target": "Tekstgrootte {percent}%",
+"backtrans": "Text size {percent}%"
+},
+{
+"key": "sealRemoveWhite",
+"english": "Make white transparent",
+"target": "Wit transparant maken",
+"backtrans": "Make white transparent"
+},
+{
+"key": "sealSavedMessage",
+"english": "Seal saved",
+"target": "Zegel bewaard",
+"backtrans": "Seal kept"
+},
+{
+"key": "signatureTabDraw",
+"english": "Draw",
+"target": "Tekenen",
+"backtrans": "Draw"
+},
+{
+"key": "signatureTabType",
+"english": "Type",
+"target": "Typen",
+"backtrans": "Type"
+},
+{
+"key": "signatureTypeHint",
+"english": "Type your name",
+"target": "Typ je naam",
+"backtrans": "Type your name"
+},
+{
+"key": "signatureWidthLabel",
+"english": "Pen width",
+"target": "Pendikte",
+"backtrans": "Pen thickness"
+},
+{
+"key": "signatureFontFlowing",
+"english": "Flowing",
+"target": "Vloeiend",
+"backtrans": "Flowing"
+},
+{
+"key": "signatureFontHandwritten",
+"english": "Handwritten",
+"target": "Handschrift",
+"backtrans": "Handwriting"
+},
+{
+"key": "signatureSavedHeading",
+"english": "Saved signatures",
+"target": "Opgeslagen handtekeningen",
+"backtrans": "Saved signatures"
+},
+{
+"key": "signatureNewOne",
+"english": "Draw or type a new one",
+"target": "Nieuwe tekenen of typen",
+"backtrans": "Draw or type new one"
+},
+{
+"key": "signatureDeleteSaved",
+"english": "Remove saved signature",
+"target": "Opgeslagen handtekening verwijderen",
+"backtrans": "Delete saved signature"
+},
+{
+"key": "annotationModeSelect",
+"english": "Select",
+"target": "Selecteren",
+"backtrans": "Select"
+},
+{
+"key": "annotationModeEraser",
+"english": "Eraser",
+"target": "Gum",
+"backtrans": "Eraser"
+},
+{
+"key": "watermarkKindText",
+"english": "Text",
+"target": "Tekst",
+"backtrans": "Text"
+},
+{
+"key": "watermarkKindImage",
+"english": "Image",
+"target": "Afbeelding",
+"backtrans": "Image"
+},
+{
+"key": "watermarkChooseImage",
+"english": "Choose image",
+"target": "Afbeelding kiezen",
+"backtrans": "Choose image"
+},
+{
+"key": "watermarkLayoutLabel",
+"english": "Layout",
+"target": "Indeling",
+"backtrans": "Layout"
+},
+{
+"key": "watermarkLayoutSingle",
+"english": "Single",
+"target": "Enkel",
+"backtrans": "Single"
+},
+{
+"key": "watermarkLayoutDiagonal",
+"english": "Diagonal",
+"target": "Diagonaal",
+"backtrans": "Diagonal"
+},
+{
+"key": "watermarkLayoutTiled",
+"english": "Tiled",
+"target": "Betegeld",
+"backtrans": "Tiled"
+},
+{
+"key": "watermarkPagesLabel",
+"english": "Pages",
+"target": "Pagina's",
+"backtrans": "Pages"
+},
+{
+"key": "watermarkPagesThis",
+"english": "This page",
+"target": "Deze pagina",
+"backtrans": "This page"
+},
+{
+"key": "watermarkPagesAll",
+"english": "All pages",
+"target": "Alle pagina's",
+"backtrans": "All pages"
+},
+{
+"key": "watermarkPagesRange",
+"english": "Range",
+"target": "Bereik",
+"backtrans": "Range"
+},
+{
+"key": "watermarkPagesRangeHint",
+"english": "e.g. 1-3, 5",
+"target": "bijv. 1-3, 5",
+"backtrans": "e.g. 1-3, 5"
+},
+{
+"key": "watermarkPagesInvalid",
+"english": "Check the pages (the document has {count} pages)",
+"target": "Controleer de pagina's (het document heeft {count} pagina's)",
+"backtrans": "Check the pages (the document has {count} pages)"
+},
+{
+"key": "cropAuto",
+"english": "Auto-detect",
+"target": "Automatisch detecteren",
+"backtrans": "Detect automatically"
+},
+{
+"key": "cropAspectFree",
+"english": "Free",
+"target": "Vrij",
+"backtrans": "Free"
+},
+{
+"key": "cropAspectId",
+"english": "ID card",
+"target": "ID-kaart",
+"backtrans": "ID card"
+},
+{
+"key": "cropAspectSquare",
+"english": "Square",
+"target": "Vierkant",
+"backtrans": "Square"
+},
+{
+"key": "cropNoPageFound",
+"english": "Couldn't find the page edges. Drag the corners.",
+"target": "Randen niet gevonden. Sleep de hoeken.",
+"backtrans": "Edges not found. Drag the corners."
+},
+{
+"key": "straightenLabel",
+"english": "Straighten",
+"target": "Rechtzetten",
+"backtrans": "Straighten"
+},
+{
+"key": "filterMagicColor",
+"english": "Magic colour",
+"target": "Magische kleur",
+"backtrans": "Magic color"
+},
+{
+"key": "filterBrightnessLabel",
+"english": "Brightness",
+"target": "Helderheid",
+"backtrans": "Brightness"
+},
+{
+"key": "filterContrastLabel",
+"english": "Contrast",
+"target": "Contrast",
+"backtrans": "Contrast"
+},
+{
+"key": "resizeUpscaleWarning",
+"english": "Enlarging doesn't add detail — the page may look soft.",
+"target": "Vergroten voegt geen detail toe — de pagina kan er zacht uitzien.",
+"backtrans": "Enlarging does not add detail — the page may look soft."
+},
+{
+"key": "eraserAutoColorTooltip",
+"english": "Match the page colour automatically",
+"target": "Paginakleur automatisch aanpassen",
+"backtrans": "Adjust page color automatically"
+},
+{
+"key": "eraserZoomTooltip",
+"english": "Zoom and move (pinch)",
+"target": "Zoomen en verschuiven (knijpen)",
+"backtrans": "Zoom and pan (pinch)"
+},
+{
+"key": "pagesSelectTooltip",
+"english": "Select pages",
+"target": "Pagina's selecteren",
+"backtrans": "Select pages"
+},
+{
+"key": "pagesDeleteCount",
+"english": "Delete {count}",
+"target": "{count} verwijderen",
+"backtrans": "Delete {count}"
+},
+{
+"key": "pagesDeleteConfirm",
+"english": "Delete {count} pages? They are removed when you save.",
+"target": "{count} pagina's verwijderen? Ze worden verwijderd bij opslaan.",
+"backtrans": "Delete {count} pages? They are deleted on saving."
+},
+{
+"key": "compressTargetLabel",
+"english": "Max size",
+"target": "Max. grootte",
+"backtrans": "Max. size"
+},
+{
+"key": "compressNoLimit",
+"english": "No limit",
+"target": "Geen limiet",
+"backtrans": "No limit"
+},
+{
+"key": "printPaperLabel",
+"english": "Paper",
+"target": "Papier",
+"backtrans": "Paper"
+},
+{
+"key": "printMarginLabel",
+"english": "Margin",
+"target": "Marge",
+"backtrans": "Margin"
+},
+{
+"key": "printMarginNone",
+"english": "None",
+"target": "Geen",
+"backtrans": "None"
+},
+{
+"key": "printMarginNarrow",
+"english": "Narrow",
+"target": "Smal",
+"backtrans": "Narrow"
+},
+{
+"key": "printMarginNormal",
+"english": "Normal",
+"target": "Normaal",
+"backtrans": "Normal"
+},
+{
+"key": "printFitLabel",
+"english": "Scaling",
+"target": "Schaling",
+"backtrans": "Scaling"
+},
+{
+"key": "printFitFit",
+"english": "Fit page",
+"target": "Aanpassen aan pagina",
+"backtrans": "Adjust to page"
+},
+{
+"key": "printFitFill",
+"english": "Fill sheet (trims edges)",
+"target": "Vel vullen (snijdt randen af)",
+"backtrans": "Fill sheet (cuts off edges)"
+},
+{
+"key": "printPerSheetLabel",
+"english": "Pages per sheet",
+"target": "Pagina's per vel",
+"backtrans": "Pages per sheet"
+},
+{
+"key": "emailMessageLabel",
+"english": "Message",
+"target": "Bericht",
+"backtrans": "Message"
+},
+{
+"key": "emailMessageHint",
+"english": "Add a note (optional)",
+"target": "Voeg een notitie toe (optioneel)",
+"backtrans": "Add a note (optional)"
+},
+{
+"key": "emailLimitMissed",
+"english": "Could not get under {mb} MB; sent the smallest version.",
+"target": "Kon niet onder {mb} MB komen; de kleinste versie is verstuurd.",
+"backtrans": "Could not get under {mb} MB; the smallest version was sent."
+}
+]

@@ -1,0 +1,3362 @@
+[
+{
+"key": "privacyOptionsLabel",
+"english": "Privacy settings",
+"target": "إعدادات الخصوصية",
+"backtrans": "Privacy settings"
+},
+{
+"key": "commonCancel",
+"english": "Cancel",
+"target": "إلغاء",
+"backtrans": "Cancel"
+},
+{
+"key": "commonDelete",
+"english": "Delete",
+"target": "حذف",
+"backtrans": "Delete"
+},
+{
+"key": "commonSave",
+"english": "Save",
+"target": "حفظ",
+"backtrans": "Save"
+},
+{
+"key": "commonAdd",
+"english": "Add",
+"target": "إضافة",
+"backtrans": "Add"
+},
+{
+"key": "commonExport",
+"english": "Export",
+"target": "تصدير",
+"backtrans": "Export"
+},
+{
+"key": "commonImport",
+"english": "Import",
+"target": "استيراد",
+"backtrans": "Import"
+},
+{
+"key": "commonSkip",
+"english": "Skip",
+"target": "تخطي",
+"backtrans": "Skip"
+},
+{
+"key": "commonClear",
+"english": "Clear",
+"target": "مسح",
+"backtrans": "Clear"
+},
+{
+"key": "emptyStateDefaultMessage",
+"english": "Tap the camera to scan your first document.",
+"target": "اضغط على الكاميرا لمسح أول مستند لك.",
+"backtrans": "Press the camera to scan your first document."
+},
+{
+"key": "exportFormatSheetTitle",
+"english": "Export as",
+"target": "تصدير كـ",
+"backtrans": "Export as"
+},
+{
+"key": "exportFormatPdfLabel",
+"english": "PDF",
+"target": "PDF",
+"backtrans": "PDF"
+},
+{
+"key": "exportFormatPdfDescription",
+"english": "Best for sharing and printing",
+"target": "الأفضل للمشاركة والطباعة",
+"backtrans": "Best for sharing and printing"
+},
+{
+"key": "exportFormatDocxLabel",
+"english": "Word (.docx)",
+"target": "Word ‏(.docx)",
+"backtrans": "Word (.docx)"
+},
+{
+"key": "exportFormatDocxDescription",
+"english": "Editable text document",
+"target": "مستند نصي قابل للتحرير",
+"backtrans": "Editable text document"
+},
+{
+"key": "exportFormatTxtLabel",
+"english": "Text (.txt)",
+"target": "نص ‏(.txt)",
+"backtrans": "Text (.txt)"
+},
+{
+"key": "exportFormatTxtDescription",
+"english": "Plain OCR text only",
+"target": "نص OCR فقط بدون تنسيق",
+"backtrans": "OCR text only without formatting"
+},
+{
+"key": "exportFormatJpgLabel",
+"english": "JPG",
+"target": "JPG",
+"backtrans": "JPG"
+},
+{
+"key": "exportFormatJpgDescription",
+"english": "One image per page",
+"target": "صورة واحدة لكل صفحة",
+"backtrans": "One image per page"
+},
+{
+"key": "exportFormatPngLabel",
+"english": "PNG",
+"target": "PNG",
+"backtrans": "PNG"
+},
+{
+"key": "exportFormatPngDescription",
+"english": "One image per page, lossless",
+"target": "صورة واحدة لكل صفحة، بلا فقدان جودة",
+"backtrans": "One image per page, without quality loss"
+},
+{
+"key": "filterSheetTitle",
+"english": "Filters",
+"target": "المرشحات",
+"backtrans": "Filters"
+},
+{
+"key": "filterOriginal",
+"english": "Original",
+"target": "الأصلي",
+"backtrans": "Original"
+},
+{
+"key": "filterGrayscale",
+"english": "Grayscale",
+"target": "تدرج رمادي",
+"backtrans": "Grayscale"
+},
+{
+"key": "filterBlackAndWhite",
+"english": "B&W",
+"target": "أبيض وأسود",
+"backtrans": "Black and white"
+},
+{
+"key": "filterColorEnhance",
+"english": "Color enhance",
+"target": "تحسين الألوان",
+"backtrans": "Color enhancement"
+},
+{
+"key": "filterShadowRemoval",
+"english": "Shadow removal",
+"target": "إزالة الظل",
+"backtrans": "Shadow removal"
+},
+{
+"key": "proBadgeLabel",
+"english": "PRO",
+"target": "برو",
+"backtrans": "Pro (transliterated as 'Bro')"
+},
+{
+"key": "scanListPageCount",
+"english": "{count, plural, =1{1 page} other{{count} pages}}",
+"target": "{count, plural, =0{لا صفحات} =1{صفحة واحدة} =2{صفحتان} few{{count} صفحات} many{{count} صفحة} other{{count} صفحة}}",
+"backtrans": "{count, plural, =0{no pages} =1{one page} =2{two pages (dual)} few{{count} pages} many{{count} pages} other{{count} pages}}"
+},
+{
+"key": "scanPreviewNoPages",
+"english": "No pages to show.",
+"target": "لا توجد صفحات لعرضها.",
+"backtrans": "There are no pages to display."
+},
+{
+"key": "shareTooltip",
+"english": "Share",
+"target": "مشاركة",
+"backtrans": "Share"
+},
+{
+"key": "signatureCanvasHint",
+"english": "Sign here",
+"target": "وقّع هنا",
+"backtrans": "Sign here"
+},
+{
+"key": "folderDocumentCount",
+"english": "{count, plural, =1{1 document} other{{count} documents}}",
+"target": "{count, plural, =1{مستند واحد} =2{مستندان} few{{count} مستندات} many{{count} مستندًا} other{{count} مستند}}",
+"backtrans": "{count, plural, =1{one document} =2{two documents (dual)} few{{count} documents} many{{count} documents} other{{count} documents}}"
+},
+{
+"key": "selectedCount",
+"english": "{count, plural, =1{1 selected} other{{count} selected}}",
+"target": "{count, plural, =1{تم تحديد 1} other{تم تحديد {count}}}",
+"backtrans": "{count, plural, =1{1 selected} other{{count} selected}}"
+},
+{
+"key": "batchExportTooltip",
+"english": "Batch export",
+"target": "تصدير مجمّع",
+"backtrans": "Aggregated export"
+},
+{
+"key": "deleteTooltip",
+"english": "Delete",
+"target": "حذف",
+"backtrans": "Delete"
+},
+{
+"key": "searchHint",
+"english": "Search your scans",
+"target": "ابحث في مستنداتك الممسوحة",
+"backtrans": "Search your scanned documents"
+},
+{
+"key": "settingsTooltip",
+"english": "Settings",
+"target": "الإعدادات",
+"backtrans": "Settings"
+},
+{
+"key": "foldersSectionHeader",
+"english": "Folders",
+"target": "المجلدات",
+"backtrans": "Folders"
+},
+{
+"key": "documentsSectionHeader",
+"english": "Documents",
+"target": "المستندات",
+"backtrans": "Documents"
+},
+{
+"key": "exportingStatus",
+"english": "Exporting…",
+"target": "جارٍ التصدير…",
+"backtrans": "Exporting…"
+},
+{
+"key": "exportDoneStatus",
+"english": "Done",
+"target": "تم",
+"backtrans": "Done"
+},
+{
+"key": "exportGenericError",
+"english": "Something went wrong while exporting.",
+"target": "حدث خطأ أثناء التصدير.",
+"backtrans": "An error occurred during export."
+},
+{
+"key": "deleteFolderTitle",
+"english": "Delete this folder?",
+"target": "حذف هذا المجلد؟",
+"backtrans": "Delete this folder?"
+},
+{
+"key": "deleteFolderMessage",
+"english": "Documents inside will not be deleted.",
+"target": "لن تُحذف المستندات الموجودة بداخله.",
+"backtrans": "The documents inside it will not be deleted."
+},
+{
+"key": "deleteFolderTooltip",
+"english": "Delete folder",
+"target": "حذف المجلد",
+"backtrans": "Delete folder"
+},
+{
+"key": "renameFolderTitle",
+"english": "Rename folder",
+"target": "إعادة تسمية المجلد",
+"backtrans": "Rename folder"
+},
+{
+"key": "removeFromFolderTooltip",
+"english": "Remove from folder",
+"target": "إزالة من المجلد",
+"backtrans": "Remove from folder"
+},
+{
+"key": "noDocumentsInFolder",
+"english": "No documents in this folder yet.",
+"target": "لا توجد مستندات في هذا المجلد بعد.",
+"backtrans": "There are no documents in this folder yet."
+},
+{
+"key": "folderUnavailable",
+"english": "This folder is no longer available.",
+"target": "هذا المجلد لم يعد متاحًا.",
+"backtrans": "This folder is no longer available."
+},
+{
+"key": "migrationTitle",
+"english": "Device Migration",
+"target": "نقل البيانات بين الأجهزة",
+"backtrans": "Transfer data between devices"
+},
+{
+"key": "migrationExplainer",
+"english": "This isn't automatic sync. Export creates a single encrypted backup file you move to your new device yourself, then import there.",
+"target": "هذه ليست مزامنة تلقائية. يُنشئ التصدير ملف نسخة احتياطية واحدًا مشفرًا تنقله بنفسك إلى جهازك الجديد، ثم تستورده هناك.",
+"backtrans": "This is not automatic sync. The export creates a single encrypted backup file that you move yourself to your new device, then import it there."
+},
+{
+"key": "exportBackupButton",
+"english": "Export encrypted backup",
+"target": "تصدير نسخة احتياطية مشفرة",
+"backtrans": "Export encrypted backup"
+},
+{
+"key": "importBackupButton",
+"english": "Import from backup",
+"target": "استيراد من نسخة احتياطية",
+"backtrans": "Import from backup"
+},
+{
+"key": "setBackupPasswordTitle",
+"english": "Set a backup password",
+"target": "تعيين كلمة مرور النسخة الاحتياطية",
+"backtrans": "Set backup password"
+},
+{
+"key": "enterBackupPasswordTitle",
+"english": "Enter backup password",
+"target": "أدخل كلمة مرور النسخة الاحتياطية",
+"backtrans": "Enter backup password"
+},
+{
+"key": "buildingBackupStatus",
+"english": "Building backup…",
+"target": "جارٍ إنشاء النسخة الاحتياطية…",
+"backtrans": "Creating the backup…"
+},
+{
+"key": "backupReadyStatus",
+"english": "Backup ready.",
+"target": "النسخة الاحتياطية جاهزة.",
+"backtrans": "The backup is ready."
+},
+{
+"key": "couldNotCreateBackupError",
+"english": "Could not create the backup.",
+"target": "تعذّر إنشاء النسخة الاحتياطية.",
+"backtrans": "Could not create the backup."
+},
+{
+"key": "importingStatus",
+"english": "Importing…",
+"target": "جارٍ الاستيراد…",
+"backtrans": "Importing…"
+},
+{
+"key": "couldNotImportBackupError",
+"english": "Could not import this backup. Check the password and try again.",
+"target": "تعذّر استيراد هذه النسخة الاحتياطية. تحقق من كلمة المرور وحاول مرة أخرى.",
+"backtrans": "Could not import this backup. Check the password and try again."
+},
+{
+"key": "backupCorruptedError",
+"english": "This backup file looks corrupted.",
+"target": "يبدو أن ملف النسخة الاحتياطية هذا تالف.",
+"backtrans": "This backup file appears to be corrupted."
+},
+{
+"key": "importedCount",
+"english": "{count, plural, =1{1 document imported} other{{count} documents imported}}",
+"target": "{count, plural, =1{تم استيراد مستند واحد} =2{تم استيراد مستندين} few{تم استيراد {count} مستندات} many{تم استيراد {count} مستندًا} other{تم استيراد {count} مستند}}",
+"backtrans": "{count, plural, =1{one document was imported} =2{two documents were imported (dual)} few{{count} documents were imported} many{{count} documents were imported} other{{count} documents were imported}}"
+},
+{
+"key": "continueButton",
+"english": "Continue",
+"target": "متابعة",
+"backtrans": "Continue"
+},
+{
+"key": "restorePurchasesButton",
+"english": "Restore purchases",
+"target": "استعادة المشتريات",
+"backtrans": "Restore purchases"
+},
+{
+"key": "pricingLoadingError",
+"english": "Pricing is still loading — try again in a moment.",
+"target": "الأسعار ما زالت قيد التحميل — أعد المحاولة بعد قليل.",
+"backtrans": "Prices are still loading — try again in a little while."
+},
+{
+"key": "renameDocumentTitle",
+"english": "Rename document",
+"target": "إعادة تسمية المستند",
+"backtrans": "Rename document"
+},
+{
+"key": "addTagTitle",
+"english": "Add tag",
+"target": "إضافة وسم",
+"backtrans": "Add tag"
+},
+{
+"key": "moveToFolderTooltip",
+"english": "Move to folder",
+"target": "نقل إلى مجلد",
+"backtrans": "Move to folder"
+},
+{
+"key": "exportTooltip",
+"english": "Export",
+"target": "تصدير",
+"backtrans": "Export"
+},
+{
+"key": "deleteScanTitle",
+"english": "Delete this scan?",
+"target": "حذف هذا المستند الممسوح؟",
+"backtrans": "Delete this scanned document?"
+},
+{
+"key": "deleteScanMessage",
+"english": "This can't be undone.",
+"target": "لا يمكن التراجع عن هذا الإجراء.",
+"backtrans": "This action cannot be undone."
+},
+{
+"key": "movedToFolderMessage",
+"english": "Moved to folder.",
+"target": "تم النقل إلى المجلد.",
+"backtrans": "Moved to the folder."
+},
+{
+"key": "noTextRecognized",
+"english": "No text recognized.",
+"target": "لم يتم التعرف على أي نص.",
+"backtrans": "No text was recognized."
+},
+{
+"key": "scanUnavailable",
+"english": "This scan is no longer available.",
+"target": "هذا المستند الممسوح لم يعد متاحًا.",
+"backtrans": "This scanned document is no longer available."
+},
+{
+"key": "settingsTitle",
+"english": "Settings",
+"target": "الإعدادات",
+"backtrans": "Settings"
+},
+{
+"key": "appearanceSectionLabel",
+"english": "Appearance",
+"target": "المظهر",
+"backtrans": "Appearance"
+},
+{
+"key": "themeLabel",
+"english": "Theme",
+"target": "السمة",
+"backtrans": "Theme"
+},
+{
+"key": "systemThemeOption",
+"english": "System",
+"target": "النظام",
+"backtrans": "System"
+},
+{
+"key": "lightThemeOption",
+"english": "Light",
+"target": "فاتح",
+"backtrans": "Light"
+},
+{
+"key": "darkThemeOption",
+"english": "Dark",
+"target": "داكن",
+"backtrans": "Dark"
+},
+{
+"key": "languageSectionLabel",
+"english": "Language",
+"target": "اللغة",
+"backtrans": "Language"
+},
+{
+"key": "appLanguageLabel",
+"english": "App language",
+"target": "لغة التطبيق",
+"backtrans": "App language"
+},
+{
+"key": "storageSectionLabel",
+"english": "Storage",
+"target": "التخزين",
+"backtrans": "Storage"
+},
+{
+"key": "deviceMigrationLabel",
+"english": "Device Migration",
+"target": "نقل البيانات بين الأجهزة",
+"backtrans": "Transfer data between devices"
+},
+{
+"key": "subscriptionSectionLabel",
+"english": "Subscription",
+"target": "الاشتراك",
+"backtrans": "Subscription"
+},
+{
+"key": "aboutSectionLabel",
+"english": "About",
+"target": "حول",
+"backtrans": "About"
+},
+{
+"key": "privacyPolicyLabel",
+"english": "Privacy policy",
+"target": "سياسة الخصوصية",
+"backtrans": "Privacy policy"
+},
+{
+"key": "supportLabel",
+"english": "Support",
+"target": "الدعم",
+"backtrans": "Support"
+},
+{
+"key": "couldNotOpenLinkError",
+"english": "Could not open link.",
+"target": "تعذّر فتح الرابط.",
+"backtrans": "Could not open the link."
+},
+{
+"key": "restoreCompleteMessage",
+"english": "Restore complete.",
+"target": "اكتملت الاستعادة.",
+"backtrans": "Restore completed."
+},
+{
+"key": "genericErrorMessage",
+"english": "Something went wrong. Please try again.",
+"target": "حدث خطأ ما. يرجى المحاولة مرة أخرى.",
+"backtrans": "Something went wrong. Please try again."
+},
+{
+"key": "extractedTextTitle",
+"english": "Extracted Text",
+"target": "النص المستخرج",
+"backtrans": "Extracted text"
+},
+{
+"key": "commonClose",
+"english": "Close",
+"target": "إغلاق",
+"backtrans": "Close"
+},
+{
+"key": "commonCopy",
+"english": "Copy",
+"target": "نسخ",
+"backtrans": "Copy"
+},
+{
+"key": "savedToDocumentText",
+"english": "Saved to document text",
+"target": "تم الحفظ في نص المستند",
+"backtrans": "Saved to the document text"
+},
+{
+"key": "regionOcrFailed",
+"english": "Region OCR failed",
+"target": "فشل التعرف الضوئي على المنطقة",
+"backtrans": "Optical recognition of the region failed"
+},
+{
+"key": "filterRemoved",
+"english": "Filter removed",
+"target": "تمت إزالة الفلتر",
+"backtrans": "The filter was removed"
+},
+{
+"key": "filterApplied",
+"english": "Filter applied",
+"target": "تم تطبيق الفلتر",
+"backtrans": "The filter was applied"
+},
+{
+"key": "pageCropped",
+"english": "Page cropped",
+"target": "تم اقتصاص الصفحة",
+"backtrans": "The page was cropped"
+},
+{
+"key": "revertToOriginalTitle",
+"english": "Revert to Original?",
+"target": "العودة إلى الأصل؟",
+"backtrans": "Return to the original?"
+},
+{
+"key": "revertToOriginalMessage",
+"english": "This will undo all filters, rotations, crops, resizes, and eraser strokes on this page.",
+"target": "سيؤدي هذا إلى التراجع عن جميع الفلاتر والتدوير والاقتصاص وتغيير الحجم ومحو هذه الصفحة.",
+"backtrans": "This will undo all filters, rotation, cropping, resizing and erasing of this page."
+},
+{
+"key": "commonRevert",
+"english": "Revert",
+"target": "إرجاع",
+"backtrans": "Revert"
+},
+{
+"key": "pageRevertedToOriginal",
+"english": "Page reverted to original",
+"target": "تمت إعادة الصفحة إلى الأصل",
+"backtrans": "The page was returned to the original"
+},
+{
+"key": "eraserApplied",
+"english": "Eraser applied",
+"target": "تم تطبيق الممحاة",
+"backtrans": "The eraser was applied"
+},
+{
+"key": "pageResized",
+"english": "Page resized",
+"target": "تم تغيير حجم الصفحة",
+"backtrans": "The page was resized"
+},
+{
+"key": "extractedAsNewDocument",
+"english": "Extracted as new document",
+"target": "تم الاستخراج كمستند جديد",
+"backtrans": "Extracted as a new document"
+},
+{
+"key": "pagesUpdated",
+"english": "Pages updated",
+"target": "تم تحديث الصفحات",
+"backtrans": "The pages were updated"
+},
+{
+"key": "printOptionsTitle",
+"english": "Print Options",
+"target": "خيارات الطباعة",
+"backtrans": "Print options"
+},
+{
+"key": "letterSizeUS",
+"english": "Letter size (US)",
+"target": "حجم الرسالة (الولايات المتحدة)",
+"backtrans": "Letter size (United States)"
+},
+{
+"key": "commonPrint",
+"english": "Print",
+"target": "طباعة",
+"backtrans": "Print"
+},
+{
+"key": "printFailed",
+"english": "Print failed",
+"target": "فشلت الطباعة",
+"backtrans": "Printing failed"
+},
+{
+"key": "noEmailAppFound",
+"english": "No email app found",
+"target": "لم يتم العثور على تطبيق بريد إلكتروني",
+"backtrans": "No email application was found"
+},
+{
+"key": "emailFailed",
+"english": "Email failed",
+"target": "فشل البريد الإلكتروني",
+"backtrans": "Email failed"
+},
+{
+"key": "fromPageLabel",
+"english": "From",
+"target": "من",
+"backtrans": "From"
+},
+{
+"key": "toPageLabel",
+"english": "To",
+"target": "إلى",
+"backtrans": "To"
+},
+{
+"key": "pdfImportedAsDocument",
+"english": "PDF imported as document",
+"target": "تم استيراد PDF كمستند",
+"backtrans": "PDF was imported as a document"
+},
+{
+"key": "frontSideCaptured",
+"english": "Front side captured. Now capture the back side.",
+"target": "تم التقاط الجانب الأمامي. الآن التقط الجانب الخلفي.",
+"backtrans": "The front side was captured. Now capture the back side."
+},
+{
+"key": "idCardPdfGenerated",
+"english": "ID Card PDF Generated",
+"target": "تم إنشاء PDF لبطاقة الهوية",
+"backtrans": "The PDF of the ID card was created"
+},
+{
+"key": "sharePdf",
+"english": "Share PDF",
+"target": "مشاركة PDF",
+"backtrans": "Share PDF"
+},
+{
+"key": "saveAsDocument",
+"english": "Save as Document",
+"target": "حفظ كمستند",
+"backtrans": "Save as a document"
+},
+{
+"key": "commonDone",
+"english": "Done",
+"target": "تم",
+"backtrans": "Done"
+},
+{
+"key": "documentSaved",
+"english": "Document saved",
+"target": "تم حفظ المستند",
+"backtrans": "The document was saved"
+},
+{
+"key": "commonReset",
+"english": "Reset",
+"target": "إعادة تعيين",
+"backtrans": "Reset"
+},
+{
+"key": "autoScan",
+"english": "Auto Scan",
+"target": "مسح تلقائي",
+"backtrans": "Automatic scan"
+},
+{
+"key": "importAndConvertDocument",
+"english": "Import & Convert Document",
+"target": "استيراد وتحويل المستند",
+"backtrans": "Import and convert document"
+},
+{
+"key": "signatureTitle",
+"english": "Signature",
+"target": "التوقيع",
+"backtrans": "Signature"
+},
+{
+"key": "signatureChoiceMessage",
+"english": "Use your saved signature or draw a new one?",
+"target": "استخدم توقيعك المحفوظ أو ارسم واحدًا جديدًا؟",
+"backtrans": "Use your saved signature or draw a new one?"
+},
+{
+"key": "useSavedSignature",
+"english": "Use Saved",
+"target": "استخدام المحفوظ",
+"backtrans": "Use the saved one"
+},
+{
+"key": "drawNewSignature",
+"english": "Draw New",
+"target": "رسم جديد",
+"backtrans": "Draw a new one"
+},
+{
+"key": "copyAll",
+"english": "Copy all",
+"target": "نسخ الكل",
+"backtrans": "Copy all"
+},
+{
+"key": "clearThis",
+"english": "Clear this",
+"target": "مسح هذا",
+"backtrans": "Clear this"
+},
+{
+"key": "commonRemove",
+"english": "Remove",
+"target": "إزالة",
+"backtrans": "Remove"
+},
+{
+"key": "clearAll",
+"english": "Clear all",
+"target": "مسح الكل",
+"backtrans": "Clear all"
+},
+{
+"key": "addSignature",
+"english": "Add Signature",
+"target": "إضافة توقيع",
+"backtrans": "Add a signature"
+},
+{
+"key": "commonUse",
+"english": "Use",
+"target": "استخدام",
+"backtrans": "Use"
+},
+{
+"key": "stampTickedLabel",
+"english": "Ticked",
+"target": "معلَّم",
+"backtrans": "Marked (ticked)"
+},
+{
+"key": "stampBoxLabel",
+"english": "Box",
+"target": "مربع",
+"backtrans": "Square/box"
+},
+{
+"key": "stampTickLabel",
+"english": "Tick",
+"target": "علامة",
+"backtrans": "Mark"
+},
+{
+"key": "commonCustom",
+"english": "Custom",
+"target": "مخصص",
+"backtrans": "Custom"
+},
+{
+"key": "commonChange",
+"english": "Change",
+"target": "تغيير",
+"backtrans": "Change"
+},
+{
+"key": "commonColor",
+"english": "Color",
+"target": "اللون",
+"backtrans": "The color"
+},
+{
+"key": "stampPaperLabel",
+"english": "Paper",
+"target": "ورق",
+"backtrans": "Paper"
+},
+{
+"key": "whiteHaloLabel",
+"english": "White halo (readability)",
+"target": "هالة بيضاء (للوضوح)",
+"backtrans": "White halo (for clarity)"
+},
+{
+"key": "commonCreate",
+"english": "Create",
+"target": "إنشاء",
+"backtrans": "Create"
+},
+{
+"key": "homeLanguageTooltip",
+"english": "App Language",
+"target": "لغة التطبيق",
+"backtrans": "App language"
+},
+{
+"key": "removeAdsTitle",
+"english": "Remove Ads Forever",
+"target": "إزالة الإعلانات نهائيًا",
+"backtrans": "Remove ads permanently"
+},
+{
+"key": "newFolderTitle",
+"english": "New Folder",
+"target": "مجلد جديد",
+"backtrans": "New folder"
+},
+{
+"key": "batchExportEmptyMessage",
+"english": "No documents to batch export. Scan some first.",
+"target": "لا توجد مستندات للتصدير بالجملة. امسح بعضًا أولاً.",
+"backtrans": "There are no documents for bulk export. Scan some first."
+},
+{
+"key": "newFolderTooltip",
+"english": "New Folder",
+"target": "مجلد جديد",
+"backtrans": "New folder"
+},
+{
+"key": "accentColorTooltip",
+"english": "Accent Color",
+"target": "لون التمييز",
+"backtrans": "Highlight color"
+},
+{
+"key": "moveToFolderTitle",
+"english": "Move to Folder",
+"target": "نقل إلى مجلد",
+"backtrans": "Move to folder"
+},
+{
+"key": "noFoldersYetHomeMessage",
+"english": "No folders yet. Create one from the home screen.",
+"target": "لا توجد مجلدات بعد. أنشئ واحدًا من الشاشة الرئيسية.",
+"backtrans": "No folders yet. Create one from the main screen."
+},
+{
+"key": "appLanguageTitle",
+"english": "App Language",
+"target": "لغة التطبيق",
+"backtrans": "App language"
+},
+{
+"key": "accentColorTitle",
+"english": "Accent Color",
+"target": "لون التمييز",
+"backtrans": "Highlight color"
+},
+{
+"key": "sealEditTitle",
+"english": "Edit Custom Seal",
+"target": "تحرير الختم المخصص",
+"backtrans": "Edit the custom seal"
+},
+{
+"key": "sealCreateTitle",
+"english": "Custom Seal",
+"target": "ختم مخصص",
+"backtrans": "Custom seal"
+},
+{
+"key": "sealMainTextLabel",
+"english": "Main text (top arc / box)",
+"target": "النص الرئيسي (القوس العلوي / المربع)",
+"backtrans": "Main text (upper arc / square)"
+},
+{
+"key": "sealSubtextLabel",
+"english": "Subtext (bottom arc / below)",
+"target": "نص فرعي (القوس السفلي / أسفله)",
+"backtrans": "Secondary text (lower arc / beneath it)"
+},
+{
+"key": "sealShapeOval",
+"english": "Oval",
+"target": "بيضاوي",
+"backtrans": "Oval"
+},
+{
+"key": "sealShapeBox",
+"english": "Box",
+"target": "مربع",
+"backtrans": "Square"
+},
+{
+"key": "sealCenterStar",
+"english": "Star",
+"target": "نجمة",
+"backtrans": "Star"
+},
+{
+"key": "sealCenterText",
+"english": "Text",
+"target": "نص",
+"backtrans": "Text"
+},
+{
+"key": "sealCenterLogo",
+"english": "Logo",
+"target": "شعار",
+"backtrans": "Logo"
+},
+{
+"key": "sealCenterNone",
+"english": "None",
+"target": "بدون",
+"backtrans": "Without"
+},
+{
+"key": "sealCenterTextLabel",
+"english": "Center text",
+"target": "نص الوسط",
+"backtrans": "Center text"
+},
+{
+"key": "sealLogoReady",
+"english": "Logo ready",
+"target": "الشعار جاهز",
+"backtrans": "The logo is ready"
+},
+{
+"key": "textSizeLabel",
+"english": "Text size: {size}",
+"target": "حجم النص: {size}",
+"backtrans": "Text size: {size}"
+},
+{
+"key": "commonUpdate",
+"english": "Update",
+"target": "تحديث",
+"backtrans": "Update"
+},
+{
+"key": "managePagesTitle",
+"english": "Manage Pages",
+"target": "إدارة الصفحات",
+"backtrans": "Manage pages"
+},
+{
+"key": "pageLabel",
+"english": "Page {index}",
+"target": "الصفحة {index}",
+"backtrans": "The page {index}"
+},
+{
+"key": "duplicateAction",
+"english": "Duplicate",
+"target": "تكرار",
+"backtrans": "Repeat (duplicate)"
+},
+{
+"key": "rotate90Action",
+"english": "Rotate 90°",
+"target": "تدوير 90°",
+"backtrans": "Rotate 90°"
+},
+{
+"key": "extractToNewDocAction",
+"english": "Extract to new doc",
+"target": "استخراج إلى مستند جديد",
+"backtrans": "Extract to a new document"
+},
+{
+"key": "addPageTitle",
+"english": "Add Page",
+"target": "إضافة صفحة",
+"backtrans": "Add a page"
+},
+{
+"key": "cameraSource",
+"english": "Camera",
+"target": "الكاميرا",
+"backtrans": "The camera"
+},
+{
+"key": "importFromGallery",
+"english": "Import from Gallery",
+"target": "استيراد من المعرض",
+"backtrans": "Import from the gallery"
+},
+{
+"key": "fromAnotherDocument",
+"english": "From Another Document",
+"target": "من مستند آخر",
+"backtrans": "From another document"
+},
+{
+"key": "pageCountLabel",
+"english": "{count, plural, =0{No pages} =1{1 page} other{{count} pages}}",
+"target": "{count, plural, =0{لا توجد صفحات} =1{صفحة واحدة} =2{صفحتان} few{{count} صفحات} many{{count} صفحة} other{{count} صفحة}}",
+"backtrans": "{count, plural, =0{no pages} =1{one page} =2{two pages (dual)} few{{count} pages} many{{count} pages} other{{count} pages}}"
+},
+{
+"key": "commonConfirm",
+"english": "Confirm",
+"target": "تأكيد",
+"backtrans": "Confirm"
+},
+{
+"key": "applyToAllPages",
+"english": "Apply to all pages",
+"target": "تطبيق على جميع الصفحات",
+"backtrans": "Apply to all pages"
+},
+{
+"key": "widthLabel",
+"english": "Width",
+"target": "العرض",
+"backtrans": "Width"
+},
+{
+"key": "heightLabel",
+"english": "Height",
+"target": "الارتفاع",
+"backtrans": "Height"
+},
+{
+"key": "lockAspectRatio",
+"english": "Lock aspect ratio",
+"target": "قفل نسبة العرض إلى الارتفاع",
+"backtrans": "Lock the width-to-height ratio"
+},
+{
+"key": "originalDimensions",
+"english": "Original: {w}×{h}",
+"target": "الأصلي: {w}×{h}",
+"backtrans": "Original: {w}×{h}"
+},
+{
+"key": "ocrSectionLabel",
+"english": "OCR",
+"target": "OCR",
+"backtrans": "OCR"
+},
+{
+"key": "ocrLanguagesLabel",
+"english": "OCR Languages",
+"target": "لغات OCR",
+"backtrans": "OCR languages"
+},
+{
+"key": "captureBehaviorSectionLabel",
+"english": "CAPTURE BEHAVIOR",
+"target": "سلوك الالتقاط",
+"backtrans": "Capture behavior"
+},
+{
+"key": "autoCopyOcrLabel",
+"english": "Auto-copy OCR",
+"target": "نسخ OCR تلقائيًا",
+"backtrans": "Automatically copy OCR"
+},
+{
+"key": "autoCopyOcrSubtitle",
+"english": "Copy text to clipboard after scan",
+"target": "نسخ النص إلى الحافظة بعد المسح",
+"backtrans": "Copy the text to the clipboard after scanning"
+},
+{
+"key": "beepOnCaptureLabel",
+"english": "Beep on capture",
+"target": "صوت عند الالتقاط",
+"backtrans": "Sound on capture"
+},
+{
+"key": "beepOnCaptureSubtitle",
+"english": "Play sound when scan completes",
+"target": "تشغيل صوت عند اكتمال المسح",
+"backtrans": "Play a sound when the scan completes"
+},
+{
+"key": "vibrateOnCaptureLabel",
+"english": "Vibrate on capture",
+"target": "اهتزاز عند الالتقاط",
+"backtrans": "Vibration on capture"
+},
+{
+"key": "vibrateOnCaptureSubtitle",
+"english": "Haptic feedback when scan completes",
+"target": "ردود فعل لمسية عند اكتمال المسح",
+"backtrans": "Tactile feedback when the scan completes"
+},
+{
+"key": "adsRemovedLabel",
+"english": "Ads Removed",
+"target": "تمت إزالة الإعلانات",
+"backtrans": "Ads removed"
+},
+{
+"key": "diagnosticsSectionLabel",
+"english": "DIAGNOSTICS",
+"target": "التشخيصات",
+"backtrans": "Diagnostics"
+},
+{
+"key": "debugLogsLabel",
+"english": "Debug Logs",
+"target": "سجلات التصحيح",
+"backtrans": "Debugging logs"
+},
+{
+"key": "logEntriesLabel",
+"english": "{count, plural, =0{No entries} =1{1 entry} other{{count} entries}}",
+"target": "{count, plural, =0{لا توجد إدخالات} =1{إدخال واحد} =2{إدخالان} few{{count} إدخالات} many{{count} إدخالاً} other{{count} إدخال}}",
+"backtrans": "{count, plural, =0{no entries} =1{one entry} =2{two entries (dual)} few{{count} entries} many{{count} entries} other{{count} entries}}"
+},
+{
+"key": "ocrStatusBuiltIn",
+"english": "Built-in",
+"target": "مدمج",
+"backtrans": "Built-in"
+},
+{
+"key": "ocrStatusChecking",
+"english": "Checking...",
+"target": "جارٍ التحقق...",
+"backtrans": "Checking..."
+},
+{
+"key": "ocrStatusOnDemand",
+"english": "On-demand",
+"target": "عند الطلب",
+"backtrans": "On request"
+},
+{
+"key": "savedAsNewDocument",
+"english": "Saved as new document",
+"target": "تم الحفظ كمستند جديد",
+"backtrans": "Saved as a new document"
+},
+{
+"key": "conversionFailedPrefix",
+"english": "Conversion failed",
+"target": "فشل التحويل",
+"backtrans": "Conversion failed"
+},
+{
+"key": "convertDocumentTitle",
+"english": "Convert Document",
+"target": "تحويل المستند",
+"backtrans": "Convert document"
+},
+{
+"key": "convertToLabel",
+"english": "Convert to:",
+"target": "تحويل إلى:",
+"backtrans": "Convert to:"
+},
+{
+"key": "actionLabel",
+"english": "Action:",
+"target": "الإجراء:",
+"backtrans": "The action:"
+},
+{
+"key": "saveAsNewDocumentAction",
+"english": "Save as new Document",
+"target": "حفظ كمستند جديد",
+"backtrans": "Save as a new document"
+},
+{
+"key": "exportAndShareAction",
+"english": "Export & Share",
+"target": "تصدير ومشاركة",
+"backtrans": "Export and share"
+},
+{
+"key": "docxWarningMessage",
+"english": "DOCX sources render poorly as pages — save inside the app is limited to JPG/PNG from image, PDF, TXT or CSV sources. Use Export & Share for this file.",
+"target": "تُعرض مصادر DOCX بشكل سيئ كصفحات — يقتصر الحفظ داخل التطبيق على JPG/PNG من الصور أو PDF أو TXT أو CSV. استخدم تصدير ومشاركة لهذا الملف.",
+"backtrans": "DOCX sources are rendered poorly as pages — in-app saving is limited to JPG/PNG from images, or PDF, TXT or CSV. Use export and share for this file."
+},
+{
+"key": "saveInsideAppWarning",
+"english": "To save inside the app, choose JPG or PNG. Other targets are exported as files.",
+"target": "للحفظ داخل التطبيق، اختر JPG أو PNG. يتم تصدير الأهداف الأخرى كملفات.",
+"backtrans": "To save inside the app, choose JPG or PNG. Other targets are exported as files."
+},
+{
+"key": "commonConvert",
+"english": "Convert",
+"target": "تحويل",
+"backtrans": "Convert"
+},
+{
+"key": "conversionStarting",
+"english": "Starting…",
+"target": "جارٍ البدء…",
+"backtrans": "Starting…"
+},
+{
+"key": "convertedDocTitle",
+"english": "Converted {date}",
+"target": "تم تحويل {date}",
+"backtrans": "Converted {date}"
+},
+{
+"key": "progressReading",
+"english": "Reading…",
+"target": "جارٍ القراءة…",
+"backtrans": "Reading…"
+},
+{
+"key": "progressCopying",
+"english": "Copying…",
+"target": "جارٍ النسخ…",
+"backtrans": "Copying…"
+},
+{
+"key": "progressBuildingPdf",
+"english": "Building PDF…",
+"target": "جارٍ إنشاء PDF…",
+"backtrans": "Building PDF…"
+},
+{
+"key": "progressBuildingDocx",
+"english": "Building DOCX…",
+"target": "جارٍ إنشاء DOCX…",
+"backtrans": "Building DOCX…"
+},
+{
+"key": "progressDecodingImage",
+"english": "Decoding image…",
+"target": "جارٍ فك ترميز الصورة…",
+"backtrans": "Decoding the image (removing the encoding)…"
+},
+{
+"key": "progressExtractingText",
+"english": "Extracting text…",
+"target": "جارٍ استخراج النص…",
+"backtrans": "Extracting the text…"
+},
+{
+"key": "progressSaving",
+"english": "Saving…",
+"target": "جارٍ الحفظ…",
+"backtrans": "Saving…"
+},
+{
+"key": "progressRasterizing",
+"english": "Rasterizing pages…",
+"target": "جارٍ معالجة الصفحات…",
+"backtrans": "Processing the pages…"
+},
+{
+"key": "progressEncodingPage",
+"english": "Encoding page {current} of {total}…",
+"target": "جارٍ ترميز الصفحة {current} من {total}…",
+"backtrans": "Encoding page {current} of {total}…"
+},
+{
+"key": "watermarkEditTitle",
+"english": "Edit Watermark",
+"target": "تحرير العلامة المائية",
+"backtrans": "Edit watermark"
+},
+{
+"key": "watermarkAddTitle",
+"english": "Add Watermark",
+"target": "إضافة علامة مائية",
+"backtrans": "Add a watermark"
+},
+{
+"key": "watermarkTextLabel",
+"english": "Text",
+"target": "النص",
+"backtrans": "The text"
+},
+{
+"key": "opacityPercentLabel",
+"english": "Opacity: {percent}%",
+"target": "الشفافية: {percent}%",
+"backtrans": "Transparency: {percent}%"
+},
+{
+"key": "sizePtLabel",
+"english": "Size: {size}pt",
+"target": "الحجم: {size} نقطة",
+"backtrans": "Size: {size} point"
+},
+{
+"key": "alignLabel",
+"english": "Align",
+"target": "محاذاة",
+"backtrans": "Alignment"
+},
+{
+"key": "exportSavedToDownloads",
+"english": "Saved to Downloads",
+"target": "تم الحفظ في التنزيلات",
+"backtrans": "Saved to Downloads"
+},
+{
+"key": "commonShare",
+"english": "Share",
+"target": "مشاركة",
+"backtrans": "Share"
+},
+{
+"key": "exportTitle",
+"english": "Export",
+"target": "تصدير",
+"backtrans": "Export"
+},
+{
+"key": "targetMbLabel",
+"english": "{mb} MB",
+"target": "{mb} ميغابايت",
+"backtrans": "{mb} megabyte"
+},
+{
+"key": "filterColor",
+"english": "Color",
+"target": "ملون",
+"backtrans": "Colored"
+},
+{
+"key": "filterShadow",
+"english": "Shadow",
+"target": "ظل",
+"backtrans": "Shadow"
+},
+{
+"key": "docxModeTextOnly",
+"english": "Text Only",
+"target": "نص فقط",
+"backtrans": "Text only"
+},
+{
+"key": "docxModeWithImages",
+"english": "With Images",
+"target": "مع الصور",
+"backtrans": "With images"
+},
+{
+"key": "saveToDeviceButton",
+"english": "Save to Device",
+"target": "حفظ على الجهاز",
+"backtrans": "Save to the device"
+},
+{
+"key": "pageIndicator",
+"english": "Page {current} / {total}",
+"target": "الصفحة {current} / {total}",
+"backtrans": "Page {current} / {total}"
+},
+{
+"key": "fullscreenLabel",
+"english": "Fullscreen",
+"target": "ملء الشاشة",
+"backtrans": "Fill the screen"
+},
+{
+"key": "batchExportSignatureDisabled",
+"english": "Batch export — signature placement disabled",
+"target": "تصدير بالجملة — تم تعطيل وضع التوقيع",
+"backtrans": "Bulk export — signature mode disabled"
+},
+{
+"key": "fitToTargetMbLabel",
+"english": "Fit to target MB",
+"target": "مطابقة الحجم المستهدف",
+"backtrans": "Match the target size"
+},
+{
+"key": "moreOptionsTooltip",
+"english": "More options",
+"target": "خيارات إضافية",
+"backtrans": "Additional options"
+},
+{
+"key": "commonRename",
+"english": "Rename",
+"target": "إعادة تسمية",
+"backtrans": "Rename"
+},
+{
+"key": "addTagsAction",
+"english": "Add Tags",
+"target": "إضافة وسوم",
+"backtrans": "Add tags"
+},
+{
+"key": "editDocumentAction",
+"english": "Edit Document",
+"target": "تحرير المستند",
+"backtrans": "Edit document"
+},
+{
+"key": "copiedToClipboard",
+"english": "Copied to clipboard",
+"target": "تم النسخ إلى الحافظة",
+"backtrans": "Copied to the clipboard"
+},
+{
+"key": "favoriteTooltip",
+"english": "Favorite",
+"target": "مفضلة",
+"backtrans": "Favorites"
+},
+{
+"key": "noFoldersYet",
+"english": "No folders yet",
+"target": "لا توجد مجلدات بعد",
+"backtrans": "No folders yet"
+},
+{
+"key": "rotateLabel",
+"english": "Rotate",
+"target": "تدوير",
+"backtrans": "Rotate"
+},
+{
+"key": "scaleLabel",
+"english": "Scale",
+"target": "تحجيم",
+"backtrans": "Scaling"
+},
+{
+"key": "eraserTitle",
+"english": "Eraser",
+"target": "ممحاة",
+"backtrans": "Eraser"
+},
+{
+"key": "tapToSampleColor",
+"english": "Tap a spot to sample its color",
+"target": "انقر على بقعة لأخذ لون منها",
+"backtrans": "Tap on a spot to take a color from it"
+},
+{
+"key": "commonSize",
+"english": "Size",
+"target": "الحجم",
+"backtrans": "The size"
+},
+{
+"key": "sampleColorTooltip",
+"english": "Sample color from page",
+"target": "أخذ لون من الصفحة",
+"backtrans": "Take a color from the page"
+},
+{
+"key": "marqueeEraseTooltip",
+"english": "Marquee erase",
+"target": "محو محدد",
+"backtrans": "Erase selected"
+},
+{
+"key": "commonApply",
+"english": "Apply",
+"target": "تطبيق",
+"backtrans": "Apply"
+},
+{
+"key": "filterTitle",
+"english": "Filter",
+"target": "فلتر",
+"backtrans": "Filter"
+},
+{
+"key": "intensityLabel",
+"english": "Intensity",
+"target": "الشدة",
+"backtrans": "Intensity"
+},
+{
+"key": "selectRegionTitle",
+"english": "Select Region",
+"target": "تحديد المنطقة",
+"backtrans": "Select the region"
+},
+{
+"key": "commonExtract",
+"english": "Extract",
+"target": "استخراج",
+"backtrans": "Extract"
+},
+{
+"key": "customColorTitle",
+"english": "Custom Color",
+"target": "لون مخصص",
+"backtrans": "Custom color"
+},
+{
+"key": "documentNotFound",
+"english": "Document not found",
+"target": "المستند غير موجود",
+"backtrans": "The document does not exist"
+},
+{
+"key": "clearLogsTooltip",
+"english": "Clear logs",
+"target": "مسح السجلات",
+"backtrans": "Clear logs"
+},
+{
+"key": "placeHereLabel",
+"english": "Place here",
+"target": "ضع هنا",
+"backtrans": "Place here"
+},
+{
+"key": "tryAgainButton",
+"english": "Try again",
+"target": "إعادة المحاولة",
+"backtrans": "Retry"
+},
+{
+"key": "emptyDocumentMessage",
+"english": "This document has no pages.",
+"target": "لا يحتوي هذا المستند على صفحات.",
+"backtrans": "This document contains no pages."
+},
+{
+"key": "cameraErrorPrefix",
+"english": "Camera error",
+"target": "خطأ في الكاميرا",
+"backtrans": "Error in the camera"
+},
+{
+"key": "importErrorPrefix",
+"english": "Import error",
+"target": "خطأ في الاستيراد",
+"backtrans": "Error in import"
+},
+{
+"key": "pdfImportErrorPrefix",
+"english": "PDF import error",
+"target": "خطأ في استيراد PDF",
+"backtrans": "Error in PDF import"
+},
+{
+"key": "pickErrorPrefix",
+"english": "Pick error",
+"target": "خطأ في الاختيار",
+"backtrans": "Error in selection"
+},
+{
+"key": "scannerErrorPrefix",
+"english": "Scanner error",
+"target": "خطأ في الماسح الضوئي",
+"backtrans": "Error in the scanner"
+},
+{
+"key": "idPdfErrorPrefix",
+"english": "Error generating ID PDF",
+"target": "خطأ في إنشاء PDF للهوية",
+"backtrans": "Error in creating PDF for the ID"
+},
+{
+"key": "genericErrorPrefix",
+"english": "Error",
+"target": "خطأ",
+"backtrans": "Error"
+},
+{
+"key": "annotateTitle",
+"english": "Annotate",
+"target": "تعليق",
+"backtrans": "Comment"
+},
+{
+"key": "placementsCountLabel",
+"english": "{count, plural, =0{Nothing placed} =1{1 placed} other{{count} placed}}",
+"target": "{count, plural, =0{لا يوجد عنصر} =1{عنصر واحد} =2{عنصران} few{{count} عناصر} many{{count} عنصرًا} other{{count} عنصر}}",
+"backtrans": "{count, plural, =0{no item} =1{one item} =2{two items (dual)} few{{count} items} many{{count} items} other{{count} items}}"
+},
+{
+"key": "ocrUnavailableTooltip",
+"english": "OCR unavailable on this device.",
+"target": "التعرف الضوئي غير متاح على هذا الجهاز.",
+"backtrans": "Optical recognition is not available on this device."
+},
+{
+"key": "docScannerUnsupportedMessage",
+"english": "Your device doesn't support the advanced document scanner. Take a photo with your Camera app, then tap Import below to crop and save it.",
+"target": "جهازك لا يدعم ماسح المستندات المتقدم. التقط صورة بتطبيق الكاميرا، ثم اضغط على استيراد أدناه لقصها وحفظها.",
+"backtrans": "Your device does not support the advanced document scanner. Take a picture with the camera app, then press import below to crop and save it."
+},
+{
+"key": "billingUnavailableMessage",
+"english": "Billing unavailable — try again later.",
+"target": "الفوترة غير متاحة — أعد المحاولة لاحقًا.",
+"backtrans": "Billing is unavailable — try again later."
+},
+{
+"key": "ocrNoInternetMessage",
+"english": "No internet. Connect once to download the language pack.",
+"target": "لا يوجد إنترنت. اتصل مرة واحدة لتنزيل حزمة اللغة.",
+"backtrans": "No internet. Connect once to download the language pack."
+},
+{
+"key": "ocrLanguagePackNotReady",
+"english": "Language pack downloading or not ready. Try again shortly.",
+"target": "حزمة اللغة قيد التنزيل أو غير جاهزة. حاول مجددًا بعد قليل.",
+"backtrans": "The language pack is downloading or not ready. Try again in a little while."
+},
+{
+"key": "undoTooltip",
+"english": "Undo",
+"target": "تراجع",
+"backtrans": "Undo"
+},
+{
+"key": "redoTooltip",
+"english": "Redo",
+"target": "إعادة",
+"backtrans": "Redo (literally 'repeat')"
+},
+{
+"key": "fillInputHint",
+"english": "Type text to fill",
+"target": "اكتب نصًا لملئه",
+"backtrans": "Write text to fill it"
+},
+{
+"key": "fillCapsLabel",
+"english": "ALL CAPS",
+"target": "أحرف كبيرة",
+"backtrans": "Capital letters"
+},
+{
+"key": "fillSaveSnippet",
+"english": "Save as snippet",
+"target": "حفظ كمقتطف",
+"backtrans": "Save as a snippet"
+},
+{
+"key": "fillDeleteSnippet",
+"english": "Delete snippet?",
+"target": "حذف المقتطف؟",
+"backtrans": "Delete the snippet?"
+},
+{
+"key": "fillTooltip",
+"english": "Fill",
+"target": "ملء",
+"backtrans": "Fill"
+},
+{
+"key": "tickerFreeUnlimitedOcr",
+"english": "FREE UNLIMITED OCR",
+"target": "تعرف ضوئي غير محدود مجاني",
+"backtrans": "Free unlimited optical recognition"
+},
+{
+"key": "ticker100OnDevicePrivacy",
+"english": "YOUR DOCUMENTS STAY ON YOUR DEVICE",
+"target": "مستنداتك تبقى على جهازك",
+"backtrans": "Your documents stay on your device"
+},
+{
+"key": "tickerNoAccount",
+"english": "NO ACCOUNT",
+"target": "بدون حساب",
+"backtrans": "Without an account"
+},
+{
+"key": "tickerNoWatermarks",
+"english": "NO WATERMARKS",
+"target": "بدون علامات مائية",
+"backtrans": "Without watermarks"
+},
+{
+"key": "ticker21ToolEditSuite",
+"english": "21-TOOL EDIT SUITE",
+"target": "مجموعة 21 أداة تحرير",
+"backtrans": "A suite of 21 editing tools"
+},
+{
+"key": "tickerNonDestructiveEditing",
+"english": "NON-DESTRUCTIVE EDITING",
+"target": "تحرير غير مدمر",
+"backtrans": "Non-destructive editing"
+},
+{
+"key": "tickerUndoRedo",
+"english": "UNDO/REDO",
+"target": "تراجع/إعادة",
+"backtrans": "Undo/redo (repeat)"
+},
+{
+"key": "tickerRevertToOriginal",
+"english": "REVERT TO ORIGINAL",
+"target": "العودة إلى الأصل",
+"backtrans": "Return to the original"
+},
+{
+"key": "tickerTapToTypeFilling",
+"english": "TAP-TO-TYPE FILLING",
+"target": "ملء بالنقر",
+"backtrans": "Filling by tapping"
+},
+{
+"key": "tickerESign",
+"english": "E-SIGN",
+"target": "توقيع إلكتروني",
+"backtrans": "Electronic signature"
+},
+{
+"key": "tickerCustomSeals",
+"english": "CUSTOM SEALS",
+"target": "أختام مخصصة",
+"backtrans": "Custom seals"
+},
+{
+"key": "tickerTextStamps",
+"english": "TEXT STAMPS",
+"target": "طوابع نصية",
+"backtrans": "Text stamps"
+},
+{
+"key": "tickerNoteStamps",
+"english": "NOTE STAMPS",
+"target": "طوابع ملاحظات",
+"backtrans": "Note stamps"
+},
+{
+"key": "tickerSearchablePdf",
+"english": "SEARCHABLE PDF",
+"target": "PDF قابل للبحث",
+"backtrans": "Searchable PDF"
+},
+{
+"key": "tickerRegionOcr",
+"english": "REGION OCR",
+"target": "تعرف ضوئي للمنطقة",
+"backtrans": "Optical recognition of the region"
+},
+{
+"key": "tickerAutoCopyOcr",
+"english": "AUTO-COPY OCR",
+"target": "نسخ تلقائي",
+"backtrans": "Automatic copy"
+},
+{
+"key": "tickerIdCardMode",
+"english": "ID CARD MODE",
+"target": "وضع بطاقة الهوية",
+"backtrans": "ID card mode"
+},
+{
+"key": "tickerPassportMode",
+"english": "PASSPORT MODE",
+"target": "وضع جواز السفر",
+"backtrans": "Passport mode"
+},
+{
+"key": "tickerGalleryImport",
+"english": "GALLERY IMPORT",
+"target": "استيراد من المعرض",
+"backtrans": "Import from the gallery"
+},
+{
+"key": "tickerPdfExport",
+"english": "PDF EXPORT",
+"target": "تصدير PDF",
+"backtrans": "PDF export"
+},
+{
+"key": "tickerWordExport",
+"english": "WORD EXPORT",
+"target": "تصدير Word",
+"backtrans": "Word export"
+},
+{
+"key": "tickerJpgExport",
+"english": "JPG EXPORT",
+"target": "تصدير JPG",
+"backtrans": "JPG export"
+},
+{
+"key": "tickerPngExport",
+"english": "PNG EXPORT",
+"target": "تصدير PNG",
+"backtrans": "PNG export"
+},
+{
+"key": "tickerBatchExport",
+"english": "BATCH EXPORT",
+"target": "تصدير بالجملة",
+"backtrans": "Bulk export"
+},
+{
+"key": "tickerFolders",
+"english": "FOLDERS",
+"target": "مجلدات",
+"backtrans": "Folders"
+},
+{
+"key": "tickerTags",
+"english": "TAGS",
+"target": "وسوم",
+"backtrans": "Tags"
+},
+{
+"key": "tickerFavorites",
+"english": "FAVORITES",
+"target": "مفضلة",
+"backtrans": "Favorites"
+},
+{
+"key": "tickerSearch",
+"english": "SEARCH",
+"target": "بحث",
+"backtrans": "Search"
+},
+{
+"key": "tickerDarkMode",
+"english": "DARK MODE",
+"target": "الوضع الداكن",
+"backtrans": "Dark mode"
+},
+{
+"key": "tickerAccentThemes",
+"english": "ACCENT THEMES",
+"target": "سمات التمييز",
+"backtrans": "Highlight themes"
+},
+{
+"key": "tickerDeviceMigration",
+"english": "DEVICE MIGRATION",
+"target": "نقل الجهاز",
+"backtrans": "Device transfer"
+},
+{
+"key": "onboardingWelcomeTitle",
+"english": "Welcome to KatharScan",
+"target": "مرحبًا بك في KatharScan",
+"backtrans": "Welcome to KatharScan"
+},
+{
+"key": "onboardingWelcomeSubtitle",
+"english": "Your entire document office — scan, edit, sign, and export — in one private app.",
+"target": "مكتب مستنداتك الكامل — امسح وحرر ووقّع وصدّر — في تطبيق خاص واحد.",
+"backtrans": "Your complete document office — scan, edit, sign and export — in one private app."
+},
+{
+"key": "onboardingToolsTitle",
+"english": "21 Free Pro Tools",
+"target": "21 أداة احترافية مجانية",
+"backtrans": "21 professional tools, free"
+},
+{
+"key": "onboardingToolsSubtitle",
+"english": "Annotate, sign, watermark, fill forms, seal, and more — every tool free and unlimited.",
+"target": "علّق، وقّع، ضع علامة مائية، املأ النماذج، اختم، والمزيد — كل الأدوات مجانية وغير محدودة.",
+"backtrans": "Comment, sign, watermark, fill forms, stamp, and more — all tools are free and unlimited."
+},
+{
+"key": "onboardingOcrTitle",
+"english": "On-Device OCR",
+"target": "تعرف ضوئي على الجهاز",
+"backtrans": "Optical recognition on the device"
+},
+{
+"key": "onboardingOcrSubtitle",
+"english": "Use KatharScan in {count} languages. OCR runs on your phone — nothing ever leaves your device.",
+"target": "استخدم KatharScan بـ {count} لغة. يعمل التعرف على النص على هاتفك — لا شيء يغادر جهازك.",
+"backtrans": "Use KatharScan with {count} language. Text recognition works on your phone — nothing leaves your device."
+},
+{
+"key": "onboardingSignTitle",
+"english": "Sign, Fill & Seal",
+"target": "وقّع واملأ واختم",
+"backtrans": "Sign, fill and stamp"
+},
+{
+"key": "onboardingSignSubtitle",
+"english": "E-sign contracts, type-to-fill forms, and stamp enterprise seals in seconds.",
+"target": "وقّع العقود إلكترونيًا، املأ النماذج بالنقر، واختم بأختام مؤسسية في ثوانٍ.",
+"backtrans": "Sign contracts electronically, fill forms by tapping, and stamp with institutional seals in seconds."
+},
+{
+"key": "onboardingEditTitle",
+"english": "Non-Destructive Editing",
+"target": "تحرير غير مدمر",
+"backtrans": "Non-destructive editing"
+},
+{
+"key": "onboardingEditSubtitle",
+"english": "Every edit stays reversible — undo, redo, and revert to original anytime.",
+"target": "كل تعديل يبقى قابلًا للتراجع — تراجع وأعد وعُد إلى الأصل في أي وقت.",
+"backtrans": "Every edit remains reversible — undo, redo and return to the original at any time."
+},
+{
+"key": "onboardingPrivacyTitle",
+"english": "Private by design",
+"target": "خصوصية بالتصميم",
+"backtrans": "Privacy by design"
+},
+{
+"key": "onboardingPrivacySubtitle",
+"english": "No account, no cloud, no watermarks. Your documents never leave your device.",
+"target": "بدون حساب، بدون سحابة، بدون علامات مائية. مستنداتك لا تغادر جهازك.",
+"backtrans": "No account, no cloud, no watermarks. Your documents do not leave your device."
+},
+{
+"key": "onboardingContinue",
+"english": "Continue",
+"target": "متابعة",
+"backtrans": "Continue"
+},
+{
+"key": "onboardingGetStarted",
+"english": "Get Started",
+"target": "ابدأ الآن",
+"backtrans": "Start now"
+},
+{
+"key": "onboardingBack",
+"english": "Back",
+"target": "رجوع",
+"backtrans": "Back"
+},
+{
+"key": "onboardingReplayIntro",
+"english": "Replay introduction",
+"target": "إعادة المقدمة",
+"backtrans": "Repeat the introduction"
+},
+{
+"key": "saveToDownloadsAction",
+"english": "Save to Downloads",
+"target": "حفظ في التنزيلات",
+"backtrans": "Save to Downloads"
+},
+{
+"key": "paywallTitle",
+"english": "Remove Ads",
+"target": "إزالة الإعلانات",
+"backtrans": "Remove ads"
+},
+{
+"key": "paywallSubtitle",
+"english": "Support KatharScan with a one-time purchase. All features remain free.",
+"target": "ادعم KatharScan بعملية شراء لمرة واحدة. تظل جميع الميزات مجانية.",
+"backtrans": "Support KatharScan with a one-time purchase. All features remain free."
+},
+{
+"key": "paywallFallbackPrice",
+"english": "$14.99 one-time",
+"target": "$14.99 لمرة واحدة",
+"backtrans": "$14.99 one time"
+},
+{
+"key": "paywallFeatureNoBanner",
+"english": "No more banner ads",
+"target": "لا مزيد من الإعلانات الشريطية",
+"backtrans": "No more banner ads"
+},
+{
+"key": "paywallFeatureNoInterstitial",
+"english": "No more interstitial ads",
+"target": "لا مزيد من الإعلانات البينية",
+"backtrans": "No more interstitial ads"
+},
+{
+"key": "paywallFeatureFreeForever",
+"english": "All features free forever",
+"target": "جميع الميزات مجانية للأبد",
+"backtrans": "All features free forever"
+},
+{
+"key": "paywallLegalText",
+"english": "This is a non-consumable purchase. Restore it anytime on any device with the same store account.",
+"target": "هذا شراء غير قابل للاستهلاك. استعده في أي وقت على أي جهاز بنفس حساب المتجر.",
+"backtrans": "This is a non-consumable purchase. Restore it at any time on any device with the same store account."
+},
+{
+"key": "paywallSuccessTitle",
+"english": "Ads Removed",
+"target": "تمت إزالة الإعلانات",
+"backtrans": "Ads removed"
+},
+{
+"key": "paywallSuccessMessage",
+"english": "Thank you for supporting KatharScan.",
+"target": "شكراً لدعم KatharScan.",
+"backtrans": "Thanks for supporting KatharScan."
+},
+{
+"key": "errorGenericTitle",
+"english": "Something went wrong",
+"target": "حدث خطأ ما",
+"backtrans": "Something went wrong"
+},
+{
+"key": "errorScreenProblem",
+"english": "KatharScan ran into a problem displaying this screen. Your scans are safe — they're stored on this device and this doesn't affect them.",
+"target": "واجه KatharScan مشكلة في عرض هذه الشاشة. عمليات المسح الضوئي آمنة - فهي مخزنة على هذا الجهاز ولا يؤثر هذا عليها.",
+"backtrans": "KatharScan encountered a problem displaying this screen. The scans are safe - they are stored on this device and this does not affect them."
+},
+{
+"key": "errorReportIssue",
+"english": "Report issue",
+"target": "الإبلاغ عن مشكلة",
+"backtrans": "Report a problem"
+},
+{
+"key": "filterAll",
+"english": "All",
+"target": "الكل",
+"backtrans": "All"
+},
+{
+"key": "filterFolders",
+"english": "Folders",
+"target": "المجلدات",
+"backtrans": "Folders"
+},
+{
+"key": "filterRecent",
+"english": "Recent",
+"target": "الأخيرة",
+"backtrans": "Recent"
+},
+{
+"key": "filterFavorites",
+"english": "Favorites",
+"target": "المفضلة",
+"backtrans": "Favorites"
+},
+{
+"key": "chipAllFolders",
+"english": "All Folders",
+"target": "جميع المجلدات",
+"backtrans": "All folders"
+},
+{
+"key": "chipSelectMultiple",
+"english": "Select Multiple",
+"target": "تحديد متعدد",
+"backtrans": "Multiple selection"
+},
+{
+"key": "emptySearch",
+"english": "No scans match your search.",
+"target": "لا توجد عمليات مسح تطابق بحثك.",
+"backtrans": "No scans match your search."
+},
+{
+"key": "emptyFolders",
+"english": "No folders yet. Tap the folder icon to create one.",
+"target": "لا توجد مجلدات بعد. اضغط على أيقونة المجلد لإنشاء واحد.",
+"backtrans": "No folders yet. Tap the folder icon to create one."
+},
+{
+"key": "emptyFavorites",
+"english": "No favorites yet. Tap the star icon on a document to add it.",
+"target": "لا توجد مفضلات بعد. اضغط على أيقونة النجمة على مستند لإضافته.",
+"backtrans": "No favorites yet. Tap the star icon on a document to add it."
+},
+{
+"key": "modeDocument",
+"english": "Document Mode",
+"target": "وضع المستند",
+"backtrans": "Document mode"
+},
+{
+"key": "modeOcr",
+"english": "OCR Mode",
+"target": "وضع التعرف الضوئي",
+"backtrans": "Optical recognition mode"
+},
+{
+"key": "modeIdCard",
+"english": "ID Card Mode",
+"target": "وضع بطاقة الهوية",
+"backtrans": "ID card mode"
+},
+{
+"key": "modePassport",
+"english": "Passport Mode",
+"target": "وضع جواز السفر",
+"backtrans": "Passport mode"
+},
+{
+"key": "titlePdfImport",
+"english": "PDF Import",
+"target": "استيراد PDF",
+"backtrans": "PDF import"
+},
+{
+"key": "titleIdCard",
+"english": "ID Card",
+"target": "بطاقة الهوية",
+"backtrans": "ID card"
+},
+{
+"key": "titleScan",
+"english": "Scan",
+"target": "مسح ضوئي",
+"backtrans": "Scan (optical scanning)"
+},
+{
+"key": "exportEstimatedSize",
+"english": "Estimated size: {mb} MB",
+"target": "الحجم المقدر: {mb} ميغابايت",
+"backtrans": "Estimated size: {mb} megabyte"
+},
+{
+"key": "debugNoLogsYet",
+"english": "No logs yet",
+"target": "لا توجد سجلات بعد",
+"backtrans": "No logs yet"
+},
+{
+"key": "textBold",
+"english": "B",
+"target": "B",
+"backtrans": "B"
+},
+{
+"key": "textItalic",
+"english": "I",
+"target": "I",
+"backtrans": "I"
+},
+{
+"key": "textUnderline",
+"english": "U",
+"target": "U",
+"backtrans": "U"
+},
+{
+"key": "textFontLetterA",
+"english": "A",
+"target": "A",
+"backtrans": "A"
+},
+{
+"key": "multiplySymbol",
+"english": "×",
+"target": "×",
+"backtrans": "×"
+},
+{
+"key": "signerLabel",
+"english": "Signer {index}",
+"target": "الموقّع {index}",
+"backtrans": "The signer {index}"
+},
+{
+"key": "stampCheckbox",
+"english": "Checkbox",
+"target": "مربع اختيار",
+"backtrans": "Choice box"
+},
+{
+"key": "fontSansSerif",
+"english": "sans-serif",
+"target": "sans-serif",
+"backtrans": "sans-serif"
+},
+{
+"key": "fontSerif",
+"english": "serif",
+"target": "serif",
+"backtrans": "serif"
+},
+{
+"key": "fontMonospace",
+"english": "monospace",
+"target": "monospace",
+"backtrans": "monospace"
+},
+{
+"key": "sealCustom",
+"english": "Custom Seal",
+"target": "ختم مخصص",
+"backtrans": "Custom seal"
+},
+{
+"key": "formatCsv",
+"english": "CSV",
+"target": "CSV",
+"backtrans": "CSV"
+},
+{
+"key": "ocrNoTextFound",
+"english": "No text found",
+"target": "لم يتم العثور على نص",
+"backtrans": "No text was found"
+},
+{
+"key": "rotationAllPages",
+"english": "All pages rotated",
+"target": "تم تدوير جميع الصفحات",
+"backtrans": "All pages were rotated"
+},
+{
+"key": "rotationPage",
+"english": "Page rotated",
+"target": "تم تدوير الصفحة",
+"backtrans": "The page was rotated"
+},
+{
+"key": "resizeTitle",
+"english": "Resize",
+"target": "تغيير الحجم",
+"backtrans": "Resize"
+},
+{
+"key": "addTextTitle",
+"english": "Add Text",
+"target": "إضافة نص",
+"backtrans": "Add text"
+},
+{
+"key": "addNoteTitle",
+"english": "Add Note",
+"target": "إضافة ملاحظة",
+"backtrans": "Add a note"
+},
+{
+"key": "addDateTitle",
+"english": "Add Date",
+"target": "إضافة تاريخ",
+"backtrans": "Add a date"
+},
+{
+"key": "addCheckboxTitle",
+"english": "Add Checkbox",
+"target": "إضافة مربع اختيار",
+"backtrans": "Add a choice box"
+},
+{
+"key": "noteTextLabel",
+"english": "Note text",
+"target": "نص الملاحظة",
+"backtrans": "Note text"
+},
+{
+"key": "textLabel",
+"english": "Text",
+"target": "نص",
+"backtrans": "Text"
+},
+{
+"key": "checkShapeRounded",
+"english": "Rounded",
+"target": "مدور",
+"backtrans": "Rounded"
+},
+{
+"key": "checkShapeSquare",
+"english": "Square",
+"target": "مربع",
+"backtrans": "Square"
+},
+{
+"key": "checkShapeCircle",
+"english": "Circle",
+"target": "دائرة",
+"backtrans": "Circle"
+},
+{
+"key": "hueLabel",
+"english": "Hue",
+"target": "الصبغة",
+"backtrans": "Dye/tint [??: 'صبغة' means dye/pigment, unusual for 'hue']"
+},
+{
+"key": "satLabel",
+"english": "Sat",
+"target": "التشبع",
+"backtrans": "Saturation"
+},
+{
+"key": "valLabel",
+"english": "Val",
+"target": "القيمة",
+"backtrans": "Value"
+},
+{
+"key": "annotationModePen",
+"english": "Pen",
+"target": "قلم",
+"backtrans": "Pen"
+},
+{
+"key": "annotationModeHighlighter",
+"english": "Highlighter",
+"target": "قلم تمييز",
+"backtrans": "Highlighter pen"
+},
+{
+"key": "annotationModeRect",
+"english": "Rectangle",
+"target": "مستطيل",
+"backtrans": "Rectangle"
+},
+{
+"key": "annotationModeArrow",
+"english": "Arrow",
+"target": "سهم",
+"backtrans": "Arrow"
+},
+{
+"key": "annotationModeEllipse",
+"english": "Ellipse",
+"target": "شكل بيضاوي",
+"backtrans": "Oval shape"
+},
+{
+"key": "sharePromptTitle",
+"english": "Love KatharScan?",
+"target": "هل تحب KatharScan؟",
+"backtrans": "Do you love KatharScan?"
+},
+{
+"key": "sharePromptBody",
+"english": "Share it with friends who need a powerful document scanner.",
+"target": "شاركه مع الأصدقاء الذين يحتاجون إلى ماسح مستندات قوي.",
+"backtrans": "Share it with friends who need a powerful document scanner."
+},
+{
+"key": "sharePromptAction",
+"english": "Share App",
+"target": "مشاركة التطبيق",
+"backtrans": "Share the app"
+},
+{
+"key": "sharePromptDismiss",
+"english": "Not now",
+"target": "ليس الآن",
+"backtrans": "Not now"
+},
+{
+"key": "reviewPromptTitle",
+"english": "Enjoying KatharScan?",
+"target": "هل تستمتع بـ KatharScan؟",
+"backtrans": "Are you enjoying KatharScan?"
+},
+{
+"key": "reviewPromptBody",
+"english": "Your feedback helps us grow and keeps the app free.",
+"target": "تعليقاتك تساعدنا على النمو وتحافظ على التطبيق مجانًا.",
+"backtrans": "Your comments help us grow and keep the app free."
+},
+{
+"key": "reviewPromptYes",
+"english": "Rate Us",
+"target": "قيمنا",
+"backtrans": "Rate us"
+},
+{
+"key": "reviewPromptNo",
+"english": "Send Feedback",
+"target": "إرسال ملاحظات",
+"backtrans": "Send notes (feedback)"
+},
+{
+"key": "watermarkLabel",
+"english": "Watermark",
+"target": "علامة مائية",
+"backtrans": "Watermark"
+},
+{
+"key": "compressLabel",
+"english": "Compress",
+"target": "ضغط",
+"backtrans": "Compression"
+},
+{
+"key": "pagesLabel",
+"english": "Pages",
+"target": "صفحات",
+"backtrans": "Pages"
+},
+{
+"key": "cropLabel",
+"english": "Crop",
+"target": "قص",
+"backtrans": "Cut"
+},
+{
+"key": "emailLabel",
+"english": "Email",
+"target": "بريد إلكتروني",
+"backtrans": "Email"
+},
+{
+"key": "checkLabel",
+"english": "Check",
+"target": "علامة صح",
+"backtrans": "Correct mark (checkmark)"
+},
+{
+"key": "captionDocs",
+"english": "Flexible crop: Original, Square, 4:3, 3:2, 16:9",
+"target": "قص مرن: أصلي، مربع، 4:3، 3:2، 16:9",
+"backtrans": "Flexible cut: original, square, 4:3, 3:2, 16:9"
+},
+{
+"key": "captionOcr",
+"english": "Text crop: Original, Square, 4:3",
+"target": "قص النص: أصلي، مربع، 4:3",
+"backtrans": "Text cut: original, square, 4:3"
+},
+{
+"key": "captionIdCard",
+"english": "Two-sided ID capture: Front + Back",
+"target": "التقاط وجهي الهوية: أمامي + خلفي",
+"backtrans": "Capturing both faces of the ID: front + back"
+},
+{
+"key": "captionPassport",
+"english": "Passport crop: 4:3 or Original",
+"target": "قص الجواز: 4:3 أو أصلي",
+"backtrans": "Passport cut: 4:3 or original"
+},
+{
+"key": "idStepFront",
+"english": "Step 1: Capture Front Side",
+"target": "الخطوة 1: التقط الجانب الأمامي",
+"backtrans": "Step 1: Capture the front side"
+},
+{
+"key": "idStepBack",
+"english": "Step 2: Capture Back Side",
+"target": "الخطوة 2: التقط الجانب الخلفي",
+"backtrans": "Step 2: Capture the back side"
+},
+{
+"key": "idGenerating",
+"english": "Generating PDF...",
+"target": "جارٍ إنشاء PDF...",
+"backtrans": "Creating PDF..."
+},
+{
+"key": "captureFrontSide",
+"english": "Capture Front Side",
+"target": "التقاط الجانب الأمامي",
+"backtrans": "Capture the front side"
+},
+{
+"key": "captureBackSide",
+"english": "Capture Back Side",
+"target": "التقاط الجانب الخلفي",
+"backtrans": "Capture the back side"
+},
+{
+"key": "importFrontSide",
+"english": "Import Front Side",
+"target": "استيراد الجانب الأمامي",
+"backtrans": "Import the front side"
+},
+{
+"key": "importBackSide",
+"english": "Import Back Side",
+"target": "استيراد الجانب الخلفي",
+"backtrans": "Import the back side"
+},
+{
+"key": "cropDocumentTitle",
+"english": "Crop Document",
+"target": "قص المستند",
+"backtrans": "Cut the document"
+},
+{
+"key": "cropIdCardTitle",
+"english": "Crop ID Card",
+"target": "قص بطاقة الهوية",
+"backtrans": "Cut the ID card"
+},
+{
+"key": "tabImageLabel",
+"english": "Image",
+"target": "صورة",
+"backtrans": "Image"
+},
+{
+"key": "tabOcrTextLabel",
+"english": "OCR Text",
+"target": "نص OCR",
+"backtrans": "OCR text"
+},
+{
+"key": "compressSmall",
+"english": "Small",
+"target": "صغير",
+"backtrans": "Small"
+},
+{
+"key": "compressMedium",
+"english": "Medium",
+"target": "متوسط",
+"backtrans": "Medium"
+},
+{
+"key": "pageFormatLetter",
+"english": "Letter (US)",
+"target": "خطاب (أمريكا)",
+"backtrans": "Letter/Epistle (America)"
+},
+{
+"key": "ocrScriptLatin",
+"english": "Latin (English, European)",
+"target": "لاتيني (إنجليزي، أوروبي)",
+"backtrans": "Latin (English, European)"
+},
+{
+"key": "ocrScriptChinese",
+"english": "Chinese",
+"target": "صيني",
+"backtrans": "Chinese"
+},
+{
+"key": "ocrScriptKorean",
+"english": "Korean",
+"target": "كوري",
+"backtrans": "Korean"
+},
+{
+"key": "ocrScriptJapanese",
+"english": "Japanese",
+"target": "ياباني",
+"backtrans": "Japanese"
+},
+{
+"key": "ocrScriptDevanagari",
+"english": "Hindi, Marathi (Devanagari)",
+"target": "الهندية والماراثية (ديفاناغاري)",
+"backtrans": "Hindi and Marathi (Devanagari)"
+},
+{
+"key": "ocrStatusUnsupported",
+"english": "Unsupported",
+"target": "غير مدعوم",
+"backtrans": "Unsupported"
+},
+{
+"key": "noteLabel",
+"english": "Note",
+"target": "ملاحظة",
+"backtrans": "Note"
+},
+{
+"key": "dateLabel",
+"english": "Date",
+"target": "تاريخ",
+"backtrans": "Date"
+},
+{
+"key": "accentBlue",
+"english": "Blue",
+"target": "أزرق",
+"backtrans": "Blue"
+},
+{
+"key": "accentIndigo",
+"english": "Indigo",
+"target": "نيلي",
+"backtrans": "Indigo (navy/nili)"
+},
+{
+"key": "accentEmerald",
+"english": "Emerald",
+"target": "زمردي",
+"backtrans": "Emerald"
+},
+{
+"key": "accentCrimson",
+"english": "Crimson",
+"target": "قرمزي",
+"backtrans": "Crimson"
+},
+{
+"key": "accentAmber",
+"english": "Amber",
+"target": "كهرماني",
+"backtrans": "Amber (kahramani)"
+},
+{
+"key": "accentViolet",
+"english": "Violet",
+"target": "بنفسجي",
+"backtrans": "Violet"
+},
+{
+"key": "tickerLanguages",
+"english": "{count} LANGUAGES",
+"target": "{count} لغة",
+"backtrans": "{count} language"
+},
+{
+"key": "termsOfServiceLabel",
+"english": "Terms of Service",
+"target": "شروط الخدمة",
+"backtrans": "Terms of service"
+},
+{
+"key": "openSourceLicensesLabel",
+"english": "Open-source licenses",
+"target": "تراخيص مفتوحة المصدر",
+"backtrans": "Open-source licenses"
+},
+{
+"key": "whatsNewTitle",
+"english": "What's New",
+"target": "الجديد",
+"backtrans": "The new"
+},
+{
+"key": "whatsNewContinue",
+"english": "Continue",
+"target": "متابعة",
+"backtrans": "Continue"
+},
+{
+"key": "tickerTxtExport",
+"english": "TXT EXPORT",
+"target": "تصدير TXT",
+"backtrans": "TXT export"
+},
+{
+"key": "tickerCsvExport",
+"english": "CSV EXPORT",
+"target": "تصدير CSV",
+"backtrans": "CSV export"
+},
+{
+"key": "whatsNewBody",
+"english": "Welcome to KatharScan! This is the first public release featuring unlimited scanning, 29 languages, and export to PDF, Word, TXT, JPG, PNG, and CSV.",
+"target": "مرحبًا بك في KatharScan! هذا هو الإصدار العام الأول بمسح غير محدود و29 لغة وتصدير إلى PDF وWord وTXT وJPG وPNG وCSV.",
+"backtrans": "Welcome to KatharScan! This is the first public release with unlimited scanning, 29 languages, and export to PDF, Word, TXT, JPG, PNG and CSV."
+},
+{
+"key": "engagementSectionLabel",
+"english": "ENGAGEMENT & NOTIFICATIONS",
+"target": "التفاعل والإشعارات",
+"backtrans": "Interaction and notifications"
+},
+{
+"key": "enableNotificationsLabel",
+"english": "Enable Notifications",
+"target": "تفعيل الإشعارات",
+"backtrans": "Enable notifications"
+},
+{
+"key": "enableNotificationsSubtitle",
+"english": "Allow background reminders for unexported documents",
+"target": "السماح بالتذكيرات في الخلفية للمستندات غير المصدرة",
+"backtrans": "Allow background reminders for unexported documents"
+},
+{
+"key": "enableReviewPromptsLabel",
+"english": "Enable Review Prompts",
+"target": "تفعيل طلبات التقييم",
+"backtrans": "Enable rating requests"
+},
+{
+"key": "enableReviewPromptsSubtitle",
+"english": "Allow the app to occasionally ask for a rating",
+"target": "السماح للتطبيق بطلب تقييم من حين لآخر",
+"backtrans": "Allow the app to ask for a rating from time to time"
+},
+{
+"key": "enableSharePromptsLabel",
+"english": "Enable Share Prompts",
+"target": "تفعيل طلبات المشاركة",
+"backtrans": "Enable sharing requests"
+},
+{
+"key": "enableSharePromptsSubtitle",
+"english": "Allow the app to occasionally suggest sharing",
+"target": "السماح للتطبيق بالاقتراح للمشاركة من حين لآخر",
+"backtrans": "Allow the app to suggest sharing from time to time"
+},
+{
+"key": "exportFormatCsvDescription",
+"english": "Spreadsheet data",
+"target": "بيانات جدول",
+"backtrans": "Table data"
+},
+{
+"key": "watermarkDefaultText",
+"english": "CONFIDENTIAL",
+"target": "سري",
+"backtrans": "Confidential"
+},
+{
+"key": "emailAttachmentNotIncluded",
+"english": "The pages could not be attached to the email. Use Share to send the pages.",
+"target": "تعذر إرفاق الصفحات بالبريد. استخدم المشاركة لإرسال الصفحات.",
+"backtrans": "Could not attach the pages to the email. Use sharing to send the pages."
+},
+{
+"key": "sealDefaultMainText",
+"english": "YOUR COMPANY",
+"target": "شركتك",
+"backtrans": "Your company"
+},
+{
+"key": "extractedPageDefaultTitle",
+"english": "Extracted Page",
+"target": "صفحة مستخرجة",
+"backtrans": "Extracted page"
+},
+{
+"key": "printRangeAll",
+"english": "All pages",
+"target": "كل الصفحات",
+"backtrans": "All pages"
+},
+{
+"key": "printRangeCurrent",
+"english": "Current",
+"target": "الحالية",
+"backtrans": "The current"
+},
+{
+"key": "printRangeRange",
+"english": "Range",
+"target": "نطاق",
+"backtrans": "Range"
+},
+{
+"key": "printFilterNone",
+"english": "No filter",
+"target": "بدون فلتر",
+"backtrans": "No filter"
+},
+{
+"key": "removeFromFavorites",
+"english": "Remove from Favorites",
+"target": "إزالة من المفضلة",
+"backtrans": "Remove from favorites"
+},
+{
+"key": "addToFavorites",
+"english": "Add to Favorites",
+"target": "إضافة إلى المفضلة",
+"backtrans": "Add to favorites"
+},
+{
+"key": "saveFailedPrefix",
+"english": "Save failed:",
+"target": "فشل الحفظ:",
+"backtrans": "Saving failed:"
+},
+{
+"key": "ocrScriptArabic",
+"english": "العربية (Arabic)",
+"target": "العربية (Arabic)",
+"backtrans": "Arabic (Arabic)"
+},
+{
+"key": "ocrScriptRussian",
+"english": "Русский (Russian)",
+"target": "Русский (Russian)",
+"backtrans": "Русский (Russian)"
+},
+{
+"key": "ocrScriptUkrainian",
+"english": "Українська (Ukrainian)",
+"target": "Українська (Ukrainian)",
+"backtrans": "Українська (Ukrainian)"
+},
+{
+"key": "ocrScriptGreek",
+"english": "Ελληνικά (Greek)",
+"target": "Ελληνικά (Greek)",
+"backtrans": "Ελληνικά (Greek)"
+},
+{
+"key": "ocrScriptHebrew",
+"english": "עברית (Hebrew)",
+"target": "עברית (Hebrew)",
+"backtrans": "עברית (Hebrew)"
+},
+{
+"key": "ocrScriptThai",
+"english": "ไทย (Thai)",
+"target": "ไทย (Thai)",
+"backtrans": "ไทย (Thai)"
+},
+{
+"key": "ocrScriptBengali",
+"english": "বাংলা (Bengali)",
+"target": "বাংলা (Bengali)",
+"backtrans": "বাংলা (Bengali)"
+},
+{
+"key": "ocrStatusInstalled",
+"english": "Installed",
+"target": "مثبّت",
+"backtrans": "Installed"
+},
+{
+"key": "ocrStatusDownloading",
+"english": "Downloading…",
+"target": "جارٍ التنزيل…",
+"backtrans": "Downloading…"
+},
+{
+"key": "exportNoTextError",
+"english": "This document has no text yet. Run OCR on it first.",
+"target": "لا يحتوي هذا المستند على نص بعد. شغّل التعرف على النص أولاً.",
+"backtrans": "This document does not contain text yet. Run text recognition first."
+},
+{
+"key": "saveFailedBanner",
+"english": "Your latest changes could not be saved.",
+"target": "تعذّر حفظ آخر تغييراتك.",
+"backtrans": "Could not save your latest changes."
+},
+{
+"key": "editLabel",
+"english": "Edit",
+"target": "تعديل",
+"backtrans": "Modify"
+},
+{
+"key": "fillTapHint",
+"english": "Tap the page where you want to type",
+"target": "اضغط على الصفحة حيث تريد الكتابة",
+"backtrans": "Tap the page where you want to write"
+},
+{
+"key": "fillTypeHint",
+"english": "Type here",
+"target": "اكتب هنا",
+"backtrans": "Write here"
+},
+{
+"key": "clearPage",
+"english": "Clear page",
+"target": "مسح الصفحة",
+"backtrans": "Clear the page"
+},
+{
+"key": "clearAllPages",
+"english": "Clear all pages",
+"target": "مسح كل الصفحات",
+"backtrans": "Clear all pages"
+},
+{
+"key": "clearedCount",
+"english": "Cleared {count}",
+"target": "تم مسح {count}",
+"backtrans": "{count} cleared"
+},
+{
+"key": "idLayoutRealSize",
+"english": "Real size",
+"target": "الحجم الحقيقي",
+"backtrans": "The real size"
+},
+{
+"key": "idLayoutFullWidth",
+"english": "Full width",
+"target": "العرض الكامل",
+"backtrans": "Full width"
+},
+{
+"key": "pagesToReadTitle",
+"english": "Pages to read",
+"target": "الصفحات المراد قراءتها",
+"backtrans": "Pages to be read"
+},
+{
+"key": "pagesToReadHint",
+"english": "This PDF has {count} pages. Pages that are pictures are read with OCR (about 10 seconds each); pages with real text are instant.",
+"target": "يحتوي هذا الملف على {count} صفحة. الصفحات المصورة تُقرأ بالتعرف الضوئي (نحو 10 ثوانٍ لكل صفحة)، أما الصفحات النصية فتُقرأ فورًا.",
+"backtrans": "This file contains {count} page. Photographed pages are read by optical recognition (about 10 seconds per page), while text pages are read instantly."
+},
+{
+"key": "pageFromLabel",
+"english": "From page",
+"target": "من الصفحة",
+"backtrans": "From page"
+},
+{
+"key": "pageToLabel",
+"english": "To page",
+"target": "إلى الصفحة",
+"backtrans": "To page"
+},
+{
+"key": "readingPageProgress",
+"english": "Page {page} of {total}",
+"target": "الصفحة {page} من {total}",
+"backtrans": "Page {page} of {total}"
+},
+{
+"key": "readingPageEta",
+"english": "Page {page} of {total} · about {minutes} min left",
+"target": "الصفحة {page} من {total} · تبقّى نحو {minutes} د",
+"backtrans": "Page {page} of {total} · about {minutes} min remaining"
+},
+{
+"key": "sealShapeRound",
+"english": "Round",
+"target": "دائري",
+"backtrans": "Circular"
+},
+{
+"key": "sealFontSans",
+"english": "Clean",
+"target": "عصري",
+"backtrans": "Modern"
+},
+{
+"key": "sealFontSerif",
+"english": "Classic",
+"target": "كلاسيكي",
+"backtrans": "Classic"
+},
+{
+"key": "sealInkLook",
+"english": "Worn stamp look",
+"target": "مظهر ختم مستعمل",
+"backtrans": "Look of a used stamp"
+},
+{
+"key": "sealSaveToLibrary",
+"english": "Save this seal",
+"target": "حفظ هذا الختم",
+"backtrans": "Save this seal"
+},
+{
+"key": "sealSavedHeading",
+"english": "Saved seals",
+"target": "الأختام المحفوظة",
+"backtrans": "Saved seals"
+},
+{
+"key": "sealTextColorLabel",
+"english": "Text colour",
+"target": "لون النص",
+"backtrans": "Text color"
+},
+{
+"key": "sealTextColorSame",
+"english": "Same as ring",
+"target": "مثل الإطار",
+"backtrans": "Like the frame"
+},
+{
+"key": "sealTextSizePercent",
+"english": "Text size {percent}%",
+"target": "حجم النص {percent}%",
+"backtrans": "Text size {percent}%"
+},
+{
+"key": "sealRemoveWhite",
+"english": "Make white transparent",
+"target": "جعل الأبيض شفافًا",
+"backtrans": "Make the white transparent"
+},
+{
+"key": "sealSavedMessage",
+"english": "Seal saved",
+"target": "تم حفظ الختم",
+"backtrans": "The seal was saved"
+},
+{
+"key": "signatureTabDraw",
+"english": "Draw",
+"target": "رسم",
+"backtrans": "Drawing"
+},
+{
+"key": "signatureTabType",
+"english": "Type",
+"target": "كتابة",
+"backtrans": "Writing"
+},
+{
+"key": "signatureTypeHint",
+"english": "Type your name",
+"target": "اكتب اسمك",
+"backtrans": "Write your name"
+},
+{
+"key": "signatureWidthLabel",
+"english": "Pen width",
+"target": "عرض القلم",
+"backtrans": "Pen width"
+},
+{
+"key": "signatureFontFlowing",
+"english": "Flowing",
+"target": "انسيابي",
+"backtrans": "Flowing"
+},
+{
+"key": "signatureFontHandwritten",
+"english": "Handwritten",
+"target": "خط اليد",
+"backtrans": "Handwriting"
+},
+{
+"key": "signatureSavedHeading",
+"english": "Saved signatures",
+"target": "التوقيعات المحفوظة",
+"backtrans": "Saved signatures"
+},
+{
+"key": "signatureNewOne",
+"english": "Draw or type a new one",
+"target": "ارسم أو اكتب توقيعًا جديدًا",
+"backtrans": "Draw or write a new signature"
+},
+{
+"key": "signatureDeleteSaved",
+"english": "Remove saved signature",
+"target": "إزالة التوقيع المحفوظ",
+"backtrans": "Remove the saved signature"
+},
+{
+"key": "annotationModeSelect",
+"english": "Select",
+"target": "تحديد",
+"backtrans": "Select"
+},
+{
+"key": "annotationModeEraser",
+"english": "Eraser",
+"target": "ممحاة",
+"backtrans": "Eraser"
+},
+{
+"key": "watermarkKindText",
+"english": "Text",
+"target": "نص",
+"backtrans": "Text"
+},
+{
+"key": "watermarkKindImage",
+"english": "Image",
+"target": "صورة",
+"backtrans": "Image"
+},
+{
+"key": "watermarkChooseImage",
+"english": "Choose image",
+"target": "اختر صورة",
+"backtrans": "Choose an image"
+},
+{
+"key": "watermarkLayoutLabel",
+"english": "Layout",
+"target": "التخطيط",
+"backtrans": "Layout"
+},
+{
+"key": "watermarkLayoutSingle",
+"english": "Single",
+"target": "مفرد",
+"backtrans": "Single"
+},
+{
+"key": "watermarkLayoutDiagonal",
+"english": "Diagonal",
+"target": "قطري",
+"backtrans": "Diagonal"
+},
+{
+"key": "watermarkLayoutTiled",
+"english": "Tiled",
+"target": "مكرر",
+"backtrans": "Repeated"
+},
+{
+"key": "watermarkPagesLabel",
+"english": "Pages",
+"target": "الصفحات",
+"backtrans": "Pages"
+},
+{
+"key": "watermarkPagesThis",
+"english": "This page",
+"target": "هذه الصفحة",
+"backtrans": "This page"
+},
+{
+"key": "watermarkPagesAll",
+"english": "All pages",
+"target": "كل الصفحات",
+"backtrans": "All pages"
+},
+{
+"key": "watermarkPagesRange",
+"english": "Range",
+"target": "نطاق",
+"backtrans": "Range"
+},
+{
+"key": "watermarkPagesRangeHint",
+"english": "e.g. 1-3, 5",
+"target": "مثال: 1-3, 5",
+"backtrans": "Example: 1-3, 5"
+},
+{
+"key": "watermarkPagesInvalid",
+"english": "Check the pages (the document has {count} pages)",
+"target": "تحقق من الصفحات (المستند يحتوي على {count} صفحة)",
+"backtrans": "Check the pages (the document contains {count} page)"
+},
+{
+"key": "cropAuto",
+"english": "Auto-detect",
+"target": "اكتشاف تلقائي",
+"backtrans": "Automatic detection"
+},
+{
+"key": "cropAspectFree",
+"english": "Free",
+"target": "حر",
+"backtrans": "Free"
+},
+{
+"key": "cropAspectId",
+"english": "ID card",
+"target": "بطاقة هوية",
+"backtrans": "ID card"
+},
+{
+"key": "cropAspectSquare",
+"english": "Square",
+"target": "مربع",
+"backtrans": "Square"
+},
+{
+"key": "cropNoPageFound",
+"english": "Couldn't find the page edges. Drag the corners.",
+"target": "لم يتم العثور على حواف الصفحة. اسحب الزوايا.",
+"backtrans": "The page edges were not found. Drag the corners."
+},
+{
+"key": "straightenLabel",
+"english": "Straighten",
+"target": "تسوية الميل",
+"backtrans": "Straighten the tilt"
+},
+{
+"key": "filterMagicColor",
+"english": "Magic colour",
+"target": "ألوان سحرية",
+"backtrans": "Magic colors"
+},
+{
+"key": "filterBrightnessLabel",
+"english": "Brightness",
+"target": "السطوع",
+"backtrans": "Brightness"
+},
+{
+"key": "filterContrastLabel",
+"english": "Contrast",
+"target": "التباين",
+"backtrans": "Contrast"
+},
+{
+"key": "resizeUpscaleWarning",
+"english": "Enlarging doesn't add detail — the page may look soft.",
+"target": "التكبير لا يضيف تفاصيل، وقد تبدو الصفحة ضبابية.",
+"backtrans": "Enlarging does not add detail, and the page may look blurry."
+},
+{
+"key": "eraserAutoColorTooltip",
+"english": "Match the page colour automatically",
+"target": "مطابقة لون الصفحة تلقائيًا",
+"backtrans": "Automatically match the page color"
+},
+{
+"key": "eraserZoomTooltip",
+"english": "Zoom and move (pinch)",
+"target": "تكبير وتحريك (قرص بإصبعين)",
+"backtrans": "Zoom and move (pinch with two fingers)"
+},
+{
+"key": "pagesSelectTooltip",
+"english": "Select pages",
+"target": "تحديد صفحات",
+"backtrans": "Select pages"
+},
+{
+"key": "pagesDeleteCount",
+"english": "Delete {count}",
+"target": "حذف {count}",
+"backtrans": "Delete {count}"
+},
+{
+"key": "pagesDeleteConfirm",
+"english": "Delete {count} pages? They are removed when you save.",
+"target": "حذف {count} صفحات؟ تتم الإزالة عند الحفظ.",
+"backtrans": "Delete {count} pages? Removal takes place on saving."
+},
+{
+"key": "compressTargetLabel",
+"english": "Max size",
+"target": "الحجم الأقصى",
+"backtrans": "Maximum size"
+},
+{
+"key": "compressNoLimit",
+"english": "No limit",
+"target": "بلا حد",
+"backtrans": "Without limit"
+},
+{
+"key": "printPaperLabel",
+"english": "Paper",
+"target": "الورق",
+"backtrans": "Paper"
+},
+{
+"key": "printMarginLabel",
+"english": "Margin",
+"target": "الهامش",
+"backtrans": "Margin"
+},
+{
+"key": "printMarginNone",
+"english": "None",
+"target": "بدون",
+"backtrans": "Without"
+},
+{
+"key": "printMarginNarrow",
+"english": "Narrow",
+"target": "ضيق",
+"backtrans": "Narrow"
+},
+{
+"key": "printMarginNormal",
+"english": "Normal",
+"target": "عادي",
+"backtrans": "Normal"
+},
+{
+"key": "printFitLabel",
+"english": "Scaling",
+"target": "الملاءمة",
+"backtrans": "Fitting"
+},
+{
+"key": "printFitFit",
+"english": "Fit page",
+"target": "ملاءمة الصفحة",
+"backtrans": "Fit the page"
+},
+{
+"key": "printFitFill",
+"english": "Fill sheet (trims edges)",
+"target": "ملء الورقة (يقص الحواف)",
+"backtrans": "Fill the sheet (cuts the edges)"
+},
+{
+"key": "printPerSheetLabel",
+"english": "Pages per sheet",
+"target": "صفحات لكل ورقة",
+"backtrans": "Pages per sheet"
+},
+{
+"key": "emailMessageLabel",
+"english": "Message",
+"target": "الرسالة",
+"backtrans": "The message"
+},
+{
+"key": "emailMessageHint",
+"english": "Add a note (optional)",
+"target": "أضف ملاحظة (اختياري)",
+"backtrans": "Add a note (optional)"
+},
+{
+"key": "emailLimitMissed",
+"english": "Could not get under {mb} MB; sent the smallest version.",
+"target": "تعذر الوصول إلى أقل من {mb} ميغابايت؛ تم إرسال أصغر نسخة.",
+"backtrans": "Could not reach less than {mb} megabyte; the smallest version was sent."
+}
+]

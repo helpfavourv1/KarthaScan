@@ -1,0 +1,3362 @@
+[
+{
+"key": "privacyOptionsLabel",
+"english": "Privacy settings",
+"target": "Настройки конфиденциальности",
+"backtrans": "Privacy settings"
+},
+{
+"key": "commonCancel",
+"english": "Cancel",
+"target": "Отмена",
+"backtrans": "Cancel"
+},
+{
+"key": "commonDelete",
+"english": "Delete",
+"target": "Удалить",
+"backtrans": "Delete"
+},
+{
+"key": "commonSave",
+"english": "Save",
+"target": "Сохранить",
+"backtrans": "Save"
+},
+{
+"key": "commonAdd",
+"english": "Add",
+"target": "Добавить",
+"backtrans": "Add"
+},
+{
+"key": "commonExport",
+"english": "Export",
+"target": "Экспорт",
+"backtrans": "Export"
+},
+{
+"key": "commonImport",
+"english": "Import",
+"target": "Импорт",
+"backtrans": "Import"
+},
+{
+"key": "commonSkip",
+"english": "Skip",
+"target": "Пропустить",
+"backtrans": "Skip"
+},
+{
+"key": "commonClear",
+"english": "Clear",
+"target": "Очистить",
+"backtrans": "Clear"
+},
+{
+"key": "emptyStateDefaultMessage",
+"english": "Tap the camera to scan your first document.",
+"target": "Нажмите на камеру, чтобы отсканировать первый документ.",
+"backtrans": "Tap the camera to scan your first document."
+},
+{
+"key": "exportFormatSheetTitle",
+"english": "Export as",
+"target": "Экспортировать как",
+"backtrans": "Export as"
+},
+{
+"key": "exportFormatPdfLabel",
+"english": "PDF",
+"target": "PDF",
+"backtrans": "PDF"
+},
+{
+"key": "exportFormatPdfDescription",
+"english": "Best for sharing and printing",
+"target": "Лучше всего для обмена и печати",
+"backtrans": "Best for sharing and printing"
+},
+{
+"key": "exportFormatDocxLabel",
+"english": "Word (.docx)",
+"target": "Word (.docx)",
+"backtrans": "Word (.docx)"
+},
+{
+"key": "exportFormatDocxDescription",
+"english": "Editable text document",
+"target": "Редактируемый текстовый документ",
+"backtrans": "Editable text document"
+},
+{
+"key": "exportFormatTxtLabel",
+"english": "Text (.txt)",
+"target": "Текст (.txt)",
+"backtrans": "Text (.txt)"
+},
+{
+"key": "exportFormatTxtDescription",
+"english": "Plain OCR text only",
+"target": "Только обычный текст OCR",
+"backtrans": "Plain OCR text only"
+},
+{
+"key": "exportFormatJpgLabel",
+"english": "JPG",
+"target": "JPG",
+"backtrans": "JPG"
+},
+{
+"key": "exportFormatJpgDescription",
+"english": "One image per page",
+"target": "Одно изображение на страницу",
+"backtrans": "One image per page"
+},
+{
+"key": "exportFormatPngLabel",
+"english": "PNG",
+"target": "PNG",
+"backtrans": "PNG"
+},
+{
+"key": "exportFormatPngDescription",
+"english": "One image per page, lossless",
+"target": "Одно изображение на страницу, без потерь",
+"backtrans": "One image per page, lossless"
+},
+{
+"key": "filterSheetTitle",
+"english": "Filters",
+"target": "Фильтры",
+"backtrans": "Filters"
+},
+{
+"key": "filterOriginal",
+"english": "Original",
+"target": "Оригинал",
+"backtrans": "Original"
+},
+{
+"key": "filterGrayscale",
+"english": "Grayscale",
+"target": "Оттенки серого",
+"backtrans": "Shades of gray"
+},
+{
+"key": "filterBlackAndWhite",
+"english": "B&W",
+"target": "Ч/Б",
+"backtrans": "B/W"
+},
+{
+"key": "filterColorEnhance",
+"english": "Color enhance",
+"target": "Улучшение цвета",
+"backtrans": "Color enhancement"
+},
+{
+"key": "filterShadowRemoval",
+"english": "Shadow removal",
+"target": "Удаление теней",
+"backtrans": "Shadow removal"
+},
+{
+"key": "proBadgeLabel",
+"english": "PRO",
+"target": "PRO",
+"backtrans": "PRO"
+},
+{
+"key": "scanListPageCount",
+"english": "{count, plural, =1{1 page} other{{count} pages}}",
+"target": "{count, plural, =1{1 страница} one{{count} страница} few{{count} страницы} many{{count} страниц} other{{count} страницы}}",
+"backtrans": "{count, plural, =1{1 page} one{{count} page} few{{count} pages} many{{count} pages} other{{count} pages}}"
+},
+{
+"key": "scanPreviewNoPages",
+"english": "No pages to show.",
+"target": "Нет страниц для отображения.",
+"backtrans": "No pages to display."
+},
+{
+"key": "shareTooltip",
+"english": "Share",
+"target": "Поделиться",
+"backtrans": "Share"
+},
+{
+"key": "signatureCanvasHint",
+"english": "Sign here",
+"target": "Подпишите здесь",
+"backtrans": "Sign here"
+},
+{
+"key": "folderDocumentCount",
+"english": "{count, plural, =1{1 document} other{{count} documents}}",
+"target": "{count, plural, =1{1 документ} one{{count} документ} few{{count} документа} many{{count} документов} other{{count} документа}}",
+"backtrans": "{count, plural, =1{1 document} one{{count} document} few{{count} documents} many{{count} documents} other{{count} documents}}"
+},
+{
+"key": "selectedCount",
+"english": "{count, plural, =1{1 selected} other{{count} selected}}",
+"target": "{count, plural, =1{1 выбран} one{{count} выбран} few{{count} выбрано} many{{count} выбрано} other{{count} выбрано}}",
+"backtrans": "{count, plural, =1{1 selected} one{{count} selected} few{{count} selected} many{{count} selected} other{{count} selected}}"
+},
+{
+"key": "batchExportTooltip",
+"english": "Batch export",
+"target": "Пакетный экспорт",
+"backtrans": "Batch export"
+},
+{
+"key": "deleteTooltip",
+"english": "Delete",
+"target": "Удалить",
+"backtrans": "Delete"
+},
+{
+"key": "searchHint",
+"english": "Search your scans",
+"target": "Поиск по сканам",
+"backtrans": "Search scans"
+},
+{
+"key": "settingsTooltip",
+"english": "Settings",
+"target": "Настройки",
+"backtrans": "Settings"
+},
+{
+"key": "foldersSectionHeader",
+"english": "Folders",
+"target": "Папки",
+"backtrans": "Folders"
+},
+{
+"key": "documentsSectionHeader",
+"english": "Documents",
+"target": "Документы",
+"backtrans": "Documents"
+},
+{
+"key": "exportingStatus",
+"english": "Exporting…",
+"target": "Экспортируется...",
+"backtrans": "Being exported..."
+},
+{
+"key": "exportDoneStatus",
+"english": "Done",
+"target": "Готово",
+"backtrans": "Done"
+},
+{
+"key": "exportGenericError",
+"english": "Something went wrong while exporting.",
+"target": "Что-то пошло не так при экспорте.",
+"backtrans": "Something went wrong during export."
+},
+{
+"key": "deleteFolderTitle",
+"english": "Delete this folder?",
+"target": "Удалить эту папку?",
+"backtrans": "Delete this folder?"
+},
+{
+"key": "deleteFolderMessage",
+"english": "Documents inside will not be deleted.",
+"target": "Документы внутри не будут удалены.",
+"backtrans": "Documents inside will not be deleted."
+},
+{
+"key": "deleteFolderTooltip",
+"english": "Delete folder",
+"target": "Удалить папку",
+"backtrans": "Delete folder"
+},
+{
+"key": "renameFolderTitle",
+"english": "Rename folder",
+"target": "Переименовать папку",
+"backtrans": "Rename folder"
+},
+{
+"key": "removeFromFolderTooltip",
+"english": "Remove from folder",
+"target": "Убрать из папки",
+"backtrans": "Remove from folder"
+},
+{
+"key": "noDocumentsInFolder",
+"english": "No documents in this folder yet.",
+"target": "В этой папке ещё нет документов.",
+"backtrans": "There are no documents in this folder yet."
+},
+{
+"key": "folderUnavailable",
+"english": "This folder is no longer available.",
+"target": "Эта папка больше недоступна.",
+"backtrans": "This folder is no longer available."
+},
+{
+"key": "migrationTitle",
+"english": "Device Migration",
+"target": "Перенос устройства",
+"backtrans": "Device transfer"
+},
+{
+"key": "migrationExplainer",
+"english": "This isn't automatic sync. Export creates a single encrypted backup file you move to your new device yourself, then import there.",
+"target": "Это не автоматическая синхронизация. Экспорт создаёт один зашифрованный файл резервной копии, который вы сами переносите на новое устройство и там импортируете.",
+"backtrans": "This is not automatic synchronization. Export creates one encrypted backup file, which you yourself transfer to the new device and import there."
+},
+{
+"key": "exportBackupButton",
+"english": "Export encrypted backup",
+"target": "Экспортировать зашифрованную копию",
+"backtrans": "Export encrypted copy"
+},
+{
+"key": "importBackupButton",
+"english": "Import from backup",
+"target": "Импортировать из копии",
+"backtrans": "Import from copy"
+},
+{
+"key": "setBackupPasswordTitle",
+"english": "Set a backup password",
+"target": "Установить пароль резервной копии",
+"backtrans": "Set backup password"
+},
+{
+"key": "enterBackupPasswordTitle",
+"english": "Enter backup password",
+"target": "Введите пароль резервной копии",
+"backtrans": "Enter backup password"
+},
+{
+"key": "buildingBackupStatus",
+"english": "Building backup…",
+"target": "Создание копии...",
+"backtrans": "Creating copy..."
+},
+{
+"key": "backupReadyStatus",
+"english": "Backup ready.",
+"target": "Копия готова.",
+"backtrans": "Copy is ready."
+},
+{
+"key": "couldNotCreateBackupError",
+"english": "Could not create the backup.",
+"target": "Не удалось создать резервную копию.",
+"backtrans": "Failed to create the backup."
+},
+{
+"key": "importingStatus",
+"english": "Importing…",
+"target": "Импорт...",
+"backtrans": "Importing..."
+},
+{
+"key": "couldNotImportBackupError",
+"english": "Could not import this backup. Check the password and try again.",
+"target": "Не удалось импортировать эту копию. Проверьте пароль и попробуйте снова.",
+"backtrans": "Failed to import this copy. Check the password and try again."
+},
+{
+"key": "backupCorruptedError",
+"english": "This backup file looks corrupted.",
+"target": "Этот файл резервной копии выглядит повреждённым.",
+"backtrans": "This backup file looks damaged."
+},
+{
+"key": "importedCount",
+"english": "{count, plural, =1{1 document imported} other{{count} documents imported}}",
+"target": "{count, plural, =1{1 документ импортирован} one{{count} документ импортирован} few{{count} документа импортировано} many{{count} документов импортировано} other{{count} документа импортировано}}",
+"backtrans": "{count, plural, =1{1 document imported} one{{count} document imported} few{{count} documents imported} many{{count} documents imported} other{{count} documents imported}}"
+},
+{
+"key": "continueButton",
+"english": "Continue",
+"target": "Продолжить",
+"backtrans": "Continue"
+},
+{
+"key": "restorePurchasesButton",
+"english": "Restore purchases",
+"target": "Восстановить покупки",
+"backtrans": "Restore purchases"
+},
+{
+"key": "pricingLoadingError",
+"english": "Pricing is still loading — try again in a moment.",
+"target": "Цены всё ещё загружаются — попробуйте через минуту.",
+"backtrans": "Prices are still loading — try in a minute."
+},
+{
+"key": "renameDocumentTitle",
+"english": "Rename document",
+"target": "Переименовать документ",
+"backtrans": "Rename document"
+},
+{
+"key": "addTagTitle",
+"english": "Add tag",
+"target": "Добавить тег",
+"backtrans": "Add tag"
+},
+{
+"key": "moveToFolderTooltip",
+"english": "Move to folder",
+"target": "Переместить в папку",
+"backtrans": "Move to folder"
+},
+{
+"key": "exportTooltip",
+"english": "Export",
+"target": "Экспорт",
+"backtrans": "Export"
+},
+{
+"key": "deleteScanTitle",
+"english": "Delete this scan?",
+"target": "Удалить этот скан?",
+"backtrans": "Delete this scan?"
+},
+{
+"key": "deleteScanMessage",
+"english": "This can't be undone.",
+"target": "Это действие нельзя отменить.",
+"backtrans": "This action cannot be undone."
+},
+{
+"key": "movedToFolderMessage",
+"english": "Moved to folder.",
+"target": "Перемещено в папку.",
+"backtrans": "Moved to folder."
+},
+{
+"key": "noTextRecognized",
+"english": "No text recognized.",
+"target": "Текст не распознан.",
+"backtrans": "Text not recognized."
+},
+{
+"key": "scanUnavailable",
+"english": "This scan is no longer available.",
+"target": "Этот скан больше недоступен.",
+"backtrans": "This scan is no longer available."
+},
+{
+"key": "settingsTitle",
+"english": "Settings",
+"target": "Настройки",
+"backtrans": "Settings"
+},
+{
+"key": "appearanceSectionLabel",
+"english": "Appearance",
+"target": "Внешний вид",
+"backtrans": "Appearance"
+},
+{
+"key": "themeLabel",
+"english": "Theme",
+"target": "Тема",
+"backtrans": "Theme"
+},
+{
+"key": "systemThemeOption",
+"english": "System",
+"target": "Системная",
+"backtrans": "System"
+},
+{
+"key": "lightThemeOption",
+"english": "Light",
+"target": "Светлая",
+"backtrans": "Light"
+},
+{
+"key": "darkThemeOption",
+"english": "Dark",
+"target": "Тёмная",
+"backtrans": "Dark"
+},
+{
+"key": "languageSectionLabel",
+"english": "Language",
+"target": "Язык",
+"backtrans": "Language"
+},
+{
+"key": "appLanguageLabel",
+"english": "App language",
+"target": "Язык приложения",
+"backtrans": "App language"
+},
+{
+"key": "storageSectionLabel",
+"english": "Storage",
+"target": "Хранилище",
+"backtrans": "Storage"
+},
+{
+"key": "deviceMigrationLabel",
+"english": "Device Migration",
+"target": "Перенос устройства",
+"backtrans": "Device transfer"
+},
+{
+"key": "subscriptionSectionLabel",
+"english": "Subscription",
+"target": "Подписка",
+"backtrans": "Subscription"
+},
+{
+"key": "aboutSectionLabel",
+"english": "About",
+"target": "О приложении",
+"backtrans": "About the app"
+},
+{
+"key": "privacyPolicyLabel",
+"english": "Privacy policy",
+"target": "Политика конфиденциальности",
+"backtrans": "Privacy policy"
+},
+{
+"key": "supportLabel",
+"english": "Support",
+"target": "Поддержка",
+"backtrans": "Support"
+},
+{
+"key": "couldNotOpenLinkError",
+"english": "Could not open link.",
+"target": "Не удалось открыть ссылку.",
+"backtrans": "Failed to open the link."
+},
+{
+"key": "restoreCompleteMessage",
+"english": "Restore complete.",
+"target": "Восстановление завершено.",
+"backtrans": "Restoration complete."
+},
+{
+"key": "genericErrorMessage",
+"english": "Something went wrong. Please try again.",
+"target": "Что-то пошло не так. Попробуйте снова.",
+"backtrans": "Something went wrong. Try again."
+},
+{
+"key": "homeLanguageTooltip",
+"english": "App Language",
+"target": "Язык приложения",
+"backtrans": "App language"
+},
+{
+"key": "removeAdsTitle",
+"english": "Remove Ads Forever",
+"target": "Удалить рекламу навсегда",
+"backtrans": "Delete ads forever"
+},
+{
+"key": "extractedTextTitle",
+"english": "Extracted Text",
+"target": "Извлечённый текст",
+"backtrans": "Extracted text"
+},
+{
+"key": "commonClose",
+"english": "Close",
+"target": "Закрыть",
+"backtrans": "Close"
+},
+{
+"key": "commonCopy",
+"english": "Copy",
+"target": "Копировать",
+"backtrans": "Copy"
+},
+{
+"key": "savedToDocumentText",
+"english": "Saved to document text",
+"target": "Сохранено в текст документа",
+"backtrans": "Saved to document text"
+},
+{
+"key": "regionOcrFailed",
+"english": "Region OCR failed",
+"target": "Не удалось распознать текст в области",
+"backtrans": "Failed to recognize text in the area"
+},
+{
+"key": "filterRemoved",
+"english": "Filter removed",
+"target": "Фильтр удалён",
+"backtrans": "Filter removed"
+},
+{
+"key": "filterApplied",
+"english": "Filter applied",
+"target": "Фильтр применён",
+"backtrans": "Filter applied"
+},
+{
+"key": "pageCropped",
+"english": "Page cropped",
+"target": "Страница обрезана",
+"backtrans": "Page cropped"
+},
+{
+"key": "revertToOriginalTitle",
+"english": "Revert to Original?",
+"target": "Вернуть к оригиналу?",
+"backtrans": "Return to original?"
+},
+{
+"key": "revertToOriginalMessage",
+"english": "This will undo all filters, rotations, crops, resizes, and eraser strokes on this page.",
+"target": "Это отменит все фильтры, повороты, обрезки, изменения размера и штрихи ластика на этой странице.",
+"backtrans": "This will undo all filters, rotations, crops, resizes and eraser strokes on this page."
+},
+{
+"key": "commonRevert",
+"english": "Revert",
+"target": "Вернуть",
+"backtrans": "Return"
+},
+{
+"key": "pageRevertedToOriginal",
+"english": "Page reverted to original",
+"target": "Страница возвращена к оригиналу",
+"backtrans": "Page returned to original"
+},
+{
+"key": "eraserApplied",
+"english": "Eraser applied",
+"target": "Ластик применён",
+"backtrans": "Eraser applied"
+},
+{
+"key": "pageResized",
+"english": "Page resized",
+"target": "Размер страницы изменён",
+"backtrans": "Page size changed"
+},
+{
+"key": "extractedAsNewDocument",
+"english": "Extracted as new document",
+"target": "Извлечено как новый документ",
+"backtrans": "Extracted as a new document"
+},
+{
+"key": "pagesUpdated",
+"english": "Pages updated",
+"target": "Страницы обновлены",
+"backtrans": "Pages updated"
+},
+{
+"key": "printOptionsTitle",
+"english": "Print Options",
+"target": "Параметры печати",
+"backtrans": "Print parameters"
+},
+{
+"key": "letterSizeUS",
+"english": "Letter size (US)",
+"target": "Формат Letter (США)",
+"backtrans": "Letter format (USA)"
+},
+{
+"key": "commonPrint",
+"english": "Print",
+"target": "Печать",
+"backtrans": "Print"
+},
+{
+"key": "printFailed",
+"english": "Print failed",
+"target": "Печать не удалась",
+"backtrans": "Printing failed"
+},
+{
+"key": "noEmailAppFound",
+"english": "No email app found",
+"target": "Не найдено приложение электронной почты",
+"backtrans": "No email application found"
+},
+{
+"key": "emailFailed",
+"english": "Email failed",
+"target": "Отправка письма не удалась",
+"backtrans": "Sending the email failed"
+},
+{
+"key": "fromPageLabel",
+"english": "From",
+"target": "С",
+"backtrans": "From"
+},
+{
+"key": "toPageLabel",
+"english": "To",
+"target": "По",
+"backtrans": "To"
+},
+{
+"key": "pdfImportedAsDocument",
+"english": "PDF imported as document",
+"target": "PDF импортирован как документ",
+"backtrans": "PDF imported as a document"
+},
+{
+"key": "frontSideCaptured",
+"english": "Front side captured. Now capture the back side.",
+"target": "Лицевая сторона отсканирована. Теперь отсканируйте оборотную.",
+"backtrans": "Front side scanned. Now scan the back side."
+},
+{
+"key": "idCardPdfGenerated",
+"english": "ID Card PDF Generated",
+"target": "PDF удостоверения создан",
+"backtrans": "Identity document PDF created [??: 'удостоверения' = ID/certificate, generic]"
+},
+{
+"key": "sharePdf",
+"english": "Share PDF",
+"target": "Поделиться PDF",
+"backtrans": "Share PDF"
+},
+{
+"key": "saveAsDocument",
+"english": "Save as Document",
+"target": "Сохранить как документ",
+"backtrans": "Save as document"
+},
+{
+"key": "commonDone",
+"english": "Done",
+"target": "Готово",
+"backtrans": "Done"
+},
+{
+"key": "documentSaved",
+"english": "Document saved",
+"target": "Документ сохранён",
+"backtrans": "Document saved"
+},
+{
+"key": "commonReset",
+"english": "Reset",
+"target": "Сброс",
+"backtrans": "Reset"
+},
+{
+"key": "autoScan",
+"english": "Auto Scan",
+"target": "Автосканирование",
+"backtrans": "Auto-scanning"
+},
+{
+"key": "importAndConvertDocument",
+"english": "Import & Convert Document",
+"target": "Импортировать и преобразовать документ",
+"backtrans": "Import and convert document"
+},
+{
+"key": "signatureTitle",
+"english": "Signature",
+"target": "Подпись",
+"backtrans": "Signature"
+},
+{
+"key": "signatureChoiceMessage",
+"english": "Use your saved signature or draw a new one?",
+"target": "Использовать сохранённую подпись или нарисовать новую?",
+"backtrans": "Use the saved signature or draw a new one?"
+},
+{
+"key": "useSavedSignature",
+"english": "Use Saved",
+"target": "Использовать сохранённую",
+"backtrans": "Use the saved one"
+},
+{
+"key": "drawNewSignature",
+"english": "Draw New",
+"target": "Нарисовать новую",
+"backtrans": "Draw a new one"
+},
+{
+"key": "copyAll",
+"english": "Copy all",
+"target": "Копировать всё",
+"backtrans": "Copy all"
+},
+{
+"key": "clearThis",
+"english": "Clear this",
+"target": "Очистить это",
+"backtrans": "Clear this"
+},
+{
+"key": "commonRemove",
+"english": "Remove",
+"target": "Удалить",
+"backtrans": "Remove"
+},
+{
+"key": "clearAll",
+"english": "Clear all",
+"target": "Очистить всё",
+"backtrans": "Clear all"
+},
+{
+"key": "addSignature",
+"english": "Add Signature",
+"target": "Добавить подпись",
+"backtrans": "Add signature"
+},
+{
+"key": "commonUse",
+"english": "Use",
+"target": "Использовать",
+"backtrans": "Use"
+},
+{
+"key": "stampTickedLabel",
+"english": "Ticked",
+"target": "Отмечено",
+"backtrans": "Marked"
+},
+{
+"key": "stampBoxLabel",
+"english": "Box",
+"target": "Поле",
+"backtrans": "Field [??: 'Поле' = field/box; ambiguous]"
+},
+{
+"key": "stampTickLabel",
+"english": "Tick",
+"target": "Галочка",
+"backtrans": "Check mark"
+},
+{
+"key": "commonCustom",
+"english": "Custom",
+"target": "Пользовательский",
+"backtrans": "User-defined"
+},
+{
+"key": "commonChange",
+"english": "Change",
+"target": "Изменить",
+"backtrans": "Change"
+},
+{
+"key": "commonColor",
+"english": "Color",
+"target": "Цвет",
+"backtrans": "Color"
+},
+{
+"key": "stampPaperLabel",
+"english": "Paper",
+"target": "Бумага",
+"backtrans": "Paper"
+},
+{
+"key": "whiteHaloLabel",
+"english": "White halo (readability)",
+"target": "Белый ореол (читаемость)",
+"backtrans": "White halo (readability)"
+},
+{
+"key": "commonCreate",
+"english": "Create",
+"target": "Создать",
+"backtrans": "Create"
+},
+{
+"key": "newFolderTitle",
+"english": "New Folder",
+"target": "Новая папка",
+"backtrans": "New folder"
+},
+{
+"key": "batchExportEmptyMessage",
+"english": "No documents to batch export. Scan some first.",
+"target": "Нет документов для пакетного экспорта. Сначала отсканируйте несколько.",
+"backtrans": "No documents for batch export. Scan some first."
+},
+{
+"key": "newFolderTooltip",
+"english": "New Folder",
+"target": "Новая папка",
+"backtrans": "New folder"
+},
+{
+"key": "accentColorTooltip",
+"english": "Accent Color",
+"target": "Цвет акцента",
+"backtrans": "Accent color"
+},
+{
+"key": "moveToFolderTitle",
+"english": "Move to Folder",
+"target": "Переместить в папку",
+"backtrans": "Move to folder"
+},
+{
+"key": "noFoldersYetHomeMessage",
+"english": "No folders yet. Create one from the home screen.",
+"target": "Папок ещё нет. Создайте одну с главного экрана.",
+"backtrans": "No folders yet. Create one from the main screen."
+},
+{
+"key": "appLanguageTitle",
+"english": "App Language",
+"target": "Язык приложения",
+"backtrans": "App language"
+},
+{
+"key": "accentColorTitle",
+"english": "Accent Color",
+"target": "Цвет акцента",
+"backtrans": "Accent color"
+},
+{
+"key": "sealEditTitle",
+"english": "Edit Custom Seal",
+"target": "Редактировать печать",
+"backtrans": "Edit seal"
+},
+{
+"key": "sealCreateTitle",
+"english": "Custom Seal",
+"target": "Пользовательская печать",
+"backtrans": "User-defined seal"
+},
+{
+"key": "sealMainTextLabel",
+"english": "Main text (top arc / box)",
+"target": "Основной текст (верхняя дуга / прямоугольник)",
+"backtrans": "Main text (upper arc / rectangle)"
+},
+{
+"key": "sealSubtextLabel",
+"english": "Subtext (bottom arc / below)",
+"target": "Дополнительный текст (нижняя дуга / под ним)",
+"backtrans": "Additional text (lower arc / below it)"
+},
+{
+"key": "sealShapeOval",
+"english": "Oval",
+"target": "Овал",
+"backtrans": "Oval"
+},
+{
+"key": "sealShapeBox",
+"english": "Box",
+"target": "Прямоугольник",
+"backtrans": "Rectangle"
+},
+{
+"key": "sealCenterStar",
+"english": "Star",
+"target": "Звезда",
+"backtrans": "Star"
+},
+{
+"key": "sealCenterText",
+"english": "Text",
+"target": "Текст",
+"backtrans": "Text"
+},
+{
+"key": "sealCenterLogo",
+"english": "Logo",
+"target": "Логотип",
+"backtrans": "Logo"
+},
+{
+"key": "sealCenterNone",
+"english": "None",
+"target": "Нет",
+"backtrans": "None"
+},
+{
+"key": "sealCenterTextLabel",
+"english": "Center text",
+"target": "Центральный текст",
+"backtrans": "Center text"
+},
+{
+"key": "sealLogoReady",
+"english": "Logo ready",
+"target": "Логотип готов",
+"backtrans": "Logo is ready"
+},
+{
+"key": "textSizeLabel",
+"english": "Text size: {size}",
+"target": "Размер текста: {size}",
+"backtrans": "Text size: {size}"
+},
+{
+"key": "commonUpdate",
+"english": "Update",
+"target": "Обновить",
+"backtrans": "Update"
+},
+{
+"key": "managePagesTitle",
+"english": "Manage Pages",
+"target": "Управление страницами",
+"backtrans": "Page management"
+},
+{
+"key": "pageLabel",
+"english": "Page {index}",
+"target": "Страница {index}",
+"backtrans": "Page {index}"
+},
+{
+"key": "duplicateAction",
+"english": "Duplicate",
+"target": "Дублировать",
+"backtrans": "Duplicate"
+},
+{
+"key": "rotate90Action",
+"english": "Rotate 90°",
+"target": "Повернуть на 90°",
+"backtrans": "Rotate by 90°"
+},
+{
+"key": "extractToNewDocAction",
+"english": "Extract to new doc",
+"target": "Извлечь в новый документ",
+"backtrans": "Extract into a new document"
+},
+{
+"key": "addPageTitle",
+"english": "Add Page",
+"target": "Добавить страницу",
+"backtrans": "Add page"
+},
+{
+"key": "cameraSource",
+"english": "Camera",
+"target": "Камера",
+"backtrans": "Camera"
+},
+{
+"key": "importFromGallery",
+"english": "Import from Gallery",
+"target": "Импорт из галереи",
+"backtrans": "Import from gallery"
+},
+{
+"key": "fromAnotherDocument",
+"english": "From Another Document",
+"target": "Из другого документа",
+"backtrans": "From another document"
+},
+{
+"key": "pageCountLabel",
+"english": "{count, plural, =0{No pages} =1{1 page} other{{count} pages}}",
+"target": "{count, plural, =0{Нет страниц} =1{1 страница} one{{count} страница} few{{count} страницы} many{{count} страниц} other{{count} страницы}}",
+"backtrans": "{count, plural, =0{No pages} =1{1 page} one{{count} page} few{{count} pages} many{{count} pages} other{{count} pages}}"
+},
+{
+"key": "commonConfirm",
+"english": "Confirm",
+"target": "Подтвердить",
+"backtrans": "Confirm"
+},
+{
+"key": "applyToAllPages",
+"english": "Apply to all pages",
+"target": "Применить ко всем страницам",
+"backtrans": "Apply to all pages"
+},
+{
+"key": "widthLabel",
+"english": "Width",
+"target": "Ширина",
+"backtrans": "Width"
+},
+{
+"key": "heightLabel",
+"english": "Height",
+"target": "Высота",
+"backtrans": "Height"
+},
+{
+"key": "lockAspectRatio",
+"english": "Lock aspect ratio",
+"target": "Зафиксировать пропорции",
+"backtrans": "Fix the proportions"
+},
+{
+"key": "originalDimensions",
+"english": "Original: {w}×{h}",
+"target": "Оригинал: {w}×{h}",
+"backtrans": "Original: {w}×{h}"
+},
+{
+"key": "ocrSectionLabel",
+"english": "OCR",
+"target": "OCR",
+"backtrans": "OCR"
+},
+{
+"key": "ocrLanguagesLabel",
+"english": "OCR Languages",
+"target": "Языки OCR",
+"backtrans": "OCR languages"
+},
+{
+"key": "captureBehaviorSectionLabel",
+"english": "CAPTURE BEHAVIOR",
+"target": "ПОВЕДЕНИЕ ПРИ СКАНИРОВАНИИ",
+"backtrans": "BEHAVIOR DURING SCANNING"
+},
+{
+"key": "autoCopyOcrLabel",
+"english": "Auto-copy OCR",
+"target": "Автокопирование OCR",
+"backtrans": "Auto-copy OCR"
+},
+{
+"key": "autoCopyOcrSubtitle",
+"english": "Copy text to clipboard after scan",
+"target": "Копировать текст в буфер после сканирования",
+"backtrans": "Copy text to the clipboard after scanning"
+},
+{
+"key": "beepOnCaptureLabel",
+"english": "Beep on capture",
+"target": "Звуковой сигнал при сканировании",
+"backtrans": "Sound signal on scanning"
+},
+{
+"key": "beepOnCaptureSubtitle",
+"english": "Play sound when scan completes",
+"target": "Воспроизвести звук при завершении сканирования",
+"backtrans": "Play a sound when scanning completes"
+},
+{
+"key": "vibrateOnCaptureLabel",
+"english": "Vibrate on capture",
+"target": "Вибрация при сканировании",
+"backtrans": "Vibration on scanning"
+},
+{
+"key": "vibrateOnCaptureSubtitle",
+"english": "Haptic feedback when scan completes",
+"target": "Тактильный отклик при завершении сканирования",
+"backtrans": "Tactile response when scanning completes"
+},
+{
+"key": "adsRemovedLabel",
+"english": "Ads Removed",
+"target": "Реклама удалена",
+"backtrans": "Ads removed"
+},
+{
+"key": "diagnosticsSectionLabel",
+"english": "DIAGNOSTICS",
+"target": "ДИАГНОСТИКА",
+"backtrans": "DIAGNOSTICS"
+},
+{
+"key": "debugLogsLabel",
+"english": "Debug Logs",
+"target": "Журналы отладки",
+"backtrans": "Debug logs [??: 'Журналы' = journals/logs]"
+},
+{
+"key": "logEntriesLabel",
+"english": "{count, plural, =0{No entries} =1{1 entry} other{{count} entries}}",
+"target": "{count, plural, =0{Нет записей} =1{1 запись} one{{count} запись} few{{count} записи} many{{count} записей} other{{count} записи}}",
+"backtrans": "{count, plural, =0{No entries} =1{1 entry} one{{count} entry} few{{count} entries} many{{count} entries} other{{count} entries}}"
+},
+{
+"key": "ocrStatusBuiltIn",
+"english": "Built-in",
+"target": "Встроенный",
+"backtrans": "Built-in"
+},
+{
+"key": "ocrStatusChecking",
+"english": "Checking...",
+"target": "Проверка...",
+"backtrans": "Checking..."
+},
+{
+"key": "ocrStatusOnDemand",
+"english": "On-demand",
+"target": "По запросу",
+"backtrans": "On request"
+},
+{
+"key": "savedAsNewDocument",
+"english": "Saved as new document",
+"target": "Сохранено как новый документ",
+"backtrans": "Saved as a new document"
+},
+{
+"key": "conversionFailedPrefix",
+"english": "Conversion failed",
+"target": "Преобразование не удалось",
+"backtrans": "Conversion failed"
+},
+{
+"key": "convertDocumentTitle",
+"english": "Convert Document",
+"target": "Преобразовать документ",
+"backtrans": "Convert document"
+},
+{
+"key": "convertToLabel",
+"english": "Convert to:",
+"target": "Преобразовать в:",
+"backtrans": "Convert to:"
+},
+{
+"key": "actionLabel",
+"english": "Action:",
+"target": "Действие:",
+"backtrans": "Action:"
+},
+{
+"key": "saveAsNewDocumentAction",
+"english": "Save as new Document",
+"target": "Сохранить как новый документ",
+"backtrans": "Save as a new document"
+},
+{
+"key": "exportAndShareAction",
+"english": "Export & Share",
+"target": "Экспорт и отправка",
+"backtrans": "Export and sending"
+},
+{
+"key": "docxWarningMessage",
+"english": "DOCX sources render poorly as pages — save inside the app is limited to JPG/PNG from image, PDF, TXT or CSV sources. Use Export & Share for this file.",
+"target": "Источники DOCX плохо отображаются как страницы — сохранение в приложении ограничено JPG/PNG из изображений, PDF, TXT или CSV. Используйте Экспорт и отправка для этого файла.",
+"backtrans": "DOCX sources display poorly as pages — saving in the app is limited to JPG/PNG from images, PDF, TXT or CSV. Use Export and sending for this file."
+},
+{
+"key": "saveInsideAppWarning",
+"english": "To save inside the app, choose JPG or PNG. Other targets are exported as files.",
+"target": "Чтобы сохранить в приложении, выберите JPG или PNG. Другие форматы экспортируются как файлы.",
+"backtrans": "To save in the app, choose JPG or PNG. Other formats are exported as files."
+},
+{
+"key": "commonConvert",
+"english": "Convert",
+"target": "Преобразовать",
+"backtrans": "Convert"
+},
+{
+"key": "conversionStarting",
+"english": "Starting…",
+"target": "Запуск...",
+"backtrans": "Starting..."
+},
+{
+"key": "convertedDocTitle",
+"english": "Converted {date}",
+"target": "Преобразовано {date}",
+"backtrans": "Converted {date}"
+},
+{
+"key": "progressReading",
+"english": "Reading…",
+"target": "Чтение...",
+"backtrans": "Reading..."
+},
+{
+"key": "progressCopying",
+"english": "Copying…",
+"target": "Копирование...",
+"backtrans": "Copying..."
+},
+{
+"key": "progressBuildingPdf",
+"english": "Building PDF…",
+"target": "Создание PDF...",
+"backtrans": "Creating PDF..."
+},
+{
+"key": "progressBuildingDocx",
+"english": "Building DOCX…",
+"target": "Создание DOCX...",
+"backtrans": "Creating DOCX..."
+},
+{
+"key": "progressDecodingImage",
+"english": "Decoding image…",
+"target": "Декодирование изображения...",
+"backtrans": "Decoding image..."
+},
+{
+"key": "progressExtractingText",
+"english": "Extracting text…",
+"target": "Извлечение текста...",
+"backtrans": "Extracting text..."
+},
+{
+"key": "progressSaving",
+"english": "Saving…",
+"target": "Сохранение...",
+"backtrans": "Saving..."
+},
+{
+"key": "progressRasterizing",
+"english": "Rasterizing pages…",
+"target": "Растеризация страниц...",
+"backtrans": "Rasterizing pages..."
+},
+{
+"key": "progressEncodingPage",
+"english": "Encoding page {current} of {total}…",
+"target": "Кодирование страницы {current} из {total}...",
+"backtrans": "Encoding page {current} of {total}..."
+},
+{
+"key": "watermarkEditTitle",
+"english": "Edit Watermark",
+"target": "Редактировать водяной знак",
+"backtrans": "Edit watermark"
+},
+{
+"key": "watermarkAddTitle",
+"english": "Add Watermark",
+"target": "Добавить водяной знак",
+"backtrans": "Add watermark"
+},
+{
+"key": "watermarkTextLabel",
+"english": "Text",
+"target": "Текст",
+"backtrans": "Text"
+},
+{
+"key": "opacityPercentLabel",
+"english": "Opacity: {percent}%",
+"target": "Непрозрачность: {percent}%",
+"backtrans": "Opacity: {percent}% [??: 'Непрозрачность' = opacity]"
+},
+{
+"key": "sizePtLabel",
+"english": "Size: {size}pt",
+"target": "Размер: {size}пт",
+"backtrans": "Size: {size}pt"
+},
+{
+"key": "alignLabel",
+"english": "Align",
+"target": "Выравнивание",
+"backtrans": "Alignment"
+},
+{
+"key": "exportSavedToDownloads",
+"english": "Saved to Downloads",
+"target": "Сохранено в Загрузки",
+"backtrans": "Saved to Downloads"
+},
+{
+"key": "commonShare",
+"english": "Share",
+"target": "Поделиться",
+"backtrans": "Share"
+},
+{
+"key": "exportTitle",
+"english": "Export",
+"target": "Экспорт",
+"backtrans": "Export"
+},
+{
+"key": "targetMbLabel",
+"english": "{mb} MB",
+"target": "{mb} МБ",
+"backtrans": "{mb} MB"
+},
+{
+"key": "filterColor",
+"english": "Color",
+"target": "Цвет",
+"backtrans": "Color"
+},
+{
+"key": "filterShadow",
+"english": "Shadow",
+"target": "Тень",
+"backtrans": "Shadow"
+},
+{
+"key": "docxModeTextOnly",
+"english": "Text Only",
+"target": "Только текст",
+"backtrans": "Text only"
+},
+{
+"key": "docxModeWithImages",
+"english": "With Images",
+"target": "С изображениями",
+"backtrans": "With images"
+},
+{
+"key": "saveToDeviceButton",
+"english": "Save to Device",
+"target": "Сохранить на устройство",
+"backtrans": "Save to device"
+},
+{
+"key": "pageIndicator",
+"english": "Page {current} / {total}",
+"target": "Страница {current} / {total}",
+"backtrans": "Page {current} / {total}"
+},
+{
+"key": "fullscreenLabel",
+"english": "Fullscreen",
+"target": "Полный экран",
+"backtrans": "Full screen"
+},
+{
+"key": "batchExportSignatureDisabled",
+"english": "Batch export — signature placement disabled",
+"target": "Пакетный экспорт — размещение подписи отключено",
+"backtrans": "Batch export — signature placement disabled"
+},
+{
+"key": "fitToTargetMbLabel",
+"english": "Fit to target MB",
+"target": "Подогнать под целевые МБ",
+"backtrans": "Fit to target MB"
+},
+{
+"key": "moreOptionsTooltip",
+"english": "More options",
+"target": "Дополнительные параметры",
+"backtrans": "Additional parameters"
+},
+{
+"key": "commonRename",
+"english": "Rename",
+"target": "Переименовать",
+"backtrans": "Rename"
+},
+{
+"key": "addTagsAction",
+"english": "Add Tags",
+"target": "Добавить теги",
+"backtrans": "Add tags"
+},
+{
+"key": "editDocumentAction",
+"english": "Edit Document",
+"target": "Редактировать документ",
+"backtrans": "Edit document"
+},
+{
+"key": "copiedToClipboard",
+"english": "Copied to clipboard",
+"target": "Скопировано в буфер обмена",
+"backtrans": "Copied to clipboard"
+},
+{
+"key": "favoriteTooltip",
+"english": "Favorite",
+"target": "Избранное",
+"backtrans": "Favorite"
+},
+{
+"key": "noFoldersYet",
+"english": "No folders yet",
+"target": "Папок ещё нет",
+"backtrans": "No folders yet"
+},
+{
+"key": "rotateLabel",
+"english": "Rotate",
+"target": "Повернуть",
+"backtrans": "Rotate"
+},
+{
+"key": "scaleLabel",
+"english": "Scale",
+"target": "Масштаб",
+"backtrans": "Scale"
+},
+{
+"key": "eraserTitle",
+"english": "Eraser",
+"target": "Ластик",
+"backtrans": "Eraser"
+},
+{
+"key": "tapToSampleColor",
+"english": "Tap a spot to sample its color",
+"target": "Нажмите на точку, чтобы взять образец цвета",
+"backtrans": "Tap a point to take a color sample"
+},
+{
+"key": "commonSize",
+"english": "Size",
+"target": "Размер",
+"backtrans": "Size"
+},
+{
+"key": "sampleColorTooltip",
+"english": "Sample color from page",
+"target": "Взять цвет со страницы",
+"backtrans": "Take color from the page"
+},
+{
+"key": "marqueeEraseTooltip",
+"english": "Marquee erase",
+"target": "Стереть выделением",
+"backtrans": "Erase by selection"
+},
+{
+"key": "commonApply",
+"english": "Apply",
+"target": "Применить",
+"backtrans": "Apply"
+},
+{
+"key": "filterTitle",
+"english": "Filter",
+"target": "Фильтр",
+"backtrans": "Filter"
+},
+{
+"key": "intensityLabel",
+"english": "Intensity",
+"target": "Интенсивность",
+"backtrans": "Intensity"
+},
+{
+"key": "selectRegionTitle",
+"english": "Select Region",
+"target": "Выбрать область",
+"backtrans": "Select area"
+},
+{
+"key": "commonExtract",
+"english": "Extract",
+"target": "Извлечь",
+"backtrans": "Extract"
+},
+{
+"key": "customColorTitle",
+"english": "Custom Color",
+"target": "Пользовательский цвет",
+"backtrans": "User-defined color"
+},
+{
+"key": "documentNotFound",
+"english": "Document not found",
+"target": "Документ не найден",
+"backtrans": "Document not found"
+},
+{
+"key": "clearLogsTooltip",
+"english": "Clear logs",
+"target": "Очистить журналы",
+"backtrans": "Clear logs [??: 'журналы' = journals/logs]"
+},
+{
+"key": "placeHereLabel",
+"english": "Place here",
+"target": "Разместить здесь",
+"backtrans": "Place here"
+},
+{
+"key": "tryAgainButton",
+"english": "Try again",
+"target": "Попробовать снова",
+"backtrans": "Try again"
+},
+{
+"key": "emptyDocumentMessage",
+"english": "This document has no pages.",
+"target": "В этом документе нет страниц.",
+"backtrans": "There are no pages in this document."
+},
+{
+"key": "cameraErrorPrefix",
+"english": "Camera error",
+"target": "Ошибка камеры",
+"backtrans": "Camera error"
+},
+{
+"key": "importErrorPrefix",
+"english": "Import error",
+"target": "Ошибка импорта",
+"backtrans": "Import error"
+},
+{
+"key": "pdfImportErrorPrefix",
+"english": "PDF import error",
+"target": "Ошибка импорта PDF",
+"backtrans": "PDF import error"
+},
+{
+"key": "pickErrorPrefix",
+"english": "Pick error",
+"target": "Ошибка выбора",
+"backtrans": "Selection error"
+},
+{
+"key": "scannerErrorPrefix",
+"english": "Scanner error",
+"target": "Ошибка сканера",
+"backtrans": "Scanner error"
+},
+{
+"key": "idPdfErrorPrefix",
+"english": "Error generating ID PDF",
+"target": "Ошибка создания PDF удостоверения",
+"backtrans": "Error creating identity document PDF"
+},
+{
+"key": "genericErrorPrefix",
+"english": "Error",
+"target": "Ошибка",
+"backtrans": "Error"
+},
+{
+"key": "annotateTitle",
+"english": "Annotate",
+"target": "Аннотация",
+"backtrans": "Annotation"
+},
+{
+"key": "placementsCountLabel",
+"english": "{count, plural, =0{Nothing placed} =1{1 placed} other{{count} placed}}",
+"target": "{count, plural, =0{Ничего не размещено} =1{1 размещён} one{{count} размещён} few{{count} размещено} many{{count} размещено} other{{count} размещено}}",
+"backtrans": "{count, plural, =0{Nothing placed} =1{1 placed} one{{count} placed} few{{count} placed} many{{count} placed} other{{count} placed}}"
+},
+{
+"key": "ocrUnavailableTooltip",
+"english": "OCR unavailable on this device.",
+"target": "OCR недоступен на этом устройстве.",
+"backtrans": "OCR is unavailable on this device."
+},
+{
+"key": "docScannerUnsupportedMessage",
+"english": "Your device doesn't support the advanced document scanner. Take a photo with your Camera app, then tap Import below to crop and save it.",
+"target": "Ваше устройство не поддерживает расширенный сканер документов. Сделайте фото приложением Камера, затем нажмите Импорт ниже, чтобы обрезать и сохранить.",
+"backtrans": "Your device does not support the advanced document scanner. Take a photo with the Camera app, then tap Import below to crop and save."
+},
+{
+"key": "billingUnavailableMessage",
+"english": "Billing unavailable — try again later.",
+"target": "Платежи недоступны — попробуйте позже.",
+"backtrans": "Payments are unavailable — try later."
+},
+{
+"key": "ocrNoInternetMessage",
+"english": "No internet. Connect once to download the language pack.",
+"target": "Нет интернета. Подключитесь один раз, чтобы загрузить языковой пакет.",
+"backtrans": "No internet. Connect once to download the language pack."
+},
+{
+"key": "ocrLanguagePackNotReady",
+"english": "Language pack downloading or not ready. Try again shortly.",
+"target": "Языковой пакет загружается или не готов. Попробуйте через минуту.",
+"backtrans": "The language pack is downloading or is not ready. Try in a minute."
+},
+{
+"key": "undoTooltip",
+"english": "Undo",
+"target": "Отменить",
+"backtrans": "Cancel [??: 'Отменить' = cancel/undo; ambiguous with Cancel]"
+},
+{
+"key": "redoTooltip",
+"english": "Redo",
+"target": "Повторить",
+"backtrans": "Repeat [??: 'Повторить' = repeat; redo reading unclear]"
+},
+{
+"key": "fillInputHint",
+"english": "Type text to fill",
+"target": "Введите текст для заполнения",
+"backtrans": "Enter text to fill in"
+},
+{
+"key": "fillCapsLabel",
+"english": "ALL CAPS",
+"target": "ВСЕ ЗАГЛАВНЫЕ",
+"backtrans": "ALL CAPITALS"
+},
+{
+"key": "fillSaveSnippet",
+"english": "Save as snippet",
+"target": "Сохранить как фрагмент",
+"backtrans": "Save as a fragment"
+},
+{
+"key": "fillDeleteSnippet",
+"english": "Delete snippet?",
+"target": "Удалить фрагмент?",
+"backtrans": "Delete fragment?"
+},
+{
+"key": "fillTooltip",
+"english": "Fill",
+"target": "Заполнить",
+"backtrans": "Fill in"
+},
+{
+"key": "tickerFreeUnlimitedOcr",
+"english": "FREE UNLIMITED OCR",
+"target": "БЕСПЛАТНЫЙ БЕЗЛИМИТНЫЙ OCR",
+"backtrans": "FREE UNLIMITED OCR"
+},
+{
+"key": "ticker100OnDevicePrivacy",
+"english": "YOUR DOCUMENTS STAY ON YOUR DEVICE",
+"target": "ВАШИ ДОКУМЕНТЫ ОСТАЮТСЯ НА ВАШЕМ УСТРОЙСТВЕ",
+"backtrans": "YOUR DOCUMENTS STAY ON YOUR DEVICE"
+},
+{
+"key": "tickerNoAccount",
+"english": "NO ACCOUNT",
+"target": "БЕЗ АККАУНТА",
+"backtrans": "NO ACCOUNT"
+},
+{
+"key": "tickerNoWatermarks",
+"english": "NO WATERMARKS",
+"target": "БЕЗ ВОДЯНЫХ ЗНАКОВ",
+"backtrans": "NO WATERMARKS"
+},
+{
+"key": "ticker21ToolEditSuite",
+"english": "21-TOOL EDIT SUITE",
+"target": "21 ИНСТРУМЕНТ РЕДАКТИРОВАНИЯ",
+"backtrans": "21 EDITING TOOLS"
+},
+{
+"key": "tickerNonDestructiveEditing",
+"english": "NON-DESTRUCTIVE EDITING",
+"target": "НЕРАЗРУШАЮЩЕЕ РЕДАКТИРОВАНИЕ",
+"backtrans": "NON-DESTRUCTIVE EDITING"
+},
+{
+"key": "tickerUndoRedo",
+"english": "UNDO/REDO",
+"target": "ОТМЕНА/ПОВТОР",
+"backtrans": "CANCEL/REPEAT"
+},
+{
+"key": "tickerRevertToOriginal",
+"english": "REVERT TO ORIGINAL",
+"target": "ВЕРНУТЬ К ОРИГИНАЛУ",
+"backtrans": "RETURN TO ORIGINAL"
+},
+{
+"key": "tickerTapToTypeFilling",
+"english": "TAP-TO-TYPE FILLING",
+"target": "ЗАПОЛНЕНИЕ ФОРМ НАЖАТИЕМ",
+"backtrans": "FORM FILLING BY TAPPING"
+},
+{
+"key": "tickerESign",
+"english": "E-SIGN",
+"target": "ЭЛЕКТРОННАЯ ПОДПИСЬ",
+"backtrans": "ELECTRONIC SIGNATURE"
+},
+{
+"key": "tickerCustomSeals",
+"english": "CUSTOM SEALS",
+"target": "ПОЛЬЗОВАТЕЛЬСКИЕ ПЕЧАТИ",
+"backtrans": "USER-DEFINED SEALS"
+},
+{
+"key": "tickerTextStamps",
+"english": "TEXT STAMPS",
+"target": "ТЕКСТОВЫЕ ШТАМПЫ",
+"backtrans": "TEXT STAMPS"
+},
+{
+"key": "tickerNoteStamps",
+"english": "NOTE STAMPS",
+"target": "ШТАМПЫ ЗАМЕТОК",
+"backtrans": "NOTE STAMPS"
+},
+{
+"key": "tickerSearchablePdf",
+"english": "SEARCHABLE PDF",
+"target": "PDF С ПОИСКОМ ПО ТЕКСТУ",
+"backtrans": "PDF WITH TEXT SEARCH"
+},
+{
+"key": "tickerRegionOcr",
+"english": "REGION OCR",
+"target": "OCR ОБЛАСТИ",
+"backtrans": "AREA OCR"
+},
+{
+"key": "tickerAutoCopyOcr",
+"english": "AUTO-COPY OCR",
+"target": "АВТО-КОПИРОВАНИЕ OCR",
+"backtrans": "AUTO-COPY OCR"
+},
+{
+"key": "tickerIdCardMode",
+"english": "ID CARD MODE",
+"target": "РЕЖИМ УДОСТОВЕРЕНИЯ",
+"backtrans": "IDENTITY DOCUMENT MODE"
+},
+{
+"key": "tickerPassportMode",
+"english": "PASSPORT MODE",
+"target": "РЕЖИМ ПАСПОРТА",
+"backtrans": "PASSPORT MODE"
+},
+{
+"key": "tickerGalleryImport",
+"english": "GALLERY IMPORT",
+"target": "ИМПОРТ ИЗ ГАЛЕРЕИ",
+"backtrans": "IMPORT FROM GALLERY"
+},
+{
+"key": "tickerPdfExport",
+"english": "PDF EXPORT",
+"target": "ЭКСПОРТ PDF",
+"backtrans": "PDF EXPORT"
+},
+{
+"key": "tickerWordExport",
+"english": "WORD EXPORT",
+"target": "ЭКСПОРТ WORD",
+"backtrans": "WORD EXPORT"
+},
+{
+"key": "tickerJpgExport",
+"english": "JPG EXPORT",
+"target": "ЭКСПОРТ JPG",
+"backtrans": "JPG EXPORT"
+},
+{
+"key": "tickerPngExport",
+"english": "PNG EXPORT",
+"target": "ЭКСПОРТ PNG",
+"backtrans": "PNG EXPORT"
+},
+{
+"key": "tickerBatchExport",
+"english": "BATCH EXPORT",
+"target": "ПАКЕТНЫЙ ЭКСПОРТ",
+"backtrans": "BATCH EXPORT"
+},
+{
+"key": "tickerFolders",
+"english": "FOLDERS",
+"target": "ПАПКИ",
+"backtrans": "FOLDERS"
+},
+{
+"key": "tickerTags",
+"english": "TAGS",
+"target": "ТЕГИ",
+"backtrans": "TAGS"
+},
+{
+"key": "tickerFavorites",
+"english": "FAVORITES",
+"target": "ИЗБРАННОЕ",
+"backtrans": "FAVORITES"
+},
+{
+"key": "tickerSearch",
+"english": "SEARCH",
+"target": "ПОИСК",
+"backtrans": "SEARCH"
+},
+{
+"key": "tickerDarkMode",
+"english": "DARK MODE",
+"target": "ТЁМНЫЙ РЕЖИМ",
+"backtrans": "DARK MODE"
+},
+{
+"key": "tickerAccentThemes",
+"english": "ACCENT THEMES",
+"target": "ТЕМЫ АКЦЕНТА",
+"backtrans": "ACCENT THEMES"
+},
+{
+"key": "tickerDeviceMigration",
+"english": "DEVICE MIGRATION",
+"target": "ПЕРЕНОС УСТРОЙСТВА",
+"backtrans": "DEVICE TRANSFER"
+},
+{
+"key": "onboardingWelcomeTitle",
+"english": "Welcome to KatharScan",
+"target": "Добро пожаловать в KatharScan",
+"backtrans": "Welcome to KatharScan"
+},
+{
+"key": "onboardingWelcomeSubtitle",
+"english": "Your entire document office — scan, edit, sign, and export — in one private app.",
+"target": "Весь ваш офис документов — сканирование, редактирование, подпись и экспорт — в одном приватном приложении.",
+"backtrans": "Your entire document office — scanning, editing, signing and export — in one private app."
+},
+{
+"key": "onboardingToolsTitle",
+"english": "21 Free Pro Tools",
+"target": "21 бесплатный Pro-инструмент",
+"backtrans": "21 free Pro tools"
+},
+{
+"key": "onboardingToolsSubtitle",
+"english": "Annotate, sign, watermark, fill forms, seal, and more — every tool free and unlimited.",
+"target": "Аннотирование, подпись, водяные знаки, заполнение форм, печать и многое другое — каждый инструмент бесплатный и безлимитный.",
+"backtrans": "Annotating, signing, watermarks, form filling, seals and much more — every tool is free and unlimited."
+},
+{
+"key": "onboardingOcrTitle",
+"english": "On-Device OCR",
+"target": "OCR на устройстве",
+"backtrans": "On-device OCR"
+},
+{
+"key": "onboardingOcrSubtitle",
+"english": "Use KatharScan in {count} languages. OCR runs on your phone — nothing ever leaves your device.",
+"target": "Используйте KatharScan на {count} языках. OCR работает на телефоне — ничего не покидает устройство.",
+"backtrans": "Use KatharScan in {count} languages. OCR works on the phone — nothing leaves the device. [??: 'in N languages' reads as UI language rather than OCR languages]"
+},
+{
+"key": "onboardingSignTitle",
+"english": "Sign, Fill & Seal",
+"target": "Подписать, заполнить и опечатать",
+"backtrans": "Sign, fill in and seal"
+},
+{
+"key": "onboardingSignSubtitle",
+"english": "E-sign contracts, type-to-fill forms, and stamp enterprise seals in seconds.",
+"target": "Подписывайте контракты электронно, заполняйте формы и ставьте корпоративные печати за секунды.",
+"backtrans": "Sign contracts electronically, fill in forms and put corporate seals in seconds."
+},
+{
+"key": "onboardingEditTitle",
+"english": "Non-Destructive Editing",
+"target": "Неразрушающее редактирование",
+"backtrans": "Non-destructive editing"
+},
+{
+"key": "onboardingEditSubtitle",
+"english": "Every edit stays reversible — undo, redo, and revert to original anytime.",
+"target": "Каждое редактирование остаётся обратимым — отмена, повтор и возврат к оригиналу в любой момент.",
+"backtrans": "Every edit stays reversible — cancel, repeat and return to the original at any moment."
+},
+{
+"key": "onboardingPrivacyTitle",
+"english": "Private by design",
+"target": "Приватность с самого начала",
+"backtrans": "Privacy from the very start"
+},
+{
+"key": "onboardingPrivacySubtitle",
+"english": "No account, no cloud, no watermarks. Your documents never leave your device.",
+"target": "Без аккаунта, без облака, без водяных знаков. Ваши документы никогда не покидают ваше устройство.",
+"backtrans": "No account, no cloud, no watermarks. Your documents never leave your device."
+},
+{
+"key": "onboardingContinue",
+"english": "Continue",
+"target": "Продолжить",
+"backtrans": "Continue"
+},
+{
+"key": "onboardingGetStarted",
+"english": "Get Started",
+"target": "Начать",
+"backtrans": "Start"
+},
+{
+"key": "onboardingBack",
+"english": "Back",
+"target": "Назад",
+"backtrans": "Back"
+},
+{
+"key": "onboardingReplayIntro",
+"english": "Replay introduction",
+"target": "Показать вступление снова",
+"backtrans": "Show the introduction again"
+},
+{
+"key": "saveToDownloadsAction",
+"english": "Save to Downloads",
+"target": "Сохранить в Загрузки",
+"backtrans": "Save to Downloads"
+},
+{
+"key": "paywallTitle",
+"english": "Remove Ads",
+"target": "Удалить рекламу",
+"backtrans": "Delete ads"
+},
+{
+"key": "paywallSubtitle",
+"english": "Support KatharScan with a one-time purchase. All features remain free.",
+"target": "Поддержите KatharScan разовой покупкой. Все функции останутся бесплатными.",
+"backtrans": "Support KatharScan with a one-time purchase. All features will remain free."
+},
+{
+"key": "paywallFallbackPrice",
+"english": "$14.99 one-time",
+"target": "$14.99, разовый платёж",
+"backtrans": "$14.99, one-time payment"
+},
+{
+"key": "paywallFeatureNoBanner",
+"english": "No more banner ads",
+"target": "Больше никаких баннеров",
+"backtrans": "No more banners"
+},
+{
+"key": "paywallFeatureNoInterstitial",
+"english": "No more interstitial ads",
+"target": "Больше никаких полноэкранных объявлений",
+"backtrans": "No more full-screen ads"
+},
+{
+"key": "paywallFeatureFreeForever",
+"english": "All features free forever",
+"target": "Все функции бесплатны навсегда",
+"backtrans": "All features are free forever"
+},
+{
+"key": "paywallLegalText",
+"english": "This is a non-consumable purchase. Restore it anytime on any device with the same store account.",
+"target": "Это непотребительская покупка. Восстановите её в любое время на любом устройстве с той же учётной записью магазина.",
+"backtrans": "This is a non-consumer purchase. Restore it at any time on any device with the same store account. [??: 'непотребительская' is awkward, likely 'non-consumable']"
+},
+{
+"key": "paywallSuccessTitle",
+"english": "Ads Removed",
+"target": "Реклама удалена",
+"backtrans": "Ads removed"
+},
+{
+"key": "paywallSuccessMessage",
+"english": "Thank you for supporting KatharScan.",
+"target": "Спасибо за поддержку KatharScan.",
+"backtrans": "Thank you for supporting KatharScan."
+},
+{
+"key": "errorGenericTitle",
+"english": "Something went wrong",
+"target": "Что-то пошло не так",
+"backtrans": "Something went wrong"
+},
+{
+"key": "errorScreenProblem",
+"english": "KatharScan ran into a problem displaying this screen. Your scans are safe — they're stored on this device and this doesn't affect them.",
+"target": "KatharScan столкнулся с проблемой при отображении этого экрана. Ваши сканы в безопасности — они хранятся на этом устройстве, и это не влияет на них.",
+"backtrans": "KatharScan encountered a problem while displaying this screen. Your scans are safe — they are stored on this device, and this does not affect them."
+},
+{
+"key": "errorReportIssue",
+"english": "Report issue",
+"target": "Сообщить о проблеме",
+"backtrans": "Report a problem"
+},
+{
+"key": "filterAll",
+"english": "All",
+"target": "Все",
+"backtrans": "All"
+},
+{
+"key": "filterFolders",
+"english": "Folders",
+"target": "Папки",
+"backtrans": "Folders"
+},
+{
+"key": "filterRecent",
+"english": "Recent",
+"target": "Недавние",
+"backtrans": "Recent"
+},
+{
+"key": "filterFavorites",
+"english": "Favorites",
+"target": "Избранные",
+"backtrans": "Favorites"
+},
+{
+"key": "chipAllFolders",
+"english": "All Folders",
+"target": "Все папки",
+"backtrans": "All folders"
+},
+{
+"key": "chipSelectMultiple",
+"english": "Select Multiple",
+"target": "Выбрать несколько",
+"backtrans": "Select several"
+},
+{
+"key": "emptySearch",
+"english": "No scans match your search.",
+"target": "Нет сканов, соответствующих вашему поиску.",
+"backtrans": "No scans matching your search."
+},
+{
+"key": "emptyFolders",
+"english": "No folders yet. Tap the folder icon to create one.",
+"target": "Папок ещё нет. Нажмите на иконку папки, чтобы создать.",
+"backtrans": "No folders yet. Tap the folder icon to create one."
+},
+{
+"key": "emptyFavorites",
+"english": "No favorites yet. Tap the star icon on a document to add it.",
+"target": "Нет избранного. Нажмите на иконку звезды в документе, чтобы добавить.",
+"backtrans": "No favorites. Tap the star icon in a document to add."
+},
+{
+"key": "modeDocument",
+"english": "Document Mode",
+"target": "Режим документа",
+"backtrans": "Document mode"
+},
+{
+"key": "modeOcr",
+"english": "OCR Mode",
+"target": "Режим OCR",
+"backtrans": "OCR mode"
+},
+{
+"key": "modeIdCard",
+"english": "ID Card Mode",
+"target": "Режим удостоверения",
+"backtrans": "Identity document mode"
+},
+{
+"key": "modePassport",
+"english": "Passport Mode",
+"target": "Режим паспорта",
+"backtrans": "Passport mode"
+},
+{
+"key": "titlePdfImport",
+"english": "PDF Import",
+"target": "Импорт PDF",
+"backtrans": "PDF import"
+},
+{
+"key": "titleIdCard",
+"english": "ID Card",
+"target": "Удостоверение",
+"backtrans": "Identity document"
+},
+{
+"key": "titleScan",
+"english": "Scan",
+"target": "Сканировать",
+"backtrans": "Scan"
+},
+{
+"key": "exportEstimatedSize",
+"english": "Estimated size: {mb} MB",
+"target": "Расчётный размер: {mb} МБ",
+"backtrans": "Estimated size: {mb} MB"
+},
+{
+"key": "debugNoLogsYet",
+"english": "No logs yet",
+"target": "Журналов ещё нет",
+"backtrans": "No logs yet [??: 'Журналов' = journals]"
+},
+{
+"key": "textBold",
+"english": "B",
+"target": "Ж",
+"backtrans": "Zh [??: Cyrillic letter Ж, bold]"
+},
+{
+"key": "textItalic",
+"english": "I",
+"target": "К",
+"backtrans": "K [??: Cyrillic letter К, italic]"
+},
+{
+"key": "textUnderline",
+"english": "U",
+"target": "Ч",
+"backtrans": "Ch [??: Cyrillic letter Ч, underline]"
+},
+{
+"key": "textFontLetterA",
+"english": "A",
+"target": "А",
+"backtrans": "A [??: Cyrillic А]"
+},
+{
+"key": "multiplySymbol",
+"english": "×",
+"target": "×",
+"backtrans": "×"
+},
+{
+"key": "signerLabel",
+"english": "Signer {index}",
+"target": "Подписант {index}",
+"backtrans": "Signatory {index}"
+},
+{
+"key": "stampCheckbox",
+"english": "Checkbox",
+"target": "Флажок",
+"backtrans": "Checkbox [??: 'Флажок' also means flag]"
+},
+{
+"key": "fontSansSerif",
+"english": "sans-serif",
+"target": "sans-serif",
+"backtrans": "sans-serif"
+},
+{
+"key": "fontSerif",
+"english": "serif",
+"target": "serif",
+"backtrans": "serif"
+},
+{
+"key": "fontMonospace",
+"english": "monospace",
+"target": "monospace",
+"backtrans": "monospace"
+},
+{
+"key": "sealCustom",
+"english": "Custom Seal",
+"target": "Пользовательская печать",
+"backtrans": "User-defined seal"
+},
+{
+"key": "formatCsv",
+"english": "CSV",
+"target": "CSV",
+"backtrans": "CSV"
+},
+{
+"key": "ocrNoTextFound",
+"english": "No text found",
+"target": "Текст не найден",
+"backtrans": "Text not found"
+},
+{
+"key": "rotationAllPages",
+"english": "All pages rotated",
+"target": "Все страницы повёрнуты",
+"backtrans": "All pages rotated"
+},
+{
+"key": "rotationPage",
+"english": "Page rotated",
+"target": "Страница повёрнута",
+"backtrans": "Page rotated"
+},
+{
+"key": "resizeTitle",
+"english": "Resize",
+"target": "Изменить размер",
+"backtrans": "Change size"
+},
+{
+"key": "addTextTitle",
+"english": "Add Text",
+"target": "Добавить текст",
+"backtrans": "Add text"
+},
+{
+"key": "addNoteTitle",
+"english": "Add Note",
+"target": "Добавить заметку",
+"backtrans": "Add note"
+},
+{
+"key": "addDateTitle",
+"english": "Add Date",
+"target": "Добавить дату",
+"backtrans": "Add date"
+},
+{
+"key": "addCheckboxTitle",
+"english": "Add Checkbox",
+"target": "Добавить флажок",
+"backtrans": "Add checkbox"
+},
+{
+"key": "noteTextLabel",
+"english": "Note text",
+"target": "Текст заметки",
+"backtrans": "Note text"
+},
+{
+"key": "textLabel",
+"english": "Text",
+"target": "Текст",
+"backtrans": "Text"
+},
+{
+"key": "checkShapeRounded",
+"english": "Rounded",
+"target": "Скруглённый",
+"backtrans": "Rounded"
+},
+{
+"key": "checkShapeSquare",
+"english": "Square",
+"target": "Квадрат",
+"backtrans": "Square"
+},
+{
+"key": "checkShapeCircle",
+"english": "Circle",
+"target": "Круг",
+"backtrans": "Circle"
+},
+{
+"key": "hueLabel",
+"english": "Hue",
+"target": "Оттенок",
+"backtrans": "Hue"
+},
+{
+"key": "satLabel",
+"english": "Sat",
+"target": "Нас",
+"backtrans": "Sat [??: 'Нас' abbreviation of saturation, unclear]"
+},
+{
+"key": "valLabel",
+"english": "Val",
+"target": "Ярк",
+"backtrans": "Brig [??: 'Ярк' abbreviation of brightness]"
+},
+{
+"key": "annotationModePen",
+"english": "Pen",
+"target": "Перо",
+"backtrans": "Pen"
+},
+{
+"key": "annotationModeHighlighter",
+"english": "Highlighter",
+"target": "Маркер",
+"backtrans": "Marker"
+},
+{
+"key": "annotationModeRect",
+"english": "Rectangle",
+"target": "Прямоугольник",
+"backtrans": "Rectangle"
+},
+{
+"key": "annotationModeArrow",
+"english": "Arrow",
+"target": "Стрелка",
+"backtrans": "Arrow"
+},
+{
+"key": "annotationModeEllipse",
+"english": "Ellipse",
+"target": "Эллипс",
+"backtrans": "Ellipse"
+},
+{
+"key": "sharePromptTitle",
+"english": "Love KatharScan?",
+"target": "Нравится KatharScan?",
+"backtrans": "Like KatharScan?"
+},
+{
+"key": "sharePromptBody",
+"english": "Share it with friends who need a powerful document scanner.",
+"target": "Поделитесь с друзьями, которым нужен мощный сканер документов.",
+"backtrans": "Share with friends who need a powerful document scanner."
+},
+{
+"key": "sharePromptAction",
+"english": "Share App",
+"target": "Поделиться приложением",
+"backtrans": "Share the app"
+},
+{
+"key": "sharePromptDismiss",
+"english": "Not now",
+"target": "Не сейчас",
+"backtrans": "Not now"
+},
+{
+"key": "reviewPromptTitle",
+"english": "Enjoying KatharScan?",
+"target": "Нравится KatharScan?",
+"backtrans": "Like KatharScan?"
+},
+{
+"key": "reviewPromptBody",
+"english": "Your feedback helps us grow and keeps the app free.",
+"target": "Ваш отзыв помогает нам расти и поддерживает приложение бесплатным.",
+"backtrans": "Your feedback helps us grow and keeps the app free."
+},
+{
+"key": "reviewPromptYes",
+"english": "Rate Us",
+"target": "Оценить нас",
+"backtrans": "Rate us"
+},
+{
+"key": "reviewPromptNo",
+"english": "Send Feedback",
+"target": "Отправить отзыв",
+"backtrans": "Send feedback"
+},
+{
+"key": "watermarkLabel",
+"english": "Watermark",
+"target": "Водяной знак",
+"backtrans": "Watermark"
+},
+{
+"key": "compressLabel",
+"english": "Compress",
+"target": "Сжать",
+"backtrans": "Compress"
+},
+{
+"key": "pagesLabel",
+"english": "Pages",
+"target": "Страницы",
+"backtrans": "Pages"
+},
+{
+"key": "cropLabel",
+"english": "Crop",
+"target": "Обрезать",
+"backtrans": "Crop"
+},
+{
+"key": "emailLabel",
+"english": "Email",
+"target": "Эл. почта",
+"backtrans": "Email"
+},
+{
+"key": "checkLabel",
+"english": "Check",
+"target": "Галочка",
+"backtrans": "Check mark"
+},
+{
+"key": "captionDocs",
+"english": "Flexible crop: Original, Square, 4:3, 3:2, 16:9",
+"target": "Гибкая обрезка: Оригинал, Квадрат, 4:3, 3:2, 16:9",
+"backtrans": "Flexible cropping: Original, Square, 4:3, 3:2, 16:9"
+},
+{
+"key": "captionOcr",
+"english": "Text crop: Original, Square, 4:3",
+"target": "Обрезка текста: Оригинал, Квадрат, 4:3",
+"backtrans": "Text cropping: Original, Square, 4:3"
+},
+{
+"key": "captionIdCard",
+"english": "Two-sided ID capture: Front + Back",
+"target": "Двусторонний снимок удостоверения: лицевая + оборотная сторона",
+"backtrans": "Two-sided shot of identity document: front + back side"
+},
+{
+"key": "captionPassport",
+"english": "Passport crop: 4:3 or Original",
+"target": "Обрезка паспорта: 4:3 или Оригинал",
+"backtrans": "Passport cropping: 4:3 or Original"
+},
+{
+"key": "idStepFront",
+"english": "Step 1: Capture Front Side",
+"target": "Шаг 1: Отсканируйте лицевую сторону",
+"backtrans": "Step 1: Scan the front side"
+},
+{
+"key": "idStepBack",
+"english": "Step 2: Capture Back Side",
+"target": "Шаг 2: Отсканируйте оборотную сторону",
+"backtrans": "Step 2: Scan the back side"
+},
+{
+"key": "idGenerating",
+"english": "Generating PDF...",
+"target": "Создание PDF...",
+"backtrans": "Creating PDF..."
+},
+{
+"key": "captureFrontSide",
+"english": "Capture Front Side",
+"target": "Отсканировать лицевую сторону",
+"backtrans": "Scan the front side"
+},
+{
+"key": "captureBackSide",
+"english": "Capture Back Side",
+"target": "Отсканировать оборотную сторону",
+"backtrans": "Scan the back side"
+},
+{
+"key": "importFrontSide",
+"english": "Import Front Side",
+"target": "Импорт лицевой",
+"backtrans": "Import front"
+},
+{
+"key": "importBackSide",
+"english": "Import Back Side",
+"target": "Импорт оборотной",
+"backtrans": "Import back"
+},
+{
+"key": "cropDocumentTitle",
+"english": "Crop Document",
+"target": "Обрезать документ",
+"backtrans": "Crop document"
+},
+{
+"key": "cropIdCardTitle",
+"english": "Crop ID Card",
+"target": "Обрезать удостоверение",
+"backtrans": "Crop identity document"
+},
+{
+"key": "tabImageLabel",
+"english": "Image",
+"target": "Изображение",
+"backtrans": "Image"
+},
+{
+"key": "tabOcrTextLabel",
+"english": "OCR Text",
+"target": "Текст OCR",
+"backtrans": "OCR text"
+},
+{
+"key": "compressSmall",
+"english": "Small",
+"target": "Маленький",
+"backtrans": "Small"
+},
+{
+"key": "compressMedium",
+"english": "Medium",
+"target": "Средний",
+"backtrans": "Medium"
+},
+{
+"key": "pageFormatLetter",
+"english": "Letter (US)",
+"target": "Letter (США)",
+"backtrans": "Letter (USA)"
+},
+{
+"key": "ocrScriptLatin",
+"english": "Latin (English, European)",
+"target": "Латиница (английский, европейский)",
+"backtrans": "Latin script (English, European)"
+},
+{
+"key": "ocrScriptChinese",
+"english": "Chinese",
+"target": "Китайский",
+"backtrans": "Chinese"
+},
+{
+"key": "ocrScriptKorean",
+"english": "Korean",
+"target": "Корейский",
+"backtrans": "Korean"
+},
+{
+"key": "ocrScriptJapanese",
+"english": "Japanese",
+"target": "Японский",
+"backtrans": "Japanese"
+},
+{
+"key": "ocrScriptDevanagari",
+"english": "Hindi, Marathi (Devanagari)",
+"target": "Хинди, маратхи (деванагари)",
+"backtrans": "Hindi, Marathi (Devanagari)"
+},
+{
+"key": "ocrStatusUnsupported",
+"english": "Unsupported",
+"target": "Не поддерживается",
+"backtrans": "Not supported"
+},
+{
+"key": "noteLabel",
+"english": "Note",
+"target": "Заметка",
+"backtrans": "Note"
+},
+{
+"key": "dateLabel",
+"english": "Date",
+"target": "Дата",
+"backtrans": "Date"
+},
+{
+"key": "accentBlue",
+"english": "Blue",
+"target": "Синий",
+"backtrans": "Blue"
+},
+{
+"key": "accentIndigo",
+"english": "Indigo",
+"target": "Индиго",
+"backtrans": "Indigo"
+},
+{
+"key": "accentEmerald",
+"english": "Emerald",
+"target": "Изумруд",
+"backtrans": "Emerald"
+},
+{
+"key": "accentCrimson",
+"english": "Crimson",
+"target": "Малиновый",
+"backtrans": "Raspberry [??: 'Малиновый' = raspberry/crimson-ish]"
+},
+{
+"key": "accentAmber",
+"english": "Amber",
+"target": "Янтарь",
+"backtrans": "Amber"
+},
+{
+"key": "accentViolet",
+"english": "Violet",
+"target": "Фиолетовый",
+"backtrans": "Purple"
+},
+{
+"key": "tickerLanguages",
+"english": "{count} LANGUAGES",
+"target": "{count} ЯЗЫКОВ",
+"backtrans": "{count} LANGUAGES [??: grammatically '{count} ЯЗЫКОВ' is genitive plural; fine for 5+ only]"
+},
+{
+"key": "termsOfServiceLabel",
+"english": "Terms of Service",
+"target": "Условия использования",
+"backtrans": "Terms of use"
+},
+{
+"key": "openSourceLicensesLabel",
+"english": "Open-source licenses",
+"target": "Лицензии с открытым исходным кодом",
+"backtrans": "Open-source licenses"
+},
+{
+"key": "whatsNewTitle",
+"english": "What's New",
+"target": "Что нового",
+"backtrans": "What's new"
+},
+{
+"key": "whatsNewContinue",
+"english": "Continue",
+"target": "Продолжить",
+"backtrans": "Continue"
+},
+{
+"key": "tickerTxtExport",
+"english": "TXT EXPORT",
+"target": "ЭКСПОРТ TXT",
+"backtrans": "TXT EXPORT"
+},
+{
+"key": "tickerCsvExport",
+"english": "CSV EXPORT",
+"target": "ЭКСПОРТ CSV",
+"backtrans": "CSV EXPORT"
+},
+{
+"key": "whatsNewBody",
+"english": "Welcome to KatharScan! This is the first public release featuring unlimited scanning, 29 languages, and export to PDF, Word, TXT, JPG, PNG, and CSV.",
+"target": "Добро пожаловать в KatharScan! Это первый публичный релиз с неограниченным сканированием, 29 языками и экспортом в PDF, Word, TXT, JPG, PNG и CSV.",
+"backtrans": "Welcome to KatharScan! This is the first public release with unlimited scanning, 29 languages and export to PDF, Word, TXT, JPG, PNG and CSV."
+},
+{
+"key": "engagementSectionLabel",
+"english": "ENGAGEMENT & NOTIFICATIONS",
+"target": "ВЗАИМОДЕЙСТВИЕ И УВЕДОМЛЕНИЯ",
+"backtrans": "INTERACTION AND NOTIFICATIONS"
+},
+{
+"key": "enableNotificationsLabel",
+"english": "Enable Notifications",
+"target": "Включить уведомления",
+"backtrans": "Enable notifications"
+},
+{
+"key": "enableNotificationsSubtitle",
+"english": "Allow background reminders for unexported documents",
+"target": "Разрешить фоновые напоминания о неэкспортированных документах",
+"backtrans": "Allow background reminders about unexported documents"
+},
+{
+"key": "enableReviewPromptsLabel",
+"english": "Enable Review Prompts",
+"target": "Включить запросы отзывов",
+"backtrans": "Enable review requests"
+},
+{
+"key": "enableReviewPromptsSubtitle",
+"english": "Allow the app to occasionally ask for a rating",
+"target": "Разрешить приложению иногда запрашивать оценку",
+"backtrans": "Allow the app to occasionally ask for a rating"
+},
+{
+"key": "enableSharePromptsLabel",
+"english": "Enable Share Prompts",
+"target": "Включить предложения поделиться",
+"backtrans": "Enable suggestions to share"
+},
+{
+"key": "enableSharePromptsSubtitle",
+"english": "Allow the app to occasionally suggest sharing",
+"target": "Разрешить приложению иногда предлагать поделиться",
+"backtrans": "Allow the app to occasionally suggest sharing"
+},
+{
+"key": "exportFormatCsvDescription",
+"english": "Spreadsheet data",
+"target": "Данные таблицы",
+"backtrans": "Table data"
+},
+{
+"key": "watermarkDefaultText",
+"english": "CONFIDENTIAL",
+"target": "КОНФИДЕНЦИАЛЬНО",
+"backtrans": "CONFIDENTIAL"
+},
+{
+"key": "emailAttachmentNotIncluded",
+"english": "The pages could not be attached to the email. Use Share to send the pages.",
+"target": "Не удалось прикрепить страницы к письму. Используйте «Поделиться», чтобы отправить страницы.",
+"backtrans": "Failed to attach pages to the email. Use \"Share\" to send the pages."
+},
+{
+"key": "sealDefaultMainText",
+"english": "YOUR COMPANY",
+"target": "ВАША КОМПАНИЯ",
+"backtrans": "YOUR COMPANY"
+},
+{
+"key": "extractedPageDefaultTitle",
+"english": "Extracted Page",
+"target": "Извлечённая страница",
+"backtrans": "Extracted page"
+},
+{
+"key": "printRangeAll",
+"english": "All pages",
+"target": "Все страницы",
+"backtrans": "All pages"
+},
+{
+"key": "printRangeCurrent",
+"english": "Current",
+"target": "Текущая",
+"backtrans": "Current"
+},
+{
+"key": "printRangeRange",
+"english": "Range",
+"target": "Диапазон",
+"backtrans": "Range"
+},
+{
+"key": "printFilterNone",
+"english": "No filter",
+"target": "Без фильтра",
+"backtrans": "No filter"
+},
+{
+"key": "removeFromFavorites",
+"english": "Remove from Favorites",
+"target": "Удалить из избранного",
+"backtrans": "Remove from favorites"
+},
+{
+"key": "addToFavorites",
+"english": "Add to Favorites",
+"target": "Добавить в избранное",
+"backtrans": "Add to favorites"
+},
+{
+"key": "saveFailedPrefix",
+"english": "Save failed:",
+"target": "Не удалось сохранить:",
+"backtrans": "Failed to save:"
+},
+{
+"key": "ocrScriptArabic",
+"english": "العربية (Arabic)",
+"target": "العربية (Arabic)",
+"backtrans": "العربية (Arabic)"
+},
+{
+"key": "ocrScriptRussian",
+"english": "Русский (Russian)",
+"target": "Русский (Russian)",
+"backtrans": "Русский (Russian)"
+},
+{
+"key": "ocrScriptUkrainian",
+"english": "Українська (Ukrainian)",
+"target": "Українська (Ukrainian)",
+"backtrans": "Українська (Ukrainian)"
+},
+{
+"key": "ocrScriptGreek",
+"english": "Ελληνικά (Greek)",
+"target": "Ελληνικά (Greek)",
+"backtrans": "Ελληνικά (Greek)"
+},
+{
+"key": "ocrScriptHebrew",
+"english": "עברית (Hebrew)",
+"target": "עברית (Hebrew)",
+"backtrans": "עברית (Hebrew)"
+},
+{
+"key": "ocrScriptThai",
+"english": "ไทย (Thai)",
+"target": "ไทย (Thai)",
+"backtrans": "ไทย (Thai)"
+},
+{
+"key": "ocrScriptBengali",
+"english": "বাংলা (Bengali)",
+"target": "বাংলা (Bengali)",
+"backtrans": "বাংলা (Bengali)"
+},
+{
+"key": "ocrStatusInstalled",
+"english": "Installed",
+"target": "Установлено",
+"backtrans": "Installed"
+},
+{
+"key": "ocrStatusDownloading",
+"english": "Downloading…",
+"target": "Загрузка…",
+"backtrans": "Downloading…"
+},
+{
+"key": "exportNoTextError",
+"english": "This document has no text yet. Run OCR on it first.",
+"target": "В этом документе пока нет текста. Сначала запустите распознавание (OCR).",
+"backtrans": "There is no text in this document yet. First run recognition (OCR)."
+},
+{
+"key": "saveFailedBanner",
+"english": "Your latest changes could not be saved.",
+"target": "Не удалось сохранить последние изменения.",
+"backtrans": "Failed to save the latest changes."
+},
+{
+"key": "editLabel",
+"english": "Edit",
+"target": "Изменить",
+"backtrans": "Change"
+},
+{
+"key": "fillTapHint",
+"english": "Tap the page where you want to type",
+"target": "Нажмите на страницу там, где хотите ввести текст",
+"backtrans": "Tap the page where you want to enter text"
+},
+{
+"key": "fillTypeHint",
+"english": "Type here",
+"target": "Введите текст",
+"backtrans": "Enter text"
+},
+{
+"key": "clearPage",
+"english": "Clear page",
+"target": "Очистить страницу",
+"backtrans": "Clear page"
+},
+{
+"key": "clearAllPages",
+"english": "Clear all pages",
+"target": "Очистить все страницы",
+"backtrans": "Clear all pages"
+},
+{
+"key": "clearedCount",
+"english": "Cleared {count}",
+"target": "Очищено: {count}",
+"backtrans": "Cleared: {count}"
+},
+{
+"key": "idLayoutRealSize",
+"english": "Real size",
+"target": "Реальный размер",
+"backtrans": "Real size"
+},
+{
+"key": "idLayoutFullWidth",
+"english": "Full width",
+"target": "Во всю ширину",
+"backtrans": "Full width"
+},
+{
+"key": "pagesToReadTitle",
+"english": "Pages to read",
+"target": "Страницы для чтения",
+"backtrans": "Pages to read"
+},
+{
+"key": "pagesToReadHint",
+"english": "This PDF has {count} pages. Pages that are pictures are read with OCR (about 10 seconds each); pages with real text are instant.",
+"target": "В этом PDF {count} стр. Страницы-изображения читаются с помощью OCR (около 10 секунд каждая); страницы с настоящим текстом — мгновенно.",
+"backtrans": "This PDF has {count} pp. Image pages are read using OCR (about 10 seconds each); pages with real text — instantly."
+},
+{
+"key": "pageFromLabel",
+"english": "From page",
+"target": "Со страницы",
+"backtrans": "From page"
+},
+{
+"key": "pageToLabel",
+"english": "To page",
+"target": "По страницу",
+"backtrans": "To page"
+},
+{
+"key": "readingPageProgress",
+"english": "Page {page} of {total}",
+"target": "Страница {page} из {total}",
+"backtrans": "Page {page} of {total}"
+},
+{
+"key": "readingPageEta",
+"english": "Page {page} of {total} · about {minutes} min left",
+"target": "Страница {page} из {total} · осталось около {minutes} мин",
+"backtrans": "Page {page} of {total} · about {minutes} min left"
+},
+{
+"key": "sealShapeRound",
+"english": "Round",
+"target": "Круглый",
+"backtrans": "Round"
+},
+{
+"key": "sealFontSans",
+"english": "Clean",
+"target": "Строгий",
+"backtrans": "Strict [??: font label 'Строгий' = strict, not 'sans']"
+},
+{
+"key": "sealFontSerif",
+"english": "Classic",
+"target": "Классический",
+"backtrans": "Classic"
+},
+{
+"key": "sealInkLook",
+"english": "Worn stamp look",
+"target": "Эффект потёртой печати",
+"backtrans": "Worn-seal effect"
+},
+{
+"key": "sealSaveToLibrary",
+"english": "Save this seal",
+"target": "Сохранить печать",
+"backtrans": "Save seal"
+},
+{
+"key": "sealSavedHeading",
+"english": "Saved seals",
+"target": "Сохранённые печати",
+"backtrans": "Saved seals"
+},
+{
+"key": "sealTextColorLabel",
+"english": "Text colour",
+"target": "Цвет текста",
+"backtrans": "Text color"
+},
+{
+"key": "sealTextColorSame",
+"english": "Same as ring",
+"target": "Как у кольца",
+"backtrans": "Same as the ring"
+},
+{
+"key": "sealTextSizePercent",
+"english": "Text size {percent}%",
+"target": "Размер текста {percent}%",
+"backtrans": "Text size {percent}%"
+},
+{
+"key": "sealRemoveWhite",
+"english": "Make white transparent",
+"target": "Сделать белый прозрачным",
+"backtrans": "Make white transparent"
+},
+{
+"key": "sealSavedMessage",
+"english": "Seal saved",
+"target": "Печать сохранена",
+"backtrans": "Seal saved"
+},
+{
+"key": "signatureTabDraw",
+"english": "Draw",
+"target": "Рисовать",
+"backtrans": "Draw"
+},
+{
+"key": "signatureTabType",
+"english": "Type",
+"target": "Ввод",
+"backtrans": "Typing"
+},
+{
+"key": "signatureTypeHint",
+"english": "Type your name",
+"target": "Введите имя",
+"backtrans": "Enter name"
+},
+{
+"key": "signatureWidthLabel",
+"english": "Pen width",
+"target": "Толщина пера",
+"backtrans": "Pen thickness"
+},
+{
+"key": "signatureFontFlowing",
+"english": "Flowing",
+"target": "Плавный",
+"backtrans": "Smooth"
+},
+{
+"key": "signatureFontHandwritten",
+"english": "Handwritten",
+"target": "Рукописный",
+"backtrans": "Handwritten"
+},
+{
+"key": "signatureSavedHeading",
+"english": "Saved signatures",
+"target": "Сохранённые подписи",
+"backtrans": "Saved signatures"
+},
+{
+"key": "signatureNewOne",
+"english": "Draw or type a new one",
+"target": "Нарисовать или ввести новую",
+"backtrans": "Draw or type a new one"
+},
+{
+"key": "signatureDeleteSaved",
+"english": "Remove saved signature",
+"target": "Удалить сохранённую подпись",
+"backtrans": "Delete saved signature"
+},
+{
+"key": "annotationModeSelect",
+"english": "Select",
+"target": "Выбрать",
+"backtrans": "Select"
+},
+{
+"key": "annotationModeEraser",
+"english": "Eraser",
+"target": "Ластик",
+"backtrans": "Eraser"
+},
+{
+"key": "watermarkKindText",
+"english": "Text",
+"target": "Текст",
+"backtrans": "Text"
+},
+{
+"key": "watermarkKindImage",
+"english": "Image",
+"target": "Изображение",
+"backtrans": "Image"
+},
+{
+"key": "watermarkChooseImage",
+"english": "Choose image",
+"target": "Выбрать изображение",
+"backtrans": "Choose image"
+},
+{
+"key": "watermarkLayoutLabel",
+"english": "Layout",
+"target": "Расположение",
+"backtrans": "Arrangement"
+},
+{
+"key": "watermarkLayoutSingle",
+"english": "Single",
+"target": "Одиночный",
+"backtrans": "Single"
+},
+{
+"key": "watermarkLayoutDiagonal",
+"english": "Diagonal",
+"target": "По диагонали",
+"backtrans": "Diagonally"
+},
+{
+"key": "watermarkLayoutTiled",
+"english": "Tiled",
+"target": "Мозаика",
+"backtrans": "Mosaic"
+},
+{
+"key": "watermarkPagesLabel",
+"english": "Pages",
+"target": "Страницы",
+"backtrans": "Pages"
+},
+{
+"key": "watermarkPagesThis",
+"english": "This page",
+"target": "Эта страница",
+"backtrans": "This page"
+},
+{
+"key": "watermarkPagesAll",
+"english": "All pages",
+"target": "Все страницы",
+"backtrans": "All pages"
+},
+{
+"key": "watermarkPagesRange",
+"english": "Range",
+"target": "Диапазон",
+"backtrans": "Range"
+},
+{
+"key": "watermarkPagesRangeHint",
+"english": "e.g. 1-3, 5",
+"target": "напр. 1-3, 5",
+"backtrans": "e.g. 1-3, 5"
+},
+{
+"key": "watermarkPagesInvalid",
+"english": "Check the pages (the document has {count} pages)",
+"target": "Проверьте страницы (в документе {count} стр.)",
+"backtrans": "Check the pages (the document has {count} pp.)"
+},
+{
+"key": "cropAuto",
+"english": "Auto-detect",
+"target": "Определить автоматически",
+"backtrans": "Detect automatically"
+},
+{
+"key": "cropAspectFree",
+"english": "Free",
+"target": "Свободно",
+"backtrans": "Freely"
+},
+{
+"key": "cropAspectId",
+"english": "ID card",
+"target": "Удостоверение",
+"backtrans": "Identity document"
+},
+{
+"key": "cropAspectSquare",
+"english": "Square",
+"target": "Квадрат",
+"backtrans": "Square"
+},
+{
+"key": "cropNoPageFound",
+"english": "Couldn't find the page edges. Drag the corners.",
+"target": "Края страницы не найдены. Перетащите углы.",
+"backtrans": "Page edges not found. Drag the corners."
+},
+{
+"key": "straightenLabel",
+"english": "Straighten",
+"target": "Выровнять",
+"backtrans": "Level out"
+},
+{
+"key": "filterMagicColor",
+"english": "Magic colour",
+"target": "Магия цвета",
+"backtrans": "Color magic"
+},
+{
+"key": "filterBrightnessLabel",
+"english": "Brightness",
+"target": "Яркость",
+"backtrans": "Brightness"
+},
+{
+"key": "filterContrastLabel",
+"english": "Contrast",
+"target": "Контраст",
+"backtrans": "Contrast"
+},
+{
+"key": "resizeUpscaleWarning",
+"english": "Enlarging doesn't add detail — the page may look soft.",
+"target": "Увеличение не добавляет деталей — страница может выглядеть размытой.",
+"backtrans": "Enlarging does not add detail — the page may look blurry."
+},
+{
+"key": "eraserAutoColorTooltip",
+"english": "Match the page colour automatically",
+"target": "Подбирать цвет страницы автоматически",
+"backtrans": "Pick the page color automatically"
+},
+{
+"key": "eraserZoomTooltip",
+"english": "Zoom and move (pinch)",
+"target": "Масштаб и перемещение (двумя пальцами)",
+"backtrans": "Scale and move (with two fingers)"
+},
+{
+"key": "pagesSelectTooltip",
+"english": "Select pages",
+"target": "Выбрать страницы",
+"backtrans": "Select pages"
+},
+{
+"key": "pagesDeleteCount",
+"english": "Delete {count}",
+"target": "Удалить {count}",
+"backtrans": "Delete {count}"
+},
+{
+"key": "pagesDeleteConfirm",
+"english": "Delete {count} pages? They are removed when you save.",
+"target": "Удалить страниц: {count}? Они будут удалены при сохранении.",
+"backtrans": "Delete pages: {count}? They will be deleted on saving."
+},
+{
+"key": "compressTargetLabel",
+"english": "Max size",
+"target": "Макс. размер",
+"backtrans": "Max. size"
+},
+{
+"key": "compressNoLimit",
+"english": "No limit",
+"target": "Без лимита",
+"backtrans": "No limit"
+},
+{
+"key": "printPaperLabel",
+"english": "Paper",
+"target": "Бумага",
+"backtrans": "Paper"
+},
+{
+"key": "printMarginLabel",
+"english": "Margin",
+"target": "Поля",
+"backtrans": "Margins"
+},
+{
+"key": "printMarginNone",
+"english": "None",
+"target": "Нет",
+"backtrans": "None"
+},
+{
+"key": "printMarginNarrow",
+"english": "Narrow",
+"target": "Узкие",
+"backtrans": "Narrow"
+},
+{
+"key": "printMarginNormal",
+"english": "Normal",
+"target": "Обычные",
+"backtrans": "Ordinary"
+},
+{
+"key": "printFitLabel",
+"english": "Scaling",
+"target": "Масштаб",
+"backtrans": "Scale"
+},
+{
+"key": "printFitFit",
+"english": "Fit page",
+"target": "Вписать",
+"backtrans": "Fit in"
+},
+{
+"key": "printFitFill",
+"english": "Fill sheet (trims edges)",
+"target": "Заполнить лист (края обрезаются)",
+"backtrans": "Fill the sheet (edges are cropped)"
+},
+{
+"key": "printPerSheetLabel",
+"english": "Pages per sheet",
+"target": "Страниц на листе",
+"backtrans": "Pages per sheet"
+},
+{
+"key": "emailMessageLabel",
+"english": "Message",
+"target": "Сообщение",
+"backtrans": "Message"
+},
+{
+"key": "emailMessageHint",
+"english": "Add a note (optional)",
+"target": "Добавьте заметку (необязательно)",
+"backtrans": "Add a note (optional)"
+},
+{
+"key": "emailLimitMissed",
+"english": "Could not get under {mb} MB; sent the smallest version.",
+"target": "Не удалось уложиться в {mb} МБ; отправлена самая маленькая версия.",
+"backtrans": "Failed to fit within {mb} MB; the smallest version was sent."
+}
+]

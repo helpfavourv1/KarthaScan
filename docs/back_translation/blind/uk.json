@@ -1,0 +1,3362 @@
+[
+{
+"key": "privacyOptionsLabel",
+"english": "Privacy settings",
+"target": "Налаштування конфіденційності",
+"backtrans": "Privacy settings"
+},
+{
+"key": "commonCancel",
+"english": "Cancel",
+"target": "Скасувати",
+"backtrans": "Cancel"
+},
+{
+"key": "commonDelete",
+"english": "Delete",
+"target": "Видалити",
+"backtrans": "Delete"
+},
+{
+"key": "commonSave",
+"english": "Save",
+"target": "Зберегти",
+"backtrans": "Save"
+},
+{
+"key": "commonAdd",
+"english": "Add",
+"target": "Додати",
+"backtrans": "Add"
+},
+{
+"key": "commonExport",
+"english": "Export",
+"target": "Експортувати",
+"backtrans": "Export"
+},
+{
+"key": "commonImport",
+"english": "Import",
+"target": "Імпортувати",
+"backtrans": "Import"
+},
+{
+"key": "commonSkip",
+"english": "Skip",
+"target": "Пропустити",
+"backtrans": "Skip"
+},
+{
+"key": "commonClear",
+"english": "Clear",
+"target": "Очистити",
+"backtrans": "Clear"
+},
+{
+"key": "emptyStateDefaultMessage",
+"english": "Tap the camera to scan your first document.",
+"target": "Торкніться камери, щоб відсканувати перший документ.",
+"backtrans": "Tap the camera to scan your first document."
+},
+{
+"key": "exportFormatSheetTitle",
+"english": "Export as",
+"target": "Експортувати як",
+"backtrans": "Export as"
+},
+{
+"key": "exportFormatPdfLabel",
+"english": "PDF",
+"target": "PDF",
+"backtrans": "PDF"
+},
+{
+"key": "exportFormatPdfDescription",
+"english": "Best for sharing and printing",
+"target": "Найкраще для обміну та друку",
+"backtrans": "Word (.docx)"
+},
+{
+"key": "exportFormatDocxLabel",
+"english": "Word (.docx)",
+"target": "Word (.docx)",
+"backtrans": "Best for sharing and printing"
+},
+{
+"key": "exportFormatDocxDescription",
+"english": "Editable text document",
+"target": "Редагований текстовий документ",
+"backtrans": "Editable text document"
+},
+{
+"key": "exportFormatTxtLabel",
+"english": "Text (.txt)",
+"target": "Текст (.txt)",
+"backtrans": "Text (.txt)"
+},
+{
+"key": "exportFormatTxtDescription",
+"english": "Plain OCR text only",
+"target": "Лише звичайний текст OCR",
+"backtrans": "Only plain OCR text"
+},
+{
+"key": "exportFormatJpgLabel",
+"english": "JPG",
+"target": "JPG",
+"backtrans": "JPG"
+},
+{
+"key": "exportFormatJpgDescription",
+"english": "One image per page",
+"target": "Одне зображення на сторінку",
+"backtrans": "One image per page"
+},
+{
+"key": "exportFormatPngLabel",
+"english": "PNG",
+"target": "PNG",
+"backtrans": "PNG"
+},
+{
+"key": "exportFormatPngDescription",
+"english": "One image per page, lossless",
+"target": "Одне зображення на сторінку, без втрат",
+"backtrans": "One image per page, lossless"
+},
+{
+"key": "filterSheetTitle",
+"english": "Filters",
+"target": "Фільтри",
+"backtrans": "Filters"
+},
+{
+"key": "filterOriginal",
+"english": "Original",
+"target": "Оригінал",
+"backtrans": "Original"
+},
+{
+"key": "filterGrayscale",
+"english": "Grayscale",
+"target": "Відтінки сірого",
+"backtrans": "Grayscale"
+},
+{
+"key": "filterBlackAndWhite",
+"english": "B&W",
+"target": "Ч/Б",
+"backtrans": "B/W"
+},
+{
+"key": "filterColorEnhance",
+"english": "Color enhance",
+"target": "Покращення кольору",
+"backtrans": "Color enhancement"
+},
+{
+"key": "filterShadowRemoval",
+"english": "Shadow removal",
+"target": "Видалення тіней",
+"backtrans": "Shadow removal"
+},
+{
+"key": "proBadgeLabel",
+"english": "PRO",
+"target": "PRO",
+"backtrans": "PRO"
+},
+{
+"key": "scanListPageCount",
+"english": "{count, plural, =1{1 page} other{{count} pages}}",
+"target": "{count, plural, =1{1 сторінка} one{{count} сторінка} few{{count} сторінки} many{{count} сторінок} other{{count} сторінки}}",
+"backtrans": "{count, plural, =1{1 page} one{{count} page} few{{count} pages} many{{count} pages} other{{count} pages}}"
+},
+{
+"key": "scanPreviewNoPages",
+"english": "No pages to show.",
+"target": "Немає сторінок для відображення.",
+"backtrans": "No pages to display."
+},
+{
+"key": "shareTooltip",
+"english": "Share",
+"target": "Поділитися",
+"backtrans": "Share"
+},
+{
+"key": "signatureCanvasHint",
+"english": "Sign here",
+"target": "Підпишіть тут",
+"backtrans": "Sign here"
+},
+{
+"key": "folderDocumentCount",
+"english": "{count, plural, =1{1 document} other{{count} documents}}",
+"target": "{count, plural, =1{1 документ} one{{count} документ} few{{count} документи} many{{count} документів} other{{count} документа}}",
+"backtrans": "{count, plural, =1{1 document} one{{count} document} few{{count} documents} many{{count} documents} other{{count} documents}}"
+},
+{
+"key": "selectedCount",
+"english": "{count, plural, =1{1 selected} other{{count} selected}}",
+"target": "{count, plural, =1{1 вибрано} one{{count} вибрано} few{{count} вибрано} many{{count} вибрано} other{{count} вибрано}}",
+"backtrans": "{count, plural, =1{1 selected} one{{count} selected} few{{count} selected} many{{count} selected} other{{count} selected}}"
+},
+{
+"key": "batchExportTooltip",
+"english": "Batch export",
+"target": "Пакетний експорт",
+"backtrans": "Batch export"
+},
+{
+"key": "deleteTooltip",
+"english": "Delete",
+"target": "Видалити",
+"backtrans": "Delete"
+},
+{
+"key": "searchHint",
+"english": "Search your scans",
+"target": "Пошук у сканах",
+"backtrans": "Search in scans"
+},
+{
+"key": "settingsTooltip",
+"english": "Settings",
+"target": "Налаштування",
+"backtrans": "Settings"
+},
+{
+"key": "foldersSectionHeader",
+"english": "Folders",
+"target": "Папки",
+"backtrans": "Folders"
+},
+{
+"key": "documentsSectionHeader",
+"english": "Documents",
+"target": "Документи",
+"backtrans": "Documents"
+},
+{
+"key": "exportingStatus",
+"english": "Exporting…",
+"target": "Експортується...",
+"backtrans": "Exporting..."
+},
+{
+"key": "exportDoneStatus",
+"english": "Done",
+"target": "Готово",
+"backtrans": "Done"
+},
+{
+"key": "exportGenericError",
+"english": "Something went wrong while exporting.",
+"target": "Щось пішло не так під час експорту.",
+"backtrans": "Something went wrong during export."
+},
+{
+"key": "deleteFolderTitle",
+"english": "Delete this folder?",
+"target": "Видалити цю папку?",
+"backtrans": "Delete this folder?"
+},
+{
+"key": "deleteFolderMessage",
+"english": "Documents inside will not be deleted.",
+"target": "Документи всередині не будуть видалені.",
+"backtrans": "Documents inside will not be deleted."
+},
+{
+"key": "deleteFolderTooltip",
+"english": "Delete folder",
+"target": "Видалити папку",
+"backtrans": "Delete folder"
+},
+{
+"key": "renameFolderTitle",
+"english": "Rename folder",
+"target": "Перейменувати папку",
+"backtrans": "Rename folder"
+},
+{
+"key": "removeFromFolderTooltip",
+"english": "Remove from folder",
+"target": "Видалити з папки",
+"backtrans": "Remove from folder [??: 'Видалити' means delete/remove; could be read as deleting]"
+},
+{
+"key": "noDocumentsInFolder",
+"english": "No documents in this folder yet.",
+"target": "У цій папці ще немає документів.",
+"backtrans": "There are no documents in this folder yet."
+},
+{
+"key": "folderUnavailable",
+"english": "This folder is no longer available.",
+"target": "Ця папка більше недоступна.",
+"backtrans": "This folder is no longer available."
+},
+{
+"key": "migrationTitle",
+"english": "Device Migration",
+"target": "Перенесення на новий пристрій",
+"backtrans": "Transfer to a new device"
+},
+{
+"key": "migrationExplainer",
+"english": "This isn't automatic sync. Export creates a single encrypted backup file you move to your new device yourself, then import there.",
+"target": "Це не автоматична синхронізація. Експорт створює один зашифрований файл резервної копії, який ви самі переносите на новий пристрій і там імпортуєте.",
+"backtrans": "This is not automatic synchronization. Export creates a single encrypted backup file that you yourself transfer to the new device and import there."
+},
+{
+"key": "exportBackupButton",
+"english": "Export encrypted backup",
+"target": "Експортувати зашифровану копію",
+"backtrans": "Export encrypted copy"
+},
+{
+"key": "importBackupButton",
+"english": "Import from backup",
+"target": "Імпортувати з копії",
+"backtrans": "Import from copy"
+},
+{
+"key": "setBackupPasswordTitle",
+"english": "Set a backup password",
+"target": "Встановити пароль резервної копії",
+"backtrans": "Set backup password"
+},
+{
+"key": "enterBackupPasswordTitle",
+"english": "Enter backup password",
+"target": "Введіть пароль резервної копії",
+"backtrans": "Enter backup password"
+},
+{
+"key": "buildingBackupStatus",
+"english": "Building backup…",
+"target": "Створення копії...",
+"backtrans": "Creating the copy..."
+},
+{
+"key": "backupReadyStatus",
+"english": "Backup ready.",
+"target": "Копія готова.",
+"backtrans": "The copy is ready."
+},
+{
+"key": "couldNotCreateBackupError",
+"english": "Could not create the backup.",
+"target": "Не вдалося створити резервну копію.",
+"backtrans": "Failed to create the backup."
+},
+{
+"key": "importingStatus",
+"english": "Importing…",
+"target": "Імпорт...",
+"backtrans": "Import..."
+},
+{
+"key": "couldNotImportBackupError",
+"english": "Could not import this backup. Check the password and try again.",
+"target": "Не вдалося імпортувати цю копію. Перевірте пароль і спробуйте знову.",
+"backtrans": "Failed to import this copy. Check the password and try again."
+},
+{
+"key": "backupCorruptedError",
+"english": "This backup file looks corrupted.",
+"target": "Цей файл резервної копії виглядає пошкодженим.",
+"backtrans": "This backup file looks corrupted."
+},
+{
+"key": "importedCount",
+"english": "{count, plural, =1{1 document imported} other{{count} documents imported}}",
+"target": "{count, plural, =1{1 документ імпортовано} one{{count} документ імпортовано} few{{count} документи імпортовано} many{{count} документів імпортовано} other{{count} документа імпортовано}}",
+"backtrans": "{count, plural, =1{1 document imported} one{{count} document imported} few{{count} documents imported} many{{count} documents imported} other{{count} documents imported}}"
+},
+{
+"key": "continueButton",
+"english": "Continue",
+"target": "Продовжити",
+"backtrans": "Continue"
+},
+{
+"key": "restorePurchasesButton",
+"english": "Restore purchases",
+"target": "Відновити покупки",
+"backtrans": "Restore purchases"
+},
+{
+"key": "pricingLoadingError",
+"english": "Pricing is still loading — try again in a moment.",
+"target": "Ціни все ще завантажуються — спробуйте через хвилину.",
+"backtrans": "Prices are still loading — try in a minute."
+},
+{
+"key": "renameDocumentTitle",
+"english": "Rename document",
+"target": "Перейменувати документ",
+"backtrans": "Rename document"
+},
+{
+"key": "addTagTitle",
+"english": "Add tag",
+"target": "Додати тег",
+"backtrans": "Add tag"
+},
+{
+"key": "moveToFolderTooltip",
+"english": "Move to folder",
+"target": "Перемістити в папку",
+"backtrans": "Move to folder"
+},
+{
+"key": "exportTooltip",
+"english": "Export",
+"target": "Експорт",
+"backtrans": "Export"
+},
+{
+"key": "deleteScanTitle",
+"english": "Delete this scan?",
+"target": "Видалити цей скан?",
+"backtrans": "Delete this scan?"
+},
+{
+"key": "deleteScanMessage",
+"english": "This can't be undone.",
+"target": "Цю дію не можна скасувати.",
+"backtrans": "This action cannot be undone."
+},
+{
+"key": "movedToFolderMessage",
+"english": "Moved to folder.",
+"target": "Переміщено в папку.",
+"backtrans": "Moved to the folder."
+},
+{
+"key": "noTextRecognized",
+"english": "No text recognized.",
+"target": "Текст не розпізнано.",
+"backtrans": "Text not recognized."
+},
+{
+"key": "scanUnavailable",
+"english": "This scan is no longer available.",
+"target": "Цей скан більше недоступний.",
+"backtrans": "This scan is no longer available."
+},
+{
+"key": "settingsTitle",
+"english": "Settings",
+"target": "Налаштування",
+"backtrans": "Settings"
+},
+{
+"key": "appearanceSectionLabel",
+"english": "Appearance",
+"target": "Зовнішній вигляд",
+"backtrans": "Appearance"
+},
+{
+"key": "themeLabel",
+"english": "Theme",
+"target": "Тема",
+"backtrans": "Theme"
+},
+{
+"key": "systemThemeOption",
+"english": "System",
+"target": "Системна",
+"backtrans": "System"
+},
+{
+"key": "lightThemeOption",
+"english": "Light",
+"target": "Світла",
+"backtrans": "Light"
+},
+{
+"key": "darkThemeOption",
+"english": "Dark",
+"target": "Темна",
+"backtrans": "Dark"
+},
+{
+"key": "languageSectionLabel",
+"english": "Language",
+"target": "Мова",
+"backtrans": "Language"
+},
+{
+"key": "appLanguageLabel",
+"english": "App language",
+"target": "Мова додатку",
+"backtrans": "App language"
+},
+{
+"key": "storageSectionLabel",
+"english": "Storage",
+"target": "Сховище",
+"backtrans": "Storage"
+},
+{
+"key": "deviceMigrationLabel",
+"english": "Device Migration",
+"target": "Перенесення на новий пристрій",
+"backtrans": "Transfer to a new device"
+},
+{
+"key": "subscriptionSectionLabel",
+"english": "Subscription",
+"target": "Підписка",
+"backtrans": "Subscription"
+},
+{
+"key": "aboutSectionLabel",
+"english": "About",
+"target": "Про додаток",
+"backtrans": "About the app"
+},
+{
+"key": "privacyPolicyLabel",
+"english": "Privacy policy",
+"target": "Політика конфіденційності",
+"backtrans": "Privacy policy"
+},
+{
+"key": "supportLabel",
+"english": "Support",
+"target": "Підтримка",
+"backtrans": "Support"
+},
+{
+"key": "couldNotOpenLinkError",
+"english": "Could not open link.",
+"target": "Не вдалося відкрити посилання.",
+"backtrans": "Failed to open the link."
+},
+{
+"key": "restoreCompleteMessage",
+"english": "Restore complete.",
+"target": "Відновлення завершено.",
+"backtrans": "Restoration complete."
+},
+{
+"key": "genericErrorMessage",
+"english": "Something went wrong. Please try again.",
+"target": "Щось пішло не так. Спробуйте знову.",
+"backtrans": "Something went wrong. Try again."
+},
+{
+"key": "homeLanguageTooltip",
+"english": "App Language",
+"target": "Мова додатку",
+"backtrans": "App language"
+},
+{
+"key": "removeAdsTitle",
+"english": "Remove Ads Forever",
+"target": "Видалити рекламу назавжди",
+"backtrans": "Remove ads forever"
+},
+{
+"key": "extractedTextTitle",
+"english": "Extracted Text",
+"target": "Витягнутий текст",
+"backtrans": "Extracted text"
+},
+{
+"key": "commonClose",
+"english": "Close",
+"target": "Закрити",
+"backtrans": "Close"
+},
+{
+"key": "commonCopy",
+"english": "Copy",
+"target": "Копіювати",
+"backtrans": "Copy"
+},
+{
+"key": "savedToDocumentText",
+"english": "Saved to document text",
+"target": "Збережено в текст документа",
+"backtrans": "Saved to the document text"
+},
+{
+"key": "regionOcrFailed",
+"english": "Region OCR failed",
+"target": "Не вдалося розпізнати виділену область",
+"backtrans": "Failed to recognize the selected area"
+},
+{
+"key": "filterRemoved",
+"english": "Filter removed",
+"target": "Фільтр видалено",
+"backtrans": "Filter removed"
+},
+{
+"key": "filterApplied",
+"english": "Filter applied",
+"target": "Фільтр застосовано",
+"backtrans": "Filter applied"
+},
+{
+"key": "pageCropped",
+"english": "Page cropped",
+"target": "Сторінку обрізано",
+"backtrans": "Page cropped"
+},
+{
+"key": "revertToOriginalTitle",
+"english": "Revert to Original?",
+"target": "Повернути до оригіналу?",
+"backtrans": "Revert to original?"
+},
+{
+"key": "revertToOriginalMessage",
+"english": "This will undo all filters, rotations, crops, resizes, and eraser strokes on this page.",
+"target": "Це скасує всі фільтри, повороти, обрізки, зміни розміру та штрихи гумки на цій сторінці.",
+"backtrans": "This will cancel all filters, rotations, crops, resizes and eraser strokes on this page."
+},
+{
+"key": "commonRevert",
+"english": "Revert",
+"target": "Повернути",
+"backtrans": "Revert"
+},
+{
+"key": "pageRevertedToOriginal",
+"english": "Page reverted to original",
+"target": "Сторінку повернуто до оригіналу",
+"backtrans": "Page reverted to original"
+},
+{
+"key": "eraserApplied",
+"english": "Eraser applied",
+"target": "Гумку застосовано",
+"backtrans": "Eraser applied"
+},
+{
+"key": "pageResized",
+"english": "Page resized",
+"target": "Розмір сторінки змінено",
+"backtrans": "Page size changed"
+},
+{
+"key": "extractedAsNewDocument",
+"english": "Extracted as new document",
+"target": "Витягнуто як новий документ",
+"backtrans": "Extracted as a new document"
+},
+{
+"key": "pagesUpdated",
+"english": "Pages updated",
+"target": "Сторінки оновлено",
+"backtrans": "Pages updated"
+},
+{
+"key": "printOptionsTitle",
+"english": "Print Options",
+"target": "Параметри друку",
+"backtrans": "Print options"
+},
+{
+"key": "letterSizeUS",
+"english": "Letter size (US)",
+"target": "Формат Letter (США)",
+"backtrans": "Letter format (USA)"
+},
+{
+"key": "commonPrint",
+"english": "Print",
+"target": "Друк",
+"backtrans": "Print"
+},
+{
+"key": "printFailed",
+"english": "Print failed",
+"target": "Не вдалося надрукувати",
+"backtrans": "Failed to print"
+},
+{
+"key": "noEmailAppFound",
+"english": "No email app found",
+"target": "Не знайдено додаток електронної пошти",
+"backtrans": "Email app not found"
+},
+{
+"key": "emailFailed",
+"english": "Email failed",
+"target": "Не вдалося надіслати лист",
+"backtrans": "Failed to send the email"
+},
+{
+"key": "fromPageLabel",
+"english": "From",
+"target": "Від",
+"backtrans": "From"
+},
+{
+"key": "toPageLabel",
+"english": "To",
+"target": "До",
+"backtrans": "To"
+},
+{
+"key": "pdfImportedAsDocument",
+"english": "PDF imported as document",
+"target": "PDF імпортовано як документ",
+"backtrans": "PDF imported as a document"
+},
+{
+"key": "frontSideCaptured",
+"english": "Front side captured. Now capture the back side.",
+"target": "Лицьову сторону відскановано. Тепер скануйте зворотну.",
+"backtrans": "Front side scanned. Now scan the back."
+},
+{
+"key": "idCardPdfGenerated",
+"english": "ID Card PDF Generated",
+"target": "PDF посвідчення створено",
+"backtrans": "ID PDF created [??: 'посвідчення' = certificate/ID, generic]"
+},
+{
+"key": "sharePdf",
+"english": "Share PDF",
+"target": "Поділитися PDF",
+"backtrans": "Share PDF"
+},
+{
+"key": "saveAsDocument",
+"english": "Save as Document",
+"target": "Зберегти як документ",
+"backtrans": "Save as document"
+},
+{
+"key": "commonDone",
+"english": "Done",
+"target": "Готово",
+"backtrans": "Done"
+},
+{
+"key": "documentSaved",
+"english": "Document saved",
+"target": "Документ збережено",
+"backtrans": "Document saved"
+},
+{
+"key": "commonReset",
+"english": "Reset",
+"target": "Скинути",
+"backtrans": "Reset"
+},
+{
+"key": "autoScan",
+"english": "Auto Scan",
+"target": "Автосканування",
+"backtrans": "Auto-scan"
+},
+{
+"key": "importAndConvertDocument",
+"english": "Import & Convert Document",
+"target": "Імпортувати та перетворити документ",
+"backtrans": "Import and convert document"
+},
+{
+"key": "signatureTitle",
+"english": "Signature",
+"target": "Підпис",
+"backtrans": "Signature"
+},
+{
+"key": "signatureChoiceMessage",
+"english": "Use your saved signature or draw a new one?",
+"target": "Використати збережений підпис чи намалювати новий?",
+"backtrans": "Use the saved signature or draw a new one?"
+},
+{
+"key": "useSavedSignature",
+"english": "Use Saved",
+"target": "Використати збережений",
+"backtrans": "Use the saved one"
+},
+{
+"key": "drawNewSignature",
+"english": "Draw New",
+"target": "Намалювати новий",
+"backtrans": "Draw a new one"
+},
+{
+"key": "copyAll",
+"english": "Copy all",
+"target": "Копіювати все",
+"backtrans": "Copy all"
+},
+{
+"key": "clearThis",
+"english": "Clear this",
+"target": "Очистити це",
+"backtrans": "Clear this"
+},
+{
+"key": "commonRemove",
+"english": "Remove",
+"target": "Видалити",
+"backtrans": "Remove"
+},
+{
+"key": "clearAll",
+"english": "Clear all",
+"target": "Очистити все",
+"backtrans": "Clear all"
+},
+{
+"key": "addSignature",
+"english": "Add Signature",
+"target": "Додати підпис",
+"backtrans": "Add signature"
+},
+{
+"key": "commonUse",
+"english": "Use",
+"target": "Використати",
+"backtrans": "Use"
+},
+{
+"key": "stampTickedLabel",
+"english": "Ticked",
+"target": "Позначено",
+"backtrans": "Marked"
+},
+{
+"key": "stampBoxLabel",
+"english": "Box",
+"target": "Поле",
+"backtrans": "Field"
+},
+{
+"key": "stampTickLabel",
+"english": "Tick",
+"target": "Галочка",
+"backtrans": "Tick mark"
+},
+{
+"key": "commonCustom",
+"english": "Custom",
+"target": "Власний",
+"backtrans": "Custom"
+},
+{
+"key": "commonChange",
+"english": "Change",
+"target": "Змінити",
+"backtrans": "Change"
+},
+{
+"key": "commonColor",
+"english": "Color",
+"target": "Колір",
+"backtrans": "Color"
+},
+{
+"key": "stampPaperLabel",
+"english": "Paper",
+"target": "Папір",
+"backtrans": "Paper"
+},
+{
+"key": "whiteHaloLabel",
+"english": "White halo (readability)",
+"target": "Білий ореол (читабельність)",
+"backtrans": "White halo (legibility)"
+},
+{
+"key": "commonCreate",
+"english": "Create",
+"target": "Створити",
+"backtrans": "Create"
+},
+{
+"key": "newFolderTitle",
+"english": "New Folder",
+"target": "Нова папка",
+"backtrans": "New folder"
+},
+{
+"key": "batchExportEmptyMessage",
+"english": "No documents to batch export. Scan some first.",
+"target": "Немає документів для пакетного експорту. Спочатку відскануйте кілька.",
+"backtrans": "No documents for batch export. Scan a few first."
+},
+{
+"key": "newFolderTooltip",
+"english": "New Folder",
+"target": "Нова папка",
+"backtrans": "New folder"
+},
+{
+"key": "accentColorTooltip",
+"english": "Accent Color",
+"target": "Колір акценту",
+"backtrans": "Accent color"
+},
+{
+"key": "moveToFolderTitle",
+"english": "Move to Folder",
+"target": "Перемістити в папку",
+"backtrans": "Move to folder"
+},
+{
+"key": "noFoldersYetHomeMessage",
+"english": "No folders yet. Create one from the home screen.",
+"target": "Папок ще немає. Створіть одну з головного екрана.",
+"backtrans": "No folders yet. Create one from the home screen."
+},
+{
+"key": "appLanguageTitle",
+"english": "App Language",
+"target": "Мова додатку",
+"backtrans": "App language"
+},
+{
+"key": "accentColorTitle",
+"english": "Accent Color",
+"target": "Колір акценту",
+"backtrans": "Accent color"
+},
+{
+"key": "sealEditTitle",
+"english": "Edit Custom Seal",
+"target": "Редагувати печатку",
+"backtrans": "Edit seal"
+},
+{
+"key": "sealCreateTitle",
+"english": "Custom Seal",
+"target": "Власна печатка",
+"backtrans": "Custom seal"
+},
+{
+"key": "sealMainTextLabel",
+"english": "Main text (top arc / box)",
+"target": "Основний текст (верхня дуга / поле)",
+"backtrans": "Main text (top arc / field)"
+},
+{
+"key": "sealSubtextLabel",
+"english": "Subtext (bottom arc / below)",
+"target": "Підтекст (нижня дуга / нижче)",
+"backtrans": "Subtext (bottom arc / below)"
+},
+{
+"key": "sealShapeOval",
+"english": "Oval",
+"target": "Овал",
+"backtrans": "Oval"
+},
+{
+"key": "sealShapeBox",
+"english": "Box",
+"target": "Прямокутник",
+"backtrans": "Rectangle"
+},
+{
+"key": "sealCenterStar",
+"english": "Star",
+"target": "Зірка",
+"backtrans": "Star"
+},
+{
+"key": "sealCenterText",
+"english": "Text",
+"target": "Текст",
+"backtrans": "Text"
+},
+{
+"key": "sealCenterLogo",
+"english": "Logo",
+"target": "Логотип",
+"backtrans": "Logo"
+},
+{
+"key": "sealCenterNone",
+"english": "None",
+"target": "Немає",
+"backtrans": "None"
+},
+{
+"key": "sealCenterTextLabel",
+"english": "Center text",
+"target": "Центральний текст",
+"backtrans": "Center text"
+},
+{
+"key": "sealLogoReady",
+"english": "Logo ready",
+"target": "Логотип готовий",
+"backtrans": "Logo is ready"
+},
+{
+"key": "textSizeLabel",
+"english": "Text size: {size}",
+"target": "Розмір тексту: {size}",
+"backtrans": "Text size: {size}"
+},
+{
+"key": "commonUpdate",
+"english": "Update",
+"target": "Оновити",
+"backtrans": "Update"
+},
+{
+"key": "managePagesTitle",
+"english": "Manage Pages",
+"target": "Керування сторінками",
+"backtrans": "Manage pages"
+},
+{
+"key": "pageLabel",
+"english": "Page {index}",
+"target": "Сторінка {index}",
+"backtrans": "Page {index}"
+},
+{
+"key": "duplicateAction",
+"english": "Duplicate",
+"target": "Дублювати",
+"backtrans": "Duplicate"
+},
+{
+"key": "rotate90Action",
+"english": "Rotate 90°",
+"target": "Повернути на 90°",
+"backtrans": "Rotate by 90°"
+},
+{
+"key": "extractToNewDocAction",
+"english": "Extract to new doc",
+"target": "Витягнути в новий документ",
+"backtrans": "Extract to a new document"
+},
+{
+"key": "addPageTitle",
+"english": "Add Page",
+"target": "Додати сторінку",
+"backtrans": "Add page"
+},
+{
+"key": "cameraSource",
+"english": "Camera",
+"target": "Камера",
+"backtrans": "Camera"
+},
+{
+"key": "importFromGallery",
+"english": "Import from Gallery",
+"target": "Імпорт з галереї",
+"backtrans": "Import from gallery"
+},
+{
+"key": "fromAnotherDocument",
+"english": "From Another Document",
+"target": "З іншого документа",
+"backtrans": "From another document"
+},
+{
+"key": "pageCountLabel",
+"english": "{count, plural, =0{No pages} =1{1 page} other{{count} pages}}",
+"target": "{count, plural, =0{Немає сторінок} =1{1 сторінка} one{{count} сторінка} few{{count} сторінки} many{{count} сторінок} other{{count} сторінки}}",
+"backtrans": "{count, plural, =0{No pages} =1{1 page} one{{count} page} few{{count} pages} many{{count} pages} other{{count} pages}}"
+},
+{
+"key": "commonConfirm",
+"english": "Confirm",
+"target": "Підтвердити",
+"backtrans": "Confirm"
+},
+{
+"key": "applyToAllPages",
+"english": "Apply to all pages",
+"target": "Застосувати до всіх сторінок",
+"backtrans": "Apply to all pages"
+},
+{
+"key": "widthLabel",
+"english": "Width",
+"target": "Ширина",
+"backtrans": "Width"
+},
+{
+"key": "heightLabel",
+"english": "Height",
+"target": "Висота",
+"backtrans": "Height"
+},
+{
+"key": "lockAspectRatio",
+"english": "Lock aspect ratio",
+"target": "Зафіксувати пропорції",
+"backtrans": "Lock aspect ratio"
+},
+{
+"key": "originalDimensions",
+"english": "Original: {w}×{h}",
+"target": "Оригінал: {w}×{h}",
+"backtrans": "Original: {w}×{h}"
+},
+{
+"key": "ocrSectionLabel",
+"english": "OCR",
+"target": "OCR",
+"backtrans": "OCR"
+},
+{
+"key": "ocrLanguagesLabel",
+"english": "OCR Languages",
+"target": "Мови OCR",
+"backtrans": "OCR languages"
+},
+{
+"key": "captureBehaviorSectionLabel",
+"english": "CAPTURE BEHAVIOR",
+"target": "ПОВЕДІНКА ПІД ЧАС СКАНУВАННЯ",
+"backtrans": "BEHAVIOR DURING SCANNING"
+},
+{
+"key": "autoCopyOcrLabel",
+"english": "Auto-copy OCR",
+"target": "Автокопіювання OCR",
+"backtrans": "Auto-copy OCR"
+},
+{
+"key": "autoCopyOcrSubtitle",
+"english": "Copy text to clipboard after scan",
+"target": "Копіювати текст у буфер після сканування",
+"backtrans": "Copy text to the clipboard after scanning"
+},
+{
+"key": "beepOnCaptureLabel",
+"english": "Beep on capture",
+"target": "Звуковий сигнал після сканування",
+"backtrans": "Beep after scanning"
+},
+{
+"key": "beepOnCaptureSubtitle",
+"english": "Play sound when scan completes",
+"target": "Відтворити звук при завершенні сканування",
+"backtrans": "Play a sound when scanning completes"
+},
+{
+"key": "vibrateOnCaptureLabel",
+"english": "Vibrate on capture",
+"target": "Вібрація після сканування",
+"backtrans": "Vibration after scanning"
+},
+{
+"key": "vibrateOnCaptureSubtitle",
+"english": "Haptic feedback when scan completes",
+"target": "Тактильний відгук при завершенні сканування",
+"backtrans": "Tactile feedback when scanning completes"
+},
+{
+"key": "adsRemovedLabel",
+"english": "Ads Removed",
+"target": "Рекламу видалено",
+"backtrans": "Ads removed"
+},
+{
+"key": "diagnosticsSectionLabel",
+"english": "DIAGNOSTICS",
+"target": "ДІАГНОСТИКА",
+"backtrans": "DIAGNOSTICS"
+},
+{
+"key": "debugLogsLabel",
+"english": "Debug Logs",
+"target": "Журнали налагодження",
+"backtrans": "Debug logs"
+},
+{
+"key": "logEntriesLabel",
+"english": "{count, plural, =0{No entries} =1{1 entry} other{{count} entries}}",
+"target": "{count, plural, =0{Немає записів} =1{1 запис} one{{count} запис} few{{count} записи} many{{count} записів} other{{count} запису}}",
+"backtrans": "{count, plural, =0{No entries} =1{1 entry} one{{count} entry} few{{count} entries} many{{count} entries} other{{count} entries}}"
+},
+{
+"key": "ocrStatusBuiltIn",
+"english": "Built-in",
+"target": "Вбудований",
+"backtrans": "Built-in"
+},
+{
+"key": "ocrStatusChecking",
+"english": "Checking...",
+"target": "Перевірка...",
+"backtrans": "Checking..."
+},
+{
+"key": "ocrStatusOnDemand",
+"english": "On-demand",
+"target": "На запит",
+"backtrans": "On request"
+},
+{
+"key": "savedAsNewDocument",
+"english": "Saved as new document",
+"target": "Збережено як новий документ",
+"backtrans": "Saved as a new document"
+},
+{
+"key": "conversionFailedPrefix",
+"english": "Conversion failed",
+"target": "Помилка перетворення",
+"backtrans": "Conversion error"
+},
+{
+"key": "convertDocumentTitle",
+"english": "Convert Document",
+"target": "Перетворити документ",
+"backtrans": "Convert document"
+},
+{
+"key": "convertToLabel",
+"english": "Convert to:",
+"target": "Перетворити в:",
+"backtrans": "Convert to:"
+},
+{
+"key": "actionLabel",
+"english": "Action:",
+"target": "Дія:",
+"backtrans": "Action:"
+},
+{
+"key": "saveAsNewDocumentAction",
+"english": "Save as new Document",
+"target": "Зберегти як новий документ",
+"backtrans": "Save as a new document"
+},
+{
+"key": "exportAndShareAction",
+"english": "Export & Share",
+"target": "Експорт та надсилання",
+"backtrans": "Export and sending"
+},
+{
+"key": "docxWarningMessage",
+"english": "DOCX sources render poorly as pages — save inside the app is limited to JPG/PNG from image, PDF, TXT or CSV sources. Use Export & Share for this file.",
+"target": "Джерела DOCX погано відображаються як сторінки — збереження в додатку обмежене JPG/PNG із зображень, PDF, TXT або CSV. Використовуйте Експорт та надсилання для цього файлу.",
+"backtrans": "DOCX sources display poorly as pages — saving within the app is limited to JPG/PNG from images, PDF, TXT or CSV. Use Export and sending for this file."
+},
+{
+"key": "saveInsideAppWarning",
+"english": "To save inside the app, choose JPG or PNG. Other targets are exported as files.",
+"target": "Щоб зберегти в додатку, виберіть JPG або PNG. Інші формати експортуються як файли.",
+"backtrans": "To save in the app, choose JPG or PNG. Other formats are exported as files."
+},
+{
+"key": "commonConvert",
+"english": "Convert",
+"target": "Перетворити",
+"backtrans": "Convert"
+},
+{
+"key": "conversionStarting",
+"english": "Starting…",
+"target": "Запуск...",
+"backtrans": "Starting..."
+},
+{
+"key": "convertedDocTitle",
+"english": "Converted {date}",
+"target": "Перетворено {date}",
+"backtrans": "Converted {date}"
+},
+{
+"key": "progressReading",
+"english": "Reading…",
+"target": "Читання...",
+"backtrans": "Reading..."
+},
+{
+"key": "progressCopying",
+"english": "Copying…",
+"target": "Копіювання...",
+"backtrans": "Copying..."
+},
+{
+"key": "progressBuildingPdf",
+"english": "Building PDF…",
+"target": "Створення PDF...",
+"backtrans": "Building PDF..."
+},
+{
+"key": "progressBuildingDocx",
+"english": "Building DOCX…",
+"target": "Створення DOCX...",
+"backtrans": "Building DOCX..."
+},
+{
+"key": "progressDecodingImage",
+"english": "Decoding image…",
+"target": "Декодування зображення...",
+"backtrans": "Decoding image..."
+},
+{
+"key": "progressExtractingText",
+"english": "Extracting text…",
+"target": "Витягування тексту...",
+"backtrans": "Extracting text..."
+},
+{
+"key": "progressSaving",
+"english": "Saving…",
+"target": "Збереження...",
+"backtrans": "Saving..."
+},
+{
+"key": "progressRasterizing",
+"english": "Rasterizing pages…",
+"target": "Растеризація сторінок...",
+"backtrans": "Rasterizing pages..."
+},
+{
+"key": "progressEncodingPage",
+"english": "Encoding page {current} of {total}…",
+"target": "Кодування сторінки {current} з {total}...",
+"backtrans": "Encoding page {current} of {total}..."
+},
+{
+"key": "watermarkEditTitle",
+"english": "Edit Watermark",
+"target": "Редагувати водяний знак",
+"backtrans": "Edit watermark"
+},
+{
+"key": "watermarkAddTitle",
+"english": "Add Watermark",
+"target": "Додати водяний знак",
+"backtrans": "Add watermark"
+},
+{
+"key": "watermarkTextLabel",
+"english": "Text",
+"target": "Текст",
+"backtrans": "Text"
+},
+{
+"key": "opacityPercentLabel",
+"english": "Opacity: {percent}%",
+"target": "Непрозорість: {percent}%",
+"backtrans": "Opacity: {percent}%"
+},
+{
+"key": "sizePtLabel",
+"english": "Size: {size}pt",
+"target": "Розмір: {size}пт",
+"backtrans": "Size: {size}pt"
+},
+{
+"key": "alignLabel",
+"english": "Align",
+"target": "Вирівнювання",
+"backtrans": "Alignment"
+},
+{
+"key": "exportSavedToDownloads",
+"english": "Saved to Downloads",
+"target": "Збережено в Завантаження",
+"backtrans": "Saved to Downloads"
+},
+{
+"key": "commonShare",
+"english": "Share",
+"target": "Поділитися",
+"backtrans": "Share"
+},
+{
+"key": "exportTitle",
+"english": "Export",
+"target": "Експорт",
+"backtrans": "Export"
+},
+{
+"key": "targetMbLabel",
+"english": "{mb} MB",
+"target": "{mb} МБ",
+"backtrans": "{mb} MB"
+},
+{
+"key": "filterColor",
+"english": "Color",
+"target": "Колір",
+"backtrans": "Color"
+},
+{
+"key": "filterShadow",
+"english": "Shadow",
+"target": "Тінь",
+"backtrans": "Shadow"
+},
+{
+"key": "docxModeTextOnly",
+"english": "Text Only",
+"target": "Лише текст",
+"backtrans": "Text only"
+},
+{
+"key": "docxModeWithImages",
+"english": "With Images",
+"target": "З зображеннями",
+"backtrans": "With images [??: 'З зображеннями' slightly awkward grammar]"
+},
+{
+"key": "saveToDeviceButton",
+"english": "Save to Device",
+"target": "Зберегти на пристрій",
+"backtrans": "Save to device"
+},
+{
+"key": "pageIndicator",
+"english": "Page {current} / {total}",
+"target": "Сторінка {current} / {total}",
+"backtrans": "Page {current} / {total}"
+},
+{
+"key": "fullscreenLabel",
+"english": "Fullscreen",
+"target": "Повний екран",
+"backtrans": "Full screen"
+},
+{
+"key": "batchExportSignatureDisabled",
+"english": "Batch export — signature placement disabled",
+"target": "Пакетний експорт — розміщення підпису вимкнено",
+"backtrans": "Batch export — signature placement disabled"
+},
+{
+"key": "fitToTargetMbLabel",
+"english": "Fit to target MB",
+"target": "Стиснути до заданого розміру (МБ)",
+"backtrans": "Compress to the given size (MB)"
+},
+{
+"key": "moreOptionsTooltip",
+"english": "More options",
+"target": "Додаткові параметри",
+"backtrans": "Additional options"
+},
+{
+"key": "commonRename",
+"english": "Rename",
+"target": "Перейменувати",
+"backtrans": "Rename"
+},
+{
+"key": "addTagsAction",
+"english": "Add Tags",
+"target": "Додати теги",
+"backtrans": "Add tags"
+},
+{
+"key": "editDocumentAction",
+"english": "Edit Document",
+"target": "Редагувати документ",
+"backtrans": "Edit document"
+},
+{
+"key": "copiedToClipboard",
+"english": "Copied to clipboard",
+"target": "Скопійовано в буфер обміну",
+"backtrans": "Copied to clipboard"
+},
+{
+"key": "favoriteTooltip",
+"english": "Favorite",
+"target": "Вибране",
+"backtrans": "Favorites [??: 'Вибране' as tooltip; could be 'selected']"
+},
+{
+"key": "noFoldersYet",
+"english": "No folders yet",
+"target": "Папок ще немає",
+"backtrans": "No folders yet"
+},
+{
+"key": "rotateLabel",
+"english": "Rotate",
+"target": "Повернути",
+"backtrans": "Rotate"
+},
+{
+"key": "scaleLabel",
+"english": "Scale",
+"target": "Масштаб",
+"backtrans": "Scale"
+},
+{
+"key": "eraserTitle",
+"english": "Eraser",
+"target": "Гумка",
+"backtrans": "Eraser"
+},
+{
+"key": "tapToSampleColor",
+"english": "Tap a spot to sample its color",
+"target": "Торкніться місця для зразка кольору",
+"backtrans": "Tap a place to sample the color"
+},
+{
+"key": "commonSize",
+"english": "Size",
+"target": "Розмір",
+"backtrans": "Size"
+},
+{
+"key": "sampleColorTooltip",
+"english": "Sample color from page",
+"target": "Зразок кольору зі сторінки",
+"backtrans": "Sample color from the page"
+},
+{
+"key": "marqueeEraseTooltip",
+"english": "Marquee erase",
+"target": "Стерти виділенням",
+"backtrans": "Erase by selection"
+},
+{
+"key": "commonApply",
+"english": "Apply",
+"target": "Застосувати",
+"backtrans": "Apply"
+},
+{
+"key": "filterTitle",
+"english": "Filter",
+"target": "Фільтр",
+"backtrans": "Filter"
+},
+{
+"key": "intensityLabel",
+"english": "Intensity",
+"target": "Інтенсивність",
+"backtrans": "Intensity"
+},
+{
+"key": "selectRegionTitle",
+"english": "Select Region",
+"target": "Вибрати область",
+"backtrans": "Select area"
+},
+{
+"key": "commonExtract",
+"english": "Extract",
+"target": "Витягнути",
+"backtrans": "Extract"
+},
+{
+"key": "customColorTitle",
+"english": "Custom Color",
+"target": "Власний колір",
+"backtrans": "Custom color"
+},
+{
+"key": "documentNotFound",
+"english": "Document not found",
+"target": "Документ не знайдено",
+"backtrans": "Document not found"
+},
+{
+"key": "clearLogsTooltip",
+"english": "Clear logs",
+"target": "Очистити журнали",
+"backtrans": "Clear logs"
+},
+{
+"key": "placeHereLabel",
+"english": "Place here",
+"target": "Розмістити тут",
+"backtrans": "Place here"
+},
+{
+"key": "tryAgainButton",
+"english": "Try again",
+"target": "Спробувати знову",
+"backtrans": "Try again"
+},
+{
+"key": "emptyDocumentMessage",
+"english": "This document has no pages.",
+"target": "У цьому документі немає сторінок.",
+"backtrans": "There are no pages in this document."
+},
+{
+"key": "cameraErrorPrefix",
+"english": "Camera error",
+"target": "Помилка камери",
+"backtrans": "Camera error"
+},
+{
+"key": "importErrorPrefix",
+"english": "Import error",
+"target": "Помилка імпорту",
+"backtrans": "Import error"
+},
+{
+"key": "pdfImportErrorPrefix",
+"english": "PDF import error",
+"target": "Помилка імпорту PDF",
+"backtrans": "PDF import error"
+},
+{
+"key": "pickErrorPrefix",
+"english": "Pick error",
+"target": "Помилка вибору",
+"backtrans": "Selection error [??: 'вибору' = choice/selection; unclear what is picked]"
+},
+{
+"key": "scannerErrorPrefix",
+"english": "Scanner error",
+"target": "Помилка сканера",
+"backtrans": "Scanner error"
+},
+{
+"key": "idPdfErrorPrefix",
+"english": "Error generating ID PDF",
+"target": "Помилка створення PDF посвідчення",
+"backtrans": "ID PDF creation error"
+},
+{
+"key": "genericErrorPrefix",
+"english": "Error",
+"target": "Помилка",
+"backtrans": "Error"
+},
+{
+"key": "annotateTitle",
+"english": "Annotate",
+"target": "Анотація",
+"backtrans": "Annotation"
+},
+{
+"key": "placementsCountLabel",
+"english": "{count, plural, =0{Nothing placed} =1{1 placed} other{{count} placed}}",
+"target": "{count, plural, =0{Нічого не розміщено} =1{1 розміщено} one{{count} розміщено} few{{count} розміщено} many{{count} розміщено} other{{count} розміщено}}",
+"backtrans": "{count, plural, =0{Nothing placed} =1{1 placed} one{{count} placed} few{{count} placed} many{{count} placed} other{{count} placed}}"
+},
+{
+"key": "ocrUnavailableTooltip",
+"english": "OCR unavailable on this device.",
+"target": "OCR недоступний на цьому пристрої.",
+"backtrans": "OCR is unavailable on this device."
+},
+{
+"key": "docScannerUnsupportedMessage",
+"english": "Your device doesn't support the advanced document scanner. Take a photo with your Camera app, then tap Import below to crop and save it.",
+"target": "Ваш пристрій не підтримує розширений сканер документів. Зробіть фото додатком Камера, потім натисніть Імпорт нижче, щоб обрізати та зберегти.",
+"backtrans": "Your device does not support the advanced document scanner. Take a photo with the Camera app, then press Import below to crop and save."
+},
+{
+"key": "billingUnavailableMessage",
+"english": "Billing unavailable — try again later.",
+"target": "Платежі недоступні — спробуйте пізніше.",
+"backtrans": "Payments are unavailable — try later."
+},
+{
+"key": "ocrNoInternetMessage",
+"english": "No internet. Connect once to download the language pack.",
+"target": "Немає інтернету. Підключіться один раз, щоб завантажити мовний пакет.",
+"backtrans": "No internet. Connect once to download the language pack."
+},
+{
+"key": "ocrLanguagePackNotReady",
+"english": "Language pack downloading or not ready. Try again shortly.",
+"target": "Мовний пакет завантажується або не готовий. Спробуйте через хвилину.",
+"backtrans": "The language pack is downloading or not ready. Try in a minute."
+},
+{
+"key": "undoTooltip",
+"english": "Undo",
+"target": "Скасувати",
+"backtrans": "Undo [??: 'Скасувати' = cancel; used for undo]"
+},
+{
+"key": "redoTooltip",
+"english": "Redo",
+"target": "Повторити",
+"backtrans": "Repeat [??: 'Повторити' = repeat; used for redo]"
+},
+{
+"key": "fillInputHint",
+"english": "Type text to fill",
+"target": "Введіть текст для заповнення",
+"backtrans": "Enter text to fill in"
+},
+{
+"key": "fillCapsLabel",
+"english": "ALL CAPS",
+"target": "ВСІ ВЕЛИКІ ЛІТЕРИ",
+"backtrans": "ALL CAPS"
+},
+{
+"key": "fillSaveSnippet",
+"english": "Save as snippet",
+"target": "Зберегти як фрагмент",
+"backtrans": "Save as snippet"
+},
+{
+"key": "fillDeleteSnippet",
+"english": "Delete snippet?",
+"target": "Видалити фрагмент?",
+"backtrans": "Delete snippet?"
+},
+{
+"key": "fillTooltip",
+"english": "Fill",
+"target": "Заповнити",
+"backtrans": "Fill"
+},
+{
+"key": "tickerFreeUnlimitedOcr",
+"english": "FREE UNLIMITED OCR",
+"target": "БЕЗКОШТОВНИЙ НЕОБМЕЖЕНИЙ OCR",
+"backtrans": "FREE UNLIMITED OCR"
+},
+{
+"key": "ticker100OnDevicePrivacy",
+"english": "YOUR DOCUMENTS STAY ON YOUR DEVICE",
+"target": "ВАШІ ДОКУМЕНТИ ЗАЛИШАЮТЬСЯ НА ВАШОМУ ПРИСТРОЇ",
+"backtrans": "YOUR DOCUMENTS STAY ON YOUR DEVICE"
+},
+{
+"key": "tickerNoAccount",
+"english": "NO ACCOUNT",
+"target": "БЕЗ АКАУНТА",
+"backtrans": "NO ACCOUNT"
+},
+{
+"key": "tickerNoWatermarks",
+"english": "NO WATERMARKS",
+"target": "БЕЗ ВОДЯНИХ ЗНАКІВ",
+"backtrans": "NO WATERMARKS"
+},
+{
+"key": "ticker21ToolEditSuite",
+"english": "21-TOOL EDIT SUITE",
+"target": "21 ІНСТРУМЕНТ РЕДАГУВАННЯ",
+"backtrans": "21-TOOL EDITING SUITE [??: 'ІНСТРУМЕНТ' singular after 21 is correct]"
+},
+{
+"key": "tickerNonDestructiveEditing",
+"english": "NON-DESTRUCTIVE EDITING",
+"target": "НЕРУЙНІВНЕ РЕДАГУВАННЯ",
+"backtrans": "NON-DESTRUCTIVE EDITING"
+},
+{
+"key": "tickerUndoRedo",
+"english": "UNDO/REDO",
+"target": "СКАСУВАННЯ/ПОВТОР",
+"backtrans": "CANCEL/REPEAT [??: undo/redo rendered as cancel/repeat]"
+},
+{
+"key": "tickerRevertToOriginal",
+"english": "REVERT TO ORIGINAL",
+"target": "ПОВЕРНУТИ ДО ОРИГІНАЛУ",
+"backtrans": "REVERT TO ORIGINAL"
+},
+{
+"key": "tickerTapToTypeFilling",
+"english": "TAP-TO-TYPE FILLING",
+"target": "ЗАПОВНЕННЯ ФОРМ ДОТИКОМ",
+"backtrans": "FORM FILLING BY TAP"
+},
+{
+"key": "tickerESign",
+"english": "E-SIGN",
+"target": "ЕЛЕКТРОННИЙ ПІДПИС",
+"backtrans": "ELECTRONIC SIGNATURE"
+},
+{
+"key": "tickerCustomSeals",
+"english": "CUSTOM SEALS",
+"target": "ВЛАСНІ ПЕЧАТКИ",
+"backtrans": "CUSTOM SEALS"
+},
+{
+"key": "tickerTextStamps",
+"english": "TEXT STAMPS",
+"target": "ТЕКСТОВІ ШТАМПИ",
+"backtrans": "TEXT STAMPS"
+},
+{
+"key": "tickerNoteStamps",
+"english": "NOTE STAMPS",
+"target": "ШТАМПИ НОТАТОК",
+"backtrans": "NOTE STAMPS"
+},
+{
+"key": "tickerSearchablePdf",
+"english": "SEARCHABLE PDF",
+"target": "PDF З ПОШУКОМ",
+"backtrans": "PDF WITH SEARCH"
+},
+{
+"key": "tickerRegionOcr",
+"english": "REGION OCR",
+"target": "OCR ВИДІЛЕНОЇ ОБЛАСТІ",
+"backtrans": "OCR OF SELECTED AREA"
+},
+{
+"key": "tickerAutoCopyOcr",
+"english": "AUTO-COPY OCR",
+"target": "АВТОКОПІЮВАННЯ OCR",
+"backtrans": "AUTO-COPY OCR"
+},
+{
+"key": "tickerIdCardMode",
+"english": "ID CARD MODE",
+"target": "РЕЖИМ ПОСВІДЧЕННЯ",
+"backtrans": "ID MODE [??: 'посвідчення' = certificate/ID]"
+},
+{
+"key": "tickerPassportMode",
+"english": "PASSPORT MODE",
+"target": "РЕЖИМ ПАСПОРТА",
+"backtrans": "PASSPORT MODE"
+},
+{
+"key": "tickerGalleryImport",
+"english": "GALLERY IMPORT",
+"target": "ІМПОРТ З ГАЛЕРЕЇ",
+"backtrans": "IMPORT FROM GALLERY"
+},
+{
+"key": "tickerPdfExport",
+"english": "PDF EXPORT",
+"target": "ЕКСПОРТ PDF",
+"backtrans": "PDF EXPORT"
+},
+{
+"key": "tickerWordExport",
+"english": "WORD EXPORT",
+"target": "ЕКСПОРТ WORD",
+"backtrans": "WORD EXPORT"
+},
+{
+"key": "tickerJpgExport",
+"english": "JPG EXPORT",
+"target": "ЕКСПОРТ JPG",
+"backtrans": "JPG EXPORT"
+},
+{
+"key": "tickerPngExport",
+"english": "PNG EXPORT",
+"target": "ЕКСПОРТ PNG",
+"backtrans": "PNG EXPORT"
+},
+{
+"key": "tickerBatchExport",
+"english": "BATCH EXPORT",
+"target": "ПАКЕТНИЙ ЕКСПОРТ",
+"backtrans": "BATCH EXPORT"
+},
+{
+"key": "tickerFolders",
+"english": "FOLDERS",
+"target": "ПАПКИ",
+"backtrans": "FOLDERS"
+},
+{
+"key": "tickerTags",
+"english": "TAGS",
+"target": "ТЕГИ",
+"backtrans": "TAGS"
+},
+{
+"key": "tickerFavorites",
+"english": "FAVORITES",
+"target": "ВИБРАНЕ",
+"backtrans": "FAVORITES"
+},
+{
+"key": "tickerSearch",
+"english": "SEARCH",
+"target": "ПОШУК",
+"backtrans": "SEARCH"
+},
+{
+"key": "tickerDarkMode",
+"english": "DARK MODE",
+"target": "ТЕМНИЙ РЕЖИМ",
+"backtrans": "DARK MODE"
+},
+{
+"key": "tickerAccentThemes",
+"english": "ACCENT THEMES",
+"target": "ТЕМИ АКЦЕНТУ",
+"backtrans": "ACCENT THEMES"
+},
+{
+"key": "tickerDeviceMigration",
+"english": "DEVICE MIGRATION",
+"target": "ПЕРЕНЕСЕННЯ НА НОВИЙ ПРИСТРІЙ",
+"backtrans": "TRANSFER TO A NEW DEVICE"
+},
+{
+"key": "onboardingWelcomeTitle",
+"english": "Welcome to KatharScan",
+"target": "Ласкаво просимо до KatharScan",
+"backtrans": "Welcome to KatharScan"
+},
+{
+"key": "onboardingWelcomeSubtitle",
+"english": "Your entire document office — scan, edit, sign, and export — in one private app.",
+"target": "Весь ваш офіс документів — сканування, редагування, підпис та експорт — в одному приватному додатку.",
+"backtrans": "Your whole document office — scanning, editing, signing and exporting — in one private app."
+},
+{
+"key": "onboardingToolsTitle",
+"english": "21 Free Pro Tools",
+"target": "21 безкоштовний Pro-інструмент",
+"backtrans": "21 free Pro tools"
+},
+{
+"key": "onboardingToolsSubtitle",
+"english": "Annotate, sign, watermark, fill forms, seal, and more — every tool free and unlimited.",
+"target": "Анотування, підпис, водяні знаки, заповнення форм, печатка та багато іншого — кожен інструмент безкоштовний та необмежений.",
+"backtrans": "Annotating, signing, watermarks, form filling, seal and much more — every tool is free and unlimited."
+},
+{
+"key": "onboardingOcrTitle",
+"english": "On-Device OCR",
+"target": "OCR на пристрої",
+"backtrans": "On-device OCR"
+},
+{
+"key": "onboardingOcrSubtitle",
+"english": "Use KatharScan in {count} languages. OCR runs on your phone — nothing ever leaves your device.",
+"target": "Використовуйте KatharScan {count} мовами. OCR працює на телефоні — нічого не залишає пристрій.",
+"backtrans": "Use KatharScan in {count} languages. OCR works on the phone — nothing leaves the device."
+},
+{
+"key": "onboardingSignTitle",
+"english": "Sign, Fill & Seal",
+"target": "Підпис, заповнення та печатка",
+"backtrans": "Signing, filling and seal"
+},
+{
+"key": "onboardingSignSubtitle",
+"english": "E-sign contracts, type-to-fill forms, and stamp enterprise seals in seconds.",
+"target": "Підписуйте контракти електронним підписом, заповнюйте форми та штампуйте корпоративні печатки за секунди.",
+"backtrans": "Sign contracts with an electronic signature, fill forms and stamp corporate seals in seconds."
+},
+{
+"key": "onboardingEditTitle",
+"english": "Non-Destructive Editing",
+"target": "Неруйнівне редагування",
+"backtrans": "Non-destructive editing"
+},
+{
+"key": "onboardingEditSubtitle",
+"english": "Every edit stays reversible — undo, redo, and revert to original anytime.",
+"target": "Кожне редагування залишається оборотним — скасування, повтор та повернення до оригіналу будь-коли.",
+"backtrans": "Every edit stays reversible — cancel, repeat and revert to the original at any time."
+},
+{
+"key": "onboardingPrivacyTitle",
+"english": "Private by design",
+"target": "Приватність закладена в основу",
+"backtrans": "Privacy built into the foundation"
+},
+{
+"key": "onboardingPrivacySubtitle",
+"english": "No account, no cloud, no watermarks. Your documents never leave your device.",
+"target": "Без акаунта, без хмари, без водяних знаків. Ваші документи ніколи не залишають ваш пристрій.",
+"backtrans": "No account, no cloud, no watermarks. Your documents never leave your device."
+},
+{
+"key": "onboardingContinue",
+"english": "Continue",
+"target": "Продовжити",
+"backtrans": "Continue"
+},
+{
+"key": "onboardingGetStarted",
+"english": "Get Started",
+"target": "Почати",
+"backtrans": "Get started"
+},
+{
+"key": "onboardingBack",
+"english": "Back",
+"target": "Назад",
+"backtrans": "Back"
+},
+{
+"key": "onboardingReplayIntro",
+"english": "Replay introduction",
+"target": "Переглянути вступ знову",
+"backtrans": "View the intro again"
+},
+{
+"key": "saveToDownloadsAction",
+"english": "Save to Downloads",
+"target": "Зберегти в Завантаження",
+"backtrans": "Save to Downloads"
+},
+{
+"key": "paywallTitle",
+"english": "Remove Ads",
+"target": "Видалити рекламу",
+"backtrans": "Remove ads"
+},
+{
+"key": "paywallSubtitle",
+"english": "Support KatharScan with a one-time purchase. All features remain free.",
+"target": "Підтримайте KatharScan разовою покупкою. Усі функції залишаться безкоштовними.",
+"backtrans": "Support KatharScan with a one-time purchase. All features will remain free."
+},
+{
+"key": "paywallFallbackPrice",
+"english": "$14.99 one-time",
+"target": "$14.99 одноразово",
+"backtrans": "$14.99 one-time"
+},
+{
+"key": "paywallFeatureNoBanner",
+"english": "No more banner ads",
+"target": "Більше ніяких банерів",
+"backtrans": "No more banners"
+},
+{
+"key": "paywallFeatureNoInterstitial",
+"english": "No more interstitial ads",
+"target": "Більше ніяких повноекранних оголошень",
+"backtrans": "No more full-screen ads"
+},
+{
+"key": "paywallFeatureFreeForever",
+"english": "All features free forever",
+"target": "Усі функції безкоштовні назавжди",
+"backtrans": "All features free forever"
+},
+{
+"key": "paywallLegalText",
+"english": "This is a non-consumable purchase. Restore it anytime on any device with the same store account.",
+"target": "Це неспоживча покупка. Відновіть її будь-коли на будь-якому пристрої з тим самим акаунтом магазину.",
+"backtrans": "This is a non-consumable purchase. Restore it at any time on any device with the same store account."
+},
+{
+"key": "paywallSuccessTitle",
+"english": "Ads Removed",
+"target": "Рекламу видалено",
+"backtrans": "Ads removed"
+},
+{
+"key": "paywallSuccessMessage",
+"english": "Thank you for supporting KatharScan.",
+"target": "Дякуємо за підтримку KatharScan.",
+"backtrans": "Thank you for supporting KatharScan."
+},
+{
+"key": "errorGenericTitle",
+"english": "Something went wrong",
+"target": "Щось пішло не так",
+"backtrans": "Something went wrong"
+},
+{
+"key": "errorScreenProblem",
+"english": "KatharScan ran into a problem displaying this screen. Your scans are safe — they're stored on this device and this doesn't affect them.",
+"target": "KatharScan зіткнувся з проблемою при відображенні цього екрана. Ваші скани в безпеці — вони зберігаються на цьому пристрої, і це не впливає на них.",
+"backtrans": "KatharScan ran into a problem displaying this screen. Your scans are safe — they are stored on this device, and this does not affect them."
+},
+{
+"key": "errorReportIssue",
+"english": "Report issue",
+"target": "Повідомити про проблему",
+"backtrans": "Report a problem"
+},
+{
+"key": "filterAll",
+"english": "All",
+"target": "Усі",
+"backtrans": "All"
+},
+{
+"key": "filterFolders",
+"english": "Folders",
+"target": "Папки",
+"backtrans": "Folders"
+},
+{
+"key": "filterRecent",
+"english": "Recent",
+"target": "Нещодавні",
+"backtrans": "Recent"
+},
+{
+"key": "filterFavorites",
+"english": "Favorites",
+"target": "Вибрані",
+"backtrans": "Favorites [??: 'Вибрані' = selected/chosen ones]"
+},
+{
+"key": "chipAllFolders",
+"english": "All Folders",
+"target": "Усі папки",
+"backtrans": "All folders"
+},
+{
+"key": "chipSelectMultiple",
+"english": "Select Multiple",
+"target": "Вибрати кілька",
+"backtrans": "Select several"
+},
+{
+"key": "emptySearch",
+"english": "No scans match your search.",
+"target": "Немає сканів, що відповідають вашому пошуку.",
+"backtrans": "No scans matching your search."
+},
+{
+"key": "emptyFolders",
+"english": "No folders yet. Tap the folder icon to create one.",
+"target": "Папок ще немає. Натисніть на іконку папки, щоб створити.",
+"backtrans": "No folders yet. Tap the folder icon to create one."
+},
+{
+"key": "emptyFavorites",
+"english": "No favorites yet. Tap the star icon on a document to add it.",
+"target": "Немає вибраного. Натисніть на іконку зірки в документі, щоб додати.",
+"backtrans": "No favorites [??: 'вибраного' = chosen]. Tap the star icon in a document to add."
+},
+{
+"key": "modeDocument",
+"english": "Document Mode",
+"target": "Режим документа",
+"backtrans": "Document mode"
+},
+{
+"key": "modeOcr",
+"english": "OCR Mode",
+"target": "Режим OCR",
+"backtrans": "OCR mode"
+},
+{
+"key": "modeIdCard",
+"english": "ID Card Mode",
+"target": "Режим посвідчення",
+"backtrans": "ID mode [??: 'посвідчення' = certificate/ID]"
+},
+{
+"key": "modePassport",
+"english": "Passport Mode",
+"target": "Режим паспорта",
+"backtrans": "Passport mode"
+},
+{
+"key": "titlePdfImport",
+"english": "PDF Import",
+"target": "Імпорт PDF",
+"backtrans": "PDF import"
+},
+{
+"key": "titleIdCard",
+"english": "ID Card",
+"target": "Посвідчення",
+"backtrans": "ID [??: 'Посвідчення' = certificate/ID]"
+},
+{
+"key": "titleScan",
+"english": "Scan",
+"target": "Сканувати",
+"backtrans": "Scan"
+},
+{
+"key": "exportEstimatedSize",
+"english": "Estimated size: {mb} MB",
+"target": "Розрахунковий розмір: {mb} МБ",
+"backtrans": "Estimated size: {mb} MB"
+},
+{
+"key": "debugNoLogsYet",
+"english": "No logs yet",
+"target": "Журналів ще немає",
+"backtrans": "No logs yet"
+},
+{
+"key": "textBold",
+"english": "B",
+"target": "Ж",
+"backtrans": "B [??: 'Ж' = bold in Ukrainian convention; Cyrillic letter]"
+},
+{
+"key": "textItalic",
+"english": "I",
+"target": "К",
+"backtrans": "I [??: 'К' = italic (курсив)]"
+},
+{
+"key": "textUnderline",
+"english": "U",
+"target": "П",
+"backtrans": "U [??: 'П' = underline (підкреслений)]"
+},
+{
+"key": "textFontLetterA",
+"english": "A",
+"target": "А",
+"backtrans": "A [??: Cyrillic 'А', not Latin A]"
+},
+{
+"key": "multiplySymbol",
+"english": "×",
+"target": "×",
+"backtrans": "×"
+},
+{
+"key": "signerLabel",
+"english": "Signer {index}",
+"target": "Підписант {index}",
+"backtrans": "Signer {index}"
+},
+{
+"key": "stampCheckbox",
+"english": "Checkbox",
+"target": "Прапорець",
+"backtrans": "Checkbox"
+},
+{
+"key": "fontSansSerif",
+"english": "sans-serif",
+"target": "sans-serif",
+"backtrans": "sans-serif"
+},
+{
+"key": "fontSerif",
+"english": "serif",
+"target": "serif",
+"backtrans": "serif"
+},
+{
+"key": "fontMonospace",
+"english": "monospace",
+"target": "monospace",
+"backtrans": "monospace"
+},
+{
+"key": "sealCustom",
+"english": "Custom Seal",
+"target": "Власна печатка",
+"backtrans": "Custom seal"
+},
+{
+"key": "formatCsv",
+"english": "CSV",
+"target": "CSV",
+"backtrans": "CSV"
+},
+{
+"key": "ocrNoTextFound",
+"english": "No text found",
+"target": "Текст не знайдено",
+"backtrans": "No text found"
+},
+{
+"key": "rotationAllPages",
+"english": "All pages rotated",
+"target": "Усі сторінки повернуто",
+"backtrans": "All pages rotated"
+},
+{
+"key": "rotationPage",
+"english": "Page rotated",
+"target": "Сторінку повернуто",
+"backtrans": "Page rotated"
+},
+{
+"key": "resizeTitle",
+"english": "Resize",
+"target": "Змінити розмір",
+"backtrans": "Resize"
+},
+{
+"key": "addTextTitle",
+"english": "Add Text",
+"target": "Додати текст",
+"backtrans": "Add text"
+},
+{
+"key": "addNoteTitle",
+"english": "Add Note",
+"target": "Додати нотатку",
+"backtrans": "Add note"
+},
+{
+"key": "addDateTitle",
+"english": "Add Date",
+"target": "Додати дату",
+"backtrans": "Add date"
+},
+{
+"key": "addCheckboxTitle",
+"english": "Add Checkbox",
+"target": "Додати прапорець",
+"backtrans": "Add checkbox"
+},
+{
+"key": "noteTextLabel",
+"english": "Note text",
+"target": "Текст нотатки",
+"backtrans": "Note text"
+},
+{
+"key": "textLabel",
+"english": "Text",
+"target": "Текст",
+"backtrans": "Text"
+},
+{
+"key": "checkShapeRounded",
+"english": "Rounded",
+"target": "Заокруглений",
+"backtrans": "Rounded"
+},
+{
+"key": "checkShapeSquare",
+"english": "Square",
+"target": "Квадрат",
+"backtrans": "Square"
+},
+{
+"key": "checkShapeCircle",
+"english": "Circle",
+"target": "Коло",
+"backtrans": "Circle"
+},
+{
+"key": "hueLabel",
+"english": "Hue",
+"target": "Відтінок",
+"backtrans": "Hue"
+},
+{
+"key": "satLabel",
+"english": "Sat",
+"target": "Нас",
+"backtrans": "Sat [??: 'Нас' truncated abbreviation, unclear]"
+},
+{
+"key": "valLabel",
+"english": "Val",
+"target": "Знач",
+"backtrans": "Val [??: 'Знач' abbreviation of 'value/meaning'; ambiguous]"
+},
+{
+"key": "annotationModePen",
+"english": "Pen",
+"target": "Перо",
+"backtrans": "Pen"
+},
+{
+"key": "annotationModeHighlighter",
+"english": "Highlighter",
+"target": "Маркер",
+"backtrans": "Marker"
+},
+{
+"key": "annotationModeRect",
+"english": "Rectangle",
+"target": "Прямокутник",
+"backtrans": "Rectangle"
+},
+{
+"key": "annotationModeArrow",
+"english": "Arrow",
+"target": "Стрілка",
+"backtrans": "Arrow"
+},
+{
+"key": "annotationModeEllipse",
+"english": "Ellipse",
+"target": "Еліпс",
+"backtrans": "Ellipse"
+},
+{
+"key": "sharePromptTitle",
+"english": "Love KatharScan?",
+"target": "Подобається KatharScan?",
+"backtrans": "Enjoying KatharScan?"
+},
+{
+"key": "sharePromptBody",
+"english": "Share it with friends who need a powerful document scanner.",
+"target": "Поділіться з друзями, яким потрібен потужний сканер документів.",
+"backtrans": "Share with friends who need a powerful document scanner."
+},
+{
+"key": "sharePromptAction",
+"english": "Share App",
+"target": "Поділитися додатком",
+"backtrans": "Share the app"
+},
+{
+"key": "sharePromptDismiss",
+"english": "Not now",
+"target": "Не зараз",
+"backtrans": "Not now"
+},
+{
+"key": "reviewPromptTitle",
+"english": "Enjoying KatharScan?",
+"target": "Подобається KatharScan?",
+"backtrans": "Enjoying KatharScan?"
+},
+{
+"key": "reviewPromptBody",
+"english": "Your feedback helps us grow and keeps the app free.",
+"target": "Ваш відгук допомагає нам рости та підтримує додаток безкоштовним.",
+"backtrans": "Your review helps us grow and keeps the app free."
+},
+{
+"key": "reviewPromptYes",
+"english": "Rate Us",
+"target": "Оцінити нас",
+"backtrans": "Rate us"
+},
+{
+"key": "reviewPromptNo",
+"english": "Send Feedback",
+"target": "Надіслати відгук",
+"backtrans": "Send feedback"
+},
+{
+"key": "watermarkLabel",
+"english": "Watermark",
+"target": "Водяний знак",
+"backtrans": "Watermark"
+},
+{
+"key": "compressLabel",
+"english": "Compress",
+"target": "Стиснути",
+"backtrans": "Compress"
+},
+{
+"key": "pagesLabel",
+"english": "Pages",
+"target": "Сторінки",
+"backtrans": "Pages"
+},
+{
+"key": "cropLabel",
+"english": "Crop",
+"target": "Обрізати",
+"backtrans": "Crop"
+},
+{
+"key": "emailLabel",
+"english": "Email",
+"target": "Ел. пошта",
+"backtrans": "E-mail"
+},
+{
+"key": "checkLabel",
+"english": "Check",
+"target": "Галочка",
+"backtrans": "Tick mark"
+},
+{
+"key": "captionDocs",
+"english": "Flexible crop: Original, Square, 4:3, 3:2, 16:9",
+"target": "Гнучка обрізка: Оригінал, Квадрат, 4:3, 3:2, 16:9",
+"backtrans": "Flexible crop: Original, Square, 4:3, 3:2, 16:9"
+},
+{
+"key": "captionOcr",
+"english": "Text crop: Original, Square, 4:3",
+"target": "Обрізка тексту: Оригінал, Квадрат, 4:3",
+"backtrans": "Text crop: Original, Square, 4:3"
+},
+{
+"key": "captionIdCard",
+"english": "Two-sided ID capture: Front + Back",
+"target": "Двостороннє сканування посвідчення: лицьова + зворотна сторона",
+"backtrans": "Two-sided ID scanning: front + back side [??: 'посвідчення' = certificate/ID]"
+},
+{
+"key": "captionPassport",
+"english": "Passport crop: 4:3 or Original",
+"target": "Обрізка паспорта: 4:3 або Оригінал",
+"backtrans": "Passport crop: 4:3 or Original"
+},
+{
+"key": "idStepFront",
+"english": "Step 1: Capture Front Side",
+"target": "Крок 1: Скануйте лицьову сторону",
+"backtrans": "Step 1: Scan the front side"
+},
+{
+"key": "idStepBack",
+"english": "Step 2: Capture Back Side",
+"target": "Крок 2: Скануйте зворотну сторону",
+"backtrans": "Step 2: Scan the back side"
+},
+{
+"key": "idGenerating",
+"english": "Generating PDF...",
+"target": "Створення PDF...",
+"backtrans": "Creating PDF..."
+},
+{
+"key": "captureFrontSide",
+"english": "Capture Front Side",
+"target": "Сканувати лицьову",
+"backtrans": "Scan the front"
+},
+{
+"key": "captureBackSide",
+"english": "Capture Back Side",
+"target": "Сканувати зворотну",
+"backtrans": "Scan the back"
+},
+{
+"key": "importFrontSide",
+"english": "Import Front Side",
+"target": "Імпорт лицьової",
+"backtrans": "Import the front"
+},
+{
+"key": "importBackSide",
+"english": "Import Back Side",
+"target": "Імпорт зворотної",
+"backtrans": "Import the back"
+},
+{
+"key": "cropDocumentTitle",
+"english": "Crop Document",
+"target": "Обрізати документ",
+"backtrans": "Crop document"
+},
+{
+"key": "cropIdCardTitle",
+"english": "Crop ID Card",
+"target": "Обрізати посвідчення",
+"backtrans": "Crop ID [??: 'посвідчення' = certificate/ID]"
+},
+{
+"key": "tabImageLabel",
+"english": "Image",
+"target": "Зображення",
+"backtrans": "Image"
+},
+{
+"key": "tabOcrTextLabel",
+"english": "OCR Text",
+"target": "Текст OCR",
+"backtrans": "OCR text"
+},
+{
+"key": "compressSmall",
+"english": "Small",
+"target": "Малий",
+"backtrans": "Small"
+},
+{
+"key": "compressMedium",
+"english": "Medium",
+"target": "Середній",
+"backtrans": "Medium"
+},
+{
+"key": "pageFormatLetter",
+"english": "Letter (US)",
+"target": "Letter (США)",
+"backtrans": "Letter (USA)"
+},
+{
+"key": "ocrScriptLatin",
+"english": "Latin (English, European)",
+"target": "Латиниця (англійська, європейська)",
+"backtrans": "Latin (English, European)"
+},
+{
+"key": "ocrScriptChinese",
+"english": "Chinese",
+"target": "Китайська",
+"backtrans": "Chinese"
+},
+{
+"key": "ocrScriptKorean",
+"english": "Korean",
+"target": "Корейська",
+"backtrans": "Korean"
+},
+{
+"key": "ocrScriptJapanese",
+"english": "Japanese",
+"target": "Японська",
+"backtrans": "Japanese"
+},
+{
+"key": "ocrScriptDevanagari",
+"english": "Hindi, Marathi (Devanagari)",
+"target": "Гінді, маратхі (деванагарі)",
+"backtrans": "Hindi, Marathi (Devanagari)"
+},
+{
+"key": "ocrStatusUnsupported",
+"english": "Unsupported",
+"target": "Не підтримується",
+"backtrans": "Not supported"
+},
+{
+"key": "noteLabel",
+"english": "Note",
+"target": "Нотатка",
+"backtrans": "Note"
+},
+{
+"key": "dateLabel",
+"english": "Date",
+"target": "Дата",
+"backtrans": "Date"
+},
+{
+"key": "accentBlue",
+"english": "Blue",
+"target": "Синій",
+"backtrans": "Blue"
+},
+{
+"key": "accentIndigo",
+"english": "Indigo",
+"target": "Індиго",
+"backtrans": "Indigo"
+},
+{
+"key": "accentEmerald",
+"english": "Emerald",
+"target": "Смарагд",
+"backtrans": "Emerald"
+},
+{
+"key": "accentCrimson",
+"english": "Crimson",
+"target": "Малиновий",
+"backtrans": "Crimson [??: 'Малиновий' = raspberry/crimson-ish]"
+},
+{
+"key": "accentAmber",
+"english": "Amber",
+"target": "Бурштин",
+"backtrans": "Amber [??: 'Бурштин' = amber (the resin)]"
+},
+{
+"key": "accentViolet",
+"english": "Violet",
+"target": "Фіолетовий",
+"backtrans": "Violet"
+},
+{
+"key": "tickerLanguages",
+"english": "{count} LANGUAGES",
+"target": "{count} МОВ",
+"backtrans": "{count} LANGUAGES [??: 'МОВ' genitive plural]"
+},
+{
+"key": "termsOfServiceLabel",
+"english": "Terms of Service",
+"target": "Умови використання",
+"backtrans": "Terms of use"
+},
+{
+"key": "openSourceLicensesLabel",
+"english": "Open-source licenses",
+"target": "Ліцензії з відкритим кодом",
+"backtrans": "Open-source licenses"
+},
+{
+"key": "whatsNewTitle",
+"english": "What's New",
+"target": "Що нового",
+"backtrans": "What's new"
+},
+{
+"key": "whatsNewContinue",
+"english": "Continue",
+"target": "Продовжити",
+"backtrans": "Continue"
+},
+{
+"key": "tickerTxtExport",
+"english": "TXT EXPORT",
+"target": "ЕКСПОРТ TXT",
+"backtrans": "TXT EXPORT"
+},
+{
+"key": "tickerCsvExport",
+"english": "CSV EXPORT",
+"target": "ЕКСПОРТ CSV",
+"backtrans": "CSV EXPORT"
+},
+{
+"key": "whatsNewBody",
+"english": "Welcome to KatharScan! This is the first public release featuring unlimited scanning, 29 languages, and export to PDF, Word, TXT, JPG, PNG, and CSV.",
+"target": "Вітаємо у KatharScan! Це перший публічний реліз з необмеженим скануванням, 29 мовами та експортом у PDF, Word, TXT, JPG, PNG і CSV.",
+"backtrans": "Welcome to KatharScan! This is the first public release with unlimited scanning, 29 languages and export to PDF, Word, TXT, JPG, PNG and CSV."
+},
+{
+"key": "engagementSectionLabel",
+"english": "ENGAGEMENT & NOTIFICATIONS",
+"target": "ВЗАЄМОДІЯ ТА СПОВІЩЕННЯ",
+"backtrans": "INTERACTION AND NOTIFICATIONS"
+},
+{
+"key": "enableNotificationsLabel",
+"english": "Enable Notifications",
+"target": "Увімкнути сповіщення",
+"backtrans": "Enable notifications"
+},
+{
+"key": "enableNotificationsSubtitle",
+"english": "Allow background reminders for unexported documents",
+"target": "Дозволити фонові нагадування для неекспортованих документів",
+"backtrans": "Allow background reminders for unexported documents"
+},
+{
+"key": "enableReviewPromptsLabel",
+"english": "Enable Review Prompts",
+"target": "Увімкнути запити відгуків",
+"backtrans": "Enable review requests"
+},
+{
+"key": "enableReviewPromptsSubtitle",
+"english": "Allow the app to occasionally ask for a rating",
+"target": "Дозволити застосунку іноді просити оцінку",
+"backtrans": "Allow the app to occasionally ask for a rating"
+},
+{
+"key": "enableSharePromptsLabel",
+"english": "Enable Share Prompts",
+"target": "Увімкнути запити поділитися",
+"backtrans": "Enable share requests"
+},
+{
+"key": "enableSharePromptsSubtitle",
+"english": "Allow the app to occasionally suggest sharing",
+"target": "Дозволити застосунку іноді пропонувати поділитися",
+"backtrans": "Allow the app to occasionally suggest sharing"
+},
+{
+"key": "exportFormatCsvDescription",
+"english": "Spreadsheet data",
+"target": "Дані таблиці",
+"backtrans": "Table data"
+},
+{
+"key": "watermarkDefaultText",
+"english": "CONFIDENTIAL",
+"target": "КОНФІДЕНЦІЙНО",
+"backtrans": "CONFIDENTIAL"
+},
+{
+"key": "emailAttachmentNotIncluded",
+"english": "The pages could not be attached to the email. Use Share to send the pages.",
+"target": "Не вдалося додати сторінки до листа. Використайте «Поділитися», щоб надіслати сторінки.",
+"backtrans": "Failed to attach the pages to the email. Use 'Share' to send the pages."
+},
+{
+"key": "sealDefaultMainText",
+"english": "YOUR COMPANY",
+"target": "ВАША КОМПАНІЯ",
+"backtrans": "YOUR COMPANY"
+},
+{
+"key": "extractedPageDefaultTitle",
+"english": "Extracted Page",
+"target": "Витягнута сторінка",
+"backtrans": "Extracted page"
+},
+{
+"key": "printRangeAll",
+"english": "All pages",
+"target": "Усі сторінки",
+"backtrans": "All pages"
+},
+{
+"key": "printRangeCurrent",
+"english": "Current",
+"target": "Поточна",
+"backtrans": "Current"
+},
+{
+"key": "printRangeRange",
+"english": "Range",
+"target": "Діапазон",
+"backtrans": "Range"
+},
+{
+"key": "printFilterNone",
+"english": "No filter",
+"target": "Без фільтра",
+"backtrans": "No filter"
+},
+{
+"key": "removeFromFavorites",
+"english": "Remove from Favorites",
+"target": "Видалити з обраного",
+"backtrans": "Remove from favorites [??: 'обраного' = chosen; differs from 'Вибране' used elsewhere]"
+},
+{
+"key": "addToFavorites",
+"english": "Add to Favorites",
+"target": "Додати до обраного",
+"backtrans": "Add to favorites"
+},
+{
+"key": "saveFailedPrefix",
+"english": "Save failed:",
+"target": "Не вдалося зберегти:",
+"backtrans": "Failed to save:"
+},
+{
+"key": "ocrScriptArabic",
+"english": "العربية (Arabic)",
+"target": "العربية (Arabic)",
+"backtrans": "العربية (Arabic)"
+},
+{
+"key": "ocrScriptRussian",
+"english": "Русский (Russian)",
+"target": "Русский (Russian)",
+"backtrans": "Русский (Russian)"
+},
+{
+"key": "ocrScriptUkrainian",
+"english": "Українська (Ukrainian)",
+"target": "Українська (Ukrainian)",
+"backtrans": "Українська (Ukrainian)"
+},
+{
+"key": "ocrScriptGreek",
+"english": "Ελληνικά (Greek)",
+"target": "Ελληνικά (Greek)",
+"backtrans": "Ελληνικά (Greek)"
+},
+{
+"key": "ocrScriptHebrew",
+"english": "עברית (Hebrew)",
+"target": "עברית (Hebrew)",
+"backtrans": "עברית (Hebrew)"
+},
+{
+"key": "ocrScriptThai",
+"english": "ไทย (Thai)",
+"target": "ไทย (Thai)",
+"backtrans": "ไทย (Thai)"
+},
+{
+"key": "ocrScriptBengali",
+"english": "বাংলা (Bengali)",
+"target": "বাংলা (Bengali)",
+"backtrans": "বাংলা (Bengali)"
+},
+{
+"key": "ocrStatusInstalled",
+"english": "Installed",
+"target": "Установлено",
+"backtrans": "Installed"
+},
+{
+"key": "ocrStatusDownloading",
+"english": "Downloading…",
+"target": "Завантаження…",
+"backtrans": "Downloading…"
+},
+{
+"key": "exportNoTextError",
+"english": "This document has no text yet. Run OCR on it first.",
+"target": "У цьому документі ще немає тексту. Спочатку запустіть розпізнавання (OCR).",
+"backtrans": "This document has no text yet. First run recognition (OCR)."
+},
+{
+"key": "saveFailedBanner",
+"english": "Your latest changes could not be saved.",
+"target": "Не вдалося зберегти останні зміни.",
+"backtrans": "Failed to save the latest changes."
+},
+{
+"key": "editLabel",
+"english": "Edit",
+"target": "Змінити",
+"backtrans": "Change [??: 'Змінити' = change; used as edit]"
+},
+{
+"key": "fillTapHint",
+"english": "Tap the page where you want to type",
+"target": "Торкніться сторінки там, де хочете ввести текст",
+"backtrans": "Tap the page where you want to enter text"
+},
+{
+"key": "fillTypeHint",
+"english": "Type here",
+"target": "Введіть текст",
+"backtrans": "Enter text"
+},
+{
+"key": "clearPage",
+"english": "Clear page",
+"target": "Очистити сторінку",
+"backtrans": "Clear page"
+},
+{
+"key": "clearAllPages",
+"english": "Clear all pages",
+"target": "Очистити всі сторінки",
+"backtrans": "Clear all pages"
+},
+{
+"key": "clearedCount",
+"english": "Cleared {count}",
+"target": "Очищено: {count}",
+"backtrans": "Cleared: {count}"
+},
+{
+"key": "idLayoutRealSize",
+"english": "Real size",
+"target": "Реальний розмір",
+"backtrans": "Real size"
+},
+{
+"key": "idLayoutFullWidth",
+"english": "Full width",
+"target": "На всю ширину",
+"backtrans": "Full width"
+},
+{
+"key": "pagesToReadTitle",
+"english": "Pages to read",
+"target": "Сторінки для читання",
+"backtrans": "Pages to read"
+},
+{
+"key": "pagesToReadHint",
+"english": "This PDF has {count} pages. Pages that are pictures are read with OCR (about 10 seconds each); pages with real text are instant.",
+"target": "У цьому PDF {count} стор. Сторінки-зображення читаються через OCR (близько 10 секунд кожна); сторінки зі справжнім текстом — миттєво.",
+"backtrans": "This PDF has {count} pp. Image pages are read via OCR (about 10 seconds each); pages with real text — instantly."
+},
+{
+"key": "pageFromLabel",
+"english": "From page",
+"target": "Зі сторінки",
+"backtrans": "From page"
+},
+{
+"key": "pageToLabel",
+"english": "To page",
+"target": "До сторінки",
+"backtrans": "To page"
+},
+{
+"key": "readingPageProgress",
+"english": "Page {page} of {total}",
+"target": "Сторінка {page} з {total}",
+"backtrans": "Page {page} of {total}"
+},
+{
+"key": "readingPageEta",
+"english": "Page {page} of {total} · about {minutes} min left",
+"target": "Сторінка {page} з {total} · залишилось близько {minutes} хв",
+"backtrans": "Page {page} of {total} · about {minutes} min left"
+},
+{
+"key": "sealShapeRound",
+"english": "Round",
+"target": "Круглий",
+"backtrans": "Round"
+},
+{
+"key": "sealFontSans",
+"english": "Clean",
+"target": "Строгий",
+"backtrans": "Strict [??: sealFontSans rendered 'Строгий' = strict/austere, not 'sans-serif']"
+},
+{
+"key": "sealFontSerif",
+"english": "Classic",
+"target": "Класичний",
+"backtrans": "Classic [??: serif font rendered 'Класичний' = classic]"
+},
+{
+"key": "sealInkLook",
+"english": "Worn stamp look",
+"target": "Ефект потертої печатки",
+"backtrans": "Worn-seal effect"
+},
+{
+"key": "sealSaveToLibrary",
+"english": "Save this seal",
+"target": "Зберегти печатку",
+"backtrans": "Save seal"
+},
+{
+"key": "sealSavedHeading",
+"english": "Saved seals",
+"target": "Збережені печатки",
+"backtrans": "Saved seals"
+},
+{
+"key": "sealTextColorLabel",
+"english": "Text colour",
+"target": "Колір тексту",
+"backtrans": "Text color"
+},
+{
+"key": "sealTextColorSame",
+"english": "Same as ring",
+"target": "Як у кільця",
+"backtrans": "Same as the ring"
+},
+{
+"key": "sealTextSizePercent",
+"english": "Text size {percent}%",
+"target": "Розмір тексту {percent}%",
+"backtrans": "Text size {percent}%"
+},
+{
+"key": "sealRemoveWhite",
+"english": "Make white transparent",
+"target": "Зробити білий прозорим",
+"backtrans": "Make white transparent"
+},
+{
+"key": "sealSavedMessage",
+"english": "Seal saved",
+"target": "Печатку збережено",
+"backtrans": "Seal saved"
+},
+{
+"key": "signatureTabDraw",
+"english": "Draw",
+"target": "Малювати",
+"backtrans": "Draw"
+},
+{
+"key": "signatureTabType",
+"english": "Type",
+"target": "Ввести",
+"backtrans": "Type [??: 'Ввести' = enter/input]"
+},
+{
+"key": "signatureTypeHint",
+"english": "Type your name",
+"target": "Введіть своє ім’я",
+"backtrans": "Enter your name"
+},
+{
+"key": "signatureWidthLabel",
+"english": "Pen width",
+"target": "Товщина пера",
+"backtrans": "Pen thickness"
+},
+{
+"key": "signatureFontFlowing",
+"english": "Flowing",
+"target": "Плавний",
+"backtrans": "Flowing"
+},
+{
+"key": "signatureFontHandwritten",
+"english": "Handwritten",
+"target": "Рукописний",
+"backtrans": "Handwritten"
+},
+{
+"key": "signatureSavedHeading",
+"english": "Saved signatures",
+"target": "Збережені підписи",
+"backtrans": "Saved signatures"
+},
+{
+"key": "signatureNewOne",
+"english": "Draw or type a new one",
+"target": "Намалювати або ввести новий",
+"backtrans": "Draw or enter a new one"
+},
+{
+"key": "signatureDeleteSaved",
+"english": "Remove saved signature",
+"target": "Видалити збережений підпис",
+"backtrans": "Delete saved signature"
+},
+{
+"key": "annotationModeSelect",
+"english": "Select",
+"target": "Вибрати",
+"backtrans": "Select"
+},
+{
+"key": "annotationModeEraser",
+"english": "Eraser",
+"target": "Гумка",
+"backtrans": "Eraser"
+},
+{
+"key": "watermarkKindText",
+"english": "Text",
+"target": "Текст",
+"backtrans": "Text"
+},
+{
+"key": "watermarkKindImage",
+"english": "Image",
+"target": "Зображення",
+"backtrans": "Image"
+},
+{
+"key": "watermarkChooseImage",
+"english": "Choose image",
+"target": "Вибрати зображення",
+"backtrans": "Choose image"
+},
+{
+"key": "watermarkLayoutLabel",
+"english": "Layout",
+"target": "Розташування",
+"backtrans": "Placement [??: 'Розташування' = location/arrangement]"
+},
+{
+"key": "watermarkLayoutSingle",
+"english": "Single",
+"target": "Одиночний",
+"backtrans": "Single"
+},
+{
+"key": "watermarkLayoutDiagonal",
+"english": "Diagonal",
+"target": "Діагональний",
+"backtrans": "Diagonal"
+},
+{
+"key": "watermarkLayoutTiled",
+"english": "Tiled",
+"target": "Мозаїка",
+"backtrans": "Mosaic [??: 'Мозаїка' for tiled]"
+},
+{
+"key": "watermarkPagesLabel",
+"english": "Pages",
+"target": "Сторінки",
+"backtrans": "Pages"
+},
+{
+"key": "watermarkPagesThis",
+"english": "This page",
+"target": "Ця сторінка",
+"backtrans": "This page"
+},
+{
+"key": "watermarkPagesAll",
+"english": "All pages",
+"target": "Усі сторінки",
+"backtrans": "All pages"
+},
+{
+"key": "watermarkPagesRange",
+"english": "Range",
+"target": "Діапазон",
+"backtrans": "Range"
+},
+{
+"key": "watermarkPagesRangeHint",
+"english": "e.g. 1-3, 5",
+"target": "напр. 1-3, 5",
+"backtrans": "e.g. 1-3, 5"
+},
+{
+"key": "watermarkPagesInvalid",
+"english": "Check the pages (the document has {count} pages)",
+"target": "Перевірте сторінки (у документі {count} стор.)",
+"backtrans": "Check the pages (the document has {count} pp.)"
+},
+{
+"key": "cropAuto",
+"english": "Auto-detect",
+"target": "Визначити автоматично",
+"backtrans": "Detect automatically"
+},
+{
+"key": "cropAspectFree",
+"english": "Free",
+"target": "Вільно",
+"backtrans": "Free"
+},
+{
+"key": "cropAspectId",
+"english": "ID card",
+"target": "ID-картка",
+"backtrans": "ID card"
+},
+{
+"key": "cropAspectSquare",
+"english": "Square",
+"target": "Квадрат",
+"backtrans": "Square"
+},
+{
+"key": "cropNoPageFound",
+"english": "Couldn't find the page edges. Drag the corners.",
+"target": "Краї сторінки не знайдено. Перетягніть кути.",
+"backtrans": "Page edges not found. Drag the corners."
+},
+{
+"key": "straightenLabel",
+"english": "Straighten",
+"target": "Вирівняти",
+"backtrans": "Straighten"
+},
+{
+"key": "filterMagicColor",
+"english": "Magic colour",
+"target": "Магія кольору",
+"backtrans": "Color magic"
+},
+{
+"key": "filterBrightnessLabel",
+"english": "Brightness",
+"target": "Яскравість",
+"backtrans": "Brightness"
+},
+{
+"key": "filterContrastLabel",
+"english": "Contrast",
+"target": "Контраст",
+"backtrans": "Contrast"
+},
+{
+"key": "resizeUpscaleWarning",
+"english": "Enlarging doesn't add detail — the page may look soft.",
+"target": "Збільшення не додає деталей — сторінка може виглядати розмитою.",
+"backtrans": "Enlarging does not add detail — the page may look blurry."
+},
+{
+"key": "eraserAutoColorTooltip",
+"english": "Match the page colour automatically",
+"target": "Підбирати колір сторінки автоматично",
+"backtrans": "Pick the page color automatically"
+},
+{
+"key": "eraserZoomTooltip",
+"english": "Zoom and move (pinch)",
+"target": "Масштаб і переміщення (щипок)",
+"backtrans": "Zoom and move (pinch)"
+},
+{
+"key": "pagesSelectTooltip",
+"english": "Select pages",
+"target": "Вибрати сторінки",
+"backtrans": "Select pages"
+},
+{
+"key": "pagesDeleteCount",
+"english": "Delete {count}",
+"target": "Видалити {count}",
+"backtrans": "Delete {count}"
+},
+{
+"key": "pagesDeleteConfirm",
+"english": "Delete {count} pages? They are removed when you save.",
+"target": "Видалити сторінок: {count}? Їх буде видалено після збереження.",
+"backtrans": "Delete pages: {count}? They will be deleted after saving."
+},
+{
+"key": "compressTargetLabel",
+"english": "Max size",
+"target": "Макс. розмір",
+"backtrans": "Max. size"
+},
+{
+"key": "compressNoLimit",
+"english": "No limit",
+"target": "Без ліміту",
+"backtrans": "No limit"
+},
+{
+"key": "printPaperLabel",
+"english": "Paper",
+"target": "Папір",
+"backtrans": "Paper"
+},
+{
+"key": "printMarginLabel",
+"english": "Margin",
+"target": "Поля",
+"backtrans": "Margins"
+},
+{
+"key": "printMarginNone",
+"english": "None",
+"target": "Немає",
+"backtrans": "None"
+},
+{
+"key": "printMarginNarrow",
+"english": "Narrow",
+"target": "Вузькі",
+"backtrans": "Narrow"
+},
+{
+"key": "printMarginNormal",
+"english": "Normal",
+"target": "Звичайні",
+"backtrans": "Normal"
+},
+{
+"key": "printFitLabel",
+"english": "Scaling",
+"target": "Масштаб",
+"backtrans": "Scale"
+},
+{
+"key": "printFitFit",
+"english": "Fit page",
+"target": "Вписати",
+"backtrans": "Fit"
+},
+{
+"key": "printFitFill",
+"english": "Fill sheet (trims edges)",
+"target": "Заповнити аркуш (краї обрізаються)",
+"backtrans": "Fill the sheet (edges are cropped)"
+},
+{
+"key": "printPerSheetLabel",
+"english": "Pages per sheet",
+"target": "Сторінок на аркуші",
+"backtrans": "Pages per sheet"
+},
+{
+"key": "emailMessageLabel",
+"english": "Message",
+"target": "Повідомлення",
+"backtrans": "Message"
+},
+{
+"key": "emailMessageHint",
+"english": "Add a note (optional)",
+"target": "Додайте нотатку (необов'язково)",
+"backtrans": "Add a note (optional)"
+},
+{
+"key": "emailLimitMissed",
+"english": "Could not get under {mb} MB; sent the smallest version.",
+"target": "Не вдалося вкластися в {mb} МБ; надіслано найменшу версію.",
+"backtrans": "Could not fit within {mb} MB; the smallest version was sent."
+}
+]

@@ -1,0 +1,3362 @@
+[
+{
+"key": "privacyOptionsLabel",
+"english": "Privacy settings",
+"target": "Cài đặt quyền riêng tư",
+"backtrans": "Privacy rights settings"
+},
+{
+"key": "commonCancel",
+"english": "Cancel",
+"target": "Hủy",
+"backtrans": "Cancel"
+},
+{
+"key": "commonDelete",
+"english": "Delete",
+"target": "Xóa",
+"backtrans": "Delete"
+},
+{
+"key": "commonSave",
+"english": "Save",
+"target": "Lưu",
+"backtrans": "Save"
+},
+{
+"key": "commonAdd",
+"english": "Add",
+"target": "Thêm",
+"backtrans": "Add"
+},
+{
+"key": "commonExport",
+"english": "Export",
+"target": "Xuất",
+"backtrans": "Export"
+},
+{
+"key": "commonImport",
+"english": "Import",
+"target": "Nhập",
+"backtrans": "Import"
+},
+{
+"key": "commonSkip",
+"english": "Skip",
+"target": "Bỏ qua",
+"backtrans": "Skip"
+},
+{
+"key": "commonClear",
+"english": "Clear",
+"target": "Xóa sạch",
+"backtrans": "Clear completely"
+},
+{
+"key": "emptyStateDefaultMessage",
+"english": "Tap the camera to scan your first document.",
+"target": "Chạm vào máy ảnh để quét tài liệu đầu tiên của bạn.",
+"backtrans": "Tap the camera to scan your first document."
+},
+{
+"key": "exportFormatSheetTitle",
+"english": "Export as",
+"target": "Xuất dưới dạng",
+"backtrans": "Export as"
+},
+{
+"key": "exportFormatPdfLabel",
+"english": "PDF",
+"target": "PDF",
+"backtrans": "PDF"
+},
+{
+"key": "exportFormatPdfDescription",
+"english": "Best for sharing and printing",
+"target": "Tốt nhất để chia sẻ và in ấn",
+"backtrans": "Best for sharing and printing"
+},
+{
+"key": "exportFormatDocxLabel",
+"english": "Word (.docx)",
+"target": "Word (.docx)",
+"backtrans": "Word (.docx)"
+},
+{
+"key": "exportFormatDocxDescription",
+"english": "Editable text document",
+"target": "Tài liệu văn bản có thể chỉnh sửa",
+"backtrans": "Editable text document"
+},
+{
+"key": "exportFormatTxtLabel",
+"english": "Text (.txt)",
+"target": "Văn bản (.txt)",
+"backtrans": "Text (.txt)"
+},
+{
+"key": "exportFormatTxtDescription",
+"english": "Plain OCR text only",
+"target": "Chỉ văn bản OCR thuần túy",
+"backtrans": "Pure OCR text only"
+},
+{
+"key": "exportFormatJpgLabel",
+"english": "JPG",
+"target": "JPG",
+"backtrans": "JPG"
+},
+{
+"key": "exportFormatJpgDescription",
+"english": "One image per page",
+"target": "Một hình ảnh mỗi trang",
+"backtrans": "One image per page"
+},
+{
+"key": "exportFormatPngLabel",
+"english": "PNG",
+"target": "PNG",
+"backtrans": "PNG"
+},
+{
+"key": "exportFormatPngDescription",
+"english": "One image per page, lossless",
+"target": "Một hình ảnh mỗi trang, không mất dữ liệu",
+"backtrans": "One image per page, no data loss"
+},
+{
+"key": "filterSheetTitle",
+"english": "Filters",
+"target": "Bộ lọc",
+"backtrans": "Filter"
+},
+{
+"key": "filterOriginal",
+"english": "Original",
+"target": "Gốc",
+"backtrans": "Original"
+},
+{
+"key": "filterGrayscale",
+"english": "Grayscale",
+"target": "Thang độ xám",
+"backtrans": "Grayscale"
+},
+{
+"key": "filterBlackAndWhite",
+"english": "B&W",
+"target": "Đen trắng",
+"backtrans": "Black and white"
+},
+{
+"key": "filterColorEnhance",
+"english": "Color enhance",
+"target": "Tăng cường màu",
+"backtrans": "Color enhancement"
+},
+{
+"key": "filterShadowRemoval",
+"english": "Shadow removal",
+"target": "Loại bỏ bóng",
+"backtrans": "Shadow removal"
+},
+{
+"key": "proBadgeLabel",
+"english": "PRO",
+"target": "PRO",
+"backtrans": "PRO"
+},
+{
+"key": "scanListPageCount",
+"english": "{count, plural, =1{1 page} other{{count} pages}}",
+"target": "{count} trang",
+"backtrans": "{count} pages"
+},
+{
+"key": "scanPreviewNoPages",
+"english": "No pages to show.",
+"target": "Không có trang để hiển thị.",
+"backtrans": "No pages to display."
+},
+{
+"key": "shareTooltip",
+"english": "Share",
+"target": "Chia sẻ",
+"backtrans": "Share"
+},
+{
+"key": "signatureCanvasHint",
+"english": "Sign here",
+"target": "Ký tại đây",
+"backtrans": "Sign here"
+},
+{
+"key": "folderDocumentCount",
+"english": "{count, plural, =1{1 document} other{{count} documents}}",
+"target": "{count} tài liệu",
+"backtrans": "{count} documents"
+},
+{
+"key": "selectedCount",
+"english": "{count, plural, =1{1 selected} other{{count} selected}}",
+"target": "{count} đã chọn",
+"backtrans": "{count} selected"
+},
+{
+"key": "batchExportTooltip",
+"english": "Batch export",
+"target": "Xuất hàng loạt",
+"backtrans": "Bulk export"
+},
+{
+"key": "deleteTooltip",
+"english": "Delete",
+"target": "Xóa",
+"backtrans": "Delete"
+},
+{
+"key": "searchHint",
+"english": "Search your scans",
+"target": "Tìm kiếm bản quét của bạn",
+"backtrans": "Search your scans"
+},
+{
+"key": "settingsTooltip",
+"english": "Settings",
+"target": "Cài đặt",
+"backtrans": "Settings"
+},
+{
+"key": "foldersSectionHeader",
+"english": "Folders",
+"target": "Thư mục",
+"backtrans": "Folders"
+},
+{
+"key": "documentsSectionHeader",
+"english": "Documents",
+"target": "Tài liệu",
+"backtrans": "Documents"
+},
+{
+"key": "exportingStatus",
+"english": "Exporting…",
+"target": "Đang xuất...",
+"backtrans": "Exporting..."
+},
+{
+"key": "exportDoneStatus",
+"english": "Done",
+"target": "Hoàn tất",
+"backtrans": "Completed"
+},
+{
+"key": "exportGenericError",
+"english": "Something went wrong while exporting.",
+"target": "Đã xảy ra lỗi khi xuất.",
+"backtrans": "An error occurred while exporting."
+},
+{
+"key": "deleteFolderTitle",
+"english": "Delete this folder?",
+"target": "Xóa thư mục này?",
+"backtrans": "Delete this folder?"
+},
+{
+"key": "deleteFolderMessage",
+"english": "Documents inside will not be deleted.",
+"target": "Tài liệu bên trong sẽ không bị xóa.",
+"backtrans": "The documents inside will not be deleted."
+},
+{
+"key": "deleteFolderTooltip",
+"english": "Delete folder",
+"target": "Xóa thư mục",
+"backtrans": "Delete folder"
+},
+{
+"key": "renameFolderTitle",
+"english": "Rename folder",
+"target": "Đổi tên thư mục",
+"backtrans": "Rename folder"
+},
+{
+"key": "removeFromFolderTooltip",
+"english": "Remove from folder",
+"target": "Xóa khỏi thư mục",
+"backtrans": "Remove from folder"
+},
+{
+"key": "noDocumentsInFolder",
+"english": "No documents in this folder yet.",
+"target": "Chưa có tài liệu trong thư mục này.",
+"backtrans": "No documents in this folder yet."
+},
+{
+"key": "folderUnavailable",
+"english": "This folder is no longer available.",
+"target": "Thư mục này không còn khả dụng.",
+"backtrans": "This folder is no longer available."
+},
+{
+"key": "migrationTitle",
+"english": "Device Migration",
+"target": "Di chuyển thiết bị",
+"backtrans": "Move device"
+},
+{
+"key": "migrationExplainer",
+"english": "This isn't automatic sync. Export creates a single encrypted backup file you move to your new device yourself, then import there.",
+"target": "Đây không phải đồng bộ tự động. Xuất tạo một tệp sao lưu mã hóa duy nhất mà bạn tự chuyển sang thiết bị mới rồi nhập ở đó.",
+"backtrans": "This is not automatic synchronization. Export creates a single encrypted backup file that you transfer yourself to the new device and then import there."
+},
+{
+"key": "exportBackupButton",
+"english": "Export encrypted backup",
+"target": "Xuất bản sao lưu mã hóa",
+"backtrans": "Export encrypted backup"
+},
+{
+"key": "importBackupButton",
+"english": "Import from backup",
+"target": "Nhập từ bản sao lưu",
+"backtrans": "Import from backup"
+},
+{
+"key": "setBackupPasswordTitle",
+"english": "Set a backup password",
+"target": "Đặt mật khẩu sao lưu",
+"backtrans": "Set backup password"
+},
+{
+"key": "enterBackupPasswordTitle",
+"english": "Enter backup password",
+"target": "Nhập mật khẩu sao lưu",
+"backtrans": "Enter backup password"
+},
+{
+"key": "buildingBackupStatus",
+"english": "Building backup…",
+"target": "Đang tạo bản sao lưu...",
+"backtrans": "Creating backup..."
+},
+{
+"key": "backupReadyStatus",
+"english": "Backup ready.",
+"target": "Bản sao lưu sẵn sàng.",
+"backtrans": "Backup is ready."
+},
+{
+"key": "couldNotCreateBackupError",
+"english": "Could not create the backup.",
+"target": "Không thể tạo bản sao lưu.",
+"backtrans": "Could not create the backup."
+},
+{
+"key": "importingStatus",
+"english": "Importing…",
+"target": "Đang nhập...",
+"backtrans": "Importing..."
+},
+{
+"key": "couldNotImportBackupError",
+"english": "Could not import this backup. Check the password and try again.",
+"target": "Không thể nhập bản sao lưu này. Kiểm tra mật khẩu và thử lại.",
+"backtrans": "Could not import this backup. Check the password and try again."
+},
+{
+"key": "backupCorruptedError",
+"english": "This backup file looks corrupted.",
+"target": "Tệp sao lưu này có vẻ bị hỏng.",
+"backtrans": "This backup file seems to be corrupted."
+},
+{
+"key": "importedCount",
+"english": "{count, plural, =1{1 document imported} other{{count} documents imported}}",
+"target": "Đã nhập {count} tài liệu",
+"backtrans": "Imported {count} documents"
+},
+{
+"key": "continueButton",
+"english": "Continue",
+"target": "Tiếp tục",
+"backtrans": "Continue"
+},
+{
+"key": "restorePurchasesButton",
+"english": "Restore purchases",
+"target": "Khôi phục mua hàng",
+"backtrans": "Restore purchases"
+},
+{
+"key": "pricingLoadingError",
+"english": "Pricing is still loading — try again in a moment.",
+"target": "Giá vẫn đang tải — thử lại sau.",
+"backtrans": "Pricing is still loading — try again later."
+},
+{
+"key": "renameDocumentTitle",
+"english": "Rename document",
+"target": "Đổi tên tài liệu",
+"backtrans": "Rename document"
+},
+{
+"key": "addTagTitle",
+"english": "Add tag",
+"target": "Thêm thẻ",
+"backtrans": "Add tag"
+},
+{
+"key": "moveToFolderTooltip",
+"english": "Move to folder",
+"target": "Di chuyển đến thư mục",
+"backtrans": "Move to folder"
+},
+{
+"key": "exportTooltip",
+"english": "Export",
+"target": "Xuất",
+"backtrans": "Export"
+},
+{
+"key": "deleteScanTitle",
+"english": "Delete this scan?",
+"target": "Xóa bản quét này?",
+"backtrans": "Delete this scan?"
+},
+{
+"key": "deleteScanMessage",
+"english": "This can't be undone.",
+"target": "Không thể hoàn tác.",
+"backtrans": "Cannot be undone."
+},
+{
+"key": "movedToFolderMessage",
+"english": "Moved to folder.",
+"target": "Đã di chuyển đến thư mục.",
+"backtrans": "Moved to folder."
+},
+{
+"key": "noTextRecognized",
+"english": "No text recognized.",
+"target": "Không nhận dạng được văn bản.",
+"backtrans": "No text recognized."
+},
+{
+"key": "scanUnavailable",
+"english": "This scan is no longer available.",
+"target": "Bản quét này không còn khả dụng.",
+"backtrans": "This scan is no longer available."
+},
+{
+"key": "settingsTitle",
+"english": "Settings",
+"target": "Cài đặt",
+"backtrans": "Settings"
+},
+{
+"key": "appearanceSectionLabel",
+"english": "Appearance",
+"target": "Giao diện",
+"backtrans": "Appearance"
+},
+{
+"key": "themeLabel",
+"english": "Theme",
+"target": "Chủ đề",
+"backtrans": "Theme"
+},
+{
+"key": "systemThemeOption",
+"english": "System",
+"target": "Hệ thống",
+"backtrans": "System"
+},
+{
+"key": "lightThemeOption",
+"english": "Light",
+"target": "Sáng",
+"backtrans": "Light"
+},
+{
+"key": "darkThemeOption",
+"english": "Dark",
+"target": "Tối",
+"backtrans": "Dark"
+},
+{
+"key": "languageSectionLabel",
+"english": "Language",
+"target": "Ngôn ngữ",
+"backtrans": "Language"
+},
+{
+"key": "appLanguageLabel",
+"english": "App language",
+"target": "Ngôn ngữ ứng dụng",
+"backtrans": "App language"
+},
+{
+"key": "storageSectionLabel",
+"english": "Storage",
+"target": "Lưu trữ",
+"backtrans": "Storage"
+},
+{
+"key": "deviceMigrationLabel",
+"english": "Device Migration",
+"target": "Di chuyển thiết bị",
+"backtrans": "Move device"
+},
+{
+"key": "subscriptionSectionLabel",
+"english": "Subscription",
+"target": "Đăng ký",
+"backtrans": "Subscription"
+},
+{
+"key": "aboutSectionLabel",
+"english": "About",
+"target": "Giới thiệu",
+"backtrans": "Introduction"
+},
+{
+"key": "privacyPolicyLabel",
+"english": "Privacy policy",
+"target": "Chính sách bảo mật",
+"backtrans": "Privacy policy"
+},
+{
+"key": "supportLabel",
+"english": "Support",
+"target": "Hỗ trợ",
+"backtrans": "Support"
+},
+{
+"key": "couldNotOpenLinkError",
+"english": "Could not open link.",
+"target": "Không thể mở liên kết.",
+"backtrans": "Could not open the link."
+},
+{
+"key": "restoreCompleteMessage",
+"english": "Restore complete.",
+"target": "Khôi phục hoàn tất.",
+"backtrans": "Restore complete."
+},
+{
+"key": "genericErrorMessage",
+"english": "Something went wrong. Please try again.",
+"target": "Đã xảy ra lỗi. Vui lòng thử lại.",
+"backtrans": "An error occurred. Please try again."
+},
+{
+"key": "homeLanguageTooltip",
+"english": "App Language",
+"target": "Ngôn ngữ ứng dụng",
+"backtrans": "App language"
+},
+{
+"key": "removeAdsTitle",
+"english": "Remove Ads Forever",
+"target": "Xóa quảng cáo vĩnh viễn",
+"backtrans": "Remove ads permanently"
+},
+{
+"key": "extractedTextTitle",
+"english": "Extracted Text",
+"target": "Văn bản đã trích xuất",
+"backtrans": "Extracted text"
+},
+{
+"key": "commonClose",
+"english": "Close",
+"target": "Đóng",
+"backtrans": "Close"
+},
+{
+"key": "commonCopy",
+"english": "Copy",
+"target": "Sao chép",
+"backtrans": "Copy"
+},
+{
+"key": "savedToDocumentText",
+"english": "Saved to document text",
+"target": "Đã lưu vào văn bản tài liệu",
+"backtrans": "Saved to document text"
+},
+{
+"key": "regionOcrFailed",
+"english": "Region OCR failed",
+"target": "OCR vùng không thành công",
+"backtrans": "Region OCR unsuccessful"
+},
+{
+"key": "filterRemoved",
+"english": "Filter removed",
+"target": "Đã xóa bộ lọc",
+"backtrans": "Filter removed"
+},
+{
+"key": "filterApplied",
+"english": "Filter applied",
+"target": "Đã áp dụng bộ lọc",
+"backtrans": "Filter applied"
+},
+{
+"key": "pageCropped",
+"english": "Page cropped",
+"target": "Đã cắt trang",
+"backtrans": "Page cropped"
+},
+{
+"key": "revertToOriginalTitle",
+"english": "Revert to Original?",
+"target": "Khôi phục về bản gốc?",
+"backtrans": "Restore to the original?"
+},
+{
+"key": "revertToOriginalMessage",
+"english": "This will undo all filters, rotations, crops, resizes, and eraser strokes on this page.",
+"target": "Điều này sẽ hoàn tác tất cả bộ lọc, xoay, cắt, thay đổi kích thước và nét tẩy trên trang này.",
+"backtrans": "This will undo all filters, rotation, cropping, resizing and eraser strokes on this page. [??: 'nét tẩy' (eraser strokes) is slightly unusual wording]"
+},
+{
+"key": "commonRevert",
+"english": "Revert",
+"target": "Khôi phục",
+"backtrans": "Restore"
+},
+{
+"key": "pageRevertedToOriginal",
+"english": "Page reverted to original",
+"target": "Đã khôi phục trang về bản gốc",
+"backtrans": "Page restored to the original"
+},
+{
+"key": "eraserApplied",
+"english": "Eraser applied",
+"target": "Đã áp dụng tẩy",
+"backtrans": "Eraser applied"
+},
+{
+"key": "pageResized",
+"english": "Page resized",
+"target": "Đã thay đổi kích thước trang",
+"backtrans": "Page resized"
+},
+{
+"key": "extractedAsNewDocument",
+"english": "Extracted as new document",
+"target": "Đã trích xuất thành tài liệu mới",
+"backtrans": "Extracted into a new document"
+},
+{
+"key": "pagesUpdated",
+"english": "Pages updated",
+"target": "Đã cập nhật trang",
+"backtrans": "Pages updated"
+},
+{
+"key": "printOptionsTitle",
+"english": "Print Options",
+"target": "Tùy chọn in",
+"backtrans": "Print options"
+},
+{
+"key": "letterSizeUS",
+"english": "Letter size (US)",
+"target": "Khổ Letter (Mỹ)",
+"backtrans": "Letter size (US)"
+},
+{
+"key": "commonPrint",
+"english": "Print",
+"target": "In",
+"backtrans": "Print"
+},
+{
+"key": "printFailed",
+"english": "Print failed",
+"target": "In không thành công",
+"backtrans": "Printing unsuccessful"
+},
+{
+"key": "noEmailAppFound",
+"english": "No email app found",
+"target": "Không tìm thấy ứng dụng email",
+"backtrans": "No email app found"
+},
+{
+"key": "emailFailed",
+"english": "Email failed",
+"target": "Gửi email không thành công",
+"backtrans": "Sending email unsuccessful"
+},
+{
+"key": "fromPageLabel",
+"english": "From",
+"target": "Từ",
+"backtrans": "From"
+},
+{
+"key": "toPageLabel",
+"english": "To",
+"target": "Đến",
+"backtrans": "To"
+},
+{
+"key": "pdfImportedAsDocument",
+"english": "PDF imported as document",
+"target": "PDF đã nhập làm tài liệu",
+"backtrans": "PDF imported as a document"
+},
+{
+"key": "frontSideCaptured",
+"english": "Front side captured. Now capture the back side.",
+"target": "Đã chụp mặt trước. Bây giờ chụp mặt sau.",
+"backtrans": "Front side captured. Now capture the back side."
+},
+{
+"key": "idCardPdfGenerated",
+"english": "ID Card PDF Generated",
+"target": "Đã tạo PDF thẻ căn cước",
+"backtrans": "ID card PDF created"
+},
+{
+"key": "sharePdf",
+"english": "Share PDF",
+"target": "Chia sẻ PDF",
+"backtrans": "Share PDF"
+},
+{
+"key": "saveAsDocument",
+"english": "Save as Document",
+"target": "Lưu làm tài liệu",
+"backtrans": "Save as document"
+},
+{
+"key": "commonDone",
+"english": "Done",
+"target": "Xong",
+"backtrans": "Done"
+},
+{
+"key": "documentSaved",
+"english": "Document saved",
+"target": "Đã lưu tài liệu",
+"backtrans": "Document saved"
+},
+{
+"key": "commonReset",
+"english": "Reset",
+"target": "Đặt lại",
+"backtrans": "Reset"
+},
+{
+"key": "autoScan",
+"english": "Auto Scan",
+"target": "Quét tự động",
+"backtrans": "Auto scan"
+},
+{
+"key": "importAndConvertDocument",
+"english": "Import & Convert Document",
+"target": "Nhập & Chuyển đổi tài liệu",
+"backtrans": "Import & Convert document"
+},
+{
+"key": "signatureTitle",
+"english": "Signature",
+"target": "Chữ ký",
+"backtrans": "Signature"
+},
+{
+"key": "signatureChoiceMessage",
+"english": "Use your saved signature or draw a new one?",
+"target": "Dùng chữ ký đã lưu hay vẽ mới?",
+"backtrans": "Use the saved signature or draw a new one?"
+},
+{
+"key": "useSavedSignature",
+"english": "Use Saved",
+"target": "Dùng đã lưu",
+"backtrans": "Use saved"
+},
+{
+"key": "drawNewSignature",
+"english": "Draw New",
+"target": "Vẽ mới",
+"backtrans": "Draw new"
+},
+{
+"key": "copyAll",
+"english": "Copy all",
+"target": "Sao chép tất cả",
+"backtrans": "Copy all"
+},
+{
+"key": "clearThis",
+"english": "Clear this",
+"target": "Xóa cái này",
+"backtrans": "Delete this one"
+},
+{
+"key": "commonRemove",
+"english": "Remove",
+"target": "Xóa",
+"backtrans": "Delete"
+},
+{
+"key": "clearAll",
+"english": "Clear all",
+"target": "Xóa tất cả",
+"backtrans": "Delete all"
+},
+{
+"key": "addSignature",
+"english": "Add Signature",
+"target": "Thêm chữ ký",
+"backtrans": "Add signature"
+},
+{
+"key": "commonUse",
+"english": "Use",
+"target": "Dùng",
+"backtrans": "Use"
+},
+{
+"key": "stampTickedLabel",
+"english": "Ticked",
+"target": "Đã đánh dấu",
+"backtrans": "Marked"
+},
+{
+"key": "stampBoxLabel",
+"english": "Box",
+"target": "Ô vuông",
+"backtrans": "Square box"
+},
+{
+"key": "stampTickLabel",
+"english": "Tick",
+"target": "Dấu tick",
+"backtrans": "Tick mark"
+},
+{
+"key": "commonCustom",
+"english": "Custom",
+"target": "Tùy chỉnh",
+"backtrans": "Customize"
+},
+{
+"key": "commonChange",
+"english": "Change",
+"target": "Thay đổi",
+"backtrans": "Change"
+},
+{
+"key": "commonColor",
+"english": "Color",
+"target": "Màu",
+"backtrans": "Color"
+},
+{
+"key": "stampPaperLabel",
+"english": "Paper",
+"target": "Giấy",
+"backtrans": "Paper"
+},
+{
+"key": "whiteHaloLabel",
+"english": "White halo (readability)",
+"target": "Hào quang trắng (độ đọc)",
+"backtrans": "White halo (readability)"
+},
+{
+"key": "commonCreate",
+"english": "Create",
+"target": "Tạo",
+"backtrans": "Create"
+},
+{
+"key": "newFolderTitle",
+"english": "New Folder",
+"target": "Thư mục mới",
+"backtrans": "New folder"
+},
+{
+"key": "batchExportEmptyMessage",
+"english": "No documents to batch export. Scan some first.",
+"target": "Không có tài liệu để xuất hàng loạt. Hãy quét một vài tài liệu trước.",
+"backtrans": "No documents to bulk export. Scan some documents first."
+},
+{
+"key": "newFolderTooltip",
+"english": "New Folder",
+"target": "Thư mục mới",
+"backtrans": "New folder"
+},
+{
+"key": "accentColorTooltip",
+"english": "Accent Color",
+"target": "Màu nhấn",
+"backtrans": "Accent color"
+},
+{
+"key": "moveToFolderTitle",
+"english": "Move to Folder",
+"target": "Di chuyển đến thư mục",
+"backtrans": "Move to folder"
+},
+{
+"key": "noFoldersYetHomeMessage",
+"english": "No folders yet. Create one from the home screen.",
+"target": "Chưa có thư mục. Hãy tạo thư mục từ màn hình chính.",
+"backtrans": "No folders yet. Create a folder from the home screen."
+},
+{
+"key": "appLanguageTitle",
+"english": "App Language",
+"target": "Ngôn ngữ ứng dụng",
+"backtrans": "App language"
+},
+{
+"key": "accentColorTitle",
+"english": "Accent Color",
+"target": "Màu nhấn",
+"backtrans": "Accent color"
+},
+{
+"key": "sealEditTitle",
+"english": "Edit Custom Seal",
+"target": "Chỉnh sửa con dấu tùy chỉnh",
+"backtrans": "Edit custom seal"
+},
+{
+"key": "sealCreateTitle",
+"english": "Custom Seal",
+"target": "Con dấu tùy chỉnh",
+"backtrans": "Custom seal"
+},
+{
+"key": "sealMainTextLabel",
+"english": "Main text (top arc / box)",
+"target": "Văn bản chính (vòng cung trên / hộp)",
+"backtrans": "Main text (upper arc / box)"
+},
+{
+"key": "sealSubtextLabel",
+"english": "Subtext (bottom arc / below)",
+"target": "Văn bản phụ (vòng cung dưới / bên dưới)",
+"backtrans": "Secondary text (lower arc / below)"
+},
+{
+"key": "sealShapeOval",
+"english": "Oval",
+"target": "Hình bầu dục",
+"backtrans": "Oval shape"
+},
+{
+"key": "sealShapeBox",
+"english": "Box",
+"target": "Hình chữ nhật",
+"backtrans": "Rectangle shape"
+},
+{
+"key": "sealCenterStar",
+"english": "Star",
+"target": "Ngôi sao",
+"backtrans": "Star"
+},
+{
+"key": "sealCenterText",
+"english": "Text",
+"target": "Văn bản",
+"backtrans": "Text"
+},
+{
+"key": "sealCenterLogo",
+"english": "Logo",
+"target": "Logo",
+"backtrans": "Logo"
+},
+{
+"key": "sealCenterNone",
+"english": "None",
+"target": "Không",
+"backtrans": "None"
+},
+{
+"key": "sealCenterTextLabel",
+"english": "Center text",
+"target": "Văn bản trung tâm",
+"backtrans": "Center text"
+},
+{
+"key": "sealLogoReady",
+"english": "Logo ready",
+"target": "Logo sẵn sàng",
+"backtrans": "Logo ready"
+},
+{
+"key": "textSizeLabel",
+"english": "Text size: {size}",
+"target": "Kích thước văn bản: {size}",
+"backtrans": "Text size: {size}"
+},
+{
+"key": "commonUpdate",
+"english": "Update",
+"target": "Cập nhật",
+"backtrans": "Update"
+},
+{
+"key": "managePagesTitle",
+"english": "Manage Pages",
+"target": "Quản lý trang",
+"backtrans": "Manage pages"
+},
+{
+"key": "pageLabel",
+"english": "Page {index}",
+"target": "Trang {index}",
+"backtrans": "Page {index}"
+},
+{
+"key": "duplicateAction",
+"english": "Duplicate",
+"target": "Nhân bản",
+"backtrans": "Duplicate"
+},
+{
+"key": "rotate90Action",
+"english": "Rotate 90°",
+"target": "Xoay 90°",
+"backtrans": "Rotate 90°"
+},
+{
+"key": "extractToNewDocAction",
+"english": "Extract to new doc",
+"target": "Trích xuất sang tài liệu mới",
+"backtrans": "Extract to new document"
+},
+{
+"key": "addPageTitle",
+"english": "Add Page",
+"target": "Thêm trang",
+"backtrans": "Add page"
+},
+{
+"key": "cameraSource",
+"english": "Camera",
+"target": "Máy ảnh",
+"backtrans": "Camera"
+},
+{
+"key": "importFromGallery",
+"english": "Import from Gallery",
+"target": "Nhập từ Thư viện",
+"backtrans": "Import from Gallery"
+},
+{
+"key": "fromAnotherDocument",
+"english": "From Another Document",
+"target": "Từ tài liệu khác",
+"backtrans": "From another document"
+},
+{
+"key": "pageCountLabel",
+"english": "{count, plural, =0{No pages} =1{1 page} other{{count} pages}}",
+"target": "{count} trang",
+"backtrans": "{count} pages"
+},
+{
+"key": "commonConfirm",
+"english": "Confirm",
+"target": "Xác nhận",
+"backtrans": "Confirm"
+},
+{
+"key": "applyToAllPages",
+"english": "Apply to all pages",
+"target": "Áp dụng cho tất cả trang",
+"backtrans": "Apply to all pages"
+},
+{
+"key": "widthLabel",
+"english": "Width",
+"target": "Chiều rộng",
+"backtrans": "Width"
+},
+{
+"key": "heightLabel",
+"english": "Height",
+"target": "Chiều cao",
+"backtrans": "Height"
+},
+{
+"key": "lockAspectRatio",
+"english": "Lock aspect ratio",
+"target": "Khóa tỷ lệ",
+"backtrans": "Lock ratio"
+},
+{
+"key": "originalDimensions",
+"english": "Original: {w}×{h}",
+"target": "Gốc: {w}×{h}",
+"backtrans": "Original: {w}×{h}"
+},
+{
+"key": "ocrSectionLabel",
+"english": "OCR",
+"target": "OCR",
+"backtrans": "OCR"
+},
+{
+"key": "ocrLanguagesLabel",
+"english": "OCR Languages",
+"target": "Ngôn ngữ OCR",
+"backtrans": "OCR languages"
+},
+{
+"key": "captureBehaviorSectionLabel",
+"english": "CAPTURE BEHAVIOR",
+"target": "HÀNH VI CHỤP",
+"backtrans": "CAPTURE BEHAVIOR"
+},
+{
+"key": "autoCopyOcrLabel",
+"english": "Auto-copy OCR",
+"target": "Tự động sao chép OCR",
+"backtrans": "Auto-copy OCR"
+},
+{
+"key": "autoCopyOcrSubtitle",
+"english": "Copy text to clipboard after scan",
+"target": "Sao chép văn bản vào clipboard sau khi quét",
+"backtrans": "Copy text to the clipboard after scanning"
+},
+{
+"key": "beepOnCaptureLabel",
+"english": "Beep on capture",
+"target": "Kêu bip khi chụp",
+"backtrans": "Beep on capture"
+},
+{
+"key": "beepOnCaptureSubtitle",
+"english": "Play sound when scan completes",
+"target": "Phát âm thanh khi quét hoàn tất",
+"backtrans": "Play a sound when the scan completes"
+},
+{
+"key": "vibrateOnCaptureLabel",
+"english": "Vibrate on capture",
+"target": "Rung khi chụp",
+"backtrans": "Vibrate on capture"
+},
+{
+"key": "vibrateOnCaptureSubtitle",
+"english": "Haptic feedback when scan completes",
+"target": "Phản hồi xúc giác khi quét hoàn tất",
+"backtrans": "Haptic feedback when the scan completes"
+},
+{
+"key": "adsRemovedLabel",
+"english": "Ads Removed",
+"target": "Đã xóa quảng cáo",
+"backtrans": "Ads removed"
+},
+{
+"key": "diagnosticsSectionLabel",
+"english": "DIAGNOSTICS",
+"target": "CHẨN ĐOÁN",
+"backtrans": "DIAGNOSTICS"
+},
+{
+"key": "debugLogsLabel",
+"english": "Debug Logs",
+"target": "Nhật ký gỡ lỗi",
+"backtrans": "Debug logs"
+},
+{
+"key": "logEntriesLabel",
+"english": "{count, plural, =0{No entries} =1{1 entry} other{{count} entries}}",
+"target": "{count} mục",
+"backtrans": "{count} entries"
+},
+{
+"key": "ocrStatusBuiltIn",
+"english": "Built-in",
+"target": "Tích hợp sẵn",
+"backtrans": "Built-in"
+},
+{
+"key": "ocrStatusChecking",
+"english": "Checking...",
+"target": "Đang kiểm tra...",
+"backtrans": "Checking..."
+},
+{
+"key": "ocrStatusOnDemand",
+"english": "On-demand",
+"target": "Theo yêu cầu",
+"backtrans": "On request"
+},
+{
+"key": "savedAsNewDocument",
+"english": "Saved as new document",
+"target": "Đã lưu làm tài liệu mới",
+"backtrans": "Saved as a new document"
+},
+{
+"key": "conversionFailedPrefix",
+"english": "Conversion failed",
+"target": "Chuyển đổi không thành công",
+"backtrans": "Conversion unsuccessful"
+},
+{
+"key": "convertDocumentTitle",
+"english": "Convert Document",
+"target": "Chuyển đổi tài liệu",
+"backtrans": "Convert document"
+},
+{
+"key": "convertToLabel",
+"english": "Convert to:",
+"target": "Chuyển đổi sang:",
+"backtrans": "Convert to:"
+},
+{
+"key": "actionLabel",
+"english": "Action:",
+"target": "Hành động:",
+"backtrans": "Action:"
+},
+{
+"key": "saveAsNewDocumentAction",
+"english": "Save as new Document",
+"target": "Lưu làm tài liệu mới",
+"backtrans": "Save as new document"
+},
+{
+"key": "exportAndShareAction",
+"english": "Export & Share",
+"target": "Xuất & Chia sẻ",
+"backtrans": "Export & Share"
+},
+{
+"key": "docxWarningMessage",
+"english": "DOCX sources render poorly as pages — save inside the app is limited to JPG/PNG from image, PDF, TXT or CSV sources. Use Export & Share for this file.",
+"target": "Nguồn DOCX hiển thị kém dưới dạng trang — lưu trong ứng dụng chỉ giới hạn ở JPG/PNG từ hình ảnh, PDF, TXT hoặc CSV. Sử dụng Xuất & Chia sẻ cho tệp này.",
+"backtrans": "A DOCX source displays poorly as pages — saving within the app is limited to JPG/PNG from images, PDF, TXT or CSV. Use Export & Share for this file."
+},
+{
+"key": "saveInsideAppWarning",
+"english": "To save inside the app, choose JPG or PNG. Other targets are exported as files.",
+"target": "Để lưu trong ứng dụng, chọn JPG hoặc PNG. Các định dạng khác được xuất dưới dạng tệp.",
+"backtrans": "To save within the app, choose JPG or PNG. Other formats are exported as files."
+},
+{
+"key": "commonConvert",
+"english": "Convert",
+"target": "Chuyển đổi",
+"backtrans": "Convert"
+},
+{
+"key": "conversionStarting",
+"english": "Starting…",
+"target": "Đang bắt đầu...",
+"backtrans": "Starting..."
+},
+{
+"key": "convertedDocTitle",
+"english": "Converted {date}",
+"target": "Đã chuyển đổi {date}",
+"backtrans": "Converted {date}"
+},
+{
+"key": "progressReading",
+"english": "Reading…",
+"target": "Đang đọc...",
+"backtrans": "Reading..."
+},
+{
+"key": "progressCopying",
+"english": "Copying…",
+"target": "Đang sao chép...",
+"backtrans": "Copying..."
+},
+{
+"key": "progressBuildingPdf",
+"english": "Building PDF…",
+"target": "Đang tạo PDF...",
+"backtrans": "Creating PDF..."
+},
+{
+"key": "progressBuildingDocx",
+"english": "Building DOCX…",
+"target": "Đang tạo DOCX...",
+"backtrans": "Creating DOCX..."
+},
+{
+"key": "progressDecodingImage",
+"english": "Decoding image…",
+"target": "Đang giải mã hình ảnh...",
+"backtrans": "Decoding image..."
+},
+{
+"key": "progressExtractingText",
+"english": "Extracting text…",
+"target": "Đang trích xuất văn bản...",
+"backtrans": "Extracting text..."
+},
+{
+"key": "progressSaving",
+"english": "Saving…",
+"target": "Đang lưu...",
+"backtrans": "Saving..."
+},
+{
+"key": "progressRasterizing",
+"english": "Rasterizing pages…",
+"target": "Đang chuyển trang thành ảnh...",
+"backtrans": "Converting pages into images..."
+},
+{
+"key": "progressEncodingPage",
+"english": "Encoding page {current} of {total}…",
+"target": "Đang mã hóa trang {current}/{total}...",
+"backtrans": "Encoding page {current}/{total}..."
+},
+{
+"key": "watermarkEditTitle",
+"english": "Edit Watermark",
+"target": "Chỉnh sửa hình mờ",
+"backtrans": "Edit watermark"
+},
+{
+"key": "watermarkAddTitle",
+"english": "Add Watermark",
+"target": "Thêm hình mờ",
+"backtrans": "Add watermark"
+},
+{
+"key": "watermarkTextLabel",
+"english": "Text",
+"target": "Văn bản",
+"backtrans": "Text"
+},
+{
+"key": "opacityPercentLabel",
+"english": "Opacity: {percent}%",
+"target": "Độ mờ: {percent}%",
+"backtrans": "Opacity: {percent}% [??: 'Độ mờ' literally means 'blurriness/dimness degree', ambiguous for opacity]"
+},
+{
+"key": "sizePtLabel",
+"english": "Size: {size}pt",
+"target": "Kích thước: {size}pt",
+"backtrans": "Size: {size}pt"
+},
+{
+"key": "alignLabel",
+"english": "Align",
+"target": "Căn chỉnh",
+"backtrans": "Alignment"
+},
+{
+"key": "exportSavedToDownloads",
+"english": "Saved to Downloads",
+"target": "Đã lưu vào Tải xuống",
+"backtrans": "Saved to Downloads"
+},
+{
+"key": "commonShare",
+"english": "Share",
+"target": "Chia sẻ",
+"backtrans": "Share"
+},
+{
+"key": "exportTitle",
+"english": "Export",
+"target": "Xuất",
+"backtrans": "Export"
+},
+{
+"key": "targetMbLabel",
+"english": "{mb} MB",
+"target": "{mb} MB",
+"backtrans": "{mb} MB"
+},
+{
+"key": "filterColor",
+"english": "Color",
+"target": "Màu",
+"backtrans": "Color"
+},
+{
+"key": "filterShadow",
+"english": "Shadow",
+"target": "Bóng",
+"backtrans": "Shadow"
+},
+{
+"key": "docxModeTextOnly",
+"english": "Text Only",
+"target": "Chỉ văn bản",
+"backtrans": "Text only"
+},
+{
+"key": "docxModeWithImages",
+"english": "With Images",
+"target": "Có hình ảnh",
+"backtrans": "With images"
+},
+{
+"key": "saveToDeviceButton",
+"english": "Save to Device",
+"target": "Lưu vào thiết bị",
+"backtrans": "Save to device"
+},
+{
+"key": "pageIndicator",
+"english": "Page {current} / {total}",
+"target": "Trang {current} / {total}",
+"backtrans": "Page {current} / {total}"
+},
+{
+"key": "fullscreenLabel",
+"english": "Fullscreen",
+"target": "Toàn màn hình",
+"backtrans": "Full screen"
+},
+{
+"key": "batchExportSignatureDisabled",
+"english": "Batch export — signature placement disabled",
+"target": "Xuất hàng loạt — đặt chữ ký bị tắt",
+"backtrans": "Bulk export — placing signature is disabled"
+},
+{
+"key": "fitToTargetMbLabel",
+"english": "Fit to target MB",
+"target": "Vừa với MB mục tiêu",
+"backtrans": "Fit to target MB"
+},
+{
+"key": "moreOptionsTooltip",
+"english": "More options",
+"target": "Tùy chọn khác",
+"backtrans": "More options"
+},
+{
+"key": "commonRename",
+"english": "Rename",
+"target": "Đổi tên",
+"backtrans": "Rename"
+},
+{
+"key": "addTagsAction",
+"english": "Add Tags",
+"target": "Thêm thẻ",
+"backtrans": "Add tags"
+},
+{
+"key": "editDocumentAction",
+"english": "Edit Document",
+"target": "Chỉnh sửa tài liệu",
+"backtrans": "Edit document"
+},
+{
+"key": "copiedToClipboard",
+"english": "Copied to clipboard",
+"target": "Đã sao chép vào clipboard",
+"backtrans": "Copied to clipboard"
+},
+{
+"key": "favoriteTooltip",
+"english": "Favorite",
+"target": "Yêu thích",
+"backtrans": "Favorite"
+},
+{
+"key": "noFoldersYet",
+"english": "No folders yet",
+"target": "Chưa có thư mục",
+"backtrans": "No folders yet"
+},
+{
+"key": "rotateLabel",
+"english": "Rotate",
+"target": "Xoay",
+"backtrans": "Rotate"
+},
+{
+"key": "scaleLabel",
+"english": "Scale",
+"target": "Tỷ lệ",
+"backtrans": "Scale/Ratio"
+},
+{
+"key": "eraserTitle",
+"english": "Eraser",
+"target": "Tẩy",
+"backtrans": "Eraser"
+},
+{
+"key": "tapToSampleColor",
+"english": "Tap a spot to sample its color",
+"target": "Chạm vào một điểm để lấy mẫu màu",
+"backtrans": "Tap a point to sample the color"
+},
+{
+"key": "commonSize",
+"english": "Size",
+"target": "Kích thước",
+"backtrans": "Size"
+},
+{
+"key": "sampleColorTooltip",
+"english": "Sample color from page",
+"target": "Lấy mẫu màu từ trang",
+"backtrans": "Sample color from the page"
+},
+{
+"key": "marqueeEraseTooltip",
+"english": "Marquee erase",
+"target": "Tẩy vùng chọn",
+"backtrans": "Erase selected region"
+},
+{
+"key": "commonApply",
+"english": "Apply",
+"target": "Áp dụng",
+"backtrans": "Apply"
+},
+{
+"key": "filterTitle",
+"english": "Filter",
+"target": "Bộ lọc",
+"backtrans": "Filter"
+},
+{
+"key": "intensityLabel",
+"english": "Intensity",
+"target": "Cường độ",
+"backtrans": "Intensity"
+},
+{
+"key": "selectRegionTitle",
+"english": "Select Region",
+"target": "Chọn vùng",
+"backtrans": "Select region"
+},
+{
+"key": "commonExtract",
+"english": "Extract",
+"target": "Trích xuất",
+"backtrans": "Extract"
+},
+{
+"key": "customColorTitle",
+"english": "Custom Color",
+"target": "Màu tùy chỉnh",
+"backtrans": "Custom color"
+},
+{
+"key": "documentNotFound",
+"english": "Document not found",
+"target": "Không tìm thấy tài liệu",
+"backtrans": "Document not found"
+},
+{
+"key": "clearLogsTooltip",
+"english": "Clear logs",
+"target": "Xóa nhật ký",
+"backtrans": "Delete logs"
+},
+{
+"key": "placeHereLabel",
+"english": "Place here",
+"target": "Đặt tại đây",
+"backtrans": "Place here"
+},
+{
+"key": "tryAgainButton",
+"english": "Try again",
+"target": "Thử lại",
+"backtrans": "Try again"
+},
+{
+"key": "emptyDocumentMessage",
+"english": "This document has no pages.",
+"target": "Tài liệu này không có trang.",
+"backtrans": "This document has no pages."
+},
+{
+"key": "cameraErrorPrefix",
+"english": "Camera error",
+"target": "Lỗi máy ảnh",
+"backtrans": "Camera error"
+},
+{
+"key": "importErrorPrefix",
+"english": "Import error",
+"target": "Lỗi nhập",
+"backtrans": "Import error"
+},
+{
+"key": "pdfImportErrorPrefix",
+"english": "PDF import error",
+"target": "Lỗi nhập PDF",
+"backtrans": "PDF import error"
+},
+{
+"key": "pickErrorPrefix",
+"english": "Pick error",
+"target": "Lỗi chọn",
+"backtrans": "Selection error"
+},
+{
+"key": "scannerErrorPrefix",
+"english": "Scanner error",
+"target": "Lỗi máy quét",
+"backtrans": "Scanner error"
+},
+{
+"key": "idPdfErrorPrefix",
+"english": "Error generating ID PDF",
+"target": "Lỗi tạo PDF thẻ căn cước",
+"backtrans": "ID card PDF creation error"
+},
+{
+"key": "genericErrorPrefix",
+"english": "Error",
+"target": "Lỗi",
+"backtrans": "Error"
+},
+{
+"key": "annotateTitle",
+"english": "Annotate",
+"target": "Chú thích",
+"backtrans": "Annotate"
+},
+{
+"key": "placementsCountLabel",
+"english": "{count, plural, =0{Nothing placed} =1{1 placed} other{{count} placed}}",
+"target": "{count} đã đặt",
+"backtrans": "{count} placed"
+},
+{
+"key": "ocrUnavailableTooltip",
+"english": "OCR unavailable on this device.",
+"target": "OCR không khả dụng trên thiết bị này.",
+"backtrans": "OCR is not available on this device."
+},
+{
+"key": "docScannerUnsupportedMessage",
+"english": "Your device doesn't support the advanced document scanner. Take a photo with your Camera app, then tap Import below to crop and save it.",
+"target": "Thiết bị của bạn không hỗ trợ máy quét tài liệu nâng cao. Chụp ảnh bằng ứng dụng Máy ảnh, sau đó chạm Nhập bên dưới để cắt và lưu.",
+"backtrans": "Your device does not support the advanced document scanner. Take a photo with the Camera app, then tap Import below to crop and save."
+},
+{
+"key": "billingUnavailableMessage",
+"english": "Billing unavailable — try again later.",
+"target": "Thanh toán không khả dụng — thử lại sau.",
+"backtrans": "Payment is not available — try again later."
+},
+{
+"key": "ocrNoInternetMessage",
+"english": "No internet. Connect once to download the language pack.",
+"target": "Không có internet. Kết nối một lần để tải gói ngôn ngữ.",
+"backtrans": "No internet. Connect once to download the language pack."
+},
+{
+"key": "ocrLanguagePackNotReady",
+"english": "Language pack downloading or not ready. Try again shortly.",
+"target": "Gói ngôn ngữ đang tải hoặc chưa sẵn sàng. Thử lại sau.",
+"backtrans": "The language pack is downloading or not yet ready. Try again later."
+},
+{
+"key": "undoTooltip",
+"english": "Undo",
+"target": "Hoàn tác",
+"backtrans": "Undo"
+},
+{
+"key": "redoTooltip",
+"english": "Redo",
+"target": "Làm lại",
+"backtrans": "Redo"
+},
+{
+"key": "fillInputHint",
+"english": "Type text to fill",
+"target": "Nhập văn bản để điền",
+"backtrans": "Enter text to fill in"
+},
+{
+"key": "fillCapsLabel",
+"english": "ALL CAPS",
+"target": "TẤT CẢ CHỮ HOA",
+"backtrans": "ALL UPPERCASE"
+},
+{
+"key": "fillSaveSnippet",
+"english": "Save as snippet",
+"target": "Lưu làm đoạn văn bản mẫu",
+"backtrans": "Save as a sample text snippet"
+},
+{
+"key": "fillDeleteSnippet",
+"english": "Delete snippet?",
+"target": "Xóa đoạn văn bản mẫu?",
+"backtrans": "Delete the sample text snippet?"
+},
+{
+"key": "fillTooltip",
+"english": "Fill",
+"target": "Điền",
+"backtrans": "Fill"
+},
+{
+"key": "tickerFreeUnlimitedOcr",
+"english": "FREE UNLIMITED OCR",
+"target": "OCR MIỄN PHÍ KHÔNG GIỚI HẠN",
+"backtrans": "FREE UNLIMITED OCR"
+},
+{
+"key": "ticker100OnDevicePrivacy",
+"english": "YOUR DOCUMENTS STAY ON YOUR DEVICE",
+"target": "TÀI LIỆU CỦA BẠN Ở LẠI TRÊN THIẾT BỊ CỦA BẠN",
+"backtrans": "YOUR DOCUMENTS STAY ON YOUR DEVICE"
+},
+{
+"key": "tickerNoAccount",
+"english": "NO ACCOUNT",
+"target": "KHÔNG CẦN TÀI KHOẢN",
+"backtrans": "NO ACCOUNT NEEDED"
+},
+{
+"key": "tickerNoWatermarks",
+"english": "NO WATERMARKS",
+"target": "KHÔNG CÓ HÌNH MỜ",
+"backtrans": "NO WATERMARKS"
+},
+{
+"key": "ticker21ToolEditSuite",
+"english": "21-TOOL EDIT SUITE",
+"target": "21 CÔNG CỤ CHỈNH SỬA",
+"backtrans": "21 EDITING TOOLS"
+},
+{
+"key": "tickerNonDestructiveEditing",
+"english": "NON-DESTRUCTIVE EDITING",
+"target": "CHỈNH SỬA KHÔNG PHÁ HỦY",
+"backtrans": "NON-DESTRUCTIVE EDITING"
+},
+{
+"key": "tickerUndoRedo",
+"english": "UNDO/REDO",
+"target": "HOÀN TÁC/LÀM LẠI",
+"backtrans": "UNDO/REDO"
+},
+{
+"key": "tickerRevertToOriginal",
+"english": "REVERT TO ORIGINAL",
+"target": "KHÔI PHỤC VỀ BẢN GỐC",
+"backtrans": "RESTORE TO ORIGINAL"
+},
+{
+"key": "tickerTapToTypeFilling",
+"english": "TAP-TO-TYPE FILLING",
+"target": "ĐIỀN CHẠM-VÀ-GÕ",
+"backtrans": "TAP-AND-TYPE FILLING"
+},
+{
+"key": "tickerESign",
+"english": "E-SIGN",
+"target": "CHỮ KÝ ĐIỆN TỬ",
+"backtrans": "ELECTRONIC SIGNATURE"
+},
+{
+"key": "tickerCustomSeals",
+"english": "CUSTOM SEALS",
+"target": "CON DẤU TÙY CHỈNH",
+"backtrans": "CUSTOM SEALS"
+},
+{
+"key": "tickerTextStamps",
+"english": "TEXT STAMPS",
+"target": "DẤU VĂN BẢN",
+"backtrans": "TEXT STAMPS"
+},
+{
+"key": "tickerNoteStamps",
+"english": "NOTE STAMPS",
+"target": "DẤU GHI CHÚ",
+"backtrans": "NOTE STAMPS"
+},
+{
+"key": "tickerSearchablePdf",
+"english": "SEARCHABLE PDF",
+"target": "PDF CÓ THỂ TÌM KIẾM",
+"backtrans": "SEARCHABLE PDF"
+},
+{
+"key": "tickerRegionOcr",
+"english": "REGION OCR",
+"target": "OCR VÙNG",
+"backtrans": "REGION OCR"
+},
+{
+"key": "tickerAutoCopyOcr",
+"english": "AUTO-COPY OCR",
+"target": "TỰ ĐỘNG SAO CHÉP OCR",
+"backtrans": "AUTO-COPY OCR"
+},
+{
+"key": "tickerIdCardMode",
+"english": "ID CARD MODE",
+"target": "CHẾ ĐỘ THẺ CĂN CƯỚC",
+"backtrans": "ID CARD MODE"
+},
+{
+"key": "tickerPassportMode",
+"english": "PASSPORT MODE",
+"target": "CHẾ ĐỘ HỘ CHIẾU",
+"backtrans": "PASSPORT MODE"
+},
+{
+"key": "tickerGalleryImport",
+"english": "GALLERY IMPORT",
+"target": "NHẬP TỪ THƯ VIỆN",
+"backtrans": "GALLERY IMPORT"
+},
+{
+"key": "tickerPdfExport",
+"english": "PDF EXPORT",
+"target": "XUẤT PDF",
+"backtrans": "PDF EXPORT"
+},
+{
+"key": "tickerWordExport",
+"english": "WORD EXPORT",
+"target": "XUẤT WORD",
+"backtrans": "WORD EXPORT"
+},
+{
+"key": "tickerJpgExport",
+"english": "JPG EXPORT",
+"target": "XUẤT JPG",
+"backtrans": "JPG EXPORT"
+},
+{
+"key": "tickerPngExport",
+"english": "PNG EXPORT",
+"target": "XUẤT PNG",
+"backtrans": "PNG EXPORT"
+},
+{
+"key": "tickerBatchExport",
+"english": "BATCH EXPORT",
+"target": "XUẤT HÀNG LOẠT",
+"backtrans": "BULK EXPORT"
+},
+{
+"key": "tickerFolders",
+"english": "FOLDERS",
+"target": "THƯ MỤC",
+"backtrans": "FOLDERS"
+},
+{
+"key": "tickerTags",
+"english": "TAGS",
+"target": "THẺ",
+"backtrans": "TAGS"
+},
+{
+"key": "tickerFavorites",
+"english": "FAVORITES",
+"target": "YÊU THÍCH",
+"backtrans": "FAVORITES"
+},
+{
+"key": "tickerSearch",
+"english": "SEARCH",
+"target": "TÌM KIẾM",
+"backtrans": "SEARCH"
+},
+{
+"key": "tickerDarkMode",
+"english": "DARK MODE",
+"target": "CHẾ ĐỘ TỐI",
+"backtrans": "DARK MODE"
+},
+{
+"key": "tickerAccentThemes",
+"english": "ACCENT THEMES",
+"target": "CHỦ ĐỀ NHẤN",
+"backtrans": "ACCENT THEMES"
+},
+{
+"key": "tickerDeviceMigration",
+"english": "DEVICE MIGRATION",
+"target": "DI CHUYỂN THIẾT BỊ",
+"backtrans": "DEVICE MIGRATION"
+},
+{
+"key": "onboardingWelcomeTitle",
+"english": "Welcome to KatharScan",
+"target": "Chào mừng đến KatharScan",
+"backtrans": "Welcome to KatharScan"
+},
+{
+"key": "onboardingWelcomeSubtitle",
+"english": "Your entire document office — scan, edit, sign, and export — in one private app.",
+"target": "Toàn bộ văn phòng tài liệu của bạn — quét, chỉnh sửa, ký và xuất — trong một ứng dụng riêng tư.",
+"backtrans": "Your entire document office — scan, edit, sign and export — in one private app."
+},
+{
+"key": "onboardingToolsTitle",
+"english": "21 Free Pro Tools",
+"target": "21 công cụ Pro miễn phí",
+"backtrans": "21 free Pro tools"
+},
+{
+"key": "onboardingToolsSubtitle",
+"english": "Annotate, sign, watermark, fill forms, seal, and more — every tool free and unlimited.",
+"target": "Chú thích, ký, hình mờ, điền biểu mẫu, đóng dấu và hơn thế nữa — mỗi công cụ miễn phí và không giới hạn.",
+"backtrans": "Annotate, sign, watermark, fill forms, stamp and more — every tool free and unlimited."
+},
+{
+"key": "onboardingOcrTitle",
+"english": "On-Device OCR",
+"target": "OCR trên thiết bị",
+"backtrans": "On-device OCR"
+},
+{
+"key": "onboardingOcrSubtitle",
+"english": "Use KatharScan in {count} languages. OCR runs on your phone — nothing ever leaves your device.",
+"target": "Dùng KatharScan với {count} ngôn ngữ. OCR chạy trên điện thoại — không gì rời khỏi thiết bị.",
+"backtrans": "Use KatharScan with {count} languages. OCR runs on the phone — nothing leaves the device."
+},
+{
+"key": "onboardingSignTitle",
+"english": "Sign, Fill & Seal",
+"target": "Ký, Điền & Đóng dấu",
+"backtrans": "Sign, Fill & Stamp"
+},
+{
+"key": "onboardingSignSubtitle",
+"english": "E-sign contracts, type-to-fill forms, and stamp enterprise seals in seconds.",
+"target": "Ký điện tử hợp đồng, điền biểu mẫu và đóng dấu doanh nghiệp trong vài giây.",
+"backtrans": "Electronically sign contracts, fill forms and stamp business seals in seconds."
+},
+{
+"key": "onboardingEditTitle",
+"english": "Non-Destructive Editing",
+"target": "Chỉnh sửa không phá hủy",
+"backtrans": "Non-destructive editing"
+},
+{
+"key": "onboardingEditSubtitle",
+"english": "Every edit stays reversible — undo, redo, and revert to original anytime.",
+"target": "Mỗi chỉnh sửa đều có thể đảo ngược — hoàn tác, làm lại và khôi phục về bản gốc bất cứ lúc nào.",
+"backtrans": "Every edit is reversible — undo, redo and restore to the original at any time."
+},
+{
+"key": "onboardingPrivacyTitle",
+"english": "Private by design",
+"target": "Riêng tư ngay từ đầu",
+"backtrans": "Private from the start"
+},
+{
+"key": "onboardingPrivacySubtitle",
+"english": "No account, no cloud, no watermarks. Your documents never leave your device.",
+"target": "Không tài khoản, không đám mây, không hình mờ. Tài liệu của bạn không bao giờ rời khỏi thiết bị.",
+"backtrans": "No account, no cloud, no watermarks. Your documents never leave the device."
+},
+{
+"key": "onboardingContinue",
+"english": "Continue",
+"target": "Tiếp tục",
+"backtrans": "Continue"
+},
+{
+"key": "onboardingGetStarted",
+"english": "Get Started",
+"target": "Bắt đầu",
+"backtrans": "Get started"
+},
+{
+"key": "onboardingBack",
+"english": "Back",
+"target": "Quay lại",
+"backtrans": "Go back"
+},
+{
+"key": "onboardingReplayIntro",
+"english": "Replay introduction",
+"target": "Phát lại giới thiệu",
+"backtrans": "Replay introduction"
+},
+{
+"key": "saveToDownloadsAction",
+"english": "Save to Downloads",
+"target": "Lưu vào Tải xuống",
+"backtrans": "Save to Downloads"
+},
+{
+"key": "paywallTitle",
+"english": "Remove Ads",
+"target": "Xóa quảng cáo",
+"backtrans": "Remove ads"
+},
+{
+"key": "paywallSubtitle",
+"english": "Support KatharScan with a one-time purchase. All features remain free.",
+"target": "Hỗ trợ KatharScan bằng mua hàng một lần. Tất cả tính năng vẫn miễn phí.",
+"backtrans": "Support KatharScan with a one-time purchase. All features remain free."
+},
+{
+"key": "paywallFallbackPrice",
+"english": "$14.99 one-time",
+"target": "$14.99 một lần",
+"backtrans": "$14.99 one time"
+},
+{
+"key": "paywallFeatureNoBanner",
+"english": "No more banner ads",
+"target": "Không còn quảng cáo biểu ngữ",
+"backtrans": "No more banner ads"
+},
+{
+"key": "paywallFeatureNoInterstitial",
+"english": "No more interstitial ads",
+"target": "Không còn quảng cáo toàn màn hình",
+"backtrans": "No more full-screen ads"
+},
+{
+"key": "paywallFeatureFreeForever",
+"english": "All features free forever",
+"target": "Tất cả tính năng miễn phí vĩnh viễn",
+"backtrans": "All features free forever"
+},
+{
+"key": "paywallLegalText",
+"english": "This is a non-consumable purchase. Restore it anytime on any device with the same store account.",
+"target": "Đây là giao dịch mua một lần (không tiêu hao). Khôi phục bất cứ lúc nào trên bất kỳ thiết bị nào với cùng tài khoản cửa hàng.",
+"backtrans": "This is a one-time (non-consumable) purchase. Restore at any time on any device with the same store account."
+},
+{
+"key": "paywallSuccessTitle",
+"english": "Ads Removed",
+"target": "Đã xóa quảng cáo",
+"backtrans": "Ads removed"
+},
+{
+"key": "paywallSuccessMessage",
+"english": "Thank you for supporting KatharScan.",
+"target": "Cảm ơn bạn đã hỗ trợ KatharScan.",
+"backtrans": "Thank you for supporting KatharScan."
+},
+{
+"key": "errorGenericTitle",
+"english": "Something went wrong",
+"target": "Đã xảy ra lỗi",
+"backtrans": "An error occurred"
+},
+{
+"key": "errorScreenProblem",
+"english": "KatharScan ran into a problem displaying this screen. Your scans are safe — they're stored on this device and this doesn't affect them.",
+"target": "KatharScan gặp sự cố khi hiển thị màn hình này. Bản quét của bạn an toàn — chúng được lưu trên thiết bị này và điều này không ảnh hưởng đến chúng.",
+"backtrans": "KatharScan ran into a problem displaying this screen. Your scans are safe — they are stored on this device and this does not affect them."
+},
+{
+"key": "errorReportIssue",
+"english": "Report issue",
+"target": "Báo cáo vấn đề",
+"backtrans": "Report the problem"
+},
+{
+"key": "filterAll",
+"english": "All",
+"target": "Tất cả",
+"backtrans": "All"
+},
+{
+"key": "filterFolders",
+"english": "Folders",
+"target": "Thư mục",
+"backtrans": "Folders"
+},
+{
+"key": "filterRecent",
+"english": "Recent",
+"target": "Gần đây",
+"backtrans": "Recent"
+},
+{
+"key": "filterFavorites",
+"english": "Favorites",
+"target": "Yêu thích",
+"backtrans": "Favorites"
+},
+{
+"key": "chipAllFolders",
+"english": "All Folders",
+"target": "Tất cả thư mục",
+"backtrans": "All folders"
+},
+{
+"key": "chipSelectMultiple",
+"english": "Select Multiple",
+"target": "Chọn nhiều",
+"backtrans": "Select multiple"
+},
+{
+"key": "emptySearch",
+"english": "No scans match your search.",
+"target": "Không có bản quét nào khớp với tìm kiếm của bạn.",
+"backtrans": "No scans match your search."
+},
+{
+"key": "emptyFolders",
+"english": "No folders yet. Tap the folder icon to create one.",
+"target": "Chưa có thư mục. Chạm vào biểu tượng thư mục để tạo.",
+"backtrans": "No folders yet. Tap the folder icon to create one."
+},
+{
+"key": "emptyFavorites",
+"english": "No favorites yet. Tap the star icon on a document to add it.",
+"target": "Chưa có yêu thích. Chạm vào biểu tượng sao trên tài liệu để thêm.",
+"backtrans": "No favorites yet. Tap the star icon on a document to add."
+},
+{
+"key": "modeDocument",
+"english": "Document Mode",
+"target": "Chế độ tài liệu",
+"backtrans": "Document mode"
+},
+{
+"key": "modeOcr",
+"english": "OCR Mode",
+"target": "Chế độ OCR",
+"backtrans": "OCR mode"
+},
+{
+"key": "modeIdCard",
+"english": "ID Card Mode",
+"target": "Chế độ thẻ căn cước",
+"backtrans": "ID card mode"
+},
+{
+"key": "modePassport",
+"english": "Passport Mode",
+"target": "Chế độ hộ chiếu",
+"backtrans": "Passport mode"
+},
+{
+"key": "titlePdfImport",
+"english": "PDF Import",
+"target": "Nhập PDF",
+"backtrans": "Import PDF"
+},
+{
+"key": "titleIdCard",
+"english": "ID Card",
+"target": "Thẻ căn cước",
+"backtrans": "ID card"
+},
+{
+"key": "titleScan",
+"english": "Scan",
+"target": "Quét",
+"backtrans": "Scan"
+},
+{
+"key": "exportEstimatedSize",
+"english": "Estimated size: {mb} MB",
+"target": "Kích thước ước tính: {mb} MB",
+"backtrans": "Estimated size: {mb} MB"
+},
+{
+"key": "debugNoLogsYet",
+"english": "No logs yet",
+"target": "Chưa có nhật ký",
+"backtrans": "No logs yet"
+},
+{
+"key": "textBold",
+"english": "B",
+"target": "B",
+"backtrans": "B"
+},
+{
+"key": "textItalic",
+"english": "I",
+"target": "I",
+"backtrans": "I"
+},
+{
+"key": "textUnderline",
+"english": "U",
+"target": "U",
+"backtrans": "U"
+},
+{
+"key": "textFontLetterA",
+"english": "A",
+"target": "A",
+"backtrans": "A"
+},
+{
+"key": "multiplySymbol",
+"english": "×",
+"target": "×",
+"backtrans": "×"
+},
+{
+"key": "signerLabel",
+"english": "Signer {index}",
+"target": "Người ký {index}",
+"backtrans": "Signer {index}"
+},
+{
+"key": "stampCheckbox",
+"english": "Checkbox",
+"target": "Hộp kiểm",
+"backtrans": "Checkbox"
+},
+{
+"key": "fontSansSerif",
+"english": "sans-serif",
+"target": "sans-serif",
+"backtrans": "sans-serif"
+},
+{
+"key": "fontSerif",
+"english": "serif",
+"target": "serif",
+"backtrans": "serif"
+},
+{
+"key": "fontMonospace",
+"english": "monospace",
+"target": "monospace",
+"backtrans": "monospace"
+},
+{
+"key": "sealCustom",
+"english": "Custom Seal",
+"target": "Con dấu tùy chỉnh",
+"backtrans": "Custom seal"
+},
+{
+"key": "formatCsv",
+"english": "CSV",
+"target": "CSV",
+"backtrans": "CSV"
+},
+{
+"key": "ocrNoTextFound",
+"english": "No text found",
+"target": "Không tìm thấy văn bản",
+"backtrans": "No text found"
+},
+{
+"key": "rotationAllPages",
+"english": "All pages rotated",
+"target": "Đã xoay tất cả trang",
+"backtrans": "All pages rotated"
+},
+{
+"key": "rotationPage",
+"english": "Page rotated",
+"target": "Đã xoay trang",
+"backtrans": "Page rotated"
+},
+{
+"key": "resizeTitle",
+"english": "Resize",
+"target": "Thay đổi kích thước",
+"backtrans": "Resize"
+},
+{
+"key": "addTextTitle",
+"english": "Add Text",
+"target": "Thêm văn bản",
+"backtrans": "Add text"
+},
+{
+"key": "addNoteTitle",
+"english": "Add Note",
+"target": "Thêm ghi chú",
+"backtrans": "Add note"
+},
+{
+"key": "addDateTitle",
+"english": "Add Date",
+"target": "Thêm ngày",
+"backtrans": "Add date"
+},
+{
+"key": "addCheckboxTitle",
+"english": "Add Checkbox",
+"target": "Thêm hộp kiểm",
+"backtrans": "Add checkbox"
+},
+{
+"key": "noteTextLabel",
+"english": "Note text",
+"target": "Văn bản ghi chú",
+"backtrans": "Note text"
+},
+{
+"key": "textLabel",
+"english": "Text",
+"target": "Văn bản",
+"backtrans": "Text"
+},
+{
+"key": "checkShapeRounded",
+"english": "Rounded",
+"target": "Bo tròn",
+"backtrans": "Rounded"
+},
+{
+"key": "checkShapeSquare",
+"english": "Square",
+"target": "Vuông",
+"backtrans": "Square"
+},
+{
+"key": "checkShapeCircle",
+"english": "Circle",
+"target": "Tròn",
+"backtrans": "Circle"
+},
+{
+"key": "hueLabel",
+"english": "Hue",
+"target": "Sắc độ",
+"backtrans": "Hue"
+},
+{
+"key": "satLabel",
+"english": "Sat",
+"target": "Bão hòa",
+"backtrans": "Saturation"
+},
+{
+"key": "valLabel",
+"english": "Val",
+"target": "Giá trị",
+"backtrans": "Value"
+},
+{
+"key": "annotationModePen",
+"english": "Pen",
+"target": "Bút",
+"backtrans": "Pen"
+},
+{
+"key": "annotationModeHighlighter",
+"english": "Highlighter",
+"target": "Bút đánh dấu",
+"backtrans": "Highlighter"
+},
+{
+"key": "annotationModeRect",
+"english": "Rectangle",
+"target": "Hình chữ nhật",
+"backtrans": "Rectangle"
+},
+{
+"key": "annotationModeArrow",
+"english": "Arrow",
+"target": "Mũi tên",
+"backtrans": "Arrow"
+},
+{
+"key": "annotationModeEllipse",
+"english": "Ellipse",
+"target": "Hình elip",
+"backtrans": "Ellipse"
+},
+{
+"key": "sharePromptTitle",
+"english": "Love KatharScan?",
+"target": "Thích KatharScan?",
+"backtrans": "Like KatharScan?"
+},
+{
+"key": "sharePromptBody",
+"english": "Share it with friends who need a powerful document scanner.",
+"target": "Chia sẻ với bạn bè cần máy quét tài liệu mạnh mẽ.",
+"backtrans": "Share it with friends who need a powerful document scanner."
+},
+{
+"key": "sharePromptAction",
+"english": "Share App",
+"target": "Chia sẻ ứng dụng",
+"backtrans": "Share the app"
+},
+{
+"key": "sharePromptDismiss",
+"english": "Not now",
+"target": "Để sau",
+"backtrans": "Later"
+},
+{
+"key": "reviewPromptTitle",
+"english": "Enjoying KatharScan?",
+"target": "Thích KatharScan?",
+"backtrans": "Like KatharScan?"
+},
+{
+"key": "reviewPromptBody",
+"english": "Your feedback helps us grow and keeps the app free.",
+"target": "Phản hồi của bạn giúp chúng tôi phát triển và giữ ứng dụng miễn phí.",
+"backtrans": "Your feedback helps us grow and keep the app free."
+},
+{
+"key": "reviewPromptYes",
+"english": "Rate Us",
+"target": "Đánh giá chúng tôi",
+"backtrans": "Rate us"
+},
+{
+"key": "reviewPromptNo",
+"english": "Send Feedback",
+"target": "Gửi phản hồi",
+"backtrans": "Send feedback"
+},
+{
+"key": "watermarkLabel",
+"english": "Watermark",
+"target": "Hình mờ",
+"backtrans": "Watermark"
+},
+{
+"key": "compressLabel",
+"english": "Compress",
+"target": "Nén",
+"backtrans": "Compress"
+},
+{
+"key": "pagesLabel",
+"english": "Pages",
+"target": "Trang",
+"backtrans": "Pages"
+},
+{
+"key": "cropLabel",
+"english": "Crop",
+"target": "Cắt",
+"backtrans": "Crop"
+},
+{
+"key": "emailLabel",
+"english": "Email",
+"target": "Email",
+"backtrans": "Email"
+},
+{
+"key": "checkLabel",
+"english": "Check",
+"target": "Dấu kiểm",
+"backtrans": "Check mark"
+},
+{
+"key": "captionDocs",
+"english": "Flexible crop: Original, Square, 4:3, 3:2, 16:9",
+"target": "Cắt linh hoạt: Gốc, Vuông, 4:3, 3:2, 16:9",
+"backtrans": "Flexible crop: Original, Square, 4:3, 3:2, 16:9"
+},
+{
+"key": "captionOcr",
+"english": "Text crop: Original, Square, 4:3",
+"target": "Cắt văn bản: Gốc, Vuông, 4:3",
+"backtrans": "Text crop: Original, Square, 4:3"
+},
+{
+"key": "captionIdCard",
+"english": "Two-sided ID capture: Front + Back",
+"target": "Chụp thẻ căn cước hai mặt: Mặt trước + Mặt sau",
+"backtrans": "Capture two-sided ID card: Front + Back"
+},
+{
+"key": "captionPassport",
+"english": "Passport crop: 4:3 or Original",
+"target": "Cắt hộ chiếu: 4:3 hoặc Gốc",
+"backtrans": "Passport crop: 4:3 or Original"
+},
+{
+"key": "idStepFront",
+"english": "Step 1: Capture Front Side",
+"target": "Bước 1: Chụp mặt trước",
+"backtrans": "Step 1: Capture the front side"
+},
+{
+"key": "idStepBack",
+"english": "Step 2: Capture Back Side",
+"target": "Bước 2: Chụp mặt sau",
+"backtrans": "Step 2: Capture the back side"
+},
+{
+"key": "idGenerating",
+"english": "Generating PDF...",
+"target": "Đang tạo PDF...",
+"backtrans": "Creating PDF..."
+},
+{
+"key": "captureFrontSide",
+"english": "Capture Front Side",
+"target": "Chụp mặt trước",
+"backtrans": "Capture front side"
+},
+{
+"key": "captureBackSide",
+"english": "Capture Back Side",
+"target": "Chụp mặt sau",
+"backtrans": "Capture back side"
+},
+{
+"key": "importFrontSide",
+"english": "Import Front Side",
+"target": "Nhập mặt trước",
+"backtrans": "Import front side"
+},
+{
+"key": "importBackSide",
+"english": "Import Back Side",
+"target": "Nhập mặt sau",
+"backtrans": "Import back side"
+},
+{
+"key": "cropDocumentTitle",
+"english": "Crop Document",
+"target": "Cắt tài liệu",
+"backtrans": "Crop document"
+},
+{
+"key": "cropIdCardTitle",
+"english": "Crop ID Card",
+"target": "Cắt thẻ căn cước",
+"backtrans": "Crop ID card"
+},
+{
+"key": "tabImageLabel",
+"english": "Image",
+"target": "Hình ảnh",
+"backtrans": "Image"
+},
+{
+"key": "tabOcrTextLabel",
+"english": "OCR Text",
+"target": "Văn bản OCR",
+"backtrans": "OCR text"
+},
+{
+"key": "compressSmall",
+"english": "Small",
+"target": "Nhỏ",
+"backtrans": "Small"
+},
+{
+"key": "compressMedium",
+"english": "Medium",
+"target": "Trung bình",
+"backtrans": "Medium"
+},
+{
+"key": "pageFormatLetter",
+"english": "Letter (US)",
+"target": "Letter (Mỹ)",
+"backtrans": "Letter (US)"
+},
+{
+"key": "ocrScriptLatin",
+"english": "Latin (English, European)",
+"target": "Latinh (Anh, Châu Âu)",
+"backtrans": "Latin (English, Europe)"
+},
+{
+"key": "ocrScriptChinese",
+"english": "Chinese",
+"target": "Tiếng Trung",
+"backtrans": "Chinese"
+},
+{
+"key": "ocrScriptKorean",
+"english": "Korean",
+"target": "Tiếng Hàn",
+"backtrans": "Korean"
+},
+{
+"key": "ocrScriptJapanese",
+"english": "Japanese",
+"target": "Tiếng Nhật",
+"backtrans": "Japanese"
+},
+{
+"key": "ocrScriptDevanagari",
+"english": "Hindi, Marathi (Devanagari)",
+"target": "Tiếng Hindi, Marathi (Devanagari)",
+"backtrans": "Hindi, Marathi (Devanagari)"
+},
+{
+"key": "ocrStatusUnsupported",
+"english": "Unsupported",
+"target": "Không được hỗ trợ",
+"backtrans": "Not supported"
+},
+{
+"key": "noteLabel",
+"english": "Note",
+"target": "Ghi chú",
+"backtrans": "Note"
+},
+{
+"key": "dateLabel",
+"english": "Date",
+"target": "Ngày",
+"backtrans": "Date"
+},
+{
+"key": "accentBlue",
+"english": "Blue",
+"target": "Xanh dương",
+"backtrans": "Blue"
+},
+{
+"key": "accentIndigo",
+"english": "Indigo",
+"target": "Chàm",
+"backtrans": "Indigo"
+},
+{
+"key": "accentEmerald",
+"english": "Emerald",
+"target": "Ngọc lục bảo",
+"backtrans": "Emerald"
+},
+{
+"key": "accentCrimson",
+"english": "Crimson",
+"target": "Đỏ thẫm",
+"backtrans": "Dark red"
+},
+{
+"key": "accentAmber",
+"english": "Amber",
+"target": "Hổ phách",
+"backtrans": "Amber"
+},
+{
+"key": "accentViolet",
+"english": "Violet",
+"target": "Tím",
+"backtrans": "Purple"
+},
+{
+"key": "tickerLanguages",
+"english": "{count} LANGUAGES",
+"target": "{count} NGÔN NGỮ",
+"backtrans": "{count} LANGUAGES"
+},
+{
+"key": "termsOfServiceLabel",
+"english": "Terms of Service",
+"target": "Điều khoản dịch vụ",
+"backtrans": "Terms of service"
+},
+{
+"key": "openSourceLicensesLabel",
+"english": "Open-source licenses",
+"target": "Giấy phép mã nguồn mở",
+"backtrans": "Open-source licenses"
+},
+{
+"key": "whatsNewTitle",
+"english": "What's New",
+"target": "Có gì mới",
+"backtrans": "What's new"
+},
+{
+"key": "whatsNewContinue",
+"english": "Continue",
+"target": "Tiếp tục",
+"backtrans": "Continue"
+},
+{
+"key": "tickerTxtExport",
+"english": "TXT EXPORT",
+"target": "XUẤT TXT",
+"backtrans": "TXT EXPORT"
+},
+{
+"key": "tickerCsvExport",
+"english": "CSV EXPORT",
+"target": "XUẤT CSV",
+"backtrans": "CSV EXPORT"
+},
+{
+"key": "whatsNewBody",
+"english": "Welcome to KatharScan! This is the first public release featuring unlimited scanning, 29 languages, and export to PDF, Word, TXT, JPG, PNG, and CSV.",
+"target": "Chào mừng đến với KatharScan! Đây là bản phát hành công khai đầu tiên với quét không giới hạn, 29 ngôn ngữ và xuất ra PDF, Word, TXT, JPG, PNG, CSV.",
+"backtrans": "Welcome to KatharScan! This is the first public release with unlimited scanning, 29 languages and export to PDF, Word, TXT, JPG, PNG, CSV."
+},
+{
+"key": "engagementSectionLabel",
+"english": "ENGAGEMENT & NOTIFICATIONS",
+"target": "TƯƠNG TÁC & THÔNG BÁO",
+"backtrans": "INTERACTION & NOTIFICATIONS"
+},
+{
+"key": "enableNotificationsLabel",
+"english": "Enable Notifications",
+"target": "Bật thông báo",
+"backtrans": "Enable notifications"
+},
+{
+"key": "enableNotificationsSubtitle",
+"english": "Allow background reminders for unexported documents",
+"target": "Cho phép nhắc nhở nền cho các tài liệu chưa xuất",
+"backtrans": "Allow background reminders for documents not yet exported"
+},
+{
+"key": "enableReviewPromptsLabel",
+"english": "Enable Review Prompts",
+"target": "Bật lời nhắc đánh giá",
+"backtrans": "Enable review prompts"
+},
+{
+"key": "enableReviewPromptsSubtitle",
+"english": "Allow the app to occasionally ask for a rating",
+"target": "Cho phép ứng dụng thỉnh thoảng yêu cầu đánh giá",
+"backtrans": "Allow the app to occasionally ask for a review"
+},
+{
+"key": "enableSharePromptsLabel",
+"english": "Enable Share Prompts",
+"target": "Bật lời nhắc chia sẻ",
+"backtrans": "Enable share prompts"
+},
+{
+"key": "enableSharePromptsSubtitle",
+"english": "Allow the app to occasionally suggest sharing",
+"target": "Cho phép ứng dụng thỉnh thoảng đề xuất chia sẻ",
+"backtrans": "Allow the app to occasionally suggest sharing"
+},
+{
+"key": "exportFormatCsvDescription",
+"english": "Spreadsheet data",
+"target": "Dữ liệu bảng tính",
+"backtrans": "Spreadsheet data"
+},
+{
+"key": "watermarkDefaultText",
+"english": "CONFIDENTIAL",
+"target": "TÀI LIỆU MẬT",
+"backtrans": "CONFIDENTIAL DOCUMENT"
+},
+{
+"key": "emailAttachmentNotIncluded",
+"english": "The pages could not be attached to the email. Use Share to send the pages.",
+"target": "Không thể đính kèm các trang vào email. Hãy dùng Chia sẻ để gửi các trang.",
+"backtrans": "Pages cannot be attached to the email. Use Share to send the pages."
+},
+{
+"key": "sealDefaultMainText",
+"english": "YOUR COMPANY",
+"target": "CÔNG TY CỦA BẠN",
+"backtrans": "YOUR COMPANY"
+},
+{
+"key": "extractedPageDefaultTitle",
+"english": "Extracted Page",
+"target": "Trang được trích xuất",
+"backtrans": "Extracted page"
+},
+{
+"key": "printRangeAll",
+"english": "All pages",
+"target": "Tất cả các trang",
+"backtrans": "All pages"
+},
+{
+"key": "printRangeCurrent",
+"english": "Current",
+"target": "Hiện tại",
+"backtrans": "Current"
+},
+{
+"key": "printRangeRange",
+"english": "Range",
+"target": "Phạm vi",
+"backtrans": "Range"
+},
+{
+"key": "printFilterNone",
+"english": "No filter",
+"target": "Không có bộ lọc",
+"backtrans": "No filter"
+},
+{
+"key": "removeFromFavorites",
+"english": "Remove from Favorites",
+"target": "Xóa khỏi yêu thích",
+"backtrans": "Remove from favorites"
+},
+{
+"key": "addToFavorites",
+"english": "Add to Favorites",
+"target": "Thêm vào yêu thích",
+"backtrans": "Add to favorites"
+},
+{
+"key": "saveFailedPrefix",
+"english": "Save failed:",
+"target": "Lưu không thành công:",
+"backtrans": "Saving unsuccessful:"
+},
+{
+"key": "ocrScriptArabic",
+"english": "العربية (Arabic)",
+"target": "العربية (Arabic)",
+"backtrans": "العربية (Arabic)"
+},
+{
+"key": "ocrScriptRussian",
+"english": "Русский (Russian)",
+"target": "Русский (Russian)",
+"backtrans": "Русский (Russian)"
+},
+{
+"key": "ocrScriptUkrainian",
+"english": "Українська (Ukrainian)",
+"target": "Українська (Ukrainian)",
+"backtrans": "Українська (Ukrainian)"
+},
+{
+"key": "ocrScriptGreek",
+"english": "Ελληνικά (Greek)",
+"target": "Ελληνικά (Greek)",
+"backtrans": "Ελληνικά (Greek)"
+},
+{
+"key": "ocrScriptHebrew",
+"english": "עברית (Hebrew)",
+"target": "עברית (Hebrew)",
+"backtrans": "עברית (Hebrew)"
+},
+{
+"key": "ocrScriptThai",
+"english": "ไทย (Thai)",
+"target": "ไทย (Thai)",
+"backtrans": "ไทย (Thai)"
+},
+{
+"key": "ocrScriptBengali",
+"english": "বাংলা (Bengali)",
+"target": "বাংলা (Bengali)",
+"backtrans": "বাংলা (Bengali)"
+},
+{
+"key": "ocrStatusInstalled",
+"english": "Installed",
+"target": "Đã cài đặt",
+"backtrans": "Installed"
+},
+{
+"key": "ocrStatusDownloading",
+"english": "Downloading…",
+"target": "Đang tải xuống…",
+"backtrans": "Downloading…"
+},
+{
+"key": "exportNoTextError",
+"english": "This document has no text yet. Run OCR on it first.",
+"target": "Tài liệu này chưa có văn bản. Hãy chạy OCR trước.",
+"backtrans": "This document has no text yet. Run OCR first."
+},
+{
+"key": "saveFailedBanner",
+"english": "Your latest changes could not be saved.",
+"target": "Không thể lưu các thay đổi gần nhất của bạn.",
+"backtrans": "Could not save your most recent changes."
+},
+{
+"key": "editLabel",
+"english": "Edit",
+"target": "Sửa",
+"backtrans": "Edit"
+},
+{
+"key": "fillTapHint",
+"english": "Tap the page where you want to type",
+"target": "Chạm vào trang tại vị trí bạn muốn nhập",
+"backtrans": "Tap the page where you want to type"
+},
+{
+"key": "fillTypeHint",
+"english": "Type here",
+"target": "Nhập tại đây",
+"backtrans": "Type here"
+},
+{
+"key": "clearPage",
+"english": "Clear page",
+"target": "Xóa trang",
+"backtrans": "Delete page [??: 'Xóa trang' means delete/clear page; ambiguous whether clearing contents or deleting the page]"
+},
+{
+"key": "clearAllPages",
+"english": "Clear all pages",
+"target": "Xóa tất cả trang",
+"backtrans": "Delete all pages [??: ambiguous whether clearing contents or deleting pages]"
+},
+{
+"key": "clearedCount",
+"english": "Cleared {count}",
+"target": "Đã xóa {count}",
+"backtrans": "Deleted {count}"
+},
+{
+"key": "idLayoutRealSize",
+"english": "Real size",
+"target": "Kích thước thật",
+"backtrans": "Real size"
+},
+{
+"key": "idLayoutFullWidth",
+"english": "Full width",
+"target": "Toàn chiều rộng",
+"backtrans": "Full width"
+},
+{
+"key": "pagesToReadTitle",
+"english": "Pages to read",
+"target": "Các trang cần đọc",
+"backtrans": "Pages to read"
+},
+{
+"key": "pagesToReadHint",
+"english": "This PDF has {count} pages. Pages that are pictures are read with OCR (about 10 seconds each); pages with real text are instant.",
+"target": "PDF này có {count} trang. Trang là hình ảnh được đọc bằng OCR (khoảng 10 giây mỗi trang); trang có văn bản thật thì tức thì.",
+"backtrans": "This PDF has {count} pages. Pages that are images are read with OCR (about 10 seconds per page); pages with real text are instant."
+},
+{
+"key": "pageFromLabel",
+"english": "From page",
+"target": "Từ trang",
+"backtrans": "From page"
+},
+{
+"key": "pageToLabel",
+"english": "To page",
+"target": "Đến trang",
+"backtrans": "To page"
+},
+{
+"key": "readingPageProgress",
+"english": "Page {page} of {total}",
+"target": "Trang {page}/{total}",
+"backtrans": "Page {page}/{total}"
+},
+{
+"key": "readingPageEta",
+"english": "Page {page} of {total} · about {minutes} min left",
+"target": "Trang {page}/{total} · còn khoảng {minutes} phút",
+"backtrans": "Page {page}/{total} · about {minutes} minutes remaining"
+},
+{
+"key": "sealShapeRound",
+"english": "Round",
+"target": "Tròn",
+"backtrans": "Round"
+},
+{
+"key": "sealFontSans",
+"english": "Clean",
+"target": "Gọn",
+"backtrans": "Compact/Neat [??: 'Gọn' means neat/compact, an odd label for a sans-serif font style]"
+},
+{
+"key": "sealFontSerif",
+"english": "Classic",
+"target": "Cổ điển",
+"backtrans": "Classic/Old-fashioned [??: 'Cổ điển' means classical, an odd label for a serif font style]"
+},
+{
+"key": "sealInkLook",
+"english": "Worn stamp look",
+"target": "Kiểu con dấu cũ",
+"backtrans": "Old seal style"
+},
+{
+"key": "sealSaveToLibrary",
+"english": "Save this seal",
+"target": "Lưu con dấu này",
+"backtrans": "Save this seal"
+},
+{
+"key": "sealSavedHeading",
+"english": "Saved seals",
+"target": "Con dấu đã lưu",
+"backtrans": "Saved seals"
+},
+{
+"key": "sealTextColorLabel",
+"english": "Text colour",
+"target": "Màu chữ",
+"backtrans": "Text color"
+},
+{
+"key": "sealTextColorSame",
+"english": "Same as ring",
+"target": "Giống viền",
+"backtrans": "Same as border"
+},
+{
+"key": "sealTextSizePercent",
+"english": "Text size {percent}%",
+"target": "Cỡ chữ {percent}%",
+"backtrans": "Text size {percent}%"
+},
+{
+"key": "sealRemoveWhite",
+"english": "Make white transparent",
+"target": "Làm trong suốt màu trắng",
+"backtrans": "Make white transparent"
+},
+{
+"key": "sealSavedMessage",
+"english": "Seal saved",
+"target": "Đã lưu con dấu",
+"backtrans": "Seal saved"
+},
+{
+"key": "signatureTabDraw",
+"english": "Draw",
+"target": "Vẽ",
+"backtrans": "Draw"
+},
+{
+"key": "signatureTabType",
+"english": "Type",
+"target": "Nhập",
+"backtrans": "Type"
+},
+{
+"key": "signatureTypeHint",
+"english": "Type your name",
+"target": "Nhập tên của bạn",
+"backtrans": "Type your name"
+},
+{
+"key": "signatureWidthLabel",
+"english": "Pen width",
+"target": "Độ dày nét",
+"backtrans": "Stroke thickness"
+},
+{
+"key": "signatureFontFlowing",
+"english": "Flowing",
+"target": "Mềm mại",
+"backtrans": "Smooth/Soft"
+},
+{
+"key": "signatureFontHandwritten",
+"english": "Handwritten",
+"target": "Chữ viết tay",
+"backtrans": "Handwriting"
+},
+{
+"key": "signatureSavedHeading",
+"english": "Saved signatures",
+"target": "Chữ ký đã lưu",
+"backtrans": "Saved signatures"
+},
+{
+"key": "signatureNewOne",
+"english": "Draw or type a new one",
+"target": "Vẽ hoặc nhập chữ ký mới",
+"backtrans": "Draw or type a new signature"
+},
+{
+"key": "signatureDeleteSaved",
+"english": "Remove saved signature",
+"target": "Xóa chữ ký đã lưu",
+"backtrans": "Delete saved signature"
+},
+{
+"key": "annotationModeSelect",
+"english": "Select",
+"target": "Chọn",
+"backtrans": "Select"
+},
+{
+"key": "annotationModeEraser",
+"english": "Eraser",
+"target": "Cục tẩy",
+"backtrans": "Eraser (rubber)"
+},
+{
+"key": "watermarkKindText",
+"english": "Text",
+"target": "Văn bản",
+"backtrans": "Text"
+},
+{
+"key": "watermarkKindImage",
+"english": "Image",
+"target": "Hình ảnh",
+"backtrans": "Image"
+},
+{
+"key": "watermarkChooseImage",
+"english": "Choose image",
+"target": "Chọn hình ảnh",
+"backtrans": "Choose image"
+},
+{
+"key": "watermarkLayoutLabel",
+"english": "Layout",
+"target": "Bố cục",
+"backtrans": "Layout"
+},
+{
+"key": "watermarkLayoutSingle",
+"english": "Single",
+"target": "Đơn",
+"backtrans": "Single"
+},
+{
+"key": "watermarkLayoutDiagonal",
+"english": "Diagonal",
+"target": "Chéo",
+"backtrans": "Diagonal"
+},
+{
+"key": "watermarkLayoutTiled",
+"english": "Tiled",
+"target": "Lát gạch",
+"backtrans": "Tiled (like brick/tile paving)"
+},
+{
+"key": "watermarkPagesLabel",
+"english": "Pages",
+"target": "Trang",
+"backtrans": "Pages"
+},
+{
+"key": "watermarkPagesThis",
+"english": "This page",
+"target": "Trang này",
+"backtrans": "This page"
+},
+{
+"key": "watermarkPagesAll",
+"english": "All pages",
+"target": "Tất cả trang",
+"backtrans": "All pages"
+},
+{
+"key": "watermarkPagesRange",
+"english": "Range",
+"target": "Phạm vi",
+"backtrans": "Range"
+},
+{
+"key": "watermarkPagesRangeHint",
+"english": "e.g. 1-3, 5",
+"target": "vd: 1-3, 5",
+"backtrans": "e.g.: 1-3, 5"
+},
+{
+"key": "watermarkPagesInvalid",
+"english": "Check the pages (the document has {count} pages)",
+"target": "Kiểm tra các trang (tài liệu có {count} trang)",
+"backtrans": "Check the pages (the document has {count} pages)"
+},
+{
+"key": "cropAuto",
+"english": "Auto-detect",
+"target": "Tự động phát hiện",
+"backtrans": "Auto-detect"
+},
+{
+"key": "cropAspectFree",
+"english": "Free",
+"target": "Tự do",
+"backtrans": "Free"
+},
+{
+"key": "cropAspectId",
+"english": "ID card",
+"target": "Thẻ căn cước",
+"backtrans": "ID card"
+},
+{
+"key": "cropAspectSquare",
+"english": "Square",
+"target": "Vuông",
+"backtrans": "Square"
+},
+{
+"key": "cropNoPageFound",
+"english": "Couldn't find the page edges. Drag the corners.",
+"target": "Không tìm thấy mép trang. Hãy kéo các góc.",
+"backtrans": "Page edges not found. Drag the corners."
+},
+{
+"key": "straightenLabel",
+"english": "Straighten",
+"target": "Chỉnh thẳng",
+"backtrans": "Straighten"
+},
+{
+"key": "filterMagicColor",
+"english": "Magic colour",
+"target": "Màu thần kỳ",
+"backtrans": "Magic color"
+},
+{
+"key": "filterBrightnessLabel",
+"english": "Brightness",
+"target": "Độ sáng",
+"backtrans": "Brightness"
+},
+{
+"key": "filterContrastLabel",
+"english": "Contrast",
+"target": "Độ tương phản",
+"backtrans": "Contrast"
+},
+{
+"key": "resizeUpscaleWarning",
+"english": "Enlarging doesn't add detail — the page may look soft.",
+"target": "Phóng to không thêm chi tiết — trang có thể bị mờ.",
+"backtrans": "Enlarging does not add detail — the page may become blurry."
+},
+{
+"key": "eraserAutoColorTooltip",
+"english": "Match the page colour automatically",
+"target": "Tự động khớp màu trang",
+"backtrans": "Automatically match page color"
+},
+{
+"key": "eraserZoomTooltip",
+"english": "Zoom and move (pinch)",
+"target": "Thu phóng và di chuyển (chụm)",
+"backtrans": "Zoom and move (pinch)"
+},
+{
+"key": "pagesSelectTooltip",
+"english": "Select pages",
+"target": "Chọn trang",
+"backtrans": "Select pages"
+},
+{
+"key": "pagesDeleteCount",
+"english": "Delete {count}",
+"target": "Xóa {count}",
+"backtrans": "Delete {count}"
+},
+{
+"key": "pagesDeleteConfirm",
+"english": "Delete {count} pages? They are removed when you save.",
+"target": "Xóa {count} trang? Các trang sẽ bị xóa khi bạn lưu.",
+"backtrans": "Delete {count} pages? The pages will be deleted when you save."
+},
+{
+"key": "compressTargetLabel",
+"english": "Max size",
+"target": "Kích thước tối đa",
+"backtrans": "Maximum size"
+},
+{
+"key": "compressNoLimit",
+"english": "No limit",
+"target": "Không giới hạn",
+"backtrans": "No limit"
+},
+{
+"key": "printPaperLabel",
+"english": "Paper",
+"target": "Giấy",
+"backtrans": "Paper"
+},
+{
+"key": "printMarginLabel",
+"english": "Margin",
+"target": "Lề",
+"backtrans": "Margin"
+},
+{
+"key": "printMarginNone",
+"english": "None",
+"target": "Không",
+"backtrans": "None"
+},
+{
+"key": "printMarginNarrow",
+"english": "Narrow",
+"target": "Hẹp",
+"backtrans": "Narrow"
+},
+{
+"key": "printMarginNormal",
+"english": "Normal",
+"target": "Thường",
+"backtrans": "Normal"
+},
+{
+"key": "printFitLabel",
+"english": "Scaling",
+"target": "Tỷ lệ",
+"backtrans": "Scale/Ratio"
+},
+{
+"key": "printFitFit",
+"english": "Fit page",
+"target": "Vừa trang",
+"backtrans": "Fit the page"
+},
+{
+"key": "printFitFill",
+"english": "Fill sheet (trims edges)",
+"target": "Lấp đầy tờ (cắt mép)",
+"backtrans": "Fill the sheet (crop the edges)"
+},
+{
+"key": "printPerSheetLabel",
+"english": "Pages per sheet",
+"target": "Trang mỗi tờ",
+"backtrans": "Pages per sheet"
+},
+{
+"key": "emailMessageLabel",
+"english": "Message",
+"target": "Nội dung",
+"backtrans": "Content"
+},
+{
+"key": "emailMessageHint",
+"english": "Add a note (optional)",
+"target": "Thêm ghi chú (tùy chọn)",
+"backtrans": "Add a note (optional)"
+},
+{
+"key": "emailLimitMissed",
+"english": "Could not get under {mb} MB; sent the smallest version.",
+"target": "Không thể xuống dưới {mb} MB; đã gửi bản nhỏ nhất.",
+"backtrans": "Cannot go below {mb} MB; the smallest version was sent."
+}
+]

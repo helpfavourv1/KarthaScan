@@ -1,0 +1,3362 @@
+[
+{
+"key": "privacyOptionsLabel",
+"english": "Privacy settings",
+"target": "Pengaturan privasi",
+"backtrans": "Privacy settings"
+},
+{
+"key": "commonCancel",
+"english": "Cancel",
+"target": "Batal",
+"backtrans": "Cancel"
+},
+{
+"key": "commonDelete",
+"english": "Delete",
+"target": "Hapus",
+"backtrans": "Delete"
+},
+{
+"key": "commonSave",
+"english": "Save",
+"target": "Simpan",
+"backtrans": "Save"
+},
+{
+"key": "commonAdd",
+"english": "Add",
+"target": "Tambah",
+"backtrans": "Add"
+},
+{
+"key": "commonExport",
+"english": "Export",
+"target": "Ekspor",
+"backtrans": "Export"
+},
+{
+"key": "commonImport",
+"english": "Import",
+"target": "Impor",
+"backtrans": "Import"
+},
+{
+"key": "commonSkip",
+"english": "Skip",
+"target": "Lewati",
+"backtrans": "Skip"
+},
+{
+"key": "commonClear",
+"english": "Clear",
+"target": "Bersihkan",
+"backtrans": "Clean"
+},
+{
+"key": "emptyStateDefaultMessage",
+"english": "Tap the camera to scan your first document.",
+"target": "Ketuk kamera untuk memindai dokumen pertama Anda.",
+"backtrans": "Tap the camera to scan your first document."
+},
+{
+"key": "exportFormatSheetTitle",
+"english": "Export as",
+"target": "Ekspor sebagai",
+"backtrans": "Export as"
+},
+{
+"key": "exportFormatPdfLabel",
+"english": "PDF",
+"target": "PDF",
+"backtrans": "PDF"
+},
+{
+"key": "exportFormatPdfDescription",
+"english": "Best for sharing and printing",
+"target": "Terbaik untuk berbagi dan mencetak",
+"backtrans": "Best for sharing and printing"
+},
+{
+"key": "exportFormatDocxLabel",
+"english": "Word (.docx)",
+"target": "Word (.docx)",
+"backtrans": "Word (.docx)"
+},
+{
+"key": "exportFormatDocxDescription",
+"english": "Editable text document",
+"target": "Dokumen teks yang dapat diedit",
+"backtrans": "Editable text document"
+},
+{
+"key": "exportFormatTxtLabel",
+"english": "Text (.txt)",
+"target": "Teks (.txt)",
+"backtrans": "Text (.txt)"
+},
+{
+"key": "exportFormatTxtDescription",
+"english": "Plain OCR text only",
+"target": "Hanya teks OCR biasa",
+"backtrans": "Plain OCR text only"
+},
+{
+"key": "exportFormatJpgLabel",
+"english": "JPG",
+"target": "JPG",
+"backtrans": "JPG"
+},
+{
+"key": "exportFormatJpgDescription",
+"english": "One image per page",
+"target": "Satu gambar per halaman",
+"backtrans": "One image per page"
+},
+{
+"key": "exportFormatPngLabel",
+"english": "PNG",
+"target": "PNG",
+"backtrans": "PNG"
+},
+{
+"key": "exportFormatPngDescription",
+"english": "One image per page, lossless",
+"target": "Satu gambar per halaman, tanpa kehilangan kualitas",
+"backtrans": "One image per page, without loss of quality"
+},
+{
+"key": "filterSheetTitle",
+"english": "Filters",
+"target": "Filter",
+"backtrans": "Filter"
+},
+{
+"key": "filterOriginal",
+"english": "Original",
+"target": "Asli",
+"backtrans": "Original"
+},
+{
+"key": "filterGrayscale",
+"english": "Grayscale",
+"target": "Skala abu-abu",
+"backtrans": "Gray scale"
+},
+{
+"key": "filterBlackAndWhite",
+"english": "B&W",
+"target": "Hitam Putih",
+"backtrans": "Black White"
+},
+{
+"key": "filterColorEnhance",
+"english": "Color enhance",
+"target": "Peningkatan warna",
+"backtrans": "Color enhancement"
+},
+{
+"key": "filterShadowRemoval",
+"english": "Shadow removal",
+"target": "Penghapusan bayangan",
+"backtrans": "Shadow removal"
+},
+{
+"key": "proBadgeLabel",
+"english": "PRO",
+"target": "PRO",
+"backtrans": "PRO"
+},
+{
+"key": "scanListPageCount",
+"english": "{count, plural, =1{1 page} other{{count} pages}}",
+"target": "{count, plural, =1{1 halaman} other{{count} halaman}}",
+"backtrans": "{count, plural, =1{1 page} other{{count} pages}}"
+},
+{
+"key": "scanPreviewNoPages",
+"english": "No pages to show.",
+"target": "Tidak ada halaman untuk ditampilkan.",
+"backtrans": "No pages to display."
+},
+{
+"key": "shareTooltip",
+"english": "Share",
+"target": "Bagikan",
+"backtrans": "Share"
+},
+{
+"key": "signatureCanvasHint",
+"english": "Sign here",
+"target": "Tanda tangan di sini",
+"backtrans": "Sign here"
+},
+{
+"key": "folderDocumentCount",
+"english": "{count, plural, =1{1 document} other{{count} documents}}",
+"target": "{count, plural, =1{1 dokumen} other{{count} dokumen}}",
+"backtrans": "{count, plural, =1{1 document} other{{count} documents}}"
+},
+{
+"key": "selectedCount",
+"english": "{count, plural, =1{1 selected} other{{count} selected}}",
+"target": "{count, plural, =1{1 dipilih} other{{count} dipilih}}",
+"backtrans": "{count, plural, =1{1 selected} other{{count} selected}}"
+},
+{
+"key": "batchExportTooltip",
+"english": "Batch export",
+"target": "Ekspor massal",
+"backtrans": "Mass export"
+},
+{
+"key": "deleteTooltip",
+"english": "Delete",
+"target": "Hapus",
+"backtrans": "Delete"
+},
+{
+"key": "searchHint",
+"english": "Search your scans",
+"target": "Cari pindaian Anda",
+"backtrans": "Search your scans"
+},
+{
+"key": "settingsTooltip",
+"english": "Settings",
+"target": "Pengaturan",
+"backtrans": "Settings"
+},
+{
+"key": "foldersSectionHeader",
+"english": "Folders",
+"target": "Folder",
+"backtrans": "Folders"
+},
+{
+"key": "documentsSectionHeader",
+"english": "Documents",
+"target": "Dokumen",
+"backtrans": "Documents"
+},
+{
+"key": "exportingStatus",
+"english": "Exporting…",
+"target": "Mengekspor…",
+"backtrans": "Exporting…"
+},
+{
+"key": "exportDoneStatus",
+"english": "Done",
+"target": "Selesai",
+"backtrans": "Done"
+},
+{
+"key": "exportGenericError",
+"english": "Something went wrong while exporting.",
+"target": "Terjadi kesalahan saat mengekspor.",
+"backtrans": "An error occurred while exporting."
+},
+{
+"key": "deleteFolderTitle",
+"english": "Delete this folder?",
+"target": "Hapus folder ini?",
+"backtrans": "Delete this folder?"
+},
+{
+"key": "deleteFolderMessage",
+"english": "Documents inside will not be deleted.",
+"target": "Dokumen di dalamnya tidak akan dihapus.",
+"backtrans": "The documents inside it will not be deleted."
+},
+{
+"key": "deleteFolderTooltip",
+"english": "Delete folder",
+"target": "Hapus folder",
+"backtrans": "Delete folder"
+},
+{
+"key": "renameFolderTitle",
+"english": "Rename folder",
+"target": "Ganti nama folder",
+"backtrans": "Change folder name"
+},
+{
+"key": "removeFromFolderTooltip",
+"english": "Remove from folder",
+"target": "Hapus dari folder",
+"backtrans": "Delete from folder [??: 'Hapus' means delete rather than 'remove'; may mislead]"
+},
+{
+"key": "noDocumentsInFolder",
+"english": "No documents in this folder yet.",
+"target": "Belum ada dokumen di folder ini.",
+"backtrans": "There are no documents in this folder yet."
+},
+{
+"key": "folderUnavailable",
+"english": "This folder is no longer available.",
+"target": "Folder ini tidak lagi tersedia.",
+"backtrans": "This folder is no longer available."
+},
+{
+"key": "migrationTitle",
+"english": "Device Migration",
+"target": "Migrasi perangkat",
+"backtrans": "Device migration"
+},
+{
+"key": "migrationExplainer",
+"english": "This isn't automatic sync. Export creates a single encrypted backup file you move to your new device yourself, then import there.",
+"target": "Ini bukan sinkronisasi otomatis. Ekspor membuat satu file cadangan terenkripsi yang Anda pindahkan sendiri ke perangkat baru, lalu impor di sana.",
+"backtrans": "This is not automatic synchronization. Export creates one encrypted backup file that you move yourself to the new device, then import there."
+},
+{
+"key": "exportBackupButton",
+"english": "Export encrypted backup",
+"target": "Ekspor cadangan terenkripsi",
+"backtrans": "Export encrypted backup"
+},
+{
+"key": "importBackupButton",
+"english": "Import from backup",
+"target": "Impor dari cadangan",
+"backtrans": "Import from backup"
+},
+{
+"key": "setBackupPasswordTitle",
+"english": "Set a backup password",
+"target": "Atur kata sandi cadangan",
+"backtrans": "Set backup password"
+},
+{
+"key": "enterBackupPasswordTitle",
+"english": "Enter backup password",
+"target": "Masukkan kata sandi cadangan",
+"backtrans": "Enter backup password"
+},
+{
+"key": "buildingBackupStatus",
+"english": "Building backup…",
+"target": "Membuat cadangan…",
+"backtrans": "Creating backup…"
+},
+{
+"key": "backupReadyStatus",
+"english": "Backup ready.",
+"target": "Cadangan siap.",
+"backtrans": "Backup ready."
+},
+{
+"key": "couldNotCreateBackupError",
+"english": "Could not create the backup.",
+"target": "Tidak dapat membuat cadangan.",
+"backtrans": "Unable to create backup."
+},
+{
+"key": "importingStatus",
+"english": "Importing…",
+"target": "Mengimpor…",
+"backtrans": "Importing…"
+},
+{
+"key": "couldNotImportBackupError",
+"english": "Could not import this backup. Check the password and try again.",
+"target": "Tidak dapat mengimpor cadangan ini. Periksa kata sandi dan coba lagi.",
+"backtrans": "Unable to import this backup. Check the password and try again."
+},
+{
+"key": "backupCorruptedError",
+"english": "This backup file looks corrupted.",
+"target": "File cadangan ini tampaknya rusak.",
+"backtrans": "This backup file seems to be corrupted."
+},
+{
+"key": "importedCount",
+"english": "{count, plural, =1{1 document imported} other{{count} documents imported}}",
+"target": "{count, plural, =1{1 dokumen diimpor} other{{count} dokumen diimpor}}",
+"backtrans": "{count, plural, =1{1 document imported} other{{count} documents imported}}"
+},
+{
+"key": "continueButton",
+"english": "Continue",
+"target": "Lanjutkan",
+"backtrans": "Continue"
+},
+{
+"key": "restorePurchasesButton",
+"english": "Restore purchases",
+"target": "Pulihkan pembelian",
+"backtrans": "Restore purchases"
+},
+{
+"key": "pricingLoadingError",
+"english": "Pricing is still loading — try again in a moment.",
+"target": "Harga masih dimuat — coba lagi sebentar.",
+"backtrans": "Prices are still loading — try again in a moment."
+},
+{
+"key": "renameDocumentTitle",
+"english": "Rename document",
+"target": "Ganti nama dokumen",
+"backtrans": "Change document name"
+},
+{
+"key": "addTagTitle",
+"english": "Add tag",
+"target": "Tambah tag",
+"backtrans": "Add tag"
+},
+{
+"key": "moveToFolderTooltip",
+"english": "Move to folder",
+"target": "Pindahkan ke folder",
+"backtrans": "Move to folder"
+},
+{
+"key": "exportTooltip",
+"english": "Export",
+"target": "Ekspor",
+"backtrans": "Export"
+},
+{
+"key": "deleteScanTitle",
+"english": "Delete this scan?",
+"target": "Hapus pindaian ini?",
+"backtrans": "Delete this scan?"
+},
+{
+"key": "deleteScanMessage",
+"english": "This can't be undone.",
+"target": "Tindakan ini tidak dapat dibatalkan.",
+"backtrans": "This action cannot be undone."
+},
+{
+"key": "movedToFolderMessage",
+"english": "Moved to folder.",
+"target": "Dipindahkan ke folder.",
+"backtrans": "Moved to folder."
+},
+{
+"key": "noTextRecognized",
+"english": "No text recognized.",
+"target": "Tidak ada teks yang dikenali.",
+"backtrans": "No text recognized."
+},
+{
+"key": "scanUnavailable",
+"english": "This scan is no longer available.",
+"target": "Pindaian ini tidak lagi tersedia.",
+"backtrans": "This scan is no longer available."
+},
+{
+"key": "settingsTitle",
+"english": "Settings",
+"target": "Pengaturan",
+"backtrans": "Settings"
+},
+{
+"key": "appearanceSectionLabel",
+"english": "Appearance",
+"target": "Tampilan",
+"backtrans": "Appearance"
+},
+{
+"key": "themeLabel",
+"english": "Theme",
+"target": "Tema",
+"backtrans": "Theme"
+},
+{
+"key": "systemThemeOption",
+"english": "System",
+"target": "Sistem",
+"backtrans": "System"
+},
+{
+"key": "lightThemeOption",
+"english": "Light",
+"target": "Terang",
+"backtrans": "Light"
+},
+{
+"key": "darkThemeOption",
+"english": "Dark",
+"target": "Gelap",
+"backtrans": "Dark"
+},
+{
+"key": "languageSectionLabel",
+"english": "Language",
+"target": "Bahasa",
+"backtrans": "Language"
+},
+{
+"key": "appLanguageLabel",
+"english": "App language",
+"target": "Bahasa aplikasi",
+"backtrans": "App language"
+},
+{
+"key": "storageSectionLabel",
+"english": "Storage",
+"target": "Penyimpanan",
+"backtrans": "Storage"
+},
+{
+"key": "deviceMigrationLabel",
+"english": "Device Migration",
+"target": "Migrasi perangkat",
+"backtrans": "Device migration"
+},
+{
+"key": "subscriptionSectionLabel",
+"english": "Subscription",
+"target": "Langganan",
+"backtrans": "Subscription"
+},
+{
+"key": "aboutSectionLabel",
+"english": "About",
+"target": "Tentang",
+"backtrans": "About"
+},
+{
+"key": "privacyPolicyLabel",
+"english": "Privacy policy",
+"target": "Kebijakan privasi",
+"backtrans": "Privacy policy"
+},
+{
+"key": "supportLabel",
+"english": "Support",
+"target": "Dukungan",
+"backtrans": "Support"
+},
+{
+"key": "couldNotOpenLinkError",
+"english": "Could not open link.",
+"target": "Tidak dapat membuka tautan.",
+"backtrans": "Unable to open the link."
+},
+{
+"key": "restoreCompleteMessage",
+"english": "Restore complete.",
+"target": "Pemulihan selesai.",
+"backtrans": "Restoration complete."
+},
+{
+"key": "genericErrorMessage",
+"english": "Something went wrong. Please try again.",
+"target": "Terjadi kesalahan. Silakan coba lagi.",
+"backtrans": "An error occurred. Please try again."
+},
+{
+"key": "extractedTextTitle",
+"english": "Extracted Text",
+"target": "Teks yang diekstrak",
+"backtrans": "Extracted text"
+},
+{
+"key": "commonClose",
+"english": "Close",
+"target": "Tutup",
+"backtrans": "Close"
+},
+{
+"key": "commonCopy",
+"english": "Copy",
+"target": "Salin",
+"backtrans": "Copy"
+},
+{
+"key": "savedToDocumentText",
+"english": "Saved to document text",
+"target": "Disimpan ke teks dokumen",
+"backtrans": "Saved to document text"
+},
+{
+"key": "regionOcrFailed",
+"english": "Region OCR failed",
+"target": "OCR area gagal",
+"backtrans": "Area OCR failed"
+},
+{
+"key": "filterRemoved",
+"english": "Filter removed",
+"target": "Filter dihapus",
+"backtrans": "Filter removed"
+},
+{
+"key": "filterApplied",
+"english": "Filter applied",
+"target": "Filter diterapkan",
+"backtrans": "Filter applied"
+},
+{
+"key": "pageCropped",
+"english": "Page cropped",
+"target": "Halaman dipotong",
+"backtrans": "Page cut"
+},
+{
+"key": "revertToOriginalTitle",
+"english": "Revert to Original?",
+"target": "Kembali ke asli?",
+"backtrans": "Return to original?"
+},
+{
+"key": "revertToOriginalMessage",
+"english": "This will undo all filters, rotations, crops, resizes, and eraser strokes on this page.",
+"target": "Ini akan membatalkan semua filter, rotasi, pemotongan, perubahan ukuran, dan sapuan penghapus pada halaman ini.",
+"backtrans": "This will cancel all filters, rotations, cuts, size changes, and eraser strokes on this page."
+},
+{
+"key": "commonRevert",
+"english": "Revert",
+"target": "Kembalikan",
+"backtrans": "Return"
+},
+{
+"key": "pageRevertedToOriginal",
+"english": "Page reverted to original",
+"target": "Halaman dikembalikan ke asli",
+"backtrans": "Page returned to original"
+},
+{
+"key": "eraserApplied",
+"english": "Eraser applied",
+"target": "Penghapus diterapkan",
+"backtrans": "Eraser applied"
+},
+{
+"key": "pageResized",
+"english": "Page resized",
+"target": "Ukuran halaman diubah",
+"backtrans": "Page size changed"
+},
+{
+"key": "extractedAsNewDocument",
+"english": "Extracted as new document",
+"target": "Diekstrak sebagai dokumen baru",
+"backtrans": "Extracted as new document"
+},
+{
+"key": "pagesUpdated",
+"english": "Pages updated",
+"target": "Halaman diperbarui",
+"backtrans": "Pages updated"
+},
+{
+"key": "printOptionsTitle",
+"english": "Print Options",
+"target": "Opsi cetak",
+"backtrans": "Print options"
+},
+{
+"key": "letterSizeUS",
+"english": "Letter size (US)",
+"target": "Letter (AS)",
+"backtrans": "Letter (US)"
+},
+{
+"key": "commonPrint",
+"english": "Print",
+"target": "Cetak",
+"backtrans": "Print"
+},
+{
+"key": "printFailed",
+"english": "Print failed",
+"target": "Gagal mencetak",
+"backtrans": "Failed to print"
+},
+{
+"key": "noEmailAppFound",
+"english": "No email app found",
+"target": "Aplikasi email tidak ditemukan",
+"backtrans": "Email app not found"
+},
+{
+"key": "emailFailed",
+"english": "Email failed",
+"target": "Gagal mengirim email",
+"backtrans": "Failed to send email"
+},
+{
+"key": "fromPageLabel",
+"english": "From",
+"target": "Dari",
+"backtrans": "From"
+},
+{
+"key": "toPageLabel",
+"english": "To",
+"target": "Ke",
+"backtrans": "To"
+},
+{
+"key": "pdfImportedAsDocument",
+"english": "PDF imported as document",
+"target": "PDF diimpor sebagai dokumen",
+"backtrans": "PDF imported as document"
+},
+{
+"key": "frontSideCaptured",
+"english": "Front side captured. Now capture the back side.",
+"target": "Sisi depan diambil. Sekarang ambil sisi belakang.",
+"backtrans": "Front side captured. Now capture the back side."
+},
+{
+"key": "idCardPdfGenerated",
+"english": "ID Card PDF Generated",
+"target": "PDF Kartu ID dibuat",
+"backtrans": "ID Card PDF created"
+},
+{
+"key": "sharePdf",
+"english": "Share PDF",
+"target": "Bagikan PDF",
+"backtrans": "Share PDF"
+},
+{
+"key": "saveAsDocument",
+"english": "Save as Document",
+"target": "Simpan sebagai dokumen",
+"backtrans": "Save as document"
+},
+{
+"key": "commonDone",
+"english": "Done",
+"target": "Selesai",
+"backtrans": "Done"
+},
+{
+"key": "documentSaved",
+"english": "Document saved",
+"target": "Dokumen disimpan",
+"backtrans": "Document saved"
+},
+{
+"key": "commonReset",
+"english": "Reset",
+"target": "Setel ulang",
+"backtrans": "Set again"
+},
+{
+"key": "autoScan",
+"english": "Auto Scan",
+"target": "Pindai otomatis",
+"backtrans": "Automatic scan"
+},
+{
+"key": "importAndConvertDocument",
+"english": "Import & Convert Document",
+"target": "Impor dan konversi dokumen",
+"backtrans": "Import and convert document"
+},
+{
+"key": "signatureTitle",
+"english": "Signature",
+"target": "Tanda tangan",
+"backtrans": "Signature"
+},
+{
+"key": "signatureChoiceMessage",
+"english": "Use your saved signature or draw a new one?",
+"target": "Gunakan tanda tangan tersimpan atau gambar yang baru?",
+"backtrans": "Use a saved signature or draw a new one?"
+},
+{
+"key": "useSavedSignature",
+"english": "Use Saved",
+"target": "Gunakan yang tersimpan",
+"backtrans": "Use the saved one"
+},
+{
+"key": "drawNewSignature",
+"english": "Draw New",
+"target": "Gambar baru",
+"backtrans": "Draw new"
+},
+{
+"key": "copyAll",
+"english": "Copy all",
+"target": "Salin semua",
+"backtrans": "Copy all"
+},
+{
+"key": "clearThis",
+"english": "Clear this",
+"target": "Bersihkan ini",
+"backtrans": "Clean this"
+},
+{
+"key": "commonRemove",
+"english": "Remove",
+"target": "Hapus",
+"backtrans": "Delete"
+},
+{
+"key": "clearAll",
+"english": "Clear all",
+"target": "Bersihkan semua",
+"backtrans": "Clean all"
+},
+{
+"key": "addSignature",
+"english": "Add Signature",
+"target": "Tambah tanda tangan",
+"backtrans": "Add signature"
+},
+{
+"key": "commonUse",
+"english": "Use",
+"target": "Gunakan",
+"backtrans": "Use"
+},
+{
+"key": "stampTickedLabel",
+"english": "Ticked",
+"target": "Dicentang",
+"backtrans": "Checked"
+},
+{
+"key": "stampBoxLabel",
+"english": "Box",
+"target": "Kotak",
+"backtrans": "Box"
+},
+{
+"key": "stampTickLabel",
+"english": "Tick",
+"target": "Centang",
+"backtrans": "Check mark"
+},
+{
+"key": "commonCustom",
+"english": "Custom",
+"target": "Kustom",
+"backtrans": "Custom"
+},
+{
+"key": "commonChange",
+"english": "Change",
+"target": "Ubah",
+"backtrans": "Change"
+},
+{
+"key": "commonColor",
+"english": "Color",
+"target": "Warna",
+"backtrans": "Color"
+},
+{
+"key": "stampPaperLabel",
+"english": "Paper",
+"target": "Kertas",
+"backtrans": "Paper"
+},
+{
+"key": "whiteHaloLabel",
+"english": "White halo (readability)",
+"target": "Halo putih (keterbacaan)",
+"backtrans": "White halo (legibility)"
+},
+{
+"key": "commonCreate",
+"english": "Create",
+"target": "Buat",
+"backtrans": "Make"
+},
+{
+"key": "homeLanguageTooltip",
+"english": "App Language",
+"target": "Bahasa aplikasi",
+"backtrans": "App language"
+},
+{
+"key": "removeAdsTitle",
+"english": "Remove Ads Forever",
+"target": "Hapus iklan selamanya",
+"backtrans": "Delete ads forever"
+},
+{
+"key": "newFolderTitle",
+"english": "New Folder",
+"target": "Folder baru",
+"backtrans": "New folder"
+},
+{
+"key": "batchExportEmptyMessage",
+"english": "No documents to batch export. Scan some first.",
+"target": "Tidak ada dokumen untuk ekspor massal. Pindai beberapa terlebih dahulu.",
+"backtrans": "No documents for mass export. Scan some first."
+},
+{
+"key": "newFolderTooltip",
+"english": "New Folder",
+"target": "Folder baru",
+"backtrans": "New folder"
+},
+{
+"key": "accentColorTooltip",
+"english": "Accent Color",
+"target": "Warna aksen",
+"backtrans": "Accent color"
+},
+{
+"key": "moveToFolderTitle",
+"english": "Move to Folder",
+"target": "Pindahkan ke folder",
+"backtrans": "Move to folder"
+},
+{
+"key": "noFoldersYetHomeMessage",
+"english": "No folders yet. Create one from the home screen.",
+"target": "Belum ada folder. Buat satu dari layar beranda.",
+"backtrans": "No folders yet. Make one from the home screen."
+},
+{
+"key": "appLanguageTitle",
+"english": "App Language",
+"target": "Bahasa aplikasi",
+"backtrans": "App language"
+},
+{
+"key": "accentColorTitle",
+"english": "Accent Color",
+"target": "Warna aksen",
+"backtrans": "Accent color"
+},
+{
+"key": "sealEditTitle",
+"english": "Edit Custom Seal",
+"target": "Edit stempel kustom",
+"backtrans": "Edit custom stamp"
+},
+{
+"key": "sealCreateTitle",
+"english": "Custom Seal",
+"target": "Stempel kustom",
+"backtrans": "Custom stamp"
+},
+{
+"key": "sealMainTextLabel",
+"english": "Main text (top arc / box)",
+"target": "Teks utama (lengkungan atas / kotak)",
+"backtrans": "Main text (top arc / box)"
+},
+{
+"key": "sealSubtextLabel",
+"english": "Subtext (bottom arc / below)",
+"target": "Sub-teks (lengkungan bawah / di bawahnya)",
+"backtrans": "Sub-text (bottom arc / underneath it)"
+},
+{
+"key": "sealShapeOval",
+"english": "Oval",
+"target": "Oval",
+"backtrans": "Oval"
+},
+{
+"key": "sealShapeBox",
+"english": "Box",
+"target": "Kotak",
+"backtrans": "Box"
+},
+{
+"key": "sealCenterStar",
+"english": "Star",
+"target": "Bintang",
+"backtrans": "Star"
+},
+{
+"key": "sealCenterText",
+"english": "Text",
+"target": "Teks",
+"backtrans": "Text"
+},
+{
+"key": "sealCenterLogo",
+"english": "Logo",
+"target": "Logo",
+"backtrans": "Logo"
+},
+{
+"key": "sealCenterNone",
+"english": "None",
+"target": "Tidak ada",
+"backtrans": "None"
+},
+{
+"key": "sealCenterTextLabel",
+"english": "Center text",
+"target": "Teks tengah",
+"backtrans": "Center text"
+},
+{
+"key": "sealLogoReady",
+"english": "Logo ready",
+"target": "Logo siap",
+"backtrans": "Logo ready"
+},
+{
+"key": "textSizeLabel",
+"english": "Text size: {size}",
+"target": "Ukuran teks: {size}",
+"backtrans": "Text size: {size}"
+},
+{
+"key": "commonUpdate",
+"english": "Update",
+"target": "Perbarui",
+"backtrans": "Update"
+},
+{
+"key": "managePagesTitle",
+"english": "Manage Pages",
+"target": "Kelola halaman",
+"backtrans": "Manage pages"
+},
+{
+"key": "pageLabel",
+"english": "Page {index}",
+"target": "Halaman {index}",
+"backtrans": "Page {index}"
+},
+{
+"key": "duplicateAction",
+"english": "Duplicate",
+"target": "Duplikat",
+"backtrans": "Duplicate"
+},
+{
+"key": "rotate90Action",
+"english": "Rotate 90°",
+"target": "Putar 90°",
+"backtrans": "Rotate 90°"
+},
+{
+"key": "extractToNewDocAction",
+"english": "Extract to new doc",
+"target": "Ekstrak ke dokumen baru",
+"backtrans": "Extract to new document"
+},
+{
+"key": "addPageTitle",
+"english": "Add Page",
+"target": "Tambah halaman",
+"backtrans": "Add page"
+},
+{
+"key": "cameraSource",
+"english": "Camera",
+"target": "Kamera",
+"backtrans": "Camera"
+},
+{
+"key": "importFromGallery",
+"english": "Import from Gallery",
+"target": "Impor dari galeri",
+"backtrans": "Import from gallery"
+},
+{
+"key": "fromAnotherDocument",
+"english": "From Another Document",
+"target": "Dari dokumen lain",
+"backtrans": "From another document"
+},
+{
+"key": "pageCountLabel",
+"english": "{count, plural, =0{No pages} =1{1 page} other{{count} pages}}",
+"target": "{count, plural, =0{Tidak ada halaman} =1{1 halaman} other{{count} halaman}}",
+"backtrans": "{count, plural, =0{No pages} =1{1 page} other{{count} pages}}"
+},
+{
+"key": "commonConfirm",
+"english": "Confirm",
+"target": "Konfirmasi",
+"backtrans": "Confirm"
+},
+{
+"key": "applyToAllPages",
+"english": "Apply to all pages",
+"target": "Terapkan ke semua halaman",
+"backtrans": "Apply to all pages"
+},
+{
+"key": "widthLabel",
+"english": "Width",
+"target": "Lebar",
+"backtrans": "Width"
+},
+{
+"key": "heightLabel",
+"english": "Height",
+"target": "Tinggi",
+"backtrans": "Height"
+},
+{
+"key": "lockAspectRatio",
+"english": "Lock aspect ratio",
+"target": "Kunci rasio aspek",
+"backtrans": "Lock aspect ratio"
+},
+{
+"key": "originalDimensions",
+"english": "Original: {w}×{h}",
+"target": "Asli: {w}×{h}",
+"backtrans": "Original: {w}×{h}"
+},
+{
+"key": "ocrSectionLabel",
+"english": "OCR",
+"target": "OCR",
+"backtrans": "OCR"
+},
+{
+"key": "ocrLanguagesLabel",
+"english": "OCR Languages",
+"target": "Bahasa OCR",
+"backtrans": "OCR languages"
+},
+{
+"key": "captureBehaviorSectionLabel",
+"english": "CAPTURE BEHAVIOR",
+"target": "PERILAKU PEMINDAIAN",
+"backtrans": "SCANNING BEHAVIOR"
+},
+{
+"key": "autoCopyOcrLabel",
+"english": "Auto-copy OCR",
+"target": "Salin OCR otomatis",
+"backtrans": "Automatic OCR copy"
+},
+{
+"key": "autoCopyOcrSubtitle",
+"english": "Copy text to clipboard after scan",
+"target": "Salin teks ke papan klip setelah memindai",
+"backtrans": "Copy text to the clipboard after scanning"
+},
+{
+"key": "beepOnCaptureLabel",
+"english": "Beep on capture",
+"target": "Bip saat memindai",
+"backtrans": "Beep when scanning"
+},
+{
+"key": "beepOnCaptureSubtitle",
+"english": "Play sound when scan completes",
+"target": "Putar suara saat pemindaian selesai",
+"backtrans": "Play a sound when scanning is finished"
+},
+{
+"key": "vibrateOnCaptureLabel",
+"english": "Vibrate on capture",
+"target": "Getar saat memindai",
+"backtrans": "Vibrate when scanning"
+},
+{
+"key": "vibrateOnCaptureSubtitle",
+"english": "Haptic feedback when scan completes",
+"target": "Umpan balik haptik saat pemindaian selesai",
+"backtrans": "Haptic feedback when scanning is finished"
+},
+{
+"key": "adsRemovedLabel",
+"english": "Ads Removed",
+"target": "Iklan dihapus",
+"backtrans": "Ads deleted"
+},
+{
+"key": "diagnosticsSectionLabel",
+"english": "DIAGNOSTICS",
+"target": "Diagnostik",
+"backtrans": "Diagnostics"
+},
+{
+"key": "debugLogsLabel",
+"english": "Debug Logs",
+"target": "Log debug",
+"backtrans": "Debug logs"
+},
+{
+"key": "logEntriesLabel",
+"english": "{count, plural, =0{No entries} =1{1 entry} other{{count} entries}}",
+"target": "{count, plural, =0{Tidak ada entri} =1{1 entri} other{{count} entri}}",
+"backtrans": "{count, plural, =0{No entries} =1{1 entry} other{{count} entries}}"
+},
+{
+"key": "ocrStatusBuiltIn",
+"english": "Built-in",
+"target": "Bawaan",
+"backtrans": "Built-in"
+},
+{
+"key": "ocrStatusChecking",
+"english": "Checking...",
+"target": "Memeriksa...",
+"backtrans": "Checking..."
+},
+{
+"key": "ocrStatusOnDemand",
+"english": "On-demand",
+"target": "Sesuai permintaan",
+"backtrans": "According to request"
+},
+{
+"key": "savedAsNewDocument",
+"english": "Saved as new document",
+"target": "Disimpan sebagai dokumen baru",
+"backtrans": "Saved as new document"
+},
+{
+"key": "conversionFailedPrefix",
+"english": "Conversion failed",
+"target": "Konversi gagal",
+"backtrans": "Conversion failed"
+},
+{
+"key": "convertDocumentTitle",
+"english": "Convert Document",
+"target": "Konversi dokumen",
+"backtrans": "Document conversion"
+},
+{
+"key": "convertToLabel",
+"english": "Convert to:",
+"target": "Konversi ke:",
+"backtrans": "Convert to:"
+},
+{
+"key": "actionLabel",
+"english": "Action:",
+"target": "Tindakan:",
+"backtrans": "Action:"
+},
+{
+"key": "saveAsNewDocumentAction",
+"english": "Save as new Document",
+"target": "Simpan sebagai dokumen baru",
+"backtrans": "Save as new document"
+},
+{
+"key": "exportAndShareAction",
+"english": "Export & Share",
+"target": "Ekspor & bagikan",
+"backtrans": "Export & share"
+},
+{
+"key": "docxWarningMessage",
+"english": "DOCX sources render poorly as pages — save inside the app is limited to JPG/PNG from image, PDF, TXT or CSV sources. Use Export & Share for this file.",
+"target": "Sumber DOCX tidak dapat ditampilkan dengan baik sebagai halaman — penyimpanan dalam aplikasi terbatas pada JPG/PNG dari gambar, PDF, TXT, atau CSV. Gunakan Ekspor & bagikan untuk file ini.",
+"backtrans": "DOCX source cannot be displayed well as pages — in-app saving is limited to JPG/PNG from images, PDF, TXT, or CSV. Use Export & share for this file."
+},
+{
+"key": "saveInsideAppWarning",
+"english": "To save inside the app, choose JPG or PNG. Other targets are exported as files.",
+"target": "Untuk menyimpan di dalam aplikasi, pilih JPG atau PNG. Target lain diekspor sebagai file.",
+"backtrans": "To save inside the app, choose JPG or PNG. Other targets are exported as files."
+},
+{
+"key": "commonConvert",
+"english": "Convert",
+"target": "Konversi",
+"backtrans": "Convert"
+},
+{
+"key": "conversionStarting",
+"english": "Starting…",
+"target": "Memulai…",
+"backtrans": "Starting…"
+},
+{
+"key": "convertedDocTitle",
+"english": "Converted {date}",
+"target": "Dikonversi {date}",
+"backtrans": "Converted {date}"
+},
+{
+"key": "progressReading",
+"english": "Reading…",
+"target": "Membaca…",
+"backtrans": "Reading…"
+},
+{
+"key": "progressCopying",
+"english": "Copying…",
+"target": "Menyalin…",
+"backtrans": "Copying…"
+},
+{
+"key": "progressBuildingPdf",
+"english": "Building PDF…",
+"target": "Membangun PDF…",
+"backtrans": "Constructing PDF…"
+},
+{
+"key": "progressBuildingDocx",
+"english": "Building DOCX…",
+"target": "Membangun DOCX…",
+"backtrans": "Constructing DOCX…"
+},
+{
+"key": "progressDecodingImage",
+"english": "Decoding image…",
+"target": "Mendekode gambar…",
+"backtrans": "Decoding image…"
+},
+{
+"key": "progressExtractingText",
+"english": "Extracting text…",
+"target": "Mengekstrak teks…",
+"backtrans": "Extracting text…"
+},
+{
+"key": "progressSaving",
+"english": "Saving…",
+"target": "Menyimpan…",
+"backtrans": "Saving…"
+},
+{
+"key": "progressRasterizing",
+"english": "Rasterizing pages…",
+"target": "Merasterisasi halaman…",
+"backtrans": "Rasterizing page…"
+},
+{
+"key": "progressEncodingPage",
+"english": "Encoding page {current} of {total}…",
+"target": "Mengodekan halaman {current} dari {total}…",
+"backtrans": "Encoding page {current} of {total}…"
+},
+{
+"key": "watermarkEditTitle",
+"english": "Edit Watermark",
+"target": "Edit tanda air",
+"backtrans": "Edit watermark [??: 'tanda air' is literally 'water mark']"
+},
+{
+"key": "watermarkAddTitle",
+"english": "Add Watermark",
+"target": "Tambah tanda air",
+"backtrans": "Add watermark"
+},
+{
+"key": "watermarkTextLabel",
+"english": "Text",
+"target": "Teks",
+"backtrans": "Text"
+},
+{
+"key": "opacityPercentLabel",
+"english": "Opacity: {percent}%",
+"target": "Opasitas: {percent}%",
+"backtrans": "Opacity: {percent}%"
+},
+{
+"key": "sizePtLabel",
+"english": "Size: {size}pt",
+"target": "Ukuran: {size}pt",
+"backtrans": "Size: {size}pt"
+},
+{
+"key": "alignLabel",
+"english": "Align",
+"target": "Sejajarkan",
+"backtrans": "Align"
+},
+{
+"key": "exportSavedToDownloads",
+"english": "Saved to Downloads",
+"target": "Disimpan ke Unduhan",
+"backtrans": "Saved to Downloads"
+},
+{
+"key": "commonShare",
+"english": "Share",
+"target": "Bagikan",
+"backtrans": "Share"
+},
+{
+"key": "exportTitle",
+"english": "Export",
+"target": "Ekspor",
+"backtrans": "Export"
+},
+{
+"key": "targetMbLabel",
+"english": "{mb} MB",
+"target": "{mb} MB",
+"backtrans": "{mb} MB"
+},
+{
+"key": "filterColor",
+"english": "Color",
+"target": "Warna",
+"backtrans": "Color"
+},
+{
+"key": "filterShadow",
+"english": "Shadow",
+"target": "Bayangan",
+"backtrans": "Shadow"
+},
+{
+"key": "docxModeTextOnly",
+"english": "Text Only",
+"target": "Hanya teks",
+"backtrans": "Text only"
+},
+{
+"key": "docxModeWithImages",
+"english": "With Images",
+"target": "Dengan gambar",
+"backtrans": "With images"
+},
+{
+"key": "saveToDeviceButton",
+"english": "Save to Device",
+"target": "Simpan ke perangkat",
+"backtrans": "Save to device"
+},
+{
+"key": "pageIndicator",
+"english": "Page {current} / {total}",
+"target": "Halaman {current} / {total}",
+"backtrans": "Page {current} / {total}"
+},
+{
+"key": "fullscreenLabel",
+"english": "Fullscreen",
+"target": "Layar penuh",
+"backtrans": "Full screen"
+},
+{
+"key": "batchExportSignatureDisabled",
+"english": "Batch export — signature placement disabled",
+"target": "Ekspor massal — penempatan tanda tangan dinonaktifkan",
+"backtrans": "Mass export — signature placement disabled"
+},
+{
+"key": "fitToTargetMbLabel",
+"english": "Fit to target MB",
+"target": "Sesuai target MB",
+"backtrans": "Match target MB"
+},
+{
+"key": "moreOptionsTooltip",
+"english": "More options",
+"target": "Opsi lainnya",
+"backtrans": "Other options"
+},
+{
+"key": "commonRename",
+"english": "Rename",
+"target": "Ganti nama",
+"backtrans": "Change name"
+},
+{
+"key": "addTagsAction",
+"english": "Add Tags",
+"target": "Tambah tag",
+"backtrans": "Add tags"
+},
+{
+"key": "editDocumentAction",
+"english": "Edit Document",
+"target": "Edit dokumen",
+"backtrans": "Edit document"
+},
+{
+"key": "copiedToClipboard",
+"english": "Copied to clipboard",
+"target": "Disalin ke papan klip",
+"backtrans": "Copied to clipboard"
+},
+{
+"key": "favoriteTooltip",
+"english": "Favorite",
+"target": "Favorit",
+"backtrans": "Favorite"
+},
+{
+"key": "noFoldersYet",
+"english": "No folders yet",
+"target": "Belum ada folder",
+"backtrans": "No folders yet"
+},
+{
+"key": "rotateLabel",
+"english": "Rotate",
+"target": "Putar",
+"backtrans": "Rotate"
+},
+{
+"key": "scaleLabel",
+"english": "Scale",
+"target": "Skala",
+"backtrans": "Scale"
+},
+{
+"key": "eraserTitle",
+"english": "Eraser",
+"target": "Penghapus",
+"backtrans": "Eraser"
+},
+{
+"key": "tapToSampleColor",
+"english": "Tap a spot to sample its color",
+"target": "Ketuk titik untuk mengambil sampel warna",
+"backtrans": "Tap a point to take a color sample"
+},
+{
+"key": "commonSize",
+"english": "Size",
+"target": "Ukuran",
+"backtrans": "Size"
+},
+{
+"key": "sampleColorTooltip",
+"english": "Sample color from page",
+"target": "Ambil sampel warna dari halaman",
+"backtrans": "Take a color sample from the page"
+},
+{
+"key": "marqueeEraseTooltip",
+"english": "Marquee erase",
+"target": "Hapus area pilihan",
+"backtrans": "Delete selected area [??: 'Hapus' delete vs erase]"
+},
+{
+"key": "commonApply",
+"english": "Apply",
+"target": "Terapkan",
+"backtrans": "Apply"
+},
+{
+"key": "filterTitle",
+"english": "Filter",
+"target": "Filter",
+"backtrans": "Filter"
+},
+{
+"key": "intensityLabel",
+"english": "Intensity",
+"target": "Intensitas",
+"backtrans": "Intensity"
+},
+{
+"key": "selectRegionTitle",
+"english": "Select Region",
+"target": "Pilih area",
+"backtrans": "Select area"
+},
+{
+"key": "commonExtract",
+"english": "Extract",
+"target": "Ekstrak",
+"backtrans": "Extract"
+},
+{
+"key": "customColorTitle",
+"english": "Custom Color",
+"target": "Warna kustom",
+"backtrans": "Custom color"
+},
+{
+"key": "documentNotFound",
+"english": "Document not found",
+"target": "Dokumen tidak ditemukan",
+"backtrans": "Document not found"
+},
+{
+"key": "clearLogsTooltip",
+"english": "Clear logs",
+"target": "Bersihkan log",
+"backtrans": "Clean logs"
+},
+{
+"key": "placeHereLabel",
+"english": "Place here",
+"target": "Letakkan di sini",
+"backtrans": "Put here"
+},
+{
+"key": "tryAgainButton",
+"english": "Try again",
+"target": "Coba lagi",
+"backtrans": "Try again"
+},
+{
+"key": "emptyDocumentMessage",
+"english": "This document has no pages.",
+"target": "Dokumen ini tidak memiliki halaman.",
+"backtrans": "This document has no pages."
+},
+{
+"key": "cameraErrorPrefix",
+"english": "Camera error",
+"target": "Kesalahan kamera",
+"backtrans": "Camera error"
+},
+{
+"key": "importErrorPrefix",
+"english": "Import error",
+"target": "Kesalahan impor",
+"backtrans": "Import error"
+},
+{
+"key": "pdfImportErrorPrefix",
+"english": "PDF import error",
+"target": "Kesalahan impor PDF",
+"backtrans": "PDF import error"
+},
+{
+"key": "pickErrorPrefix",
+"english": "Pick error",
+"target": "Kesalahan pemilihan",
+"backtrans": "Selection error"
+},
+{
+"key": "scannerErrorPrefix",
+"english": "Scanner error",
+"target": "Kesalahan pemindai",
+"backtrans": "Scanner error"
+},
+{
+"key": "idPdfErrorPrefix",
+"english": "Error generating ID PDF",
+"target": "Kesalahan pembuatan PDF ID",
+"backtrans": "ID PDF creation error"
+},
+{
+"key": "genericErrorPrefix",
+"english": "Error",
+"target": "Kesalahan",
+"backtrans": "Error"
+},
+{
+"key": "annotateTitle",
+"english": "Annotate",
+"target": "Anotasi",
+"backtrans": "Annotation"
+},
+{
+"key": "placementsCountLabel",
+"english": "{count, plural, =0{Nothing placed} =1{1 placed} other{{count} placed}}",
+"target": "{count, plural, =0{Tidak ada yang ditempatkan} =1{1 ditempatkan} other{{count} ditempatkan}}",
+"backtrans": "{count, plural, =0{None placed} =1{1 placed} other{{count} placed}}"
+},
+{
+"key": "ocrUnavailableTooltip",
+"english": "OCR unavailable on this device.",
+"target": "OCR tidak tersedia di perangkat ini.",
+"backtrans": "OCR is not available on this device."
+},
+{
+"key": "docScannerUnsupportedMessage",
+"english": "Your device doesn't support the advanced document scanner. Take a photo with your Camera app, then tap Import below to crop and save it.",
+"target": "Perangkat Anda tidak mendukung pemindai dokumen canggih. Ambil foto dengan aplikasi Kamera, lalu ketuk Impor di bawah untuk memotong dan menyimpannya.",
+"backtrans": "Your device does not support the advanced document scanner. Take a photo with the Camera app, then tap Import below to cut and save it."
+},
+{
+"key": "billingUnavailableMessage",
+"english": "Billing unavailable — try again later.",
+"target": "Penagihan tidak tersedia — coba lagi nanti.",
+"backtrans": "Billing is not available — try again later."
+},
+{
+"key": "ocrNoInternetMessage",
+"english": "No internet. Connect once to download the language pack.",
+"target": "Tidak ada internet. Hubungkan sekali untuk mengunduh paket bahasa.",
+"backtrans": "No internet. Connect once to download the language pack."
+},
+{
+"key": "ocrLanguagePackNotReady",
+"english": "Language pack downloading or not ready. Try again shortly.",
+"target": "Paket bahasa sedang diunduh atau belum siap. Coba lagi sebentar.",
+"backtrans": "The language pack is being downloaded or is not ready yet. Try again in a moment."
+},
+{
+"key": "undoTooltip",
+"english": "Undo",
+"target": "Urungkan",
+"backtrans": "Undo"
+},
+{
+"key": "redoTooltip",
+"english": "Redo",
+"target": "Ulangi",
+"backtrans": "Repeat [??: 'Ulangi' means repeat, redo is usually 'Ulangi' too; ambiguous]"
+},
+{
+"key": "fillInputHint",
+"english": "Type text to fill",
+"target": "Ketik teks untuk diisi",
+"backtrans": "Type text to fill"
+},
+{
+"key": "fillCapsLabel",
+"english": "ALL CAPS",
+"target": "HURUF KAPITAL",
+"backtrans": "CAPITAL LETTERS"
+},
+{
+"key": "fillSaveSnippet",
+"english": "Save as snippet",
+"target": "Simpan sebagai cuplikan",
+"backtrans": "Save as snippet"
+},
+{
+"key": "fillDeleteSnippet",
+"english": "Delete snippet?",
+"target": "Hapus cuplikan?",
+"backtrans": "Delete snippet?"
+},
+{
+"key": "fillTooltip",
+"english": "Fill",
+"target": "Isi",
+"backtrans": "Fill"
+},
+{
+"key": "tickerFreeUnlimitedOcr",
+"english": "FREE UNLIMITED OCR",
+"target": "OCR GRATIS TANPA BATAS",
+"backtrans": "FREE UNLIMITED OCR"
+},
+{
+"key": "ticker100OnDevicePrivacy",
+"english": "YOUR DOCUMENTS STAY ON YOUR DEVICE",
+"target": "DOKUMEN ANDA TETAP DI PERANGKAT ANDA",
+"backtrans": "YOUR DOCUMENTS STAY ON YOUR DEVICE"
+},
+{
+"key": "tickerNoAccount",
+"english": "NO ACCOUNT",
+"target": "TANPA AKUN",
+"backtrans": "NO ACCOUNT"
+},
+{
+"key": "tickerNoWatermarks",
+"english": "NO WATERMARKS",
+"target": "TANPA TANDA AIR",
+"backtrans": "NO WATERMARKS"
+},
+{
+"key": "ticker21ToolEditSuite",
+"english": "21-TOOL EDIT SUITE",
+"target": "21 ALAT EDIT LENGKAP",
+"backtrans": "21 COMPLETE EDITING TOOLS"
+},
+{
+"key": "tickerNonDestructiveEditing",
+"english": "NON-DESTRUCTIVE EDITING",
+"target": "EDIT NON-DESTRUKTIF",
+"backtrans": "NON-DESTRUCTIVE EDITING"
+},
+{
+"key": "tickerUndoRedo",
+"english": "UNDO/REDO",
+"target": "URUNGKAN/ULANGI",
+"backtrans": "UNDO/REPEAT"
+},
+{
+"key": "tickerRevertToOriginal",
+"english": "REVERT TO ORIGINAL",
+"target": "KEMBALI KE ASLI",
+"backtrans": "RETURN TO ORIGINAL"
+},
+{
+"key": "tickerTapToTypeFilling",
+"english": "TAP-TO-TYPE FILLING",
+"target": "KETUK UNTUK MENGISI",
+"backtrans": "TAP TO FILL"
+},
+{
+"key": "tickerESign",
+"english": "E-SIGN",
+"target": "TTD ELEKTRONIK",
+"backtrans": "ELECTRONIC SIGNATURE"
+},
+{
+"key": "tickerCustomSeals",
+"english": "CUSTOM SEALS",
+"target": "STEMPEL KUSTOM",
+"backtrans": "CUSTOM STAMPS"
+},
+{
+"key": "tickerTextStamps",
+"english": "TEXT STAMPS",
+"target": "STEMPEL TEKS",
+"backtrans": "TEXT STAMPS"
+},
+{
+"key": "tickerNoteStamps",
+"english": "NOTE STAMPS",
+"target": "STEMPEL CATATAN",
+"backtrans": "NOTE STAMPS"
+},
+{
+"key": "tickerSearchablePdf",
+"english": "SEARCHABLE PDF",
+"target": "PDF DAPAT DICARI",
+"backtrans": "SEARCHABLE PDF"
+},
+{
+"key": "tickerRegionOcr",
+"english": "REGION OCR",
+"target": "OCR AREA",
+"backtrans": "AREA OCR"
+},
+{
+"key": "tickerAutoCopyOcr",
+"english": "AUTO-COPY OCR",
+"target": "SALIN OTOMATIS OCR",
+"backtrans": "OCR AUTO COPY"
+},
+{
+"key": "tickerIdCardMode",
+"english": "ID CARD MODE",
+"target": "MODE KARTU ID",
+"backtrans": "ID CARD MODE"
+},
+{
+"key": "tickerPassportMode",
+"english": "PASSPORT MODE",
+"target": "MODE PASPOR",
+"backtrans": "PASSPORT MODE"
+},
+{
+"key": "tickerGalleryImport",
+"english": "GALLERY IMPORT",
+"target": "IMPOR GALERI",
+"backtrans": "GALLERY IMPORT"
+},
+{
+"key": "tickerPdfExport",
+"english": "PDF EXPORT",
+"target": "EKSPOR PDF",
+"backtrans": "PDF EXPORT"
+},
+{
+"key": "tickerWordExport",
+"english": "WORD EXPORT",
+"target": "EKSPOR WORD",
+"backtrans": "WORD EXPORT"
+},
+{
+"key": "tickerJpgExport",
+"english": "JPG EXPORT",
+"target": "EKSPOR JPG",
+"backtrans": "JPG EXPORT"
+},
+{
+"key": "tickerPngExport",
+"english": "PNG EXPORT",
+"target": "EKSPOR PNG",
+"backtrans": "PNG EXPORT"
+},
+{
+"key": "tickerBatchExport",
+"english": "BATCH EXPORT",
+"target": "EKSPOR MASSAL",
+"backtrans": "MASS EXPORT"
+},
+{
+"key": "tickerFolders",
+"english": "FOLDERS",
+"target": "FOLDER",
+"backtrans": "FOLDERS"
+},
+{
+"key": "tickerTags",
+"english": "TAGS",
+"target": "TAG",
+"backtrans": "TAGS"
+},
+{
+"key": "tickerFavorites",
+"english": "FAVORITES",
+"target": "FAVORIT",
+"backtrans": "FAVORITES"
+},
+{
+"key": "tickerSearch",
+"english": "SEARCH",
+"target": "CARI",
+"backtrans": "SEARCH"
+},
+{
+"key": "tickerDarkMode",
+"english": "DARK MODE",
+"target": "MODE GELAP",
+"backtrans": "DARK MODE"
+},
+{
+"key": "tickerAccentThemes",
+"english": "ACCENT THEMES",
+"target": "TEMA AKSEN",
+"backtrans": "ACCENT THEMES"
+},
+{
+"key": "tickerDeviceMigration",
+"english": "DEVICE MIGRATION",
+"target": "MIGRASI PERANGKAT",
+"backtrans": "DEVICE MIGRATION"
+},
+{
+"key": "onboardingWelcomeTitle",
+"english": "Welcome to KatharScan",
+"target": "Selamat datang di KatharScan",
+"backtrans": "Welcome to KatharScan"
+},
+{
+"key": "onboardingWelcomeSubtitle",
+"english": "Your entire document office — scan, edit, sign, and export — in one private app.",
+"target": "Kantor dokumen lengkap Anda — pindai, edit, tanda tangani, ekspor — dalam satu aplikasi pribadi.",
+"backtrans": "Your complete document office — scan, edit, sign, export — in one private app. [??: 'Kantor' means office (workplace); likely intended 'office suite']"
+},
+{
+"key": "onboardingToolsTitle",
+"english": "21 Free Pro Tools",
+"target": "21 Alat Pro Gratis",
+"backtrans": "21 Pro Tools Free"
+},
+{
+"key": "onboardingToolsSubtitle",
+"english": "Annotate, sign, watermark, fill forms, seal, and more — every tool free and unlimited.",
+"target": "Anotasi, tanda tangan, tanda air, isi formulir, stempel, dan lainnya — semuanya gratis dan tanpa batas.",
+"backtrans": "Annotation, signature, watermark, fill forms, stamps, and more — all free and unlimited."
+},
+{
+"key": "onboardingOcrTitle",
+"english": "On-Device OCR",
+"target": "OCR Di Perangkat",
+"backtrans": "On-Device OCR"
+},
+{
+"key": "onboardingOcrSubtitle",
+"english": "Use KatharScan in {count} languages. OCR runs on your phone — nothing ever leaves your device.",
+"target": "Gunakan KatharScan dalam {count} bahasa. OCR berjalan di ponsel Anda — tidak ada yang meninggalkan perangkat.",
+"backtrans": "Use KatharScan in {count} languages. OCR runs on your phone — nothing leaves the device."
+},
+{
+"key": "onboardingSignTitle",
+"english": "Sign, Fill & Seal",
+"target": "Tanda Tangani, Isi, & Stempel",
+"backtrans": "Sign, Fill, & Stamp"
+},
+{
+"key": "onboardingSignSubtitle",
+"english": "E-sign contracts, type-to-fill forms, and stamp enterprise seals in seconds.",
+"target": "Tanda tangani kontrak secara elektronik, isi formulir, stempel perusahaan dalam hitungan detik.",
+"backtrans": "Sign contracts electronically, fill forms, company stamps within seconds."
+},
+{
+"key": "onboardingEditTitle",
+"english": "Non-Destructive Editing",
+"target": "Edit Non-Destruktif",
+"backtrans": "Non-Destructive Editing"
+},
+{
+"key": "onboardingEditSubtitle",
+"english": "Every edit stays reversible — undo, redo, and revert to original anytime.",
+"target": "Setiap edit dapat dibatalkan — urungkan, ulangi, kembalikan ke asli kapan saja.",
+"backtrans": "Every edit can be canceled — undo, repeat, return to original at any time."
+},
+{
+"key": "onboardingPrivacyTitle",
+"english": "Private by design",
+"target": "Privat sejak awal",
+"backtrans": "Private from the start"
+},
+{
+"key": "onboardingPrivacySubtitle",
+"english": "No account, no cloud, no watermarks. Your documents never leave your device.",
+"target": "Tanpa akun, tanpa cloud, tanpa tanda air. Dokumen Anda tidak pernah meninggalkan perangkat.",
+"backtrans": "No account, no cloud, no watermark. Your documents never leave the device."
+},
+{
+"key": "onboardingContinue",
+"english": "Continue",
+"target": "Lanjutkan",
+"backtrans": "Continue"
+},
+{
+"key": "onboardingGetStarted",
+"english": "Get Started",
+"target": "Mulai",
+"backtrans": "Start"
+},
+{
+"key": "onboardingBack",
+"english": "Back",
+"target": "Kembali",
+"backtrans": "Back"
+},
+{
+"key": "onboardingReplayIntro",
+"english": "Replay introduction",
+"target": "Putar ulang intro",
+"backtrans": "Play the intro again"
+},
+{
+"key": "saveToDownloadsAction",
+"english": "Save to Downloads",
+"target": "Simpan ke Unduhan",
+"backtrans": "Save to Downloads"
+},
+{
+"key": "paywallTitle",
+"english": "Remove Ads",
+"target": "Hapus Iklan",
+"backtrans": "Delete Ads"
+},
+{
+"key": "paywallSubtitle",
+"english": "Support KatharScan with a one-time purchase. All features remain free.",
+"target": "Dukung KatharScan dengan pembelian sekali. Semua fitur tetap gratis.",
+"backtrans": "Support KatharScan with a one-time purchase. All features remain free."
+},
+{
+"key": "paywallFallbackPrice",
+"english": "$14.99 one-time",
+"target": "$14.99 sekali",
+"backtrans": "$14.99 once"
+},
+{
+"key": "paywallFeatureNoBanner",
+"english": "No more banner ads",
+"target": "Tidak ada lagi iklan banner",
+"backtrans": "No more banner ads"
+},
+{
+"key": "paywallFeatureNoInterstitial",
+"english": "No more interstitial ads",
+"target": "Tidak ada lagi iklan interstisial",
+"backtrans": "No more interstitial ads"
+},
+{
+"key": "paywallFeatureFreeForever",
+"english": "All features free forever",
+"target": "Semua fitur gratis selamanya",
+"backtrans": "All features free forever"
+},
+{
+"key": "paywallLegalText",
+"english": "This is a non-consumable purchase. Restore it anytime on any device with the same store account.",
+"target": "Ini adalah pembelian non-habis pakai. Pulihkan kapan saja di perangkat mana pun dengan akun toko yang sama.",
+"backtrans": "This is a non-consumable purchase. Restore at any time on any device with the same store account."
+},
+{
+"key": "paywallSuccessTitle",
+"english": "Ads Removed",
+"target": "Iklan Dihapus",
+"backtrans": "Ads Deleted"
+},
+{
+"key": "paywallSuccessMessage",
+"english": "Thank you for supporting KatharScan.",
+"target": "Terima kasih telah mendukung KatharScan.",
+"backtrans": "Thank you for supporting KatharScan."
+},
+{
+"key": "errorGenericTitle",
+"english": "Something went wrong",
+"target": "Terjadi Kesalahan",
+"backtrans": "An Error Occurred"
+},
+{
+"key": "errorScreenProblem",
+"english": "KatharScan ran into a problem displaying this screen. Your scans are safe — they're stored on this device and this doesn't affect them.",
+"target": "KatharScan mengalami masalah saat menampilkan layar ini. Pindaian Anda aman — disimpan di perangkat ini dan tidak terpengaruh.",
+"backtrans": "KatharScan ran into a problem while displaying this screen. Your scans are safe — stored on this device and unaffected."
+},
+{
+"key": "errorReportIssue",
+"english": "Report issue",
+"target": "Laporkan masalah",
+"backtrans": "Report a problem"
+},
+{
+"key": "filterAll",
+"english": "All",
+"target": "Semua",
+"backtrans": "All"
+},
+{
+"key": "filterFolders",
+"english": "Folders",
+"target": "Folder",
+"backtrans": "Folders"
+},
+{
+"key": "filterRecent",
+"english": "Recent",
+"target": "Terbaru",
+"backtrans": "Newest [??: 'Terbaru' = newest/latest, not necessarily 'recent']"
+},
+{
+"key": "filterFavorites",
+"english": "Favorites",
+"target": "Favorit",
+"backtrans": "Favorites"
+},
+{
+"key": "chipAllFolders",
+"english": "All Folders",
+"target": "Semua folder",
+"backtrans": "All folders"
+},
+{
+"key": "chipSelectMultiple",
+"english": "Select Multiple",
+"target": "Pilih beberapa",
+"backtrans": "Select several"
+},
+{
+"key": "emptySearch",
+"english": "No scans match your search.",
+"target": "Tidak ada pindaian yang cocok dengan pencarian Anda.",
+"backtrans": "No scans match your search."
+},
+{
+"key": "emptyFolders",
+"english": "No folders yet. Tap the folder icon to create one.",
+"target": "Belum ada folder. Ketuk ikon folder untuk membuat satu.",
+"backtrans": "No folders yet. Tap the folder icon to make one."
+},
+{
+"key": "emptyFavorites",
+"english": "No favorites yet. Tap the star icon on a document to add it.",
+"target": "Belum ada favorit. Ketuk ikon bintang pada dokumen untuk menambahkannya.",
+"backtrans": "No favorites yet. Tap the star icon on a document to add it."
+},
+{
+"key": "modeDocument",
+"english": "Document Mode",
+"target": "Mode Dokumen",
+"backtrans": "Document Mode"
+},
+{
+"key": "modeOcr",
+"english": "OCR Mode",
+"target": "Mode OCR",
+"backtrans": "OCR Mode"
+},
+{
+"key": "modeIdCard",
+"english": "ID Card Mode",
+"target": "Mode Kartu ID",
+"backtrans": "ID Card Mode"
+},
+{
+"key": "modePassport",
+"english": "Passport Mode",
+"target": "Mode Paspor",
+"backtrans": "Passport Mode"
+},
+{
+"key": "titlePdfImport",
+"english": "PDF Import",
+"target": "Impor PDF",
+"backtrans": "PDF Import"
+},
+{
+"key": "titleIdCard",
+"english": "ID Card",
+"target": "Kartu ID",
+"backtrans": "ID Card"
+},
+{
+"key": "titleScan",
+"english": "Scan",
+"target": "Pindai",
+"backtrans": "Scan"
+},
+{
+"key": "exportEstimatedSize",
+"english": "Estimated size: {mb} MB",
+"target": "Perkiraan ukuran: {mb} MB",
+"backtrans": "Estimated size: {mb} MB"
+},
+{
+"key": "debugNoLogsYet",
+"english": "No logs yet",
+"target": "Belum ada log",
+"backtrans": "No logs yet"
+},
+{
+"key": "textBold",
+"english": "B",
+"target": "B",
+"backtrans": "B"
+},
+{
+"key": "textItalic",
+"english": "I",
+"target": "I",
+"backtrans": "I"
+},
+{
+"key": "textUnderline",
+"english": "U",
+"target": "U",
+"backtrans": "U"
+},
+{
+"key": "textFontLetterA",
+"english": "A",
+"target": "A",
+"backtrans": "A"
+},
+{
+"key": "multiplySymbol",
+"english": "×",
+"target": "×",
+"backtrans": "×"
+},
+{
+"key": "signerLabel",
+"english": "Signer {index}",
+"target": "Penanda tangan {index}",
+"backtrans": "Signer {index}"
+},
+{
+"key": "stampCheckbox",
+"english": "Checkbox",
+"target": "Kotak centang",
+"backtrans": "Check box"
+},
+{
+"key": "fontSansSerif",
+"english": "sans-serif",
+"target": "sans-serif",
+"backtrans": "sans-serif"
+},
+{
+"key": "fontSerif",
+"english": "serif",
+"target": "serif",
+"backtrans": "serif"
+},
+{
+"key": "fontMonospace",
+"english": "monospace",
+"target": "monospace",
+"backtrans": "monospace"
+},
+{
+"key": "sealCustom",
+"english": "Custom Seal",
+"target": "Stempel kustom",
+"backtrans": "Custom stamp"
+},
+{
+"key": "formatCsv",
+"english": "CSV",
+"target": "CSV",
+"backtrans": "CSV"
+},
+{
+"key": "ocrNoTextFound",
+"english": "No text found",
+"target": "Tidak ada teks ditemukan",
+"backtrans": "No text found"
+},
+{
+"key": "rotationAllPages",
+"english": "All pages rotated",
+"target": "Semua halaman diputar",
+"backtrans": "All pages rotated"
+},
+{
+"key": "rotationPage",
+"english": "Page rotated",
+"target": "Halaman diputar",
+"backtrans": "Page rotated"
+},
+{
+"key": "watermarkLabel",
+"english": "Watermark",
+"target": "Tanda air",
+"backtrans": "Watermark"
+},
+{
+"key": "compressLabel",
+"english": "Compress",
+"target": "Kompres",
+"backtrans": "Compress"
+},
+{
+"key": "pagesLabel",
+"english": "Pages",
+"target": "Halaman",
+"backtrans": "Pages"
+},
+{
+"key": "cropLabel",
+"english": "Crop",
+"target": "Potong",
+"backtrans": "Cut"
+},
+{
+"key": "emailLabel",
+"english": "Email",
+"target": "Email",
+"backtrans": "Email"
+},
+{
+"key": "checkLabel",
+"english": "Check",
+"target": "Centang",
+"backtrans": "Check mark"
+},
+{
+"key": "captionDocs",
+"english": "Flexible crop: Original, Square, 4:3, 3:2, 16:9",
+"target": "Pemotongan fleksibel: Asli, Kotak, 4:3, 3:2, 16:9",
+"backtrans": "Flexible cutting: Original, Box, 4:3, 3:2, 16:9"
+},
+{
+"key": "captionOcr",
+"english": "Text crop: Original, Square, 4:3",
+"target": "Pemotongan teks: Asli, Kotak, 4:3",
+"backtrans": "Text cutting: Original, Box, 4:3"
+},
+{
+"key": "captionIdCard",
+"english": "Two-sided ID capture: Front + Back",
+"target": "Pemindaian ID dua sisi: Depan + Belakang",
+"backtrans": "Two-sided ID scan: Front + Back"
+},
+{
+"key": "captionPassport",
+"english": "Passport crop: 4:3 or Original",
+"target": "Pemotongan paspor: 4:3 atau Asli",
+"backtrans": "Passport cutting: 4:3 or Original"
+},
+{
+"key": "idStepFront",
+"english": "Step 1: Capture Front Side",
+"target": "Langkah 1: Ambil Sisi Depan",
+"backtrans": "Step 1: Capture Front Side"
+},
+{
+"key": "idStepBack",
+"english": "Step 2: Capture Back Side",
+"target": "Langkah 2: Ambil Sisi Belakang",
+"backtrans": "Step 2: Capture Back Side"
+},
+{
+"key": "idGenerating",
+"english": "Generating PDF...",
+"target": "Membuat PDF...",
+"backtrans": "Creating PDF..."
+},
+{
+"key": "captureFrontSide",
+"english": "Capture Front Side",
+"target": "Ambil Sisi Depan",
+"backtrans": "Capture Front Side"
+},
+{
+"key": "captureBackSide",
+"english": "Capture Back Side",
+"target": "Ambil Sisi Belakang",
+"backtrans": "Capture Back Side"
+},
+{
+"key": "importFrontSide",
+"english": "Import Front Side",
+"target": "Impor Sisi Depan",
+"backtrans": "Import Front Side"
+},
+{
+"key": "importBackSide",
+"english": "Import Back Side",
+"target": "Impor Sisi Belakang",
+"backtrans": "Import Back Side"
+},
+{
+"key": "cropDocumentTitle",
+"english": "Crop Document",
+"target": "Potong Dokumen",
+"backtrans": "Cut Document"
+},
+{
+"key": "cropIdCardTitle",
+"english": "Crop ID Card",
+"target": "Potong Kartu ID",
+"backtrans": "Cut ID Card"
+},
+{
+"key": "tabImageLabel",
+"english": "Image",
+"target": "Gambar",
+"backtrans": "Image"
+},
+{
+"key": "tabOcrTextLabel",
+"english": "OCR Text",
+"target": "Teks OCR",
+"backtrans": "OCR Text"
+},
+{
+"key": "compressSmall",
+"english": "Small",
+"target": "Kecil",
+"backtrans": "Small"
+},
+{
+"key": "compressMedium",
+"english": "Medium",
+"target": "Sedang",
+"backtrans": "Medium"
+},
+{
+"key": "pageFormatLetter",
+"english": "Letter (US)",
+"target": "Letter (AS)",
+"backtrans": "Letter (US)"
+},
+{
+"key": "ocrScriptLatin",
+"english": "Latin (English, European)",
+"target": "Latin (Inggris, Eropa)",
+"backtrans": "Latin (English, Europe)"
+},
+{
+"key": "ocrScriptChinese",
+"english": "Chinese",
+"target": "Tionghoa",
+"backtrans": "Chinese"
+},
+{
+"key": "ocrScriptKorean",
+"english": "Korean",
+"target": "Korea",
+"backtrans": "Korean"
+},
+{
+"key": "ocrScriptJapanese",
+"english": "Japanese",
+"target": "Jepang",
+"backtrans": "Japanese"
+},
+{
+"key": "ocrScriptDevanagari",
+"english": "Hindi, Marathi (Devanagari)",
+"target": "Hindi, Marathi (Devanagari)",
+"backtrans": "Hindi, Marathi (Devanagari)"
+},
+{
+"key": "ocrStatusUnsupported",
+"english": "Unsupported",
+"target": "Tidak didukung",
+"backtrans": "Not supported"
+},
+{
+"key": "noteLabel",
+"english": "Note",
+"target": "Catatan",
+"backtrans": "Note"
+},
+{
+"key": "dateLabel",
+"english": "Date",
+"target": "Tanggal",
+"backtrans": "Date"
+},
+{
+"key": "resizeTitle",
+"english": "Resize",
+"target": "Ubah Ukuran",
+"backtrans": "Change Size"
+},
+{
+"key": "addTextTitle",
+"english": "Add Text",
+"target": "Tambah Teks",
+"backtrans": "Add Text"
+},
+{
+"key": "addNoteTitle",
+"english": "Add Note",
+"target": "Tambah Catatan",
+"backtrans": "Add Note"
+},
+{
+"key": "addDateTitle",
+"english": "Add Date",
+"target": "Tambah Tanggal",
+"backtrans": "Add Date"
+},
+{
+"key": "addCheckboxTitle",
+"english": "Add Checkbox",
+"target": "Tambah Kotak Centang",
+"backtrans": "Add Check Box"
+},
+{
+"key": "noteTextLabel",
+"english": "Note text",
+"target": "Teks Catatan",
+"backtrans": "Note Text"
+},
+{
+"key": "textLabel",
+"english": "Text",
+"target": "Teks",
+"backtrans": "Text"
+},
+{
+"key": "checkShapeRounded",
+"english": "Rounded",
+"target": "Membulat",
+"backtrans": "Rounded"
+},
+{
+"key": "checkShapeSquare",
+"english": "Square",
+"target": "Persegi",
+"backtrans": "Square"
+},
+{
+"key": "checkShapeCircle",
+"english": "Circle",
+"target": "Lingkaran",
+"backtrans": "Circle"
+},
+{
+"key": "hueLabel",
+"english": "Hue",
+"target": "Rona",
+"backtrans": "Hue"
+},
+{
+"key": "satLabel",
+"english": "Sat",
+"target": "Saturasi",
+"backtrans": "Saturation"
+},
+{
+"key": "valLabel",
+"english": "Val",
+"target": "Nilai",
+"backtrans": "Value"
+},
+{
+"key": "annotationModePen",
+"english": "Pen",
+"target": "Pena",
+"backtrans": "Pen"
+},
+{
+"key": "annotationModeHighlighter",
+"english": "Highlighter",
+"target": "Stabilo",
+"backtrans": "Highlighter"
+},
+{
+"key": "annotationModeRect",
+"english": "Rectangle",
+"target": "Persegi Panjang",
+"backtrans": "Rectangle"
+},
+{
+"key": "annotationModeArrow",
+"english": "Arrow",
+"target": "Panah",
+"backtrans": "Arrow"
+},
+{
+"key": "annotationModeEllipse",
+"english": "Ellipse",
+"target": "Elips",
+"backtrans": "Ellipse"
+},
+{
+"key": "sharePromptTitle",
+"english": "Love KatharScan?",
+"target": "Suka KatharScan?",
+"backtrans": "Like KatharScan?"
+},
+{
+"key": "sharePromptBody",
+"english": "Share it with friends who need a powerful document scanner.",
+"target": "Bagikan dengan teman yang membutuhkan pemindai dokumen canggih.",
+"backtrans": "Share with friends who need an advanced document scanner."
+},
+{
+"key": "sharePromptAction",
+"english": "Share App",
+"target": "Bagikan Aplikasi",
+"backtrans": "Share App"
+},
+{
+"key": "sharePromptDismiss",
+"english": "Not now",
+"target": "Nanti saja",
+"backtrans": "Later only"
+},
+{
+"key": "reviewPromptTitle",
+"english": "Enjoying KatharScan?",
+"target": "Menikmati KatharScan?",
+"backtrans": "Enjoying KatharScan?"
+},
+{
+"key": "reviewPromptBody",
+"english": "Your feedback helps us grow and keeps the app free.",
+"target": "Ulasan Anda membantu kami berkembang dan menjaga aplikasi tetap gratis.",
+"backtrans": "Your review helps us grow and keep the app free."
+},
+{
+"key": "reviewPromptYes",
+"english": "Rate Us",
+"target": "Beri Nilai",
+"backtrans": "Give Rating"
+},
+{
+"key": "reviewPromptNo",
+"english": "Send Feedback",
+"target": "Kirim Masukan",
+"backtrans": "Send Feedback"
+},
+{
+"key": "accentBlue",
+"english": "Blue",
+"target": "Biru",
+"backtrans": "Blue"
+},
+{
+"key": "accentIndigo",
+"english": "Indigo",
+"target": "Nila",
+"backtrans": "Indigo"
+},
+{
+"key": "accentEmerald",
+"english": "Emerald",
+"target": "Zamrud",
+"backtrans": "Emerald"
+},
+{
+"key": "accentCrimson",
+"english": "Crimson",
+"target": "Merah tua",
+"backtrans": "Dark red"
+},
+{
+"key": "accentAmber",
+"english": "Amber",
+"target": "Amber",
+"backtrans": "Amber"
+},
+{
+"key": "accentViolet",
+"english": "Violet",
+"target": "Ungu",
+"backtrans": "Purple"
+},
+{
+"key": "tickerLanguages",
+"english": "{count} LANGUAGES",
+"target": "{count} BAHASA",
+"backtrans": "{count} LANGUAGES"
+},
+{
+"key": "termsOfServiceLabel",
+"english": "Terms of Service",
+"target": "Ketentuan Layanan",
+"backtrans": "Terms of Service"
+},
+{
+"key": "openSourceLicensesLabel",
+"english": "Open-source licenses",
+"target": "Lisensi sumber terbuka",
+"backtrans": "Open source licenses"
+},
+{
+"key": "whatsNewTitle",
+"english": "What's New",
+"target": "Apa yang Baru",
+"backtrans": "What's New"
+},
+{
+"key": "whatsNewContinue",
+"english": "Continue",
+"target": "Lanjutkan",
+"backtrans": "Continue"
+},
+{
+"key": "tickerTxtExport",
+"english": "TXT EXPORT",
+"target": "EKSPOR TXT",
+"backtrans": "TXT EXPORT"
+},
+{
+"key": "tickerCsvExport",
+"english": "CSV EXPORT",
+"target": "EKSPOR CSV",
+"backtrans": "CSV EXPORT"
+},
+{
+"key": "whatsNewBody",
+"english": "Welcome to KatharScan! This is the first public release featuring unlimited scanning, 29 languages, and export to PDF, Word, TXT, JPG, PNG, and CSV.",
+"target": "Selamat datang di KatharScan! Ini adalah rilis publik pertama dengan pemindaian tanpa batas, 29 bahasa, dan ekspor ke PDF, Word, TXT, JPG, PNG, dan CSV.",
+"backtrans": "Welcome to KatharScan! This is the first public release with unlimited scanning, 29 languages, and export to PDF, Word, TXT, JPG, PNG, and CSV."
+},
+{
+"key": "engagementSectionLabel",
+"english": "ENGAGEMENT & NOTIFICATIONS",
+"target": "NOTIFIKASI & PERMINTAAN",
+"backtrans": "NOTIFICATIONS & REQUESTS"
+},
+{
+"key": "enableNotificationsLabel",
+"english": "Enable Notifications",
+"target": "Aktifkan notifikasi",
+"backtrans": "Enable notifications"
+},
+{
+"key": "enableNotificationsSubtitle",
+"english": "Allow background reminders for unexported documents",
+"target": "Izinkan pengingat latar belakang untuk dokumen yang belum diekspor",
+"backtrans": "Allow background reminders for documents that have not been exported"
+},
+{
+"key": "enableReviewPromptsLabel",
+"english": "Enable Review Prompts",
+"target": "Aktifkan permintaan ulasan",
+"backtrans": "Enable review requests"
+},
+{
+"key": "enableReviewPromptsSubtitle",
+"english": "Allow the app to occasionally ask for a rating",
+"target": "Izinkan aplikasi sesekali meminta penilaian",
+"backtrans": "Allow the app to occasionally ask for a rating"
+},
+{
+"key": "enableSharePromptsLabel",
+"english": "Enable Share Prompts",
+"target": "Aktifkan permintaan berbagi",
+"backtrans": "Enable share requests"
+},
+{
+"key": "enableSharePromptsSubtitle",
+"english": "Allow the app to occasionally suggest sharing",
+"target": "Izinkan aplikasi sesekali menyarankan berbagi",
+"backtrans": "Allow the app to occasionally suggest sharing"
+},
+{
+"key": "exportFormatCsvDescription",
+"english": "Spreadsheet data",
+"target": "Data spreadsheet",
+"backtrans": "Spreadsheet data"
+},
+{
+"key": "watermarkDefaultText",
+"english": "CONFIDENTIAL",
+"target": "RAHASIA",
+"backtrans": "CONFIDENTIAL"
+},
+{
+"key": "emailAttachmentNotIncluded",
+"english": "The pages could not be attached to the email. Use Share to send the pages.",
+"target": "Halaman tidak dapat dilampirkan ke email. Gunakan Bagikan untuk mengirim halaman.",
+"backtrans": "The page cannot be attached to the email. Use Share to send the page."
+},
+{
+"key": "sealDefaultMainText",
+"english": "YOUR COMPANY",
+"target": "PERUSAHAAN ANDA",
+"backtrans": "YOUR COMPANY"
+},
+{
+"key": "extractedPageDefaultTitle",
+"english": "Extracted Page",
+"target": "Halaman diekstrak",
+"backtrans": "Page extracted"
+},
+{
+"key": "printRangeAll",
+"english": "All pages",
+"target": "Semua halaman",
+"backtrans": "All pages"
+},
+{
+"key": "printRangeCurrent",
+"english": "Current",
+"target": "Saat ini",
+"backtrans": "Current"
+},
+{
+"key": "printRangeRange",
+"english": "Range",
+"target": "Rentang",
+"backtrans": "Range"
+},
+{
+"key": "printFilterNone",
+"english": "No filter",
+"target": "Tanpa filter",
+"backtrans": "No filter"
+},
+{
+"key": "removeFromFavorites",
+"english": "Remove from Favorites",
+"target": "Hapus dari favorit",
+"backtrans": "Delete from favorites"
+},
+{
+"key": "addToFavorites",
+"english": "Add to Favorites",
+"target": "Tambah ke favorit",
+"backtrans": "Add to favorites"
+},
+{
+"key": "saveFailedPrefix",
+"english": "Save failed:",
+"target": "Gagal menyimpan:",
+"backtrans": "Failed to save:"
+},
+{
+"key": "ocrScriptArabic",
+"english": "العربية (Arabic)",
+"target": "العربية (Arabic)",
+"backtrans": "العربية (Arabic)"
+},
+{
+"key": "ocrScriptRussian",
+"english": "Русский (Russian)",
+"target": "Русский (Russian)",
+"backtrans": "Русский (Russian)"
+},
+{
+"key": "ocrScriptUkrainian",
+"english": "Українська (Ukrainian)",
+"target": "Українська (Ukrainian)",
+"backtrans": "Українська (Ukrainian)"
+},
+{
+"key": "ocrScriptGreek",
+"english": "Ελληνικά (Greek)",
+"target": "Ελληνικά (Greek)",
+"backtrans": "Ελληνικά (Greek)"
+},
+{
+"key": "ocrScriptHebrew",
+"english": "עברית (Hebrew)",
+"target": "עברית (Hebrew)",
+"backtrans": "עברית (Hebrew)"
+},
+{
+"key": "ocrScriptThai",
+"english": "ไทย (Thai)",
+"target": "ไทย (Thai)",
+"backtrans": "ไทย (Thai)"
+},
+{
+"key": "ocrScriptBengali",
+"english": "বাংলা (Bengali)",
+"target": "বাংলা (Bengali)",
+"backtrans": "বাংলা (Bengali)"
+},
+{
+"key": "ocrStatusInstalled",
+"english": "Installed",
+"target": "Terpasang",
+"backtrans": "Installed"
+},
+{
+"key": "ocrStatusDownloading",
+"english": "Downloading…",
+"target": "Mengunduh…",
+"backtrans": "Downloading…"
+},
+{
+"key": "exportNoTextError",
+"english": "This document has no text yet. Run OCR on it first.",
+"target": "Dokumen ini belum memiliki teks. Jalankan OCR terlebih dahulu.",
+"backtrans": "This document does not have text yet. Run OCR first."
+},
+{
+"key": "saveFailedBanner",
+"english": "Your latest changes could not be saved.",
+"target": "Perubahan terbaru Anda tidak dapat disimpan.",
+"backtrans": "Your latest changes could not be saved."
+},
+{
+"key": "editLabel",
+"english": "Edit",
+"target": "Ubah",
+"backtrans": "Change"
+},
+{
+"key": "fillTapHint",
+"english": "Tap the page where you want to type",
+"target": "Ketuk halaman di tempat Anda ingin mengetik",
+"backtrans": "Tap the page where you want to type"
+},
+{
+"key": "fillTypeHint",
+"english": "Type here",
+"target": "Ketik di sini",
+"backtrans": "Type here"
+},
+{
+"key": "clearPage",
+"english": "Clear page",
+"target": "Bersihkan halaman",
+"backtrans": "Clean page"
+},
+{
+"key": "clearAllPages",
+"english": "Clear all pages",
+"target": "Bersihkan semua halaman",
+"backtrans": "Clean all pages"
+},
+{
+"key": "clearedCount",
+"english": "Cleared {count}",
+"target": "{count} dibersihkan",
+"backtrans": "{count} cleaned"
+},
+{
+"key": "idLayoutRealSize",
+"english": "Real size",
+"target": "Ukuran asli",
+"backtrans": "Real size"
+},
+{
+"key": "idLayoutFullWidth",
+"english": "Full width",
+"target": "Lebar penuh",
+"backtrans": "Full width"
+},
+{
+"key": "pagesToReadTitle",
+"english": "Pages to read",
+"target": "Halaman yang dibaca",
+"backtrans": "Pages to be read"
+},
+{
+"key": "pagesToReadHint",
+"english": "This PDF has {count} pages. Pages that are pictures are read with OCR (about 10 seconds each); pages with real text are instant.",
+"target": "PDF ini memiliki {count} halaman. Halaman berupa gambar dibaca dengan OCR (sekitar 10 detik per halaman); halaman teks asli instan.",
+"backtrans": "This PDF has {count} pages. Image pages are read with OCR (about 10 seconds per page); native text pages are instant."
+},
+{
+"key": "pageFromLabel",
+"english": "From page",
+"target": "Dari halaman",
+"backtrans": "From page"
+},
+{
+"key": "pageToLabel",
+"english": "To page",
+"target": "Sampai halaman",
+"backtrans": "Up to page"
+},
+{
+"key": "readingPageProgress",
+"english": "Page {page} of {total}",
+"target": "Halaman {page} dari {total}",
+"backtrans": "Page {page} of {total}"
+},
+{
+"key": "readingPageEta",
+"english": "Page {page} of {total} · about {minutes} min left",
+"target": "Halaman {page} dari {total} · sekitar {minutes} mnt lagi",
+"backtrans": "Page {page} of {total} · about {minutes} min more"
+},
+{
+"key": "sealShapeRound",
+"english": "Round",
+"target": "Bulat",
+"backtrans": "Round"
+},
+{
+"key": "sealFontSans",
+"english": "Clean",
+"target": "Bersih",
+"backtrans": "Clean"
+},
+{
+"key": "sealFontSerif",
+"english": "Classic",
+"target": "Klasik",
+"backtrans": "Classic"
+},
+{
+"key": "sealInkLook",
+"english": "Worn stamp look",
+"target": "Tampilan stempel usang",
+"backtrans": "Worn/faded stamp appearance"
+},
+{
+"key": "sealSaveToLibrary",
+"english": "Save this seal",
+"target": "Simpan stempel ini",
+"backtrans": "Save this stamp"
+},
+{
+"key": "sealSavedHeading",
+"english": "Saved seals",
+"target": "Stempel tersimpan",
+"backtrans": "Saved stamps"
+},
+{
+"key": "sealTextColorLabel",
+"english": "Text colour",
+"target": "Warna teks",
+"backtrans": "Text color"
+},
+{
+"key": "sealTextColorSame",
+"english": "Same as ring",
+"target": "Sama dengan lingkaran",
+"backtrans": "Same as the circle"
+},
+{
+"key": "sealTextSizePercent",
+"english": "Text size {percent}%",
+"target": "Ukuran teks {percent}%",
+"backtrans": "Text size {percent}%"
+},
+{
+"key": "sealRemoveWhite",
+"english": "Make white transparent",
+"target": "Jadikan putih transparan",
+"backtrans": "Make white transparent"
+},
+{
+"key": "sealSavedMessage",
+"english": "Seal saved",
+"target": "Stempel disimpan",
+"backtrans": "Stamp saved"
+},
+{
+"key": "signatureTabDraw",
+"english": "Draw",
+"target": "Gambar",
+"backtrans": "Draw"
+},
+{
+"key": "signatureTabType",
+"english": "Type",
+"target": "Ketik",
+"backtrans": "Type"
+},
+{
+"key": "signatureTypeHint",
+"english": "Type your name",
+"target": "Ketik nama Anda",
+"backtrans": "Type your name"
+},
+{
+"key": "signatureWidthLabel",
+"english": "Pen width",
+"target": "Tebal pena",
+"backtrans": "Pen thickness"
+},
+{
+"key": "signatureFontFlowing",
+"english": "Flowing",
+"target": "Mengalir",
+"backtrans": "Flowing"
+},
+{
+"key": "signatureFontHandwritten",
+"english": "Handwritten",
+"target": "Tulisan tangan",
+"backtrans": "Handwriting"
+},
+{
+"key": "signatureSavedHeading",
+"english": "Saved signatures",
+"target": "Tanda tangan tersimpan",
+"backtrans": "Saved signatures"
+},
+{
+"key": "signatureNewOne",
+"english": "Draw or type a new one",
+"target": "Gambar atau ketik yang baru",
+"backtrans": "Draw or type a new one"
+},
+{
+"key": "signatureDeleteSaved",
+"english": "Remove saved signature",
+"target": "Hapus tanda tangan tersimpan",
+"backtrans": "Delete saved signature"
+},
+{
+"key": "annotationModeSelect",
+"english": "Select",
+"target": "Pilih",
+"backtrans": "Select"
+},
+{
+"key": "annotationModeEraser",
+"english": "Eraser",
+"target": "Penghapus",
+"backtrans": "Eraser"
+},
+{
+"key": "watermarkKindText",
+"english": "Text",
+"target": "Teks",
+"backtrans": "Text"
+},
+{
+"key": "watermarkKindImage",
+"english": "Image",
+"target": "Gambar",
+"backtrans": "Image"
+},
+{
+"key": "watermarkChooseImage",
+"english": "Choose image",
+"target": "Pilih gambar",
+"backtrans": "Choose image"
+},
+{
+"key": "watermarkLayoutLabel",
+"english": "Layout",
+"target": "Tata letak",
+"backtrans": "Layout"
+},
+{
+"key": "watermarkLayoutSingle",
+"english": "Single",
+"target": "Tunggal",
+"backtrans": "Single"
+},
+{
+"key": "watermarkLayoutDiagonal",
+"english": "Diagonal",
+"target": "Diagonal",
+"backtrans": "Diagonal"
+},
+{
+"key": "watermarkLayoutTiled",
+"english": "Tiled",
+"target": "Berulang",
+"backtrans": "Repeating"
+},
+{
+"key": "watermarkPagesLabel",
+"english": "Pages",
+"target": "Halaman",
+"backtrans": "Pages"
+},
+{
+"key": "watermarkPagesThis",
+"english": "This page",
+"target": "Halaman ini",
+"backtrans": "This page"
+},
+{
+"key": "watermarkPagesAll",
+"english": "All pages",
+"target": "Semua halaman",
+"backtrans": "All pages"
+},
+{
+"key": "watermarkPagesRange",
+"english": "Range",
+"target": "Rentang",
+"backtrans": "Range"
+},
+{
+"key": "watermarkPagesRangeHint",
+"english": "e.g. 1-3, 5",
+"target": "mis. 1-3, 5",
+"backtrans": "e.g. 1-3, 5"
+},
+{
+"key": "watermarkPagesInvalid",
+"english": "Check the pages (the document has {count} pages)",
+"target": "Periksa halaman (dokumen memiliki {count} halaman)",
+"backtrans": "Check the pages (the document has {count} pages)"
+},
+{
+"key": "cropAuto",
+"english": "Auto-detect",
+"target": "Deteksi otomatis",
+"backtrans": "Automatic detection"
+},
+{
+"key": "cropAspectFree",
+"english": "Free",
+"target": "Bebas",
+"backtrans": "Free"
+},
+{
+"key": "cropAspectId",
+"english": "ID card",
+"target": "Kartu ID",
+"backtrans": "ID Card"
+},
+{
+"key": "cropAspectSquare",
+"english": "Square",
+"target": "Persegi",
+"backtrans": "Square"
+},
+{
+"key": "cropNoPageFound",
+"english": "Couldn't find the page edges. Drag the corners.",
+"target": "Tepi halaman tidak ditemukan. Seret sudutnya.",
+"backtrans": "Page edges not found. Drag the corners."
+},
+{
+"key": "straightenLabel",
+"english": "Straighten",
+"target": "Luruskan",
+"backtrans": "Straighten"
+},
+{
+"key": "filterMagicColor",
+"english": "Magic colour",
+"target": "Warna ajaib",
+"backtrans": "Magic color"
+},
+{
+"key": "filterBrightnessLabel",
+"english": "Brightness",
+"target": "Kecerahan",
+"backtrans": "Brightness"
+},
+{
+"key": "filterContrastLabel",
+"english": "Contrast",
+"target": "Kontras",
+"backtrans": "Contrast"
+},
+{
+"key": "resizeUpscaleWarning",
+"english": "Enlarging doesn't add detail — the page may look soft.",
+"target": "Memperbesar tidak menambah detail — halaman bisa tampak buram.",
+"backtrans": "Enlarging does not add detail — the page may look blurry."
+},
+{
+"key": "eraserAutoColorTooltip",
+"english": "Match the page colour automatically",
+"target": "Samakan warna halaman otomatis",
+"backtrans": "Automatically match page color"
+},
+{
+"key": "eraserZoomTooltip",
+"english": "Zoom and move (pinch)",
+"target": "Zoom dan geser (cubit)",
+"backtrans": "Zoom and pan (pinch)"
+},
+{
+"key": "pagesSelectTooltip",
+"english": "Select pages",
+"target": "Pilih halaman",
+"backtrans": "Select pages"
+},
+{
+"key": "pagesDeleteCount",
+"english": "Delete {count}",
+"target": "Hapus {count}",
+"backtrans": "Delete {count}"
+},
+{
+"key": "pagesDeleteConfirm",
+"english": "Delete {count} pages? They are removed when you save.",
+"target": "Hapus {count} halaman? Dihapus saat Anda menyimpan.",
+"backtrans": "Delete {count} pages? Deleted when you save."
+},
+{
+"key": "compressTargetLabel",
+"english": "Max size",
+"target": "Ukuran maks.",
+"backtrans": "Max. size"
+},
+{
+"key": "compressNoLimit",
+"english": "No limit",
+"target": "Tanpa batas",
+"backtrans": "No limit"
+},
+{
+"key": "printPaperLabel",
+"english": "Paper",
+"target": "Kertas",
+"backtrans": "Paper"
+},
+{
+"key": "printMarginLabel",
+"english": "Margin",
+"target": "Margin",
+"backtrans": "Margin"
+},
+{
+"key": "printMarginNone",
+"english": "None",
+"target": "Tanpa",
+"backtrans": "None"
+},
+{
+"key": "printMarginNarrow",
+"english": "Narrow",
+"target": "Sempit",
+"backtrans": "Narrow"
+},
+{
+"key": "printMarginNormal",
+"english": "Normal",
+"target": "Normal",
+"backtrans": "Normal"
+},
+{
+"key": "printFitLabel",
+"english": "Scaling",
+"target": "Penskalaan",
+"backtrans": "Scaling"
+},
+{
+"key": "printFitFit",
+"english": "Fit page",
+"target": "Muat halaman",
+"backtrans": "Fit page"
+},
+{
+"key": "printFitFill",
+"english": "Fill sheet (trims edges)",
+"target": "Penuhi lembar (memangkas tepi)",
+"backtrans": "Fill the sheet (trims edges)"
+},
+{
+"key": "printPerSheetLabel",
+"english": "Pages per sheet",
+"target": "Halaman per lembar",
+"backtrans": "Pages per sheet"
+},
+{
+"key": "emailMessageLabel",
+"english": "Message",
+"target": "Pesan",
+"backtrans": "Message"
+},
+{
+"key": "emailMessageHint",
+"english": "Add a note (optional)",
+"target": "Tambahkan catatan (opsional)",
+"backtrans": "Add a note (optional)"
+},
+{
+"key": "emailLimitMissed",
+"english": "Could not get under {mb} MB; sent the smallest version.",
+"target": "Tidak dapat diperkecil hingga di bawah {mb} MB; versi terkecil dikirim.",
+"backtrans": "Cannot be reduced to below {mb} MB; the smallest version was sent."
+}
+]

@@ -1,0 +1,3362 @@
+[
+{
+"key": "privacyOptionsLabel",
+"english": "Privacy settings",
+"target": "Tietosuoja-asetukset",
+"backtrans": "Privacy settings"
+},
+{
+"key": "commonCancel",
+"english": "Cancel",
+"target": "Peruuta",
+"backtrans": "Cancel"
+},
+{
+"key": "commonDelete",
+"english": "Delete",
+"target": "Poista",
+"backtrans": "Delete"
+},
+{
+"key": "commonSave",
+"english": "Save",
+"target": "Tallenna",
+"backtrans": "Save"
+},
+{
+"key": "commonAdd",
+"english": "Add",
+"target": "Lisää",
+"backtrans": "Add"
+},
+{
+"key": "commonExport",
+"english": "Export",
+"target": "Vie",
+"backtrans": "Export"
+},
+{
+"key": "commonImport",
+"english": "Import",
+"target": "Tuo",
+"backtrans": "Import"
+},
+{
+"key": "commonSkip",
+"english": "Skip",
+"target": "Ohita",
+"backtrans": "Skip"
+},
+{
+"key": "commonClear",
+"english": "Clear",
+"target": "Tyhjennä",
+"backtrans": "Clear"
+},
+{
+"key": "emptyStateDefaultMessage",
+"english": "Tap the camera to scan your first document.",
+"target": "Napauta kameraa skannataksesi ensimmäisen asiakirjasi.",
+"backtrans": "Tap the camera to scan your first document."
+},
+{
+"key": "exportFormatSheetTitle",
+"english": "Export as",
+"target": "Vie muodossa",
+"backtrans": "Export as"
+},
+{
+"key": "exportFormatPdfLabel",
+"english": "PDF",
+"target": "PDF",
+"backtrans": "PDF"
+},
+{
+"key": "exportFormatPdfDescription",
+"english": "Best for sharing and printing",
+"target": "Paras jakamiseen ja tulostamiseen",
+"backtrans": "Best for sharing and printing"
+},
+{
+"key": "exportFormatDocxLabel",
+"english": "Word (.docx)",
+"target": "Word (.docx)",
+"backtrans": "Word (.docx)"
+},
+{
+"key": "exportFormatDocxDescription",
+"english": "Editable text document",
+"target": "Muokattava tekstiasiakirja",
+"backtrans": "Editable text document"
+},
+{
+"key": "exportFormatTxtLabel",
+"english": "Text (.txt)",
+"target": "Teksti (.txt)",
+"backtrans": "Text (.txt)"
+},
+{
+"key": "exportFormatTxtDescription",
+"english": "Plain OCR text only",
+"target": "Vain pelkkä OCR-teksti",
+"backtrans": "Only plain OCR text"
+},
+{
+"key": "exportFormatJpgLabel",
+"english": "JPG",
+"target": "JPG",
+"backtrans": "JPG"
+},
+{
+"key": "exportFormatJpgDescription",
+"english": "One image per page",
+"target": "Yksi kuva sivua kohden",
+"backtrans": "One image per page"
+},
+{
+"key": "exportFormatPngLabel",
+"english": "PNG",
+"target": "PNG",
+"backtrans": "PNG"
+},
+{
+"key": "exportFormatPngDescription",
+"english": "One image per page, lossless",
+"target": "Yksi kuva sivua kohden, häviötön",
+"backtrans": "One image per page, lossless"
+},
+{
+"key": "filterSheetTitle",
+"english": "Filters",
+"target": "Suodattimet",
+"backtrans": "Filters"
+},
+{
+"key": "filterOriginal",
+"english": "Original",
+"target": "Alkuperäinen",
+"backtrans": "Original"
+},
+{
+"key": "filterGrayscale",
+"english": "Grayscale",
+"target": "Harmaasävy",
+"backtrans": "Grayscale"
+},
+{
+"key": "filterBlackAndWhite",
+"english": "B&W",
+"target": "M&V",
+"backtrans": "B&W [??: abbreviation 'M&V' (musta-valkoinen) is a Finnish abbreviation for black-and-white]"
+},
+{
+"key": "filterColorEnhance",
+"english": "Color enhance",
+"target": "Värien parannus",
+"backtrans": "Color enhancement"
+},
+{
+"key": "filterShadowRemoval",
+"english": "Shadow removal",
+"target": "Varjojen poisto",
+"backtrans": "Shadow removal"
+},
+{
+"key": "proBadgeLabel",
+"english": "PRO",
+"target": "PRO",
+"backtrans": "PRO"
+},
+{
+"key": "scanListPageCount",
+"english": "{count, plural, =1{1 page} other{{count} pages}}",
+"target": "{count, plural, =1{1 sivu} other{{count} sivua}}",
+"backtrans": "{count, plural, =1{1 page} other{{count} pages}}"
+},
+{
+"key": "scanPreviewNoPages",
+"english": "No pages to show.",
+"target": "Ei näytettäviä sivuja.",
+"backtrans": "No pages to show."
+},
+{
+"key": "shareTooltip",
+"english": "Share",
+"target": "Jaa",
+"backtrans": "Share"
+},
+{
+"key": "signatureCanvasHint",
+"english": "Sign here",
+"target": "Allekirjoita tässä",
+"backtrans": "Sign here"
+},
+{
+"key": "folderDocumentCount",
+"english": "{count, plural, =1{1 document} other{{count} documents}}",
+"target": "{count, plural, =1{1 asiakirja} other{{count} asiakirjaa}}",
+"backtrans": "{count, plural, =1{1 document} other{{count} documents}}"
+},
+{
+"key": "selectedCount",
+"english": "{count, plural, =1{1 selected} other{{count} selected}}",
+"target": "{count, plural, =1{1 valittu} other{{count} valittua}}",
+"backtrans": "{count, plural, =1{1 selected} other{{count} selected}}"
+},
+{
+"key": "batchExportTooltip",
+"english": "Batch export",
+"target": "Erävienti",
+"backtrans": "Batch export"
+},
+{
+"key": "deleteTooltip",
+"english": "Delete",
+"target": "Poista",
+"backtrans": "Delete"
+},
+{
+"key": "searchHint",
+"english": "Search your scans",
+"target": "Hae skannauksistasi",
+"backtrans": "Search your scans"
+},
+{
+"key": "settingsTooltip",
+"english": "Settings",
+"target": "Asetukset",
+"backtrans": "Settings"
+},
+{
+"key": "foldersSectionHeader",
+"english": "Folders",
+"target": "Kansiot",
+"backtrans": "Folders"
+},
+{
+"key": "documentsSectionHeader",
+"english": "Documents",
+"target": "Asiakirjat",
+"backtrans": "Documents"
+},
+{
+"key": "exportingStatus",
+"english": "Exporting…",
+"target": "Viedään...",
+"backtrans": "Exporting..."
+},
+{
+"key": "exportDoneStatus",
+"english": "Done",
+"target": "Valmis",
+"backtrans": "Done"
+},
+{
+"key": "exportGenericError",
+"english": "Something went wrong while exporting.",
+"target": "Jotain meni pieleen viennin aikana.",
+"backtrans": "Something went wrong during export."
+},
+{
+"key": "deleteFolderTitle",
+"english": "Delete this folder?",
+"target": "Poistetaanko tämä kansio?",
+"backtrans": "Delete this folder?"
+},
+{
+"key": "deleteFolderMessage",
+"english": "Documents inside will not be deleted.",
+"target": "Sisällä olevia asiakirjoja ei poisteta.",
+"backtrans": "The documents inside will not be deleted."
+},
+{
+"key": "deleteFolderTooltip",
+"english": "Delete folder",
+"target": "Poista kansio",
+"backtrans": "Delete folder"
+},
+{
+"key": "renameFolderTitle",
+"english": "Rename folder",
+"target": "Nimeä kansio uudelleen",
+"backtrans": "Rename folder"
+},
+{
+"key": "removeFromFolderTooltip",
+"english": "Remove from folder",
+"target": "Poista kansiosta",
+"backtrans": "Remove from folder"
+},
+{
+"key": "noDocumentsInFolder",
+"english": "No documents in this folder yet.",
+"target": "Tässä kansiossa ei ole vielä asiakirjoja.",
+"backtrans": "There are no documents in this folder yet."
+},
+{
+"key": "folderUnavailable",
+"english": "This folder is no longer available.",
+"target": "Tämä kansio ei ole enää käytettävissä.",
+"backtrans": "This folder is no longer available."
+},
+{
+"key": "migrationTitle",
+"english": "Device Migration",
+"target": "Laitteen siirto",
+"backtrans": "Device transfer"
+},
+{
+"key": "migrationExplainer",
+"english": "This isn't automatic sync. Export creates a single encrypted backup file you move to your new device yourself, then import there.",
+"target": "Tämä ei ole automaattinen synkronointi. Vienti luo yhden salatun varmuuskopiotiedoston, jonka siirrät itse uudelle laitteellesi ja tuot sitten siellä.",
+"backtrans": "This is not automatic synchronization. Export creates a single encrypted backup file, which you transfer yourself to your new device and then import there."
+},
+{
+"key": "exportBackupButton",
+"english": "Export encrypted backup",
+"target": "Vie salattu varmuuskopio",
+"backtrans": "Export encrypted backup"
+},
+{
+"key": "importBackupButton",
+"english": "Import from backup",
+"target": "Tuo varmuuskopiosta",
+"backtrans": "Import from backup"
+},
+{
+"key": "setBackupPasswordTitle",
+"english": "Set a backup password",
+"target": "Aseta varmuuskopion salasana",
+"backtrans": "Set backup password"
+},
+{
+"key": "enterBackupPasswordTitle",
+"english": "Enter backup password",
+"target": "Syötä varmuuskopion salasana",
+"backtrans": "Enter backup password"
+},
+{
+"key": "buildingBackupStatus",
+"english": "Building backup…",
+"target": "Rakennetaan varmuuskopiota...",
+"backtrans": "Building backup..."
+},
+{
+"key": "backupReadyStatus",
+"english": "Backup ready.",
+"target": "Varmuuskopio valmis.",
+"backtrans": "Backup ready."
+},
+{
+"key": "couldNotCreateBackupError",
+"english": "Could not create the backup.",
+"target": "Varmuuskopiota ei voitu luoda.",
+"backtrans": "The backup could not be created."
+},
+{
+"key": "importingStatus",
+"english": "Importing…",
+"target": "Tuodaan...",
+"backtrans": "Importing..."
+},
+{
+"key": "couldNotImportBackupError",
+"english": "Could not import this backup. Check the password and try again.",
+"target": "Tätä varmuuskopiota ei voitu tuoda. Tarkista salasana ja yritä uudelleen.",
+"backtrans": "This backup could not be imported. Check the password and try again."
+},
+{
+"key": "backupCorruptedError",
+"english": "This backup file looks corrupted.",
+"target": "Tämä varmuuskopiotiedosto näyttää vioittuneelta.",
+"backtrans": "This backup file appears to be corrupted."
+},
+{
+"key": "importedCount",
+"english": "{count, plural, =1{1 document imported} other{{count} documents imported}}",
+"target": "{count, plural, =1{1 asiakirja tuotu} other{{count} asiakirjaa tuotu}}",
+"backtrans": "{count, plural, =1{1 document imported} other{{count} documents imported}}"
+},
+{
+"key": "continueButton",
+"english": "Continue",
+"target": "Jatka",
+"backtrans": "Continue"
+},
+{
+"key": "restorePurchasesButton",
+"english": "Restore purchases",
+"target": "Palauta ostokset",
+"backtrans": "Restore purchases"
+},
+{
+"key": "pricingLoadingError",
+"english": "Pricing is still loading — try again in a moment.",
+"target": "Hinnat latautuvat vielä — yritä hetken kuluttua uudelleen.",
+"backtrans": "Prices are still loading — try again in a moment."
+},
+{
+"key": "renameDocumentTitle",
+"english": "Rename document",
+"target": "Nimeä asiakirja uudelleen",
+"backtrans": "Rename document"
+},
+{
+"key": "addTagTitle",
+"english": "Add tag",
+"target": "Lisää tunniste",
+"backtrans": "Add tag"
+},
+{
+"key": "moveToFolderTooltip",
+"english": "Move to folder",
+"target": "Siirrä kansioon",
+"backtrans": "Move to folder"
+},
+{
+"key": "exportTooltip",
+"english": "Export",
+"target": "Vie",
+"backtrans": "Export"
+},
+{
+"key": "deleteScanTitle",
+"english": "Delete this scan?",
+"target": "Poistetaanko tämä skannaus?",
+"backtrans": "Delete this scan?"
+},
+{
+"key": "deleteScanMessage",
+"english": "This can't be undone.",
+"target": "Tätä ei voi kumota.",
+"backtrans": "This cannot be undone."
+},
+{
+"key": "movedToFolderMessage",
+"english": "Moved to folder.",
+"target": "Siirretty kansioon.",
+"backtrans": "Moved to folder."
+},
+{
+"key": "noTextRecognized",
+"english": "No text recognized.",
+"target": "Tekstiä ei tunnistettu.",
+"backtrans": "No text recognized."
+},
+{
+"key": "scanUnavailable",
+"english": "This scan is no longer available.",
+"target": "Tämä skannaus ei ole enää käytettävissä.",
+"backtrans": "This scan is no longer available."
+},
+{
+"key": "settingsTitle",
+"english": "Settings",
+"target": "Asetukset",
+"backtrans": "Settings"
+},
+{
+"key": "appearanceSectionLabel",
+"english": "Appearance",
+"target": "Ulkoasu",
+"backtrans": "Appearance"
+},
+{
+"key": "themeLabel",
+"english": "Theme",
+"target": "Teema",
+"backtrans": "Theme"
+},
+{
+"key": "systemThemeOption",
+"english": "System",
+"target": "Järjestelmä",
+"backtrans": "System"
+},
+{
+"key": "lightThemeOption",
+"english": "Light",
+"target": "Vaalea",
+"backtrans": "Light"
+},
+{
+"key": "darkThemeOption",
+"english": "Dark",
+"target": "Tumma",
+"backtrans": "Dark"
+},
+{
+"key": "languageSectionLabel",
+"english": "Language",
+"target": "Kieli",
+"backtrans": "Language"
+},
+{
+"key": "appLanguageLabel",
+"english": "App language",
+"target": "Sovelluksen kieli",
+"backtrans": "App language"
+},
+{
+"key": "storageSectionLabel",
+"english": "Storage",
+"target": "Tallennus",
+"backtrans": "Storage"
+},
+{
+"key": "deviceMigrationLabel",
+"english": "Device Migration",
+"target": "Laitteen siirto",
+"backtrans": "Device transfer"
+},
+{
+"key": "subscriptionSectionLabel",
+"english": "Subscription",
+"target": "Tilaus",
+"backtrans": "Subscription"
+},
+{
+"key": "aboutSectionLabel",
+"english": "About",
+"target": "Tietoja",
+"backtrans": "About"
+},
+{
+"key": "privacyPolicyLabel",
+"english": "Privacy policy",
+"target": "Tietosuojakäytäntö",
+"backtrans": "Privacy policy"
+},
+{
+"key": "supportLabel",
+"english": "Support",
+"target": "Tuki",
+"backtrans": "Support"
+},
+{
+"key": "couldNotOpenLinkError",
+"english": "Could not open link.",
+"target": "Linkkiä ei voitu avata.",
+"backtrans": "The link could not be opened."
+},
+{
+"key": "restoreCompleteMessage",
+"english": "Restore complete.",
+"target": "Palautus valmis.",
+"backtrans": "Restore complete."
+},
+{
+"key": "genericErrorMessage",
+"english": "Something went wrong. Please try again.",
+"target": "Jotain meni pieleen. Yritä uudelleen.",
+"backtrans": "Something went wrong. Try again."
+},
+{
+"key": "homeLanguageTooltip",
+"english": "App Language",
+"target": "Sovelluksen kieli",
+"backtrans": "App language"
+},
+{
+"key": "removeAdsTitle",
+"english": "Remove Ads Forever",
+"target": "Poista mainokset ikuisesti",
+"backtrans": "Remove ads forever"
+},
+{
+"key": "extractedTextTitle",
+"english": "Extracted Text",
+"target": "Purettu teksti",
+"backtrans": "Extracted text"
+},
+{
+"key": "commonClose",
+"english": "Close",
+"target": "Sulje",
+"backtrans": "Close"
+},
+{
+"key": "commonCopy",
+"english": "Copy",
+"target": "Kopioi",
+"backtrans": "Copy"
+},
+{
+"key": "savedToDocumentText",
+"english": "Saved to document text",
+"target": "Tallennettu asiakirjan tekstiin",
+"backtrans": "Saved to the document's text"
+},
+{
+"key": "regionOcrFailed",
+"english": "Region OCR failed",
+"target": "Alueen OCR epäonnistui",
+"backtrans": "Region OCR failed"
+},
+{
+"key": "filterRemoved",
+"english": "Filter removed",
+"target": "Suodatin poistettu",
+"backtrans": "Filter removed"
+},
+{
+"key": "filterApplied",
+"english": "Filter applied",
+"target": "Suodatin käytössä",
+"backtrans": "Filter applied"
+},
+{
+"key": "pageCropped",
+"english": "Page cropped",
+"target": "Sivu rajattu",
+"backtrans": "Page cropped"
+},
+{
+"key": "revertToOriginalTitle",
+"english": "Revert to Original?",
+"target": "Palautetaanko alkuperäiseen?",
+"backtrans": "Revert to original?"
+},
+{
+"key": "revertToOriginalMessage",
+"english": "This will undo all filters, rotations, crops, resizes, and eraser strokes on this page.",
+"target": "Tämä kumoaa kaikki suodattimet, kierrot, rajaukset, kokomuutokset ja pyyhekumivedot tällä sivulla.",
+"backtrans": "This undoes all filters, rotations, crops, resizes and eraser strokes on this page."
+},
+{
+"key": "commonRevert",
+"english": "Revert",
+"target": "Palauta",
+"backtrans": "Revert"
+},
+{
+"key": "pageRevertedToOriginal",
+"english": "Page reverted to original",
+"target": "Sivu palautettu alkuperäiseen",
+"backtrans": "Page reverted to original"
+},
+{
+"key": "eraserApplied",
+"english": "Eraser applied",
+"target": "Pyyhekumi käytetty",
+"backtrans": "Eraser applied"
+},
+{
+"key": "pageResized",
+"english": "Page resized",
+"target": "Sivun kokoa muutettu",
+"backtrans": "Page resized"
+},
+{
+"key": "extractedAsNewDocument",
+"english": "Extracted as new document",
+"target": "Purettu uudeksi asiakirjaksi",
+"backtrans": "Extracted as a new document"
+},
+{
+"key": "pagesUpdated",
+"english": "Pages updated",
+"target": "Sivut päivitetty",
+"backtrans": "Pages updated"
+},
+{
+"key": "printOptionsTitle",
+"english": "Print Options",
+"target": "Tulostusasetukset",
+"backtrans": "Print settings"
+},
+{
+"key": "letterSizeUS",
+"english": "Letter size (US)",
+"target": "Letter-koko (USA)",
+"backtrans": "Letter size (USA)"
+},
+{
+"key": "commonPrint",
+"english": "Print",
+"target": "Tulosta",
+"backtrans": "Print"
+},
+{
+"key": "printFailed",
+"english": "Print failed",
+"target": "Tulostus epäonnistui",
+"backtrans": "Printing failed"
+},
+{
+"key": "noEmailAppFound",
+"english": "No email app found",
+"target": "Sähköpostisovellusta ei löytynyt",
+"backtrans": "No email app was found"
+},
+{
+"key": "emailFailed",
+"english": "Email failed",
+"target": "Sähköposti epäonnistui",
+"backtrans": "Email failed"
+},
+{
+"key": "fromPageLabel",
+"english": "From",
+"target": "Alkaen",
+"backtrans": "From"
+},
+{
+"key": "toPageLabel",
+"english": "To",
+"target": "Päättyen",
+"backtrans": "Ending"
+},
+{
+"key": "pdfImportedAsDocument",
+"english": "PDF imported as document",
+"target": "PDF tuotu asiakirjaksi",
+"backtrans": "PDF imported as a document"
+},
+{
+"key": "frontSideCaptured",
+"english": "Front side captured. Now capture the back side.",
+"target": "Etupuoli skannattu. Skannaa nyt takapuoli.",
+"backtrans": "Front side scanned. Now scan the back side."
+},
+{
+"key": "idCardPdfGenerated",
+"english": "ID Card PDF Generated",
+"target": "Henkilökortin PDF luotu",
+"backtrans": "Identity card PDF created"
+},
+{
+"key": "sharePdf",
+"english": "Share PDF",
+"target": "Jaa PDF",
+"backtrans": "Share PDF"
+},
+{
+"key": "saveAsDocument",
+"english": "Save as Document",
+"target": "Tallenna asiakirjaksi",
+"backtrans": "Save as document"
+},
+{
+"key": "commonDone",
+"english": "Done",
+"target": "Valmis",
+"backtrans": "Done"
+},
+{
+"key": "documentSaved",
+"english": "Document saved",
+"target": "Asiakirja tallennettu",
+"backtrans": "Document saved"
+},
+{
+"key": "commonReset",
+"english": "Reset",
+"target": "Nollaa",
+"backtrans": "Reset"
+},
+{
+"key": "autoScan",
+"english": "Auto Scan",
+"target": "Automaattinen skannaus",
+"backtrans": "Automatic scan"
+},
+{
+"key": "importAndConvertDocument",
+"english": "Import & Convert Document",
+"target": "Tuo ja muunna asiakirja",
+"backtrans": "Import and convert document"
+},
+{
+"key": "signatureTitle",
+"english": "Signature",
+"target": "Allekirjoitus",
+"backtrans": "Signature"
+},
+{
+"key": "signatureChoiceMessage",
+"english": "Use your saved signature or draw a new one?",
+"target": "Käytä tallennettua allekirjoitusta vai piirrä uusi?",
+"backtrans": "Use the saved signature or draw a new one?"
+},
+{
+"key": "useSavedSignature",
+"english": "Use Saved",
+"target": "Käytä tallennettua",
+"backtrans": "Use saved"
+},
+{
+"key": "drawNewSignature",
+"english": "Draw New",
+"target": "Piirrä uusi",
+"backtrans": "Draw new"
+},
+{
+"key": "copyAll",
+"english": "Copy all",
+"target": "Kopioi kaikki",
+"backtrans": "Copy all"
+},
+{
+"key": "clearThis",
+"english": "Clear this",
+"target": "Tyhjennä tämä",
+"backtrans": "Clear this"
+},
+{
+"key": "commonRemove",
+"english": "Remove",
+"target": "Poista",
+"backtrans": "Delete"
+},
+{
+"key": "clearAll",
+"english": "Clear all",
+"target": "Tyhjennä kaikki",
+"backtrans": "Clear all"
+},
+{
+"key": "addSignature",
+"english": "Add Signature",
+"target": "Lisää allekirjoitus",
+"backtrans": "Add signature"
+},
+{
+"key": "commonUse",
+"english": "Use",
+"target": "Käytä",
+"backtrans": "Use"
+},
+{
+"key": "stampTickedLabel",
+"english": "Ticked",
+"target": "Rastattu",
+"backtrans": "Ticked"
+},
+{
+"key": "stampBoxLabel",
+"english": "Box",
+"target": "Laatikko",
+"backtrans": "Box"
+},
+{
+"key": "stampTickLabel",
+"english": "Tick",
+"target": "Rasti",
+"backtrans": "Tick mark [??: 'Rasti' is a cross/X-mark or checkpoint; elsewhere stampTickedLabel is 'Rastattu' (crossed), so 'tick' is rendered as cross inconsistently]"
+},
+{
+"key": "commonCustom",
+"english": "Custom",
+"target": "Mukautettu",
+"backtrans": "Custom"
+},
+{
+"key": "commonChange",
+"english": "Change",
+"target": "Vaihda",
+"backtrans": "Change"
+},
+{
+"key": "commonColor",
+"english": "Color",
+"target": "Väri",
+"backtrans": "Color"
+},
+{
+"key": "stampPaperLabel",
+"english": "Paper",
+"target": "Paperi",
+"backtrans": "Paper"
+},
+{
+"key": "whiteHaloLabel",
+"english": "White halo (readability)",
+"target": "Valkoinen halo (luettavuus)",
+"backtrans": "White halo (legibility)"
+},
+{
+"key": "commonCreate",
+"english": "Create",
+"target": "Luo",
+"backtrans": "Create"
+},
+{
+"key": "newFolderTitle",
+"english": "New Folder",
+"target": "Uusi kansio",
+"backtrans": "New folder"
+},
+{
+"key": "batchExportEmptyMessage",
+"english": "No documents to batch export. Scan some first.",
+"target": "Ei vietäviä asiakirjoja. Skannaa ensin joitakin.",
+"backtrans": "No documents to export. Scan some first."
+},
+{
+"key": "newFolderTooltip",
+"english": "New Folder",
+"target": "Uusi kansio",
+"backtrans": "New folder"
+},
+{
+"key": "accentColorTooltip",
+"english": "Accent Color",
+"target": "Korostusväri",
+"backtrans": "Accent color"
+},
+{
+"key": "moveToFolderTitle",
+"english": "Move to Folder",
+"target": "Siirrä kansioon",
+"backtrans": "Move to folder"
+},
+{
+"key": "noFoldersYetHomeMessage",
+"english": "No folders yet. Create one from the home screen.",
+"target": "Ei kansioita vielä. Luo yksi aloitusnäytöltä.",
+"backtrans": "No folders yet. Create one from the home screen."
+},
+{
+"key": "appLanguageTitle",
+"english": "App Language",
+"target": "Sovelluksen kieli",
+"backtrans": "App language"
+},
+{
+"key": "accentColorTitle",
+"english": "Accent Color",
+"target": "Korostusväri",
+"backtrans": "Accent color"
+},
+{
+"key": "sealEditTitle",
+"english": "Edit Custom Seal",
+"target": "Muokkaa mukautettua sinettiä",
+"backtrans": "Edit custom seal"
+},
+{
+"key": "sealCreateTitle",
+"english": "Custom Seal",
+"target": "Mukautettu sinetti",
+"backtrans": "Custom seal"
+},
+{
+"key": "sealMainTextLabel",
+"english": "Main text (top arc / box)",
+"target": "Pääteksti (yläkaari / laatikko)",
+"backtrans": "Main text (upper arc / box)"
+},
+{
+"key": "sealSubtextLabel",
+"english": "Subtext (bottom arc / below)",
+"target": "Alateksti (alakaari / alla)",
+"backtrans": "Subtext (lower arc / below)"
+},
+{
+"key": "sealShapeOval",
+"english": "Oval",
+"target": "Soikio",
+"backtrans": "Oval"
+},
+{
+"key": "sealShapeBox",
+"english": "Box",
+"target": "Laatikko",
+"backtrans": "Box"
+},
+{
+"key": "sealCenterStar",
+"english": "Star",
+"target": "Tähti",
+"backtrans": "Star"
+},
+{
+"key": "sealCenterText",
+"english": "Text",
+"target": "Teksti",
+"backtrans": "Text"
+},
+{
+"key": "sealCenterLogo",
+"english": "Logo",
+"target": "Logo",
+"backtrans": "Logo"
+},
+{
+"key": "sealCenterNone",
+"english": "None",
+"target": "Ei mitään",
+"backtrans": "Nothing"
+},
+{
+"key": "sealCenterTextLabel",
+"english": "Center text",
+"target": "Keskusteksti",
+"backtrans": "Center text"
+},
+{
+"key": "sealLogoReady",
+"english": "Logo ready",
+"target": "Logo valmis",
+"backtrans": "Logo ready"
+},
+{
+"key": "textSizeLabel",
+"english": "Text size: {size}",
+"target": "Tekstin koko: {size}",
+"backtrans": "Text size: {size}"
+},
+{
+"key": "commonUpdate",
+"english": "Update",
+"target": "Päivitä",
+"backtrans": "Update"
+},
+{
+"key": "managePagesTitle",
+"english": "Manage Pages",
+"target": "Hallitse sivuja",
+"backtrans": "Manage pages"
+},
+{
+"key": "pageLabel",
+"english": "Page {index}",
+"target": "Sivu {index}",
+"backtrans": "Page {index}"
+},
+{
+"key": "duplicateAction",
+"english": "Duplicate",
+"target": "Monista",
+"backtrans": "Duplicate"
+},
+{
+"key": "rotate90Action",
+"english": "Rotate 90°",
+"target": "Kierrä 90°",
+"backtrans": "Rotate 90°"
+},
+{
+"key": "extractToNewDocAction",
+"english": "Extract to new doc",
+"target": "Pura uuteen asiakirjaan",
+"backtrans": "Extract to new document"
+},
+{
+"key": "addPageTitle",
+"english": "Add Page",
+"target": "Lisää sivu",
+"backtrans": "Add page"
+},
+{
+"key": "cameraSource",
+"english": "Camera",
+"target": "Kamera",
+"backtrans": "Camera"
+},
+{
+"key": "importFromGallery",
+"english": "Import from Gallery",
+"target": "Tuo galleriasta",
+"backtrans": "Import from gallery"
+},
+{
+"key": "fromAnotherDocument",
+"english": "From Another Document",
+"target": "Toisesta asiakirjasta",
+"backtrans": "From another document"
+},
+{
+"key": "pageCountLabel",
+"english": "{count, plural, =0{No pages} =1{1 page} other{{count} pages}}",
+"target": "{count, plural, =0{Ei sivuja} =1{1 sivu} other{{count} sivua}}",
+"backtrans": "{count, plural, =0{No pages} =1{1 page} other{{count} pages}}"
+},
+{
+"key": "commonConfirm",
+"english": "Confirm",
+"target": "Vahvista",
+"backtrans": "Confirm"
+},
+{
+"key": "applyToAllPages",
+"english": "Apply to all pages",
+"target": "Käytä kaikille sivuille",
+"backtrans": "Apply to all pages"
+},
+{
+"key": "widthLabel",
+"english": "Width",
+"target": "Leveys",
+"backtrans": "Width"
+},
+{
+"key": "heightLabel",
+"english": "Height",
+"target": "Korkeus",
+"backtrans": "Height"
+},
+{
+"key": "lockAspectRatio",
+"english": "Lock aspect ratio",
+"target": "Lukitse kuvasuhde",
+"backtrans": "Lock aspect ratio"
+},
+{
+"key": "originalDimensions",
+"english": "Original: {w}×{h}",
+"target": "Alkuperäinen: {w}×{h}",
+"backtrans": "Original: {w}×{h}"
+},
+{
+"key": "ocrSectionLabel",
+"english": "OCR",
+"target": "OCR",
+"backtrans": "OCR"
+},
+{
+"key": "ocrLanguagesLabel",
+"english": "OCR Languages",
+"target": "OCR-kielet",
+"backtrans": "OCR languages"
+},
+{
+"key": "captureBehaviorSectionLabel",
+"english": "CAPTURE BEHAVIOR",
+"target": "SKANNAUKSEN ASETUKSET",
+"backtrans": "SCAN SETTINGS"
+},
+{
+"key": "autoCopyOcrLabel",
+"english": "Auto-copy OCR",
+"target": "Kopioi OCR automaattisesti",
+"backtrans": "Copy OCR automatically"
+},
+{
+"key": "autoCopyOcrSubtitle",
+"english": "Copy text to clipboard after scan",
+"target": "Kopioi teksti leikepöydälle skannauksen jälkeen",
+"backtrans": "Copy the text to the clipboard after scanning"
+},
+{
+"key": "beepOnCaptureLabel",
+"english": "Beep on capture",
+"target": "Piippaus skannattaessa",
+"backtrans": "Beep when scanning"
+},
+{
+"key": "beepOnCaptureSubtitle",
+"english": "Play sound when scan completes",
+"target": "Toista ääni skannauksen valmistuessa",
+"backtrans": "Play a sound when the scan completes"
+},
+{
+"key": "vibrateOnCaptureLabel",
+"english": "Vibrate on capture",
+"target": "Tärinä skannattaessa",
+"backtrans": "Vibration when scanning"
+},
+{
+"key": "vibrateOnCaptureSubtitle",
+"english": "Haptic feedback when scan completes",
+"target": "Haptinen palaute skannauksen valmistuessa",
+"backtrans": "Haptic feedback when the scan completes"
+},
+{
+"key": "adsRemovedLabel",
+"english": "Ads Removed",
+"target": "Mainokset poistettu",
+"backtrans": "Ads removed"
+},
+{
+"key": "diagnosticsSectionLabel",
+"english": "DIAGNOSTICS",
+"target": "DIAGNOSTIIKKA",
+"backtrans": "DIAGNOSTICS"
+},
+{
+"key": "debugLogsLabel",
+"english": "Debug Logs",
+"target": "Virheenkorjauslokit",
+"backtrans": "Debugging logs"
+},
+{
+"key": "logEntriesLabel",
+"english": "{count, plural, =0{No entries} =1{1 entry} other{{count} entries}}",
+"target": "{count, plural, =0{Ei merkintöjä} =1{1 merkintä} other{{count} merkintää}}",
+"backtrans": "{count, plural, =0{No entries} =1{1 entry} other{{count} entries}}"
+},
+{
+"key": "ocrStatusBuiltIn",
+"english": "Built-in",
+"target": "Sisäänrakennettu",
+"backtrans": "Built-in"
+},
+{
+"key": "ocrStatusChecking",
+"english": "Checking...",
+"target": "Tarkistetaan...",
+"backtrans": "Checking..."
+},
+{
+"key": "ocrStatusOnDemand",
+"english": "On-demand",
+"target": "Pyydettäessä",
+"backtrans": "On request"
+},
+{
+"key": "savedAsNewDocument",
+"english": "Saved as new document",
+"target": "Tallennettu uudeksi asiakirjaksi",
+"backtrans": "Saved as a new document"
+},
+{
+"key": "conversionFailedPrefix",
+"english": "Conversion failed",
+"target": "Muunnos epäonnistui",
+"backtrans": "Conversion failed"
+},
+{
+"key": "convertDocumentTitle",
+"english": "Convert Document",
+"target": "Muunna asiakirja",
+"backtrans": "Convert document"
+},
+{
+"key": "convertToLabel",
+"english": "Convert to:",
+"target": "Muunna muotoon:",
+"backtrans": "Convert to format:"
+},
+{
+"key": "actionLabel",
+"english": "Action:",
+"target": "Toiminto:",
+"backtrans": "Action:"
+},
+{
+"key": "saveAsNewDocumentAction",
+"english": "Save as new Document",
+"target": "Tallenna uudeksi asiakirjaksi",
+"backtrans": "Save as new document"
+},
+{
+"key": "exportAndShareAction",
+"english": "Export & Share",
+"target": "Vie ja jaa",
+"backtrans": "Export and share"
+},
+{
+"key": "docxWarningMessage",
+"english": "DOCX sources render poorly as pages — save inside the app is limited to JPG/PNG from image, PDF, TXT or CSV sources. Use Export & Share for this file.",
+"target": "DOCX-lähteet renderöityvät huonosti sivuina — tallennus sovelluksessa on rajoitettu JPG/PNG-muotoon kuvasta, PDF:stä, TXT:stä tai CSV-lähteistä. Käytä Vie ja jaa tälle tiedostolle.",
+"backtrans": "DOCX sources render poorly as pages — saving in the app is limited to JPG/PNG format from an image, PDF, TXT or CSV sources. Use Export and share for this file. [??: awkward, garbled sentence structure]"
+},
+{
+"key": "saveInsideAppWarning",
+"english": "To save inside the app, choose JPG or PNG. Other targets are exported as files.",
+"target": "Tallentaaksesi sovellukseen, valitse JPG tai PNG. Muut kohteet viedään tiedostoina.",
+"backtrans": "To save to the app, choose JPG or PNG. Other targets are exported as files."
+},
+{
+"key": "commonConvert",
+"english": "Convert",
+"target": "Muunna",
+"backtrans": "Convert"
+},
+{
+"key": "conversionStarting",
+"english": "Starting…",
+"target": "Aloitetaan...",
+"backtrans": "Starting..."
+},
+{
+"key": "convertedDocTitle",
+"english": "Converted {date}",
+"target": "Muunnettu {date}",
+"backtrans": "Converted {date}"
+},
+{
+"key": "progressReading",
+"english": "Reading…",
+"target": "Luetaan...",
+"backtrans": "Reading..."
+},
+{
+"key": "progressCopying",
+"english": "Copying…",
+"target": "Kopioidaan...",
+"backtrans": "Copying..."
+},
+{
+"key": "progressBuildingPdf",
+"english": "Building PDF…",
+"target": "Rakennetaan PDF:ää...",
+"backtrans": "Building the PDF..."
+},
+{
+"key": "progressBuildingDocx",
+"english": "Building DOCX…",
+"target": "Rakennetaan DOCX:ää...",
+"backtrans": "Building the DOCX..."
+},
+{
+"key": "progressDecodingImage",
+"english": "Decoding image…",
+"target": "Dekoodataan kuvaa...",
+"backtrans": "Decoding the image..."
+},
+{
+"key": "progressExtractingText",
+"english": "Extracting text…",
+"target": "Puretaan tekstiä...",
+"backtrans": "Extracting text..."
+},
+{
+"key": "progressSaving",
+"english": "Saving…",
+"target": "Tallennetaan...",
+"backtrans": "Saving..."
+},
+{
+"key": "progressRasterizing",
+"english": "Rasterizing pages…",
+"target": "Rasterisoidaan sivuja...",
+"backtrans": "Rasterizing pages..."
+},
+{
+"key": "progressEncodingPage",
+"english": "Encoding page {current} of {total}…",
+"target": "Koodataan sivua {current}/{total}...",
+"backtrans": "Encoding page {current}/{total}..."
+},
+{
+"key": "watermarkEditTitle",
+"english": "Edit Watermark",
+"target": "Muokkaa vesileimaa",
+"backtrans": "Edit watermark"
+},
+{
+"key": "watermarkAddTitle",
+"english": "Add Watermark",
+"target": "Lisää vesileima",
+"backtrans": "Add watermark"
+},
+{
+"key": "watermarkTextLabel",
+"english": "Text",
+"target": "Teksti",
+"backtrans": "Text"
+},
+{
+"key": "opacityPercentLabel",
+"english": "Opacity: {percent}%",
+"target": "Läpinäkymättömyys: {percent}%",
+"backtrans": "Opacity (non-transparency): {percent}%"
+},
+{
+"key": "sizePtLabel",
+"english": "Size: {size}pt",
+"target": "Koko: {size}pt",
+"backtrans": "Size: {size}pt"
+},
+{
+"key": "alignLabel",
+"english": "Align",
+"target": "Tasaus",
+"backtrans": "Alignment"
+},
+{
+"key": "exportSavedToDownloads",
+"english": "Saved to Downloads",
+"target": "Tallennettu Latauksiin",
+"backtrans": "Saved to Downloads"
+},
+{
+"key": "commonShare",
+"english": "Share",
+"target": "Jaa",
+"backtrans": "Share"
+},
+{
+"key": "exportTitle",
+"english": "Export",
+"target": "Vie",
+"backtrans": "Export"
+},
+{
+"key": "targetMbLabel",
+"english": "{mb} MB",
+"target": "{mb} Mt",
+"backtrans": "{mb} MB"
+},
+{
+"key": "filterColor",
+"english": "Color",
+"target": "Väri",
+"backtrans": "Color"
+},
+{
+"key": "filterShadow",
+"english": "Shadow",
+"target": "Varjo",
+"backtrans": "Shadow"
+},
+{
+"key": "docxModeTextOnly",
+"english": "Text Only",
+"target": "Vain teksti",
+"backtrans": "Text only"
+},
+{
+"key": "docxModeWithImages",
+"english": "With Images",
+"target": "Kuvilla",
+"backtrans": "With images"
+},
+{
+"key": "saveToDeviceButton",
+"english": "Save to Device",
+"target": "Tallenna laitteeseen",
+"backtrans": "Save to device"
+},
+{
+"key": "pageIndicator",
+"english": "Page {current} / {total}",
+"target": "Sivu {current} / {total}",
+"backtrans": "Page {current} / {total}"
+},
+{
+"key": "fullscreenLabel",
+"english": "Fullscreen",
+"target": "Koko näyttö",
+"backtrans": "Full screen"
+},
+{
+"key": "batchExportSignatureDisabled",
+"english": "Batch export — signature placement disabled",
+"target": "Erävienti — allekirjoituksen sijoittelu pois käytöstä",
+"backtrans": "Batch export — signature placement disabled"
+},
+{
+"key": "fitToTargetMbLabel",
+"english": "Fit to target MB",
+"target": "Sovita tavoite-MB:hen",
+"backtrans": "Fit to target MB"
+},
+{
+"key": "moreOptionsTooltip",
+"english": "More options",
+"target": "Lisää vaihtoehtoja",
+"backtrans": "More options"
+},
+{
+"key": "commonRename",
+"english": "Rename",
+"target": "Nimeä uudelleen",
+"backtrans": "Rename"
+},
+{
+"key": "addTagsAction",
+"english": "Add Tags",
+"target": "Lisää tunnisteita",
+"backtrans": "Add tags"
+},
+{
+"key": "editDocumentAction",
+"english": "Edit Document",
+"target": "Muokkaa asiakirjaa",
+"backtrans": "Edit document"
+},
+{
+"key": "copiedToClipboard",
+"english": "Copied to clipboard",
+"target": "Kopioitu leikepöydälle",
+"backtrans": "Copied to clipboard"
+},
+{
+"key": "favoriteTooltip",
+"english": "Favorite",
+"target": "Suosikki",
+"backtrans": "Favorite"
+},
+{
+"key": "noFoldersYet",
+"english": "No folders yet",
+"target": "Ei kansioita vielä",
+"backtrans": "No folders yet"
+},
+{
+"key": "rotateLabel",
+"english": "Rotate",
+"target": "Kierrä",
+"backtrans": "Rotate"
+},
+{
+"key": "scaleLabel",
+"english": "Scale",
+"target": "Skaalaa",
+"backtrans": "Scale"
+},
+{
+"key": "eraserTitle",
+"english": "Eraser",
+"target": "Pyyhekumi",
+"backtrans": "Eraser"
+},
+{
+"key": "tapToSampleColor",
+"english": "Tap a spot to sample its color",
+"target": "Napauta kohtaa ottaaksesi värinäytteen",
+"backtrans": "Tap a spot to take a color sample"
+},
+{
+"key": "commonSize",
+"english": "Size",
+"target": "Koko",
+"backtrans": "Size"
+},
+{
+"key": "sampleColorTooltip",
+"english": "Sample color from page",
+"target": "Ota värinäyte sivulta",
+"backtrans": "Take a color sample from the page"
+},
+{
+"key": "marqueeEraseTooltip",
+"english": "Marquee erase",
+"target": "Valintapyyhintä",
+"backtrans": "Selection erase"
+},
+{
+"key": "commonApply",
+"english": "Apply",
+"target": "Käytä",
+"backtrans": "Apply"
+},
+{
+"key": "filterTitle",
+"english": "Filter",
+"target": "Suodatin",
+"backtrans": "Filter"
+},
+{
+"key": "intensityLabel",
+"english": "Intensity",
+"target": "Intensiteetti",
+"backtrans": "Intensity"
+},
+{
+"key": "selectRegionTitle",
+"english": "Select Region",
+"target": "Valitse alue",
+"backtrans": "Select region"
+},
+{
+"key": "commonExtract",
+"english": "Extract",
+"target": "Pura",
+"backtrans": "Extract"
+},
+{
+"key": "customColorTitle",
+"english": "Custom Color",
+"target": "Mukautettu väri",
+"backtrans": "Custom color"
+},
+{
+"key": "documentNotFound",
+"english": "Document not found",
+"target": "Asiakirjaa ei löytynyt",
+"backtrans": "Document not found"
+},
+{
+"key": "clearLogsTooltip",
+"english": "Clear logs",
+"target": "Tyhjennä lokit",
+"backtrans": "Clear logs"
+},
+{
+"key": "placeHereLabel",
+"english": "Place here",
+"target": "Aseta tähän",
+"backtrans": "Place here"
+},
+{
+"key": "tryAgainButton",
+"english": "Try again",
+"target": "Yritä uudelleen",
+"backtrans": "Try again"
+},
+{
+"key": "emptyDocumentMessage",
+"english": "This document has no pages.",
+"target": "Tässä asiakirjassa ei ole sivuja.",
+"backtrans": "This document has no pages."
+},
+{
+"key": "cameraErrorPrefix",
+"english": "Camera error",
+"target": "Kameravirhe",
+"backtrans": "Camera error"
+},
+{
+"key": "importErrorPrefix",
+"english": "Import error",
+"target": "Tuontivirhe",
+"backtrans": "Import error"
+},
+{
+"key": "pdfImportErrorPrefix",
+"english": "PDF import error",
+"target": "PDF-tuontivirhe",
+"backtrans": "PDF import error"
+},
+{
+"key": "pickErrorPrefix",
+"english": "Pick error",
+"target": "Valintavirhe",
+"backtrans": "Selection error"
+},
+{
+"key": "scannerErrorPrefix",
+"english": "Scanner error",
+"target": "Skannerivirhe",
+"backtrans": "Scanner error"
+},
+{
+"key": "idPdfErrorPrefix",
+"english": "Error generating ID PDF",
+"target": "Henkilökortin PDF-generointivirhe",
+"backtrans": "Identity card PDF generation error"
+},
+{
+"key": "genericErrorPrefix",
+"english": "Error",
+"target": "Virhe",
+"backtrans": "Error"
+},
+{
+"key": "annotateTitle",
+"english": "Annotate",
+"target": "Merkitse",
+"backtrans": "Mark"
+},
+{
+"key": "placementsCountLabel",
+"english": "{count, plural, =0{Nothing placed} =1{1 placed} other{{count} placed}}",
+"target": "{count, plural, =0{Ei sijoitettuja} =1{1 sijoitettu} other{{count} sijoitettua}}",
+"backtrans": "{count, plural, =0{No placed ones} =1{1 placed} other{{count} placed}} [??: elliptical, no noun; unclear what is placed]"
+},
+{
+"key": "ocrUnavailableTooltip",
+"english": "OCR unavailable on this device.",
+"target": "OCR ei ole käytettävissä tällä laitteella.",
+"backtrans": "OCR is not available on this device."
+},
+{
+"key": "docScannerUnsupportedMessage",
+"english": "Your device doesn't support the advanced document scanner. Take a photo with your Camera app, then tap Import below to crop and save it.",
+"target": "Laitteesi ei tue edistynyttä asiakirjaskanneria. Ota kuva Kamera-sovelluksella ja napauta sitten Tuo alla rajataksesi ja tallentaaksesi sen.",
+"backtrans": "Your device does not support the advanced document scanner. Take a picture with the Camera app and then tap Import below to crop and save it."
+},
+{
+"key": "billingUnavailableMessage",
+"english": "Billing unavailable — try again later.",
+"target": "Laskutus ei ole käytettävissä — yritä myöhemmin uudelleen.",
+"backtrans": "Billing is not available — try again later."
+},
+{
+"key": "ocrNoInternetMessage",
+"english": "No internet. Connect once to download the language pack.",
+"target": "Ei internetiä. Yhdistä kerran ladataksesi kielipaketin.",
+"backtrans": "No internet. Connect once to download the language pack."
+},
+{
+"key": "ocrLanguagePackNotReady",
+"english": "Language pack downloading or not ready. Try again shortly.",
+"target": "Kielipaketti latautuu tai ei ole valmis. Yritä hetken kuluttua uudelleen.",
+"backtrans": "The language pack is downloading or is not ready. Try again in a moment."
+},
+{
+"key": "undoTooltip",
+"english": "Undo",
+"target": "Kumoa",
+"backtrans": "Undo"
+},
+{
+"key": "redoTooltip",
+"english": "Redo",
+"target": "Tee uudelleen",
+"backtrans": "Redo"
+},
+{
+"key": "fillInputHint",
+"english": "Type text to fill",
+"target": "Kirjoita teksti täyttääksesi",
+"backtrans": "Type text to fill in"
+},
+{
+"key": "fillCapsLabel",
+"english": "ALL CAPS",
+"target": "KAIKKI ISOT KIRJAIMET",
+"backtrans": "ALL CAPITAL LETTERS"
+},
+{
+"key": "fillSaveSnippet",
+"english": "Save as snippet",
+"target": "Tallenna katkelmaksi",
+"backtrans": "Save as snippet"
+},
+{
+"key": "fillDeleteSnippet",
+"english": "Delete snippet?",
+"target": "Poistetaanko katkelma?",
+"backtrans": "Delete the snippet?"
+},
+{
+"key": "fillTooltip",
+"english": "Fill",
+"target": "Täytä",
+"backtrans": "Fill"
+},
+{
+"key": "tickerFreeUnlimitedOcr",
+"english": "FREE UNLIMITED OCR",
+"target": "ILMAINEN RAJOITTAMATON OCR",
+"backtrans": "FREE UNLIMITED OCR"
+},
+{
+"key": "ticker100OnDevicePrivacy",
+"english": "YOUR DOCUMENTS STAY ON YOUR DEVICE",
+"target": "ASIAKIRJASI PYSYVÄT LAITTEELLASI",
+"backtrans": "YOUR DOCUMENTS STAY ON YOUR DEVICE"
+},
+{
+"key": "tickerNoAccount",
+"english": "NO ACCOUNT",
+"target": "EI TILIÄ",
+"backtrans": "NO ACCOUNT"
+},
+{
+"key": "tickerNoWatermarks",
+"english": "NO WATERMARKS",
+"target": "EI VESILEIMOJA",
+"backtrans": "NO WATERMARKS"
+},
+{
+"key": "ticker21ToolEditSuite",
+"english": "21-TOOL EDIT SUITE",
+"target": "21 MUOKKAUSTYÖKALUA",
+"backtrans": "21 EDITING TOOLS"
+},
+{
+"key": "tickerNonDestructiveEditing",
+"english": "NON-DESTRUCTIVE EDITING",
+"target": "TUHOAMATON MUOKKAUS",
+"backtrans": "NON-DESTRUCTIVE EDITING"
+},
+{
+"key": "tickerUndoRedo",
+"english": "UNDO/REDO",
+"target": "KUMOA/TEE UUDELLEEN",
+"backtrans": "UNDO/REDO"
+},
+{
+"key": "tickerRevertToOriginal",
+"english": "REVERT TO ORIGINAL",
+"target": "PALAUTA ALKUPERÄISEEN",
+"backtrans": "REVERT TO ORIGINAL"
+},
+{
+"key": "tickerTapToTypeFilling",
+"english": "TAP-TO-TYPE FILLING",
+"target": "LOMAKKEIDEN TÄYTTÖ NAPAUTTAMALLA",
+"backtrans": "FORM FILLING BY TAPPING"
+},
+{
+"key": "tickerESign",
+"english": "E-SIGN",
+"target": "SÄHKÖINEN ALLEKIRJOITUS",
+"backtrans": "ELECTRONIC SIGNATURE"
+},
+{
+"key": "tickerCustomSeals",
+"english": "CUSTOM SEALS",
+"target": "MUKAUTETUT SINETIT",
+"backtrans": "CUSTOM SEALS"
+},
+{
+"key": "tickerTextStamps",
+"english": "TEXT STAMPS",
+"target": "TEKSTILEIMAT",
+"backtrans": "TEXT STAMPS"
+},
+{
+"key": "tickerNoteStamps",
+"english": "NOTE STAMPS",
+"target": "MUISTIINPANOLEIMAT",
+"backtrans": "NOTE STAMPS"
+},
+{
+"key": "tickerSearchablePdf",
+"english": "SEARCHABLE PDF",
+"target": "HAETTAVA PDF",
+"backtrans": "SEARCHABLE PDF"
+},
+{
+"key": "tickerRegionOcr",
+"english": "REGION OCR",
+"target": "ALUEEN OCR",
+"backtrans": "REGION OCR"
+},
+{
+"key": "tickerAutoCopyOcr",
+"english": "AUTO-COPY OCR",
+"target": "AUTO-KOPIOI OCR",
+"backtrans": "AUTO-COPY OCR"
+},
+{
+"key": "tickerIdCardMode",
+"english": "ID CARD MODE",
+"target": "HENKILÖKORTTITILA",
+"backtrans": "IDENTITY CARD MODE"
+},
+{
+"key": "tickerPassportMode",
+"english": "PASSPORT MODE",
+"target": "PASSITILA",
+"backtrans": "PASSPORT MODE"
+},
+{
+"key": "tickerGalleryImport",
+"english": "GALLERY IMPORT",
+"target": "GALLERIATUONTI",
+"backtrans": "GALLERY IMPORT"
+},
+{
+"key": "tickerPdfExport",
+"english": "PDF EXPORT",
+"target": "PDF-VIENTI",
+"backtrans": "PDF EXPORT"
+},
+{
+"key": "tickerWordExport",
+"english": "WORD EXPORT",
+"target": "WORD-VIENTI",
+"backtrans": "WORD EXPORT"
+},
+{
+"key": "tickerJpgExport",
+"english": "JPG EXPORT",
+"target": "JPG-VIENTI",
+"backtrans": "JPG EXPORT"
+},
+{
+"key": "tickerPngExport",
+"english": "PNG EXPORT",
+"target": "PNG-VIENTI",
+"backtrans": "PNG EXPORT"
+},
+{
+"key": "tickerBatchExport",
+"english": "BATCH EXPORT",
+"target": "ERÄVIENTI",
+"backtrans": "BATCH EXPORT"
+},
+{
+"key": "tickerFolders",
+"english": "FOLDERS",
+"target": "KANSIOT",
+"backtrans": "FOLDERS"
+},
+{
+"key": "tickerTags",
+"english": "TAGS",
+"target": "TUNNISTEET",
+"backtrans": "TAGS"
+},
+{
+"key": "tickerFavorites",
+"english": "FAVORITES",
+"target": "SUOSIKIT",
+"backtrans": "FAVORITES"
+},
+{
+"key": "tickerSearch",
+"english": "SEARCH",
+"target": "HAKU",
+"backtrans": "SEARCH"
+},
+{
+"key": "tickerDarkMode",
+"english": "DARK MODE",
+"target": "TUMMA TILA",
+"backtrans": "DARK MODE"
+},
+{
+"key": "tickerAccentThemes",
+"english": "ACCENT THEMES",
+"target": "KOROSTUSTEEMAT",
+"backtrans": "ACCENT THEMES"
+},
+{
+"key": "tickerDeviceMigration",
+"english": "DEVICE MIGRATION",
+"target": "LAITTEEN SIIRTO",
+"backtrans": "DEVICE TRANSFER"
+},
+{
+"key": "onboardingWelcomeTitle",
+"english": "Welcome to KatharScan",
+"target": "Tervetuloa KatharScaniin",
+"backtrans": "Welcome to KatharScan"
+},
+{
+"key": "onboardingWelcomeSubtitle",
+"english": "Your entire document office — scan, edit, sign, and export — in one private app.",
+"target": "Koko asiakirjatoimistosi — skannaa, muokkaa, allekirjoita ja vie — yhdessä yksityisessä sovelluksessa.",
+"backtrans": "Your entire document office — scan, edit, sign and export — in one private app."
+},
+{
+"key": "onboardingToolsTitle",
+"english": "21 Free Pro Tools",
+"target": "21 ilmaista Pro-työkalua",
+"backtrans": "21 free Pro tools"
+},
+{
+"key": "onboardingToolsSubtitle",
+"english": "Annotate, sign, watermark, fill forms, seal, and more — every tool free and unlimited.",
+"target": "Merkitse, allekirjoita, lisää vesileimoja, täytä lomakkeita, sinetöi ja paljon muuta — jokainen työkalu ilmainen ja rajoittamaton.",
+"backtrans": "Mark up, sign, add watermarks, fill in forms, seal and much more — every tool free and unlimited."
+},
+{
+"key": "onboardingOcrTitle",
+"english": "On-Device OCR",
+"target": "OCR laitteessa",
+"backtrans": "OCR on the device"
+},
+{
+"key": "onboardingOcrSubtitle",
+"english": "Use KatharScan in {count} languages. OCR runs on your phone — nothing ever leaves your device.",
+"target": "Käytä KatharScania {count} kielellä. OCR toimii puhelimessasi — mikään ei poistu laitteestasi.",
+"backtrans": "Use KatharScan in {count} languages. OCR works on your phone — nothing leaves your device. [??: 'Use KatharScan in {count} languages' is ambiguous: use the app in vs. scan text in]"
+},
+{
+"key": "onboardingSignTitle",
+"english": "Sign, Fill & Seal",
+"target": "Allekirjoita, täytä ja sinetöi",
+"backtrans": "Sign, fill in and seal"
+},
+{
+"key": "onboardingSignSubtitle",
+"english": "E-sign contracts, type-to-fill forms, and stamp enterprise seals in seconds.",
+"target": "Allekirjoita sopimukset sähköisesti, täytä lomakkeet kirjoittamalla ja leimaa yrityssinetit sekunneissa.",
+"backtrans": "Sign contracts electronically, fill in forms by typing and stamp company seals in seconds."
+},
+{
+"key": "onboardingEditTitle",
+"english": "Non-Destructive Editing",
+"target": "Tuhoamaton muokkaus",
+"backtrans": "Non-destructive editing"
+},
+{
+"key": "onboardingEditSubtitle",
+"english": "Every edit stays reversible — undo, redo, and revert to original anytime.",
+"target": "Jokainen muokkaus pysyy peruutettavana — kumoa, tee uudelleen ja palauta alkuperäiseen milloin tahansa.",
+"backtrans": "Every edit stays reversible — undo, redo and revert to the original at any time."
+},
+{
+"key": "onboardingPrivacyTitle",
+"english": "Private by design",
+"target": "Yksityisyys sisäänrakennettuna",
+"backtrans": "Privacy built in"
+},
+{
+"key": "onboardingPrivacySubtitle",
+"english": "No account, no cloud, no watermarks. Your documents never leave your device.",
+"target": "Ei tiliä, ei pilveä, ei vesileimoja. Asiakirjasi eivät koskaan poistu laitteestasi.",
+"backtrans": "No account, no cloud, no watermarks. Your documents never leave your device."
+},
+{
+"key": "onboardingContinue",
+"english": "Continue",
+"target": "Jatka",
+"backtrans": "Continue"
+},
+{
+"key": "onboardingGetStarted",
+"english": "Get Started",
+"target": "Aloita",
+"backtrans": "Get started"
+},
+{
+"key": "onboardingBack",
+"english": "Back",
+"target": "Takaisin",
+"backtrans": "Back"
+},
+{
+"key": "onboardingReplayIntro",
+"english": "Replay introduction",
+"target": "Toista esittely",
+"backtrans": "Replay the intro"
+},
+{
+"key": "saveToDownloadsAction",
+"english": "Save to Downloads",
+"target": "Tallenna Latauksiin",
+"backtrans": "Save to Downloads"
+},
+{
+"key": "paywallTitle",
+"english": "Remove Ads",
+"target": "Poista mainokset",
+"backtrans": "Remove ads"
+},
+{
+"key": "paywallSubtitle",
+"english": "Support KatharScan with a one-time purchase. All features remain free.",
+"target": "Tue KatharScania kertaluonteisella ostolla. Kaikki ominaisuudet pysyvät ilmaiseksi.",
+"backtrans": "Support KatharScan with a one-time purchase. All features remain free."
+},
+{
+"key": "paywallFallbackPrice",
+"english": "$14.99 one-time",
+"target": "$14.99 kertamaksu",
+"backtrans": "$14.99 one-time payment"
+},
+{
+"key": "paywallFeatureNoBanner",
+"english": "No more banner ads",
+"target": "Ei enää bannerimainoksia",
+"backtrans": "No more banner ads"
+},
+{
+"key": "paywallFeatureNoInterstitial",
+"english": "No more interstitial ads",
+"target": "Ei enää välimainoksia",
+"backtrans": "No more interstitial ads"
+},
+{
+"key": "paywallFeatureFreeForever",
+"english": "All features free forever",
+"target": "Kaikki ominaisuudet ilmaiseksi ikuisesti",
+"backtrans": "All features free forever"
+},
+{
+"key": "paywallLegalText",
+"english": "This is a non-consumable purchase. Restore it anytime on any device with the same store account.",
+"target": "Tämä on ei-kulutettava osto. Palauta se milloin tahansa millä tahansa laitteella samalla kaupan tilillä.",
+"backtrans": "This is a non-consumable purchase. Restore it at any time on any device with the same store account."
+},
+{
+"key": "paywallSuccessTitle",
+"english": "Ads Removed",
+"target": "Mainokset poistettu",
+"backtrans": "Ads removed"
+},
+{
+"key": "paywallSuccessMessage",
+"english": "Thank you for supporting KatharScan.",
+"target": "Kiitos KatharScanin tukemisesta.",
+"backtrans": "Thank you for supporting KatharScan."
+},
+{
+"key": "errorGenericTitle",
+"english": "Something went wrong",
+"target": "Jotain meni pieleen",
+"backtrans": "Something went wrong"
+},
+{
+"key": "errorScreenProblem",
+"english": "KatharScan ran into a problem displaying this screen. Your scans are safe — they're stored on this device and this doesn't affect them.",
+"target": "KatharScan kohtasi ongelman näyttäessään tätä näyttöä. Skannauksesi ovat turvassa — ne tallennetaan tälle laitteelle eikä tämä vaikuta niihin.",
+"backtrans": "KatharScan encountered a problem while displaying this screen. Your scans are safe — they are saved on this device and this does not affect them."
+},
+{
+"key": "errorReportIssue",
+"english": "Report issue",
+"target": "Ilmoita ongelma",
+"backtrans": "Report a problem"
+},
+{
+"key": "filterAll",
+"english": "All",
+"target": "Kaikki",
+"backtrans": "All"
+},
+{
+"key": "filterFolders",
+"english": "Folders",
+"target": "Kansiot",
+"backtrans": "Folders"
+},
+{
+"key": "filterRecent",
+"english": "Recent",
+"target": "Viimeisimmät",
+"backtrans": "Most recent"
+},
+{
+"key": "filterFavorites",
+"english": "Favorites",
+"target": "Suosikit",
+"backtrans": "Favorites"
+},
+{
+"key": "chipAllFolders",
+"english": "All Folders",
+"target": "Kaikki kansiot",
+"backtrans": "All folders"
+},
+{
+"key": "chipSelectMultiple",
+"english": "Select Multiple",
+"target": "Valitse useita",
+"backtrans": "Select multiple"
+},
+{
+"key": "emptySearch",
+"english": "No scans match your search.",
+"target": "Yksikään skannaus ei vastaa hakuasi.",
+"backtrans": "No scan matches your search."
+},
+{
+"key": "emptyFolders",
+"english": "No folders yet. Tap the folder icon to create one.",
+"target": "Ei kansioita vielä. Napauta kansiokuvaketta luodaksesi yhden.",
+"backtrans": "No folders yet. Tap the folder icon to create one."
+},
+{
+"key": "emptyFavorites",
+"english": "No favorites yet. Tap the star icon on a document to add it.",
+"target": "Ei suosikkeja vielä. Napauta tähtikuvaketta asiakirjassa lisätäksesi sen.",
+"backtrans": "No favorites yet. Tap the star icon in a document to add it."
+},
+{
+"key": "modeDocument",
+"english": "Document Mode",
+"target": "Asiakirjatila",
+"backtrans": "Document mode"
+},
+{
+"key": "modeOcr",
+"english": "OCR Mode",
+"target": "OCR-tila",
+"backtrans": "OCR mode"
+},
+{
+"key": "modeIdCard",
+"english": "ID Card Mode",
+"target": "Henkilökorttitila",
+"backtrans": "Identity card mode"
+},
+{
+"key": "modePassport",
+"english": "Passport Mode",
+"target": "Passitila",
+"backtrans": "Passport mode"
+},
+{
+"key": "titlePdfImport",
+"english": "PDF Import",
+"target": "PDF-tuonti",
+"backtrans": "PDF import"
+},
+{
+"key": "titleIdCard",
+"english": "ID Card",
+"target": "Henkilökortti",
+"backtrans": "Identity card"
+},
+{
+"key": "titleScan",
+"english": "Scan",
+"target": "Skannaa",
+"backtrans": "Scan"
+},
+{
+"key": "exportEstimatedSize",
+"english": "Estimated size: {mb} MB",
+"target": "Arvioitu koko: {mb} Mt",
+"backtrans": "Estimated size: {mb} MB"
+},
+{
+"key": "debugNoLogsYet",
+"english": "No logs yet",
+"target": "Ei lokeja vielä",
+"backtrans": "No logs yet"
+},
+{
+"key": "textBold",
+"english": "B",
+"target": "L",
+"backtrans": "L [??: letter 'L' (from 'Lihavoitu') for bold; Finnish-specific abbreviation, not B]"
+},
+{
+"key": "textItalic",
+"english": "I",
+"target": "K",
+"backtrans": "K [??: letter 'K' (from 'Kursivoitu') for italic; Finnish-specific, not I]"
+},
+{
+"key": "textUnderline",
+"english": "U",
+"target": "A",
+"backtrans": "A [??: letter 'A' (from 'Alleviivattu') for underline; Finnish-specific, not U]"
+},
+{
+"key": "textFontLetterA",
+"english": "A",
+"target": "A",
+"backtrans": "A"
+},
+{
+"key": "multiplySymbol",
+"english": "×",
+"target": "×",
+"backtrans": "×"
+},
+{
+"key": "signerLabel",
+"english": "Signer {index}",
+"target": "Allekirjoittaja {index}",
+"backtrans": "Signer {index}"
+},
+{
+"key": "stampCheckbox",
+"english": "Checkbox",
+"target": "Valintaruutu",
+"backtrans": "Checkbox"
+},
+{
+"key": "fontSansSerif",
+"english": "sans-serif",
+"target": "sans-serif",
+"backtrans": "sans-serif"
+},
+{
+"key": "fontSerif",
+"english": "serif",
+"target": "serif",
+"backtrans": "serif"
+},
+{
+"key": "fontMonospace",
+"english": "monospace",
+"target": "monospace",
+"backtrans": "monospace"
+},
+{
+"key": "sealCustom",
+"english": "Custom Seal",
+"target": "Mukautettu sinetti",
+"backtrans": "Custom seal"
+},
+{
+"key": "formatCsv",
+"english": "CSV",
+"target": "CSV",
+"backtrans": "CSV"
+},
+{
+"key": "ocrNoTextFound",
+"english": "No text found",
+"target": "Tekstiä ei löytynyt",
+"backtrans": "No text found"
+},
+{
+"key": "rotationAllPages",
+"english": "All pages rotated",
+"target": "Kaikki sivut kierretty",
+"backtrans": "All pages rotated"
+},
+{
+"key": "rotationPage",
+"english": "Page rotated",
+"target": "Sivu kierretty",
+"backtrans": "Page rotated"
+},
+{
+"key": "resizeTitle",
+"english": "Resize",
+"target": "Muuta kokoa",
+"backtrans": "Resize"
+},
+{
+"key": "addTextTitle",
+"english": "Add Text",
+"target": "Lisää teksti",
+"backtrans": "Add text"
+},
+{
+"key": "addNoteTitle",
+"english": "Add Note",
+"target": "Lisää muistiinpano",
+"backtrans": "Add note"
+},
+{
+"key": "addDateTitle",
+"english": "Add Date",
+"target": "Lisää päivämäärä",
+"backtrans": "Add date"
+},
+{
+"key": "addCheckboxTitle",
+"english": "Add Checkbox",
+"target": "Lisää valintaruutu",
+"backtrans": "Add checkbox"
+},
+{
+"key": "noteTextLabel",
+"english": "Note text",
+"target": "Muistiinpanon teksti",
+"backtrans": "Note text"
+},
+{
+"key": "textLabel",
+"english": "Text",
+"target": "Teksti",
+"backtrans": "Text"
+},
+{
+"key": "checkShapeRounded",
+"english": "Rounded",
+"target": "Pyöristetty",
+"backtrans": "Rounded"
+},
+{
+"key": "checkShapeSquare",
+"english": "Square",
+"target": "Neliö",
+"backtrans": "Square"
+},
+{
+"key": "checkShapeCircle",
+"english": "Circle",
+"target": "Ympyrä",
+"backtrans": "Circle"
+},
+{
+"key": "hueLabel",
+"english": "Hue",
+"target": "Sävy",
+"backtrans": "Hue"
+},
+{
+"key": "satLabel",
+"english": "Sat",
+"target": "Kyll",
+"backtrans": "Sat [??: 'Kyll' is truncated abbreviation of Kylläisyys (saturation); cryptic, looks like 'Fill'/'Satiated']"
+},
+{
+"key": "valLabel",
+"english": "Val",
+"target": "Arvo",
+"backtrans": "Value"
+},
+{
+"key": "annotationModePen",
+"english": "Pen",
+"target": "Kynä",
+"backtrans": "Pen"
+},
+{
+"key": "annotationModeHighlighter",
+"english": "Highlighter",
+"target": "Korostuskynä",
+"backtrans": "Highlighter pen"
+},
+{
+"key": "annotationModeRect",
+"english": "Rectangle",
+"target": "Suorakulmio",
+"backtrans": "Rectangle"
+},
+{
+"key": "annotationModeArrow",
+"english": "Arrow",
+"target": "Nuoli",
+"backtrans": "Arrow"
+},
+{
+"key": "annotationModeEllipse",
+"english": "Ellipse",
+"target": "Ellipsi",
+"backtrans": "Ellipse"
+},
+{
+"key": "sharePromptTitle",
+"english": "Love KatharScan?",
+"target": "Pidätkö KatharScanista?",
+"backtrans": "Do you like KatharScan?"
+},
+{
+"key": "sharePromptBody",
+"english": "Share it with friends who need a powerful document scanner.",
+"target": "Jaa se ystävien kanssa, jotka tarvitsevat tehokkaan asiakirjaskannerin.",
+"backtrans": "Share it with friends who need a powerful document scanner."
+},
+{
+"key": "sharePromptAction",
+"english": "Share App",
+"target": "Jaa sovellus",
+"backtrans": "Share the app"
+},
+{
+"key": "sharePromptDismiss",
+"english": "Not now",
+"target": "Ei nyt",
+"backtrans": "Not now"
+},
+{
+"key": "reviewPromptTitle",
+"english": "Enjoying KatharScan?",
+"target": "Nautitko KatharScanista?",
+"backtrans": "Are you enjoying KatharScan?"
+},
+{
+"key": "reviewPromptBody",
+"english": "Your feedback helps us grow and keeps the app free.",
+"target": "Palautteesi auttaa meitä kasvamaan ja pitää sovelluksen ilmaisena.",
+"backtrans": "Your feedback helps us grow and keep the app free."
+},
+{
+"key": "reviewPromptYes",
+"english": "Rate Us",
+"target": "Arvostele meidät",
+"backtrans": "Rate us"
+},
+{
+"key": "reviewPromptNo",
+"english": "Send Feedback",
+"target": "Lähetä palautetta",
+"backtrans": "Send feedback"
+},
+{
+"key": "watermarkLabel",
+"english": "Watermark",
+"target": "Vesileima",
+"backtrans": "Watermark"
+},
+{
+"key": "compressLabel",
+"english": "Compress",
+"target": "Pakkaa",
+"backtrans": "Compress"
+},
+{
+"key": "pagesLabel",
+"english": "Pages",
+"target": "Sivut",
+"backtrans": "Pages"
+},
+{
+"key": "cropLabel",
+"english": "Crop",
+"target": "Rajaa",
+"backtrans": "Crop"
+},
+{
+"key": "emailLabel",
+"english": "Email",
+"target": "Sähköposti",
+"backtrans": "Email"
+},
+{
+"key": "checkLabel",
+"english": "Check",
+"target": "Rasti",
+"backtrans": "Cross mark [??: 'Rasti' = cross/X-mark or checkbox; inconsistent with other tick/checkbox terms]"
+},
+{
+"key": "captionDocs",
+"english": "Flexible crop: Original, Square, 4:3, 3:2, 16:9",
+"target": "Joustava rajaus: Alkuperäinen, Neliö, 4:3, 3:2, 16:9",
+"backtrans": "Flexible cropping: Original, Square, 4:3, 3:2, 16:9"
+},
+{
+"key": "captionOcr",
+"english": "Text crop: Original, Square, 4:3",
+"target": "Tekstirajaus: Alkuperäinen, Neliö, 4:3",
+"backtrans": "Text cropping: Original, Square, 4:3"
+},
+{
+"key": "captionIdCard",
+"english": "Two-sided ID capture: Front + Back",
+"target": "Kaksipuolinen henkilökortin skannaus: etu- ja takapuoli",
+"backtrans": "Two-sided identity card scan: front and back"
+},
+{
+"key": "captionPassport",
+"english": "Passport crop: 4:3 or Original",
+"target": "Passirajaus: 4:3 tai Alkuperäinen",
+"backtrans": "Passport cropping: 4:3 or Original"
+},
+{
+"key": "idStepFront",
+"english": "Step 1: Capture Front Side",
+"target": "Vaihe 1: Skannaa etupuoli",
+"backtrans": "Step 1: Scan the front side"
+},
+{
+"key": "idStepBack",
+"english": "Step 2: Capture Back Side",
+"target": "Vaihe 2: Skannaa takapuoli",
+"backtrans": "Step 2: Scan the back side"
+},
+{
+"key": "idGenerating",
+"english": "Generating PDF...",
+"target": "Luodaan PDF:ää...",
+"backtrans": "Creating the PDF..."
+},
+{
+"key": "captureFrontSide",
+"english": "Capture Front Side",
+"target": "Skannaa etupuoli",
+"backtrans": "Scan the front side"
+},
+{
+"key": "captureBackSide",
+"english": "Capture Back Side",
+"target": "Skannaa takapuoli",
+"backtrans": "Scan the back side"
+},
+{
+"key": "importFrontSide",
+"english": "Import Front Side",
+"target": "Tuo etupuoli",
+"backtrans": "Import the front side"
+},
+{
+"key": "importBackSide",
+"english": "Import Back Side",
+"target": "Tuo takapuoli",
+"backtrans": "Import the back side"
+},
+{
+"key": "cropDocumentTitle",
+"english": "Crop Document",
+"target": "Rajaa asiakirja",
+"backtrans": "Crop document"
+},
+{
+"key": "cropIdCardTitle",
+"english": "Crop ID Card",
+"target": "Rajaa henkilökortti",
+"backtrans": "Crop identity card"
+},
+{
+"key": "tabImageLabel",
+"english": "Image",
+"target": "Kuva",
+"backtrans": "Image"
+},
+{
+"key": "tabOcrTextLabel",
+"english": "OCR Text",
+"target": "OCR-teksti",
+"backtrans": "OCR text"
+},
+{
+"key": "compressSmall",
+"english": "Small",
+"target": "Pieni",
+"backtrans": "Small"
+},
+{
+"key": "compressMedium",
+"english": "Medium",
+"target": "Keskikoko",
+"backtrans": "Medium-sized"
+},
+{
+"key": "pageFormatLetter",
+"english": "Letter (US)",
+"target": "Letter (USA)",
+"backtrans": "Letter (USA)"
+},
+{
+"key": "ocrScriptLatin",
+"english": "Latin (English, European)",
+"target": "Latinalainen (englanti, eurooppalainen)",
+"backtrans": "Latin (English, European)"
+},
+{
+"key": "ocrScriptChinese",
+"english": "Chinese",
+"target": "Kiina",
+"backtrans": "China [??: country name rather than language/script (Chinese)]"
+},
+{
+"key": "ocrScriptKorean",
+"english": "Korean",
+"target": "Korea",
+"backtrans": "Korea [??: country name rather than language/script (Korean)]"
+},
+{
+"key": "ocrScriptJapanese",
+"english": "Japanese",
+"target": "Japani",
+"backtrans": "Japan [??: country name rather than language/script (Japanese)]"
+},
+{
+"key": "ocrScriptDevanagari",
+"english": "Hindi, Marathi (Devanagari)",
+"target": "Hindi, marathi (devanagari)",
+"backtrans": "Hindi, Marathi (Devanagari)"
+},
+{
+"key": "ocrStatusUnsupported",
+"english": "Unsupported",
+"target": "Ei tuettu",
+"backtrans": "Not supported"
+},
+{
+"key": "noteLabel",
+"english": "Note",
+"target": "Muistiinpano",
+"backtrans": "Note"
+},
+{
+"key": "dateLabel",
+"english": "Date",
+"target": "Päivämäärä",
+"backtrans": "Date"
+},
+{
+"key": "accentBlue",
+"english": "Blue",
+"target": "Sininen",
+"backtrans": "Blue"
+},
+{
+"key": "accentIndigo",
+"english": "Indigo",
+"target": "Indigo",
+"backtrans": "Indigo"
+},
+{
+"key": "accentEmerald",
+"english": "Emerald",
+"target": "Smaragdi",
+"backtrans": "Emerald"
+},
+{
+"key": "accentCrimson",
+"english": "Crimson",
+"target": "Karmiini",
+"backtrans": "Carmine"
+},
+{
+"key": "accentAmber",
+"english": "Amber",
+"target": "Meripihka",
+"backtrans": "Amber (literally 'amber/resin')"
+},
+{
+"key": "accentViolet",
+"english": "Violet",
+"target": "Violetti",
+"backtrans": "Violet"
+},
+{
+"key": "tickerLanguages",
+"english": "{count} LANGUAGES",
+"target": "{count} KIELTÄ",
+"backtrans": "{count} LANGUAGES"
+},
+{
+"key": "termsOfServiceLabel",
+"english": "Terms of Service",
+"target": "Käyttöehdot",
+"backtrans": "Terms of use"
+},
+{
+"key": "openSourceLicensesLabel",
+"english": "Open-source licenses",
+"target": "Avoimen lähdekoodin lisenssit",
+"backtrans": "Open-source licenses"
+},
+{
+"key": "whatsNewTitle",
+"english": "What's New",
+"target": "Uutta",
+"backtrans": "What's new"
+},
+{
+"key": "whatsNewContinue",
+"english": "Continue",
+"target": "Jatka",
+"backtrans": "Continue"
+},
+{
+"key": "tickerTxtExport",
+"english": "TXT EXPORT",
+"target": "TXT-VIENTI",
+"backtrans": "TXT EXPORT"
+},
+{
+"key": "tickerCsvExport",
+"english": "CSV EXPORT",
+"target": "CSV-VIENTI",
+"backtrans": "CSV EXPORT"
+},
+{
+"key": "whatsNewBody",
+"english": "Welcome to KatharScan! This is the first public release featuring unlimited scanning, 29 languages, and export to PDF, Word, TXT, JPG, PNG, and CSV.",
+"target": "Tervetuloa KatharScaniin! Tämä on ensimmäinen julkinen versio, jossa on rajaton skannaus, 29 kieltä ja vienti muotoihin PDF, Word, TXT, JPG, PNG ja CSV.",
+"backtrans": "Welcome to KatharScan! This is the first public version, with unlimited scanning, 29 languages and export to PDF, Word, TXT, JPG, PNG and CSV formats."
+},
+{
+"key": "engagementSectionLabel",
+"english": "ENGAGEMENT & NOTIFICATIONS",
+"target": "ILMOITUKSET JA KEHOTTEET",
+"backtrans": "NOTIFICATIONS AND PROMPTS"
+},
+{
+"key": "enableNotificationsLabel",
+"english": "Enable Notifications",
+"target": "Ota ilmoitukset käyttöön",
+"backtrans": "Enable notifications"
+},
+{
+"key": "enableNotificationsSubtitle",
+"english": "Allow background reminders for unexported documents",
+"target": "Salli taustamuistutukset viemättömille asiakirjoille",
+"backtrans": "Allow background reminders for unexported documents"
+},
+{
+"key": "enableReviewPromptsLabel",
+"english": "Enable Review Prompts",
+"target": "Ota arvostelukehotteet käyttöön",
+"backtrans": "Enable review prompts"
+},
+{
+"key": "enableReviewPromptsSubtitle",
+"english": "Allow the app to occasionally ask for a rating",
+"target": "Salli sovelluksen pyytää arviota ajoittain",
+"backtrans": "Allow the app to ask for a rating occasionally"
+},
+{
+"key": "enableSharePromptsLabel",
+"english": "Enable Share Prompts",
+"target": "Ota jakokehotteet käyttöön",
+"backtrans": "Enable share prompts"
+},
+{
+"key": "enableSharePromptsSubtitle",
+"english": "Allow the app to occasionally suggest sharing",
+"target": "Salli sovelluksen ehdottaa jakamista ajoittain",
+"backtrans": "Allow the app to suggest sharing occasionally"
+},
+{
+"key": "exportFormatCsvDescription",
+"english": "Spreadsheet data",
+"target": "Taulukkotiedot",
+"backtrans": "Tabular data"
+},
+{
+"key": "watermarkDefaultText",
+"english": "CONFIDENTIAL",
+"target": "LUOTTAMUKSELLINEN",
+"backtrans": "CONFIDENTIAL"
+},
+{
+"key": "emailAttachmentNotIncluded",
+"english": "The pages could not be attached to the email. Use Share to send the pages.",
+"target": "Sivuja ei voitu liittää sähköpostiin. Lähetä sivut Jaa-toiminnolla.",
+"backtrans": "The pages could not be attached to the email. Send the pages with the Share function."
+},
+{
+"key": "sealDefaultMainText",
+"english": "YOUR COMPANY",
+"target": "YRITYKSESI",
+"backtrans": "YOUR COMPANY"
+},
+{
+"key": "extractedPageDefaultTitle",
+"english": "Extracted Page",
+"target": "Purettu sivu",
+"backtrans": "Extracted page"
+},
+{
+"key": "printRangeAll",
+"english": "All pages",
+"target": "Kaikki sivut",
+"backtrans": "All pages"
+},
+{
+"key": "printRangeCurrent",
+"english": "Current",
+"target": "Nykyinen",
+"backtrans": "Current"
+},
+{
+"key": "printRangeRange",
+"english": "Range",
+"target": "Alue",
+"backtrans": "Range"
+},
+{
+"key": "printFilterNone",
+"english": "No filter",
+"target": "Ei suodatinta",
+"backtrans": "No filter"
+},
+{
+"key": "removeFromFavorites",
+"english": "Remove from Favorites",
+"target": "Poista suosikeista",
+"backtrans": "Remove from favorites"
+},
+{
+"key": "addToFavorites",
+"english": "Add to Favorites",
+"target": "Lisää suosikkeihin",
+"backtrans": "Add to favorites"
+},
+{
+"key": "saveFailedPrefix",
+"english": "Save failed:",
+"target": "Tallennus epäonnistui:",
+"backtrans": "Saving failed:"
+},
+{
+"key": "ocrScriptArabic",
+"english": "العربية (Arabic)",
+"target": "العربية (Arabic)",
+"backtrans": "العربية (Arabic)"
+},
+{
+"key": "ocrScriptRussian",
+"english": "Русский (Russian)",
+"target": "Русский (Russian)",
+"backtrans": "Русский (Russian)"
+},
+{
+"key": "ocrScriptUkrainian",
+"english": "Українська (Ukrainian)",
+"target": "Українська (Ukrainian)",
+"backtrans": "Українська (Ukrainian)"
+},
+{
+"key": "ocrScriptGreek",
+"english": "Ελληνικά (Greek)",
+"target": "Ελληνικά (Greek)",
+"backtrans": "Ελληνικά (Greek)"
+},
+{
+"key": "ocrScriptHebrew",
+"english": "עברית (Hebrew)",
+"target": "עברית (Hebrew)",
+"backtrans": "עברית (Hebrew)"
+},
+{
+"key": "ocrScriptThai",
+"english": "ไทย (Thai)",
+"target": "ไทย (Thai)",
+"backtrans": "ไทย (Thai)"
+},
+{
+"key": "ocrScriptBengali",
+"english": "বাংলা (Bengali)",
+"target": "বাংলা (Bengali)",
+"backtrans": "বাংলা (Bengali)"
+},
+{
+"key": "ocrStatusInstalled",
+"english": "Installed",
+"target": "Asennettu",
+"backtrans": "Installed"
+},
+{
+"key": "ocrStatusDownloading",
+"english": "Downloading…",
+"target": "Ladataan…",
+"backtrans": "Downloading…"
+},
+{
+"key": "exportNoTextError",
+"english": "This document has no text yet. Run OCR on it first.",
+"target": "Tässä asiakirjassa ei ole vielä tekstiä. Suorita ensin tekstintunnistus.",
+"backtrans": "This document has no text yet. Run text recognition first."
+},
+{
+"key": "saveFailedBanner",
+"english": "Your latest changes could not be saved.",
+"target": "Viimeisimpiä muutoksia ei voitu tallentaa.",
+"backtrans": "The latest changes could not be saved."
+},
+{
+"key": "editLabel",
+"english": "Edit",
+"target": "Muokkaa",
+"backtrans": "Edit"
+},
+{
+"key": "fillTapHint",
+"english": "Tap the page where you want to type",
+"target": "Napauta sivua kohdassa, johon haluat kirjoittaa",
+"backtrans": "Tap the page where you want to type"
+},
+{
+"key": "fillTypeHint",
+"english": "Type here",
+"target": "Kirjoita tähän",
+"backtrans": "Type here"
+},
+{
+"key": "clearPage",
+"english": "Clear page",
+"target": "Tyhjennä sivu",
+"backtrans": "Clear page"
+},
+{
+"key": "clearAllPages",
+"english": "Clear all pages",
+"target": "Tyhjennä kaikki sivut",
+"backtrans": "Clear all pages"
+},
+{
+"key": "clearedCount",
+"english": "Cleared {count}",
+"target": "Tyhjennetty {count}",
+"backtrans": "Cleared {count}"
+},
+{
+"key": "idLayoutRealSize",
+"english": "Real size",
+"target": "Todellinen koko",
+"backtrans": "Actual size"
+},
+{
+"key": "idLayoutFullWidth",
+"english": "Full width",
+"target": "Koko leveys",
+"backtrans": "Full width"
+},
+{
+"key": "pagesToReadTitle",
+"english": "Pages to read",
+"target": "Luettavat sivut",
+"backtrans": "Pages to read"
+},
+{
+"key": "pagesToReadHint",
+"english": "This PDF has {count} pages. Pages that are pictures are read with OCR (about 10 seconds each); pages with real text are instant.",
+"target": "Tässä PDF:ssä on {count} sivua. Kuvasivut luetaan tekstintunnistuksella (noin 10 sekuntia per sivu); oikeaa tekstiä sisältävät sivut heti.",
+"backtrans": "This PDF has {count} pages. Image pages are read with text recognition (about 10 seconds per page); pages containing real text immediately."
+},
+{
+"key": "pageFromLabel",
+"english": "From page",
+"target": "Alkaen sivulta",
+"backtrans": "From page"
+},
+{
+"key": "pageToLabel",
+"english": "To page",
+"target": "Sivulle asti",
+"backtrans": "Up to page"
+},
+{
+"key": "readingPageProgress",
+"english": "Page {page} of {total}",
+"target": "Sivu {page} / {total}",
+"backtrans": "Page {page} / {total}"
+},
+{
+"key": "readingPageEta",
+"english": "Page {page} of {total} · about {minutes} min left",
+"target": "Sivu {page} / {total} · noin {minutes} min jäljellä",
+"backtrans": "Page {page} / {total} · about {minutes} min remaining"
+},
+{
+"key": "sealShapeRound",
+"english": "Round",
+"target": "Pyöreä",
+"backtrans": "Round"
+},
+{
+"key": "sealFontSans",
+"english": "Clean",
+"target": "Selkeä",
+"backtrans": "Clear"
+},
+{
+"key": "sealFontSerif",
+"english": "Classic",
+"target": "Klassinen",
+"backtrans": "Classic"
+},
+{
+"key": "sealInkLook",
+"english": "Worn stamp look",
+"target": "Kulunut leimasinjälki",
+"backtrans": "Worn stamp ink impression"
+},
+{
+"key": "sealSaveToLibrary",
+"english": "Save this seal",
+"target": "Tallenna tämä sinetti",
+"backtrans": "Save this seal"
+},
+{
+"key": "sealSavedHeading",
+"english": "Saved seals",
+"target": "Tallennetut sinetit",
+"backtrans": "Saved seals"
+},
+{
+"key": "sealTextColorLabel",
+"english": "Text colour",
+"target": "Tekstin väri",
+"backtrans": "Text color"
+},
+{
+"key": "sealTextColorSame",
+"english": "Same as ring",
+"target": "Kuten rengas",
+"backtrans": "Like the ring"
+},
+{
+"key": "sealTextSizePercent",
+"english": "Text size {percent}%",
+"target": "Tekstin koko {percent} %",
+"backtrans": "Text size {percent} %"
+},
+{
+"key": "sealRemoveWhite",
+"english": "Make white transparent",
+"target": "Tee valkoisesta läpinäkyvä",
+"backtrans": "Make white transparent"
+},
+{
+"key": "sealSavedMessage",
+"english": "Seal saved",
+"target": "Sinetti tallennettu",
+"backtrans": "Seal saved"
+},
+{
+"key": "signatureTabDraw",
+"english": "Draw",
+"target": "Piirrä",
+"backtrans": "Draw"
+},
+{
+"key": "signatureTabType",
+"english": "Type",
+"target": "Kirjoita",
+"backtrans": "Type"
+},
+{
+"key": "signatureTypeHint",
+"english": "Type your name",
+"target": "Kirjoita nimesi",
+"backtrans": "Type your name"
+},
+{
+"key": "signatureWidthLabel",
+"english": "Pen width",
+"target": "Kynän paksuus",
+"backtrans": "Pen thickness"
+},
+{
+"key": "signatureFontFlowing",
+"english": "Flowing",
+"target": "Soljuva",
+"backtrans": "Flowing"
+},
+{
+"key": "signatureFontHandwritten",
+"english": "Handwritten",
+"target": "Käsiala",
+"backtrans": "Handwriting"
+},
+{
+"key": "signatureSavedHeading",
+"english": "Saved signatures",
+"target": "Tallennetut allekirjoitukset",
+"backtrans": "Saved signatures"
+},
+{
+"key": "signatureNewOne",
+"english": "Draw or type a new one",
+"target": "Piirrä tai kirjoita uusi",
+"backtrans": "Draw or type a new one"
+},
+{
+"key": "signatureDeleteSaved",
+"english": "Remove saved signature",
+"target": "Poista tallennettu allekirjoitus",
+"backtrans": "Delete saved signature"
+},
+{
+"key": "annotationModeSelect",
+"english": "Select",
+"target": "Valitse",
+"backtrans": "Select"
+},
+{
+"key": "annotationModeEraser",
+"english": "Eraser",
+"target": "Pyyhekumi",
+"backtrans": "Eraser"
+},
+{
+"key": "watermarkKindText",
+"english": "Text",
+"target": "Teksti",
+"backtrans": "Text"
+},
+{
+"key": "watermarkKindImage",
+"english": "Image",
+"target": "Kuva",
+"backtrans": "Image"
+},
+{
+"key": "watermarkChooseImage",
+"english": "Choose image",
+"target": "Valitse kuva",
+"backtrans": "Choose image"
+},
+{
+"key": "watermarkLayoutLabel",
+"english": "Layout",
+"target": "Asettelu",
+"backtrans": "Layout"
+},
+{
+"key": "watermarkLayoutSingle",
+"english": "Single",
+"target": "Yksittäinen",
+"backtrans": "Single"
+},
+{
+"key": "watermarkLayoutDiagonal",
+"english": "Diagonal",
+"target": "Viisto",
+"backtrans": "Slanted"
+},
+{
+"key": "watermarkLayoutTiled",
+"english": "Tiled",
+"target": "Toistuva",
+"backtrans": "Repeating"
+},
+{
+"key": "watermarkPagesLabel",
+"english": "Pages",
+"target": "Sivut",
+"backtrans": "Pages"
+},
+{
+"key": "watermarkPagesThis",
+"english": "This page",
+"target": "Tämä sivu",
+"backtrans": "This page"
+},
+{
+"key": "watermarkPagesAll",
+"english": "All pages",
+"target": "Kaikki sivut",
+"backtrans": "All pages"
+},
+{
+"key": "watermarkPagesRange",
+"english": "Range",
+"target": "Väli",
+"backtrans": "Interval"
+},
+{
+"key": "watermarkPagesRangeHint",
+"english": "e.g. 1-3, 5",
+"target": "esim. 1-3, 5",
+"backtrans": "e.g. 1-3, 5"
+},
+{
+"key": "watermarkPagesInvalid",
+"english": "Check the pages (the document has {count} pages)",
+"target": "Tarkista sivut (asiakirjassa on {count} sivua)",
+"backtrans": "Check the pages (the document has {count} pages)"
+},
+{
+"key": "cropAuto",
+"english": "Auto-detect",
+"target": "Tunnista automaattisesti",
+"backtrans": "Detect automatically"
+},
+{
+"key": "cropAspectFree",
+"english": "Free",
+"target": "Vapaa",
+"backtrans": "Free"
+},
+{
+"key": "cropAspectId",
+"english": "ID card",
+"target": "Henkilökortti",
+"backtrans": "Identity card"
+},
+{
+"key": "cropAspectSquare",
+"english": "Square",
+"target": "Neliö",
+"backtrans": "Square"
+},
+{
+"key": "cropNoPageFound",
+"english": "Couldn't find the page edges. Drag the corners.",
+"target": "Sivun reunoja ei löytynyt. Vedä kulmia.",
+"backtrans": "The page edges were not found. Drag the corners."
+},
+{
+"key": "straightenLabel",
+"english": "Straighten",
+"target": "Suorista",
+"backtrans": "Straighten"
+},
+{
+"key": "filterMagicColor",
+"english": "Magic colour",
+"target": "Taikaväri",
+"backtrans": "Magic color"
+},
+{
+"key": "filterBrightnessLabel",
+"english": "Brightness",
+"target": "Kirkkaus",
+"backtrans": "Brightness"
+},
+{
+"key": "filterContrastLabel",
+"english": "Contrast",
+"target": "Kontrasti",
+"backtrans": "Contrast"
+},
+{
+"key": "resizeUpscaleWarning",
+"english": "Enlarging doesn't add detail — the page may look soft.",
+"target": "Suurentaminen ei lisää yksityiskohtia – sivu voi näyttää pehmeältä.",
+"backtrans": "Enlarging does not add detail – the page may look soft."
+},
+{
+"key": "eraserAutoColorTooltip",
+"english": "Match the page colour automatically",
+"target": "Sovita sivun väriin automaattisesti",
+"backtrans": "Match the page color automatically"
+},
+{
+"key": "eraserZoomTooltip",
+"english": "Zoom and move (pinch)",
+"target": "Zoomaa ja siirrä (nipistä)",
+"backtrans": "Zoom and move (pinch)"
+},
+{
+"key": "pagesSelectTooltip",
+"english": "Select pages",
+"target": "Valitse sivuja",
+"backtrans": "Select pages"
+},
+{
+"key": "pagesDeleteCount",
+"english": "Delete {count}",
+"target": "Poista {count}",
+"backtrans": "Delete {count}"
+},
+{
+"key": "pagesDeleteConfirm",
+"english": "Delete {count} pages? They are removed when you save.",
+"target": "Poistetaanko {count} sivua? Ne poistetaan tallennettaessa.",
+"backtrans": "Delete {count} pages? They are removed when saving."
+},
+{
+"key": "compressTargetLabel",
+"english": "Max size",
+"target": "Enimmäiskoko",
+"backtrans": "Maximum size"
+},
+{
+"key": "compressNoLimit",
+"english": "No limit",
+"target": "Ei rajaa",
+"backtrans": "No limit"
+},
+{
+"key": "printPaperLabel",
+"english": "Paper",
+"target": "Paperi",
+"backtrans": "Paper"
+},
+{
+"key": "printMarginLabel",
+"english": "Margin",
+"target": "Marginaali",
+"backtrans": "Margin"
+},
+{
+"key": "printMarginNone",
+"english": "None",
+"target": "Ei mitään",
+"backtrans": "None"
+},
+{
+"key": "printMarginNarrow",
+"english": "Narrow",
+"target": "Kapea",
+"backtrans": "Narrow"
+},
+{
+"key": "printMarginNormal",
+"english": "Normal",
+"target": "Normaali",
+"backtrans": "Normal"
+},
+{
+"key": "printFitLabel",
+"english": "Scaling",
+"target": "Sovitus",
+"backtrans": "Fitting"
+},
+{
+"key": "printFitFit",
+"english": "Fit page",
+"target": "Sovita sivu",
+"backtrans": "Fit page"
+},
+{
+"key": "printFitFill",
+"english": "Fill sheet (trims edges)",
+"target": "Täytä arkki (rajaa reunat)",
+"backtrans": "Fill the sheet (crop edges)"
+},
+{
+"key": "printPerSheetLabel",
+"english": "Pages per sheet",
+"target": "Sivuja arkille",
+"backtrans": "Pages per sheet"
+},
+{
+"key": "emailMessageLabel",
+"english": "Message",
+"target": "Viesti",
+"backtrans": "Message"
+},
+{
+"key": "emailMessageHint",
+"english": "Add a note (optional)",
+"target": "Lisää viesti (valinnainen)",
+"backtrans": "Add a message (optional)"
+},
+{
+"key": "emailLimitMissed",
+"english": "Could not get under {mb} MB; sent the smallest version.",
+"target": "{mb} MB:n alle ei päästy; lähetettiin pienin versio.",
+"backtrans": "Getting under {mb} MB was not achieved; the smallest version was sent."
+}
+]

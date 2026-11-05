@@ -1,0 +1,3362 @@
+[
+{
+"key": "privacyOptionsLabel",
+"english": "Privacy settings",
+"target": "গোপনীয়তা সেটিংস",
+"backtrans": "Privacy settings"
+},
+{
+"key": "commonCancel",
+"english": "Cancel",
+"target": "বাতিল",
+"backtrans": "Cancel"
+},
+{
+"key": "commonDelete",
+"english": "Delete",
+"target": "মুছুন",
+"backtrans": "Delete"
+},
+{
+"key": "commonSave",
+"english": "Save",
+"target": "সংরক্ষণ",
+"backtrans": "Save"
+},
+{
+"key": "commonAdd",
+"english": "Add",
+"target": "যোগ করুন",
+"backtrans": "Add"
+},
+{
+"key": "commonExport",
+"english": "Export",
+"target": "রপ্তানি",
+"backtrans": "Export"
+},
+{
+"key": "commonImport",
+"english": "Import",
+"target": "আমদানি",
+"backtrans": "Import"
+},
+{
+"key": "commonSkip",
+"english": "Skip",
+"target": "এড়িয়ে যান",
+"backtrans": "Skip"
+},
+{
+"key": "commonClear",
+"english": "Clear",
+"target": "পরিষ্কার",
+"backtrans": "Clean [??: \"পরিষ্কার\" literally means clean/clear; ambiguous as a \"Clear\" action label]"
+},
+{
+"key": "emptyStateDefaultMessage",
+"english": "Tap the camera to scan your first document.",
+"target": "আপনার প্রথম নথি স্ক্যান করতে ক্যামেরায় ট্যাপ করুন।",
+"backtrans": "Tap the camera to scan your first document."
+},
+{
+"key": "exportFormatSheetTitle",
+"english": "Export as",
+"target": "রপ্তানি করুন",
+"backtrans": "Export"
+},
+{
+"key": "exportFormatPdfLabel",
+"english": "PDF",
+"target": "PDF",
+"backtrans": "PDF"
+},
+{
+"key": "exportFormatPdfDescription",
+"english": "Best for sharing and printing",
+"target": "শেয়ারিং এবং প্রিন্টিংয়ের জন্য সেরা",
+"backtrans": "Best for sharing and printing"
+},
+{
+"key": "exportFormatDocxLabel",
+"english": "Word (.docx)",
+"target": "Word (.docx)",
+"backtrans": "Word (.docx)"
+},
+{
+"key": "exportFormatDocxDescription",
+"english": "Editable text document",
+"target": "সম্পাদনাযোগ্য টেক্সট নথি",
+"backtrans": "Editable text document"
+},
+{
+"key": "exportFormatTxtLabel",
+"english": "Text (.txt)",
+"target": "টেক্সট (.txt)",
+"backtrans": "Text (.txt)"
+},
+{
+"key": "exportFormatTxtDescription",
+"english": "Plain OCR text only",
+"target": "শুধুমাত্র সাধারণ OCR টেক্সট",
+"backtrans": "Only plain OCR text"
+},
+{
+"key": "exportFormatJpgLabel",
+"english": "JPG",
+"target": "JPG",
+"backtrans": "JPG"
+},
+{
+"key": "exportFormatJpgDescription",
+"english": "One image per page",
+"target": "প্রতি পৃষ্ঠায় একটি চিত্র",
+"backtrans": "One image per page"
+},
+{
+"key": "exportFormatPngLabel",
+"english": "PNG",
+"target": "PNG",
+"backtrans": "PNG"
+},
+{
+"key": "exportFormatPngDescription",
+"english": "One image per page, lossless",
+"target": "প্রতি পৃষ্ঠায় একটি চিত্র, লসলেস",
+"backtrans": "One image per page, lossless"
+},
+{
+"key": "filterSheetTitle",
+"english": "Filters",
+"target": "ফিল্টার",
+"backtrans": "Filter"
+},
+{
+"key": "filterOriginal",
+"english": "Original",
+"target": "আসল",
+"backtrans": "Original"
+},
+{
+"key": "filterGrayscale",
+"english": "Grayscale",
+"target": "গ্রেস্কেল",
+"backtrans": "Grayscale"
+},
+{
+"key": "filterBlackAndWhite",
+"english": "B&W",
+"target": "কালো-সাদা",
+"backtrans": "Black-white"
+},
+{
+"key": "filterColorEnhance",
+"english": "Color enhance",
+"target": "রঙ বৃদ্ধি",
+"backtrans": "Color enhancement"
+},
+{
+"key": "filterShadowRemoval",
+"english": "Shadow removal",
+"target": "ছায়া অপসারণ",
+"backtrans": "Shadow removal"
+},
+{
+"key": "proBadgeLabel",
+"english": "PRO",
+"target": "PRO",
+"backtrans": "PRO"
+},
+{
+"key": "scanListPageCount",
+"english": "{count, plural, =1{1 page} other{{count} pages}}",
+"target": "{count} পৃষ্ঠা",
+"backtrans": "{count} pages"
+},
+{
+"key": "scanPreviewNoPages",
+"english": "No pages to show.",
+"target": "প্রদর্শনের জন্য কোনো পৃষ্ঠা নেই।",
+"backtrans": "No pages to display."
+},
+{
+"key": "shareTooltip",
+"english": "Share",
+"target": "শেয়ার",
+"backtrans": "Share"
+},
+{
+"key": "signatureCanvasHint",
+"english": "Sign here",
+"target": "এখানে স্বাক্ষর করুন",
+"backtrans": "Sign here"
+},
+{
+"key": "folderDocumentCount",
+"english": "{count, plural, =1{1 document} other{{count} documents}}",
+"target": "{count} নথি",
+"backtrans": "{count} documents"
+},
+{
+"key": "selectedCount",
+"english": "{count, plural, =1{1 selected} other{{count} selected}}",
+"target": "{count} নির্বাচিত",
+"backtrans": "{count} selected"
+},
+{
+"key": "batchExportTooltip",
+"english": "Batch export",
+"target": "ব্যাচ রপ্তানি",
+"backtrans": "Batch export"
+},
+{
+"key": "deleteTooltip",
+"english": "Delete",
+"target": "মুছুন",
+"backtrans": "Delete"
+},
+{
+"key": "searchHint",
+"english": "Search your scans",
+"target": "আপনার স্ক্যান খুঁজুন",
+"backtrans": "Find your scans"
+},
+{
+"key": "settingsTooltip",
+"english": "Settings",
+"target": "সেটিংস",
+"backtrans": "Settings"
+},
+{
+"key": "foldersSectionHeader",
+"english": "Folders",
+"target": "ফোল্ডার",
+"backtrans": "Folders"
+},
+{
+"key": "documentsSectionHeader",
+"english": "Documents",
+"target": "নথি",
+"backtrans": "Documents"
+},
+{
+"key": "exportingStatus",
+"english": "Exporting…",
+"target": "রপ্তানি হচ্ছে...",
+"backtrans": "Exporting..."
+},
+{
+"key": "exportDoneStatus",
+"english": "Done",
+"target": "সম্পন্ন",
+"backtrans": "Done"
+},
+{
+"key": "exportGenericError",
+"english": "Something went wrong while exporting.",
+"target": "রপ্তানি করার সময় কিছু ভুল হয়েছে।",
+"backtrans": "Something went wrong while exporting."
+},
+{
+"key": "deleteFolderTitle",
+"english": "Delete this folder?",
+"target": "এই ফোল্ডার মুছবেন?",
+"backtrans": "Delete this folder?"
+},
+{
+"key": "deleteFolderMessage",
+"english": "Documents inside will not be deleted.",
+"target": "ভিতরের নথি মুছে ফেলা হবে না।",
+"backtrans": "The documents inside will not be deleted."
+},
+{
+"key": "deleteFolderTooltip",
+"english": "Delete folder",
+"target": "ফোল্ডার মুছুন",
+"backtrans": "Delete folder"
+},
+{
+"key": "renameFolderTitle",
+"english": "Rename folder",
+"target": "ফোল্ডারের নাম পরিবর্তন",
+"backtrans": "Folder rename [??: literally \"folder's name change\"; slightly nominal phrasing]"
+},
+{
+"key": "removeFromFolderTooltip",
+"english": "Remove from folder",
+"target": "ফোল্ডার থেকে সরান",
+"backtrans": "Remove from folder"
+},
+{
+"key": "noDocumentsInFolder",
+"english": "No documents in this folder yet.",
+"target": "এই ফোল্ডারে এখনও কোনো নথি নেই।",
+"backtrans": "There are no documents in this folder yet."
+},
+{
+"key": "folderUnavailable",
+"english": "This folder is no longer available.",
+"target": "এই ফোল্ডার আর উপলব্ধ নয়।",
+"backtrans": "This folder is no longer available."
+},
+{
+"key": "migrationTitle",
+"english": "Device Migration",
+"target": "ডিভাইস মাইগ্রেশন",
+"backtrans": "Device migration"
+},
+{
+"key": "migrationExplainer",
+"english": "This isn't automatic sync. Export creates a single encrypted backup file you move to your new device yourself, then import there.",
+"target": "এটি স্বয়ংক্রিয় সিঙ্ক নয়। রপ্তানি একটি একক এনক্রিপ্টেড ব্যাকআপ ফাইল তৈরি করে যা আপনি নিজেই আপনার নতুন ডিভাইসে স্থানান্তর করেন এবং সেখানে আমদানি করেন।",
+"backtrans": "This is not automatic sync. Export creates a single encrypted backup file which you yourself transfer to your new device and import there."
+},
+{
+"key": "exportBackupButton",
+"english": "Export encrypted backup",
+"target": "এনক্রিপ্টেড ব্যাকআপ রপ্তানি",
+"backtrans": "Encrypted backup export"
+},
+{
+"key": "importBackupButton",
+"english": "Import from backup",
+"target": "ব্যাকআপ থেকে আমদানি",
+"backtrans": "Import from backup"
+},
+{
+"key": "setBackupPasswordTitle",
+"english": "Set a backup password",
+"target": "ব্যাকআপ পাসওয়ার্ড সেট করুন",
+"backtrans": "Set backup password"
+},
+{
+"key": "enterBackupPasswordTitle",
+"english": "Enter backup password",
+"target": "ব্যাকআপ পাসওয়ার্ড লিখুন",
+"backtrans": "Enter backup password"
+},
+{
+"key": "buildingBackupStatus",
+"english": "Building backup…",
+"target": "ব্যাকআপ তৈরি হচ্ছে...",
+"backtrans": "Backup is being created..."
+},
+{
+"key": "backupReadyStatus",
+"english": "Backup ready.",
+"target": "ব্যাকআপ প্রস্তুত।",
+"backtrans": "Backup is ready."
+},
+{
+"key": "couldNotCreateBackupError",
+"english": "Could not create the backup.",
+"target": "ব্যাকআপ তৈরি করা যায়নি।",
+"backtrans": "Could not create the backup."
+},
+{
+"key": "importingStatus",
+"english": "Importing…",
+"target": "আমদানি হচ্ছে...",
+"backtrans": "Importing..."
+},
+{
+"key": "couldNotImportBackupError",
+"english": "Could not import this backup. Check the password and try again.",
+"target": "এই ব্যাকআপ আমদানি করা যায়নি। পাসওয়ার্ড পরীক্ষা করুন এবং আবার চেষ্টা করুন।",
+"backtrans": "Could not import this backup. Check the password and try again."
+},
+{
+"key": "backupCorruptedError",
+"english": "This backup file looks corrupted.",
+"target": "এই ব্যাকআপ ফাইলটি ক্ষতিগ্রস্ত বলে মনে হচ্ছে।",
+"backtrans": "This backup file appears to be damaged."
+},
+{
+"key": "importedCount",
+"english": "{count, plural, =1{1 document imported} other{{count} documents imported}}",
+"target": "{count} নথি আমদানি করা হয়েছে",
+"backtrans": "{count} documents were imported"
+},
+{
+"key": "continueButton",
+"english": "Continue",
+"target": "চালিয়ে যান",
+"backtrans": "Continue"
+},
+{
+"key": "restorePurchasesButton",
+"english": "Restore purchases",
+"target": "ক্রয় পুনরুদ্ধার",
+"backtrans": "Restore purchase"
+},
+{
+"key": "pricingLoadingError",
+"english": "Pricing is still loading — try again in a moment.",
+"target": "মূল্য এখনও লোড হচ্ছে — একটু পরে আবার চেষ্টা করুন।",
+"backtrans": "Pricing is still loading — try again a little later."
+},
+{
+"key": "renameDocumentTitle",
+"english": "Rename document",
+"target": "নথির নাম পরিবর্তন",
+"backtrans": "Document rename"
+},
+{
+"key": "addTagTitle",
+"english": "Add tag",
+"target": "ট্যাগ যোগ করুন",
+"backtrans": "Add tag"
+},
+{
+"key": "moveToFolderTooltip",
+"english": "Move to folder",
+"target": "ফোল্ডারে সরান",
+"backtrans": "Move to folder"
+},
+{
+"key": "exportTooltip",
+"english": "Export",
+"target": "রপ্তানি",
+"backtrans": "Export"
+},
+{
+"key": "deleteScanTitle",
+"english": "Delete this scan?",
+"target": "এই স্ক্যান মুছবেন?",
+"backtrans": "Delete this scan?"
+},
+{
+"key": "deleteScanMessage",
+"english": "This can't be undone.",
+"target": "এটি পূর্বাবস্থায় ফেরানো যাবে না।",
+"backtrans": "This cannot be reverted."
+},
+{
+"key": "movedToFolderMessage",
+"english": "Moved to folder.",
+"target": "ফোল্ডারে সরানো হয়েছে।",
+"backtrans": "Moved to folder."
+},
+{
+"key": "noTextRecognized",
+"english": "No text recognized.",
+"target": "কোনো টেক্সট শনাক্ত হয়নি।",
+"backtrans": "No text was recognized."
+},
+{
+"key": "scanUnavailable",
+"english": "This scan is no longer available.",
+"target": "এই স্ক্যান আর উপলব্ধ নয়।",
+"backtrans": "This scan is no longer available."
+},
+{
+"key": "settingsTitle",
+"english": "Settings",
+"target": "সেটিংস",
+"backtrans": "Settings"
+},
+{
+"key": "appearanceSectionLabel",
+"english": "Appearance",
+"target": "চেহারা",
+"backtrans": "Appearance"
+},
+{
+"key": "themeLabel",
+"english": "Theme",
+"target": "থিম",
+"backtrans": "Theme"
+},
+{
+"key": "systemThemeOption",
+"english": "System",
+"target": "সিস্টেম",
+"backtrans": "System"
+},
+{
+"key": "lightThemeOption",
+"english": "Light",
+"target": "হালকা",
+"backtrans": "Light"
+},
+{
+"key": "darkThemeOption",
+"english": "Dark",
+"target": "গাঢ়",
+"backtrans": "Dark [??: \"গাঢ়\" means deep/dense/thick; usable for dark but not the most common word]"
+},
+{
+"key": "languageSectionLabel",
+"english": "Language",
+"target": "ভাষা",
+"backtrans": "Language"
+},
+{
+"key": "appLanguageLabel",
+"english": "App language",
+"target": "অ্যাপ ভাষা",
+"backtrans": "App language"
+},
+{
+"key": "storageSectionLabel",
+"english": "Storage",
+"target": "সংগ্রহস্থল",
+"backtrans": "Storage [??: \"সংগ্রহস্থল\" means collection place/repository; unusual for device storage]"
+},
+{
+"key": "deviceMigrationLabel",
+"english": "Device Migration",
+"target": "ডিভাইস মাইগ্রেশন",
+"backtrans": "Device migration"
+},
+{
+"key": "subscriptionSectionLabel",
+"english": "Subscription",
+"target": "সাবস্ক্রিপশন",
+"backtrans": "Subscription"
+},
+{
+"key": "aboutSectionLabel",
+"english": "About",
+"target": "সম্পর্কে",
+"backtrans": "About"
+},
+{
+"key": "privacyPolicyLabel",
+"english": "Privacy policy",
+"target": "গোপনীয়তা নীতি",
+"backtrans": "Privacy policy"
+},
+{
+"key": "supportLabel",
+"english": "Support",
+"target": "সহায়তা",
+"backtrans": "Support"
+},
+{
+"key": "couldNotOpenLinkError",
+"english": "Could not open link.",
+"target": "লিঙ্ক খোলা যায়নি।",
+"backtrans": "Could not open the link."
+},
+{
+"key": "restoreCompleteMessage",
+"english": "Restore complete.",
+"target": "পুনরুদ্ধার সম্পন্ন।",
+"backtrans": "Restore complete."
+},
+{
+"key": "genericErrorMessage",
+"english": "Something went wrong. Please try again.",
+"target": "কিছু ভুল হয়েছে। আবার চেষ্টা করুন।",
+"backtrans": "Something went wrong. Try again."
+},
+{
+"key": "homeLanguageTooltip",
+"english": "App Language",
+"target": "অ্যাপ ভাষা",
+"backtrans": "App language"
+},
+{
+"key": "removeAdsTitle",
+"english": "Remove Ads Forever",
+"target": "বিজ্ঞাপন চিরতরে সরান",
+"backtrans": "Remove ads forever"
+},
+{
+"key": "extractedTextTitle",
+"english": "Extracted Text",
+"target": "নিষ্কাশিত টেক্সট",
+"backtrans": "Extracted text [??: \"নিষ্কাশিত\" is a formal/chemical-sounding word for extracted]"
+},
+{
+"key": "commonClose",
+"english": "Close",
+"target": "বন্ধ",
+"backtrans": "Close"
+},
+{
+"key": "commonCopy",
+"english": "Copy",
+"target": "কপি",
+"backtrans": "Copy"
+},
+{
+"key": "savedToDocumentText",
+"english": "Saved to document text",
+"target": "নথির টেক্সটে সংরক্ষিত",
+"backtrans": "Saved to document text"
+},
+{
+"key": "regionOcrFailed",
+"english": "Region OCR failed",
+"target": "নির্বাচিত অংশের OCR ব্যর্থ",
+"backtrans": "OCR of the selected part failed"
+},
+{
+"key": "filterRemoved",
+"english": "Filter removed",
+"target": "ফিল্টার সরানো হয়েছে",
+"backtrans": "Filter removed"
+},
+{
+"key": "filterApplied",
+"english": "Filter applied",
+"target": "ফিল্টার প্রয়োগ করা হয়েছে",
+"backtrans": "Filter applied"
+},
+{
+"key": "pageCropped",
+"english": "Page cropped",
+"target": "পৃষ্ঠা ক্রপ করা হয়েছে",
+"backtrans": "Page cropped"
+},
+{
+"key": "revertToOriginalTitle",
+"english": "Revert to Original?",
+"target": "আসলে ফিরে যাবেন?",
+"backtrans": "Go back to the original?"
+},
+{
+"key": "revertToOriginalMessage",
+"english": "This will undo all filters, rotations, crops, resizes, and eraser strokes on this page.",
+"target": "এটি এই পৃষ্ঠার সমস্ত ফিল্টার, ঘূর্ণন, ক্রপ, আকার পরিবর্তন এবং ইরেজার স্ট্রোক পূর্বাবস্থায় ফেরাবে।",
+"backtrans": "This will undo all filters, rotation, crop, resize and eraser strokes on this page."
+},
+{
+"key": "commonRevert",
+"english": "Revert",
+"target": "ফিরে যান",
+"backtrans": "Go back"
+},
+{
+"key": "pageRevertedToOriginal",
+"english": "Page reverted to original",
+"target": "পৃষ্ঠা আসলে ফিরে গেছে",
+"backtrans": "Page went back to the original"
+},
+{
+"key": "eraserApplied",
+"english": "Eraser applied",
+"target": "ইরেজার প্রয়োগ করা হয়েছে",
+"backtrans": "Eraser applied"
+},
+{
+"key": "pageResized",
+"english": "Page resized",
+"target": "পৃষ্ঠার আকার পরিবর্তন হয়েছে",
+"backtrans": "Page size changed"
+},
+{
+"key": "extractedAsNewDocument",
+"english": "Extracted as new document",
+"target": "নতুন নথি হিসাবে নিষ্কাশিত",
+"backtrans": "Extracted as new document"
+},
+{
+"key": "pagesUpdated",
+"english": "Pages updated",
+"target": "পৃষ্ঠা আপডেট হয়েছে",
+"backtrans": "Pages updated"
+},
+{
+"key": "printOptionsTitle",
+"english": "Print Options",
+"target": "প্রিন্ট বিকল্প",
+"backtrans": "Print options"
+},
+{
+"key": "letterSizeUS",
+"english": "Letter size (US)",
+"target": "লেটার আকার (মার্কিন)",
+"backtrans": "Letter size (US)"
+},
+{
+"key": "commonPrint",
+"english": "Print",
+"target": "প্রিন্ট",
+"backtrans": "Print"
+},
+{
+"key": "printFailed",
+"english": "Print failed",
+"target": "প্রিন্ট ব্যর্থ",
+"backtrans": "Print failed"
+},
+{
+"key": "noEmailAppFound",
+"english": "No email app found",
+"target": "কোনো ইমেল অ্যাপ পাওয়া যায়নি",
+"backtrans": "No email app found"
+},
+{
+"key": "emailFailed",
+"english": "Email failed",
+"target": "ইমেল ব্যর্থ",
+"backtrans": "Email failed"
+},
+{
+"key": "fromPageLabel",
+"english": "From",
+"target": "থেকে",
+"backtrans": "From"
+},
+{
+"key": "toPageLabel",
+"english": "To",
+"target": "পর্যন্ত",
+"backtrans": "Until"
+},
+{
+"key": "pdfImportedAsDocument",
+"english": "PDF imported as document",
+"target": "PDF নথি হিসাবে আমদানি করা হয়েছে",
+"backtrans": "PDF imported as document"
+},
+{
+"key": "frontSideCaptured",
+"english": "Front side captured. Now capture the back side.",
+"target": "সামনের দিক স্ক্যান করা হয়েছে। এখন পিছনের দিক স্ক্যান করুন।",
+"backtrans": "Front side scanned. Now scan the back side."
+},
+{
+"key": "idCardPdfGenerated",
+"english": "ID Card PDF Generated",
+"target": "আইডি কার্ড PDF তৈরি হয়েছে",
+"backtrans": "ID card PDF generated"
+},
+{
+"key": "sharePdf",
+"english": "Share PDF",
+"target": "PDF শেয়ার",
+"backtrans": "Share PDF"
+},
+{
+"key": "saveAsDocument",
+"english": "Save as Document",
+"target": "নথি হিসাবে সংরক্ষণ",
+"backtrans": "Save as document"
+},
+{
+"key": "commonDone",
+"english": "Done",
+"target": "সম্পন্ন",
+"backtrans": "Done"
+},
+{
+"key": "documentSaved",
+"english": "Document saved",
+"target": "নথি সংরক্ষিত",
+"backtrans": "Document saved"
+},
+{
+"key": "commonReset",
+"english": "Reset",
+"target": "রিসেট",
+"backtrans": "Reset"
+},
+{
+"key": "autoScan",
+"english": "Auto Scan",
+"target": "স্বয়ংক্রিয় স্ক্যান",
+"backtrans": "Automatic scan"
+},
+{
+"key": "importAndConvertDocument",
+"english": "Import & Convert Document",
+"target": "আমদানি ও রূপান্তর",
+"backtrans": "Import and convert"
+},
+{
+"key": "signatureTitle",
+"english": "Signature",
+"target": "স্বাক্ষর",
+"backtrans": "Signature"
+},
+{
+"key": "signatureChoiceMessage",
+"english": "Use your saved signature or draw a new one?",
+"target": "সংরক্ষিত স্বাক্ষর ব্যবহার করবেন নাকি নতুন আঁকবেন?",
+"backtrans": "Use a saved signature or draw a new one?"
+},
+{
+"key": "useSavedSignature",
+"english": "Use Saved",
+"target": "সংরক্ষিত ব্যবহার",
+"backtrans": "Use saved"
+},
+{
+"key": "drawNewSignature",
+"english": "Draw New",
+"target": "নতুন আঁকুন",
+"backtrans": "Draw new"
+},
+{
+"key": "copyAll",
+"english": "Copy all",
+"target": "সব কপি",
+"backtrans": "Copy all"
+},
+{
+"key": "clearThis",
+"english": "Clear this",
+"target": "এটি পরিষ্কার",
+"backtrans": "Clean this [??: \"পরিষ্কার\" = clean; likely meant \"Clear this\"]"
+},
+{
+"key": "commonRemove",
+"english": "Remove",
+"target": "সরান",
+"backtrans": "Remove"
+},
+{
+"key": "clearAll",
+"english": "Clear all",
+"target": "সব পরিষ্কার",
+"backtrans": "Clean all [??: \"পরিষ্কার\" = clean; likely meant \"Clear all\"]"
+},
+{
+"key": "addSignature",
+"english": "Add Signature",
+"target": "স্বাক্ষর যোগ",
+"backtrans": "Add signature"
+},
+{
+"key": "commonUse",
+"english": "Use",
+"target": "ব্যবহার",
+"backtrans": "Use"
+},
+{
+"key": "stampTickedLabel",
+"english": "Ticked",
+"target": "টিক চিহ্নিত",
+"backtrans": "Tick-marked [??: literally \"marked with a tick\"]"
+},
+{
+"key": "stampBoxLabel",
+"english": "Box",
+"target": "বাক্স",
+"backtrans": "Box"
+},
+{
+"key": "stampTickLabel",
+"english": "Tick",
+"target": "টিক",
+"backtrans": "Tick"
+},
+{
+"key": "commonCustom",
+"english": "Custom",
+"target": "কাস্টম",
+"backtrans": "Custom"
+},
+{
+"key": "commonChange",
+"english": "Change",
+"target": "পরিবর্তন",
+"backtrans": "Change"
+},
+{
+"key": "commonColor",
+"english": "Color",
+"target": "রঙ",
+"backtrans": "Color"
+},
+{
+"key": "stampPaperLabel",
+"english": "Paper",
+"target": "কাগজ",
+"backtrans": "Paper"
+},
+{
+"key": "whiteHaloLabel",
+"english": "White halo (readability)",
+"target": "সাদা হ্যালো (পঠনযোগ্যতা)",
+"backtrans": "White halo (readability)"
+},
+{
+"key": "commonCreate",
+"english": "Create",
+"target": "তৈরি",
+"backtrans": "Create"
+},
+{
+"key": "newFolderTitle",
+"english": "New Folder",
+"target": "নতুন ফোল্ডার",
+"backtrans": "New folder"
+},
+{
+"key": "batchExportEmptyMessage",
+"english": "No documents to batch export. Scan some first.",
+"target": "ব্যাচ রপ্তানির জন্য কোনো নথি নেই। আগে কিছু স্ক্যান করুন।",
+"backtrans": "There are no documents for batch export. Scan something first."
+},
+{
+"key": "newFolderTooltip",
+"english": "New Folder",
+"target": "নতুন ফোল্ডার",
+"backtrans": "New folder"
+},
+{
+"key": "accentColorTooltip",
+"english": "Accent Color",
+"target": "অ্যাকসেন্ট রঙ",
+"backtrans": "Accent color"
+},
+{
+"key": "moveToFolderTitle",
+"english": "Move to Folder",
+"target": "ফোল্ডারে সরান",
+"backtrans": "Move to folder"
+},
+{
+"key": "noFoldersYetHomeMessage",
+"english": "No folders yet. Create one from the home screen.",
+"target": "এখনও কোনো ফোল্ডার নেই। হোম স্ক্রিন থেকে একটি তৈরি করুন।",
+"backtrans": "There are no folders yet. Create one from the home screen."
+},
+{
+"key": "appLanguageTitle",
+"english": "App Language",
+"target": "অ্যাপ ভাষা",
+"backtrans": "App language"
+},
+{
+"key": "accentColorTitle",
+"english": "Accent Color",
+"target": "অ্যাকসেন্ট রঙ",
+"backtrans": "Accent color"
+},
+{
+"key": "sealEditTitle",
+"english": "Edit Custom Seal",
+"target": "কাস্টম সীল সম্পাদনা",
+"backtrans": "Edit custom seal"
+},
+{
+"key": "sealCreateTitle",
+"english": "Custom Seal",
+"target": "কাস্টম সীল",
+"backtrans": "Custom seal"
+},
+{
+"key": "sealMainTextLabel",
+"english": "Main text (top arc / box)",
+"target": "মূল টেক্সট (উপরের চাপ / বাক্স)",
+"backtrans": "Main text (upper arc / box)"
+},
+{
+"key": "sealSubtextLabel",
+"english": "Subtext (bottom arc / below)",
+"target": "সাবটেক্সট (নিচের চাপ / নিচে)",
+"backtrans": "Subtext (lower arc / below)"
+},
+{
+"key": "sealShapeOval",
+"english": "Oval",
+"target": "ডিম্বাকার",
+"backtrans": "Oval"
+},
+{
+"key": "sealShapeBox",
+"english": "Box",
+"target": "বাক্স",
+"backtrans": "Box"
+},
+{
+"key": "sealCenterStar",
+"english": "Star",
+"target": "তারা",
+"backtrans": "Star"
+},
+{
+"key": "sealCenterText",
+"english": "Text",
+"target": "টেক্সট",
+"backtrans": "Text"
+},
+{
+"key": "sealCenterLogo",
+"english": "Logo",
+"target": "লোগো",
+"backtrans": "Logo"
+},
+{
+"key": "sealCenterNone",
+"english": "None",
+"target": "নেই",
+"backtrans": "None"
+},
+{
+"key": "sealCenterTextLabel",
+"english": "Center text",
+"target": "কেন্দ্রীয় টেক্সট",
+"backtrans": "Central text"
+},
+{
+"key": "sealLogoReady",
+"english": "Logo ready",
+"target": "লোগো প্রস্তুত",
+"backtrans": "Logo ready"
+},
+{
+"key": "textSizeLabel",
+"english": "Text size: {size}",
+"target": "টেক্সট আকার: {size}",
+"backtrans": "Text size: {size}"
+},
+{
+"key": "commonUpdate",
+"english": "Update",
+"target": "আপডেট",
+"backtrans": "Update"
+},
+{
+"key": "managePagesTitle",
+"english": "Manage Pages",
+"target": "পৃষ্ঠা পরিচালনা",
+"backtrans": "Manage pages"
+},
+{
+"key": "pageLabel",
+"english": "Page {index}",
+"target": "পৃষ্ঠা {index}",
+"backtrans": "Page {index}"
+},
+{
+"key": "duplicateAction",
+"english": "Duplicate",
+"target": "ডুপ্লিকেট",
+"backtrans": "Duplicate"
+},
+{
+"key": "rotate90Action",
+"english": "Rotate 90°",
+"target": "90° ঘোরান",
+"backtrans": "Rotate 90°"
+},
+{
+"key": "extractToNewDocAction",
+"english": "Extract to new doc",
+"target": "নতুন নথিতে নিষ্কাশন",
+"backtrans": "Extract into new document"
+},
+{
+"key": "addPageTitle",
+"english": "Add Page",
+"target": "পৃষ্ঠা যোগ",
+"backtrans": "Add page"
+},
+{
+"key": "cameraSource",
+"english": "Camera",
+"target": "ক্যামেরা",
+"backtrans": "Camera"
+},
+{
+"key": "importFromGallery",
+"english": "Import from Gallery",
+"target": "গ্যালারি থেকে আমদানি",
+"backtrans": "Import from gallery"
+},
+{
+"key": "fromAnotherDocument",
+"english": "From Another Document",
+"target": "অন্য নথি থেকে",
+"backtrans": "From another document"
+},
+{
+"key": "pageCountLabel",
+"english": "{count, plural, =0{No pages} =1{1 page} other{{count} pages}}",
+"target": "{count} পৃষ্ঠা",
+"backtrans": "{count} pages"
+},
+{
+"key": "commonConfirm",
+"english": "Confirm",
+"target": "নিশ্চিত",
+"backtrans": "Confirm"
+},
+{
+"key": "applyToAllPages",
+"english": "Apply to all pages",
+"target": "সব পৃষ্ঠায় প্রয়োগ",
+"backtrans": "Apply to all pages"
+},
+{
+"key": "widthLabel",
+"english": "Width",
+"target": "প্রস্থ",
+"backtrans": "Width"
+},
+{
+"key": "heightLabel",
+"english": "Height",
+"target": "উচ্চতা",
+"backtrans": "Height"
+},
+{
+"key": "lockAspectRatio",
+"english": "Lock aspect ratio",
+"target": "অনুপাত লক",
+"backtrans": "Lock ratio"
+},
+{
+"key": "originalDimensions",
+"english": "Original: {w}×{h}",
+"target": "আসল: {w}×{h}",
+"backtrans": "Original: {w}×{h}"
+},
+{
+"key": "ocrSectionLabel",
+"english": "OCR",
+"target": "OCR",
+"backtrans": "OCR"
+},
+{
+"key": "ocrLanguagesLabel",
+"english": "OCR Languages",
+"target": "OCR ভাষা",
+"backtrans": "OCR languages"
+},
+{
+"key": "captureBehaviorSectionLabel",
+"english": "CAPTURE BEHAVIOR",
+"target": "ক্যাপচার আচরণ",
+"backtrans": "Capture behavior"
+},
+{
+"key": "autoCopyOcrLabel",
+"english": "Auto-copy OCR",
+"target": "স্বয়ংক্রিয় OCR কপি",
+"backtrans": "Automatic OCR copy"
+},
+{
+"key": "autoCopyOcrSubtitle",
+"english": "Copy text to clipboard after scan",
+"target": "স্ক্যানের পরে টেক্সট ক্লিপবোর্ডে কপি",
+"backtrans": "After scan, text copied to clipboard"
+},
+{
+"key": "beepOnCaptureLabel",
+"english": "Beep on capture",
+"target": "ক্যাপচারে বিপ",
+"backtrans": "Beep on capture"
+},
+{
+"key": "beepOnCaptureSubtitle",
+"english": "Play sound when scan completes",
+"target": "স্ক্যান সম্পন্ন হলে শব্দ চালান",
+"backtrans": "Play a sound when scan is complete"
+},
+{
+"key": "vibrateOnCaptureLabel",
+"english": "Vibrate on capture",
+"target": "ক্যাপচারে কম্পন",
+"backtrans": "Vibration on capture"
+},
+{
+"key": "vibrateOnCaptureSubtitle",
+"english": "Haptic feedback when scan completes",
+"target": "স্ক্যান সম্পন্ন হলে হ্যাপটিক প্রতিক্রিয়া",
+"backtrans": "Haptic response when scan is complete"
+},
+{
+"key": "adsRemovedLabel",
+"english": "Ads Removed",
+"target": "বিজ্ঞাপন সরানো হয়েছে",
+"backtrans": "Ads removed"
+},
+{
+"key": "diagnosticsSectionLabel",
+"english": "DIAGNOSTICS",
+"target": "ডায়াগনস্টিক্স",
+"backtrans": "Diagnostics"
+},
+{
+"key": "debugLogsLabel",
+"english": "Debug Logs",
+"target": "ডিবাগ লগ",
+"backtrans": "Debug log"
+},
+{
+"key": "logEntriesLabel",
+"english": "{count, plural, =0{No entries} =1{1 entry} other{{count} entries}}",
+"target": "{count} এন্ট্রি",
+"backtrans": "{count} entries"
+},
+{
+"key": "ocrStatusBuiltIn",
+"english": "Built-in",
+"target": "বিল্ট-ইন",
+"backtrans": "Built-in"
+},
+{
+"key": "ocrStatusChecking",
+"english": "Checking...",
+"target": "পরীক্ষা হচ্ছে...",
+"backtrans": "Checking..."
+},
+{
+"key": "ocrStatusOnDemand",
+"english": "On-demand",
+"target": "চাহিদা অনুযায়ী",
+"backtrans": "On demand [??: \"according to demand\"]"
+},
+{
+"key": "savedAsNewDocument",
+"english": "Saved as new document",
+"target": "নতুন নথি হিসাবে সংরক্ষিত",
+"backtrans": "Saved as new document"
+},
+{
+"key": "conversionFailedPrefix",
+"english": "Conversion failed",
+"target": "রূপান্তর ব্যর্থ",
+"backtrans": "Conversion failed"
+},
+{
+"key": "convertDocumentTitle",
+"english": "Convert Document",
+"target": "নথি রূপান্তর",
+"backtrans": "Convert document"
+},
+{
+"key": "convertToLabel",
+"english": "Convert to:",
+"target": "রূপান্তর করুন:",
+"backtrans": "Convert to:"
+},
+{
+"key": "actionLabel",
+"english": "Action:",
+"target": "অ্যাকশন:",
+"backtrans": "Action:"
+},
+{
+"key": "saveAsNewDocumentAction",
+"english": "Save as new Document",
+"target": "নতুন নথি হিসাবে সংরক্ষণ",
+"backtrans": "Save as new document"
+},
+{
+"key": "exportAndShareAction",
+"english": "Export & Share",
+"target": "রপ্তানি ও শেয়ার",
+"backtrans": "Export and share"
+},
+{
+"key": "docxWarningMessage",
+"english": "DOCX sources render poorly as pages — save inside the app is limited to JPG/PNG from image, PDF, TXT or CSV sources. Use Export & Share for this file.",
+"target": "DOCX উৎস পৃষ্ঠা হিসাবে খারাপভাবে রেন্ডার হয় — অ্যাপে সংরক্ষণ চিত্র, PDF, TXT বা CSV উৎস থেকে শুধুমাত্র JPG/PNG-তে সীমাবদ্ধ। এই ফাইলের জন্য রপ্তানি ও শেয়ার ব্যবহার করুন।",
+"backtrans": "DOCX source renders badly as pages — saving in the app is limited to JPG/PNG only from image, PDF, TXT or CSV sources. Use export and share for this file. [??: garbled/ungrammatical sentence structure]"
+},
+{
+"key": "saveInsideAppWarning",
+"english": "To save inside the app, choose JPG or PNG. Other targets are exported as files.",
+"target": "অ্যাপে সংরক্ষণ করতে JPG বা PNG বেছে নিন। অন্যান্য ফরম্যাট ফাইল হিসাবে রপ্তানি করা হয়।",
+"backtrans": "To save in the app choose JPG or PNG. Other formats are exported as files."
+},
+{
+"key": "commonConvert",
+"english": "Convert",
+"target": "রূপান্তর",
+"backtrans": "Convert"
+},
+{
+"key": "conversionStarting",
+"english": "Starting…",
+"target": "শুরু হচ্ছে...",
+"backtrans": "Starting..."
+},
+{
+"key": "convertedDocTitle",
+"english": "Converted {date}",
+"target": "রূপান্তরিত {date}",
+"backtrans": "Converted {date}"
+},
+{
+"key": "progressReading",
+"english": "Reading…",
+"target": "পড়া হচ্ছে...",
+"backtrans": "Reading..."
+},
+{
+"key": "progressCopying",
+"english": "Copying…",
+"target": "কপি হচ্ছে...",
+"backtrans": "Copying..."
+},
+{
+"key": "progressBuildingPdf",
+"english": "Building PDF…",
+"target": "PDF তৈরি হচ্ছে...",
+"backtrans": "Building PDF..."
+},
+{
+"key": "progressBuildingDocx",
+"english": "Building DOCX…",
+"target": "DOCX তৈরি হচ্ছে...",
+"backtrans": "Building DOCX..."
+},
+{
+"key": "progressDecodingImage",
+"english": "Decoding image…",
+"target": "চিত্র ডিকোড হচ্ছে...",
+"backtrans": "Decoding image..."
+},
+{
+"key": "progressExtractingText",
+"english": "Extracting text…",
+"target": "টেক্সট নিষ্কাশন হচ্ছে...",
+"backtrans": "Extracting text..."
+},
+{
+"key": "progressSaving",
+"english": "Saving…",
+"target": "সংরক্ষণ হচ্ছে...",
+"backtrans": "Saving..."
+},
+{
+"key": "progressRasterizing",
+"english": "Rasterizing pages…",
+"target": "পৃষ্ঠা রাস্টারাইজ হচ্ছে...",
+"backtrans": "Rasterizing pages..."
+},
+{
+"key": "progressEncodingPage",
+"english": "Encoding page {current} of {total}…",
+"target": "পৃষ্ঠা {current}/{total} এনকোড হচ্ছে...",
+"backtrans": "Encoding page {current}/{total}..."
+},
+{
+"key": "watermarkEditTitle",
+"english": "Edit Watermark",
+"target": "ওয়াটারমার্ক সম্পাদনা",
+"backtrans": "Edit watermark"
+},
+{
+"key": "watermarkAddTitle",
+"english": "Add Watermark",
+"target": "ওয়াটারমার্ক যোগ",
+"backtrans": "Add watermark"
+},
+{
+"key": "watermarkTextLabel",
+"english": "Text",
+"target": "টেক্সট",
+"backtrans": "Text"
+},
+{
+"key": "opacityPercentLabel",
+"english": "Opacity: {percent}%",
+"target": "অস্বচ্ছতা: {percent}%",
+"backtrans": "Opacity: {percent}%"
+},
+{
+"key": "sizePtLabel",
+"english": "Size: {size}pt",
+"target": "আকার: {size}pt",
+"backtrans": "Size: {size}pt"
+},
+{
+"key": "alignLabel",
+"english": "Align",
+"target": "সারিবদ্ধ",
+"backtrans": "Aligned [??: \"সারিবদ্ধ\" means \"in a row/aligned\" (adjective), not an action label like \"Align\"]"
+},
+{
+"key": "exportSavedToDownloads",
+"english": "Saved to Downloads",
+"target": "ডাউনলোডে সংরক্ষিত",
+"backtrans": "Saved to downloads"
+},
+{
+"key": "commonShare",
+"english": "Share",
+"target": "শেয়ার",
+"backtrans": "Share"
+},
+{
+"key": "exportTitle",
+"english": "Export",
+"target": "রপ্তানি",
+"backtrans": "Export"
+},
+{
+"key": "targetMbLabel",
+"english": "{mb} MB",
+"target": "{mb} MB",
+"backtrans": "{mb} MB"
+},
+{
+"key": "filterColor",
+"english": "Color",
+"target": "রঙ",
+"backtrans": "Color"
+},
+{
+"key": "filterShadow",
+"english": "Shadow",
+"target": "ছায়া",
+"backtrans": "Shadow"
+},
+{
+"key": "docxModeTextOnly",
+"english": "Text Only",
+"target": "শুধু টেক্সট",
+"backtrans": "Text only"
+},
+{
+"key": "docxModeWithImages",
+"english": "With Images",
+"target": "চিত্র সহ",
+"backtrans": "With images"
+},
+{
+"key": "saveToDeviceButton",
+"english": "Save to Device",
+"target": "ডিভাইসে সংরক্ষণ",
+"backtrans": "Save to device"
+},
+{
+"key": "pageIndicator",
+"english": "Page {current} / {total}",
+"target": "পৃষ্ঠা {current} / {total}",
+"backtrans": "Page {current} / {total}"
+},
+{
+"key": "fullscreenLabel",
+"english": "Fullscreen",
+"target": "পূর্ণ স্ক্রিন",
+"backtrans": "Full screen"
+},
+{
+"key": "batchExportSignatureDisabled",
+"english": "Batch export — signature placement disabled",
+"target": "ব্যাচ রপ্তানি — স্বাক্ষর স্থাপন নিষ্ক্রিয়",
+"backtrans": "Batch export — signature placement disabled"
+},
+{
+"key": "fitToTargetMbLabel",
+"english": "Fit to target MB",
+"target": "লক্ষ্য MB-তে ফিট",
+"backtrans": "Fit to target MB"
+},
+{
+"key": "moreOptionsTooltip",
+"english": "More options",
+"target": "আরও বিকল্প",
+"backtrans": "More options"
+},
+{
+"key": "commonRename",
+"english": "Rename",
+"target": "নাম পরিবর্তন",
+"backtrans": "Name change [??: literally \"name change\"]"
+},
+{
+"key": "addTagsAction",
+"english": "Add Tags",
+"target": "ট্যাগ যোগ",
+"backtrans": "Add tags"
+},
+{
+"key": "editDocumentAction",
+"english": "Edit Document",
+"target": "নথি সম্পাদনা",
+"backtrans": "Edit document"
+},
+{
+"key": "copiedToClipboard",
+"english": "Copied to clipboard",
+"target": "ক্লিপবোর্ডে কপি করা হয়েছে",
+"backtrans": "Copied to clipboard"
+},
+{
+"key": "favoriteTooltip",
+"english": "Favorite",
+"target": "প্রিয়",
+"backtrans": "Favorite"
+},
+{
+"key": "noFoldersYet",
+"english": "No folders yet",
+"target": "এখনও কোনো ফোল্ডার নেই",
+"backtrans": "There are no folders yet"
+},
+{
+"key": "rotateLabel",
+"english": "Rotate",
+"target": "ঘোরান",
+"backtrans": "Rotate"
+},
+{
+"key": "scaleLabel",
+"english": "Scale",
+"target": "স্কেল",
+"backtrans": "Scale"
+},
+{
+"key": "eraserTitle",
+"english": "Eraser",
+"target": "ইরেজার",
+"backtrans": "Eraser"
+},
+{
+"key": "tapToSampleColor",
+"english": "Tap a spot to sample its color",
+"target": "রঙের নমুনা নিতে একটি জায়গায় ট্যাপ করুন",
+"backtrans": "Tap a place to take a color sample"
+},
+{
+"key": "commonSize",
+"english": "Size",
+"target": "আকার",
+"backtrans": "Size"
+},
+{
+"key": "sampleColorTooltip",
+"english": "Sample color from page",
+"target": "পৃষ্ঠা থেকে রঙের নমুনা",
+"backtrans": "Color sample from page"
+},
+{
+"key": "marqueeEraseTooltip",
+"english": "Marquee erase",
+"target": "মার্কি মুছুন",
+"backtrans": "Marquee erase"
+},
+{
+"key": "commonApply",
+"english": "Apply",
+"target": "প্রয়োগ",
+"backtrans": "Apply"
+},
+{
+"key": "filterTitle",
+"english": "Filter",
+"target": "ফিল্টার",
+"backtrans": "Filter"
+},
+{
+"key": "intensityLabel",
+"english": "Intensity",
+"target": "তীব্রতা",
+"backtrans": "Intensity"
+},
+{
+"key": "selectRegionTitle",
+"english": "Select Region",
+"target": "অংশ নির্বাচন",
+"backtrans": "Select part"
+},
+{
+"key": "commonExtract",
+"english": "Extract",
+"target": "নিষ্কাশন",
+"backtrans": "Extract [??: formal \"নিষ্কাশন\"]"
+},
+{
+"key": "customColorTitle",
+"english": "Custom Color",
+"target": "কাস্টম রঙ",
+"backtrans": "Custom color"
+},
+{
+"key": "documentNotFound",
+"english": "Document not found",
+"target": "নথি পাওয়া যায়নি",
+"backtrans": "Document not found"
+},
+{
+"key": "clearLogsTooltip",
+"english": "Clear logs",
+"target": "লগ পরিষ্কার",
+"backtrans": "Clean logs [??: \"পরিষ্কার\" = clean; likely meant \"Clear logs\"]"
+},
+{
+"key": "placeHereLabel",
+"english": "Place here",
+"target": "এখানে রাখুন",
+"backtrans": "Place here"
+},
+{
+"key": "tryAgainButton",
+"english": "Try again",
+"target": "আবার চেষ্টা",
+"backtrans": "Try again"
+},
+{
+"key": "emptyDocumentMessage",
+"english": "This document has no pages.",
+"target": "এই নথিতে কোনো পৃষ্ঠা নেই।",
+"backtrans": "There are no pages in this document."
+},
+{
+"key": "cameraErrorPrefix",
+"english": "Camera error",
+"target": "ক্যামেরা ত্রুটি",
+"backtrans": "Camera error"
+},
+{
+"key": "importErrorPrefix",
+"english": "Import error",
+"target": "আমদানি ত্রুটি",
+"backtrans": "Import error"
+},
+{
+"key": "pdfImportErrorPrefix",
+"english": "PDF import error",
+"target": "PDF আমদানি ত্রুটি",
+"backtrans": "PDF import error"
+},
+{
+"key": "pickErrorPrefix",
+"english": "Pick error",
+"target": "বাছাই ত্রুটি",
+"backtrans": "Selection error"
+},
+{
+"key": "scannerErrorPrefix",
+"english": "Scanner error",
+"target": "স্ক্যানার ত্রুটি",
+"backtrans": "Scanner error"
+},
+{
+"key": "idPdfErrorPrefix",
+"english": "Error generating ID PDF",
+"target": "আইডি PDF তৈরি ত্রুটি",
+"backtrans": "ID PDF creation error"
+},
+{
+"key": "genericErrorPrefix",
+"english": "Error",
+"target": "ত্রুটি",
+"backtrans": "Error"
+},
+{
+"key": "annotateTitle",
+"english": "Annotate",
+"target": "টীকা",
+"backtrans": "Annotation [??: \"টীকা\" means annotation/footnote; ok but noun form instead of \"Annotate\"]"
+},
+{
+"key": "placementsCountLabel",
+"english": "{count, plural, =0{Nothing placed} =1{1 placed} other{{count} placed}}",
+"target": "{count} স্থাপিত",
+"backtrans": "{count} placed"
+},
+{
+"key": "ocrUnavailableTooltip",
+"english": "OCR unavailable on this device.",
+"target": "এই ডিভাইসে OCR উপলব্ধ নয়।",
+"backtrans": "OCR is not available on this device."
+},
+{
+"key": "docScannerUnsupportedMessage",
+"english": "Your device doesn't support the advanced document scanner. Take a photo with your Camera app, then tap Import below to crop and save it.",
+"target": "আপনার ডিভাইস উন্নত নথি স্ক্যানার সমর্থন করে না। ক্যামেরা অ্যাপ দিয়ে ছবি তুলুন, তারপর ক্রপ করতে এবং সংরক্ষণ করতে নিচের আমদানিতে ট্যাপ করুন।",
+"backtrans": "Your device does not support the advanced document scanner. Take a picture with the camera app, then tap Import below to crop and save."
+},
+{
+"key": "billingUnavailableMessage",
+"english": "Billing unavailable — try again later.",
+"target": "বিলিং উপলব্ধ নয় — পরে আবার চেষ্টা করুন।",
+"backtrans": "Billing is not available — try again later."
+},
+{
+"key": "ocrNoInternetMessage",
+"english": "No internet. Connect once to download the language pack.",
+"target": "কোনো ইন্টারনেট নেই। ভাষা প্যাক ডাউনলোড করতে একবার সংযোগ করুন।",
+"backtrans": "No internet. Connect once to download the language pack."
+},
+{
+"key": "ocrLanguagePackNotReady",
+"english": "Language pack downloading or not ready. Try again shortly.",
+"target": "ভাষা প্যাক ডাউনলোড হচ্ছে বা প্রস্তুত নয়। একটু পরে আবার চেষ্টা করুন।",
+"backtrans": "Language pack is downloading or not ready. Try again a little later."
+},
+{
+"key": "undoTooltip",
+"english": "Undo",
+"target": "পূর্বাবস্থা",
+"backtrans": "Previous state [??: \"পূর্বাবস্থা\" literally \"the former state\"; not a verb like \"Undo\"]"
+},
+{
+"key": "redoTooltip",
+"english": "Redo",
+"target": "পুনরায় করুন",
+"backtrans": "Do again"
+},
+{
+"key": "fillInputHint",
+"english": "Type text to fill",
+"target": "পূরণ করতে টেক্সট লিখুন",
+"backtrans": "Type text to fill"
+},
+{
+"key": "fillCapsLabel",
+"english": "ALL CAPS",
+"target": "সব বড় হাতের অক্ষর",
+"backtrans": "All capital letters"
+},
+{
+"key": "fillSaveSnippet",
+"english": "Save as snippet",
+"target": "স্নিপেট হিসাবে সংরক্ষণ",
+"backtrans": "Save as snippet"
+},
+{
+"key": "fillDeleteSnippet",
+"english": "Delete snippet?",
+"target": "স্নিপেট মুছবেন?",
+"backtrans": "Delete snippet?"
+},
+{
+"key": "fillTooltip",
+"english": "Fill",
+"target": "পূরণ",
+"backtrans": "Fill"
+},
+{
+"key": "tickerFreeUnlimitedOcr",
+"english": "FREE UNLIMITED OCR",
+"target": "বিনামূল্যে সীমাহীন OCR",
+"backtrans": "Free unlimited OCR"
+},
+{
+"key": "ticker100OnDevicePrivacy",
+"english": "YOUR DOCUMENTS STAY ON YOUR DEVICE",
+"target": "আপনার ডকুমেন্ট আপনার ডিভাইসেই থাকে",
+"backtrans": "Your documents stay on your device itself [??: uses \"ডকুমেন্ট\" loanword vs \"নথি\" elsewhere; inconsistent]"
+},
+{
+"key": "tickerNoAccount",
+"english": "NO ACCOUNT",
+"target": "কোনো অ্যাকাউন্ট নেই",
+"backtrans": "No account"
+},
+{
+"key": "tickerNoWatermarks",
+"english": "NO WATERMARKS",
+"target": "কোনো ওয়াটারমার্ক নেই",
+"backtrans": "No watermarks"
+},
+{
+"key": "ticker21ToolEditSuite",
+"english": "21-TOOL EDIT SUITE",
+"target": "21টি সম্পাদনা টুল",
+"backtrans": "21 editing tools"
+},
+{
+"key": "tickerNonDestructiveEditing",
+"english": "NON-DESTRUCTIVE EDITING",
+"target": "অ-ধ্বংসাত্মক সম্পাদনা",
+"backtrans": "Non-destructive editing [??: \"অ-ধ্বংসাত্মক\" is stiff/literal]"
+},
+{
+"key": "tickerUndoRedo",
+"english": "UNDO/REDO",
+"target": "পূর্বাবস্থা/পুনরায়",
+"backtrans": "Previous state/Do again"
+},
+{
+"key": "tickerRevertToOriginal",
+"english": "REVERT TO ORIGINAL",
+"target": "আসলে ফিরে যান",
+"backtrans": "Go back to original"
+},
+{
+"key": "tickerTapToTypeFilling",
+"english": "TAP-TO-TYPE FILLING",
+"target": "ট্যাপ-এন্ড-টাইপ পূরণ",
+"backtrans": "Tap-and-type filling"
+},
+{
+"key": "tickerESign",
+"english": "E-SIGN",
+"target": "ই-স্বাক্ষর",
+"backtrans": "E-signature"
+},
+{
+"key": "tickerCustomSeals",
+"english": "CUSTOM SEALS",
+"target": "কাস্টম সীল",
+"backtrans": "Custom seals"
+},
+{
+"key": "tickerTextStamps",
+"english": "TEXT STAMPS",
+"target": "টেক্সট স্ট্যাম্প",
+"backtrans": "Text stamps"
+},
+{
+"key": "tickerNoteStamps",
+"english": "NOTE STAMPS",
+"target": "নোট স্ট্যাম্প",
+"backtrans": "Note stamps"
+},
+{
+"key": "tickerSearchablePdf",
+"english": "SEARCHABLE PDF",
+"target": "অনুসন্ধানযোগ্য PDF",
+"backtrans": "Searchable PDF"
+},
+{
+"key": "tickerRegionOcr",
+"english": "REGION OCR",
+"target": "নির্বাচিত অংশের OCR",
+"backtrans": "Selected-part OCR"
+},
+{
+"key": "tickerAutoCopyOcr",
+"english": "AUTO-COPY OCR",
+"target": "স্বয়ংক্রিয় কপি OCR",
+"backtrans": "Automatic copy OCR"
+},
+{
+"key": "tickerIdCardMode",
+"english": "ID CARD MODE",
+"target": "আইডি কার্ড মোড",
+"backtrans": "ID card mode"
+},
+{
+"key": "tickerPassportMode",
+"english": "PASSPORT MODE",
+"target": "পাসপোর্ট মোড",
+"backtrans": "Passport mode"
+},
+{
+"key": "tickerGalleryImport",
+"english": "GALLERY IMPORT",
+"target": "গ্যালারি আমদানি",
+"backtrans": "Gallery import"
+},
+{
+"key": "tickerPdfExport",
+"english": "PDF EXPORT",
+"target": "PDF রপ্তানি",
+"backtrans": "PDF export"
+},
+{
+"key": "tickerWordExport",
+"english": "WORD EXPORT",
+"target": "WORD রপ্তানি",
+"backtrans": "WORD export"
+},
+{
+"key": "tickerJpgExport",
+"english": "JPG EXPORT",
+"target": "JPG রপ্তানি",
+"backtrans": "JPG export"
+},
+{
+"key": "tickerPngExport",
+"english": "PNG EXPORT",
+"target": "PNG রপ্তানি",
+"backtrans": "PNG export"
+},
+{
+"key": "tickerBatchExport",
+"english": "BATCH EXPORT",
+"target": "ব্যাচ রপ্তানি",
+"backtrans": "Batch export"
+},
+{
+"key": "tickerFolders",
+"english": "FOLDERS",
+"target": "ফোল্ডার",
+"backtrans": "Folders"
+},
+{
+"key": "tickerTags",
+"english": "TAGS",
+"target": "ট্যাগ",
+"backtrans": "Tags"
+},
+{
+"key": "tickerFavorites",
+"english": "FAVORITES",
+"target": "প্রিয়",
+"backtrans": "Favorites"
+},
+{
+"key": "tickerSearch",
+"english": "SEARCH",
+"target": "অনুসন্ধান",
+"backtrans": "Search"
+},
+{
+"key": "tickerDarkMode",
+"english": "DARK MODE",
+"target": "গাঢ় মোড",
+"backtrans": "Dark mode"
+},
+{
+"key": "tickerAccentThemes",
+"english": "ACCENT THEMES",
+"target": "অ্যাকসেন্ট থিম",
+"backtrans": "Accent themes"
+},
+{
+"key": "tickerDeviceMigration",
+"english": "DEVICE MIGRATION",
+"target": "ডিভাইস মাইগ্রেশন",
+"backtrans": "Device migration"
+},
+{
+"key": "onboardingWelcomeTitle",
+"english": "Welcome to KatharScan",
+"target": "KatharScan-এ স্বাগতম",
+"backtrans": "Welcome to KatharScan"
+},
+{
+"key": "onboardingWelcomeSubtitle",
+"english": "Your entire document office — scan, edit, sign, and export — in one private app.",
+"target": "আপনার সম্পূর্ণ নথি অফিস — স্ক্যান, সম্পাদনা, স্বাক্ষর এবং রপ্তানি — একটি ব্যক্তিগত অ্যাপে।",
+"backtrans": "Your complete document office — scan, edit, sign and export — in one private app."
+},
+{
+"key": "onboardingToolsTitle",
+"english": "21 Free Pro Tools",
+"target": "21টি বিনামূল্যে Pro টুল",
+"backtrans": "21 free Pro tools"
+},
+{
+"key": "onboardingToolsSubtitle",
+"english": "Annotate, sign, watermark, fill forms, seal, and more — every tool free and unlimited.",
+"target": "টীকা, স্বাক্ষর, ওয়াটারমার্ক, ফর্ম পূরণ, সীল এবং আরও অনেক কিছু — প্রতিটি টুল বিনামূল্যে এবং সীমাহীন।",
+"backtrans": "Annotation, signature, watermark, form filling, seals and much more — every tool free and unlimited."
+},
+{
+"key": "onboardingOcrTitle",
+"english": "On-Device OCR",
+"target": "ডিভাইসে OCR",
+"backtrans": "On-device OCR"
+},
+{
+"key": "onboardingOcrSubtitle",
+"english": "Use KatharScan in {count} languages. OCR runs on your phone — nothing ever leaves your device.",
+"target": "KatharScan ব্যবহার করুন {count}টি ভাষায়। OCR আপনার ফোনে চলে — কিছুই আপনার ডিভাইস ছাড়ে না।",
+"backtrans": "Use KatharScan in {count} languages. OCR runs on your phone — nothing leaves your device."
+},
+{
+"key": "onboardingSignTitle",
+"english": "Sign, Fill & Seal",
+"target": "স্বাক্ষর, পূরণ ও সীল",
+"backtrans": "Sign, fill and seal"
+},
+{
+"key": "onboardingSignSubtitle",
+"english": "E-sign contracts, type-to-fill forms, and stamp enterprise seals in seconds.",
+"target": "সেকেন্ডে চুক্তি ই-স্বাক্ষর, ফর্ম পূরণ এবং কর্পোরেট সীল স্ট্যাম্প করুন।",
+"backtrans": "E-sign contracts, fill forms and stamp corporate seals in seconds."
+},
+{
+"key": "onboardingEditTitle",
+"english": "Non-Destructive Editing",
+"target": "অ-ধ্বংসাত্মক সম্পাদনা",
+"backtrans": "Non-destructive editing"
+},
+{
+"key": "onboardingEditSubtitle",
+"english": "Every edit stays reversible — undo, redo, and revert to original anytime.",
+"target": "প্রতিটি সম্পাদনা বিপরীতযোগ্য থাকে — পূর্বাবস্থা, পুনরায় এবং যেকোনো সময় আসলে ফিরে যান।",
+"backtrans": "Every edit stays reversible — previous state, do again and go back to the original at any time."
+},
+{
+"key": "onboardingPrivacyTitle",
+"english": "Private by design",
+"target": "শুরু থেকেই ব্যক্তিগত",
+"backtrans": "Private from the start"
+},
+{
+"key": "onboardingPrivacySubtitle",
+"english": "No account, no cloud, no watermarks. Your documents never leave your device.",
+"target": "কোনো অ্যাকাউন্ট নেই, কোনো ক্লাউড নেই, কোনো ওয়াটারমার্ক নেই। আপনার নথি কখনও আপনার ডিভাইস ছেড়ে যায় না।",
+"backtrans": "No account, no cloud, no watermarks. Your documents never leave your device."
+},
+{
+"key": "onboardingContinue",
+"english": "Continue",
+"target": "চালিয়ে যান",
+"backtrans": "Continue"
+},
+{
+"key": "onboardingGetStarted",
+"english": "Get Started",
+"target": "শুরু করুন",
+"backtrans": "Get started"
+},
+{
+"key": "onboardingBack",
+"english": "Back",
+"target": "পিছনে",
+"backtrans": "Behind [??: \"পিছনে\" literally \"behind/at the back\"; ok for Back but spatial]"
+},
+{
+"key": "onboardingReplayIntro",
+"english": "Replay introduction",
+"target": "পরিচিতি পুনরায় চালান",
+"backtrans": "Replay introduction"
+},
+{
+"key": "saveToDownloadsAction",
+"english": "Save to Downloads",
+"target": "ডাউনলোডে সংরক্ষণ",
+"backtrans": "Save to downloads"
+},
+{
+"key": "paywallTitle",
+"english": "Remove Ads",
+"target": "বিজ্ঞাপন সরান",
+"backtrans": "Remove ads"
+},
+{
+"key": "paywallSubtitle",
+"english": "Support KatharScan with a one-time purchase. All features remain free.",
+"target": "এককালীন ক্রয়ের মাধ্যমে KatharScan-কে সমর্থন করুন। সমস্ত বৈশিষ্ট্য বিনামূল্যে থাকবে।",
+"backtrans": "Support KatharScan through a one-time purchase. All features will remain free."
+},
+{
+"key": "paywallFallbackPrice",
+"english": "$14.99 one-time",
+"target": "$14.99 এককালীন",
+"backtrans": "$14.99 one-time"
+},
+{
+"key": "paywallFeatureNoBanner",
+"english": "No more banner ads",
+"target": "আর কোনো ব্যানার বিজ্ঞাপন নেই",
+"backtrans": "No more banner ads"
+},
+{
+"key": "paywallFeatureNoInterstitial",
+"english": "No more interstitial ads",
+"target": "আর কোনো ইন্টারস্টিশিয়াল বিজ্ঞাপন নেই",
+"backtrans": "No more interstitial ads"
+},
+{
+"key": "paywallFeatureFreeForever",
+"english": "All features free forever",
+"target": "সমস্ত বৈশিষ্ট্য চিরতরে বিনামূল্যে",
+"backtrans": "All features free forever"
+},
+{
+"key": "paywallLegalText",
+"english": "This is a non-consumable purchase. Restore it anytime on any device with the same store account.",
+"target": "এটি একবারের ক্রয়, যা ব্যবহারে শেষ হয় না। একই স্টোর অ্যাকাউন্ট সহ যেকোনো ডিভাইসে যেকোনো সময় এটি পুনরুদ্ধার করুন।",
+"backtrans": "This is a one-time purchase, which does not end with use. Restore it at any time on any device with the same store account. [??: \"যা ব্যবহারে শেষ হয় না\" = \"which doesn't run out with use\"; odd way to say non-consumable]"
+},
+{
+"key": "paywallSuccessTitle",
+"english": "Ads Removed",
+"target": "বিজ্ঞাপন সরানো হয়েছে",
+"backtrans": "Ads removed"
+},
+{
+"key": "paywallSuccessMessage",
+"english": "Thank you for supporting KatharScan.",
+"target": "KatharScan-কে সমর্থন করার জন্য ধন্যবাদ।",
+"backtrans": "Thank you for supporting KatharScan."
+},
+{
+"key": "errorGenericTitle",
+"english": "Something went wrong",
+"target": "কিছু ভুল হয়েছে",
+"backtrans": "Something went wrong"
+},
+{
+"key": "errorScreenProblem",
+"english": "KatharScan ran into a problem displaying this screen. Your scans are safe — they're stored on this device and this doesn't affect them.",
+"target": "KatharScan এই স্ক্রিন প্রদর্শন করতে সমস্যার সম্মুখীন হয়েছে। আপনার স্ক্যান নিরাপদ — সেগুলি এই ডিভাইসে সংরক্ষিত এবং এটি সেগুলিকে প্রভাবিত করে না।",
+"backtrans": "KatharScan encountered a problem displaying this screen. Your scans are safe — they are stored on this device and this does not affect them."
+},
+{
+"key": "errorReportIssue",
+"english": "Report issue",
+"target": "সমস্যা রিপোর্ট",
+"backtrans": "Report problem"
+},
+{
+"key": "filterAll",
+"english": "All",
+"target": "সব",
+"backtrans": "All"
+},
+{
+"key": "filterFolders",
+"english": "Folders",
+"target": "ফোল্ডার",
+"backtrans": "Folders"
+},
+{
+"key": "filterRecent",
+"english": "Recent",
+"target": "সাম্প্রতিক",
+"backtrans": "Recent"
+},
+{
+"key": "filterFavorites",
+"english": "Favorites",
+"target": "প্রিয়",
+"backtrans": "Favorites"
+},
+{
+"key": "chipAllFolders",
+"english": "All Folders",
+"target": "সব ফোল্ডার",
+"backtrans": "All folders"
+},
+{
+"key": "chipSelectMultiple",
+"english": "Select Multiple",
+"target": "একাধিক নির্বাচন",
+"backtrans": "Select multiple"
+},
+{
+"key": "emptySearch",
+"english": "No scans match your search.",
+"target": "আপনার অনুসন্ধানের সাথে কোনো স্ক্যান মেলে না।",
+"backtrans": "No scans match your search."
+},
+{
+"key": "emptyFolders",
+"english": "No folders yet. Tap the folder icon to create one.",
+"target": "এখনও কোনো ফোল্ডার নেই। একটি তৈরি করতে ফোল্ডার আইকনে ট্যাপ করুন।",
+"backtrans": "There are no folders yet. Tap the folder icon to create one."
+},
+{
+"key": "emptyFavorites",
+"english": "No favorites yet. Tap the star icon on a document to add it.",
+"target": "এখনও কোনো প্রিয় নেই। যোগ করতে নথিতে তারকা আইকনে ট্যাপ করুন।",
+"backtrans": "There are no favorites yet. Tap the star icon on a document to add."
+},
+{
+"key": "modeDocument",
+"english": "Document Mode",
+"target": "নথি মোড",
+"backtrans": "Document mode"
+},
+{
+"key": "modeOcr",
+"english": "OCR Mode",
+"target": "OCR মোড",
+"backtrans": "OCR mode"
+},
+{
+"key": "modeIdCard",
+"english": "ID Card Mode",
+"target": "আইডি কার্ড মোড",
+"backtrans": "ID card mode"
+},
+{
+"key": "modePassport",
+"english": "Passport Mode",
+"target": "পাসপোর্ট মোড",
+"backtrans": "Passport mode"
+},
+{
+"key": "titlePdfImport",
+"english": "PDF Import",
+"target": "PDF আমদানি",
+"backtrans": "PDF import"
+},
+{
+"key": "titleIdCard",
+"english": "ID Card",
+"target": "আইডি কার্ড",
+"backtrans": "ID card"
+},
+{
+"key": "titleScan",
+"english": "Scan",
+"target": "স্ক্যান",
+"backtrans": "Scan"
+},
+{
+"key": "exportEstimatedSize",
+"english": "Estimated size: {mb} MB",
+"target": "আনুমানিক আকার: {mb} MB",
+"backtrans": "Approximate size: {mb} MB"
+},
+{
+"key": "debugNoLogsYet",
+"english": "No logs yet",
+"target": "এখনও কোনো লগ নেই",
+"backtrans": "No logs yet"
+},
+{
+"key": "textBold",
+"english": "B",
+"target": "B",
+"backtrans": "B"
+},
+{
+"key": "textItalic",
+"english": "I",
+"target": "I",
+"backtrans": "I"
+},
+{
+"key": "textUnderline",
+"english": "U",
+"target": "U",
+"backtrans": "U"
+},
+{
+"key": "textFontLetterA",
+"english": "A",
+"target": "A",
+"backtrans": "A"
+},
+{
+"key": "multiplySymbol",
+"english": "×",
+"target": "×",
+"backtrans": "×"
+},
+{
+"key": "signerLabel",
+"english": "Signer {index}",
+"target": "স্বাক্ষরকারী {index}",
+"backtrans": "Signer {index}"
+},
+{
+"key": "stampCheckbox",
+"english": "Checkbox",
+"target": "চেকবক্স",
+"backtrans": "Checkbox"
+},
+{
+"key": "fontSansSerif",
+"english": "sans-serif",
+"target": "sans-serif",
+"backtrans": "sans-serif"
+},
+{
+"key": "fontSerif",
+"english": "serif",
+"target": "serif",
+"backtrans": "serif"
+},
+{
+"key": "fontMonospace",
+"english": "monospace",
+"target": "monospace",
+"backtrans": "monospace"
+},
+{
+"key": "sealCustom",
+"english": "Custom Seal",
+"target": "কাস্টম সীল",
+"backtrans": "Custom seal"
+},
+{
+"key": "formatCsv",
+"english": "CSV",
+"target": "CSV",
+"backtrans": "CSV"
+},
+{
+"key": "ocrNoTextFound",
+"english": "No text found",
+"target": "কোনো টেক্সট পাওয়া যায়নি",
+"backtrans": "No text found"
+},
+{
+"key": "rotationAllPages",
+"english": "All pages rotated",
+"target": "সব পৃষ্ঠা ঘোরানো হয়েছে",
+"backtrans": "All pages rotated"
+},
+{
+"key": "rotationPage",
+"english": "Page rotated",
+"target": "পৃষ্ঠা ঘোরানো হয়েছে",
+"backtrans": "Page rotated"
+},
+{
+"key": "resizeTitle",
+"english": "Resize",
+"target": "আকার পরিবর্তন",
+"backtrans": "Size change"
+},
+{
+"key": "addTextTitle",
+"english": "Add Text",
+"target": "টেক্সট যোগ",
+"backtrans": "Add text"
+},
+{
+"key": "addNoteTitle",
+"english": "Add Note",
+"target": "নোট যোগ",
+"backtrans": "Add note"
+},
+{
+"key": "addDateTitle",
+"english": "Add Date",
+"target": "তারিখ যোগ",
+"backtrans": "Add date"
+},
+{
+"key": "addCheckboxTitle",
+"english": "Add Checkbox",
+"target": "চেকবক্স যোগ",
+"backtrans": "Add checkbox"
+},
+{
+"key": "noteTextLabel",
+"english": "Note text",
+"target": "নোট টেক্সট",
+"backtrans": "Note text"
+},
+{
+"key": "textLabel",
+"english": "Text",
+"target": "টেক্সট",
+"backtrans": "Text"
+},
+{
+"key": "checkShapeRounded",
+"english": "Rounded",
+"target": "গোলাকার",
+"backtrans": "Rounded"
+},
+{
+"key": "checkShapeSquare",
+"english": "Square",
+"target": "বর্গ",
+"backtrans": "Square"
+},
+{
+"key": "checkShapeCircle",
+"english": "Circle",
+"target": "বৃত্ত",
+"backtrans": "Circle"
+},
+{
+"key": "hueLabel",
+"english": "Hue",
+"target": "হিউ",
+"backtrans": "Hue"
+},
+{
+"key": "satLabel",
+"english": "Sat",
+"target": "স্যাচুরেশন",
+"backtrans": "Saturation"
+},
+{
+"key": "valLabel",
+"english": "Val",
+"target": "উজ্জ্বলতা",
+"backtrans": "Brightness"
+},
+{
+"key": "annotationModePen",
+"english": "Pen",
+"target": "কলম",
+"backtrans": "Pen"
+},
+{
+"key": "annotationModeHighlighter",
+"english": "Highlighter",
+"target": "হাইলাইটার",
+"backtrans": "Highlighter"
+},
+{
+"key": "annotationModeRect",
+"english": "Rectangle",
+"target": "আয়তক্ষেত্র",
+"backtrans": "Rectangle"
+},
+{
+"key": "annotationModeArrow",
+"english": "Arrow",
+"target": "তীর",
+"backtrans": "Arrow"
+},
+{
+"key": "annotationModeEllipse",
+"english": "Ellipse",
+"target": "উপবৃত্ত",
+"backtrans": "Ellipse [??: \"উপবৃত্ত\" is the formal geometric term for ellipse]"
+},
+{
+"key": "sharePromptTitle",
+"english": "Love KatharScan?",
+"target": "KatharScan পছন্দ করেন?",
+"backtrans": "Like KatharScan?"
+},
+{
+"key": "sharePromptBody",
+"english": "Share it with friends who need a powerful document scanner.",
+"target": "যাদের শক্তিশালী নথি স্ক্যানার দরকার তাদের সাথে শেয়ার করুন।",
+"backtrans": "Share with those who need a powerful document scanner."
+},
+{
+"key": "sharePromptAction",
+"english": "Share App",
+"target": "অ্যাপ শেয়ার",
+"backtrans": "Share app"
+},
+{
+"key": "sharePromptDismiss",
+"english": "Not now",
+"target": "এখন নয়",
+"backtrans": "Not now"
+},
+{
+"key": "reviewPromptTitle",
+"english": "Enjoying KatharScan?",
+"target": "KatharScan উপভোগ করছেন?",
+"backtrans": "Enjoying KatharScan?"
+},
+{
+"key": "reviewPromptBody",
+"english": "Your feedback helps us grow and keeps the app free.",
+"target": "আপনার প্রতিক্রিয়া আমাদের বাড়তে সাহায্য করে এবং অ্যাপ বিনামূল্যে রাখে।",
+"backtrans": "Your feedback helps us grow and keeps the app free."
+},
+{
+"key": "reviewPromptYes",
+"english": "Rate Us",
+"target": "আমাদের রেট করুন",
+"backtrans": "Rate us"
+},
+{
+"key": "reviewPromptNo",
+"english": "Send Feedback",
+"target": "প্রতিক্রিয়া পাঠান",
+"backtrans": "Send feedback"
+},
+{
+"key": "watermarkLabel",
+"english": "Watermark",
+"target": "ওয়াটারমার্ক",
+"backtrans": "Watermark"
+},
+{
+"key": "compressLabel",
+"english": "Compress",
+"target": "কম্প্রেস",
+"backtrans": "Compress"
+},
+{
+"key": "pagesLabel",
+"english": "Pages",
+"target": "পৃষ্ঠা",
+"backtrans": "Pages"
+},
+{
+"key": "cropLabel",
+"english": "Crop",
+"target": "ক্রপ",
+"backtrans": "Crop"
+},
+{
+"key": "emailLabel",
+"english": "Email",
+"target": "ইমেল",
+"backtrans": "Email"
+},
+{
+"key": "checkLabel",
+"english": "Check",
+"target": "টিক",
+"backtrans": "Tick"
+},
+{
+"key": "captionDocs",
+"english": "Flexible crop: Original, Square, 4:3, 3:2, 16:9",
+"target": "নমনীয় ক্রপ: আসল, বর্গ, 4:3, 3:2, 16:9",
+"backtrans": "Flexible crop: original, square, 4:3, 3:2, 16:9"
+},
+{
+"key": "captionOcr",
+"english": "Text crop: Original, Square, 4:3",
+"target": "টেক্সট ক্রপ: আসল, বর্গ, 4:3",
+"backtrans": "Text crop: original, square, 4:3"
+},
+{
+"key": "captionIdCard",
+"english": "Two-sided ID capture: Front + Back",
+"target": "দ্বি-পার্শ্বীয় আইডি ক্যাপচার: সামনে + পিছনে",
+"backtrans": "Two-sided ID capture: front + back"
+},
+{
+"key": "captionPassport",
+"english": "Passport crop: 4:3 or Original",
+"target": "পাসপোর্ট ক্রপ: 4:3 বা আসল",
+"backtrans": "Passport crop: 4:3 or original"
+},
+{
+"key": "idStepFront",
+"english": "Step 1: Capture Front Side",
+"target": "ধাপ 1: সামনের দিক স্ক্যান করুন",
+"backtrans": "Step 1: Scan the front side"
+},
+{
+"key": "idStepBack",
+"english": "Step 2: Capture Back Side",
+"target": "ধাপ 2: পিছনের দিক স্ক্যান করুন",
+"backtrans": "Step 2: Scan the back side"
+},
+{
+"key": "idGenerating",
+"english": "Generating PDF...",
+"target": "PDF তৈরি হচ্ছে...",
+"backtrans": "Generating PDF..."
+},
+{
+"key": "captureFrontSide",
+"english": "Capture Front Side",
+"target": "সামনের দিক স্ক্যান করুন",
+"backtrans": "Scan the front side"
+},
+{
+"key": "captureBackSide",
+"english": "Capture Back Side",
+"target": "পিছনের দিক স্ক্যান করুন",
+"backtrans": "Scan the back side"
+},
+{
+"key": "importFrontSide",
+"english": "Import Front Side",
+"target": "সামনের দিক আমদানি",
+"backtrans": "Import front side"
+},
+{
+"key": "importBackSide",
+"english": "Import Back Side",
+"target": "পিছনের দিক আমদানি",
+"backtrans": "Import back side"
+},
+{
+"key": "cropDocumentTitle",
+"english": "Crop Document",
+"target": "নথি ক্রপ করুন",
+"backtrans": "Crop document"
+},
+{
+"key": "cropIdCardTitle",
+"english": "Crop ID Card",
+"target": "আইডি কার্ড ক্রপ করুন",
+"backtrans": "Crop ID card"
+},
+{
+"key": "tabImageLabel",
+"english": "Image",
+"target": "চিত্র",
+"backtrans": "Image"
+},
+{
+"key": "tabOcrTextLabel",
+"english": "OCR Text",
+"target": "OCR টেক্সট",
+"backtrans": "OCR text"
+},
+{
+"key": "compressSmall",
+"english": "Small",
+"target": "ছোট",
+"backtrans": "Small"
+},
+{
+"key": "compressMedium",
+"english": "Medium",
+"target": "মাঝারি",
+"backtrans": "Medium"
+},
+{
+"key": "pageFormatLetter",
+"english": "Letter (US)",
+"target": "লেটার (মার্কিন)",
+"backtrans": "Letter (US)"
+},
+{
+"key": "ocrScriptLatin",
+"english": "Latin (English, European)",
+"target": "ল্যাটিন (ইংরেজি, ইউরোপীয়)",
+"backtrans": "Latin (English, European)"
+},
+{
+"key": "ocrScriptChinese",
+"english": "Chinese",
+"target": "চীনা",
+"backtrans": "Chinese"
+},
+{
+"key": "ocrScriptKorean",
+"english": "Korean",
+"target": "কোরীয়",
+"backtrans": "Korean"
+},
+{
+"key": "ocrScriptJapanese",
+"english": "Japanese",
+"target": "জাপানি",
+"backtrans": "Japanese"
+},
+{
+"key": "ocrScriptDevanagari",
+"english": "Hindi, Marathi (Devanagari)",
+"target": "হিন্দি, মারাঠি (দেবনাগরী)",
+"backtrans": "Hindi, Marathi (Devanagari)"
+},
+{
+"key": "ocrStatusUnsupported",
+"english": "Unsupported",
+"target": "সমর্থিত নয়",
+"backtrans": "Not supported"
+},
+{
+"key": "noteLabel",
+"english": "Note",
+"target": "নোট",
+"backtrans": "Note"
+},
+{
+"key": "dateLabel",
+"english": "Date",
+"target": "তারিখ",
+"backtrans": "Date"
+},
+{
+"key": "accentBlue",
+"english": "Blue",
+"target": "নীল",
+"backtrans": "Blue"
+},
+{
+"key": "accentIndigo",
+"english": "Indigo",
+"target": "ইন্ডিগো",
+"backtrans": "Indigo"
+},
+{
+"key": "accentEmerald",
+"english": "Emerald",
+"target": "পান্না",
+"backtrans": "Emerald [??: \"পান্না\" means emerald gem; as a color name it is fine]"
+},
+{
+"key": "accentCrimson",
+"english": "Crimson",
+"target": "গাঢ় লাল",
+"backtrans": "Dark red [??: \"গাঢ় লাল\" = deep red; loses \"crimson\" nuance]"
+},
+{
+"key": "accentAmber",
+"english": "Amber",
+"target": "অ্যাম্বার",
+"backtrans": "Amber"
+},
+{
+"key": "accentViolet",
+"english": "Violet",
+"target": "বেগুনি",
+"backtrans": "Violet [??: \"বেগুনি\" is more commonly purple/aubergine-colored]"
+},
+{
+"key": "tickerLanguages",
+"english": "{count} LANGUAGES",
+"target": "{count} ভাষা",
+"backtrans": "{count} languages"
+},
+{
+"key": "termsOfServiceLabel",
+"english": "Terms of Service",
+"target": "পরিষেবার শর্তাবলী",
+"backtrans": "Terms of service"
+},
+{
+"key": "openSourceLicensesLabel",
+"english": "Open-source licenses",
+"target": "ওপেন-সোর্স লাইসেন্স",
+"backtrans": "Open-source licenses"
+},
+{
+"key": "whatsNewTitle",
+"english": "What's New",
+"target": "নতুন কী",
+"backtrans": "What's new"
+},
+{
+"key": "whatsNewContinue",
+"english": "Continue",
+"target": "চালিয়ে যান",
+"backtrans": "Continue"
+},
+{
+"key": "tickerTxtExport",
+"english": "TXT EXPORT",
+"target": "TXT রপ্তানি",
+"backtrans": "TXT export"
+},
+{
+"key": "tickerCsvExport",
+"english": "CSV EXPORT",
+"target": "CSV রপ্তানি",
+"backtrans": "CSV export"
+},
+{
+"key": "whatsNewBody",
+"english": "Welcome to KatharScan! This is the first public release featuring unlimited scanning, 29 languages, and export to PDF, Word, TXT, JPG, PNG, and CSV.",
+"target": "KatharScan-এ স্বাগতম! এটি প্রথম পাবলিক রিলিজ যেখানে আছে আনলিমিটেড স্ক্যানিং, ২৯টি ভাষা এবং PDF, Word, TXT, JPG, PNG ও CSV এক্সপোর্ট।",
+"backtrans": "Welcome to KatharScan! This is the first public release which has unlimited scanning, 29 languages and PDF, Word, TXT, JPG, PNG and CSV export. [??: uses Bengali numerals for 29 and the English word \"এক্সপোর্ট\" while elsewhere \"রপ্তানি\" is used; inconsistent]"
+},
+{
+"key": "engagementSectionLabel",
+"english": "ENGAGEMENT & NOTIFICATIONS",
+"target": "সম্পৃক্ততা ও বিজ্ঞপ্তি",
+"backtrans": "Engagement and notifications [??: \"সম্পৃক্ততা\" is stiff for engagement]"
+},
+{
+"key": "enableNotificationsLabel",
+"english": "Enable Notifications",
+"target": "বিজ্ঞপ্তি সক্রিয় করুন",
+"backtrans": "Enable notifications"
+},
+{
+"key": "enableNotificationsSubtitle",
+"english": "Allow background reminders for unexported documents",
+"target": "রপ্তানি না করা নথির জন্য ব্যাকগ্রাউন্ড অনুস্মারক অনুমোদন করুন",
+"backtrans": "Allow background reminders for documents not exported"
+},
+{
+"key": "enableReviewPromptsLabel",
+"english": "Enable Review Prompts",
+"target": "রিভিউ প্রম্পট সক্রিয় করুন",
+"backtrans": "Enable review prompts"
+},
+{
+"key": "enableReviewPromptsSubtitle",
+"english": "Allow the app to occasionally ask for a rating",
+"target": "অ্যাপটিকে মাঝে মাঝে রেটিং চাইতে অনুমতি দিন",
+"backtrans": "Allow the app to occasionally ask for a rating"
+},
+{
+"key": "enableSharePromptsLabel",
+"english": "Enable Share Prompts",
+"target": "শেয়ার প্রম্পট সক্রিয় করুন",
+"backtrans": "Enable share prompts"
+},
+{
+"key": "enableSharePromptsSubtitle",
+"english": "Allow the app to occasionally suggest sharing",
+"target": "অ্যাপটিকে মাঝে মাঝে শেয়ার করার পরামর্শ দিতে অনুমতি দিন",
+"backtrans": "Allow the app to occasionally suggest sharing"
+},
+{
+"key": "exportFormatCsvDescription",
+"english": "Spreadsheet data",
+"target": "স্প্রেডশিট ডেটা",
+"backtrans": "Spreadsheet data"
+},
+{
+"key": "watermarkDefaultText",
+"english": "CONFIDENTIAL",
+"target": "গোপনীয়",
+"backtrans": "Confidential"
+},
+{
+"key": "emailAttachmentNotIncluded",
+"english": "The pages could not be attached to the email. Use Share to send the pages.",
+"target": "পৃষ্ঠাগুলো ইমেইলে সংযুক্ত করা যায়নি। পৃষ্ঠা পাঠাতে শেয়ার ব্যবহার করুন।",
+"backtrans": "The pages could not be attached to the email. Use share to send the pages. [??: uses \"ইমেইল\" spelling, differing from \"ইমেল\" elsewhere]"
+},
+{
+"key": "sealDefaultMainText",
+"english": "YOUR COMPANY",
+"target": "আপনার কোম্পানি",
+"backtrans": "Your company"
+},
+{
+"key": "extractedPageDefaultTitle",
+"english": "Extracted Page",
+"target": "নিষ্কাশিত পৃষ্ঠা",
+"backtrans": "Extracted page"
+},
+{
+"key": "printRangeAll",
+"english": "All pages",
+"target": "সব পৃষ্ঠা",
+"backtrans": "All pages"
+},
+{
+"key": "printRangeCurrent",
+"english": "Current",
+"target": "বর্তমান",
+"backtrans": "Current"
+},
+{
+"key": "printRangeRange",
+"english": "Range",
+"target": "পরিসর",
+"backtrans": "Range"
+},
+{
+"key": "printFilterNone",
+"english": "No filter",
+"target": "কোনো ফিল্টার নেই",
+"backtrans": "No filter"
+},
+{
+"key": "removeFromFavorites",
+"english": "Remove from Favorites",
+"target": "প্রিয় তালিকা থেকে সরান",
+"backtrans": "Remove from the favorites list"
+},
+{
+"key": "addToFavorites",
+"english": "Add to Favorites",
+"target": "প্রিয় তালিকায় যোগ করুন",
+"backtrans": "Add to the favorites list"
+},
+{
+"key": "saveFailedPrefix",
+"english": "Save failed:",
+"target": "সংরক্ষণ ব্যর্থ:",
+"backtrans": "Save failed:"
+},
+{
+"key": "ocrScriptArabic",
+"english": "العربية (Arabic)",
+"target": "العربية (Arabic)",
+"backtrans": "العربية (Arabic)"
+},
+{
+"key": "ocrScriptRussian",
+"english": "Русский (Russian)",
+"target": "Русский (Russian)",
+"backtrans": "Русский (Russian)"
+},
+{
+"key": "ocrScriptUkrainian",
+"english": "Українська (Ukrainian)",
+"target": "Українська (Ukrainian)",
+"backtrans": "Українська (Ukrainian)"
+},
+{
+"key": "ocrScriptGreek",
+"english": "Ελληνικά (Greek)",
+"target": "Ελληνικά (Greek)",
+"backtrans": "Ελληνικά (Greek)"
+},
+{
+"key": "ocrScriptHebrew",
+"english": "עברית (Hebrew)",
+"target": "עברית (Hebrew)",
+"backtrans": "עברית (Hebrew)"
+},
+{
+"key": "ocrScriptThai",
+"english": "ไทย (Thai)",
+"target": "ไทย (Thai)",
+"backtrans": "ไทย (Thai)"
+},
+{
+"key": "ocrScriptBengali",
+"english": "বাংলা (Bengali)",
+"target": "বাংলা (Bengali)",
+"backtrans": "বাংলা (Bengali)"
+},
+{
+"key": "ocrStatusInstalled",
+"english": "Installed",
+"target": "ইনস্টল করা হয়েছে",
+"backtrans": "Has been installed"
+},
+{
+"key": "ocrStatusDownloading",
+"english": "Downloading…",
+"target": "ডাউনলোড হচ্ছে…",
+"backtrans": "Downloading…"
+},
+{
+"key": "exportNoTextError",
+"english": "This document has no text yet. Run OCR on it first.",
+"target": "এই নথিতে এখনও কোনো লেখা নেই। আগে OCR চালান।",
+"backtrans": "There is no writing in this document yet. Run OCR first. [??: \"লেখা\" (writing) vs \"টেক্সট\" used elsewhere]"
+},
+{
+"key": "saveFailedBanner",
+"english": "Your latest changes could not be saved.",
+"target": "আপনার সাম্প্রতিক পরিবর্তনগুলি সংরক্ষণ করা যায়নি।",
+"backtrans": "Your recent changes could not be saved."
+},
+{
+"key": "editLabel",
+"english": "Edit",
+"target": "সম্পাদনা",
+"backtrans": "Edit"
+},
+{
+"key": "fillTapHint",
+"english": "Tap the page where you want to type",
+"target": "যেখানে লিখতে চান পৃষ্ঠার সেই জায়গায় ট্যাপ করুন",
+"backtrans": "Tap on that place of the page where you want to write"
+},
+{
+"key": "fillTypeHint",
+"english": "Type here",
+"target": "এখানে লিখুন",
+"backtrans": "Write here"
+},
+{
+"key": "clearPage",
+"english": "Clear page",
+"target": "পৃষ্ঠা মুছুন",
+"backtrans": "Delete page [??: \"মুছুন\" = erase/delete; could be misread as deleting the page itself rather than clearing its content]"
+},
+{
+"key": "clearAllPages",
+"english": "Clear all pages",
+"target": "সব পৃষ্ঠা মুছুন",
+"backtrans": "Delete all pages [??: same ambiguity; may read as deleting pages]"
+},
+{
+"key": "clearedCount",
+"english": "Cleared {count}",
+"target": "{count}টি মুছে ফেলা হয়েছে",
+"backtrans": "{count} were deleted"
+},
+{
+"key": "idLayoutRealSize",
+"english": "Real size",
+"target": "আসল আকার",
+"backtrans": "Real size"
+},
+{
+"key": "idLayoutFullWidth",
+"english": "Full width",
+"target": "পূর্ণ প্রস্থ",
+"backtrans": "Full width"
+},
+{
+"key": "pagesToReadTitle",
+"english": "Pages to read",
+"target": "পড়ার জন্য পৃষ্ঠা",
+"backtrans": "Pages to read"
+},
+{
+"key": "pagesToReadHint",
+"english": "This PDF has {count} pages. Pages that are pictures are read with OCR (about 10 seconds each); pages with real text are instant.",
+"target": "এই PDF-এ {count}টি পৃষ্ঠা আছে। ছবির পৃষ্ঠা OCR দিয়ে পড়া হয় (প্রতিটি প্রায় ১০ সেকেন্ড); আসল লেখার পৃষ্ঠা তাৎক্ষণিক।",
+"backtrans": "This PDF has {count} pages. Image pages are read via OCR (about 10 seconds each); real text pages are instant. [??: uses Bengali numeral for 10]"
+},
+{
+"key": "pageFromLabel",
+"english": "From page",
+"target": "শুরুর পৃষ্ঠা",
+"backtrans": "Starting page"
+},
+{
+"key": "pageToLabel",
+"english": "To page",
+"target": "শেষ পৃষ্ঠা",
+"backtrans": "Last page"
+},
+{
+"key": "readingPageProgress",
+"english": "Page {page} of {total}",
+"target": "পৃষ্ঠা {page} / {total}",
+"backtrans": "Page {page} / {total}"
+},
+{
+"key": "readingPageEta",
+"english": "Page {page} of {total} · about {minutes} min left",
+"target": "পৃষ্ঠা {page} / {total} · প্রায় {minutes} মিনিট বাকি",
+"backtrans": "Page {page} / {total} · about {minutes} minutes left"
+},
+{
+"key": "sealShapeRound",
+"english": "Round",
+"target": "গোল",
+"backtrans": "Round"
+},
+{
+"key": "sealFontSans",
+"english": "Clean",
+"target": "আধুনিক",
+"backtrans": "Modern"
+},
+{
+"key": "sealFontSerif",
+"english": "Classic",
+"target": "ক্লাসিক",
+"backtrans": "Classic"
+},
+{
+"key": "sealInkLook",
+"english": "Worn stamp look",
+"target": "পুরোনো স্ট্যাম্পের ছাপ",
+"backtrans": "Old stamp impression"
+},
+{
+"key": "sealSaveToLibrary",
+"english": "Save this seal",
+"target": "এই সিল সংরক্ষণ করুন",
+"backtrans": "Save this seal"
+},
+{
+"key": "sealSavedHeading",
+"english": "Saved seals",
+"target": "সংরক্ষিত সিল",
+"backtrans": "Saved seals"
+},
+{
+"key": "sealTextColorLabel",
+"english": "Text colour",
+"target": "লেখার রং",
+"backtrans": "Writing color"
+},
+{
+"key": "sealTextColorSame",
+"english": "Same as ring",
+"target": "রিংয়ের মতো",
+"backtrans": "Like the ring"
+},
+{
+"key": "sealTextSizePercent",
+"english": "Text size {percent}%",
+"target": "লেখার আকার {percent}%",
+"backtrans": "Writing size {percent}%"
+},
+{
+"key": "sealRemoveWhite",
+"english": "Make white transparent",
+"target": "সাদা অংশ স্বচ্ছ করুন",
+"backtrans": "Make white part transparent"
+},
+{
+"key": "sealSavedMessage",
+"english": "Seal saved",
+"target": "সিল সংরক্ষিত হয়েছে",
+"backtrans": "Seal has been saved"
+},
+{
+"key": "signatureTabDraw",
+"english": "Draw",
+"target": "আঁকুন",
+"backtrans": "Draw"
+},
+{
+"key": "signatureTabType",
+"english": "Type",
+"target": "টাইপ করুন",
+"backtrans": "Type"
+},
+{
+"key": "signatureTypeHint",
+"english": "Type your name",
+"target": "আপনার নাম লিখুন",
+"backtrans": "Write your name"
+},
+{
+"key": "signatureWidthLabel",
+"english": "Pen width",
+"target": "কলমের পুরুত্ব",
+"backtrans": "Pen thickness"
+},
+{
+"key": "signatureFontFlowing",
+"english": "Flowing",
+"target": "প্রবহমান",
+"backtrans": "Flowing"
+},
+{
+"key": "signatureFontHandwritten",
+"english": "Handwritten",
+"target": "হাতের লেখা",
+"backtrans": "Handwriting"
+},
+{
+"key": "signatureSavedHeading",
+"english": "Saved signatures",
+"target": "সংরক্ষিত স্বাক্ষর",
+"backtrans": "Saved signatures"
+},
+{
+"key": "signatureNewOne",
+"english": "Draw or type a new one",
+"target": "নতুন স্বাক্ষর আঁকুন বা টাইপ করুন",
+"backtrans": "Draw or type a new signature"
+},
+{
+"key": "signatureDeleteSaved",
+"english": "Remove saved signature",
+"target": "সংরক্ষিত স্বাক্ষর সরান",
+"backtrans": "Remove saved signature"
+},
+{
+"key": "annotationModeSelect",
+"english": "Select",
+"target": "নির্বাচন",
+"backtrans": "Selection"
+},
+{
+"key": "annotationModeEraser",
+"english": "Eraser",
+"target": "ইরেজার",
+"backtrans": "Eraser"
+},
+{
+"key": "watermarkKindText",
+"english": "Text",
+"target": "টেক্সট",
+"backtrans": "Text"
+},
+{
+"key": "watermarkKindImage",
+"english": "Image",
+"target": "ছবি",
+"backtrans": "Picture"
+},
+{
+"key": "watermarkChooseImage",
+"english": "Choose image",
+"target": "ছবি বেছে নিন",
+"backtrans": "Choose picture"
+},
+{
+"key": "watermarkLayoutLabel",
+"english": "Layout",
+"target": "লেআউট",
+"backtrans": "Layout"
+},
+{
+"key": "watermarkLayoutSingle",
+"english": "Single",
+"target": "একক",
+"backtrans": "Single"
+},
+{
+"key": "watermarkLayoutDiagonal",
+"english": "Diagonal",
+"target": "তির্যক",
+"backtrans": "Slanted"
+},
+{
+"key": "watermarkLayoutTiled",
+"english": "Tiled",
+"target": "পুনরাবৃত্ত",
+"backtrans": "Repeated"
+},
+{
+"key": "watermarkPagesLabel",
+"english": "Pages",
+"target": "পৃষ্ঠা",
+"backtrans": "Pages"
+},
+{
+"key": "watermarkPagesThis",
+"english": "This page",
+"target": "এই পৃষ্ঠা",
+"backtrans": "This page"
+},
+{
+"key": "watermarkPagesAll",
+"english": "All pages",
+"target": "সব পৃষ্ঠা",
+"backtrans": "All pages"
+},
+{
+"key": "watermarkPagesRange",
+"english": "Range",
+"target": "পরিসর",
+"backtrans": "Range"
+},
+{
+"key": "watermarkPagesRangeHint",
+"english": "e.g. 1-3, 5",
+"target": "যেমন 1-3, 5",
+"backtrans": "For example 1-3, 5"
+},
+{
+"key": "watermarkPagesInvalid",
+"english": "Check the pages (the document has {count} pages)",
+"target": "পৃষ্ঠাগুলি দেখুন (নথিতে {count}টি পৃষ্ঠা আছে)",
+"backtrans": "Check the pages (the document has {count} pages)"
+},
+{
+"key": "cropAuto",
+"english": "Auto-detect",
+"target": "স্বয়ংক্রিয় শনাক্তকরণ",
+"backtrans": "Automatic detection"
+},
+{
+"key": "cropAspectFree",
+"english": "Free",
+"target": "মুক্ত",
+"backtrans": "Free"
+},
+{
+"key": "cropAspectId",
+"english": "ID card",
+"target": "আইডি কার্ড",
+"backtrans": "ID card"
+},
+{
+"key": "cropAspectSquare",
+"english": "Square",
+"target": "বর্গ",
+"backtrans": "Square"
+},
+{
+"key": "cropNoPageFound",
+"english": "Couldn't find the page edges. Drag the corners.",
+"target": "পৃষ্ঠার প্রান্ত পাওয়া যায়নি। কোণগুলো টেনে আনুন।",
+"backtrans": "Page edges could not be found. Drag the corners."
+},
+{
+"key": "straightenLabel",
+"english": "Straighten",
+"target": "সোজা করুন",
+"backtrans": "Straighten"
+},
+{
+"key": "filterMagicColor",
+"english": "Magic colour",
+"target": "ম্যাজিক রঙ",
+"backtrans": "Magic color"
+},
+{
+"key": "filterBrightnessLabel",
+"english": "Brightness",
+"target": "উজ্জ্বলতা",
+"backtrans": "Brightness"
+},
+{
+"key": "filterContrastLabel",
+"english": "Contrast",
+"target": "বৈসাদৃশ্য",
+"backtrans": "Contrast"
+},
+{
+"key": "resizeUpscaleWarning",
+"english": "Enlarging doesn't add detail — the page may look soft.",
+"target": "বড় করলে বিস্তারিত বাড়ে না; পৃষ্ঠাটি ঝাপসা দেখাতে পারে।",
+"backtrans": "Enlarging does not increase detail; the page may look blurry."
+},
+{
+"key": "eraserAutoColorTooltip",
+"english": "Match the page colour automatically",
+"target": "পৃষ্ঠার রঙের সাথে স্বয়ংক্রিয়ভাবে মেলান",
+"backtrans": "Automatically match the page's color"
+},
+{
+"key": "eraserZoomTooltip",
+"english": "Zoom and move (pinch)",
+"target": "জুম ও সরান (দুই আঙুলে চিমটি)",
+"backtrans": "Zoom and move (pinch with two fingers)"
+},
+{
+"key": "pagesSelectTooltip",
+"english": "Select pages",
+"target": "পৃষ্ঠা নির্বাচন করুন",
+"backtrans": "Select pages"
+},
+{
+"key": "pagesDeleteCount",
+"english": "Delete {count}",
+"target": "মুছুন {count}",
+"backtrans": "Delete {count}"
+},
+{
+"key": "pagesDeleteConfirm",
+"english": "Delete {count} pages? They are removed when you save.",
+"target": "{count}টি পৃষ্ঠা মুছবেন? সংরক্ষণ করলে সরানো হবে।",
+"backtrans": "Delete {count} pages? They will be removed when saved."
+},
+{
+"key": "compressTargetLabel",
+"english": "Max size",
+"target": "সর্বোচ্চ আকার",
+"backtrans": "Maximum size"
+},
+{
+"key": "compressNoLimit",
+"english": "No limit",
+"target": "কোনো সীমা নেই",
+"backtrans": "No limit"
+},
+{
+"key": "printPaperLabel",
+"english": "Paper",
+"target": "কাগজ",
+"backtrans": "Paper"
+},
+{
+"key": "printMarginLabel",
+"english": "Margin",
+"target": "মার্জিন",
+"backtrans": "Margin"
+},
+{
+"key": "printMarginNone",
+"english": "None",
+"target": "নেই",
+"backtrans": "None"
+},
+{
+"key": "printMarginNarrow",
+"english": "Narrow",
+"target": "সংকীর্ণ",
+"backtrans": "Narrow"
+},
+{
+"key": "printMarginNormal",
+"english": "Normal",
+"target": "স্বাভাবিক",
+"backtrans": "Normal"
+},
+{
+"key": "printFitLabel",
+"english": "Scaling",
+"target": "ফিটিং",
+"backtrans": "Fitting"
+},
+{
+"key": "printFitFit",
+"english": "Fit page",
+"target": "পৃষ্ঠা ফিট করুন",
+"backtrans": "Fit the page"
+},
+{
+"key": "printFitFill",
+"english": "Fill sheet (trims edges)",
+"target": "শিট ভরান (কিনারা কাটে)",
+"backtrans": "Fill the sheet (cuts edges)"
+},
+{
+"key": "printPerSheetLabel",
+"english": "Pages per sheet",
+"target": "প্রতি শিটে পৃষ্ঠা",
+"backtrans": "Pages per sheet"
+},
+{
+"key": "emailMessageLabel",
+"english": "Message",
+"target": "বার্তা",
+"backtrans": "Message"
+},
+{
+"key": "emailMessageHint",
+"english": "Add a note (optional)",
+"target": "একটি নোট যোগ করুন (ঐচ্ছিক)",
+"backtrans": "Add a note (optional)"
+},
+{
+"key": "emailLimitMissed",
+"english": "Could not get under {mb} MB; sent the smallest version.",
+"target": "{mb} MB-এর নিচে আনা যায়নি; সবচেয়ে ছোট সংস্করণ পাঠানো হয়েছে।",
+"backtrans": "Could not bring it under {mb} MB; the smallest version was sent."
+}
+]

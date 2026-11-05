@@ -1,0 +1,3362 @@
+[
+{
+"key": "privacyOptionsLabel",
+"english": "Privacy settings",
+"target": "隐私设置",
+"backtrans": "Privacy settings"
+},
+{
+"key": "commonCancel",
+"english": "Cancel",
+"target": "取消",
+"backtrans": "Cancel"
+},
+{
+"key": "commonDelete",
+"english": "Delete",
+"target": "删除",
+"backtrans": "Delete"
+},
+{
+"key": "commonSave",
+"english": "Save",
+"target": "保存",
+"backtrans": "Save"
+},
+{
+"key": "commonAdd",
+"english": "Add",
+"target": "添加",
+"backtrans": "Add"
+},
+{
+"key": "commonExport",
+"english": "Export",
+"target": "导出",
+"backtrans": "Export"
+},
+{
+"key": "commonImport",
+"english": "Import",
+"target": "导入",
+"backtrans": "Import"
+},
+{
+"key": "commonSkip",
+"english": "Skip",
+"target": "跳过",
+"backtrans": "Skip"
+},
+{
+"key": "commonClear",
+"english": "Clear",
+"target": "清除",
+"backtrans": "Clear"
+},
+{
+"key": "emptyStateDefaultMessage",
+"english": "Tap the camera to scan your first document.",
+"target": "点击相机图标扫描你的第一份文档。",
+"backtrans": "Tap the camera icon to scan your first document."
+},
+{
+"key": "exportFormatSheetTitle",
+"english": "Export as",
+"target": "导出为",
+"backtrans": "Export as"
+},
+{
+"key": "exportFormatPdfLabel",
+"english": "PDF",
+"target": "PDF",
+"backtrans": "PDF"
+},
+{
+"key": "exportFormatPdfDescription",
+"english": "Best for sharing and printing",
+"target": "最适合分享和打印",
+"backtrans": "Best for sharing and printing"
+},
+{
+"key": "exportFormatDocxLabel",
+"english": "Word (.docx)",
+"target": "Word (.docx)",
+"backtrans": "Word (.docx)"
+},
+{
+"key": "exportFormatDocxDescription",
+"english": "Editable text document",
+"target": "可编辑的文本文档",
+"backtrans": "Editable text document"
+},
+{
+"key": "exportFormatTxtLabel",
+"english": "Text (.txt)",
+"target": "文本 (.txt)",
+"backtrans": "Text (.txt)"
+},
+{
+"key": "exportFormatTxtDescription",
+"english": "Plain OCR text only",
+"target": "仅纯 OCR 文本",
+"backtrans": "Plain OCR text only"
+},
+{
+"key": "exportFormatJpgLabel",
+"english": "JPG",
+"target": "JPG",
+"backtrans": "JPG"
+},
+{
+"key": "exportFormatJpgDescription",
+"english": "One image per page",
+"target": "每页一张图片",
+"backtrans": "One image per page"
+},
+{
+"key": "exportFormatPngLabel",
+"english": "PNG",
+"target": "PNG",
+"backtrans": "PNG"
+},
+{
+"key": "exportFormatPngDescription",
+"english": "One image per page, lossless",
+"target": "每页一张图片，无损画质",
+"backtrans": "One image per page, lossless quality"
+},
+{
+"key": "filterSheetTitle",
+"english": "Filters",
+"target": "滤镜",
+"backtrans": "Filter (lens/photo filter)"
+},
+{
+"key": "filterOriginal",
+"english": "Original",
+"target": "原始",
+"backtrans": "Original"
+},
+{
+"key": "filterGrayscale",
+"english": "Grayscale",
+"target": "灰度",
+"backtrans": "Grayscale"
+},
+{
+"key": "filterBlackAndWhite",
+"english": "B&W",
+"target": "黑白",
+"backtrans": "Black and white"
+},
+{
+"key": "filterColorEnhance",
+"english": "Color enhance",
+"target": "色彩增强",
+"backtrans": "Color enhancement"
+},
+{
+"key": "filterShadowRemoval",
+"english": "Shadow removal",
+"target": "去除阴影",
+"backtrans": "Remove shadows"
+},
+{
+"key": "proBadgeLabel",
+"english": "PRO",
+"target": "PRO",
+"backtrans": "PRO"
+},
+{
+"key": "scanListPageCount",
+"english": "{count, plural, =1{1 page} other{{count} pages}}",
+"target": "{count, plural, other{{count} 页}}",
+"backtrans": "{count, plural, other{{count} pages}}"
+},
+{
+"key": "scanPreviewNoPages",
+"english": "No pages to show.",
+"target": "没有可显示的页面。",
+"backtrans": "There are no pages that can be displayed."
+},
+{
+"key": "shareTooltip",
+"english": "Share",
+"target": "分享",
+"backtrans": "Share"
+},
+{
+"key": "signatureCanvasHint",
+"english": "Sign here",
+"target": "请在此签名",
+"backtrans": "Please sign here"
+},
+{
+"key": "folderDocumentCount",
+"english": "{count, plural, =1{1 document} other{{count} documents}}",
+"target": "{count, plural, other{{count} 份文档}}",
+"backtrans": "{count, plural, other{{count} documents}}"
+},
+{
+"key": "selectedCount",
+"english": "{count, plural, =1{1 selected} other{{count} selected}}",
+"target": "{count, plural, other{已选择 {count} 项}}",
+"backtrans": "{count, plural, other{{count} items selected}}"
+},
+{
+"key": "batchExportTooltip",
+"english": "Batch export",
+"target": "批量导出",
+"backtrans": "Batch export"
+},
+{
+"key": "deleteTooltip",
+"english": "Delete",
+"target": "删除",
+"backtrans": "Delete"
+},
+{
+"key": "searchHint",
+"english": "Search your scans",
+"target": "搜索你的扫描件",
+"backtrans": "Search your scans"
+},
+{
+"key": "settingsTooltip",
+"english": "Settings",
+"target": "设置",
+"backtrans": "Settings"
+},
+{
+"key": "foldersSectionHeader",
+"english": "Folders",
+"target": "文件夹",
+"backtrans": "Folders"
+},
+{
+"key": "documentsSectionHeader",
+"english": "Documents",
+"target": "文档",
+"backtrans": "Documents"
+},
+{
+"key": "exportingStatus",
+"english": "Exporting…",
+"target": "正在导出…",
+"backtrans": "Exporting..."
+},
+{
+"key": "exportDoneStatus",
+"english": "Done",
+"target": "已完成",
+"backtrans": "Completed"
+},
+{
+"key": "exportGenericError",
+"english": "Something went wrong while exporting.",
+"target": "导出过程中出了点问题。",
+"backtrans": "Something went a bit wrong during export."
+},
+{
+"key": "deleteFolderTitle",
+"english": "Delete this folder?",
+"target": "要删除此文件夹吗？",
+"backtrans": "Delete this folder?"
+},
+{
+"key": "deleteFolderMessage",
+"english": "Documents inside will not be deleted.",
+"target": "文件夹内的文档不会被删除。",
+"backtrans": "Documents inside the folder will not be deleted."
+},
+{
+"key": "deleteFolderTooltip",
+"english": "Delete folder",
+"target": "删除文件夹",
+"backtrans": "Delete folder"
+},
+{
+"key": "renameFolderTitle",
+"english": "Rename folder",
+"target": "重命名文件夹",
+"backtrans": "Rename folder"
+},
+{
+"key": "removeFromFolderTooltip",
+"english": "Remove from folder",
+"target": "从文件夹中移除",
+"backtrans": "Remove from folder"
+},
+{
+"key": "noDocumentsInFolder",
+"english": "No documents in this folder yet.",
+"target": "此文件夹中还没有文档。",
+"backtrans": "There are no documents in this folder yet."
+},
+{
+"key": "folderUnavailable",
+"english": "This folder is no longer available.",
+"target": "此文件夹已不可用。",
+"backtrans": "This folder is no longer available."
+},
+{
+"key": "migrationTitle",
+"english": "Device Migration",
+"target": "设备迁移",
+"backtrans": "Device migration"
+},
+{
+"key": "migrationExplainer",
+"english": "This isn't automatic sync. Export creates a single encrypted backup file you move to your new device yourself, then import there.",
+"target": "这不是自动同步。导出会创建一个加密备份文件，你需要自己将它转移到新设备，然后在那里导入。",
+"backtrans": "This is not automatic sync. Export creates an encrypted backup file, which you need to transfer to the new device yourself, then import there."
+},
+{
+"key": "exportBackupButton",
+"english": "Export encrypted backup",
+"target": "导出加密备份",
+"backtrans": "Export encrypted backup"
+},
+{
+"key": "importBackupButton",
+"english": "Import from backup",
+"target": "从备份导入",
+"backtrans": "Import from backup"
+},
+{
+"key": "setBackupPasswordTitle",
+"english": "Set a backup password",
+"target": "设置备份密码",
+"backtrans": "Set backup password"
+},
+{
+"key": "enterBackupPasswordTitle",
+"english": "Enter backup password",
+"target": "输入备份密码",
+"backtrans": "Enter backup password"
+},
+{
+"key": "buildingBackupStatus",
+"english": "Building backup…",
+"target": "正在生成备份…",
+"backtrans": "Generating backup..."
+},
+{
+"key": "backupReadyStatus",
+"english": "Backup ready.",
+"target": "备份已就绪。",
+"backtrans": "Backup is ready."
+},
+{
+"key": "couldNotCreateBackupError",
+"english": "Could not create the backup.",
+"target": "无法创建备份。",
+"backtrans": "Unable to create backup."
+},
+{
+"key": "importingStatus",
+"english": "Importing…",
+"target": "正在导入…",
+"backtrans": "Importing..."
+},
+{
+"key": "couldNotImportBackupError",
+"english": "Could not import this backup. Check the password and try again.",
+"target": "无法导入此备份。请检查密码后重试。",
+"backtrans": "Unable to import this backup. Please check the password and try again."
+},
+{
+"key": "backupCorruptedError",
+"english": "This backup file looks corrupted.",
+"target": "此备份文件似乎已损坏。",
+"backtrans": "This backup file seems to be damaged."
+},
+{
+"key": "importedCount",
+"english": "{count, plural, =1{1 document imported} other{{count} documents imported}}",
+"target": "{count, plural, other{已导入 {count} 份文档}}",
+"backtrans": "{count, plural, other{Imported {count} documents}}"
+},
+{
+"key": "continueButton",
+"english": "Continue",
+"target": "继续",
+"backtrans": "Continue"
+},
+{
+"key": "restorePurchasesButton",
+"english": "Restore purchases",
+"target": "恢复购买",
+"backtrans": "Restore purchases"
+},
+{
+"key": "pricingLoadingError",
+"english": "Pricing is still loading — try again in a moment.",
+"target": "价格信息加载中，请稍后重试。",
+"backtrans": "Price information is loading, please try again later."
+},
+{
+"key": "renameDocumentTitle",
+"english": "Rename document",
+"target": "重命名文档",
+"backtrans": "Rename document"
+},
+{
+"key": "addTagTitle",
+"english": "Add tag",
+"target": "添加标签",
+"backtrans": "Add tag"
+},
+{
+"key": "moveToFolderTooltip",
+"english": "Move to folder",
+"target": "移动到文件夹",
+"backtrans": "Move to folder"
+},
+{
+"key": "exportTooltip",
+"english": "Export",
+"target": "导出",
+"backtrans": "Export"
+},
+{
+"key": "deleteScanTitle",
+"english": "Delete this scan?",
+"target": "要删除此扫描件吗？",
+"backtrans": "Delete this scan?"
+},
+{
+"key": "deleteScanMessage",
+"english": "This can't be undone.",
+"target": "此操作无法撤销。",
+"backtrans": "This operation cannot be undone."
+},
+{
+"key": "movedToFolderMessage",
+"english": "Moved to folder.",
+"target": "已移动到文件夹。",
+"backtrans": "Moved to folder."
+},
+{
+"key": "noTextRecognized",
+"english": "No text recognized.",
+"target": "未识别到文本。",
+"backtrans": "No text recognized."
+},
+{
+"key": "scanUnavailable",
+"english": "This scan is no longer available.",
+"target": "此扫描件已不可用。",
+"backtrans": "This scan is no longer available."
+},
+{
+"key": "settingsTitle",
+"english": "Settings",
+"target": "设置",
+"backtrans": "Settings"
+},
+{
+"key": "appearanceSectionLabel",
+"english": "Appearance",
+"target": "外观",
+"backtrans": "Appearance"
+},
+{
+"key": "themeLabel",
+"english": "Theme",
+"target": "主题",
+"backtrans": "Theme"
+},
+{
+"key": "systemThemeOption",
+"english": "System",
+"target": "跟随系统",
+"backtrans": "Follow system"
+},
+{
+"key": "lightThemeOption",
+"english": "Light",
+"target": "浅色",
+"backtrans": "Light"
+},
+{
+"key": "darkThemeOption",
+"english": "Dark",
+"target": "深色",
+"backtrans": "Dark"
+},
+{
+"key": "languageSectionLabel",
+"english": "Language",
+"target": "语言",
+"backtrans": "Language"
+},
+{
+"key": "appLanguageLabel",
+"english": "App language",
+"target": "应用语言",
+"backtrans": "App language"
+},
+{
+"key": "storageSectionLabel",
+"english": "Storage",
+"target": "存储",
+"backtrans": "Storage"
+},
+{
+"key": "deviceMigrationLabel",
+"english": "Device Migration",
+"target": "设备迁移",
+"backtrans": "Device migration"
+},
+{
+"key": "subscriptionSectionLabel",
+"english": "Subscription",
+"target": "订阅",
+"backtrans": "Subscription"
+},
+{
+"key": "aboutSectionLabel",
+"english": "About",
+"target": "关于",
+"backtrans": "About"
+},
+{
+"key": "privacyPolicyLabel",
+"english": "Privacy policy",
+"target": "隐私政策",
+"backtrans": "Privacy policy"
+},
+{
+"key": "supportLabel",
+"english": "Support",
+"target": "支持",
+"backtrans": "Support"
+},
+{
+"key": "couldNotOpenLinkError",
+"english": "Could not open link.",
+"target": "无法打开链接。",
+"backtrans": "Unable to open link."
+},
+{
+"key": "restoreCompleteMessage",
+"english": "Restore complete.",
+"target": "恢复完成。",
+"backtrans": "Restore complete."
+},
+{
+"key": "genericErrorMessage",
+"english": "Something went wrong. Please try again.",
+"target": "出了点问题，请重试。",
+"backtrans": "Something went a bit wrong, please try again."
+},
+{
+"key": "extractedTextTitle",
+"english": "Extracted Text",
+"target": "提取的文本",
+"backtrans": "Extracted text"
+},
+{
+"key": "commonClose",
+"english": "Close",
+"target": "关闭",
+"backtrans": "Close"
+},
+{
+"key": "commonCopy",
+"english": "Copy",
+"target": "复制",
+"backtrans": "Copy"
+},
+{
+"key": "savedToDocumentText",
+"english": "Saved to document text",
+"target": "已保存到文档文本",
+"backtrans": "Saved to document text"
+},
+{
+"key": "regionOcrFailed",
+"english": "Region OCR failed",
+"target": "区域OCR失败",
+"backtrans": "Region OCR failed"
+},
+{
+"key": "filterRemoved",
+"english": "Filter removed",
+"target": "滤镜已移除",
+"backtrans": "Filter has been removed"
+},
+{
+"key": "filterApplied",
+"english": "Filter applied",
+"target": "滤镜已应用",
+"backtrans": "Filter has been applied"
+},
+{
+"key": "pageCropped",
+"english": "Page cropped",
+"target": "页面已裁剪",
+"backtrans": "Page has been cropped"
+},
+{
+"key": "revertToOriginalTitle",
+"english": "Revert to Original?",
+"target": "恢复到原始？",
+"backtrans": "Restore to original?"
+},
+{
+"key": "revertToOriginalMessage",
+"english": "This will undo all filters, rotations, crops, resizes, and eraser strokes on this page.",
+"target": "这将撤销此页面上的所有滤镜、旋转、裁剪、调整大小和橡皮擦笔触。",
+"backtrans": "This will undo all filters, rotation, cropping, resizing and eraser strokes on this page."
+},
+{
+"key": "commonRevert",
+"english": "Revert",
+"target": "恢复",
+"backtrans": "Restore"
+},
+{
+"key": "pageRevertedToOriginal",
+"english": "Page reverted to original",
+"target": "页面已恢复到原始",
+"backtrans": "Page has been restored to original"
+},
+{
+"key": "eraserApplied",
+"english": "Eraser applied",
+"target": "橡皮擦已应用",
+"backtrans": "Eraser has been applied"
+},
+{
+"key": "pageResized",
+"english": "Page resized",
+"target": "页面大小已调整",
+"backtrans": "Page size has been adjusted"
+},
+{
+"key": "extractedAsNewDocument",
+"english": "Extracted as new document",
+"target": "提取为新文档",
+"backtrans": "Extracted as new document"
+},
+{
+"key": "pagesUpdated",
+"english": "Pages updated",
+"target": "页面已更新",
+"backtrans": "Pages have been updated"
+},
+{
+"key": "printOptionsTitle",
+"english": "Print Options",
+"target": "打印选项",
+"backtrans": "Print options"
+},
+{
+"key": "letterSizeUS",
+"english": "Letter size (US)",
+"target": "Letter 纸张（美国）",
+"backtrans": "Letter paper (US)"
+},
+{
+"key": "commonPrint",
+"english": "Print",
+"target": "打印",
+"backtrans": "Print"
+},
+{
+"key": "printFailed",
+"english": "Print failed",
+"target": "打印失败",
+"backtrans": "Printing failed"
+},
+{
+"key": "noEmailAppFound",
+"english": "No email app found",
+"target": "未找到电子邮件应用",
+"backtrans": "No email app found"
+},
+{
+"key": "emailFailed",
+"english": "Email failed",
+"target": "邮件发送失败",
+"backtrans": "Email sending failed"
+},
+{
+"key": "fromPageLabel",
+"english": "From",
+"target": "从",
+"backtrans": "From"
+},
+{
+"key": "toPageLabel",
+"english": "To",
+"target": "到",
+"backtrans": "To"
+},
+{
+"key": "pdfImportedAsDocument",
+"english": "PDF imported as document",
+"target": "PDF已作为文档导入",
+"backtrans": "PDF has been imported as a document"
+},
+{
+"key": "frontSideCaptured",
+"english": "Front side captured. Now capture the back side.",
+"target": "正面已拍摄。现在拍摄背面。",
+"backtrans": "Front side has been captured. Now capture the back side."
+},
+{
+"key": "idCardPdfGenerated",
+"english": "ID Card PDF Generated",
+"target": "身份证 PDF 已生成",
+"backtrans": "ID card PDF has been generated"
+},
+{
+"key": "sharePdf",
+"english": "Share PDF",
+"target": "分享PDF",
+"backtrans": "Share PDF"
+},
+{
+"key": "saveAsDocument",
+"english": "Save as Document",
+"target": "另存为文档",
+"backtrans": "Save as document"
+},
+{
+"key": "commonDone",
+"english": "Done",
+"target": "完成",
+"backtrans": "Done"
+},
+{
+"key": "documentSaved",
+"english": "Document saved",
+"target": "文档已保存",
+"backtrans": "Document has been saved"
+},
+{
+"key": "commonReset",
+"english": "Reset",
+"target": "重置",
+"backtrans": "Reset"
+},
+{
+"key": "autoScan",
+"english": "Auto Scan",
+"target": "自动扫描",
+"backtrans": "Auto scan"
+},
+{
+"key": "importAndConvertDocument",
+"english": "Import & Convert Document",
+"target": "导入并转换文档",
+"backtrans": "Import and convert document"
+},
+{
+"key": "signatureTitle",
+"english": "Signature",
+"target": "签名",
+"backtrans": "Signature"
+},
+{
+"key": "signatureChoiceMessage",
+"english": "Use your saved signature or draw a new one?",
+"target": "使用已保存的签名还是绘制新的签名？",
+"backtrans": "Use a saved signature or draw a new one?"
+},
+{
+"key": "useSavedSignature",
+"english": "Use Saved",
+"target": "使用已保存",
+"backtrans": "Use saved"
+},
+{
+"key": "drawNewSignature",
+"english": "Draw New",
+"target": "绘制新的",
+"backtrans": "Draw new"
+},
+{
+"key": "copyAll",
+"english": "Copy all",
+"target": "复制全部",
+"backtrans": "Copy all"
+},
+{
+"key": "clearThis",
+"english": "Clear this",
+"target": "清除此项",
+"backtrans": "Clear this item"
+},
+{
+"key": "commonRemove",
+"english": "Remove",
+"target": "移除",
+"backtrans": "Remove"
+},
+{
+"key": "clearAll",
+"english": "Clear all",
+"target": "清除全部",
+"backtrans": "Clear all"
+},
+{
+"key": "addSignature",
+"english": "Add Signature",
+"target": "添加签名",
+"backtrans": "Add signature"
+},
+{
+"key": "commonUse",
+"english": "Use",
+"target": "使用",
+"backtrans": "Use"
+},
+{
+"key": "stampTickedLabel",
+"english": "Ticked",
+"target": "已勾选",
+"backtrans": "Checked"
+},
+{
+"key": "stampBoxLabel",
+"english": "Box",
+"target": "边框",
+"backtrans": "Border"
+},
+{
+"key": "stampTickLabel",
+"english": "Tick",
+"target": "勾",
+"backtrans": "Tick/checkmark"
+},
+{
+"key": "commonCustom",
+"english": "Custom",
+"target": "自定义",
+"backtrans": "Custom"
+},
+{
+"key": "commonChange",
+"english": "Change",
+"target": "更改",
+"backtrans": "Change"
+},
+{
+"key": "commonColor",
+"english": "Color",
+"target": "颜色",
+"backtrans": "Color"
+},
+{
+"key": "stampPaperLabel",
+"english": "Paper",
+"target": "纸张",
+"backtrans": "Paper"
+},
+{
+"key": "whiteHaloLabel",
+"english": "White halo (readability)",
+"target": "白色光晕（可读性）",
+"backtrans": "White halo (readability)"
+},
+{
+"key": "commonCreate",
+"english": "Create",
+"target": "创建",
+"backtrans": "Create"
+},
+{
+"key": "homeLanguageTooltip",
+"english": "App Language",
+"target": "应用语言",
+"backtrans": "App language"
+},
+{
+"key": "removeAdsTitle",
+"english": "Remove Ads Forever",
+"target": "永久移除广告",
+"backtrans": "Permanently remove ads"
+},
+{
+"key": "newFolderTitle",
+"english": "New Folder",
+"target": "新建文件夹",
+"backtrans": "New folder"
+},
+{
+"key": "batchExportEmptyMessage",
+"english": "No documents to batch export. Scan some first.",
+"target": "没有可批量导出的文档。请先扫描一些。",
+"backtrans": "There are no documents that can be batch exported. Please scan some first."
+},
+{
+"key": "newFolderTooltip",
+"english": "New Folder",
+"target": "新建文件夹",
+"backtrans": "New folder"
+},
+{
+"key": "accentColorTooltip",
+"english": "Accent Color",
+"target": "强调色",
+"backtrans": "Accent color"
+},
+{
+"key": "moveToFolderTitle",
+"english": "Move to Folder",
+"target": "移动到文件夹",
+"backtrans": "Move to folder"
+},
+{
+"key": "noFoldersYetHomeMessage",
+"english": "No folders yet. Create one from the home screen.",
+"target": "还没有文件夹。请在首页创建。",
+"backtrans": "No folders yet. Please create one on the home page."
+},
+{
+"key": "appLanguageTitle",
+"english": "App Language",
+"target": "应用语言",
+"backtrans": "App language"
+},
+{
+"key": "accentColorTitle",
+"english": "Accent Color",
+"target": "强调色",
+"backtrans": "Accent color"
+},
+{
+"key": "sealEditTitle",
+"english": "Edit Custom Seal",
+"target": "编辑自定义印章",
+"backtrans": "Edit custom seal"
+},
+{
+"key": "sealCreateTitle",
+"english": "Custom Seal",
+"target": "自定义印章",
+"backtrans": "Custom seal"
+},
+{
+"key": "sealMainTextLabel",
+"english": "Main text (top arc / box)",
+"target": "主文本（上弧/框）",
+"backtrans": "Main text (upper arc/box)"
+},
+{
+"key": "sealSubtextLabel",
+"english": "Subtext (bottom arc / below)",
+"target": "副文本（下弧/下方）",
+"backtrans": "Sub text (lower arc/below)"
+},
+{
+"key": "sealShapeOval",
+"english": "Oval",
+"target": "椭圆",
+"backtrans": "Oval"
+},
+{
+"key": "sealShapeBox",
+"english": "Box",
+"target": "框",
+"backtrans": "Box"
+},
+{
+"key": "sealCenterStar",
+"english": "Star",
+"target": "星",
+"backtrans": "Star"
+},
+{
+"key": "sealCenterText",
+"english": "Text",
+"target": "文本",
+"backtrans": "Text"
+},
+{
+"key": "sealCenterLogo",
+"english": "Logo",
+"target": "徽标",
+"backtrans": "Emblem/logo"
+},
+{
+"key": "sealCenterNone",
+"english": "None",
+"target": "无",
+"backtrans": "None"
+},
+{
+"key": "sealCenterTextLabel",
+"english": "Center text",
+"target": "中心文本",
+"backtrans": "Center text"
+},
+{
+"key": "sealLogoReady",
+"english": "Logo ready",
+"target": "徽标已就绪",
+"backtrans": "Logo is ready"
+},
+{
+"key": "textSizeLabel",
+"english": "Text size: {size}",
+"target": "文本大小：{size}",
+"backtrans": "Text size: {size}"
+},
+{
+"key": "commonUpdate",
+"english": "Update",
+"target": "更新",
+"backtrans": "Update"
+},
+{
+"key": "managePagesTitle",
+"english": "Manage Pages",
+"target": "管理页面",
+"backtrans": "Manage pages"
+},
+{
+"key": "pageLabel",
+"english": "Page {index}",
+"target": "第 {index} 页",
+"backtrans": "Page {index}"
+},
+{
+"key": "duplicateAction",
+"english": "Duplicate",
+"target": "创建副本",
+"backtrans": "Create a copy"
+},
+{
+"key": "rotate90Action",
+"english": "Rotate 90°",
+"target": "旋转90°",
+"backtrans": "Rotate 90°"
+},
+{
+"key": "extractToNewDocAction",
+"english": "Extract to new doc",
+"target": "提取到新文档",
+"backtrans": "Extract to new document"
+},
+{
+"key": "addPageTitle",
+"english": "Add Page",
+"target": "添加页面",
+"backtrans": "Add page"
+},
+{
+"key": "cameraSource",
+"english": "Camera",
+"target": "相机",
+"backtrans": "Camera"
+},
+{
+"key": "importFromGallery",
+"english": "Import from Gallery",
+"target": "从图库导入",
+"backtrans": "Import from gallery"
+},
+{
+"key": "fromAnotherDocument",
+"english": "From Another Document",
+"target": "从其他文档",
+"backtrans": "From another document"
+},
+{
+"key": "pageCountLabel",
+"english": "{count, plural, =0{No pages} =1{1 page} other{{count} pages}}",
+"target": "{count, plural, =0{无页面} =1{1页} other{{count}页}}",
+"backtrans": "{count, plural, =0{no pages} =1{1 page} other{{count} pages}}"
+},
+{
+"key": "commonConfirm",
+"english": "Confirm",
+"target": "确认",
+"backtrans": "Confirm"
+},
+{
+"key": "applyToAllPages",
+"english": "Apply to all pages",
+"target": "应用到所有页面",
+"backtrans": "Apply to all pages"
+},
+{
+"key": "widthLabel",
+"english": "Width",
+"target": "宽度",
+"backtrans": "Width"
+},
+{
+"key": "heightLabel",
+"english": "Height",
+"target": "高度",
+"backtrans": "Height"
+},
+{
+"key": "lockAspectRatio",
+"english": "Lock aspect ratio",
+"target": "锁定宽高比",
+"backtrans": "Lock aspect ratio"
+},
+{
+"key": "originalDimensions",
+"english": "Original: {w}×{h}",
+"target": "原始尺寸：{w}×{h}",
+"backtrans": "Original dimensions: {w}×{h}"
+},
+{
+"key": "ocrSectionLabel",
+"english": "OCR",
+"target": "OCR",
+"backtrans": "OCR"
+},
+{
+"key": "ocrLanguagesLabel",
+"english": "OCR Languages",
+"target": "OCR 语言",
+"backtrans": "OCR languages"
+},
+{
+"key": "captureBehaviorSectionLabel",
+"english": "CAPTURE BEHAVIOR",
+"target": "拍摄行为",
+"backtrans": "Capture behavior"
+},
+{
+"key": "autoCopyOcrLabel",
+"english": "Auto-copy OCR",
+"target": "自动复制OCR",
+"backtrans": "Auto-copy OCR"
+},
+{
+"key": "autoCopyOcrSubtitle",
+"english": "Copy text to clipboard after scan",
+"target": "扫描后将文本复制到剪贴板",
+"backtrans": "Copy text to clipboard after scanning"
+},
+{
+"key": "beepOnCaptureLabel",
+"english": "Beep on capture",
+"target": "拍摄时哔声",
+"backtrans": "Beep on capture"
+},
+{
+"key": "beepOnCaptureSubtitle",
+"english": "Play sound when scan completes",
+"target": "扫描完成时播放声音",
+"backtrans": "Play a sound when scanning is complete"
+},
+{
+"key": "vibrateOnCaptureLabel",
+"english": "Vibrate on capture",
+"target": "拍摄时振动",
+"backtrans": "Vibrate on capture"
+},
+{
+"key": "vibrateOnCaptureSubtitle",
+"english": "Haptic feedback when scan completes",
+"target": "扫描完成时触觉反馈",
+"backtrans": "Haptic feedback when scanning is complete"
+},
+{
+"key": "adsRemovedLabel",
+"english": "Ads Removed",
+"target": "已移除广告",
+"backtrans": "Ads removed"
+},
+{
+"key": "diagnosticsSectionLabel",
+"english": "DIAGNOSTICS",
+"target": "诊断",
+"backtrans": "Diagnostics"
+},
+{
+"key": "debugLogsLabel",
+"english": "Debug Logs",
+"target": "调试日志",
+"backtrans": "Debug logs"
+},
+{
+"key": "logEntriesLabel",
+"english": "{count, plural, =0{No entries} =1{1 entry} other{{count} entries}}",
+"target": "{count, plural, =0{无条目} =1{1条} other{{count}条}}",
+"backtrans": "{count, plural, =0{no entries} =1{1 entry} other{{count} entries}}"
+},
+{
+"key": "ocrStatusBuiltIn",
+"english": "Built-in",
+"target": "内置",
+"backtrans": "Built-in"
+},
+{
+"key": "ocrStatusChecking",
+"english": "Checking...",
+"target": "检查中...",
+"backtrans": "Checking..."
+},
+{
+"key": "ocrStatusOnDemand",
+"english": "On-demand",
+"target": "按需",
+"backtrans": "On demand"
+},
+{
+"key": "savedAsNewDocument",
+"english": "Saved as new document",
+"target": "已保存为新文档",
+"backtrans": "Saved as new document"
+},
+{
+"key": "conversionFailedPrefix",
+"english": "Conversion failed",
+"target": "转换失败",
+"backtrans": "Conversion failed"
+},
+{
+"key": "convertDocumentTitle",
+"english": "Convert Document",
+"target": "转换文档",
+"backtrans": "Convert document"
+},
+{
+"key": "convertToLabel",
+"english": "Convert to:",
+"target": "转换为：",
+"backtrans": "Convert to:"
+},
+{
+"key": "actionLabel",
+"english": "Action:",
+"target": "操作：",
+"backtrans": "Action:"
+},
+{
+"key": "saveAsNewDocumentAction",
+"english": "Save as new Document",
+"target": "保存为新文档",
+"backtrans": "Save as new document"
+},
+{
+"key": "exportAndShareAction",
+"english": "Export & Share",
+"target": "导出并分享",
+"backtrans": "Export and share"
+},
+{
+"key": "docxWarningMessage",
+"english": "DOCX sources render poorly as pages — save inside the app is limited to JPG/PNG from image, PDF, TXT or CSV sources. Use Export & Share for this file.",
+"target": "应用内保存仅支持将图像、PDF、TXT 或 CSV 源保存为 JPG/PNG。",
+"backtrans": "In-app saving only supports saving image, PDF, TXT or CSV sources as JPG/PNG. [??: awkward/ambiguous, 'docx' key name but text talks about JPG/PNG]"
+},
+{
+"key": "saveInsideAppWarning",
+"english": "To save inside the app, choose JPG or PNG. Other targets are exported as files.",
+"target": "要在应用内保存，请选择 JPG 或 PNG。其他目标将导出为文件。",
+"backtrans": "To save inside the app, choose JPG or PNG. Other targets will be exported as files."
+},
+{
+"key": "commonConvert",
+"english": "Convert",
+"target": "转换",
+"backtrans": "Convert"
+},
+{
+"key": "conversionStarting",
+"english": "Starting…",
+"target": "正在开始…",
+"backtrans": "Starting..."
+},
+{
+"key": "convertedDocTitle",
+"english": "Converted {date}",
+"target": "已转换 {date}",
+"backtrans": "Converted {date}"
+},
+{
+"key": "progressReading",
+"english": "Reading…",
+"target": "读取中…",
+"backtrans": "Reading..."
+},
+{
+"key": "progressCopying",
+"english": "Copying…",
+"target": "复制中…",
+"backtrans": "Copying..."
+},
+{
+"key": "progressBuildingPdf",
+"english": "Building PDF…",
+"target": "正在生成PDF…",
+"backtrans": "Generating PDF..."
+},
+{
+"key": "progressBuildingDocx",
+"english": "Building DOCX…",
+"target": "正在生成DOCX…",
+"backtrans": "Generating DOCX..."
+},
+{
+"key": "progressDecodingImage",
+"english": "Decoding image…",
+"target": "正在解码图像…",
+"backtrans": "Decoding image..."
+},
+{
+"key": "progressExtractingText",
+"english": "Extracting text…",
+"target": "正在提取文本…",
+"backtrans": "Extracting text..."
+},
+{
+"key": "progressSaving",
+"english": "Saving…",
+"target": "保存中…",
+"backtrans": "Saving..."
+},
+{
+"key": "progressRasterizing",
+"english": "Rasterizing pages…",
+"target": "正在光栅化页面…",
+"backtrans": "Rasterizing pages..."
+},
+{
+"key": "progressEncodingPage",
+"english": "Encoding page {current} of {total}…",
+"target": "正在编码第{current}页，共{total}页…",
+"backtrans": "Encoding page {current} of {total}..."
+},
+{
+"key": "watermarkEditTitle",
+"english": "Edit Watermark",
+"target": "编辑水印",
+"backtrans": "Edit watermark"
+},
+{
+"key": "watermarkAddTitle",
+"english": "Add Watermark",
+"target": "添加水印",
+"backtrans": "Add watermark"
+},
+{
+"key": "watermarkTextLabel",
+"english": "Text",
+"target": "文本",
+"backtrans": "Text"
+},
+{
+"key": "opacityPercentLabel",
+"english": "Opacity: {percent}%",
+"target": "不透明度：{percent}%",
+"backtrans": "Opacity: {percent}%"
+},
+{
+"key": "sizePtLabel",
+"english": "Size: {size}pt",
+"target": "大小：{size}pt",
+"backtrans": "Size: {size}pt"
+},
+{
+"key": "alignLabel",
+"english": "Align",
+"target": "对齐",
+"backtrans": "Alignment"
+},
+{
+"key": "exportSavedToDownloads",
+"english": "Saved to Downloads",
+"target": "已保存到下载",
+"backtrans": "Saved to downloads"
+},
+{
+"key": "commonShare",
+"english": "Share",
+"target": "分享",
+"backtrans": "Share"
+},
+{
+"key": "exportTitle",
+"english": "Export",
+"target": "导出",
+"backtrans": "Export"
+},
+{
+"key": "targetMbLabel",
+"english": "{mb} MB",
+"target": "{mb} MB",
+"backtrans": "{mb} MB"
+},
+{
+"key": "filterColor",
+"english": "Color",
+"target": "彩色",
+"backtrans": "Colored"
+},
+{
+"key": "filterShadow",
+"english": "Shadow",
+"target": "阴影",
+"backtrans": "Shadow"
+},
+{
+"key": "docxModeTextOnly",
+"english": "Text Only",
+"target": "仅文本",
+"backtrans": "Text only"
+},
+{
+"key": "docxModeWithImages",
+"english": "With Images",
+"target": "带图像",
+"backtrans": "With images"
+},
+{
+"key": "saveToDeviceButton",
+"english": "Save to Device",
+"target": "保存到设备",
+"backtrans": "Save to device"
+},
+{
+"key": "pageIndicator",
+"english": "Page {current} / {total}",
+"target": "第{current}页 / 共{total}页",
+"backtrans": "Page {current} / of {total}"
+},
+{
+"key": "fullscreenLabel",
+"english": "Fullscreen",
+"target": "全屏",
+"backtrans": "Fullscreen"
+},
+{
+"key": "batchExportSignatureDisabled",
+"english": "Batch export — signature placement disabled",
+"target": "批量导出——签名放置已禁用",
+"backtrans": "Batch export - signature placement is disabled"
+},
+{
+"key": "fitToTargetMbLabel",
+"english": "Fit to target MB",
+"target": "适配目标MB",
+"backtrans": "Fit to target MB"
+},
+{
+"key": "moreOptionsTooltip",
+"english": "More options",
+"target": "更多选项",
+"backtrans": "More options"
+},
+{
+"key": "commonRename",
+"english": "Rename",
+"target": "重命名",
+"backtrans": "Rename"
+},
+{
+"key": "addTagsAction",
+"english": "Add Tags",
+"target": "添加标签",
+"backtrans": "Add tags"
+},
+{
+"key": "editDocumentAction",
+"english": "Edit Document",
+"target": "编辑文档",
+"backtrans": "Edit document"
+},
+{
+"key": "copiedToClipboard",
+"english": "Copied to clipboard",
+"target": "已复制到剪贴板",
+"backtrans": "Copied to clipboard"
+},
+{
+"key": "favoriteTooltip",
+"english": "Favorite",
+"target": "收藏",
+"backtrans": "Favorite/bookmark"
+},
+{
+"key": "noFoldersYet",
+"english": "No folders yet",
+"target": "还没有文件夹",
+"backtrans": "No folders yet"
+},
+{
+"key": "rotateLabel",
+"english": "Rotate",
+"target": "旋转",
+"backtrans": "Rotate"
+},
+{
+"key": "scaleLabel",
+"english": "Scale",
+"target": "缩放",
+"backtrans": "Zoom/scale"
+},
+{
+"key": "eraserTitle",
+"english": "Eraser",
+"target": "橡皮擦",
+"backtrans": "Eraser"
+},
+{
+"key": "tapToSampleColor",
+"english": "Tap a spot to sample its color",
+"target": "点击某处以采样其颜色",
+"backtrans": "Tap somewhere to sample its color"
+},
+{
+"key": "commonSize",
+"english": "Size",
+"target": "大小",
+"backtrans": "Size"
+},
+{
+"key": "sampleColorTooltip",
+"english": "Sample color from page",
+"target": "从页面采样颜色",
+"backtrans": "Sample color from page"
+},
+{
+"key": "marqueeEraseTooltip",
+"english": "Marquee erase",
+"target": "选区擦除",
+"backtrans": "Selection-area erase"
+},
+{
+"key": "commonApply",
+"english": "Apply",
+"target": "应用",
+"backtrans": "Apply"
+},
+{
+"key": "filterTitle",
+"english": "Filter",
+"target": "滤镜",
+"backtrans": "Filter (lens/photo filter)"
+},
+{
+"key": "intensityLabel",
+"english": "Intensity",
+"target": "强度",
+"backtrans": "Intensity"
+},
+{
+"key": "selectRegionTitle",
+"english": "Select Region",
+"target": "选择区域",
+"backtrans": "Select region"
+},
+{
+"key": "commonExtract",
+"english": "Extract",
+"target": "提取",
+"backtrans": "Extract"
+},
+{
+"key": "customColorTitle",
+"english": "Custom Color",
+"target": "自定义颜色",
+"backtrans": "Custom color"
+},
+{
+"key": "documentNotFound",
+"english": "Document not found",
+"target": "未找到文档",
+"backtrans": "Document not found"
+},
+{
+"key": "clearLogsTooltip",
+"english": "Clear logs",
+"target": "清除日志",
+"backtrans": "Clear logs"
+},
+{
+"key": "placeHereLabel",
+"english": "Place here",
+"target": "放置于此",
+"backtrans": "Place here"
+},
+{
+"key": "tryAgainButton",
+"english": "Try again",
+"target": "重试",
+"backtrans": "Retry"
+},
+{
+"key": "emptyDocumentMessage",
+"english": "This document has no pages.",
+"target": "此文档没有页面。",
+"backtrans": "This document has no pages."
+},
+{
+"key": "cameraErrorPrefix",
+"english": "Camera error",
+"target": "相机错误",
+"backtrans": "Camera error"
+},
+{
+"key": "importErrorPrefix",
+"english": "Import error",
+"target": "导入错误",
+"backtrans": "Import error"
+},
+{
+"key": "pdfImportErrorPrefix",
+"english": "PDF import error",
+"target": "PDF导入错误",
+"backtrans": "PDF import error"
+},
+{
+"key": "pickErrorPrefix",
+"english": "Pick error",
+"target": "选择错误",
+"backtrans": "Selection error"
+},
+{
+"key": "scannerErrorPrefix",
+"english": "Scanner error",
+"target": "扫描仪错误",
+"backtrans": "Scanner error"
+},
+{
+"key": "idPdfErrorPrefix",
+"english": "Error generating ID PDF",
+"target": "生成身份证 PDF 时出错",
+"backtrans": "Error when generating ID card PDF"
+},
+{
+"key": "genericErrorPrefix",
+"english": "Error",
+"target": "错误",
+"backtrans": "Error"
+},
+{
+"key": "annotateTitle",
+"english": "Annotate",
+"target": "标注",
+"backtrans": "Annotate"
+},
+{
+"key": "placementsCountLabel",
+"english": "{count, plural, =0{Nothing placed} =1{1 placed} other{{count} placed}}",
+"target": "{count, plural, =0{未放置} =1{已放置1个} other{已放置{count}个}}",
+"backtrans": "{count, plural, =0{none placed} =1{1 placed} other{{count} placed}}"
+},
+{
+"key": "ocrUnavailableTooltip",
+"english": "OCR unavailable on this device.",
+"target": "此设备不支持OCR。",
+"backtrans": "This device does not support OCR."
+},
+{
+"key": "docScannerUnsupportedMessage",
+"english": "Your device doesn't support the advanced document scanner. Take a photo with your Camera app, then tap Import below to crop and save it.",
+"target": "您的设备不支持高级文档扫描仪。请使用相机应用拍照，然后点击下方的“导入”进行裁剪和保存。",
+"backtrans": "Your device does not support the advanced document scanner. Please use the camera app to take a photo, then tap \"Import\" below to crop and save."
+},
+{
+"key": "billingUnavailableMessage",
+"english": "Billing unavailable — try again later.",
+"target": "计费不可用 — 请稍后重试。",
+"backtrans": "Billing unavailable — please try again later."
+},
+{
+"key": "ocrNoInternetMessage",
+"english": "No internet. Connect once to download the language pack.",
+"target": "无网络连接。请联网一次以下载语言包。",
+"backtrans": "No network connection. Please connect to the internet once to download the language pack."
+},
+{
+"key": "ocrLanguagePackNotReady",
+"english": "Language pack downloading or not ready. Try again shortly.",
+"target": "语言包正在下载或未就绪。请稍后再试。",
+"backtrans": "Language pack is downloading or not ready. Please try again later."
+},
+{
+"key": "undoTooltip",
+"english": "Undo",
+"target": "撤销",
+"backtrans": "Undo"
+},
+{
+"key": "redoTooltip",
+"english": "Redo",
+"target": "重做",
+"backtrans": "Redo"
+},
+{
+"key": "fillInputHint",
+"english": "Type text to fill",
+"target": "输入要填充的文本",
+"backtrans": "Enter the text to fill in"
+},
+{
+"key": "fillCapsLabel",
+"english": "ALL CAPS",
+"target": "大写",
+"backtrans": "Uppercase"
+},
+{
+"key": "fillSaveSnippet",
+"english": "Save as snippet",
+"target": "保存为片段",
+"backtrans": "Save as snippet"
+},
+{
+"key": "fillDeleteSnippet",
+"english": "Delete snippet?",
+"target": "删除片段？",
+"backtrans": "Delete snippet?"
+},
+{
+"key": "fillTooltip",
+"english": "Fill",
+"target": "填充",
+"backtrans": "Fill"
+},
+{
+"key": "tickerFreeUnlimitedOcr",
+"english": "FREE UNLIMITED OCR",
+"target": "免费无限OCR",
+"backtrans": "Free unlimited OCR"
+},
+{
+"key": "ticker100OnDevicePrivacy",
+"english": "YOUR DOCUMENTS STAY ON YOUR DEVICE",
+"target": "您的文档只保留在您的设备上",
+"backtrans": "Your documents stay only on your device"
+},
+{
+"key": "tickerNoAccount",
+"english": "NO ACCOUNT",
+"target": "无需账户",
+"backtrans": "No account needed"
+},
+{
+"key": "tickerNoWatermarks",
+"english": "NO WATERMARKS",
+"target": "无水印",
+"backtrans": "No watermarks"
+},
+{
+"key": "ticker21ToolEditSuite",
+"english": "21-TOOL EDIT SUITE",
+"target": "21工具编辑套件",
+"backtrans": "21-tool editing suite"
+},
+{
+"key": "tickerNonDestructiveEditing",
+"english": "NON-DESTRUCTIVE EDITING",
+"target": "非破坏性编辑",
+"backtrans": "Non-destructive editing"
+},
+{
+"key": "tickerUndoRedo",
+"english": "UNDO/REDO",
+"target": "撤销/重做",
+"backtrans": "Undo/redo"
+},
+{
+"key": "tickerRevertToOriginal",
+"english": "REVERT TO ORIGINAL",
+"target": "恢复原始",
+"backtrans": "Restore original"
+},
+{
+"key": "tickerTapToTypeFilling",
+"english": "TAP-TO-TYPE FILLING",
+"target": "点击填写",
+"backtrans": "Tap to fill in"
+},
+{
+"key": "tickerESign",
+"english": "E-SIGN",
+"target": "电子签名",
+"backtrans": "E-signature"
+},
+{
+"key": "tickerCustomSeals",
+"english": "CUSTOM SEALS",
+"target": "自定义印章",
+"backtrans": "Custom seals"
+},
+{
+"key": "tickerTextStamps",
+"english": "TEXT STAMPS",
+"target": "文字印章",
+"backtrans": "Text seals"
+},
+{
+"key": "tickerNoteStamps",
+"english": "NOTE STAMPS",
+"target": "备注印章",
+"backtrans": "Note seals"
+},
+{
+"key": "tickerSearchablePdf",
+"english": "SEARCHABLE PDF",
+"target": "可搜索PDF",
+"backtrans": "Searchable PDF"
+},
+{
+"key": "tickerRegionOcr",
+"english": "REGION OCR",
+"target": "区域OCR",
+"backtrans": "Region OCR"
+},
+{
+"key": "tickerAutoCopyOcr",
+"english": "AUTO-COPY OCR",
+"target": "自动复制OCR",
+"backtrans": "Auto-copy OCR"
+},
+{
+"key": "tickerIdCardMode",
+"english": "ID CARD MODE",
+"target": "身份证模式",
+"backtrans": "ID card mode"
+},
+{
+"key": "tickerPassportMode",
+"english": "PASSPORT MODE",
+"target": "护照模式",
+"backtrans": "Passport mode"
+},
+{
+"key": "tickerGalleryImport",
+"english": "GALLERY IMPORT",
+"target": "图库导入",
+"backtrans": "Gallery import"
+},
+{
+"key": "tickerPdfExport",
+"english": "PDF EXPORT",
+"target": "PDF导出",
+"backtrans": "PDF export"
+},
+{
+"key": "tickerWordExport",
+"english": "WORD EXPORT",
+"target": "Word导出",
+"backtrans": "Word export"
+},
+{
+"key": "tickerJpgExport",
+"english": "JPG EXPORT",
+"target": "JPG导出",
+"backtrans": "JPG export"
+},
+{
+"key": "tickerPngExport",
+"english": "PNG EXPORT",
+"target": "PNG导出",
+"backtrans": "PNG export"
+},
+{
+"key": "tickerBatchExport",
+"english": "BATCH EXPORT",
+"target": "批量导出",
+"backtrans": "Batch export"
+},
+{
+"key": "tickerFolders",
+"english": "FOLDERS",
+"target": "文件夹",
+"backtrans": "Folders"
+},
+{
+"key": "tickerTags",
+"english": "TAGS",
+"target": "标签",
+"backtrans": "Tags"
+},
+{
+"key": "tickerFavorites",
+"english": "FAVORITES",
+"target": "收藏",
+"backtrans": "Favorites/bookmarks"
+},
+{
+"key": "tickerSearch",
+"english": "SEARCH",
+"target": "搜索",
+"backtrans": "Search"
+},
+{
+"key": "tickerDarkMode",
+"english": "DARK MODE",
+"target": "深色模式",
+"backtrans": "Dark mode"
+},
+{
+"key": "tickerAccentThemes",
+"english": "ACCENT THEMES",
+"target": "强调主题",
+"backtrans": "Accent themes"
+},
+{
+"key": "tickerDeviceMigration",
+"english": "DEVICE MIGRATION",
+"target": "设备迁移",
+"backtrans": "Device migration"
+},
+{
+"key": "onboardingWelcomeTitle",
+"english": "Welcome to KatharScan",
+"target": "欢迎使用 KatharScan",
+"backtrans": "Welcome to KatharScan"
+},
+{
+"key": "onboardingWelcomeSubtitle",
+"english": "Your entire document office — scan, edit, sign, and export — in one private app.",
+"target": "您的整个文档办公室 — 扫描、编辑、签名、导出 — 尽在一个私密应用。",
+"backtrans": "Your entire document office — scan, edit, sign, export — all in one private app."
+},
+{
+"key": "onboardingToolsTitle",
+"english": "21 Free Pro Tools",
+"target": "21 个免费专业工具",
+"backtrans": "21 free professional tools"
+},
+{
+"key": "onboardingToolsSubtitle",
+"english": "Annotate, sign, watermark, fill forms, seal, and more — every tool free and unlimited.",
+"target": "标注、签名、水印、填写表单、盖章等 — 全部免费无限制。",
+"backtrans": "Annotate, sign, watermark, fill forms, stamp and more — all free and unlimited."
+},
+{
+"key": "onboardingOcrTitle",
+"english": "On-Device OCR",
+"target": "设备端 OCR",
+"backtrans": "On-device OCR"
+},
+{
+"key": "onboardingOcrSubtitle",
+"english": "Use KatharScan in {count} languages. OCR runs on your phone — nothing ever leaves your device.",
+"target": "KatharScan 支持 {count} 种语言。OCR 在您的手机上运行——任何内容都不会离开您的设备。",
+"backtrans": "KatharScan supports {count} languages. OCR runs on your phone — nothing leaves your device."
+},
+{
+"key": "onboardingSignTitle",
+"english": "Sign, Fill & Seal",
+"target": "签名、填写、盖章",
+"backtrans": "Sign, fill in, stamp"
+},
+{
+"key": "onboardingSignSubtitle",
+"english": "E-sign contracts, type-to-fill forms, and stamp enterprise seals in seconds.",
+"target": "电子签署合同、点击填写表单、几秒内加盖企业印章。",
+"backtrans": "Electronically sign contracts, tap to fill in forms, apply a company seal in seconds."
+},
+{
+"key": "onboardingEditTitle",
+"english": "Non-Destructive Editing",
+"target": "非破坏性编辑",
+"backtrans": "Non-destructive editing"
+},
+{
+"key": "onboardingEditSubtitle",
+"english": "Every edit stays reversible — undo, redo, and revert to original anytime.",
+"target": "每次编辑都可逆 — 随时撤销、重做、恢复原始。",
+"backtrans": "Every edit is reversible — undo, redo, restore original at any time."
+},
+{
+"key": "onboardingPrivacyTitle",
+"english": "Private by design",
+"target": "设计即私密",
+"backtrans": "Private by design"
+},
+{
+"key": "onboardingPrivacySubtitle",
+"english": "No account, no cloud, no watermarks. Your documents never leave your device.",
+"target": "无账户、无云、无水印。您的文档永不离开设备。",
+"backtrans": "No account, no cloud, no watermarks. Your documents never leave the device."
+},
+{
+"key": "onboardingContinue",
+"english": "Continue",
+"target": "继续",
+"backtrans": "Continue"
+},
+{
+"key": "onboardingGetStarted",
+"english": "Get Started",
+"target": "开始使用",
+"backtrans": "Get started"
+},
+{
+"key": "onboardingBack",
+"english": "Back",
+"target": "返回",
+"backtrans": "Back"
+},
+{
+"key": "onboardingReplayIntro",
+"english": "Replay introduction",
+"target": "重看介绍",
+"backtrans": "Watch the intro again"
+},
+{
+"key": "saveToDownloadsAction",
+"english": "Save to Downloads",
+"target": "保存到下载",
+"backtrans": "Save to downloads"
+},
+{
+"key": "paywallTitle",
+"english": "Remove Ads",
+"target": "移除广告",
+"backtrans": "Remove ads"
+},
+{
+"key": "paywallSubtitle",
+"english": "Support KatharScan with a one-time purchase. All features remain free.",
+"target": "通过一次性购买支持 KatharScan。所有功能保持免费。",
+"backtrans": "Support KatharScan with a one-time purchase. All features remain free."
+},
+{
+"key": "paywallFallbackPrice",
+"english": "$14.99 one-time",
+"target": "$14.99 一次性",
+"backtrans": "$14.99 one-time"
+},
+{
+"key": "paywallFeatureNoBanner",
+"english": "No more banner ads",
+"target": "无横幅广告",
+"backtrans": "No banner ads"
+},
+{
+"key": "paywallFeatureNoInterstitial",
+"english": "No more interstitial ads",
+"target": "无插页式广告",
+"backtrans": "No interstitial ads"
+},
+{
+"key": "paywallFeatureFreeForever",
+"english": "All features free forever",
+"target": "所有功能永久免费",
+"backtrans": "All features free forever"
+},
+{
+"key": "paywallLegalText",
+"english": "This is a non-consumable purchase. Restore it anytime on any device with the same store account.",
+"target": "这是一次性购买。使用同一商店账户即可随时在任何设备上恢复。",
+"backtrans": "This is a one-time purchase. Using the same store account you can restore it on any device at any time."
+},
+{
+"key": "paywallSuccessTitle",
+"english": "Ads Removed",
+"target": "已移除广告",
+"backtrans": "Ads removed"
+},
+{
+"key": "paywallSuccessMessage",
+"english": "Thank you for supporting KatharScan.",
+"target": "感谢您支持 KatharScan。",
+"backtrans": "Thank you for supporting KatharScan."
+},
+{
+"key": "errorGenericTitle",
+"english": "Something went wrong",
+"target": "出错了",
+"backtrans": "Something went wrong"
+},
+{
+"key": "errorScreenProblem",
+"english": "KatharScan ran into a problem displaying this screen. Your scans are safe — they're stored on this device and this doesn't affect them.",
+"target": "KatharScan 在显示此页面时遇到问题。您的扫描件是安全的——它们存储在此设备上，这不会影响它们。",
+"backtrans": "KatharScan ran into a problem displaying this page. Your scans are safe — they are stored on this device, and this does not affect them."
+},
+{
+"key": "errorReportIssue",
+"english": "Report issue",
+"target": "报告问题",
+"backtrans": "Report a problem"
+},
+{
+"key": "filterAll",
+"english": "All",
+"target": "全部",
+"backtrans": "All"
+},
+{
+"key": "filterFolders",
+"english": "Folders",
+"target": "文件夹",
+"backtrans": "Folders"
+},
+{
+"key": "filterRecent",
+"english": "Recent",
+"target": "最近",
+"backtrans": "Recent"
+},
+{
+"key": "filterFavorites",
+"english": "Favorites",
+"target": "收藏",
+"backtrans": "Favorites"
+},
+{
+"key": "chipAllFolders",
+"english": "All Folders",
+"target": "所有文件夹",
+"backtrans": "All folders"
+},
+{
+"key": "chipSelectMultiple",
+"english": "Select Multiple",
+"target": "多选",
+"backtrans": "Multi-select"
+},
+{
+"key": "emptySearch",
+"english": "No scans match your search.",
+"target": "没有与您的搜索匹配的扫描。",
+"backtrans": "No scans match your search."
+},
+{
+"key": "emptyFolders",
+"english": "No folders yet. Tap the folder icon to create one.",
+"target": "还没有文件夹。点击文件夹图标创建一个。",
+"backtrans": "No folders yet. Tap the folder icon to create one."
+},
+{
+"key": "emptyFavorites",
+"english": "No favorites yet. Tap the star icon on a document to add it.",
+"target": "还没有收藏。点击文档上的星号图标添加。",
+"backtrans": "No favorites yet. Tap the star icon on a document to add."
+},
+{
+"key": "modeDocument",
+"english": "Document Mode",
+"target": "文档模式",
+"backtrans": "Document mode"
+},
+{
+"key": "modeOcr",
+"english": "OCR Mode",
+"target": "OCR 模式",
+"backtrans": "OCR mode"
+},
+{
+"key": "modeIdCard",
+"english": "ID Card Mode",
+"target": "身份证模式",
+"backtrans": "ID card mode"
+},
+{
+"key": "modePassport",
+"english": "Passport Mode",
+"target": "护照模式",
+"backtrans": "Passport mode"
+},
+{
+"key": "titlePdfImport",
+"english": "PDF Import",
+"target": "PDF 导入",
+"backtrans": "PDF import"
+},
+{
+"key": "titleIdCard",
+"english": "ID Card",
+"target": "身份证",
+"backtrans": "ID card"
+},
+{
+"key": "titleScan",
+"english": "Scan",
+"target": "扫描",
+"backtrans": "Scan"
+},
+{
+"key": "exportEstimatedSize",
+"english": "Estimated size: {mb} MB",
+"target": "预计大小：{mb} MB",
+"backtrans": "Estimated size: {mb} MB"
+},
+{
+"key": "debugNoLogsYet",
+"english": "No logs yet",
+"target": "暂无日志",
+"backtrans": "No logs yet"
+},
+{
+"key": "textBold",
+"english": "B",
+"target": "B",
+"backtrans": "B"
+},
+{
+"key": "textItalic",
+"english": "I",
+"target": "I",
+"backtrans": "I"
+},
+{
+"key": "textUnderline",
+"english": "U",
+"target": "U",
+"backtrans": "U"
+},
+{
+"key": "textFontLetterA",
+"english": "A",
+"target": "A",
+"backtrans": "A"
+},
+{
+"key": "multiplySymbol",
+"english": "×",
+"target": "×",
+"backtrans": "×"
+},
+{
+"key": "signerLabel",
+"english": "Signer {index}",
+"target": "签名者 {index}",
+"backtrans": "Signer {index}"
+},
+{
+"key": "stampCheckbox",
+"english": "Checkbox",
+"target": "复选框",
+"backtrans": "Checkbox"
+},
+{
+"key": "fontSansSerif",
+"english": "sans-serif",
+"target": "sans-serif",
+"backtrans": "sans-serif"
+},
+{
+"key": "fontSerif",
+"english": "serif",
+"target": "serif",
+"backtrans": "serif"
+},
+{
+"key": "fontMonospace",
+"english": "monospace",
+"target": "monospace",
+"backtrans": "monospace"
+},
+{
+"key": "sealCustom",
+"english": "Custom Seal",
+"target": "自定义印章",
+"backtrans": "Custom seal"
+},
+{
+"key": "formatCsv",
+"english": "CSV",
+"target": "CSV",
+"backtrans": "CSV"
+},
+{
+"key": "ocrNoTextFound",
+"english": "No text found",
+"target": "未找到文本",
+"backtrans": "No text found"
+},
+{
+"key": "rotationAllPages",
+"english": "All pages rotated",
+"target": "已旋转所有页面",
+"backtrans": "All pages have been rotated"
+},
+{
+"key": "rotationPage",
+"english": "Page rotated",
+"target": "已旋转页面",
+"backtrans": "Page has been rotated"
+},
+{
+"key": "resizeTitle",
+"english": "Resize",
+"target": "调整大小",
+"backtrans": "Resize"
+},
+{
+"key": "addTextTitle",
+"english": "Add Text",
+"target": "添加文本",
+"backtrans": "Add text"
+},
+{
+"key": "addNoteTitle",
+"english": "Add Note",
+"target": "添加备注",
+"backtrans": "Add note"
+},
+{
+"key": "addDateTitle",
+"english": "Add Date",
+"target": "添加日期",
+"backtrans": "Add date"
+},
+{
+"key": "addCheckboxTitle",
+"english": "Add Checkbox",
+"target": "添加复选框",
+"backtrans": "Add checkbox"
+},
+{
+"key": "noteTextLabel",
+"english": "Note text",
+"target": "备注文本",
+"backtrans": "Note text"
+},
+{
+"key": "textLabel",
+"english": "Text",
+"target": "文本",
+"backtrans": "Text"
+},
+{
+"key": "checkShapeRounded",
+"english": "Rounded",
+"target": "圆角",
+"backtrans": "Rounded corners"
+},
+{
+"key": "checkShapeSquare",
+"english": "Square",
+"target": "方形",
+"backtrans": "Square"
+},
+{
+"key": "checkShapeCircle",
+"english": "Circle",
+"target": "圆形",
+"backtrans": "Circle"
+},
+{
+"key": "hueLabel",
+"english": "Hue",
+"target": "色相",
+"backtrans": "Hue"
+},
+{
+"key": "satLabel",
+"english": "Sat",
+"target": "饱和度",
+"backtrans": "Saturation"
+},
+{
+"key": "valLabel",
+"english": "Val",
+"target": "明度",
+"backtrans": "Brightness (lightness)"
+},
+{
+"key": "annotationModePen",
+"english": "Pen",
+"target": "画笔",
+"backtrans": "Brush/pen"
+},
+{
+"key": "annotationModeHighlighter",
+"english": "Highlighter",
+"target": "荧光笔",
+"backtrans": "Highlighter"
+},
+{
+"key": "annotationModeRect",
+"english": "Rectangle",
+"target": "矩形",
+"backtrans": "Rectangle"
+},
+{
+"key": "annotationModeArrow",
+"english": "Arrow",
+"target": "箭头",
+"backtrans": "Arrow"
+},
+{
+"key": "annotationModeEllipse",
+"english": "Ellipse",
+"target": "椭圆",
+"backtrans": "Ellipse"
+},
+{
+"key": "sharePromptTitle",
+"english": "Love KatharScan?",
+"target": "喜欢 KatharScan 吗？",
+"backtrans": "Like KatharScan?"
+},
+{
+"key": "sharePromptBody",
+"english": "Share it with friends who need a powerful document scanner.",
+"target": "与需要强大文档扫描仪的朋友分享。",
+"backtrans": "Share with friends who need a powerful document scanner."
+},
+{
+"key": "sharePromptAction",
+"english": "Share App",
+"target": "分享应用",
+"backtrans": "Share app"
+},
+{
+"key": "sharePromptDismiss",
+"english": "Not now",
+"target": "稍后",
+"backtrans": "Later"
+},
+{
+"key": "reviewPromptTitle",
+"english": "Enjoying KatharScan?",
+"target": "喜欢使用 KatharScan 吗？",
+"backtrans": "Enjoy using KatharScan?"
+},
+{
+"key": "reviewPromptBody",
+"english": "Your feedback helps us grow and keeps the app free.",
+"target": "您的反馈有助于我们成长并保持应用免费。",
+"backtrans": "Your feedback helps us grow and keep the app free."
+},
+{
+"key": "reviewPromptYes",
+"english": "Rate Us",
+"target": "给我们评分",
+"backtrans": "Rate us"
+},
+{
+"key": "reviewPromptNo",
+"english": "Send Feedback",
+"target": "发送反馈",
+"backtrans": "Send feedback"
+},
+{
+"key": "watermarkLabel",
+"english": "Watermark",
+"target": "水印",
+"backtrans": "Watermark"
+},
+{
+"key": "compressLabel",
+"english": "Compress",
+"target": "压缩",
+"backtrans": "Compress"
+},
+{
+"key": "pagesLabel",
+"english": "Pages",
+"target": "页面",
+"backtrans": "Pages"
+},
+{
+"key": "cropLabel",
+"english": "Crop",
+"target": "裁剪",
+"backtrans": "Crop"
+},
+{
+"key": "emailLabel",
+"english": "Email",
+"target": "邮件",
+"backtrans": "Email"
+},
+{
+"key": "checkLabel",
+"english": "Check",
+"target": "勾选",
+"backtrans": "Tick/check"
+},
+{
+"key": "captionDocs",
+"english": "Flexible crop: Original, Square, 4:3, 3:2, 16:9",
+"target": "灵活裁剪：原始、方形、4:3、3:2、16:9",
+"backtrans": "Flexible cropping: original, square, 4:3, 3:2, 16:9"
+},
+{
+"key": "captionOcr",
+"english": "Text crop: Original, Square, 4:3",
+"target": "文本裁剪：原始、方形、4:3",
+"backtrans": "Text cropping: original, square, 4:3"
+},
+{
+"key": "captionIdCard",
+"english": "Two-sided ID capture: Front + Back",
+"target": "双面证件拍摄：正面 + 背面",
+"backtrans": "Two-sided ID capture: front + back"
+},
+{
+"key": "captionPassport",
+"english": "Passport crop: 4:3 or Original",
+"target": "护照裁剪：4:3 或原始",
+"backtrans": "Passport cropping: 4:3 or original"
+},
+{
+"key": "idStepFront",
+"english": "Step 1: Capture Front Side",
+"target": "第1步：拍摄正面",
+"backtrans": "Step 1: Capture the front side"
+},
+{
+"key": "idStepBack",
+"english": "Step 2: Capture Back Side",
+"target": "第2步：拍摄背面",
+"backtrans": "Step 2: Capture the back side"
+},
+{
+"key": "idGenerating",
+"english": "Generating PDF...",
+"target": "正在生成PDF...",
+"backtrans": "Generating PDF..."
+},
+{
+"key": "captureFrontSide",
+"english": "Capture Front Side",
+"target": "拍摄正面",
+"backtrans": "Capture the front side"
+},
+{
+"key": "captureBackSide",
+"english": "Capture Back Side",
+"target": "拍摄背面",
+"backtrans": "Capture the back side"
+},
+{
+"key": "importFrontSide",
+"english": "Import Front Side",
+"target": "导入正面",
+"backtrans": "Import the front side"
+},
+{
+"key": "importBackSide",
+"english": "Import Back Side",
+"target": "导入背面",
+"backtrans": "Import the back side"
+},
+{
+"key": "cropDocumentTitle",
+"english": "Crop Document",
+"target": "裁剪文档",
+"backtrans": "Crop document"
+},
+{
+"key": "cropIdCardTitle",
+"english": "Crop ID Card",
+"target": "裁剪身份证",
+"backtrans": "Crop ID card"
+},
+{
+"key": "tabImageLabel",
+"english": "Image",
+"target": "图像",
+"backtrans": "Image"
+},
+{
+"key": "tabOcrTextLabel",
+"english": "OCR Text",
+"target": "OCR文本",
+"backtrans": "OCR text"
+},
+{
+"key": "compressSmall",
+"english": "Small",
+"target": "小",
+"backtrans": "Small"
+},
+{
+"key": "compressMedium",
+"english": "Medium",
+"target": "中",
+"backtrans": "Medium"
+},
+{
+"key": "pageFormatLetter",
+"english": "Letter (US)",
+"target": "Letter（美国）",
+"backtrans": "Letter (US)"
+},
+{
+"key": "ocrScriptLatin",
+"english": "Latin (English, European)",
+"target": "拉丁文（英语、欧洲）",
+"backtrans": "Latin script (English, European)"
+},
+{
+"key": "ocrScriptChinese",
+"english": "Chinese",
+"target": "中文",
+"backtrans": "Chinese"
+},
+{
+"key": "ocrScriptKorean",
+"english": "Korean",
+"target": "韩语",
+"backtrans": "Korean (language)"
+},
+{
+"key": "ocrScriptJapanese",
+"english": "Japanese",
+"target": "日语",
+"backtrans": "Japanese (language)"
+},
+{
+"key": "ocrScriptDevanagari",
+"english": "Hindi, Marathi (Devanagari)",
+"target": "印地语、马拉地语(天城文)",
+"backtrans": "Hindi, Marathi (Devanagari) [??: lists languages rather than script name; inconsistent with other entries]"
+},
+{
+"key": "ocrStatusUnsupported",
+"english": "Unsupported",
+"target": "不支持",
+"backtrans": "Not supported"
+},
+{
+"key": "noteLabel",
+"english": "Note",
+"target": "备注",
+"backtrans": "Note"
+},
+{
+"key": "dateLabel",
+"english": "Date",
+"target": "日期",
+"backtrans": "Date"
+},
+{
+"key": "accentBlue",
+"english": "Blue",
+"target": "蓝色",
+"backtrans": "Blue"
+},
+{
+"key": "accentIndigo",
+"english": "Indigo",
+"target": "靛蓝",
+"backtrans": "Indigo"
+},
+{
+"key": "accentEmerald",
+"english": "Emerald",
+"target": "翠绿",
+"backtrans": "Emerald green"
+},
+{
+"key": "accentCrimson",
+"english": "Crimson",
+"target": "深红",
+"backtrans": "Deep red/crimson"
+},
+{
+"key": "accentAmber",
+"english": "Amber",
+"target": "琥珀",
+"backtrans": "Amber"
+},
+{
+"key": "accentViolet",
+"english": "Violet",
+"target": "紫罗兰",
+"backtrans": "Violet"
+},
+{
+"key": "tickerLanguages",
+"english": "{count} LANGUAGES",
+"target": "{count} 种语言",
+"backtrans": "{count} languages"
+},
+{
+"key": "termsOfServiceLabel",
+"english": "Terms of Service",
+"target": "服务条款",
+"backtrans": "Terms of service"
+},
+{
+"key": "openSourceLicensesLabel",
+"english": "Open-source licenses",
+"target": "开源许可证",
+"backtrans": "Open-source licenses"
+},
+{
+"key": "whatsNewTitle",
+"english": "What's New",
+"target": "新功能",
+"backtrans": "New features"
+},
+{
+"key": "whatsNewContinue",
+"english": "Continue",
+"target": "继续",
+"backtrans": "Continue"
+},
+{
+"key": "tickerTxtExport",
+"english": "TXT EXPORT",
+"target": "TXT导出",
+"backtrans": "TXT export"
+},
+{
+"key": "tickerCsvExport",
+"english": "CSV EXPORT",
+"target": "CSV导出",
+"backtrans": "CSV export"
+},
+{
+"key": "whatsNewBody",
+"english": "Welcome to KatharScan! This is the first public release featuring unlimited scanning, 29 languages, and export to PDF, Word, TXT, JPG, PNG, and CSV.",
+"target": "欢迎使用 KatharScan！这是首个公开版本，支持无限扫描、29 种语言，并可导出为 PDF、Word、TXT、JPG、PNG 和 CSV。",
+"backtrans": "Welcome to KatharScan! This is the first public version, supporting unlimited scanning, 29 languages, and export to PDF, Word, TXT, JPG, PNG and CSV."
+},
+{
+"key": "engagementSectionLabel",
+"english": "ENGAGEMENT & NOTIFICATIONS",
+"target": "互动与通知",
+"backtrans": "Engagement and notifications"
+},
+{
+"key": "enableNotificationsLabel",
+"english": "Enable Notifications",
+"target": "启用通知",
+"backtrans": "Enable notifications"
+},
+{
+"key": "enableNotificationsSubtitle",
+"english": "Allow background reminders for unexported documents",
+"target": "允许对未导出的文档进行后台提醒",
+"backtrans": "Allow background reminders for documents that have not been exported"
+},
+{
+"key": "enableReviewPromptsLabel",
+"english": "Enable Review Prompts",
+"target": "启用评分提示",
+"backtrans": "Enable rating prompts"
+},
+{
+"key": "enableReviewPromptsSubtitle",
+"english": "Allow the app to occasionally ask for a rating",
+"target": "允许应用偶尔请求评分",
+"backtrans": "Allow the app to occasionally request a rating"
+},
+{
+"key": "enableSharePromptsLabel",
+"english": "Enable Share Prompts",
+"target": "启用分享提示",
+"backtrans": "Enable share prompts"
+},
+{
+"key": "enableSharePromptsSubtitle",
+"english": "Allow the app to occasionally suggest sharing",
+"target": "允许应用偶尔建议分享",
+"backtrans": "Allow the app to occasionally suggest sharing"
+},
+{
+"key": "exportFormatCsvDescription",
+"english": "Spreadsheet data",
+"target": "电子表格数据",
+"backtrans": "Spreadsheet data"
+},
+{
+"key": "watermarkDefaultText",
+"english": "CONFIDENTIAL",
+"target": "机密",
+"backtrans": "Confidential"
+},
+{
+"key": "emailAttachmentNotIncluded",
+"english": "The pages could not be attached to the email. Use Share to send the pages.",
+"target": "无法将页面附加到邮件。请使用分享来发送页面。",
+"backtrans": "Unable to attach pages to the email. Please use Share to send the pages."
+},
+{
+"key": "sealDefaultMainText",
+"english": "YOUR COMPANY",
+"target": "您的公司",
+"backtrans": "Your company"
+},
+{
+"key": "extractedPageDefaultTitle",
+"english": "Extracted Page",
+"target": "提取的页面",
+"backtrans": "Extracted page"
+},
+{
+"key": "printRangeAll",
+"english": "All pages",
+"target": "所有页面",
+"backtrans": "All pages"
+},
+{
+"key": "printRangeCurrent",
+"english": "Current",
+"target": "当前",
+"backtrans": "Current"
+},
+{
+"key": "printRangeRange",
+"english": "Range",
+"target": "范围",
+"backtrans": "Range"
+},
+{
+"key": "printFilterNone",
+"english": "No filter",
+"target": "无滤镜",
+"backtrans": "No filter"
+},
+{
+"key": "removeFromFavorites",
+"english": "Remove from Favorites",
+"target": "从收藏中移除",
+"backtrans": "Remove from favorites"
+},
+{
+"key": "addToFavorites",
+"english": "Add to Favorites",
+"target": "添加到收藏",
+"backtrans": "Add to favorites"
+},
+{
+"key": "saveFailedPrefix",
+"english": "Save failed:",
+"target": "保存失败：",
+"backtrans": "Save failed:"
+},
+{
+"key": "ocrScriptArabic",
+"english": "العربية (Arabic)",
+"target": "العربية (Arabic)",
+"backtrans": "العربية (Arabic)"
+},
+{
+"key": "ocrScriptRussian",
+"english": "Русский (Russian)",
+"target": "Русский (Russian)",
+"backtrans": "Русский (Russian)"
+},
+{
+"key": "ocrScriptUkrainian",
+"english": "Українська (Ukrainian)",
+"target": "Українська (Ukrainian)",
+"backtrans": "Українська (Ukrainian)"
+},
+{
+"key": "ocrScriptGreek",
+"english": "Ελληνικά (Greek)",
+"target": "Ελληνικά (Greek)",
+"backtrans": "Ελληνικά (Greek)"
+},
+{
+"key": "ocrScriptHebrew",
+"english": "עברית (Hebrew)",
+"target": "עברית (Hebrew)",
+"backtrans": "עברית (Hebrew)"
+},
+{
+"key": "ocrScriptThai",
+"english": "ไทย (Thai)",
+"target": "ไทย (Thai)",
+"backtrans": "ไทย (Thai)"
+},
+{
+"key": "ocrScriptBengali",
+"english": "বাংলা (Bengali)",
+"target": "বাংলা (Bengali)",
+"backtrans": "বাংলা (Bengali)"
+},
+{
+"key": "ocrStatusInstalled",
+"english": "Installed",
+"target": "已安装",
+"backtrans": "Installed"
+},
+{
+"key": "ocrStatusDownloading",
+"english": "Downloading…",
+"target": "正在下载…",
+"backtrans": "Downloading..."
+},
+{
+"key": "exportNoTextError",
+"english": "This document has no text yet. Run OCR on it first.",
+"target": "此文档还没有文字。请先运行 OCR。",
+"backtrans": "This document has no text yet. Please run OCR first."
+},
+{
+"key": "saveFailedBanner",
+"english": "Your latest changes could not be saved.",
+"target": "无法保存您最近的更改。",
+"backtrans": "Unable to save your most recent changes."
+},
+{
+"key": "editLabel",
+"english": "Edit",
+"target": "编辑",
+"backtrans": "Edit"
+},
+{
+"key": "fillTapHint",
+"english": "Tap the page where you want to type",
+"target": "点按页面上要输入文字的位置",
+"backtrans": "Tap the place on the page where you want to type text"
+},
+{
+"key": "fillTypeHint",
+"english": "Type here",
+"target": "在此输入",
+"backtrans": "Type here"
+},
+{
+"key": "clearPage",
+"english": "Clear page",
+"target": "清除本页",
+"backtrans": "Clear this page"
+},
+{
+"key": "clearAllPages",
+"english": "Clear all pages",
+"target": "清除所有页",
+"backtrans": "Clear all pages"
+},
+{
+"key": "clearedCount",
+"english": "Cleared {count}",
+"target": "已清除 {count} 项",
+"backtrans": "{count} items cleared"
+},
+{
+"key": "idLayoutRealSize",
+"english": "Real size",
+"target": "实际大小",
+"backtrans": "Actual size"
+},
+{
+"key": "idLayoutFullWidth",
+"english": "Full width",
+"target": "全宽",
+"backtrans": "Full width"
+},
+{
+"key": "pagesToReadTitle",
+"english": "Pages to read",
+"target": "要读取的页面",
+"backtrans": "Pages to read"
+},
+{
+"key": "pagesToReadHint",
+"english": "This PDF has {count} pages. Pages that are pictures are read with OCR (about 10 seconds each); pages with real text are instant.",
+"target": "此 PDF 共 {count} 页。图片页面使用 OCR 读取(每页约 10 秒);含真实文字的页面则立即完成。",
+"backtrans": "This PDF has {count} pages in total. Image pages are read using OCR (about 10 seconds per page); pages containing real text finish immediately."
+},
+{
+"key": "pageFromLabel",
+"english": "From page",
+"target": "起始页",
+"backtrans": "Start page"
+},
+{
+"key": "pageToLabel",
+"english": "To page",
+"target": "结束页",
+"backtrans": "End page"
+},
+{
+"key": "readingPageProgress",
+"english": "Page {page} of {total}",
+"target": "第 {page} / {total} 页",
+"backtrans": "Page {page} / {total}"
+},
+{
+"key": "readingPageEta",
+"english": "Page {page} of {total} · about {minutes} min left",
+"target": "第 {page} / {total} 页 · 约剩 {minutes} 分钟",
+"backtrans": "Page {page} / {total} · about {minutes} minutes remaining"
+},
+{
+"key": "sealShapeRound",
+"english": "Round",
+"target": "圆形",
+"backtrans": "Circular"
+},
+{
+"key": "sealFontSans",
+"english": "Clean",
+"target": "简洁",
+"backtrans": "Simple/clean"
+},
+{
+"key": "sealFontSerif",
+"english": "Classic",
+"target": "经典",
+"backtrans": "Classic"
+},
+{
+"key": "sealInkLook",
+"english": "Worn stamp look",
+"target": "磨损印章效果",
+"backtrans": "Worn seal effect"
+},
+{
+"key": "sealSaveToLibrary",
+"english": "Save this seal",
+"target": "保存此印章",
+"backtrans": "Save this seal"
+},
+{
+"key": "sealSavedHeading",
+"english": "Saved seals",
+"target": "已保存的印章",
+"backtrans": "Saved seals"
+},
+{
+"key": "sealTextColorLabel",
+"english": "Text colour",
+"target": "文字颜色",
+"backtrans": "Text color"
+},
+{
+"key": "sealTextColorSame",
+"english": "Same as ring",
+"target": "与外圈相同",
+"backtrans": "Same as outer ring"
+},
+{
+"key": "sealTextSizePercent",
+"english": "Text size {percent}%",
+"target": "文字大小 {percent}%",
+"backtrans": "Text size {percent}%"
+},
+{
+"key": "sealRemoveWhite",
+"english": "Make white transparent",
+"target": "将白色设为透明",
+"backtrans": "Make white transparent"
+},
+{
+"key": "sealSavedMessage",
+"english": "Seal saved",
+"target": "印章已保存",
+"backtrans": "Seal has been saved"
+},
+{
+"key": "signatureTabDraw",
+"english": "Draw",
+"target": "手写",
+"backtrans": "Handwrite"
+},
+{
+"key": "signatureTabType",
+"english": "Type",
+"target": "键入",
+"backtrans": "Type in"
+},
+{
+"key": "signatureTypeHint",
+"english": "Type your name",
+"target": "输入您的姓名",
+"backtrans": "Enter your name"
+},
+{
+"key": "signatureWidthLabel",
+"english": "Pen width",
+"target": "笔画粗细",
+"backtrans": "Stroke thickness"
+},
+{
+"key": "signatureFontFlowing",
+"english": "Flowing",
+"target": "流畅体",
+"backtrans": "Flowing style"
+},
+{
+"key": "signatureFontHandwritten",
+"english": "Handwritten",
+"target": "手写体",
+"backtrans": "Handwritten style"
+},
+{
+"key": "signatureSavedHeading",
+"english": "Saved signatures",
+"target": "已保存的签名",
+"backtrans": "Saved signatures"
+},
+{
+"key": "signatureNewOne",
+"english": "Draw or type a new one",
+"target": "手写或键入新签名",
+"backtrans": "Handwrite or type a new signature"
+},
+{
+"key": "signatureDeleteSaved",
+"english": "Remove saved signature",
+"target": "删除已保存的签名",
+"backtrans": "Delete saved signature"
+},
+{
+"key": "annotationModeSelect",
+"english": "Select",
+"target": "选择",
+"backtrans": "Select"
+},
+{
+"key": "annotationModeEraser",
+"english": "Eraser",
+"target": "橡皮擦",
+"backtrans": "Eraser"
+},
+{
+"key": "watermarkKindText",
+"english": "Text",
+"target": "文字",
+"backtrans": "Text"
+},
+{
+"key": "watermarkKindImage",
+"english": "Image",
+"target": "图片",
+"backtrans": "Picture"
+},
+{
+"key": "watermarkChooseImage",
+"english": "Choose image",
+"target": "选择图片",
+"backtrans": "Choose picture"
+},
+{
+"key": "watermarkLayoutLabel",
+"english": "Layout",
+"target": "版式",
+"backtrans": "Layout"
+},
+{
+"key": "watermarkLayoutSingle",
+"english": "Single",
+"target": "单个",
+"backtrans": "Single"
+},
+{
+"key": "watermarkLayoutDiagonal",
+"english": "Diagonal",
+"target": "对角",
+"backtrans": "Diagonal"
+},
+{
+"key": "watermarkLayoutTiled",
+"english": "Tiled",
+"target": "平铺",
+"backtrans": "Tiled"
+},
+{
+"key": "watermarkPagesLabel",
+"english": "Pages",
+"target": "页面",
+"backtrans": "Pages"
+},
+{
+"key": "watermarkPagesThis",
+"english": "This page",
+"target": "当前页",
+"backtrans": "Current page"
+},
+{
+"key": "watermarkPagesAll",
+"english": "All pages",
+"target": "所有页面",
+"backtrans": "All pages"
+},
+{
+"key": "watermarkPagesRange",
+"english": "Range",
+"target": "范围",
+"backtrans": "Range"
+},
+{
+"key": "watermarkPagesRangeHint",
+"english": "e.g. 1-3, 5",
+"target": "例如 1-3, 5",
+"backtrans": "For example 1-3, 5"
+},
+{
+"key": "watermarkPagesInvalid",
+"english": "Check the pages (the document has {count} pages)",
+"target": "请检查页码（文档共 {count} 页）",
+"backtrans": "Please check the page numbers (the document has {count} pages in total)"
+},
+{
+"key": "cropAuto",
+"english": "Auto-detect",
+"target": "自动检测",
+"backtrans": "Auto-detect"
+},
+{
+"key": "cropAspectFree",
+"english": "Free",
+"target": "自由",
+"backtrans": "Free"
+},
+{
+"key": "cropAspectId",
+"english": "ID card",
+"target": "证件",
+"backtrans": "ID document"
+},
+{
+"key": "cropAspectSquare",
+"english": "Square",
+"target": "正方形",
+"backtrans": "Square"
+},
+{
+"key": "cropNoPageFound",
+"english": "Couldn't find the page edges. Drag the corners.",
+"target": "未找到页面边缘，请拖动四角。",
+"backtrans": "Page edges not found, please drag the four corners."
+},
+{
+"key": "straightenLabel",
+"english": "Straighten",
+"target": "校正倾斜",
+"backtrans": "Correct tilt"
+},
+{
+"key": "filterMagicColor",
+"english": "Magic colour",
+"target": "魔术色彩",
+"backtrans": "Magic color"
+},
+{
+"key": "filterBrightnessLabel",
+"english": "Brightness",
+"target": "亮度",
+"backtrans": "Brightness"
+},
+{
+"key": "filterContrastLabel",
+"english": "Contrast",
+"target": "对比度",
+"backtrans": "Contrast"
+},
+{
+"key": "resizeUpscaleWarning",
+"english": "Enlarging doesn't add detail — the page may look soft.",
+"target": "放大不会增加细节，页面可能显得模糊。",
+"backtrans": "Enlarging does not add detail; the page may look blurry."
+},
+{
+"key": "eraserAutoColorTooltip",
+"english": "Match the page colour automatically",
+"target": "自动匹配页面颜色",
+"backtrans": "Automatically match page color"
+},
+{
+"key": "eraserZoomTooltip",
+"english": "Zoom and move (pinch)",
+"target": "缩放和移动(双指)",
+"backtrans": "Zoom and move (two fingers)"
+},
+{
+"key": "pagesSelectTooltip",
+"english": "Select pages",
+"target": "选择页面",
+"backtrans": "Select pages"
+},
+{
+"key": "pagesDeleteCount",
+"english": "Delete {count}",
+"target": "删除 {count}",
+"backtrans": "Delete {count}"
+},
+{
+"key": "pagesDeleteConfirm",
+"english": "Delete {count} pages? They are removed when you save.",
+"target": "删除 {count} 页？保存后将被移除。",
+"backtrans": "Delete {count} pages? They will be removed after saving."
+},
+{
+"key": "compressTargetLabel",
+"english": "Max size",
+"target": "最大大小",
+"backtrans": "Maximum size"
+},
+{
+"key": "compressNoLimit",
+"english": "No limit",
+"target": "不限制",
+"backtrans": "No limit"
+},
+{
+"key": "printPaperLabel",
+"english": "Paper",
+"target": "纸张",
+"backtrans": "Paper"
+},
+{
+"key": "printMarginLabel",
+"english": "Margin",
+"target": "页边距",
+"backtrans": "Page margins"
+},
+{
+"key": "printMarginNone",
+"english": "None",
+"target": "无",
+"backtrans": "None"
+},
+{
+"key": "printMarginNarrow",
+"english": "Narrow",
+"target": "窄",
+"backtrans": "Narrow"
+},
+{
+"key": "printMarginNormal",
+"english": "Normal",
+"target": "常规",
+"backtrans": "Normal"
+},
+{
+"key": "printFitLabel",
+"english": "Scaling",
+"target": "缩放",
+"backtrans": "Scaling"
+},
+{
+"key": "printFitFit",
+"english": "Fit page",
+"target": "适应页面",
+"backtrans": "Fit to page"
+},
+{
+"key": "printFitFill",
+"english": "Fill sheet (trims edges)",
+"target": "铺满纸张（裁切边缘）",
+"backtrans": "Fill the paper (edges cropped)"
+},
+{
+"key": "printPerSheetLabel",
+"english": "Pages per sheet",
+"target": "每张页数",
+"backtrans": "Pages per sheet"
+},
+{
+"key": "emailMessageLabel",
+"english": "Message",
+"target": "留言",
+"backtrans": "Message"
+},
+{
+"key": "emailMessageHint",
+"english": "Add a note (optional)",
+"target": "添加备注（可选）",
+"backtrans": "Add a note (optional)"
+},
+{
+"key": "emailLimitMissed",
+"english": "Could not get under {mb} MB; sent the smallest version.",
+"target": "无法压缩到 {mb} MB 以下；已发送最小版本。",
+"backtrans": "Unable to compress to under {mb} MB; the smallest version was sent."
+}
+]

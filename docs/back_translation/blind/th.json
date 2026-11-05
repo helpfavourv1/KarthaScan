@@ -1,0 +1,3362 @@
+[
+{
+"key": "privacyOptionsLabel",
+"english": "Privacy settings",
+"target": "การตั้งค่าความเป็นส่วนตัว",
+"backtrans": "Privacy settings"
+},
+{
+"key": "commonCancel",
+"english": "Cancel",
+"target": "ยกเลิก",
+"backtrans": "Cancel"
+},
+{
+"key": "commonDelete",
+"english": "Delete",
+"target": "ลบ",
+"backtrans": "Delete"
+},
+{
+"key": "commonSave",
+"english": "Save",
+"target": "บันทึก",
+"backtrans": "Save"
+},
+{
+"key": "commonAdd",
+"english": "Add",
+"target": "เพิ่ม",
+"backtrans": "Add"
+},
+{
+"key": "commonExport",
+"english": "Export",
+"target": "ส่งออก",
+"backtrans": "Export"
+},
+{
+"key": "commonImport",
+"english": "Import",
+"target": "นำเข้า",
+"backtrans": "Import"
+},
+{
+"key": "commonSkip",
+"english": "Skip",
+"target": "ข้าม",
+"backtrans": "Skip"
+},
+{
+"key": "commonClear",
+"english": "Clear",
+"target": "ล้าง",
+"backtrans": "Clear"
+},
+{
+"key": "emptyStateDefaultMessage",
+"english": "Tap the camera to scan your first document.",
+"target": "แตะที่กล้องเพื่อสแกนเอกสารแรกของคุณ",
+"backtrans": "Tap the camera to scan your first document"
+},
+{
+"key": "exportFormatSheetTitle",
+"english": "Export as",
+"target": "ส่งออกเป็น",
+"backtrans": "Export as"
+},
+{
+"key": "exportFormatPdfLabel",
+"english": "PDF",
+"target": "PDF",
+"backtrans": "PDF"
+},
+{
+"key": "exportFormatPdfDescription",
+"english": "Best for sharing and printing",
+"target": "ดีที่สุดสำหรับการแชร์และการพิมพ์",
+"backtrans": "Best for sharing and printing"
+},
+{
+"key": "exportFormatDocxLabel",
+"english": "Word (.docx)",
+"target": "Word (.docx)",
+"backtrans": "Word (.docx)"
+},
+{
+"key": "exportFormatDocxDescription",
+"english": "Editable text document",
+"target": "เอกสารข้อความที่แก้ไขได้",
+"backtrans": "Editable text document"
+},
+{
+"key": "exportFormatTxtLabel",
+"english": "Text (.txt)",
+"target": "ข้อความ (.txt)",
+"backtrans": "Text (.txt)"
+},
+{
+"key": "exportFormatTxtDescription",
+"english": "Plain OCR text only",
+"target": "เฉพาะข้อความ OCR ธรรมดา",
+"backtrans": "Plain OCR text only"
+},
+{
+"key": "exportFormatJpgLabel",
+"english": "JPG",
+"target": "JPG",
+"backtrans": "JPG"
+},
+{
+"key": "exportFormatJpgDescription",
+"english": "One image per page",
+"target": "หนึ่งภาพต่อหน้า",
+"backtrans": "One image per page"
+},
+{
+"key": "exportFormatPngLabel",
+"english": "PNG",
+"target": "PNG",
+"backtrans": "PNG"
+},
+{
+"key": "exportFormatPngDescription",
+"english": "One image per page, lossless",
+"target": "หนึ่งภาพต่อหน้า ไม่สูญเสียคุณภาพ",
+"backtrans": "One image per page, no loss of quality"
+},
+{
+"key": "filterSheetTitle",
+"english": "Filters",
+"target": "ตัวกรอง",
+"backtrans": "Filters"
+},
+{
+"key": "filterOriginal",
+"english": "Original",
+"target": "ต้นฉบับ",
+"backtrans": "Original"
+},
+{
+"key": "filterGrayscale",
+"english": "Grayscale",
+"target": "ระดับสีเทา",
+"backtrans": "Grayscale"
+},
+{
+"key": "filterBlackAndWhite",
+"english": "B&W",
+"target": "ขาวดำ",
+"backtrans": "Black and white"
+},
+{
+"key": "filterColorEnhance",
+"english": "Color enhance",
+"target": "เพิ่มสี",
+"backtrans": "Add color"
+},
+{
+"key": "filterShadowRemoval",
+"english": "Shadow removal",
+"target": "ลบเงา",
+"backtrans": "Remove shadows"
+},
+{
+"key": "proBadgeLabel",
+"english": "PRO",
+"target": "PRO",
+"backtrans": "PRO"
+},
+{
+"key": "scanListPageCount",
+"english": "{count, plural, =1{1 page} other{{count} pages}}",
+"target": "{count} หน้า",
+"backtrans": "{count} pages"
+},
+{
+"key": "scanPreviewNoPages",
+"english": "No pages to show.",
+"target": "ไม่มีหน้าให้แสดง",
+"backtrans": "No pages to display"
+},
+{
+"key": "shareTooltip",
+"english": "Share",
+"target": "แชร์",
+"backtrans": "Share"
+},
+{
+"key": "signatureCanvasHint",
+"english": "Sign here",
+"target": "เซ็นชื่อที่นี่",
+"backtrans": "Sign your name here"
+},
+{
+"key": "folderDocumentCount",
+"english": "{count, plural, =1{1 document} other{{count} documents}}",
+"target": "{count} เอกสาร",
+"backtrans": "{count} documents"
+},
+{
+"key": "selectedCount",
+"english": "{count, plural, =1{1 selected} other{{count} selected}}",
+"target": "เลือกแล้ว {count}",
+"backtrans": "{count} selected"
+},
+{
+"key": "batchExportTooltip",
+"english": "Batch export",
+"target": "ส่งออกเป็นชุด",
+"backtrans": "Export as a batch"
+},
+{
+"key": "deleteTooltip",
+"english": "Delete",
+"target": "ลบ",
+"backtrans": "Delete"
+},
+{
+"key": "searchHint",
+"english": "Search your scans",
+"target": "ค้นหาการสแกนของคุณ",
+"backtrans": "Search your scans"
+},
+{
+"key": "settingsTooltip",
+"english": "Settings",
+"target": "การตั้งค่า",
+"backtrans": "Settings"
+},
+{
+"key": "foldersSectionHeader",
+"english": "Folders",
+"target": "โฟลเดอร์",
+"backtrans": "Folders"
+},
+{
+"key": "documentsSectionHeader",
+"english": "Documents",
+"target": "เอกสาร",
+"backtrans": "Documents"
+},
+{
+"key": "exportingStatus",
+"english": "Exporting…",
+"target": "กำลังส่งออก...",
+"backtrans": "Exporting..."
+},
+{
+"key": "exportDoneStatus",
+"english": "Done",
+"target": "เสร็จสิ้น",
+"backtrans": "Finished"
+},
+{
+"key": "exportGenericError",
+"english": "Something went wrong while exporting.",
+"target": "มีบางอย่างผิดปกติขณะส่งออก",
+"backtrans": "Something went wrong while exporting"
+},
+{
+"key": "deleteFolderTitle",
+"english": "Delete this folder?",
+"target": "ลบโฟลเดอร์นี้หรือไม่?",
+"backtrans": "Delete this folder?"
+},
+{
+"key": "deleteFolderMessage",
+"english": "Documents inside will not be deleted.",
+"target": "เอกสารภายในจะไม่ถูกลบ",
+"backtrans": "Documents inside will not be deleted"
+},
+{
+"key": "deleteFolderTooltip",
+"english": "Delete folder",
+"target": "ลบโฟลเดอร์",
+"backtrans": "Delete folder"
+},
+{
+"key": "renameFolderTitle",
+"english": "Rename folder",
+"target": "เปลี่ยนชื่อโฟลเดอร์",
+"backtrans": "Change folder name"
+},
+{
+"key": "removeFromFolderTooltip",
+"english": "Remove from folder",
+"target": "ลบออกจากโฟลเดอร์",
+"backtrans": "Remove from folder"
+},
+{
+"key": "noDocumentsInFolder",
+"english": "No documents in this folder yet.",
+"target": "ยังไม่มีเอกสารในโฟลเดอร์นี้",
+"backtrans": "No documents in this folder yet"
+},
+{
+"key": "folderUnavailable",
+"english": "This folder is no longer available.",
+"target": "โฟลเดอร์นี้ไม่สามารถใช้งานได้อีกต่อไป",
+"backtrans": "This folder can no longer be used"
+},
+{
+"key": "migrationTitle",
+"english": "Device Migration",
+"target": "ย้ายข้อมูลไปยังอุปกรณ์ใหม่",
+"backtrans": "Move data to a new device"
+},
+{
+"key": "migrationExplainer",
+"english": "This isn't automatic sync. Export creates a single encrypted backup file you move to your new device yourself, then import there.",
+"target": "นี่ไม่ใช่การซิงค์อัตโนมัติ การส่งออกจะสร้างไฟล์สำรองที่เข้ารหัสไฟล์เดียวที่คุณย้ายไปยังอุปกรณ์ใหม่ด้วยตัวเองแล้วนำเข้าที่นั่น",
+"backtrans": "This is not automatic syncing. Exporting creates a single encrypted backup file that you move to the new device yourself and then import there"
+},
+{
+"key": "exportBackupButton",
+"english": "Export encrypted backup",
+"target": "ส่งออกข้อมูลสำรองที่เข้ารหัส",
+"backtrans": "Export encrypted backup data"
+},
+{
+"key": "importBackupButton",
+"english": "Import from backup",
+"target": "นำเข้าจากข้อมูลสำรอง",
+"backtrans": "Import from backup data"
+},
+{
+"key": "setBackupPasswordTitle",
+"english": "Set a backup password",
+"target": "ตั้งรหัสผ่านข้อมูลสำรอง",
+"backtrans": "Set backup data password"
+},
+{
+"key": "enterBackupPasswordTitle",
+"english": "Enter backup password",
+"target": "ใส่รหัสผ่านข้อมูลสำรอง",
+"backtrans": "Enter backup data password"
+},
+{
+"key": "buildingBackupStatus",
+"english": "Building backup…",
+"target": "กำลังสร้างข้อมูลสำรอง...",
+"backtrans": "Creating backup data..."
+},
+{
+"key": "backupReadyStatus",
+"english": "Backup ready.",
+"target": "ข้อมูลสำรองพร้อม",
+"backtrans": "Backup data ready"
+},
+{
+"key": "couldNotCreateBackupError",
+"english": "Could not create the backup.",
+"target": "ไม่สามารถสร้างข้อมูลสำรองได้",
+"backtrans": "Unable to create backup data"
+},
+{
+"key": "importingStatus",
+"english": "Importing…",
+"target": "กำลังนำเข้า...",
+"backtrans": "Importing..."
+},
+{
+"key": "couldNotImportBackupError",
+"english": "Could not import this backup. Check the password and try again.",
+"target": "ไม่สามารถนำเข้าข้อมูลสำรองนี้ได้ ตรวจสอบรหัสผ่านแล้วลองอีกครั้ง",
+"backtrans": "Unable to import this backup data. Check the password and try again"
+},
+{
+"key": "backupCorruptedError",
+"english": "This backup file looks corrupted.",
+"target": "ไฟล์ข้อมูลสำรองนี้ดูเหมือนเสียหาย",
+"backtrans": "This backup data file appears to be damaged"
+},
+{
+"key": "importedCount",
+"english": "{count, plural, =1{1 document imported} other{{count} documents imported}}",
+"target": "นำเข้าแล้ว {count} เอกสาร",
+"backtrans": "Imported {count} documents"
+},
+{
+"key": "continueButton",
+"english": "Continue",
+"target": "ดำเนินการต่อ",
+"backtrans": "Proceed"
+},
+{
+"key": "restorePurchasesButton",
+"english": "Restore purchases",
+"target": "กู้คืนการซื้อ",
+"backtrans": "Restore purchases"
+},
+{
+"key": "pricingLoadingError",
+"english": "Pricing is still loading — try again in a moment.",
+"target": "ราคายังคงโหลดอยู่ — ลองอีกครั้งในอีกสักครู่",
+"backtrans": "Prices are still loading — try again in a moment"
+},
+{
+"key": "renameDocumentTitle",
+"english": "Rename document",
+"target": "เปลี่ยนชื่อเอกสาร",
+"backtrans": "Change document name"
+},
+{
+"key": "addTagTitle",
+"english": "Add tag",
+"target": "เพิ่มแท็ก",
+"backtrans": "Add tag"
+},
+{
+"key": "moveToFolderTooltip",
+"english": "Move to folder",
+"target": "ย้ายไปยังโฟลเดอร์",
+"backtrans": "Move to folder"
+},
+{
+"key": "exportTooltip",
+"english": "Export",
+"target": "ส่งออก",
+"backtrans": "Export"
+},
+{
+"key": "deleteScanTitle",
+"english": "Delete this scan?",
+"target": "ลบการสแกนนี้หรือไม่?",
+"backtrans": "Delete this scan?"
+},
+{
+"key": "deleteScanMessage",
+"english": "This can't be undone.",
+"target": "การกระทำนี้ไม่สามารถย้อนกลับได้",
+"backtrans": "This action cannot be reversed"
+},
+{
+"key": "movedToFolderMessage",
+"english": "Moved to folder.",
+"target": "ย้ายไปยังโฟลเดอร์แล้ว",
+"backtrans": "Moved to folder"
+},
+{
+"key": "noTextRecognized",
+"english": "No text recognized.",
+"target": "ไม่พบข้อความที่จดจำได้",
+"backtrans": "No recognizable text found"
+},
+{
+"key": "scanUnavailable",
+"english": "This scan is no longer available.",
+"target": "การสแกนนี้ไม่สามารถใช้งานได้อีกต่อไป",
+"backtrans": "This scan can no longer be used"
+},
+{
+"key": "settingsTitle",
+"english": "Settings",
+"target": "การตั้งค่า",
+"backtrans": "Settings"
+},
+{
+"key": "appearanceSectionLabel",
+"english": "Appearance",
+"target": "ลักษณะที่ปรากฏ",
+"backtrans": "Appearance"
+},
+{
+"key": "themeLabel",
+"english": "Theme",
+"target": "ธีม",
+"backtrans": "Theme"
+},
+{
+"key": "systemThemeOption",
+"english": "System",
+"target": "ระบบ",
+"backtrans": "System"
+},
+{
+"key": "lightThemeOption",
+"english": "Light",
+"target": "สว่าง",
+"backtrans": "Bright"
+},
+{
+"key": "darkThemeOption",
+"english": "Dark",
+"target": "มืด",
+"backtrans": "Dark"
+},
+{
+"key": "languageSectionLabel",
+"english": "Language",
+"target": "ภาษา",
+"backtrans": "Language"
+},
+{
+"key": "appLanguageLabel",
+"english": "App language",
+"target": "ภาษาแอป",
+"backtrans": "App language"
+},
+{
+"key": "storageSectionLabel",
+"english": "Storage",
+"target": "พื้นที่จัดเก็บ",
+"backtrans": "Storage space"
+},
+{
+"key": "deviceMigrationLabel",
+"english": "Device Migration",
+"target": "ย้ายข้อมูลไปอุปกรณ์ใหม่",
+"backtrans": "Move data to new device"
+},
+{
+"key": "subscriptionSectionLabel",
+"english": "Subscription",
+"target": "การสมัครสมาชิก",
+"backtrans": "Subscription"
+},
+{
+"key": "aboutSectionLabel",
+"english": "About",
+"target": "เกี่ยวกับ",
+"backtrans": "About"
+},
+{
+"key": "privacyPolicyLabel",
+"english": "Privacy policy",
+"target": "นโยบายความเป็นส่วนตัว",
+"backtrans": "Privacy policy"
+},
+{
+"key": "supportLabel",
+"english": "Support",
+"target": "ความช่วยเหลือ",
+"backtrans": "Help"
+},
+{
+"key": "couldNotOpenLinkError",
+"english": "Could not open link.",
+"target": "ไม่สามารถเปิดลิงก์ได้",
+"backtrans": "Unable to open the link"
+},
+{
+"key": "restoreCompleteMessage",
+"english": "Restore complete.",
+"target": "การกู้คืนเสร็จสมบูรณ์",
+"backtrans": "Restoration complete"
+},
+{
+"key": "genericErrorMessage",
+"english": "Something went wrong. Please try again.",
+"target": "มีบางอย่างผิดปกติ กรุณาลองอีกครั้ง",
+"backtrans": "Something went wrong. Please try again"
+},
+{
+"key": "homeLanguageTooltip",
+"english": "App Language",
+"target": "ภาษาแอป",
+"backtrans": "App language"
+},
+{
+"key": "removeAdsTitle",
+"english": "Remove Ads Forever",
+"target": "ลบโฆษณาตลอดไป",
+"backtrans": "Remove ads forever"
+},
+{
+"key": "extractedTextTitle",
+"english": "Extracted Text",
+"target": "ข้อความที่แยกออกมา",
+"backtrans": "Extracted text"
+},
+{
+"key": "commonClose",
+"english": "Close",
+"target": "ปิด",
+"backtrans": "Close"
+},
+{
+"key": "commonCopy",
+"english": "Copy",
+"target": "คัดลอก",
+"backtrans": "Copy"
+},
+{
+"key": "savedToDocumentText",
+"english": "Saved to document text",
+"target": "บันทึกไปยังข้อความเอกสารแล้ว",
+"backtrans": "Saved to document text"
+},
+{
+"key": "regionOcrFailed",
+"english": "Region OCR failed",
+"target": "OCR พื้นที่ที่เลือกล้มเหลว",
+"backtrans": "OCR of the selected area failed"
+},
+{
+"key": "filterRemoved",
+"english": "Filter removed",
+"target": "ลบตัวกรองแล้ว",
+"backtrans": "Filter removed"
+},
+{
+"key": "filterApplied",
+"english": "Filter applied",
+"target": "ใช้ตัวกรองแล้ว",
+"backtrans": "Filter applied"
+},
+{
+"key": "pageCropped",
+"english": "Page cropped",
+"target": "ครอบตัดหน้าแล้ว",
+"backtrans": "Page cropped"
+},
+{
+"key": "revertToOriginalTitle",
+"english": "Revert to Original?",
+"target": "กลับสู่ต้นฉบับหรือไม่?",
+"backtrans": "Return to original?"
+},
+{
+"key": "revertToOriginalMessage",
+"english": "This will undo all filters, rotations, crops, resizes, and eraser strokes on this page.",
+"target": "การดำเนินการนี้จะย้อนกลับตัวกรอง การหมุน การตัด การปรับขนาด และการลบลายเส้นทั้งหมดในหน้านี้",
+"backtrans": "This action will reverse all filters, rotation, cropping, resizing, and removal of lines/strokes on this page"
+},
+{
+"key": "commonRevert",
+"english": "Revert",
+"target": "ย้อนกลับ",
+"backtrans": "Reverse"
+},
+{
+"key": "pageRevertedToOriginal",
+"english": "Page reverted to original",
+"target": "หน้ากลับสู่ต้นฉบับแล้ว",
+"backtrans": "Page returned to original"
+},
+{
+"key": "eraserApplied",
+"english": "Eraser applied",
+"target": "ใช้ยางลบแล้ว",
+"backtrans": "Eraser applied"
+},
+{
+"key": "pageResized",
+"english": "Page resized",
+"target": "ปรับขนาดหน้าแล้ว",
+"backtrans": "Page resized"
+},
+{
+"key": "extractedAsNewDocument",
+"english": "Extracted as new document",
+"target": "แยกออกเป็นเอกสารใหม่",
+"backtrans": "Extracted into a new document"
+},
+{
+"key": "pagesUpdated",
+"english": "Pages updated",
+"target": "อัปเดตหน้าแล้ว",
+"backtrans": "Pages updated"
+},
+{
+"key": "printOptionsTitle",
+"english": "Print Options",
+"target": "ตัวเลือกการพิมพ์",
+"backtrans": "Print options"
+},
+{
+"key": "letterSizeUS",
+"english": "Letter size (US)",
+"target": "ขนาด Letter (สหรัฐอเมริกา)",
+"backtrans": "Letter size (United States)"
+},
+{
+"key": "commonPrint",
+"english": "Print",
+"target": "พิมพ์",
+"backtrans": "Print"
+},
+{
+"key": "printFailed",
+"english": "Print failed",
+"target": "การพิมพ์ล้มเหลว",
+"backtrans": "Printing failed"
+},
+{
+"key": "noEmailAppFound",
+"english": "No email app found",
+"target": "ไม่พบแอปอีเมล",
+"backtrans": "No email app found"
+},
+{
+"key": "emailFailed",
+"english": "Email failed",
+"target": "อีเมลล้มเหลว",
+"backtrans": "Email failed"
+},
+{
+"key": "fromPageLabel",
+"english": "From",
+"target": "จาก",
+"backtrans": "From"
+},
+{
+"key": "toPageLabel",
+"english": "To",
+"target": "ถึง",
+"backtrans": "To"
+},
+{
+"key": "pdfImportedAsDocument",
+"english": "PDF imported as document",
+"target": "นำเข้า PDF เป็นเอกสารแล้ว",
+"backtrans": "PDF imported as a document"
+},
+{
+"key": "frontSideCaptured",
+"english": "Front side captured. Now capture the back side.",
+"target": "ถ่ายภาพด้านหน้าแล้ว ตอนนี้ถ่ายภาพด้านหลัง",
+"backtrans": "Front side photographed. Now photograph the back side"
+},
+{
+"key": "idCardPdfGenerated",
+"english": "ID Card PDF Generated",
+"target": "สร้าง PDF บัตรประจำตัวแล้ว",
+"backtrans": "Identity card PDF created"
+},
+{
+"key": "sharePdf",
+"english": "Share PDF",
+"target": "แชร์ PDF",
+"backtrans": "Share PDF"
+},
+{
+"key": "saveAsDocument",
+"english": "Save as Document",
+"target": "บันทึกเป็นเอกสาร",
+"backtrans": "Save as document"
+},
+{
+"key": "commonDone",
+"english": "Done",
+"target": "เสร็จสิ้น",
+"backtrans": "Finished"
+},
+{
+"key": "documentSaved",
+"english": "Document saved",
+"target": "บันทึกเอกสารแล้ว",
+"backtrans": "Document saved"
+},
+{
+"key": "commonReset",
+"english": "Reset",
+"target": "รีเซ็ต",
+"backtrans": "Reset"
+},
+{
+"key": "autoScan",
+"english": "Auto Scan",
+"target": "สแกนอัตโนมัติ",
+"backtrans": "Automatic scan"
+},
+{
+"key": "importAndConvertDocument",
+"english": "Import & Convert Document",
+"target": "นำเข้าและแปลงเอกสาร",
+"backtrans": "Import and convert document"
+},
+{
+"key": "signatureTitle",
+"english": "Signature",
+"target": "ลายเซ็น",
+"backtrans": "Signature"
+},
+{
+"key": "signatureChoiceMessage",
+"english": "Use your saved signature or draw a new one?",
+"target": "ใช้ลายเซ็นที่บันทึกไว้หรือวาดใหม่?",
+"backtrans": "Use the saved signature or draw a new one?"
+},
+{
+"key": "useSavedSignature",
+"english": "Use Saved",
+"target": "ใช้ที่บันทึกไว้",
+"backtrans": "Use the saved one"
+},
+{
+"key": "drawNewSignature",
+"english": "Draw New",
+"target": "วาดใหม่",
+"backtrans": "Draw new"
+},
+{
+"key": "copyAll",
+"english": "Copy all",
+"target": "คัดลอกทั้งหมด",
+"backtrans": "Copy all"
+},
+{
+"key": "clearThis",
+"english": "Clear this",
+"target": "ล้างสิ่งนี้",
+"backtrans": "Clear this"
+},
+{
+"key": "commonRemove",
+"english": "Remove",
+"target": "ลบ",
+"backtrans": "Delete"
+},
+{
+"key": "clearAll",
+"english": "Clear all",
+"target": "ล้างทั้งหมด",
+"backtrans": "Clear all"
+},
+{
+"key": "addSignature",
+"english": "Add Signature",
+"target": "เพิ่มลายเซ็น",
+"backtrans": "Add signature"
+},
+{
+"key": "commonUse",
+"english": "Use",
+"target": "ใช้",
+"backtrans": "Use"
+},
+{
+"key": "stampTickedLabel",
+"english": "Ticked",
+"target": "ทำเครื่องหมายแล้ว",
+"backtrans": "Marked"
+},
+{
+"key": "stampBoxLabel",
+"english": "Box",
+"target": "กล่อง",
+"backtrans": "Box"
+},
+{
+"key": "stampTickLabel",
+"english": "Tick",
+"target": "เครื่องหมายถูก",
+"backtrans": "Check mark"
+},
+{
+"key": "commonCustom",
+"english": "Custom",
+"target": "กำหนดเอง",
+"backtrans": "Custom"
+},
+{
+"key": "commonChange",
+"english": "Change",
+"target": "เปลี่ยน",
+"backtrans": "Change"
+},
+{
+"key": "commonColor",
+"english": "Color",
+"target": "สี",
+"backtrans": "Color"
+},
+{
+"key": "stampPaperLabel",
+"english": "Paper",
+"target": "กระดาษ",
+"backtrans": "Paper"
+},
+{
+"key": "whiteHaloLabel",
+"english": "White halo (readability)",
+"target": "รัศมีสีขาว (ความสามารถในการอ่าน)",
+"backtrans": "White halo (readability)"
+},
+{
+"key": "commonCreate",
+"english": "Create",
+"target": "สร้าง",
+"backtrans": "Create"
+},
+{
+"key": "newFolderTitle",
+"english": "New Folder",
+"target": "โฟลเดอร์ใหม่",
+"backtrans": "New folder"
+},
+{
+"key": "batchExportEmptyMessage",
+"english": "No documents to batch export. Scan some first.",
+"target": "ไม่มีเอกสารให้ส่งออกเป็นชุด สแกนบางส่วนก่อน",
+"backtrans": "No documents to export as a batch. Scan some first"
+},
+{
+"key": "newFolderTooltip",
+"english": "New Folder",
+"target": "โฟลเดอร์ใหม่",
+"backtrans": "New folder"
+},
+{
+"key": "accentColorTooltip",
+"english": "Accent Color",
+"target": "สีเน้น",
+"backtrans": "Emphasis color"
+},
+{
+"key": "moveToFolderTitle",
+"english": "Move to Folder",
+"target": "ย้ายไปยังโฟลเดอร์",
+"backtrans": "Move to folder"
+},
+{
+"key": "noFoldersYetHomeMessage",
+"english": "No folders yet. Create one from the home screen.",
+"target": "ยังไม่มีโฟลเดอร์ สร้างจากหน้าแรก",
+"backtrans": "No folders yet. Create one from the home page"
+},
+{
+"key": "appLanguageTitle",
+"english": "App Language",
+"target": "ภาษาแอป",
+"backtrans": "App language"
+},
+{
+"key": "accentColorTitle",
+"english": "Accent Color",
+"target": "สีเน้น",
+"backtrans": "Emphasis color"
+},
+{
+"key": "sealEditTitle",
+"english": "Edit Custom Seal",
+"target": "แก้ไขตราประทับที่กำหนดเอง",
+"backtrans": "Edit custom seal"
+},
+{
+"key": "sealCreateTitle",
+"english": "Custom Seal",
+"target": "ตราประทับที่กำหนดเอง",
+"backtrans": "Custom seal"
+},
+{
+"key": "sealMainTextLabel",
+"english": "Main text (top arc / box)",
+"target": "ข้อความหลัก (โค้งด้านบน / กล่อง)",
+"backtrans": "Main text (curved top / box)"
+},
+{
+"key": "sealSubtextLabel",
+"english": "Subtext (bottom arc / below)",
+"target": "ข้อความรอง (โค้งด้านล่าง / ด้านล่าง)",
+"backtrans": "Secondary text (curved bottom / bottom)"
+},
+{
+"key": "sealShapeOval",
+"english": "Oval",
+"target": "วงรี",
+"backtrans": "Ellipse"
+},
+{
+"key": "sealShapeBox",
+"english": "Box",
+"target": "กล่อง",
+"backtrans": "Box"
+},
+{
+"key": "sealCenterStar",
+"english": "Star",
+"target": "ดาว",
+"backtrans": "Star"
+},
+{
+"key": "sealCenterText",
+"english": "Text",
+"target": "ข้อความ",
+"backtrans": "Text"
+},
+{
+"key": "sealCenterLogo",
+"english": "Logo",
+"target": "โลโก้",
+"backtrans": "Logo"
+},
+{
+"key": "sealCenterNone",
+"english": "None",
+"target": "ไม่มี",
+"backtrans": "None"
+},
+{
+"key": "sealCenterTextLabel",
+"english": "Center text",
+"target": "ข้อความกลาง",
+"backtrans": "Center text"
+},
+{
+"key": "sealLogoReady",
+"english": "Logo ready",
+"target": "โลโก้พร้อม",
+"backtrans": "Logo ready"
+},
+{
+"key": "textSizeLabel",
+"english": "Text size: {size}",
+"target": "ขนาดข้อความ: {size}",
+"backtrans": "Text size: {size}"
+},
+{
+"key": "commonUpdate",
+"english": "Update",
+"target": "อัปเดต",
+"backtrans": "Update"
+},
+{
+"key": "managePagesTitle",
+"english": "Manage Pages",
+"target": "จัดการหน้า",
+"backtrans": "Manage pages"
+},
+{
+"key": "pageLabel",
+"english": "Page {index}",
+"target": "หน้า {index}",
+"backtrans": "Page {index}"
+},
+{
+"key": "duplicateAction",
+"english": "Duplicate",
+"target": "ทำสำเนา",
+"backtrans": "Make a copy"
+},
+{
+"key": "rotate90Action",
+"english": "Rotate 90°",
+"target": "หมุน 90°",
+"backtrans": "Rotate 90°"
+},
+{
+"key": "extractToNewDocAction",
+"english": "Extract to new doc",
+"target": "แยกออกเป็นเอกสารใหม่",
+"backtrans": "Extract into a new document"
+},
+{
+"key": "addPageTitle",
+"english": "Add Page",
+"target": "เพิ่มหน้า",
+"backtrans": "Add page"
+},
+{
+"key": "cameraSource",
+"english": "Camera",
+"target": "กล้อง",
+"backtrans": "Camera"
+},
+{
+"key": "importFromGallery",
+"english": "Import from Gallery",
+"target": "นำเข้าจากแกลเลอรี",
+"backtrans": "Import from gallery"
+},
+{
+"key": "fromAnotherDocument",
+"english": "From Another Document",
+"target": "จากเอกสารอื่น",
+"backtrans": "From another document"
+},
+{
+"key": "pageCountLabel",
+"english": "{count, plural, =0{No pages} =1{1 page} other{{count} pages}}",
+"target": "{count} หน้า",
+"backtrans": "{count} pages"
+},
+{
+"key": "commonConfirm",
+"english": "Confirm",
+"target": "ยืนยัน",
+"backtrans": "Confirm"
+},
+{
+"key": "applyToAllPages",
+"english": "Apply to all pages",
+"target": "ใช้กับทุกหน้า",
+"backtrans": "Apply to all pages"
+},
+{
+"key": "widthLabel",
+"english": "Width",
+"target": "ความกว้าง",
+"backtrans": "Width"
+},
+{
+"key": "heightLabel",
+"english": "Height",
+"target": "ความสูง",
+"backtrans": "Height"
+},
+{
+"key": "lockAspectRatio",
+"english": "Lock aspect ratio",
+"target": "ล็อกอัตราส่วน",
+"backtrans": "Lock ratio"
+},
+{
+"key": "originalDimensions",
+"english": "Original: {w}×{h}",
+"target": "ต้นฉบับ: {w}×{h}",
+"backtrans": "Original: {w}×{h}"
+},
+{
+"key": "ocrSectionLabel",
+"english": "OCR",
+"target": "OCR",
+"backtrans": "OCR"
+},
+{
+"key": "ocrLanguagesLabel",
+"english": "OCR Languages",
+"target": "ภาษา OCR",
+"backtrans": "OCR language"
+},
+{
+"key": "captureBehaviorSectionLabel",
+"english": "CAPTURE BEHAVIOR",
+"target": "การทำงานเมื่อถ่ายภาพ",
+"backtrans": "Behavior when taking a photo"
+},
+{
+"key": "autoCopyOcrLabel",
+"english": "Auto-copy OCR",
+"target": "คัดลอก OCR อัตโนมัติ",
+"backtrans": "Automatically copy OCR"
+},
+{
+"key": "autoCopyOcrSubtitle",
+"english": "Copy text to clipboard after scan",
+"target": "คัดลอกข้อความไปยังคลิปบอร์ดหลังการสแกน",
+"backtrans": "Copy text to the clipboard after scanning"
+},
+{
+"key": "beepOnCaptureLabel",
+"english": "Beep on capture",
+"target": "เสียงบี๊บเมื่อถ่ายภาพ",
+"backtrans": "Beep sound when taking a photo"
+},
+{
+"key": "beepOnCaptureSubtitle",
+"english": "Play sound when scan completes",
+"target": "เล่นเสียงเมื่อการสแกนเสร็จสิ้น",
+"backtrans": "Play a sound when the scan is finished"
+},
+{
+"key": "vibrateOnCaptureLabel",
+"english": "Vibrate on capture",
+"target": "สั่นเมื่อถ่ายภาพ",
+"backtrans": "Vibrate when taking a photo"
+},
+{
+"key": "vibrateOnCaptureSubtitle",
+"english": "Haptic feedback when scan completes",
+"target": "การตอบสนองแบบสัมผัสเมื่อการสแกนเสร็จสิ้น",
+"backtrans": "Tactile response when the scan is finished"
+},
+{
+"key": "adsRemovedLabel",
+"english": "Ads Removed",
+"target": "ลบโฆษณาแล้ว",
+"backtrans": "Ads removed"
+},
+{
+"key": "diagnosticsSectionLabel",
+"english": "DIAGNOSTICS",
+"target": "การวินิจฉัย",
+"backtrans": "Diagnosis"
+},
+{
+"key": "debugLogsLabel",
+"english": "Debug Logs",
+"target": "บันทึกการดีบัก",
+"backtrans": "Debugging records"
+},
+{
+"key": "logEntriesLabel",
+"english": "{count, plural, =0{No entries} =1{1 entry} other{{count} entries}}",
+"target": "{count} รายการ",
+"backtrans": "{count} items"
+},
+{
+"key": "ocrStatusBuiltIn",
+"english": "Built-in",
+"target": "ในตัว",
+"backtrans": "Built-in"
+},
+{
+"key": "ocrStatusChecking",
+"english": "Checking...",
+"target": "กำลังตรวจสอบ...",
+"backtrans": "Checking..."
+},
+{
+"key": "ocrStatusOnDemand",
+"english": "On-demand",
+"target": "ตามต้องการ",
+"backtrans": "As needed"
+},
+{
+"key": "savedAsNewDocument",
+"english": "Saved as new document",
+"target": "บันทึกเป็นเอกสารใหม่แล้ว",
+"backtrans": "Saved as a new document"
+},
+{
+"key": "conversionFailedPrefix",
+"english": "Conversion failed",
+"target": "การแปลงล้มเหลว",
+"backtrans": "Conversion failed"
+},
+{
+"key": "convertDocumentTitle",
+"english": "Convert Document",
+"target": "แปลงเอกสาร",
+"backtrans": "Convert document"
+},
+{
+"key": "convertToLabel",
+"english": "Convert to:",
+"target": "แปลงเป็น:",
+"backtrans": "Convert to:"
+},
+{
+"key": "actionLabel",
+"english": "Action:",
+"target": "การกระทำ:",
+"backtrans": "Action:"
+},
+{
+"key": "saveAsNewDocumentAction",
+"english": "Save as new Document",
+"target": "บันทึกเป็นเอกสารใหม่",
+"backtrans": "Save as a new document"
+},
+{
+"key": "exportAndShareAction",
+"english": "Export & Share",
+"target": "ส่งออกและแชร์",
+"backtrans": "Export and share"
+},
+{
+"key": "docxWarningMessage",
+"english": "DOCX sources render poorly as pages — save inside the app is limited to JPG/PNG from image, PDF, TXT or CSV sources. Use Export & Share for this file.",
+"target": "แหล่งที่มา DOCX แสดงผลเป็นหน้าได้ไม่ดี — การบันทึกในแอปจำกัดเฉพาะ JPG/PNG จากภาพ, PDF, TXT หรือ CSV ใช้ส่งออกและแชร์สำหรับไฟล์นี้",
+"backtrans": "DOCX source renders poorly as pages — saving in the app is limited to JPG/PNG from images, PDF, TXT or CSV. Use export and share for this file [??: sentence is somewhat garbled/telegraphic; 'saving within the app is limited to ... from images']"
+},
+{
+"key": "saveInsideAppWarning",
+"english": "To save inside the app, choose JPG or PNG. Other targets are exported as files.",
+"target": "รูปแบบอื่นจะถูกส่งออกเป็นไฟล์",
+"backtrans": "Other formats will be exported as a file"
+},
+{
+"key": "commonConvert",
+"english": "Convert",
+"target": "แปลง",
+"backtrans": "Convert"
+},
+{
+"key": "conversionStarting",
+"english": "Starting…",
+"target": "กำลังเริ่ม...",
+"backtrans": "Starting..."
+},
+{
+"key": "convertedDocTitle",
+"english": "Converted {date}",
+"target": "แปลงแล้ว {date}",
+"backtrans": "Converted {date}"
+},
+{
+"key": "progressReading",
+"english": "Reading…",
+"target": "กำลังอ่าน...",
+"backtrans": "Reading..."
+},
+{
+"key": "progressCopying",
+"english": "Copying…",
+"target": "กำลังคัดลอก...",
+"backtrans": "Copying..."
+},
+{
+"key": "progressBuildingPdf",
+"english": "Building PDF…",
+"target": "กำลังสร้าง PDF...",
+"backtrans": "Creating PDF..."
+},
+{
+"key": "progressBuildingDocx",
+"english": "Building DOCX…",
+"target": "กำลังสร้าง DOCX...",
+"backtrans": "Creating DOCX..."
+},
+{
+"key": "progressDecodingImage",
+"english": "Decoding image…",
+"target": "กำลังอ่านภาพ...",
+"backtrans": "Reading the image..."
+},
+{
+"key": "progressExtractingText",
+"english": "Extracting text…",
+"target": "กำลังแยกข้อความ...",
+"backtrans": "Extracting text..."
+},
+{
+"key": "progressSaving",
+"english": "Saving…",
+"target": "กำลังบันทึก...",
+"backtrans": "Saving..."
+},
+{
+"key": "progressRasterizing",
+"english": "Rasterizing pages…",
+"target": "กำลังแปลงหน้าเป็นภาพ...",
+"backtrans": "Converting pages to images..."
+},
+{
+"key": "progressEncodingPage",
+"english": "Encoding page {current} of {total}…",
+"target": "กำลังประมวลผลหน้า {current}/{total}...",
+"backtrans": "Processing page {current}/{total}..."
+},
+{
+"key": "watermarkEditTitle",
+"english": "Edit Watermark",
+"target": "แก้ไขลายน้ำ",
+"backtrans": "Edit watermark"
+},
+{
+"key": "watermarkAddTitle",
+"english": "Add Watermark",
+"target": "เพิ่มลายน้ำ",
+"backtrans": "Add watermark"
+},
+{
+"key": "watermarkTextLabel",
+"english": "Text",
+"target": "ข้อความ",
+"backtrans": "Text"
+},
+{
+"key": "opacityPercentLabel",
+"english": "Opacity: {percent}%",
+"target": "ความทึบ: {percent}%",
+"backtrans": "Opacity: {percent}%"
+},
+{
+"key": "sizePtLabel",
+"english": "Size: {size}pt",
+"target": "ขนาด: {size}pt",
+"backtrans": "Size: {size}pt"
+},
+{
+"key": "alignLabel",
+"english": "Align",
+"target": "จัดแนว",
+"backtrans": "Align"
+},
+{
+"key": "exportSavedToDownloads",
+"english": "Saved to Downloads",
+"target": "บันทึกไปยังดาวน์โหลดแล้ว",
+"backtrans": "Saved to downloads"
+},
+{
+"key": "commonShare",
+"english": "Share",
+"target": "แชร์",
+"backtrans": "Share"
+},
+{
+"key": "exportTitle",
+"english": "Export",
+"target": "ส่งออก",
+"backtrans": "Export"
+},
+{
+"key": "targetMbLabel",
+"english": "{mb} MB",
+"target": "{mb} MB",
+"backtrans": "{mb} MB"
+},
+{
+"key": "filterColor",
+"english": "Color",
+"target": "สี",
+"backtrans": "Color"
+},
+{
+"key": "filterShadow",
+"english": "Shadow",
+"target": "เงา",
+"backtrans": "Shadow"
+},
+{
+"key": "docxModeTextOnly",
+"english": "Text Only",
+"target": "เฉพาะข้อความ",
+"backtrans": "Text only"
+},
+{
+"key": "docxModeWithImages",
+"english": "With Images",
+"target": "พร้อมภาพ",
+"backtrans": "With images"
+},
+{
+"key": "saveToDeviceButton",
+"english": "Save to Device",
+"target": "บันทึกไปยังอุปกรณ์",
+"backtrans": "Save to device"
+},
+{
+"key": "pageIndicator",
+"english": "Page {current} / {total}",
+"target": "หน้า {current} / {total}",
+"backtrans": "Page {current} / {total}"
+},
+{
+"key": "fullscreenLabel",
+"english": "Fullscreen",
+"target": "เต็มหน้าจอ",
+"backtrans": "Full screen"
+},
+{
+"key": "batchExportSignatureDisabled",
+"english": "Batch export — signature placement disabled",
+"target": "ส่งออกเป็นชุด — การวางลายเซ็นถูกปิดใช้งาน",
+"backtrans": "Export as a batch — placing signatures is disabled"
+},
+{
+"key": "fitToTargetMbLabel",
+"english": "Fit to target MB",
+"target": "พอดีกับ MB เป้าหมาย",
+"backtrans": "Fit the target MB"
+},
+{
+"key": "moreOptionsTooltip",
+"english": "More options",
+"target": "ตัวเลือกเพิ่มเติม",
+"backtrans": "More options"
+},
+{
+"key": "commonRename",
+"english": "Rename",
+"target": "เปลี่ยนชื่อ",
+"backtrans": "Change name"
+},
+{
+"key": "addTagsAction",
+"english": "Add Tags",
+"target": "เพิ่มแท็ก",
+"backtrans": "Add tags"
+},
+{
+"key": "editDocumentAction",
+"english": "Edit Document",
+"target": "แก้ไขเอกสาร",
+"backtrans": "Edit document"
+},
+{
+"key": "copiedToClipboard",
+"english": "Copied to clipboard",
+"target": "คัดลอกไปยังคลิปบอร์ดแล้ว",
+"backtrans": "Copied to clipboard"
+},
+{
+"key": "favoriteTooltip",
+"english": "Favorite",
+"target": "รายการโปรด",
+"backtrans": "Favorites"
+},
+{
+"key": "noFoldersYet",
+"english": "No folders yet",
+"target": "ยังไม่มีโฟลเดอร์",
+"backtrans": "No folders yet"
+},
+{
+"key": "rotateLabel",
+"english": "Rotate",
+"target": "หมุน",
+"backtrans": "Rotate"
+},
+{
+"key": "scaleLabel",
+"english": "Scale",
+"target": "ปรับขนาด",
+"backtrans": "Resize"
+},
+{
+"key": "eraserTitle",
+"english": "Eraser",
+"target": "ยางลบ",
+"backtrans": "Eraser"
+},
+{
+"key": "tapToSampleColor",
+"english": "Tap a spot to sample its color",
+"target": "แตะที่จุดเพื่อเลือกสีจากภาพ",
+"backtrans": "Tap a point to pick a color from the image"
+},
+{
+"key": "commonSize",
+"english": "Size",
+"target": "ขนาด",
+"backtrans": "Size"
+},
+{
+"key": "sampleColorTooltip",
+"english": "Sample color from page",
+"target": "ดูดสีจากหน้า",
+"backtrans": "Pick color from page [??: 'ดูดสีจาก' literally 'suck/absorb color from'; colloquial eyedropper]"
+},
+{
+"key": "marqueeEraseTooltip",
+"english": "Marquee erase",
+"target": "ลบพื้นที่เลือก",
+"backtrans": "Delete selected area"
+},
+{
+"key": "commonApply",
+"english": "Apply",
+"target": "ใช้",
+"backtrans": "Use"
+},
+{
+"key": "filterTitle",
+"english": "Filter",
+"target": "ตัวกรอง",
+"backtrans": "Filter"
+},
+{
+"key": "intensityLabel",
+"english": "Intensity",
+"target": "ความเข้ม",
+"backtrans": "Intensity"
+},
+{
+"key": "selectRegionTitle",
+"english": "Select Region",
+"target": "เลือกพื้นที่",
+"backtrans": "Select area"
+},
+{
+"key": "commonExtract",
+"english": "Extract",
+"target": "แยก",
+"backtrans": "Extract"
+},
+{
+"key": "customColorTitle",
+"english": "Custom Color",
+"target": "สีที่กำหนดเอง",
+"backtrans": "Custom color"
+},
+{
+"key": "documentNotFound",
+"english": "Document not found",
+"target": "ไม่พบเอกสาร",
+"backtrans": "Document not found"
+},
+{
+"key": "clearLogsTooltip",
+"english": "Clear logs",
+"target": "ล้างบันทึก",
+"backtrans": "Clear records"
+},
+{
+"key": "placeHereLabel",
+"english": "Place here",
+"target": "วางที่นี่",
+"backtrans": "Place here"
+},
+{
+"key": "tryAgainButton",
+"english": "Try again",
+"target": "ลองอีกครั้ง",
+"backtrans": "Try again"
+},
+{
+"key": "emptyDocumentMessage",
+"english": "This document has no pages.",
+"target": "เอกสารนี้ไม่มีหน้า",
+"backtrans": "This document has no pages"
+},
+{
+"key": "cameraErrorPrefix",
+"english": "Camera error",
+"target": "ข้อผิดพลาดของกล้อง",
+"backtrans": "Camera error"
+},
+{
+"key": "importErrorPrefix",
+"english": "Import error",
+"target": "ข้อผิดพลาดการนำเข้า",
+"backtrans": "Import error"
+},
+{
+"key": "pdfImportErrorPrefix",
+"english": "PDF import error",
+"target": "ข้อผิดพลาดการนำเข้า PDF",
+"backtrans": "PDF import error"
+},
+{
+"key": "pickErrorPrefix",
+"english": "Pick error",
+"target": "ข้อผิดพลาดการเลือก",
+"backtrans": "Selection error"
+},
+{
+"key": "scannerErrorPrefix",
+"english": "Scanner error",
+"target": "ข้อผิดพลาดของสแกนเนอร์",
+"backtrans": "Scanner error"
+},
+{
+"key": "idPdfErrorPrefix",
+"english": "Error generating ID PDF",
+"target": "ข้อผิดพลาดการสร้าง PDF บัตรประจำตัว",
+"backtrans": "Identity card PDF creation error"
+},
+{
+"key": "genericErrorPrefix",
+"english": "Error",
+"target": "ข้อผิดพลาด",
+"backtrans": "Error"
+},
+{
+"key": "annotateTitle",
+"english": "Annotate",
+"target": "คำอธิบายประกอบ",
+"backtrans": "Annotation"
+},
+{
+"key": "placementsCountLabel",
+"english": "{count, plural, =0{Nothing placed} =1{1 placed} other{{count} placed}}",
+"target": "วางแล้ว {count}",
+"backtrans": "{count} placed"
+},
+{
+"key": "ocrUnavailableTooltip",
+"english": "OCR unavailable on this device.",
+"target": "OCR ไม่พร้อมใช้งานบนอุปกรณ์นี้",
+"backtrans": "OCR is not available on this device"
+},
+{
+"key": "docScannerUnsupportedMessage",
+"english": "Your device doesn't support the advanced document scanner. Take a photo with your Camera app, then tap Import below to crop and save it.",
+"target": "อุปกรณ์ของคุณไม่รองรับสแกนเนอร์เอกสารขั้นสูง ถ่ายภาพด้วยแอปกล้อง แล้วแตะนำเข้าด้านล่างเพื่อตัดและบันทึก",
+"backtrans": "Your device does not support the advanced document scanner. Take a photo with the camera app, then tap import below to crop and save"
+},
+{
+"key": "billingUnavailableMessage",
+"english": "Billing unavailable — try again later.",
+"target": "การเรียกเก็บเงินไม่พร้อมใช้งาน — ลองอีกครั้งในภายหลัง",
+"backtrans": "Billing is not available — try again later"
+},
+{
+"key": "ocrNoInternetMessage",
+"english": "No internet. Connect once to download the language pack.",
+"target": "ไม่มีอินเทอร์เน็ต เชื่อมต่อหนึ่งครั้งเพื่อดาวน์โหลดแพ็คเกจภาษา",
+"backtrans": "No internet. Connect once to download the language package"
+},
+{
+"key": "ocrLanguagePackNotReady",
+"english": "Language pack downloading or not ready. Try again shortly.",
+"target": "แพ็คเกจภาษากำลังดาวน์โหลดหรือไม่พร้อม ลองอีกครั้งในอีกสักครู่",
+"backtrans": "The language package is downloading or is not ready. Try again in a moment"
+},
+{
+"key": "undoTooltip",
+"english": "Undo",
+"target": "เลิกทำ",
+"backtrans": "Undo"
+},
+{
+"key": "redoTooltip",
+"english": "Redo",
+"target": "ทำซ้ำ",
+"backtrans": "Redo"
+},
+{
+"key": "fillInputHint",
+"english": "Type text to fill",
+"target": "พิมพ์ข้อความเพื่อกรอก",
+"backtrans": "Type text to fill in"
+},
+{
+"key": "fillCapsLabel",
+"english": "ALL CAPS",
+"target": "ตัวพิมพ์ใหญ่ทั้งหมด",
+"backtrans": "All capital letters"
+},
+{
+"key": "fillSaveSnippet",
+"english": "Save as snippet",
+"target": "บันทึกเป็นข้อความที่ใช้บ่อย",
+"backtrans": "Save as frequently used text"
+},
+{
+"key": "fillDeleteSnippet",
+"english": "Delete snippet?",
+"target": "ลบข้อความที่บันทึกไว้หรือไม่?",
+"backtrans": "Delete the saved text?"
+},
+{
+"key": "fillTooltip",
+"english": "Fill",
+"target": "กรอก",
+"backtrans": "Fill in"
+},
+{
+"key": "tickerFreeUnlimitedOcr",
+"english": "FREE UNLIMITED OCR",
+"target": "OCR ฟรีไม่จำกัด",
+"backtrans": "Free unlimited OCR"
+},
+{
+"key": "ticker100OnDevicePrivacy",
+"english": "YOUR DOCUMENTS STAY ON YOUR DEVICE",
+"target": "เอกสารของคุณอยู่บนอุปกรณ์ของคุณ",
+"backtrans": "Your documents are on your device"
+},
+{
+"key": "tickerNoAccount",
+"english": "NO ACCOUNT",
+"target": "ไม่มีบัญชี",
+"backtrans": "No account"
+},
+{
+"key": "tickerNoWatermarks",
+"english": "NO WATERMARKS",
+"target": "ไม่มีลายน้ำ",
+"backtrans": "No watermarks"
+},
+{
+"key": "ticker21ToolEditSuite",
+"english": "21-TOOL EDIT SUITE",
+"target": "เครื่องมือแก้ไข 21 ชิ้น",
+"backtrans": "21 editing tools"
+},
+{
+"key": "tickerNonDestructiveEditing",
+"english": "NON-DESTRUCTIVE EDITING",
+"target": "การแก้ไขแบบไม่ทำลาย",
+"backtrans": "Non-destructive editing"
+},
+{
+"key": "tickerUndoRedo",
+"english": "UNDO/REDO",
+"target": "เลิกทำ/ทำซ้ำ",
+"backtrans": "Undo/Redo"
+},
+{
+"key": "tickerRevertToOriginal",
+"english": "REVERT TO ORIGINAL",
+"target": "กลับสู่ต้นฉบับ",
+"backtrans": "Return to original"
+},
+{
+"key": "tickerTapToTypeFilling",
+"english": "TAP-TO-TYPE FILLING",
+"target": "กรอกแบบแตะและพิมพ์",
+"backtrans": "Fill in by tapping and typing"
+},
+{
+"key": "tickerESign",
+"english": "E-SIGN",
+"target": "ลายเซ็นอิเล็กทรอนิกส์",
+"backtrans": "Electronic signature"
+},
+{
+"key": "tickerCustomSeals",
+"english": "CUSTOM SEALS",
+"target": "ตราประทับที่กำหนดเอง",
+"backtrans": "Custom seals"
+},
+{
+"key": "tickerTextStamps",
+"english": "TEXT STAMPS",
+"target": "ตราประทับข้อความ",
+"backtrans": "Text stamps"
+},
+{
+"key": "tickerNoteStamps",
+"english": "NOTE STAMPS",
+"target": "ตราประทับบันทึก",
+"backtrans": "Note stamps"
+},
+{
+"key": "tickerSearchablePdf",
+"english": "SEARCHABLE PDF",
+"target": "PDF ที่ค้นหาได้",
+"backtrans": "Searchable PDF"
+},
+{
+"key": "tickerRegionOcr",
+"english": "REGION OCR",
+"target": "OCR เฉพาะพื้นที่ที่เลือก",
+"backtrans": "OCR of a selected area only"
+},
+{
+"key": "tickerAutoCopyOcr",
+"english": "AUTO-COPY OCR",
+"target": "คัดลอก OCR อัตโนมัติ",
+"backtrans": "Automatically copy OCR"
+},
+{
+"key": "tickerIdCardMode",
+"english": "ID CARD MODE",
+"target": "โหมดบัตรประจำตัว",
+"backtrans": "Identity card mode"
+},
+{
+"key": "tickerPassportMode",
+"english": "PASSPORT MODE",
+"target": "โหมดหนังสือเดินทาง",
+"backtrans": "Passport mode"
+},
+{
+"key": "tickerGalleryImport",
+"english": "GALLERY IMPORT",
+"target": "นำเข้าจากแกลเลอรี",
+"backtrans": "Import from gallery"
+},
+{
+"key": "tickerPdfExport",
+"english": "PDF EXPORT",
+"target": "ส่งออก PDF",
+"backtrans": "PDF export"
+},
+{
+"key": "tickerWordExport",
+"english": "WORD EXPORT",
+"target": "ส่งออก WORD",
+"backtrans": "WORD export"
+},
+{
+"key": "tickerJpgExport",
+"english": "JPG EXPORT",
+"target": "ส่งออก JPG",
+"backtrans": "JPG export"
+},
+{
+"key": "tickerPngExport",
+"english": "PNG EXPORT",
+"target": "ส่งออก PNG",
+"backtrans": "PNG export"
+},
+{
+"key": "tickerBatchExport",
+"english": "BATCH EXPORT",
+"target": "ส่งออกเป็นชุด",
+"backtrans": "Export as a batch"
+},
+{
+"key": "tickerFolders",
+"english": "FOLDERS",
+"target": "โฟลเดอร์",
+"backtrans": "Folders"
+},
+{
+"key": "tickerTags",
+"english": "TAGS",
+"target": "แท็ก",
+"backtrans": "Tags"
+},
+{
+"key": "tickerFavorites",
+"english": "FAVORITES",
+"target": "รายการโปรด",
+"backtrans": "Favorites"
+},
+{
+"key": "tickerSearch",
+"english": "SEARCH",
+"target": "ค้นหา",
+"backtrans": "Search"
+},
+{
+"key": "tickerDarkMode",
+"english": "DARK MODE",
+"target": "โหมดมืด",
+"backtrans": "Dark mode"
+},
+{
+"key": "tickerAccentThemes",
+"english": "ACCENT THEMES",
+"target": "ธีมเน้น",
+"backtrans": "Emphasis themes"
+},
+{
+"key": "tickerDeviceMigration",
+"english": "DEVICE MIGRATION",
+"target": "ย้ายข้อมูลไปอุปกรณ์ใหม่",
+"backtrans": "Move data to new device"
+},
+{
+"key": "onboardingWelcomeTitle",
+"english": "Welcome to KatharScan",
+"target": "ยินดีต้อนรับสู่ KatharScan",
+"backtrans": "Welcome to KatharScan"
+},
+{
+"key": "onboardingWelcomeSubtitle",
+"english": "Your entire document office — scan, edit, sign, and export — in one private app.",
+"target": "สำนักงานเอกสารทั้งหมดของคุณ — สแกน แก้ไข เซ็นชื่อ และส่งออก — ในแอปส่วนตัวเดียว",
+"backtrans": "Your entire document office — scan, edit, sign and export — in one private app"
+},
+{
+"key": "onboardingToolsTitle",
+"english": "21 Free Pro Tools",
+"target": "เครื่องมือ Pro ฟรี 21 ชิ้น",
+"backtrans": "21 free Pro tools"
+},
+{
+"key": "onboardingToolsSubtitle",
+"english": "Annotate, sign, watermark, fill forms, seal, and more — every tool free and unlimited.",
+"target": "คำอธิบายประกอบ เซ็นชื่อ ลายน้ำ กรอกแบบฟอร์ม ตราประทับ และอื่นๆ — ทุกเครื่องมือฟรีและไม่จำกัด",
+"backtrans": "Annotations, signing, watermarks, form filling, stamps and more — every tool is free and unlimited"
+},
+{
+"key": "onboardingOcrTitle",
+"english": "On-Device OCR",
+"target": "OCR บนอุปกรณ์",
+"backtrans": "On-device OCR"
+},
+{
+"key": "onboardingOcrSubtitle",
+"english": "Use KatharScan in {count} languages. OCR runs on your phone — nothing ever leaves your device.",
+"target": "ใช้ KatharScan ได้ {count} ภาษา OCR ทำงานบนโทรศัพท์ของคุณ — ไม่มีอะไรออกจากอุปกรณ์",
+"backtrans": "KatharScan can be used in {count} languages. OCR runs on your phone — nothing leaves the device [??: first sentence reads oddly, 'can use KatharScan {count} languages']"
+},
+{
+"key": "onboardingSignTitle",
+"english": "Sign, Fill & Seal",
+"target": "เซ็นชื่อ กรอก และประทับตรา",
+"backtrans": "Sign, fill in, and stamp"
+},
+{
+"key": "onboardingSignSubtitle",
+"english": "E-sign contracts, type-to-fill forms, and stamp enterprise seals in seconds.",
+"target": "เซ็นสัญญาอิเล็กทรอนิกส์ กรอกแบบฟอร์ม และประทับตราบริษัทในไม่กี่วินาที",
+"backtrans": "Electronically sign contracts, fill in forms and stamp the company seal in a few seconds"
+},
+{
+"key": "onboardingEditTitle",
+"english": "Non-Destructive Editing",
+"target": "การแก้ไขแบบไม่ทำลาย",
+"backtrans": "Non-destructive editing"
+},
+{
+"key": "onboardingEditSubtitle",
+"english": "Every edit stays reversible — undo, redo, and revert to original anytime.",
+"target": "การแก้ไขแต่ละครั้งสามารถย้อนกลับได้ — เลิกทำ ทำซ้ำ และกลับสู่ต้นฉบับได้ตลอดเวลา",
+"backtrans": "Every edit can be reversed — undo, redo and return to the original at any time"
+},
+{
+"key": "onboardingPrivacyTitle",
+"english": "Private by design",
+"target": "ออกแบบมาเพื่อความเป็นส่วนตัว",
+"backtrans": "Designed for privacy"
+},
+{
+"key": "onboardingPrivacySubtitle",
+"english": "No account, no cloud, no watermarks. Your documents never leave your device.",
+"target": "ไม่มีบัญชี ไม่มีคลาวด์ ไม่มีลายน้ำ เอกสารของคุณไม่ออกจากอุปกรณ์ของคุณ",
+"backtrans": "No account, no cloud, no watermarks. Your documents do not leave your device"
+},
+{
+"key": "onboardingContinue",
+"english": "Continue",
+"target": "ดำเนินการต่อ",
+"backtrans": "Proceed"
+},
+{
+"key": "onboardingGetStarted",
+"english": "Get Started",
+"target": "เริ่มต้น",
+"backtrans": "Begin"
+},
+{
+"key": "onboardingBack",
+"english": "Back",
+"target": "ก่อนหน้า",
+"backtrans": "Previous"
+},
+{
+"key": "onboardingReplayIntro",
+"english": "Replay introduction",
+"target": "เล่นการแนะนำอีกครั้ง",
+"backtrans": "Play the introduction again"
+},
+{
+"key": "saveToDownloadsAction",
+"english": "Save to Downloads",
+"target": "บันทึกไปยังดาวน์โหลด",
+"backtrans": "Save to downloads"
+},
+{
+"key": "paywallTitle",
+"english": "Remove Ads",
+"target": "ลบโฆษณา",
+"backtrans": "Remove ads"
+},
+{
+"key": "paywallSubtitle",
+"english": "Support KatharScan with a one-time purchase. All features remain free.",
+"target": "สนับสนุน KatharScan ด้วยการซื้อครั้งเดียว คุณสมบัติทั้งหมดยังคงฟรี",
+"backtrans": "Support KatharScan with a one-time purchase. All features remain free"
+},
+{
+"key": "paywallFallbackPrice",
+"english": "$14.99 one-time",
+"target": "$14.99 ครั้งเดียว",
+"backtrans": "$14.99 one time"
+},
+{
+"key": "paywallFeatureNoBanner",
+"english": "No more banner ads",
+"target": "ไม่มีโฆษณาแบนเนอร์อีกต่อไป",
+"backtrans": "No more banner ads"
+},
+{
+"key": "paywallFeatureNoInterstitial",
+"english": "No more interstitial ads",
+"target": "ไม่มีโฆษณาคั่นหน้าอีกต่อไป",
+"backtrans": "No more interstitial ads (ads between pages)"
+},
+{
+"key": "paywallFeatureFreeForever",
+"english": "All features free forever",
+"target": "คุณสมบัติทั้งหมดฟรีตลอดไป",
+"backtrans": "All features free forever"
+},
+{
+"key": "paywallLegalText",
+"english": "This is a non-consumable purchase. Restore it anytime on any device with the same store account.",
+"target": "นี่คือการซื้อครั้งเดียวแบบถาวร กู้คืนได้ทุกเวลาบนอุปกรณ์ใดก็ได้ด้วยบัญชี Google Play หรือ App Store เดียวกัน",
+"backtrans": "This is a permanent one-time purchase. Can be restored at any time on any device with the same Google Play or App Store account"
+},
+{
+"key": "paywallSuccessTitle",
+"english": "Ads Removed",
+"target": "ลบโฆษณาแล้ว",
+"backtrans": "Ads removed"
+},
+{
+"key": "paywallSuccessMessage",
+"english": "Thank you for supporting KatharScan.",
+"target": "ขอบคุณที่สนับสนุน KatharScan",
+"backtrans": "Thank you for supporting KatharScan"
+},
+{
+"key": "errorGenericTitle",
+"english": "Something went wrong",
+"target": "มีบางอย่างผิดปกติ",
+"backtrans": "Something went wrong"
+},
+{
+"key": "errorScreenProblem",
+"english": "KatharScan ran into a problem displaying this screen. Your scans are safe — they're stored on this device and this doesn't affect them.",
+"target": "KatharScan พบปัญหาในการแสดงหน้าจอนี้ การสแกนของคุณปลอดภัย — ถูกจัดเก็บบนอุปกรณ์นี้และไม่ได้รับผลกระทบ",
+"backtrans": "KatharScan encountered a problem displaying this screen. Your scans are safe — they are stored on this device and are not affected"
+},
+{
+"key": "errorReportIssue",
+"english": "Report issue",
+"target": "รายงานปัญหา",
+"backtrans": "Report problem"
+},
+{
+"key": "filterAll",
+"english": "All",
+"target": "ทั้งหมด",
+"backtrans": "All"
+},
+{
+"key": "filterFolders",
+"english": "Folders",
+"target": "โฟลเดอร์",
+"backtrans": "Folders"
+},
+{
+"key": "filterRecent",
+"english": "Recent",
+"target": "ล่าสุด",
+"backtrans": "Latest"
+},
+{
+"key": "filterFavorites",
+"english": "Favorites",
+"target": "รายการโปรด",
+"backtrans": "Favorites"
+},
+{
+"key": "chipAllFolders",
+"english": "All Folders",
+"target": "โฟลเดอร์ทั้งหมด",
+"backtrans": "All folders"
+},
+{
+"key": "chipSelectMultiple",
+"english": "Select Multiple",
+"target": "เลือกหลายรายการ",
+"backtrans": "Select multiple items"
+},
+{
+"key": "emptySearch",
+"english": "No scans match your search.",
+"target": "ไม่มีการสแกนที่ตรงกับการค้นหาของคุณ",
+"backtrans": "No scans match your search"
+},
+{
+"key": "emptyFolders",
+"english": "No folders yet. Tap the folder icon to create one.",
+"target": "ยังไม่มีโฟลเดอร์ แตะไอคอนโฟลเดอร์เพื่อสร้าง",
+"backtrans": "No folders yet. Tap the folder icon to create one"
+},
+{
+"key": "emptyFavorites",
+"english": "No favorites yet. Tap the star icon on a document to add it.",
+"target": "ยังไม่มีรายการโปรด แตะไอคอนดาวบนเอกสารเพื่อเพิ่ม",
+"backtrans": "No favorites yet. Tap the star icon on a document to add"
+},
+{
+"key": "modeDocument",
+"english": "Document Mode",
+"target": "โหมดเอกสาร",
+"backtrans": "Document mode"
+},
+{
+"key": "modeOcr",
+"english": "OCR Mode",
+"target": "โหมด OCR",
+"backtrans": "OCR mode"
+},
+{
+"key": "modeIdCard",
+"english": "ID Card Mode",
+"target": "โหมดบัตรประจำตัว",
+"backtrans": "Identity card mode"
+},
+{
+"key": "modePassport",
+"english": "Passport Mode",
+"target": "โหมดหนังสือเดินทาง",
+"backtrans": "Passport mode"
+},
+{
+"key": "titlePdfImport",
+"english": "PDF Import",
+"target": "นำเข้า PDF",
+"backtrans": "Import PDF"
+},
+{
+"key": "titleIdCard",
+"english": "ID Card",
+"target": "บัตรประจำตัว",
+"backtrans": "Identity card"
+},
+{
+"key": "titleScan",
+"english": "Scan",
+"target": "สแกน",
+"backtrans": "Scan"
+},
+{
+"key": "exportEstimatedSize",
+"english": "Estimated size: {mb} MB",
+"target": "ขนาดโดยประมาณ: {mb} MB",
+"backtrans": "Approximate size: {mb} MB"
+},
+{
+"key": "debugNoLogsYet",
+"english": "No logs yet",
+"target": "ยังไม่มีบันทึก",
+"backtrans": "No records yet"
+},
+{
+"key": "textBold",
+"english": "B",
+"target": "B",
+"backtrans": "B"
+},
+{
+"key": "textItalic",
+"english": "I",
+"target": "I",
+"backtrans": "I"
+},
+{
+"key": "textUnderline",
+"english": "U",
+"target": "U",
+"backtrans": "U"
+},
+{
+"key": "textFontLetterA",
+"english": "A",
+"target": "A",
+"backtrans": "A"
+},
+{
+"key": "multiplySymbol",
+"english": "×",
+"target": "×",
+"backtrans": "×"
+},
+{
+"key": "signerLabel",
+"english": "Signer {index}",
+"target": "ผู้เซ็น {index}",
+"backtrans": "Signer {index}"
+},
+{
+"key": "stampCheckbox",
+"english": "Checkbox",
+"target": "ช่องทำเครื่องหมาย",
+"backtrans": "Check box"
+},
+{
+"key": "fontSansSerif",
+"english": "sans-serif",
+"target": "sans-serif",
+"backtrans": "sans-serif"
+},
+{
+"key": "fontSerif",
+"english": "serif",
+"target": "serif",
+"backtrans": "serif"
+},
+{
+"key": "fontMonospace",
+"english": "monospace",
+"target": "monospace",
+"backtrans": "monospace"
+},
+{
+"key": "sealCustom",
+"english": "Custom Seal",
+"target": "ตราประทับที่กำหนดเอง",
+"backtrans": "Custom seal"
+},
+{
+"key": "formatCsv",
+"english": "CSV",
+"target": "CSV",
+"backtrans": "CSV"
+},
+{
+"key": "ocrNoTextFound",
+"english": "No text found",
+"target": "ไม่พบข้อความ",
+"backtrans": "No text found"
+},
+{
+"key": "rotationAllPages",
+"english": "All pages rotated",
+"target": "หมุนทุกหน้าแล้ว",
+"backtrans": "Rotated all pages"
+},
+{
+"key": "rotationPage",
+"english": "Page rotated",
+"target": "หมุนหน้าแล้ว",
+"backtrans": "Rotated the page"
+},
+{
+"key": "resizeTitle",
+"english": "Resize",
+"target": "ปรับขนาด",
+"backtrans": "Resize"
+},
+{
+"key": "addTextTitle",
+"english": "Add Text",
+"target": "เพิ่มข้อความ",
+"backtrans": "Add text"
+},
+{
+"key": "addNoteTitle",
+"english": "Add Note",
+"target": "เพิ่มบันทึก",
+"backtrans": "Add note"
+},
+{
+"key": "addDateTitle",
+"english": "Add Date",
+"target": "เพิ่มวันที่",
+"backtrans": "Add date"
+},
+{
+"key": "addCheckboxTitle",
+"english": "Add Checkbox",
+"target": "เพิ่มช่องทำเครื่องหมาย",
+"backtrans": "Add check box"
+},
+{
+"key": "noteTextLabel",
+"english": "Note text",
+"target": "ข้อความบันทึก",
+"backtrans": "Note text"
+},
+{
+"key": "textLabel",
+"english": "Text",
+"target": "ข้อความ",
+"backtrans": "Text"
+},
+{
+"key": "checkShapeRounded",
+"english": "Rounded",
+"target": "โค้งมน",
+"backtrans": "Rounded"
+},
+{
+"key": "checkShapeSquare",
+"english": "Square",
+"target": "สี่เหลี่ยม",
+"backtrans": "Square"
+},
+{
+"key": "checkShapeCircle",
+"english": "Circle",
+"target": "วงกลม",
+"backtrans": "Circle"
+},
+{
+"key": "hueLabel",
+"english": "Hue",
+"target": "เฉดสี",
+"backtrans": "Hue"
+},
+{
+"key": "satLabel",
+"english": "Sat",
+"target": "อิ่มตัว",
+"backtrans": "Saturated"
+},
+{
+"key": "valLabel",
+"english": "Val",
+"target": "ความสว่าง",
+"backtrans": "Brightness"
+},
+{
+"key": "annotationModePen",
+"english": "Pen",
+"target": "ปากกา",
+"backtrans": "Pen"
+},
+{
+"key": "annotationModeHighlighter",
+"english": "Highlighter",
+"target": "ปากกาเน้นข้อความ",
+"backtrans": "Highlighter pen"
+},
+{
+"key": "annotationModeRect",
+"english": "Rectangle",
+"target": "สี่เหลี่ยมผืนผ้า",
+"backtrans": "Rectangle"
+},
+{
+"key": "annotationModeArrow",
+"english": "Arrow",
+"target": "ลูกศร",
+"backtrans": "Arrow"
+},
+{
+"key": "annotationModeEllipse",
+"english": "Ellipse",
+"target": "วงรี",
+"backtrans": "Ellipse"
+},
+{
+"key": "sharePromptTitle",
+"english": "Love KatharScan?",
+"target": "ชอบ KatharScan หรือไม่?",
+"backtrans": "Like KatharScan?"
+},
+{
+"key": "sharePromptBody",
+"english": "Share it with friends who need a powerful document scanner.",
+"target": "แชร์กับเพื่อนที่ต้องการสแกนเนอร์เอกสารที่มีประสิทธิภาพ",
+"backtrans": "Share with friends who need an efficient document scanner"
+},
+{
+"key": "sharePromptAction",
+"english": "Share App",
+"target": "แชร์แอป",
+"backtrans": "Share the app"
+},
+{
+"key": "sharePromptDismiss",
+"english": "Not now",
+"target": "ไม่ใช่ตอนนี้",
+"backtrans": "Not now"
+},
+{
+"key": "reviewPromptTitle",
+"english": "Enjoying KatharScan?",
+"target": "ชอบใช้ KatharScan ไหม?",
+"backtrans": "Do you like using KatharScan?"
+},
+{
+"key": "reviewPromptBody",
+"english": "Your feedback helps us grow and keeps the app free.",
+"target": "ความคิดเห็นของคุณช่วยให้เราเติบโตและทำให้แอปฟรี",
+"backtrans": "Your feedback helps us grow and keep the app free"
+},
+{
+"key": "reviewPromptYes",
+"english": "Rate Us",
+"target": "ให้คะแนนเรา",
+"backtrans": "Rate us"
+},
+{
+"key": "reviewPromptNo",
+"english": "Send Feedback",
+"target": "ส่งความคิดเห็น",
+"backtrans": "Send feedback"
+},
+{
+"key": "watermarkLabel",
+"english": "Watermark",
+"target": "ลายน้ำ",
+"backtrans": "Watermark"
+},
+{
+"key": "compressLabel",
+"english": "Compress",
+"target": "บีบอัด",
+"backtrans": "Compress"
+},
+{
+"key": "pagesLabel",
+"english": "Pages",
+"target": "หน้า",
+"backtrans": "Pages"
+},
+{
+"key": "cropLabel",
+"english": "Crop",
+"target": "ครอบตัด",
+"backtrans": "Crop"
+},
+{
+"key": "emailLabel",
+"english": "Email",
+"target": "อีเมล",
+"backtrans": "Email"
+},
+{
+"key": "checkLabel",
+"english": "Check",
+"target": "เครื่องหมายถูก",
+"backtrans": "Check mark"
+},
+{
+"key": "captionDocs",
+"english": "Flexible crop: Original, Square, 4:3, 3:2, 16:9",
+"target": "การครอบตัดแบบยืดหยุ่น: ต้นฉบับ จัตุรัส 4:3 3:2 16:9",
+"backtrans": "Flexible cropping: original, square, 4:3, 3:2, 16:9"
+},
+{
+"key": "captionOcr",
+"english": "Text crop: Original, Square, 4:3",
+"target": "การครอบตัดข้อความ: ต้นฉบับ จัตุรัส 4:3",
+"backtrans": "Text cropping: original, square, 4:3"
+},
+{
+"key": "captionIdCard",
+"english": "Two-sided ID capture: Front + Back",
+"target": "การถ่ายบัตรประจำตัวสองด้าน: หน้า + หลัง",
+"backtrans": "Photographing an identity card on two sides: front + back"
+},
+{
+"key": "captionPassport",
+"english": "Passport crop: 4:3 or Original",
+"target": "การครอบตัดหนังสือเดินทาง: 4:3 หรือต้นฉบับ",
+"backtrans": "Passport cropping: 4:3 or original"
+},
+{
+"key": "idStepFront",
+"english": "Step 1: Capture Front Side",
+"target": "ขั้นตอนที่ 1: ถ่ายภาพด้านหน้า",
+"backtrans": "Step 1: Photograph the front side"
+},
+{
+"key": "idStepBack",
+"english": "Step 2: Capture Back Side",
+"target": "ขั้นตอนที่ 2: ถ่ายภาพด้านหลัง",
+"backtrans": "Step 2: Photograph the back side"
+},
+{
+"key": "idGenerating",
+"english": "Generating PDF...",
+"target": "กำลังสร้าง PDF...",
+"backtrans": "Creating PDF..."
+},
+{
+"key": "captureFrontSide",
+"english": "Capture Front Side",
+"target": "ถ่ายภาพด้านหน้า",
+"backtrans": "Photograph the front side"
+},
+{
+"key": "captureBackSide",
+"english": "Capture Back Side",
+"target": "ถ่ายภาพด้านหลัง",
+"backtrans": "Photograph the back side"
+},
+{
+"key": "importFrontSide",
+"english": "Import Front Side",
+"target": "นำเข้าด้านหน้า",
+"backtrans": "Import the front side"
+},
+{
+"key": "importBackSide",
+"english": "Import Back Side",
+"target": "นำเข้าด้านหลัง",
+"backtrans": "Import the back side"
+},
+{
+"key": "cropDocumentTitle",
+"english": "Crop Document",
+"target": "ครอบตัดเอกสาร",
+"backtrans": "Crop document"
+},
+{
+"key": "cropIdCardTitle",
+"english": "Crop ID Card",
+"target": "ครอบตัดบัตรประจำตัว",
+"backtrans": "Crop identity card"
+},
+{
+"key": "tabImageLabel",
+"english": "Image",
+"target": "ภาพ",
+"backtrans": "Image"
+},
+{
+"key": "tabOcrTextLabel",
+"english": "OCR Text",
+"target": "ข้อความ OCR",
+"backtrans": "OCR text"
+},
+{
+"key": "compressSmall",
+"english": "Small",
+"target": "เล็ก",
+"backtrans": "Small"
+},
+{
+"key": "compressMedium",
+"english": "Medium",
+"target": "กลาง",
+"backtrans": "Medium"
+},
+{
+"key": "pageFormatLetter",
+"english": "Letter (US)",
+"target": "Letter (สหรัฐอเมริกา)",
+"backtrans": "Letter (United States)"
+},
+{
+"key": "ocrScriptLatin",
+"english": "Latin (English, European)",
+"target": "ละติน (อังกฤษ ยุโรป)",
+"backtrans": "Latin (English, Europe)"
+},
+{
+"key": "ocrScriptChinese",
+"english": "Chinese",
+"target": "จีน",
+"backtrans": "Chinese"
+},
+{
+"key": "ocrScriptKorean",
+"english": "Korean",
+"target": "เกาหลี",
+"backtrans": "Korean"
+},
+{
+"key": "ocrScriptJapanese",
+"english": "Japanese",
+"target": "ญี่ปุ่น",
+"backtrans": "Japanese"
+},
+{
+"key": "ocrScriptDevanagari",
+"english": "Hindi, Marathi (Devanagari)",
+"target": "ฮินดี มราฐี (เทวนาครี)",
+"backtrans": "Hindi, Marathi (Devanagari)"
+},
+{
+"key": "ocrStatusUnsupported",
+"english": "Unsupported",
+"target": "ไม่รองรับ",
+"backtrans": "Not supported"
+},
+{
+"key": "noteLabel",
+"english": "Note",
+"target": "บันทึก",
+"backtrans": "Note"
+},
+{
+"key": "dateLabel",
+"english": "Date",
+"target": "วันที่",
+"backtrans": "Date"
+},
+{
+"key": "accentBlue",
+"english": "Blue",
+"target": "น้ำเงิน",
+"backtrans": "Blue"
+},
+{
+"key": "accentIndigo",
+"english": "Indigo",
+"target": "คราม",
+"backtrans": "Indigo"
+},
+{
+"key": "accentEmerald",
+"english": "Emerald",
+"target": "มรกต",
+"backtrans": "Emerald"
+},
+{
+"key": "accentCrimson",
+"english": "Crimson",
+"target": "แดงเข้ม",
+"backtrans": "Dark red"
+},
+{
+"key": "accentAmber",
+"english": "Amber",
+"target": "อำพัน",
+"backtrans": "Amber"
+},
+{
+"key": "accentViolet",
+"english": "Violet",
+"target": "ม่วง",
+"backtrans": "Purple"
+},
+{
+"key": "tickerLanguages",
+"english": "{count} LANGUAGES",
+"target": "{count} ภาษา",
+"backtrans": "{count} languages"
+},
+{
+"key": "termsOfServiceLabel",
+"english": "Terms of Service",
+"target": "ข้อกำหนดการให้บริการ",
+"backtrans": "Terms of service"
+},
+{
+"key": "openSourceLicensesLabel",
+"english": "Open-source licenses",
+"target": "ใบอนุญาตโอเพนซอร์ส",
+"backtrans": "Open-source licenses"
+},
+{
+"key": "whatsNewTitle",
+"english": "What's New",
+"target": "มีอะไรใหม่",
+"backtrans": "What's new"
+},
+{
+"key": "whatsNewContinue",
+"english": "Continue",
+"target": "ดำเนินการต่อ",
+"backtrans": "Proceed"
+},
+{
+"key": "tickerTxtExport",
+"english": "TXT EXPORT",
+"target": "ส่งออก TXT",
+"backtrans": "TXT export"
+},
+{
+"key": "tickerCsvExport",
+"english": "CSV EXPORT",
+"target": "ส่งออก CSV",
+"backtrans": "CSV export"
+},
+{
+"key": "whatsNewBody",
+"english": "Welcome to KatharScan! This is the first public release featuring unlimited scanning, 29 languages, and export to PDF, Word, TXT, JPG, PNG, and CSV.",
+"target": "ยินดีต้อนรับสู่ KatharScan! นี่คือเวอร์ชันสาธารณะแรกที่มาพร้อมการสแกนไม่จำกัด 29 ภาษา และการส่งออก PDF, Word, TXT, JPG, PNG และ CSV",
+"backtrans": "Welcome to KatharScan! This is the first public version, coming with unlimited scanning, 29 languages, and export to PDF, Word, TXT, JPG, PNG and CSV"
+},
+{
+"key": "engagementSectionLabel",
+"english": "ENGAGEMENT & NOTIFICATIONS",
+"target": "การมีส่วนร่วมและการแจ้งเตือน",
+"backtrans": "Participation and notifications"
+},
+{
+"key": "enableNotificationsLabel",
+"english": "Enable Notifications",
+"target": "เปิดใช้งานการแจ้งเตือน",
+"backtrans": "Enable notifications"
+},
+{
+"key": "enableNotificationsSubtitle",
+"english": "Allow background reminders for unexported documents",
+"target": "อนุญาตการเตือนเบื้องหลังสำหรับเอกสารที่ยังไม่ได้ส่งออก",
+"backtrans": "Allow background reminders for documents not yet exported"
+},
+{
+"key": "enableReviewPromptsLabel",
+"english": "Enable Review Prompts",
+"target": "เปิดใช้งานคำขอรีวิว",
+"backtrans": "Enable review requests"
+},
+{
+"key": "enableReviewPromptsSubtitle",
+"english": "Allow the app to occasionally ask for a rating",
+"target": "อนุญาตให้แอปขอคะแนนเป็นครั้งคราว",
+"backtrans": "Allow the app to ask for a rating occasionally"
+},
+{
+"key": "enableSharePromptsLabel",
+"english": "Enable Share Prompts",
+"target": "เปิดใช้งานคำขอแชร์",
+"backtrans": "Enable share requests"
+},
+{
+"key": "enableSharePromptsSubtitle",
+"english": "Allow the app to occasionally suggest sharing",
+"target": "อนุญาตให้แอปแนะนำการแชร์เป็นครั้งคราว",
+"backtrans": "Allow the app to suggest sharing occasionally"
+},
+{
+"key": "exportFormatCsvDescription",
+"english": "Spreadsheet data",
+"target": "ข้อมูลสเปรดชีต",
+"backtrans": "Spreadsheet data"
+},
+{
+"key": "watermarkDefaultText",
+"english": "CONFIDENTIAL",
+"target": "ลับ",
+"backtrans": "Secret"
+},
+{
+"key": "emailAttachmentNotIncluded",
+"english": "The pages could not be attached to the email. Use Share to send the pages.",
+"target": "ไม่สามารถแนบหน้าเอกสารกับอีเมลได้ ใช้การแชร์เพื่อส่งหน้าเอกสาร",
+"backtrans": "Document pages cannot be attached to the email. Use sharing to send the document pages"
+},
+{
+"key": "sealDefaultMainText",
+"english": "YOUR COMPANY",
+"target": "บริษัทของคุณ",
+"backtrans": "Your company"
+},
+{
+"key": "extractedPageDefaultTitle",
+"english": "Extracted Page",
+"target": "หน้าที่แยกออกมา",
+"backtrans": "Extracted page"
+},
+{
+"key": "printRangeAll",
+"english": "All pages",
+"target": "ทุกหน้า",
+"backtrans": "All pages"
+},
+{
+"key": "printRangeCurrent",
+"english": "Current",
+"target": "ปัจจุบัน",
+"backtrans": "Current"
+},
+{
+"key": "printRangeRange",
+"english": "Range",
+"target": "ช่วง",
+"backtrans": "Range"
+},
+{
+"key": "printFilterNone",
+"english": "No filter",
+"target": "ไม่มีตัวกรอง",
+"backtrans": "No filter"
+},
+{
+"key": "removeFromFavorites",
+"english": "Remove from Favorites",
+"target": "ลบออกจากรายการโปรด",
+"backtrans": "Remove from favorites"
+},
+{
+"key": "addToFavorites",
+"english": "Add to Favorites",
+"target": "เพิ่มในรายการโปรด",
+"backtrans": "Add to favorites"
+},
+{
+"key": "saveFailedPrefix",
+"english": "Save failed:",
+"target": "บันทึกไม่สำเร็จ:",
+"backtrans": "Save unsuccessful:"
+},
+{
+"key": "ocrScriptArabic",
+"english": "العربية (Arabic)",
+"target": "العربية (Arabic)",
+"backtrans": "العربية (Arabic)"
+},
+{
+"key": "ocrScriptRussian",
+"english": "Русский (Russian)",
+"target": "Русский (Russian)",
+"backtrans": "Русский (Russian)"
+},
+{
+"key": "ocrScriptUkrainian",
+"english": "Українська (Ukrainian)",
+"target": "Українська (Ukrainian)",
+"backtrans": "Українська (Ukrainian)"
+},
+{
+"key": "ocrScriptGreek",
+"english": "Ελληνικά (Greek)",
+"target": "Ελληνικά (Greek)",
+"backtrans": "Ελληνικά (Greek)"
+},
+{
+"key": "ocrScriptHebrew",
+"english": "עברית (Hebrew)",
+"target": "עברית (Hebrew)",
+"backtrans": "עברית (Hebrew)"
+},
+{
+"key": "ocrScriptThai",
+"english": "ไทย (Thai)",
+"target": "ไทย (Thai)",
+"backtrans": "ไทย (Thai)"
+},
+{
+"key": "ocrScriptBengali",
+"english": "বাংলা (Bengali)",
+"target": "বাংলা (Bengali)",
+"backtrans": "বাংলা (Bengali)"
+},
+{
+"key": "ocrStatusInstalled",
+"english": "Installed",
+"target": "ติดตั้งแล้ว",
+"backtrans": "Installed"
+},
+{
+"key": "ocrStatusDownloading",
+"english": "Downloading…",
+"target": "กำลังดาวน์โหลด…",
+"backtrans": "Downloading…"
+},
+{
+"key": "exportNoTextError",
+"english": "This document has no text yet. Run OCR on it first.",
+"target": "เอกสารนี้ยังไม่มีข้อความ โปรดเรียกใช้ OCR ก่อน",
+"backtrans": "This document does not have text yet. Please run OCR first"
+},
+{
+"key": "saveFailedBanner",
+"english": "Your latest changes could not be saved.",
+"target": "ไม่สามารถบันทึกการเปลี่ยนแปลงล่าสุดของคุณได้",
+"backtrans": "Your latest changes could not be saved"
+},
+{
+"key": "editLabel",
+"english": "Edit",
+"target": "แก้ไข",
+"backtrans": "Edit"
+},
+{
+"key": "fillTapHint",
+"english": "Tap the page where you want to type",
+"target": "แตะที่หน้าตรงตำแหน่งที่ต้องการพิมพ์",
+"backtrans": "Tap on the page where you want to type"
+},
+{
+"key": "fillTypeHint",
+"english": "Type here",
+"target": "พิมพ์ที่นี่",
+"backtrans": "Type here"
+},
+{
+"key": "clearPage",
+"english": "Clear page",
+"target": "ล้างหน้า",
+"backtrans": "Clear page"
+},
+{
+"key": "clearAllPages",
+"english": "Clear all pages",
+"target": "ล้างทุกหน้า",
+"backtrans": "Clear all pages"
+},
+{
+"key": "clearedCount",
+"english": "Cleared {count}",
+"target": "ล้างแล้ว {count}",
+"backtrans": "Cleared {count}"
+},
+{
+"key": "idLayoutRealSize",
+"english": "Real size",
+"target": "ขนาดจริง",
+"backtrans": "Actual size"
+},
+{
+"key": "idLayoutFullWidth",
+"english": "Full width",
+"target": "เต็มความกว้าง",
+"backtrans": "Full width"
+},
+{
+"key": "pagesToReadTitle",
+"english": "Pages to read",
+"target": "หน้าที่จะอ่าน",
+"backtrans": "Pages to read"
+},
+{
+"key": "pagesToReadHint",
+"english": "This PDF has {count} pages. Pages that are pictures are read with OCR (about 10 seconds each); pages with real text are instant.",
+"target": "PDF นี้มี {count} หน้า หน้าที่เป็นรูปภาพจะอ่านด้วย OCR (ประมาณ 10 วินาทีต่อหน้า) ส่วนหน้าที่มีข้อความจริงอ่านได้ทันที",
+"backtrans": "This PDF has {count} pages. Pages that are images will be read with OCR (about 10 seconds per page), while pages with real text can be read immediately"
+},
+{
+"key": "pageFromLabel",
+"english": "From page",
+"target": "จากหน้า",
+"backtrans": "From page"
+},
+{
+"key": "pageToLabel",
+"english": "To page",
+"target": "ถึงหน้า",
+"backtrans": "To page"
+},
+{
+"key": "readingPageProgress",
+"english": "Page {page} of {total}",
+"target": "หน้า {page} จาก {total}",
+"backtrans": "Page {page} of {total}"
+},
+{
+"key": "readingPageEta",
+"english": "Page {page} of {total} · about {minutes} min left",
+"target": "หน้า {page} จาก {total} · เหลือประมาณ {minutes} นาที",
+"backtrans": "Page {page} of {total} · about {minutes} minutes remaining"
+},
+{
+"key": "sealShapeRound",
+"english": "Round",
+"target": "วงกลม",
+"backtrans": "Circle"
+},
+{
+"key": "sealFontSans",
+"english": "Clean",
+"target": "เรียบ",
+"backtrans": "Plain"
+},
+{
+"key": "sealFontSerif",
+"english": "Classic",
+"target": "คลาสสิก",
+"backtrans": "Classic"
+},
+{
+"key": "sealInkLook",
+"english": "Worn stamp look",
+"target": "ลายตราประทับเก่า",
+"backtrans": "Old seal pattern [??: 'ลายตราประทับเก่า' = old stamp pattern/design; 'ink look' may be intended]"
+},
+{
+"key": "sealSaveToLibrary",
+"english": "Save this seal",
+"target": "บันทึกตรานี้",
+"backtrans": "Save this seal"
+},
+{
+"key": "sealSavedHeading",
+"english": "Saved seals",
+"target": "ตราที่บันทึกไว้",
+"backtrans": "Saved seals"
+},
+{
+"key": "sealTextColorLabel",
+"english": "Text colour",
+"target": "สีข้อความ",
+"backtrans": "Text color"
+},
+{
+"key": "sealTextColorSame",
+"english": "Same as ring",
+"target": "เหมือนวงแหวน",
+"backtrans": "Same as the ring"
+},
+{
+"key": "sealTextSizePercent",
+"english": "Text size {percent}%",
+"target": "ขนาดข้อความ {percent}%",
+"backtrans": "Text size {percent}%"
+},
+{
+"key": "sealRemoveWhite",
+"english": "Make white transparent",
+"target": "ทำให้สีขาวโปร่งใส",
+"backtrans": "Make white transparent"
+},
+{
+"key": "sealSavedMessage",
+"english": "Seal saved",
+"target": "บันทึกตราแล้ว",
+"backtrans": "Seal saved"
+},
+{
+"key": "signatureTabDraw",
+"english": "Draw",
+"target": "วาด",
+"backtrans": "Draw"
+},
+{
+"key": "signatureTabType",
+"english": "Type",
+"target": "พิมพ์",
+"backtrans": "Type"
+},
+{
+"key": "signatureTypeHint",
+"english": "Type your name",
+"target": "พิมพ์ชื่อของคุณ",
+"backtrans": "Type your name"
+},
+{
+"key": "signatureWidthLabel",
+"english": "Pen width",
+"target": "ความหนาปากกา",
+"backtrans": "Pen thickness"
+},
+{
+"key": "signatureFontFlowing",
+"english": "Flowing",
+"target": "ลื่นไหล",
+"backtrans": "Smooth-flowing"
+},
+{
+"key": "signatureFontHandwritten",
+"english": "Handwritten",
+"target": "ลายมือ",
+"backtrans": "Handwriting"
+},
+{
+"key": "signatureSavedHeading",
+"english": "Saved signatures",
+"target": "ลายเซ็นที่บันทึกไว้",
+"backtrans": "Saved signatures"
+},
+{
+"key": "signatureNewOne",
+"english": "Draw or type a new one",
+"target": "วาดหรือพิมพ์ใหม่",
+"backtrans": "Draw or type a new one"
+},
+{
+"key": "signatureDeleteSaved",
+"english": "Remove saved signature",
+"target": "ลบลายเซ็นที่บันทึกไว้",
+"backtrans": "Delete the saved signature"
+},
+{
+"key": "annotationModeSelect",
+"english": "Select",
+"target": "เลือก",
+"backtrans": "Select"
+},
+{
+"key": "annotationModeEraser",
+"english": "Eraser",
+"target": "ยางลบ",
+"backtrans": "Eraser"
+},
+{
+"key": "watermarkKindText",
+"english": "Text",
+"target": "ข้อความ",
+"backtrans": "Text"
+},
+{
+"key": "watermarkKindImage",
+"english": "Image",
+"target": "รูปภาพ",
+"backtrans": "Picture"
+},
+{
+"key": "watermarkChooseImage",
+"english": "Choose image",
+"target": "เลือกรูปภาพ",
+"backtrans": "Choose a picture"
+},
+{
+"key": "watermarkLayoutLabel",
+"english": "Layout",
+"target": "เลย์เอาต์",
+"backtrans": "Layout"
+},
+{
+"key": "watermarkLayoutSingle",
+"english": "Single",
+"target": "เดี่ยว",
+"backtrans": "Single"
+},
+{
+"key": "watermarkLayoutDiagonal",
+"english": "Diagonal",
+"target": "แนวทแยง",
+"backtrans": "Diagonal"
+},
+{
+"key": "watermarkLayoutTiled",
+"english": "Tiled",
+"target": "ซ้ำทั้งหน้า",
+"backtrans": "Repeated across the whole page"
+},
+{
+"key": "watermarkPagesLabel",
+"english": "Pages",
+"target": "หน้า",
+"backtrans": "Pages"
+},
+{
+"key": "watermarkPagesThis",
+"english": "This page",
+"target": "หน้านี้",
+"backtrans": "This page"
+},
+{
+"key": "watermarkPagesAll",
+"english": "All pages",
+"target": "ทุกหน้า",
+"backtrans": "All pages"
+},
+{
+"key": "watermarkPagesRange",
+"english": "Range",
+"target": "ช่วง",
+"backtrans": "Range"
+},
+{
+"key": "watermarkPagesRangeHint",
+"english": "e.g. 1-3, 5",
+"target": "เช่น 1-3, 5",
+"backtrans": "e.g. 1-3, 5"
+},
+{
+"key": "watermarkPagesInvalid",
+"english": "Check the pages (the document has {count} pages)",
+"target": "ตรวจสอบช่วงหน้า (เอกสารมี {count} หน้า)",
+"backtrans": "Check the page range (the document has {count} pages)"
+},
+{
+"key": "cropAuto",
+"english": "Auto-detect",
+"target": "ตรวจจับอัตโนมัติ",
+"backtrans": "Detect automatically"
+},
+{
+"key": "cropAspectFree",
+"english": "Free",
+"target": "อิสระ",
+"backtrans": "Free"
+},
+{
+"key": "cropAspectId",
+"english": "ID card",
+"target": "บัตรประจำตัว",
+"backtrans": "Identity card"
+},
+{
+"key": "cropAspectSquare",
+"english": "Square",
+"target": "สี่เหลี่ยมจัตุรัส",
+"backtrans": "Square"
+},
+{
+"key": "cropNoPageFound",
+"english": "Couldn't find the page edges. Drag the corners.",
+"target": "ไม่พบขอบหน้า ลากมุมเอง",
+"backtrans": "Page edges not found. Drag the corners yourself"
+},
+{
+"key": "straightenLabel",
+"english": "Straighten",
+"target": "ปรับให้ตรง",
+"backtrans": "Adjust to be straight"
+},
+{
+"key": "filterMagicColor",
+"english": "Magic colour",
+"target": "สีมหัศจรรย์",
+"backtrans": "Magic color"
+},
+{
+"key": "filterBrightnessLabel",
+"english": "Brightness",
+"target": "ความสว่าง",
+"backtrans": "Brightness"
+},
+{
+"key": "filterContrastLabel",
+"english": "Contrast",
+"target": "คอนทราสต์",
+"backtrans": "Contrast"
+},
+{
+"key": "resizeUpscaleWarning",
+"english": "Enlarging doesn't add detail — the page may look soft.",
+"target": "การขยายไม่เพิ่มรายละเอียด หน้าอาจดูเบลอ",
+"backtrans": "Enlarging does not add detail. The page may look blurry"
+},
+{
+"key": "eraserAutoColorTooltip",
+"english": "Match the page colour automatically",
+"target": "จับคู่สีของหน้าอัตโนมัติ",
+"backtrans": "Automatically match the page's color"
+},
+{
+"key": "eraserZoomTooltip",
+"english": "Zoom and move (pinch)",
+"target": "ซูมและเลื่อน (ใช้สองนิ้ว)",
+"backtrans": "Zoom and pan (use two fingers)"
+},
+{
+"key": "pagesSelectTooltip",
+"english": "Select pages",
+"target": "เลือกหน้า",
+"backtrans": "Select pages"
+},
+{
+"key": "pagesDeleteCount",
+"english": "Delete {count}",
+"target": "ลบ {count}",
+"backtrans": "Delete {count}"
+},
+{
+"key": "pagesDeleteConfirm",
+"english": "Delete {count} pages? They are removed when you save.",
+"target": "ลบ {count} หน้า? จะถูกลบเมื่อคุณบันทึก",
+"backtrans": "Delete {count} pages? They will be deleted when you save"
+},
+{
+"key": "compressTargetLabel",
+"english": "Max size",
+"target": "ขนาดสูงสุด",
+"backtrans": "Maximum size"
+},
+{
+"key": "compressNoLimit",
+"english": "No limit",
+"target": "ไม่จำกัด",
+"backtrans": "Unlimited"
+},
+{
+"key": "printPaperLabel",
+"english": "Paper",
+"target": "กระดาษ",
+"backtrans": "Paper"
+},
+{
+"key": "printMarginLabel",
+"english": "Margin",
+"target": "ขอบกระดาษ",
+"backtrans": "Paper margin"
+},
+{
+"key": "printMarginNone",
+"english": "None",
+"target": "ไม่มี",
+"backtrans": "None"
+},
+{
+"key": "printMarginNarrow",
+"english": "Narrow",
+"target": "แคบ",
+"backtrans": "Narrow"
+},
+{
+"key": "printMarginNormal",
+"english": "Normal",
+"target": "ปกติ",
+"backtrans": "Normal"
+},
+{
+"key": "printFitLabel",
+"english": "Scaling",
+"target": "การปรับขนาด",
+"backtrans": "Scaling"
+},
+{
+"key": "printFitFit",
+"english": "Fit page",
+"target": "พอดีหน้า",
+"backtrans": "Fit the page"
+},
+{
+"key": "printFitFill",
+"english": "Fill sheet (trims edges)",
+"target": "เต็มแผ่น (ตัดขอบ)",
+"backtrans": "Fill the sheet (edges cut off)"
+},
+{
+"key": "printPerSheetLabel",
+"english": "Pages per sheet",
+"target": "หน้าต่อแผ่น",
+"backtrans": "Pages per sheet"
+},
+{
+"key": "emailMessageLabel",
+"english": "Message",
+"target": "ข้อความ",
+"backtrans": "Message"
+},
+{
+"key": "emailMessageHint",
+"english": "Add a note (optional)",
+"target": "เพิ่มบันทึก (ไม่บังคับ)",
+"backtrans": "Add a note (optional)"
+},
+{
+"key": "emailLimitMissed",
+"english": "Could not get under {mb} MB; sent the smallest version.",
+"target": "ไม่สามารถลดให้ต่ำกว่า {mb} MB ได้ จึงส่งฉบับที่เล็กที่สุด",
+"backtrans": "Could not reduce below {mb} MB, so the smallest version was sent"
+}
+]

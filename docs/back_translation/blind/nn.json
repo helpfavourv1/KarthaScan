@@ -1,0 +1,3362 @@
+[
+{
+"key": "privacyOptionsLabel",
+"english": "Privacy settings",
+"target": "Personverninnstillingar",
+"backtrans": "Privacy settings"
+},
+{
+"key": "commonCancel",
+"english": "Cancel",
+"target": "Avbryt",
+"backtrans": "Cancel"
+},
+{
+"key": "commonDelete",
+"english": "Delete",
+"target": "Slett",
+"backtrans": "Delete"
+},
+{
+"key": "commonSave",
+"english": "Save",
+"target": "Lagre",
+"backtrans": "Save"
+},
+{
+"key": "commonAdd",
+"english": "Add",
+"target": "Legg til",
+"backtrans": "Add"
+},
+{
+"key": "commonExport",
+"english": "Export",
+"target": "Eksporter",
+"backtrans": "Export"
+},
+{
+"key": "commonImport",
+"english": "Import",
+"target": "Importer",
+"backtrans": "Import"
+},
+{
+"key": "commonSkip",
+"english": "Skip",
+"target": "Hopp over",
+"backtrans": "Skip over"
+},
+{
+"key": "commonClear",
+"english": "Clear",
+"target": "Tøm",
+"backtrans": "Empty"
+},
+{
+"key": "emptyStateDefaultMessage",
+"english": "Tap the camera to scan your first document.",
+"target": "Trykk på kameraet for å skanne det første dokumentet ditt.",
+"backtrans": "Tap the camera to scan your first document."
+},
+{
+"key": "exportFormatSheetTitle",
+"english": "Export as",
+"target": "Eksporter som",
+"backtrans": "Export as"
+},
+{
+"key": "exportFormatPdfLabel",
+"english": "PDF",
+"target": "PDF",
+"backtrans": "PDF"
+},
+{
+"key": "exportFormatPdfDescription",
+"english": "Best for sharing and printing",
+"target": "Best for deling og utskrift",
+"backtrans": "Best for sharing and printing"
+},
+{
+"key": "exportFormatDocxLabel",
+"english": "Word (.docx)",
+"target": "Word (.docx)",
+"backtrans": "Word (.docx)"
+},
+{
+"key": "exportFormatDocxDescription",
+"english": "Editable text document",
+"target": "Redigerbart tekstdokument",
+"backtrans": "Editable text document"
+},
+{
+"key": "exportFormatTxtLabel",
+"english": "Text (.txt)",
+"target": "Tekst (.txt)",
+"backtrans": "Text (.txt)"
+},
+{
+"key": "exportFormatTxtDescription",
+"english": "Plain OCR text only",
+"target": "Berre enkel OCR-tekst",
+"backtrans": "Only plain OCR text"
+},
+{
+"key": "exportFormatJpgLabel",
+"english": "JPG",
+"target": "JPG",
+"backtrans": "JPG"
+},
+{
+"key": "exportFormatJpgDescription",
+"english": "One image per page",
+"target": "Eitt bilete per side",
+"backtrans": "One image per page"
+},
+{
+"key": "exportFormatPngLabel",
+"english": "PNG",
+"target": "PNG",
+"backtrans": "PNG"
+},
+{
+"key": "exportFormatPngDescription",
+"english": "One image per page, lossless",
+"target": "Eitt bilete per side, tapsfritt",
+"backtrans": "One image per page, lossless"
+},
+{
+"key": "filterSheetTitle",
+"english": "Filters",
+"target": "Filter",
+"backtrans": "Filter"
+},
+{
+"key": "filterOriginal",
+"english": "Original",
+"target": "Original",
+"backtrans": "Original"
+},
+{
+"key": "filterGrayscale",
+"english": "Grayscale",
+"target": "Gråtonar",
+"backtrans": "Shades of gray"
+},
+{
+"key": "filterBlackAndWhite",
+"english": "B&W",
+"target": "S/H",
+"backtrans": "B/W"
+},
+{
+"key": "filterColorEnhance",
+"english": "Color enhance",
+"target": "Fargeforbetring",
+"backtrans": "Color improvement"
+},
+{
+"key": "filterShadowRemoval",
+"english": "Shadow removal",
+"target": "Skuggefjerning",
+"backtrans": "Shadow removal"
+},
+{
+"key": "proBadgeLabel",
+"english": "PRO",
+"target": "PRO",
+"backtrans": "PRO"
+},
+{
+"key": "scanListPageCount",
+"english": "{count, plural, =1{1 page} other{{count} pages}}",
+"target": "{count, plural, =1{1 side} other{{count} sider}}",
+"backtrans": "{count, plural, =1{1 page} other{{count} pages}}"
+},
+{
+"key": "scanPreviewNoPages",
+"english": "No pages to show.",
+"target": "Ingen sider å vise.",
+"backtrans": "No pages to show."
+},
+{
+"key": "shareTooltip",
+"english": "Share",
+"target": "Del",
+"backtrans": "Share"
+},
+{
+"key": "signatureCanvasHint",
+"english": "Sign here",
+"target": "Signer her",
+"backtrans": "Sign here"
+},
+{
+"key": "folderDocumentCount",
+"english": "{count, plural, =1{1 document} other{{count} documents}}",
+"target": "{count, plural, =1{1 dokument} other{{count} dokument}}",
+"backtrans": "{count, plural, =1{1 document} other{{count} documents}}"
+},
+{
+"key": "selectedCount",
+"english": "{count, plural, =1{1 selected} other{{count} selected}}",
+"target": "{count, plural, =1{1 vald} other{{count} valde}}",
+"backtrans": "{count, plural, =1{1 selected} other{{count} selected}}"
+},
+{
+"key": "batchExportTooltip",
+"english": "Batch export",
+"target": "Batcheksport",
+"backtrans": "Batch export"
+},
+{
+"key": "deleteTooltip",
+"english": "Delete",
+"target": "Slett",
+"backtrans": "Delete"
+},
+{
+"key": "searchHint",
+"english": "Search your scans",
+"target": "Søk i skanningane dine",
+"backtrans": "Search your scans"
+},
+{
+"key": "settingsTooltip",
+"english": "Settings",
+"target": "Innstillingar",
+"backtrans": "Settings"
+},
+{
+"key": "foldersSectionHeader",
+"english": "Folders",
+"target": "Mapper",
+"backtrans": "Folders"
+},
+{
+"key": "documentsSectionHeader",
+"english": "Documents",
+"target": "Dokument",
+"backtrans": "Documents"
+},
+{
+"key": "exportingStatus",
+"english": "Exporting…",
+"target": "Eksporterer…",
+"backtrans": "Exporting…"
+},
+{
+"key": "exportDoneStatus",
+"english": "Done",
+"target": "Ferdig",
+"backtrans": "Done"
+},
+{
+"key": "exportGenericError",
+"english": "Something went wrong while exporting.",
+"target": "Noko gjekk gale under eksporten.",
+"backtrans": "Something went wrong during the export."
+},
+{
+"key": "deleteFolderTitle",
+"english": "Delete this folder?",
+"target": "Slette denne mappa?",
+"backtrans": "Delete this folder?"
+},
+{
+"key": "deleteFolderMessage",
+"english": "Documents inside will not be deleted.",
+"target": "Dokumenta inni blir ikkje sletta.",
+"backtrans": "The documents inside will not be deleted."
+},
+{
+"key": "deleteFolderTooltip",
+"english": "Delete folder",
+"target": "Slett mappe",
+"backtrans": "Delete folder"
+},
+{
+"key": "renameFolderTitle",
+"english": "Rename folder",
+"target": "Gi mappa nytt namn",
+"backtrans": "Give the folder a new name"
+},
+{
+"key": "removeFromFolderTooltip",
+"english": "Remove from folder",
+"target": "Fjern frå mappe",
+"backtrans": "Remove from folder"
+},
+{
+"key": "noDocumentsInFolder",
+"english": "No documents in this folder yet.",
+"target": "Ingen dokument i denne mappa enno.",
+"backtrans": "No documents in this folder yet."
+},
+{
+"key": "folderUnavailable",
+"english": "This folder is no longer available.",
+"target": "Denne mappa er ikkje lenger tilgjengeleg.",
+"backtrans": "This folder is no longer available."
+},
+{
+"key": "migrationTitle",
+"english": "Device Migration",
+"target": "Flytting til ny eining",
+"backtrans": "Move to a new device"
+},
+{
+"key": "migrationExplainer",
+"english": "This isn't automatic sync. Export creates a single encrypted backup file you move to your new device yourself, then import there.",
+"target": "Dette er ikkje automatisk synkronisering. Eksporten lagar éi kryptert sikkerheitskopi som du sjølv flyttar til den nye eininga di og importerer der.",
+"backtrans": "This is not automatic synchronization. The export makes one encrypted backup copy that you yourself move to your new device and import there."
+},
+{
+"key": "exportBackupButton",
+"english": "Export encrypted backup",
+"target": "Eksporter kryptert sikkerheitskopi",
+"backtrans": "Export encrypted backup"
+},
+{
+"key": "importBackupButton",
+"english": "Import from backup",
+"target": "Importer frå sikkerheitskopi",
+"backtrans": "Import from backup"
+},
+{
+"key": "setBackupPasswordTitle",
+"english": "Set a backup password",
+"target": "Vel passord for sikkerheitskopien",
+"backtrans": "Choose a password for the backup"
+},
+{
+"key": "enterBackupPasswordTitle",
+"english": "Enter backup password",
+"target": "Skriv inn passordet for sikkerheitskopien",
+"backtrans": "Enter the password for the backup"
+},
+{
+"key": "buildingBackupStatus",
+"english": "Building backup…",
+"target": "Lagar sikkerheitskopi…",
+"backtrans": "Making backup…"
+},
+{
+"key": "backupReadyStatus",
+"english": "Backup ready.",
+"target": "Sikkerheitskopien er klar.",
+"backtrans": "The backup is ready."
+},
+{
+"key": "couldNotCreateBackupError",
+"english": "Could not create the backup.",
+"target": "Kunne ikkje lage sikkerheitskopi.",
+"backtrans": "Could not make a backup."
+},
+{
+"key": "importingStatus",
+"english": "Importing…",
+"target": "Importerer…",
+"backtrans": "Importing…"
+},
+{
+"key": "couldNotImportBackupError",
+"english": "Could not import this backup. Check the password and try again.",
+"target": "Kunne ikkje importere denne sikkerheitskopien. Sjekk passordet og prøv igjen.",
+"backtrans": "Could not import this backup. Check the password and try again."
+},
+{
+"key": "backupCorruptedError",
+"english": "This backup file looks corrupted.",
+"target": "Denne sikkerheitskopifila ser ut til å vere skadd.",
+"backtrans": "This backup file seems to be damaged."
+},
+{
+"key": "importedCount",
+"english": "{count, plural, =1{1 document imported} other{{count} documents imported}}",
+"target": "{count, plural, =1{1 dokument importert} other{{count} dokument importerte}}",
+"backtrans": "{count, plural, =1{1 document imported} other{{count} documents imported}}"
+},
+{
+"key": "continueButton",
+"english": "Continue",
+"target": "Hald fram",
+"backtrans": "Continue (hold forth)"
+},
+{
+"key": "restorePurchasesButton",
+"english": "Restore purchases",
+"target": "Gjenopprett kjøp",
+"backtrans": "Restore purchases"
+},
+{
+"key": "pricingLoadingError",
+"english": "Pricing is still loading — try again in a moment.",
+"target": "Prisane lastar framleis — prøv igjen om eit øyeblikk.",
+"backtrans": "The prices are still loading — try again in a moment."
+},
+{
+"key": "renameDocumentTitle",
+"english": "Rename document",
+"target": "Gi dokumentet nytt namn",
+"backtrans": "Give the document a new name"
+},
+{
+"key": "addTagTitle",
+"english": "Add tag",
+"target": "Legg til merkelapp",
+"backtrans": "Add label"
+},
+{
+"key": "moveToFolderTooltip",
+"english": "Move to folder",
+"target": "Flytt til mappe",
+"backtrans": "Move to folder"
+},
+{
+"key": "exportTooltip",
+"english": "Export",
+"target": "Eksporter",
+"backtrans": "Export"
+},
+{
+"key": "deleteScanTitle",
+"english": "Delete this scan?",
+"target": "Slette denne skanninga?",
+"backtrans": "Delete this scan?"
+},
+{
+"key": "deleteScanMessage",
+"english": "This can't be undone.",
+"target": "Dette kan ikkje angrast.",
+"backtrans": "This cannot be undone."
+},
+{
+"key": "movedToFolderMessage",
+"english": "Moved to folder.",
+"target": "Flytta til mappe.",
+"backtrans": "Moved to folder."
+},
+{
+"key": "noTextRecognized",
+"english": "No text recognized.",
+"target": "Ingen tekst gjenkjend.",
+"backtrans": "No text recognized."
+},
+{
+"key": "scanUnavailable",
+"english": "This scan is no longer available.",
+"target": "Denne skanninga er ikkje lenger tilgjengeleg.",
+"backtrans": "This scan is no longer available."
+},
+{
+"key": "settingsTitle",
+"english": "Settings",
+"target": "Innstillingar",
+"backtrans": "Settings"
+},
+{
+"key": "appearanceSectionLabel",
+"english": "Appearance",
+"target": "Utsjånad",
+"backtrans": "Appearance"
+},
+{
+"key": "themeLabel",
+"english": "Theme",
+"target": "Tema",
+"backtrans": "Theme"
+},
+{
+"key": "systemThemeOption",
+"english": "System",
+"target": "System",
+"backtrans": "System"
+},
+{
+"key": "lightThemeOption",
+"english": "Light",
+"target": "Lyst",
+"backtrans": "Light"
+},
+{
+"key": "darkThemeOption",
+"english": "Dark",
+"target": "Mørkt",
+"backtrans": "Dark"
+},
+{
+"key": "languageSectionLabel",
+"english": "Language",
+"target": "Språk",
+"backtrans": "Language"
+},
+{
+"key": "appLanguageLabel",
+"english": "App language",
+"target": "Appspråk",
+"backtrans": "App language"
+},
+{
+"key": "storageSectionLabel",
+"english": "Storage",
+"target": "Lagring",
+"backtrans": "Storage"
+},
+{
+"key": "deviceMigrationLabel",
+"english": "Device Migration",
+"target": "Flytting til ny eining",
+"backtrans": "Move to a new device"
+},
+{
+"key": "subscriptionSectionLabel",
+"english": "Subscription",
+"target": "Abonnement",
+"backtrans": "Subscription"
+},
+{
+"key": "aboutSectionLabel",
+"english": "About",
+"target": "Om",
+"backtrans": "About"
+},
+{
+"key": "privacyPolicyLabel",
+"english": "Privacy policy",
+"target": "Personvernerklæring",
+"backtrans": "Privacy statement"
+},
+{
+"key": "supportLabel",
+"english": "Support",
+"target": "Støtte",
+"backtrans": "Support"
+},
+{
+"key": "couldNotOpenLinkError",
+"english": "Could not open link.",
+"target": "Kunne ikkje opne lenkja.",
+"backtrans": "Could not open the link."
+},
+{
+"key": "restoreCompleteMessage",
+"english": "Restore complete.",
+"target": "Gjenopprettinga er fullført.",
+"backtrans": "The restoration is completed."
+},
+{
+"key": "genericErrorMessage",
+"english": "Something went wrong. Please try again.",
+"target": "Noko gjekk gale. Prøv igjen.",
+"backtrans": "Something went wrong. Try again."
+},
+{
+"key": "homeLanguageTooltip",
+"english": "App Language",
+"target": "Appspråk",
+"backtrans": "App language"
+},
+{
+"key": "removeAdsTitle",
+"english": "Remove Ads Forever",
+"target": "Fjern annonsar for alltid",
+"backtrans": "Remove ads forever"
+},
+{
+"key": "extractedTextTitle",
+"english": "Extracted Text",
+"target": "Uthenta tekst",
+"backtrans": "Extracted text"
+},
+{
+"key": "commonClose",
+"english": "Close",
+"target": "Lukk",
+"backtrans": "Close"
+},
+{
+"key": "commonCopy",
+"english": "Copy",
+"target": "Kopier",
+"backtrans": "Copy"
+},
+{
+"key": "savedToDocumentText",
+"english": "Saved to document text",
+"target": "Lagra i dokumentteksten",
+"backtrans": "Saved in the document text"
+},
+{
+"key": "regionOcrFailed",
+"english": "Region OCR failed",
+"target": "OCR for området feila",
+"backtrans": "OCR for the area failed"
+},
+{
+"key": "filterRemoved",
+"english": "Filter removed",
+"target": "Filteret er fjerna",
+"backtrans": "The filter is removed"
+},
+{
+"key": "filterApplied",
+"english": "Filter applied",
+"target": "Filteret er brukt",
+"backtrans": "The filter is used"
+},
+{
+"key": "pageCropped",
+"english": "Page cropped",
+"target": "Sida er beskoren",
+"backtrans": "The page is cropped"
+},
+{
+"key": "revertToOriginalTitle",
+"english": "Revert to Original?",
+"target": "Tilbake til originalen?",
+"backtrans": "Back to the original?"
+},
+{
+"key": "revertToOriginalMessage",
+"english": "This will undo all filters, rotations, crops, resizes, and eraser strokes on this page.",
+"target": "Dette angrar alle filter, rotasjonar, beskjeringar, storleiksendringar og viskestrøk på denne sida.",
+"backtrans": "This undoes all filters, rotations, crops, size changes and wipe strokes on this page."
+},
+{
+"key": "commonRevert",
+"english": "Revert",
+"target": "Tilbakestill",
+"backtrans": "Reset"
+},
+{
+"key": "pageRevertedToOriginal",
+"english": "Page reverted to original",
+"target": "Sida er tilbakestilt til originalen",
+"backtrans": "The page is reset to the original"
+},
+{
+"key": "eraserApplied",
+"english": "Eraser applied",
+"target": "Viskelêr brukt",
+"backtrans": "Eraser used"
+},
+{
+"key": "pageResized",
+"english": "Page resized",
+"target": "Sidestorleiken er endra",
+"backtrans": "The page size is changed"
+},
+{
+"key": "extractedAsNewDocument",
+"english": "Extracted as new document",
+"target": "Uthenta som nytt dokument",
+"backtrans": "Extracted as new document"
+},
+{
+"key": "pagesUpdated",
+"english": "Pages updated",
+"target": "Sidene er oppdaterte",
+"backtrans": "The pages are updated"
+},
+{
+"key": "printOptionsTitle",
+"english": "Print Options",
+"target": "Utskriftsval",
+"backtrans": "Print options"
+},
+{
+"key": "letterSizeUS",
+"english": "Letter size (US)",
+"target": "Letter-storleik (USA)",
+"backtrans": "Letter size (USA)"
+},
+{
+"key": "commonPrint",
+"english": "Print",
+"target": "Skriv ut",
+"backtrans": "Print"
+},
+{
+"key": "printFailed",
+"english": "Print failed",
+"target": "Utskrifta mislukkast",
+"backtrans": "The printing failed"
+},
+{
+"key": "noEmailAppFound",
+"english": "No email app found",
+"target": "Fann ingen e-postapp",
+"backtrans": "Found no email app"
+},
+{
+"key": "emailFailed",
+"english": "Email failed",
+"target": "E-posten mislukkast",
+"backtrans": "The email failed"
+},
+{
+"key": "fromPageLabel",
+"english": "From",
+"target": "Frå",
+"backtrans": "From"
+},
+{
+"key": "toPageLabel",
+"english": "To",
+"target": "Til",
+"backtrans": "To"
+},
+{
+"key": "pdfImportedAsDocument",
+"english": "PDF imported as document",
+"target": "PDF importert som dokument",
+"backtrans": "PDF imported as document"
+},
+{
+"key": "frontSideCaptured",
+"english": "Front side captured. Now capture the back side.",
+"target": "Framsida er skanna. Skann no baksida.",
+"backtrans": "The front side is scanned. Now scan the back side."
+},
+{
+"key": "idCardPdfGenerated",
+"english": "ID Card PDF Generated",
+"target": "PDF for ID-kort er laga",
+"backtrans": "PDF for ID card is made"
+},
+{
+"key": "sharePdf",
+"english": "Share PDF",
+"target": "Del PDF",
+"backtrans": "Share PDF"
+},
+{
+"key": "saveAsDocument",
+"english": "Save as Document",
+"target": "Lagre som dokument",
+"backtrans": "Save as document"
+},
+{
+"key": "commonDone",
+"english": "Done",
+"target": "Ferdig",
+"backtrans": "Done"
+},
+{
+"key": "documentSaved",
+"english": "Document saved",
+"target": "Dokumentet er lagra",
+"backtrans": "The document is saved"
+},
+{
+"key": "commonReset",
+"english": "Reset",
+"target": "Nullstill",
+"backtrans": "Zero out"
+},
+{
+"key": "autoScan",
+"english": "Auto Scan",
+"target": "Automatisk skanning",
+"backtrans": "Automatic scanning"
+},
+{
+"key": "importAndConvertDocument",
+"english": "Import & Convert Document",
+"target": "Importer og konverter dokument",
+"backtrans": "Import and convert document"
+},
+{
+"key": "signatureTitle",
+"english": "Signature",
+"target": "Signatur",
+"backtrans": "Signature"
+},
+{
+"key": "signatureChoiceMessage",
+"english": "Use your saved signature or draw a new one?",
+"target": "Bruke den lagra signaturen eller teikne ein ny?",
+"backtrans": "Use the saved signature or draw a new one?"
+},
+{
+"key": "useSavedSignature",
+"english": "Use Saved",
+"target": "Bruk lagra",
+"backtrans": "Use saved"
+},
+{
+"key": "drawNewSignature",
+"english": "Draw New",
+"target": "Teikn ny",
+"backtrans": "Draw new"
+},
+{
+"key": "copyAll",
+"english": "Copy all",
+"target": "Kopier alt",
+"backtrans": "Copy all"
+},
+{
+"key": "clearThis",
+"english": "Clear this",
+"target": "Tøm denne",
+"backtrans": "Empty this"
+},
+{
+"key": "commonRemove",
+"english": "Remove",
+"target": "Fjern",
+"backtrans": "Remove"
+},
+{
+"key": "clearAll",
+"english": "Clear all",
+"target": "Tøm alt",
+"backtrans": "Empty all"
+},
+{
+"key": "addSignature",
+"english": "Add Signature",
+"target": "Legg til signatur",
+"backtrans": "Add signature"
+},
+{
+"key": "commonUse",
+"english": "Use",
+"target": "Bruk",
+"backtrans": "Use"
+},
+{
+"key": "stampTickedLabel",
+"english": "Ticked",
+"target": "Avkryssa",
+"backtrans": "Crossed off (ticked)"
+},
+{
+"key": "stampBoxLabel",
+"english": "Box",
+"target": "Boks",
+"backtrans": "Box"
+},
+{
+"key": "stampTickLabel",
+"english": "Tick",
+"target": "Hake",
+"backtrans": "Check mark"
+},
+{
+"key": "commonCustom",
+"english": "Custom",
+"target": "Eigendefinert",
+"backtrans": "Self-defined"
+},
+{
+"key": "commonChange",
+"english": "Change",
+"target": "Endre",
+"backtrans": "Change"
+},
+{
+"key": "commonColor",
+"english": "Color",
+"target": "Farge",
+"backtrans": "Color"
+},
+{
+"key": "stampPaperLabel",
+"english": "Paper",
+"target": "Papir",
+"backtrans": "Paper"
+},
+{
+"key": "whiteHaloLabel",
+"english": "White halo (readability)",
+"target": "Kvit glorie (lesbarheit)",
+"backtrans": "White halo (legibility)"
+},
+{
+"key": "commonCreate",
+"english": "Create",
+"target": "Opprett",
+"backtrans": "Create"
+},
+{
+"key": "newFolderTitle",
+"english": "New Folder",
+"target": "Ny mappe",
+"backtrans": "New folder"
+},
+{
+"key": "batchExportEmptyMessage",
+"english": "No documents to batch export. Scan some first.",
+"target": "Ingen dokument å eksportere. Skann nokre først.",
+"backtrans": "No documents to export. Scan some first."
+},
+{
+"key": "newFolderTooltip",
+"english": "New Folder",
+"target": "Ny mappe",
+"backtrans": "New folder"
+},
+{
+"key": "accentColorTooltip",
+"english": "Accent Color",
+"target": "Aksentfarge",
+"backtrans": "Accent color"
+},
+{
+"key": "moveToFolderTitle",
+"english": "Move to Folder",
+"target": "Flytt til mappe",
+"backtrans": "Move to folder"
+},
+{
+"key": "noFoldersYetHomeMessage",
+"english": "No folders yet. Create one from the home screen.",
+"target": "Ingen mapper enno. Opprett éi frå startskjermen.",
+"backtrans": "No folders yet. Create one from the start screen."
+},
+{
+"key": "appLanguageTitle",
+"english": "App Language",
+"target": "Appspråk",
+"backtrans": "App language"
+},
+{
+"key": "accentColorTitle",
+"english": "Accent Color",
+"target": "Aksentfarge",
+"backtrans": "Accent color"
+},
+{
+"key": "sealEditTitle",
+"english": "Edit Custom Seal",
+"target": "Rediger eigendefinert segl",
+"backtrans": "Edit self-defined seal"
+},
+{
+"key": "sealCreateTitle",
+"english": "Custom Seal",
+"target": "Eigendefinert segl",
+"backtrans": "Self-defined seal"
+},
+{
+"key": "sealMainTextLabel",
+"english": "Main text (top arc / box)",
+"target": "Hovudtekst (øvre bue / boks)",
+"backtrans": "Main text (upper arc / box)"
+},
+{
+"key": "sealSubtextLabel",
+"english": "Subtext (bottom arc / below)",
+"target": "Undertekst (nedre bue / under)",
+"backtrans": "Subtext (lower arc / below)"
+},
+{
+"key": "sealShapeOval",
+"english": "Oval",
+"target": "Oval",
+"backtrans": "Oval"
+},
+{
+"key": "sealShapeBox",
+"english": "Box",
+"target": "Boks",
+"backtrans": "Box"
+},
+{
+"key": "sealCenterStar",
+"english": "Star",
+"target": "Stjerne",
+"backtrans": "Star"
+},
+{
+"key": "sealCenterText",
+"english": "Text",
+"target": "Tekst",
+"backtrans": "Text"
+},
+{
+"key": "sealCenterLogo",
+"english": "Logo",
+"target": "Logo",
+"backtrans": "Logo"
+},
+{
+"key": "sealCenterNone",
+"english": "None",
+"target": "Ingen",
+"backtrans": "None"
+},
+{
+"key": "sealCenterTextLabel",
+"english": "Center text",
+"target": "Tekst i midten",
+"backtrans": "Text in the middle"
+},
+{
+"key": "sealLogoReady",
+"english": "Logo ready",
+"target": "Logoen er klar",
+"backtrans": "The logo is ready"
+},
+{
+"key": "textSizeLabel",
+"english": "Text size: {size}",
+"target": "Tekststorleik: {size}",
+"backtrans": "Text size: {size}"
+},
+{
+"key": "commonUpdate",
+"english": "Update",
+"target": "Oppdater",
+"backtrans": "Update"
+},
+{
+"key": "managePagesTitle",
+"english": "Manage Pages",
+"target": "Administrer sider",
+"backtrans": "Administer pages"
+},
+{
+"key": "pageLabel",
+"english": "Page {index}",
+"target": "Side {index}",
+"backtrans": "Page {index}"
+},
+{
+"key": "duplicateAction",
+"english": "Duplicate",
+"target": "Dupliser",
+"backtrans": "Duplicate"
+},
+{
+"key": "rotate90Action",
+"english": "Rotate 90°",
+"target": "Roter 90°",
+"backtrans": "Rotate 90°"
+},
+{
+"key": "extractToNewDocAction",
+"english": "Extract to new doc",
+"target": "Hent ut til nytt dokument",
+"backtrans": "Pull out to new document"
+},
+{
+"key": "addPageTitle",
+"english": "Add Page",
+"target": "Legg til side",
+"backtrans": "Add page"
+},
+{
+"key": "cameraSource",
+"english": "Camera",
+"target": "Kamera",
+"backtrans": "Camera"
+},
+{
+"key": "importFromGallery",
+"english": "Import from Gallery",
+"target": "Importer frå galleriet",
+"backtrans": "Import from the gallery"
+},
+{
+"key": "fromAnotherDocument",
+"english": "From Another Document",
+"target": "Frå eit anna dokument",
+"backtrans": "From another document"
+},
+{
+"key": "pageCountLabel",
+"english": "{count, plural, =0{No pages} =1{1 page} other{{count} pages}}",
+"target": "{count, plural, =0{Ingen sider} =1{1 side} other{{count} sider}}",
+"backtrans": "{count, plural, =0{No pages} =1{1 page} other{{count} pages}}"
+},
+{
+"key": "commonConfirm",
+"english": "Confirm",
+"target": "Stadfest",
+"backtrans": "Confirm"
+},
+{
+"key": "applyToAllPages",
+"english": "Apply to all pages",
+"target": "Bruk på alle sider",
+"backtrans": "Apply to all pages"
+},
+{
+"key": "widthLabel",
+"english": "Width",
+"target": "Breidd",
+"backtrans": "Width"
+},
+{
+"key": "heightLabel",
+"english": "Height",
+"target": "Høgd",
+"backtrans": "Height"
+},
+{
+"key": "lockAspectRatio",
+"english": "Lock aspect ratio",
+"target": "Lås sideforholdet",
+"backtrans": "Lock the aspect ratio"
+},
+{
+"key": "originalDimensions",
+"english": "Original: {w}×{h}",
+"target": "Original: {w}×{h}",
+"backtrans": "Original: {w}×{h}"
+},
+{
+"key": "ocrSectionLabel",
+"english": "OCR",
+"target": "OCR",
+"backtrans": "OCR"
+},
+{
+"key": "ocrLanguagesLabel",
+"english": "OCR Languages",
+"target": "OCR-språk",
+"backtrans": "OCR languages"
+},
+{
+"key": "captureBehaviorSectionLabel",
+"english": "CAPTURE BEHAVIOR",
+"target": "OPPFØRSEL VED SKANNING",
+"backtrans": "BEHAVIOR WHEN SCANNING"
+},
+{
+"key": "autoCopyOcrLabel",
+"english": "Auto-copy OCR",
+"target": "Kopier OCR automatisk",
+"backtrans": "Copy OCR automatically"
+},
+{
+"key": "autoCopyOcrSubtitle",
+"english": "Copy text to clipboard after scan",
+"target": "Kopier tekst til utklippstavla etter skanning",
+"backtrans": "Copy text to the clipboard after scanning"
+},
+{
+"key": "beepOnCaptureLabel",
+"english": "Beep on capture",
+"target": "Pip ved skanning",
+"backtrans": "Beep when scanning"
+},
+{
+"key": "beepOnCaptureSubtitle",
+"english": "Play sound when scan completes",
+"target": "Spel av lyd når skanninga er ferdig",
+"backtrans": "Play a sound when the scan is finished"
+},
+{
+"key": "vibrateOnCaptureLabel",
+"english": "Vibrate on capture",
+"target": "Vibrer ved skanning",
+"backtrans": "Vibrate when scanning"
+},
+{
+"key": "vibrateOnCaptureSubtitle",
+"english": "Haptic feedback when scan completes",
+"target": "Vibrasjon når skanninga er ferdig",
+"backtrans": "Vibration when the scan is finished"
+},
+{
+"key": "adsRemovedLabel",
+"english": "Ads Removed",
+"target": "Annonsar fjerna",
+"backtrans": "Ads removed"
+},
+{
+"key": "diagnosticsSectionLabel",
+"english": "DIAGNOSTICS",
+"target": "DIAGNOSTIKK",
+"backtrans": "DIAGNOSTICS"
+},
+{
+"key": "debugLogsLabel",
+"english": "Debug Logs",
+"target": "Feilsøkingslogg",
+"backtrans": "Troubleshooting log"
+},
+{
+"key": "logEntriesLabel",
+"english": "{count, plural, =0{No entries} =1{1 entry} other{{count} entries}}",
+"target": "{count, plural, =0{Ingen oppføringar} =1{1 oppføring} other{{count} oppføringar}}",
+"backtrans": "{count, plural, =0{No entries} =1{1 entry} other{{count} entries}}"
+},
+{
+"key": "ocrStatusBuiltIn",
+"english": "Built-in",
+"target": "Innebygd",
+"backtrans": "Built-in"
+},
+{
+"key": "ocrStatusChecking",
+"english": "Checking...",
+"target": "Sjekkar...",
+"backtrans": "Checking..."
+},
+{
+"key": "ocrStatusOnDemand",
+"english": "On-demand",
+"target": "Ved behov",
+"backtrans": "When needed"
+},
+{
+"key": "savedAsNewDocument",
+"english": "Saved as new document",
+"target": "Lagra som nytt dokument",
+"backtrans": "Saved as new document"
+},
+{
+"key": "conversionFailedPrefix",
+"english": "Conversion failed",
+"target": "Konverteringa mislukkast",
+"backtrans": "The conversion failed"
+},
+{
+"key": "convertDocumentTitle",
+"english": "Convert Document",
+"target": "Konverter dokument",
+"backtrans": "Convert document"
+},
+{
+"key": "convertToLabel",
+"english": "Convert to:",
+"target": "Konverter til:",
+"backtrans": "Convert to:"
+},
+{
+"key": "actionLabel",
+"english": "Action:",
+"target": "Handling:",
+"backtrans": "Action:"
+},
+{
+"key": "saveAsNewDocumentAction",
+"english": "Save as new Document",
+"target": "Lagre som nytt dokument",
+"backtrans": "Save as new document"
+},
+{
+"key": "exportAndShareAction",
+"english": "Export & Share",
+"target": "Eksporter og del",
+"backtrans": "Export and share"
+},
+{
+"key": "docxWarningMessage",
+"english": "DOCX sources render poorly as pages — save inside the app is limited to JPG/PNG from image, PDF, TXT or CSV sources. Use Export & Share for this file.",
+"target": "DOCX-kjelder blir dårleg viste som sider — lagring i appen er avgrensa til JPG/PNG frå bilete, PDF, TXT eller CSV. Bruk Eksporter og del for denne fila.",
+"backtrans": "DOCX sources are displayed poorly as pages — saving in the app is limited to JPG/PNG from images, PDF, TXT or CSV. Use Export and share for this file."
+},
+{
+"key": "saveInsideAppWarning",
+"english": "To save inside the app, choose JPG or PNG. Other targets are exported as files.",
+"target": "For å lagre i appen, vel JPG eller PNG. Andre mål blir eksporterte som filer.",
+"backtrans": "To save in the app, choose JPG or PNG. Other targets are exported as files."
+},
+{
+"key": "commonConvert",
+"english": "Convert",
+"target": "Konverter",
+"backtrans": "Convert"
+},
+{
+"key": "conversionStarting",
+"english": "Starting…",
+"target": "Startar…",
+"backtrans": "Starting…"
+},
+{
+"key": "convertedDocTitle",
+"english": "Converted {date}",
+"target": "Konvertert {date}",
+"backtrans": "Converted {date}"
+},
+{
+"key": "progressReading",
+"english": "Reading…",
+"target": "Les…",
+"backtrans": "Reads…"
+},
+{
+"key": "progressCopying",
+"english": "Copying…",
+"target": "Kopierer…",
+"backtrans": "Copying…"
+},
+{
+"key": "progressBuildingPdf",
+"english": "Building PDF…",
+"target": "Lagar PDF…",
+"backtrans": "Making PDF…"
+},
+{
+"key": "progressBuildingDocx",
+"english": "Building DOCX…",
+"target": "Lagar DOCX…",
+"backtrans": "Making DOCX…"
+},
+{
+"key": "progressDecodingImage",
+"english": "Decoding image…",
+"target": "Dekodar bilete…",
+"backtrans": "Decoding image…"
+},
+{
+"key": "progressExtractingText",
+"english": "Extracting text…",
+"target": "Hentar ut tekst…",
+"backtrans": "Extracting text…"
+},
+{
+"key": "progressSaving",
+"english": "Saving…",
+"target": "Lagrar…",
+"backtrans": "Saving…"
+},
+{
+"key": "progressRasterizing",
+"english": "Rasterizing pages…",
+"target": "Rasteriserer sider…",
+"backtrans": "Rasterizing pages…"
+},
+{
+"key": "progressEncodingPage",
+"english": "Encoding page {current} of {total}…",
+"target": "Kodar side {current} av {total}…",
+"backtrans": "Encoding page {current} of {total}…"
+},
+{
+"key": "watermarkEditTitle",
+"english": "Edit Watermark",
+"target": "Rediger vassmerke",
+"backtrans": "Edit watermark"
+},
+{
+"key": "watermarkAddTitle",
+"english": "Add Watermark",
+"target": "Legg til vassmerke",
+"backtrans": "Add watermark"
+},
+{
+"key": "watermarkTextLabel",
+"english": "Text",
+"target": "Tekst",
+"backtrans": "Text"
+},
+{
+"key": "opacityPercentLabel",
+"english": "Opacity: {percent}%",
+"target": "Ugjennomsiktigheit: {percent}%",
+"backtrans": "Opaqueness (impermeability to light): {percent}% [??: 'Ugjennomsiktigheit' literally means non-transparency, i.e. opacity; fine]"
+},
+{
+"key": "sizePtLabel",
+"english": "Size: {size}pt",
+"target": "Storleik: {size} pt",
+"backtrans": "Size: {size} pt"
+},
+{
+"key": "alignLabel",
+"english": "Align",
+"target": "Justering",
+"backtrans": "Justification"
+},
+{
+"key": "exportSavedToDownloads",
+"english": "Saved to Downloads",
+"target": "Lagra i Nedlastingar",
+"backtrans": "Saved in Downloads"
+},
+{
+"key": "commonShare",
+"english": "Share",
+"target": "Del",
+"backtrans": "Share"
+},
+{
+"key": "exportTitle",
+"english": "Export",
+"target": "Eksporter",
+"backtrans": "Export"
+},
+{
+"key": "targetMbLabel",
+"english": "{mb} MB",
+"target": "{mb} MB",
+"backtrans": "{mb} MB"
+},
+{
+"key": "filterColor",
+"english": "Color",
+"target": "Farge",
+"backtrans": "Color"
+},
+{
+"key": "filterShadow",
+"english": "Shadow",
+"target": "Skugge",
+"backtrans": "Shadow"
+},
+{
+"key": "docxModeTextOnly",
+"english": "Text Only",
+"target": "Berre tekst",
+"backtrans": "Only text"
+},
+{
+"key": "docxModeWithImages",
+"english": "With Images",
+"target": "Med bilete",
+"backtrans": "With images"
+},
+{
+"key": "saveToDeviceButton",
+"english": "Save to Device",
+"target": "Lagre på eininga",
+"backtrans": "Save on the device"
+},
+{
+"key": "pageIndicator",
+"english": "Page {current} / {total}",
+"target": "Side {current} / {total}",
+"backtrans": "Page {current} / {total}"
+},
+{
+"key": "fullscreenLabel",
+"english": "Fullscreen",
+"target": "Fullskjerm",
+"backtrans": "Full screen"
+},
+{
+"key": "batchExportSignatureDisabled",
+"english": "Batch export — signature placement disabled",
+"target": "Batcheksport — plassering av signatur er slått av",
+"backtrans": "Batch export — placement of signature is turned off"
+},
+{
+"key": "fitToTargetMbLabel",
+"english": "Fit to target MB",
+"target": "Tilpass til mål-MB",
+"backtrans": "Fit to target MB"
+},
+{
+"key": "moreOptionsTooltip",
+"english": "More options",
+"target": "Fleire val",
+"backtrans": "More options"
+},
+{
+"key": "commonRename",
+"english": "Rename",
+"target": "Gi nytt namn",
+"backtrans": "Give new name"
+},
+{
+"key": "addTagsAction",
+"english": "Add Tags",
+"target": "Legg til merkelappar",
+"backtrans": "Add labels"
+},
+{
+"key": "editDocumentAction",
+"english": "Edit Document",
+"target": "Rediger dokument",
+"backtrans": "Edit document"
+},
+{
+"key": "copiedToClipboard",
+"english": "Copied to clipboard",
+"target": "Kopiert til utklippstavla",
+"backtrans": "Copied to the clipboard"
+},
+{
+"key": "favoriteTooltip",
+"english": "Favorite",
+"target": "Favoritt",
+"backtrans": "Favorite"
+},
+{
+"key": "noFoldersYet",
+"english": "No folders yet",
+"target": "Ingen mapper enno",
+"backtrans": "No folders yet"
+},
+{
+"key": "rotateLabel",
+"english": "Rotate",
+"target": "Roter",
+"backtrans": "Rotate"
+},
+{
+"key": "scaleLabel",
+"english": "Scale",
+"target": "Skalering",
+"backtrans": "Scaling"
+},
+{
+"key": "eraserTitle",
+"english": "Eraser",
+"target": "Viskelêr",
+"backtrans": "Eraser"
+},
+{
+"key": "tapToSampleColor",
+"english": "Tap a spot to sample its color",
+"target": "Trykk på eit punkt for å hente fargen",
+"backtrans": "Tap a point to pick up the color"
+},
+{
+"key": "commonSize",
+"english": "Size",
+"target": "Storleik",
+"backtrans": "Size"
+},
+{
+"key": "sampleColorTooltip",
+"english": "Sample color from page",
+"target": "Hent farge frå sida",
+"backtrans": "Pick up color from the page"
+},
+{
+"key": "marqueeEraseTooltip",
+"english": "Marquee erase",
+"target": "Visk ut markert område",
+"backtrans": "Erase marked area"
+},
+{
+"key": "commonApply",
+"english": "Apply",
+"target": "Bruk",
+"backtrans": "Apply"
+},
+{
+"key": "filterTitle",
+"english": "Filter",
+"target": "Filter",
+"backtrans": "Filter"
+},
+{
+"key": "intensityLabel",
+"english": "Intensity",
+"target": "Styrke",
+"backtrans": "Strength"
+},
+{
+"key": "selectRegionTitle",
+"english": "Select Region",
+"target": "Vel område",
+"backtrans": "Choose area"
+},
+{
+"key": "commonExtract",
+"english": "Extract",
+"target": "Hent ut",
+"backtrans": "Extract"
+},
+{
+"key": "customColorTitle",
+"english": "Custom Color",
+"target": "Eigendefinert farge",
+"backtrans": "Self-defined color"
+},
+{
+"key": "documentNotFound",
+"english": "Document not found",
+"target": "Fann ikkje dokumentet",
+"backtrans": "Did not find the document"
+},
+{
+"key": "clearLogsTooltip",
+"english": "Clear logs",
+"target": "Tøm loggen",
+"backtrans": "Empty the log"
+},
+{
+"key": "placeHereLabel",
+"english": "Place here",
+"target": "Plasser her",
+"backtrans": "Place here"
+},
+{
+"key": "tryAgainButton",
+"english": "Try again",
+"target": "Prøv igjen",
+"backtrans": "Try again"
+},
+{
+"key": "emptyDocumentMessage",
+"english": "This document has no pages.",
+"target": "Dette dokumentet har ingen sider.",
+"backtrans": "This document has no pages."
+},
+{
+"key": "cameraErrorPrefix",
+"english": "Camera error",
+"target": "Kamerafeil",
+"backtrans": "Camera error"
+},
+{
+"key": "importErrorPrefix",
+"english": "Import error",
+"target": "Importfeil",
+"backtrans": "Import error"
+},
+{
+"key": "pdfImportErrorPrefix",
+"english": "PDF import error",
+"target": "PDF-importfeil",
+"backtrans": "PDF import error"
+},
+{
+"key": "pickErrorPrefix",
+"english": "Pick error",
+"target": "Valfeil",
+"backtrans": "Choice error"
+},
+{
+"key": "scannerErrorPrefix",
+"english": "Scanner error",
+"target": "Skannarfeil",
+"backtrans": "Scanner error"
+},
+{
+"key": "idPdfErrorPrefix",
+"english": "Error generating ID PDF",
+"target": "Feil ved laging av ID-PDF",
+"backtrans": "Error when making ID PDF"
+},
+{
+"key": "genericErrorPrefix",
+"english": "Error",
+"target": "Feil",
+"backtrans": "Error"
+},
+{
+"key": "annotateTitle",
+"english": "Annotate",
+"target": "Merk opp",
+"backtrans": "Mark up"
+},
+{
+"key": "placementsCountLabel",
+"english": "{count, plural, =0{Nothing placed} =1{1 placed} other{{count} placed}}",
+"target": "{count, plural, =0{Ingenting plassert} =1{1 plassert} other{{count} plasserte}}",
+"backtrans": "{count, plural, =0{Nothing placed} =1{1 placed} other{{count} placed}}"
+},
+{
+"key": "ocrUnavailableTooltip",
+"english": "OCR unavailable on this device.",
+"target": "OCR er ikkje tilgjengeleg på denne eininga.",
+"backtrans": "OCR is not available on this device."
+},
+{
+"key": "docScannerUnsupportedMessage",
+"english": "Your device doesn't support the advanced document scanner. Take a photo with your Camera app, then tap Import below to crop and save it.",
+"target": "Eininga di støttar ikkje den avanserte dokumentskannaren. Ta eit bilete med kameraappen, og trykk deretter på Importer under for å beskjere og lagre det.",
+"backtrans": "Your device does not support the advanced document scanner. Take a picture with the camera app, and then tap Import below to crop and save it."
+},
+{
+"key": "billingUnavailableMessage",
+"english": "Billing unavailable — try again later.",
+"target": "Betaling er ikkje tilgjengeleg — prøv igjen seinare.",
+"backtrans": "Payment is not available — try again later."
+},
+{
+"key": "ocrNoInternetMessage",
+"english": "No internet. Connect once to download the language pack.",
+"target": "Inkje internett. Kople til éin gong for å laste ned språkpakka.",
+"backtrans": "No internet. Connect once to download the language pack."
+},
+{
+"key": "ocrLanguagePackNotReady",
+"english": "Language pack downloading or not ready. Try again shortly.",
+"target": "Språkpakka lastar ned eller er ikkje klar. Prøv igjen om litt.",
+"backtrans": "The language pack is downloading or is not ready. Try again in a little while."
+},
+{
+"key": "undoTooltip",
+"english": "Undo",
+"target": "Angre",
+"backtrans": "Undo"
+},
+{
+"key": "redoTooltip",
+"english": "Redo",
+"target": "Gjer om",
+"backtrans": "Redo"
+},
+{
+"key": "fillInputHint",
+"english": "Type text to fill",
+"target": "Skriv teksten som skal fyllast inn",
+"backtrans": "Type the text to be filled in"
+},
+{
+"key": "fillCapsLabel",
+"english": "ALL CAPS",
+"target": "STORE BOKSTAVAR",
+"backtrans": "CAPITAL LETTERS"
+},
+{
+"key": "fillSaveSnippet",
+"english": "Save as snippet",
+"target": "Lagre som tekstbit",
+"backtrans": "Save as text snippet"
+},
+{
+"key": "fillDeleteSnippet",
+"english": "Delete snippet?",
+"target": "Slette tekstbit?",
+"backtrans": "Delete text snippet?"
+},
+{
+"key": "fillTooltip",
+"english": "Fill",
+"target": "Fyll ut",
+"backtrans": "Fill out"
+},
+{
+"key": "tickerFreeUnlimitedOcr",
+"english": "FREE UNLIMITED OCR",
+"target": "GRATIS OG UBEGRENSA OCR",
+"backtrans": "FREE AND UNLIMITED OCR"
+},
+{
+"key": "ticker100OnDevicePrivacy",
+"english": "YOUR DOCUMENTS STAY ON YOUR DEVICE",
+"target": "DOKUMENTA DINE BLIR PÅ EININGA DI",
+"backtrans": "YOUR DOCUMENTS STAY ON YOUR DEVICE"
+},
+{
+"key": "tickerNoAccount",
+"english": "NO ACCOUNT",
+"target": "INGEN KONTO",
+"backtrans": "NO ACCOUNT"
+},
+{
+"key": "tickerNoWatermarks",
+"english": "NO WATERMARKS",
+"target": "INGE VASSMERKE",
+"backtrans": "NO WATERMARKS"
+},
+{
+"key": "ticker21ToolEditSuite",
+"english": "21-TOOL EDIT SUITE",
+"target": "REDIGERINGSPAKKE MED 21 VERKTØY",
+"backtrans": "EDITING PACKAGE WITH 21 TOOLS"
+},
+{
+"key": "tickerNonDestructiveEditing",
+"english": "NON-DESTRUCTIVE EDITING",
+"target": "IKKJE-DESTRUKTIV REDIGERING",
+"backtrans": "NON-DESTRUCTIVE EDITING"
+},
+{
+"key": "tickerUndoRedo",
+"english": "UNDO/REDO",
+"target": "ANGRE/GJER OM",
+"backtrans": "UNDO/REDO"
+},
+{
+"key": "tickerRevertToOriginal",
+"english": "REVERT TO ORIGINAL",
+"target": "TILBAKE TIL ORIGINALEN",
+"backtrans": "BACK TO THE ORIGINAL"
+},
+{
+"key": "tickerTapToTypeFilling",
+"english": "TAP-TO-TYPE FILLING",
+"target": "TRYKK-OG-SKRIV UTFYLLING",
+"backtrans": "TAP-AND-TYPE FILLING"
+},
+{
+"key": "tickerESign",
+"english": "E-SIGN",
+"target": "E-SIGNATUR",
+"backtrans": "E-SIGNATURE"
+},
+{
+"key": "tickerCustomSeals",
+"english": "CUSTOM SEALS",
+"target": "EIGENDEFINERTE SEGL",
+"backtrans": "SELF-DEFINED SEALS"
+},
+{
+"key": "tickerTextStamps",
+"english": "TEXT STAMPS",
+"target": "TEKSTSTEMPEL",
+"backtrans": "TEXT STAMPS"
+},
+{
+"key": "tickerNoteStamps",
+"english": "NOTE STAMPS",
+"target": "NOTATSTEMPEL",
+"backtrans": "NOTE STAMPS"
+},
+{
+"key": "tickerSearchablePdf",
+"english": "SEARCHABLE PDF",
+"target": "SØKBAR PDF",
+"backtrans": "SEARCHABLE PDF"
+},
+{
+"key": "tickerRegionOcr",
+"english": "REGION OCR",
+"target": "OCR FOR OMRÅDE",
+"backtrans": "OCR FOR AREA"
+},
+{
+"key": "tickerAutoCopyOcr",
+"english": "AUTO-COPY OCR",
+"target": "AUTOMATISK KOPIERING AV OCR",
+"backtrans": "AUTOMATIC COPYING OF OCR"
+},
+{
+"key": "tickerIdCardMode",
+"english": "ID CARD MODE",
+"target": "ID-KORTMODUS",
+"backtrans": "ID CARD MODE"
+},
+{
+"key": "tickerPassportMode",
+"english": "PASSPORT MODE",
+"target": "PASSMODUS",
+"backtrans": "PASSPORT MODE"
+},
+{
+"key": "tickerGalleryImport",
+"english": "GALLERY IMPORT",
+"target": "IMPORT FRÅ GALLERIET",
+"backtrans": "IMPORT FROM THE GALLERY"
+},
+{
+"key": "tickerPdfExport",
+"english": "PDF EXPORT",
+"target": "PDF-EKSPORT",
+"backtrans": "PDF EXPORT"
+},
+{
+"key": "tickerWordExport",
+"english": "WORD EXPORT",
+"target": "WORD-EKSPORT",
+"backtrans": "WORD EXPORT"
+},
+{
+"key": "tickerJpgExport",
+"english": "JPG EXPORT",
+"target": "JPG-EKSPORT",
+"backtrans": "JPG EXPORT"
+},
+{
+"key": "tickerPngExport",
+"english": "PNG EXPORT",
+"target": "PNG-EKSPORT",
+"backtrans": "PNG EXPORT"
+},
+{
+"key": "tickerBatchExport",
+"english": "BATCH EXPORT",
+"target": "BATCHEKSPORT",
+"backtrans": "BATCH EXPORT"
+},
+{
+"key": "tickerFolders",
+"english": "FOLDERS",
+"target": "MAPPER",
+"backtrans": "FOLDERS"
+},
+{
+"key": "tickerTags",
+"english": "TAGS",
+"target": "MERKELAPPAR",
+"backtrans": "LABELS"
+},
+{
+"key": "tickerFavorites",
+"english": "FAVORITES",
+"target": "FAVORITTAR",
+"backtrans": "FAVORITES"
+},
+{
+"key": "tickerSearch",
+"english": "SEARCH",
+"target": "SØK",
+"backtrans": "SEARCH"
+},
+{
+"key": "tickerDarkMode",
+"english": "DARK MODE",
+"target": "MØRKT TEMA",
+"backtrans": "DARK THEME"
+},
+{
+"key": "tickerAccentThemes",
+"english": "ACCENT THEMES",
+"target": "AKSENTTEMA",
+"backtrans": "ACCENT THEMES"
+},
+{
+"key": "tickerDeviceMigration",
+"english": "DEVICE MIGRATION",
+"target": "FLYTTING TIL NY EINING",
+"backtrans": "MOVE TO A NEW DEVICE"
+},
+{
+"key": "onboardingWelcomeTitle",
+"english": "Welcome to KatharScan",
+"target": "Velkomen til KatharScan",
+"backtrans": "Welcome to KatharScan"
+},
+{
+"key": "onboardingWelcomeSubtitle",
+"english": "Your entire document office — scan, edit, sign, and export — in one private app.",
+"target": "Heile dokumentkontoret ditt — skann, rediger, signer og eksporter — i éin privat app.",
+"backtrans": "Your whole document office — scan, edit, sign and export — in one private app."
+},
+{
+"key": "onboardingToolsTitle",
+"english": "21 Free Pro Tools",
+"target": "21 gratis Pro-verktøy",
+"backtrans": "21 free Pro tools"
+},
+{
+"key": "onboardingToolsSubtitle",
+"english": "Annotate, sign, watermark, fill forms, seal, and more — every tool free and unlimited.",
+"target": "Merk opp, signer, set på vassmerke, fyll ut skjema, set segl og mykje meir — alle verktøy er gratis og ubegrensa.",
+"backtrans": "Mark up, sign, put on watermarks, fill out forms, put on seals and much more — all tools are free and unlimited."
+},
+{
+"key": "onboardingOcrTitle",
+"english": "On-Device OCR",
+"target": "OCR på eininga",
+"backtrans": "OCR on the device"
+},
+{
+"key": "onboardingOcrSubtitle",
+"english": "Use KatharScan in {count} languages. OCR runs on your phone — nothing ever leaves your device.",
+"target": "Bruk KatharScan på {count} språk. OCR køyrer på telefonen din — ingenting forlèt eininga di.",
+"backtrans": "Use KatharScan in {count} languages. OCR runs on your phone — nothing leaves your device. [??: 'forlèt' is an odd spelling of 'forlét/forlèt'; acceptable]"
+},
+{
+"key": "onboardingSignTitle",
+"english": "Sign, Fill & Seal",
+"target": "Signer, fyll ut og set segl",
+"backtrans": "Sign, fill out and put on seals"
+},
+{
+"key": "onboardingSignSubtitle",
+"english": "E-sign contracts, type-to-fill forms, and stamp enterprise seals in seconds.",
+"target": "E-signer avtalar, fyll ut skjema ved å skrive og set bedriftssegl på sekund.",
+"backtrans": "E-sign agreements, fill out forms by typing and put on company seals in seconds."
+},
+{
+"key": "onboardingEditTitle",
+"english": "Non-Destructive Editing",
+"target": "Ikkje-destruktiv redigering",
+"backtrans": "Non-destructive editing"
+},
+{
+"key": "onboardingEditSubtitle",
+"english": "Every edit stays reversible — undo, redo, and revert to original anytime.",
+"target": "Alle endringar kan reverserast — angre, gjer om og gå tilbake til originalen når som helst.",
+"backtrans": "All changes can be reversed — undo, redo and go back to the original at any time."
+},
+{
+"key": "onboardingPrivacyTitle",
+"english": "Private by design",
+"target": "Privat frå grunnen av",
+"backtrans": "Private from the ground up"
+},
+{
+"key": "onboardingPrivacySubtitle",
+"english": "No account, no cloud, no watermarks. Your documents never leave your device.",
+"target": "Ingen konto, ingen sky, inge vassmerke. Dokumenta dine forlèt aldri eininga di.",
+"backtrans": "No account, no cloud, no watermarks. Your documents never leave your device."
+},
+{
+"key": "onboardingContinue",
+"english": "Continue",
+"target": "Hald fram",
+"backtrans": "Continue (hold forth)"
+},
+{
+"key": "onboardingGetStarted",
+"english": "Get Started",
+"target": "Kom i gang",
+"backtrans": "Get started"
+},
+{
+"key": "onboardingBack",
+"english": "Back",
+"target": "Tilbake",
+"backtrans": "Back"
+},
+{
+"key": "onboardingReplayIntro",
+"english": "Replay introduction",
+"target": "Spel av introduksjonen igjen",
+"backtrans": "Play the introduction again"
+},
+{
+"key": "saveToDownloadsAction",
+"english": "Save to Downloads",
+"target": "Lagre i Nedlastingar",
+"backtrans": "Save in Downloads"
+},
+{
+"key": "paywallTitle",
+"english": "Remove Ads",
+"target": "Fjern annonsar",
+"backtrans": "Remove ads"
+},
+{
+"key": "paywallSubtitle",
+"english": "Support KatharScan with a one-time purchase. All features remain free.",
+"target": "Støtt KatharScan med eit eingongskjøp. Alle funksjonar held fram å vere gratis.",
+"backtrans": "Support KatharScan with a one-time purchase. All features continue to be free."
+},
+{
+"key": "paywallFallbackPrice",
+"english": "$14.99 one-time",
+"target": "$14.99 eingongskjøp",
+"backtrans": "$14.99 one-time purchase"
+},
+{
+"key": "paywallFeatureNoBanner",
+"english": "No more banner ads",
+"target": "Ingen fleire bannerannonsar",
+"backtrans": "No more banner ads"
+},
+{
+"key": "paywallFeatureNoInterstitial",
+"english": "No more interstitial ads",
+"target": "Ingen fleire fullskjermsannonsar",
+"backtrans": "No more full-screen ads"
+},
+{
+"key": "paywallFeatureFreeForever",
+"english": "All features free forever",
+"target": "Alle funksjonar er gratis for alltid",
+"backtrans": "All features are free forever"
+},
+{
+"key": "paywallLegalText",
+"english": "This is a non-consumable purchase. Restore it anytime on any device with the same store account.",
+"target": "Dette er eit kjøp som ikkje blir brukt opp. Gjenopprett det når som helst på kva eining som helst med same butikkonto.",
+"backtrans": "This is a purchase that is not used up. Restore it at any time on any device with the same store account."
+},
+{
+"key": "paywallSuccessTitle",
+"english": "Ads Removed",
+"target": "Annonsane er fjerna",
+"backtrans": "The ads are removed"
+},
+{
+"key": "paywallSuccessMessage",
+"english": "Thank you for supporting KatharScan.",
+"target": "Takk for at du støttar KatharScan.",
+"backtrans": "Thanks for supporting KatharScan."
+},
+{
+"key": "errorGenericTitle",
+"english": "Something went wrong",
+"target": "Noko gjekk gale",
+"backtrans": "Something went wrong"
+},
+{
+"key": "errorScreenProblem",
+"english": "KatharScan ran into a problem displaying this screen. Your scans are safe — they're stored on this device and this doesn't affect them.",
+"target": "KatharScan fekk eit problem med å vise denne skjermen. Skanningane dine er trygge — dei er lagra på denne eininga og blir ikkje påverka.",
+"backtrans": "KatharScan got a problem displaying this screen. Your scans are safe — they are stored on this device and are not affected."
+},
+{
+"key": "errorReportIssue",
+"english": "Report issue",
+"target": "Rapporter problem",
+"backtrans": "Report problem"
+},
+{
+"key": "filterAll",
+"english": "All",
+"target": "Alle",
+"backtrans": "All"
+},
+{
+"key": "filterFolders",
+"english": "Folders",
+"target": "Mapper",
+"backtrans": "Folders"
+},
+{
+"key": "filterRecent",
+"english": "Recent",
+"target": "Nyleg",
+"backtrans": "Recently"
+},
+{
+"key": "filterFavorites",
+"english": "Favorites",
+"target": "Favorittar",
+"backtrans": "Favorites"
+},
+{
+"key": "chipAllFolders",
+"english": "All Folders",
+"target": "Alle mapper",
+"backtrans": "All folders"
+},
+{
+"key": "chipSelectMultiple",
+"english": "Select Multiple",
+"target": "Vel fleire",
+"backtrans": "Select several"
+},
+{
+"key": "emptySearch",
+"english": "No scans match your search.",
+"target": "Ingen skanningar samsvarar med søket ditt.",
+"backtrans": "No scans match your search."
+},
+{
+"key": "emptyFolders",
+"english": "No folders yet. Tap the folder icon to create one.",
+"target": "Ingen mapper enno. Trykk på mappeikonet for å opprette éi.",
+"backtrans": "No folders yet. Tap the folder icon to create one."
+},
+{
+"key": "emptyFavorites",
+"english": "No favorites yet. Tap the star icon on a document to add it.",
+"target": "Ingen favorittar enno. Trykk på stjerneikonet på eit dokument for å leggje det til.",
+"backtrans": "No favorites yet. Tap the star icon on a document to add it."
+},
+{
+"key": "modeDocument",
+"english": "Document Mode",
+"target": "Dokumentmodus",
+"backtrans": "Document mode"
+},
+{
+"key": "modeOcr",
+"english": "OCR Mode",
+"target": "OCR-modus",
+"backtrans": "OCR mode"
+},
+{
+"key": "modeIdCard",
+"english": "ID Card Mode",
+"target": "ID-kortmodus",
+"backtrans": "ID card mode"
+},
+{
+"key": "modePassport",
+"english": "Passport Mode",
+"target": "Passmodus",
+"backtrans": "Passport mode"
+},
+{
+"key": "titlePdfImport",
+"english": "PDF Import",
+"target": "PDF-import",
+"backtrans": "PDF import"
+},
+{
+"key": "titleIdCard",
+"english": "ID Card",
+"target": "ID-kort",
+"backtrans": "ID card"
+},
+{
+"key": "titleScan",
+"english": "Scan",
+"target": "Skanning",
+"backtrans": "Scan"
+},
+{
+"key": "exportEstimatedSize",
+"english": "Estimated size: {mb} MB",
+"target": "Estimert storleik: {mb} MB",
+"backtrans": "Estimated size: {mb} MB"
+},
+{
+"key": "debugNoLogsYet",
+"english": "No logs yet",
+"target": "Ingen loggar enno",
+"backtrans": "No logs yet"
+},
+{
+"key": "textBold",
+"english": "B",
+"target": "F",
+"backtrans": "F [??: 'F' for bold = 'Feit'; fine]"
+},
+{
+"key": "textItalic",
+"english": "I",
+"target": "K",
+"backtrans": "K [??: 'K' for italic = 'Kursiv']"
+},
+{
+"key": "textUnderline",
+"english": "U",
+"target": "U",
+"backtrans": "U"
+},
+{
+"key": "textFontLetterA",
+"english": "A",
+"target": "A",
+"backtrans": "A"
+},
+{
+"key": "multiplySymbol",
+"english": "×",
+"target": "×",
+"backtrans": "×"
+},
+{
+"key": "signerLabel",
+"english": "Signer {index}",
+"target": "Signatar {index}",
+"backtrans": "Signer {index} [??: 'Signatar' is an odd/uncommon word for signer]"
+},
+{
+"key": "stampCheckbox",
+"english": "Checkbox",
+"target": "Avkryssingsboks",
+"backtrans": "Checkbox (crossing-off box)"
+},
+{
+"key": "fontSansSerif",
+"english": "sans-serif",
+"target": "sans-serif",
+"backtrans": "sans-serif"
+},
+{
+"key": "fontSerif",
+"english": "serif",
+"target": "serif",
+"backtrans": "serif"
+},
+{
+"key": "fontMonospace",
+"english": "monospace",
+"target": "monospace",
+"backtrans": "monospace"
+},
+{
+"key": "sealCustom",
+"english": "Custom Seal",
+"target": "Eigendefinert segl",
+"backtrans": "Self-defined seal"
+},
+{
+"key": "formatCsv",
+"english": "CSV",
+"target": "CSV",
+"backtrans": "CSV"
+},
+{
+"key": "ocrNoTextFound",
+"english": "No text found",
+"target": "Fann ingen tekst",
+"backtrans": "Found no text"
+},
+{
+"key": "rotationAllPages",
+"english": "All pages rotated",
+"target": "Alle sider er roterte",
+"backtrans": "All pages are rotated"
+},
+{
+"key": "rotationPage",
+"english": "Page rotated",
+"target": "Sida er rotert",
+"backtrans": "The page is rotated"
+},
+{
+"key": "resizeTitle",
+"english": "Resize",
+"target": "Endre storleik",
+"backtrans": "Change size"
+},
+{
+"key": "addTextTitle",
+"english": "Add Text",
+"target": "Legg til tekst",
+"backtrans": "Add text"
+},
+{
+"key": "addNoteTitle",
+"english": "Add Note",
+"target": "Legg til notat",
+"backtrans": "Add note"
+},
+{
+"key": "addDateTitle",
+"english": "Add Date",
+"target": "Legg til dato",
+"backtrans": "Add date"
+},
+{
+"key": "addCheckboxTitle",
+"english": "Add Checkbox",
+"target": "Legg til avkryssingsboks",
+"backtrans": "Add checkbox"
+},
+{
+"key": "noteTextLabel",
+"english": "Note text",
+"target": "Notattekst",
+"backtrans": "Note text"
+},
+{
+"key": "textLabel",
+"english": "Text",
+"target": "Tekst",
+"backtrans": "Text"
+},
+{
+"key": "checkShapeRounded",
+"english": "Rounded",
+"target": "Avrunda",
+"backtrans": "Rounded"
+},
+{
+"key": "checkShapeSquare",
+"english": "Square",
+"target": "Firkant",
+"backtrans": "Square (four-sided)"
+},
+{
+"key": "checkShapeCircle",
+"english": "Circle",
+"target": "Sirkel",
+"backtrans": "Circle"
+},
+{
+"key": "hueLabel",
+"english": "Hue",
+"target": "Fargetone",
+"backtrans": "Hue"
+},
+{
+"key": "satLabel",
+"english": "Sat",
+"target": "Metn.",
+"backtrans": "Sat. [??: abbreviation 'Metn.' for saturation (metning)]"
+},
+{
+"key": "valLabel",
+"english": "Val",
+"target": "Verdi",
+"backtrans": "Value"
+},
+{
+"key": "annotationModePen",
+"english": "Pen",
+"target": "Penn",
+"backtrans": "Pen"
+},
+{
+"key": "annotationModeHighlighter",
+"english": "Highlighter",
+"target": "Markeringspenn",
+"backtrans": "Highlighter pen"
+},
+{
+"key": "annotationModeRect",
+"english": "Rectangle",
+"target": "Rektangel",
+"backtrans": "Rectangle"
+},
+{
+"key": "annotationModeArrow",
+"english": "Arrow",
+"target": "Pil",
+"backtrans": "Arrow"
+},
+{
+"key": "annotationModeEllipse",
+"english": "Ellipse",
+"target": "Ellipse",
+"backtrans": "Ellipse"
+},
+{
+"key": "sharePromptTitle",
+"english": "Love KatharScan?",
+"target": "Glad i KatharScan?",
+"backtrans": "Fond of KatharScan?"
+},
+{
+"key": "sharePromptBody",
+"english": "Share it with friends who need a powerful document scanner.",
+"target": "Del appen med vener som treng ein kraftig dokumentskannar.",
+"backtrans": "Share the app with friends who need a powerful document scanner."
+},
+{
+"key": "sharePromptAction",
+"english": "Share App",
+"target": "Del appen",
+"backtrans": "Share the app"
+},
+{
+"key": "sharePromptDismiss",
+"english": "Not now",
+"target": "Ikkje no",
+"backtrans": "Not now"
+},
+{
+"key": "reviewPromptTitle",
+"english": "Enjoying KatharScan?",
+"target": "Trivst du med KatharScan?",
+"backtrans": "Do you enjoy KatharScan?"
+},
+{
+"key": "reviewPromptBody",
+"english": "Your feedback helps us grow and keeps the app free.",
+"target": "Tilbakemeldinga di hjelper oss å vekse og held appen gratis.",
+"backtrans": "Your feedback helps us grow and keeps the app free."
+},
+{
+"key": "reviewPromptYes",
+"english": "Rate Us",
+"target": "Vurder oss",
+"backtrans": "Rate us"
+},
+{
+"key": "reviewPromptNo",
+"english": "Send Feedback",
+"target": "Send tilbakemelding",
+"backtrans": "Send feedback"
+},
+{
+"key": "watermarkLabel",
+"english": "Watermark",
+"target": "Vassmerke",
+"backtrans": "Watermark"
+},
+{
+"key": "compressLabel",
+"english": "Compress",
+"target": "Komprimer",
+"backtrans": "Compress"
+},
+{
+"key": "pagesLabel",
+"english": "Pages",
+"target": "Sider",
+"backtrans": "Pages"
+},
+{
+"key": "cropLabel",
+"english": "Crop",
+"target": "Beskjer",
+"backtrans": "Crop"
+},
+{
+"key": "emailLabel",
+"english": "Email",
+"target": "E-post",
+"backtrans": "Email"
+},
+{
+"key": "checkLabel",
+"english": "Check",
+"target": "Hake",
+"backtrans": "Check mark"
+},
+{
+"key": "captionDocs",
+"english": "Flexible crop: Original, Square, 4:3, 3:2, 16:9",
+"target": "Fleksibel beskjering: original, kvadrat, 4:3, 3:2, 16:9",
+"backtrans": "Flexible cropping: original, square, 4:3, 3:2, 16:9"
+},
+{
+"key": "captionOcr",
+"english": "Text crop: Original, Square, 4:3",
+"target": "Tekstbeskjering: original, kvadrat, 4:3",
+"backtrans": "Text cropping: original, square, 4:3"
+},
+{
+"key": "captionIdCard",
+"english": "Two-sided ID capture: Front + Back",
+"target": "ID-skanning av begge sider: framside + bakside",
+"backtrans": "ID scan of both sides: front side + back side"
+},
+{
+"key": "captionPassport",
+"english": "Passport crop: 4:3 or Original",
+"target": "Passbeskjering: 4:3 eller original",
+"backtrans": "Passport cropping: 4:3 or original"
+},
+{
+"key": "idStepFront",
+"english": "Step 1: Capture Front Side",
+"target": "Steg 1: Skann framsida",
+"backtrans": "Step 1: Scan the front side"
+},
+{
+"key": "idStepBack",
+"english": "Step 2: Capture Back Side",
+"target": "Steg 2: Skann baksida",
+"backtrans": "Step 2: Scan the back side"
+},
+{
+"key": "idGenerating",
+"english": "Generating PDF...",
+"target": "Lagar PDF...",
+"backtrans": "Making PDF..."
+},
+{
+"key": "captureFrontSide",
+"english": "Capture Front Side",
+"target": "Skann framsida",
+"backtrans": "Scan the front side"
+},
+{
+"key": "captureBackSide",
+"english": "Capture Back Side",
+"target": "Skann baksida",
+"backtrans": "Scan the back side"
+},
+{
+"key": "importFrontSide",
+"english": "Import Front Side",
+"target": "Importer framsida",
+"backtrans": "Import the front side"
+},
+{
+"key": "importBackSide",
+"english": "Import Back Side",
+"target": "Importer baksida",
+"backtrans": "Import the back side"
+},
+{
+"key": "cropDocumentTitle",
+"english": "Crop Document",
+"target": "Beskjer dokument",
+"backtrans": "Crop document"
+},
+{
+"key": "cropIdCardTitle",
+"english": "Crop ID Card",
+"target": "Beskjer ID-kort",
+"backtrans": "Crop ID card"
+},
+{
+"key": "tabImageLabel",
+"english": "Image",
+"target": "Bilete",
+"backtrans": "Image"
+},
+{
+"key": "tabOcrTextLabel",
+"english": "OCR Text",
+"target": "OCR-tekst",
+"backtrans": "OCR text"
+},
+{
+"key": "compressSmall",
+"english": "Small",
+"target": "Liten",
+"backtrans": "Small"
+},
+{
+"key": "compressMedium",
+"english": "Medium",
+"target": "Middels",
+"backtrans": "Medium"
+},
+{
+"key": "pageFormatLetter",
+"english": "Letter (US)",
+"target": "Letter (USA)",
+"backtrans": "Letter (USA)"
+},
+{
+"key": "ocrScriptLatin",
+"english": "Latin (English, European)",
+"target": "Latinsk (engelsk, europeisk)",
+"backtrans": "Latin (English, European)"
+},
+{
+"key": "ocrScriptChinese",
+"english": "Chinese",
+"target": "Kinesisk",
+"backtrans": "Chinese"
+},
+{
+"key": "ocrScriptKorean",
+"english": "Korean",
+"target": "Koreansk",
+"backtrans": "Korean"
+},
+{
+"key": "ocrScriptJapanese",
+"english": "Japanese",
+"target": "Japansk",
+"backtrans": "Japanese"
+},
+{
+"key": "ocrScriptDevanagari",
+"english": "Hindi, Marathi (Devanagari)",
+"target": "Hindi, marathi (devanagari)",
+"backtrans": "Hindi, Marathi (Devanagari)"
+},
+{
+"key": "ocrStatusUnsupported",
+"english": "Unsupported",
+"target": "Ikkje støtta",
+"backtrans": "Not supported"
+},
+{
+"key": "noteLabel",
+"english": "Note",
+"target": "Notat",
+"backtrans": "Note"
+},
+{
+"key": "dateLabel",
+"english": "Date",
+"target": "Dato",
+"backtrans": "Date"
+},
+{
+"key": "accentBlue",
+"english": "Blue",
+"target": "Blå",
+"backtrans": "Blue"
+},
+{
+"key": "accentIndigo",
+"english": "Indigo",
+"target": "Indigo",
+"backtrans": "Indigo"
+},
+{
+"key": "accentEmerald",
+"english": "Emerald",
+"target": "Smaragd",
+"backtrans": "Emerald"
+},
+{
+"key": "accentCrimson",
+"english": "Crimson",
+"target": "Karmosinraud",
+"backtrans": "Crimson"
+},
+{
+"key": "accentAmber",
+"english": "Amber",
+"target": "Rav",
+"backtrans": "Amber"
+},
+{
+"key": "accentViolet",
+"english": "Violet",
+"target": "Fiolett",
+"backtrans": "Violet"
+},
+{
+"key": "tickerLanguages",
+"english": "{count} LANGUAGES",
+"target": "{count} SPRÅK",
+"backtrans": "{count} LANGUAGES"
+},
+{
+"key": "termsOfServiceLabel",
+"english": "Terms of Service",
+"target": "Vilkår for bruk",
+"backtrans": "Terms of use"
+},
+{
+"key": "openSourceLicensesLabel",
+"english": "Open-source licenses",
+"target": "Lisensar for open kjeldekode",
+"backtrans": "Licenses for open source code"
+},
+{
+"key": "whatsNewTitle",
+"english": "What's New",
+"target": "Kva er nytt",
+"backtrans": "What is new"
+},
+{
+"key": "whatsNewContinue",
+"english": "Continue",
+"target": "Hald fram",
+"backtrans": "Continue (hold forth)"
+},
+{
+"key": "tickerTxtExport",
+"english": "TXT EXPORT",
+"target": "TXT-EKSPORT",
+"backtrans": "TXT EXPORT"
+},
+{
+"key": "tickerCsvExport",
+"english": "CSV EXPORT",
+"target": "CSV-EKSPORT",
+"backtrans": "CSV EXPORT"
+},
+{
+"key": "whatsNewBody",
+"english": "Welcome to KatharScan! This is the first public release featuring unlimited scanning, 29 languages, and export to PDF, Word, TXT, JPG, PNG, and CSV.",
+"target": "Velkomen til KatharScan! Dette er den første offentlege utgåva med ubegrensa skanning, 29 språk og eksport til PDF, Word, TXT, JPG, PNG og CSV.",
+"backtrans": "Welcome to KatharScan! This is the first public release with unlimited scanning, 29 languages and export to PDF, Word, TXT, JPG, PNG and CSV."
+},
+{
+"key": "engagementSectionLabel",
+"english": "ENGAGEMENT & NOTIFICATIONS",
+"target": "ENGASJEMENT OG VARSEL",
+"backtrans": "ENGAGEMENT AND NOTIFICATIONS"
+},
+{
+"key": "enableNotificationsLabel",
+"english": "Enable Notifications",
+"target": "Slå på varsel",
+"backtrans": "Turn on notifications"
+},
+{
+"key": "enableNotificationsSubtitle",
+"english": "Allow background reminders for unexported documents",
+"target": "Tillat påminningar i bakgrunnen for dokument som ikkje er eksporterte",
+"backtrans": "Allow reminders in the background for documents that are not exported"
+},
+{
+"key": "enableReviewPromptsLabel",
+"english": "Enable Review Prompts",
+"target": "Slå på førespurnader om vurdering",
+"backtrans": "Turn on requests for rating"
+},
+{
+"key": "enableReviewPromptsSubtitle",
+"english": "Allow the app to occasionally ask for a rating",
+"target": "La appen av og til be om ei vurdering",
+"backtrans": "Let the app occasionally ask for a rating"
+},
+{
+"key": "enableSharePromptsLabel",
+"english": "Enable Share Prompts",
+"target": "Slå på delingsførespurnader",
+"backtrans": "Turn on sharing requests"
+},
+{
+"key": "enableSharePromptsSubtitle",
+"english": "Allow the app to occasionally suggest sharing",
+"target": "La appen av og til foreslå deling",
+"backtrans": "Let the app occasionally suggest sharing"
+},
+{
+"key": "removeFromFavorites",
+"english": "Remove from Favorites",
+"target": "Fjern frå favorittar",
+"backtrans": "Remove from favorites"
+},
+{
+"key": "addToFavorites",
+"english": "Add to Favorites",
+"target": "Legg til i favorittar",
+"backtrans": "Add to favorites"
+},
+{
+"key": "saveFailedPrefix",
+"english": "Save failed:",
+"target": "Lagring feila:",
+"backtrans": "Saving failed:"
+},
+{
+"key": "exportFormatCsvDescription",
+"english": "Spreadsheet data",
+"target": "Reknearkdata",
+"backtrans": "Spreadsheet data"
+},
+{
+"key": "watermarkDefaultText",
+"english": "CONFIDENTIAL",
+"target": "KONFIDENSIELT",
+"backtrans": "CONFIDENTIAL"
+},
+{
+"key": "emailAttachmentNotIncluded",
+"english": "The pages could not be attached to the email. Use Share to send the pages.",
+"target": "Sidene kunne ikkje leggjast ved e-posten. Bruk Del for å sende sidene.",
+"backtrans": "The pages could not be attached to the email. Use Share to send the pages."
+},
+{
+"key": "sealDefaultMainText",
+"english": "YOUR COMPANY",
+"target": "FIRMAET DITT",
+"backtrans": "YOUR FIRM"
+},
+{
+"key": "extractedPageDefaultTitle",
+"english": "Extracted Page",
+"target": "Uthenta side",
+"backtrans": "Extracted page"
+},
+{
+"key": "printRangeAll",
+"english": "All pages",
+"target": "Alle sider",
+"backtrans": "All pages"
+},
+{
+"key": "printRangeCurrent",
+"english": "Current",
+"target": "Gjeldande",
+"backtrans": "Current"
+},
+{
+"key": "printRangeRange",
+"english": "Range",
+"target": "Område",
+"backtrans": "Range"
+},
+{
+"key": "printFilterNone",
+"english": "No filter",
+"target": "Inga filter",
+"backtrans": "No filters [??: 'Inga filter' uses plural 'Inga' with neuter 'filter'; grammar slightly off]"
+},
+{
+"key": "ocrScriptArabic",
+"english": "العربية (Arabic)",
+"target": "العربية (arabisk)",
+"backtrans": "العربية (Arabic)"
+},
+{
+"key": "ocrScriptRussian",
+"english": "Русский (Russian)",
+"target": "Русский (russisk)",
+"backtrans": "Русский (Russian)"
+},
+{
+"key": "ocrScriptUkrainian",
+"english": "Українська (Ukrainian)",
+"target": "Українська (ukrainsk)",
+"backtrans": "Українська (Ukrainian)"
+},
+{
+"key": "ocrScriptGreek",
+"english": "Ελληνικά (Greek)",
+"target": "Ελληνικά (gresk)",
+"backtrans": "Ελληνικά (Greek)"
+},
+{
+"key": "ocrScriptHebrew",
+"english": "עברית (Hebrew)",
+"target": "עברית (hebraisk)",
+"backtrans": "עברית (Hebrew)"
+},
+{
+"key": "ocrScriptThai",
+"english": "ไทย (Thai)",
+"target": "ไทย (thai)",
+"backtrans": "ไทย (Thai)"
+},
+{
+"key": "ocrScriptBengali",
+"english": "বাংলা (Bengali)",
+"target": "বাংলা (bengali)",
+"backtrans": "বাংলা (Bengali)"
+},
+{
+"key": "ocrStatusInstalled",
+"english": "Installed",
+"target": "Installert",
+"backtrans": "Installed"
+},
+{
+"key": "ocrStatusDownloading",
+"english": "Downloading…",
+"target": "Lastar ned…",
+"backtrans": "Downloading…"
+},
+{
+"key": "exportNoTextError",
+"english": "This document has no text yet. Run OCR on it first.",
+"target": "Dette dokumentet har ingen tekst enno. Køyr OCR på det først.",
+"backtrans": "This document has no text yet. Run OCR on it first."
+},
+{
+"key": "saveFailedBanner",
+"english": "Your latest changes could not be saved.",
+"target": "Dei siste endringane dine kunne ikkje lagrast.",
+"backtrans": "Your latest changes could not be saved."
+},
+{
+"key": "editLabel",
+"english": "Edit",
+"target": "Rediger",
+"backtrans": "Edit"
+},
+{
+"key": "fillTapHint",
+"english": "Tap the page where you want to type",
+"target": "Trykk på sida kor du vil skrive",
+"backtrans": "Tap the page where you want to write"
+},
+{
+"key": "fillTypeHint",
+"english": "Type here",
+"target": "Skriv her",
+"backtrans": "Write here"
+},
+{
+"key": "clearPage",
+"english": "Clear page",
+"target": "Tøm sida",
+"backtrans": "Empty the page"
+},
+{
+"key": "clearAllPages",
+"english": "Clear all pages",
+"target": "Tøm alle sider",
+"backtrans": "Empty all pages"
+},
+{
+"key": "clearedCount",
+"english": "Cleared {count}",
+"target": "Tømde {count}",
+"backtrans": "Emptied {count}"
+},
+{
+"key": "idLayoutRealSize",
+"english": "Real size",
+"target": "Verkeleg storleik",
+"backtrans": "Real size"
+},
+{
+"key": "idLayoutFullWidth",
+"english": "Full width",
+"target": "Full breidd",
+"backtrans": "Full width"
+},
+{
+"key": "pagesToReadTitle",
+"english": "Pages to read",
+"target": "Sider som skal lesast",
+"backtrans": "Pages to be read"
+},
+{
+"key": "pagesToReadHint",
+"english": "This PDF has {count} pages. Pages that are pictures are read with OCR (about 10 seconds each); pages with real text are instant.",
+"target": "Denne PDF-en har {count} sider. Sider som er bilete blir lesne med OCR (omtrent 10 sekund kvar); sider med ekte tekst går med ein gong.",
+"backtrans": "This PDF has {count} pages. Pages that are images are read with OCR (about 10 seconds each); pages with real text go right away."
+},
+{
+"key": "pageFromLabel",
+"english": "From page",
+"target": "Frå side",
+"backtrans": "From page"
+},
+{
+"key": "pageToLabel",
+"english": "To page",
+"target": "Til side",
+"backtrans": "To page"
+},
+{
+"key": "readingPageProgress",
+"english": "Page {page} of {total}",
+"target": "Side {page} av {total}",
+"backtrans": "Page {page} of {total}"
+},
+{
+"key": "readingPageEta",
+"english": "Page {page} of {total} · about {minutes} min left",
+"target": "Side {page} av {total} · omtrent {minutes} min att",
+"backtrans": "Page {page} of {total} · about {minutes} min left"
+},
+{
+"key": "sealShapeRound",
+"english": "Round",
+"target": "Rund",
+"backtrans": "Round"
+},
+{
+"key": "sealFontSans",
+"english": "Clean",
+"target": "Reint",
+"backtrans": "Clean"
+},
+{
+"key": "sealFontSerif",
+"english": "Classic",
+"target": "Klassisk",
+"backtrans": "Classic"
+},
+{
+"key": "sealInkLook",
+"english": "Worn stamp look",
+"target": "Utsjånad som slite stempel",
+"backtrans": "Appearance of worn stamp"
+},
+{
+"key": "sealSaveToLibrary",
+"english": "Save this seal",
+"target": "Lagre dette seglet",
+"backtrans": "Save this seal"
+},
+{
+"key": "sealSavedHeading",
+"english": "Saved seals",
+"target": "Lagra segl",
+"backtrans": "Saved seals"
+},
+{
+"key": "sealTextColorLabel",
+"english": "Text colour",
+"target": "Tekstfarge",
+"backtrans": "Text color"
+},
+{
+"key": "sealTextColorSame",
+"english": "Same as ring",
+"target": "Same som ringen",
+"backtrans": "Same as the ring"
+},
+{
+"key": "sealTextSizePercent",
+"english": "Text size {percent}%",
+"target": "Tekststorleik {percent}%",
+"backtrans": "Text size {percent}%"
+},
+{
+"key": "sealRemoveWhite",
+"english": "Make white transparent",
+"target": "Gjer kvitt gjennomsiktig",
+"backtrans": "Get rid of transparent [??: likely meant 'make white transparent'; literal wording is wrong/unclear]"
+},
+{
+"key": "sealSavedMessage",
+"english": "Seal saved",
+"target": "Seglet er lagra",
+"backtrans": "The seal is saved"
+},
+{
+"key": "signatureTabDraw",
+"english": "Draw",
+"target": "Teikn",
+"backtrans": "Draw"
+},
+{
+"key": "signatureTabType",
+"english": "Type",
+"target": "Skriv",
+"backtrans": "Write"
+},
+{
+"key": "signatureTypeHint",
+"english": "Type your name",
+"target": "Skriv namnet ditt",
+"backtrans": "Write your name"
+},
+{
+"key": "signatureWidthLabel",
+"english": "Pen width",
+"target": "Pennebreidd",
+"backtrans": "Pen width"
+},
+{
+"key": "signatureFontFlowing",
+"english": "Flowing",
+"target": "Flytande",
+"backtrans": "Flowing"
+},
+{
+"key": "signatureFontHandwritten",
+"english": "Handwritten",
+"target": "Handskrift",
+"backtrans": "Handwriting"
+},
+{
+"key": "signatureSavedHeading",
+"english": "Saved signatures",
+"target": "Lagra signaturar",
+"backtrans": "Saved signatures"
+},
+{
+"key": "signatureNewOne",
+"english": "Draw or type a new one",
+"target": "Teikn eller skriv ein ny",
+"backtrans": "Draw or write a new one"
+},
+{
+"key": "signatureDeleteSaved",
+"english": "Remove saved signature",
+"target": "Fjern lagra signatur",
+"backtrans": "Remove saved signature"
+},
+{
+"key": "annotationModeSelect",
+"english": "Select",
+"target": "Vel",
+"backtrans": "Choose"
+},
+{
+"key": "annotationModeEraser",
+"english": "Eraser",
+"target": "Viskelêr",
+"backtrans": "Eraser"
+},
+{
+"key": "watermarkKindText",
+"english": "Text",
+"target": "Tekst",
+"backtrans": "Text"
+},
+{
+"key": "watermarkKindImage",
+"english": "Image",
+"target": "Bilete",
+"backtrans": "Image"
+},
+{
+"key": "watermarkChooseImage",
+"english": "Choose image",
+"target": "Vel bilete",
+"backtrans": "Choose image"
+},
+{
+"key": "watermarkLayoutLabel",
+"english": "Layout",
+"target": "Oppsett",
+"backtrans": "Layout"
+},
+{
+"key": "watermarkLayoutSingle",
+"english": "Single",
+"target": "Enkelt",
+"backtrans": "Single"
+},
+{
+"key": "watermarkLayoutDiagonal",
+"english": "Diagonal",
+"target": "Diagonalt",
+"backtrans": "Diagonal"
+},
+{
+"key": "watermarkLayoutTiled",
+"english": "Tiled",
+"target": "Flislagt",
+"backtrans": "Tiled (flagstone-laid)"
+},
+{
+"key": "watermarkPagesLabel",
+"english": "Pages",
+"target": "Sider",
+"backtrans": "Pages"
+},
+{
+"key": "watermarkPagesThis",
+"english": "This page",
+"target": "Denne sida",
+"backtrans": "This page"
+},
+{
+"key": "watermarkPagesAll",
+"english": "All pages",
+"target": "Alle sider",
+"backtrans": "All pages"
+},
+{
+"key": "watermarkPagesRange",
+"english": "Range",
+"target": "Område",
+"backtrans": "Range"
+},
+{
+"key": "watermarkPagesRangeHint",
+"english": "e.g. 1-3, 5",
+"target": "t.d. 1-3, 5",
+"backtrans": "e.g. 1-3, 5"
+},
+{
+"key": "watermarkPagesInvalid",
+"english": "Check the pages (the document has {count} pages)",
+"target": "Sjekk sidene (dokumentet har {count} sider)",
+"backtrans": "Check the pages (the document has {count} pages)"
+},
+{
+"key": "cropAuto",
+"english": "Auto-detect",
+"target": "Finn automatisk",
+"backtrans": "Find automatically"
+},
+{
+"key": "cropAspectFree",
+"english": "Free",
+"target": "Fri",
+"backtrans": "Free"
+},
+{
+"key": "cropAspectId",
+"english": "ID card",
+"target": "ID-kort",
+"backtrans": "ID card"
+},
+{
+"key": "cropAspectSquare",
+"english": "Square",
+"target": "Kvadrat",
+"backtrans": "Square"
+},
+{
+"key": "cropNoPageFound",
+"english": "Couldn't find the page edges. Drag the corners.",
+"target": "Fann ikkje kantane på sida. Dra i hjørna.",
+"backtrans": "Did not find the edges of the page. Drag the corners."
+},
+{
+"key": "straightenLabel",
+"english": "Straighten",
+"target": "Rett opp",
+"backtrans": "Straighten"
+},
+{
+"key": "filterMagicColor",
+"english": "Magic colour",
+"target": "Magisk farge",
+"backtrans": "Magic color"
+},
+{
+"key": "filterBrightnessLabel",
+"english": "Brightness",
+"target": "Lysstyrke",
+"backtrans": "Brightness"
+},
+{
+"key": "filterContrastLabel",
+"english": "Contrast",
+"target": "Kontrast",
+"backtrans": "Contrast"
+},
+{
+"key": "resizeUpscaleWarning",
+"english": "Enlarging doesn't add detail — the page may look soft.",
+"target": "Forstørring gir ikkje fleire detaljar — sida kan sjå uskarp ut.",
+"backtrans": "Enlarging does not give more detail — the page may look blurry."
+},
+{
+"key": "eraserAutoColorTooltip",
+"english": "Match the page colour automatically",
+"target": "Tilpass fargen til sida automatisk",
+"backtrans": "Adapt the color to the page automatically"
+},
+{
+"key": "eraserZoomTooltip",
+"english": "Zoom and move (pinch)",
+"target": "Zoom og flytt (knip)",
+"backtrans": "Zoom and move (pinch)"
+},
+{
+"key": "pagesSelectTooltip",
+"english": "Select pages",
+"target": "Vel sider",
+"backtrans": "Choose pages"
+},
+{
+"key": "pagesDeleteCount",
+"english": "Delete {count}",
+"target": "Slett {count}",
+"backtrans": "Delete {count}"
+},
+{
+"key": "pagesDeleteConfirm",
+"english": "Delete {count} pages? They are removed when you save.",
+"target": "Slette {count} sider? Dei blir fjerna når du lagrar.",
+"backtrans": "Delete {count} pages? They are removed when you save."
+},
+{
+"key": "compressTargetLabel",
+"english": "Max size",
+"target": "Maks storleik",
+"backtrans": "Max size"
+},
+{
+"key": "compressNoLimit",
+"english": "No limit",
+"target": "Ingen grense",
+"backtrans": "No limit"
+},
+{
+"key": "printPaperLabel",
+"english": "Paper",
+"target": "Papir",
+"backtrans": "Paper"
+},
+{
+"key": "printMarginLabel",
+"english": "Margin",
+"target": "Marg",
+"backtrans": "Margin"
+},
+{
+"key": "printMarginNone",
+"english": "None",
+"target": "Ingen",
+"backtrans": "None"
+},
+{
+"key": "printMarginNarrow",
+"english": "Narrow",
+"target": "Smal",
+"backtrans": "Narrow"
+},
+{
+"key": "printMarginNormal",
+"english": "Normal",
+"target": "Normal",
+"backtrans": "Normal"
+},
+{
+"key": "printFitLabel",
+"english": "Scaling",
+"target": "Skalering",
+"backtrans": "Scaling"
+},
+{
+"key": "printFitFit",
+"english": "Fit page",
+"target": "Tilpass til sida",
+"backtrans": "Fit to the page"
+},
+{
+"key": "printFitFill",
+"english": "Fill sheet (trims edges)",
+"target": "Fyll arket (kuttar kantane)",
+"backtrans": "Fill the sheet (cuts the edges)"
+},
+{
+"key": "printPerSheetLabel",
+"english": "Pages per sheet",
+"target": "Sider per ark",
+"backtrans": "Pages per sheet"
+},
+{
+"key": "emailMessageLabel",
+"english": "Message",
+"target": "Melding",
+"backtrans": "Message"
+},
+{
+"key": "emailMessageHint",
+"english": "Add a note (optional)",
+"target": "Legg til ein merknad (valfritt)",
+"backtrans": "Add a note (optional)"
+},
+{
+"key": "emailLimitMissed",
+"english": "Could not get under {mb} MB; sent the smallest version.",
+"target": "Fekk ikkje fila under {mb} MB; den minste versjonen vart send.",
+"backtrans": "Did not get the file under {mb} MB; the smallest version was sent."
+}
+]

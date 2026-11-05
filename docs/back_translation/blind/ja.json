@@ -1,0 +1,3362 @@
+[
+{
+"key": "privacyOptionsLabel",
+"english": "Privacy settings",
+"target": "プライバシー設定",
+"backtrans": "Privacy settings"
+},
+{
+"key": "commonCancel",
+"english": "Cancel",
+"target": "キャンセル",
+"backtrans": "Cancel"
+},
+{
+"key": "commonDelete",
+"english": "Delete",
+"target": "削除",
+"backtrans": "Delete"
+},
+{
+"key": "commonSave",
+"english": "Save",
+"target": "保存",
+"backtrans": "Save"
+},
+{
+"key": "commonAdd",
+"english": "Add",
+"target": "追加",
+"backtrans": "Add"
+},
+{
+"key": "commonExport",
+"english": "Export",
+"target": "書き出す",
+"backtrans": "Write out (export)"
+},
+{
+"key": "commonImport",
+"english": "Import",
+"target": "読み込む",
+"backtrans": "Read in (import)"
+},
+{
+"key": "commonSkip",
+"english": "Skip",
+"target": "スキップ",
+"backtrans": "Skip"
+},
+{
+"key": "commonClear",
+"english": "Clear",
+"target": "消去",
+"backtrans": "Erase"
+},
+{
+"key": "emptyStateDefaultMessage",
+"english": "Tap the camera to scan your first document.",
+"target": "カメラをタップして最初の書類をスキャンしましょう。",
+"backtrans": "Tap the camera and let's scan your first document."
+},
+{
+"key": "exportFormatSheetTitle",
+"english": "Export as",
+"target": "書き出し形式",
+"backtrans": "Export format"
+},
+{
+"key": "exportFormatPdfLabel",
+"english": "PDF",
+"target": "PDF",
+"backtrans": "PDF"
+},
+{
+"key": "exportFormatPdfDescription",
+"english": "Best for sharing and printing",
+"target": "共有や印刷に最適",
+"backtrans": "Best for sharing and printing"
+},
+{
+"key": "exportFormatDocxLabel",
+"english": "Word (.docx)",
+"target": "Word (.docx)",
+"backtrans": "Word (.docx)"
+},
+{
+"key": "exportFormatDocxDescription",
+"english": "Editable text document",
+"target": "編集可能なテキスト文書",
+"backtrans": "Editable text document"
+},
+{
+"key": "exportFormatTxtLabel",
+"english": "Text (.txt)",
+"target": "テキスト (.txt)",
+"backtrans": "Text (.txt)"
+},
+{
+"key": "exportFormatTxtDescription",
+"english": "Plain OCR text only",
+"target": "OCRテキストのみ",
+"backtrans": "OCR text only"
+},
+{
+"key": "exportFormatJpgLabel",
+"english": "JPG",
+"target": "JPG",
+"backtrans": "JPG"
+},
+{
+"key": "exportFormatJpgDescription",
+"english": "One image per page",
+"target": "1ページにつき1枚の画像",
+"backtrans": "One image per page"
+},
+{
+"key": "exportFormatPngLabel",
+"english": "PNG",
+"target": "PNG",
+"backtrans": "PNG"
+},
+{
+"key": "exportFormatPngDescription",
+"english": "One image per page, lossless",
+"target": "1ページにつき1枚の画像、非可逆圧縮なし",
+"backtrans": "One image per page, no lossy compression"
+},
+{
+"key": "filterSheetTitle",
+"english": "Filters",
+"target": "フィルター",
+"backtrans": "Filter"
+},
+{
+"key": "filterOriginal",
+"english": "Original",
+"target": "オリジナル",
+"backtrans": "Original"
+},
+{
+"key": "filterGrayscale",
+"english": "Grayscale",
+"target": "グレースケール",
+"backtrans": "Grayscale"
+},
+{
+"key": "filterBlackAndWhite",
+"english": "B&W",
+"target": "白黒",
+"backtrans": "Black and white"
+},
+{
+"key": "filterColorEnhance",
+"english": "Color enhance",
+"target": "カラー補正",
+"backtrans": "Color correction"
+},
+{
+"key": "filterShadowRemoval",
+"english": "Shadow removal",
+"target": "影の除去",
+"backtrans": "Shadow removal"
+},
+{
+"key": "proBadgeLabel",
+"english": "PRO",
+"target": "PRO",
+"backtrans": "PRO"
+},
+{
+"key": "scanListPageCount",
+"english": "{count, plural, =1{1 page} other{{count} pages}}",
+"target": "{count, plural, other{{count}ページ}}",
+"backtrans": "{count, plural, other{{count} pages}}"
+},
+{
+"key": "scanPreviewNoPages",
+"english": "No pages to show.",
+"target": "表示するページがありません。",
+"backtrans": "There are no pages to display."
+},
+{
+"key": "shareTooltip",
+"english": "Share",
+"target": "共有",
+"backtrans": "Share"
+},
+{
+"key": "signatureCanvasHint",
+"english": "Sign here",
+"target": "ここに署名",
+"backtrans": "Sign here"
+},
+{
+"key": "folderDocumentCount",
+"english": "{count, plural, =1{1 document} other{{count} documents}}",
+"target": "{count, plural, other{{count}件の書類}}",
+"backtrans": "{count, plural, other{{count} documents}}"
+},
+{
+"key": "selectedCount",
+"english": "{count, plural, =1{1 selected} other{{count} selected}}",
+"target": "{count, plural, other{{count}件選択中}}",
+"backtrans": "{count, plural, other{{count} selected}}"
+},
+{
+"key": "batchExportTooltip",
+"english": "Batch export",
+"target": "一括書き出し",
+"backtrans": "Batch export"
+},
+{
+"key": "deleteTooltip",
+"english": "Delete",
+"target": "削除",
+"backtrans": "Delete"
+},
+{
+"key": "searchHint",
+"english": "Search your scans",
+"target": "スキャンを検索",
+"backtrans": "Search scans"
+},
+{
+"key": "settingsTooltip",
+"english": "Settings",
+"target": "設定",
+"backtrans": "Settings"
+},
+{
+"key": "foldersSectionHeader",
+"english": "Folders",
+"target": "フォルダ",
+"backtrans": "Folders"
+},
+{
+"key": "documentsSectionHeader",
+"english": "Documents",
+"target": "書類",
+"backtrans": "Documents"
+},
+{
+"key": "exportingStatus",
+"english": "Exporting…",
+"target": "書き出し中…",
+"backtrans": "Exporting..."
+},
+{
+"key": "exportDoneStatus",
+"english": "Done",
+"target": "完了",
+"backtrans": "Done"
+},
+{
+"key": "exportGenericError",
+"english": "Something went wrong while exporting.",
+"target": "書き出し中に問題が発生しました。",
+"backtrans": "A problem occurred during export."
+},
+{
+"key": "deleteFolderTitle",
+"english": "Delete this folder?",
+"target": "このフォルダを削除しますか？",
+"backtrans": "Delete this folder?"
+},
+{
+"key": "deleteFolderMessage",
+"english": "Documents inside will not be deleted.",
+"target": "フォルダ内の書類は削除されません。",
+"backtrans": "Documents inside the folder will not be deleted."
+},
+{
+"key": "deleteFolderTooltip",
+"english": "Delete folder",
+"target": "フォルダを削除",
+"backtrans": "Delete folder"
+},
+{
+"key": "renameFolderTitle",
+"english": "Rename folder",
+"target": "フォルダ名を変更",
+"backtrans": "Change folder name"
+},
+{
+"key": "removeFromFolderTooltip",
+"english": "Remove from folder",
+"target": "フォルダから削除",
+"backtrans": "Remove from folder"
+},
+{
+"key": "noDocumentsInFolder",
+"english": "No documents in this folder yet.",
+"target": "このフォルダにはまだ書類がありません。",
+"backtrans": "There are no documents in this folder yet."
+},
+{
+"key": "folderUnavailable",
+"english": "This folder is no longer available.",
+"target": "このフォルダは利用できなくなりました。",
+"backtrans": "This folder has become unavailable."
+},
+{
+"key": "migrationTitle",
+"english": "Device Migration",
+"target": "デバイス移行",
+"backtrans": "Device migration"
+},
+{
+"key": "migrationExplainer",
+"english": "This isn't automatic sync. Export creates a single encrypted backup file you move to your new device yourself, then import there.",
+"target": "これは自動同期ではありません。書き出すと暗号化されたバックアップファイルが1つ作成されるので、それをご自身で新しいデバイスに移動し、そこで読み込んでください。",
+"backtrans": "This is not automatic sync. Exporting creates one encrypted backup file, which you move to the new device yourself and import there."
+},
+{
+"key": "exportBackupButton",
+"english": "Export encrypted backup",
+"target": "暗号化バックアップを書き出す",
+"backtrans": "Export encrypted backup"
+},
+{
+"key": "importBackupButton",
+"english": "Import from backup",
+"target": "バックアップから読み込む",
+"backtrans": "Import from backup"
+},
+{
+"key": "setBackupPasswordTitle",
+"english": "Set a backup password",
+"target": "バックアップのパスワードを設定",
+"backtrans": "Set backup password"
+},
+{
+"key": "enterBackupPasswordTitle",
+"english": "Enter backup password",
+"target": "バックアップのパスワードを入力",
+"backtrans": "Enter backup password"
+},
+{
+"key": "buildingBackupStatus",
+"english": "Building backup…",
+"target": "バックアップを作成中…",
+"backtrans": "Creating backup..."
+},
+{
+"key": "backupReadyStatus",
+"english": "Backup ready.",
+"target": "バックアップの準備ができました。",
+"backtrans": "The backup is ready."
+},
+{
+"key": "couldNotCreateBackupError",
+"english": "Could not create the backup.",
+"target": "バックアップを作成できませんでした。",
+"backtrans": "Could not create the backup."
+},
+{
+"key": "importingStatus",
+"english": "Importing…",
+"target": "読み込み中…",
+"backtrans": "Importing..."
+},
+{
+"key": "couldNotImportBackupError",
+"english": "Could not import this backup. Check the password and try again.",
+"target": "このバックアップを読み込めませんでした。パスワードを確認してもう一度お試しください。",
+"backtrans": "Could not import this backup. Please check the password and try again."
+},
+{
+"key": "backupCorruptedError",
+"english": "This backup file looks corrupted.",
+"target": "このバックアップファイルは破損しているようです。",
+"backtrans": "This backup file appears to be corrupted."
+},
+{
+"key": "importedCount",
+"english": "{count, plural, =1{1 document imported} other{{count} documents imported}}",
+"target": "{count, plural, other{{count}件の書類を読み込みました}}",
+"backtrans": "{count, plural, other{Imported {count} documents}}"
+},
+{
+"key": "continueButton",
+"english": "Continue",
+"target": "続ける",
+"backtrans": "Continue"
+},
+{
+"key": "restorePurchasesButton",
+"english": "Restore purchases",
+"target": "購入を復元",
+"backtrans": "Restore purchases"
+},
+{
+"key": "pricingLoadingError",
+"english": "Pricing is still loading — try again in a moment.",
+"target": "価格を読み込み中です。しばらくしてからもう一度お試しください。",
+"backtrans": "Prices are loading. Please try again in a little while."
+},
+{
+"key": "renameDocumentTitle",
+"english": "Rename document",
+"target": "書類名を変更",
+"backtrans": "Change document name"
+},
+{
+"key": "addTagTitle",
+"english": "Add tag",
+"target": "タグを追加",
+"backtrans": "Add tag"
+},
+{
+"key": "moveToFolderTooltip",
+"english": "Move to folder",
+"target": "フォルダに移動",
+"backtrans": "Move to folder"
+},
+{
+"key": "exportTooltip",
+"english": "Export",
+"target": "書き出す",
+"backtrans": "Export"
+},
+{
+"key": "deleteScanTitle",
+"english": "Delete this scan?",
+"target": "このスキャンを削除しますか？",
+"backtrans": "Delete this scan?"
+},
+{
+"key": "deleteScanMessage",
+"english": "This can't be undone.",
+"target": "この操作は取り消せません。",
+"backtrans": "This action cannot be undone."
+},
+{
+"key": "movedToFolderMessage",
+"english": "Moved to folder.",
+"target": "フォルダに移動しました。",
+"backtrans": "Moved to the folder."
+},
+{
+"key": "noTextRecognized",
+"english": "No text recognized.",
+"target": "テキストが認識されませんでした。",
+"backtrans": "No text was recognized."
+},
+{
+"key": "scanUnavailable",
+"english": "This scan is no longer available.",
+"target": "このスキャンは利用できなくなりました。",
+"backtrans": "This scan has become unavailable."
+},
+{
+"key": "settingsTitle",
+"english": "Settings",
+"target": "設定",
+"backtrans": "Settings"
+},
+{
+"key": "appearanceSectionLabel",
+"english": "Appearance",
+"target": "外観",
+"backtrans": "Appearance"
+},
+{
+"key": "themeLabel",
+"english": "Theme",
+"target": "テーマ",
+"backtrans": "Theme"
+},
+{
+"key": "systemThemeOption",
+"english": "System",
+"target": "システム",
+"backtrans": "System"
+},
+{
+"key": "lightThemeOption",
+"english": "Light",
+"target": "ライト",
+"backtrans": "Light"
+},
+{
+"key": "darkThemeOption",
+"english": "Dark",
+"target": "ダーク",
+"backtrans": "Dark"
+},
+{
+"key": "languageSectionLabel",
+"english": "Language",
+"target": "言語",
+"backtrans": "Language"
+},
+{
+"key": "appLanguageLabel",
+"english": "App language",
+"target": "アプリの言語",
+"backtrans": "App language"
+},
+{
+"key": "storageSectionLabel",
+"english": "Storage",
+"target": "ストレージ",
+"backtrans": "Storage"
+},
+{
+"key": "deviceMigrationLabel",
+"english": "Device Migration",
+"target": "デバイス移行",
+"backtrans": "Device migration"
+},
+{
+"key": "subscriptionSectionLabel",
+"english": "Subscription",
+"target": "サブスクリプション",
+"backtrans": "Subscription"
+},
+{
+"key": "aboutSectionLabel",
+"english": "About",
+"target": "情報",
+"backtrans": "Information"
+},
+{
+"key": "privacyPolicyLabel",
+"english": "Privacy policy",
+"target": "プライバシーポリシー",
+"backtrans": "Privacy policy"
+},
+{
+"key": "supportLabel",
+"english": "Support",
+"target": "サポート",
+"backtrans": "Support"
+},
+{
+"key": "couldNotOpenLinkError",
+"english": "Could not open link.",
+"target": "リンクを開けませんでした。",
+"backtrans": "Could not open the link."
+},
+{
+"key": "restoreCompleteMessage",
+"english": "Restore complete.",
+"target": "復元が完了しました。",
+"backtrans": "Restore is complete."
+},
+{
+"key": "genericErrorMessage",
+"english": "Something went wrong. Please try again.",
+"target": "問題が発生しました。もう一度お試しください。",
+"backtrans": "A problem occurred. Please try again."
+},
+{
+"key": "extractedTextTitle",
+"english": "Extracted Text",
+"target": "抽出されたテキスト",
+"backtrans": "Extracted text"
+},
+{
+"key": "commonClose",
+"english": "Close",
+"target": "閉じる",
+"backtrans": "Close"
+},
+{
+"key": "commonCopy",
+"english": "Copy",
+"target": "コピー",
+"backtrans": "Copy"
+},
+{
+"key": "savedToDocumentText",
+"english": "Saved to document text",
+"target": "ドキュメントテキストに保存しました",
+"backtrans": "Saved to document text"
+},
+{
+"key": "regionOcrFailed",
+"english": "Region OCR failed",
+"target": "領域OCRが失敗しました",
+"backtrans": "Region OCR failed"
+},
+{
+"key": "filterRemoved",
+"english": "Filter removed",
+"target": "フィルターが削除されました",
+"backtrans": "Filter was removed"
+},
+{
+"key": "filterApplied",
+"english": "Filter applied",
+"target": "フィルターが適用されました",
+"backtrans": "Filter was applied"
+},
+{
+"key": "pageCropped",
+"english": "Page cropped",
+"target": "ページがトリミングされました",
+"backtrans": "Page was cropped"
+},
+{
+"key": "revertToOriginalTitle",
+"english": "Revert to Original?",
+"target": "オリジナルに戻しますか？",
+"backtrans": "Revert to the original?"
+},
+{
+"key": "revertToOriginalMessage",
+"english": "This will undo all filters, rotations, crops, resizes, and eraser strokes on this page.",
+"target": "これにより、このページのすべてのフィルター、回転、トリミング、サイズ変更、消しゴムストロークが元に戻されます。",
+"backtrans": "This will undo all filters, rotation, cropping, resizing, and eraser strokes on this page."
+},
+{
+"key": "commonRevert",
+"english": "Revert",
+"target": "オリジナルに戻す",
+"backtrans": "Revert to original"
+},
+{
+"key": "pageRevertedToOriginal",
+"english": "Page reverted to original",
+"target": "ページが元に戻されました",
+"backtrans": "Page was reverted"
+},
+{
+"key": "eraserApplied",
+"english": "Eraser applied",
+"target": "消しゴムが適用されました",
+"backtrans": "Eraser was applied"
+},
+{
+"key": "pageResized",
+"english": "Page resized",
+"target": "ページのサイズが変更されました",
+"backtrans": "Page size was changed"
+},
+{
+"key": "extractedAsNewDocument",
+"english": "Extracted as new document",
+"target": "新しいドキュメントとして抽出されました",
+"backtrans": "Was extracted as a new document"
+},
+{
+"key": "pagesUpdated",
+"english": "Pages updated",
+"target": "ページが更新されました",
+"backtrans": "Pages were updated"
+},
+{
+"key": "printOptionsTitle",
+"english": "Print Options",
+"target": "印刷オプション",
+"backtrans": "Print options"
+},
+{
+"key": "letterSizeUS",
+"english": "Letter size (US)",
+"target": "レターサイズ（米国）",
+"backtrans": "Letter size (US)"
+},
+{
+"key": "commonPrint",
+"english": "Print",
+"target": "印刷",
+"backtrans": "Print"
+},
+{
+"key": "printFailed",
+"english": "Print failed",
+"target": "印刷に失敗しました",
+"backtrans": "Printing failed"
+},
+{
+"key": "noEmailAppFound",
+"english": "No email app found",
+"target": "メールアプリが見つかりません",
+"backtrans": "No email app found"
+},
+{
+"key": "emailFailed",
+"english": "Email failed",
+"target": "メールの送信に失敗しました",
+"backtrans": "Sending the email failed"
+},
+{
+"key": "fromPageLabel",
+"english": "From",
+"target": "から",
+"backtrans": "From"
+},
+{
+"key": "toPageLabel",
+"english": "To",
+"target": "まで",
+"backtrans": "To (until)"
+},
+{
+"key": "pdfImportedAsDocument",
+"english": "PDF imported as document",
+"target": "PDFがドキュメントとしてインポートされました",
+"backtrans": "PDF was imported as a document"
+},
+{
+"key": "frontSideCaptured",
+"english": "Front side captured. Now capture the back side.",
+"target": "表面をキャプチャしました。裏面をキャプチャしてください。",
+"backtrans": "Front side captured. Please capture the back side."
+},
+{
+"key": "idCardPdfGenerated",
+"english": "ID Card PDF Generated",
+"target": "IDカードPDFが生成されました",
+"backtrans": "ID card PDF was generated"
+},
+{
+"key": "sharePdf",
+"english": "Share PDF",
+"target": "PDFを共有",
+"backtrans": "Share PDF"
+},
+{
+"key": "saveAsDocument",
+"english": "Save as Document",
+"target": "ドキュメントとして保存",
+"backtrans": "Save as document"
+},
+{
+"key": "commonDone",
+"english": "Done",
+"target": "完了",
+"backtrans": "Done"
+},
+{
+"key": "documentSaved",
+"english": "Document saved",
+"target": "ドキュメントが保存されました",
+"backtrans": "Document was saved"
+},
+{
+"key": "commonReset",
+"english": "Reset",
+"target": "リセット",
+"backtrans": "Reset"
+},
+{
+"key": "autoScan",
+"english": "Auto Scan",
+"target": "自動スキャン",
+"backtrans": "Auto scan"
+},
+{
+"key": "importAndConvertDocument",
+"english": "Import & Convert Document",
+"target": "ドキュメントのインポートと変換",
+"backtrans": "Import and convert document"
+},
+{
+"key": "signatureTitle",
+"english": "Signature",
+"target": "署名",
+"backtrans": "Signature"
+},
+{
+"key": "signatureChoiceMessage",
+"english": "Use your saved signature or draw a new one?",
+"target": "保存した署名を使用しますか、それとも新しい署名を描画しますか？",
+"backtrans": "Use a saved signature, or draw a new one?"
+},
+{
+"key": "useSavedSignature",
+"english": "Use Saved",
+"target": "保存済みを使用",
+"backtrans": "Use saved one"
+},
+{
+"key": "drawNewSignature",
+"english": "Draw New",
+"target": "新規描画",
+"backtrans": "Draw new"
+},
+{
+"key": "copyAll",
+"english": "Copy all",
+"target": "すべてコピー",
+"backtrans": "Copy all"
+},
+{
+"key": "clearThis",
+"english": "Clear this",
+"target": "これをクリア",
+"backtrans": "Clear this"
+},
+{
+"key": "commonRemove",
+"english": "Remove",
+"target": "削除",
+"backtrans": "Delete"
+},
+{
+"key": "clearAll",
+"english": "Clear all",
+"target": "すべてクリア",
+"backtrans": "Clear all"
+},
+{
+"key": "addSignature",
+"english": "Add Signature",
+"target": "署名を追加",
+"backtrans": "Add signature"
+},
+{
+"key": "commonUse",
+"english": "Use",
+"target": "使用",
+"backtrans": "Use"
+},
+{
+"key": "stampTickedLabel",
+"english": "Ticked",
+"target": "チェック済み",
+"backtrans": "Checked"
+},
+{
+"key": "stampBoxLabel",
+"english": "Box",
+"target": "枠",
+"backtrans": "Frame"
+},
+{
+"key": "stampTickLabel",
+"english": "Tick",
+"target": "チェック",
+"backtrans": "Check"
+},
+{
+"key": "commonCustom",
+"english": "Custom",
+"target": "カスタム",
+"backtrans": "Custom"
+},
+{
+"key": "commonChange",
+"english": "Change",
+"target": "変更",
+"backtrans": "Change"
+},
+{
+"key": "commonColor",
+"english": "Color",
+"target": "色",
+"backtrans": "Color"
+},
+{
+"key": "stampPaperLabel",
+"english": "Paper",
+"target": "用紙",
+"backtrans": "Paper"
+},
+{
+"key": "whiteHaloLabel",
+"english": "White halo (readability)",
+"target": "白いハロー（可読性）",
+"backtrans": "White halo (readability)"
+},
+{
+"key": "commonCreate",
+"english": "Create",
+"target": "作成",
+"backtrans": "Create"
+},
+{
+"key": "homeLanguageTooltip",
+"english": "App Language",
+"target": "アプリの言語",
+"backtrans": "App language"
+},
+{
+"key": "removeAdsTitle",
+"english": "Remove Ads Forever",
+"target": "広告を永久に削除",
+"backtrans": "Remove ads permanently"
+},
+{
+"key": "newFolderTitle",
+"english": "New Folder",
+"target": "新規フォルダ",
+"backtrans": "New folder"
+},
+{
+"key": "batchExportEmptyMessage",
+"english": "No documents to batch export. Scan some first.",
+"target": "一括エクスポートするドキュメントがありません。まずスキャンしてください。",
+"backtrans": "There are no documents to batch export. Please scan first."
+},
+{
+"key": "newFolderTooltip",
+"english": "New Folder",
+"target": "新規フォルダ",
+"backtrans": "New folder"
+},
+{
+"key": "accentColorTooltip",
+"english": "Accent Color",
+"target": "アクセントカラー",
+"backtrans": "Accent color"
+},
+{
+"key": "moveToFolderTitle",
+"english": "Move to Folder",
+"target": "フォルダに移動",
+"backtrans": "Move to folder"
+},
+{
+"key": "noFoldersYetHomeMessage",
+"english": "No folders yet. Create one from the home screen.",
+"target": "フォルダがありません。ホーム画面から作成してください。",
+"backtrans": "There are no folders. Please create one from the home screen."
+},
+{
+"key": "appLanguageTitle",
+"english": "App Language",
+"target": "アプリの言語",
+"backtrans": "App language"
+},
+{
+"key": "accentColorTitle",
+"english": "Accent Color",
+"target": "アクセントカラー",
+"backtrans": "Accent color"
+},
+{
+"key": "sealEditTitle",
+"english": "Edit Custom Seal",
+"target": "カスタムシールを編集",
+"backtrans": "Edit custom seal"
+},
+{
+"key": "sealCreateTitle",
+"english": "Custom Seal",
+"target": "カスタムシール",
+"backtrans": "Custom seal"
+},
+{
+"key": "sealMainTextLabel",
+"english": "Main text (top arc / box)",
+"target": "メインテキスト（上部アーク／ボックス）",
+"backtrans": "Main text (top arc / box)"
+},
+{
+"key": "sealSubtextLabel",
+"english": "Subtext (bottom arc / below)",
+"target": "サブテキスト（下部アーク／下）",
+"backtrans": "Subtext (bottom arc / below)"
+},
+{
+"key": "sealShapeOval",
+"english": "Oval",
+"target": "楕円",
+"backtrans": "Ellipse"
+},
+{
+"key": "sealShapeBox",
+"english": "Box",
+"target": "ボックス",
+"backtrans": "Box"
+},
+{
+"key": "sealCenterStar",
+"english": "Star",
+"target": "星",
+"backtrans": "Star"
+},
+{
+"key": "sealCenterText",
+"english": "Text",
+"target": "テキスト",
+"backtrans": "Text"
+},
+{
+"key": "sealCenterLogo",
+"english": "Logo",
+"target": "ロゴ",
+"backtrans": "Logo"
+},
+{
+"key": "sealCenterNone",
+"english": "None",
+"target": "なし",
+"backtrans": "None"
+},
+{
+"key": "sealCenterTextLabel",
+"english": "Center text",
+"target": "中央テキスト",
+"backtrans": "Center text"
+},
+{
+"key": "sealLogoReady",
+"english": "Logo ready",
+"target": "ロゴ準備完了",
+"backtrans": "Logo ready"
+},
+{
+"key": "textSizeLabel",
+"english": "Text size: {size}",
+"target": "テキストサイズ: {size}",
+"backtrans": "Text size: {size}"
+},
+{
+"key": "commonUpdate",
+"english": "Update",
+"target": "更新",
+"backtrans": "Update"
+},
+{
+"key": "managePagesTitle",
+"english": "Manage Pages",
+"target": "ページを管理",
+"backtrans": "Manage pages"
+},
+{
+"key": "pageLabel",
+"english": "Page {index}",
+"target": "ページ {index}",
+"backtrans": "Page {index}"
+},
+{
+"key": "duplicateAction",
+"english": "Duplicate",
+"target": "複製",
+"backtrans": "Duplicate"
+},
+{
+"key": "rotate90Action",
+"english": "Rotate 90°",
+"target": "90°回転",
+"backtrans": "Rotate 90°"
+},
+{
+"key": "extractToNewDocAction",
+"english": "Extract to new doc",
+"target": "新しいドキュメントに抽出",
+"backtrans": "Extract to new document"
+},
+{
+"key": "addPageTitle",
+"english": "Add Page",
+"target": "ページを追加",
+"backtrans": "Add page"
+},
+{
+"key": "cameraSource",
+"english": "Camera",
+"target": "カメラ",
+"backtrans": "Camera"
+},
+{
+"key": "importFromGallery",
+"english": "Import from Gallery",
+"target": "ギャラリーからインポート",
+"backtrans": "Import from gallery"
+},
+{
+"key": "fromAnotherDocument",
+"english": "From Another Document",
+"target": "別のドキュメントから",
+"backtrans": "From another document"
+},
+{
+"key": "pageCountLabel",
+"english": "{count, plural, =0{No pages} =1{1 page} other{{count} pages}}",
+"target": "{count, plural, =0{ページなし} =1{1ページ} other{{count}ページ}}",
+"backtrans": "{count, plural, =0{No pages} =1{1 page} other{{count} pages}}"
+},
+{
+"key": "commonConfirm",
+"english": "Confirm",
+"target": "確認",
+"backtrans": "Confirm"
+},
+{
+"key": "applyToAllPages",
+"english": "Apply to all pages",
+"target": "すべてのページに適用",
+"backtrans": "Apply to all pages"
+},
+{
+"key": "widthLabel",
+"english": "Width",
+"target": "幅",
+"backtrans": "Width"
+},
+{
+"key": "heightLabel",
+"english": "Height",
+"target": "高さ",
+"backtrans": "Height"
+},
+{
+"key": "lockAspectRatio",
+"english": "Lock aspect ratio",
+"target": "アスペクト比をロック",
+"backtrans": "Lock aspect ratio"
+},
+{
+"key": "originalDimensions",
+"english": "Original: {w}×{h}",
+"target": "元のサイズ: {w}×{h}",
+"backtrans": "Original size: {w}×{h}"
+},
+{
+"key": "ocrSectionLabel",
+"english": "OCR",
+"target": "OCR",
+"backtrans": "OCR"
+},
+{
+"key": "ocrLanguagesLabel",
+"english": "OCR Languages",
+"target": "OCR言語",
+"backtrans": "OCR languages"
+},
+{
+"key": "captureBehaviorSectionLabel",
+"english": "CAPTURE BEHAVIOR",
+"target": "キャプチャ動作",
+"backtrans": "Capture behavior"
+},
+{
+"key": "autoCopyOcrLabel",
+"english": "Auto-copy OCR",
+"target": "OCR自動コピー",
+"backtrans": "OCR auto-copy"
+},
+{
+"key": "autoCopyOcrSubtitle",
+"english": "Copy text to clipboard after scan",
+"target": "スキャン後にテキストをクリップボードにコピー",
+"backtrans": "Copy text to the clipboard after scanning"
+},
+{
+"key": "beepOnCaptureLabel",
+"english": "Beep on capture",
+"target": "キャプチャ時にビープ音",
+"backtrans": "Beep on capture"
+},
+{
+"key": "beepOnCaptureSubtitle",
+"english": "Play sound when scan completes",
+"target": "スキャン完了時に音を再生",
+"backtrans": "Play a sound when scanning completes"
+},
+{
+"key": "vibrateOnCaptureLabel",
+"english": "Vibrate on capture",
+"target": "キャプチャ時にバイブレーション",
+"backtrans": "Vibrate on capture"
+},
+{
+"key": "vibrateOnCaptureSubtitle",
+"english": "Haptic feedback when scan completes",
+"target": "スキャン完了時に触覚フィードバック",
+"backtrans": "Haptic feedback when scanning completes"
+},
+{
+"key": "adsRemovedLabel",
+"english": "Ads Removed",
+"target": "広告削除済み",
+"backtrans": "Ads removed"
+},
+{
+"key": "diagnosticsSectionLabel",
+"english": "DIAGNOSTICS",
+"target": "診断",
+"backtrans": "Diagnostics"
+},
+{
+"key": "debugLogsLabel",
+"english": "Debug Logs",
+"target": "デバッグログ",
+"backtrans": "Debug logs"
+},
+{
+"key": "logEntriesLabel",
+"english": "{count, plural, =0{No entries} =1{1 entry} other{{count} entries}}",
+"target": "{count, plural, =0{エントリなし} =1{1件} other{{count}件}}",
+"backtrans": "{count, plural, =0{No entries} =1{1 item} other{{count} items}}"
+},
+{
+"key": "ocrStatusBuiltIn",
+"english": "Built-in",
+"target": "組み込み",
+"backtrans": "Built-in"
+},
+{
+"key": "ocrStatusChecking",
+"english": "Checking...",
+"target": "確認中...",
+"backtrans": "Checking..."
+},
+{
+"key": "ocrStatusOnDemand",
+"english": "On-demand",
+"target": "オンデマンド",
+"backtrans": "On demand"
+},
+{
+"key": "savedAsNewDocument",
+"english": "Saved as new document",
+"target": "新しいドキュメントとして保存しました",
+"backtrans": "Saved as a new document"
+},
+{
+"key": "conversionFailedPrefix",
+"english": "Conversion failed",
+"target": "変換に失敗しました",
+"backtrans": "Conversion failed"
+},
+{
+"key": "convertDocumentTitle",
+"english": "Convert Document",
+"target": "ドキュメントを変換",
+"backtrans": "Convert document"
+},
+{
+"key": "convertToLabel",
+"english": "Convert to:",
+"target": "変換先:",
+"backtrans": "Convert to:"
+},
+{
+"key": "actionLabel",
+"english": "Action:",
+"target": "アクション:",
+"backtrans": "Action:"
+},
+{
+"key": "saveAsNewDocumentAction",
+"english": "Save as new Document",
+"target": "新しいドキュメントとして保存",
+"backtrans": "Save as new document"
+},
+{
+"key": "exportAndShareAction",
+"english": "Export & Share",
+"target": "エクスポートと共有",
+"backtrans": "Export and share"
+},
+{
+"key": "docxWarningMessage",
+"english": "DOCX sources render poorly as pages — save inside the app is limited to JPG/PNG from image, PDF, TXT or CSV sources. Use Export & Share for this file.",
+"target": "DOCXソースはページとして正しく表示されません—アプリ内保存は画像、PDF、TXT、CSVからのJPG/PNGに限定されます。このファイルはエクスポートと共有を使用してください。",
+"backtrans": "DOCX sources are not displayed correctly as pages — in-app saving is limited to images, PDF, TXT, and CSV to JPG/PNG. Use export and share for this file."
+},
+{
+"key": "saveInsideAppWarning",
+"english": "To save inside the app, choose JPG or PNG. Other targets are exported as files.",
+"target": "アプリ内に保存するにはJPGまたはPNGを選択してください。その他の形式はファイルとしてエクスポートされます。",
+"backtrans": "Select JPG or PNG to save inside the app. Other formats are exported as files."
+},
+{
+"key": "commonConvert",
+"english": "Convert",
+"target": "変換",
+"backtrans": "Convert"
+},
+{
+"key": "conversionStarting",
+"english": "Starting…",
+"target": "開始中…",
+"backtrans": "Starting..."
+},
+{
+"key": "convertedDocTitle",
+"english": "Converted {date}",
+"target": "変換済み {date}",
+"backtrans": "Converted {date}"
+},
+{
+"key": "progressReading",
+"english": "Reading…",
+"target": "読み込み中…",
+"backtrans": "Reading..."
+},
+{
+"key": "progressCopying",
+"english": "Copying…",
+"target": "コピー中…",
+"backtrans": "Copying..."
+},
+{
+"key": "progressBuildingPdf",
+"english": "Building PDF…",
+"target": "PDFを作成中…",
+"backtrans": "Creating PDF..."
+},
+{
+"key": "progressBuildingDocx",
+"english": "Building DOCX…",
+"target": "DOCXを作成中…",
+"backtrans": "Creating DOCX..."
+},
+{
+"key": "progressDecodingImage",
+"english": "Decoding image…",
+"target": "画像をデコード中…",
+"backtrans": "Decoding image..."
+},
+{
+"key": "progressExtractingText",
+"english": "Extracting text…",
+"target": "テキストを抽出中…",
+"backtrans": "Extracting text..."
+},
+{
+"key": "progressSaving",
+"english": "Saving…",
+"target": "保存中…",
+"backtrans": "Saving..."
+},
+{
+"key": "progressRasterizing",
+"english": "Rasterizing pages…",
+"target": "ページをラスタライズ中…",
+"backtrans": "Rasterizing pages..."
+},
+{
+"key": "progressEncodingPage",
+"english": "Encoding page {current} of {total}…",
+"target": "ページ {current}/{total} をエンコード中…",
+"backtrans": "Encoding page {current}/{total}..."
+},
+{
+"key": "watermarkEditTitle",
+"english": "Edit Watermark",
+"target": "透かしを編集",
+"backtrans": "Edit watermark"
+},
+{
+"key": "watermarkAddTitle",
+"english": "Add Watermark",
+"target": "透かしを追加",
+"backtrans": "Add watermark"
+},
+{
+"key": "watermarkTextLabel",
+"english": "Text",
+"target": "テキスト",
+"backtrans": "Text"
+},
+{
+"key": "opacityPercentLabel",
+"english": "Opacity: {percent}%",
+"target": "不透明度: {percent}%",
+"backtrans": "Opacity: {percent}%"
+},
+{
+"key": "sizePtLabel",
+"english": "Size: {size}pt",
+"target": "サイズ: {size}pt",
+"backtrans": "Size: {size}pt"
+},
+{
+"key": "alignLabel",
+"english": "Align",
+"target": "配置",
+"backtrans": "Alignment"
+},
+{
+"key": "exportSavedToDownloads",
+"english": "Saved to Downloads",
+"target": "ダウンロードに保存しました",
+"backtrans": "Saved to Downloads"
+},
+{
+"key": "commonShare",
+"english": "Share",
+"target": "共有",
+"backtrans": "Share"
+},
+{
+"key": "exportTitle",
+"english": "Export",
+"target": "エクスポート",
+"backtrans": "Export"
+},
+{
+"key": "targetMbLabel",
+"english": "{mb} MB",
+"target": "{mb} MB",
+"backtrans": "{mb} MB"
+},
+{
+"key": "filterColor",
+"english": "Color",
+"target": "カラー",
+"backtrans": "Color"
+},
+{
+"key": "filterShadow",
+"english": "Shadow",
+"target": "シャドウ",
+"backtrans": "Shadow"
+},
+{
+"key": "docxModeTextOnly",
+"english": "Text Only",
+"target": "テキストのみ",
+"backtrans": "Text only"
+},
+{
+"key": "docxModeWithImages",
+"english": "With Images",
+"target": "画像付き",
+"backtrans": "With images"
+},
+{
+"key": "saveToDeviceButton",
+"english": "Save to Device",
+"target": "デバイスに保存",
+"backtrans": "Save to device"
+},
+{
+"key": "pageIndicator",
+"english": "Page {current} / {total}",
+"target": "ページ {current} / {total}",
+"backtrans": "Page {current} / {total}"
+},
+{
+"key": "fullscreenLabel",
+"english": "Fullscreen",
+"target": "全画面",
+"backtrans": "Fullscreen"
+},
+{
+"key": "batchExportSignatureDisabled",
+"english": "Batch export — signature placement disabled",
+"target": "一括エクスポート—署名配置は無効",
+"backtrans": "Batch export — signature placement is disabled"
+},
+{
+"key": "fitToTargetMbLabel",
+"english": "Fit to target MB",
+"target": "目標MBに合わせる",
+"backtrans": "Fit to target MB"
+},
+{
+"key": "moreOptionsTooltip",
+"english": "More options",
+"target": "その他のオプション",
+"backtrans": "More options"
+},
+{
+"key": "commonRename",
+"english": "Rename",
+"target": "名前を変更",
+"backtrans": "Change name"
+},
+{
+"key": "addTagsAction",
+"english": "Add Tags",
+"target": "タグを追加",
+"backtrans": "Add tags"
+},
+{
+"key": "editDocumentAction",
+"english": "Edit Document",
+"target": "ドキュメントを編集",
+"backtrans": "Edit document"
+},
+{
+"key": "copiedToClipboard",
+"english": "Copied to clipboard",
+"target": "クリップボードにコピーしました",
+"backtrans": "Copied to clipboard"
+},
+{
+"key": "favoriteTooltip",
+"english": "Favorite",
+"target": "お気に入り",
+"backtrans": "Favorite"
+},
+{
+"key": "noFoldersYet",
+"english": "No folders yet",
+"target": "フォルダがありません",
+"backtrans": "No folders"
+},
+{
+"key": "rotateLabel",
+"english": "Rotate",
+"target": "回転",
+"backtrans": "Rotate"
+},
+{
+"key": "scaleLabel",
+"english": "Scale",
+"target": "スケール",
+"backtrans": "Scale"
+},
+{
+"key": "eraserTitle",
+"english": "Eraser",
+"target": "消しゴム",
+"backtrans": "Eraser"
+},
+{
+"key": "tapToSampleColor",
+"english": "Tap a spot to sample its color",
+"target": "スポットをタップして色をサンプリング",
+"backtrans": "Tap a spot to sample the color"
+},
+{
+"key": "commonSize",
+"english": "Size",
+"target": "サイズ",
+"backtrans": "Size"
+},
+{
+"key": "sampleColorTooltip",
+"english": "Sample color from page",
+"target": "ページから色をサンプリング",
+"backtrans": "Sample a color from the page"
+},
+{
+"key": "marqueeEraseTooltip",
+"english": "Marquee erase",
+"target": "選択範囲消去",
+"backtrans": "Erase selection"
+},
+{
+"key": "commonApply",
+"english": "Apply",
+"target": "適用",
+"backtrans": "Apply"
+},
+{
+"key": "filterTitle",
+"english": "Filter",
+"target": "フィルター",
+"backtrans": "Filter"
+},
+{
+"key": "intensityLabel",
+"english": "Intensity",
+"target": "強さ",
+"backtrans": "Strength"
+},
+{
+"key": "selectRegionTitle",
+"english": "Select Region",
+"target": "領域を選択",
+"backtrans": "Select region"
+},
+{
+"key": "commonExtract",
+"english": "Extract",
+"target": "抽出",
+"backtrans": "Extract"
+},
+{
+"key": "customColorTitle",
+"english": "Custom Color",
+"target": "カスタムカラー",
+"backtrans": "Custom color"
+},
+{
+"key": "documentNotFound",
+"english": "Document not found",
+"target": "ドキュメントが見つかりません",
+"backtrans": "Document not found"
+},
+{
+"key": "clearLogsTooltip",
+"english": "Clear logs",
+"target": "ログをクリア",
+"backtrans": "Clear logs"
+},
+{
+"key": "placeHereLabel",
+"english": "Place here",
+"target": "ここに配置",
+"backtrans": "Place here"
+},
+{
+"key": "tryAgainButton",
+"english": "Try again",
+"target": "再試行",
+"backtrans": "Retry"
+},
+{
+"key": "emptyDocumentMessage",
+"english": "This document has no pages.",
+"target": "このドキュメントにはページがありません。",
+"backtrans": "This document has no pages."
+},
+{
+"key": "cameraErrorPrefix",
+"english": "Camera error",
+"target": "カメラエラー",
+"backtrans": "Camera error"
+},
+{
+"key": "importErrorPrefix",
+"english": "Import error",
+"target": "インポートエラー",
+"backtrans": "Import error"
+},
+{
+"key": "pdfImportErrorPrefix",
+"english": "PDF import error",
+"target": "PDFインポートエラー",
+"backtrans": "PDF import error"
+},
+{
+"key": "pickErrorPrefix",
+"english": "Pick error",
+"target": "選択エラー",
+"backtrans": "Selection error"
+},
+{
+"key": "scannerErrorPrefix",
+"english": "Scanner error",
+"target": "スキャナーエラー",
+"backtrans": "Scanner error"
+},
+{
+"key": "idPdfErrorPrefix",
+"english": "Error generating ID PDF",
+"target": "ID PDF生成エラー",
+"backtrans": "ID PDF generation error"
+},
+{
+"key": "genericErrorPrefix",
+"english": "Error",
+"target": "エラー",
+"backtrans": "Error"
+},
+{
+"key": "annotateTitle",
+"english": "Annotate",
+"target": "注釈",
+"backtrans": "Annotation"
+},
+{
+"key": "placementsCountLabel",
+"english": "{count, plural, =0{Nothing placed} =1{1 placed} other{{count} placed}}",
+"target": "{count, plural, =0{配置なし} =1{1個配置} other{{count}個配置}}",
+"backtrans": "{count, plural, =0{No placements} =1{1 placed} other{{count} placed}}"
+},
+{
+"key": "ocrUnavailableTooltip",
+"english": "OCR unavailable on this device.",
+"target": "このデバイスではOCRを利用できません。",
+"backtrans": "OCR is not available on this device."
+},
+{
+"key": "docScannerUnsupportedMessage",
+"english": "Your device doesn't support the advanced document scanner. Take a photo with your Camera app, then tap Import below to crop and save it.",
+"target": "お使いのデバイスは高度なドキュメントスキャナーに対応していません。カメラアプリで写真を撮影し、下の「インポート」をタップしてトリミングして保存してください。",
+"backtrans": "Your device does not support the advanced document scanner. Take a photo with the camera app, then tap \"Import\" below to crop and save it."
+},
+{
+"key": "billingUnavailableMessage",
+"english": "Billing unavailable — try again later.",
+"target": "課金を利用できません — 後で再試行してください。",
+"backtrans": "Billing is not available — please retry later."
+},
+{
+"key": "ocrNoInternetMessage",
+"english": "No internet. Connect once to download the language pack.",
+"target": "インターネット接続がありません。言語パックをダウンロードするため一度接続してください。",
+"backtrans": "There is no internet connection. Please connect once to download the language pack."
+},
+{
+"key": "ocrLanguagePackNotReady",
+"english": "Language pack downloading or not ready. Try again shortly.",
+"target": "言語パックをダウンロード中または準備できていません。まもなく再試行してください。",
+"backtrans": "The language pack is downloading or is not ready. Please retry shortly."
+},
+{
+"key": "undoTooltip",
+"english": "Undo",
+"target": "元に戻す",
+"backtrans": "Undo"
+},
+{
+"key": "redoTooltip",
+"english": "Redo",
+"target": "やり直す",
+"backtrans": "Redo"
+},
+{
+"key": "fillInputHint",
+"english": "Type text to fill",
+"target": "記入するテキストを入力",
+"backtrans": "Enter the text to fill in"
+},
+{
+"key": "fillCapsLabel",
+"english": "ALL CAPS",
+"target": "大文字",
+"backtrans": "Uppercase"
+},
+{
+"key": "fillSaveSnippet",
+"english": "Save as snippet",
+"target": "スニペットとして保存",
+"backtrans": "Save as snippet"
+},
+{
+"key": "fillDeleteSnippet",
+"english": "Delete snippet?",
+"target": "スニペットを削除しますか？",
+"backtrans": "Delete the snippet?"
+},
+{
+"key": "fillTooltip",
+"english": "Fill",
+"target": "入力",
+"backtrans": "Fill in"
+},
+{
+"key": "tickerFreeUnlimitedOcr",
+"english": "FREE UNLIMITED OCR",
+"target": "無料無制限OCR",
+"backtrans": "Free unlimited OCR"
+},
+{
+"key": "ticker100OnDevicePrivacy",
+"english": "YOUR DOCUMENTS STAY ON YOUR DEVICE",
+"target": "書類はあなたの端末に残ります",
+"backtrans": "Documents stay on your device"
+},
+{
+"key": "tickerNoAccount",
+"english": "NO ACCOUNT",
+"target": "アカウント不要",
+"backtrans": "No account required"
+},
+{
+"key": "tickerNoWatermarks",
+"english": "NO WATERMARKS",
+"target": "透かしなし",
+"backtrans": "No watermarks"
+},
+{
+"key": "ticker21ToolEditSuite",
+"english": "21-TOOL EDIT SUITE",
+"target": "21ツール編集スイート",
+"backtrans": "21-tool edit suite"
+},
+{
+"key": "tickerNonDestructiveEditing",
+"english": "NON-DESTRUCTIVE EDITING",
+"target": "非破壊編集",
+"backtrans": "Non-destructive editing"
+},
+{
+"key": "tickerUndoRedo",
+"english": "UNDO/REDO",
+"target": "元に戻す/やり直し",
+"backtrans": "Undo / redo"
+},
+{
+"key": "tickerRevertToOriginal",
+"english": "REVERT TO ORIGINAL",
+"target": "オリジナルに戻す",
+"backtrans": "Revert to original"
+},
+{
+"key": "tickerTapToTypeFilling",
+"english": "TAP-TO-TYPE FILLING",
+"target": "タップして入力",
+"backtrans": "Tap to type"
+},
+{
+"key": "tickerESign",
+"english": "E-SIGN",
+"target": "電子署名",
+"backtrans": "Electronic signature"
+},
+{
+"key": "tickerCustomSeals",
+"english": "CUSTOM SEALS",
+"target": "カスタムシール",
+"backtrans": "Custom seals"
+},
+{
+"key": "tickerTextStamps",
+"english": "TEXT STAMPS",
+"target": "テキストスタンプ",
+"backtrans": "Text stamps"
+},
+{
+"key": "tickerNoteStamps",
+"english": "NOTE STAMPS",
+"target": "ノートスタンプ",
+"backtrans": "Note stamps"
+},
+{
+"key": "tickerSearchablePdf",
+"english": "SEARCHABLE PDF",
+"target": "検索可能PDF",
+"backtrans": "Searchable PDF"
+},
+{
+"key": "tickerRegionOcr",
+"english": "REGION OCR",
+"target": "領域OCR",
+"backtrans": "Region OCR"
+},
+{
+"key": "tickerAutoCopyOcr",
+"english": "AUTO-COPY OCR",
+"target": "自動コピーOCR",
+"backtrans": "Auto-copy OCR"
+},
+{
+"key": "tickerIdCardMode",
+"english": "ID CARD MODE",
+"target": "IDカードモード",
+"backtrans": "ID card mode"
+},
+{
+"key": "tickerPassportMode",
+"english": "PASSPORT MODE",
+"target": "パスポートモード",
+"backtrans": "Passport mode"
+},
+{
+"key": "tickerGalleryImport",
+"english": "GALLERY IMPORT",
+"target": "ギャラリーインポート",
+"backtrans": "Gallery import"
+},
+{
+"key": "tickerPdfExport",
+"english": "PDF EXPORT",
+"target": "PDFエクスポート",
+"backtrans": "PDF export"
+},
+{
+"key": "tickerWordExport",
+"english": "WORD EXPORT",
+"target": "Wordエクスポート",
+"backtrans": "Word export"
+},
+{
+"key": "tickerJpgExport",
+"english": "JPG EXPORT",
+"target": "JPGエクスポート",
+"backtrans": "JPG export"
+},
+{
+"key": "tickerPngExport",
+"english": "PNG EXPORT",
+"target": "PNGエクスポート",
+"backtrans": "PNG export"
+},
+{
+"key": "tickerBatchExport",
+"english": "BATCH EXPORT",
+"target": "バッチエクスポート",
+"backtrans": "Batch export"
+},
+{
+"key": "tickerFolders",
+"english": "FOLDERS",
+"target": "フォルダ",
+"backtrans": "Folders"
+},
+{
+"key": "tickerTags",
+"english": "TAGS",
+"target": "タグ",
+"backtrans": "Tags"
+},
+{
+"key": "tickerFavorites",
+"english": "FAVORITES",
+"target": "お気に入り",
+"backtrans": "Favorites"
+},
+{
+"key": "tickerSearch",
+"english": "SEARCH",
+"target": "検索",
+"backtrans": "Search"
+},
+{
+"key": "tickerDarkMode",
+"english": "DARK MODE",
+"target": "ダークモード",
+"backtrans": "Dark mode"
+},
+{
+"key": "tickerAccentThemes",
+"english": "ACCENT THEMES",
+"target": "アクセントテーマ",
+"backtrans": "Accent themes"
+},
+{
+"key": "tickerDeviceMigration",
+"english": "DEVICE MIGRATION",
+"target": "デバイス移行",
+"backtrans": "Device migration"
+},
+{
+"key": "onboardingWelcomeTitle",
+"english": "Welcome to KatharScan",
+"target": "KatharScanへようこそ",
+"backtrans": "Welcome to KatharScan"
+},
+{
+"key": "onboardingWelcomeSubtitle",
+"english": "Your entire document office — scan, edit, sign, and export — in one private app.",
+"target": "スキャン・編集・署名・エクスポート — すべてが1つのプライベートアプリに。",
+"backtrans": "Scan, edit, sign, export — all in one private app."
+},
+{
+"key": "onboardingToolsTitle",
+"english": "21 Free Pro Tools",
+"target": "21の無料プロツール",
+"backtrans": "21 free pro tools"
+},
+{
+"key": "onboardingToolsSubtitle",
+"english": "Annotate, sign, watermark, fill forms, seal, and more — every tool free and unlimited.",
+"target": "注釈、署名、透かし、フォーム入力、シールなど — すべて無料で無制限。",
+"backtrans": "Annotation, signature, watermark, form filling, seals, and more — all free and unlimited."
+},
+{
+"key": "onboardingOcrTitle",
+"english": "On-Device OCR",
+"target": "オンデバイスOCR",
+"backtrans": "On-device OCR"
+},
+{
+"key": "onboardingOcrSubtitle",
+"english": "Use KatharScan in {count} languages. OCR runs on your phone — nothing ever leaves your device.",
+"target": "KatharScanを{count}言語で利用可能。OCRはスマートフォン上で動作し、何も端末の外に出ません。",
+"backtrans": "KatharScan is available in {count} languages. OCR runs on your smartphone, and nothing leaves the device."
+},
+{
+"key": "onboardingSignTitle",
+"english": "Sign, Fill & Seal",
+"target": "署名・入力・シール",
+"backtrans": "Sign, fill in, seal"
+},
+{
+"key": "onboardingSignSubtitle",
+"english": "E-sign contracts, type-to-fill forms, and stamp enterprise seals in seconds.",
+"target": "契約書に電子署名、フォーム入力、企業シールを数秒で。",
+"backtrans": "E-sign contracts, fill in forms, and company seals in seconds."
+},
+{
+"key": "onboardingEditTitle",
+"english": "Non-Destructive Editing",
+"target": "非破壊編集",
+"backtrans": "Non-destructive editing"
+},
+{
+"key": "onboardingEditSubtitle",
+"english": "Every edit stays reversible — undo, redo, and revert to original anytime.",
+"target": "すべての編集は可逆的 — いつでも元に戻す・やり直し・オリジナル復元。",
+"backtrans": "All edits are reversible — undo, redo, and restore the original any time."
+},
+{
+"key": "onboardingPrivacyTitle",
+"english": "Private by design",
+"target": "設計段階からプライベート",
+"backtrans": "Private by design"
+},
+{
+"key": "onboardingPrivacySubtitle",
+"english": "No account, no cloud, no watermarks. Your documents never leave your device.",
+"target": "アカウント不要、クラウド不要、透かしなし。文書はデバイスから出ません。",
+"backtrans": "No account required, no cloud, no watermarks. Documents do not leave the device."
+},
+{
+"key": "onboardingContinue",
+"english": "Continue",
+"target": "続ける",
+"backtrans": "Continue"
+},
+{
+"key": "onboardingGetStarted",
+"english": "Get Started",
+"target": "はじめる",
+"backtrans": "Get started"
+},
+{
+"key": "onboardingBack",
+"english": "Back",
+"target": "戻る",
+"backtrans": "Back"
+},
+{
+"key": "onboardingReplayIntro",
+"english": "Replay introduction",
+"target": "紹介をもう一度見る",
+"backtrans": "Watch the introduction again"
+},
+{
+"key": "saveToDownloadsAction",
+"english": "Save to Downloads",
+"target": "ダウンロードに保存",
+"backtrans": "Save to Downloads"
+},
+{
+"key": "paywallTitle",
+"english": "Remove Ads",
+"target": "広告を削除",
+"backtrans": "Remove ads"
+},
+{
+"key": "paywallSubtitle",
+"english": "Support KatharScan with a one-time purchase. All features remain free.",
+"target": "一回の購入でKatharScanをサポート。すべての機能は永久に無料です。",
+"backtrans": "Support KatharScan with a one-time purchase. All features are free forever."
+},
+{
+"key": "paywallFallbackPrice",
+"english": "$14.99 one-time",
+"target": "$14.99 買い切り",
+"backtrans": "$14.99 one-time purchase"
+},
+{
+"key": "paywallFeatureNoBanner",
+"english": "No more banner ads",
+"target": "バナー広告なし",
+"backtrans": "No banner ads"
+},
+{
+"key": "paywallFeatureNoInterstitial",
+"english": "No more interstitial ads",
+"target": "全画面広告なし",
+"backtrans": "No full-screen ads"
+},
+{
+"key": "paywallFeatureFreeForever",
+"english": "All features free forever",
+"target": "すべての機能が永久に無料",
+"backtrans": "All features free forever"
+},
+{
+"key": "paywallLegalText",
+"english": "This is a non-consumable purchase. Restore it anytime on any device with the same store account.",
+"target": "これは非消耗型の購入です。同じストアアカウントで、いつでもどのデバイスでも復元できます。",
+"backtrans": "This is a non-consumable purchase. You can restore it any time on any device with the same store account."
+},
+{
+"key": "paywallSuccessTitle",
+"english": "Ads Removed",
+"target": "広告が削除されました",
+"backtrans": "Ads have been removed"
+},
+{
+"key": "paywallSuccessMessage",
+"english": "Thank you for supporting KatharScan.",
+"target": "KatharScanをご支援いただきありがとうございます。",
+"backtrans": "Thank you for supporting KatharScan."
+},
+{
+"key": "errorGenericTitle",
+"english": "Something went wrong",
+"target": "問題が発生しました",
+"backtrans": "A problem occurred"
+},
+{
+"key": "errorScreenProblem",
+"english": "KatharScan ran into a problem displaying this screen. Your scans are safe — they're stored on this device and this doesn't affect them.",
+"target": "この画面の表示中にKatharScanで問題が発生しました。スキャンは安全です。このデバイスに保存されており、影響はありません。",
+"backtrans": "A problem occurred in KatharScan while displaying this screen. Your scans are safe. They are saved on this device and are unaffected."
+},
+{
+"key": "errorReportIssue",
+"english": "Report issue",
+"target": "問題を報告",
+"backtrans": "Report a problem"
+},
+{
+"key": "filterAll",
+"english": "All",
+"target": "すべて",
+"backtrans": "All"
+},
+{
+"key": "filterFolders",
+"english": "Folders",
+"target": "フォルダ",
+"backtrans": "Folders"
+},
+{
+"key": "filterRecent",
+"english": "Recent",
+"target": "最近",
+"backtrans": "Recent"
+},
+{
+"key": "filterFavorites",
+"english": "Favorites",
+"target": "お気に入り",
+"backtrans": "Favorites"
+},
+{
+"key": "chipAllFolders",
+"english": "All Folders",
+"target": "すべてのフォルダ",
+"backtrans": "All folders"
+},
+{
+"key": "chipSelectMultiple",
+"english": "Select Multiple",
+"target": "複数選択",
+"backtrans": "Select multiple"
+},
+{
+"key": "emptySearch",
+"english": "No scans match your search.",
+"target": "検索に一致するスキャンがありません。",
+"backtrans": "No scans match the search."
+},
+{
+"key": "emptyFolders",
+"english": "No folders yet. Tap the folder icon to create one.",
+"target": "フォルダはまだありません。フォルダアイコンをタップして作成します。",
+"backtrans": "There are no folders yet. Tap the folder icon to create one."
+},
+{
+"key": "emptyFavorites",
+"english": "No favorites yet. Tap the star icon on a document to add it.",
+"target": "お気に入りはまだありません。ドキュメントの星アイコンをタップして追加します。",
+"backtrans": "There are no favorites yet. Tap the star icon on a document to add one."
+},
+{
+"key": "modeDocument",
+"english": "Document Mode",
+"target": "ドキュメントモード",
+"backtrans": "Document mode"
+},
+{
+"key": "modeOcr",
+"english": "OCR Mode",
+"target": "OCRモード",
+"backtrans": "OCR mode"
+},
+{
+"key": "modeIdCard",
+"english": "ID Card Mode",
+"target": "IDカードモード",
+"backtrans": "ID card mode"
+},
+{
+"key": "modePassport",
+"english": "Passport Mode",
+"target": "パスポートモード",
+"backtrans": "Passport mode"
+},
+{
+"key": "titlePdfImport",
+"english": "PDF Import",
+"target": "PDFインポート",
+"backtrans": "PDF import"
+},
+{
+"key": "titleIdCard",
+"english": "ID Card",
+"target": "IDカード",
+"backtrans": "ID card"
+},
+{
+"key": "titleScan",
+"english": "Scan",
+"target": "スキャン",
+"backtrans": "Scan"
+},
+{
+"key": "exportEstimatedSize",
+"english": "Estimated size: {mb} MB",
+"target": "推定サイズ: {mb} MB",
+"backtrans": "Estimated size: {mb} MB"
+},
+{
+"key": "debugNoLogsYet",
+"english": "No logs yet",
+"target": "ログはまだありません",
+"backtrans": "No logs yet"
+},
+{
+"key": "textBold",
+"english": "B",
+"target": "B",
+"backtrans": "B"
+},
+{
+"key": "textItalic",
+"english": "I",
+"target": "I",
+"backtrans": "I"
+},
+{
+"key": "textUnderline",
+"english": "U",
+"target": "U",
+"backtrans": "U"
+},
+{
+"key": "textFontLetterA",
+"english": "A",
+"target": "A",
+"backtrans": "A"
+},
+{
+"key": "multiplySymbol",
+"english": "×",
+"target": "×",
+"backtrans": "×"
+},
+{
+"key": "signerLabel",
+"english": "Signer {index}",
+"target": "署名者 {index}",
+"backtrans": "Signer {index}"
+},
+{
+"key": "stampCheckbox",
+"english": "Checkbox",
+"target": "チェックボックス",
+"backtrans": "Checkbox"
+},
+{
+"key": "fontSansSerif",
+"english": "sans-serif",
+"target": "sans-serif",
+"backtrans": "sans-serif"
+},
+{
+"key": "fontSerif",
+"english": "serif",
+"target": "serif",
+"backtrans": "serif"
+},
+{
+"key": "fontMonospace",
+"english": "monospace",
+"target": "monospace",
+"backtrans": "monospace"
+},
+{
+"key": "sealCustom",
+"english": "Custom Seal",
+"target": "カスタムシール",
+"backtrans": "Custom seal"
+},
+{
+"key": "formatCsv",
+"english": "CSV",
+"target": "CSV",
+"backtrans": "CSV"
+},
+{
+"key": "ocrNoTextFound",
+"english": "No text found",
+"target": "テキストが見つかりません",
+"backtrans": "No text found"
+},
+{
+"key": "rotationAllPages",
+"english": "All pages rotated",
+"target": "すべてのページを回転しました",
+"backtrans": "Rotated all pages"
+},
+{
+"key": "rotationPage",
+"english": "Page rotated",
+"target": "ページを回転しました",
+"backtrans": "Rotated the page"
+},
+{
+"key": "resizeTitle",
+"english": "Resize",
+"target": "サイズ変更",
+"backtrans": "Resize"
+},
+{
+"key": "addTextTitle",
+"english": "Add Text",
+"target": "テキストを追加",
+"backtrans": "Add text"
+},
+{
+"key": "addNoteTitle",
+"english": "Add Note",
+"target": "ノートを追加",
+"backtrans": "Add note"
+},
+{
+"key": "addDateTitle",
+"english": "Add Date",
+"target": "日付を追加",
+"backtrans": "Add date"
+},
+{
+"key": "addCheckboxTitle",
+"english": "Add Checkbox",
+"target": "チェックボックスを追加",
+"backtrans": "Add checkbox"
+},
+{
+"key": "noteTextLabel",
+"english": "Note text",
+"target": "ノートテキスト",
+"backtrans": "Note text"
+},
+{
+"key": "textLabel",
+"english": "Text",
+"target": "テキスト",
+"backtrans": "Text"
+},
+{
+"key": "checkShapeRounded",
+"english": "Rounded",
+"target": "角丸",
+"backtrans": "Rounded corners"
+},
+{
+"key": "checkShapeSquare",
+"english": "Square",
+"target": "四角",
+"backtrans": "Square"
+},
+{
+"key": "checkShapeCircle",
+"english": "Circle",
+"target": "丸",
+"backtrans": "Circle"
+},
+{
+"key": "hueLabel",
+"english": "Hue",
+"target": "色相",
+"backtrans": "Hue"
+},
+{
+"key": "satLabel",
+"english": "Sat",
+"target": "彩度",
+"backtrans": "Saturation"
+},
+{
+"key": "valLabel",
+"english": "Val",
+"target": "明度",
+"backtrans": "Brightness (lightness)"
+},
+{
+"key": "annotationModePen",
+"english": "Pen",
+"target": "ペン",
+"backtrans": "Pen"
+},
+{
+"key": "annotationModeHighlighter",
+"english": "Highlighter",
+"target": "ハイライター",
+"backtrans": "Highlighter"
+},
+{
+"key": "annotationModeRect",
+"english": "Rectangle",
+"target": "四角形",
+"backtrans": "Rectangle"
+},
+{
+"key": "annotationModeArrow",
+"english": "Arrow",
+"target": "矢印",
+"backtrans": "Arrow"
+},
+{
+"key": "annotationModeEllipse",
+"english": "Ellipse",
+"target": "楕円",
+"backtrans": "Ellipse"
+},
+{
+"key": "sharePromptTitle",
+"english": "Love KatharScan?",
+"target": "KatharScanを気に入っていますか？",
+"backtrans": "Do you like KatharScan?"
+},
+{
+"key": "sharePromptBody",
+"english": "Share it with friends who need a powerful document scanner.",
+"target": "強力なドキュメントスキャナーを必要としている友達と共有してください。",
+"backtrans": "Share it with friends who need a powerful document scanner."
+},
+{
+"key": "sharePromptAction",
+"english": "Share App",
+"target": "アプリを共有",
+"backtrans": "Share the app"
+},
+{
+"key": "sharePromptDismiss",
+"english": "Not now",
+"target": "後で",
+"backtrans": "Later"
+},
+{
+"key": "reviewPromptTitle",
+"english": "Enjoying KatharScan?",
+"target": "KatharScanを楽しんでいますか？",
+"backtrans": "Are you enjoying KatharScan?"
+},
+{
+"key": "reviewPromptBody",
+"english": "Your feedback helps us grow and keeps the app free.",
+"target": "あなたのフィードバックは私たちの成長を助け、アプリを無料で維持します。",
+"backtrans": "Your feedback helps us grow and keeps the app free."
+},
+{
+"key": "reviewPromptYes",
+"english": "Rate Us",
+"target": "評価する",
+"backtrans": "Rate"
+},
+{
+"key": "reviewPromptNo",
+"english": "Send Feedback",
+"target": "フィードバックを送信",
+"backtrans": "Send feedback"
+},
+{
+"key": "watermarkLabel",
+"english": "Watermark",
+"target": "透かし",
+"backtrans": "Watermark"
+},
+{
+"key": "compressLabel",
+"english": "Compress",
+"target": "圧縮",
+"backtrans": "Compress"
+},
+{
+"key": "pagesLabel",
+"english": "Pages",
+"target": "ページ",
+"backtrans": "Pages"
+},
+{
+"key": "cropLabel",
+"english": "Crop",
+"target": "トリミング",
+"backtrans": "Crop"
+},
+{
+"key": "emailLabel",
+"english": "Email",
+"target": "メール",
+"backtrans": "Email"
+},
+{
+"key": "checkLabel",
+"english": "Check",
+"target": "チェック",
+"backtrans": "Check"
+},
+{
+"key": "captionDocs",
+"english": "Flexible crop: Original, Square, 4:3, 3:2, 16:9",
+"target": "柔軟なトリミング: オリジナル、正方形、4:3、3:2、16:9",
+"backtrans": "Flexible cropping: original, square, 4:3, 3:2, 16:9"
+},
+{
+"key": "captionOcr",
+"english": "Text crop: Original, Square, 4:3",
+"target": "テキストトリミング: オリジナル、正方形、4:3",
+"backtrans": "Text cropping: original, square, 4:3"
+},
+{
+"key": "captionIdCard",
+"english": "Two-sided ID capture: Front + Back",
+"target": "両面IDキャプチャ: 表面 + 裏面",
+"backtrans": "Two-sided ID capture: front + back"
+},
+{
+"key": "captionPassport",
+"english": "Passport crop: 4:3 or Original",
+"target": "パスポートトリミング: 4:3 またはオリジナル",
+"backtrans": "Passport cropping: 4:3 or original"
+},
+{
+"key": "idStepFront",
+"english": "Step 1: Capture Front Side",
+"target": "ステップ1: 表面をキャプチャ",
+"backtrans": "Step 1: Capture the front side"
+},
+{
+"key": "idStepBack",
+"english": "Step 2: Capture Back Side",
+"target": "ステップ2: 裏面をキャプチャ",
+"backtrans": "Step 2: Capture the back side"
+},
+{
+"key": "idGenerating",
+"english": "Generating PDF...",
+"target": "PDFを作成中...",
+"backtrans": "Creating PDF..."
+},
+{
+"key": "captureFrontSide",
+"english": "Capture Front Side",
+"target": "表面をキャプチャ",
+"backtrans": "Capture front side"
+},
+{
+"key": "captureBackSide",
+"english": "Capture Back Side",
+"target": "裏面をキャプチャ",
+"backtrans": "Capture back side"
+},
+{
+"key": "importFrontSide",
+"english": "Import Front Side",
+"target": "表面をインポート",
+"backtrans": "Import front side"
+},
+{
+"key": "importBackSide",
+"english": "Import Back Side",
+"target": "裏面をインポート",
+"backtrans": "Import back side"
+},
+{
+"key": "cropDocumentTitle",
+"english": "Crop Document",
+"target": "書類をトリミング",
+"backtrans": "Crop document"
+},
+{
+"key": "cropIdCardTitle",
+"english": "Crop ID Card",
+"target": "IDカードをトリミング",
+"backtrans": "Crop ID card"
+},
+{
+"key": "tabImageLabel",
+"english": "Image",
+"target": "画像",
+"backtrans": "Image"
+},
+{
+"key": "tabOcrTextLabel",
+"english": "OCR Text",
+"target": "OCRテキスト",
+"backtrans": "OCR text"
+},
+{
+"key": "compressSmall",
+"english": "Small",
+"target": "小",
+"backtrans": "Small"
+},
+{
+"key": "compressMedium",
+"english": "Medium",
+"target": "中",
+"backtrans": "Medium"
+},
+{
+"key": "pageFormatLetter",
+"english": "Letter (US)",
+"target": "レター（米国）",
+"backtrans": "Letter (US)"
+},
+{
+"key": "ocrScriptLatin",
+"english": "Latin (English, European)",
+"target": "ラテン文字（英語、欧州）",
+"backtrans": "Latin script (English, Europe)"
+},
+{
+"key": "ocrScriptChinese",
+"english": "Chinese",
+"target": "中国語",
+"backtrans": "Chinese"
+},
+{
+"key": "ocrScriptKorean",
+"english": "Korean",
+"target": "韓国語",
+"backtrans": "Korean"
+},
+{
+"key": "ocrScriptJapanese",
+"english": "Japanese",
+"target": "日本語",
+"backtrans": "Japanese"
+},
+{
+"key": "ocrScriptDevanagari",
+"english": "Hindi, Marathi (Devanagari)",
+"target": "ヒンディー語、マラーティー語(デーヴァナーガリー)",
+"backtrans": "Hindi, Marathi (Devanagari)"
+},
+{
+"key": "ocrStatusUnsupported",
+"english": "Unsupported",
+"target": "非対応",
+"backtrans": "Not supported"
+},
+{
+"key": "noteLabel",
+"english": "Note",
+"target": "ノート",
+"backtrans": "Note"
+},
+{
+"key": "dateLabel",
+"english": "Date",
+"target": "日付",
+"backtrans": "Date"
+},
+{
+"key": "accentBlue",
+"english": "Blue",
+"target": "ブルー",
+"backtrans": "Blue"
+},
+{
+"key": "accentIndigo",
+"english": "Indigo",
+"target": "インディゴ",
+"backtrans": "Indigo"
+},
+{
+"key": "accentEmerald",
+"english": "Emerald",
+"target": "エメラルド",
+"backtrans": "Emerald"
+},
+{
+"key": "accentCrimson",
+"english": "Crimson",
+"target": "クリムソン",
+"backtrans": "Crimson"
+},
+{
+"key": "accentAmber",
+"english": "Amber",
+"target": "アンバー",
+"backtrans": "Amber"
+},
+{
+"key": "accentViolet",
+"english": "Violet",
+"target": "バイオレット",
+"backtrans": "Violet"
+},
+{
+"key": "tickerLanguages",
+"english": "{count} LANGUAGES",
+"target": "{count}言語",
+"backtrans": "{count} languages"
+},
+{
+"key": "termsOfServiceLabel",
+"english": "Terms of Service",
+"target": "利用規約",
+"backtrans": "Terms of service"
+},
+{
+"key": "openSourceLicensesLabel",
+"english": "Open-source licenses",
+"target": "オープンソースライセンス",
+"backtrans": "Open source licenses"
+},
+{
+"key": "whatsNewTitle",
+"english": "What's New",
+"target": "新機能",
+"backtrans": "What's new"
+},
+{
+"key": "whatsNewContinue",
+"english": "Continue",
+"target": "続ける",
+"backtrans": "Continue"
+},
+{
+"key": "tickerTxtExport",
+"english": "TXT EXPORT",
+"target": "TXTエクスポート",
+"backtrans": "TXT export"
+},
+{
+"key": "tickerCsvExport",
+"english": "CSV EXPORT",
+"target": "CSVエクスポート",
+"backtrans": "CSV export"
+},
+{
+"key": "whatsNewBody",
+"english": "Welcome to KatharScan! This is the first public release featuring unlimited scanning, 29 languages, and export to PDF, Word, TXT, JPG, PNG, and CSV.",
+"target": "KatharScanへようこそ！無制限スキャン、29言語、PDF・Word・TXT・JPG・PNG・CSVへのエクスポートを備えた最初の公開リリースです。",
+"backtrans": "Welcome to KatharScan! This is the first public release, with unlimited scanning, 29 languages, and export to PDF, Word, TXT, JPG, PNG, and CSV."
+},
+{
+"key": "engagementSectionLabel",
+"english": "ENGAGEMENT & NOTIFICATIONS",
+"target": "エンゲージメントと通知",
+"backtrans": "Engagement and notifications"
+},
+{
+"key": "enableNotificationsLabel",
+"english": "Enable Notifications",
+"target": "通知を有効にする",
+"backtrans": "Enable notifications"
+},
+{
+"key": "enableNotificationsSubtitle",
+"english": "Allow background reminders for unexported documents",
+"target": "未エクスポートのドキュメントに対するバックグラウンド通知を許可する",
+"backtrans": "Allow background notifications for documents that have not been exported"
+},
+{
+"key": "enableReviewPromptsLabel",
+"english": "Enable Review Prompts",
+"target": "レビュー依頼を有効にする",
+"backtrans": "Enable review requests"
+},
+{
+"key": "enableReviewPromptsSubtitle",
+"english": "Allow the app to occasionally ask for a rating",
+"target": "アプリが時々評価を求めることを許可する",
+"backtrans": "Allow the app to occasionally ask for a rating"
+},
+{
+"key": "enableSharePromptsLabel",
+"english": "Enable Share Prompts",
+"target": "共有依頼を有効にする",
+"backtrans": "Enable share requests"
+},
+{
+"key": "enableSharePromptsSubtitle",
+"english": "Allow the app to occasionally suggest sharing",
+"target": "アプリが時々共有を提案することを許可する",
+"backtrans": "Allow the app to occasionally suggest sharing"
+},
+{
+"key": "exportFormatCsvDescription",
+"english": "Spreadsheet data",
+"target": "スプレッドシートデータ",
+"backtrans": "Spreadsheet data"
+},
+{
+"key": "watermarkDefaultText",
+"english": "CONFIDENTIAL",
+"target": "社外秘",
+"backtrans": "Confidential (internal use only)"
+},
+{
+"key": "emailAttachmentNotIncluded",
+"english": "The pages could not be attached to the email. Use Share to send the pages.",
+"target": "ページをメールに添付できませんでした。共有を使ってページを送信してください。",
+"backtrans": "Could not attach the pages to the email. Please use share to send the pages."
+},
+{
+"key": "sealDefaultMainText",
+"english": "YOUR COMPANY",
+"target": "あなたの会社",
+"backtrans": "Your company"
+},
+{
+"key": "extractedPageDefaultTitle",
+"english": "Extracted Page",
+"target": "抽出されたページ",
+"backtrans": "Extracted page"
+},
+{
+"key": "printRangeAll",
+"english": "All pages",
+"target": "すべてのページ",
+"backtrans": "All pages"
+},
+{
+"key": "printRangeCurrent",
+"english": "Current",
+"target": "現在",
+"backtrans": "Current"
+},
+{
+"key": "printRangeRange",
+"english": "Range",
+"target": "範囲",
+"backtrans": "Range"
+},
+{
+"key": "printFilterNone",
+"english": "No filter",
+"target": "フィルターなし",
+"backtrans": "No filter"
+},
+{
+"key": "removeFromFavorites",
+"english": "Remove from Favorites",
+"target": "お気に入りから削除",
+"backtrans": "Remove from favorites"
+},
+{
+"key": "addToFavorites",
+"english": "Add to Favorites",
+"target": "お気に入りに追加",
+"backtrans": "Add to favorites"
+},
+{
+"key": "saveFailedPrefix",
+"english": "Save failed:",
+"target": "保存に失敗しました：",
+"backtrans": "Saving failed: "
+},
+{
+"key": "ocrScriptArabic",
+"english": "العربية (Arabic)",
+"target": "العربية (Arabic)",
+"backtrans": "العربية (Arabic)"
+},
+{
+"key": "ocrScriptRussian",
+"english": "Русский (Russian)",
+"target": "Русский (Russian)",
+"backtrans": "Русский (Russian)"
+},
+{
+"key": "ocrScriptUkrainian",
+"english": "Українська (Ukrainian)",
+"target": "Українська (Ukrainian)",
+"backtrans": "Українська (Ukrainian)"
+},
+{
+"key": "ocrScriptGreek",
+"english": "Ελληνικά (Greek)",
+"target": "Ελληνικά (Greek)",
+"backtrans": "Ελληνικά (Greek)"
+},
+{
+"key": "ocrScriptHebrew",
+"english": "עברית (Hebrew)",
+"target": "עברית (Hebrew)",
+"backtrans": "עברית (Hebrew)"
+},
+{
+"key": "ocrScriptThai",
+"english": "ไทย (Thai)",
+"target": "ไทย (Thai)",
+"backtrans": "ไทย (Thai)"
+},
+{
+"key": "ocrScriptBengali",
+"english": "বাংলা (Bengali)",
+"target": "বাংলা (Bengali)",
+"backtrans": "বাংলা (Bengali)"
+},
+{
+"key": "ocrStatusInstalled",
+"english": "Installed",
+"target": "インストール済み",
+"backtrans": "Installed"
+},
+{
+"key": "ocrStatusDownloading",
+"english": "Downloading…",
+"target": "ダウンロード中…",
+"backtrans": "Downloading..."
+},
+{
+"key": "exportNoTextError",
+"english": "This document has no text yet. Run OCR on it first.",
+"target": "この書類にはまだテキストがありません。先にOCRを実行してください。",
+"backtrans": "This document has no text yet. Please run OCR first."
+},
+{
+"key": "saveFailedBanner",
+"english": "Your latest changes could not be saved.",
+"target": "最新の変更を保存できませんでした。",
+"backtrans": "Could not save the latest changes."
+},
+{
+"key": "editLabel",
+"english": "Edit",
+"target": "編集",
+"backtrans": "Edit"
+},
+{
+"key": "fillTapHint",
+"english": "Tap the page where you want to type",
+"target": "文字を入力したい場所をタップしてください",
+"backtrans": "Tap the place where you want to type text"
+},
+{
+"key": "fillTypeHint",
+"english": "Type here",
+"target": "ここに入力",
+"backtrans": "Type here"
+},
+{
+"key": "clearPage",
+"english": "Clear page",
+"target": "ページをクリア",
+"backtrans": "Clear page"
+},
+{
+"key": "clearAllPages",
+"english": "Clear all pages",
+"target": "全ページをクリア",
+"backtrans": "Clear all pages"
+},
+{
+"key": "clearedCount",
+"english": "Cleared {count}",
+"target": "{count}件をクリアしました",
+"backtrans": "Cleared {count} items"
+},
+{
+"key": "idLayoutRealSize",
+"english": "Real size",
+"target": "実寸",
+"backtrans": "Actual size"
+},
+{
+"key": "idLayoutFullWidth",
+"english": "Full width",
+"target": "全幅",
+"backtrans": "Full width"
+},
+{
+"key": "pagesToReadTitle",
+"english": "Pages to read",
+"target": "読み取るページ",
+"backtrans": "Pages to read"
+},
+{
+"key": "pagesToReadHint",
+"english": "This PDF has {count} pages. Pages that are pictures are read with OCR (about 10 seconds each); pages with real text are instant.",
+"target": "このPDFは{count}ページです。画像のページはOCRで読み取ります(1ページ約10秒)。テキストのページは即時です。",
+"backtrans": "This PDF has {count} pages. Image pages are read with OCR (about 10 seconds per page). Text pages are instant."
+},
+{
+"key": "pageFromLabel",
+"english": "From page",
+"target": "開始ページ",
+"backtrans": "Start page"
+},
+{
+"key": "pageToLabel",
+"english": "To page",
+"target": "終了ページ",
+"backtrans": "End page"
+},
+{
+"key": "readingPageProgress",
+"english": "Page {page} of {total}",
+"target": "{page}/{total}ページ",
+"backtrans": "Page {page}/{total}"
+},
+{
+"key": "readingPageEta",
+"english": "Page {page} of {total} · about {minutes} min left",
+"target": "{page}/{total}ページ・残り約{minutes}分",
+"backtrans": "Page {page}/{total} · about {minutes} min remaining"
+},
+{
+"key": "sealShapeRound",
+"english": "Round",
+"target": "円形",
+"backtrans": "Circle"
+},
+{
+"key": "sealFontSans",
+"english": "Clean",
+"target": "すっきり",
+"backtrans": "Clean"
+},
+{
+"key": "sealFontSerif",
+"english": "Classic",
+"target": "クラシック",
+"backtrans": "Classic"
+},
+{
+"key": "sealInkLook",
+"english": "Worn stamp look",
+"target": "かすれたスタンプ風",
+"backtrans": "Faded stamp style"
+},
+{
+"key": "sealSaveToLibrary",
+"english": "Save this seal",
+"target": "このシールを保存",
+"backtrans": "Save this seal"
+},
+{
+"key": "sealSavedHeading",
+"english": "Saved seals",
+"target": "保存したシール",
+"backtrans": "Saved seals"
+},
+{
+"key": "sealTextColorLabel",
+"english": "Text colour",
+"target": "文字色",
+"backtrans": "Text color"
+},
+{
+"key": "sealTextColorSame",
+"english": "Same as ring",
+"target": "リングと同じ",
+"backtrans": "Same as ring"
+},
+{
+"key": "sealTextSizePercent",
+"english": "Text size {percent}%",
+"target": "文字サイズ {percent}%",
+"backtrans": "Text size {percent}%"
+},
+{
+"key": "sealRemoveWhite",
+"english": "Make white transparent",
+"target": "白を透明にする",
+"backtrans": "Make white transparent"
+},
+{
+"key": "sealSavedMessage",
+"english": "Seal saved",
+"target": "シールを保存しました",
+"backtrans": "Seal saved"
+},
+{
+"key": "signatureTabDraw",
+"english": "Draw",
+"target": "描く",
+"backtrans": "Draw"
+},
+{
+"key": "signatureTabType",
+"english": "Type",
+"target": "入力",
+"backtrans": "Type"
+},
+{
+"key": "signatureTypeHint",
+"english": "Type your name",
+"target": "名前を入力",
+"backtrans": "Enter your name"
+},
+{
+"key": "signatureWidthLabel",
+"english": "Pen width",
+"target": "ペンの太さ",
+"backtrans": "Pen thickness"
+},
+{
+"key": "signatureFontFlowing",
+"english": "Flowing",
+"target": "流れる書体",
+"backtrans": "Flowing typeface"
+},
+{
+"key": "signatureFontHandwritten",
+"english": "Handwritten",
+"target": "手書き風",
+"backtrans": "Handwriting style"
+},
+{
+"key": "signatureSavedHeading",
+"english": "Saved signatures",
+"target": "保存済みの署名",
+"backtrans": "Saved signatures"
+},
+{
+"key": "signatureNewOne",
+"english": "Draw or type a new one",
+"target": "新しく描く・入力する",
+"backtrans": "Draw / type a new one"
+},
+{
+"key": "signatureDeleteSaved",
+"english": "Remove saved signature",
+"target": "保存した署名を削除",
+"backtrans": "Delete saved signature"
+},
+{
+"key": "annotationModeSelect",
+"english": "Select",
+"target": "選択",
+"backtrans": "Select"
+},
+{
+"key": "annotationModeEraser",
+"english": "Eraser",
+"target": "消しゴム",
+"backtrans": "Eraser"
+},
+{
+"key": "watermarkKindText",
+"english": "Text",
+"target": "文字",
+"backtrans": "Characters"
+},
+{
+"key": "watermarkKindImage",
+"english": "Image",
+"target": "画像",
+"backtrans": "Image"
+},
+{
+"key": "watermarkChooseImage",
+"english": "Choose image",
+"target": "画像を選択",
+"backtrans": "Choose image"
+},
+{
+"key": "watermarkLayoutLabel",
+"english": "Layout",
+"target": "レイアウト",
+"backtrans": "Layout"
+},
+{
+"key": "watermarkLayoutSingle",
+"english": "Single",
+"target": "1つ",
+"backtrans": "One"
+},
+{
+"key": "watermarkLayoutDiagonal",
+"english": "Diagonal",
+"target": "斜め",
+"backtrans": "Diagonal"
+},
+{
+"key": "watermarkLayoutTiled",
+"english": "Tiled",
+"target": "繰り返し",
+"backtrans": "Repeated"
+},
+{
+"key": "watermarkPagesLabel",
+"english": "Pages",
+"target": "ページ",
+"backtrans": "Pages"
+},
+{
+"key": "watermarkPagesThis",
+"english": "This page",
+"target": "このページ",
+"backtrans": "This page"
+},
+{
+"key": "watermarkPagesAll",
+"english": "All pages",
+"target": "すべてのページ",
+"backtrans": "All pages"
+},
+{
+"key": "watermarkPagesRange",
+"english": "Range",
+"target": "範囲",
+"backtrans": "Range"
+},
+{
+"key": "watermarkPagesRangeHint",
+"english": "e.g. 1-3, 5",
+"target": "例: 1-3, 5",
+"backtrans": "e.g.: 1-3, 5"
+},
+{
+"key": "watermarkPagesInvalid",
+"english": "Check the pages (the document has {count} pages)",
+"target": "ページを確認してください（文書は{count}ページです）",
+"backtrans": "Please check the pages (the document has {count} pages)"
+},
+{
+"key": "cropAuto",
+"english": "Auto-detect",
+"target": "自動検出",
+"backtrans": "Auto-detect"
+},
+{
+"key": "cropAspectFree",
+"english": "Free",
+"target": "自由",
+"backtrans": "Free"
+},
+{
+"key": "cropAspectId",
+"english": "ID card",
+"target": "IDカード",
+"backtrans": "ID card"
+},
+{
+"key": "cropAspectSquare",
+"english": "Square",
+"target": "正方形",
+"backtrans": "Square"
+},
+{
+"key": "cropNoPageFound",
+"english": "Couldn't find the page edges. Drag the corners.",
+"target": "ページの端が見つかりません。角をドラッグしてください。",
+"backtrans": "Could not find the page edges. Please drag the corners."
+},
+{
+"key": "straightenLabel",
+"english": "Straighten",
+"target": "傾き補正",
+"backtrans": "Tilt correction"
+},
+{
+"key": "filterMagicColor",
+"english": "Magic colour",
+"target": "マジックカラー",
+"backtrans": "Magic color"
+},
+{
+"key": "filterBrightnessLabel",
+"english": "Brightness",
+"target": "明るさ",
+"backtrans": "Brightness"
+},
+{
+"key": "filterContrastLabel",
+"english": "Contrast",
+"target": "コントラスト",
+"backtrans": "Contrast"
+},
+{
+"key": "resizeUpscaleWarning",
+"english": "Enlarging doesn't add detail — the page may look soft.",
+"target": "拡大しても細部は増えません。ページがぼやける場合があります。",
+"backtrans": "Enlarging does not add detail. The page may become blurry."
+},
+{
+"key": "eraserAutoColorTooltip",
+"english": "Match the page colour automatically",
+"target": "ページの色に自動で合わせる",
+"backtrans": "Automatically match the page color"
+},
+{
+"key": "eraserZoomTooltip",
+"english": "Zoom and move (pinch)",
+"target": "ズーム・移動(ピンチ)",
+"backtrans": "Zoom / move (pinch)"
+},
+{
+"key": "pagesSelectTooltip",
+"english": "Select pages",
+"target": "ページを選択",
+"backtrans": "Select pages"
+},
+{
+"key": "pagesDeleteCount",
+"english": "Delete {count}",
+"target": "{count}件を削除",
+"backtrans": "Delete {count} items"
+},
+{
+"key": "pagesDeleteConfirm",
+"english": "Delete {count} pages? They are removed when you save.",
+"target": "{count}ページを削除しますか？保存すると削除されます。",
+"backtrans": "Delete {count} pages? They will be deleted when you save."
+},
+{
+"key": "compressTargetLabel",
+"english": "Max size",
+"target": "最大サイズ",
+"backtrans": "Maximum size"
+},
+{
+"key": "compressNoLimit",
+"english": "No limit",
+"target": "制限なし",
+"backtrans": "No limit"
+},
+{
+"key": "printPaperLabel",
+"english": "Paper",
+"target": "用紙",
+"backtrans": "Paper"
+},
+{
+"key": "printMarginLabel",
+"english": "Margin",
+"target": "余白",
+"backtrans": "Margin"
+},
+{
+"key": "printMarginNone",
+"english": "None",
+"target": "なし",
+"backtrans": "None"
+},
+{
+"key": "printMarginNarrow",
+"english": "Narrow",
+"target": "狭い",
+"backtrans": "Narrow"
+},
+{
+"key": "printMarginNormal",
+"english": "Normal",
+"target": "標準",
+"backtrans": "Standard"
+},
+{
+"key": "printFitLabel",
+"english": "Scaling",
+"target": "拡大縮小",
+"backtrans": "Scaling"
+},
+{
+"key": "printFitFit",
+"english": "Fit page",
+"target": "ページに収める",
+"backtrans": "Fit to page"
+},
+{
+"key": "printFitFill",
+"english": "Fill sheet (trims edges)",
+"target": "用紙いっぱい（端は切れます）",
+"backtrans": "Fill the paper (edges will be cut off)"
+},
+{
+"key": "printPerSheetLabel",
+"english": "Pages per sheet",
+"target": "1枚あたりのページ数",
+"backtrans": "Pages per sheet"
+},
+{
+"key": "emailMessageLabel",
+"english": "Message",
+"target": "メッセージ",
+"backtrans": "Message"
+},
+{
+"key": "emailMessageHint",
+"english": "Add a note (optional)",
+"target": "メモを追加（任意）",
+"backtrans": "Add a note (optional)"
+},
+{
+"key": "emailLimitMissed",
+"english": "Could not get under {mb} MB; sent the smallest version.",
+"target": "{mb} MB 未満にできなかったため、最小のバージョンを送信しました。",
+"backtrans": "Could not get it under {mb} MB, so the smallest version was sent."
+}
+]

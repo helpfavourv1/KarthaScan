@@ -1,0 +1,3362 @@
+[
+{
+"key": "privacyOptionsLabel",
+"english": "Privacy settings",
+"target": "Gizlilik ayarları",
+"backtrans": "Privacy settings"
+},
+{
+"key": "commonCancel",
+"english": "Cancel",
+"target": "İptal",
+"backtrans": "Cancel"
+},
+{
+"key": "commonDelete",
+"english": "Delete",
+"target": "Sil",
+"backtrans": "Delete"
+},
+{
+"key": "commonSave",
+"english": "Save",
+"target": "Kaydet",
+"backtrans": "Save"
+},
+{
+"key": "commonAdd",
+"english": "Add",
+"target": "Ekle",
+"backtrans": "Add"
+},
+{
+"key": "commonExport",
+"english": "Export",
+"target": "Dışa Aktar",
+"backtrans": "Export"
+},
+{
+"key": "commonImport",
+"english": "Import",
+"target": "İçe Aktar",
+"backtrans": "Import"
+},
+{
+"key": "commonSkip",
+"english": "Skip",
+"target": "Atla",
+"backtrans": "Skip"
+},
+{
+"key": "commonClear",
+"english": "Clear",
+"target": "Temizle",
+"backtrans": "Clear"
+},
+{
+"key": "emptyStateDefaultMessage",
+"english": "Tap the camera to scan your first document.",
+"target": "İlk belgenizi taramak için kameraya dokunun.",
+"backtrans": "Tap the camera to scan your first document."
+},
+{
+"key": "exportFormatSheetTitle",
+"english": "Export as",
+"target": "Şu şekilde dışa aktar",
+"backtrans": "Export as"
+},
+{
+"key": "exportFormatPdfLabel",
+"english": "PDF",
+"target": "PDF",
+"backtrans": "PDF"
+},
+{
+"key": "exportFormatPdfDescription",
+"english": "Best for sharing and printing",
+"target": "Paylaşım ve yazdırma için en iyisi",
+"backtrans": "Best for sharing and printing"
+},
+{
+"key": "exportFormatDocxLabel",
+"english": "Word (.docx)",
+"target": "Word (.docx)",
+"backtrans": "Word (.docx)"
+},
+{
+"key": "exportFormatDocxDescription",
+"english": "Editable text document",
+"target": "Düzenlenebilir metin belgesi",
+"backtrans": "Editable text document"
+},
+{
+"key": "exportFormatTxtLabel",
+"english": "Text (.txt)",
+"target": "Metin (.txt)",
+"backtrans": "Text (.txt)"
+},
+{
+"key": "exportFormatTxtDescription",
+"english": "Plain OCR text only",
+"target": "Yalnızca düz OCR metni",
+"backtrans": "Plain OCR text only"
+},
+{
+"key": "exportFormatJpgLabel",
+"english": "JPG",
+"target": "JPG",
+"backtrans": "JPG"
+},
+{
+"key": "exportFormatJpgDescription",
+"english": "One image per page",
+"target": "Sayfa başına bir resim",
+"backtrans": "One image per page"
+},
+{
+"key": "exportFormatPngLabel",
+"english": "PNG",
+"target": "PNG",
+"backtrans": "PNG"
+},
+{
+"key": "exportFormatPngDescription",
+"english": "One image per page, lossless",
+"target": "Sayfa başına bir resim, kayıpsız",
+"backtrans": "One image per page, lossless"
+},
+{
+"key": "filterSheetTitle",
+"english": "Filters",
+"target": "Filtreler",
+"backtrans": "Filters"
+},
+{
+"key": "filterOriginal",
+"english": "Original",
+"target": "Orijinal",
+"backtrans": "Original"
+},
+{
+"key": "filterGrayscale",
+"english": "Grayscale",
+"target": "Gri tonlamalı",
+"backtrans": "Grayscale"
+},
+{
+"key": "filterBlackAndWhite",
+"english": "B&W",
+"target": "S&B",
+"backtrans": "B&W"
+},
+{
+"key": "filterColorEnhance",
+"english": "Color enhance",
+"target": "Renk iyileştirme",
+"backtrans": "Color enhancement"
+},
+{
+"key": "filterShadowRemoval",
+"english": "Shadow removal",
+"target": "Gölge kaldırma",
+"backtrans": "Shadow removal"
+},
+{
+"key": "proBadgeLabel",
+"english": "PRO",
+"target": "PRO",
+"backtrans": "PRO"
+},
+{
+"key": "scanListPageCount",
+"english": "{count, plural, =1{1 page} other{{count} pages}}",
+"target": "{count, plural, =1{1 sayfa} other{{count} sayfa}}",
+"backtrans": "{count, plural, =1{1 page} other{{count} pages}}"
+},
+{
+"key": "scanPreviewNoPages",
+"english": "No pages to show.",
+"target": "Gösterilecek sayfa yok.",
+"backtrans": "No pages to show."
+},
+{
+"key": "shareTooltip",
+"english": "Share",
+"target": "Paylaş",
+"backtrans": "Share"
+},
+{
+"key": "signatureCanvasHint",
+"english": "Sign here",
+"target": "Buraya imzalayın",
+"backtrans": "Sign here"
+},
+{
+"key": "folderDocumentCount",
+"english": "{count, plural, =1{1 document} other{{count} documents}}",
+"target": "{count, plural, =1{1 belge} other{{count} belge}}",
+"backtrans": "{count, plural, =1{1 document} other{{count} documents}}"
+},
+{
+"key": "selectedCount",
+"english": "{count, plural, =1{1 selected} other{{count} selected}}",
+"target": "{count, plural, =1{1 seçili} other{{count} seçili}}",
+"backtrans": "{count, plural, =1{1 selected} other{{count} selected}}"
+},
+{
+"key": "batchExportTooltip",
+"english": "Batch export",
+"target": "Toplu dışa aktarma",
+"backtrans": "Bulk export"
+},
+{
+"key": "deleteTooltip",
+"english": "Delete",
+"target": "Sil",
+"backtrans": "Delete"
+},
+{
+"key": "searchHint",
+"english": "Search your scans",
+"target": "Taramalarınızda ara",
+"backtrans": "Search your scans"
+},
+{
+"key": "settingsTooltip",
+"english": "Settings",
+"target": "Ayarlar",
+"backtrans": "Settings"
+},
+{
+"key": "foldersSectionHeader",
+"english": "Folders",
+"target": "Klasörler",
+"backtrans": "Folders"
+},
+{
+"key": "documentsSectionHeader",
+"english": "Documents",
+"target": "Belgeler",
+"backtrans": "Documents"
+},
+{
+"key": "exportingStatus",
+"english": "Exporting…",
+"target": "Dışa aktarılıyor...",
+"backtrans": "Exporting..."
+},
+{
+"key": "exportDoneStatus",
+"english": "Done",
+"target": "Tamamlandı",
+"backtrans": "Completed"
+},
+{
+"key": "exportGenericError",
+"english": "Something went wrong while exporting.",
+"target": "Dışa aktarma sırasında bir sorun oluştu.",
+"backtrans": "A problem occurred during export."
+},
+{
+"key": "deleteFolderTitle",
+"english": "Delete this folder?",
+"target": "Bu klasör silinsin mi?",
+"backtrans": "Delete this folder?"
+},
+{
+"key": "deleteFolderMessage",
+"english": "Documents inside will not be deleted.",
+"target": "İçindeki belgeler silinmeyecek.",
+"backtrans": "The documents inside will not be deleted."
+},
+{
+"key": "deleteFolderTooltip",
+"english": "Delete folder",
+"target": "Klasörü sil",
+"backtrans": "Delete folder"
+},
+{
+"key": "renameFolderTitle",
+"english": "Rename folder",
+"target": "Klasörü yeniden adlandır",
+"backtrans": "Rename folder"
+},
+{
+"key": "removeFromFolderTooltip",
+"english": "Remove from folder",
+"target": "Klasörden kaldır",
+"backtrans": "Remove from folder"
+},
+{
+"key": "noDocumentsInFolder",
+"english": "No documents in this folder yet.",
+"target": "Bu klasörde henüz belge yok.",
+"backtrans": "There are no documents in this folder yet."
+},
+{
+"key": "folderUnavailable",
+"english": "This folder is no longer available.",
+"target": "Bu klasör artık kullanılamıyor.",
+"backtrans": "This folder is no longer available."
+},
+{
+"key": "migrationTitle",
+"english": "Device Migration",
+"target": "Cihaz Taşıma",
+"backtrans": "Device Migration"
+},
+{
+"key": "migrationExplainer",
+"english": "This isn't automatic sync. Export creates a single encrypted backup file you move to your new device yourself, then import there.",
+"target": "Bu otomatik senkronizasyon değil. Dışa aktarma, yeni cihazınıza kendinizin taşıyacağı ve orada içe aktaracağı tek bir şifreli yedek dosyası oluşturur.",
+"backtrans": "This is not automatic synchronization. Exporting creates a single encrypted backup file that you yourself will carry to your new device and import there."
+},
+{
+"key": "exportBackupButton",
+"english": "Export encrypted backup",
+"target": "Şifreli yedeği dışa aktar",
+"backtrans": "Export encrypted backup"
+},
+{
+"key": "importBackupButton",
+"english": "Import from backup",
+"target": "Yedekten içe aktar",
+"backtrans": "Import from backup"
+},
+{
+"key": "setBackupPasswordTitle",
+"english": "Set a backup password",
+"target": "Yedek şifresi belirleyin",
+"backtrans": "Set backup password"
+},
+{
+"key": "enterBackupPasswordTitle",
+"english": "Enter backup password",
+"target": "Yedek şifresini girin",
+"backtrans": "Enter backup password"
+},
+{
+"key": "buildingBackupStatus",
+"english": "Building backup…",
+"target": "Yedek oluşturuluyor...",
+"backtrans": "Creating backup..."
+},
+{
+"key": "backupReadyStatus",
+"english": "Backup ready.",
+"target": "Yedek hazır.",
+"backtrans": "Backup is ready."
+},
+{
+"key": "couldNotCreateBackupError",
+"english": "Could not create the backup.",
+"target": "Yedek oluşturulamadı.",
+"backtrans": "Backup could not be created."
+},
+{
+"key": "importingStatus",
+"english": "Importing…",
+"target": "İçe aktarılıyor...",
+"backtrans": "Importing..."
+},
+{
+"key": "couldNotImportBackupError",
+"english": "Could not import this backup. Check the password and try again.",
+"target": "Bu yedek içe aktarılamadı. Şifreyi kontrol edip tekrar deneyin.",
+"backtrans": "This backup could not be imported. Check the password and try again."
+},
+{
+"key": "backupCorruptedError",
+"english": "This backup file looks corrupted.",
+"target": "Bu yedek dosyası bozuk görünüyor.",
+"backtrans": "This backup file appears to be corrupted."
+},
+{
+"key": "importedCount",
+"english": "{count, plural, =1{1 document imported} other{{count} documents imported}}",
+"target": "{count, plural, =1{1 belge içe aktarıldı} other{{count} belge içe aktarıldı}}",
+"backtrans": "{count, plural, =1{1 document imported} other{{count} documents imported}}"
+},
+{
+"key": "continueButton",
+"english": "Continue",
+"target": "Devam",
+"backtrans": "Continue"
+},
+{
+"key": "restorePurchasesButton",
+"english": "Restore purchases",
+"target": "Satın almaları geri yükle",
+"backtrans": "Restore purchases"
+},
+{
+"key": "pricingLoadingError",
+"english": "Pricing is still loading — try again in a moment.",
+"target": "Fiyatlar hâlâ yükleniyor — birazdan tekrar deneyin.",
+"backtrans": "Prices are still loading — try again shortly."
+},
+{
+"key": "renameDocumentTitle",
+"english": "Rename document",
+"target": "Belgeyi yeniden adlandır",
+"backtrans": "Rename document"
+},
+{
+"key": "addTagTitle",
+"english": "Add tag",
+"target": "Etiket ekle",
+"backtrans": "Add tag"
+},
+{
+"key": "moveToFolderTooltip",
+"english": "Move to folder",
+"target": "Klasöre taşı",
+"backtrans": "Move to folder"
+},
+{
+"key": "exportTooltip",
+"english": "Export",
+"target": "Dışa Aktar",
+"backtrans": "Export"
+},
+{
+"key": "deleteScanTitle",
+"english": "Delete this scan?",
+"target": "Bu tarama silinsin mi?",
+"backtrans": "Delete this scan?"
+},
+{
+"key": "deleteScanMessage",
+"english": "This can't be undone.",
+"target": "Bu işlem geri alınamaz.",
+"backtrans": "This action cannot be undone."
+},
+{
+"key": "movedToFolderMessage",
+"english": "Moved to folder.",
+"target": "Klasöre taşındı.",
+"backtrans": "Moved to folder."
+},
+{
+"key": "noTextRecognized",
+"english": "No text recognized.",
+"target": "Metin tanınamadı.",
+"backtrans": "No text was recognized."
+},
+{
+"key": "scanUnavailable",
+"english": "This scan is no longer available.",
+"target": "Bu tarama artık kullanılamıyor.",
+"backtrans": "This scan is no longer available."
+},
+{
+"key": "settingsTitle",
+"english": "Settings",
+"target": "Ayarlar",
+"backtrans": "Settings"
+},
+{
+"key": "appearanceSectionLabel",
+"english": "Appearance",
+"target": "Görünüm",
+"backtrans": "Appearance"
+},
+{
+"key": "themeLabel",
+"english": "Theme",
+"target": "Tema",
+"backtrans": "Theme"
+},
+{
+"key": "systemThemeOption",
+"english": "System",
+"target": "Sistem",
+"backtrans": "System"
+},
+{
+"key": "lightThemeOption",
+"english": "Light",
+"target": "Açık",
+"backtrans": "Light"
+},
+{
+"key": "darkThemeOption",
+"english": "Dark",
+"target": "Koyu",
+"backtrans": "Dark"
+},
+{
+"key": "languageSectionLabel",
+"english": "Language",
+"target": "Dil",
+"backtrans": "Language"
+},
+{
+"key": "appLanguageLabel",
+"english": "App language",
+"target": "Uygulama dili",
+"backtrans": "App language"
+},
+{
+"key": "storageSectionLabel",
+"english": "Storage",
+"target": "Depolama",
+"backtrans": "Storage"
+},
+{
+"key": "deviceMigrationLabel",
+"english": "Device Migration",
+"target": "Cihaz Taşıma",
+"backtrans": "Device Migration"
+},
+{
+"key": "subscriptionSectionLabel",
+"english": "Subscription",
+"target": "Abonelik",
+"backtrans": "Subscription"
+},
+{
+"key": "aboutSectionLabel",
+"english": "About",
+"target": "Hakkında",
+"backtrans": "About"
+},
+{
+"key": "privacyPolicyLabel",
+"english": "Privacy policy",
+"target": "Gizlilik politikası",
+"backtrans": "Privacy policy"
+},
+{
+"key": "supportLabel",
+"english": "Support",
+"target": "Destek",
+"backtrans": "Support"
+},
+{
+"key": "couldNotOpenLinkError",
+"english": "Could not open link.",
+"target": "Bağlantı açılamadı.",
+"backtrans": "The link could not be opened."
+},
+{
+"key": "restoreCompleteMessage",
+"english": "Restore complete.",
+"target": "Geri yükleme tamamlandı.",
+"backtrans": "Restore completed."
+},
+{
+"key": "genericErrorMessage",
+"english": "Something went wrong. Please try again.",
+"target": "Bir sorun oluştu. Lütfen tekrar deneyin.",
+"backtrans": "A problem occurred. Please try again."
+},
+{
+"key": "homeLanguageTooltip",
+"english": "App Language",
+"target": "Uygulama dili",
+"backtrans": "App language"
+},
+{
+"key": "removeAdsTitle",
+"english": "Remove Ads Forever",
+"target": "Reklamları sonsuza kadar kaldır",
+"backtrans": "Remove ads forever"
+},
+{
+"key": "extractedTextTitle",
+"english": "Extracted Text",
+"target": "Çıkarılan Metin",
+"backtrans": "Extracted Text"
+},
+{
+"key": "commonClose",
+"english": "Close",
+"target": "Kapat",
+"backtrans": "Close"
+},
+{
+"key": "commonCopy",
+"english": "Copy",
+"target": "Kopyala",
+"backtrans": "Copy"
+},
+{
+"key": "savedToDocumentText",
+"english": "Saved to document text",
+"target": "Belge metnine kaydedildi",
+"backtrans": "Saved to document text"
+},
+{
+"key": "regionOcrFailed",
+"english": "Region OCR failed",
+"target": "Seçili alan için OCR başarısız oldu",
+"backtrans": "OCR failed for the selected area"
+},
+{
+"key": "filterRemoved",
+"english": "Filter removed",
+"target": "Filtre kaldırıldı",
+"backtrans": "Filter removed"
+},
+{
+"key": "filterApplied",
+"english": "Filter applied",
+"target": "Filtre uygulandı",
+"backtrans": "Filter applied"
+},
+{
+"key": "pageCropped",
+"english": "Page cropped",
+"target": "Sayfa kırpıldı",
+"backtrans": "Page cropped"
+},
+{
+"key": "revertToOriginalTitle",
+"english": "Revert to Original?",
+"target": "Orijinale geri dönülsün mü?",
+"backtrans": "Revert to the original?"
+},
+{
+"key": "revertToOriginalMessage",
+"english": "This will undo all filters, rotations, crops, resizes, and eraser strokes on this page.",
+"target": "Bu, bu sayfadaki tüm filtreleri, döndürmeleri, kırpmaları, yeniden boyutlandırmaları ve silgi vuruşlarını geri alacaktır.",
+"backtrans": "This will undo all filters, rotations, crops, resizes and eraser strokes on this page."
+},
+{
+"key": "commonRevert",
+"english": "Revert",
+"target": "Geri Dön",
+"backtrans": "Revert"
+},
+{
+"key": "pageRevertedToOriginal",
+"english": "Page reverted to original",
+"target": "Sayfa orijinale geri döndürüldü",
+"backtrans": "Page was reverted to the original"
+},
+{
+"key": "eraserApplied",
+"english": "Eraser applied",
+"target": "Silgi uygulandı",
+"backtrans": "Eraser applied"
+},
+{
+"key": "pageResized",
+"english": "Page resized",
+"target": "Sayfa yeniden boyutlandırıldı",
+"backtrans": "Page resized"
+},
+{
+"key": "extractedAsNewDocument",
+"english": "Extracted as new document",
+"target": "Yeni belge olarak çıkarıldı",
+"backtrans": "Extracted as a new document"
+},
+{
+"key": "pagesUpdated",
+"english": "Pages updated",
+"target": "Sayfalar güncellendi",
+"backtrans": "Pages updated"
+},
+{
+"key": "printOptionsTitle",
+"english": "Print Options",
+"target": "Yazdırma Seçenekleri",
+"backtrans": "Print Options"
+},
+{
+"key": "letterSizeUS",
+"english": "Letter size (US)",
+"target": "Letter boyutu (ABD)",
+"backtrans": "Letter size (US)"
+},
+{
+"key": "commonPrint",
+"english": "Print",
+"target": "Yazdır",
+"backtrans": "Print"
+},
+{
+"key": "printFailed",
+"english": "Print failed",
+"target": "Yazdırma başarısız oldu",
+"backtrans": "Printing failed"
+},
+{
+"key": "noEmailAppFound",
+"english": "No email app found",
+"target": "E-posta uygulaması bulunamadı",
+"backtrans": "No email app found"
+},
+{
+"key": "emailFailed",
+"english": "Email failed",
+"target": "E-posta gönderilemedi",
+"backtrans": "Email could not be sent"
+},
+{
+"key": "fromPageLabel",
+"english": "From",
+"target": "Başlangıç",
+"backtrans": "Start"
+},
+{
+"key": "toPageLabel",
+"english": "To",
+"target": "Bitiş",
+"backtrans": "End"
+},
+{
+"key": "pdfImportedAsDocument",
+"english": "PDF imported as document",
+"target": "PDF belge olarak içe aktarıldı",
+"backtrans": "PDF imported as a document"
+},
+{
+"key": "frontSideCaptured",
+"english": "Front side captured. Now capture the back side.",
+"target": "Ön yüz tarandı. Şimdi arka yüzü tarayın.",
+"backtrans": "Front side scanned. Now scan the back side."
+},
+{
+"key": "idCardPdfGenerated",
+"english": "ID Card PDF Generated",
+"target": "Kimlik kartı PDF'si oluşturuldu",
+"backtrans": "ID card PDF created"
+},
+{
+"key": "sharePdf",
+"english": "Share PDF",
+"target": "PDF Paylaş",
+"backtrans": "Share PDF"
+},
+{
+"key": "saveAsDocument",
+"english": "Save as Document",
+"target": "Belge Olarak Kaydet",
+"backtrans": "Save As Document"
+},
+{
+"key": "commonDone",
+"english": "Done",
+"target": "Bitti",
+"backtrans": "Done"
+},
+{
+"key": "documentSaved",
+"english": "Document saved",
+"target": "Belge kaydedildi",
+"backtrans": "Document saved"
+},
+{
+"key": "commonReset",
+"english": "Reset",
+"target": "Sıfırla",
+"backtrans": "Reset"
+},
+{
+"key": "autoScan",
+"english": "Auto Scan",
+"target": "Otomatik Tarama",
+"backtrans": "Automatic Scan"
+},
+{
+"key": "importAndConvertDocument",
+"english": "Import & Convert Document",
+"target": "Belge İçe Aktar ve Dönüştür",
+"backtrans": "Import and Convert Document"
+},
+{
+"key": "signatureTitle",
+"english": "Signature",
+"target": "İmza",
+"backtrans": "Signature"
+},
+{
+"key": "signatureChoiceMessage",
+"english": "Use your saved signature or draw a new one?",
+"target": "Kayıtlı imza kullanılsın mı yoksa yeni mi çizilsin?",
+"backtrans": "Use the saved signature or draw a new one?"
+},
+{
+"key": "useSavedSignature",
+"english": "Use Saved",
+"target": "Kayıtlıyı kullan",
+"backtrans": "Use the saved one"
+},
+{
+"key": "drawNewSignature",
+"english": "Draw New",
+"target": "Yeni çiz",
+"backtrans": "Draw new"
+},
+{
+"key": "copyAll",
+"english": "Copy all",
+"target": "Tümünü kopyala",
+"backtrans": "Copy all"
+},
+{
+"key": "clearThis",
+"english": "Clear this",
+"target": "Bunu temizle",
+"backtrans": "Clear this"
+},
+{
+"key": "commonRemove",
+"english": "Remove",
+"target": "Kaldır",
+"backtrans": "Remove"
+},
+{
+"key": "clearAll",
+"english": "Clear all",
+"target": "Tümünü temizle",
+"backtrans": "Clear all"
+},
+{
+"key": "addSignature",
+"english": "Add Signature",
+"target": "İmza Ekle",
+"backtrans": "Add Signature"
+},
+{
+"key": "commonUse",
+"english": "Use",
+"target": "Kullan",
+"backtrans": "Use"
+},
+{
+"key": "stampTickedLabel",
+"english": "Ticked",
+"target": "İşaretli",
+"backtrans": "Ticked"
+},
+{
+"key": "stampBoxLabel",
+"english": "Box",
+"target": "Kutu",
+"backtrans": "Box"
+},
+{
+"key": "stampTickLabel",
+"english": "Tick",
+"target": "Onay işareti",
+"backtrans": "Check mark"
+},
+{
+"key": "commonCustom",
+"english": "Custom",
+"target": "Özel",
+"backtrans": "Custom"
+},
+{
+"key": "commonChange",
+"english": "Change",
+"target": "Değiştir",
+"backtrans": "Change"
+},
+{
+"key": "commonColor",
+"english": "Color",
+"target": "Renk",
+"backtrans": "Color"
+},
+{
+"key": "stampPaperLabel",
+"english": "Paper",
+"target": "Kağıt",
+"backtrans": "Paper"
+},
+{
+"key": "whiteHaloLabel",
+"english": "White halo (readability)",
+"target": "Beyaz halo (okunabilirlik)",
+"backtrans": "White halo (readability)"
+},
+{
+"key": "commonCreate",
+"english": "Create",
+"target": "Oluştur",
+"backtrans": "Create"
+},
+{
+"key": "newFolderTitle",
+"english": "New Folder",
+"target": "Yeni Klasör",
+"backtrans": "New Folder"
+},
+{
+"key": "batchExportEmptyMessage",
+"english": "No documents to batch export. Scan some first.",
+"target": "Toplu dışa aktarılacak belge yok. Önce biraz tarayın.",
+"backtrans": "There are no documents to bulk export. Scan some first."
+},
+{
+"key": "newFolderTooltip",
+"english": "New Folder",
+"target": "Yeni Klasör",
+"backtrans": "New Folder"
+},
+{
+"key": "accentColorTooltip",
+"english": "Accent Color",
+"target": "Vurgu Rengi",
+"backtrans": "Accent Color"
+},
+{
+"key": "moveToFolderTitle",
+"english": "Move to Folder",
+"target": "Klasöre Taşı",
+"backtrans": "Move to Folder"
+},
+{
+"key": "noFoldersYetHomeMessage",
+"english": "No folders yet. Create one from the home screen.",
+"target": "Henüz klasör yok. Ana ekrandan bir tane oluşturun.",
+"backtrans": "No folders yet. Create one from the home screen."
+},
+{
+"key": "appLanguageTitle",
+"english": "App Language",
+"target": "Uygulama Dili",
+"backtrans": "App Language"
+},
+{
+"key": "accentColorTitle",
+"english": "Accent Color",
+"target": "Vurgu Rengi",
+"backtrans": "Accent Color"
+},
+{
+"key": "sealEditTitle",
+"english": "Edit Custom Seal",
+"target": "Özel Mührü Düzenle",
+"backtrans": "Edit Custom Seal"
+},
+{
+"key": "sealCreateTitle",
+"english": "Custom Seal",
+"target": "Özel Mühür",
+"backtrans": "Custom Seal"
+},
+{
+"key": "sealMainTextLabel",
+"english": "Main text (top arc / box)",
+"target": "Ana metin (üst yay / kutu)",
+"backtrans": "Main text (top arc / box)"
+},
+{
+"key": "sealSubtextLabel",
+"english": "Subtext (bottom arc / below)",
+"target": "Alt metin (alt yay / aşağıda)",
+"backtrans": "Subtext (bottom arc / below)"
+},
+{
+"key": "sealShapeOval",
+"english": "Oval",
+"target": "Oval",
+"backtrans": "Oval"
+},
+{
+"key": "sealShapeBox",
+"english": "Box",
+"target": "Kutu",
+"backtrans": "Box"
+},
+{
+"key": "sealCenterStar",
+"english": "Star",
+"target": "Yıldız",
+"backtrans": "Star"
+},
+{
+"key": "sealCenterText",
+"english": "Text",
+"target": "Metin",
+"backtrans": "Text"
+},
+{
+"key": "sealCenterLogo",
+"english": "Logo",
+"target": "Logo",
+"backtrans": "Logo"
+},
+{
+"key": "sealCenterNone",
+"english": "None",
+"target": "Yok",
+"backtrans": "None"
+},
+{
+"key": "sealCenterTextLabel",
+"english": "Center text",
+"target": "Orta metin",
+"backtrans": "Center text"
+},
+{
+"key": "sealLogoReady",
+"english": "Logo ready",
+"target": "Logo hazır",
+"backtrans": "Logo ready"
+},
+{
+"key": "textSizeLabel",
+"english": "Text size: {size}",
+"target": "Metin boyutu: {size}",
+"backtrans": "Text size: {size}"
+},
+{
+"key": "commonUpdate",
+"english": "Update",
+"target": "Güncelle",
+"backtrans": "Update"
+},
+{
+"key": "managePagesTitle",
+"english": "Manage Pages",
+"target": "Sayfaları Yönet",
+"backtrans": "Manage Pages"
+},
+{
+"key": "pageLabel",
+"english": "Page {index}",
+"target": "Sayfa {index}",
+"backtrans": "Page {index}"
+},
+{
+"key": "duplicateAction",
+"english": "Duplicate",
+"target": "Çoğalt",
+"backtrans": "Duplicate"
+},
+{
+"key": "rotate90Action",
+"english": "Rotate 90°",
+"target": "90° döndür",
+"backtrans": "Rotate 90°"
+},
+{
+"key": "extractToNewDocAction",
+"english": "Extract to new doc",
+"target": "Yeni belgeye çıkar",
+"backtrans": "Extract to new document"
+},
+{
+"key": "addPageTitle",
+"english": "Add Page",
+"target": "Sayfa Ekle",
+"backtrans": "Add Page"
+},
+{
+"key": "cameraSource",
+"english": "Camera",
+"target": "Kamera",
+"backtrans": "Camera"
+},
+{
+"key": "importFromGallery",
+"english": "Import from Gallery",
+"target": "Galeriden içe aktar",
+"backtrans": "Import from gallery"
+},
+{
+"key": "fromAnotherDocument",
+"english": "From Another Document",
+"target": "Başka bir belgeden",
+"backtrans": "From another document"
+},
+{
+"key": "pageCountLabel",
+"english": "{count, plural, =0{No pages} =1{1 page} other{{count} pages}}",
+"target": "{count, plural, =0{Sayfa yok} =1{1 sayfa} other{{count} sayfa}}",
+"backtrans": "{count, plural, =0{No pages} =1{1 page} other{{count} pages}}"
+},
+{
+"key": "commonConfirm",
+"english": "Confirm",
+"target": "Onayla",
+"backtrans": "Confirm"
+},
+{
+"key": "applyToAllPages",
+"english": "Apply to all pages",
+"target": "Tüm sayfalara uygula",
+"backtrans": "Apply to all pages"
+},
+{
+"key": "widthLabel",
+"english": "Width",
+"target": "Genişlik",
+"backtrans": "Width"
+},
+{
+"key": "heightLabel",
+"english": "Height",
+"target": "Yükseklik",
+"backtrans": "Height"
+},
+{
+"key": "lockAspectRatio",
+"english": "Lock aspect ratio",
+"target": "En-boy oranını kilitle",
+"backtrans": "Lock aspect ratio"
+},
+{
+"key": "originalDimensions",
+"english": "Original: {w}×{h}",
+"target": "Orijinal: {w}×{h}",
+"backtrans": "Original: {w}×{h}"
+},
+{
+"key": "ocrSectionLabel",
+"english": "OCR",
+"target": "OCR",
+"backtrans": "OCR"
+},
+{
+"key": "ocrLanguagesLabel",
+"english": "OCR Languages",
+"target": "OCR Dilleri",
+"backtrans": "OCR Languages"
+},
+{
+"key": "captureBehaviorSectionLabel",
+"english": "CAPTURE BEHAVIOR",
+"target": "TARAMA DAVRANIŞI",
+"backtrans": "SCANNING BEHAVIOR"
+},
+{
+"key": "autoCopyOcrLabel",
+"english": "Auto-copy OCR",
+"target": "OCR'yi otomatik kopyala",
+"backtrans": "Automatically copy OCR"
+},
+{
+"key": "autoCopyOcrSubtitle",
+"english": "Copy text to clipboard after scan",
+"target": "Taramadan sonra metni panoya kopyala",
+"backtrans": "Copy the text to the clipboard after scanning"
+},
+{
+"key": "beepOnCaptureLabel",
+"english": "Beep on capture",
+"target": "Taramada bip sesi",
+"backtrans": "Beep on scan"
+},
+{
+"key": "beepOnCaptureSubtitle",
+"english": "Play sound when scan completes",
+"target": "Tarama tamamlandığında ses çal",
+"backtrans": "Play a sound when scanning is complete"
+},
+{
+"key": "vibrateOnCaptureLabel",
+"english": "Vibrate on capture",
+"target": "Taramada titreşim",
+"backtrans": "Vibrate on scan"
+},
+{
+"key": "vibrateOnCaptureSubtitle",
+"english": "Haptic feedback when scan completes",
+"target": "Tarama tamamlandığında dokunsal geri bildirim",
+"backtrans": "Haptic feedback when scanning is complete"
+},
+{
+"key": "adsRemovedLabel",
+"english": "Ads Removed",
+"target": "Reklamlar kaldırıldı",
+"backtrans": "Ads removed"
+},
+{
+"key": "diagnosticsSectionLabel",
+"english": "DIAGNOSTICS",
+"target": "TANILAMA",
+"backtrans": "DIAGNOSTICS"
+},
+{
+"key": "debugLogsLabel",
+"english": "Debug Logs",
+"target": "Hata Ayıklama Günlükleri",
+"backtrans": "Debug Logs"
+},
+{
+"key": "logEntriesLabel",
+"english": "{count, plural, =0{No entries} =1{1 entry} other{{count} entries}}",
+"target": "{count, plural, =0{Giriş yok} =1{1 giriş} other{{count} giriş}}",
+"backtrans": "{count, plural, =0{No entries} =1{1 entry} other{{count} entries}}"
+},
+{
+"key": "ocrStatusBuiltIn",
+"english": "Built-in",
+"target": "Yerleşik",
+"backtrans": "Built-in"
+},
+{
+"key": "ocrStatusChecking",
+"english": "Checking...",
+"target": "Kontrol ediliyor...",
+"backtrans": "Checking..."
+},
+{
+"key": "ocrStatusOnDemand",
+"english": "On-demand",
+"target": "İsteğe bağlı",
+"backtrans": "On demand"
+},
+{
+"key": "savedAsNewDocument",
+"english": "Saved as new document",
+"target": "Yeni belge olarak kaydedildi",
+"backtrans": "Saved as a new document"
+},
+{
+"key": "conversionFailedPrefix",
+"english": "Conversion failed",
+"target": "Dönüştürme başarısız oldu",
+"backtrans": "Conversion failed"
+},
+{
+"key": "convertDocumentTitle",
+"english": "Convert Document",
+"target": "Belgeyi Dönüştür",
+"backtrans": "Convert Document"
+},
+{
+"key": "convertToLabel",
+"english": "Convert to:",
+"target": "Şuna dönüştür:",
+"backtrans": "Convert to:"
+},
+{
+"key": "actionLabel",
+"english": "Action:",
+"target": "Eylem:",
+"backtrans": "Action:"
+},
+{
+"key": "saveAsNewDocumentAction",
+"english": "Save as new Document",
+"target": "Yeni belge olarak kaydet",
+"backtrans": "Save as new document"
+},
+{
+"key": "exportAndShareAction",
+"english": "Export & Share",
+"target": "Dışa aktar ve paylaş",
+"backtrans": "Export and share"
+},
+{
+"key": "docxWarningMessage",
+"english": "DOCX sources render poorly as pages — save inside the app is limited to JPG/PNG from image, PDF, TXT or CSV sources. Use Export & Share for this file.",
+"target": "DOCX kaynakları sayfa olarak kötü görüntülenir — uygulama içi kaydetme, resim, PDF, TXT veya CSV kaynaklarından yalnızca JPG/PNG ile sınırlıdır. Bu dosya için Dışa Aktar ve Paylaş'ı kullanın.",
+"backtrans": "DOCX sources are displayed badly as pages — saving inside the app is limited to only JPG/PNG from image, PDF, TXT or CSV sources. Use Export and Share for this file. [??: awkward wording, 'displayed badly as pages' and confusing limitation sentence]"
+},
+{
+"key": "saveInsideAppWarning",
+"english": "To save inside the app, choose JPG or PNG. Other targets are exported as files.",
+"target": "Uygulama içinde kaydetmek için JPG veya PNG seçin. Diğer hedefler dosya olarak dışa aktarılır.",
+"backtrans": "Choose JPG or PNG to save inside the app. Other targets are exported as files."
+},
+{
+"key": "commonConvert",
+"english": "Convert",
+"target": "Dönüştür",
+"backtrans": "Convert"
+},
+{
+"key": "conversionStarting",
+"english": "Starting…",
+"target": "Başlatılıyor...",
+"backtrans": "Starting..."
+},
+{
+"key": "convertedDocTitle",
+"english": "Converted {date}",
+"target": "Dönüştürüldü {date}",
+"backtrans": "Converted {date}"
+},
+{
+"key": "progressReading",
+"english": "Reading…",
+"target": "Okunuyor...",
+"backtrans": "Reading..."
+},
+{
+"key": "progressCopying",
+"english": "Copying…",
+"target": "Kopyalanıyor...",
+"backtrans": "Copying..."
+},
+{
+"key": "progressBuildingPdf",
+"english": "Building PDF…",
+"target": "PDF oluşturuluyor...",
+"backtrans": "Creating PDF..."
+},
+{
+"key": "progressBuildingDocx",
+"english": "Building DOCX…",
+"target": "DOCX oluşturuluyor...",
+"backtrans": "Creating DOCX..."
+},
+{
+"key": "progressDecodingImage",
+"english": "Decoding image…",
+"target": "Resim kodu çözülüyor...",
+"backtrans": "Decoding image..."
+},
+{
+"key": "progressExtractingText",
+"english": "Extracting text…",
+"target": "Metin çıkarılıyor...",
+"backtrans": "Extracting text..."
+},
+{
+"key": "progressSaving",
+"english": "Saving…",
+"target": "Kaydediliyor...",
+"backtrans": "Saving..."
+},
+{
+"key": "progressRasterizing",
+"english": "Rasterizing pages…",
+"target": "Sayfalar rasterleştiriliyor...",
+"backtrans": "Rasterizing pages..."
+},
+{
+"key": "progressEncodingPage",
+"english": "Encoding page {current} of {total}…",
+"target": "Sayfa {current}/{total} kodlanıyor...",
+"backtrans": "Encoding page {current}/{total}..."
+},
+{
+"key": "watermarkEditTitle",
+"english": "Edit Watermark",
+"target": "Filigranı Düzenle",
+"backtrans": "Edit Watermark"
+},
+{
+"key": "watermarkAddTitle",
+"english": "Add Watermark",
+"target": "Filigran Ekle",
+"backtrans": "Add Watermark"
+},
+{
+"key": "watermarkTextLabel",
+"english": "Text",
+"target": "Metin",
+"backtrans": "Text"
+},
+{
+"key": "opacityPercentLabel",
+"english": "Opacity: {percent}%",
+"target": "Opaklık: %{percent}",
+"backtrans": "Opacity: %{percent}"
+},
+{
+"key": "sizePtLabel",
+"english": "Size: {size}pt",
+"target": "Boyut: {size}pt",
+"backtrans": "Size: {size}pt"
+},
+{
+"key": "alignLabel",
+"english": "Align",
+"target": "Hizalama",
+"backtrans": "Alignment"
+},
+{
+"key": "exportSavedToDownloads",
+"english": "Saved to Downloads",
+"target": "İndirilenler'e kaydedildi",
+"backtrans": "Saved to Downloads"
+},
+{
+"key": "commonShare",
+"english": "Share",
+"target": "Paylaş",
+"backtrans": "Share"
+},
+{
+"key": "exportTitle",
+"english": "Export",
+"target": "Dışa Aktar",
+"backtrans": "Export"
+},
+{
+"key": "targetMbLabel",
+"english": "{mb} MB",
+"target": "{mb} MB",
+"backtrans": "{mb} MB"
+},
+{
+"key": "filterColor",
+"english": "Color",
+"target": "Renk",
+"backtrans": "Color"
+},
+{
+"key": "filterShadow",
+"english": "Shadow",
+"target": "Gölge",
+"backtrans": "Shadow"
+},
+{
+"key": "docxModeTextOnly",
+"english": "Text Only",
+"target": "Yalnızca Metin",
+"backtrans": "Text Only"
+},
+{
+"key": "docxModeWithImages",
+"english": "With Images",
+"target": "Resimlerle",
+"backtrans": "With Images"
+},
+{
+"key": "saveToDeviceButton",
+"english": "Save to Device",
+"target": "Cihaza Kaydet",
+"backtrans": "Save to Device"
+},
+{
+"key": "pageIndicator",
+"english": "Page {current} / {total}",
+"target": "Sayfa {current} / {total}",
+"backtrans": "Page {current} / {total}"
+},
+{
+"key": "fullscreenLabel",
+"english": "Fullscreen",
+"target": "Tam Ekran",
+"backtrans": "Full Screen"
+},
+{
+"key": "batchExportSignatureDisabled",
+"english": "Batch export — signature placement disabled",
+"target": "Toplu dışa aktarma — imza yerleşimi devre dışı",
+"backtrans": "Bulk export — signature placement disabled"
+},
+{
+"key": "fitToTargetMbLabel",
+"english": "Fit to target MB",
+"target": "Hedef MB'ye sığdır",
+"backtrans": "Fit to target MB"
+},
+{
+"key": "moreOptionsTooltip",
+"english": "More options",
+"target": "Daha fazla seçenek",
+"backtrans": "More options"
+},
+{
+"key": "commonRename",
+"english": "Rename",
+"target": "Yeniden Adlandır",
+"backtrans": "Rename"
+},
+{
+"key": "addTagsAction",
+"english": "Add Tags",
+"target": "Etiket Ekle",
+"backtrans": "Add Tags"
+},
+{
+"key": "editDocumentAction",
+"english": "Edit Document",
+"target": "Belgeyi Düzenle",
+"backtrans": "Edit Document"
+},
+{
+"key": "copiedToClipboard",
+"english": "Copied to clipboard",
+"target": "Panoya kopyalandı",
+"backtrans": "Copied to clipboard"
+},
+{
+"key": "favoriteTooltip",
+"english": "Favorite",
+"target": "Favori",
+"backtrans": "Favorite"
+},
+{
+"key": "noFoldersYet",
+"english": "No folders yet",
+"target": "Henüz klasör yok",
+"backtrans": "No folders yet"
+},
+{
+"key": "rotateLabel",
+"english": "Rotate",
+"target": "Döndür",
+"backtrans": "Rotate"
+},
+{
+"key": "scaleLabel",
+"english": "Scale",
+"target": "Ölçekle",
+"backtrans": "Scale"
+},
+{
+"key": "eraserTitle",
+"english": "Eraser",
+"target": "Silgi",
+"backtrans": "Eraser"
+},
+{
+"key": "tapToSampleColor",
+"english": "Tap a spot to sample its color",
+"target": "Rengi örneklemek için bir noktaya dokunun",
+"backtrans": "Tap a point to sample the color"
+},
+{
+"key": "commonSize",
+"english": "Size",
+"target": "Boyut",
+"backtrans": "Size"
+},
+{
+"key": "sampleColorTooltip",
+"english": "Sample color from page",
+"target": "Sayfadan renk örnekle",
+"backtrans": "Sample color from the page"
+},
+{
+"key": "marqueeEraseTooltip",
+"english": "Marquee erase",
+"target": "Seçerek sil",
+"backtrans": "Erase by selecting"
+},
+{
+"key": "commonApply",
+"english": "Apply",
+"target": "Uygula",
+"backtrans": "Apply"
+},
+{
+"key": "filterTitle",
+"english": "Filter",
+"target": "Filtre",
+"backtrans": "Filter"
+},
+{
+"key": "intensityLabel",
+"english": "Intensity",
+"target": "Yoğunluk",
+"backtrans": "Intensity"
+},
+{
+"key": "selectRegionTitle",
+"english": "Select Region",
+"target": "Alan Seç",
+"backtrans": "Select Area"
+},
+{
+"key": "commonExtract",
+"english": "Extract",
+"target": "Çıkar",
+"backtrans": "Extract"
+},
+{
+"key": "customColorTitle",
+"english": "Custom Color",
+"target": "Özel Renk",
+"backtrans": "Custom Color"
+},
+{
+"key": "documentNotFound",
+"english": "Document not found",
+"target": "Belge bulunamadı",
+"backtrans": "Document not found"
+},
+{
+"key": "clearLogsTooltip",
+"english": "Clear logs",
+"target": "Günlükleri temizle",
+"backtrans": "Clear logs"
+},
+{
+"key": "placeHereLabel",
+"english": "Place here",
+"target": "Buraya yerleştir",
+"backtrans": "Place here"
+},
+{
+"key": "tryAgainButton",
+"english": "Try again",
+"target": "Tekrar dene",
+"backtrans": "Try again"
+},
+{
+"key": "emptyDocumentMessage",
+"english": "This document has no pages.",
+"target": "Bu belgenin sayfası yok.",
+"backtrans": "This document has no pages."
+},
+{
+"key": "cameraErrorPrefix",
+"english": "Camera error",
+"target": "Kamera hatası",
+"backtrans": "Camera error"
+},
+{
+"key": "importErrorPrefix",
+"english": "Import error",
+"target": "İçe aktarma hatası",
+"backtrans": "Import error"
+},
+{
+"key": "pdfImportErrorPrefix",
+"english": "PDF import error",
+"target": "PDF içe aktarma hatası",
+"backtrans": "PDF import error"
+},
+{
+"key": "pickErrorPrefix",
+"english": "Pick error",
+"target": "Seçim hatası",
+"backtrans": "Selection error"
+},
+{
+"key": "scannerErrorPrefix",
+"english": "Scanner error",
+"target": "Tarayıcı hatası",
+"backtrans": "Scanner error"
+},
+{
+"key": "idPdfErrorPrefix",
+"english": "Error generating ID PDF",
+"target": "Kimlik PDF oluşturma hatası",
+"backtrans": "ID PDF creation error"
+},
+{
+"key": "genericErrorPrefix",
+"english": "Error",
+"target": "Hata",
+"backtrans": "Error"
+},
+{
+"key": "annotateTitle",
+"english": "Annotate",
+"target": "Açıklama Ekle",
+"backtrans": "Add Annotation"
+},
+{
+"key": "placementsCountLabel",
+"english": "{count, plural, =0{Nothing placed} =1{1 placed} other{{count} placed}}",
+"target": "{count, plural, =0{Yerleştirilen yok} =1{1 yerleştirilen} other{{count} yerleştirilen}}",
+"backtrans": "{count, plural, =0{No placed ones} =1{1 placed one} other{{count} placed ones}} [??: 'yerleştirilen' is a vague participle noun meaning 'the placed one(s)']"
+},
+{
+"key": "ocrUnavailableTooltip",
+"english": "OCR unavailable on this device.",
+"target": "Bu cihazda OCR kullanılamıyor.",
+"backtrans": "OCR is not available on this device."
+},
+{
+"key": "docScannerUnsupportedMessage",
+"english": "Your device doesn't support the advanced document scanner. Take a photo with your Camera app, then tap Import below to crop and save it.",
+"target": "Cihazınız gelişmiş belge tarayıcısını desteklemiyor. Kamera uygulamasıyla fotoğraf çekin, ardından kırpmak ve kaydetmek için aşağıdaki İçe Aktar'a dokunun.",
+"backtrans": "Your device does not support the advanced document scanner. Take a photo with the camera app, then tap Import below to crop and save."
+},
+{
+"key": "billingUnavailableMessage",
+"english": "Billing unavailable — try again later.",
+"target": "Faturalandırma kullanılamıyor — daha sonra tekrar deneyin.",
+"backtrans": "Billing is unavailable — try again later."
+},
+{
+"key": "ocrNoInternetMessage",
+"english": "No internet. Connect once to download the language pack.",
+"target": "İnternet yok. Dil paketini indirmek için bir kez bağlanın.",
+"backtrans": "No internet. Connect once to download the language pack."
+},
+{
+"key": "ocrLanguagePackNotReady",
+"english": "Language pack downloading or not ready. Try again shortly.",
+"target": "Dil paketi indiriliyor veya hazır değil. Birazdan tekrar deneyin.",
+"backtrans": "The language pack is downloading or not ready. Try again shortly."
+},
+{
+"key": "undoTooltip",
+"english": "Undo",
+"target": "Geri Al",
+"backtrans": "Undo"
+},
+{
+"key": "redoTooltip",
+"english": "Redo",
+"target": "Yinele",
+"backtrans": "Redo"
+},
+{
+"key": "fillInputHint",
+"english": "Type text to fill",
+"target": "Doldurmak için metin yazın",
+"backtrans": "Type text to fill"
+},
+{
+"key": "fillCapsLabel",
+"english": "ALL CAPS",
+"target": "TÜMÜ BÜYÜK HARF",
+"backtrans": "ALL CAPS"
+},
+{
+"key": "fillSaveSnippet",
+"english": "Save as snippet",
+"target": "Parçacık olarak kaydet",
+"backtrans": "Save as snippet"
+},
+{
+"key": "fillDeleteSnippet",
+"english": "Delete snippet?",
+"target": "Parçacık silinsin mi?",
+"backtrans": "Delete snippet?"
+},
+{
+"key": "fillTooltip",
+"english": "Fill",
+"target": "Doldur",
+"backtrans": "Fill"
+},
+{
+"key": "tickerFreeUnlimitedOcr",
+"english": "FREE UNLIMITED OCR",
+"target": "ÜCRETSİZ SINIRSIZ OCR",
+"backtrans": "FREE UNLIMITED OCR"
+},
+{
+"key": "ticker100OnDevicePrivacy",
+"english": "YOUR DOCUMENTS STAY ON YOUR DEVICE",
+"target": "BELGELERİNİZ CİHAZINIZDA KALIR",
+"backtrans": "YOUR DOCUMENTS STAY ON YOUR DEVICE"
+},
+{
+"key": "tickerNoAccount",
+"english": "NO ACCOUNT",
+"target": "HESAP YOK",
+"backtrans": "NO ACCOUNT"
+},
+{
+"key": "tickerNoWatermarks",
+"english": "NO WATERMARKS",
+"target": "FİLİGRAN YOK",
+"backtrans": "NO WATERMARKS"
+},
+{
+"key": "ticker21ToolEditSuite",
+"english": "21-TOOL EDIT SUITE",
+"target": "21 DÜZENLEME ARACI",
+"backtrans": "21 EDITING TOOLS"
+},
+{
+"key": "tickerNonDestructiveEditing",
+"english": "NON-DESTRUCTIVE EDITING",
+"target": "TAHRİBATSIZ DÜZENLEME",
+"backtrans": "NON-DESTRUCTIVE EDITING [??: 'tahribatsız' is a slightly unusual/literal 'damage-free' term]"
+},
+{
+"key": "tickerUndoRedo",
+"english": "UNDO/REDO",
+"target": "GERİ AL/YİNELE",
+"backtrans": "UNDO/REDO"
+},
+{
+"key": "tickerRevertToOriginal",
+"english": "REVERT TO ORIGINAL",
+"target": "ORİJİNALE DÖN",
+"backtrans": "REVERT TO ORIGINAL"
+},
+{
+"key": "tickerTapToTypeFilling",
+"english": "TAP-TO-TYPE FILLING",
+"target": "DOKUN-YAZ DOLDURMA",
+"backtrans": "TAP-TYPE FILLING"
+},
+{
+"key": "tickerESign",
+"english": "E-SIGN",
+"target": "E-İMZA",
+"backtrans": "E-SIGNATURE"
+},
+{
+"key": "tickerCustomSeals",
+"english": "CUSTOM SEALS",
+"target": "ÖZEL MÜHÜRLER",
+"backtrans": "CUSTOM SEALS"
+},
+{
+"key": "tickerTextStamps",
+"english": "TEXT STAMPS",
+"target": "METİN DAMGALARI",
+"backtrans": "TEXT STAMPS"
+},
+{
+"key": "tickerNoteStamps",
+"english": "NOTE STAMPS",
+"target": "NOT DAMGALARI",
+"backtrans": "NOTE STAMPS"
+},
+{
+"key": "tickerSearchablePdf",
+"english": "SEARCHABLE PDF",
+"target": "ARANABİLİR PDF",
+"backtrans": "SEARCHABLE PDF"
+},
+{
+"key": "tickerRegionOcr",
+"english": "REGION OCR",
+"target": "SEÇİLİ ALAN OCR",
+"backtrans": "SELECTED-AREA OCR"
+},
+{
+"key": "tickerAutoCopyOcr",
+"english": "AUTO-COPY OCR",
+"target": "OTOMATİK OCR KOPYALAMA",
+"backtrans": "AUTOMATIC OCR COPY"
+},
+{
+"key": "tickerIdCardMode",
+"english": "ID CARD MODE",
+"target": "KİMLİK KARTI MODU",
+"backtrans": "ID CARD MODE"
+},
+{
+"key": "tickerPassportMode",
+"english": "PASSPORT MODE",
+"target": "PASAPORT MODU",
+"backtrans": "PASSPORT MODE"
+},
+{
+"key": "tickerGalleryImport",
+"english": "GALLERY IMPORT",
+"target": "GALERİ İÇE AKTARMA",
+"backtrans": "GALLERY IMPORT"
+},
+{
+"key": "tickerPdfExport",
+"english": "PDF EXPORT",
+"target": "PDF DIŞA AKTARMA",
+"backtrans": "PDF EXPORT"
+},
+{
+"key": "tickerWordExport",
+"english": "WORD EXPORT",
+"target": "WORD DIŞA AKTARMA",
+"backtrans": "WORD EXPORT"
+},
+{
+"key": "tickerJpgExport",
+"english": "JPG EXPORT",
+"target": "JPG DIŞA AKTARMA",
+"backtrans": "JPG EXPORT"
+},
+{
+"key": "tickerPngExport",
+"english": "PNG EXPORT",
+"target": "PNG DIŞA AKTARMA",
+"backtrans": "PNG EXPORT"
+},
+{
+"key": "tickerBatchExport",
+"english": "BATCH EXPORT",
+"target": "TOPLU DIŞA AKTARMA",
+"backtrans": "BULK EXPORT"
+},
+{
+"key": "tickerFolders",
+"english": "FOLDERS",
+"target": "KLASÖRLER",
+"backtrans": "FOLDERS"
+},
+{
+"key": "tickerTags",
+"english": "TAGS",
+"target": "ETİKETLER",
+"backtrans": "TAGS"
+},
+{
+"key": "tickerFavorites",
+"english": "FAVORITES",
+"target": "FAVORİLER",
+"backtrans": "FAVORITES"
+},
+{
+"key": "tickerSearch",
+"english": "SEARCH",
+"target": "ARA",
+"backtrans": "SEARCH"
+},
+{
+"key": "tickerDarkMode",
+"english": "DARK MODE",
+"target": "KOYU MOD",
+"backtrans": "DARK MODE"
+},
+{
+"key": "tickerAccentThemes",
+"english": "ACCENT THEMES",
+"target": "VURGU TEMALARI",
+"backtrans": "ACCENT THEMES"
+},
+{
+"key": "tickerDeviceMigration",
+"english": "DEVICE MIGRATION",
+"target": "CİHAZ TAŞIMA",
+"backtrans": "DEVICE MIGRATION"
+},
+{
+"key": "onboardingWelcomeTitle",
+"english": "Welcome to KatharScan",
+"target": "KatharScan'a Hoş Geldiniz",
+"backtrans": "Welcome to KatharScan"
+},
+{
+"key": "onboardingWelcomeSubtitle",
+"english": "Your entire document office — scan, edit, sign, and export — in one private app.",
+"target": "Tüm belge ofisiniz — tara, düzenle, imzala ve dışa aktar — tek bir gizli uygulamada.",
+"backtrans": "Your entire document office — scan, edit, sign and export — in a single private app."
+},
+{
+"key": "onboardingToolsTitle",
+"english": "21 Free Pro Tools",
+"target": "21 Ücretsiz Pro Araç",
+"backtrans": "21 Free Pro Tools"
+},
+{
+"key": "onboardingToolsSubtitle",
+"english": "Annotate, sign, watermark, fill forms, seal, and more — every tool free and unlimited.",
+"target": "Açıklama ekle, imzala, filigran ekle, formları doldur, mühürle ve daha fazlası — her araç ücretsiz ve sınırsız.",
+"backtrans": "Annotate, sign, add watermark, fill forms, seal and more — every tool free and unlimited."
+},
+{
+"key": "onboardingOcrTitle",
+"english": "On-Device OCR",
+"target": "Cihazda OCR",
+"backtrans": "On-device OCR"
+},
+{
+"key": "onboardingOcrSubtitle",
+"english": "Use KatharScan in {count} languages. OCR runs on your phone — nothing ever leaves your device.",
+"target": "KatharScan'ı {count} dilde kullanın. OCR telefonunuzda çalışır — hiçbir şey cihazınızdan çıkmaz.",
+"backtrans": "Use KatharScan in {count} languages. OCR runs on your phone — nothing leaves your device."
+},
+{
+"key": "onboardingSignTitle",
+"english": "Sign, Fill & Seal",
+"target": "İmzala, Doldur ve Mühürle",
+"backtrans": "Sign, Fill and Seal"
+},
+{
+"key": "onboardingSignSubtitle",
+"english": "E-sign contracts, type-to-fill forms, and stamp enterprise seals in seconds.",
+"target": "Sözleşmeleri e-imzala, formları doldur ve kurumsal mühürleri saniyeler içinde damgala.",
+"backtrans": "E-sign contracts, fill forms and stamp corporate seals in seconds."
+},
+{
+"key": "onboardingEditTitle",
+"english": "Non-Destructive Editing",
+"target": "Tahribatsız Düzenleme",
+"backtrans": "Non-destructive Editing"
+},
+{
+"key": "onboardingEditSubtitle",
+"english": "Every edit stays reversible — undo, redo, and revert to original anytime.",
+"target": "Her düzenleme geri alınabilir — geri al, yinele ve istediğiniz zaman orijinale dön.",
+"backtrans": "Every edit is reversible — undo, redo and revert to the original whenever you want."
+},
+{
+"key": "onboardingPrivacyTitle",
+"english": "Private by design",
+"target": "Tasarımdan gizli",
+"backtrans": "Private by design"
+},
+{
+"key": "onboardingPrivacySubtitle",
+"english": "No account, no cloud, no watermarks. Your documents never leave your device.",
+"target": "Hesap yok, bulut yok, filigran yok. Belgeleriniz cihazınızı asla terk etmez.",
+"backtrans": "No account, no cloud, no watermark. Your documents never leave your device."
+},
+{
+"key": "onboardingContinue",
+"english": "Continue",
+"target": "Devam",
+"backtrans": "Continue"
+},
+{
+"key": "onboardingGetStarted",
+"english": "Get Started",
+"target": "Başla",
+"backtrans": "Get Started"
+},
+{
+"key": "onboardingBack",
+"english": "Back",
+"target": "Geri",
+"backtrans": "Back"
+},
+{
+"key": "onboardingReplayIntro",
+"english": "Replay introduction",
+"target": "Tanıtımı tekrar oynat",
+"backtrans": "Replay the intro"
+},
+{
+"key": "saveToDownloadsAction",
+"english": "Save to Downloads",
+"target": "İndirilenler'e Kaydet",
+"backtrans": "Save to Downloads"
+},
+{
+"key": "paywallTitle",
+"english": "Remove Ads",
+"target": "Reklamları Kaldır",
+"backtrans": "Remove Ads"
+},
+{
+"key": "paywallSubtitle",
+"english": "Support KatharScan with a one-time purchase. All features remain free.",
+"target": "Tek seferlik satın alımla KatharScan'ı destekleyin. Tüm özellikler ücretsiz kalır.",
+"backtrans": "Support KatharScan with a one-time purchase. All features stay free."
+},
+{
+"key": "paywallFallbackPrice",
+"english": "$14.99 one-time",
+"target": "$14.99 tek seferlik",
+"backtrans": "$14.99 one-time"
+},
+{
+"key": "paywallFeatureNoBanner",
+"english": "No more banner ads",
+"target": "Artık banner reklam yok",
+"backtrans": "No more banner ads"
+},
+{
+"key": "paywallFeatureNoInterstitial",
+"english": "No more interstitial ads",
+"target": "Artık geçiş reklamı yok",
+"backtrans": "No more interstitial ads"
+},
+{
+"key": "paywallFeatureFreeForever",
+"english": "All features free forever",
+"target": "Tüm özellikler sonsuza kadar ücretsiz",
+"backtrans": "All features free forever"
+},
+{
+"key": "paywallLegalText",
+"english": "This is a non-consumable purchase. Restore it anytime on any device with the same store account.",
+"target": "Bu tüketilemez bir satın alımdır. Aynı mağaza hesabıyla istediğiniz zaman herhangi bir cihazda geri yükleyin.",
+"backtrans": "This is a non-consumable purchase. Restore it on any device at any time with the same store account."
+},
+{
+"key": "paywallSuccessTitle",
+"english": "Ads Removed",
+"target": "Reklamlar Kaldırıldı",
+"backtrans": "Ads Removed"
+},
+{
+"key": "paywallSuccessMessage",
+"english": "Thank you for supporting KatharScan.",
+"target": "KatharScan'ı desteklediğiniz için teşekkürler.",
+"backtrans": "Thank you for supporting KatharScan."
+},
+{
+"key": "errorGenericTitle",
+"english": "Something went wrong",
+"target": "Bir şeyler ters gitti",
+"backtrans": "Something went wrong"
+},
+{
+"key": "errorScreenProblem",
+"english": "KatharScan ran into a problem displaying this screen. Your scans are safe — they're stored on this device and this doesn't affect them.",
+"target": "KatharScan bu ekranı görüntülerken bir sorunla karşılaştı. Taramalarınız güvende — bu cihazda saklanıyorlar ve bu onları etkilemiyor.",
+"backtrans": "KatharScan encountered a problem while displaying this screen. Your scans are safe — they are stored on this device and this does not affect them."
+},
+{
+"key": "errorReportIssue",
+"english": "Report issue",
+"target": "Sorun bildir",
+"backtrans": "Report issue"
+},
+{
+"key": "filterAll",
+"english": "All",
+"target": "Tümü",
+"backtrans": "All"
+},
+{
+"key": "filterFolders",
+"english": "Folders",
+"target": "Klasörler",
+"backtrans": "Folders"
+},
+{
+"key": "filterRecent",
+"english": "Recent",
+"target": "Son",
+"backtrans": "Recent"
+},
+{
+"key": "filterFavorites",
+"english": "Favorites",
+"target": "Favoriler",
+"backtrans": "Favorites"
+},
+{
+"key": "chipAllFolders",
+"english": "All Folders",
+"target": "Tüm Klasörler",
+"backtrans": "All Folders"
+},
+{
+"key": "chipSelectMultiple",
+"english": "Select Multiple",
+"target": "Çoklu Seç",
+"backtrans": "Select Multiple"
+},
+{
+"key": "emptySearch",
+"english": "No scans match your search.",
+"target": "Aramanıza uyan tarama yok.",
+"backtrans": "No scans match your search."
+},
+{
+"key": "emptyFolders",
+"english": "No folders yet. Tap the folder icon to create one.",
+"target": "Henüz klasör yok. Bir tane oluşturmak için klasör simgesine dokunun.",
+"backtrans": "No folders yet. Tap the folder icon to create one."
+},
+{
+"key": "emptyFavorites",
+"english": "No favorites yet. Tap the star icon on a document to add it.",
+"target": "Henüz favori yok. Eklemek için bir belgedeki yıldız simgesine dokunun.",
+"backtrans": "No favorites yet. Tap the star icon on a document to add one."
+},
+{
+"key": "modeDocument",
+"english": "Document Mode",
+"target": "Belge Modu",
+"backtrans": "Document Mode"
+},
+{
+"key": "modeOcr",
+"english": "OCR Mode",
+"target": "OCR Modu",
+"backtrans": "OCR Mode"
+},
+{
+"key": "modeIdCard",
+"english": "ID Card Mode",
+"target": "Kimlik Kartı Modu",
+"backtrans": "ID Card Mode"
+},
+{
+"key": "modePassport",
+"english": "Passport Mode",
+"target": "Pasaport Modu",
+"backtrans": "Passport Mode"
+},
+{
+"key": "titlePdfImport",
+"english": "PDF Import",
+"target": "PDF İçe Aktarma",
+"backtrans": "PDF Import"
+},
+{
+"key": "titleIdCard",
+"english": "ID Card",
+"target": "Kimlik Kartı",
+"backtrans": "ID Card"
+},
+{
+"key": "titleScan",
+"english": "Scan",
+"target": "Tara",
+"backtrans": "Scan"
+},
+{
+"key": "exportEstimatedSize",
+"english": "Estimated size: {mb} MB",
+"target": "Tahmini boyut: {mb} MB",
+"backtrans": "Estimated size: {mb} MB"
+},
+{
+"key": "debugNoLogsYet",
+"english": "No logs yet",
+"target": "Henüz günlük yok",
+"backtrans": "No logs yet"
+},
+{
+"key": "textBold",
+"english": "B",
+"target": "K",
+"backtrans": "K [??: 'K' is the Turkish initial for Kalın (bold)]"
+},
+{
+"key": "textItalic",
+"english": "I",
+"target": "İ",
+"backtrans": "İ [??: 'İ' is the Turkish initial for İtalik (italic)]"
+},
+{
+"key": "textUnderline",
+"english": "U",
+"target": "A",
+"backtrans": "A [??: underline letter 'A' is unclear; Turkish 'Altı çizili' would be A, but identical to the font letter A]"
+},
+{
+"key": "textFontLetterA",
+"english": "A",
+"target": "A",
+"backtrans": "A"
+},
+{
+"key": "multiplySymbol",
+"english": "×",
+"target": "×",
+"backtrans": "×"
+},
+{
+"key": "signerLabel",
+"english": "Signer {index}",
+"target": "İmzalayan {index}",
+"backtrans": "Signer {index}"
+},
+{
+"key": "stampCheckbox",
+"english": "Checkbox",
+"target": "Onay kutusu",
+"backtrans": "Checkbox"
+},
+{
+"key": "fontSansSerif",
+"english": "sans-serif",
+"target": "sans-serif",
+"backtrans": "sans-serif"
+},
+{
+"key": "fontSerif",
+"english": "serif",
+"target": "serif",
+"backtrans": "serif"
+},
+{
+"key": "fontMonospace",
+"english": "monospace",
+"target": "monospace",
+"backtrans": "monospace"
+},
+{
+"key": "sealCustom",
+"english": "Custom Seal",
+"target": "Özel Mühür",
+"backtrans": "Custom Seal"
+},
+{
+"key": "formatCsv",
+"english": "CSV",
+"target": "CSV",
+"backtrans": "CSV"
+},
+{
+"key": "ocrNoTextFound",
+"english": "No text found",
+"target": "Metin bulunamadı",
+"backtrans": "No text found"
+},
+{
+"key": "rotationAllPages",
+"english": "All pages rotated",
+"target": "Tüm sayfalar döndürüldü",
+"backtrans": "All pages rotated"
+},
+{
+"key": "rotationPage",
+"english": "Page rotated",
+"target": "Sayfa döndürüldü",
+"backtrans": "Page rotated"
+},
+{
+"key": "resizeTitle",
+"english": "Resize",
+"target": "Yeniden Boyutlandır",
+"backtrans": "Resize"
+},
+{
+"key": "addTextTitle",
+"english": "Add Text",
+"target": "Metin Ekle",
+"backtrans": "Add Text"
+},
+{
+"key": "addNoteTitle",
+"english": "Add Note",
+"target": "Not Ekle",
+"backtrans": "Add Note"
+},
+{
+"key": "addDateTitle",
+"english": "Add Date",
+"target": "Tarih Ekle",
+"backtrans": "Add Date"
+},
+{
+"key": "addCheckboxTitle",
+"english": "Add Checkbox",
+"target": "Onay Kutusu Ekle",
+"backtrans": "Add Checkbox"
+},
+{
+"key": "noteTextLabel",
+"english": "Note text",
+"target": "Not metni",
+"backtrans": "Note text"
+},
+{
+"key": "textLabel",
+"english": "Text",
+"target": "Metin",
+"backtrans": "Text"
+},
+{
+"key": "checkShapeRounded",
+"english": "Rounded",
+"target": "Yuvarlatılmış",
+"backtrans": "Rounded"
+},
+{
+"key": "checkShapeSquare",
+"english": "Square",
+"target": "Kare",
+"backtrans": "Square"
+},
+{
+"key": "checkShapeCircle",
+"english": "Circle",
+"target": "Daire",
+"backtrans": "Circle"
+},
+{
+"key": "hueLabel",
+"english": "Hue",
+"target": "Ton",
+"backtrans": "Hue"
+},
+{
+"key": "satLabel",
+"english": "Sat",
+"target": "Doy",
+"backtrans": "Sat"
+},
+{
+"key": "valLabel",
+"english": "Val",
+"target": "Değ",
+"backtrans": "Val [??: 'Değ' is an abbreviation of 'Değer' (value), cryptic]"
+},
+{
+"key": "annotationModePen",
+"english": "Pen",
+"target": "Kalem",
+"backtrans": "Pen"
+},
+{
+"key": "annotationModeHighlighter",
+"english": "Highlighter",
+"target": "Vurgulayıcı",
+"backtrans": "Highlighter"
+},
+{
+"key": "annotationModeRect",
+"english": "Rectangle",
+"target": "Dikdörtgen",
+"backtrans": "Rectangle"
+},
+{
+"key": "annotationModeArrow",
+"english": "Arrow",
+"target": "Ok",
+"backtrans": "Arrow"
+},
+{
+"key": "annotationModeEllipse",
+"english": "Ellipse",
+"target": "Elips",
+"backtrans": "Ellipse"
+},
+{
+"key": "sharePromptTitle",
+"english": "Love KatharScan?",
+"target": "KatharScan'ı seviyor musunuz?",
+"backtrans": "Do you like KatharScan?"
+},
+{
+"key": "sharePromptBody",
+"english": "Share it with friends who need a powerful document scanner.",
+"target": "Güçlü bir belge tarayıcıya ihtiyacı olan arkadaşlarınızla paylaşın.",
+"backtrans": "Share it with friends who need a powerful document scanner."
+},
+{
+"key": "sharePromptAction",
+"english": "Share App",
+"target": "Uygulamayı Paylaş",
+"backtrans": "Share the App"
+},
+{
+"key": "sharePromptDismiss",
+"english": "Not now",
+"target": "Şimdi değil",
+"backtrans": "Not now"
+},
+{
+"key": "reviewPromptTitle",
+"english": "Enjoying KatharScan?",
+"target": "KatharScan'dan memnun musunuz?",
+"backtrans": "Are you satisfied with KatharScan?"
+},
+{
+"key": "reviewPromptBody",
+"english": "Your feedback helps us grow and keeps the app free.",
+"target": "Geri bildiriminiz büyümeye yardımcı olur ve uygulamayı ücretsiz tutar.",
+"backtrans": "Your feedback helps it grow and keeps the app free."
+},
+{
+"key": "reviewPromptYes",
+"english": "Rate Us",
+"target": "Bizi Değerlendir",
+"backtrans": "Rate Us"
+},
+{
+"key": "reviewPromptNo",
+"english": "Send Feedback",
+"target": "Geri Bildirim Gönder",
+"backtrans": "Send Feedback"
+},
+{
+"key": "watermarkLabel",
+"english": "Watermark",
+"target": "Filigran",
+"backtrans": "Watermark"
+},
+{
+"key": "compressLabel",
+"english": "Compress",
+"target": "Sıkıştır",
+"backtrans": "Compress"
+},
+{
+"key": "pagesLabel",
+"english": "Pages",
+"target": "Sayfalar",
+"backtrans": "Pages"
+},
+{
+"key": "cropLabel",
+"english": "Crop",
+"target": "Kırp",
+"backtrans": "Crop"
+},
+{
+"key": "emailLabel",
+"english": "Email",
+"target": "E-posta",
+"backtrans": "Email"
+},
+{
+"key": "checkLabel",
+"english": "Check",
+"target": "Onay işareti",
+"backtrans": "Check mark"
+},
+{
+"key": "captionDocs",
+"english": "Flexible crop: Original, Square, 4:3, 3:2, 16:9",
+"target": "Esnek kırpma: Orijinal, Kare, 4:3, 3:2, 16:9",
+"backtrans": "Flexible crop: Original, Square, 4:3, 3:2, 16:9"
+},
+{
+"key": "captionOcr",
+"english": "Text crop: Original, Square, 4:3",
+"target": "Metin kırpması: Orijinal, Kare, 4:3",
+"backtrans": "Text crop: Original, Square, 4:3"
+},
+{
+"key": "captionIdCard",
+"english": "Two-sided ID capture: Front + Back",
+"target": "Çift taraflı kimlik tarama: Ön + Arka",
+"backtrans": "Two-sided ID scan: Front + Back"
+},
+{
+"key": "captionPassport",
+"english": "Passport crop: 4:3 or Original",
+"target": "Pasaport kırpması: 4:3 veya Orijinal",
+"backtrans": "Passport crop: 4:3 or Original"
+},
+{
+"key": "idStepFront",
+"english": "Step 1: Capture Front Side",
+"target": "Adım 1: Ön Yüzü Tara",
+"backtrans": "Step 1: Scan the Front Side"
+},
+{
+"key": "idStepBack",
+"english": "Step 2: Capture Back Side",
+"target": "Adım 2: Arka Yüzü Tara",
+"backtrans": "Step 2: Scan the Back Side"
+},
+{
+"key": "idGenerating",
+"english": "Generating PDF...",
+"target": "PDF oluşturuluyor...",
+"backtrans": "Creating PDF..."
+},
+{
+"key": "captureFrontSide",
+"english": "Capture Front Side",
+"target": "Ön Yüzü Tara",
+"backtrans": "Scan the Front Side"
+},
+{
+"key": "captureBackSide",
+"english": "Capture Back Side",
+"target": "Arka Yüzü Tara",
+"backtrans": "Scan the Back Side"
+},
+{
+"key": "importFrontSide",
+"english": "Import Front Side",
+"target": "Ön Yüzü İçe Aktar",
+"backtrans": "Import the Front Side"
+},
+{
+"key": "importBackSide",
+"english": "Import Back Side",
+"target": "Arka Yüzü İçe Aktar",
+"backtrans": "Import the Back Side"
+},
+{
+"key": "cropDocumentTitle",
+"english": "Crop Document",
+"target": "Belgeyi Kırp",
+"backtrans": "Crop Document"
+},
+{
+"key": "cropIdCardTitle",
+"english": "Crop ID Card",
+"target": "Kimlik Kartını Kırp",
+"backtrans": "Crop ID Card"
+},
+{
+"key": "tabImageLabel",
+"english": "Image",
+"target": "Resim",
+"backtrans": "Image"
+},
+{
+"key": "tabOcrTextLabel",
+"english": "OCR Text",
+"target": "OCR Metni",
+"backtrans": "OCR Text"
+},
+{
+"key": "compressSmall",
+"english": "Small",
+"target": "Küçük",
+"backtrans": "Small"
+},
+{
+"key": "compressMedium",
+"english": "Medium",
+"target": "Orta",
+"backtrans": "Medium"
+},
+{
+"key": "pageFormatLetter",
+"english": "Letter (US)",
+"target": "Letter (ABD)",
+"backtrans": "Letter (US)"
+},
+{
+"key": "ocrScriptLatin",
+"english": "Latin (English, European)",
+"target": "Latin (İngilizce, Avrupa)",
+"backtrans": "Latin (English, European)"
+},
+{
+"key": "ocrScriptChinese",
+"english": "Chinese",
+"target": "Çince",
+"backtrans": "Chinese"
+},
+{
+"key": "ocrScriptKorean",
+"english": "Korean",
+"target": "Korece",
+"backtrans": "Korean"
+},
+{
+"key": "ocrScriptJapanese",
+"english": "Japanese",
+"target": "Japonca",
+"backtrans": "Japanese"
+},
+{
+"key": "ocrScriptDevanagari",
+"english": "Hindi, Marathi (Devanagari)",
+"target": "Hintçe, Marathi (Devanagari)",
+"backtrans": "Hindi, Marathi (Devanagari)"
+},
+{
+"key": "ocrStatusUnsupported",
+"english": "Unsupported",
+"target": "Desteklenmiyor",
+"backtrans": "Not supported"
+},
+{
+"key": "noteLabel",
+"english": "Note",
+"target": "Not",
+"backtrans": "Note"
+},
+{
+"key": "dateLabel",
+"english": "Date",
+"target": "Tarih",
+"backtrans": "Date"
+},
+{
+"key": "accentBlue",
+"english": "Blue",
+"target": "Mavi",
+"backtrans": "Blue"
+},
+{
+"key": "accentIndigo",
+"english": "Indigo",
+"target": "Çivit",
+"backtrans": "Indigo [??: 'Çivit' is an old/unusual word for indigo]"
+},
+{
+"key": "accentEmerald",
+"english": "Emerald",
+"target": "Zümrüt",
+"backtrans": "Emerald"
+},
+{
+"key": "accentCrimson",
+"english": "Crimson",
+"target": "Kızıl",
+"backtrans": "Crimson [??: 'Kızıl' means reddish/red, not precisely crimson]"
+},
+{
+"key": "accentAmber",
+"english": "Amber",
+"target": "Kehribar",
+"backtrans": "Amber"
+},
+{
+"key": "accentViolet",
+"english": "Violet",
+"target": "Menekşe",
+"backtrans": "Violet"
+},
+{
+"key": "tickerLanguages",
+"english": "{count} LANGUAGES",
+"target": "{count} DİL",
+"backtrans": "{count} LANGUAGES"
+},
+{
+"key": "termsOfServiceLabel",
+"english": "Terms of Service",
+"target": "Hizmet Koşulları",
+"backtrans": "Terms of Service"
+},
+{
+"key": "openSourceLicensesLabel",
+"english": "Open-source licenses",
+"target": "Açık kaynak lisansları",
+"backtrans": "Open source licenses"
+},
+{
+"key": "whatsNewTitle",
+"english": "What's New",
+"target": "Yenilikler",
+"backtrans": "What's New"
+},
+{
+"key": "whatsNewContinue",
+"english": "Continue",
+"target": "Devam",
+"backtrans": "Continue"
+},
+{
+"key": "tickerTxtExport",
+"english": "TXT EXPORT",
+"target": "TXT DIŞA AKTARMA",
+"backtrans": "TXT EXPORT"
+},
+{
+"key": "tickerCsvExport",
+"english": "CSV EXPORT",
+"target": "CSV DIŞA AKTARMA",
+"backtrans": "CSV EXPORT"
+},
+{
+"key": "whatsNewBody",
+"english": "Welcome to KatharScan! This is the first public release featuring unlimited scanning, 29 languages, and export to PDF, Word, TXT, JPG, PNG, and CSV.",
+"target": "KatharScan'a hoş geldiniz! Bu, sınırsız tarama, 29 dil ve PDF, Word, TXT, JPG, PNG, CSV dışa aktarımı sunan ilk genel sürümdür.",
+"backtrans": "Welcome to KatharScan! This is the first public release offering unlimited scanning, 29 languages and PDF, Word, TXT, JPG, PNG, CSV export."
+},
+{
+"key": "engagementSectionLabel",
+"english": "ENGAGEMENT & NOTIFICATIONS",
+"target": "ETKİLEŞİM VE BİLDİRİMLER",
+"backtrans": "ENGAGEMENT AND NOTIFICATIONS"
+},
+{
+"key": "enableNotificationsLabel",
+"english": "Enable Notifications",
+"target": "Bildirimleri etkinleştir",
+"backtrans": "Enable notifications"
+},
+{
+"key": "enableNotificationsSubtitle",
+"english": "Allow background reminders for unexported documents",
+"target": "Dışa aktarılmamış belgeler için arka plan hatırlatıcılarına izin ver",
+"backtrans": "Allow background reminders for documents that have not been exported"
+},
+{
+"key": "enableReviewPromptsLabel",
+"english": "Enable Review Prompts",
+"target": "Değerlendirme istemlerini etkinleştir",
+"backtrans": "Enable review prompts"
+},
+{
+"key": "enableReviewPromptsSubtitle",
+"english": "Allow the app to occasionally ask for a rating",
+"target": "Uygulamanın ara sıra derecelendirme istemesine izin ver",
+"backtrans": "Let the app occasionally ask for a rating"
+},
+{
+"key": "enableSharePromptsLabel",
+"english": "Enable Share Prompts",
+"target": "Paylaşım istemlerini etkinleştir",
+"backtrans": "Enable share prompts"
+},
+{
+"key": "enableSharePromptsSubtitle",
+"english": "Allow the app to occasionally suggest sharing",
+"target": "Uygulamanın ara sıra paylaşım önermesine izin ver",
+"backtrans": "Let the app occasionally suggest sharing"
+},
+{
+"key": "exportFormatCsvDescription",
+"english": "Spreadsheet data",
+"target": "Elektronik tablo verileri",
+"backtrans": "Spreadsheet data"
+},
+{
+"key": "watermarkDefaultText",
+"english": "CONFIDENTIAL",
+"target": "GİZLİ",
+"backtrans": "CONFIDENTIAL"
+},
+{
+"key": "emailAttachmentNotIncluded",
+"english": "The pages could not be attached to the email. Use Share to send the pages.",
+"target": "Sayfalar e-postaya eklenemedi. Sayfaları göndermek için Paylaş'ı kullanın.",
+"backtrans": "The pages could not be attached to the email. Use Share to send the pages."
+},
+{
+"key": "sealDefaultMainText",
+"english": "YOUR COMPANY",
+"target": "ŞİRKETİNİZ",
+"backtrans": "YOUR COMPANY"
+},
+{
+"key": "extractedPageDefaultTitle",
+"english": "Extracted Page",
+"target": "Çıkarılan sayfa",
+"backtrans": "Extracted page"
+},
+{
+"key": "printRangeAll",
+"english": "All pages",
+"target": "Tüm sayfalar",
+"backtrans": "All pages"
+},
+{
+"key": "printRangeCurrent",
+"english": "Current",
+"target": "Geçerli",
+"backtrans": "Current"
+},
+{
+"key": "printRangeRange",
+"english": "Range",
+"target": "Aralık",
+"backtrans": "Range"
+},
+{
+"key": "printFilterNone",
+"english": "No filter",
+"target": "Filtre yok",
+"backtrans": "No filter"
+},
+{
+"key": "removeFromFavorites",
+"english": "Remove from Favorites",
+"target": "Favorilerden çıkar",
+"backtrans": "Remove from favorites"
+},
+{
+"key": "addToFavorites",
+"english": "Add to Favorites",
+"target": "Favorilere ekle",
+"backtrans": "Add to favorites"
+},
+{
+"key": "saveFailedPrefix",
+"english": "Save failed:",
+"target": "Kaydetme başarısız:",
+"backtrans": "Saving failed:"
+},
+{
+"key": "ocrScriptArabic",
+"english": "العربية (Arabic)",
+"target": "العربية (Arabic)",
+"backtrans": "العربية (Arabic)"
+},
+{
+"key": "ocrScriptRussian",
+"english": "Русский (Russian)",
+"target": "Русский (Russian)",
+"backtrans": "Русский (Russian)"
+},
+{
+"key": "ocrScriptUkrainian",
+"english": "Українська (Ukrainian)",
+"target": "Українська (Ukrainian)",
+"backtrans": "Українська (Ukrainian)"
+},
+{
+"key": "ocrScriptGreek",
+"english": "Ελληνικά (Greek)",
+"target": "Ελληνικά (Greek)",
+"backtrans": "Ελληνικά (Greek)"
+},
+{
+"key": "ocrScriptHebrew",
+"english": "עברית (Hebrew)",
+"target": "עברית (Hebrew)",
+"backtrans": "עברית (Hebrew)"
+},
+{
+"key": "ocrScriptThai",
+"english": "ไทย (Thai)",
+"target": "ไทย (Thai)",
+"backtrans": "ไทย (Thai)"
+},
+{
+"key": "ocrScriptBengali",
+"english": "বাংলা (Bengali)",
+"target": "বাংলা (Bengali)",
+"backtrans": "বাংলা (Bengali)"
+},
+{
+"key": "ocrStatusInstalled",
+"english": "Installed",
+"target": "Yüklü",
+"backtrans": "Installed"
+},
+{
+"key": "ocrStatusDownloading",
+"english": "Downloading…",
+"target": "İndiriliyor…",
+"backtrans": "Downloading…"
+},
+{
+"key": "exportNoTextError",
+"english": "This document has no text yet. Run OCR on it first.",
+"target": "Bu belgede henüz metin yok. Önce OCR çalıştırın.",
+"backtrans": "This document has no text yet. Run OCR first."
+},
+{
+"key": "saveFailedBanner",
+"english": "Your latest changes could not be saved.",
+"target": "Son değişiklikleriniz kaydedilemedi.",
+"backtrans": "Your latest changes could not be saved."
+},
+{
+"key": "editLabel",
+"english": "Edit",
+"target": "Düzenle",
+"backtrans": "Edit"
+},
+{
+"key": "fillTapHint",
+"english": "Tap the page where you want to type",
+"target": "Sayfada yazmak istediğiniz yere dokunun",
+"backtrans": "Tap on the page where you want to write"
+},
+{
+"key": "fillTypeHint",
+"english": "Type here",
+"target": "Buraya yazın",
+"backtrans": "Type here"
+},
+{
+"key": "clearPage",
+"english": "Clear page",
+"target": "Sayfayı temizle",
+"backtrans": "Clear the page"
+},
+{
+"key": "clearAllPages",
+"english": "Clear all pages",
+"target": "Tüm sayfaları temizle",
+"backtrans": "Clear all pages"
+},
+{
+"key": "clearedCount",
+"english": "Cleared {count}",
+"target": "{count} temizlendi",
+"backtrans": "{count} cleared"
+},
+{
+"key": "idLayoutRealSize",
+"english": "Real size",
+"target": "Gerçek boyut",
+"backtrans": "Actual size"
+},
+{
+"key": "idLayoutFullWidth",
+"english": "Full width",
+"target": "Tam genişlik",
+"backtrans": "Full width"
+},
+{
+"key": "pagesToReadTitle",
+"english": "Pages to read",
+"target": "Okunacak sayfalar",
+"backtrans": "Pages to read"
+},
+{
+"key": "pagesToReadHint",
+"english": "This PDF has {count} pages. Pages that are pictures are read with OCR (about 10 seconds each); pages with real text are instant.",
+"target": "Bu PDF {count} sayfa içeriyor. Resim olan sayfalar OCR ile okunur (sayfa başına yaklaşık 10 saniye); gerçek metinli sayfalar anında okunur.",
+"backtrans": "This PDF contains {count} pages. Pages that are images are read with OCR (about 10 seconds per page); pages with real text are read instantly."
+},
+{
+"key": "pageFromLabel",
+"english": "From page",
+"target": "Başlangıç sayfası",
+"backtrans": "Start page"
+},
+{
+"key": "pageToLabel",
+"english": "To page",
+"target": "Bitiş sayfası",
+"backtrans": "End page"
+},
+{
+"key": "readingPageProgress",
+"english": "Page {page} of {total}",
+"target": "Sayfa {page} / {total}",
+"backtrans": "Page {page} / {total}"
+},
+{
+"key": "readingPageEta",
+"english": "Page {page} of {total} · about {minutes} min left",
+"target": "Sayfa {page} / {total} · yaklaşık {minutes} dk kaldı",
+"backtrans": "Page {page} / {total} · about {minutes} min left"
+},
+{
+"key": "sealShapeRound",
+"english": "Round",
+"target": "Yuvarlak",
+"backtrans": "Round"
+},
+{
+"key": "sealFontSans",
+"english": "Clean",
+"target": "Sade",
+"backtrans": "Plain"
+},
+{
+"key": "sealFontSerif",
+"english": "Classic",
+"target": "Klasik",
+"backtrans": "Classic"
+},
+{
+"key": "sealInkLook",
+"english": "Worn stamp look",
+"target": "Yıpranmış mühür görünümü",
+"backtrans": "Worn/weathered seal look"
+},
+{
+"key": "sealSaveToLibrary",
+"english": "Save this seal",
+"target": "Bu mührü kaydet",
+"backtrans": "Save this seal"
+},
+{
+"key": "sealSavedHeading",
+"english": "Saved seals",
+"target": "Kayıtlı mühürler",
+"backtrans": "Saved seals"
+},
+{
+"key": "sealTextColorLabel",
+"english": "Text colour",
+"target": "Metin rengi",
+"backtrans": "Text color"
+},
+{
+"key": "sealTextColorSame",
+"english": "Same as ring",
+"target": "Halkayla aynı",
+"backtrans": "Same as the ring"
+},
+{
+"key": "sealTextSizePercent",
+"english": "Text size {percent}%",
+"target": "Metin boyutu %{percent}",
+"backtrans": "Text size %{percent}"
+},
+{
+"key": "sealRemoveWhite",
+"english": "Make white transparent",
+"target": "Beyazı saydam yap",
+"backtrans": "Make white transparent"
+},
+{
+"key": "sealSavedMessage",
+"english": "Seal saved",
+"target": "Mühür kaydedildi",
+"backtrans": "Seal saved"
+},
+{
+"key": "signatureTabDraw",
+"english": "Draw",
+"target": "Çiz",
+"backtrans": "Draw"
+},
+{
+"key": "signatureTabType",
+"english": "Type",
+"target": "Yaz",
+"backtrans": "Type"
+},
+{
+"key": "signatureTypeHint",
+"english": "Type your name",
+"target": "Adınızı yazın",
+"backtrans": "Type your name"
+},
+{
+"key": "signatureWidthLabel",
+"english": "Pen width",
+"target": "Kalem kalınlığı",
+"backtrans": "Pen thickness"
+},
+{
+"key": "signatureFontFlowing",
+"english": "Flowing",
+"target": "Akıcı",
+"backtrans": "Flowing"
+},
+{
+"key": "signatureFontHandwritten",
+"english": "Handwritten",
+"target": "El yazısı",
+"backtrans": "Handwritten"
+},
+{
+"key": "signatureSavedHeading",
+"english": "Saved signatures",
+"target": "Kayıtlı imzalar",
+"backtrans": "Saved signatures"
+},
+{
+"key": "signatureNewOne",
+"english": "Draw or type a new one",
+"target": "Yeni çiz veya yaz",
+"backtrans": "Draw or type a new one"
+},
+{
+"key": "signatureDeleteSaved",
+"english": "Remove saved signature",
+"target": "Kayıtlı imzayı kaldır",
+"backtrans": "Remove the saved signature"
+},
+{
+"key": "annotationModeSelect",
+"english": "Select",
+"target": "Seç",
+"backtrans": "Select"
+},
+{
+"key": "annotationModeEraser",
+"english": "Eraser",
+"target": "Silgi",
+"backtrans": "Eraser"
+},
+{
+"key": "watermarkKindText",
+"english": "Text",
+"target": "Metin",
+"backtrans": "Text"
+},
+{
+"key": "watermarkKindImage",
+"english": "Image",
+"target": "Resim",
+"backtrans": "Image"
+},
+{
+"key": "watermarkChooseImage",
+"english": "Choose image",
+"target": "Resim seç",
+"backtrans": "Choose image"
+},
+{
+"key": "watermarkLayoutLabel",
+"english": "Layout",
+"target": "Düzen",
+"backtrans": "Layout"
+},
+{
+"key": "watermarkLayoutSingle",
+"english": "Single",
+"target": "Tek",
+"backtrans": "Single"
+},
+{
+"key": "watermarkLayoutDiagonal",
+"english": "Diagonal",
+"target": "Çapraz",
+"backtrans": "Diagonal"
+},
+{
+"key": "watermarkLayoutTiled",
+"english": "Tiled",
+"target": "Döşemeli",
+"backtrans": "Tiled"
+},
+{
+"key": "watermarkPagesLabel",
+"english": "Pages",
+"target": "Sayfalar",
+"backtrans": "Pages"
+},
+{
+"key": "watermarkPagesThis",
+"english": "This page",
+"target": "Bu sayfa",
+"backtrans": "This page"
+},
+{
+"key": "watermarkPagesAll",
+"english": "All pages",
+"target": "Tüm sayfalar",
+"backtrans": "All pages"
+},
+{
+"key": "watermarkPagesRange",
+"english": "Range",
+"target": "Aralık",
+"backtrans": "Range"
+},
+{
+"key": "watermarkPagesRangeHint",
+"english": "e.g. 1-3, 5",
+"target": "örn. 1-3, 5",
+"backtrans": "e.g. 1-3, 5"
+},
+{
+"key": "watermarkPagesInvalid",
+"english": "Check the pages (the document has {count} pages)",
+"target": "Sayfaları kontrol edin (belgede {count} sayfa var)",
+"backtrans": "Check the pages (the document has {count} pages)"
+},
+{
+"key": "cropAuto",
+"english": "Auto-detect",
+"target": "Otomatik algıla",
+"backtrans": "Auto-detect"
+},
+{
+"key": "cropAspectFree",
+"english": "Free",
+"target": "Serbest",
+"backtrans": "Free"
+},
+{
+"key": "cropAspectId",
+"english": "ID card",
+"target": "Kimlik kartı",
+"backtrans": "ID card"
+},
+{
+"key": "cropAspectSquare",
+"english": "Square",
+"target": "Kare",
+"backtrans": "Square"
+},
+{
+"key": "cropNoPageFound",
+"english": "Couldn't find the page edges. Drag the corners.",
+"target": "Sayfa kenarları bulunamadı. Köşeleri sürükleyin.",
+"backtrans": "Page edges not found. Drag the corners."
+},
+{
+"key": "straightenLabel",
+"english": "Straighten",
+"target": "Düzelt",
+"backtrans": "Straighten"
+},
+{
+"key": "filterMagicColor",
+"english": "Magic colour",
+"target": "Sihirli renk",
+"backtrans": "Magic color"
+},
+{
+"key": "filterBrightnessLabel",
+"english": "Brightness",
+"target": "Parlaklık",
+"backtrans": "Brightness"
+},
+{
+"key": "filterContrastLabel",
+"english": "Contrast",
+"target": "Kontrast",
+"backtrans": "Contrast"
+},
+{
+"key": "resizeUpscaleWarning",
+"english": "Enlarging doesn't add detail — the page may look soft.",
+"target": "Büyütmek ayrıntı eklemez — sayfa bulanık görünebilir.",
+"backtrans": "Enlarging does not add detail — the page may look blurry."
+},
+{
+"key": "eraserAutoColorTooltip",
+"english": "Match the page colour automatically",
+"target": "Sayfa rengine otomatik uydur",
+"backtrans": "Automatically match the page color"
+},
+{
+"key": "eraserZoomTooltip",
+"english": "Zoom and move (pinch)",
+"target": "Yakınlaştır ve kaydır (çimdikle)",
+"backtrans": "Zoom and pan (pinch)"
+},
+{
+"key": "pagesSelectTooltip",
+"english": "Select pages",
+"target": "Sayfaları seç",
+"backtrans": "Select pages"
+},
+{
+"key": "pagesDeleteCount",
+"english": "Delete {count}",
+"target": "{count} sil",
+"backtrans": "Delete {count}"
+},
+{
+"key": "pagesDeleteConfirm",
+"english": "Delete {count} pages? They are removed when you save.",
+"target": "{count} sayfa silinsin mi? Kaydettiğinizde kaldırılır.",
+"backtrans": "Delete {count} pages? They will be removed when you save."
+},
+{
+"key": "compressTargetLabel",
+"english": "Max size",
+"target": "En büyük boyut",
+"backtrans": "Maximum size"
+},
+{
+"key": "compressNoLimit",
+"english": "No limit",
+"target": "Sınır yok",
+"backtrans": "No limit"
+},
+{
+"key": "printPaperLabel",
+"english": "Paper",
+"target": "Kağıt",
+"backtrans": "Paper"
+},
+{
+"key": "printMarginLabel",
+"english": "Margin",
+"target": "Kenar boşluğu",
+"backtrans": "Margin"
+},
+{
+"key": "printMarginNone",
+"english": "None",
+"target": "Yok",
+"backtrans": "None"
+},
+{
+"key": "printMarginNarrow",
+"english": "Narrow",
+"target": "Dar",
+"backtrans": "Narrow"
+},
+{
+"key": "printMarginNormal",
+"english": "Normal",
+"target": "Normal",
+"backtrans": "Normal"
+},
+{
+"key": "printFitLabel",
+"english": "Scaling",
+"target": "Ölçekleme",
+"backtrans": "Scaling"
+},
+{
+"key": "printFitFit",
+"english": "Fit page",
+"target": "Sayfaya sığdır",
+"backtrans": "Fit to page"
+},
+{
+"key": "printFitFill",
+"english": "Fill sheet (trims edges)",
+"target": "Sayfayı doldur (kenarları keser)",
+"backtrans": "Fill the page (crops the edges)"
+},
+{
+"key": "printPerSheetLabel",
+"english": "Pages per sheet",
+"target": "Yaprak başına sayfa",
+"backtrans": "Pages per sheet [??: 'Yaprak' means leaf/sheet, slightly unusual]"
+},
+{
+"key": "emailMessageLabel",
+"english": "Message",
+"target": "Mesaj",
+"backtrans": "Message"
+},
+{
+"key": "emailMessageHint",
+"english": "Add a note (optional)",
+"target": "Not ekleyin (isteğe bağlı)",
+"backtrans": "Add a note (optional)"
+},
+{
+"key": "emailLimitMissed",
+"english": "Could not get under {mb} MB; sent the smallest version.",
+"target": "{mb} MB altına inilemedi; en küçük sürüm gönderildi.",
+"backtrans": "Could not get below {mb} MB; the smallest version was sent."
+}
+]

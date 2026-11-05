@@ -1,0 +1,3362 @@
+[
+{
+"key": "privacyOptionsLabel",
+"english": "Privacy settings",
+"target": "הגדרות פרטיות",
+"backtrans": "Privacy settings"
+},
+{
+"key": "commonCancel",
+"english": "Cancel",
+"target": "ביטול",
+"backtrans": "Cancellation"
+},
+{
+"key": "commonDelete",
+"english": "Delete",
+"target": "מחק",
+"backtrans": "Delete"
+},
+{
+"key": "commonSave",
+"english": "Save",
+"target": "שמור",
+"backtrans": "Save"
+},
+{
+"key": "commonAdd",
+"english": "Add",
+"target": "הוסף",
+"backtrans": "Add"
+},
+{
+"key": "commonExport",
+"english": "Export",
+"target": "ייצוא",
+"backtrans": "Export"
+},
+{
+"key": "commonImport",
+"english": "Import",
+"target": "ייבוא",
+"backtrans": "Import"
+},
+{
+"key": "commonSkip",
+"english": "Skip",
+"target": "דילוג",
+"backtrans": "Skipping"
+},
+{
+"key": "commonClear",
+"english": "Clear",
+"target": "ניקוי",
+"backtrans": "Clearing"
+},
+{
+"key": "emptyStateDefaultMessage",
+"english": "Tap the camera to scan your first document.",
+"target": "הקישו על המצלמה כדי לסרוק את המסמך הראשון שלכם.",
+"backtrans": "Tap the camera to scan your first document."
+},
+{
+"key": "exportFormatSheetTitle",
+"english": "Export as",
+"target": "ייצוא כ־",
+"backtrans": "Export as"
+},
+{
+"key": "exportFormatPdfLabel",
+"english": "PDF",
+"target": "PDF",
+"backtrans": "PDF"
+},
+{
+"key": "exportFormatPdfDescription",
+"english": "Best for sharing and printing",
+"target": "הכי טוב לשיתוף והדפסה",
+"backtrans": "Best for sharing and printing"
+},
+{
+"key": "exportFormatDocxLabel",
+"english": "Word (.docx)",
+"target": "‏Word ‏(.docx)",
+"backtrans": "Word (.docx)"
+},
+{
+"key": "exportFormatDocxDescription",
+"english": "Editable text document",
+"target": "מסמך טקסט הניתן לעריכה",
+"backtrans": "An editable text document"
+},
+{
+"key": "exportFormatTxtLabel",
+"english": "Text (.txt)",
+"target": "‏טקסט ‏(.txt)",
+"backtrans": "Text (.txt)"
+},
+{
+"key": "exportFormatTxtDescription",
+"english": "Plain OCR text only",
+"target": "טקסט OCR פשוט בלבד",
+"backtrans": "Plain OCR text only"
+},
+{
+"key": "exportFormatJpgLabel",
+"english": "JPG",
+"target": "JPG",
+"backtrans": "JPG"
+},
+{
+"key": "exportFormatJpgDescription",
+"english": "One image per page",
+"target": "תמונה אחת לכל עמוד",
+"backtrans": "One image per page"
+},
+{
+"key": "exportFormatPngLabel",
+"english": "PNG",
+"target": "PNG",
+"backtrans": "PNG"
+},
+{
+"key": "exportFormatPngDescription",
+"english": "One image per page, lossless",
+"target": "תמונה אחת לכל עמוד, ללא אובדן איכות",
+"backtrans": "One image per page, without quality loss"
+},
+{
+"key": "filterSheetTitle",
+"english": "Filters",
+"target": "מסננים",
+"backtrans": "Filters (plural, 'those that filter')"
+},
+{
+"key": "filterOriginal",
+"english": "Original",
+"target": "מקורי",
+"backtrans": "Original"
+},
+{
+"key": "filterGrayscale",
+"english": "Grayscale",
+"target": "גווני אפור",
+"backtrans": "Shades of gray"
+},
+{
+"key": "filterBlackAndWhite",
+"english": "B&W",
+"target": "שחור-לבן",
+"backtrans": "Black-white"
+},
+{
+"key": "filterColorEnhance",
+"english": "Color enhance",
+"target": "שיפור צבע",
+"backtrans": "Color improvement"
+},
+{
+"key": "filterShadowRemoval",
+"english": "Shadow removal",
+"target": "הסרת צללים",
+"backtrans": "Shadow removal"
+},
+{
+"key": "proBadgeLabel",
+"english": "PRO",
+"target": "PRO",
+"backtrans": "PRO"
+},
+{
+"key": "scanListPageCount",
+"english": "{count, plural, =1{1 page} other{{count} pages}}",
+"target": "{count, plural, =1{עמוד אחד} other{{count} עמודים}}",
+"backtrans": "{count, plural, =1{one page} other{{count} pages}}"
+},
+{
+"key": "scanPreviewNoPages",
+"english": "No pages to show.",
+"target": "אין עמודים להצגה.",
+"backtrans": "No pages to display."
+},
+{
+"key": "shareTooltip",
+"english": "Share",
+"target": "שיתוף",
+"backtrans": "Sharing"
+},
+{
+"key": "signatureCanvasHint",
+"english": "Sign here",
+"target": "חתמו כאן",
+"backtrans": "Sign here"
+},
+{
+"key": "folderDocumentCount",
+"english": "{count, plural, =1{1 document} other{{count} documents}}",
+"target": "{count, plural, =1{מסמך אחד} other{{count} מסמכים}}",
+"backtrans": "{count, plural, =1{one document} other{{count} documents}}"
+},
+{
+"key": "selectedCount",
+"english": "{count, plural, =1{1 selected} other{{count} selected}}",
+"target": "{count, plural, =1{פריט אחד נבחר} other{{count} פריטים נבחרו}}",
+"backtrans": "{count, plural, =1{one item selected} other{{count} items selected}}"
+},
+{
+"key": "batchExportTooltip",
+"english": "Batch export",
+"target": "ייצוא מרוכז",
+"backtrans": "Concentrated/bulk export"
+},
+{
+"key": "deleteTooltip",
+"english": "Delete",
+"target": "מחיקה",
+"backtrans": "Deletion"
+},
+{
+"key": "searchHint",
+"english": "Search your scans",
+"target": "חיפוש בסריקות שלכם",
+"backtrans": "Search in your scans"
+},
+{
+"key": "settingsTooltip",
+"english": "Settings",
+"target": "הגדרות",
+"backtrans": "Settings"
+},
+{
+"key": "foldersSectionHeader",
+"english": "Folders",
+"target": "תיקיות",
+"backtrans": "Folders"
+},
+{
+"key": "documentsSectionHeader",
+"english": "Documents",
+"target": "מסמכים",
+"backtrans": "Documents"
+},
+{
+"key": "exportingStatus",
+"english": "Exporting…",
+"target": "מייצא…",
+"backtrans": "Exporting…"
+},
+{
+"key": "exportDoneStatus",
+"english": "Done",
+"target": "בוצע",
+"backtrans": "Done/executed"
+},
+{
+"key": "exportGenericError",
+"english": "Something went wrong while exporting.",
+"target": "משהו השתבש בזמן הייצוא.",
+"backtrans": "Something went wrong during the export."
+},
+{
+"key": "deleteFolderTitle",
+"english": "Delete this folder?",
+"target": "למחוק את התיקייה הזו?",
+"backtrans": "Delete this folder?"
+},
+{
+"key": "deleteFolderMessage",
+"english": "Documents inside will not be deleted.",
+"target": "המסמכים שבתוכה לא יימחקו.",
+"backtrans": "The documents inside it will not be deleted."
+},
+{
+"key": "deleteFolderTooltip",
+"english": "Delete folder",
+"target": "מחיקת תיקייה",
+"backtrans": "Folder deletion"
+},
+{
+"key": "renameFolderTitle",
+"english": "Rename folder",
+"target": "שינוי שם תיקייה",
+"backtrans": "Folder name change"
+},
+{
+"key": "removeFromFolderTooltip",
+"english": "Remove from folder",
+"target": "הסרה מהתיקייה",
+"backtrans": "Removal from the folder"
+},
+{
+"key": "noDocumentsInFolder",
+"english": "No documents in this folder yet.",
+"target": "אין עדיין מסמכים בתיקייה הזו.",
+"backtrans": "There are no documents yet in this folder."
+},
+{
+"key": "folderUnavailable",
+"english": "This folder is no longer available.",
+"target": "התיקייה הזו כבר לא זמינה.",
+"backtrans": "This folder is no longer available."
+},
+{
+"key": "migrationTitle",
+"english": "Device Migration",
+"target": "העברת מכשיר",
+"backtrans": "Device transfer"
+},
+{
+"key": "migrationExplainer",
+"english": "This isn't automatic sync. Export creates a single encrypted backup file you move to your new device yourself, then import there.",
+"target": "זה לא סנכרון אוטומטי. הייצוא יוצר קובץ גיבוי מוצפן יחיד שאתם מעבירים בעצמכם למכשיר החדש, ואז מייבאים שם.",
+"backtrans": "This is not automatic sync. The export creates a single encrypted backup file that you transfer yourselves to the new device, and then import there."
+},
+{
+"key": "exportBackupButton",
+"english": "Export encrypted backup",
+"target": "ייצוא גיבוי מוצפן",
+"backtrans": "Export encrypted backup"
+},
+{
+"key": "importBackupButton",
+"english": "Import from backup",
+"target": "ייבוא מגיבוי",
+"backtrans": "Import from backup"
+},
+{
+"key": "setBackupPasswordTitle",
+"english": "Set a backup password",
+"target": "הגדרת סיסמת גיבוי",
+"backtrans": "Setting a backup password"
+},
+{
+"key": "enterBackupPasswordTitle",
+"english": "Enter backup password",
+"target": "הזינו את סיסמת הגיבוי",
+"backtrans": "Enter the backup password"
+},
+{
+"key": "buildingBackupStatus",
+"english": "Building backup…",
+"target": "יוצר גיבוי…",
+"backtrans": "Creating backup…"
+},
+{
+"key": "backupReadyStatus",
+"english": "Backup ready.",
+"target": "הגיבוי מוכן.",
+"backtrans": "The backup is ready."
+},
+{
+"key": "couldNotCreateBackupError",
+"english": "Could not create the backup.",
+"target": "לא ניתן היה ליצור את הגיבוי.",
+"backtrans": "It was not possible to create the backup."
+},
+{
+"key": "importingStatus",
+"english": "Importing…",
+"target": "מייבא…",
+"backtrans": "Importing…"
+},
+{
+"key": "couldNotImportBackupError",
+"english": "Could not import this backup. Check the password and try again.",
+"target": "לא ניתן היה לייבא את הגיבוי הזה. בדקו את הסיסמה ונסו שוב.",
+"backtrans": "It was not possible to import this backup. Check the password and try again."
+},
+{
+"key": "backupCorruptedError",
+"english": "This backup file looks corrupted.",
+"target": "נראה שקובץ הגיבוי הזה פגום.",
+"backtrans": "It seems this backup file is corrupted."
+},
+{
+"key": "importedCount",
+"english": "{count, plural, =1{1 document imported} other{{count} documents imported}}",
+"target": "{count, plural, =1{מסמך אחד יובא} other{{count} מסמכים יובאו}}",
+"backtrans": "{count, plural, =1{one document was imported} other{{count} documents were imported}}"
+},
+{
+"key": "continueButton",
+"english": "Continue",
+"target": "המשך",
+"backtrans": "Continue"
+},
+{
+"key": "restorePurchasesButton",
+"english": "Restore purchases",
+"target": "שחזור רכישות",
+"backtrans": "Restoring purchases"
+},
+{
+"key": "pricingLoadingError",
+"english": "Pricing is still loading — try again in a moment.",
+"target": "המחירים עדיין נטענים — נסו שוב בעוד רגע.",
+"backtrans": "The prices are still loading — try again in a moment."
+},
+{
+"key": "renameDocumentTitle",
+"english": "Rename document",
+"target": "שינוי שם מסמך",
+"backtrans": "Document name change"
+},
+{
+"key": "addTagTitle",
+"english": "Add tag",
+"target": "הוספת תגית",
+"backtrans": "Adding a tag"
+},
+{
+"key": "moveToFolderTooltip",
+"english": "Move to folder",
+"target": "העברה לתיקייה",
+"backtrans": "Transfer to folder"
+},
+{
+"key": "exportTooltip",
+"english": "Export",
+"target": "ייצוא",
+"backtrans": "Export"
+},
+{
+"key": "deleteScanTitle",
+"english": "Delete this scan?",
+"target": "למחוק את הסריקה הזו?",
+"backtrans": "Delete this scan?"
+},
+{
+"key": "deleteScanMessage",
+"english": "This can't be undone.",
+"target": "לא ניתן לבטל פעולה זו.",
+"backtrans": "This action cannot be canceled."
+},
+{
+"key": "movedToFolderMessage",
+"english": "Moved to folder.",
+"target": "הועבר לתיקייה.",
+"backtrans": "Was transferred to the folder."
+},
+{
+"key": "noTextRecognized",
+"english": "No text recognized.",
+"target": "לא זוהה טקסט.",
+"backtrans": "No text was recognized."
+},
+{
+"key": "scanUnavailable",
+"english": "This scan is no longer available.",
+"target": "הסריקה הזו כבר לא זמינה.",
+"backtrans": "This scan is no longer available."
+},
+{
+"key": "settingsTitle",
+"english": "Settings",
+"target": "הגדרות",
+"backtrans": "Settings"
+},
+{
+"key": "appearanceSectionLabel",
+"english": "Appearance",
+"target": "מראה",
+"backtrans": "Appearance"
+},
+{
+"key": "themeLabel",
+"english": "Theme",
+"target": "ערכת נושא",
+"backtrans": "Theme (lit. 'topic theme')"
+},
+{
+"key": "systemThemeOption",
+"english": "System",
+"target": "מערכת",
+"backtrans": "System"
+},
+{
+"key": "lightThemeOption",
+"english": "Light",
+"target": "בהיר",
+"backtrans": "Light"
+},
+{
+"key": "darkThemeOption",
+"english": "Dark",
+"target": "כהה",
+"backtrans": "Dark"
+},
+{
+"key": "languageSectionLabel",
+"english": "Language",
+"target": "שפה",
+"backtrans": "Language"
+},
+{
+"key": "appLanguageLabel",
+"english": "App language",
+"target": "שפת האפליקציה",
+"backtrans": "Language of the app"
+},
+{
+"key": "storageSectionLabel",
+"english": "Storage",
+"target": "אחסון",
+"backtrans": "Storage"
+},
+{
+"key": "deviceMigrationLabel",
+"english": "Device Migration",
+"target": "העברת מכשיר",
+"backtrans": "Device transfer"
+},
+{
+"key": "subscriptionSectionLabel",
+"english": "Subscription",
+"target": "מינוי",
+"backtrans": "Subscription"
+},
+{
+"key": "aboutSectionLabel",
+"english": "About",
+"target": "אודות",
+"backtrans": "About"
+},
+{
+"key": "privacyPolicyLabel",
+"english": "Privacy policy",
+"target": "מדיניות פרטיות",
+"backtrans": "Privacy policy"
+},
+{
+"key": "supportLabel",
+"english": "Support",
+"target": "תמיכה",
+"backtrans": "Support"
+},
+{
+"key": "couldNotOpenLinkError",
+"english": "Could not open link.",
+"target": "לא ניתן היה לפתוח את הקישור.",
+"backtrans": "It was not possible to open the link."
+},
+{
+"key": "restoreCompleteMessage",
+"english": "Restore complete.",
+"target": "השחזור הושלם.",
+"backtrans": "The restoration was completed."
+},
+{
+"key": "genericErrorMessage",
+"english": "Something went wrong. Please try again.",
+"target": "משהו השתבש. נסו שוב.",
+"backtrans": "Something went wrong. Try again."
+},
+{
+"key": "extractedTextTitle",
+"english": "Extracted Text",
+"target": "טקסט שחולץ",
+"backtrans": "Text that was extracted"
+},
+{
+"key": "commonClose",
+"english": "Close",
+"target": "סגור",
+"backtrans": "Close"
+},
+{
+"key": "commonCopy",
+"english": "Copy",
+"target": "העתק",
+"backtrans": "Copy"
+},
+{
+"key": "savedToDocumentText",
+"english": "Saved to document text",
+"target": "נשמר בטקסט המסמך",
+"backtrans": "Saved in the document text"
+},
+{
+"key": "regionOcrFailed",
+"english": "Region OCR failed",
+"target": "זיהוי אזור נכשל",
+"backtrans": "Region recognition failed"
+},
+{
+"key": "filterRemoved",
+"english": "Filter removed",
+"target": "המסנן הוסר",
+"backtrans": "The filter was removed"
+},
+{
+"key": "filterApplied",
+"english": "Filter applied",
+"target": "המסנן הוחל",
+"backtrans": "The filter was applied"
+},
+{
+"key": "pageCropped",
+"english": "Page cropped",
+"target": "העמוד נחתך",
+"backtrans": "The page was cut"
+},
+{
+"key": "revertToOriginalTitle",
+"english": "Revert to Original?",
+"target": "לחזור למקור?",
+"backtrans": "Return to the original?"
+},
+{
+"key": "revertToOriginalMessage",
+"english": "This will undo all filters, rotations, crops, resizes, and eraser strokes on this page.",
+"target": "פעולה זו תבטל את כל המסננים, הסיבובים, החיתוכים, שינויי הגודל ומשיכות מחק בעמוד זה.",
+"backtrans": "This action will cancel all the filters, rotations, crops, size changes and eraser strokes on this page."
+},
+{
+"key": "commonRevert",
+"english": "Revert",
+"target": "שחזר",
+"backtrans": "Restore"
+},
+{
+"key": "pageRevertedToOriginal",
+"english": "Page reverted to original",
+"target": "העמוד שוחזר למקור",
+"backtrans": "The page was restored to the original"
+},
+{
+"key": "eraserApplied",
+"english": "Eraser applied",
+"target": "המחק הוחל",
+"backtrans": "The eraser was applied"
+},
+{
+"key": "pageResized",
+"english": "Page resized",
+"target": "גודל העמוד שונה",
+"backtrans": "The page's size was changed"
+},
+{
+"key": "extractedAsNewDocument",
+"english": "Extracted as new document",
+"target": "חולץ כמסמך חדש",
+"backtrans": "Was extracted as a new document"
+},
+{
+"key": "pagesUpdated",
+"english": "Pages updated",
+"target": "העמודים עודכנו",
+"backtrans": "The pages were updated"
+},
+{
+"key": "printOptionsTitle",
+"english": "Print Options",
+"target": "אפשרויות הדפסה",
+"backtrans": "Print options"
+},
+{
+"key": "letterSizeUS",
+"english": "Letter size (US)",
+"target": "גודל מכתב (ארה\"ב)",
+"backtrans": "Letter size (USA)"
+},
+{
+"key": "commonPrint",
+"english": "Print",
+"target": "הדפס",
+"backtrans": "Print"
+},
+{
+"key": "printFailed",
+"english": "Print failed",
+"target": "ההדפסה נכשלה",
+"backtrans": "The printing failed"
+},
+{
+"key": "noEmailAppFound",
+"english": "No email app found",
+"target": "לא נמצאה אפליקציית דוא\"ל",
+"backtrans": "No email app was found"
+},
+{
+"key": "emailFailed",
+"english": "Email failed",
+"target": "הדוא\"ל נכשל",
+"backtrans": "The email failed"
+},
+{
+"key": "fromPageLabel",
+"english": "From",
+"target": "מעמוד",
+"backtrans": "From page"
+},
+{
+"key": "toPageLabel",
+"english": "To",
+"target": "עד",
+"backtrans": "Until"
+},
+{
+"key": "pdfImportedAsDocument",
+"english": "PDF imported as document",
+"target": "PDF יובא כמסמך",
+"backtrans": "PDF was imported as a document"
+},
+{
+"key": "frontSideCaptured",
+"english": "Front side captured. Now capture the back side.",
+"target": "הצד הקדמי צולם. כעת צלם את הצד האחורי.",
+"backtrans": "The front side was photographed. Now photograph the back side. [??: imperative is masculine singular, inconsistent with plural address elsewhere]"
+},
+{
+"key": "idCardPdfGenerated",
+"english": "ID Card PDF Generated",
+"target": "PDF תעודת זהות נוצר",
+"backtrans": "Identity card PDF was created"
+},
+{
+"key": "sharePdf",
+"english": "Share PDF",
+"target": "שתף PDF",
+"backtrans": "Share PDF (masculine singular imperative)"
+},
+{
+"key": "saveAsDocument",
+"english": "Save as Document",
+"target": "שמור כמסמך",
+"backtrans": "Save as a document (masculine singular imperative)"
+},
+{
+"key": "commonDone",
+"english": "Done",
+"target": "בוצע",
+"backtrans": "Done/executed"
+},
+{
+"key": "documentSaved",
+"english": "Document saved",
+"target": "המסמך נשמר",
+"backtrans": "The document was saved"
+},
+{
+"key": "commonReset",
+"english": "Reset",
+"target": "איפוס",
+"backtrans": "Reset"
+},
+{
+"key": "autoScan",
+"english": "Auto Scan",
+"target": "סריקה אוטומטית",
+"backtrans": "Automatic scan"
+},
+{
+"key": "importAndConvertDocument",
+"english": "Import & Convert Document",
+"target": "ייבוא והמרת מסמך",
+"backtrans": "Import and conversion of a document"
+},
+{
+"key": "signatureTitle",
+"english": "Signature",
+"target": "חתימה",
+"backtrans": "Signature"
+},
+{
+"key": "signatureChoiceMessage",
+"english": "Use your saved signature or draw a new one?",
+"target": "להשתמש בחתימה השמורה שלך או לצייר אחת חדשה?",
+"backtrans": "Use your saved signature or draw a new one? (masculine singular address)"
+},
+{
+"key": "useSavedSignature",
+"english": "Use Saved",
+"target": "השתמש בשמורה",
+"backtrans": "Use the saved one (masculine singular imperative)"
+},
+{
+"key": "drawNewSignature",
+"english": "Draw New",
+"target": "צייר חדשה",
+"backtrans": "Draw a new one (masculine singular imperative)"
+},
+{
+"key": "copyAll",
+"english": "Copy all",
+"target": "העתק הכל",
+"backtrans": "Copy all"
+},
+{
+"key": "clearThis",
+"english": "Clear this",
+"target": "נקה זה",
+"backtrans": "Clear this"
+},
+{
+"key": "commonRemove",
+"english": "Remove",
+"target": "הסר",
+"backtrans": "Remove"
+},
+{
+"key": "clearAll",
+"english": "Clear all",
+"target": "נקה הכל",
+"backtrans": "Clear all"
+},
+{
+"key": "addSignature",
+"english": "Add Signature",
+"target": "הוסף חתימה",
+"backtrans": "Add signature"
+},
+{
+"key": "commonUse",
+"english": "Use",
+"target": "השתמש",
+"backtrans": "Use"
+},
+{
+"key": "stampTickedLabel",
+"english": "Ticked",
+"target": "מסומן",
+"backtrans": "Marked/ticked"
+},
+{
+"key": "stampBoxLabel",
+"english": "Box",
+"target": "תיבה",
+"backtrans": "Box"
+},
+{
+"key": "stampTickLabel",
+"english": "Tick",
+"target": "סימון",
+"backtrans": "Marking/tick"
+},
+{
+"key": "commonCustom",
+"english": "Custom",
+"target": "מותאם אישית",
+"backtrans": "Personally adapted"
+},
+{
+"key": "commonChange",
+"english": "Change",
+"target": "שנה",
+"backtrans": "Change"
+},
+{
+"key": "commonColor",
+"english": "Color",
+"target": "צבע",
+"backtrans": "Color"
+},
+{
+"key": "stampPaperLabel",
+"english": "Paper",
+"target": "נייר",
+"backtrans": "Paper"
+},
+{
+"key": "whiteHaloLabel",
+"english": "White halo (readability)",
+"target": "הילה לבנה (קריאות)",
+"backtrans": "White halo (readability)"
+},
+{
+"key": "commonCreate",
+"english": "Create",
+"target": "צור",
+"backtrans": "Create"
+},
+{
+"key": "homeLanguageTooltip",
+"english": "App Language",
+"target": "שפת האפליקציה",
+"backtrans": "Language of the app"
+},
+{
+"key": "removeAdsTitle",
+"english": "Remove Ads Forever",
+"target": "הסרת פרסומות לתמיד",
+"backtrans": "Removing ads forever"
+},
+{
+"key": "newFolderTitle",
+"english": "New Folder",
+"target": "תיקייה חדשה",
+"backtrans": "New folder"
+},
+{
+"key": "batchExportEmptyMessage",
+"english": "No documents to batch export. Scan some first.",
+"target": "אין מסמכים לייצוא מרוכז. סרקו כמה מסמכים קודם.",
+"backtrans": "There are no documents for bulk export. Scan a few documents first."
+},
+{
+"key": "newFolderTooltip",
+"english": "New Folder",
+"target": "תיקייה חדשה",
+"backtrans": "New folder"
+},
+{
+"key": "accentColorTooltip",
+"english": "Accent Color",
+"target": "צבע הדגשה",
+"backtrans": "Emphasis color"
+},
+{
+"key": "moveToFolderTitle",
+"english": "Move to Folder",
+"target": "העברה לתיקייה",
+"backtrans": "Transfer to folder"
+},
+{
+"key": "noFoldersYetHomeMessage",
+"english": "No folders yet. Create one from the home screen.",
+"target": "אין עדיין תיקיות. צור אחת ממסך הבית.",
+"backtrans": "There are no folders yet. Create one from the home screen. (masculine singular imperative)"
+},
+{
+"key": "appLanguageTitle",
+"english": "App Language",
+"target": "שפת האפליקציה",
+"backtrans": "Language of the app"
+},
+{
+"key": "accentColorTitle",
+"english": "Accent Color",
+"target": "צבע הדגשה",
+"backtrans": "Emphasis color"
+},
+{
+"key": "sealEditTitle",
+"english": "Edit Custom Seal",
+"target": "ערוך חותם מותאם",
+"backtrans": "Edit a custom seal"
+},
+{
+"key": "sealCreateTitle",
+"english": "Custom Seal",
+"target": "חותם מותאם אישית",
+"backtrans": "Personally customized seal"
+},
+{
+"key": "sealMainTextLabel",
+"english": "Main text (top arc / box)",
+"target": "טקסט ראשי (קשת עליונה / תיבה)",
+"backtrans": "Main text (upper arc / box)"
+},
+{
+"key": "sealSubtextLabel",
+"english": "Subtext (bottom arc / below)",
+"target": "טקסט משני (קשת תחתונה / מתחת)",
+"backtrans": "Secondary text (lower arc / below)"
+},
+{
+"key": "sealShapeOval",
+"english": "Oval",
+"target": "אליפסה",
+"backtrans": "Ellipse"
+},
+{
+"key": "sealShapeBox",
+"english": "Box",
+"target": "תיבה",
+"backtrans": "Box"
+},
+{
+"key": "sealCenterStar",
+"english": "Star",
+"target": "כוכב",
+"backtrans": "Star"
+},
+{
+"key": "sealCenterText",
+"english": "Text",
+"target": "טקסט",
+"backtrans": "Text"
+},
+{
+"key": "sealCenterLogo",
+"english": "Logo",
+"target": "לוגו",
+"backtrans": "Logo"
+},
+{
+"key": "sealCenterNone",
+"english": "None",
+"target": "ללא",
+"backtrans": "Without"
+},
+{
+"key": "sealCenterTextLabel",
+"english": "Center text",
+"target": "טקסט מרכזי",
+"backtrans": "Central text"
+},
+{
+"key": "sealLogoReady",
+"english": "Logo ready",
+"target": "הלוגו מוכן",
+"backtrans": "The logo is ready"
+},
+{
+"key": "textSizeLabel",
+"english": "Text size: {size}",
+"target": "גודל טקסט: {size}",
+"backtrans": "Text size: {size}"
+},
+{
+"key": "commonUpdate",
+"english": "Update",
+"target": "עדכן",
+"backtrans": "Update"
+},
+{
+"key": "managePagesTitle",
+"english": "Manage Pages",
+"target": "ניהול עמודים",
+"backtrans": "Pages management"
+},
+{
+"key": "pageLabel",
+"english": "Page {index}",
+"target": "עמוד {index}",
+"backtrans": "Page {index}"
+},
+{
+"key": "duplicateAction",
+"english": "Duplicate",
+"target": "שכפל",
+"backtrans": "Duplicate"
+},
+{
+"key": "rotate90Action",
+"english": "Rotate 90°",
+"target": "סובב 90°",
+"backtrans": "Rotate 90°"
+},
+{
+"key": "extractToNewDocAction",
+"english": "Extract to new doc",
+"target": "חלץ למסמך חדש",
+"backtrans": "Extract to a new document"
+},
+{
+"key": "addPageTitle",
+"english": "Add Page",
+"target": "הוסף עמוד",
+"backtrans": "Add page"
+},
+{
+"key": "cameraSource",
+"english": "Camera",
+"target": "מצלמה",
+"backtrans": "Camera"
+},
+{
+"key": "importFromGallery",
+"english": "Import from Gallery",
+"target": "ייבא מגלריה",
+"backtrans": "Import from gallery"
+},
+{
+"key": "fromAnotherDocument",
+"english": "From Another Document",
+"target": "ממסמך אחר",
+"backtrans": "From another document"
+},
+{
+"key": "pageCountLabel",
+"english": "{count, plural, =0{No pages} =1{1 page} other{{count} pages}}",
+"target": "{count, plural, =0{אין עמודים} =1{עמוד אחד} =2{שני עמודים} many{{count} עמודים} other{{count} עמודים}}",
+"backtrans": "{count, plural, =0{no pages} =1{one page} =2{two pages} many{{count} pages} other{{count} pages}}"
+},
+{
+"key": "commonConfirm",
+"english": "Confirm",
+"target": "אשר",
+"backtrans": "Approve"
+},
+{
+"key": "applyToAllPages",
+"english": "Apply to all pages",
+"target": "החל על כל העמודים",
+"backtrans": "Apply to all pages"
+},
+{
+"key": "widthLabel",
+"english": "Width",
+"target": "רוחב",
+"backtrans": "Width"
+},
+{
+"key": "heightLabel",
+"english": "Height",
+"target": "גובה",
+"backtrans": "Height"
+},
+{
+"key": "lockAspectRatio",
+"english": "Lock aspect ratio",
+"target": "נעל יחס גובה-רוחב",
+"backtrans": "Lock height-width ratio"
+},
+{
+"key": "originalDimensions",
+"english": "Original: {w}×{h}",
+"target": "מקורי: {w}×{h}",
+"backtrans": "Original: {w}×{h}"
+},
+{
+"key": "ocrSectionLabel",
+"english": "OCR",
+"target": "OCR",
+"backtrans": "OCR"
+},
+{
+"key": "ocrLanguagesLabel",
+"english": "OCR Languages",
+"target": "שפות OCR",
+"backtrans": "OCR languages"
+},
+{
+"key": "captureBehaviorSectionLabel",
+"english": "CAPTURE BEHAVIOR",
+"target": "התנהגות סריקה",
+"backtrans": "Scanning behavior"
+},
+{
+"key": "autoCopyOcrLabel",
+"english": "Auto-copy OCR",
+"target": "העתקת OCR אוטומטית",
+"backtrans": "Automatic OCR copying"
+},
+{
+"key": "autoCopyOcrSubtitle",
+"english": "Copy text to clipboard after scan",
+"target": "העתק טקסט ללוח לאחר הסריקה",
+"backtrans": "Copy text to the clipboard after the scan"
+},
+{
+"key": "beepOnCaptureLabel",
+"english": "Beep on capture",
+"target": "ביפ בעת סריקה",
+"backtrans": "Beep upon scanning"
+},
+{
+"key": "beepOnCaptureSubtitle",
+"english": "Play sound when scan completes",
+"target": "השמע צליל עם סיום הסריקה",
+"backtrans": "Play a sound when the scan finishes"
+},
+{
+"key": "vibrateOnCaptureLabel",
+"english": "Vibrate on capture",
+"target": "רטט בעת סריקה",
+"backtrans": "Vibration upon scanning"
+},
+{
+"key": "vibrateOnCaptureSubtitle",
+"english": "Haptic feedback when scan completes",
+"target": "משוב רטט עם סיום הסריקה",
+"backtrans": "Vibration feedback when the scan finishes"
+},
+{
+"key": "adsRemovedLabel",
+"english": "Ads Removed",
+"target": "פרסומות הוסרו",
+"backtrans": "Ads were removed"
+},
+{
+"key": "diagnosticsSectionLabel",
+"english": "DIAGNOSTICS",
+"target": "אבחון",
+"backtrans": "Diagnosis"
+},
+{
+"key": "debugLogsLabel",
+"english": "Debug Logs",
+"target": "יומני ניפוי באגים",
+"backtrans": "Bug-debugging logs"
+},
+{
+"key": "logEntriesLabel",
+"english": "{count, plural, =0{No entries} =1{1 entry} other{{count} entries}}",
+"target": "{count, plural, =0{אין רשומות} =1{רשומה אחת} =2{שתי רשומות} many{{count} רשומות} other{{count} רשומות}}",
+"backtrans": "{count, plural, =0{no records} =1{one record} =2{two records} many{{count} records} other{{count} records}}"
+},
+{
+"key": "ocrStatusBuiltIn",
+"english": "Built-in",
+"target": "מובנה",
+"backtrans": "Built-in"
+},
+{
+"key": "ocrStatusChecking",
+"english": "Checking...",
+"target": "בודק...",
+"backtrans": "Checking..."
+},
+{
+"key": "ocrStatusOnDemand",
+"english": "On-demand",
+"target": "לפי דרישה",
+"backtrans": "On demand"
+},
+{
+"key": "savedAsNewDocument",
+"english": "Saved as new document",
+"target": "נשמר כמסמך חדש",
+"backtrans": "Saved as a new document"
+},
+{
+"key": "conversionFailedPrefix",
+"english": "Conversion failed",
+"target": "ההמרה נכשלה",
+"backtrans": "The conversion failed"
+},
+{
+"key": "convertDocumentTitle",
+"english": "Convert Document",
+"target": "המרת מסמך",
+"backtrans": "Document conversion"
+},
+{
+"key": "convertToLabel",
+"english": "Convert to:",
+"target": "המר ל:",
+"backtrans": "Convert to:"
+},
+{
+"key": "actionLabel",
+"english": "Action:",
+"target": "פעולה:",
+"backtrans": "Action:"
+},
+{
+"key": "saveAsNewDocumentAction",
+"english": "Save as new Document",
+"target": "שמור כמסמך חדש",
+"backtrans": "Save as a new document"
+},
+{
+"key": "exportAndShareAction",
+"english": "Export & Share",
+"target": "ייצא ושתף",
+"backtrans": "Export and share"
+},
+{
+"key": "docxWarningMessage",
+"english": "DOCX sources render poorly as pages — save inside the app is limited to JPG/PNG from image, PDF, TXT or CSV sources. Use Export & Share for this file.",
+"target": "מקורות DOCX מוצגים בצורה גרועה כעמודים — שמירה באפליקציה מוגבלת ל-JPG/PNG מתמונה, PDF, TXT או CSV. השתמש בייצוא ושיתוף עבור קובץ זה.",
+"backtrans": "DOCX sources are displayed poorly as pages — saving in the app is limited to JPG/PNG from image, PDF, TXT or CSV. Use export and share for this file."
+},
+{
+"key": "saveInsideAppWarning",
+"english": "To save inside the app, choose JPG or PNG. Other targets are exported as files.",
+"target": "כדי לשמור באפליקציה, בחר JPG או PNG. יעדים אחרים מיוצאים כקבצים.",
+"backtrans": "To save in the app, choose JPG or PNG. Other destinations are exported as files."
+},
+{
+"key": "commonConvert",
+"english": "Convert",
+"target": "המר",
+"backtrans": "Convert"
+},
+{
+"key": "conversionStarting",
+"english": "Starting…",
+"target": "מתחיל…",
+"backtrans": "Starting…"
+},
+{
+"key": "convertedDocTitle",
+"english": "Converted {date}",
+"target": "הומר {date}",
+"backtrans": "Was converted {date}"
+},
+{
+"key": "progressReading",
+"english": "Reading…",
+"target": "קורא…",
+"backtrans": "Reading…"
+},
+{
+"key": "progressCopying",
+"english": "Copying…",
+"target": "מעתיק…",
+"backtrans": "Copying…"
+},
+{
+"key": "progressBuildingPdf",
+"english": "Building PDF…",
+"target": "בונה PDF…",
+"backtrans": "Building PDF…"
+},
+{
+"key": "progressBuildingDocx",
+"english": "Building DOCX…",
+"target": "בונה DOCX…",
+"backtrans": "Building DOCX…"
+},
+{
+"key": "progressDecodingImage",
+"english": "Decoding image…",
+"target": "מפענח תמונה…",
+"backtrans": "Decoding (deciphering) image…"
+},
+{
+"key": "progressExtractingText",
+"english": "Extracting text…",
+"target": "מחלץ טקסט…",
+"backtrans": "Extracting text…"
+},
+{
+"key": "progressSaving",
+"english": "Saving…",
+"target": "שומר…",
+"backtrans": "Saving…"
+},
+{
+"key": "progressRasterizing",
+"english": "Rasterizing pages…",
+"target": "ממיר עמודים לתמונות…",
+"backtrans": "Converting pages to images…"
+},
+{
+"key": "progressEncodingPage",
+"english": "Encoding page {current} of {total}…",
+"target": "מקודד עמוד {current} מתוך {total}…",
+"backtrans": "Encoding page {current} out of {total}…"
+},
+{
+"key": "watermarkEditTitle",
+"english": "Edit Watermark",
+"target": "ערוך סימן מים",
+"backtrans": "Edit watermark"
+},
+{
+"key": "watermarkAddTitle",
+"english": "Add Watermark",
+"target": "הוסף סימן מים",
+"backtrans": "Add watermark"
+},
+{
+"key": "watermarkTextLabel",
+"english": "Text",
+"target": "טקסט",
+"backtrans": "Text"
+},
+{
+"key": "opacityPercentLabel",
+"english": "Opacity: {percent}%",
+"target": "שקיפות: {percent}%",
+"backtrans": "Transparency: {percent}%"
+},
+{
+"key": "sizePtLabel",
+"english": "Size: {size}pt",
+"target": "גודל: {size}pt",
+"backtrans": "Size: {size}pt"
+},
+{
+"key": "alignLabel",
+"english": "Align",
+"target": "יישור",
+"backtrans": "Alignment"
+},
+{
+"key": "exportSavedToDownloads",
+"english": "Saved to Downloads",
+"target": "נשמר בהורדות",
+"backtrans": "Saved in downloads"
+},
+{
+"key": "commonShare",
+"english": "Share",
+"target": "שתף",
+"backtrans": "Share"
+},
+{
+"key": "exportTitle",
+"english": "Export",
+"target": "ייצוא",
+"backtrans": "Export"
+},
+{
+"key": "targetMbLabel",
+"english": "{mb} MB",
+"target": "{mb} MB",
+"backtrans": "{mb} MB"
+},
+{
+"key": "filterColor",
+"english": "Color",
+"target": "צבע",
+"backtrans": "Color"
+},
+{
+"key": "filterShadow",
+"english": "Shadow",
+"target": "צל",
+"backtrans": "Shadow"
+},
+{
+"key": "docxModeTextOnly",
+"english": "Text Only",
+"target": "טקסט בלבד",
+"backtrans": "Text only"
+},
+{
+"key": "docxModeWithImages",
+"english": "With Images",
+"target": "עם תמונות",
+"backtrans": "With images"
+},
+{
+"key": "saveToDeviceButton",
+"english": "Save to Device",
+"target": "שמור במכשיר",
+"backtrans": "Save on the device"
+},
+{
+"key": "pageIndicator",
+"english": "Page {current} / {total}",
+"target": "עמוד {current} / {total}",
+"backtrans": "Page {current} / {total}"
+},
+{
+"key": "fullscreenLabel",
+"english": "Fullscreen",
+"target": "מסך מלא",
+"backtrans": "Full screen"
+},
+{
+"key": "batchExportSignatureDisabled",
+"english": "Batch export — signature placement disabled",
+"target": "ייצוא מרוכז — מיקום חתימה מושבת",
+"backtrans": "Bulk export — signature placement disabled"
+},
+{
+"key": "fitToTargetMbLabel",
+"english": "Fit to target MB",
+"target": "התאם ל-MB יעד",
+"backtrans": "Fit to target MB"
+},
+{
+"key": "moreOptionsTooltip",
+"english": "More options",
+"target": "אפשרויות נוספות",
+"backtrans": "More options"
+},
+{
+"key": "commonRename",
+"english": "Rename",
+"target": "שנה שם",
+"backtrans": "Change name"
+},
+{
+"key": "addTagsAction",
+"english": "Add Tags",
+"target": "הוסף תגיות",
+"backtrans": "Add tags"
+},
+{
+"key": "editDocumentAction",
+"english": "Edit Document",
+"target": "ערוך מסמך",
+"backtrans": "Edit document"
+},
+{
+"key": "copiedToClipboard",
+"english": "Copied to clipboard",
+"target": "הועתק ללוח",
+"backtrans": "Was copied to the clipboard"
+},
+{
+"key": "favoriteTooltip",
+"english": "Favorite",
+"target": "מועדף",
+"backtrans": "Favorite"
+},
+{
+"key": "noFoldersYet",
+"english": "No folders yet",
+"target": "אין עדיין תיקיות",
+"backtrans": "There are no folders yet"
+},
+{
+"key": "rotateLabel",
+"english": "Rotate",
+"target": "סובב",
+"backtrans": "Rotate"
+},
+{
+"key": "scaleLabel",
+"english": "Scale",
+"target": "קנה מידה",
+"backtrans": "Scale"
+},
+{
+"key": "eraserTitle",
+"english": "Eraser",
+"target": "מחק",
+"backtrans": "Eraser (lit. 'erase')"
+},
+{
+"key": "tapToSampleColor",
+"english": "Tap a spot to sample its color",
+"target": "הקש על נקודה לדגימת הצבע",
+"backtrans": "Tap on a point to sample the color"
+},
+{
+"key": "commonSize",
+"english": "Size",
+"target": "גודל",
+"backtrans": "Size"
+},
+{
+"key": "sampleColorTooltip",
+"english": "Sample color from page",
+"target": "דגום צבע מהעמוד",
+"backtrans": "Sample color from the page"
+},
+{
+"key": "marqueeEraseTooltip",
+"english": "Marquee erase",
+"target": "מחיקת בחירה",
+"backtrans": "Deletion of selection"
+},
+{
+"key": "commonApply",
+"english": "Apply",
+"target": "החל",
+"backtrans": "Apply"
+},
+{
+"key": "filterTitle",
+"english": "Filter",
+"target": "מסנן",
+"backtrans": "Filter"
+},
+{
+"key": "intensityLabel",
+"english": "Intensity",
+"target": "עוצמה",
+"backtrans": "Intensity"
+},
+{
+"key": "selectRegionTitle",
+"english": "Select Region",
+"target": "בחר אזור",
+"backtrans": "Select region"
+},
+{
+"key": "commonExtract",
+"english": "Extract",
+"target": "חלץ",
+"backtrans": "Extract"
+},
+{
+"key": "customColorTitle",
+"english": "Custom Color",
+"target": "צבע מותאם אישית",
+"backtrans": "Personally customized color"
+},
+{
+"key": "documentNotFound",
+"english": "Document not found",
+"target": "המסמך לא נמצא",
+"backtrans": "The document was not found"
+},
+{
+"key": "clearLogsTooltip",
+"english": "Clear logs",
+"target": "נקה יומנים",
+"backtrans": "Clear logs"
+},
+{
+"key": "placeHereLabel",
+"english": "Place here",
+"target": "מקם כאן",
+"backtrans": "Place here"
+},
+{
+"key": "tryAgainButton",
+"english": "Try again",
+"target": "נסה שוב",
+"backtrans": "Try again"
+},
+{
+"key": "emptyDocumentMessage",
+"english": "This document has no pages.",
+"target": "מסמך זה אינו מכיל עמודים.",
+"backtrans": "This document does not contain pages."
+},
+{
+"key": "cameraErrorPrefix",
+"english": "Camera error",
+"target": "שגיאת מצלמה",
+"backtrans": "Camera error"
+},
+{
+"key": "importErrorPrefix",
+"english": "Import error",
+"target": "שגיאת ייבוא",
+"backtrans": "Import error"
+},
+{
+"key": "pdfImportErrorPrefix",
+"english": "PDF import error",
+"target": "שגיאת ייבוא PDF",
+"backtrans": "PDF import error"
+},
+{
+"key": "pickErrorPrefix",
+"english": "Pick error",
+"target": "שגיאת בחירה",
+"backtrans": "Selection error"
+},
+{
+"key": "scannerErrorPrefix",
+"english": "Scanner error",
+"target": "שגיאת סורק",
+"backtrans": "Scanner error"
+},
+{
+"key": "idPdfErrorPrefix",
+"english": "Error generating ID PDF",
+"target": "שגיאה ביצירת PDF תעודת זהות",
+"backtrans": "Error in creating identity card PDF"
+},
+{
+"key": "genericErrorPrefix",
+"english": "Error",
+"target": "שגיאה",
+"backtrans": "Error"
+},
+{
+"key": "annotateTitle",
+"english": "Annotate",
+"target": "הוספת הערות",
+"backtrans": "Adding notes/comments"
+},
+{
+"key": "placementsCountLabel",
+"english": "{count, plural, =0{Nothing placed} =1{1 placed} other{{count} placed}}",
+"target": "{count, plural, =0{לא הוצב דבר} =1{הוצב אחד} =2{הוצבו שניים} many{{count} הוצבו} other{{count} הוצבו}}",
+"backtrans": "{count, plural, =0{nothing was placed} =1{one was placed} =2{two were placed} many{{count} were placed} other{{count} were placed}}"
+},
+{
+"key": "ocrUnavailableTooltip",
+"english": "OCR unavailable on this device.",
+"target": "זיהוי טקסט אינו זמין במכשיר זה.",
+"backtrans": "Text recognition is not available on this device."
+},
+{
+"key": "docScannerUnsupportedMessage",
+"english": "Your device doesn't support the advanced document scanner. Take a photo with your Camera app, then tap Import below to crop and save it.",
+"target": "המכשיר שלך אינו תומך בסורק המסמכים המתקדם. צלם תמונה באפליקציית המצלמה, ואז הקש על ייבוא למטה כדי לחתוך ולשמור.",
+"backtrans": "Your device does not support the advanced document scanner. Take a photo in the camera app, and then tap on import below to crop and save."
+},
+{
+"key": "billingUnavailableMessage",
+"english": "Billing unavailable — try again later.",
+"target": "חיוב אינו זמין — נסה שוב מאוחר יותר.",
+"backtrans": "Billing is not available — try again later."
+},
+{
+"key": "ocrNoInternetMessage",
+"english": "No internet. Connect once to download the language pack.",
+"target": "אין אינטרנט. התחבר פעם אחת כדי להוריד את חבילת השפה.",
+"backtrans": "No internet. Connect once to download the language pack."
+},
+{
+"key": "ocrLanguagePackNotReady",
+"english": "Language pack downloading or not ready. Try again shortly.",
+"target": "חבילת השפה בהורדה או אינה מוכנה. נסה שוב בקרוב.",
+"backtrans": "The language pack is downloading or is not ready. Try again soon."
+},
+{
+"key": "undoTooltip",
+"english": "Undo",
+"target": "ביטול",
+"backtrans": "Cancellation"
+},
+{
+"key": "redoTooltip",
+"english": "Redo",
+"target": "בצע שוב",
+"backtrans": "Do again"
+},
+{
+"key": "fillInputHint",
+"english": "Type text to fill",
+"target": "הקלד טקסט למילוי",
+"backtrans": "Type text for filling"
+},
+{
+"key": "fillCapsLabel",
+"english": "ALL CAPS",
+"target": "אותיות רישיות",
+"backtrans": "Capital letters"
+},
+{
+"key": "fillSaveSnippet",
+"english": "Save as snippet",
+"target": "שמור כקטע",
+"backtrans": "Save as a snippet"
+},
+{
+"key": "fillDeleteSnippet",
+"english": "Delete snippet?",
+"target": "למחוק קטע?",
+"backtrans": "Delete snippet?"
+},
+{
+"key": "fillTooltip",
+"english": "Fill",
+"target": "מילוי",
+"backtrans": "Filling"
+},
+{
+"key": "tickerFreeUnlimitedOcr",
+"english": "FREE UNLIMITED OCR",
+"target": "זיהוי טקסט בלתי מוגבל חינם",
+"backtrans": "Unlimited text recognition free"
+},
+{
+"key": "ticker100OnDevicePrivacy",
+"english": "YOUR DOCUMENTS STAY ON YOUR DEVICE",
+"target": "המסמכים שלך נשארים במכשיר שלך",
+"backtrans": "Your documents remain on your device"
+},
+{
+"key": "tickerNoAccount",
+"english": "NO ACCOUNT",
+"target": "ללא חשבון",
+"backtrans": "Without an account"
+},
+{
+"key": "tickerNoWatermarks",
+"english": "NO WATERMARKS",
+"target": "ללא סימני מים",
+"backtrans": "Without watermarks"
+},
+{
+"key": "ticker21ToolEditSuite",
+"english": "21-TOOL EDIT SUITE",
+"target": "ערכת 21 כלים",
+"backtrans": "A kit of 21 tools"
+},
+{
+"key": "tickerNonDestructiveEditing",
+"english": "NON-DESTRUCTIVE EDITING",
+"target": "עריכה לא הרסנית",
+"backtrans": "Non-destructive editing"
+},
+{
+"key": "tickerUndoRedo",
+"english": "UNDO/REDO",
+"target": "בטל/בצע שוב",
+"backtrans": "Cancel/do again"
+},
+{
+"key": "tickerRevertToOriginal",
+"english": "REVERT TO ORIGINAL",
+"target": "חזרה למקור",
+"backtrans": "Return to the original"
+},
+{
+"key": "tickerTapToTypeFilling",
+"english": "TAP-TO-TYPE FILLING",
+"target": "הקש למילוי",
+"backtrans": "Tap for filling"
+},
+{
+"key": "tickerESign",
+"english": "E-SIGN",
+"target": "חתימה אלקטרונית",
+"backtrans": "Electronic signature"
+},
+{
+"key": "tickerCustomSeals",
+"english": "CUSTOM SEALS",
+"target": "חותמות מותאמות",
+"backtrans": "Custom seals"
+},
+{
+"key": "tickerTextStamps",
+"english": "TEXT STAMPS",
+"target": "חותמות טקסט",
+"backtrans": "Text stamps"
+},
+{
+"key": "tickerNoteStamps",
+"english": "NOTE STAMPS",
+"target": "חותמות הערה",
+"backtrans": "Note stamps"
+},
+{
+"key": "tickerSearchablePdf",
+"english": "SEARCHABLE PDF",
+"target": "PDF ניתן לחיפוש",
+"backtrans": "Searchable PDF"
+},
+{
+"key": "tickerRegionOcr",
+"english": "REGION OCR",
+"target": "זיהוי אזור",
+"backtrans": "Region recognition"
+},
+{
+"key": "tickerAutoCopyOcr",
+"english": "AUTO-COPY OCR",
+"target": "העתקת OCR אוטומטית",
+"backtrans": "Automatic OCR copying"
+},
+{
+"key": "tickerIdCardMode",
+"english": "ID CARD MODE",
+"target": "מצב תעודת זהות",
+"backtrans": "Identity card mode"
+},
+{
+"key": "tickerPassportMode",
+"english": "PASSPORT MODE",
+"target": "מצב דרכון",
+"backtrans": "Passport mode"
+},
+{
+"key": "tickerGalleryImport",
+"english": "GALLERY IMPORT",
+"target": "ייבוא מגלריה",
+"backtrans": "Import from gallery"
+},
+{
+"key": "tickerPdfExport",
+"english": "PDF EXPORT",
+"target": "ייצוא PDF",
+"backtrans": "PDF export"
+},
+{
+"key": "tickerWordExport",
+"english": "WORD EXPORT",
+"target": "ייצוא Word",
+"backtrans": "Word export"
+},
+{
+"key": "tickerJpgExport",
+"english": "JPG EXPORT",
+"target": "ייצוא JPG",
+"backtrans": "JPG export"
+},
+{
+"key": "tickerPngExport",
+"english": "PNG EXPORT",
+"target": "ייצוא PNG",
+"backtrans": "PNG export"
+},
+{
+"key": "tickerBatchExport",
+"english": "BATCH EXPORT",
+"target": "ייצוא מרוכז",
+"backtrans": "Bulk export"
+},
+{
+"key": "tickerFolders",
+"english": "FOLDERS",
+"target": "תיקיות",
+"backtrans": "Folders"
+},
+{
+"key": "tickerTags",
+"english": "TAGS",
+"target": "תגיות",
+"backtrans": "Tags"
+},
+{
+"key": "tickerFavorites",
+"english": "FAVORITES",
+"target": "מועדפים",
+"backtrans": "Favorites"
+},
+{
+"key": "tickerSearch",
+"english": "SEARCH",
+"target": "חיפוש",
+"backtrans": "Search"
+},
+{
+"key": "tickerDarkMode",
+"english": "DARK MODE",
+"target": "מצב כהה",
+"backtrans": "Dark mode"
+},
+{
+"key": "tickerAccentThemes",
+"english": "ACCENT THEMES",
+"target": "צבעי הדגשה",
+"backtrans": "Emphasis colors"
+},
+{
+"key": "tickerDeviceMigration",
+"english": "DEVICE MIGRATION",
+"target": "העברת מכשיר",
+"backtrans": "Device transfer"
+},
+{
+"key": "onboardingWelcomeTitle",
+"english": "Welcome to KatharScan",
+"target": "ברוכים הבאים ל-KatharScan",
+"backtrans": "Welcome to KatharScan"
+},
+{
+"key": "onboardingWelcomeSubtitle",
+"english": "Your entire document office — scan, edit, sign, and export — in one private app.",
+"target": "כל משרד המסמכים שלכם — סרקו, ערכו, חתמו וייצאו — באפליקציה פרטית אחת.",
+"backtrans": "Your entire document office — scan, edit, sign and export — in one private app."
+},
+{
+"key": "onboardingToolsTitle",
+"english": "21 Free Pro Tools",
+"target": "21 כלים מקצועיים חינם",
+"backtrans": "21 professional tools free"
+},
+{
+"key": "onboardingToolsSubtitle",
+"english": "Annotate, sign, watermark, fill forms, seal, and more — every tool free and unlimited.",
+"target": "הערה, חתימה, סימן מים, מילוי טפסים, חותמות ועוד — הכול חינם וללא הגבלה.",
+"backtrans": "Note, signature, watermark, form filling, stamps and more — everything free and without limit."
+},
+{
+"key": "onboardingOcrTitle",
+"english": "On-Device OCR",
+"target": "זיהוי טקסט במכשיר",
+"backtrans": "Text recognition on the device"
+},
+{
+"key": "onboardingOcrSubtitle",
+"english": "Use KatharScan in {count} languages. OCR runs on your phone — nothing ever leaves your device.",
+"target": "השתמש ב-KatharScan ב-{count} שפות. ה-OCR פועל בטלפון שלך — שום דבר לא יוצא מהמכשיר.",
+"backtrans": "Use KatharScan in {count} languages. The OCR runs on your phone — nothing leaves the device. (masculine singular address)"
+},
+{
+"key": "onboardingSignTitle",
+"english": "Sign, Fill & Seal",
+"target": "חתימה, מילוי וחותמת",
+"backtrans": "Signature, filling and stamp"
+},
+{
+"key": "onboardingSignSubtitle",
+"english": "E-sign contracts, type-to-fill forms, and stamp enterprise seals in seconds.",
+"target": "חתמו על חוזים, מלאו טפסים והטביעו חותמות תוך שניות.",
+"backtrans": "Sign contracts, fill forms and imprint stamps within seconds."
+},
+{
+"key": "onboardingEditTitle",
+"english": "Non-Destructive Editing",
+"target": "עריכה לא הרסנית",
+"backtrans": "Non-destructive editing"
+},
+{
+"key": "onboardingEditSubtitle",
+"english": "Every edit stays reversible — undo, redo, and revert to original anytime.",
+"target": "כל עריכה נשארת הפיכה — ביטול, ביצוע מחדש וחזרה למקור בכל עת.",
+"backtrans": "Every edit remains reversible — cancel, redo and return to the original at any time."
+},
+{
+"key": "onboardingPrivacyTitle",
+"english": "Private by design",
+"target": "פרטיות כבר בתכנון",
+"backtrans": "Privacy already in the design"
+},
+{
+"key": "onboardingPrivacySubtitle",
+"english": "No account, no cloud, no watermarks. Your documents never leave your device.",
+"target": "בלי חשבון, בלי ענן, בלי סימני מים. המסמכים שלכם לא עוזבים את המכשיר.",
+"backtrans": "Without an account, without cloud, without watermarks. Your documents do not leave the device."
+},
+{
+"key": "onboardingContinue",
+"english": "Continue",
+"target": "המשך",
+"backtrans": "Continue"
+},
+{
+"key": "onboardingGetStarted",
+"english": "Get Started",
+"target": "מתחילים",
+"backtrans": "We're starting"
+},
+{
+"key": "onboardingBack",
+"english": "Back",
+"target": "חזרה",
+"backtrans": "Back"
+},
+{
+"key": "onboardingReplayIntro",
+"english": "Replay introduction",
+"target": "הצגת המבוא מחדש",
+"backtrans": "Showing the introduction again"
+},
+{
+"key": "saveToDownloadsAction",
+"english": "Save to Downloads",
+"target": "שמור בהורדות",
+"backtrans": "Save in downloads"
+},
+{
+"key": "paywallTitle",
+"english": "Remove Ads",
+"target": "הסר פרסומות",
+"backtrans": "Remove ads (masculine singular imperative)"
+},
+{
+"key": "paywallSubtitle",
+"english": "Support KatharScan with a one-time purchase. All features remain free.",
+"target": "תמכו ב-KatharScan ברכישה חד-פעמית. כל התכונות נשארות בחינם.",
+"backtrans": "Support KatharScan with a one-time purchase. All the features remain free."
+},
+{
+"key": "paywallFallbackPrice",
+"english": "$14.99 one-time",
+"target": "$14.99 חד-פעמי",
+"backtrans": "$14.99 one-time"
+},
+{
+"key": "paywallFeatureNoBanner",
+"english": "No more banner ads",
+"target": "ללא עוד פרסומות באנר",
+"backtrans": "No more banner ads"
+},
+{
+"key": "paywallFeatureNoInterstitial",
+"english": "No more interstitial ads",
+"target": "ללא עוד פרסומות מעבר",
+"backtrans": "No more transition ads"
+},
+{
+"key": "paywallFeatureFreeForever",
+"english": "All features free forever",
+"target": "כל התכונות בחינם לנצח",
+"backtrans": "All the features free forever"
+},
+{
+"key": "paywallLegalText",
+"english": "This is a non-consumable purchase. Restore it anytime on any device with the same store account.",
+"target": "זוהי רכישה שאינה מתכלה. שחזר אותה בכל עת ובכל מכשיר עם אותו חשבון חנות.",
+"backtrans": "This is a purchase that is non-perishable. Restore it at any time and on any device with the same store account. (masculine singular imperative) [??: 'non-perishable' is an odd rendering of 'non-consumable']"
+},
+{
+"key": "paywallSuccessTitle",
+"english": "Ads Removed",
+"target": "הפרסומות הוסרו",
+"backtrans": "The ads were removed"
+},
+{
+"key": "paywallSuccessMessage",
+"english": "Thank you for supporting KatharScan.",
+"target": "תודה על התמיכה ב-KatharScan.",
+"backtrans": "Thanks for supporting KatharScan."
+},
+{
+"key": "errorGenericTitle",
+"english": "Something went wrong",
+"target": "משהו השתבש",
+"backtrans": "Something went wrong"
+},
+{
+"key": "errorScreenProblem",
+"english": "KatharScan ran into a problem displaying this screen. Your scans are safe — they're stored on this device and this doesn't affect them.",
+"target": "KatharScan נתקל בבעיה בהצגת מסך זה. הסריקות שלך בטוחות - הן מאוחסנות במכשיר זה ואין לכך השפעה עליהן.",
+"backtrans": "KatharScan encountered a problem displaying this screen. Your scans are safe - they are stored on this device and are not affected by this."
+},
+{
+"key": "errorReportIssue",
+"english": "Report issue",
+"target": "דווח על בעיה",
+"backtrans": "Report a problem (masculine singular imperative)"
+},
+{
+"key": "filterAll",
+"english": "All",
+"target": "הכל",
+"backtrans": "Everything"
+},
+{
+"key": "filterFolders",
+"english": "Folders",
+"target": "תיקיות",
+"backtrans": "Folders"
+},
+{
+"key": "filterRecent",
+"english": "Recent",
+"target": "אחרונים",
+"backtrans": "Recent ones"
+},
+{
+"key": "filterFavorites",
+"english": "Favorites",
+"target": "מועדפים",
+"backtrans": "Favorites"
+},
+{
+"key": "chipAllFolders",
+"english": "All Folders",
+"target": "כל התיקיות",
+"backtrans": "All folders"
+},
+{
+"key": "chipSelectMultiple",
+"english": "Select Multiple",
+"target": "בחירה מרובה",
+"backtrans": "Multiple selection"
+},
+{
+"key": "emptySearch",
+"english": "No scans match your search.",
+"target": "אין סריקות התואמות לחיפוש שלך.",
+"backtrans": "There are no scans matching your search."
+},
+{
+"key": "emptyFolders",
+"english": "No folders yet. Tap the folder icon to create one.",
+"target": "אין עדיין תיקיות. הקש על סמל התיקייה כדי ליצור אחת.",
+"backtrans": "There are no folders yet. Tap the folder icon to create one."
+},
+{
+"key": "emptyFavorites",
+"english": "No favorites yet. Tap the star icon on a document to add it.",
+"target": "אין עדיין מועדפים. הקש על סמל הכוכב במסמך כדי להוסיף אותו.",
+"backtrans": "There are no favorites yet. Tap the star icon on a document to add it."
+},
+{
+"key": "modeDocument",
+"english": "Document Mode",
+"target": "מצב מסמך",
+"backtrans": "Document mode"
+},
+{
+"key": "modeOcr",
+"english": "OCR Mode",
+"target": "מצב OCR",
+"backtrans": "OCR mode"
+},
+{
+"key": "modeIdCard",
+"english": "ID Card Mode",
+"target": "מצב תעודת זהות",
+"backtrans": "Identity card mode"
+},
+{
+"key": "modePassport",
+"english": "Passport Mode",
+"target": "מצב דרכון",
+"backtrans": "Passport mode"
+},
+{
+"key": "titlePdfImport",
+"english": "PDF Import",
+"target": "ייבוא PDF",
+"backtrans": "PDF import"
+},
+{
+"key": "titleIdCard",
+"english": "ID Card",
+"target": "תעודת זהות",
+"backtrans": "Identity card"
+},
+{
+"key": "titleScan",
+"english": "Scan",
+"target": "סריקה",
+"backtrans": "Scan"
+},
+{
+"key": "exportEstimatedSize",
+"english": "Estimated size: {mb} MB",
+"target": "גודל משוער: {mb} MB",
+"backtrans": "Estimated size: {mb} MB"
+},
+{
+"key": "debugNoLogsYet",
+"english": "No logs yet",
+"target": "אין עדיין יומנים",
+"backtrans": "There are no logs yet"
+},
+{
+"key": "textBold",
+"english": "B",
+"target": "B",
+"backtrans": "B"
+},
+{
+"key": "textItalic",
+"english": "I",
+"target": "I",
+"backtrans": "I"
+},
+{
+"key": "textUnderline",
+"english": "U",
+"target": "U",
+"backtrans": "U"
+},
+{
+"key": "textFontLetterA",
+"english": "A",
+"target": "A",
+"backtrans": "A"
+},
+{
+"key": "multiplySymbol",
+"english": "×",
+"target": "×",
+"backtrans": "×"
+},
+{
+"key": "signerLabel",
+"english": "Signer {index}",
+"target": "חותם {index}",
+"backtrans": "Signer {index}"
+},
+{
+"key": "stampCheckbox",
+"english": "Checkbox",
+"target": "תיבת סימון",
+"backtrans": "Checkbox"
+},
+{
+"key": "fontSansSerif",
+"english": "sans-serif",
+"target": "sans-serif",
+"backtrans": "sans-serif"
+},
+{
+"key": "fontSerif",
+"english": "serif",
+"target": "serif",
+"backtrans": "serif"
+},
+{
+"key": "fontMonospace",
+"english": "monospace",
+"target": "monospace",
+"backtrans": "monospace"
+},
+{
+"key": "sealCustom",
+"english": "Custom Seal",
+"target": "חותם מותאם אישית",
+"backtrans": "Personally customized seal"
+},
+{
+"key": "formatCsv",
+"english": "CSV",
+"target": "CSV",
+"backtrans": "CSV"
+},
+{
+"key": "ocrNoTextFound",
+"english": "No text found",
+"target": "לא נמצא טקסט",
+"backtrans": "No text was found"
+},
+{
+"key": "rotationAllPages",
+"english": "All pages rotated",
+"target": "כל העמודים סובבו",
+"backtrans": "All the pages were rotated"
+},
+{
+"key": "rotationPage",
+"english": "Page rotated",
+"target": "העמוד סובב",
+"backtrans": "The page was rotated"
+},
+{
+"key": "resizeTitle",
+"english": "Resize",
+"target": "שנה גודל",
+"backtrans": "Change size (masculine singular imperative)"
+},
+{
+"key": "addTextTitle",
+"english": "Add Text",
+"target": "הוסף טקסט",
+"backtrans": "Add text (masculine singular imperative)"
+},
+{
+"key": "addNoteTitle",
+"english": "Add Note",
+"target": "הוסף הערה",
+"backtrans": "Add note (masculine singular imperative)"
+},
+{
+"key": "addDateTitle",
+"english": "Add Date",
+"target": "הוסף תאריך",
+"backtrans": "Add date (masculine singular imperative)"
+},
+{
+"key": "addCheckboxTitle",
+"english": "Add Checkbox",
+"target": "הוסף תיבת סימון",
+"backtrans": "Add checkbox (masculine singular imperative)"
+},
+{
+"key": "noteTextLabel",
+"english": "Note text",
+"target": "טקסט הערה",
+"backtrans": "Note text"
+},
+{
+"key": "textLabel",
+"english": "Text",
+"target": "טקסט",
+"backtrans": "Text"
+},
+{
+"key": "checkShapeRounded",
+"english": "Rounded",
+"target": "מעוגל",
+"backtrans": "Rounded"
+},
+{
+"key": "checkShapeSquare",
+"english": "Square",
+"target": "ריבוע",
+"backtrans": "Square"
+},
+{
+"key": "checkShapeCircle",
+"english": "Circle",
+"target": "עיגול",
+"backtrans": "Circle"
+},
+{
+"key": "hueLabel",
+"english": "Hue",
+"target": "גוון",
+"backtrans": "Hue"
+},
+{
+"key": "satLabel",
+"english": "Sat",
+"target": "רוויה",
+"backtrans": "Saturation"
+},
+{
+"key": "valLabel",
+"english": "Val",
+"target": "בהירות",
+"backtrans": "Brightness"
+},
+{
+"key": "annotationModePen",
+"english": "Pen",
+"target": "עט",
+"backtrans": "Pen"
+},
+{
+"key": "annotationModeHighlighter",
+"english": "Highlighter",
+"target": "מדגש",
+"backtrans": "Highlighter"
+},
+{
+"key": "annotationModeRect",
+"english": "Rectangle",
+"target": "מלבן",
+"backtrans": "Rectangle"
+},
+{
+"key": "annotationModeArrow",
+"english": "Arrow",
+"target": "חץ",
+"backtrans": "Arrow"
+},
+{
+"key": "annotationModeEllipse",
+"english": "Ellipse",
+"target": "אליפסה",
+"backtrans": "Ellipse"
+},
+{
+"key": "sharePromptTitle",
+"english": "Love KatharScan?",
+"target": "אוהבים את KatharScan?",
+"backtrans": "Do you love KatharScan?"
+},
+{
+"key": "sharePromptBody",
+"english": "Share it with friends who need a powerful document scanner.",
+"target": "שתפו אותו עם חברים שצריכים סורק מסמכים חזק.",
+"backtrans": "Share it with friends who need a powerful document scanner."
+},
+{
+"key": "sharePromptAction",
+"english": "Share App",
+"target": "שתף אפליקציה",
+"backtrans": "Share app (masculine singular imperative)"
+},
+{
+"key": "sharePromptDismiss",
+"english": "Not now",
+"target": "לא עכשיו",
+"backtrans": "Not now"
+},
+{
+"key": "reviewPromptTitle",
+"english": "Enjoying KatharScan?",
+"target": "נהנים מ-KatharScan?",
+"backtrans": "Are you enjoying KatharScan?"
+},
+{
+"key": "reviewPromptBody",
+"english": "Your feedback helps us grow and keeps the app free.",
+"target": "המשוב שלכם עוזר לנו לצמוח ושומר על האפליקציה חינמית.",
+"backtrans": "Your feedback helps us grow and keeps the app free."
+},
+{
+"key": "reviewPromptYes",
+"english": "Rate Us",
+"target": "דרגו אותנו",
+"backtrans": "Rate us"
+},
+{
+"key": "reviewPromptNo",
+"english": "Send Feedback",
+"target": "שלח משוב",
+"backtrans": "Send feedback (masculine singular imperative)"
+},
+{
+"key": "watermarkLabel",
+"english": "Watermark",
+"target": "סימן מים",
+"backtrans": "Watermark"
+},
+{
+"key": "compressLabel",
+"english": "Compress",
+"target": "דחיסה",
+"backtrans": "Compression"
+},
+{
+"key": "pagesLabel",
+"english": "Pages",
+"target": "עמודים",
+"backtrans": "Pages"
+},
+{
+"key": "cropLabel",
+"english": "Crop",
+"target": "חיתוך",
+"backtrans": "Cutting/cropping"
+},
+{
+"key": "emailLabel",
+"english": "Email",
+"target": "דוא\"ל",
+"backtrans": "Email"
+},
+{
+"key": "checkLabel",
+"english": "Check",
+"target": "סימון",
+"backtrans": "Marking/tick"
+},
+{
+"key": "captionDocs",
+"english": "Flexible crop: Original, Square, 4:3, 3:2, 16:9",
+"target": "חיתוך גמיש: מקורי, ריבוע, 4:3, 3:2, 16:9",
+"backtrans": "Flexible cropping: original, square, 4:3, 3:2, 16:9"
+},
+{
+"key": "captionOcr",
+"english": "Text crop: Original, Square, 4:3",
+"target": "חיתוך טקסט: מקורי, ריבוע, 4:3",
+"backtrans": "Text cropping: original, square, 4:3"
+},
+{
+"key": "captionIdCard",
+"english": "Two-sided ID capture: Front + Back",
+"target": "צילום דו-צדדי: קדמי + אחורי",
+"backtrans": "Two-sided photography: front + back"
+},
+{
+"key": "captionPassport",
+"english": "Passport crop: 4:3 or Original",
+"target": "חיתוך דרכון: 4:3 או מקורי",
+"backtrans": "Passport cropping: 4:3 or original"
+},
+{
+"key": "idStepFront",
+"english": "Step 1: Capture Front Side",
+"target": "שלב 1: צלמו את הצד הקדמי",
+"backtrans": "Step 1: photograph the front side"
+},
+{
+"key": "idStepBack",
+"english": "Step 2: Capture Back Side",
+"target": "שלב 2: צלמו את הצד האחורי",
+"backtrans": "Step 2: photograph the back side"
+},
+{
+"key": "idGenerating",
+"english": "Generating PDF...",
+"target": "יוצר PDF...",
+"backtrans": "Creating PDF..."
+},
+{
+"key": "captureFrontSide",
+"english": "Capture Front Side",
+"target": "צילום הצד הקדמי",
+"backtrans": "Photographing the front side"
+},
+{
+"key": "captureBackSide",
+"english": "Capture Back Side",
+"target": "צילום הצד האחורי",
+"backtrans": "Photographing the back side"
+},
+{
+"key": "importFrontSide",
+"english": "Import Front Side",
+"target": "ייבוא הצד הקדמי",
+"backtrans": "Importing the front side"
+},
+{
+"key": "importBackSide",
+"english": "Import Back Side",
+"target": "ייבוא הצד האחורי",
+"backtrans": "Importing the back side"
+},
+{
+"key": "cropDocumentTitle",
+"english": "Crop Document",
+"target": "חיתוך מסמך",
+"backtrans": "Cropping a document"
+},
+{
+"key": "cropIdCardTitle",
+"english": "Crop ID Card",
+"target": "חיתוך תעודת זהות",
+"backtrans": "Cropping an identity card"
+},
+{
+"key": "tabImageLabel",
+"english": "Image",
+"target": "תמונה",
+"backtrans": "Image"
+},
+{
+"key": "tabOcrTextLabel",
+"english": "OCR Text",
+"target": "טקסט OCR",
+"backtrans": "OCR text"
+},
+{
+"key": "compressSmall",
+"english": "Small",
+"target": "קטן",
+"backtrans": "Small"
+},
+{
+"key": "compressMedium",
+"english": "Medium",
+"target": "בינוני",
+"backtrans": "Medium"
+},
+{
+"key": "pageFormatLetter",
+"english": "Letter (US)",
+"target": "מכתב (ארה\"ב)",
+"backtrans": "Letter (USA)"
+},
+{
+"key": "ocrScriptLatin",
+"english": "Latin (English, European)",
+"target": "לטיני (אנגלית, אירופי)",
+"backtrans": "Latin (English, European)"
+},
+{
+"key": "ocrScriptChinese",
+"english": "Chinese",
+"target": "סינית",
+"backtrans": "Chinese"
+},
+{
+"key": "ocrScriptKorean",
+"english": "Korean",
+"target": "קוריאנית",
+"backtrans": "Korean"
+},
+{
+"key": "ocrScriptJapanese",
+"english": "Japanese",
+"target": "יפנית",
+"backtrans": "Japanese"
+},
+{
+"key": "ocrScriptDevanagari",
+"english": "Hindi, Marathi (Devanagari)",
+"target": "הינדי, מרטהי (דוואנגרי)",
+"backtrans": "Hindi, Marathi (Devanagari) [??: 'דוואנגרי' is a garbled transliteration of Devanagari]"
+},
+{
+"key": "ocrStatusUnsupported",
+"english": "Unsupported",
+"target": "לא נתמך",
+"backtrans": "Not supported"
+},
+{
+"key": "noteLabel",
+"english": "Note",
+"target": "הערה",
+"backtrans": "Note"
+},
+{
+"key": "dateLabel",
+"english": "Date",
+"target": "תאריך",
+"backtrans": "Date"
+},
+{
+"key": "accentBlue",
+"english": "Blue",
+"target": "כחול",
+"backtrans": "Blue"
+},
+{
+"key": "accentIndigo",
+"english": "Indigo",
+"target": "אינדיגו",
+"backtrans": "Indigo"
+},
+{
+"key": "accentEmerald",
+"english": "Emerald",
+"target": "אזמרגד",
+"backtrans": "Emerald"
+},
+{
+"key": "accentCrimson",
+"english": "Crimson",
+"target": "ארגמן",
+"backtrans": "Crimson/maroon (ארגמן, closer to purple-red/magenta)"
+},
+{
+"key": "accentAmber",
+"english": "Amber",
+"target": "ענבר",
+"backtrans": "Amber"
+},
+{
+"key": "accentViolet",
+"english": "Violet",
+"target": "סגול",
+"backtrans": "Purple"
+},
+{
+"key": "tickerLanguages",
+"english": "{count} LANGUAGES",
+"target": "{count} שפות",
+"backtrans": "{count} languages"
+},
+{
+"key": "termsOfServiceLabel",
+"english": "Terms of Service",
+"target": "תנאי שימוש",
+"backtrans": "Terms of use"
+},
+{
+"key": "openSourceLicensesLabel",
+"english": "Open-source licenses",
+"target": "רישיונות קוד פתוח",
+"backtrans": "Open source licenses"
+},
+{
+"key": "whatsNewTitle",
+"english": "What's New",
+"target": "מה חדש",
+"backtrans": "What's new"
+},
+{
+"key": "whatsNewContinue",
+"english": "Continue",
+"target": "המשך",
+"backtrans": "Continue"
+},
+{
+"key": "tickerTxtExport",
+"english": "TXT EXPORT",
+"target": "ייצוא TXT",
+"backtrans": "TXT export"
+},
+{
+"key": "tickerCsvExport",
+"english": "CSV EXPORT",
+"target": "ייצוא CSV",
+"backtrans": "CSV export"
+},
+{
+"key": "whatsNewBody",
+"english": "Welcome to KatharScan! This is the first public release featuring unlimited scanning, 29 languages, and export to PDF, Word, TXT, JPG, PNG, and CSV.",
+"target": "ברוכים הבאים ל-KatharScan! זוהי המהדורה הציבורית הראשונה עם סריקה בלתי מוגבלת, 29 שפות וייצוא ל-PDF, Word, TXT, JPG, PNG ו-CSV.",
+"backtrans": "Welcome to KatharScan! This is the first public edition with unlimited scanning, 29 languages and export to PDF, Word, TXT, JPG, PNG and CSV."
+},
+{
+"key": "engagementSectionLabel",
+"english": "ENGAGEMENT & NOTIFICATIONS",
+"target": "מעורבות והתראות",
+"backtrans": "Engagement and notifications"
+},
+{
+"key": "enableNotificationsLabel",
+"english": "Enable Notifications",
+"target": "אפשר התראות",
+"backtrans": "Enable notifications (masculine singular imperative)"
+},
+{
+"key": "enableNotificationsSubtitle",
+"english": "Allow background reminders for unexported documents",
+"target": "אפשר תזכורות ברקע עבור מסמכים שלא יוצאו",
+"backtrans": "Enable background reminders for documents that were not exported"
+},
+{
+"key": "enableReviewPromptsLabel",
+"english": "Enable Review Prompts",
+"target": "אפשר בקשות דירוג",
+"backtrans": "Enable rating requests"
+},
+{
+"key": "enableReviewPromptsSubtitle",
+"english": "Allow the app to occasionally ask for a rating",
+"target": "אפשר לאפליקציה לבקש דירוג מדי פעם",
+"backtrans": "Allow the app to ask for a rating once in a while"
+},
+{
+"key": "enableSharePromptsLabel",
+"english": "Enable Share Prompts",
+"target": "אפשר בקשות שיתוף",
+"backtrans": "Enable sharing requests"
+},
+{
+"key": "enableSharePromptsSubtitle",
+"english": "Allow the app to occasionally suggest sharing",
+"target": "אפשר לאפליקציה להציע שיתוף מדי פעם",
+"backtrans": "Allow the app to suggest sharing once in a while"
+},
+{
+"key": "exportFormatCsvDescription",
+"english": "Spreadsheet data",
+"target": "נתוני גיליון",
+"backtrans": "Spreadsheet data"
+},
+{
+"key": "watermarkDefaultText",
+"english": "CONFIDENTIAL",
+"target": "סודי",
+"backtrans": "Confidential"
+},
+{
+"key": "emailAttachmentNotIncluded",
+"english": "The pages could not be attached to the email. Use Share to send the pages.",
+"target": "לא ניתן היה לצרף את העמודים לדוא\"ל. השתמשו בשיתוף כדי לשלוח את העמודים.",
+"backtrans": "It was not possible to attach the pages to the email. Use sharing to send the pages."
+},
+{
+"key": "sealDefaultMainText",
+"english": "YOUR COMPANY",
+"target": "החברה שלך",
+"backtrans": "Your company"
+},
+{
+"key": "extractedPageDefaultTitle",
+"english": "Extracted Page",
+"target": "עמוד שחולץ",
+"backtrans": "Page that was extracted"
+},
+{
+"key": "printRangeAll",
+"english": "All pages",
+"target": "כל העמודים",
+"backtrans": "All pages"
+},
+{
+"key": "printRangeCurrent",
+"english": "Current",
+"target": "נוכחי",
+"backtrans": "Current"
+},
+{
+"key": "printRangeRange",
+"english": "Range",
+"target": "טווח",
+"backtrans": "Range"
+},
+{
+"key": "printFilterNone",
+"english": "No filter",
+"target": "ללא סינון",
+"backtrans": "Without filtering"
+},
+{
+"key": "removeFromFavorites",
+"english": "Remove from Favorites",
+"target": "הסר מהמועדפים",
+"backtrans": "Remove from favorites"
+},
+{
+"key": "addToFavorites",
+"english": "Add to Favorites",
+"target": "הוסף למועדפים",
+"backtrans": "Add to favorites"
+},
+{
+"key": "saveFailedPrefix",
+"english": "Save failed:",
+"target": "השמירה נכשלה:",
+"backtrans": "The saving failed:"
+},
+{
+"key": "ocrScriptArabic",
+"english": "العربية (Arabic)",
+"target": "العربية (Arabic)",
+"backtrans": "العربية (Arabic)"
+},
+{
+"key": "ocrScriptRussian",
+"english": "Русский (Russian)",
+"target": "Русский (Russian)",
+"backtrans": "Русский (Russian)"
+},
+{
+"key": "ocrScriptUkrainian",
+"english": "Українська (Ukrainian)",
+"target": "Українська (Ukrainian)",
+"backtrans": "Українська (Ukrainian)"
+},
+{
+"key": "ocrScriptGreek",
+"english": "Ελληνικά (Greek)",
+"target": "Ελληνικά (Greek)",
+"backtrans": "Ελληνικά (Greek)"
+},
+{
+"key": "ocrScriptHebrew",
+"english": "עברית (Hebrew)",
+"target": "עברית (Hebrew)",
+"backtrans": "עברית (Hebrew)"
+},
+{
+"key": "ocrScriptThai",
+"english": "ไทย (Thai)",
+"target": "ไทย (Thai)",
+"backtrans": "ไทย (Thai)"
+},
+{
+"key": "ocrScriptBengali",
+"english": "বাংলা (Bengali)",
+"target": "বাংলা (Bengali)",
+"backtrans": "বাংলা (Bengali)"
+},
+{
+"key": "ocrStatusInstalled",
+"english": "Installed",
+"target": "מותקן",
+"backtrans": "Installed"
+},
+{
+"key": "ocrStatusDownloading",
+"english": "Downloading…",
+"target": "מוריד…",
+"backtrans": "Downloading…"
+},
+{
+"key": "exportNoTextError",
+"english": "This document has no text yet. Run OCR on it first.",
+"target": "במסמך זה עדיין אין טקסט. הפעילו קודם זיהוי טקסט (OCR).",
+"backtrans": "This document does not yet have text. Run text recognition (OCR) first."
+},
+{
+"key": "saveFailedBanner",
+"english": "Your latest changes could not be saved.",
+"target": "לא ניתן היה לשמור את השינויים האחרונים שלך.",
+"backtrans": "It was not possible to save your latest changes."
+},
+{
+"key": "editLabel",
+"english": "Edit",
+"target": "עריכה",
+"backtrans": "Editing"
+},
+{
+"key": "fillTapHint",
+"english": "Tap the page where you want to type",
+"target": "הקש על המקום בעמוד שבו תרצה להקליד",
+"backtrans": "Tap on the place on the page where you want to type (masculine singular)"
+},
+{
+"key": "fillTypeHint",
+"english": "Type here",
+"target": "הקלד כאן",
+"backtrans": "Type here (masculine singular imperative)"
+},
+{
+"key": "clearPage",
+"english": "Clear page",
+"target": "נקה עמוד",
+"backtrans": "Clear page"
+},
+{
+"key": "clearAllPages",
+"english": "Clear all pages",
+"target": "נקה את כל העמודים",
+"backtrans": "Clear all the pages"
+},
+{
+"key": "clearedCount",
+"english": "Cleared {count}",
+"target": "נוקו {count}",
+"backtrans": "{count} were cleared"
+},
+{
+"key": "idLayoutRealSize",
+"english": "Real size",
+"target": "גודל אמיתי",
+"backtrans": "Real size"
+},
+{
+"key": "idLayoutFullWidth",
+"english": "Full width",
+"target": "רוחב מלא",
+"backtrans": "Full width"
+},
+{
+"key": "pagesToReadTitle",
+"english": "Pages to read",
+"target": "עמודים לקריאה",
+"backtrans": "Pages for reading"
+},
+{
+"key": "pagesToReadHint",
+"english": "This PDF has {count} pages. Pages that are pictures are read with OCR (about 10 seconds each); pages with real text are instant.",
+"target": "ל-PDF הזה {count} עמודים. עמודים שהם תמונות נקראים ב-OCR (כ-10 שניות כל אחד); עמודי טקסט אמיתי מיידיים.",
+"backtrans": "This PDF has {count} pages. Pages that are images are read by OCR (about 10 seconds each); real-text pages are instant."
+},
+{
+"key": "pageFromLabel",
+"english": "From page",
+"target": "מעמוד",
+"backtrans": "From page"
+},
+{
+"key": "pageToLabel",
+"english": "To page",
+"target": "עד עמוד",
+"backtrans": "Until page"
+},
+{
+"key": "readingPageProgress",
+"english": "Page {page} of {total}",
+"target": "עמוד {page} מתוך {total}",
+"backtrans": "Page {page} out of {total}"
+},
+{
+"key": "readingPageEta",
+"english": "Page {page} of {total} · about {minutes} min left",
+"target": "עמוד {page} מתוך {total} · נותרו כ-{minutes} דק׳",
+"backtrans": "Page {page} out of {total} · about {minutes} min' remaining"
+},
+{
+"key": "sealShapeRound",
+"english": "Round",
+"target": "עגול",
+"backtrans": "Round"
+},
+{
+"key": "sealFontSans",
+"english": "Clean",
+"target": "נקי",
+"backtrans": "Clean"
+},
+{
+"key": "sealFontSerif",
+"english": "Classic",
+"target": "קלאסי",
+"backtrans": "Classic"
+},
+{
+"key": "sealInkLook",
+"english": "Worn stamp look",
+"target": "מראה חותמת משומשת",
+"backtrans": "Used-stamp look"
+},
+{
+"key": "sealSaveToLibrary",
+"english": "Save this seal",
+"target": "שמירת החותמת",
+"backtrans": "Saving the stamp"
+},
+{
+"key": "sealSavedHeading",
+"english": "Saved seals",
+"target": "חותמות שמורות",
+"backtrans": "Saved stamps"
+},
+{
+"key": "sealTextColorLabel",
+"english": "Text colour",
+"target": "צבע הטקסט",
+"backtrans": "The text color"
+},
+{
+"key": "sealTextColorSame",
+"english": "Same as ring",
+"target": "כמו הטבעת",
+"backtrans": "Like the ring"
+},
+{
+"key": "sealTextSizePercent",
+"english": "Text size {percent}%",
+"target": "גודל טקסט {percent}%",
+"backtrans": "Text size {percent}%"
+},
+{
+"key": "sealRemoveWhite",
+"english": "Make white transparent",
+"target": "הפיכת הלבן לשקוף",
+"backtrans": "Making the white transparent"
+},
+{
+"key": "sealSavedMessage",
+"english": "Seal saved",
+"target": "החותמת נשמרה",
+"backtrans": "The stamp was saved"
+},
+{
+"key": "signatureTabDraw",
+"english": "Draw",
+"target": "ציור",
+"backtrans": "Drawing"
+},
+{
+"key": "signatureTabType",
+"english": "Type",
+"target": "הקלדה",
+"backtrans": "Typing"
+},
+{
+"key": "signatureTypeHint",
+"english": "Type your name",
+"target": "הקלד את שמך",
+"backtrans": "Type your name (masculine singular imperative)"
+},
+{
+"key": "signatureWidthLabel",
+"english": "Pen width",
+"target": "עובי העט",
+"backtrans": "Pen thickness"
+},
+{
+"key": "signatureFontFlowing",
+"english": "Flowing",
+"target": "זורם",
+"backtrans": "Flowing"
+},
+{
+"key": "signatureFontHandwritten",
+"english": "Handwritten",
+"target": "כתב יד",
+"backtrans": "Handwriting"
+},
+{
+"key": "signatureSavedHeading",
+"english": "Saved signatures",
+"target": "חתימות שמורות",
+"backtrans": "Saved signatures"
+},
+{
+"key": "signatureNewOne",
+"english": "Draw or type a new one",
+"target": "ציור או הקלדה של חדשה",
+"backtrans": "Drawing or typing a new one"
+},
+{
+"key": "signatureDeleteSaved",
+"english": "Remove saved signature",
+"target": "הסרת חתימה שמורה",
+"backtrans": "Removing a saved signature"
+},
+{
+"key": "annotationModeSelect",
+"english": "Select",
+"target": "בחירה",
+"backtrans": "Selection"
+},
+{
+"key": "annotationModeEraser",
+"english": "Eraser",
+"target": "מחק",
+"backtrans": "Eraser (lit. 'erase')"
+},
+{
+"key": "watermarkKindText",
+"english": "Text",
+"target": "טקסט",
+"backtrans": "Text"
+},
+{
+"key": "watermarkKindImage",
+"english": "Image",
+"target": "תמונה",
+"backtrans": "Image"
+},
+{
+"key": "watermarkChooseImage",
+"english": "Choose image",
+"target": "בחירת תמונה",
+"backtrans": "Choosing an image"
+},
+{
+"key": "watermarkLayoutLabel",
+"english": "Layout",
+"target": "פריסה",
+"backtrans": "Layout"
+},
+{
+"key": "watermarkLayoutSingle",
+"english": "Single",
+"target": "יחיד",
+"backtrans": "Single"
+},
+{
+"key": "watermarkLayoutDiagonal",
+"english": "Diagonal",
+"target": "אלכסוני",
+"backtrans": "Diagonal"
+},
+{
+"key": "watermarkLayoutTiled",
+"english": "Tiled",
+"target": "מרוצף",
+"backtrans": "Tiled"
+},
+{
+"key": "watermarkPagesLabel",
+"english": "Pages",
+"target": "עמודים",
+"backtrans": "Pages"
+},
+{
+"key": "watermarkPagesThis",
+"english": "This page",
+"target": "עמוד זה",
+"backtrans": "This page"
+},
+{
+"key": "watermarkPagesAll",
+"english": "All pages",
+"target": "כל העמודים",
+"backtrans": "All pages"
+},
+{
+"key": "watermarkPagesRange",
+"english": "Range",
+"target": "טווח",
+"backtrans": "Range"
+},
+{
+"key": "watermarkPagesRangeHint",
+"english": "e.g. 1-3, 5",
+"target": "לדוגמה 1-3, 5",
+"backtrans": "For example 1-3, 5"
+},
+{
+"key": "watermarkPagesInvalid",
+"english": "Check the pages (the document has {count} pages)",
+"target": "בדוק את העמודים (במסמך {count} עמודים)",
+"backtrans": "Check the pages (the document has {count} pages)"
+},
+{
+"key": "cropAuto",
+"english": "Auto-detect",
+"target": "זיהוי אוטומטי",
+"backtrans": "Automatic detection"
+},
+{
+"key": "cropAspectFree",
+"english": "Free",
+"target": "חופשי",
+"backtrans": "Free"
+},
+{
+"key": "cropAspectId",
+"english": "ID card",
+"target": "תעודה",
+"backtrans": "Certificate/ID"
+},
+{
+"key": "cropAspectSquare",
+"english": "Square",
+"target": "ריבוע",
+"backtrans": "Square"
+},
+{
+"key": "cropNoPageFound",
+"english": "Couldn't find the page edges. Drag the corners.",
+"target": "לא נמצאו קצוות הדף. גררו את הפינות.",
+"backtrans": "The page's edges were not found. Drag the corners."
+},
+{
+"key": "straightenLabel",
+"english": "Straighten",
+"target": "יישור",
+"backtrans": "Alignment/straightening"
+},
+{
+"key": "filterMagicColor",
+"english": "Magic colour",
+"target": "צבע קסום",
+"backtrans": "Magic color"
+},
+{
+"key": "filterBrightnessLabel",
+"english": "Brightness",
+"target": "בהירות",
+"backtrans": "Brightness"
+},
+{
+"key": "filterContrastLabel",
+"english": "Contrast",
+"target": "ניגודיות",
+"backtrans": "Contrast"
+},
+{
+"key": "resizeUpscaleWarning",
+"english": "Enlarging doesn't add detail — the page may look soft.",
+"target": "הגדלה לא מוסיפה פרטים — הדף עלול להיראות מטושטש.",
+"backtrans": "Enlarging does not add details — the page may look blurry. [??: 'דף' (sheet) used where 'image' might be meant]"
+},
+{
+"key": "eraserAutoColorTooltip",
+"english": "Match the page colour automatically",
+"target": "התאמת צבע הדף אוטומטית",
+"backtrans": "Automatic matching of the page's color"
+},
+{
+"key": "eraserZoomTooltip",
+"english": "Zoom and move (pinch)",
+"target": "זום והזזה (צביטה)",
+"backtrans": "Zoom and move (pinch)"
+},
+{
+"key": "pagesSelectTooltip",
+"english": "Select pages",
+"target": "בחירת עמודים",
+"backtrans": "Selecting pages"
+},
+{
+"key": "pagesDeleteCount",
+"english": "Delete {count}",
+"target": "מחיקת {count}",
+"backtrans": "Deleting {count}"
+},
+{
+"key": "pagesDeleteConfirm",
+"english": "Delete {count} pages? They are removed when you save.",
+"target": "למחוק {count} עמודים? הם יוסרו בעת השמירה.",
+"backtrans": "Delete {count} pages? They will be removed upon saving."
+},
+{
+"key": "compressTargetLabel",
+"english": "Max size",
+"target": "גודל מרבי",
+"backtrans": "Maximum size"
+},
+{
+"key": "compressNoLimit",
+"english": "No limit",
+"target": "ללא הגבלה",
+"backtrans": "Without limit"
+},
+{
+"key": "printPaperLabel",
+"english": "Paper",
+"target": "נייר",
+"backtrans": "Paper"
+},
+{
+"key": "printMarginLabel",
+"english": "Margin",
+"target": "שוליים",
+"backtrans": "Margins"
+},
+{
+"key": "printMarginNone",
+"english": "None",
+"target": "ללא",
+"backtrans": "Without"
+},
+{
+"key": "printMarginNarrow",
+"english": "Narrow",
+"target": "צר",
+"backtrans": "Narrow"
+},
+{
+"key": "printMarginNormal",
+"english": "Normal",
+"target": "רגיל",
+"backtrans": "Regular"
+},
+{
+"key": "printFitLabel",
+"english": "Scaling",
+"target": "התאמה",
+"backtrans": "Fitting"
+},
+{
+"key": "printFitFit",
+"english": "Fit page",
+"target": "התאם לדף",
+"backtrans": "Fit to the page"
+},
+{
+"key": "printFitFill",
+"english": "Fill sheet (trims edges)",
+"target": "מלא את הדף (חותך שוליים)",
+"backtrans": "Fill the page (cuts margins)"
+},
+{
+"key": "printPerSheetLabel",
+"english": "Pages per sheet",
+"target": "עמודים לדף",
+"backtrans": "Pages per sheet"
+},
+{
+"key": "emailMessageLabel",
+"english": "Message",
+"target": "הודעה",
+"backtrans": "Message"
+},
+{
+"key": "emailMessageHint",
+"english": "Add a note (optional)",
+"target": "הוסף הערה (לא חובה)",
+"backtrans": "Add a note (optional)"
+},
+{
+"key": "emailLimitMissed",
+"english": "Could not get under {mb} MB; sent the smallest version.",
+"target": "לא ניתן היה לרדת מתחת ל-{mb} MB; נשלחה הגרסה הקטנה ביותר.",
+"backtrans": "It was not possible to go below {mb} MB; the smallest version was sent."
+}
+]
