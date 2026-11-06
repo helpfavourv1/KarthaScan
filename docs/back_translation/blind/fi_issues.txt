@@ -1,0 +1,9 @@
+# Finnish Step B (read by me directly: 164 differing rows read; 396 rows identical to English after normalisation not listed)
+# format: key | proposed Finnish | reason   (current value = app_fi.arb)
+DEFINITE
+(none found; differences were loose back-translations or normal Finnish idiom)
+UNSURE
+stampTickLabel / checkLabel | "Rasti" can mean X or tick; "Ruksi"/"Valintamerkki" may be clearer for a checkmark
+ocrScriptChinese / ocrScriptJapanese / ocrScriptKorean | "Kiina/Japani/Korea" identical to country names; in Finnish the language name is the same word, so acceptable
+annotateTitle | "Merkitse" (Mark) reads as mark/tag rather than annotate
+satLabel | "Kyll" truncated, cryptic

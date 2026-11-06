@@ -1,0 +1,8 @@
+# Spanish Step B (read by me directly: 153 differing rows read; 407 rows identical to English after normalisation not listed)
+# format: key | proposed Spanish | reason   (current value = app_es.arb)
+DEFINITE
+checkLabel | Visto | "Casilla" = checkbox; Check here is the tick/checkmark
+paywallFallbackPrice | $14.99 pago único | "una vez" reads as "once", not a one-time purchase
+UNSURE
+annotationModePen | "Pluma" (quill/fountain pen); "Bolígrafo" more common for a pen tool
+commonClear / clearThis / clearAll | "Borrar" = erase; acceptable
