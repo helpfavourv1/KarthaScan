@@ -1,0 +1,8 @@
+# Korean Step B (read by me directly: 157 differing rows read; 403 identical after normalisation not listed)
+DEFINITE
+(none)
+UNSURE
+appearanceSectionLabel | "화면" = screen; "테마/화면 모드" may be clearer
+fromPageLabel/toPageLabel | bare "부터/까지" as labels; acceptable for ranges
+printFitLabel | "크기 조정" collides with Resize tool wording; "배율" alternative
+sealFontSans | "깔끔한" style label

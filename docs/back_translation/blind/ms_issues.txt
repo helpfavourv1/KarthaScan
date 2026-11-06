@@ -1,0 +1,9 @@
+# Malay Step B (read by me directly: 165 differing rows read; 395 identical after normalisation not listed)
+# format: key | proposed Malay | reason
+DEFINITE
+filterBlackAndWhite | Hitam Putih | "H&P" is an obscure abbreviation
+tickerTapToTypeFilling | KETIK UNTUK ISI | "ISI KETIK-KETIK" reads as repeated tapping
+checkShapeRounded | Bucu bulat | "Bulat" = round (circle), not rounded corners
+UNSURE
+commonClear/clearThis/clearAll/clearPage | "Kosongkan" = empty; acceptable for clear
+sealRemoveWhite | "lutsinar" translucent vs transparent ("telus")
