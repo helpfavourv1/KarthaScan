@@ -1,0 +1,53 @@
+# Hebrew Step B (read by me directly: 300 differing rows read; 260 rows identical to English after normalisation not listed)
+# format: key | proposed Hebrew | reason   (current value = app_he.arb)
+DEFINITE
+undoTooltip | ביטול פעולה | "ביטול" alone = Cancel; undo needs the action noun
+paywallFeatureNoInterstitial | ללא פרסומות במסך מלא | "פרסומות מעבר" (transition ads) is not what interstitial means
+cropAspectId | תעודת זהות | "תעודה" = certificate; English is ID card
+REGISTER (definite inconsistency): the file mixes gender-neutral plural imperatives (בדקו, נסו, צלמו, חתמו) with masculine-singular imperatives (בחר, הקש, שמור, שתף) and infinitives/nouns. Proposed: use plural imperative or action noun consistently:
+frontSideCaptured | הצד הקדמי צולם. כעת צלמו את הצד האחורי. | צלם -> צלמו
+sharePdf | שתפו PDF | שתף
+saveAsDocument | שמרו כמסמך | שמור
+useSavedSignature | השתמשו בשמורה | השתמש
+drawNewSignature | ציירו חדשה | צייר
+signatureChoiceMessage | להשתמש בחתימה השמורה שלכם או לצייר אחת חדשה? | שלך
+noFoldersYetHomeMessage | אין עדיין תיקיות. צרו אחת ממסך הבית. | צור
+extractToNewDocAction | חילוץ למסמך חדש | חלץ
+commonConfirm | אישור | אשר
+lockAspectRatio | נעילת יחס גובה-רוחב | נעל
+autoCopyOcrSubtitle | העתקת טקסט ללוח לאחר הסריקה | העתק
+beepOnCaptureSubtitle | השמעת צליל עם סיום הסריקה | השמע
+saveAsNewDocumentAction | שמירה כמסמך חדש | שמור
+exportAndShareAction | ייצוא ושיתוף | ייצא ושתף
+saveInsideAppWarning | כדי לשמור באפליקציה, בחרו JPG או PNG. יעדים אחרים מיוצאים כקבצים. | בחר
+commonRename | שינוי שם | שנה שם
+saveToDeviceButton | שמירה במכשיר | שמור
+tapToSampleColor | הקישו על נקודה לדגימת הצבע | הקש
+sampleColorTooltip | דגימת צבע מהעמוד | דגום
+billingUnavailableMessage | החיוב אינו זמין — נסו שוב מאוחר יותר. | נסה
+ocrLanguagePackNotReady | חבילת השפה בהורדה או אינה מוכנה. נסו שוב בקרוב. | נסה
+fillInputHint | הקלידו טקסט למילוי | הקלד
+saveToDownloadsAction | שמירה בהורדות | שמור
+paywallTitle | הסרת פרסומות | הסר
+errorReportIssue | דיווח על בעיה | דווח
+resizeTitle | שינוי גודל | שנה
+addTextTitle | הוספת טקסט | הוסף
+addNoteTitle | הוספת הערה | הוסף
+addDateTitle | הוספת תאריך | הוסף
+addCheckboxTitle | הוספת תיבת סימון | הוסף
+sharePromptAction | שיתוף האפליקציה | שתף
+reviewPromptNo | שליחת משוב | שלח
+enableNotificationsLabel | הפעלת התראות | אפשר
+enableReviewPromptsLabel | הפעלת בקשות דירוג | אפשר
+enableSharePromptsLabel | הפעלת בקשות שיתוף | אפשר
+fillTapHint | הקישו על המקום בעמוד שבו תרצו להקליד | הקש/תרצה
+fillTypeHint | הקלידו כאן | הקלד
+signatureTypeHint | הקלידו את שמכם | הקלד את שמך
+clearAllPages | ניקוי כל העמודים | נקה
+commonRevert | שחזור | שחזר
+printFitFit | התאמה לדף | התאם
+printFitFill | מילוי הדף (חותך שוליים) | מלא
+UNSURE
+paywallLegalText | "רכישה שאינה מתכלה" back-translates as non-perishable; check Google Play Hebrew term
+ocrScriptDevanagari | "דוואנגרי" transliteration may be off
+accentViolet | "סגול" = purple
