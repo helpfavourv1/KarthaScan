@@ -1,0 +1,7 @@
+# Japanese Step B (read by me directly: 188 differing rows read; 372 identical after normalisation not listed)
+DEFINITE
+(none)
+UNSURE
+terminology mix | 書き出す/読み込む (commonExport/commonImport) vs エクスポート/インポート elsewhere; ドキュメント vs 書類 mixed
+signatureFontFlowing | "流れる書体" odd
+engagementSectionLabel | "エンゲージメント" marketing jargon

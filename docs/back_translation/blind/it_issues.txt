@@ -1,0 +1,9 @@
+# Italian Step B (read by me directly: 150 differing rows read; 410 identical after normalisation not listed)
+# format: key | proposed Italian | reason
+DEFINITE
+tickerSearch | RICERCA | "CERCA" is the imperative verb, a feature label should be a noun
+watermarkDefaultText | CONFIDENZIALE | "RISERVATO" = reserved; standard watermark term for CONFIDENTIAL is CONFIDENZIALE
+UNSURE
+stampCheckbox/addCheckboxTitle | "Casella di controllo" ok; "Casella di spunta" more common
+engagementSectionLabel | "COINVOLGIMENTO" stiff
+sharePromptTitle/reviewPromptTitle | both "Ti piace KatharScan?" (identical wording; English differs slightly)
