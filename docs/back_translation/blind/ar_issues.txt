@@ -1,0 +1,14 @@
+# Arabic Step B (read by me directly: 265 differing rows read; 295 rows identical to English after normalisation not listed)
+# format: key | proposed Arabic | reason   (current value = app_ar.arb)
+DEFINITE
+letterSizeUS | حجم Letter (الولايات المتحدة) | "حجم الرسالة" reads as message size, not paper size
+pageFormatLetter | Letter (الولايات المتحدة) | "خطاب" = speech/letter-correspondence, not paper size
+tickerDeviceMigration | نقل البيانات بين الأجهزة | "نقل الجهاز" reads as moving the physical device
+tickerAutoCopyOcr | نسخ التعرف الضوئي تلقائيًا | OCR dropped from the label
+progressRasterizing | جارٍ تحويل الصفحات إلى صور… | "معالجة" is generic; rasterizing = converting to images
+UNSURE
+annotateTitle | تعليق may read as "comment" rather than annotate/markup
+hueLabel | الصبغة (dye) — "تدرج اللون" is the more common term for hue
+tickerTapToTypeFilling | "ملء بالنقر" drops the typing aspect
+cropLabel / captions | "قص" vs "اقتصاص" used in pageCropped: inconsistent
+pagesDeleteConfirm, watermarkPagesInvalid | "{count} صفحات/صفحة" not plural-aware for counts 11+ / 1-2

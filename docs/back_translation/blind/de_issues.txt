@@ -1,0 +1,9 @@
+# German Step B (read by me directly: 175 differing rows read; 385 rows identical to English after normalisation not listed)
+# format: key | proposed German | reason   (current value = app_de.arb)
+DEFINITE
+(none found; every difference was a loose back-translation or a normal German rendering)
+UNSURE
+commonClear / clearThis / clearAll / clearLogsTooltip / clearedCount | "Löschen" = delete; "Entfernen/Leeren" would match clearPage ("Seite leeren") more consistently
+sharePromptTitle | identical to reviewPromptTitle ("Gefällt Ihnen KatharScan?"); "Love" nuance lost
+stampBoxLabel / sealShapeBox / sealMainTextLabel | "Rahmen" (frame) for Box; "Kästchen"/"Rechteck" may be clearer
+sealEditTitle | "Siegel bearbeiten" drops "Custom"

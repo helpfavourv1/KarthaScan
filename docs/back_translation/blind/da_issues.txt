@@ -1,0 +1,12 @@
+# Danish Step B (read by me directly: 141 differing rows read; 419 rows identical to English after normalisation not listed)
+# format: key | proposed Danish | reason   (current value = app_da.arb)
+DEFINITE
+stampTickLabel | Flueben | "Kryds" = X/cross mark, not a tick
+checkLabel | Flueben | same
+ocrStatusOnDemand | Ved behov | "Efter forespørgsel" = after an inquiry/query, not on-demand
+UNSURE
+fillSaveSnippet / fillDeleteSnippet | "fragment" is literal; "tekstuddrag"/"tekstklip" may be more natural
+valLabel | "Lys" (light) for HSV Value; "Værdi" may be clearer
+marqueeEraseTooltip | "Markeringsviskning" awkward
+sharePromptTitle | identical to reviewPromptTitle; "Elsker du KatharScan?" keeps the Love/Enjoy distinction
+saveFailedPrefix | "Lagring" = storage; "Kunne ikke gemme:" more natural

@@ -1,0 +1,24 @@
+# Bengali Step B (read by me directly: 173 differing rows read; 387 rows identical to English after normalisation not listed)
+# format: key | proposed Bengali | reason   (current value = app_bn.arb)
+DEFINITE
+commonClear | সাফ করুন | "পরিষ্কার" = clean (adjective), not a Clear action
+clearThis | এটি সাফ করুন | same
+clearAll | সব সাফ করুন | same
+clearLogsTooltip | লগ সাফ করুন | same
+clearPage | পৃষ্ঠা সাফ করুন | "মুছুন" reads as deleting the page itself
+clearAllPages | সব পৃষ্ঠা সাফ করুন | same
+clearedCount | {count}টি সাফ করা হয়েছে | "মুছে ফেলা" = deleted
+undoTooltip | পূর্বাবস্থায় ফেরান | "পূর্বাবস্থা" is a noun ("former state"), not an Undo action
+alignLabel | সারিবদ্ধ করুন | adjective "aligned" rather than action
+onboardingEditSubtitle | প্রতিটি সম্পাদনা বিপরীতযোগ্য থাকে — পূর্বাবস্থায় ফেরান, পুনরায় করুন এবং যেকোনো সময় আসলে ফিরে যান। | undo/redo were nouns, sentence read incomplete
+ticker100OnDevicePrivacy | আপনার নথি আপনার ডিভাইসেই থাকে | "ডকুমেন্ট" inconsistent with "নথি" used everywhere else
+storageSectionLabel | স্টোরেজ | "সংগ্রহস্থল" = repository/collection place, not device storage
+whatsNewBody | KatharScan-এ স্বাগতম! এটি প্রথম পাবলিক রিলিজ, যেখানে আছে সীমাহীন স্ক্যানিং, 29টি ভাষা এবং PDF, Word, TXT, JPG, PNG ও CSV-তে রপ্তানি। | Bengali numeral ২৯ and "এক্সপোর্ট" inconsistent with rest of app (Western digits, রপ্তানি)
+pagesToReadHint | এই PDF-এ {count}টি পৃষ্ঠা আছে। ছবির পৃষ্ঠা OCR দিয়ে পড়া হয় (প্রতিটি প্রায় 10 সেকেন্ড); আসল লেখার পৃষ্ঠা তাৎক্ষণিক। | Bengali numeral ১০ inconsistent with rest of app
+docxWarningMessage | DOCX উৎস পৃষ্ঠা হিসাবে ভালোভাবে রেন্ডার হয় না — অ্যাপের ভেতরে সংরক্ষণ শুধু ছবি, PDF, TXT বা CSV উৎস থেকে JPG/PNG-তে সীমাবদ্ধ। এই ফাইলের জন্য রপ্তানি ও শেয়ার ব্যবহার করুন। | original word order ambiguous (who is limited to what)
+UNSURE
+commonExtract / extractedTextTitle / extractToNewDocAction | "নিষ্কাশন" is formal/stiff
+accentCrimson | "গাঢ় লাল" loses crimson nuance
+printFitLabel | "ফিটিং" for Scaling is a loanword; "মাপ সমন্বয়" may be clearer
+onboardingPrivacyTitle | "শুরু থেকেই ব্যক্তিগত" = private from the start, not "by design"
+engagementSectionLabel | "সম্পৃক্ততা" stiff
