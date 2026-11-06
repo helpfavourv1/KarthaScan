@@ -1,0 +1,11 @@
+# Indonesian Step B (read by me directly: 183 differing rows read; 377 identical after normalisation not listed)
+# format: key | proposed Indonesian | reason
+DEFINITE
+paywallFallbackPrice | $14.99 sekali bayar | "sekali" alone is incomplete; "sekali bayar" = one-time payment
+UNSURE
+commonClear/clearThis/clearAll/clearPage | "Bersihkan" acceptable; "Hapus" alternatives; back-translation "Clean" is engine noise
+filterMagicColor | "Warna ajaib" literal; "Warna otomatis" may read more natural
+valLabel | "Nilai" for HSV Value; "Kecerahan" may be clearer
+progressRasterizing | "Merasterisasi" technical jargon
+onboardingWelcomeSubtitle | "Kantor dokumen lengkap" slightly odd
+engagementSectionLabel | drops the word ENGAGEMENT

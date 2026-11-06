@@ -1,0 +1,19 @@
+# Hindi Step B (read by me directly: 206 differing rows read; 354 rows identical to English after normalisation not listed)
+# format: key | proposed Hindi | reason   (current value = app_hi.arb)
+DEFINITE
+commonClear | साफ़ करें | "मिटाएं" is used for both Delete and Clear; clearedCount already uses साफ़
+addTextTitle | टेक्स्ट जोड़ें | "पाठ" formal, inconsistent with "टेक्स्ट" used everywhere else
+onboardingSignTitle | हस्ताक्षर, भरें और सील | "साइन, फिल" is English transliterated, mixed with Hindi
+onboardingEditSubtitle | हर संपादन पलटा जा सकता है — कभी भी पूर्ववत करें, फिर से करें, मूल पर लौटें। | "उत्क्रमणीय" very formal/obscure
+enableReviewPromptsLabel | समीक्षा अनुरोध सक्षम करें | "संकेत" = hint/signal, not a prompt/request
+enableSharePromptsLabel | साझा करने के अनुरोध सक्षम करें | same
+lockAspectRatio | अनुपात लॉक करें | "पहलू अनुपात" is an unnatural calque
+commonRevert | मूल पर लौटें | "वापस लें" = take back; matches tickerRevertToOriginal
+printFitLabel | स्केलिंग | "फ़िट" does not say Scaling
+opacityPercentLabel | अपारदर्शिता: {percent}% | "अस्पष्टता" = vagueness/unclearness, not opacity
+progressRasterizing | पृष्ठ इमेज में बदले जा रहे हैं… | "रेस्टराइज़" is a meaningless transliteration
+UNSURE
+signatureTabDraw / drawNewSignature / signatureNewOne | "बनाएँ" = make; "ड्रॉ करें" may be clearer
+tickerNonDestructiveEditing | "गैर-विनाशकारी" stiff
+engagementSectionLabel | "सहभागिता" = participation
+valLabel | "मान" may read as numeric value
