@@ -1,0 +1,10 @@
+# French Step B (read by me directly: 227 differing rows read; 333 rows identical to English after normalisation not listed)
+# format: key | proposed French | reason   (current value = app_fr.arb)
+DEFINITE
+paywallFallbackPrice | $14.99 achat unique | "une fois" reads as "once", not a one-time purchase
+drawNewSignature | Dessiner une nouvelle | "Nouvelle signature" drops the "Draw" action
+reviewPromptNo | Envoyer des commentaires | "Envoyer un avis" = send a review; English is Send Feedback
+sealTextColorSame | Comme l'anneau | curly apostrophe inconsistent with the rest of the file
+UNSURE
+undoTooltip | "Annuler" is same word as Cancel; standard in French UIs, left as is
+paywallTitle | "pubs" informal vs "publicités" elsewhere
