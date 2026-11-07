@@ -1,0 +1,8 @@
+# Dutch Step B (read by me directly: 156 differing rows read; 404 identical after normalisation not listed)
+# format: key | proposed Dutch | reason
+DEFINITE
+enableSharePromptsSubtitle | De app toestaan af en toe voor te stellen om te delen | current word order "delen voor te stellen" is ungrammatical
+sealDefaultMainText | JOUW BEDRIJF | "UW" is formal; rest of UI uses informal "je"
+UNSURE
+redoTooltip/tickerUndoRedo | "Opnieuw" alone for Redo; "Opnieuw doen" clearer (Word NL uses "Opnieuw")
+debugLogsLabel | "Debuglogboeken"
