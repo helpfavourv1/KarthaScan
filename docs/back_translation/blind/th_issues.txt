@@ -1,0 +1,14 @@
+# Thai Step B (read by me directly: 224 differing rows read; 336 identical after normalisation not listed)
+# format: key | proposed Thai | reason
+DEFINITE
+saveInsideAppWarning | หากต้องการบันทึกในแอป ให้เลือก JPG หรือ PNG รูปแบบอื่นจะถูกส่งออกเป็นไฟล์ | first sentence missing in translation
+watermarkDefaultText | เป็นความลับ | "ลับ" = Secret, CONFIDENTIAL is "เป็นความลับ"
+commonApply | นำไปใช้ | bare "ใช้" ambiguous (use)
+sealInkLook | ลักษณะตราประทับเก่า | "ลายตราประทับเก่า" = old stamp pattern, not worn look
+UNSURE
+sampleColorTooltip | "ดูดสีจากหน้า" colloquial eyedropper
+filterMagicColor | "สีมหัศจรรย์" literal
+filterColorEnhance | "เพิ่มสี" = add colour
+annotateTitle | "คำอธิบายประกอบ" = caption
+paywallLegalText | adds Google Play/App Store not in English
+docxWarningMessage | telegraphic
