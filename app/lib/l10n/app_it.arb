@@ -407,7 +407,7 @@
   "tickerFolders": "CARTELLE",
   "tickerTags": "TAG",
   "tickerFavorites": "PREFERITI",
-  "tickerSearch": "CERCA",
+  "tickerSearch": "RICERCA",
   "tickerDarkMode": "MODALITÀ SCURA",
   "tickerAccentThemes": "TEMI ACCENTO",
   "tickerDeviceMigration": "MIGRAZIONE DISPOSITIVO",
@@ -573,7 +573,7 @@
   "@exportFormatCsvDescription": {
     "description": "Localized string for exportFormatCsvDescription"
   },
-  "watermarkDefaultText": "RISERVATO",
+  "watermarkDefaultText": "CONFIDENZIALE",
   "@watermarkDefaultText": {
     "description": "Localized string for watermarkDefaultText"
   },

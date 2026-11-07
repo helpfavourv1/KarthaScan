@@ -50,7 +50,7 @@
   "removeFromFolderTooltip": "Xóa khỏi thư mục",
   "noDocumentsInFolder": "Chưa có tài liệu trong thư mục này.",
   "folderUnavailable": "Thư mục này không còn khả dụng.",
-  "migrationTitle": "Di chuyển thiết bị",
+  "migrationTitle": "Chuyển sang thiết bị mới",
   "migrationExplainer": "Đây không phải đồng bộ tự động. Xuất tạo một tệp sao lưu mã hóa duy nhất mà bạn tự chuyển sang thiết bị mới rồi nhập ở đó.",
   "exportBackupButton": "Xuất bản sao lưu mã hóa",
   "importBackupButton": "Nhập từ bản sao lưu",
@@ -84,7 +84,7 @@
   "languageSectionLabel": "Ngôn ngữ",
   "appLanguageLabel": "Ngôn ngữ ứng dụng",
   "storageSectionLabel": "Lưu trữ",
-  "deviceMigrationLabel": "Di chuyển thiết bị",
+  "deviceMigrationLabel": "Chuyển sang thiết bị mới",
   "subscriptionSectionLabel": "Đăng ký",
   "aboutSectionLabel": "Giới thiệu",
   "privacyPolicyLabel": "Chính sách bảo mật",
@@ -360,7 +360,7 @@
   "idPdfErrorPrefix": "Lỗi tạo PDF thẻ căn cước",
   "genericErrorPrefix": "Lỗi",
   "annotateTitle": "Chú thích",
-  "placementsCountLabel": "{count} đã đặt",
+  "placementsCountLabel": "{count, plural, =0{Chưa đặt gì} =1{1 đã đặt} other{{count} đã đặt}}",
   "@placementsCountLabel": {
     "placeholders": {
       "count": {
@@ -685,8 +685,8 @@
   "editLabel": "Sửa",
   "fillTapHint": "Chạm vào trang tại vị trí bạn muốn nhập",
   "fillTypeHint": "Nhập tại đây",
-  "clearPage": "Xóa trang",
-  "clearAllPages": "Xóa tất cả trang",
+  "clearPage": "Xóa trên trang",
+  "clearAllPages": "Xóa trên mọi trang",
   "clearedCount": "Đã xóa {count}",
   "idLayoutRealSize": "Kích thước thật",
   "idLayoutFullWidth": "Toàn chiều rộng",

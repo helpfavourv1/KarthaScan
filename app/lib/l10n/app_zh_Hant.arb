@@ -137,7 +137,7 @@
   "addSignature": "新增簽名",
   "commonUse": "使用",
   "stampTickedLabel": "已勾選",
-  "stampBoxLabel": "邊框",
+  "stampBoxLabel": "方框",
   "stampTickLabel": "勾",
   "commonCustom": "自訂",
   "commonChange": "更改",
@@ -277,7 +277,7 @@
   "placementsCountLabel": "{count, plural, =0{未放置} =1{已放置1個} other{已放置{count}個}}",
   "ocrUnavailableTooltip": "此裝置不支援OCR。",
   "docScannerUnsupportedMessage": "您的裝置不支援進階文件掃描器。請使用相機應用程式拍照，然後點選下方的「匯入」進行裁切和儲存。",
-  "billingUnavailableMessage": "目前無法使用計費功能，請稍後再試。",
+  "billingUnavailableMessage": "目前無法使用付款功能，請稍後再試。",
   "ocrNoInternetMessage": "無網際網路。請連線一次以下載語言包。",
   "ocrLanguagePackNotReady": "語言包正在下載或未就緒。請稍後再試。",
   "undoTooltip": "復原",
@@ -585,7 +585,7 @@
   "@exportNoTextError": {
     "description": "Shown when a text export is asked for a document with no recognized text"
   },
-  "saveFailedBanner": "無法儲存您最近的更改。",
+  "saveFailedBanner": "無法儲存您最近的變更。",
   "@saveFailedBanner": {
     "description": "Banner shown when saving document changes failed; a Try again button sits next to it"
   },

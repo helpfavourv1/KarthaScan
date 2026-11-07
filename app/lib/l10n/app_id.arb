@@ -337,7 +337,7 @@
   "saveToDownloadsAction": "Simpan ke Unduhan",
   "paywallTitle": "Hapus Iklan",
   "paywallSubtitle": "Dukung KatharScan dengan pembelian sekali. Semua fitur tetap gratis.",
-  "paywallFallbackPrice": "$14.99 sekali",
+  "paywallFallbackPrice": "$14.99 sekali bayar",
   "paywallFeatureNoBanner": "Tidak ada lagi iklan banner",
   "paywallFeatureNoInterstitial": "Tidak ada lagi iklan interstisial",
   "paywallFeatureFreeForever": "Semua fitur gratis selamanya",

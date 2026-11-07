@@ -568,7 +568,7 @@
   "enableReviewPromptsLabel": "Beoordelingsprompts inschakelen",
   "enableReviewPromptsSubtitle": "De app toestaan af en toe om een beoordeling te vragen",
   "enableSharePromptsLabel": "Deelprompts inschakelen",
-  "enableSharePromptsSubtitle": "De app toestaan af en toe delen voor te stellen",
+  "enableSharePromptsSubtitle": "De app toestaan af en toe voor te stellen om te delen",
   "exportFormatCsvDescription": "Spreadsheetgegevens",
   "@exportFormatCsvDescription": {
     "description": "Localized string for exportFormatCsvDescription"
@@ -581,7 +581,7 @@
   "@emailAttachmentNotIncluded": {
     "description": "Localized string for emailAttachmentNotIncluded"
   },
-  "sealDefaultMainText": "UW BEDRIJF",
+  "sealDefaultMainText": "JOUW BEDRIJF",
   "@sealDefaultMainText": {
     "description": "Localized string for sealDefaultMainText"
   },

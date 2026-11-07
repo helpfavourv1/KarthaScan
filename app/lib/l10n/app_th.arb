@@ -247,7 +247,7 @@
   "saveAsNewDocumentAction": "บันทึกเป็นเอกสารใหม่",
   "exportAndShareAction": "ส่งออกและแชร์",
   "docxWarningMessage": "แหล่งที่มา DOCX แสดงผลเป็นหน้าได้ไม่ดี — การบันทึกในแอปจำกัดเฉพาะ JPG/PNG จากภาพ, PDF, TXT หรือ CSV ใช้ส่งออกและแชร์สำหรับไฟล์นี้",
-  "saveInsideAppWarning": "รูปแบบอื่นจะถูกส่งออกเป็นไฟล์",
+  "saveInsideAppWarning": "หากต้องการบันทึกในแอป ให้เลือก JPG หรือ PNG รูปแบบอื่นจะถูกส่งออกเป็นไฟล์",
   "commonConvert": "แปลง",
   "conversionStarting": "กำลังเริ่ม...",
   "convertedDocTitle": "แปลงแล้ว {date}",
@@ -341,7 +341,7 @@
   "commonSize": "ขนาด",
   "sampleColorTooltip": "ดูดสีจากหน้า",
   "marqueeEraseTooltip": "ลบพื้นที่เลือก",
-  "commonApply": "ใช้",
+  "commonApply": "นำไปใช้",
   "filterTitle": "ตัวกรอง",
   "intensityLabel": "ความเข้ม",
   "selectRegionTitle": "เลือกพื้นที่",
@@ -573,7 +573,7 @@
   "@exportFormatCsvDescription": {
     "description": "Localized string for exportFormatCsvDescription"
   },
-  "watermarkDefaultText": "ลับ",
+  "watermarkDefaultText": "เป็นความลับ",
   "@watermarkDefaultText": {
     "description": "Localized string for watermarkDefaultText"
   },
@@ -699,7 +699,7 @@
   "sealShapeRound": "วงกลม",
   "sealFontSans": "เรียบ",
   "sealFontSerif": "คลาสสิก",
-  "sealInkLook": "ลายตราประทับเก่า",
+  "sealInkLook": "ลักษณะตราประทับเก่า",
   "sealSaveToLibrary": "บันทึกตรานี้",
   "sealSavedHeading": "ตราที่บันทึกไว้",
   "sealTextColorLabel": "สีข้อความ",
