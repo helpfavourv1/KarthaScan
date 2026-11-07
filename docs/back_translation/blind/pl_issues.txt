@@ -1,0 +1,9 @@
+# Polish Step B (read by me directly: 189 differing rows read; 371 identical after normalisation not listed)
+# format: key | proposed Polish | reason
+DEFINITE
+stampTickLabel | Ptaszek | "Znacznik" = marker, not tick; consistent with checkLabel
+satLabel | Nasyc. | "Nas" is a cryptic truncation
+billingUnavailableMessage | Płatności są niedostępne — spróbuj później. | "Rozliczanie" = settling accounts, wrong for in-app purchase
+UNSURE
+sealCreateTitle/sealCustom/commonCustom | "Niestandardowy" = non-standard; "Własny" more natural
+sealEditTitle | drops "custom"
