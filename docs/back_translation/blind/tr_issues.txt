@@ -1,0 +1,15 @@
+# Turkish Step B (read by me directly: 138 differing rows read; 422 identical after normalisation not listed)
+# format: key | proposed Turkish | reason
+DEFINITE
+billingUnavailableMessage | Ödeme kullanılamıyor — daha sonra tekrar deneyin. | "Faturalandırma" = invoicing, wrong for in-app purchase
+paywallLegalText | Bu tek seferlik, kalıcı bir satın alımdır. Aynı mağaza hesabıyla istediğiniz zaman herhangi bir cihazda geri yükleyebilirsiniz. | "tüketilemez" unnatural
+valLabel | Değer | cryptic abbreviation "Değ"
+accentCrimson | Koyu kırmızı | "Kızıl" is plain red/ginger
+printPerSheetLabel | Kâğıt başına sayfa | "Yaprak" unusual
+eraserZoomTooltip | Yakınlaştır ve kaydır (iki parmakla) | "çimdikle" literal pinch
+placementsCountLabel | {count, plural, =0{Hiçbir şey yerleştirilmedi} =1{1 yerleştirildi} other{{count} yerleştirildi}} | vague "yerleştirilen"
+UNSURE
+tickerNonDestructiveEditing | "TAHRİBATSIZ" literal
+tickerTapToTypeFilling | "DOKUN-YAZ DOLDURMA"
+textUnderline | "A" letter ambiguous with font letter
+docxWarningMessage | awkward
