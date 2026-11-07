@@ -1,0 +1,21 @@
+# Ukrainian Step B (read by me directly: 192 differing rows read; 368 identical after normalisation not listed)
+# note: exportFormatPdfDescription/exportFormatDocxLabel back-translation is swapped (Step A row misalignment); targets are correct, no fix.
+# format: key | proposed Ukrainian | reason
+DEFINITE
+paywallLegalText | Це одноразова безстрокова покупка. Відновіть її будь-коли на будь-якому пристрої з тим самим акаунтом магазину. | "неспоживча" is a calque
+sealFontSans | Простий | "Строгий" = strict, not clean/sans
+satLabel | Насич. | "Нас" cryptic
+valLabel | Яскр. | "Знач" = meaning; HSV value is brightness
+filterMagicColor | Магічний колір | "Магія кольору" = colour magic
+accentCrimson | Темно-червоний | "Малиновий" = raspberry
+filterFavorites | Обрані | inconsistent Вибране/Вибрані/обраного
+favoriteTooltip | Обране | consistency
+emptyFavorites | Немає обраного. Натисніть на іконку зірки в документі, щоб додати. | consistency (вибраного -> обраного)
+editLabel | Редагувати | "Змінити" = change
+signatureTabType | Набрати | "Ввести" = enter
+signatureNewOne | Намалювати або набрати новий | consistency
+UNSURE
+idCard strings (titleIdCard, modeIdCard, cropIdCardTitle, tickerIdCardMode, captionIdCard, idCardPdfGenerated, idPdfErrorPrefix) | "посвідчення" = ID certificate; "ID-картка" may be clearer
+watermarkLayoutTiled | "Мозаїка"
+removeFromFolderTooltip | "Видалити з папки" could be read as deletion
+accentAmber | "Бурштин" noun vs adjective colours
