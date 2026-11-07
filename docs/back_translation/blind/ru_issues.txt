@@ -1,0 +1,9 @@
+# Russian Step B (read by me directly: 223 differing rows read; 337 identical after normalisation not listed)
+# format: key | proposed Russian | reason
+DEFINITE
+paywallLegalText | Это нерасходуемая покупка. Восстановите её в любое время на любом устройстве с той же учётной записью магазина. | "непотребительская" is not the store term; "нерасходуемая" is
+filterMagicColor | Волшебный цвет | "Магия цвета" is not a natural filter name
+UNSURE
+removeAdsTitle/paywallTitle | "Удалить рекламу" vs "Отключить рекламу"
+sealFontSans | "Строгий" label for sans font
+printFitFit | "Вписать" terse
