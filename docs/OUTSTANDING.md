@@ -241,3 +241,5 @@ Main fixes: "capture"/"region" wording, leftover English in tickerLanguages, rem
 Not applied (style choices, need a native speaker): Hindi पाठ/टेक्स्ट, Japanese Export/Import terms, Ukrainian favourites/ID-card consistency, Italian "Ancora nessun…" order, Spanish Agregar/Añadir, pagesDeleteConfirm plural edge cases, paywallFallbackPrice wording, Russian paywallLegalText, minor Hebrew/Polish phrasing.
 Caveat: the review was done by Claude, so it shares Claude's blind spots. Native review is still needed.
 zh-TW is not proven on the emulator (unit-tested only).
+
+- Back-translation Step B (done, 28 files, commit 38ee7c8): blind back-translations in `docs/back_translation/blind/` were compared to the English by me directly (no subagents), reading every row whose back-translation differed from the English after normalisation. Identical rows were not listed. 150 DEFINITE fixes applied by script (placeholders checked); UNSURE items are in each `{L}_issues.txt` for native speakers. Limit: one reader, so shared blind spots; pt_PT only covers its 171 override keys.
