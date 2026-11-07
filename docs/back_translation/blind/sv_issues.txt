@@ -1,0 +1,12 @@
+# Swedish Step B (read by me directly: 148 differing rows read; 412 identical after normalisation not listed)
+# format: key | proposed Swedish | reason
+DEFINITE
+filterBlackAndWhite | Svartvitt | "S&V" obscure abbreviation
+stampTickLabel | Bock | "Kryss" = cross/X; Swedish tick is "bock"
+checkLabel | Bock | same
+billingUnavailableMessage | Betalning är inte tillgänglig — försök igen senare. | "Fakturering" = invoicing, wrong for in-app purchase
+commonReset | Nollställ | identical to commonRevert ("Återställ")
+tickerNoteStamps | ANTECKNINGSSTÄMPLAR | "NOT" ambiguous (note/net/music)
+UNSURE
+valLabel | "Ljus" for HSV Value
+ocrScriptLatin | "Latinsk" adjective vs nouns elsewhere
