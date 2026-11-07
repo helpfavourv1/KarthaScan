@@ -30,6 +30,8 @@ void _show(
   final ScaffoldFeatureController<SnackBar, SnackBarClosedReason> shown = messenger.showSnackBar(SnackBar(
     content: Text(l10n.clearedCount(count)),
     duration: const Duration(seconds: 6),
+    // A snackbar with an action stays up until dismissed unless told otherwise.
+    persist: false,
     action: SnackBarAction(label: l10n.undoTooltip, onPressed: () => onUndo()),
   ));
   if (staleOn != null) {

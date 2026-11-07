@@ -8,7 +8,10 @@ import '../core/providers/subscription_provider.dart';
 import '../core/services/ad_consent_service.dart';
 
 class ConditionalBanner extends StatefulWidget {
-  const ConditionalBanner({super.key});
+  const ConditionalBanner({super.key, this.gap = 8});
+
+  /// Space above the ad, so a tap on the controls above it cannot land on the ad.
+  final double gap;
 
   @override
   State<ConditionalBanner> createState() => _ConditionalBannerState();
@@ -25,7 +28,6 @@ class _ConditionalBannerState extends State<ConditionalBanner> {
   bool _isAdLoaded = false;
   // Set once a request fails, so the reserved space collapses instead of staying blank.
   bool _failed = false;
-  static const double _gap = 8;
   SubscriptionProvider? _subscription;
 
   @override
@@ -106,7 +108,7 @@ class _ConditionalBannerState extends State<ConditionalBanner> {
     final BannerAd? ad = _bannerAd;
     return SafeArea(
       child: Padding(
-        padding: const EdgeInsets.only(top: _gap),
+        padding: const EdgeInsets.only(top: widget.gap),
         child: SizedBox(
           height: 50,
           width: double.infinity,

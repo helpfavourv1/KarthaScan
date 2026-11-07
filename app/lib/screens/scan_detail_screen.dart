@@ -209,12 +209,6 @@ class _ScanDetailScreenState extends State<ScanDetailScreen>
     );
   }
 
-  Future<void> _shareOcrText(String text) async {
-    try {
-      await _shareService.shareText(text: text);
-    } catch (_) {}
-  }
-
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
@@ -226,7 +220,7 @@ class _ScanDetailScreenState extends State<ScanDetailScreen>
     final border = isDark ? AppColors.borderSubtleDark : AppColors.borderSubtleLight;
 
     return Scaffold(
-      bottomNavigationBar: const ConditionalBanner(),
+      bottomNavigationBar: const ConditionalBanner(gap: 20),
       backgroundColor: bg,
       body: ListenableBuilder(
         listenable: _scanProvider.documents,
@@ -423,16 +417,6 @@ class _ScanDetailScreenState extends State<ScanDetailScreen>
                                 onPressed: () => _copyOcrToClipboard(document.ocrText, l10n),
                                 icon: const Icon(Icons.copy, size: 18),
                                 label: Text(AppLocalizations.of(context).commonCopy),
-                              ),
-                              TextButton.icon(
-                                onPressed: () => _shareOcrText(document.ocrText),
-                                icon: const Icon(Icons.ios_share, size: 18),
-                                label: Text(AppLocalizations.of(context).commonShare),
-                              ),
-                              TextButton.icon(
-                                onPressed: () => _export(document),
-                                icon: const Icon(Icons.file_download_outlined, size: 18),
-                                label: Text(AppLocalizations.of(context).exportTitle),
                               ),
                             ],
                           ),

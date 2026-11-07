@@ -157,6 +157,31 @@ class _PerspectiveCropSheetState extends State<PerspectiveCropSheet> {
     if (_active < 0) return;
     final List<Offset> next = List<Offset>.of(_quad);
     next[_active] = _toPhoto(d.localPosition + _grabOffset, fit);
+    if (_aspect != null) {
+      // Keep the chosen shape: the opposite corner stays put and the dragged one follows
+      // the finger, snapped to the shape.
+      final Offset anchor = _quad[(_active + 2) % 4];
+      final Offset dragged = next[_active];
+      double w = (dragged.dx - anchor.dx).abs(), h = (dragged.dy - anchor.dy).abs();
+      if (w / math.max(h, 1e-6) > _aspect!) {
+        w = h * _aspect!;
+      } else {
+        h = w / _aspect!;
+      }
+      final double sx = dragged.dx >= anchor.dx ? 1 : -1, sy = dragged.dy >= anchor.dy ? 1 : -1;
+      final double maxW = sx > 0 ? _photoW - anchor.dx : anchor.dx;
+      final double maxH = sy > 0 ? _photoH - anchor.dy : anchor.dy;
+      final double k = math.min(1.0, math.min(maxW / math.max(w, 1e-6), maxH / math.max(h, 1e-6)));
+      w *= k;
+      h *= k;
+      final double x0 = math.min(anchor.dx, anchor.dx + sx * w), x1 = math.max(anchor.dx, anchor.dx + sx * w);
+      final double y0 = math.min(anchor.dy, anchor.dy + sy * h), y1 = math.max(anchor.dy, anchor.dy + sy * h);
+      setState(() {
+        _quad = <Offset>[Offset(x0, y0), Offset(x1, y0), Offset(x1, y1), Offset(x0, y1)];
+        _finger = d.localPosition;
+      });
+      return;
+    }
     setState(() {
       _quad = next;
       _finger = d.localPosition;
@@ -169,6 +194,30 @@ class _PerspectiveCropSheetState extends State<PerspectiveCropSheet> {
       });
 
   double? get _presetAspect => _aspect;
+
+  /// Reshapes the crop band to [aspect] (width / height), keeping its centre and
+  /// staying inside the photo.
+  List<Offset> _fitAspect(List<Offset> q, double aspect) {
+    double x0 = q.first.dx, x1 = x0, y0 = q.first.dy, y1 = y0;
+    for (final Offset o in q) {
+      x0 = math.min(x0, o.dx);
+      x1 = math.max(x1, o.dx);
+      y0 = math.min(y0, o.dy);
+      y1 = math.max(y1, o.dy);
+    }
+    final Offset c = Offset((x0 + x1) / 2, (y0 + y1) / 2);
+    double w = x1 - x0, h = y1 - y0;
+    if (w / math.max(h, 1e-6) > aspect) {
+      w = h * aspect;
+    } else {
+      h = w / aspect;
+    }
+    w = math.min(w, 2 * math.min(c.dx, _photoW - c.dx));
+    h = w / aspect;
+    h = math.min(h, 2 * math.min(c.dy, _photoH - c.dy));
+    w = h * aspect;
+    return <Offset>[Offset(c.dx - w / 2, c.dy - h / 2), Offset(c.dx + w / 2, c.dy - h / 2), Offset(c.dx + w / 2, c.dy + h / 2), Offset(c.dx - w / 2, c.dy + h / 2)];
+  }
 
   /// An output shape matched to the page's own orientation.
   double _shape(double portrait) {
@@ -186,7 +235,7 @@ class _PerspectiveCropSheetState extends State<PerspectiveCropSheet> {
       MapEntry<String, double?>('free', null),
       MapEntry<String, double?>('a4', 1 / math.sqrt2),
       MapEntry<String, double?>('letter', 8.5 / 11),
-      MapEntry<String, double?>('id', 85.6 / 54),
+      MapEntry<String, double?>('id', 54 / 85.6),
       MapEntry<String, double?>('square', 1.0),
     ];
     String label(String k) => switch (k) {
@@ -249,7 +298,11 @@ class _PerspectiveCropSheetState extends State<PerspectiveCropSheet> {
                         key: Key('cropAspect:${e.key}'),
                         label: Text(label(e.key)),
                         selected: e.value == null ? _aspect == null : (_aspect != null && (_aspect! - _shape(e.value!)).abs() < 1e-6),
-                        onSelected: (_) => setState(() => _aspect = e.value == null ? null : _shape(e.value!)),
+                        onSelected: (_) => setState(() {
+                          _aspect = e.value == null ? null : _shape(e.value!);
+                          _touched = true;
+                          if (_aspect != null) _quad = _fitAspect(_quad, _aspect!);
+                        }),
                       ),
                     ),
                 ],
