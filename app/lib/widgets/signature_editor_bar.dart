@@ -7,6 +7,7 @@
 import 'package:flutter/material.dart';
 
 import '../core/models/signature_placement.dart';
+import '../l10n/app_localizations.dart';
 import 'clear_feedback.dart';
 import 'ink_board.dart';
 
