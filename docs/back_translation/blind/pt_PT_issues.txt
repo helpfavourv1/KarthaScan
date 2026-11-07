@@ -1,0 +1,6 @@
+# Portuguese (Portugal) Step B (read by me directly: 66 differing rows of 171 override rows; 105 identical not listed)
+DEFINITE
+(none)
+UNSURE
+cropNoPageFound | "margens" for page edges; "bordas" clearer
+Note: file holds only 171 override keys; all other strings fall back to pt (Brazil), reviewed separately.
