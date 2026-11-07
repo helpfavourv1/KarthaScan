@@ -1,0 +1,15 @@
+# Vietnamese Step B (read by me directly: 164 differing rows read; 396 identical after normalisation not listed)
+# format: key | proposed Vietnamese | reason
+DEFINITE
+clearPage | Xóa trên trang | "Xóa trang" reads as delete the page itself (dangerous ambiguity)
+clearAllPages | Xóa trên mọi trang | same ambiguity
+migrationTitle | Chuyển sang thiết bị mới | "Di chuyển thiết bị" = move the device
+deviceMigrationLabel | Chuyển sang thiết bị mới | same
+placementsCountLabel | {count, plural, =0{Chưa đặt gì} =1{1 đã đặt} other{{count} đã đặt}} | zero case "Nothing placed" lost
+UNSURE
+opacityPercentLabel | "Độ mờ" could read as blurriness
+sealFontSans | "Gọn" / sealFontSerif "Cổ điển" as font style labels
+watermarkLayoutTiled | "Lát gạch" literal
+filterMagicColor | "Màu thần kỳ"
+commonRevert | "Khôi phục" shared with restore wording
+scaleLabel/printFitLabel/lockAspectRatio | all "Tỷ lệ"
