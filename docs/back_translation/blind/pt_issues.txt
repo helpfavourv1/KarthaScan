@@ -1,0 +1,9 @@
+# Portuguese (Brazil) Step B (read by me directly: 165 differing rows read; 395 identical after normalisation not listed)
+# format: key | proposed Portuguese | reason
+DEFINITE
+beepOnCaptureSubtitle | Reproduzir som quando a digitalização concluir | "o digitalização" gender error (digitalização is feminine)
+vibrateOnCaptureSubtitle | Feedback tátil quando a digitalização concluir | same gender error
+paywallFallbackPrice | $14.99 pagamento único | "uma vez" is an unnatural price label
+UNSURE
+stampTickLabel/checkLabel | "Marca" could be "Marca de verificação"
+sharePromptTitle | "Adora o KatharScan?" colloquial
