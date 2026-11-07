@@ -1,0 +1,9 @@
+# Nynorsk Step B (read by me directly: 222 differing rows read; 338 identical after normalisation not listed)
+# format: key | proposed Nynorsk | reason
+DEFINITE
+sealRemoveWhite | Gjer kvitfargen gjennomsiktig | "Gjer kvitt" is the idiom "get rid of"; meaning is lost
+printFilterNone | Inkje filter | "Inga" is feminine/plural; "filter" is neuter
+UNSURE
+commonClear/clearThis/clearAll/clearPage | "Tøm" = empty
+signerLabel | "Signatar" uncommon
+watermarkLayoutTiled | "Flislagt" literal
