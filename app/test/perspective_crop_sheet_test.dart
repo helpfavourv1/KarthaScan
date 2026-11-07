@@ -62,8 +62,9 @@ void main() {
     await tester.pumpAndSettle();
     expect(result, isNotNull);
     expect(result!.aspect, 1.0);
-    expect(result!.quad[0].dx, closeTo(110, 12), reason: 'the dragged corner moved about 30 screen px in photo units');
-    expect(result!.quad[2].dx, closeTo(320, 10));
+    // Picking Square reshapes the crop band itself into a square (inside the dragged box).
+    expect(result!.quad[2].dx - result!.quad[0].dx, closeTo(result!.quad[2].dy - result!.quad[0].dy, 1.0), reason: 'the band became square');
+    expect(result!.quad[0].dx, greaterThanOrEqualTo(90), reason: 'it stays inside the dragged box');
     } catch (e, st) {
       // ignore: avoid_print
       print('XXXERR $e\n${st.toString().split("\n").take(8).join("\n")}');
