@@ -574,6 +574,37 @@ class _ExportScreenState extends State<ExportScreen> {
                 onPressed: _openFullscreenEditor,
               ),
             const Spacer(),
+            if (_isSingleDoc)
+              ListenableBuilder(
+                listenable: _scanProvider.undoManager.version,
+                builder: (context, _) {
+                  final AppLocalizations l10n = AppLocalizations.of(context);
+                  final um = _scanProvider.undoManager;
+                  Widget btn(Key k, IconData icon, String tip, bool on, Future<void> Function() run) => Tooltip(
+                        message: tip,
+                        child: IOSPressable(
+                          key: k,
+                          onTap: on
+                              ? () async {
+                                  await run();
+                                  if (!mounted) return;
+                                  if (_documents.isNotEmpty) _inkController.restoreFrom(_documents.first);
+                                  setState(() {});
+                                }
+                              : null,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 4),
+                            child: Icon(icon, size: 20, color: on ? textSecondary : textSecondary.withValues(alpha: 0.4)),
+                          ),
+                        ),
+                      );
+                  return Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
+                    btn(const ValueKey<String>('exportUndo'), Icons.undo, l10n.undoTooltip, um.canUndo, um.undo),
+                    btn(const ValueKey<String>('exportRedo'), Icons.redo, l10n.redoTooltip, um.canRedo, um.redo),
+                    const SizedBox(width: AppSpacing.xs),
+                  ]);
+                },
+              ),
             IOSPressable(
               onTap: () => setState(() => _filterRowOpen = !_filterRowOpen),
               child: Icon(Icons.auto_fix_high, color: _filterRowOpen ? accent : textSecondary, size: 20),
