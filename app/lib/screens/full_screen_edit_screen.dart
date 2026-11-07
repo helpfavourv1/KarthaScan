@@ -276,7 +276,7 @@ class _FullScreenEditScreenState extends State<FullScreenEditScreen> with Docume
 
     return Scaffold(
       backgroundColor: bg,
-      bottomNavigationBar: const ConditionalBanner(gap: 20),
+      bottomNavigationBar: const ConditionalBanner(gap: 16),
       body: ListenableBuilder(
         listenable: _scanProvider.documents,
         builder: (context, _) {

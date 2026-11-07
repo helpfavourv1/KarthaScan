@@ -220,7 +220,7 @@ class _ScanDetailScreenState extends State<ScanDetailScreen>
     final border = isDark ? AppColors.borderSubtleDark : AppColors.borderSubtleLight;
 
     return Scaffold(
-      bottomNavigationBar: const ConditionalBanner(gap: 20),
+      bottomNavigationBar: const ConditionalBanner(gap: 16),
       backgroundColor: bg,
       body: ListenableBuilder(
         listenable: _scanProvider.documents,

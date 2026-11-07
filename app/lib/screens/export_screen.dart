@@ -349,7 +349,7 @@ class _ExportScreenState extends State<ExportScreen> {
     final showCompression = _selectedFormat == ExportFormat.jpg || _selectedFormat == ExportFormat.png || _selectedFormat == ExportFormat.pdf;
 
     return Scaffold(
-      bottomNavigationBar: const ConditionalBanner(),
+      bottomNavigationBar: const ConditionalBanner(gap: 12),
       backgroundColor: bg,
       appBar: AppBar(
         backgroundColor: bg,
