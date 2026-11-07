@@ -1293,7 +1293,7 @@ class InkCompactBar extends StatelessWidget {
                   borderRadius: BorderRadius.circular(12),
                   onTap: () {
                     final VoidCallback restore = controller.removeInk(controller.activeInkId!);
-                    showClearedMessage(context, 1, () async => restore());
+                    showClearedMessage(context, 1, () async => restore(), kind: clearedKindLabel(AppLocalizations.of(context), 'signature'));
                   },
                   child: Padding(
                     padding: const EdgeInsets.all(4),

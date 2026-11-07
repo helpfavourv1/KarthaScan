@@ -13,9 +13,24 @@ void showClearedMessage(
   int count,
   Future<void> Function() onUndo, {
   ValueNotifier<int>? staleOn,
+  String? kind,
 }) {
-  _show(ScaffoldMessenger.of(context), AppLocalizations.of(context), count, onUndo, staleOn);
+  _show(ScaffoldMessenger.of(context), AppLocalizations.of(context), count, onUndo, staleOn, kind);
 }
+
+/// The name of a placed item kind, for "Cleared 4 · Watermark".
+String clearedKindLabel(AppLocalizations l10n, String kind) => switch (kind) {
+      'watermark' => l10n.watermarkLabel,
+      'signature' => l10n.signatureTitle,
+      'annotate' => l10n.annotateTitle,
+      'text' => l10n.textLabel,
+      'note' => l10n.noteLabel,
+      'date' => l10n.dateLabel,
+      'checkbox' => l10n.stampCheckbox,
+      'seal' => l10n.sealCustom,
+      'fill' => l10n.fillTooltip,
+      _ => '',
+    };
 
 void _show(
   ScaffoldMessengerState messenger,
@@ -23,12 +38,13 @@ void _show(
   int count,
   Future<void> Function() onUndo,
   ValueNotifier<int>? staleOn,
+  String? kind,
 ) {
   if (count <= 0) return;
   final int version = staleOn?.value ?? 0;
   messenger.hideCurrentSnackBar();
   final ScaffoldFeatureController<SnackBar, SnackBarClosedReason> shown = messenger.showSnackBar(SnackBar(
-    content: Text(l10n.clearedCount(count)),
+    content: Text(kind == null || kind.isEmpty ? l10n.clearedCount(count) : l10n.clearedKindCount(count, kind)),
     duration: const Duration(seconds: 4),
     // A snackbar with an action stays up until dismissed unless told otherwise.
     persist: false,
@@ -47,9 +63,9 @@ void _show(
 /// Runs a clear that goes through [ScanProvider] (so it is on the Undo list) and
 /// shows the Undo message. [clear] returns how many items it removed. The message
 /// is shown even though the controls that were tapped disappear with the item.
-Future<void> clearWithUndo(BuildContext context, ScanProvider provider, Future<int> Function() clear) async {
+Future<void> clearWithUndo(BuildContext context, ScanProvider provider, Future<int> Function() clear, {String? kind}) async {
   final ScaffoldMessengerState messenger = ScaffoldMessenger.of(context);
   final AppLocalizations l10n = AppLocalizations.of(context);
   final int n = await clear();
-  _show(messenger, l10n, n, () => provider.undoManager.undo(), provider.undoManager.version);
+  _show(messenger, l10n, n, () => provider.undoManager.undo(), provider.undoManager.version, kind == null ? null : clearedKindLabel(l10n, kind));
 }

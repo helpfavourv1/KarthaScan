@@ -594,6 +594,7 @@
   "fillTypeHint": "在此輸入",
   "clearPage": "清除本頁",
   "clearAllPages": "清除所有頁",
+  "clearedKindCount": "已清除 {count} 項 · {kind}",
   "clearedCount": "已清除 {count} 項",
   "idLayoutRealSize": "實際大小",
   "idLayoutFullWidth": "全寬",

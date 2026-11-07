@@ -74,7 +74,7 @@ class SignatureOverlayControls extends StatelessWidget {
 
     void doCopyAll() => controller.copyToAllPages(editId, pageIndex, pageCount);
     void cleared(BuildContext c, int n, Map<String, Map<int, SignaturePlacement>> gone) =>
-        showClearedMessage(c, n, () async => controller.restorePlacements(gone));
+        showClearedMessage(c, n, () async => controller.restorePlacements(gone), kind: clearedKindLabel(AppLocalizations.of(c), 'signature'));
     void doClearThis() {
       final Map<String, Map<int, SignaturePlacement>> gone = controller.removePlacement(editId, pageIndex);
       cleared(context, gone.isEmpty ? 0 : 1, gone);

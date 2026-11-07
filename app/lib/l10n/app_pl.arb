@@ -687,6 +687,7 @@
   "fillTypeHint": "Wpisz tutaj",
   "clearPage": "Wyczyść stronę",
   "clearAllPages": "Wyczyść wszystkie strony",
+  "clearedKindCount": "Wyczyszczono {count} · {kind}",
   "clearedCount": "Wyczyszczono {count}",
   "idLayoutRealSize": "Rzeczywisty rozmiar",
   "idLayoutFullWidth": "Pełna szerokość",

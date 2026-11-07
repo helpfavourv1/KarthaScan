@@ -594,6 +594,7 @@
   "fillTypeHint": "הקלידו כאן",
   "clearPage": "נקה עמוד",
   "clearAllPages": "ניקוי כל העמודים",
+  "clearedKindCount": "נוקו {count} · {kind}",
   "clearedCount": "נוקו {count}",
   "idLayoutRealSize": "גודל אמיתי",
   "idLayoutFullWidth": "רוחב מלא",

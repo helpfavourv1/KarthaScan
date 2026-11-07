@@ -687,6 +687,7 @@
   "fillTypeHint": "এখানে লিখুন",
   "clearPage": "পৃষ্ঠা সাফ করুন",
   "clearAllPages": "সব পৃষ্ঠা সাফ করুন",
+  "clearedKindCount": "{count}টি সাফ করা হয়েছে · {kind}",
   "clearedCount": "{count}টি সাফ করা হয়েছে",
   "idLayoutRealSize": "আসল আকার",
   "idLayoutFullWidth": "পূর্ণ প্রস্থ",

@@ -594,6 +594,7 @@
   "fillTypeHint": "Hier eingeben",
   "clearPage": "Seite leeren",
   "clearAllPages": "Alle Seiten leeren",
+  "clearedKindCount": "{count} gelöscht · {kind}",
   "clearedCount": "{count} gelöscht",
   "idLayoutRealSize": "Originalgröße",
   "idLayoutFullWidth": "Volle Breite",

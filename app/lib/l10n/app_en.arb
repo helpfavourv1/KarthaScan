@@ -681,6 +681,18 @@
   "@clearAllPages": {
     "description": "Button: removes every item of the selected kind on every page"
   },
+  "clearedKindCount": "Cleared {count} · {kind}",
+  "@clearedKindCount": {
+    "description": "Message after a clear that names what was cleared, with an Undo button",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "kind": {
+        "type": "String"
+      }
+    }
+  },
   "clearedCount": "Cleared {count}",
   "@clearedCount": {
     "description": "Message after a clear, with an Undo button",

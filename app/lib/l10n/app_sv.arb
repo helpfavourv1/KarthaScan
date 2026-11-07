@@ -687,6 +687,7 @@
   "fillTypeHint": "Skriv här",
   "clearPage": "Rensa sidan",
   "clearAllPages": "Rensa alla sidor",
+  "clearedKindCount": "{count} rensade · {kind}",
   "clearedCount": "{count} rensade",
   "idLayoutRealSize": "Verklig storlek",
   "idLayoutFullWidth": "Full bredd",

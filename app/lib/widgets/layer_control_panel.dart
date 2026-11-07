@@ -80,9 +80,9 @@ class LayerControlPanel extends StatelessWidget {
             scanProvider.addAnnotateLayer(document.id, AnnotateLayer(pageIndex: i, bytesPath: layer.bytesPath, placement: layer.placement));
           }
         },
-        onClearThis: () => clearWithUndo(context, scanProvider, () async { await scanProvider.removeAnnotateLayer(document.id, layer.id); return 1; }),
-        onClearPage: () => clearWithUndo(context, scanProvider, () => scanProvider.clearAnnotateLayersFor(document.id, pageIndex: pageIndex)),
-        onClearAllPages: () => clearWithUndo(context, scanProvider, () => scanProvider.clearAnnotateLayersFor(document.id)),
+        onClearThis: () => clearWithUndo(context, scanProvider, () async { await scanProvider.removeAnnotateLayer(document.id, layer.id); return 1; }, kind: 'annotate'),
+        onClearPage: () => clearWithUndo(context, scanProvider, () => scanProvider.clearAnnotateLayersFor(document.id, pageIndex: pageIndex), kind: 'annotate'),
+        onClearAllPages: () => clearWithUndo(context, scanProvider, () => scanProvider.clearAnnotateLayersFor(document.id), kind: 'annotate'),
         onDone: onDone,
       ),
     );
@@ -132,9 +132,9 @@ class LayerControlPanel extends StatelessWidget {
           layer,
           <int>[for (int i = 0; i < document.pagePaths.length; i++) if (i != pageIndex) i],
         ),
-        onClearThis: () => clearWithUndo(context, scanProvider, () async { await scanProvider.removeWatermarkLayer(document.id, layer.id); return 1; }),
-        onClearPage: () => clearWithUndo(context, scanProvider, () => scanProvider.clearWatermarkLayersFor(document.id, pageIndex: pageIndex)),
-        onClearAllPages: () => clearWithUndo(context, scanProvider, () => scanProvider.clearWatermarkLayersFor(document.id)),
+        onClearThis: () => clearWithUndo(context, scanProvider, () async { await scanProvider.removeWatermarkLayer(document.id, layer.id); return 1; }, kind: 'watermark'),
+        onClearPage: () => clearWithUndo(context, scanProvider, () => scanProvider.clearWatermarkLayersFor(document.id, pageIndex: pageIndex), kind: 'watermark'),
+        onClearAllPages: () => clearWithUndo(context, scanProvider, () => scanProvider.clearWatermarkLayersFor(document.id), kind: 'watermark'),
         onDone: onDone,
       ),
     );
@@ -218,9 +218,9 @@ class LayerControlPanel extends StatelessWidget {
             scanProvider.addStampLayer(document.id, layer.copyWith(id: 'stamp_${DateTime.now().microsecondsSinceEpoch}_$i', pageIndex: i));
           }
         },
-        onClearThis: () => clearWithUndo(context, scanProvider, () async { await scanProvider.removeStampLayer(document.id, layer.id); return 1; }),
-        onClearPage: () => clearWithUndo(context, scanProvider, () => scanProvider.clearStampLayersFor(document.id, layer.kind, pageIndex: pageIndex)),
-        onClearAllPages: () => clearWithUndo(context, scanProvider, () => scanProvider.clearStampLayersFor(document.id, layer.kind)),
+        onClearThis: () => clearWithUndo(context, scanProvider, () async { await scanProvider.removeStampLayer(document.id, layer.id); return 1; }, kind: layer.kind),
+        onClearPage: () => clearWithUndo(context, scanProvider, () => scanProvider.clearStampLayersFor(document.id, layer.kind, pageIndex: pageIndex), kind: layer.kind),
+        onClearAllPages: () => clearWithUndo(context, scanProvider, () => scanProvider.clearStampLayersFor(document.id, layer.kind), kind: layer.kind),
         onDone: onDone,
       ),
     );
