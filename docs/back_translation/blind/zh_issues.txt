@@ -1,0 +1,12 @@
+# Simplified Chinese Step B (read by me directly: 192 differing rows read; 368 identical after normalisation not listed)
+# format: key | proposed Chinese | reason
+DEFINITE
+docxWarningMessage | DOCX 源文件作为页面显示效果较差——应用内保存仅支持将图像、PDF、TXT 或 CSV 源保存为 JPG/PNG。此文件请使用“导出并分享”。 | translation dropped first and last sentences
+stampBoxLabel | 方框 | "边框" = border, not the box shape
+billingUnavailableMessage | 支付功能不可用 — 请稍后重试。 | "计费" = accounting billing
+UNSURE
+fillCapsLabel | "大写" vs ALL CAPS
+filterMagicColor | "魔术色彩"
+onboardingWelcomeSubtitle | "文档办公室" unusual
+annotationModePen | "画笔" brush vs pen
+revertToOriginalTitle | "恢复到原始？" terse
