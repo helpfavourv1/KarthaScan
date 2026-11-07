@@ -1,0 +1,15 @@
+# Norwegian (Bokmål) Step B (read by me directly: 157 differing rows read; 403 identical after normalisation not listed)
+# format: key | proposed Norwegian | reason
+DEFINITE
+filterBlackAndWhite | Svart-hvitt | "S&H" obscure abbreviation
+stampTickLabel | Hake | "Kryss" = cross/X; a tick is "hake"
+checkLabel | Hake | same
+billingUnavailableMessage | Betaling er ikke tilgjengelig — prøv igjen senere. | "Fakturering" = invoicing, wrong for in-app purchase
+checkShapeSquare | Kvadrat | "Firkant" inconsistent with "kvadrat" used in nn and standard shape name
+captionDocs | Fleksibel beskjæring: Original, Kvadrat, 4:3, 3:2, 16:9 | same
+captionOcr | Tekstbeskjæring: Original, Kvadrat, 4:3 | same
+UNSURE
+printRangeRange/watermarkPagesRange | "Område" for page range; "Intervall" clearer
+satLabel/valLabel | "Met"/"Ver" cryptic abbreviations
+sealFontSans | "Ren"
+printMarginLabel | "Marg"
