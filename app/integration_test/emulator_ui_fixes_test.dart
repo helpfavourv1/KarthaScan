@@ -100,12 +100,20 @@ void main() {
       await pumpFor(1500);
     }
 
+    Future<void> restoreAll() async {
+      for (int i = 0; i < 10 && scan.undoManager.canUndo; i++) {
+        await scan.undoManager.undo();
+      }
+      await pumpFor(500);
+    }
+
     // ---- U1: the Cleared snackbar goes away by itself, and does not follow you to other pages ----
     await section('U1-snackbar', () async {
       router.go('/');
       await pumpFor(500);
       router.push('/edit/ui_doc');
       await pumpFor(3000);
+      await restoreAll();
       await tester.tap(find.text('CONFIDENTIAL').first, warnIfMissed: false);
       await pumpFor(900);
       await tester.tap(find.text(l10n.clearThis).first, warnIfMissed: false);
@@ -117,6 +125,7 @@ void main() {
       await pumpFor(5500);
       check('U1-auto-dismiss', find.byType(SnackBar).evaluate().isEmpty, 'snackbar gone about 6 s after it appeared (4 s duration)');
       // Clear again and leave: it must not reappear on home.
+      await restoreAll();
       await tester.tap(find.text('CONFIDENTIAL').first, warnIfMissed: false);
       await pumpFor(900);
       await tester.tap(find.text(l10n.clearThis).first, warnIfMissed: false);
@@ -137,6 +146,12 @@ void main() {
       final Map<String, double> want = <String, double>{'a4': 210 / 297, 'letter': 8.5 / 11, 'id': 54 / 85.6, 'square': 1.0};
       for (final MapEntry<String, double> e in want.entries) {
         final Finder chip = find.byKey(Key('cropAspect:${e.key}'));
+        for (int i = 0; i < 5 && chip.evaluate().isEmpty; i++) {
+          final Finder anchor = find.byKey(const Key('cropAspect:a4'));
+          if (anchor.evaluate().isEmpty) break;
+          await tester.drag(anchor, const Offset(-250, 0), warnIfMissed: false);
+          await pumpFor(300);
+        }
         if (chip.evaluate().isEmpty) {
           check('U2-${e.key}', false, 'chip not found');
           continue;
@@ -197,6 +212,7 @@ void main() {
       await pumpFor(500);
       router.push('/edit/ui_doc');
       await pumpFor(3000);
+      await restoreAll();
       final int before = doc().watermarkLayers.length;
       await tester.tap(find.text('CONFIDENTIAL').first, warnIfMissed: false);
       await pumpFor(900);
