@@ -108,7 +108,7 @@ class _ConditionalBannerState extends State<ConditionalBanner> {
     final BannerAd? ad = _bannerAd;
     return SafeArea(
       child: Padding(
-        padding: const EdgeInsets.only(top: widget.gap),
+        padding: EdgeInsets.only(top: widget.gap),
         child: SizedBox(
           height: 50,
           width: double.infinity,
