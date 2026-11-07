@@ -1,0 +1,10 @@
+# Traditional Chinese Step B (read by me directly: 156 differing rows read; 404 identical after normalisation not listed)
+# format: key | proposed Traditional Chinese | reason
+DEFINITE
+stampBoxLabel | 方框 | "邊框" = border, not the box shape
+billingUnavailableMessage | 目前無法使用付款功能，請稍後再試。 | "計費" = accounting billing
+saveFailedBanner | 無法儲存您最近的變更。 | Taiwan wording 變更 not 更改
+UNSURE
+commonRevert | "還原" vs "恢復" used inconsistently
+printMarginNormal | "常規" vs 標準
+fillCapsLabel | "大寫"
