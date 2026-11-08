@@ -104,6 +104,7 @@ void main() {
       for (int i = 0; i < 10 && scan.undoManager.canUndo; i++) {
         await scan.undoManager.undo();
       }
+      await scan.updatePageTransform('ui_doc', 0, const PageTransform());
       await pumpFor(500);
     }
 
@@ -172,7 +173,14 @@ void main() {
               'band ${box.width.round()}x${box.height.round()} ratio ${ratio.toStringAsFixed(3)} want ${e.value.toStringAsFixed(3)}, aspect stored ${t?.cropAspect}');
         }
         // Reopen for the next preset.
-        await tapTray(l10n.cropLabel);
+        final Finder cropItem = find.byKey(ValueKey<String>('trayTarget:${l10n.cropLabel}'));
+        note('U2-reopen-${e.key}', 'INFO', 'tray crop item present: ${cropItem.evaluate().isNotEmpty}, sheet still open: ${find.byKey(const Key('cropArea')).evaluate().isNotEmpty}, snackbars: ${find.byType(SnackBar).evaluate().length}');
+        if (find.byKey(const Key('cropArea')).evaluate().isEmpty) {
+          await pumpFor(1500);
+          await tapTray(l10n.cropLabel);
+          await pumpFor(1500);
+        }
+        note('U2-reopened-${e.key}', 'INFO', 'crop sheet open: ${find.byKey(const Key('cropArea')).evaluate().isNotEmpty}');
       }
       // Close the sheet.
       if (find.byKey(const Key('cropArea')).evaluate().isNotEmpty) {
