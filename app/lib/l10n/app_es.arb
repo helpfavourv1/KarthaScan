@@ -667,5 +667,10 @@
   "printPerSheetLabel": "Páginas por hoja",
   "emailMessageLabel": "Mensaje",
   "emailMessageHint": "Añade una nota (opcional)",
-  "emailLimitMissed": "No se pudo bajar de {mb} MB; se envió la versión más pequeña."
+  "emailLimitMissed": "No se pudo bajar de {mb} MB; se envió la versión más pequeña.",
+  "storageAppUsedLabel": "Datos de la app",
+  "storageTempFilesLabel": "Archivos temporales",
+  "storageClearButton": "Borrar",
+  "storageCleared": "Se liberaron {size}",
+  "lowStorageMessage": "No hay suficiente espacio libre. Se necesitan unos {needed}, pero solo hay {free} libres. Libera espacio e inténtalo de nuevo."
 }

@@ -667,5 +667,10 @@
   "printPerSheetLabel": "प्रति शीट पृष्ठ",
   "emailMessageLabel": "संदेश",
   "emailMessageHint": "नोट जोड़ें (वैकल्पिक)",
-  "emailLimitMissed": "{mb} MB से कम नहीं हो सका; सबसे छोटा संस्करण भेजा गया।"
+  "emailLimitMissed": "{mb} MB से कम नहीं हो सका; सबसे छोटा संस्करण भेजा गया।",
+  "storageAppUsedLabel": "ऐप डेटा",
+  "storageTempFilesLabel": "अस्थायी फ़ाइलें",
+  "storageClearButton": "साफ़ करें",
+  "storageCleared": "{size} खाली हुआ",
+  "lowStorageMessage": "पर्याप्त खाली जगह नहीं है। इसके लिए लगभग {needed} चाहिए, लेकिन सिर्फ़ {free} खाली है। कुछ जगह खाली करके फिर कोशिश करें।"
 }

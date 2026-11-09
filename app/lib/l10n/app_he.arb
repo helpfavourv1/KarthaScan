@@ -667,5 +667,10 @@
   "printPerSheetLabel": "עמודים לדף",
   "emailMessageLabel": "הודעה",
   "emailMessageHint": "הוסף הערה (לא חובה)",
-  "emailLimitMissed": "לא ניתן היה לרדת מתחת ל-{mb} MB; נשלחה הגרסה הקטנה ביותר."
+  "emailLimitMissed": "לא ניתן היה לרדת מתחת ל-{mb} MB; נשלחה הגרסה הקטנה ביותר.",
+  "storageAppUsedLabel": "נתוני האפליקציה",
+  "storageTempFilesLabel": "קבצים זמניים",
+  "storageClearButton": "נקה",
+  "storageCleared": "שוחררו {size}",
+  "lowStorageMessage": "אין מספיק מקום פנוי. נדרשים כ-{needed}, אך פנויים רק {free}. פנו מקום ונסו שוב."
 }

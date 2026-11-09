@@ -24,6 +24,7 @@ import '../core/services/local_storage.dart';
 import '../core/services/share_service.dart';
 import '../core/services/downloads_service.dart';
 import '../core/utils/constants.dart';
+import '../core/services/storage_hygiene.dart';
 import '../l10n/app_localizations.dart';
 import '../widgets/document_canvas.dart' show PagePreviewJob, renderPagePreview;
 import '../widgets/ink_board.dart';
@@ -217,6 +218,8 @@ class _ExportScreenState extends State<ExportScreen> {
     String? errorMessage;
 
     try {
+      // Warn before starting when the phone is nearly full, instead of failing halfway.
+      await StorageHygiene().ensureFreeSpace(await StorageHygiene.estimateExportBytes(<String>[for (final d in documents) ...d.pagePaths]));
       final outputDir = await getTemporaryDirectory();
       Uint8List? legacyBytes;
       if (_isSingleDoc && !_inkController.hasInks) {
@@ -252,6 +255,8 @@ class _ExportScreenState extends State<ExportScreen> {
         await AdPacingService.instance.recordExport();
         unawaited(InterstitialAdService.instance.showAfterExport());
       }
+    } on LowStorageException catch (e) {
+      errorMessage = l10n.lowStorageMessage(formatBytes(e.neededBytes), formatBytes(e.freeBytes));
     } on ExportNoTextException {
       errorMessage = l10n.exportNoTextError;
     } on ExportFailedException {

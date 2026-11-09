@@ -1038,5 +1038,38 @@
         "type": "int"
       }
     }
+  },
+  "storageAppUsedLabel": "App data",
+  "@storageAppUsedLabel": {
+    "description": "Settings: label for how much room the app's documents and data use"
+  },
+  "storageTempFilesLabel": "Temporary files",
+  "@storageTempFilesLabel": {
+    "description": "Settings: label for the temporary files row"
+  },
+  "storageClearButton": "Clear",
+  "@storageClearButton": {
+    "description": "Settings: button that clears temporary files"
+  },
+  "storageCleared": "Freed {size}",
+  "@storageCleared": {
+    "description": "Snackbar after clearing temporary files; {size} is like 12 MB",
+    "placeholders": {
+      "size": {
+        "type": "String"
+      }
+    }
+  },
+  "lowStorageMessage": "Not enough free space. This needs about {needed}, but only {free} is free. Free up some space and try again.",
+  "@lowStorageMessage": {
+    "description": "Shown before a big export or conversion when the phone is nearly full; {needed} and {free} are sizes like 80 MB",
+    "placeholders": {
+      "needed": {
+        "type": "String"
+      },
+      "free": {
+        "type": "String"
+      }
+    }
   }
 }

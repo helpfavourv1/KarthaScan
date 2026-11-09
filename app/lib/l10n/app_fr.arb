@@ -667,5 +667,10 @@
   "printPerSheetLabel": "Pages par feuille",
   "emailMessageLabel": "Message",
   "emailMessageHint": "Ajoutez une note (facultatif)",
-  "emailLimitMissed": "Impossible de passer sous {mb} Mo ; la version la plus petite a été envoyée."
+  "emailLimitMissed": "Impossible de passer sous {mb} Mo ; la version la plus petite a été envoyée.",
+  "storageAppUsedLabel": "Données de l'appli",
+  "storageTempFilesLabel": "Fichiers temporaires",
+  "storageClearButton": "Effacer",
+  "storageCleared": "{size} libérés",
+  "lowStorageMessage": "Espace libre insuffisant. Il faut environ {needed}, mais seulement {free} sont disponibles. Libérez de l'espace et réessayez."
 }

@@ -760,5 +760,10 @@
   "printPerSheetLabel": "Stron na arkusz",
   "emailMessageLabel": "Wiadomość",
   "emailMessageHint": "Dodaj notatkę (opcjonalnie)",
-  "emailLimitMissed": "Nie udało się zejść poniżej {mb} MB; wysłano najmniejszą wersję."
+  "emailLimitMissed": "Nie udało się zejść poniżej {mb} MB; wysłano najmniejszą wersję.",
+  "storageAppUsedLabel": "Dane aplikacji",
+  "storageTempFilesLabel": "Pliki tymczasowe",
+  "storageClearButton": "Wyczyść",
+  "storageCleared": "Zwolniono {size}",
+  "lowStorageMessage": "Za mało wolnego miejsca. Potrzeba około {needed}, a wolne jest tylko {free}. Zwolnij miejsce i spróbuj ponownie."
 }

@@ -11,6 +11,7 @@
 import 'dart:async' show Completer, unawaited;
 import '../services/conversion_workspace.dart';
 import '../services/overlay_files.dart';
+import '../services/storage_hygiene.dart';
 import 'dart:io' show File, Directory;
 import 'dart:typed_data';
 import 'dart:ui' show Rect;
@@ -83,13 +84,17 @@ class ScanProvider {
   /// Startup housekeeping: removes scratch folders and converted output left by
   /// crashed or abandoned jobs. Files a document uses are never touched.
   Future<void> _sweepTemporaryFiles() async {
+    // Only sweep when every stored document was loaded. A row that could not be
+    // read, or a database that did not open, would make its files look unused.
+    final int? stored = await _storage.storedDocumentCount();
+    final bool safe = stored != null && stored == documents.value.length;
     try {
       final Set<String> keep = <String>{};
       for (final ScanDocument d in documents.value) {
         keep.addAll(d.pagePaths);
         keep.add(d.thumbnailPath);
       }
-      await (await ConversionWorkspace.create()).sweep(keep: keep);
+      if (safe) await (await ConversionWorkspace.create()).sweep(keep: keep);
     } catch (_) {}
     try {
       final Set<String> used = <String>{};
@@ -97,7 +102,19 @@ class ScanProvider {
         used.addAll(d.annotateLayers.map((AnnotateLayer l) => l.bytesPath));
         used.addAll(d.watermarkLayers.where((WatermarkLayer l) => l.isImage).map((WatermarkLayer l) => l.imagePath!));
       }
-      await sweepOrphanOverlayFiles(await getApplicationDocumentsDirectory(), referenced: used);
+      if (safe) await sweepOrphanOverlayFiles(await getApplicationDocumentsDirectory(), referenced: used);
+    } catch (_) {}
+    try {
+      final Set<String> pages = <String>{};
+      for (final ScanDocument d in documents.value) {
+        pages
+          ..addAll(d.pagePaths)
+          ..add(d.thumbnailPath);
+      }
+      if (safe) await sweepOrphanPageFiles(await getApplicationDocumentsDirectory(), referenced: pages);
+    } catch (_) {}
+    try {
+      await trimTempExports(await getTemporaryDirectory());
     } catch (_) {}
   }
 

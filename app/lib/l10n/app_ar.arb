@@ -667,5 +667,10 @@
   "printPerSheetLabel": "صفحات لكل ورقة",
   "emailMessageLabel": "الرسالة",
   "emailMessageHint": "أضف ملاحظة (اختياري)",
-  "emailLimitMissed": "تعذر الوصول إلى أقل من {mb} ميغابايت؛ تم إرسال أصغر نسخة."
+  "emailLimitMissed": "تعذر الوصول إلى أقل من {mb} ميغابايت؛ تم إرسال أصغر نسخة.",
+  "storageAppUsedLabel": "بيانات التطبيق",
+  "storageTempFilesLabel": "الملفات المؤقتة",
+  "storageClearButton": "مسح",
+  "storageCleared": "تم تحرير {size}",
+  "lowStorageMessage": "لا توجد مساحة كافية. يحتاج هذا إلى حوالي {needed}، لكن المتاح {free} فقط. أخلِ بعض المساحة وأعد المحاولة."
 }

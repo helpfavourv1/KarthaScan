@@ -760,5 +760,10 @@
   "printPerSheetLabel": "Halaman setiap helaian",
   "emailMessageLabel": "Mesej",
   "emailMessageHint": "Tambah nota (pilihan)",
-  "emailLimitMissed": "Tidak dapat kurang daripada {mb} MB; versi terkecil dihantar."
+  "emailLimitMissed": "Tidak dapat kurang daripada {mb} MB; versi terkecil dihantar.",
+  "storageAppUsedLabel": "Data aplikasi",
+  "storageTempFilesLabel": "Fail sementara",
+  "storageClearButton": "Kosongkan",
+  "storageCleared": "{size} dibebaskan",
+  "lowStorageMessage": "Ruang kosong tidak mencukupi. Ini memerlukan kira-kira {needed}, tetapi hanya {free} tersedia. Kosongkan sedikit ruang dan cuba lagi."
 }

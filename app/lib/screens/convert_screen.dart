@@ -27,6 +27,7 @@ import '../core/services/ocr_service.dart';
 import '../core/services/share_service.dart';
 import '../core/services/downloads_service.dart';
 import '../core/services/txt_to_pdf_service.dart';
+import '../core/services/storage_hygiene.dart';
 import '../l10n/app_localizations.dart';
 
 enum _TargetFormat { pdf, jpg, png, txt, docx, csv }
@@ -368,6 +369,7 @@ class _ConvertScreenState extends State<ConvertScreen> {
     });
     ConversionJob? job;
     try {
+      await StorageHygiene().ensureFreeSpace(await StorageHygiene.estimateConvertBytes(widget.sourcePath));
       final workspace = await ConversionWorkspace.create();
       job = await workspace.begin('convert');
       final paths = await _convert(job);
@@ -436,6 +438,9 @@ class _ConvertScreenState extends State<ConvertScreen> {
       }
     } on _ConversionCancelled {
       // The person stopped the conversion; nothing to report.
+    } on LowStorageException catch (e) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(AppLocalizations.of(context).lowStorageMessage(formatBytes(e.neededBytes), formatBytes(e.freeBytes)))));
     } catch (e) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('${AppLocalizations.of(context).conversionFailedPrefix}: $e')));

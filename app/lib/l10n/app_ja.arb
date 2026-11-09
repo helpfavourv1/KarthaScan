@@ -667,5 +667,10 @@
   "printPerSheetLabel": "1枚あたりのページ数",
   "emailMessageLabel": "メッセージ",
   "emailMessageHint": "メモを追加（任意）",
-  "emailLimitMissed": "{mb} MB 未満にできなかったため、最小のバージョンを送信しました。"
+  "emailLimitMissed": "{mb} MB 未満にできなかったため、最小のバージョンを送信しました。",
+  "storageAppUsedLabel": "アプリのデータ",
+  "storageTempFilesLabel": "一時ファイル",
+  "storageClearButton": "消去",
+  "storageCleared": "{size}を解放しました",
+  "lowStorageMessage": "空き容量が足りません。約{needed}必要ですが、空きは{free}だけです。空き容量を増やしてからもう一度お試しください。"
 }

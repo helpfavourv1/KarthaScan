@@ -3,6 +3,7 @@ package com.zdmgold.katharscan
 import android.content.ContentValues
 import android.os.Build
 import android.os.Environment
+import android.os.StatFs
 import android.provider.MediaStore
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.FlutterEngine
@@ -21,9 +22,23 @@ class MainActivity: FlutterActivity() {
     private val CHANNEL = "com.zdmgold.katharscan/downloads"
     private val OCR_CHANNEL = "com.zdmgold.katharscan/ocr_models"
     private val TESS_CHANNEL = "com.zdmgold.katharscan/tess_ocr"
+    private val STORAGE_CHANNEL = "com.zdmgold.katharscan/storage"
 
     override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
         super.configureFlutterEngine(flutterEngine)
+        // Free space on the volume that holds the app's files, so a big export or
+        // conversion can warn before it starts instead of failing halfway.
+        MethodChannel(flutterEngine.dartExecutor.binaryMessenger, STORAGE_CHANNEL).setMethodCallHandler { call, result ->
+            if (call.method != "freeBytes") {
+                result.notImplemented()
+                return@setMethodCallHandler
+            }
+            try {
+                result.success(StatFs(filesDir.path).availableBytes)
+            } catch (e: Exception) {
+                result.error("STORAGE_FAILED", e.message, null)
+            }
+        }
         // Asks Google Play services to download an OCR language pack and reports
         // whether it is ready. Without this request the pack may never arrive.
         MethodChannel(flutterEngine.dartExecutor.binaryMessenger, OCR_CHANNEL).setMethodCallHandler { call, result ->

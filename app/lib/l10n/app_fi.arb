@@ -760,5 +760,10 @@
   "printPerSheetLabel": "Sivuja arkille",
   "emailMessageLabel": "Viesti",
   "emailMessageHint": "Lisää viesti (valinnainen)",
-  "emailLimitMissed": "{mb} MB:n alle ei päästy; lähetettiin pienin versio."
+  "emailLimitMissed": "{mb} MB:n alle ei päästy; lähetettiin pienin versio.",
+  "storageAppUsedLabel": "Sovelluksen tiedot",
+  "storageTempFilesLabel": "Väliaikaiset tiedostot",
+  "storageClearButton": "Tyhjennä",
+  "storageCleared": "Vapautettu {size}",
+  "lowStorageMessage": "Vapaata tilaa ei ole tarpeeksi. Tähän tarvitaan noin {needed}, mutta vapaana on vain {free}. Vapauta tilaa ja yritä uudelleen."
 }

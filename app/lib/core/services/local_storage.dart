@@ -171,6 +171,20 @@ class LocalStorageService {
     }
   }
 
+  /// How many document rows the database holds, or null when the database is not
+  /// usable. Cleanup only runs when this matches the documents that were loaded,
+  /// so a row that could not be read can never make its files look unused.
+  Future<int?> storedDocumentCount() async {
+    await initialize();
+    if (!_dbAvailable || _db == null) return null;
+    try {
+      final List<Map<String, Object?>> r = await _db!.rawQuery('SELECT COUNT(*) AS n FROM documents');
+      return (r.first['n'] as num?)?.toInt();
+    } catch (_) {
+      return null;
+    }
+  }
+
   Future<ScanDocument?> getDocumentById(String id) async {
     await initialize();
     if (!_dbAvailable || _db == null) {

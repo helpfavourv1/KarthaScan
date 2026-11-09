@@ -667,5 +667,10 @@
   "printPerSheetLabel": "每張頁數",
   "emailMessageLabel": "訊息",
   "emailMessageHint": "新增備註（可選）",
-  "emailLimitMissed": "無法壓縮到 {mb} MB 以下；已傳送最小版本。"
+  "emailLimitMissed": "無法壓縮到 {mb} MB 以下；已傳送最小版本。",
+  "storageAppUsedLabel": "應用程式資料",
+  "storageTempFilesLabel": "暫存檔案",
+  "storageClearButton": "清除",
+  "storageCleared": "已釋出 {size}",
+  "lowStorageMessage": "可用空間不足。此操作大約需要 {needed}，但只剩 {free} 可用。請清出一些空間後再試。"
 }

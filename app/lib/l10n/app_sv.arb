@@ -760,5 +760,10 @@
   "printPerSheetLabel": "Sidor per ark",
   "emailMessageLabel": "Meddelande",
   "emailMessageHint": "Lägg till en anteckning (valfritt)",
-  "emailLimitMissed": "Kunde inte komma under {mb} MB; den minsta versionen skickades."
+  "emailLimitMissed": "Kunde inte komma under {mb} MB; den minsta versionen skickades.",
+  "storageAppUsedLabel": "Appdata",
+  "storageTempFilesLabel": "Tillfälliga filer",
+  "storageClearButton": "Rensa",
+  "storageCleared": "{size} frigjort",
+  "lowStorageMessage": "Inte tillräckligt med ledigt utrymme. Det behövs ungefär {needed}, men bara {free} är ledigt. Frigör utrymme och försök igen."
 }

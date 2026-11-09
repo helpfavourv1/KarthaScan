@@ -760,5 +760,10 @@
   "printPerSheetLabel": "Trang mỗi tờ",
   "emailMessageLabel": "Nội dung",
   "emailMessageHint": "Thêm ghi chú (tùy chọn)",
-  "emailLimitMissed": "Không thể xuống dưới {mb} MB; đã gửi bản nhỏ nhất."
+  "emailLimitMissed": "Không thể xuống dưới {mb} MB; đã gửi bản nhỏ nhất.",
+  "storageAppUsedLabel": "Dữ liệu ứng dụng",
+  "storageTempFilesLabel": "Tệp tạm",
+  "storageClearButton": "Xóa",
+  "storageCleared": "Đã giải phóng {size}",
+  "lowStorageMessage": "Không đủ dung lượng trống. Việc này cần khoảng {needed}, nhưng chỉ còn {free}. Hãy giải phóng bớt dung lượng rồi thử lại."
 }

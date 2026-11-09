@@ -760,5 +760,10 @@
   "printPerSheetLabel": "Страниц на листе",
   "emailMessageLabel": "Сообщение",
   "emailMessageHint": "Добавьте заметку (необязательно)",
-  "emailLimitMissed": "Не удалось уложиться в {mb} МБ; отправлена самая маленькая версия."
+  "emailLimitMissed": "Не удалось уложиться в {mb} МБ; отправлена самая маленькая версия.",
+  "storageAppUsedLabel": "Данные приложения",
+  "storageTempFilesLabel": "Временные файлы",
+  "storageClearButton": "Очистить",
+  "storageCleared": "Освобождено {size}",
+  "lowStorageMessage": "Недостаточно свободного места. Нужно около {needed}, а свободно только {free}. Освободите место и повторите попытку."
 }

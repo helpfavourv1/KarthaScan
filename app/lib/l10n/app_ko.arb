@@ -667,5 +667,10 @@
   "printPerSheetLabel": "장당 페이지 수",
   "emailMessageLabel": "메시지",
   "emailMessageHint": "메모 추가(선택)",
-  "emailLimitMissed": "{mb}MB 미만으로 줄이지 못해 가장 작은 버전을 보냈습니다."
+  "emailLimitMissed": "{mb}MB 미만으로 줄이지 못해 가장 작은 버전을 보냈습니다.",
+  "storageAppUsedLabel": "앱 데이터",
+  "storageTempFilesLabel": "임시 파일",
+  "storageClearButton": "지우기",
+  "storageCleared": "{size} 확보됨",
+  "lowStorageMessage": "여유 공간이 부족합니다. 약 {needed}가 필요하지만 {free}만 남아 있습니다. 공간을 확보한 후 다시 시도하세요."
 }

@@ -760,5 +760,10 @@
   "printPerSheetLabel": "Kâğıt başına sayfa",
   "emailMessageLabel": "Mesaj",
   "emailMessageHint": "Not ekleyin (isteğe bağlı)",
-  "emailLimitMissed": "{mb} MB altına inilemedi; en küçük sürüm gönderildi."
+  "emailLimitMissed": "{mb} MB altına inilemedi; en küçük sürüm gönderildi.",
+  "storageAppUsedLabel": "Uygulama verileri",
+  "storageTempFilesLabel": "Geçici dosyalar",
+  "storageClearButton": "Temizle",
+  "storageCleared": "{size} boşaltıldı",
+  "lowStorageMessage": "Yeterli boş alan yok. Bunun için yaklaşık {needed} gerekiyor ancak yalnızca {free} boş. Biraz yer açıp tekrar deneyin."
 }

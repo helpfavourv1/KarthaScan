@@ -760,5 +760,10 @@
   "printPerSheetLabel": "প্রতি শিটে পৃষ্ঠা",
   "emailMessageLabel": "বার্তা",
   "emailMessageHint": "একটি নোট যোগ করুন (ঐচ্ছিক)",
-  "emailLimitMissed": "{mb} MB-এর নিচে আনা যায়নি; সবচেয়ে ছোট সংস্করণ পাঠানো হয়েছে।"
+  "emailLimitMissed": "{mb} MB-এর নিচে আনা যায়নি; সবচেয়ে ছোট সংস্করণ পাঠানো হয়েছে।",
+  "storageAppUsedLabel": "অ্যাপের ডেটা",
+  "storageTempFilesLabel": "অস্থায়ী ফাইল",
+  "storageClearButton": "মুছুন",
+  "storageCleared": "{size} খালি হয়েছে",
+  "lowStorageMessage": "পর্যাপ্ত ফাঁকা জায়গা নেই। এর জন্য প্রায় {needed} দরকার, কিন্তু ফাঁকা আছে মাত্র {free}। কিছু জায়গা খালি করে আবার চেষ্টা করুন।"
 }

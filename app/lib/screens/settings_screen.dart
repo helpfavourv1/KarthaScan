@@ -9,7 +9,10 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../core/providers/scan_provider.dart';
 import '../core/providers/settings_provider.dart';
+import '../core/models/scan_document.dart';
+import '../core/services/storage_hygiene.dart';
 import '../core/providers/subscription_provider.dart';
 import '../core/providers/theme_provider.dart';
 import '../core/services/debug_log_service.dart';
@@ -233,6 +236,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
             const SizedBox(height: AppSpacing.md),
             _sectionLabel(l10n.storageSectionLabel, textSecondary),
+            _StorageRow(textPrimary: textPrimary, textSecondary: textSecondary, border: border, tile: _settingsTile),
             _settingsTile(title: l10n.deviceMigrationLabel, trailing: Icon(Icons.chevron_right, color: textSecondary), onTap: () => context.push('/migration'), textPrimary: textPrimary, border: border),
             const SizedBox(height: AppSpacing.md),
             _sectionLabel(l10n.subscriptionSectionLabel, textSecondary),
@@ -311,6 +315,83 @@ class _SettingsScreenState extends State<SettingsScreen> {
         ),
       ),
     );
+  }
+}
+
+/// Settings > Storage: how much room the app uses, how much of that is temporary
+/// files, and a button that clears the temporary part.
+class _StorageRow extends StatefulWidget {
+  const _StorageRow({required this.textPrimary, required this.textSecondary, required this.border, required this.tile});
+  final Color textPrimary;
+  final Color textSecondary;
+  final Color border;
+  final Widget Function({required String title, required Widget trailing, required Color textPrimary, required Color border, VoidCallback? onTap}) tile;
+
+  @override
+  State<_StorageRow> createState() => _StorageRowState();
+}
+
+class _StorageRowState extends State<_StorageRow> {
+  StorageUsage? _usage;
+  bool _busy = false;
+
+  Set<String> _keep() {
+    final Set<String> keep = <String>{};
+    for (final ScanDocument d in Provider.of<ScanProvider>(context, listen: false).documents.value) {
+      keep.addAll(d.pagePaths);
+      keep.add(d.thumbnailPath);
+    }
+    return keep;
+  }
+
+  Future<void> _load() async {
+    try {
+      final StorageUsage u = await StorageHygiene().usage(keep: _keep());
+      if (mounted) setState(() => _usage = u);
+    } catch (_) {}
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) => _load());
+  }
+
+  Future<void> _clear() async {
+    if (_busy) return;
+    setState(() => _busy = true);
+    final AppLocalizations l10n = AppLocalizations.of(context);
+    final ScaffoldMessengerState messenger = ScaffoldMessenger.of(context);
+    try {
+      final int freed = await StorageHygiene().clearTemporary(keep: _keep());
+      messenger.showSnackBar(SnackBar(content: Text(l10n.storageCleared(formatBytes(freed)))));
+    } catch (_) {}
+    await _load();
+    if (mounted) setState(() => _busy = false);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final AppLocalizations l10n = AppLocalizations.of(context);
+    final StorageUsage? u = _usage;
+    return Column(children: <Widget>[
+      widget.tile(
+        title: l10n.storageAppUsedLabel,
+        trailing: Text(u == null ? '…' : formatBytes(u.appBytes), key: const Key('storageAppBytes'), style: TextStyle(color: widget.textSecondary)),
+        textPrimary: widget.textPrimary,
+        border: widget.border,
+      ),
+      widget.tile(
+        title: l10n.storageTempFilesLabel,
+        trailing: Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
+          Text(u == null ? '…' : formatBytes(u.temporaryBytes), key: const Key('storageTempBytes'), style: TextStyle(color: widget.textSecondary)),
+          const SizedBox(width: 8),
+          TextButton(key: const Key('storageClear'), onPressed: _busy || u == null || u.temporaryBytes == 0 ? null : _clear, child: Text(l10n.storageClearButton)),
+        ]),
+        textPrimary: widget.textPrimary,
+        border: widget.border,
+      ),
+    ]);
   }
 }
 

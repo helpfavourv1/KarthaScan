@@ -667,5 +667,10 @@
   "printPerSheetLabel": "Seiten pro Blatt",
   "emailMessageLabel": "Nachricht",
   "emailMessageHint": "Notiz hinzufügen (optional)",
-  "emailLimitMissed": "Unter {mb} MB war nicht möglich; die kleinste Version wurde gesendet."
+  "emailLimitMissed": "Unter {mb} MB war nicht möglich; die kleinste Version wurde gesendet.",
+  "storageAppUsedLabel": "App-Daten",
+  "storageTempFilesLabel": "Temporäre Dateien",
+  "storageClearButton": "Leeren",
+  "storageCleared": "{size} freigegeben",
+  "lowStorageMessage": "Nicht genug freier Speicher. Dafür werden etwa {needed} benötigt, aber nur {free} sind frei. Geben Sie Speicherplatz frei und versuchen Sie es erneut."
 }

@@ -560,5 +560,10 @@
   "printPerSheetLabel": "Sider per ark",
   "emailMessageLabel": "Melding",
   "emailMessageHint": "Legg til ein merknad (valfritt)",
-  "emailLimitMissed": "Fekk ikkje fila under {mb} MB; den minste versjonen vart send."
+  "emailLimitMissed": "Fekk ikkje fila under {mb} MB; den minste versjonen vart send.",
+  "storageAppUsedLabel": "Appdata",
+  "storageTempFilesLabel": "Mellombelse filer",
+  "storageClearButton": "Tøm",
+  "storageCleared": "{size} frigjort",
+  "lowStorageMessage": "Ikkje nok ledig plass. Dette treng om lag {needed}, men berre {free} er ledig. Frigjer plass og prøv igjen."
 }

@@ -760,5 +760,10 @@
   "printPerSheetLabel": "Sider pr. ark",
   "emailMessageLabel": "Besked",
   "emailMessageHint": "Tilføj en note (valgfrit)",
-  "emailLimitMissed": "Kunne ikke komme under {mb} MB; den mindste version blev sendt."
+  "emailLimitMissed": "Kunne ikke komme under {mb} MB; den mindste version blev sendt.",
+  "storageAppUsedLabel": "Appdata",
+  "storageTempFilesLabel": "Midlertidige filer",
+  "storageClearButton": "Ryd",
+  "storageCleared": "{size} frigjort",
+  "lowStorageMessage": "Ikke nok ledig plads. Det kræver omkring {needed}, men der er kun {free} ledigt. Frigør noget plads, og prøv igen."
 }

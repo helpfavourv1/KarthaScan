@@ -760,5 +760,10 @@
   "printPerSheetLabel": "Сторінок на аркуші",
   "emailMessageLabel": "Повідомлення",
   "emailMessageHint": "Додайте нотатку (необов'язково)",
-  "emailLimitMissed": "Не вдалося вкластися в {mb} МБ; надіслано найменшу версію."
+  "emailLimitMissed": "Не вдалося вкластися в {mb} МБ; надіслано найменшу версію.",
+  "storageAppUsedLabel": "Дані застосунку",
+  "storageTempFilesLabel": "Тимчасові файли",
+  "storageClearButton": "Очистити",
+  "storageCleared": "Звільнено {size}",
+  "lowStorageMessage": "Недостатньо вільного місця. Потрібно приблизно {needed}, а вільно лише {free}. Звільніть місце й повторіть спробу."
 }

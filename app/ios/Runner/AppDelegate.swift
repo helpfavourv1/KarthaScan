@@ -21,6 +21,29 @@ import Vision
         VisionOcr.handle(call, result)
       }
     }
+    if let controller = window?.rootViewController as? FlutterViewController {
+      let storage = FlutterMethodChannel(
+        name: "com.zdmgold.katharscan/storage",
+        binaryMessenger: controller.binaryMessenger
+      )
+      storage.setMethodCallHandler { call, result in
+        guard call.method == "freeBytes" else {
+          result(FlutterMethodNotImplemented)
+          return
+        }
+        do {
+          let values = try URL(fileURLWithPath: NSHomeDirectory())
+            .resourceValues(forKeys: [.volumeAvailableCapacityForImportantUsageKey])
+          if let free = values.volumeAvailableCapacityForImportantUsage {
+            result(NSNumber(value: free))
+          } else {
+            result(FlutterError(code: "storage_failed", message: "No capacity value", details: nil))
+          }
+        } catch {
+          result(FlutterError(code: "storage_failed", message: "\(error)", details: nil))
+        }
+      }
+    }
     return super.application(application, didFinishLaunchingWithOptions: launchOptions)
   }
 }

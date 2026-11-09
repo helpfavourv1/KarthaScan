@@ -667,5 +667,10 @@
   "printPerSheetLabel": "每张页数",
   "emailMessageLabel": "留言",
   "emailMessageHint": "添加备注（可选）",
-  "emailLimitMissed": "无法压缩到 {mb} MB 以下；已发送最小版本。"
+  "emailLimitMissed": "无法压缩到 {mb} MB 以下；已发送最小版本。",
+  "storageAppUsedLabel": "应用数据",
+  "storageTempFilesLabel": "临时文件",
+  "storageClearButton": "清除",
+  "storageCleared": "已释放 {size}",
+  "lowStorageMessage": "可用空间不足。此操作大约需要 {needed}，但只剩 {free} 可用。请腾出一些空间后重试。"
 }
