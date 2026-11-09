@@ -105,6 +105,11 @@ void main() {
         await scan.undoManager.undo();
       }
       await scan.updatePageTransform('ui_doc', 0, const PageTransform());
+      for (int i = 0; i < 2; i++) {
+        if (!doc().watermarkLayers.any((WatermarkLayer l) => l.pageIndex == i)) {
+          await scan.addWatermarkLayer('ui_doc', WatermarkLayer(id: 'wmr$i', pageIndex: i, text: 'CONFIDENTIAL', placement: const SignaturePlacement(pctX: 0.5, pctY: 0.5), opacity: 0.8));
+        }
+      }
       await pumpFor(500);
     }
 
