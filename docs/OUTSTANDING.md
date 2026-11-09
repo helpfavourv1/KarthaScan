@@ -243,3 +243,18 @@ Caveat: the review was done by Claude, so it shares Claude's blind spots. Native
 zh-TW is not proven on the emulator (unit-tested only).
 
 - Back-translation Step B (done, 28 files, commit 38ee7c8): blind back-translations in `docs/back_translation/blind/` were compared to the English by me directly (no subagents), reading every row whose back-translation differed from the English after normalisation. Identical rows were not listed. 150 DEFINITE fixes applied by script (placeholders checked); UNSURE items are in each `{L}_issues.txt` for native speakers. Limit: one reader, so shared blind spots; pt_PT only covers its 171 override keys.
+
+## Open items as of 2026-11-09 (owner to come back to these)
+Owner decisions / supplies:
+- `ITSAppUsesNonExemptEncryption` value (backups use their own AES, so not automatically "false"; check Apple export-compliance).
+- Real AdMob unit IDs (4) and console setup (consent message, app-ads.txt, payment/tax, blocked categories).
+- Apple Team ID and the Codemagic App Store Connect key.
+- Store forms: Play Data safety + Ads declaration, Apple App Privacy; listing text must not say "no ads".
+Verification still owed:
+- zh-TW (Taiwan) on the emulator: only unit-tested; Hong Kong -> Traditional passed.
+- Owner will verify on a phone: back-translation wording, EEA consent, review/share prompts, banner and interstitial ads.
+- Native-speaker review of translations, including the new `clearedKindCount` strings.
+Storage hygiene gaps found when audited (not yet built):
+- No Settings row showing temporary-file size with a Clear button.
+- Deleted/replaced page files from the Pages manager are not swept (only overlay images and conversion scratch are).
+- Export temp files rely on delete-after-share/save plus the OS clearing the cache folder.
