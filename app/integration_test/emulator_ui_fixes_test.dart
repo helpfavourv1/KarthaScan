@@ -184,9 +184,10 @@ void main() {
       }
       // Close the sheet.
       if (find.byKey(const Key('cropArea')).evaluate().isNotEmpty) {
-        await tester.tapAt(const Offset(5, 40));
-        await pumpFor(600);
+        Navigator.of(tester.element(find.byKey(const Key('cropArea')))).pop();
+        await pumpFor(800);
       }
+      note('U2-closed', 'INFO', 'crop sheet closed: ${find.byKey(const Key('cropArea')).evaluate().isEmpty}');
     });
 
     // ---- U3: export undo/redo arrows, on the normal screen and a narrow phone ----
@@ -222,6 +223,7 @@ void main() {
       await pumpFor(3000);
       await restoreAll();
       final int before = doc().watermarkLayers.length;
+      note('U3-undo-pre', 'INFO', 'watermarks on doc $before, CONFIDENTIAL on screen ${find.text('CONFIDENTIAL').evaluate().length}, cropArea ${find.byKey(const Key('cropArea')).evaluate().length}');
       await tester.tap(find.text('CONFIDENTIAL').first, warnIfMissed: false);
       await pumpFor(900);
       await tester.tap(find.text(l10n.clearThis).first, warnIfMissed: false);
