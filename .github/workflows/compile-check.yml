@@ -100,7 +100,8 @@ jobs:
         working-directory: app
         run: |
           set -o pipefail
-          flutter analyze 2>&1 | tee /tmp/cc/analyze.log
+          # Infos (such as the Flutter 3.47 material.dart deprecation) are listed but do not fail the check; errors and warnings still do.
+          flutter analyze --no-fatal-infos 2>&1 | tee /tmp/cc/analyze.log
 
       - name: Unit tests
         id: test
