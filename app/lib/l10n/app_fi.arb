@@ -495,10 +495,6 @@
   "sharePromptBody": "Jaa se ystävien kanssa, jotka tarvitsevat tehokkaan asiakirjaskannerin.",
   "sharePromptAction": "Jaa sovellus",
   "sharePromptDismiss": "Ei nyt",
-  "reviewPromptTitle": "Nautitko KatharScanista?",
-  "reviewPromptBody": "Palautteesi auttaa meitä kasvamaan ja pitää sovelluksen ilmaisena.",
-  "reviewPromptYes": "Arvostele meidät",
-  "reviewPromptNo": "Lähetä palautetta",
   "watermarkLabel": "Vesileima",
   "compressLabel": "Pakkaa",
   "pagesLabel": "Sivut",
@@ -765,5 +761,6 @@
   "storageTempFilesLabel": "Väliaikaiset tiedostot",
   "storageClearButton": "Tyhjennä",
   "storageCleared": "Vapautettu {size}",
-  "lowStorageMessage": "Vapaata tilaa ei ole tarpeeksi. Tähän tarvitaan noin {needed}, mutta vapaana on vain {free}. Vapauta tilaa ja yritä uudelleen."
+  "lowStorageMessage": "Vapaata tilaa ei ole tarpeeksi. Tähän tarvitaan noin {needed}, mutta vapaana on vain {free}. Vapauta tilaa ja yritä uudelleen.",
+  "rateAppLabel": "Arvostele KatharScan"
 }

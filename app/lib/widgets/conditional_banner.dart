@@ -51,16 +51,20 @@ class _ConditionalBannerState extends State<ConditionalBanner> {
     if (subscriptionProvider.adsRemoved.value) return;
 
     // No ad request until the tracking prompt and consent form are done.
-    if (!AdConsentService.instance.adsReady.value) {
-      AdConsentService.instance.adsReady.addListener(_onConsentReady);
-      return;
-    }
+    // Stays subscribed, so a later withdrawal of consent is noticed too.
+    AdConsentService.instance.adsReady.addListener(_onConsentReady);
+    if (!AdConsentService.instance.adsReady.value) return;
     _loadBanner();
   }
 
   void _onConsentReady() {
-    if (!AdConsentService.instance.adsReady.value) return;
-    AdConsentService.instance.adsReady.removeListener(_onConsentReady);
+    if (!AdConsentService.instance.adsReady.value) {
+      // Google says ads may no longer be requested: stop showing this one.
+      _bannerAd?.dispose();
+      _bannerAd = null;
+      if (mounted) setState(() => _isAdLoaded = false);
+      return;
+    }
     if (!mounted || _bannerAd != null) return;
     if (_subscription?.adsRemoved.value == true) return;
     _loadBanner();
@@ -101,6 +105,20 @@ class _ConditionalBannerState extends State<ConditionalBanner> {
     if (subscriptionProvider.adsRemoved.value || _failed || MediaQuery.viewInsetsOf(context).bottom > 0) {
       return const SafeArea(child: SizedBox.shrink());
     }
+    // Once Google has said no (or could not be asked) there will be no ad, so the
+    // reserved space is given back. It is held only while the first check runs.
+    return ValueListenableBuilder<ConsentOutcome>(
+      valueListenable: AdConsentService.instance.outcome,
+      builder: (BuildContext context, ConsentOutcome consent, Widget? _) {
+        if (consent == ConsentOutcome.blocked || consent == ConsentOutcome.unknown) {
+          return const SafeArea(child: SizedBox.shrink());
+        }
+        return _buildSlot();
+      },
+    );
+  }
+
+  Widget _buildSlot() {
     // The banner's space is held from the first frame (while consent is pending
     // and while the ad loads), so the screen never jumps when it appears and a
     // button can never slide under a finger onto the ad. The 8 dp strip above the

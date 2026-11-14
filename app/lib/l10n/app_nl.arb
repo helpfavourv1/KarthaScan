@@ -495,10 +495,6 @@
   "sharePromptBody": "Deel het met vrienden die een krachtige documentscanner nodig hebben.",
   "sharePromptAction": "App delen",
   "sharePromptDismiss": "Niet nu",
-  "reviewPromptTitle": "Geniet je van KatharScan?",
-  "reviewPromptBody": "Je feedback helpt ons groeien en houdt de app gratis.",
-  "reviewPromptYes": "Beoordeel ons",
-  "reviewPromptNo": "Feedback verzenden",
   "watermarkLabel": "Watermerk",
   "compressLabel": "Comprimeren",
   "pagesLabel": "Pagina's",
@@ -765,5 +761,6 @@
   "storageTempFilesLabel": "Tijdelijke bestanden",
   "storageClearButton": "Wissen",
   "storageCleared": "{size} vrijgemaakt",
-  "lowStorageMessage": "Onvoldoende vrije ruimte. Hiervoor is ongeveer {needed} nodig, maar er is slechts {free} vrij. Maak ruimte vrij en probeer het opnieuw."
+  "lowStorageMessage": "Onvoldoende vrije ruimte. Hiervoor is ongeveer {needed} nodig, maar er is slechts {free} vrij. Maak ruimte vrij en probeer het opnieuw.",
+  "rateAppLabel": "Beoordeel KatharScan"
 }

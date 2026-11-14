@@ -495,10 +495,6 @@
   "sharePromptBody": "Поделитесь с друзьями, которым нужен мощный сканер документов.",
   "sharePromptAction": "Поделиться приложением",
   "sharePromptDismiss": "Не сейчас",
-  "reviewPromptTitle": "Нравится KatharScan?",
-  "reviewPromptBody": "Ваш отзыв помогает нам расти и поддерживает приложение бесплатным.",
-  "reviewPromptYes": "Оценить нас",
-  "reviewPromptNo": "Отправить отзыв",
   "watermarkLabel": "Водяной знак",
   "compressLabel": "Сжать",
   "pagesLabel": "Страницы",
@@ -765,5 +761,6 @@
   "storageTempFilesLabel": "Временные файлы",
   "storageClearButton": "Очистить",
   "storageCleared": "Освобождено {size}",
-  "lowStorageMessage": "Недостаточно свободного места. Нужно около {needed}, а свободно только {free}. Освободите место и повторите попытку."
+  "lowStorageMessage": "Недостаточно свободного места. Нужно около {needed}, а свободно только {free}. Освободите место и повторите попытку.",
+  "rateAppLabel": "Оценить KatharScan"
 }

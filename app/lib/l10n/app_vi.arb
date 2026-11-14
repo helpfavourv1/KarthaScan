@@ -495,10 +495,6 @@
   "sharePromptBody": "Chia sẻ với bạn bè cần máy quét tài liệu mạnh mẽ.",
   "sharePromptAction": "Chia sẻ ứng dụng",
   "sharePromptDismiss": "Để sau",
-  "reviewPromptTitle": "Thích KatharScan?",
-  "reviewPromptBody": "Phản hồi của bạn giúp chúng tôi phát triển và giữ ứng dụng miễn phí.",
-  "reviewPromptYes": "Đánh giá chúng tôi",
-  "reviewPromptNo": "Gửi phản hồi",
   "watermarkLabel": "Hình mờ",
   "compressLabel": "Nén",
   "pagesLabel": "Trang",
@@ -765,5 +761,6 @@
   "storageTempFilesLabel": "Tệp tạm",
   "storageClearButton": "Xóa",
   "storageCleared": "Đã giải phóng {size}",
-  "lowStorageMessage": "Không đủ dung lượng trống. Việc này cần khoảng {needed}, nhưng chỉ còn {free}. Hãy giải phóng bớt dung lượng rồi thử lại."
+  "lowStorageMessage": "Không đủ dung lượng trống. Việc này cần khoảng {needed}, nhưng chỉ còn {free}. Hãy giải phóng bớt dung lượng rồi thử lại.",
+  "rateAppLabel": "Đánh giá KatharScan"
 }

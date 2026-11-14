@@ -437,10 +437,6 @@
   "sharePromptBody": "Bagikan dengan teman yang membutuhkan pemindai dokumen canggih.",
   "sharePromptAction": "Bagikan Aplikasi",
   "sharePromptDismiss": "Nanti saja",
-  "reviewPromptTitle": "Menikmati KatharScan?",
-  "reviewPromptBody": "Ulasan Anda membantu kami berkembang dan menjaga aplikasi tetap gratis.",
-  "reviewPromptYes": "Beri Nilai",
-  "reviewPromptNo": "Kirim Masukan",
   "accentBlue": "Biru",
   "accentIndigo": "Nila",
   "accentEmerald": "Zamrud",
@@ -672,5 +668,6 @@
   "storageTempFilesLabel": "File sementara",
   "storageClearButton": "Hapus",
   "storageCleared": "{size} dibebaskan",
-  "lowStorageMessage": "Ruang kosong tidak cukup. Ini butuh sekitar {needed}, tetapi hanya {free} yang tersedia. Kosongkan sebagian ruang lalu coba lagi."
+  "lowStorageMessage": "Ruang kosong tidak cukup. Ini butuh sekitar {needed}, tetapi hanya {free} yang tersedia. Kosongkan sebagian ruang lalu coba lagi.",
+  "rateAppLabel": "Beri nilai KatharScan"
 }

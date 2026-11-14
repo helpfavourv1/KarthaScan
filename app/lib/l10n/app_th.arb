@@ -495,10 +495,6 @@
   "sharePromptBody": "แชร์กับเพื่อนที่ต้องการสแกนเนอร์เอกสารที่มีประสิทธิภาพ",
   "sharePromptAction": "แชร์แอป",
   "sharePromptDismiss": "ไม่ใช่ตอนนี้",
-  "reviewPromptTitle": "ชอบใช้ KatharScan ไหม?",
-  "reviewPromptBody": "ความคิดเห็นของคุณช่วยให้เราเติบโตและทำให้แอปฟรี",
-  "reviewPromptYes": "ให้คะแนนเรา",
-  "reviewPromptNo": "ส่งความคิดเห็น",
   "watermarkLabel": "ลายน้ำ",
   "compressLabel": "บีบอัด",
   "pagesLabel": "หน้า",
@@ -765,5 +761,6 @@
   "storageTempFilesLabel": "ไฟล์ชั่วคราว",
   "storageClearButton": "ล้าง",
   "storageCleared": "คืนพื้นที่ได้ {size}",
-  "lowStorageMessage": "พื้นที่ว่างไม่เพียงพอ ต้องใช้ประมาณ {needed} แต่เหลือเพียง {free} กรุณาเพิ่มพื้นที่ว่างแล้วลองอีกครั้ง"
+  "lowStorageMessage": "พื้นที่ว่างไม่เพียงพอ ต้องใช้ประมาณ {needed} แต่เหลือเพียง {free} กรุณาเพิ่มพื้นที่ว่างแล้วลองอีกครั้ง",
+  "rateAppLabel": "ให้คะแนน KatharScan"
 }

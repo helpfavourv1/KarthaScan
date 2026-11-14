@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'core/services/engagement_service.dart';
 import 'widgets/share_prompt_sheet.dart';
-import 'widgets/review_sentiment_sheet.dart';
 import 'dart:async' show unawaited;
+import 'core/services/ad_consent_service.dart';
 import 'core/services/ad_pacing_service.dart';
 import 'core/services/interstitial_ad_service.dart';
 import 'core/services/notification_service.dart';
@@ -49,6 +49,8 @@ class _KatharScanAppState extends State<KatharScanApp> with WidgetsBindingObserv
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     super.didChangeAppLifecycleState(state);
+    // Ask Google's consent SDK again, so a failed check is retried and a withdrawn consent is noticed.
+    if (state == AppLifecycleState.resumed) unawaited(AdConsentService.instance.recheck());
   }
 
   @override
@@ -163,9 +165,6 @@ class _EngagementPromptListenerState extends State<EngagementPromptListener> {
       } else {
         EngagementService.instance.recordShareDismissed();
       }
-    } else if (prompt == PendingPrompt.review) {
-      final enjoyed = await showModalBottomSheet<bool>(context: sheetContext, isScrollControlled: true, backgroundColor: Colors.transparent, builder: (ctx) => const ReviewSentimentSheet());
-      EngagementService.instance.recordReviewSentiment(enjoyed ?? false);
     }
   }
   @override Widget build(BuildContext context) => widget.child;

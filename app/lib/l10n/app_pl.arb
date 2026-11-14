@@ -495,10 +495,6 @@
   "sharePromptBody": "Podziel się z przyjaciółmi, którzy potrzebują potężnego skanera dokumentów.",
   "sharePromptAction": "Udostępnij aplikację",
   "sharePromptDismiss": "Nie teraz",
-  "reviewPromptTitle": "Podoba Ci się KatharScan?",
-  "reviewPromptBody": "Twoja opinia pomaga nam się rozwijać i utrzymuje aplikację darmową.",
-  "reviewPromptYes": "Oceń nas",
-  "reviewPromptNo": "Wyślij opinię",
   "watermarkLabel": "Znak wodny",
   "compressLabel": "Kompresuj",
   "pagesLabel": "Strony",
@@ -765,5 +761,6 @@
   "storageTempFilesLabel": "Pliki tymczasowe",
   "storageClearButton": "Wyczyść",
   "storageCleared": "Zwolniono {size}",
-  "lowStorageMessage": "Za mało wolnego miejsca. Potrzeba około {needed}, a wolne jest tylko {free}. Zwolnij miejsce i spróbuj ponownie."
+  "lowStorageMessage": "Za mało wolnego miejsca. Potrzeba około {needed}, a wolne jest tylko {free}. Zwolnij miejsce i spróbuj ponownie.",
+  "rateAppLabel": "Oceń KatharScan"
 }

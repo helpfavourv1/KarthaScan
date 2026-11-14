@@ -402,10 +402,6 @@
   "sharePromptBody": "與需要強大文件掃描器的朋友分享。",
   "sharePromptAction": "分享應用程式",
   "sharePromptDismiss": "稍後",
-  "reviewPromptTitle": "喜歡使用 KatharScan 嗎？",
-  "reviewPromptBody": "您的意見回饋有助於我們成長，並讓應用程式持續免費。",
-  "reviewPromptYes": "給我們評分",
-  "reviewPromptNo": "傳送意見回饋",
   "watermarkLabel": "浮水印",
   "compressLabel": "壓縮",
   "pagesLabel": "頁面",
@@ -672,5 +668,6 @@
   "storageTempFilesLabel": "暫存檔案",
   "storageClearButton": "清除",
   "storageCleared": "已釋出 {size}",
-  "lowStorageMessage": "可用空間不足。此操作大約需要 {needed}，但只剩 {free} 可用。請清出一些空間後再試。"
+  "lowStorageMessage": "可用空間不足。此操作大約需要 {needed}，但只剩 {free} 可用。請清出一些空間後再試。",
+  "rateAppLabel": "為 KatharScan 評分"
 }

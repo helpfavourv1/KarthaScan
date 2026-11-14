@@ -402,10 +402,6 @@
   "sharePromptBody": "Teilen Sie es mit Freunden, die einen leistungsstarken Dokumentenscanner brauchen.",
   "sharePromptAction": "App teilen",
   "sharePromptDismiss": "Nicht jetzt",
-  "reviewPromptTitle": "Gefällt Ihnen KatharScan?",
-  "reviewPromptBody": "Ihr Feedback hilft uns zu wachsen und hält die App kostenlos.",
-  "reviewPromptYes": "Bewerten",
-  "reviewPromptNo": "Feedback senden",
   "watermarkLabel": "Wasserzeichen",
   "compressLabel": "Komprimieren",
   "pagesLabel": "Seiten",
@@ -672,5 +668,6 @@
   "storageTempFilesLabel": "Temporäre Dateien",
   "storageClearButton": "Leeren",
   "storageCleared": "{size} freigegeben",
-  "lowStorageMessage": "Nicht genug freier Speicher. Dafür werden etwa {needed} benötigt, aber nur {free} sind frei. Geben Sie Speicherplatz frei und versuchen Sie es erneut."
+  "lowStorageMessage": "Nicht genug freier Speicher. Dafür werden etwa {needed} benötigt, aber nur {free} sind frei. Geben Sie Speicherplatz frei und versuchen Sie es erneut.",
+  "rateAppLabel": "KatharScan bewerten"
 }

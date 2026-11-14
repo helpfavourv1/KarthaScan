@@ -495,10 +495,6 @@
   "sharePromptBody": "Kongsinya dengan rakan yang memerlukan pengimbas dokumen berkuasa.",
   "sharePromptAction": "Kongsi Aplikasi",
   "sharePromptDismiss": "Bukan sekarang",
-  "reviewPromptTitle": "Seronok menggunakan KatharScan?",
-  "reviewPromptBody": "Maklum balas anda membantu kami berkembang dan memastikan aplikasi percuma.",
-  "reviewPromptYes": "Nilai Kami",
-  "reviewPromptNo": "Hantar Maklum Balas",
   "watermarkLabel": "Tera Air",
   "compressLabel": "Mampat",
   "pagesLabel": "Halaman",
@@ -765,5 +761,6 @@
   "storageTempFilesLabel": "Fail sementara",
   "storageClearButton": "Kosongkan",
   "storageCleared": "{size} dibebaskan",
-  "lowStorageMessage": "Ruang kosong tidak mencukupi. Ini memerlukan kira-kira {needed}, tetapi hanya {free} tersedia. Kosongkan sedikit ruang dan cuba lagi."
+  "lowStorageMessage": "Ruang kosong tidak mencukupi. Ini memerlukan kira-kira {needed}, tetapi hanya {free} tersedia. Kosongkan sedikit ruang dan cuba lagi.",
+  "rateAppLabel": "Nilaikan KatharScan"
 }

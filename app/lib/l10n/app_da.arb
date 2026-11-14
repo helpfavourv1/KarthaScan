@@ -495,10 +495,6 @@
   "sharePromptBody": "Del det med venner der har brug for en kraftfuld dokumentscanner.",
   "sharePromptAction": "Del app",
   "sharePromptDismiss": "Ikke nu",
-  "reviewPromptTitle": "Kan du lide KatharScan?",
-  "reviewPromptBody": "Din feedback hjælper os med at vokse og holder appen gratis.",
-  "reviewPromptYes": "Bedøm os",
-  "reviewPromptNo": "Send feedback",
   "watermarkLabel": "Vandmærke",
   "compressLabel": "Komprimer",
   "pagesLabel": "Sider",
@@ -765,5 +761,6 @@
   "storageTempFilesLabel": "Midlertidige filer",
   "storageClearButton": "Ryd",
   "storageCleared": "{size} frigjort",
-  "lowStorageMessage": "Ikke nok ledig plads. Det kræver omkring {needed}, men der er kun {free} ledigt. Frigør noget plads, og prøv igen."
+  "lowStorageMessage": "Ikke nok ledig plads. Det kræver omkring {needed}, men der er kun {free} ledigt. Frigør noget plads, og prøv igen.",
+  "rateAppLabel": "Bedøm KatharScan"
 }

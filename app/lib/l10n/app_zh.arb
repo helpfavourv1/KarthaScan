@@ -402,10 +402,6 @@
   "sharePromptBody": "与需要强大文档扫描仪的朋友分享。",
   "sharePromptAction": "分享应用",
   "sharePromptDismiss": "稍后",
-  "reviewPromptTitle": "喜欢使用 KatharScan 吗？",
-  "reviewPromptBody": "您的反馈有助于我们成长并保持应用免费。",
-  "reviewPromptYes": "给我们评分",
-  "reviewPromptNo": "发送反馈",
   "watermarkLabel": "水印",
   "compressLabel": "压缩",
   "pagesLabel": "页面",
@@ -672,5 +668,6 @@
   "storageTempFilesLabel": "临时文件",
   "storageClearButton": "清除",
   "storageCleared": "已释放 {size}",
-  "lowStorageMessage": "可用空间不足。此操作大约需要 {needed}，但只剩 {free} 可用。请腾出一些空间后重试。"
+  "lowStorageMessage": "可用空间不足。此操作大约需要 {needed}，但只剩 {free} 可用。请腾出一些空间后重试。",
+  "rateAppLabel": "为 KatharScan 评分"
 }

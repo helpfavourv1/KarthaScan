@@ -402,10 +402,6 @@
   "sharePromptBody": "שתפו אותו עם חברים שצריכים סורק מסמכים חזק.",
   "sharePromptAction": "שיתוף האפליקציה",
   "sharePromptDismiss": "לא עכשיו",
-  "reviewPromptTitle": "נהנים מ-KatharScan?",
-  "reviewPromptBody": "המשוב שלכם עוזר לנו לצמוח ושומר על האפליקציה חינמית.",
-  "reviewPromptYes": "דרגו אותנו",
-  "reviewPromptNo": "שליחת משוב",
   "watermarkLabel": "סימן מים",
   "compressLabel": "דחיסה",
   "pagesLabel": "עמודים",
@@ -672,5 +668,6 @@
   "storageTempFilesLabel": "קבצים זמניים",
   "storageClearButton": "נקה",
   "storageCleared": "שוחררו {size}",
-  "lowStorageMessage": "אין מספיק מקום פנוי. נדרשים כ-{needed}, אך פנויים רק {free}. פנו מקום ונסו שוב."
+  "lowStorageMessage": "אין מספיק מקום פנוי. נדרשים כ-{needed}, אך פנויים רק {free}. פנו מקום ונסו שוב.",
+  "rateAppLabel": "דרג את KatharScan"
 }

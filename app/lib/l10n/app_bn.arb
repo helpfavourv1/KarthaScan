@@ -495,10 +495,6 @@
   "sharePromptBody": "যাদের শক্তিশালী নথি স্ক্যানার দরকার তাদের সাথে শেয়ার করুন।",
   "sharePromptAction": "অ্যাপ শেয়ার",
   "sharePromptDismiss": "এখন নয়",
-  "reviewPromptTitle": "KatharScan উপভোগ করছেন?",
-  "reviewPromptBody": "আপনার প্রতিক্রিয়া আমাদের বাড়তে সাহায্য করে এবং অ্যাপ বিনামূল্যে রাখে।",
-  "reviewPromptYes": "আমাদের রেট করুন",
-  "reviewPromptNo": "প্রতিক্রিয়া পাঠান",
   "watermarkLabel": "ওয়াটারমার্ক",
   "compressLabel": "কম্প্রেস",
   "pagesLabel": "পৃষ্ঠা",
@@ -765,5 +761,6 @@
   "storageTempFilesLabel": "অস্থায়ী ফাইল",
   "storageClearButton": "মুছুন",
   "storageCleared": "{size} খালি হয়েছে",
-  "lowStorageMessage": "পর্যাপ্ত ফাঁকা জায়গা নেই। এর জন্য প্রায় {needed} দরকার, কিন্তু ফাঁকা আছে মাত্র {free}। কিছু জায়গা খালি করে আবার চেষ্টা করুন।"
+  "lowStorageMessage": "পর্যাপ্ত ফাঁকা জায়গা নেই। এর জন্য প্রায় {needed} দরকার, কিন্তু ফাঁকা আছে মাত্র {free}। কিছু জায়গা খালি করে আবার চেষ্টা করুন।",
+  "rateAppLabel": "KatharScan কে রেটিং দিন"
 }

@@ -5,6 +5,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import '../core/services/interstitial_ad_service.dart';
 import '../core/services/ad_pacing_service.dart';
+import '../core/services/engagement_service.dart';
 import '../widgets/conditional_banner.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
@@ -198,6 +199,7 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
         await Future.delayed(const Duration(milliseconds: 300));
         if (!mounted) return;
         await AdPacingService.instance.recordScan();
+        unawaited(EngagementService.instance.recordSuccessfulAction());
         if (!mounted) return;
         context.pushReplacement('/scan/${document.id}');
         unawaited(InterstitialAdService.instance.showAfterScan());
@@ -276,6 +278,7 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
         await Future.delayed(const Duration(milliseconds: 300));
         if (!mounted) return;
         await AdPacingService.instance.recordScan();
+        unawaited(EngagementService.instance.recordSuccessfulAction());
         if (!mounted) return;
         context.pushReplacement('/scan/${savedDoc.id}');
         unawaited(InterstitialAdService.instance.showAfterScan());
@@ -480,6 +483,7 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
                   if (!mounted) return;
                   if (success) {
                     await AdPacingService.instance.recordScan();
+                    unawaited(EngagementService.instance.recordSuccessfulAction());
                     if (!mounted) return;
                     context.pushReplacement('/scan/${doc.id}');
                     unawaited(InterstitialAdService.instance.showAfterScan());
@@ -584,6 +588,7 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
         await Future.delayed(const Duration(milliseconds: 300));
         if (!mounted) return;
         await AdPacingService.instance.recordScan();
+        unawaited(EngagementService.instance.recordSuccessfulAction());
         if (!mounted) return;
         context.pushReplacement('/scan/${document.id}');
         unawaited(InterstitialAdService.instance.showAfterScan());

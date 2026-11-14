@@ -402,10 +402,6 @@
   "sharePromptBody": "強力なドキュメントスキャナーを必要としている友達と共有してください。",
   "sharePromptAction": "アプリを共有",
   "sharePromptDismiss": "後で",
-  "reviewPromptTitle": "KatharScanを楽しんでいますか？",
-  "reviewPromptBody": "あなたのフィードバックは私たちの成長を助け、アプリを無料で維持します。",
-  "reviewPromptYes": "評価する",
-  "reviewPromptNo": "フィードバックを送信",
   "watermarkLabel": "透かし",
   "compressLabel": "圧縮",
   "pagesLabel": "ページ",
@@ -672,5 +668,6 @@
   "storageTempFilesLabel": "一時ファイル",
   "storageClearButton": "消去",
   "storageCleared": "{size}を解放しました",
-  "lowStorageMessage": "空き容量が足りません。約{needed}必要ですが、空きは{free}だけです。空き容量を増やしてからもう一度お試しください。"
+  "lowStorageMessage": "空き容量が足りません。約{needed}必要ですが、空きは{free}だけです。空き容量を増やしてからもう一度お試しください。",
+  "rateAppLabel": "KatharScanを評価"
 }

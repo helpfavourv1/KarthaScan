@@ -4,6 +4,7 @@ import 'package:package_info_plus/package_info_plus.dart';
 import 'package:flutter/material.dart';
 import '../core/utils/language_names.dart';
 import '../core/services/ad_consent_service.dart';
+import '../core/services/engagement_service.dart';
 import '../widgets/conditional_banner.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -272,6 +273,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     )
                   : const SizedBox.shrink(),
             ),
+            _settingsTile(title: l10n.rateAppLabel, trailing: Icon(Icons.open_in_new, color: textSecondary, size: 16), onTap: () => EngagementService.instance.openStoreListing(), textPrimary: textPrimary, border: border),
+            const SizedBox(height: AppSpacing.xs),
             _settingsTile(title: l10n.privacyPolicyLabel, trailing: Icon(Icons.open_in_new, color: textSecondary, size: 16), onTap: () => _openUrl(AppSupportContact.privacyPolicyUrl, l10n), textPrimary: textPrimary, border: border),
             const SizedBox(height: AppSpacing.xs),
             _settingsTile(title: l10n.supportLabel, trailing: Icon(Icons.open_in_new, color: textSecondary, size: 16), onTap: () => _openUrl(AppSupportContact.supportUrl, l10n), textPrimary: textPrimary, border: border),

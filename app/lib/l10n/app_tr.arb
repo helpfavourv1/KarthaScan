@@ -495,10 +495,6 @@
   "sharePromptBody": "Güçlü bir belge tarayıcıya ihtiyacı olan arkadaşlarınızla paylaşın.",
   "sharePromptAction": "Uygulamayı Paylaş",
   "sharePromptDismiss": "Şimdi değil",
-  "reviewPromptTitle": "KatharScan'dan memnun musunuz?",
-  "reviewPromptBody": "Geri bildiriminiz büyümeye yardımcı olur ve uygulamayı ücretsiz tutar.",
-  "reviewPromptYes": "Bizi Değerlendir",
-  "reviewPromptNo": "Geri Bildirim Gönder",
   "watermarkLabel": "Filigran",
   "compressLabel": "Sıkıştır",
   "pagesLabel": "Sayfalar",
@@ -765,5 +761,6 @@
   "storageTempFilesLabel": "Geçici dosyalar",
   "storageClearButton": "Temizle",
   "storageCleared": "{size} boşaltıldı",
-  "lowStorageMessage": "Yeterli boş alan yok. Bunun için yaklaşık {needed} gerekiyor ancak yalnızca {free} boş. Biraz yer açıp tekrar deneyin."
+  "lowStorageMessage": "Yeterli boş alan yok. Bunun için yaklaşık {needed} gerekiyor ancak yalnızca {free} boş. Biraz yer açıp tekrar deneyin.",
+  "rateAppLabel": "KatharScan'i değerlendir"
 }

@@ -402,10 +402,6 @@
   "sharePromptBody": "شاركه مع الأصدقاء الذين يحتاجون إلى ماسح مستندات قوي.",
   "sharePromptAction": "مشاركة التطبيق",
   "sharePromptDismiss": "ليس الآن",
-  "reviewPromptTitle": "هل تستمتع بـ KatharScan؟",
-  "reviewPromptBody": "تعليقاتك تساعدنا على النمو وتحافظ على التطبيق مجانًا.",
-  "reviewPromptYes": "قيمنا",
-  "reviewPromptNo": "إرسال ملاحظات",
   "watermarkLabel": "علامة مائية",
   "compressLabel": "ضغط",
   "pagesLabel": "صفحات",
@@ -672,5 +668,6 @@
   "storageTempFilesLabel": "الملفات المؤقتة",
   "storageClearButton": "مسح",
   "storageCleared": "تم تحرير {size}",
-  "lowStorageMessage": "لا توجد مساحة كافية. يحتاج هذا إلى حوالي {needed}، لكن المتاح {free} فقط. أخلِ بعض المساحة وأعد المحاولة."
+  "lowStorageMessage": "لا توجد مساحة كافية. يحتاج هذا إلى حوالي {needed}، لكن المتاح {free} فقط. أخلِ بعض المساحة وأعد المحاولة.",
+  "rateAppLabel": "قيّم KatharScan"
 }

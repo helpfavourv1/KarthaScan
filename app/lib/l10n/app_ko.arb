@@ -402,10 +402,6 @@
   "sharePromptBody": "강력한 문서 스캐너가 필요한 친구와 공유하세요.",
   "sharePromptAction": "앱 공유",
   "sharePromptDismiss": "나중에",
-  "reviewPromptTitle": "KatharScan을 즐기시고 계신가요?",
-  "reviewPromptBody": "여러분의 피드백은 성장에 도움이 되며 앱을 무료로 유지합니다.",
-  "reviewPromptYes": "평가하기",
-  "reviewPromptNo": "피드백 보내기",
   "watermarkLabel": "워터마크",
   "compressLabel": "압축",
   "pagesLabel": "페이지",
@@ -672,5 +668,6 @@
   "storageTempFilesLabel": "임시 파일",
   "storageClearButton": "지우기",
   "storageCleared": "{size} 확보됨",
-  "lowStorageMessage": "여유 공간이 부족합니다. 약 {needed}가 필요하지만 {free}만 남아 있습니다. 공간을 확보한 후 다시 시도하세요."
+  "lowStorageMessage": "여유 공간이 부족합니다. 약 {needed}가 필요하지만 {free}만 남아 있습니다. 공간을 확보한 후 다시 시도하세요.",
+  "rateAppLabel": "KatharScan 평가하기"
 }

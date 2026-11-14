@@ -402,10 +402,6 @@
   "sharePromptBody": "इसे उन दोस्तों के साथ साझा करें जिन्हें एक शक्तिशाली दस्तावेज़ स्कैनर की आवश्यकता है।",
   "sharePromptAction": "ऐप साझा करें",
   "sharePromptDismiss": "अभी नहीं",
-  "reviewPromptTitle": "क्या आप KatharScan का आनंद ले रहे हैं?",
-  "reviewPromptBody": "आपकी प्रतिक्रिया हमें बढ़ने में मदद करती है और ऐप को मुफ्त रखती है।",
-  "reviewPromptYes": "हमें रेट करें",
-  "reviewPromptNo": "प्रतिक्रिया भेजें",
   "watermarkLabel": "वॉटरमार्क",
   "compressLabel": "संपीड़ित करें",
   "pagesLabel": "पृष्ठ",
@@ -672,5 +668,6 @@
   "storageTempFilesLabel": "अस्थायी फ़ाइलें",
   "storageClearButton": "साफ़ करें",
   "storageCleared": "{size} खाली हुआ",
-  "lowStorageMessage": "पर्याप्त खाली जगह नहीं है। इसके लिए लगभग {needed} चाहिए, लेकिन सिर्फ़ {free} खाली है। कुछ जगह खाली करके फिर कोशिश करें।"
+  "lowStorageMessage": "पर्याप्त खाली जगह नहीं है। इसके लिए लगभग {needed} चाहिए, लेकिन सिर्फ़ {free} खाली है। कुछ जगह खाली करके फिर कोशिश करें।",
+  "rateAppLabel": "KatharScan को रेट करें"
 }

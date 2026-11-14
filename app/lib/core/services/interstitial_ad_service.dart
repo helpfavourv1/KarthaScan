@@ -5,6 +5,7 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'ad_consent_service.dart';
 import 'ad_pacing_service.dart';
+import 'modal_moment_gate.dart';
 
 class InterstitialAdService {
   InterstitialAdService._();
@@ -42,8 +43,8 @@ class InterstitialAdService {
           _ad = ad;
           _loading = false;
           ad.fullScreenContentCallback = FullScreenContentCallback(
-            onAdDismissedFullScreenContent: (a) { a.dispose(); _load(); },
-            onAdFailedToShowFullScreenContent: (a, e) { a.dispose(); _load(); },
+            onAdDismissedFullScreenContent: (a) { a.dispose(); ModalMomentGate.instance.release(hold: const Duration(seconds: 3)); _load(); },
+            onAdFailedToShowFullScreenContent: (a, e) { a.dispose(); ModalMomentGate.instance.release(); _load(); },
           );
         },
         onAdFailedToLoad: (e) { _ad = null; _loading = false; },
@@ -53,11 +54,18 @@ class InterstitialAdService {
 
   Future<void> showIfAllowed() async {
     if (await _isAdsRemovedCached()) return;
+    if (!AdConsentService.instance.adsReady.value) {
+      _ad?.dispose();
+      _ad = null;
+      return;
+    }
     if (!AdPacingService.instance.canShowAd()) return;
     if (_ad == null) {
       await _load();
       if (_ad == null) return;
     }
+    // Not in the same moment as the review dialog.
+    if (!ModalMomentGate.instance.tryAcquire()) return;
     _ad!.show();
     await AdPacingService.instance.recordAdShown();
     _ad = null;
