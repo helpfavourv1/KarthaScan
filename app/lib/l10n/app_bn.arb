@@ -94,7 +94,7 @@
   "genericErrorMessage": "কিছু ভুল হয়েছে। আবার চেষ্টা করুন।",
   "homeLanguageTooltip": "অ্যাপ ভাষা",
   "removeAdsTitle": "বিজ্ঞাপন চিরতরে সরান",
-  "extractedTextTitle": "নিষ্কাশিত টেক্সট",
+  "extractedTextTitle": "বের করা টেক্সট",
   "commonClose": "বন্ধ",
   "commonCopy": "কপি",
   "savedToDocumentText": "নথির টেক্সটে সংরক্ষিত",
@@ -187,7 +187,7 @@
   },
   "duplicateAction": "ডুপ্লিকেট",
   "rotate90Action": "90° ঘোরান",
-  "extractToNewDocAction": "নতুন নথিতে নিষ্কাশন",
+  "extractToNewDocAction": "নতুন নথিতে বের করুন",
   "addPageTitle": "পৃষ্ঠা যোগ",
   "cameraSource": "ক্যামেরা",
   "importFromGallery": "গ্যালারি থেকে আমদানি",
@@ -246,7 +246,7 @@
   "actionLabel": "অ্যাকশন:",
   "saveAsNewDocumentAction": "নতুন নথি হিসাবে সংরক্ষণ",
   "exportAndShareAction": "রপ্তানি ও শেয়ার",
-  "docxWarningMessage": "DOCX উৎস পৃষ্ঠা হিসাবে ভালোভাবে রেন্ডার হয় না — অ্যাপের ভেতরে সংরক্ষণ শুধু ছবি, PDF, TXT বা CSV উৎস থেকে JPG/PNG-তে সীমাবদ্ধ। এই ফাইলের জন্য রপ্তানি ও শেয়ার ব্যবহার করুন।",
+  "docxWarningMessage": "DOCX উৎস পৃষ্ঠা হিসেবে ভালোভাবে রেন্ডার হয় না — অ্যাপের ভেতরে সংরক্ষণ কেবল ছবি, PDF, TXT বা CSV থেকে JPG/PNG-তে করা যায়। এই ফাইলের জন্য রপ্তানি ও শেয়ার ব্যবহার করুন।",
   "saveInsideAppWarning": "অ্যাপে সংরক্ষণ করতে JPG বা PNG বেছে নিন। অন্যান্য ফরম্যাট ফাইল হিসাবে রপ্তানি করা হয়।",
   "commonConvert": "রূপান্তর",
   "conversionStarting": "শুরু হচ্ছে...",
@@ -263,7 +263,7 @@
   "progressBuildingPdf": "PDF তৈরি হচ্ছে...",
   "progressBuildingDocx": "DOCX তৈরি হচ্ছে...",
   "progressDecodingImage": "চিত্র ডিকোড হচ্ছে...",
-  "progressExtractingText": "টেক্সট নিষ্কাশন হচ্ছে...",
+  "progressExtractingText": "টেক্সট বের করা হচ্ছে...",
   "progressSaving": "সংরক্ষণ হচ্ছে...",
   "progressRasterizing": "পৃষ্ঠা রাস্টারাইজ হচ্ছে...",
   "progressEncodingPage": "পৃষ্ঠা {current}/{total} এনকোড হচ্ছে...",
@@ -345,7 +345,7 @@
   "filterTitle": "ফিল্টার",
   "intensityLabel": "তীব্রতা",
   "selectRegionTitle": "অংশ নির্বাচন",
-  "commonExtract": "নিষ্কাশন",
+  "commonExtract": "বের করুন",
   "customColorTitle": "কাস্টম রঙ",
   "documentNotFound": "নথি পাওয়া যায়নি",
   "clearLogsTooltip": "লগ সাফ করুন",
@@ -434,7 +434,7 @@
   "paywallFeatureNoBanner": "আর কোনো ব্যানার বিজ্ঞাপন নেই",
   "paywallFeatureNoInterstitial": "আর কোনো ইন্টারস্টিশিয়াল বিজ্ঞাপন নেই",
   "paywallFeatureFreeForever": "সমস্ত বৈশিষ্ট্য চিরতরে বিনামূল্যে",
-  "paywallLegalText": "এটি একবারের ক্রয়, যা ব্যবহারে শেষ হয় না। একই স্টোর অ্যাকাউন্ট সহ যেকোনো ডিভাইসে যেকোনো সময় এটি পুনরুদ্ধার করুন।",
+  "paywallLegalText": "এটি একবারের ক্রয়; একই স্টোর অ্যাকাউন্ট দিয়ে যেকোনো ডিভাইসে যেকোনো সময় এটি পুনরুদ্ধার করা যায়।",
   "paywallSuccessTitle": "বিজ্ঞাপন সরানো হয়েছে",
   "paywallSuccessMessage": "KatharScan-কে সমর্থন করার জন্য ধন্যবাদ।",
   "errorGenericTitle": "কিছু ভুল হয়েছে",
@@ -581,7 +581,7 @@
   "@sealDefaultMainText": {
     "description": "Localized string for sealDefaultMainText"
   },
-  "extractedPageDefaultTitle": "নিষ্কাশিত পৃষ্ঠা",
+  "extractedPageDefaultTitle": "বের করা পৃষ্ঠা",
   "@extractedPageDefaultTitle": {
     "description": "Localized string for extractedPageDefaultTitle"
   },
@@ -670,7 +670,7 @@
   "@ocrStatusDownloading": {
     "description": "OCR language pack is downloading"
   },
-  "exportNoTextError": "এই নথিতে এখনও কোনো লেখা নেই। আগে OCR চালান।",
+  "exportNoTextError": "এই নথিতে এখনও কোনো টেক্সট নেই। আগে OCR চালান।",
   "@exportNoTextError": {
     "description": "Shown when a text export is asked for a document with no recognized text"
   },
@@ -703,7 +703,7 @@
   "sealTextColorSame": "রিংয়ের মতো",
   "sealTextSizePercent": "লেখার আকার {percent}%",
   "sealRemoveWhite": "সাদা অংশ স্বচ্ছ করুন",
-  "sealSavedMessage": "সিল সংরক্ষিত হয়েছে",
+  "sealSavedMessage": "সীল সংরক্ষিত হয়েছে",
   "signatureTabDraw": "আঁকুন",
   "signatureTabType": "টাইপ করুন",
   "signatureTypeHint": "আপনার নাম লিখুন",

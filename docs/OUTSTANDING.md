@@ -277,3 +277,5 @@ Storage hygiene gaps found when audited (not yet built):
 - pt_PT: all 169 override rows read vs en and pt. 2 added overrides (storageAppUsedLabel, storageTempFilesLabel had Brazilian wording). Non-overridden rows inherit pt.
 - NOTE: 8 keys newer than the blind snapshot (clearedKindCount, storage*, lowStorageMessage, rateAppLabel, languageSystemDefault) are read for every language in one pass at the end.
 - Phase 5 nl: all 560 rows read; 1 fix (pagesToReadHint elliptical sentence completed). Native review: redoTooltip/ticker 'Opnieuw' for Redo.
+- Phase 5 ar: all 560 rows read; 5 fixes (annotateTitle, hueLabel, count-agreement in pagesDeleteConfirm/pagesToReadHint/watermarkPagesInvalid). Native review: mixed OCR/التعرف الضوئي wording, proBadge 'برو'.
+- Phase 5 bn: all 560 rows read; 9 fixes (extract wording 'নিষ্কাশন'→'বের করা', docxWarning grammar, paywallLegal non-consumable phrasing, exportNoTextError term, seal spelling). Native review: 'সাফ করুন' for Clear, 'গাঢ়' dark.
