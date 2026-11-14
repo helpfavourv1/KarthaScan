@@ -762,5 +762,6 @@
   "storageClearButton": "Svuota",
   "storageCleared": "Liberati {size}",
   "lowStorageMessage": "Spazio libero insufficiente. Servono circa {needed}, ma sono disponibili solo {free}. Libera spazio e riprova.",
-  "rateAppLabel": "Valuta KatharScan"
+  "rateAppLabel": "Valuta KatharScan",
+  "languageSystemDefault": "Predefinito di sistema"
 }

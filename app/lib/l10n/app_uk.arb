@@ -762,5 +762,6 @@
   "storageClearButton": "Очистити",
   "storageCleared": "Звільнено {size}",
   "lowStorageMessage": "Недостатньо вільного місця. Потрібно приблизно {needed}, а вільно лише {free}. Звільніть місце й повторіть спробу.",
-  "rateAppLabel": "Оцінити KatharScan"
+  "rateAppLabel": "Оцінити KatharScan",
+  "languageSystemDefault": "Як у системі"
 }

@@ -669,5 +669,6 @@
   "storageClearButton": "Leeren",
   "storageCleared": "{size} freigegeben",
   "lowStorageMessage": "Nicht genug freier Speicher. Dafür werden etwa {needed} benötigt, aber nur {free} sind frei. Geben Sie Speicherplatz frei und versuchen Sie es erneut.",
-  "rateAppLabel": "KatharScan bewerten"
+  "rateAppLabel": "KatharScan bewerten",
+  "languageSystemDefault": "Systemstandard"
 }

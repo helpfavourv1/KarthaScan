@@ -10,6 +10,7 @@ class UserSettings {
     this.themeMode = ThemeMode.system,
     this.accentColor = AppColors.defaultAccentColor,
     this.language = AppLocales.defaultLanguageCode,
+    this.followSystemLanguage = true,
     this.adsRemoved = false,
     this.autoCopyOcr = false,
     this.beepOnCapture = false,
@@ -22,7 +23,15 @@ class UserSettings {
 
   final ThemeMode themeMode;
   final Color accentColor;
+  /// The language the person picked by hand (used when [followSystemLanguage] is false).
   final String language;
+
+  /// True when the app follows the phone's language, including later changes to it.
+  final bool followSystemLanguage;
+
+  /// The language to show: the phone's own while following the system, else the chosen one.
+  String get activeLanguage =>
+      followSystemLanguage ? AppLocales.fromDevice(PlatformDispatcher.instance.locale) : language;
   final bool adsRemoved;
   final bool autoCopyOcr;
   final bool beepOnCapture;
@@ -38,6 +47,7 @@ class UserSettings {
     ThemeMode? themeMode,
     Color? accentColor,
     String? language,
+    bool? followSystemLanguage,
     bool? adsRemoved,
     bool? autoCopyOcr,
     bool? beepOnCapture,
@@ -51,6 +61,7 @@ class UserSettings {
       themeMode: themeMode ?? this.themeMode,
       accentColor: accentColor ?? this.accentColor,
       language: language ?? this.language,
+      followSystemLanguage: followSystemLanguage ?? this.followSystemLanguage,
       adsRemoved: adsRemoved ?? this.adsRemoved,
       autoCopyOcr: autoCopyOcr ?? this.autoCopyOcr,
       beepOnCapture: beepOnCapture ?? this.beepOnCapture,
@@ -67,6 +78,7 @@ class UserSettings {
       'themeMode': themeMode.name,
       'accentColorArgb': _colorToArgb(accentColor),
       'language': language,
+      'followSystemLanguage': followSystemLanguage,
       'adsRemoved': adsRemoved,
       'autoCopyOcr': autoCopyOcr,
       'beepOnCapture': beepOnCapture,
@@ -84,6 +96,9 @@ class UserSettings {
       themeMode: ThemeMode.values.byName(json['themeMode'] as String? ?? ThemeMode.system.name),
       accentColor: json['accentColorArgb'] == null ? AppColors.accentLight : _colorFromArgb(json['accentColorArgb'] as int),
       language: json['language'] as String? ?? AppLocales.fromDevice(PlatformDispatcher.instance.locale),
+      // Settings saved before this option existed have a language the person (or an
+      // earlier launch) settled on, so they stay as they are; a file with no language follows the phone.
+      followSystemLanguage: json['followSystemLanguage'] as bool? ?? !json.containsKey('language'),
       adsRemoved: adsRemovedValue,
       autoCopyOcr: json['autoCopyOcr'] as bool? ?? false,
       beepOnCapture: json['beepOnCapture'] as bool? ?? false,
@@ -109,7 +124,7 @@ class UserSettings {
     if (identical(this, other)) return true;
     return other is UserSettings &&
         other.themeMode == themeMode && other.accentColor == accentColor &&
-        other.language == language &&
+        other.language == language && other.followSystemLanguage == followSystemLanguage &&
         other.adsRemoved == adsRemoved && other.autoCopyOcr == autoCopyOcr &&
         other.beepOnCapture == beepOnCapture && other.vibrateOnCapture == vibrateOnCapture &&
         other.enableNotifications == enableNotifications && other.enableReviewPrompts == enableReviewPrompts &&
@@ -118,12 +133,12 @@ class UserSettings {
 
   @override
   int get hashCode {
-    final int base = Object.hash(themeMode, accentColor, language, adsRemoved, autoCopyOcr, beepOnCapture, vibrateOnCapture, enableNotifications, enableReviewPrompts, enableSharePrompts);
+    final int base = Object.hash(themeMode, accentColor, language, followSystemLanguage, adsRemoved, autoCopyOcr, beepOnCapture, vibrateOnCapture, enableNotifications, enableReviewPrompts, enableSharePrompts);
     if (lastWatermark == null) return base;
     final int mapHash = Object.hashAll(lastWatermark!.entries.map((MapEntry<String, dynamic> e) => Object.hash(e.key, e.value)));
     return Object.hash(base, mapHash);
   }
 
   @override
-  String toString() => 'UserSettings(themeMode: $themeMode, language: $language, adsRemoved: $adsRemoved, autoCopy: $autoCopyOcr, beep: $beepOnCapture, vibrate: $vibrateOnCapture, notif: $enableNotifications, review: $enableReviewPrompts, share: $enableSharePrompts)';
+  String toString() => 'UserSettings(themeMode: $themeMode, language: $language, followSystem: $followSystemLanguage, adsRemoved: $adsRemoved, autoCopy: $autoCopyOcr, beep: $beepOnCapture, vibrate: $vibrateOnCapture, notif: $enableNotifications, review: $enableReviewPrompts, share: $enableSharePrompts)';
 }

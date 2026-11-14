@@ -762,5 +762,6 @@
   "storageClearButton": "Rensa",
   "storageCleared": "{size} frigjort",
   "lowStorageMessage": "Inte tillräckligt med ledigt utrymme. Det behövs ungefär {needed}, men bara {free} är ledigt. Frigör utrymme och försök igen.",
-  "rateAppLabel": "Betygsätt KatharScan"
+  "rateAppLabel": "Betygsätt KatharScan",
+  "languageSystemDefault": "Systemstandard"
 }

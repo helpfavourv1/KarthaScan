@@ -762,5 +762,6 @@
   "storageClearButton": "ล้าง",
   "storageCleared": "คืนพื้นที่ได้ {size}",
   "lowStorageMessage": "พื้นที่ว่างไม่เพียงพอ ต้องใช้ประมาณ {needed} แต่เหลือเพียง {free} กรุณาเพิ่มพื้นที่ว่างแล้วลองอีกครั้ง",
-  "rateAppLabel": "ให้คะแนน KatharScan"
+  "rateAppLabel": "ให้คะแนน KatharScan",
+  "languageSystemDefault": "ค่าเริ่มต้นของระบบ"
 }

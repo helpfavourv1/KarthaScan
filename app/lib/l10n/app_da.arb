@@ -762,5 +762,6 @@
   "storageClearButton": "Ryd",
   "storageCleared": "{size} frigjort",
   "lowStorageMessage": "Ikke nok ledig plads. Det kræver omkring {needed}, men der er kun {free} ledigt. Frigør noget plads, og prøv igen.",
-  "rateAppLabel": "Bedøm KatharScan"
+  "rateAppLabel": "Bedøm KatharScan",
+  "languageSystemDefault": "Systemstandard"
 }

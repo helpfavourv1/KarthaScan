@@ -669,5 +669,6 @@
   "storageClearButton": "נקה",
   "storageCleared": "שוחררו {size}",
   "lowStorageMessage": "אין מספיק מקום פנוי. נדרשים כ-{needed}, אך פנויים רק {free}. פנו מקום ונסו שוב.",
-  "rateAppLabel": "דרג את KatharScan"
+  "rateAppLabel": "דרג את KatharScan",
+  "languageSystemDefault": "ברירת המחדל של המערכת"
 }

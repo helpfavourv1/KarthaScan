@@ -669,5 +669,6 @@
   "storageClearButton": "Limpar",
   "storageCleared": "{size} liberados",
   "lowStorageMessage": "Não há espaço livre suficiente. Isso precisa de cerca de {needed}, mas só há {free} livres. Libere espaço e tente novamente.",
-  "rateAppLabel": "Avaliar o KatharScan"
+  "rateAppLabel": "Avaliar o KatharScan",
+  "languageSystemDefault": "Padrão do sistema"
 }

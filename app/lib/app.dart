@@ -47,6 +47,13 @@ class _KatharScanAppState extends State<KatharScanApp> with WidgetsBindingObserv
   }
 
   @override
+  void didChangeLocales(List<Locale>? locales) {
+    super.didChangeLocales(locales);
+    // While following the phone's language, a change in the phone's settings applies at once.
+    if (mounted) setState(() {});
+  }
+
+  @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     super.didChangeAppLifecycleState(state);
     // Ask Google's consent SDK again, so a failed check is retried and a withdrawn consent is noticed.
@@ -88,7 +95,7 @@ class _KatharScanAppState extends State<KatharScanApp> with WidgetsBindingObserv
         settingsProvider.settings,
       ]),
       builder: (BuildContext context, Widget? _) {
-        final String languageCode = settingsProvider.settings.value.language;
+        final String languageCode = settingsProvider.settings.value.activeLanguage;
         final Locale locale = AppLocales.toLocale(languageCode);
         final bool isRtl = AppLocales.isRtl(languageCode);
         final Color accentColor = themeProvider.accentColor.value;

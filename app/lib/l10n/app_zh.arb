@@ -669,5 +669,6 @@
   "storageClearButton": "清除",
   "storageCleared": "已释放 {size}",
   "lowStorageMessage": "可用空间不足。此操作大约需要 {needed}，但只剩 {free} 可用。请腾出一些空间后重试。",
-  "rateAppLabel": "为 KatharScan 评分"
+  "rateAppLabel": "为 KatharScan 评分",
+  "languageSystemDefault": "系统默认"
 }

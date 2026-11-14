@@ -669,5 +669,6 @@
   "storageClearButton": "مسح",
   "storageCleared": "تم تحرير {size}",
   "lowStorageMessage": "لا توجد مساحة كافية. يحتاج هذا إلى حوالي {needed}، لكن المتاح {free} فقط. أخلِ بعض المساحة وأعد المحاولة.",
-  "rateAppLabel": "قيّم KatharScan"
+  "rateAppLabel": "قيّم KatharScan",
+  "languageSystemDefault": "افتراضي النظام"
 }

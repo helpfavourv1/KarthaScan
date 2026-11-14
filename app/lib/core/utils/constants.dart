@@ -253,6 +253,9 @@ abstract final class AppLocales {
   static const List<String> rtlLanguageCodes = ['ar', 'he'];
   static const String defaultLanguageCode = 'en';
 
+  /// Picker value meaning "follow the phone's language".
+  static const String systemLanguage = 'system';
+
   /// The language a saved choice such as `zh_Hant` belongs to (`zh`).
   static String baseLanguage(String code) => code.split('_').first;
 

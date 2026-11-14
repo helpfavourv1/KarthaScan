@@ -669,5 +669,6 @@
   "storageClearButton": "지우기",
   "storageCleared": "{size} 확보됨",
   "lowStorageMessage": "여유 공간이 부족합니다. 약 {needed}가 필요하지만 {free}만 남아 있습니다. 공간을 확보한 후 다시 시도하세요.",
-  "rateAppLabel": "KatharScan 평가하기"
+  "rateAppLabel": "KatharScan 평가하기",
+  "languageSystemDefault": "시스템 기본값"
 }

@@ -762,5 +762,6 @@
   "storageClearButton": "Temizle",
   "storageCleared": "{size} boşaltıldı",
   "lowStorageMessage": "Yeterli boş alan yok. Bunun için yaklaşık {needed} gerekiyor ancak yalnızca {free} boş. Biraz yer açıp tekrar deneyin.",
-  "rateAppLabel": "KatharScan'i değerlendir"
+  "rateAppLabel": "KatharScan'i değerlendir",
+  "languageSystemDefault": "Sistem varsayılanı"
 }

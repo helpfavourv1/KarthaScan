@@ -1,3 +1,4 @@
+import 'dart:ui' show PlatformDispatcher;
 import 'dart:async' show Timer;
 import 'package:flutter/material.dart';
 import '../core/utils/language_names.dart';
@@ -134,7 +135,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Future<void> _pickLanguage() async {
     final chosen = await showModalBottomSheet<String>(
       context: context,
-      builder: (context) => _LanguagePickerSheet(current: _settingsProvider.settings.value.language),
+      builder: (context) => _LanguagePickerSheet(current: _settingsProvider.settings.value.followSystemLanguage ? AppLocales.systemLanguage : _settingsProvider.settings.value.language),
     );
     if (chosen != null) await _settingsProvider.setLanguage(chosen);
   }
@@ -321,7 +322,7 @@ class _HomeScreenState extends State<HomeScreen> {
     final textPrimary = isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight;
     final textSecondary = isDark ? AppColors.textSecondaryDark : AppColors.textSecondaryLight;
     final accent = isDark ? AppColors.accentDark : AppColors.accentLight;
-    final localeCode = _settingsProvider.settings.value.language;
+    final localeCode = _settingsProvider.settings.value.activeLanguage;
 
     return Scaffold(
       backgroundColor: bg,
@@ -681,7 +682,16 @@ class _LanguagePickerSheet extends StatelessWidget {
               child: SingleChildScrollView(
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
-                  children: AppLocales.supportedLanguageCodes.map((code) => ListTile(title: Text(_labels[code] ?? code, style: TextStyle(color: textPrimary)), subtitle: code == 'en' ? null : Text(kLanguageEnglishNames[code] ?? '', style: TextStyle(color: textPrimary.withValues(alpha: 0.6), fontSize: 12)), trailing: code == current ? Icon(Icons.check, color: accent) : null, onTap: () => Navigator.of(context).pop(code))).toList(),
+                  children: <Widget>[
+                    ListTile(
+                      key: const ValueKey<String>('languageSystemDefault'),
+                      title: Text(AppLocalizations.of(context).languageSystemDefault, style: TextStyle(color: textPrimary)),
+                      subtitle: Text(kLanguageNativeNames[AppLocales.fromDevice(PlatformDispatcher.instance.locale)] ?? '', style: TextStyle(color: textPrimary.withValues(alpha: 0.6), fontSize: 12)),
+                      trailing: current == AppLocales.systemLanguage ? Icon(Icons.check, color: accent) : null,
+                      onTap: () => Navigator.of(context).pop(AppLocales.systemLanguage),
+                    ),
+                    ...AppLocales.supportedLanguageCodes.map((code) => ListTile(title: Text(_labels[code] ?? code, style: TextStyle(color: textPrimary)), subtitle: code == 'en' ? null : Text(kLanguageEnglishNames[code] ?? '', style: TextStyle(color: textPrimary.withValues(alpha: 0.6), fontSize: 12)), trailing: code == current ? Icon(Icons.check, color: accent) : null, onTap: () => Navigator.of(context).pop(code))),
+                  ],
                 ),
               ),
             ),

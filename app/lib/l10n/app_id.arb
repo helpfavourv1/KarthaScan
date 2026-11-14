@@ -669,5 +669,6 @@
   "storageClearButton": "Hapus",
   "storageCleared": "{size} dibebaskan",
   "lowStorageMessage": "Ruang kosong tidak cukup. Ini butuh sekitar {needed}, tetapi hanya {free} yang tersedia. Kosongkan sebagian ruang lalu coba lagi.",
-  "rateAppLabel": "Beri nilai KatharScan"
+  "rateAppLabel": "Beri nilai KatharScan",
+  "languageSystemDefault": "Default sistem"
 }

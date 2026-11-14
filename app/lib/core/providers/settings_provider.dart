@@ -12,6 +12,7 @@
 // itself — it exposes ValueNotifier fields directly.
 
 import 'dart:async' show unawaited;
+import 'dart:ui' show PlatformDispatcher;
 
 import 'package:flutter/foundation.dart' show ValueNotifier;
 import 'package:flutter/material.dart' show Color, ThemeMode;
@@ -99,8 +100,10 @@ class SettingsProvider {
   Future<bool> setAccentColor(Color color) =>
       _persist(settings.value.copyWith(accentColor: color));
 
-  Future<bool> setLanguage(String languageCode) =>
-      _persist(settings.value.copyWith(language: languageCode));
+  /// [languageCode] is a language, or [AppLocales.systemLanguage] to follow the phone.
+  Future<bool> setLanguage(String languageCode) => languageCode == AppLocales.systemLanguage
+      ? _persist(settings.value.copyWith(followSystemLanguage: true, language: AppLocales.fromDevice(PlatformDispatcher.instance.locale)))
+      : _persist(settings.value.copyWith(language: languageCode, followSystemLanguage: false));
 
   /// Called by subscription_provider.dart when the authoritative
   /// entitlement state changes, keeping UserSettings.adsRemoved — a cached

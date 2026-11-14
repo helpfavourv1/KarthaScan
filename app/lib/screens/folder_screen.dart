@@ -121,7 +121,7 @@ class _FolderScreenState extends State<FolderScreen> {
     final Color bg = isDark ? AppColors.bgPrimaryDark : AppColors.bgPrimaryLight;
     final Color textPrimary = isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight;
     final Color textSecondary = isDark ? AppColors.textSecondaryDark : AppColors.textSecondaryLight;
-    final String localeCode = _settingsProvider.settings.value.language;
+    final String localeCode = _settingsProvider.settings.value.activeLanguage;
 
     return Scaffold(
       bottomNavigationBar: const ConditionalBanner(),

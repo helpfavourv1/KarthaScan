@@ -762,5 +762,6 @@
   "storageClearButton": "Xóa",
   "storageCleared": "Đã giải phóng {size}",
   "lowStorageMessage": "Không đủ dung lượng trống. Việc này cần khoảng {needed}, nhưng chỉ còn {free}. Hãy giải phóng bớt dung lượng rồi thử lại.",
-  "rateAppLabel": "Đánh giá KatharScan"
+  "rateAppLabel": "Đánh giá KatharScan",
+  "languageSystemDefault": "Mặc định của hệ thống"
 }

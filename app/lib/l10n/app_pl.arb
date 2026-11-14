@@ -762,5 +762,6 @@
   "storageClearButton": "Wyczyść",
   "storageCleared": "Zwolniono {size}",
   "lowStorageMessage": "Za mało wolnego miejsca. Potrzeba około {needed}, a wolne jest tylko {free}. Zwolnij miejsce i spróbuj ponownie.",
-  "rateAppLabel": "Oceń KatharScan"
+  "rateAppLabel": "Oceń KatharScan",
+  "languageSystemDefault": "Domyślny systemu"
 }

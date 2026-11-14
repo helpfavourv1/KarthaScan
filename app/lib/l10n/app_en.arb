@@ -1068,5 +1068,6 @@
       }
     }
   },
-  "rateAppLabel": "Rate KatharScan"
+  "rateAppLabel": "Rate KatharScan",
+  "languageSystemDefault": "System default"
 }

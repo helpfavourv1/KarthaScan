@@ -669,5 +669,6 @@
   "storageClearButton": "Effacer",
   "storageCleared": "{size} libérés",
   "lowStorageMessage": "Espace libre insuffisant. Il faut environ {needed}, mais seulement {free} sont disponibles. Libérez de l'espace et réessayez.",
-  "rateAppLabel": "Noter KatharScan"
+  "rateAppLabel": "Noter KatharScan",
+  "languageSystemDefault": "Par défaut du système"
 }

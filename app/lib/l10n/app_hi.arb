@@ -669,5 +669,6 @@
   "storageClearButton": "साफ़ करें",
   "storageCleared": "{size} खाली हुआ",
   "lowStorageMessage": "पर्याप्त खाली जगह नहीं है। इसके लिए लगभग {needed} चाहिए, लेकिन सिर्फ़ {free} खाली है। कुछ जगह खाली करके फिर कोशिश करें।",
-  "rateAppLabel": "KatharScan को रेट करें"
+  "rateAppLabel": "KatharScan को रेट करें",
+  "languageSystemDefault": "सिस्टम डिफ़ॉल्ट"
 }
