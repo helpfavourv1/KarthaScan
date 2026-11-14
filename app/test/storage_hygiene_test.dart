@@ -45,7 +45,6 @@ void main() {
       Directory dir(String name, int bytes, Duration age) {
         final Directory d = Directory(p.join(root.path, name))..createSync();
         _file(d, 'a.pdf', bytes, now.subtract(age));
-        d.setLastModifiedSync(now.subtract(age));
         return d;
       }
       final Directory oldest = dir('export_1', 400, const Duration(days: 3));

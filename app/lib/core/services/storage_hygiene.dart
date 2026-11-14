@@ -54,7 +54,7 @@ Future<int> trimTempExports(
     if (e is! Directory || !(name.startsWith('export_') || name.startsWith('share_'))) continue;
     try {
       final int size = await directoryBytes(e);
-      final DateTime modified = (await e.stat()).modified;
+      final DateTime modified = await _newestModified(e);
       entries.add(_Entry(e, size, modified));
       total += size;
     } catch (_) {}
@@ -72,6 +72,20 @@ Future<int> trimTempExports(
     } catch (_) {}
   }
   return removed;
+}
+
+/// A folder's age is its newest file's age (a folder's own timestamp only
+/// changes when files are added or removed), falling back to the folder itself.
+Future<DateTime> _newestModified(Directory d) async {
+  DateTime? newest;
+  await for (final FileSystemEntity f in d.list(recursive: true)) {
+    if (f is! File) continue;
+    try {
+      final DateTime m = (await f.stat()).modified;
+      if (newest == null || m.isAfter(newest)) newest = m;
+    } catch (_) {}
+  }
+  return newest ?? (await d.stat()).modified;
 }
 
 class _Entry {
