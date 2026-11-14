@@ -91,7 +91,8 @@ void main() {
 
   test('formatBytes', () {
     expect(formatBytes(0), '0 B');
-    expect(formatBytes(1536), '1.5 KB');
+    expect(formatBytes(1536), '2 KB'); // kilobytes are shown whole
+    expect(formatBytes(10 * 1024), '10 KB');
     expect(formatBytes(5 * 1024 * 1024), '5.0 MB');
     expect(formatBytes(250 * 1024 * 1024), '250 MB');
   });
