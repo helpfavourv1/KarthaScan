@@ -168,5 +168,7 @@
   "noFoldersYet": "Ainda sem pastas",
   "ocrScriptLatin": "Latino (inglês, europeu)",
   "conversionFailedPrefix": "Falha na conversão",
-  "cropAspectId": "Cartão de ID"
+  "cropAspectId": "Cartão de ID",
+  "storageAppUsedLabel": "Dados da aplicação",
+  "storageTempFilesLabel": "Ficheiros temporários"
 }

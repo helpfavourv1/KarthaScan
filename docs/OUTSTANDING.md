@@ -270,3 +270,10 @@ Storage hygiene gaps found when audited (not yet built):
 - New strings needing native review: clearedKindCount, rateAppLabel, languageSystemDefault (plus earlier ones).
 - Back-translation full read (Phase 5): progress per language is logged below as each is finished.
 - de: all 560 rows read directly (incl. unflagged). 1 fix: signatureTabType 'Tippen' (means tap) -> 'Eingeben'.
+- fr: all 560 rows read. 3 fixes: cameraSource (Caméra→Appareil photo), commonSkip (Ignorer→Passer), drawNewSignature (now says draw).
+- es: all 560 rows read. 0 definite errors. Style note for native review: Añadir/Agregar are mixed.
+- it: all 560 rows read. 1 fix: watermarkDefaultText RISERVATO→CONFIDENZIALE.
+- pt: all 560 rows read. 0 definite errors (earlier 'o digitalização' gender slip was already fixed in the earlier review).
+- pt_PT: all 169 override rows read vs en and pt. 2 added overrides (storageAppUsedLabel, storageTempFilesLabel had Brazilian wording). Non-overridden rows inherit pt.
+- NOTE: 8 keys newer than the blind snapshot (clearedKindCount, storage*, lowStorageMessage, rateAppLabel, languageSystemDefault) are read for every language in one pass at the end.
+- Phase 5 nl: all 560 rows read; 1 fix (pagesToReadHint elliptical sentence completed). Native review: redoTooltip/ticker 'Opnieuw' for Redo.

@@ -688,7 +688,7 @@
   "idLayoutRealSize": "Werkelijke grootte",
   "idLayoutFullWidth": "Volledige breedte",
   "pagesToReadTitle": "Te lezen pagina's",
-  "pagesToReadHint": "Deze PDF heeft {count} pagina's. Pagina's die afbeeldingen zijn worden met OCR gelezen (ongeveer 10 seconden per pagina); pagina's met echte tekst direct.",
+  "pagesToReadHint": "Deze PDF heeft {count} pagina's. Pagina's die afbeeldingen zijn worden met OCR gelezen (ongeveer 10 seconden per pagina); pagina's met echte tekst zijn direct klaar.",
   "pageFromLabel": "Van pagina",
   "pageToLabel": "Tot pagina",
   "readingPageProgress": "Pagina {page} van {total}",
