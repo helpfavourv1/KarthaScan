@@ -14,6 +14,8 @@
 import 'dart:async' show unawaited;
 import 'dart:ui' show PlatformDispatcher;
 
+import '../utils/constants.dart' show AppLocales;
+
 import 'package:flutter/foundation.dart' show ValueNotifier;
 import 'package:flutter/material.dart' show Color, ThemeMode;
 
