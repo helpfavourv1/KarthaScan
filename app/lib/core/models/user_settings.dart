@@ -1,4 +1,4 @@
-import 'dart:ui' show PlatformDispatcher;
+import 'dart:ui' show Locale, PlatformDispatcher;
 import 'package:flutter/foundation.dart' show immutable, mapEquals;
 import 'package:flutter/material.dart' show Color, ThemeMode;
 
@@ -31,7 +31,10 @@ class UserSettings {
 
   /// The language to show: the phone's own while following the system, else the chosen one.
   String get activeLanguage =>
-      followSystemLanguage ? AppLocales.fromDevice(PlatformDispatcher.instance.locale) : language;
+      followSystemLanguage ? AppLocales.fromDevice(deviceLocale()) : language;
+
+  /// The phone's current locale. Tests replace this; the app never does.
+  static Locale Function() deviceLocale = () => PlatformDispatcher.instance.locale;
   final bool adsRemoved;
   final bool autoCopyOcr;
   final bool beepOnCapture;

@@ -4,10 +4,11 @@ import 'package:katharscan/core/models/user_settings.dart';
 import 'package:katharscan/core/utils/constants.dart';
 
 void main() {
-  final TestWidgetsFlutterBinding binding = TestWidgetsFlutterBinding.ensureInitialized();
-  tearDown(() => binding.platformDispatcher.clearLocalesTestValue());
+  TestWidgetsFlutterBinding.ensureInitialized();
+  final Locale Function() original = UserSettings.deviceLocale;
+  tearDown(() => UserSettings.deviceLocale = original);
 
-  void phone(Locale l) => binding.platformDispatcher.localesTestValue = <Locale>[l];
+  void phone(Locale l) => UserSettings.deviceLocale = () => l;
 
   test('a new install follows the phone', () {
     phone(const Locale('de', 'DE'));
