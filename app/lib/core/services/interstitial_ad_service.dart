@@ -75,9 +75,6 @@ class InterstitialAdService {
   Future<void> showAfterSignature() async {
     if (AdPacingService.instance.canShowAfterSignature()) await showIfAllowed();
   }
-  Future<void> showAfterIdle() async {
-    if (AdPacingService.instance.canShowAfterIdle()) await showIfAllowed();
-  }
 
   bool _waitingForConsent = false;
 

@@ -36,8 +36,8 @@ class _KatharScanAppState extends State<KatharScanApp> with WidgetsBindingObserv
     super.initState();
     _initializeRouter();
     WidgetsBinding.instance.addObserver(this);
-    unawaited(AdPacingService.instance.initialize());
-    unawaited(AdPacingService.instance.resetSessionCounters());
+    // Loads the last-ad time, then resets this launch's action counts, in that order.
+    unawaited(AdPacingService.instance.start());
     unawaited(InterstitialAdService.instance.preload());
     
     // Defer notification init until after the first frame is drawn to prevent BadTokenException
@@ -49,10 +49,6 @@ class _KatharScanAppState extends State<KatharScanApp> with WidgetsBindingObserv
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     super.didChangeAppLifecycleState(state);
-    if (state == AppLifecycleState.resumed) {
-      unawaited(AdPacingService.instance.recordForeground());
-      unawaited(InterstitialAdService.instance.showAfterIdle());
-    }
   }
 
   @override
