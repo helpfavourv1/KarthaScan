@@ -388,7 +388,7 @@
   "tickerNonDestructiveEditing": "IKKE-DESTRUKTIV REDIGERING",
   "tickerUndoRedo": "ANGRE/GJØR OM",
   "tickerRevertToOriginal": "TILBAKESTILL TIL ORIGINAL",
-  "tickerTapToTypeFilling": "TRYKK-OG-SKRIV FYLLING",
+  "tickerTapToTypeFilling": "TRYKK OG SKRIV FOR UTFYLLING",
   "tickerESign": "E-SIGNATUR",
   "tickerCustomSeals": "TILPASSEDE SEGL",
   "tickerTextStamps": "TEKSTSTEMPLER",
@@ -485,7 +485,7 @@
   "checkShapeCircle": "Sirkel",
   "hueLabel": "Fargetone",
   "satLabel": "Met",
-  "valLabel": "Ver",
+  "valLabel": "Lys",
   "annotationModePen": "Penn",
   "annotationModeHighlighter": "Uthevingspenn",
   "annotationModeRect": "Rektangel",
@@ -593,7 +593,7 @@
   "@printRangeCurrent": {
     "description": "Localized string for printRangeCurrent"
   },
-  "printRangeRange": "Område",
+  "printRangeRange": "Sideområde",
   "@printRangeRange": {
     "description": "Localized string for printRangeRange"
   },
@@ -725,7 +725,7 @@
   "watermarkPagesLabel": "Sider",
   "watermarkPagesThis": "Denne siden",
   "watermarkPagesAll": "Alle sider",
-  "watermarkPagesRange": "Område",
+  "watermarkPagesRange": "Sideområde",
   "watermarkPagesRangeHint": "f.eks. 1-3, 5",
   "watermarkPagesInvalid": "Sjekk sidene (dokumentet har {count} sider)",
   "cropAuto": "Finn automatisk",
@@ -746,7 +746,7 @@
   "compressTargetLabel": "Maks. størrelse",
   "compressNoLimit": "Ingen grense",
   "printPaperLabel": "Papir",
-  "printMarginLabel": "Marg",
+  "printMarginLabel": "Marger",
   "printMarginNone": "Ingen",
   "printMarginNarrow": "Smal",
   "printMarginNormal": "Normal",

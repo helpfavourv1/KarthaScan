@@ -287,3 +287,5 @@ Storage hygiene gaps found when audited (not yet built):
 - Phase 5 ja: all 560 rows read; 2 fixes (PNG lossless wording, watermark layout 'Single'). Native review: 書類/ドキュメント/文書 and 書き出す/エクスポート term mix.
 - Phase 5 ko: all 560 rows read; 5 fixes (From/To page labels were bare postpositions, annotate title, docxWarning, onboarding sign subtitle verb).
 - Phase 5 ms: all 560 rows read; 2 fixes (progressEncodingPage daripada, onboardingOcrSubtitle). Native review: sealInkLook, sealRemoveWhite, satLabel.
+- Phase 5 no: all 560 rows read; 5 fixes (Marg→Marger, page-range label, valLabel, ticker). Native review: sealFontSans, satLabel.
+- Phase 5 nn: all 560 rows read; 5 fixes (progressReading, ticked, ticker, tiled, signer). Native review: sealInkLook, satLabel Metn.
