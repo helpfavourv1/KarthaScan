@@ -284,3 +284,4 @@ Storage hygiene gaps found when audited (not yet built):
 - Phase 5 he: all 560 rows read; ~30 fixes (mixed masculine-singular imperatives made plural/nominal for consistency, ticker/privacy wording). Native review: register consistency, Devanagari transliteration.
 - Phase 5 hi: all 560 rows read; 7 fixes (docxWarning, Draw tab label, पेज→पृष्ठ consistency). Native review: loanword vs Sanskritized register mix.
 - Phase 5 id: all 560 rows read; 5 fixes (ads 'Hapus'→'Hilangkan' consistency, removeFromFolder). Native review: Bersihkan for Clear.
+- Phase 5 ja: all 560 rows read; 2 fixes (PNG lossless wording, watermark layout 'Single'). Native review: 書類/ドキュメント/文書 and 書き出す/エクスポート term mix.
