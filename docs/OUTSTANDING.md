@@ -281,3 +281,4 @@ Storage hygiene gaps found when audited (not yet built):
 - Phase 5 bn: all 560 rows read; 9 fixes (extract wording 'নিষ্কাশন'→'বের করা', docxWarning grammar, paywallLegal non-consumable phrasing, exportNoTextError term, seal spelling). Native review: 'সাফ করুন' for Clear, 'গাঢ়' dark.
 - Phase 5 da: all 560 rows read; 2 fixes (saveFailedPrefix, ocrStatusDownloading).
 - Phase 5 fi: all 560 rows read; 3 fixes (annotateTitle, docxWarning grammar, placementsCount noun). Native review: 'Rasti/Rastattu' tick wording, 'Kyll' saturation abbreviation.
+- Phase 5 he: all 560 rows read; ~30 fixes (mixed masculine-singular imperatives made plural/nominal for consistency, ticker/privacy wording). Native review: register consistency, Devanagari transliteration.
