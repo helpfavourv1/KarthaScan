@@ -282,3 +282,5 @@ Storage hygiene gaps found when audited (not yet built):
 - Phase 5 da: all 560 rows read; 2 fixes (saveFailedPrefix, ocrStatusDownloading).
 - Phase 5 fi: all 560 rows read; 3 fixes (annotateTitle, docxWarning grammar, placementsCount noun). Native review: 'Rasti/Rastattu' tick wording, 'Kyll' saturation abbreviation.
 - Phase 5 he: all 560 rows read; ~30 fixes (mixed masculine-singular imperatives made plural/nominal for consistency, ticker/privacy wording). Native review: register consistency, Devanagari transliteration.
+- Phase 5 hi: all 560 rows read; 7 fixes (docxWarning, Draw tab label, पेज→पृष्ठ consistency). Native review: loanword vs Sanskritized register mix.
+- Phase 5 id: all 560 rows read; 5 fixes (ads 'Hapus'→'Hilangkan' consistency, removeFromFolder). Native review: Bersihkan for Clear.
