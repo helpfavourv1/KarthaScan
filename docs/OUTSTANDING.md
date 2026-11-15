@@ -285,3 +285,5 @@ Storage hygiene gaps found when audited (not yet built):
 - Phase 5 hi: all 560 rows read; 7 fixes (docxWarning, Draw tab label, पेज→पृष्ठ consistency). Native review: loanword vs Sanskritized register mix.
 - Phase 5 id: all 560 rows read; 5 fixes (ads 'Hapus'→'Hilangkan' consistency, removeFromFolder). Native review: Bersihkan for Clear.
 - Phase 5 ja: all 560 rows read; 2 fixes (PNG lossless wording, watermark layout 'Single'). Native review: 書類/ドキュメント/文書 and 書き出す/エクスポート term mix.
+- Phase 5 ko: all 560 rows read; 5 fixes (From/To page labels were bare postpositions, annotate title, docxWarning, onboarding sign subtitle verb).
+- Phase 5 ms: all 560 rows read; 2 fixes (progressEncodingPage daripada, onboardingOcrSubtitle). Native review: sealInkLook, sealRemoveWhite, satLabel.

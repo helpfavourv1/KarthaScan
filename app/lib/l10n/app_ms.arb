@@ -266,7 +266,7 @@
   "progressExtractingText": "Mengekstrak teks...",
   "progressSaving": "Menyimpan...",
   "progressRasterizing": "Meraster halaman...",
-  "progressEncodingPage": "Mengekod halaman {current} dari {total}...",
+  "progressEncodingPage": "Mengekod halaman {current} daripada {total}...",
   "@progressEncodingPage": {
     "placeholders": {
       "current": {
@@ -416,7 +416,7 @@
   "onboardingToolsTitle": "21 Alat Pro Percuma",
   "onboardingToolsSubtitle": "Anotasi, tandatangan, tera air, isi borang, mohor, dan banyak lagi — setiap alat percuma dan tanpa had.",
   "onboardingOcrTitle": "OCR pada Peranti",
-  "onboardingOcrSubtitle": "Gunakan KatharScan dalam {count} bahasa. OCR berjalan pada telefon anda — tiada apa meninggalkan peranti.",
+  "onboardingOcrSubtitle": "Gunakan KatharScan dalam {count} bahasa. OCR berjalan pada telefon anda — tiada apa-apa meninggalkan peranti anda.",
   "onboardingSignTitle": "Tandatangan, Isi & Mohor",
   "onboardingSignSubtitle": "E-tandatangan kontrak, isi borang, dan cop mohor korporat dalam beberapa saat.",
   "onboardingEditTitle": "Editan Tidak Memusnahkan",
