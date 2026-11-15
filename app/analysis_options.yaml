@@ -11,6 +11,12 @@ linter:
     # make a phase "pass" faster.
 
 analyzer:
+  errors:
+    # Flutter >3.47 flags every package:flutter/material.dart and cupertino.dart
+    # import as deprecated (moved to material_ui / cupertino_ui). The APK
+    # workflow treats infos as fatal, so this keeps it building until the
+    # packages are migrated.
+    deprecated_member_use: ignore
   exclude:
     - '**/*.g.dart'
     - '**/*.freezed.dart'
