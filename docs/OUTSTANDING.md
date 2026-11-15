@@ -293,3 +293,5 @@ Storage hygiene gaps found when audited (not yet built):
 - Phase 5 ru: all 560 rows read; 3 fixes (exporting status, docx warning quoting, sealFontSans). Native review: satLabel Нас, valLabel Ярк, filterMagicColor.
 - Phase 5 sv: all 560 rows read; 3 fixes (ticker, highlighter name, Latin script label). Native review: satLabel Mättn., valLabel Ljus.
 - Phase 5 th: all 560 rows read; 2 fixes (eyedropper tooltip, docx warning). Native review: sealInkLook, accent wording.
+- Phase 5 tr: all 560 rows read; 3 fixes (non-destructive wording x2, ticker). Native review: textUnderline 'A', accentIndigo Çivit.
+- Phase 5 uk: all 560 rows read; 3 fixes (exporting status, remove-from-folder wording, docx warning quoting). Native review: satLabel/valLabel abbreviations.
