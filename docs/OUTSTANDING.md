@@ -296,3 +296,5 @@ Storage hygiene gaps found when audited (not yet built):
 - Phase 5 tr: all 560 rows read; 3 fixes (non-destructive wording x2, ticker). Native review: textUnderline 'A', accentIndigo Çivit.
 - Phase 5 uk: all 560 rows read; 3 fixes (exporting status, remove-from-folder wording, docx warning quoting). Native review: satLabel/valLabel abbreviations.
 - Phase 5 vi: all 560 rows read; 7 fixes (seal labels, clear page scope, tiled, email message, ticker). Native review: opacity 'Độ mờ', sealFontSerif.
+- Phase 5 zh: all 560 rows read; 3 fixes (revert title, reverted toast, ALL CAPS). Native review: 你/您 mix (emptyStateDefaultMessage uses 你).
+- Phase 5 zh_Hant: all 560 rows read; 5 fixes (revert title/toast, ALL CAPS, tap-to-type ticker, Email label). Native review: Taiwan vs Hong Kong wording.
