@@ -246,7 +246,7 @@
   "actionLabel": "Toiminto:",
   "saveAsNewDocumentAction": "Tallenna uudeksi asiakirjaksi",
   "exportAndShareAction": "Vie ja jaa",
-  "docxWarningMessage": "DOCX-lähteet renderöityvät huonosti sivuina — tallennus sovelluksessa on rajoitettu JPG/PNG-muotoon kuvasta, PDF:stä, TXT:stä tai CSV-lähteistä. Käytä Vie ja jaa tälle tiedostolle.",
+  "docxWarningMessage": "DOCX-lähteet renderöityvät huonosti sivuina — sovelluksen sisäinen tallennus onnistuu vain kuvista, PDF-, TXT- ja CSV-lähteistä JPG/PNG-muotoon. Käytä tälle tiedostolle toimintoa Vie ja jaa.",
   "saveInsideAppWarning": "Tallentaaksesi sovellukseen, valitse JPG tai PNG. Muut kohteet viedään tiedostoina.",
   "commonConvert": "Muunna",
   "conversionStarting": "Aloitetaan...",
@@ -359,8 +359,8 @@
   "scannerErrorPrefix": "Skannerivirhe",
   "idPdfErrorPrefix": "Henkilökortin PDF-generointivirhe",
   "genericErrorPrefix": "Virhe",
-  "annotateTitle": "Merkitse",
-  "placementsCountLabel": "{count, plural, =0{Ei sijoitettuja} =1{1 sijoitettu} other{{count} sijoitettua}}",
+  "annotateTitle": "Lisää merkintöjä",
+  "placementsCountLabel": "{count, plural, =0{Ei kohteita} =1{1 kohde} other{{count} kohdetta}}",
   "@placementsCountLabel": {
     "placeholders": {
       "count": {

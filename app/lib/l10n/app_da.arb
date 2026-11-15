@@ -609,7 +609,7 @@
   "@addToFavorites": {
     "description": "Localized string for addToFavorites"
   },
-  "saveFailedPrefix": "Lagring mislykkedes:",
+  "saveFailedPrefix": "Kunne ikke gemme:",
   "@saveFailedPrefix": {
     "description": "Localized string for saveFailedPrefix"
   },
@@ -666,7 +666,7 @@
   "@ocrStatusInstalled": {
     "description": "OCR language pack already downloaded"
   },
-  "ocrStatusDownloading": "Henter…",
+  "ocrStatusDownloading": "Downloader…",
   "@ocrStatusDownloading": {
     "description": "OCR language pack is downloading"
   },

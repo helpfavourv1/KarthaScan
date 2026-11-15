@@ -279,3 +279,5 @@ Storage hygiene gaps found when audited (not yet built):
 - Phase 5 nl: all 560 rows read; 1 fix (pagesToReadHint elliptical sentence completed). Native review: redoTooltip/ticker 'Opnieuw' for Redo.
 - Phase 5 ar: all 560 rows read; 5 fixes (annotateTitle, hueLabel, count-agreement in pagesDeleteConfirm/pagesToReadHint/watermarkPagesInvalid). Native review: mixed OCR/التعرف الضوئي wording, proBadge 'برو'.
 - Phase 5 bn: all 560 rows read; 9 fixes (extract wording 'নিষ্কাশন'→'বের করা', docxWarning grammar, paywallLegal non-consumable phrasing, exportNoTextError term, seal spelling). Native review: 'সাফ করুন' for Clear, 'গাঢ়' dark.
+- Phase 5 da: all 560 rows read; 2 fixes (saveFailedPrefix, ocrStatusDownloading).
+- Phase 5 fi: all 560 rows read; 3 fixes (annotateTitle, docxWarning grammar, placementsCount noun). Native review: 'Rasti/Rastattu' tick wording, 'Kyll' saturation abbreviation.
