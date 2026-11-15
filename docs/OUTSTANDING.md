@@ -291,3 +291,5 @@ Storage hygiene gaps found when audited (not yet built):
 - Phase 5 nn: all 560 rows read; 5 fixes (progressReading, ticked, ticker, tiled, signer). Native review: sealInkLook, satLabel Metn.
 - Phase 5 pl: all 560 rows read; 6 fixes (Niestandardowy→Własny across custom/seal/colour/ticker, zoom tooltip). Native review: onboarding capitalised Twoje, satLabel Nasyc.
 - Phase 5 ru: all 560 rows read; 3 fixes (exporting status, docx warning quoting, sealFontSans). Native review: satLabel Нас, valLabel Ярк, filterMagicColor.
+- Phase 5 sv: all 560 rows read; 3 fixes (ticker, highlighter name, Latin script label). Native review: satLabel Mättn., valLabel Ljus.
+- Phase 5 th: all 560 rows read; 2 fixes (eyedropper tooltip, docx warning). Native review: sealInkLook, accent wording.
