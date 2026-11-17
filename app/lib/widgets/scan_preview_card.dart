@@ -49,6 +49,7 @@ class ScanPreviewCard extends StatefulWidget {
     this.initialPage = 0,
     this.onPageChanged,
     this.onEditFullscreen,
+    this.leading,
     this.pageTransforms = const {},
   });
 
@@ -84,6 +85,9 @@ class ScanPreviewCard extends StatefulWidget {
   final int initialPage;
   final ValueChanged<int>? onPageChanged;
   final VoidCallback? onEditFullscreen;
+
+  /// Shown at the start of the page row (the detail screen puts undo/redo here).
+  final Widget? leading;
   final Map<int, PageTransform> pageTransforms;
 
   @override
@@ -214,6 +218,7 @@ class _ScanPreviewCardState extends State<ScanPreviewCard> {
             padding: const EdgeInsets.symmetric(horizontal: AppSpacing.sm, vertical: AppSpacing.xs),
             child: Row(
               children: [
+                if (widget.leading != null) widget.leading!,
                 IconButton(
                   visualDensity: VisualDensity.compact,
                   onPressed: _currentPage > 0 ? () => _goToPage(_currentPage - 1) : null,
@@ -225,15 +230,15 @@ class _ScanPreviewCardState extends State<ScanPreviewCard> {
                   onPressed: _currentPage < _lastIndex ? () => _goToPage(_currentPage + 1) : null,
                   icon: Icon(Icons.chevron_right, color: _currentPage < _lastIndex ? accent : textSecondary),
                 ),
-                if (widget.onEditFullscreen != null)
-                  Flexible(
-                    child: ActionChip(
-                      avatar: const Icon(Icons.open_in_full, size: 14),
-                      label: Text(AppLocalizations.of(context).fullscreenLabel, maxLines: 1, overflow: TextOverflow.ellipsis, style: TextStyle(fontSize: 11)),
-                      onPressed: widget.onEditFullscreen,
-                    ),
-                  ),
                 const Spacer(),
+                if (widget.onEditFullscreen != null)
+                  IconButton(
+                    key: const ValueKey<String>('detailFullscreen'),
+                    visualDensity: VisualDensity.compact,
+                    tooltip: AppLocalizations.of(context).fullscreenLabel,
+                    onPressed: widget.onEditFullscreen,
+                    icon: Icon(Icons.open_in_full, size: 20, color: accent),
+                  ),
                 if (widget.editMode != TrayEditMode.none && widget.onDoneEditing != null && !_controlsHaveDone)
                   Flexible(
                     child: ActionChip(

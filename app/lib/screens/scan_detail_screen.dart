@@ -290,14 +290,16 @@ class _ScanDetailScreenState extends State<ScanDetailScreen>
                   ],
                 ),
               ),
-              // Share and Export live under the tabs, away from the ad banner.
-              Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-                  decoration: BoxDecoration(color: bg, border: Border(bottom: BorderSide(color: border, width: 0.5))),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                ListenableBuilder(
+              Expanded(
+                child: TabBarView(
+                  controller: _tabController,
+                  physics: const NeverScrollableScrollPhysics(),
+                  children: [
+                    Stack(
+                      children: [
+                        Positioned.fill(
+                          child: ScanPreviewCard(
+                            leading: ListenableBuilder(
                   listenable: _scanProvider.undoManager.version,
                   builder: (context, _) => Row(
                     mainAxisSize: MainAxisSize.min,
@@ -331,32 +333,6 @@ class _ScanDetailScreenState extends State<ScanDetailScreen>
                     ],
                   ),
                 ),
-                      Flexible(child: FittedBox(fit: BoxFit.scaleDown, alignment: Alignment.centerRight, child: Row(mainAxisSize: MainAxisSize.min, children: [
-                      TextButton.icon(
-                        key: const ValueKey<String>('detailShare'),
-                        onPressed: () => _share(document),
-                        icon: const Icon(Icons.ios_share, size: 18),
-                        label: Text(l10n.shareTooltip, style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600, color: accent)),
-                      ),
-                      TextButton.icon(
-                        key: const ValueKey<String>('detailExport'),
-                        onPressed: () => _export(document),
-                        icon: const Icon(Icons.file_download_outlined, size: 18),
-                        label: Text(l10n.exportTooltip, style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600, color: accent)),
-                      ),
-                      ]))),
-                    ],
-                  ),
-                ),
-              Expanded(
-                child: TabBarView(
-                  controller: _tabController,
-                  physics: const NeverScrollableScrollPhysics(),
-                  children: [
-                    Stack(
-                      children: [
-                        Positioned.fill(
-                          child: ScanPreviewCard(
                             viewCentre: viewCentre,
                             document: document,
                             pagePaths: document.pagePaths,
@@ -468,6 +444,30 @@ class _ScanDetailScreenState extends State<ScanDetailScreen>
                 onEmail: () { _closeEditor(); emailDocument(); },
                 onErase: () { _closeEditor(); erasePage(); },
                 onFill: () { _closeEditor(); openRoute('/edit/${document.id}', extra: <String, dynamic>{'fill': true}); },
+              ),
+              // Share and Export sit between the tray and the ad banner, as a buffer.
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 2),
+                decoration: BoxDecoration(color: bg, border: Border(top: BorderSide(color: border, width: 0.5))),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                      
+                      TextButton.icon(
+                        key: const ValueKey<String>('detailShare'),
+                        onPressed: () => _share(document),
+                        icon: const Icon(Icons.ios_share, size: 18),
+                        label: Text(l10n.shareTooltip, style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600, color: accent)),
+                      ),
+                      TextButton.icon(
+                        key: const ValueKey<String>('detailExport'),
+                        onPressed: () => _export(document),
+                        icon: const Icon(Icons.file_download_outlined, size: 18),
+                        label: Text(l10n.exportTooltip, style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600, color: accent)),
+                      ),
+                      
+                  ],
+                ),
               ),
             ],
           );
