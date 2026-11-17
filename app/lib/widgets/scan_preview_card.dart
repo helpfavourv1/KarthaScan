@@ -232,12 +232,17 @@ class _ScanPreviewCardState extends State<ScanPreviewCard> {
                 ),
                 const Spacer(),
                 if (widget.onEditFullscreen != null)
-                  IconButton(
-                    key: const ValueKey<String>('detailFullscreen'),
-                    visualDensity: VisualDensity.compact,
-                    tooltip: AppLocalizations.of(context).fullscreenLabel,
-                    onPressed: widget.onEditFullscreen,
-                    icon: Icon(Icons.open_in_full, size: 20, color: accent),
+                  Flexible(
+                    child: ActionChip(
+                      key: const ValueKey<String>('detailFullscreen'),
+                      visualDensity: VisualDensity.compact,
+                      avatar: Icon(Icons.open_in_full, size: 14, color: accent),
+                      label: FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: Text(AppLocalizations.of(context).fullscreenLabel, maxLines: 1, style: const TextStyle(fontSize: 12)),
+                      ),
+                      onPressed: widget.onEditFullscreen,
+                    ),
                   ),
                 if (widget.editMode != TrayEditMode.none && widget.onDoneEditing != null && !_controlsHaveDone)
                   Flexible(

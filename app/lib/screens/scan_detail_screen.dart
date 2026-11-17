@@ -237,6 +237,41 @@ class _ScanDetailScreenState extends State<ScanDetailScreen>
             );
           }
 
+          final Widget undoRedo = ListenableBuilder(
+                  listenable: _scanProvider.undoManager.version,
+                  builder: (context, _) => Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      IconButton(
+                        key: const ValueKey<String>('detailUndo'),
+                        icon: const Icon(Icons.undo, size: 20),
+                        tooltip: l10n.undoTooltip,
+                        color: textPrimary,
+                        disabledColor: textSecondary.withValues(alpha: 0.4),
+                        onPressed: _scanProvider.undoManager.canUndo
+                            ? () async {
+                                await _scanProvider.undoManager.undo();
+                                resyncInkFromDocument();
+                              }
+                            : null,
+                      ),
+                      IconButton(
+                        key: const ValueKey<String>('detailRedo'),
+                        icon: const Icon(Icons.redo, size: 20),
+                        tooltip: l10n.redoTooltip,
+                        color: textPrimary,
+                        disabledColor: textSecondary.withValues(alpha: 0.4),
+                        onPressed: _scanProvider.undoManager.canRedo
+                            ? () async {
+                                await _scanProvider.undoManager.redo();
+                                resyncInkFromDocument();
+                              }
+                            : null,
+                      ),
+                    ],
+                  ),
+                );
+
           return Column(
             children: [
               AppBar(
@@ -290,6 +325,38 @@ class _ScanDetailScreenState extends State<ScanDetailScreen>
                   ],
                 ),
               ),
+              // On the OCR tab there is no tray, so undo, Share and Export keep their old top row.
+              if (_tabController.index == 1)
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+                  decoration: BoxDecoration(color: bg, border: Border(bottom: BorderSide(color: border, width: 0.5))),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      undoRedo,
+                      Flexible(
+                        child: FittedBox(
+                          fit: BoxFit.scaleDown,
+                          alignment: Alignment.centerRight,
+                          child: Row(mainAxisSize: MainAxisSize.min, children: [
+                            TextButton.icon(
+                              key: const ValueKey<String>('detailShareOcr'),
+                              onPressed: () => _share(document),
+                              icon: const Icon(Icons.ios_share, size: 18),
+                              label: Text(l10n.shareTooltip, style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600, color: accent)),
+                            ),
+                            TextButton.icon(
+                              key: const ValueKey<String>('detailExportOcr'),
+                              onPressed: () => _export(document),
+                              icon: const Icon(Icons.file_download_outlined, size: 18),
+                              label: Text(l10n.exportTooltip, style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600, color: accent)),
+                            ),
+                          ]),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               Expanded(
                 child: TabBarView(
                   controller: _tabController,
@@ -299,40 +366,7 @@ class _ScanDetailScreenState extends State<ScanDetailScreen>
                       children: [
                         Positioned.fill(
                           child: ScanPreviewCard(
-                            leading: ListenableBuilder(
-                  listenable: _scanProvider.undoManager.version,
-                  builder: (context, _) => Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      IconButton(
-                        key: const ValueKey<String>('detailUndo'),
-                        icon: const Icon(Icons.undo, size: 20),
-                        tooltip: l10n.undoTooltip,
-                        color: textPrimary,
-                        disabledColor: textSecondary.withValues(alpha: 0.4),
-                        onPressed: _scanProvider.undoManager.canUndo
-                            ? () async {
-                                await _scanProvider.undoManager.undo();
-                                resyncInkFromDocument();
-                              }
-                            : null,
-                      ),
-                      IconButton(
-                        key: const ValueKey<String>('detailRedo'),
-                        icon: const Icon(Icons.redo, size: 20),
-                        tooltip: l10n.redoTooltip,
-                        color: textPrimary,
-                        disabledColor: textSecondary.withValues(alpha: 0.4),
-                        onPressed: _scanProvider.undoManager.canRedo
-                            ? () async {
-                                await _scanProvider.undoManager.redo();
-                                resyncInkFromDocument();
-                              }
-                            : null,
-                      ),
-                    ],
-                  ),
-                ),
+                            leading: undoRedo,
                             viewCentre: viewCentre,
                             document: document,
                             pagePaths: document.pagePaths,
@@ -446,8 +480,9 @@ class _ScanDetailScreenState extends State<ScanDetailScreen>
                 onFill: () { _closeEditor(); openRoute('/edit/${document.id}', extra: <String, dynamic>{'fill': true}); },
               ),
               // Share and Export sit between the tray and the ad banner, as a buffer.
+              if (_tabController.index == 0)
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 2),
+                padding: const EdgeInsets.fromLTRB(16, 2, 16, 8),
                 decoration: BoxDecoration(color: bg, border: Border(top: BorderSide(color: border, width: 0.5))),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
