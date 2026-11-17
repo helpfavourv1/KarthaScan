@@ -415,6 +415,7 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
     String pdfPath = initialPdfPath;
     String combinedPath = combinedImagePath;
     IdCardLayout layout = IdCardLayout.realSize;
+    bool busy = false;
     await showModalBottomSheet<void>(
       context: context,
       isDismissible: false,
@@ -437,22 +438,30 @@ class _ManualCropScreenState extends State<ManualCropScreen> {
                   ButtonSegment<IdCardLayout>(value: IdCardLayout.fullWidth, label: Text(l10n.idLayoutFullWidth)),
                 ],
                 selected: <IdCardLayout>{layout},
-                onSelectionChanged: (Set<IdCardLayout> sel) async {
-                  final IdCardLayout next = sel.first;
-                  try {
-                    final Map<String, String> r = await _exportService.exportIdCardPdf(
-                      frontPath: frontPath,
-                      backPath: backPath,
-                      title: title,
-                      outputDirectoryPath: outputDirectoryPath,
-                      layout: next,
-                    );
-                    pdfPath = r['pdf']!;
-                    combinedPath = r['image']!;
-                    setSheet(() => layout = next);
-                  } catch (_) {}
-                },
+                onSelectionChanged: busy
+                    ? null
+                    : (Set<IdCardLayout> sel) async {
+                        final IdCardLayout next = sel.first;
+                        if (next == layout) return;
+                        setSheet(() => busy = true);
+                        try {
+                          final Map<String, String> r = await _exportService.exportIdCardPdf(
+                            frontPath: frontPath,
+                            backPath: backPath,
+                            title: title,
+                            outputDirectoryPath: outputDirectoryPath,
+                            layout: next,
+                          );
+                          pdfPath = r['pdf']!;
+                          combinedPath = r['image']!;
+                          if (ctx.mounted) setSheet(() => layout = next);
+                        } catch (_) {
+                        } finally {
+                          if (ctx.mounted) setSheet(() => busy = false);
+                        }
+                      },
               ),
+              if (busy) const Padding(padding: EdgeInsets.only(top: 8), child: LinearProgressIndicator()),
               const SizedBox(height: 16),
               ElevatedButton.icon(
                 onPressed: () async {

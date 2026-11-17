@@ -1118,7 +1118,7 @@ class ExportService {
     }
   }
 
-    img.Image _trimNearBlackBorders(img.Image source) {
+  static img.Image _trimNearBlackBorders(img.Image source) {
     double lumaOf(img.Color p) => 0.299 * p.r + 0.587 * p.g + 0.114 * p.b;
     img.Image cur = source;
     for (final dark in const [false, true, true]) {
@@ -1171,67 +1171,21 @@ class ExportService {
     IdCardLayout layout = IdCardLayout.realSize,
   }) async {
     try {
-      img.Image front = _trimNearBlackBorders(img.decodeImage(await _readBytes(frontPath))!);
-      img.Image back = _trimNearBlackBorders(img.decodeImage(await _readBytes(backPath))!);
-
-      final img.Image canvas;
-      if (layout == IdCardLayout.realSize) {
-        // A4 at 300 dpi; each side 85.6 mm wide (ISO card size), 10 mm apart.
-        const int pageW = 2480, pageH = 3508;
-        const int margin = 120;
-        int cardW = (85.6 / 25.4 * 300).round();
-        const int gap = 118;
-        int frontH = (front.height * cardW / front.width).round();
-        int backH = (back.height * cardW / back.width).round();
-        // An unusually tall pair is shrunk (same factor on both) so it still fits the page.
-        final int room = pageH - 2 * margin;
-        if (frontH + gap + backH > room) {
-          final double k = (room - gap) / (frontH + backH);
-          cardW = (cardW * k).round();
-          frontH = (front.height * cardW / front.width).round();
-          backH = (back.height * cardW / back.width).round();
-        }
-        final int total = frontH + gap + backH;
-        final int x = (pageW - cardW) ~/ 2;
-        // 30 mm from the top when it fits, otherwise centred.
-        final int top = (354 + total + margin <= pageH) ? 354 : ((pageH - total) ~/ 2);
-        canvas = img.Image(width: pageW, height: pageH);
-        img.fill(canvas, color: img.ColorRgb8(255, 255, 255));
-        img.compositeImage(canvas, resizeSmooth(front, width: cardW, height: frontH), dstX: x, dstY: top);
-        img.compositeImage(canvas, resizeSmooth(back, width: cardW, height: backH), dstX: x, dstY: top + frontH + gap);
-      } else {
-        const int canvasWidth = 1200;
-        const int gap = 40;
-        final int frontH = (front.height * canvasWidth / front.width).round();
-        final int backH = (back.height * canvasWidth / back.width).round();
-        canvas = img.Image(width: canvasWidth, height: frontH + gap + backH);
-        img.fill(canvas, color: img.ColorRgb8(255, 255, 255));
-        img.compositeImage(canvas, resizeSmooth(front, width: canvasWidth, height: frontH), dstX: 0, dstY: 0);
-        img.compositeImage(canvas, resizeSmooth(back, width: canvasWidth, height: backH), dstX: 0, dstY: frontH + gap);
-      }
-      final Uint8List combinedBytes = Uint8List.fromList(img.encodePng(canvas));
+      final Uint8List frontBytes = await _readBytes(frontPath);
+      final Uint8List backBytes = await _readBytes(backPath);
+      final int layoutIndex = layout.index;
+      // Decode, trim, resize, compose, PNG-encode and build the PDF off the UI thread:
+      // on 12 MP photos this takes seconds and froze the screen when run here.
+      final (Uint8List, Uint8List) built =
+          await Isolate.run(() => _buildIdCardSync(frontBytes, backBytes, layoutIndex));
+      final Uint8List combinedBytes = built.$1;
+      final Uint8List pdfBytes = built.$2;
 
       final String safeTitle = _sanitizeFileName(title);
-      final String combinedPath = p.join(outputDirectoryPath, '$safeTitle.png');
+      final String suffix = layout == IdCardLayout.fullWidth ? '_full' : '';
+      final String combinedPath = p.join(outputDirectoryPath, '$safeTitle$suffix.png');
       await _writeBytes(combinedPath, combinedBytes);
-
-      final pw.Document pdfDoc = pw.Document(title: title, creator: 'KatharScan');
-      pdfDoc.addPage(
-        pw.Page(
-          theme: await PdfFonts.theme(),
-          pageFormat: PdfPageFormat.a4,
-          build: (pw.Context context) {
-            return pw.Container(
-              width: PdfPageFormat.a4.width,
-              height: PdfPageFormat.a4.height,
-              color: PdfColors.white,
-              child: pw.Center(child: pw.Image(pw.MemoryImage(combinedBytes), fit: pw.BoxFit.contain)),
-            );
-          },
-        ),
-      );
-      final pdfBytes = await pdfDoc.save();
-      final String outPath = p.join(outputDirectoryPath, '$safeTitle.pdf');
+      final String outPath = p.join(outputDirectoryPath, '$safeTitle$suffix.pdf');
       await _writeBytes(outPath, pdfBytes);
       return {'pdf': outPath, 'image': combinedPath};
     } catch (error, stackTrace) {
@@ -1520,4 +1474,62 @@ class ExportService {
     debugPrint('[ExportService] $operation failed: $error');
     DebugLogService().log('EXPORT', '$operation failed: $error');
   }
+}
+
+/// Builds the ID card page (PNG) and its A4 PDF. Pure image work, so it can run in
+/// a background isolate. Layout is IdCardLayout.index.
+Future<(Uint8List, Uint8List)> _buildIdCardSync(Uint8List frontBytes, Uint8List backBytes, int layoutIndex) async {
+  final img.Image? f = img.decodeImage(frontBytes);
+  final img.Image? bk = img.decodeImage(backBytes);
+  if (f == null || bk == null) throw ExportFailedException('Could not read an ID card picture.');
+  final img.Image front = ExportService._trimNearBlackBorders(f);
+  final img.Image back = ExportService._trimNearBlackBorders(bk);
+  final img.Image canvas;
+  if (layoutIndex == IdCardLayout.realSize.index) {
+    // A4 at 300 dpi; each side 85.6 mm wide (ISO card size), 10 mm apart.
+    const int pageW = 2480, pageH = 3508;
+    const int margin = 120;
+    int cardW = (85.6 / 25.4 * 300).round();
+    const int gap = 118;
+    int frontH = (front.height * cardW / front.width).round();
+    int backH = (back.height * cardW / back.width).round();
+    final int room = pageH - 2 * margin;
+    if (frontH + gap + backH > room) {
+      final double k = (room - gap) / (frontH + backH);
+      cardW = (cardW * k).round();
+      frontH = (front.height * cardW / front.width).round();
+      backH = (back.height * cardW / back.width).round();
+    }
+    final int total = frontH + gap + backH;
+    final int x = (pageW - cardW) ~/ 2;
+    final int top = (354 + total + margin <= pageH) ? 354 : ((pageH - total) ~/ 2);
+    canvas = img.Image(width: pageW, height: pageH);
+    img.fill(canvas, color: img.ColorRgb8(255, 255, 255));
+    img.compositeImage(canvas, resizeSmooth(front, width: cardW, height: frontH), dstX: x, dstY: top);
+    img.compositeImage(canvas, resizeSmooth(back, width: cardW, height: backH), dstX: x, dstY: top + frontH + gap);
+  } else {
+    const int canvasWidth = 1200;
+    const int gap = 40;
+    final int frontH = (front.height * canvasWidth / front.width).round();
+    final int backH = (back.height * canvasWidth / back.width).round();
+    canvas = img.Image(width: canvasWidth, height: frontH + gap + backH);
+    img.fill(canvas, color: img.ColorRgb8(255, 255, 255));
+    img.compositeImage(canvas, resizeSmooth(front, width: canvasWidth, height: frontH), dstX: 0, dstY: 0);
+    img.compositeImage(canvas, resizeSmooth(back, width: canvasWidth, height: backH), dstX: 0, dstY: frontH + gap);
+  }
+  final Uint8List combinedBytes = Uint8List.fromList(img.encodePng(canvas));
+  final pw.Document pdfDoc = pw.Document(creator: 'KatharScan');
+  pdfDoc.addPage(
+    pw.Page(
+      pageFormat: PdfPageFormat.a4,
+      build: (pw.Context context) => pw.Container(
+        width: PdfPageFormat.a4.width,
+        height: PdfPageFormat.a4.height,
+        color: PdfColors.white,
+        child: pw.Center(child: pw.Image(pw.MemoryImage(combinedBytes), fit: pw.BoxFit.contain)),
+      ),
+    ),
+  );
+  final Uint8List pdfBytes = await pdfDoc.save();
+  return (combinedBytes, pdfBytes);
 }
