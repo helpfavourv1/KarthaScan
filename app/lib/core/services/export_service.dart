@@ -59,12 +59,14 @@ enum FilterType { none, grayscale, blackAndWhite, colorEnhance, shadowRemoval, m
 
 enum ExportDocxMode { textOnly, imageEmbedded }
 
-enum ExportPageFormat { a4, letter }
+enum ExportPageFormat { a4, letter, a5, legal }
 
 PdfPageFormat _toPdfFormat(ExportPageFormat f) {
   switch (f) {
     case ExportPageFormat.a4: return PdfPageFormat.a4;
     case ExportPageFormat.letter: return PdfPageFormat.letter;
+    case ExportPageFormat.a5: return PdfPageFormat.a5;
+    case ExportPageFormat.legal: return const PdfPageFormat(8.5 * PdfPageFormat.inch, 14 * PdfPageFormat.inch);
   }
 }
 

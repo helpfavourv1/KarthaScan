@@ -434,12 +434,23 @@ class _ExportScreenState extends State<ExportScreen> {
                           height: 44,
                           child: Row(
                             children: [
-                              Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  _fixedSeg(_pageFormat == ExportPageFormat.a4, 'A4', () => setState(() => _pageFormat = ExportPageFormat.a4), accent, surface, textPrimary),
-                                  _fixedSeg(_pageFormat == ExportPageFormat.letter, AppLocalizations.of(context).pageFormatLetter, () => setState(() => _pageFormat = ExportPageFormat.letter), accent, surface, textPrimary),
-                                ],
+                              Flexible(
+                                flex: 3,
+                                child: SingleChildScrollView(
+                                  scrollDirection: Axis.horizontal,
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      for (final (ExportPageFormat f, String label) in const [
+                                        (ExportPageFormat.a4, 'A4'),
+                                        (ExportPageFormat.a5, 'A5'),
+                                        (ExportPageFormat.letter, 'Letter'),
+                                        (ExportPageFormat.legal, 'Legal'),
+                                      ])
+                                        _fixedSeg(_pageFormat == f, label, () => setState(() => _pageFormat = f), accent, surface, textPrimary),
+                                    ],
+                                  ),
+                                ),
                               ),
                               if (_isSingleDoc) ...[
                                 const SizedBox(width: AppSpacing.sm),
@@ -960,7 +971,7 @@ _scanProvider.updateStampLayer(doc.id, layer.copyWith(placement: np));
       onTap: onTap,
       child: Container(
         margin: const EdgeInsets.only(right: 4),
-        padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md),
+        padding: const EdgeInsets.symmetric(horizontal: 10),
         height: 44,
         decoration: BoxDecoration(
           color: isSelected ? accent : surface,

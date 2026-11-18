@@ -299,6 +299,25 @@ void main() {
         ),
         throwsA(isA<ExportFailedException>()),
       );
+
+    test('A5 and Legal export page sizes', () async {
+      final ExportService service = ExportService();
+      final Directory a5Dir = await tempDir.createTemp('a5_');
+      final List<String> a5 = await service.export(
+        document: buildTestDocument(),
+        format: ExportFormat.docx,
+        outputDirectoryPath: a5Dir.path,
+        pageFormat: ExportPageFormat.a5,
+      );
+      expect(await readDocumentXml(a5.single), contains('<w:pgSz w:w="8391" w:h="11906"/>'));
+      final Directory legalDir = await tempDir.createTemp('legal_');
+      final List<String> legal = await service.export(
+        document: buildTestDocument(),
+        format: ExportFormat.docx,
+        outputDirectoryPath: legalDir.path,
+        pageFormat: ExportPageFormat.legal,
+      );
+      expect(await readDocumentXml(legal.single), contains('<w:pgSz w:w="12240" w:h="20160"/>'));
     });
   });
 }
