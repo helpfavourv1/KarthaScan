@@ -434,7 +434,10 @@ class _ExportScreenState extends State<ExportScreen> {
                           height: 44,
                           child: Row(
                             children: [
-                              _paperButton(accent, surface, textPrimary),
+                              ConstrainedBox(
+                                constraints: BoxConstraints(maxWidth: MediaQuery.sizeOf(context).width * 0.4),
+                                child: _paperButton(accent, surface, textPrimary),
+                              ),
                               if (_isSingleDoc) ...[
                                 const SizedBox(width: AppSpacing.sm),
                                 Expanded(child: InkCompactBar(
@@ -962,7 +965,12 @@ _scanProvider.updateStampLayer(doc.id, layer.copyWith(placement: np));
             children: <Widget>[
               Icon(Icons.description_outlined, size: 18, color: accent),
               const SizedBox(width: 6),
-              Text('${l10n.printPaperLabel} · ${_paperLabel(_pageFormat)}', style: TextStyle(color: textPrimary, fontSize: 13, fontWeight: FontWeight.w600)),
+              Flexible(
+                child: FittedBox(
+                  fit: BoxFit.scaleDown,
+                  child: Text('${l10n.printPaperLabel} · ${_paperLabel(_pageFormat)}', maxLines: 1, style: TextStyle(color: textPrimary, fontSize: 13, fontWeight: FontWeight.w600)),
+                ),
+              ),
               Icon(Icons.arrow_drop_down, size: 20, color: textPrimary),
             ],
           ),
