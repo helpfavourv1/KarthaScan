@@ -58,6 +58,29 @@ void main() {
     expect(await ExportService().estimateSizes(doc, ExportFormat.txt), isEmpty);
   });
 
+  test('a small flat page still gets three different sizes', () async {
+    final img.Image flat = img.Image(width: 600, height: 1200, numChannels: 3);
+    img.fill(flat, color: img.ColorRgb8(245, 240, 230));
+    for (int line = 0; line < 12; line++) {
+      for (int y = 80 + line * 40; y < 90 + line * 40; y++) {
+        for (int x = 40; x < 500 - line * 11; x++) {
+          flat.setPixelRgb(x, y, 40, 40, 40);
+        }
+      }
+    }
+    final File f2 = File('${dir.path}/flat.png')..writeAsBytesSync(img.encodePng(flat));
+    final DateTime now = DateTime(2026, 1, 1);
+    final ScanDocument flatDoc = ScanDocument(
+      id: 'f', title: 'F', pageCount: 1, pagePaths: <String>[f2.path],
+      createdAt: now, updatedAt: now, ocrText: '', thumbnailPath: f2.path,
+    );
+    for (final ExportFormat fmt in <ExportFormat>[ExportFormat.pdf, ExportFormat.jpg]) {
+      final Map<CompressionTier, int> s = await ExportService().estimateSizes(flatDoc, fmt);
+      expect(s[CompressionTier.small]!, lessThan(s[CompressionTier.original]!), reason: '$fmt small<original $s');
+      expect(s[CompressionTier.medium]!, lessThan(s[CompressionTier.original]!), reason: '$fmt medium<original $s');
+    }
+  });
+
   test('JPG estimate matches the real export within 10 percent', () async {
     final Map<CompressionTier, int> s = await ExportService().estimateSizes(doc, ExportFormat.jpg);
     for (final CompressionTier t in CompressionTier.values) {

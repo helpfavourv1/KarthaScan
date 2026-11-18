@@ -434,24 +434,7 @@ class _ExportScreenState extends State<ExportScreen> {
                           height: 44,
                           child: Row(
                             children: [
-                              Flexible(
-                                flex: 3,
-                                child: SingleChildScrollView(
-                                  scrollDirection: Axis.horizontal,
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      for (final (ExportPageFormat f, String label) in const [
-                                        (ExportPageFormat.a4, 'A4'),
-                                        (ExportPageFormat.a5, 'A5'),
-                                        (ExportPageFormat.letter, 'Letter'),
-                                        (ExportPageFormat.legal, 'Legal'),
-                                      ])
-                                        _fixedSeg(_pageFormat == f, label, () => setState(() => _pageFormat = f), accent, surface, textPrimary),
-                                    ],
-                                  ),
-                                ),
-                              ),
+                              _paperButton(accent, surface, textPrimary),
                               if (_isSingleDoc) ...[
                                 const SizedBox(width: AppSpacing.sm),
                                 Expanded(child: InkCompactBar(
@@ -485,6 +468,12 @@ class _ExportScreenState extends State<ExportScreen> {
                           FutureBuilder<int>(
                             future: _calculateEstimate(),
                             builder: (context, snapshot) {
+                              if (snapshot.connectionState != ConnectionState.done) {
+                                return Padding(
+                                  padding: const EdgeInsets.only(top: AppSpacing.xs),
+                                  child: SizedBox(height: 14, width: 14, child: CircularProgressIndicator(strokeWidth: 2, color: accent)),
+                                );
+                              }
                               if (!snapshot.hasData || snapshot.data == 0) return const SizedBox.shrink();
                               final mb = (snapshot.data! / (1024 * 1024)).toStringAsFixed(2);
                               final l10n = AppLocalizations.of(context);
@@ -925,6 +914,63 @@ _scanProvider.updateStampLayer(doc.id, layer.copyWith(placement: np));
     );
   }
 
+  final Map<String, Future<Map<CompressionTier, int>>> _sizeCache = <String, Future<Map<CompressionTier, int>>>{};
+
+  String _paperLabel(ExportPageFormat f) => switch (f) {
+        ExportPageFormat.a4 => 'A4',
+        ExportPageFormat.a5 => 'A5',
+        ExportPageFormat.letter => AppLocalizations.of(context).pageFormatLetter,
+        ExportPageFormat.legal => 'Legal',
+      };
+
+  Widget _paperButton(Color accent, Color surface, Color textPrimary) {
+    final AppLocalizations l10n = AppLocalizations.of(context);
+    return Padding(
+      padding: const EdgeInsets.only(right: 4),
+      child: IOSPressable(
+        key: const ValueKey('exportPaperButton'),
+        onTap: () async {
+          final ExportPageFormat? picked = await showModalBottomSheet<ExportPageFormat>(
+            context: context,
+            builder: (BuildContext ctx) => SafeArea(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  for (final ExportPageFormat f in ExportPageFormat.values)
+                    ListTile(
+                      key: ValueKey('exportPaper_${f.name}'),
+                      title: Text(_paperLabel(f)),
+                      trailing: f == _pageFormat ? Icon(Icons.check, color: accent) : null,
+                      onTap: () => Navigator.of(ctx).pop(f),
+                    ),
+                ],
+              ),
+            ),
+          );
+          if (picked != null && mounted) setState(() => _pageFormat = picked);
+        },
+        child: Container(
+          height: 44,
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          decoration: BoxDecoration(
+            color: surface,
+            borderRadius: BorderRadius.circular(12),
+            border: Border.all(color: Colors.grey.withValues(alpha: 0.3), width: 0.5),
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Icon(Icons.description_outlined, size: 18, color: accent),
+              const SizedBox(width: 6),
+              Text('${l10n.printPaperLabel} · ${_paperLabel(_pageFormat)}', style: TextStyle(color: textPrimary, fontSize: 13, fontWeight: FontWeight.w600)),
+              Icon(Icons.arrow_drop_down, size: 20, color: textPrimary),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
   Future<int> _calculateEstimate() async {
     if (_selectedFormat != ExportFormat.jpg && _selectedFormat != ExportFormat.png && _selectedFormat != ExportFormat.pdf) return 0;
     if (_documents.isEmpty) return 0;
@@ -936,7 +982,12 @@ _scanProvider.updateStampLayer(doc.id, layer.copyWith(placement: np));
       }
       int total = 0;
       for (final ScanDocument d in _documents) {
-        final Map<CompressionTier, int> sizes = await _exportService.estimateSizes(d, _selectedFormat, filter: _selectedFilter);
+        // All three levels are worked out once per document, format and filter, so
+        // tapping Small, Medium or Original only reads a number that is already there.
+        final Map<CompressionTier, int> sizes = await _sizeCache.putIfAbsent(
+          '${d.id}|${_selectedFormat.name}|${_selectedFilter.name}',
+          () => _exportService.estimateSizes(d, _selectedFormat, filter: _selectedFilter),
+        );
         total += sizes[_selectedCompression] ?? 0;
       }
       return total;
@@ -962,23 +1013,6 @@ _scanProvider.updateStampLayer(doc.id, layer.copyWith(placement: np));
           ),
           child: Center(child: Text(label, style: TextStyle(color: isSelected ? Colors.white : textPrimary, fontSize: 11, fontWeight: FontWeight.w600), textAlign: TextAlign.center)),
         ),
-      ),
-    );
-  }
-
-  Widget _fixedSeg(bool isSelected, String label, VoidCallback onTap, Color accent, Color surface, Color textPrimary) {
-    return IOSPressable(
-      onTap: onTap,
-      child: Container(
-        margin: const EdgeInsets.only(right: 4),
-        padding: const EdgeInsets.symmetric(horizontal: 10),
-        height: 44,
-        decoration: BoxDecoration(
-          color: isSelected ? accent : surface,
-          borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: isSelected ? accent : Colors.grey.withValues(alpha: 0.3), width: isSelected ? 1.5 : 0.5),
-        ),
-        child: Center(child: Text(label, style: TextStyle(color: isSelected ? Colors.white : textPrimary, fontSize: 13, fontWeight: FontWeight.w600), textAlign: TextAlign.center)),
       ),
     );
   }
