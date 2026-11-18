@@ -524,19 +524,21 @@ class _FullScreenEditScreenState extends State<FullScreenEditScreen> with Docume
                     // Share and Export sit between the tray and the ad banner, as a buffer.
                     if (_fillDraft == null)
                       Container(
-                        padding: const EdgeInsets.fromLTRB(16, 2, 16, 8),
+                        padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
                         decoration: BoxDecoration(color: surface, border: Border(top: BorderSide(color: textSecondary.withValues(alpha: 0.2), width: 0.5))),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             TextButton.icon(
                               key: const ValueKey<String>('fullShare'),
+                        style: TextButton.styleFrom(minimumSize: const Size(96, 48), tapTargetSize: MaterialTapTargetSize.shrinkWrap),
                               onPressed: shareNow,
                               icon: const Icon(Icons.ios_share, size: 18),
                               label: Text(AppLocalizations.of(context).shareTooltip, style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600, color: accent)),
                             ),
                             TextButton.icon(
                               key: const ValueKey<String>('fullExport'),
+                        style: TextButton.styleFrom(minimumSize: const Size(96, 48), tapTargetSize: MaterialTapTargetSize.shrinkWrap),
                               onPressed: exportDocument,
                               icon: const Icon(Icons.file_download_outlined, size: 18),
                               label: Text(AppLocalizations.of(context).exportTooltip, style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600, color: accent)),

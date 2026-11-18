@@ -482,7 +482,7 @@ class _ScanDetailScreenState extends State<ScanDetailScreen>
               // Share and Export sit between the tray and the ad banner, as a buffer.
               if (_tabController.index == 0)
               Container(
-                padding: const EdgeInsets.fromLTRB(16, 2, 16, 8),
+                padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
                 decoration: BoxDecoration(color: bg, border: Border(top: BorderSide(color: border, width: 0.5))),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -490,12 +490,14 @@ class _ScanDetailScreenState extends State<ScanDetailScreen>
                       
                       TextButton.icon(
                         key: const ValueKey<String>('detailShare'),
+                        style: TextButton.styleFrom(minimumSize: const Size(96, 48), tapTargetSize: MaterialTapTargetSize.shrinkWrap),
                         onPressed: () => _share(document),
                         icon: const Icon(Icons.ios_share, size: 18),
                         label: Text(l10n.shareTooltip, style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600, color: accent)),
                       ),
                       TextButton.icon(
                         key: const ValueKey<String>('detailExport'),
+                        style: TextButton.styleFrom(minimumSize: const Size(96, 48), tapTargetSize: MaterialTapTargetSize.shrinkWrap),
                         onPressed: () => _export(document),
                         icon: const Icon(Icons.file_download_outlined, size: 18),
                         label: Text(l10n.exportTooltip, style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600, color: accent)),
