@@ -108,8 +108,8 @@ void main() {
     expect(got, isNull);
     expect(find.textContaining('8'), findsWidgets);
     await tester.enterText(find.byKey(const ValueKey<String>('printRange')), '1, 3, 5-7');
-    await tester.ensureVisible(find.byKey(const ValueKey<String>('printPaper:Legal')));
-    await tester.tap(find.byKey(const ValueKey<String>('printPaper:Legal')));
+    await tester.ensureVisible(find.byKey(const ValueKey<String>('printPaper:Legal (US)')));
+    await tester.tap(find.byKey(const ValueKey<String>('printPaper:Legal (US)')));
     await tester.ensureVisible(find.byKey(const ValueKey<String>('printPerSheet:4')));
     await tester.tap(find.byKey(const ValueKey<String>('printPerSheet:4')));
     await tester.pumpAndSettle();
