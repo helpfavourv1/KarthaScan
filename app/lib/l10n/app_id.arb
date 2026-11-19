@@ -404,6 +404,7 @@
   "compressSmall": "Kecil",
   "compressMedium": "Sedang",
   "pageFormatLetter": "Letter (AS)",
+  "pageFormatLegal": "Legal (AS)",
   "ocrScriptLatin": "Latin (Inggris, Eropa)",
   "ocrScriptChinese": "Tionghoa",
   "ocrScriptKorean": "Korea",

@@ -519,6 +519,7 @@
   "compressSmall": "Small",
   "compressMedium": "Medium",
   "pageFormatLetter": "Letter (US)",
+  "pageFormatLegal": "Legal (US)",
   "ocrScriptLatin": "Latin (English, European)",
   "ocrScriptChinese": "Chinese",
   "ocrScriptKorean": "Korean",

@@ -923,7 +923,7 @@ _scanProvider.updateStampLayer(doc.id, layer.copyWith(placement: np));
         ExportPageFormat.a4 => 'A4',
         ExportPageFormat.a5 => 'A5',
         ExportPageFormat.letter => AppLocalizations.of(context).pageFormatLetter,
-        ExportPageFormat.legal => 'Legal',
+        ExportPageFormat.legal => AppLocalizations.of(context).pageFormatLegal,
       };
 
   Widget _paperButton(Color accent, Color surface, Color textPrimary) {

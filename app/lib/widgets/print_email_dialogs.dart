@@ -141,8 +141,8 @@ class _PrintOptionsDialogState extends State<PrintOptionsDialog> {
               (v) => switch (v) {
                 PrintPaper.a4 => 'A4',
                 PrintPaper.a5 => 'A5',
-                PrintPaper.letter => 'Letter',
-                PrintPaper.legal => 'Legal',
+                PrintPaper.letter => l10n.pageFormatLetter,
+                PrintPaper.legal => l10n.pageFormatLegal,
               },
               (v) => _paper = v,
               'printPaper',

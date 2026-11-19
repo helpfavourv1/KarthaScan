@@ -426,6 +426,7 @@
   "compressSmall": "小",
   "compressMedium": "中",
   "pageFormatLetter": "Letter（美国）",
+  "pageFormatLegal": "Legal（美国）",
   "ocrScriptLatin": "拉丁文（英语、欧洲）",
   "ocrScriptChinese": "中文",
   "ocrScriptKorean": "韩语",

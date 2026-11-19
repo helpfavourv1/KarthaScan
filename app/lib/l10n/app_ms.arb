@@ -519,6 +519,7 @@
   "compressSmall": "Kecil",
   "compressMedium": "Sederhana",
   "pageFormatLetter": "Letter (AS)",
+  "pageFormatLegal": "Legal (AS)",
   "ocrScriptLatin": "Latin (Inggeris, Eropah)",
   "ocrScriptChinese": "Cina",
   "ocrScriptKorean": "Korea",

@@ -426,6 +426,7 @@
   "compressSmall": "작게",
   "compressMedium": "중간",
   "pageFormatLetter": "레터(미국)",
+  "pageFormatLegal": "리갈(미국)",
   "ocrScriptLatin": "라틴 문자(영어, 유럽)",
   "ocrScriptChinese": "중국어",
   "ocrScriptKorean": "한국어",
