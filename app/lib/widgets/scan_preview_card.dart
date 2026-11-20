@@ -214,46 +214,16 @@ class _ScanPreviewCardState extends State<ScanPreviewCard> {
       color: bg,
       child: Column(
         children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: AppSpacing.sm, vertical: AppSpacing.xs),
-            child: Row(
-              children: [
-                if (widget.leading != null) widget.leading!,
-                IconButton(
-                  visualDensity: VisualDensity.compact,
-                  onPressed: _currentPage > 0 ? () => _goToPage(_currentPage - 1) : null,
-                  icon: Icon(Icons.chevron_left, color: _currentPage > 0 ? accent : textSecondary),
-                ),
-                Flexible(child: Text(AppLocalizations.of(context).pageIndicator(_currentPage + 1, widget.pagePaths.length), maxLines: 1, overflow: TextOverflow.ellipsis, style: TextStyle(color: textSecondary, fontSize: AppTypography.footnoteSize))),
-                IconButton(
-                  visualDensity: VisualDensity.compact,
-                  onPressed: _currentPage < _lastIndex ? () => _goToPage(_currentPage + 1) : null,
-                  icon: Icon(Icons.chevron_right, color: _currentPage < _lastIndex ? accent : textSecondary),
-                ),
-                const Spacer(),
-                if (widget.onEditFullscreen != null)
-                  Flexible(
-                    child: ActionChip(
-                      key: const ValueKey<String>('detailFullscreen'),
-                      visualDensity: VisualDensity.compact,
-                      avatar: Icon(Icons.open_in_full, size: 14, color: accent),
-                      label: FittedBox(
-                        fit: BoxFit.scaleDown,
-                        child: Text(AppLocalizations.of(context).fullscreenLabel, maxLines: 1, style: const TextStyle(fontSize: 12)),
-                      ),
-                      onPressed: widget.onEditFullscreen,
-                    ),
-                  ),
-                if (widget.editMode != TrayEditMode.none && widget.onDoneEditing != null && !_controlsHaveDone)
-                  Flexible(
-                    child: ActionChip(
-                      avatar: const Icon(Icons.check, size: 14),
-                      label: Text(AppLocalizations.of(context).commonDone, maxLines: 1, overflow: TextOverflow.ellipsis, style: TextStyle(fontSize: 11)),
-                      onPressed: widget.onDoneEditing,
-                    ),
-                  ),
-              ],
-            ),
+          PreviewHeaderRow(
+            leading: widget.leading,
+            current: _currentPage,
+            total: widget.pagePaths.length,
+            onPrev: _currentPage > 0 ? () => _goToPage(_currentPage - 1) : null,
+            onNext: _currentPage < _lastIndex ? () => _goToPage(_currentPage + 1) : null,
+            onFullscreen: widget.onEditFullscreen,
+            onDone: (widget.editMode != TrayEditMode.none && widget.onDoneEditing != null && !_controlsHaveDone) ? widget.onDoneEditing : null,
+            accent: accent,
+            textSecondary: textSecondary,
           ),
           Expanded(
             child: DocumentCanvas(
@@ -308,3 +278,89 @@ class _ScanPreviewCardState extends State<ScanPreviewCard> {
 
 
 
+
+
+/// The row above a page: undo/redo, page arrows and label, Fullscreen, Done.
+/// Everything keeps its natural size, like the export screen's row. Only if the
+/// phone is too narrow for all of it does the whole row scale down together.
+class PreviewHeaderRow extends StatelessWidget {
+  const PreviewHeaderRow({
+    super.key,
+    required this.leading,
+    required this.current,
+    required this.total,
+    required this.onPrev,
+    required this.onNext,
+    required this.onFullscreen,
+    required this.onDone,
+    required this.accent,
+    required this.textSecondary,
+  });
+
+  final Widget? leading;
+  final int current;
+  final int total;
+  final VoidCallback? onPrev;
+  final VoidCallback? onNext;
+  final VoidCallback? onFullscreen;
+  final VoidCallback? onDone;
+  final Color accent;
+  final Color textSecondary;
+
+  @override
+  Widget build(BuildContext context) {
+    final AppLocalizations l10n = AppLocalizations.of(context);
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: AppSpacing.sm, vertical: AppSpacing.xs),
+      child: SizedBox(
+        width: double.infinity,
+        child: FittedBox(
+          fit: BoxFit.scaleDown,
+          alignment: Alignment.centerLeft,
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              if (leading != null) leading!,
+              IconButton(
+                key: const ValueKey<String>('detailPagePrev'),
+                visualDensity: VisualDensity.compact,
+                onPressed: onPrev,
+                icon: Icon(Icons.chevron_left, color: onPrev != null ? accent : textSecondary),
+              ),
+              Text(
+                l10n.pageIndicator(current + 1, total),
+                key: const ValueKey<String>('detailPageLabel'),
+                maxLines: 1,
+                style: TextStyle(color: textSecondary, fontSize: AppTypography.footnoteSize),
+              ),
+              IconButton(
+                key: const ValueKey<String>('detailPageNext'),
+                visualDensity: VisualDensity.compact,
+                onPressed: onNext,
+                icon: Icon(Icons.chevron_right, color: onNext != null ? accent : textSecondary),
+              ),
+              if (onFullscreen != null) ...<Widget>[
+                const SizedBox(width: 4),
+                ActionChip(
+                  key: const ValueKey<String>('detailFullscreen'),
+                  visualDensity: VisualDensity.compact,
+                  avatar: Icon(Icons.open_in_full, size: 14, color: accent),
+                  label: Text(l10n.fullscreenLabel, maxLines: 1, style: const TextStyle(fontSize: 12)),
+                  onPressed: onFullscreen,
+                ),
+              ],
+              if (onDone != null) ...<Widget>[
+                const SizedBox(width: 4),
+                ActionChip(
+                  avatar: const Icon(Icons.check, size: 14),
+                  label: Text(l10n.commonDone, maxLines: 1, style: const TextStyle(fontSize: 11)),
+                  onPressed: onDone,
+                ),
+              ],
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
