@@ -75,6 +75,11 @@ dev_dependencies:
   flutter_lints: ^5.0.0
   sqflite_common_ffi: ^2.3.4
 
+# path_provider_android 2.3.x uses JNI, which failed with ClassNotFoundException (android.content.Context)
+# in 4 of 5 emulator runs; 2.2.x (no JNI) passed 2 of 2. Remove once the JNI version is stable.
+dependency_overrides:
+  path_provider_android: '>=2.2.0 <2.3.0'
+
 flutter:
   uses-material-design: true
   generate: true
