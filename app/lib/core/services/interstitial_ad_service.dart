@@ -59,10 +59,13 @@ class InterstitialAdService {
   /// Called when the person finishes a counted action. It adds one to the
   /// tally and, if an ad is pending and allowed, shows it.
   Future<void> onAction() async {
-    if (await _isAdsRemovedCached()) return;
-    final bool attempt = await AdPacingService.instance.registerAction();
-    if (!attempt) return;
-    await _tryShow();
+    // Ad bookkeeping must never be able to break the action it follows.
+    try {
+      if (await _isAdsRemovedCached()) return;
+      final bool attempt = await AdPacingService.instance.registerAction();
+      if (!attempt) return;
+      await _tryShow();
+    } catch (_) {}
   }
 
   Future<void> _tryShow() async {
