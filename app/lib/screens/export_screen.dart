@@ -3,7 +3,6 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:flutter/foundation.dart' show compute;
-import 'dart:async' show unawaited;
 import 'package:flutter/material.dart';
 import '../core/services/interstitial_ad_service.dart';
 import '../widgets/conditional_banner.dart';
