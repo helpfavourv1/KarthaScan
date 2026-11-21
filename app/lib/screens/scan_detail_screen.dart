@@ -19,6 +19,7 @@ import '../widgets/edit_tray.dart';
 import '../widgets/ink_board.dart';
 import '../widgets/scan_preview_card.dart';
 import '../core/services/engagement_service.dart';
+import '../core/services/interstitial_ad_service.dart';
 
 class ScanDetailScreen extends StatefulWidget {
   const ScanDetailScreen({super.key, required this.documentId});
@@ -161,6 +162,7 @@ class _ScanDetailScreenState extends State<ScanDetailScreen>
     controller.dispose();
     if (newTitle != null && newTitle.trim().isNotEmpty) {
       await _scanProvider.renameDocument(document.id, newTitle);
+      countAdAction();
     }
   }
 
@@ -172,6 +174,7 @@ class _ScanDetailScreenState extends State<ScanDetailScreen>
     );
     if (chosenFolderId == null) return;
     await _folderProvider.addDocumentToFolder(chosenFolderId, document.id);
+    countAdAction();
     if (!mounted) return;
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.movedToFolderMessage)));
   }
@@ -191,6 +194,7 @@ class _ScanDetailScreenState extends State<ScanDetailScreen>
     if (confirmed != true) return;
     await _scanProvider.deleteDocument(document.id);
     await _folderProvider.removeDocumentFromAllFolders(document.id);
+    countAdAction();
     if (!mounted) return;
     context.pop();
   }

@@ -13,7 +13,6 @@ import '../core/models/scan_document.dart';
 import '../core/models/signature_placement.dart';
 import '../core/services/local_storage.dart';
 import '../core/services/signature_library.dart';
-import '../core/services/ad_pacing_service.dart';
 import '../core/services/interstitial_ad_service.dart';
 import '../core/utils/constants.dart';
 import '../core/utils/seal_draw.dart';
@@ -48,7 +47,7 @@ class InkController {
   void showSignatureAdIfPending() {
     if (!signatureAdPending) return;
     signatureAdPending = false;
-    unawaited(InterstitialAdService.instance.showAfterSignature());
+    countAdAction();
   }
 
   void _notify() => onChange?.call();
@@ -119,7 +118,6 @@ class InkController {
     if (bytes == null) return null;
 
     // Central signature-completion hook: covers export, fullscreen edit, tray, and scan-detail surfaces
-    unawaited(AdPacingService.instance.recordSignature());
     signatureAdPending = true;
 
     final decoded = img.decodePng(bytes);
@@ -1293,6 +1291,7 @@ class InkCompactBar extends StatelessWidget {
                   borderRadius: BorderRadius.circular(12),
                   onTap: () {
                     final VoidCallback restore = controller.removeInk(controller.activeInkId!);
+                    countAdAction();
                     showClearedMessage(context, 1, () async => restore(), kind: clearedKindLabel(AppLocalizations.of(context), 'signature'));
                   },
                   child: Padding(

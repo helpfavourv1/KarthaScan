@@ -1,4 +1,4 @@
-import 'dart:async' show unawaited;
+import 'dart:async' show Completer, unawaited;
 import 'dart:convert';
 import 'dart:io' show Platform;
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -35,6 +35,7 @@ class InterstitialAdService {
     if (!AdConsentService.instance.adsReady.value) return;
     if (_loading) return;
     _loading = true;
+    final Completer<void> done = Completer<void>();
     await InterstitialAd.load(
       adUnitId: _adUnitId,
       request: const AdRequest(),
@@ -42,46 +43,50 @@ class InterstitialAdService {
         onAdLoaded: (ad) {
           _ad = ad;
           _loading = false;
+          if (!done.isCompleted) done.complete();
           ad.fullScreenContentCallback = FullScreenContentCallback(
             onAdDismissedFullScreenContent: (a) { a.dispose(); ModalMomentGate.instance.release(hold: const Duration(seconds: 3)); _load(); },
             onAdFailedToShowFullScreenContent: (a, e) { a.dispose(); ModalMomentGate.instance.release(); _load(); },
           );
         },
-        onAdFailedToLoad: (e) { _ad = null; _loading = false; },
+        onAdFailedToLoad: (e) { _ad = null; _loading = false; if (!done.isCompleted) done.complete(); },
       ),
     );
+    // Wait for the answer, but never longer than 8 seconds.
+    await done.future.timeout(const Duration(seconds: 8), onTimeout: () {});
   }
 
-  Future<void> showIfAllowed() async {
+  /// Called when the person finishes a counted action. It adds one to the
+  /// tally and, if an ad is pending and allowed, shows it.
+  Future<void> onAction() async {
     if (await _isAdsRemovedCached()) return;
+    final bool attempt = await AdPacingService.instance.registerAction();
+    if (!attempt) return;
+    await _tryShow();
+  }
+
+  Future<void> _tryShow() async {
     if (!AdConsentService.instance.adsReady.value) {
       _ad?.dispose();
       _ad = null;
+      await AdPacingService.instance.recordFailedAttempt();
       return;
     }
-    if (!AdPacingService.instance.canShowAd()) return;
     if (_ad == null) {
       await _load();
-      if (_ad == null) return;
+      if (_ad == null) {
+        await AdPacingService.instance.recordFailedAttempt();
+        return;
+      }
     }
     // Not in the same moment as the review dialog.
-    if (!ModalMomentGate.instance.tryAcquire()) return;
+    if (!ModalMomentGate.instance.tryAcquire()) {
+      await AdPacingService.instance.recordFailedAttempt();
+      return;
+    }
     _ad!.show();
     await AdPacingService.instance.recordAdShown();
     _ad = null;
-  }
-
-  Future<void> showAfterScan() async {
-    if (AdPacingService.instance.canShowAfterScan()) await showIfAllowed();
-  }
-  Future<void> showAfterExport() async {
-    if (AdPacingService.instance.canShowAfterExport()) await showIfAllowed();
-  }
-  Future<void> showAfterConvert() async {
-    if (AdPacingService.instance.canShowAfterConvert()) await showIfAllowed();
-  }
-  Future<void> showAfterSignature() async {
-    if (AdPacingService.instance.canShowAfterSignature()) await showIfAllowed();
   }
 
   bool _waitingForConsent = false;
@@ -106,3 +111,6 @@ class InterstitialAdService {
   }
   void dispose() => _ad?.dispose();
 }
+
+/// Counts one finished action toward the next full-screen ad.
+void countAdAction() => unawaited(InterstitialAdService.instance.onAction());

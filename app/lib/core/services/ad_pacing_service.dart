@@ -1,9 +1,17 @@
 import 'package:flutter/foundation.dart' show visibleForTesting;
 import 'package:shared_preferences/shared_preferences.dart';
 
-/// Decides when a full-screen ad may appear. One rule limits how often:
-/// at least [minGap] since the last ad was shown (kept across launches).
-/// There is no daily, hourly or per-session cap, and no ad is ever tied to
+/// Decides when a full-screen ad may appear.
+///
+/// Every finished action the app counts adds one to a single tally. When the
+/// tally reaches [actionsPerAd] an ad becomes *pending* and the tally stops.
+/// A pending ad shows on the first counted action once [minGap] has passed
+/// since the last ad. The tally goes back to zero only when an ad really
+/// shows. An attempt that shows nothing (offline, no ad, SDK off) is retried
+/// no sooner than [retryAfterFailure] later. The tally, the pending flag and
+/// the time of the last ad are all saved, so they survive a restart.
+///
+/// There is no daily, hourly or per-session cap, and nothing is tied to
 /// opening or returning to the app: ads only follow a finished action.
 class AdPacingService {
   AdPacingService._();
@@ -11,78 +19,87 @@ class AdPacingService {
   AdPacingService.forTest();
   static final AdPacingService instance = AdPacingService._();
 
+  /// Counted actions before an ad becomes pending.
+  static const int actionsPerAd = 9;
+
   /// Shortest time allowed between two full-screen ads.
-  static const Duration minGap = Duration(minutes: 7);
+  static const Duration minGap = Duration(minutes: 9);
 
-  static const String _scansKey = 'ad_pacing.scans_this_session';
-  static const String _exportsKey = 'ad_pacing.exports_this_session';
-  static const String _convertsKey = 'ad_pacing.converts_this_session';
+  /// Shortest wait before trying again after an attempt showed nothing.
+  static const Duration retryAfterFailure = Duration(seconds: 60);
+
+  static const String _countKey = 'ad_pacing.action_count';
+  static const String _pendingKey = 'ad_pacing.pending';
   static const String _lastAdShownKey = 'ad_pacing.last_ad_shown';
-  static const String _signaturesKey = 'ad_pacing.signatures_this_session';
+  static const String _lastFailedKey = 'ad_pacing.last_failed_attempt';
 
-  int scansThisSession = 0;
-  int exportsThisSession = 0;
-  int convertsThisSession = 0;
-  int signaturesThisSession = 0;
+  int actionCount = 0;
+  bool adPending = false;
   DateTime? lastAdShownAt;
+  DateTime? lastFailedAttemptAt;
 
-  /// Loads the last-ad time and starts this launch with fresh action counts.
-  /// The two steps run in order, so old counts can never survive the reset.
-  Future<void> start() async {
-    await initialize();
-    await resetSessionCounters();
-  }
+  /// Loads the saved tally, pending flag and times. Nothing is reset.
+  Future<void> start() => initialize();
 
   Future<void> initialize() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    scansThisSession = prefs.getInt(_scansKey) ?? 0;
-    exportsThisSession = prefs.getInt(_exportsKey) ?? 0;
-    convertsThisSession = prefs.getInt(_convertsKey) ?? 0;
-    signaturesThisSession = prefs.getInt(_signaturesKey) ?? 0;
-    final String? lastAdStr = prefs.getString(_lastAdShownKey);
-    lastAdShownAt = lastAdStr == null ? null : DateTime.tryParse(lastAdStr);
+    actionCount = prefs.getInt(_countKey) ?? 0;
+    adPending = prefs.getBool(_pendingKey) ?? false;
+    lastAdShownAt = DateTime.tryParse(prefs.getString(_lastAdShownKey) ?? '');
+    lastFailedAttemptAt = DateTime.tryParse(prefs.getString(_lastFailedKey) ?? '');
   }
 
-  Future<void> recordScan() async {
-    scansThisSession++;
+  Future<void> _save() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setInt(_scansKey, scansThisSession);
+    await prefs.setInt(_countKey, actionCount);
+    await prefs.setBool(_pendingKey, adPending);
+    if (lastAdShownAt != null) await prefs.setString(_lastAdShownKey, lastAdShownAt!.toIso8601String());
+    if (lastFailedAttemptAt == null) {
+      await prefs.remove(_lastFailedKey);
+    } else {
+      await prefs.setString(_lastFailedKey, lastFailedAttemptAt!.toIso8601String());
+    }
   }
 
-  Future<void> recordExport() async {
-    exportsThisSession++;
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setInt(_exportsKey, exportsThisSession);
+  /// Counts one finished action and says whether an ad should be tried now.
+  /// While an ad is pending the tally does not move.
+  Future<bool> registerAction({DateTime? now}) async {
+    if (!adPending) {
+      actionCount++;
+      if (actionCount >= actionsPerAd) adPending = true;
+      await _save();
+    }
+    return shouldAttemptNow(now: now);
   }
 
-  Future<void> recordConvert() async {
-    convertsThisSession++;
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setInt(_convertsKey, convertsThisSession);
+  /// True when an ad is pending, the gap has passed and the last failed
+  /// attempt (if any) is old enough.
+  bool shouldAttemptNow({DateTime? now}) {
+    if (!adPending) return false;
+    final DateTime t = now ?? DateTime.now();
+    if (!canShowAd(now: t)) return false;
+    final DateTime? failed = lastFailedAttemptAt;
+    if (failed != null) {
+      final Duration since = t.difference(failed);
+      // A clock set backwards must not block ads for ever.
+      if (!since.isNegative && since < retryAfterFailure) return false;
+    }
+    return true;
   }
 
-  Future<void> recordSignature() async {
-    signaturesThisSession++;
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setInt(_signaturesKey, signaturesThisSession);
-  }
-
+  /// An ad was really shown: the tally and pending flag start over.
   Future<void> recordAdShown({DateTime? now}) async {
     lastAdShownAt = now ?? DateTime.now();
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setString(_lastAdShownKey, lastAdShownAt!.toIso8601String());
+    lastFailedAttemptAt = null;
+    actionCount = 0;
+    adPending = false;
+    await _save();
   }
 
-  Future<void> resetSessionCounters() async {
-    scansThisSession = 0;
-    exportsThisSession = 0;
-    convertsThisSession = 0;
-    signaturesThisSession = 0;
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setInt(_scansKey, 0);
-    await prefs.setInt(_exportsKey, 0);
-    await prefs.setInt(_convertsKey, 0);
-    await prefs.setInt(_signaturesKey, 0);
+  /// An attempt showed nothing. The ad stays pending and is retried later.
+  Future<void> recordFailedAttempt({DateTime? now}) async {
+    lastFailedAttemptAt = now ?? DateTime.now();
+    await _save();
   }
 
   /// True when [minGap] has passed since the last ad (or none was shown yet).
@@ -94,9 +111,4 @@ class AdPacingService {
     if (since.isNegative) return true;
     return since >= minGap;
   }
-
-  bool canShowAfterScan({DateTime? now}) => canShowAd(now: now);
-  bool canShowAfterExport({DateTime? now}) => exportsThisSession > 0 && exportsThisSession % 2 == 0 && canShowAd(now: now);
-  bool canShowAfterConvert({DateTime? now}) => convertsThisSession > 0 && convertsThisSession % 2 == 0 && canShowAd(now: now);
-  bool canShowAfterSignature({DateTime? now}) => signaturesThisSession > 0 && signaturesThisSession % 2 == 0 && canShowAd(now: now);
 }

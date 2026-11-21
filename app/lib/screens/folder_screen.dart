@@ -16,6 +16,7 @@ import '../core/utils/constants.dart';
 import '../l10n/app_localizations.dart';
 import '../widgets/empty_state.dart';
 import '../widgets/scan_list_tile.dart';
+import '../core/services/interstitial_ad_service.dart';
 
 class FolderScreen extends StatefulWidget {
   const FolderScreen({super.key, required this.folderId});
@@ -65,6 +66,7 @@ class _FolderScreenState extends State<FolderScreen> {
     controller.dispose();
     if (newName != null && newName.trim().isNotEmpty) {
       await _folderProvider.renameFolder(folder.id, newName);
+      countAdAction();
     }
   }
 
@@ -82,6 +84,7 @@ class _FolderScreenState extends State<FolderScreen> {
     );
     if (confirmed != true) return;
     await _folderProvider.deleteFolder(folder.id);
+    countAdAction();
     if (!mounted) return;
     context.pop();
   }
@@ -108,6 +111,7 @@ class _FolderScreenState extends State<FolderScreen> {
     for (final String id in _selectedIds.toList()) {
       await _folderProvider.removeDocumentFromFolder(folder.id, id);
     }
+    countAdAction();
     setState(() {
       _selectionMode = false;
       _selectedIds.clear();

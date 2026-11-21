@@ -24,6 +24,7 @@ import '../widgets/folder_list_tile.dart';
 import '../widgets/scan_list_tile.dart';
 import '../core/services/engagement_service.dart';
 import '../core/providers/subscription_provider.dart';
+import '../core/services/interstitial_ad_service.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -128,6 +129,7 @@ class _HomeScreenState extends State<HomeScreen> {
     controller.dispose();
     if (name != null && name.trim().isNotEmpty) {
       await _folderProvider.createFolder(name.trim());
+      countAdAction();
     }
   }
 
@@ -177,6 +179,7 @@ class _HomeScreenState extends State<HomeScreen> {
       await _scanProvider.deleteDocument(id);
       await _folderProvider.removeDocumentFromAllFolders(id);
     }
+    countAdAction();
     _exitSelectionMode();
   }
 
@@ -232,6 +235,7 @@ class _HomeScreenState extends State<HomeScreen> {
     controller.dispose();
     if (newTitle != null && newTitle.trim().isNotEmpty) {
       await _scanProvider.renameDocument(document.id, newTitle);
+      countAdAction();
     }
   }
 
@@ -243,6 +247,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
     if (chosenFolderId == null) return;
     await _folderProvider.addDocumentToFolder(chosenFolderId, document.id);
+    countAdAction();
     if (!mounted) return;
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.movedToFolderMessage)));
   }
@@ -265,12 +270,14 @@ class _HomeScreenState extends State<HomeScreen> {
     if (trimmed.isEmpty) return;
     final updated = {...document.tags, trimmed}.toList();
     await _scanProvider.updateTags(document.id, updated);
+    countAdAction();
   }
 
   Future<void> _shareDocument(ScanDocument document) async {
     try {
       final paths = await ExportService().renderPagesForShare(document);
       await _shareService.shareFiles(filePaths: paths);
+      countAdAction();
     } catch (e) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
@@ -294,6 +301,7 @@ class _HomeScreenState extends State<HomeScreen> {
     
     // Update the provider to reflect the new order
     _scanProvider.documents.value = List.from(docs);
+    countAdAction();
   }
 
   Future<void> _deleteDocument(ScanDocument document, AppLocalizations l10n) async {
@@ -311,6 +319,7 @@ class _HomeScreenState extends State<HomeScreen> {
     if (confirmed != true) return;
     await _scanProvider.deleteDocument(document.id);
     await _folderProvider.removeDocumentFromAllFolders(document.id);
+    countAdAction();
   }
 
   @override

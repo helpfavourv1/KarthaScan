@@ -22,6 +22,7 @@ import 'package:flutter/material.dart' show Color, ThemeMode;
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../models/user_settings.dart';
+import '../services/interstitial_ad_service.dart';
 import '../services/local_storage.dart';
 import '../services/notification_service.dart';
 
@@ -96,16 +97,24 @@ class SettingsProvider {
     return success;
   }
 
+  /// A setting the person changed on purpose counts as a finished action.
+  /// Internal saves (ad-removal flag, last watermark) use [_persist] and do not.
+  Future<bool> _persistAndCount(UserSettings next) async {
+    final bool ok = await _persist(next);
+    if (ok) countAdAction();
+    return ok;
+  }
+
   Future<bool> setThemeMode(ThemeMode mode) =>
-      _persist(settings.value.copyWith(themeMode: mode));
+      _persistAndCount(settings.value.copyWith(themeMode: mode));
 
   Future<bool> setAccentColor(Color color) =>
-      _persist(settings.value.copyWith(accentColor: color));
+      _persistAndCount(settings.value.copyWith(accentColor: color));
 
   /// [languageCode] is a language, or [AppLocales.systemLanguage] to follow the phone.
   Future<bool> setLanguage(String languageCode) => languageCode == AppLocales.systemLanguage
-      ? _persist(settings.value.copyWith(followSystemLanguage: true, language: AppLocales.fromDevice(PlatformDispatcher.instance.locale)))
-      : _persist(settings.value.copyWith(language: languageCode, followSystemLanguage: false));
+      ? _persistAndCount(settings.value.copyWith(followSystemLanguage: true, language: AppLocales.fromDevice(PlatformDispatcher.instance.locale)))
+      : _persistAndCount(settings.value.copyWith(language: languageCode, followSystemLanguage: false));
 
   /// Called by subscription_provider.dart when the authoritative
   /// entitlement state changes, keeping UserSettings.adsRemoved — a cached
@@ -116,26 +125,26 @@ class SettingsProvider {
       _persist(settings.value.copyWith(adsRemoved: adsRemoved));
 
   Future<bool> setAutoCopyOcr(bool value) =>
-      _persist(settings.value.copyWith(autoCopyOcr: value));
+      _persistAndCount(settings.value.copyWith(autoCopyOcr: value));
 
   Future<bool> setBeepOnCapture(bool value) =>
-      _persist(settings.value.copyWith(beepOnCapture: value));
+      _persistAndCount(settings.value.copyWith(beepOnCapture: value));
 
   Future<bool> setVibrateOnCapture(bool value) =>
-      _persist(settings.value.copyWith(vibrateOnCapture: value));
+      _persistAndCount(settings.value.copyWith(vibrateOnCapture: value));
 
   Future<bool> setLastWatermark(Map<String, dynamic>? value) =>
       _persist(settings.value.copyWith(lastWatermark: value));
 
 
   Future<bool> setEnableNotifications(bool value) =>
-      _persist(settings.value.copyWith(enableNotifications: value));
+      _persistAndCount(settings.value.copyWith(enableNotifications: value));
 
   Future<bool> setEnableReviewPrompts(bool value) =>
-      _persist(settings.value.copyWith(enableReviewPrompts: value));
+      _persistAndCount(settings.value.copyWith(enableReviewPrompts: value));
 
   Future<bool> setEnableSharePrompts(bool value) =>
-      _persist(settings.value.copyWith(enableSharePrompts: value));
+      _persistAndCount(settings.value.copyWith(enableSharePrompts: value));
 
   void dispose() {
     settings.dispose();

@@ -5,7 +5,6 @@ import 'dart:typed_data';
 import 'package:flutter/foundation.dart' show compute;
 import 'dart:async' show unawaited;
 import 'package:flutter/material.dart';
-import '../core/services/ad_pacing_service.dart';
 import '../core/services/interstitial_ad_service.dart';
 import '../widgets/conditional_banner.dart';
 import 'package:go_router/go_router.dart';
@@ -252,8 +251,6 @@ class _ExportScreenState extends State<ExportScreen> {
           targetBytes: _targetMB != null ? _targetMB! * 1024 * 1024 : null,
         );
         allOutputPaths.addAll(paths);
-        await AdPacingService.instance.recordExport();
-        unawaited(InterstitialAdService.instance.showAfterExport());
       }
     } on LowStorageException catch (e) {
       errorMessage = l10n.lowStorageMessage(formatBytes(e.neededBytes), formatBytes(e.freeBytes));
@@ -285,6 +282,8 @@ class _ExportScreenState extends State<ExportScreen> {
     if (paths == null || paths.isEmpty) return;
     try {
       await _shareService.shareFiles(filePaths: paths);
+      // The share sheet has closed, so the ad cannot cover it.
+      countAdAction();
       EngagementService.instance.recordExport();
       _deleteExportFiles(paths);
     } on ShareFailedException {
@@ -335,6 +334,7 @@ class _ExportScreenState extends State<ExportScreen> {
     if (!mounted) return;
     if (saved > 0) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.saveToDownloadsAction)));
+      countAdAction();
       EngagementService.instance.recordExport();
       _deleteExportFiles(paths);
     } else if (lastError != null) {

@@ -7,6 +7,7 @@ import '../core/utils/constants.dart';
 import '../core/utils/typed_signature.dart';
 import '../l10n/app_localizations.dart';
 import 'signature_canvas.dart';
+import '../core/services/interstitial_ad_service.dart';
 
 const List<int> _inkColors = <int>[0xFF000000, 0xFF1B3A8C, 0xFF0A4FD6, 0xFF7A1F1F];
 const List<double> _penWidths = <double>[2, 3.5, 6];
@@ -241,6 +242,7 @@ class _SignaturePickerSheetState extends State<SignaturePickerSheet> {
 
   Future<void> _delete(SavedSignature s) async {
     await widget.library.remove(s.id);
+    countAdAction();
     if (!mounted) return;
     setState(() => _saved = _saved.where((x) => x.id != s.id).toList());
   }

@@ -3,7 +3,6 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:file_saver/file_saver.dart';
 import 'dart:async' show unawaited;
-import '../core/services/ad_pacing_service.dart';
 import '../core/services/engagement_service.dart';
 import '../core/services/interstitial_ad_service.dart';
 import '../widgets/conditional_banner.dart';
@@ -402,6 +401,7 @@ class _ConvertScreenState extends State<ConvertScreen> {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(content: Text(AppLocalizations.of(context).saveToDownloadsAction), duration: const Duration(seconds: 2)),
           );
+          countAdAction();
           context.pop();
         } else {
           ScaffoldMessenger.of(context).showSnackBar(
@@ -427,14 +427,14 @@ class _ConvertScreenState extends State<ConvertScreen> {
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(AppLocalizations.of(context).savedAsNewDocument)));
           // Make the converted pages searchable (runs in the background).
           unawaited(provider.refreshOcrText(doc.id));
-          await AdPacingService.instance.recordConvert();
           unawaited(EngagementService.instance.recordSuccessfulAction());
           if (!mounted) return;
           context.pushReplacement('/scan/${doc.id}');
-          unawaited(InterstitialAdService.instance.showAfterConvert());
+          countAdAction();
         }
       } else {
         await ShareService().shareFiles(filePaths: paths);
+        countAdAction();
         if (!mounted) return;
         Navigator.of(context).pop();
       }

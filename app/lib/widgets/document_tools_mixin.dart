@@ -44,6 +44,7 @@ import 'rotate_resize_sheet.dart';
 import 'seal_stamp_sheet.dart';
 import 'text_stamp_sheet.dart';
 import 'watermark_sheet.dart';
+import '../core/services/interstitial_ad_service.dart';
 
 mixin DocumentTools<T extends StatefulWidget> on State<T> {
   AppLocalizations get l10n => AppLocalizations.of(context);
@@ -108,6 +109,7 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
     try {
       final paths = await ExportService().renderPagesForShare(doc);
       await shareService.shareFiles(filePaths: paths);
+      countAdAction();
     } on ShareFailedException {
       if (!mounted) return;
       final l10n = AppLocalizations.of(context);
@@ -147,6 +149,7 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
     await File(filePath).writeAsBytes(drawn.bytes);
     final layer = AnnotateLayer(id: scanProvider.newAnnotateId(), pageIndex: pageIndex, bytesPath: filePath, placement: SignaturePlacement(pctX: drawn.pctX, pctY: drawn.pctY, scale: drawn.scale));
     await scanProvider.addAnnotateLayer(doc.id, layer);
+    countAdAction();
     if (mounted) {
       editMode = TrayEditMode.annotate;
       onLayerAdded(TrayEditMode.annotate, layer.id);
@@ -198,6 +201,7 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
         : (parsePageRange(pages.value, total) ?? <int>[currentPageIndex]);
     final List<String> ids = await scanProvider.addWatermarkLayersToPages(doc.id, config, targets);
     if (ids.isEmpty) return;
+    countAdAction();
     final int here = targets.toSet().toList().indexWhere((int p) => p == currentPageIndex);
     final String shown = ids[here >= 0 ? here : 0];
     if (mounted) {
@@ -286,6 +290,7 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
               sealInk: config.sealInkValue,
     );
     await scanProvider.addStampLayer(doc.id, layer);
+    countAdAction();
     if (mounted) {
       final mode = kind == 'text' ? TrayEditMode.text : (kind == 'note' ? TrayEditMode.note : (kind == 'date' ? TrayEditMode.date : (kind == 'checkbox' ? TrayEditMode.checkbox : TrayEditMode.seal)));
       editMode = mode;
@@ -413,6 +418,7 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
             TextButton(
               onPressed: () {
                 Clipboard.setData(ClipboardData(text: result.fullText));
+                countAdAction();
                 Navigator.pop(context);
               },
               child: Text(l10n.commonCopy),
@@ -421,6 +427,7 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
               onPressed: () async {
                 Navigator.pop(context);
                 await scanProvider.appendOcrText(doc.id, result.fullText);
+                countAdAction();
                 if (context.mounted) {
                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.savedToDocumentText)));
                 }
@@ -500,6 +507,7 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
     };
     // One edit for all chosen pages, so one undo reverses it.
     await scanProvider.updatePageTransforms(doc.id, changes);
+    countAdAction();
     final bool removed = chosen.filter == FilterType.none && chosen.brightness == 0 && chosen.contrast == 0;
     if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(removed ? l10n.filterRemoved : l10n.filterApplied)));
   }
@@ -524,6 +532,7 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
     }
     await scanProvider.updatePageTransform(doc.id, currentPageIndex, updated);
     resyncInkFromDocument();
+    countAdAction();
     if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.pageCropped)));
   }
 
@@ -571,6 +580,7 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
     final existing = doc.pageTransforms[currentPageIndex] ?? const PageTransform();
     final updated = existing.copyWith(eraserStrokes: [...existing.eraserStrokes, ...strokes]);
     await scanProvider.updatePageTransform(doc.id, currentPageIndex, updated);
+    countAdAction();
     if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.eraserApplied)));
   }
 
@@ -603,6 +613,7 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
     }
     // One edit for every page, so a single undo reverses it all.
     await scanProvider.updatePageTransforms(doc.id, changes);
+    countAdAction();
 
     if (mounted) {
       final msg = res.applyAll ? AppLocalizations.of(context).rotationAllPages : AppLocalizations.of(context).rotationPage;
@@ -633,6 +644,7 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
     final existing = doc.pageTransforms[currentPageIndex] ?? const PageTransform();
     final updated = existing.copyWith(resizeWidth: newW, resizeHeight: newH);
     await scanProvider.updatePageTransform(doc.id, currentPageIndex, updated);
+    countAdAction();
     if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.pageResized)));
   }
 
@@ -676,6 +688,7 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
     };
     await scanProvider.updateDocumentPages(doc.id, result.paths, addTurns: addTurns);
     resyncInkFromDocument();
+    countAdAction();
     if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.pagesUpdated)));
   }
 
@@ -740,6 +753,7 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
     }
     try {
       await shareService.shareFiles(filePaths: paths, subject: doc.title);
+      countAdAction();
     } catch (_) {
       messenger.showSnackBar(SnackBar(content: Text(failed)));
     }

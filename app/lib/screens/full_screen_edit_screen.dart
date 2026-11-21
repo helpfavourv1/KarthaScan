@@ -22,6 +22,7 @@ import '../widgets/ink_board.dart';
 import '../widgets/signature_editor_bar.dart';
 import '../core/models/fill_snippet.dart';
 import '../l10n/app_localizations.dart';
+import '../core/services/interstitial_ad_service.dart';
 
 class FullScreenEditScreen extends StatefulWidget {
   const FullScreenEditScreen({super.key, required this.documentId, this.startInFillMode = false});
@@ -126,6 +127,7 @@ class _FullScreenEditScreenState extends State<FullScreenEditScreen> with Docume
     _fillTemplate = draft.copyWith(text: '');
     if (isNew) {
       await _scanProvider.addStampLayer(doc.id, draft);
+      countAdAction();
     } else {
       await _scanProvider.updateStampLayer(doc.id, draft);
     }

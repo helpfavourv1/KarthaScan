@@ -13,6 +13,7 @@ import '../l10n/app_localizations.dart';
 import 'color_picker_dialog.dart';
 import 'seal_preview.dart';
 import 'text_stamp_sheet.dart';
+import '../core/services/interstitial_ad_service.dart';
 
 Uint8List _prepareLogoOff(List<Object> args) => prepareSealLogo(args[0] as Uint8List, removeWhite: args[1] as bool);
 
@@ -169,6 +170,7 @@ class _SealStampSheetState extends State<SealStampSheet> {
     final List<SavedSeal> v = await _library.save(_design());
     if (!mounted) return;
     setState(() => _saved = v);
+    countAdAction();
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(AppLocalizations.of(context).sealSavedMessage), duration: const Duration(seconds: 2)));
   }
 

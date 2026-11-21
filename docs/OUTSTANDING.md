@@ -299,3 +299,12 @@ Storage hygiene gaps found when audited (not yet built):
 - Phase 5 zh: all 560 rows read; 3 fixes (revert title, reverted toast, ALL CAPS). Native review: 你/您 mix (emptyStateDefaultMessage uses 你).
 - Phase 5 zh_Hant: all 560 rows read; 5 fixes (revert title/toast, ALL CAPS, tap-to-type ticker, Email label). Native review: Taiwan vs Hong Kong wording.
 - Phase 5 newer keys (clearedKindCount, storage*, lowStorageMessage, rateAppLabel, languageSystemDefault): read in all languages; no definite errors.
+
+
+## Interstitial ads: one tally, pending ad (2026-11-21)
+- One tally of counted actions for the whole app. At 9, an ad becomes pending and the tally stops.
+- Pending ad shows on the first counted action once 9 minutes have passed since the last ad. Tally resets only when an ad shows. Failed attempt retries after 60 s. Tally, pending flag and times are saved across restarts.
+- Counted (owner-marked list): scan/import/crop-save (4 sites), ID card as document, ID card share PDF and save, export Share and Save (fires after the share sheet closes / the save finishes), convert (save as document, save to Downloads, share), signature placed (fires when the editor closes), detail/full-screen/home Share, Pages manager Save, Region OCR copy/save, crop, filter, rotate, resize, eraser, annotate, watermark (add), text/note/date/checkbox/seal/Fill placed, rename, move to folder, tags, delete, create/rename/delete folder, remove from folder, reorder, seal saved to library, saved signature deleted, user-facing settings changes.
+- NOT counted (not marked): Print, Email, backup export, backup import, purchase restore, extract page, clear page / clear all pages / revert, favourite toggle, internal settings saves.
+- Never on app open or return. Never for ad-free users.
+- Phone checks: ad timing across 9 actions and the 9-minute gap; Share ad appears after the share sheet closes.
