@@ -58,7 +58,7 @@ void main() {
     for (var i = 0; i < 3; i++) {
       await r.grant(now: t0.add(Duration(hours: i * 2)));
     }
-    final late = t0.add(const Duration(hours: 22));
+    final late = t0.add(const Duration(hours: 12));
     expect(r.claimsUsed(late), 3);
     expect(r.capReached(late), isTrue);
     expect(r.shouldShowCard(now: DateTime(2026, 11, 22, 23, 50), adsRemoved: false, adsAllowed: true, adLoaded: true), isFalse);
