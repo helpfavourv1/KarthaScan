@@ -18,34 +18,34 @@ void main() {
   }
 
   group('settings', () {
-    test('9 actions, 9 minutes, 60 second retry', () {
-      expect(AdPacingService.actionsPerAd, 9);
-      expect(AdPacingService.minGap, const Duration(minutes: 9));
+    test('7 actions, 7 minutes, 60 second retry', () {
+      expect(AdPacingService.actionsPerAd, 7);
+      expect(AdPacingService.minGap, const Duration(minutes: 7));
       expect(AdPacingService.retryAfterFailure, const Duration(seconds: 60));
     });
   });
 
   group('counting', () {
-    test('actions 1 to 8 never ask for an ad', () async {
+    test('actions 1 to 6 never ask for an ad', () async {
       final AdPacingService s = AdPacingService.forTest();
-      for (int i = 1; i <= 8; i++) {
+      for (int i = 1; i <= 6; i++) {
         expect(await s.registerAction(now: t0), isFalse, reason: 'action $i');
       }
-      expect(s.actionCount, 8);
+      expect(s.actionCount, 6);
       expect(s.adPending, isFalse);
     });
 
-    test('the 9th action makes an ad pending and asks for it when the gap is fine', () async {
+    test('the 7th action makes an ad pending and asks for it when the gap is fine', () async {
       final AdPacingService s = AdPacingService.forTest();
-      expect(await act(s, 9, t0), isTrue);
+      expect(await act(s, 7, t0), isTrue);
       expect(s.adPending, isTrue);
     });
 
     test('every kind of action counts the same: one tally, not one per type', () async {
       final AdPacingService s = AdPacingService.forTest();
-      await act(s, 4, t0);
-      await act(s, 4, t0);
-      expect(s.actionCount, 8);
+      await act(s, 3, t0);
+      await act(s, 3, t0);
+      expect(s.actionCount, 6);
     });
 
     test('no "every 2nd" rule: 2 actions never ask for an ad', () async {
@@ -55,29 +55,29 @@ void main() {
   });
 
   group('pending ad', () {
-    test('inside the 9 minutes the ad stays pending and the tally stops', () async {
+    test('inside the 7 minutes the ad stays pending and the tally stops', () async {
       final AdPacingService s = AdPacingService.forTest();
       await s.recordAdShown(now: t0);
-      expect(await act(s, 9, at(1)), isFalse);
+      expect(await act(s, 7, at(1)), isFalse);
       expect(s.adPending, isTrue);
-      expect(s.actionCount, 9);
+      expect(s.actionCount, 7);
       // More actions do not move the tally while pending.
       await act(s, 5, at(2));
-      expect(s.actionCount, 9);
+      expect(s.actionCount, 7);
     });
 
-    test('fires on the first counting action once 9 minutes have passed', () async {
+    test('fires on the first counting action once 7 minutes have passed', () async {
       final AdPacingService s = AdPacingService.forTest();
       await s.recordAdShown(now: t0);
-      await act(s, 9, at(1));
-      expect(await s.registerAction(now: at(8, 59)), isFalse);
-      expect(await s.registerAction(now: at(9)), isTrue);
+      await act(s, 7, at(1));
+      expect(await s.registerAction(now: at(6, 59)), isFalse);
+      expect(await s.registerAction(now: at(7)), isTrue);
     });
 
     test('the tally resets only when an ad really shows', () async {
       final AdPacingService s = AdPacingService.forTest();
-      await act(s, 9, t0);
-      expect(s.actionCount, 9);
+      await act(s, 7, t0);
+      expect(s.actionCount, 7);
       await s.recordAdShown(now: at(1));
       expect(s.actionCount, 0);
       expect(s.adPending, isFalse);
@@ -85,29 +85,29 @@ void main() {
       expect(s.actionCount, 1);
     });
 
-    test('the 9 minutes run from the last ad shown', () async {
+    test('the 7 minutes run from the last ad shown', () async {
       final AdPacingService s = AdPacingService.forTest();
-      await act(s, 9, t0);
+      await act(s, 7, t0);
       await s.recordAdShown(now: t0);
-      await act(s, 9, at(3));
-      expect(s.shouldAttemptNow(now: at(8, 59)), isFalse);
-      expect(s.shouldAttemptNow(now: at(9)), isTrue);
+      await act(s, 7, at(3));
+      expect(s.shouldAttemptNow(now: at(6, 59)), isFalse);
+      expect(s.shouldAttemptNow(now: at(7)), isTrue);
     });
 
     test('a clock set backwards does not block ads for ever', () async {
       final AdPacingService s = AdPacingService.forTest();
       await s.recordAdShown(now: t0);
-      await act(s, 9, t0);
+      await act(s, 7, t0);
       expect(s.shouldAttemptNow(now: t0.subtract(const Duration(hours: 2))), isTrue);
     });
 
-    test('no daily cap: 30 ads 9 minutes apart all show', () async {
+    test('no daily cap: 30 ads 7 minutes apart all show', () async {
       final AdPacingService s = AdPacingService.forTest();
       DateTime t = t0;
       for (int i = 0; i < 30; i++) {
-        expect(await act(s, 9, t), isTrue, reason: 'ad $i');
+        expect(await act(s, 7, t), isTrue, reason: 'ad $i');
         await s.recordAdShown(now: t);
-        t = t.add(const Duration(minutes: 9));
+        t = t.add(const Duration(minutes: 7));
       }
     });
   });
@@ -115,7 +115,7 @@ void main() {
   group('failed attempts', () {
     test('retry no sooner than 60 seconds later', () async {
       final AdPacingService s = AdPacingService.forTest();
-      await act(s, 9, t0);
+      await act(s, 7, t0);
       await s.recordFailedAttempt(now: t0);
       expect(await s.registerAction(now: t0.add(const Duration(seconds: 59))), isFalse);
       expect(await s.registerAction(now: t0.add(const Duration(seconds: 60))), isTrue);
@@ -123,15 +123,15 @@ void main() {
 
     test('a failed attempt keeps the ad pending and the tally where it was', () async {
       final AdPacingService s = AdPacingService.forTest();
-      await act(s, 9, t0);
+      await act(s, 7, t0);
       await s.recordFailedAttempt(now: t0);
       expect(s.adPending, isTrue);
-      expect(s.actionCount, 9);
+      expect(s.actionCount, 7);
     });
 
     test('a shown ad clears the failed-attempt wait', () async {
       final AdPacingService s = AdPacingService.forTest();
-      await act(s, 9, t0);
+      await act(s, 7, t0);
       await s.recordFailedAttempt(now: t0);
       await s.recordAdShown(now: at(1));
       expect(s.lastFailedAttemptAt, isNull);
@@ -145,20 +145,20 @@ void main() {
       final AdPacingService b = AdPacingService.forTest();
       await b.start();
       expect(b.actionCount, 5);
-      expect(await act(b, 4, t0), isTrue);
+      expect(await act(b, 2, t0), isTrue);
     });
 
     test('pending flag, last ad and failed attempt all survive', () async {
       final AdPacingService a = AdPacingService.forTest();
       await a.recordAdShown(now: t0);
-      await act(a, 9, at(1));
+      await act(a, 7, at(1));
       await a.recordFailedAttempt(now: at(2));
       final AdPacingService b = AdPacingService.forTest();
       await b.initialize();
       expect(b.adPending, isTrue);
-      expect(b.actionCount, 9);
+      expect(b.actionCount, 7);
       expect(b.shouldAttemptNow(now: at(2, 30)), isFalse);
-      expect(b.shouldAttemptNow(now: at(9)), isTrue);
+      expect(b.shouldAttemptNow(now: at(7)), isTrue);
     });
   });
 }

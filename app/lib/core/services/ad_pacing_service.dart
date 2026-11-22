@@ -20,10 +20,10 @@ class AdPacingService {
   static final AdPacingService instance = AdPacingService._();
 
   /// Counted actions before an ad becomes pending.
-  static const int actionsPerAd = 9;
+  static const int actionsPerAd = 7;
 
   /// Shortest time allowed between two full-screen ads.
-  static const Duration minGap = Duration(minutes: 9);
+  static const Duration minGap = Duration(minutes: 7);
 
   /// Shortest wait before trying again after an attempt showed nothing.
   static const Duration retryAfterFailure = Duration(seconds: 60);

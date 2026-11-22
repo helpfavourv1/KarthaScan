@@ -308,3 +308,7 @@ Storage hygiene gaps found when audited (not yet built):
 - NOT counted (not marked): Print, Email, backup export, backup import, purchase restore, extract page, clear page / clear all pages / revert, favourite toggle, internal settings saves.
 - Never on app open or return. Never for ad-free users.
 - Phone checks: ad timing across 9 actions and the 9-minute gap; Share ad appears after the share sheet closes.
+
+### Update 2026-11-22
+- Rule changed to 7 counted actions and a 7-minute gap (was 9 and 9). Failed-attempt retry stays 60 s.
+- Now also counted: Clear page, Clear all pages (annotate, watermark, text/note/date/checkbox/seal/Fill stamps, signatures) and Revert. "Clear this" is still not counted.

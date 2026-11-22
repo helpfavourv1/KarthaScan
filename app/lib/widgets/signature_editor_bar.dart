@@ -10,6 +10,7 @@ import '../core/models/signature_placement.dart';
 import '../l10n/app_localizations.dart';
 import 'clear_feedback.dart';
 import 'ink_board.dart';
+import '../core/services/interstitial_ad_service.dart';
 
 class SignatureEditorBar extends StatelessWidget {
   const SignatureEditorBar({
@@ -84,11 +85,13 @@ class SignatureOverlayControls extends StatelessWidget {
     void doClearPage() {
       final int n = controller.clearPage(pageIndex);
       cleared(context, n, controller.lastCleared);
+      countAdAction();
     }
 
     void doClearAllPages() {
       final int n = controller.clearAll();
       cleared(context, n, controller.lastCleared);
+      countAdAction();
     }
 
     return OverlayEditControls(
