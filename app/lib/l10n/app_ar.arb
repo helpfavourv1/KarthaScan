@@ -671,5 +671,15 @@
   "storageCleared": "تم تحرير {size}",
   "lowStorageMessage": "لا توجد مساحة كافية. يحتاج هذا إلى حوالي {needed}، لكن المتاح {free} فقط. أخلِ بعض المساحة وأعد المحاولة.",
   "rateAppLabel": "قيّم KatharScan",
-  "languageSystemDefault": "افتراضي النظام"
+  "languageSystemDefault": "افتراضي النظام",
+  "rewardCardTitle": "سئمت من الإعلانات؟ احصل على 6 ساعات بلا إعلانات",
+  "rewardWatchButton": "شاهد إعلانًا واحصل على 6 ساعات بلا إعلانات",
+  "rewardWatch": "شاهد",
+  "rewardNoThanks": "لا، شكرًا",
+  "rewardSheetBody": "شاهد فيديو قصيرًا لتحصل على 6 ساعات بلا إعلانات. الإغلاق المبكر لا يمنح المكافأة.",
+  "rewardActiveUntil": "الإعلانات متوقفة حتى {time}",
+  "rewardStatus": "متبقي {left} · استُخدم {used} من 3 اليوم",
+  "rewardBackTomorrow": "عد غدًا",
+  "rewardPrompt": "سئمت من الإعلانات؟ احصل على 6 ساعات بلا إعلانات",
+  "rewardNotReady": "لا يوجد إعلان جاهز الآن. حاول مرة أخرى بعد قليل."
 }

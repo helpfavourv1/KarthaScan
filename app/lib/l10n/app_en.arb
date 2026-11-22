@@ -1070,5 +1070,34 @@
     }
   },
   "rateAppLabel": "Rate KatharScan",
-  "languageSystemDefault": "System default"
+  "languageSystemDefault": "System default",
+  "rewardCardTitle": "Tired of ads? Get 6 hours ad-free",
+  "rewardWatchButton": "Watch an ad, get 6 hours ad-free",
+  "rewardWatch": "Watch",
+  "rewardNoThanks": "No thanks",
+  "rewardSheetBody": "Watch a short video to get 6 hours without ads. Closing early gives no reward.",
+  "rewardActiveUntil": "Ads are off until {time}",
+  "rewardStatus": "{left} left · {used} of 3 used today",
+  "rewardBackTomorrow": "Back tomorrow",
+  "rewardPrompt": "Tired of ads? Get 6 hours ad-free",
+  "rewardNotReady": "No ad is ready right now. Try again in a moment.",
+  "@rewardActiveUntil": {
+    "description": "Shown while a 6-hour ad-free reward runs; time is a clock time like 15:42",
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "@rewardStatus": {
+    "description": "Reward status; left is time left like 5h 12m, used is claims used today (max 3)",
+    "placeholders": {
+      "left": {
+        "type": "String"
+      },
+      "used": {
+        "type": "int"
+      }
+    }
+  }
 }

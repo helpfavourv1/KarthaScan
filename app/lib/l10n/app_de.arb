@@ -671,5 +671,15 @@
   "storageCleared": "{size} freigegeben",
   "lowStorageMessage": "Nicht genug freier Speicher. Dafür werden etwa {needed} benötigt, aber nur {free} sind frei. Geben Sie Speicherplatz frei und versuchen Sie es erneut.",
   "rateAppLabel": "KatharScan bewerten",
-  "languageSystemDefault": "Systemstandard"
+  "languageSystemDefault": "Systemstandard",
+  "rewardCardTitle": "Genug von Werbung? 6 Stunden werbefrei",
+  "rewardWatchButton": "Werbung ansehen, 6 Stunden werbefrei",
+  "rewardWatch": "Ansehen",
+  "rewardNoThanks": "Nein, danke",
+  "rewardSheetBody": "Sehen Sie sich ein kurzes Video an und erhalten Sie 6 Stunden ohne Werbung. Bei vorzeitigem Schließen gibt es keine Belohnung.",
+  "rewardActiveUntil": "Werbung ist aus bis {time}",
+  "rewardStatus": "Noch {left} · {used} von 3 heute genutzt",
+  "rewardBackTomorrow": "Morgen wieder",
+  "rewardPrompt": "Genug von Werbung? 6 Stunden werbefrei",
+  "rewardNotReady": "Gerade ist keine Werbung bereit. Versuchen Sie es gleich noch einmal."
 }

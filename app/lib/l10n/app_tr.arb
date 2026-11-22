@@ -764,5 +764,15 @@
   "storageCleared": "{size} boşaltıldı",
   "lowStorageMessage": "Yeterli boş alan yok. Bunun için yaklaşık {needed} gerekiyor ancak yalnızca {free} boş. Biraz yer açıp tekrar deneyin.",
   "rateAppLabel": "KatharScan'i değerlendir",
-  "languageSystemDefault": "Sistem varsayılanı"
+  "languageSystemDefault": "Sistem varsayılanı",
+  "rewardCardTitle": "Reklamlardan bıktınız mı? 6 saat reklamsız kullanın",
+  "rewardWatchButton": "Bir reklam izleyin, 6 saat reklamsız kullanın",
+  "rewardWatch": "İzle",
+  "rewardNoThanks": "Hayır, teşekkürler",
+  "rewardSheetBody": "6 saat reklamsız kullanmak için kısa bir video izleyin. Erken kapatırsanız ödül verilmez.",
+  "rewardActiveUntil": "Reklamlar {time} saatine kadar kapalı",
+  "rewardStatus": "{left} kaldı · bugün 3 hakkın {used} tanesi kullanıldı",
+  "rewardBackTomorrow": "Yarın tekrar gelin",
+  "rewardPrompt": "Reklamlardan bıktınız mı? 6 saat reklamsız kullanın",
+  "rewardNotReady": "Şu anda hazır reklam yok. Birazdan tekrar deneyin."
 }

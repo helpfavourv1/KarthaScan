@@ -764,5 +764,15 @@
   "storageCleared": "คืนพื้นที่ได้ {size}",
   "lowStorageMessage": "พื้นที่ว่างไม่เพียงพอ ต้องใช้ประมาณ {needed} แต่เหลือเพียง {free} กรุณาเพิ่มพื้นที่ว่างแล้วลองอีกครั้ง",
   "rateAppLabel": "ให้คะแนน KatharScan",
-  "languageSystemDefault": "ค่าเริ่มต้นของระบบ"
+  "languageSystemDefault": "ค่าเริ่มต้นของระบบ",
+  "rewardCardTitle": "เบื่อโฆษณาไหม? รับ 6 ชั่วโมงไร้โฆษณา",
+  "rewardWatchButton": "ดูโฆษณา รับ 6 ชั่วโมงไร้โฆษณา",
+  "rewardWatch": "ดู",
+  "rewardNoThanks": "ไม่ล่ะ ขอบคุณ",
+  "rewardSheetBody": "ดูวิดีโอสั้นเพื่อรับ 6 ชั่วโมงไร้โฆษณา หากปิดก่อนจบจะไม่ได้รับรางวัล",
+  "rewardActiveUntil": "ปิดโฆษณาจนถึง {time}",
+  "rewardStatus": "เหลือ {left} · ใช้แล้ว {used} จาก 3 ครั้งวันนี้",
+  "rewardBackTomorrow": "กลับมาใหม่พรุ่งนี้",
+  "rewardPrompt": "เบื่อโฆษณาไหม? รับ 6 ชั่วโมงไร้โฆษณา",
+  "rewardNotReady": "ตอนนี้ยังไม่มีโฆษณาพร้อมเล่น ลองใหม่อีกครั้งในอีกสักครู่"
 }

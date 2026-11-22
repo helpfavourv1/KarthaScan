@@ -764,5 +764,15 @@
   "storageCleared": "Звільнено {size}",
   "lowStorageMessage": "Недостатньо вільного місця. Потрібно приблизно {needed}, а вільно лише {free}. Звільніть місце й повторіть спробу.",
   "rateAppLabel": "Оцінити KatharScan",
-  "languageSystemDefault": "Як у системі"
+  "languageSystemDefault": "Як у системі",
+  "rewardCardTitle": "Набридла реклама? Отримайте 6 годин без реклами",
+  "rewardWatchButton": "Перегляньте рекламу й отримайте 6 годин без реклами",
+  "rewardWatch": "Дивитися",
+  "rewardNoThanks": "Ні, дякую",
+  "rewardSheetBody": "Перегляньте коротке відео, щоб отримати 6 годин без реклами. Якщо закрити раніше, нагороди не буде.",
+  "rewardActiveUntil": "Реклама вимкнена до {time}",
+  "rewardStatus": "Залишилось {left} · сьогодні використано {used} із 3",
+  "rewardBackTomorrow": "Приходьте завтра",
+  "rewardPrompt": "Набридла реклама? Отримайте 6 годин без реклами",
+  "rewardNotReady": "Зараз немає готової реклами. Спробуйте трохи згодом."
 }

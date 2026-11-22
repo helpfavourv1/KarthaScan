@@ -671,5 +671,15 @@
   "storageCleared": "{size} liberados",
   "lowStorageMessage": "Não há espaço livre suficiente. Isso precisa de cerca de {needed}, mas só há {free} livres. Libere espaço e tente novamente.",
   "rateAppLabel": "Avaliar o KatharScan",
-  "languageSystemDefault": "Padrão do sistema"
+  "languageSystemDefault": "Padrão do sistema",
+  "rewardCardTitle": "Cansado de anúncios? Ganhe 6 horas sem anúncios",
+  "rewardWatchButton": "Assista a um anúncio e ganhe 6 horas sem anúncios",
+  "rewardWatch": "Assistir",
+  "rewardNoThanks": "Não, obrigado",
+  "rewardSheetBody": "Assista a um vídeo curto e ganhe 6 horas sem anúncios. Fechar antes do fim não dá recompensa.",
+  "rewardActiveUntil": "Anúncios desativados até {time}",
+  "rewardStatus": "Restam {left} · {used} de 3 usados hoje",
+  "rewardBackTomorrow": "Volte amanhã",
+  "rewardPrompt": "Cansado de anúncios? Ganhe 6 horas sem anúncios",
+  "rewardNotReady": "Nenhum anúncio está pronto agora. Tente novamente em instantes."
 }

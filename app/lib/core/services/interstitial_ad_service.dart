@@ -6,6 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'ad_consent_service.dart';
 import 'ad_pacing_service.dart';
 import 'modal_moment_gate.dart';
+import 'reward_service.dart';
 
 class InterstitialAdService {
   InterstitialAdService._();
@@ -19,7 +20,7 @@ class InterstitialAdService {
 
   String get _adUnitId => Platform.isAndroid ? _testAndroid : _testIOS;
 
-  Future<bool> _isAdsRemovedCached() async {
+  Future<bool> adsRemovedCached() async {
     try {
       final prefs = await SharedPreferences.getInstance();
       final s = prefs.getString('katharscan.user_settings.v1');
@@ -45,7 +46,7 @@ class InterstitialAdService {
           _loading = false;
           if (!done.isCompleted) done.complete();
           ad.fullScreenContentCallback = FullScreenContentCallback(
-            onAdDismissedFullScreenContent: (a) { a.dispose(); ModalMomentGate.instance.release(hold: const Duration(seconds: 3)); _load(); },
+            onAdDismissedFullScreenContent: (a) { a.dispose(); ModalMomentGate.instance.release(hold: const Duration(seconds: 3)); RewardService.instance.interstitialClosed(); _load(); },
             onAdFailedToShowFullScreenContent: (a, e) { a.dispose(); ModalMomentGate.instance.release(); _load(); },
           );
         },
@@ -61,7 +62,9 @@ class InterstitialAdService {
   Future<void> onAction() async {
     // Ad bookkeeping must never be able to break the action it follows.
     try {
-      if (await _isAdsRemovedCached()) return;
+      if (await adsRemovedCached()) return;
+      // While a reward is running nothing counts and no ad shows.
+      if (RewardService.instance.isActive()) return;
       final bool attempt = await AdPacingService.instance.registerAction();
       if (!attempt) return;
       await _tryShow();
@@ -88,6 +91,7 @@ class InterstitialAdService {
       return;
     }
     _ad!.show();
+    unawaited(RewardService.instance.noteInterstitialShown());
     await AdPacingService.instance.recordAdShown();
     _ad = null;
   }
@@ -95,7 +99,7 @@ class InterstitialAdService {
   bool _waitingForConsent = false;
 
   Future<void> preload() async {
-    if (await _isAdsRemovedCached()) return;
+    if (await adsRemovedCached()) return;
     if (!AdConsentService.instance.adsReady.value) {
       // Try again as soon as the tracking prompt and consent form are done.
       if (!_waitingForConsent) {

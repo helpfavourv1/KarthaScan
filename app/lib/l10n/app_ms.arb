@@ -764,5 +764,15 @@
   "storageCleared": "{size} dibebaskan",
   "lowStorageMessage": "Ruang kosong tidak mencukupi. Ini memerlukan kira-kira {needed}, tetapi hanya {free} tersedia. Kosongkan sedikit ruang dan cuba lagi.",
   "rateAppLabel": "Nilaikan KatharScan",
-  "languageSystemDefault": "Lalai sistem"
+  "languageSystemDefault": "Lalai sistem",
+  "rewardCardTitle": "Bosan dengan iklan? Dapatkan 6 jam tanpa iklan",
+  "rewardWatchButton": "Tonton iklan, dapat 6 jam tanpa iklan",
+  "rewardWatch": "Tonton",
+  "rewardNoThanks": "Tidak, terima kasih",
+  "rewardSheetBody": "Tonton video pendek untuk mendapat 6 jam tanpa iklan. Menutup lebih awal tidak memberi ganjaran.",
+  "rewardActiveUntil": "Iklan dimatikan sehingga {time}",
+  "rewardStatus": "{left} berbaki · {used} daripada 3 digunakan hari ini",
+  "rewardBackTomorrow": "Kembali esok",
+  "rewardPrompt": "Bosan dengan iklan? Dapatkan 6 jam tanpa iklan",
+  "rewardNotReady": "Tiada iklan yang sedia sekarang. Cuba lagi sebentar nanti."
 }

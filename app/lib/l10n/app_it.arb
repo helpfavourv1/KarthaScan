@@ -764,5 +764,15 @@
   "storageCleared": "Liberati {size}",
   "lowStorageMessage": "Spazio libero insufficiente. Servono circa {needed}, ma sono disponibili solo {free}. Libera spazio e riprova.",
   "rateAppLabel": "Valuta KatharScan",
-  "languageSystemDefault": "Predefinito di sistema"
+  "languageSystemDefault": "Predefinito di sistema",
+  "rewardCardTitle": "Stanco delle pubblicità? Ottieni 6 ore senza pubblicità",
+  "rewardWatchButton": "Guarda un annuncio, ottieni 6 ore senza pubblicità",
+  "rewardWatch": "Guarda",
+  "rewardNoThanks": "No, grazie",
+  "rewardSheetBody": "Guarda un breve video per avere 6 ore senza pubblicità. Chiudendo prima non ricevi il premio.",
+  "rewardActiveUntil": "Pubblicità disattivate fino alle {time}",
+  "rewardStatus": "{left} rimaste · {used} su 3 usate oggi",
+  "rewardBackTomorrow": "Torna domani",
+  "rewardPrompt": "Stanco delle pubblicità? Ottieni 6 ore senza pubblicità",
+  "rewardNotReady": "Nessun annuncio pronto al momento. Riprova tra poco."
 }

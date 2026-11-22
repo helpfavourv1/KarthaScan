@@ -1,3 +1,6 @@
+import 'core/services/reward_service.dart';
+import 'core/services/rewarded_ad_service.dart';
+import 'widgets/reward_offer.dart';
 import 'package:flutter/cupertino.dart' show CupertinoLocalizations;
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -39,6 +42,7 @@ class _KatharScanAppState extends State<KatharScanApp> with WidgetsBindingObserv
     // Loads the last-ad time, then resets this launch's action counts, in that order.
     unawaited(AdPacingService.instance.start());
     unawaited(InterstitialAdService.instance.preload());
+    unawaited(RewardService.instance.initialize().then((_) => RewardedAdService.instance.preload()));
     
     // Defer notification init until after the first frame is drawn to prevent BadTokenException
     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -122,7 +126,7 @@ class _KatharScanAppState extends State<KatharScanApp> with WidgetsBindingObserv
               textDirection: isRtl ? TextDirection.rtl : TextDirection.ltr,
               child: SaveFailureBanner(
                 scanProvider: Provider.of<ScanProvider>(context, listen: false),
-                child: EngagementPromptListener(child: child ?? const SizedBox.shrink()),
+                child: EngagementPromptListener(child: RewardPromptListener(child: child ?? const SizedBox.shrink())),
               ),
             );
           },

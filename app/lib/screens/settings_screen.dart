@@ -3,6 +3,7 @@ import 'dart:io' show Platform;
 import 'package:package_info_plus/package_info_plus.dart';
 
 import 'package:flutter/material.dart';
+import '../widgets/reward_offer.dart';
 import '../core/utils/language_names.dart';
 import '../core/services/ad_consent_service.dart';
 import '../core/services/engagement_service.dart';
@@ -248,6 +249,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 children: [
                   _settingsTile(title: _subscriptionProvider.adsRemoved.value ? AppLocalizations.of(context).adsRemovedLabel : AppLocalizations.of(context).removeAdsTitle, trailing: Icon(Icons.chevron_right, color: textSecondary), onTap: () => context.push('/paywall'), textPrimary: textPrimary, border: border),
                   const SizedBox(height: AppSpacing.xs),
+                  const RewardTile(),
                   _settingsTile(title: l10n.restorePurchasesButton, trailing: const SizedBox.shrink(), onTap: () => _restorePurchases(l10n), textPrimary: textPrimary, border: border),
                 ],
               ),

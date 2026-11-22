@@ -671,5 +671,15 @@
   "storageCleared": "שוחררו {size}",
   "lowStorageMessage": "אין מספיק מקום פנוי. נדרשים כ-{needed}, אך פנויים רק {free}. פנו מקום ונסו שוב.",
   "rateAppLabel": "דרג את KatharScan",
-  "languageSystemDefault": "ברירת המחדל של המערכת"
+  "languageSystemDefault": "ברירת המחדל של המערכת",
+  "rewardCardTitle": "נמאס מפרסומות? קבלו 6 שעות בלי פרסומות",
+  "rewardWatchButton": "צפו בפרסומת וקבלו 6 שעות בלי פרסומות",
+  "rewardWatch": "צפה",
+  "rewardNoThanks": "לא, תודה",
+  "rewardSheetBody": "צפו בסרטון קצר וקבלו 6 שעות בלי פרסומות. סגירה מוקדמת לא מזכה בתגמול.",
+  "rewardActiveUntil": "הפרסומות כבויות עד {time}",
+  "rewardStatus": "נותרו {left} · נוצלו {used} מתוך 3 היום",
+  "rewardBackTomorrow": "חזרו מחר",
+  "rewardPrompt": "נמאס מפרסומות? קבלו 6 שעות בלי פרסומות",
+  "rewardNotReady": "אין כרגע פרסומת מוכנה. נסו שוב בעוד רגע."
 }

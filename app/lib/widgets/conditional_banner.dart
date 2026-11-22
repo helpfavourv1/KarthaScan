@@ -6,6 +6,7 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
 import '../core/providers/subscription_provider.dart';
 import '../core/services/ad_consent_service.dart';
+import '../core/services/reward_service.dart';
 
 class ConditionalBanner extends StatefulWidget {
   const ConditionalBanner({super.key, this.gap = 8});
@@ -48,6 +49,7 @@ class _ConditionalBannerState extends State<ConditionalBanner> {
     final subscriptionProvider = Provider.of<SubscriptionProvider>(context, listen: false);
     _subscription = subscriptionProvider;
     subscriptionProvider.adsRemoved.addListener(_onAdsRemovedChanged);
+    RewardService.instance.active.addListener(_onRewardChanged);
     if (subscriptionProvider.adsRemoved.value) return;
 
     // No ad request until the tracking prompt and consent form are done.
@@ -55,6 +57,21 @@ class _ConditionalBannerState extends State<ConditionalBanner> {
     AdConsentService.instance.adsReady.addListener(_onConsentReady);
     if (!AdConsentService.instance.adsReady.value) return;
     _loadBanner();
+  }
+
+  // A claimed reward switches banners off; when it ends the banner comes back.
+  void _onRewardChanged() {
+    if (RewardService.instance.active.value) {
+      _bannerAd?.dispose();
+      _bannerAd = null;
+      if (mounted) setState(() => _isAdLoaded = false);
+    } else if (mounted && _bannerAd == null && _subscription?.adsRemoved.value != true &&
+        AdConsentService.instance.adsReady.value) {
+      setState(() => _failed = false);
+      _loadBanner();
+    } else if (mounted) {
+      setState(() {});
+    }
   }
 
   void _onConsentReady() {
@@ -66,7 +83,7 @@ class _ConditionalBannerState extends State<ConditionalBanner> {
       return;
     }
     if (!mounted || _bannerAd != null) return;
-    if (_subscription?.adsRemoved.value == true) return;
+    if (_subscription?.adsRemoved.value == true || RewardService.instance.active.value) return;
     _loadBanner();
   }
 
@@ -92,6 +109,7 @@ class _ConditionalBannerState extends State<ConditionalBanner> {
   @override
   void dispose() {
     _subscription?.adsRemoved.removeListener(_onAdsRemovedChanged);
+    RewardService.instance.active.removeListener(_onRewardChanged);
     AdConsentService.instance.adsReady.removeListener(_onConsentReady);
     _bannerAd?.dispose();
     super.dispose();
@@ -102,7 +120,7 @@ class _ConditionalBannerState extends State<ConditionalBanner> {
     final subscriptionProvider = Provider.of<SubscriptionProvider>(context, listen: true);
     // While the keyboard is up the banner would sit right above the keys, where a typing
     // tap could land on it, so it steps out of the way until the keyboard closes.
-    if (subscriptionProvider.adsRemoved.value || _failed || MediaQuery.viewInsetsOf(context).bottom > 0) {
+    if (subscriptionProvider.adsRemoved.value || RewardService.instance.active.value || _failed || MediaQuery.viewInsetsOf(context).bottom > 0) {
       return const SafeArea(child: SizedBox.shrink());
     }
     // Once Google has said no (or could not be asked) there will be no ad, so the

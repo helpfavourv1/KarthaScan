@@ -764,5 +764,15 @@
   "storageCleared": "{size} frigjort",
   "lowStorageMessage": "Ikke nok ledig plass. Dette trenger omtrent {needed}, men bare {free} er ledig. Frigjør plass og prøv igjen.",
   "rateAppLabel": "Vurder KatharScan",
-  "languageSystemDefault": "Systemstandard"
+  "languageSystemDefault": "Systemstandard",
+  "rewardCardTitle": "Lei av reklame? Få 6 timer uten reklame",
+  "rewardWatchButton": "Se en reklame, få 6 timer uten reklame",
+  "rewardWatch": "Se",
+  "rewardNoThanks": "Nei takk",
+  "rewardSheetBody": "Se en kort video og få 6 timer uten reklame. Lukker du tidlig, får du ingen belønning.",
+  "rewardActiveUntil": "Reklame er av til {time}",
+  "rewardStatus": "{left} igjen · {used} av 3 brukt i dag",
+  "rewardBackTomorrow": "Tilbake i morgen",
+  "rewardPrompt": "Lei av reklame? Få 6 timer uten reklame",
+  "rewardNotReady": "Ingen reklame er klar akkurat nå. Prøv igjen om litt."
 }

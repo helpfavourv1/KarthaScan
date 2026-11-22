@@ -1,6 +1,7 @@
 import 'dart:ui' show PlatformDispatcher;
 import 'dart:async' show Timer;
 import 'package:flutter/material.dart';
+import '../widgets/reward_offer.dart';
 import '../core/utils/language_names.dart';
 import '../widgets/whats_new_sheet.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -359,6 +360,7 @@ class _HomeScreenState extends State<HomeScreen> {
             _buildUnifiedRow(),
             const SizedBox(height: 4),
             const _FeatureTicker(),
+            const RewardHomeCard(),
             const SizedBox(height: 4),
             Expanded(
               child: _searchResults != null

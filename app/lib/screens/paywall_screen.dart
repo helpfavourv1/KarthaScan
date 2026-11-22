@@ -7,6 +7,7 @@
 // close button, never a forced "you must subscribe" gate with no way out.
 
 import 'package:flutter/material.dart';
+import '../widgets/reward_offer.dart';
 import 'package:go_router/go_router.dart';
 import 'package:in_app_purchase/in_app_purchase.dart';
 import 'package:provider/provider.dart';
@@ -159,6 +160,8 @@ class _PaywallScreenState extends State<PaywallScreen> {
                         : Text(l10n.continueButton),
                   ),
                 ),
+                const SizedBox(height: AppSpacing.sm),
+                const Center(child: RewardTile(asButton: true)),
                 const SizedBox(height: AppSpacing.sm),
                 Center(
                   child: TextButton(

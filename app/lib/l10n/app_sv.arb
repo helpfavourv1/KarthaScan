@@ -764,5 +764,15 @@
   "storageCleared": "{size} frigjort",
   "lowStorageMessage": "Inte tillräckligt med ledigt utrymme. Det behövs ungefär {needed}, men bara {free} är ledigt. Frigör utrymme och försök igen.",
   "rateAppLabel": "Betygsätt KatharScan",
-  "languageSystemDefault": "Systemstandard"
+  "languageSystemDefault": "Systemstandard",
+  "rewardCardTitle": "Trött på annonser? Få 6 timmar utan annonser",
+  "rewardWatchButton": "Titta på en annons, få 6 timmar utan annonser",
+  "rewardWatch": "Titta",
+  "rewardNoThanks": "Nej tack",
+  "rewardSheetBody": "Titta på en kort video och få 6 timmar utan annonser. Stänger du i förtid får du ingen belöning.",
+  "rewardActiveUntil": "Annonser är av till {time}",
+  "rewardStatus": "{left} kvar · {used} av 3 använda i dag",
+  "rewardBackTomorrow": "Tillbaka i morgon",
+  "rewardPrompt": "Trött på annonser? Få 6 timmar utan annonser",
+  "rewardNotReady": "Ingen annons är redo just nu. Försök igen om en stund."
 }

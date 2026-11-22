@@ -671,5 +671,15 @@
   "storageCleared": "{size} 확보됨",
   "lowStorageMessage": "여유 공간이 부족합니다. 약 {needed}가 필요하지만 {free}만 남아 있습니다. 공간을 확보한 후 다시 시도하세요.",
   "rateAppLabel": "KatharScan 평가하기",
-  "languageSystemDefault": "시스템 기본값"
+  "languageSystemDefault": "시스템 기본값",
+  "rewardCardTitle": "광고가 싫으신가요? 6시간 광고 없이 사용하세요",
+  "rewardWatchButton": "광고를 보고 6시간 동안 광고 없이 사용",
+  "rewardWatch": "보기",
+  "rewardNoThanks": "괜찮습니다",
+  "rewardSheetBody": "짧은 동영상을 보면 6시간 동안 광고가 사라집니다. 중간에 닫으면 보상이 없습니다.",
+  "rewardActiveUntil": "{time}까지 광고 꺼짐",
+  "rewardStatus": "{left} 남음 · 오늘 3회 중 {used}회 사용",
+  "rewardBackTomorrow": "내일 다시 이용하세요",
+  "rewardPrompt": "광고가 싫으신가요? 6시간 광고 없이 사용하세요",
+  "rewardNotReady": "지금은 준비된 광고가 없습니다. 잠시 후 다시 시도해 주세요."
 }

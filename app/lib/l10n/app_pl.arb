@@ -764,5 +764,15 @@
   "storageCleared": "Zwolniono {size}",
   "lowStorageMessage": "Za mało wolnego miejsca. Potrzeba około {needed}, a wolne jest tylko {free}. Zwolnij miejsce i spróbuj ponownie.",
   "rateAppLabel": "Oceń KatharScan",
-  "languageSystemDefault": "Domyślny systemu"
+  "languageSystemDefault": "Domyślny systemu",
+  "rewardCardTitle": "Dość reklam? Zyskaj 6 godzin bez reklam",
+  "rewardWatchButton": "Obejrzyj reklamę, zyskaj 6 godzin bez reklam",
+  "rewardWatch": "Obejrzyj",
+  "rewardNoThanks": "Nie, dziękuję",
+  "rewardSheetBody": "Obejrzyj krótki film, aby uzyskać 6 godzin bez reklam. Wcześniejsze zamknięcie nie daje nagrody.",
+  "rewardActiveUntil": "Reklamy wyłączone do {time}",
+  "rewardStatus": "Zostało {left} · wykorzystano dziś {used} z 3",
+  "rewardBackTomorrow": "Wróć jutro",
+  "rewardPrompt": "Dość reklam? Zyskaj 6 godzin bez reklam",
+  "rewardNotReady": "Żadna reklama nie jest teraz gotowa. Spróbuj za chwilę."
 }
