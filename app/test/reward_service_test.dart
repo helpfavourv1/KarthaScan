@@ -56,7 +56,7 @@ void main() {
     await setUpService();
     await r.noteInterstitialShown();
     for (var i = 0; i < 3; i++) {
-      await r.grant(now: t0.add(Duration(hours: i * 7)));
+      await r.grant(now: t0.add(Duration(hours: i * 2)));
     }
     final late = t0.add(const Duration(hours: 22));
     expect(r.claimsUsed(late), 3);
