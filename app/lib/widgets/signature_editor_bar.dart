@@ -80,18 +80,19 @@ class SignatureOverlayControls extends StatelessWidget {
     void doClearThis() {
       final Map<String, Map<int, SignaturePlacement>> gone = controller.removePlacement(editId, pageIndex);
       cleared(context, gone.isEmpty ? 0 : 1, gone);
+      if (gone.isNotEmpty) countAdAction();
     }
 
     void doClearPage() {
       final int n = controller.clearPage(pageIndex);
       cleared(context, n, controller.lastCleared);
-      countAdAction();
+      if (n > 0) countAdAction();
     }
 
     void doClearAllPages() {
       final int n = controller.clearAll();
       cleared(context, n, controller.lastCleared);
-      countAdAction();
+      if (n > 0) countAdAction();
     }
 
     return OverlayEditControls(

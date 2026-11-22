@@ -312,3 +312,4 @@ Storage hygiene gaps found when audited (not yet built):
 ### Update 2026-11-22
 - Rule changed to 7 counted actions and a 7-minute gap (was 9 and 9). Failed-attempt retry stays 60 s.
 - Now also counted: Clear page, Clear all pages (annotate, watermark, text/note/date/checkbox/seal/Fill stamps, signatures) and Revert. "Clear this" is still not counted.
+- Also counted now: Clear this (all kinds) and deleting a saved Fill phrase. Annotation/watermark/stamp Clear this/page/all pages are counted in clearWithUndo (the earlier count in the mixin clear functions never ran: those callbacks do not reach the buttons).

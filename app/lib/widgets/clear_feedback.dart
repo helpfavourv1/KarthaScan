@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../core/providers/scan_provider.dart';
 import '../l10n/app_localizations.dart';
+import '../core/services/interstitial_ad_service.dart';
 
 /// Shows "Cleared N" with an Undo button after a clear.
 ///
@@ -67,5 +68,7 @@ Future<void> clearWithUndo(BuildContext context, ScanProvider provider, Future<i
   final ScaffoldMessengerState messenger = ScaffoldMessenger.of(context);
   final AppLocalizations l10n = AppLocalizations.of(context);
   final int n = await clear();
+  // Clear this, Clear page and Clear all pages all pass through here.
+  if (n > 0) countAdAction();
   _show(messenger, l10n, n, () => provider.undoManager.undo(), provider.undoManager.version, kind == null ? null : clearedKindLabel(l10n, kind));
 }

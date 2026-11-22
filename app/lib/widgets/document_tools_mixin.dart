@@ -176,14 +176,12 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
     for (final layer in matching) {
       await scanProvider.removeAnnotateLayer(doc.id, layer.id);
     }
-    countAdAction();
   }
 
   Future<void> clearAllAnnotateLayers() async {
     final doc = document;
     if (doc == null) return;
     await scanProvider.clearAnnotateLayers(doc.id);
-    countAdAction();
   }
 
   // --- Watermark ---
@@ -238,14 +236,12 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
     final doc = document;
     if (doc == null) return;
     await scanProvider.clearWatermarksOnPage(doc.id, pageIndex);
-    countAdAction();
   }
 
   Future<void> clearAllWatermarkLayers() async {
     final doc = document;
     if (doc == null) return;
     await scanProvider.clearWatermarkLayers(doc.id);
-    countAdAction();
   }
 
   // --- Stamps (text / note / date / checkbox / seal) ---
@@ -360,14 +356,12 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
     for (final layer in matching) {
       await scanProvider.removeStampLayer(doc.id, layer.id);
     }
-    countAdAction();
   }
 
   Future<void> clearAllStampLayers() async {
     final doc = document;
     if (doc == null) return;
     await scanProvider.clearStampLayers(doc.id);
-    countAdAction();
   }
 
   // --- Region OCR ---

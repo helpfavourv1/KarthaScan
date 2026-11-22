@@ -159,6 +159,7 @@ class _FullScreenEditScreenState extends State<FullScreenEditScreen> with Docume
   Future<void> _deleteFillSnippet(String id) async {
     _fillSnippets.removeWhere((s) => s.id == id);
     await _localStorage.saveFillSnippets(_fillSnippets);
+    countAdAction();
     if (!mounted) return;
     setState(() {});
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(AppLocalizations.of(context).fillDeleteSnippet), duration: const Duration(seconds: 2)));
