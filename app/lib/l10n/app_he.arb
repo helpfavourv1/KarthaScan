@@ -681,5 +681,6 @@
   "rewardStatus": "נותרו {left} · נוצלו {used} מתוך 3 היום",
   "rewardBackTomorrow": "חזרו מחר",
   "rewardPrompt": "נמאס מפרסומות? קבלו 6 שעות בלי פרסומות",
-  "rewardNotReady": "אין כרגע פרסומת מוכנה. נסו שוב בעוד רגע."
+  "rewardNotReady": "אין כרגע פרסומת מוכנה. נסו שוב בעוד רגע.",
+  "allToolsLabel": "כל הכלים"
 }

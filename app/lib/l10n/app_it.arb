@@ -774,5 +774,6 @@
   "rewardStatus": "{left} rimaste · {used} su 3 usate oggi",
   "rewardBackTomorrow": "Torna domani",
   "rewardPrompt": "Stanco delle pubblicità? Ottieni 6 ore senza pubblicità",
-  "rewardNotReady": "Nessun annuncio pronto al momento. Riprova tra poco."
+  "rewardNotReady": "Nessun annuncio pronto al momento. Riprova tra poco.",
+  "allToolsLabel": "Tutti gli strumenti"
 }

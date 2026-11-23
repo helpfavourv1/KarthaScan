@@ -774,5 +774,6 @@
   "rewardStatus": "{left} kaldı · bugün 3 hakkın {used} tanesi kullanıldı",
   "rewardBackTomorrow": "Yarın tekrar gelin",
   "rewardPrompt": "Reklamlardan bıktınız mı? 6 saat reklamsız kullanın",
-  "rewardNotReady": "Şu anda hazır reklam yok. Birazdan tekrar deneyin."
+  "rewardNotReady": "Şu anda hazır reklam yok. Birazdan tekrar deneyin.",
+  "allToolsLabel": "Tüm araçlar"
 }

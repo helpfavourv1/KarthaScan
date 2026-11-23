@@ -774,5 +774,6 @@
   "rewardStatus": "{left} berbaki · {used} daripada 3 digunakan hari ini",
   "rewardBackTomorrow": "Kembali esok",
   "rewardPrompt": "Bosan dengan iklan? Dapatkan 6 jam tanpa iklan",
-  "rewardNotReady": "Tiada iklan yang sedia sekarang. Cuba lagi sebentar nanti."
+  "rewardNotReady": "Tiada iklan yang sedia sekarang. Cuba lagi sebentar nanti.",
+  "allToolsLabel": "Semua alat"
 }

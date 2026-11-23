@@ -774,5 +774,6 @@
   "rewardStatus": "Còn {left} · đã dùng {used}/3 hôm nay",
   "rewardBackTomorrow": "Quay lại vào ngày mai",
   "rewardPrompt": "Chán quảng cáo? Nhận 6 giờ không quảng cáo",
-  "rewardNotReady": "Hiện chưa có quảng cáo sẵn sàng. Hãy thử lại sau giây lát."
+  "rewardNotReady": "Hiện chưa có quảng cáo sẵn sàng. Hãy thử lại sau giây lát.",
+  "allToolsLabel": "Tất cả công cụ"
 }

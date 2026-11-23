@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../core/utils/constants.dart';
 import 'ios_pressable.dart';
 import '../l10n/app_localizations.dart';
@@ -62,6 +65,10 @@ class _EditTrayState extends State<EditTray> with SingleTickerProviderStateMixin
   late final ValueNotifier<double> _wheelAngle;
   late final AnimationController _entranceCtrl;
   DateTime? _lastTap;
+  // True while more tools are off the right edge, so the chevron shows.
+  final ValueNotifier<bool> _moreRight = ValueNotifier<bool>(false);
+  static const String _peekedKey = 'tray.peeked';
+  static bool _peekedThisSession = false;
 
   /// A second tap within this time is ignored. Without it a double tap opened
   /// two sheets (or two export screens) on top of each other.
@@ -83,19 +90,46 @@ class _EditTrayState extends State<EditTray> with SingleTickerProviderStateMixin
     _wheelAngle = ValueNotifier<double>(0.0);
     _scrollController.addListener(() {
       _wheelAngle.value = -_scrollController.offset / 5.0;
+      _updateMore();
     });
+    WidgetsBinding.instance.addPostFrameCallback((_) => _updateMore());
     
     _entranceCtrl = AnimationController(vsync: this, duration: const Duration(milliseconds: 350));
     _entranceAnim = Tween<double>(begin: 60.0, end: 0.0).animate(
       CurvedAnimation(parent: _entranceCtrl, curve: Curves.easeOutBack),
     );
-    _entranceCtrl.forward();
+    _entranceCtrl.forward().whenComplete(() => unawaited(_maybePeek()));
+  }
+
+  void _updateMore() {
+    if (!_scrollController.hasClients) return;
+    final ScrollPosition p = _scrollController.position;
+    if (!p.hasContentDimensions) return;
+    _moreRight.value = p.maxScrollExtent - p.pixels > 8;
+  }
+
+  /// First time only: slide the tray a little and back, so it is clear it scrolls.
+  Future<void> _maybePeek() async {
+    if (_peekedThisSession || !mounted) return;
+    _peekedThisSession = true;
+    try {
+      final SharedPreferences prefs = await SharedPreferences.getInstance();
+      if (prefs.getBool(_peekedKey) == true) return;
+      if (!mounted || !_scrollController.hasClients) return;
+      final double max = _scrollController.position.maxScrollExtent;
+      if (max <= 0) return;
+      await prefs.setBool(_peekedKey, true);
+      await _scrollController.animateTo(max < 96 ? max : 96, duration: const Duration(milliseconds: 450), curve: Curves.easeInOut);
+      if (!mounted || !_scrollController.hasClients) return;
+      await _scrollController.animateTo(0, duration: const Duration(milliseconds: 450), curve: Curves.easeInOut);
+    } catch (_) {}
   }
 
   @override
   void dispose() {
     _scrollController.dispose();
     _wheelAngle.dispose();
+    _moreRight.dispose();
     _entranceCtrl.dispose();
     super.dispose();
   }
@@ -153,47 +187,70 @@ class _EditTrayState extends State<EditTray> with SingleTickerProviderStateMixin
               ),
             ),
             Positioned.fill(
-              child: SingleChildScrollView(
-                controller: _scrollController,
-                scrollDirection: Axis.horizontal,
-                physics: const BouncingScrollPhysics(),
-                padding: EdgeInsets.symmetric(horizontal: widget.compact ? 8 : 12, vertical: widget.compact ? 4 : 8),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: _buildTrain(coachFill, coachBorder, iconColor, textColor, hubColor, spokeColor, couplerColor),
-                ),
-              ),
-            ),
-            Positioned.fill(
-              child: IgnorePointer(
-                child: Row(
-                  children: [
-                    Container(
-                      width: 20,
-                      decoration: BoxDecoration(
-                        borderRadius: const BorderRadius.only(topLeft: Radius.circular(20), bottomLeft: Radius.circular(20)),
-                        gradient: LinearGradient(
-                          begin: Alignment.centerLeft,
-                          end: Alignment.centerRight,
-                          colors: [botGrad.withValues(alpha: 1.0), botGrad.withValues(alpha: 0.0)],
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Stack(
+                      children: [
+                        Positioned.fill(
+                          child: SingleChildScrollView(
+                            controller: _scrollController,
+                            scrollDirection: Axis.horizontal,
+                            physics: const BouncingScrollPhysics(),
+                            padding: EdgeInsets.symmetric(horizontal: widget.compact ? 8 : 12, vertical: widget.compact ? 4 : 8),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: _buildTrain(coachFill, coachBorder, iconColor, textColor, hubColor, spokeColor, couplerColor),
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
-                    const Spacer(),
-                    Container(
-                      width: 20,
-                      decoration: BoxDecoration(
-                        borderRadius: const BorderRadius.only(topRight: Radius.circular(20), bottomRight: Radius.circular(20)),
-                        gradient: LinearGradient(
-                          begin: Alignment.centerRight,
-                          end: Alignment.centerLeft,
-                          colors: [botGrad.withValues(alpha: 1.0), botGrad.withValues(alpha: 0.0)],
+                        Positioned.fill(
+                          child: IgnorePointer(
+                            child: Row(
+                              children: [
+                                Container(
+                                  width: 20,
+                                  decoration: BoxDecoration(
+                                    borderRadius: const BorderRadius.only(topLeft: Radius.circular(20), bottomLeft: Radius.circular(20)),
+                                    gradient: LinearGradient(
+                                      begin: Alignment.centerLeft,
+                                      end: Alignment.centerRight,
+                                      colors: [botGrad.withValues(alpha: 1.0), botGrad.withValues(alpha: 0.0)],
+                                    ),
+                                  ),
+                                ),
+                                const Spacer(),
+                                // Soft fade plus a chevron while more tools are off to the right.
+                                ValueListenableBuilder<bool>(
+                                  valueListenable: _moreRight,
+                                  builder: (BuildContext context, bool more, Widget? _) => AnimatedOpacity(
+                                    duration: const Duration(milliseconds: 150),
+                                    opacity: more ? 1 : 0,
+                                    child: Container(
+                                      key: const ValueKey<String>('trayMoreCue'),
+                                      width: 28,
+                                      alignment: Alignment.centerRight,
+                                      decoration: BoxDecoration(
+                                        gradient: LinearGradient(
+                                          begin: Alignment.centerRight,
+                                          end: Alignment.centerLeft,
+                                          colors: [botGrad.withValues(alpha: 1.0), botGrad.withValues(alpha: 0.0)],
+                                        ),
+                                      ),
+                                      child: Icon(Icons.chevron_right, size: 18, color: iconColor),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
                         ),
-                      ),
+                      ],
                     ),
-                  ],
-                ),
+                  ),
+                  _buildAllToolsButton(coachFill, coachBorder, iconColor, textColor),
+                ],
               ),
             ),
           ],
@@ -202,9 +259,8 @@ class _EditTrayState extends State<EditTray> with SingleTickerProviderStateMixin
     );
   }
 
-  List<Widget> _buildTrain(Color coachFill, Color coachBorder, Color iconColor, Color textColor, Color hubColor, Color spokeColor, Color couplerColor) {
-    final l10n = AppLocalizations.of(context);
-    final items = <_TrayItem>[
+  List<_TrayItem> _items(AppLocalizations l10n) {
+    return <_TrayItem>[
       _TrayItem(Icons.mode_edit_outline, l10n.annotateTitle, widget.onMarkup),
       _TrayItem(Icons.draw_outlined, l10n.signatureTitle, widget.onSign),
       _TrayItem(Icons.text_fields, l10n.watermarkLabel, widget.onWatermark),
@@ -227,6 +283,11 @@ class _EditTrayState extends State<EditTray> with SingleTickerProviderStateMixin
       _TrayItem(Icons.brush_outlined, l10n.eraserTitle, widget.onErase),
       if (widget.onRevert != null) _TrayItem(Icons.undo, l10n.commonRevert, widget.onRevert!),
     ];
+  }
+
+  List<Widget> _buildTrain(Color coachFill, Color coachBorder, Color iconColor, Color textColor, Color hubColor, Color spokeColor, Color couplerColor) {
+    final l10n = AppLocalizations.of(context);
+    final items = _items(l10n);
 
     // Two tools can share a label in a translation; each key must stay unique.
     final Map<String, int> seen = <String, int>{};
@@ -248,6 +309,96 @@ class _EditTrayState extends State<EditTray> with SingleTickerProviderStateMixin
       }
     }
     return widgets;
+  }
+
+  /// A fixed button at the end of the tray that lists every tool with its full name.
+  Widget _buildAllToolsButton(Color coachFill, Color coachBorder, Color iconColor, Color textColor) {
+    final AppLocalizations l10n = AppLocalizations.of(context);
+    return GestureDetector(
+      key: const ValueKey<String>('trayAllTools'),
+      behavior: HitTestBehavior.opaque,
+      onTap: _showAllTools,
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(minWidth: 52, minHeight: 48),
+        child: Padding(
+          padding: EdgeInsets.fromLTRB(2, widget.compact ? 4 : 8, 6, widget.compact ? 4 : 8),
+          child: Center(
+            child: Container(
+              width: widget.compact ? 44 : 56,
+              height: widget.compact ? 36 : 52,
+              decoration: BoxDecoration(
+                color: coachFill,
+                borderRadius: BorderRadius.circular(widget.compact ? 7 : 10),
+                border: Border.all(color: coachBorder, width: 1),
+              ),
+              child: Center(
+                child: FittedBox(
+                  fit: BoxFit.scaleDown,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(Icons.apps, color: iconColor, size: widget.compact ? 14 : 20),
+                      const SizedBox(height: 2),
+                      Text(l10n.allToolsLabel, style: TextStyle(color: textColor, fontSize: widget.compact ? 8 : 9, fontWeight: FontWeight.w600), textScaler: TextScaler.noScaling, maxLines: 1),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Future<void> _showAllTools() async {
+    final AppLocalizations l10n = AppLocalizations.of(context);
+    final List<_TrayItem> items = _items(l10n);
+    final _TrayItem? picked = await showModalBottomSheet<_TrayItem>(
+      context: context,
+      isScrollControlled: true,
+      showDragHandle: true,
+      builder: (BuildContext ctx) => SafeArea(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Padding(
+              padding: const EdgeInsets.fromLTRB(20, 0, 20, 8),
+              child: Align(alignment: AlignmentDirectional.centerStart, child: Text(l10n.allToolsLabel, style: Theme.of(ctx).textTheme.titleMedium)),
+            ),
+            Flexible(
+              child: GridView.count(
+                key: const ValueKey<String>('allToolsGrid'),
+                shrinkWrap: true,
+                crossAxisCount: 4,
+                childAspectRatio: 0.95,
+                padding: const EdgeInsets.fromLTRB(12, 0, 12, 12),
+                children: [
+                  for (final _TrayItem it in items)
+                    InkWell(
+                      key: ValueKey<String>('allTools:${it.keyId}'),
+                      borderRadius: BorderRadius.circular(12),
+                      onTap: () => Navigator.pop(ctx, it),
+                      child: Padding(
+                        padding: const EdgeInsets.all(4),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(it.icon, size: 26),
+                            const SizedBox(height: 6),
+                            Text(it.label, textAlign: TextAlign.center, maxLines: 2, overflow: TextOverflow.ellipsis, style: const TextStyle(fontSize: 11, fontWeight: FontWeight.w600)),
+                          ],
+                        ),
+                      ),
+                    ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+    if (picked != null && mounted) _tap(picked.onTap);
   }
 
   Widget _buildCoach(_TrayItem item, Color coachFill, Color coachBorder, Color iconColor, Color textColor, Color hubColor, Color spokeColor) {

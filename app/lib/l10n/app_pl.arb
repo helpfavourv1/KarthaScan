@@ -774,5 +774,6 @@
   "rewardStatus": "Zostało {left} · wykorzystano dziś {used} z 3",
   "rewardBackTomorrow": "Wróć jutro",
   "rewardPrompt": "Dość reklam? Zyskaj 6 godzin bez reklam",
-  "rewardNotReady": "Żadna reklama nie jest teraz gotowa. Spróbuj za chwilę."
+  "rewardNotReady": "Żadna reklama nie jest teraz gotowa. Spróbuj za chwilę.",
+  "allToolsLabel": "Wszystkie narzędzia"
 }

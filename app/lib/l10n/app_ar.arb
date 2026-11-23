@@ -681,5 +681,6 @@
   "rewardStatus": "متبقي {left} · استُخدم {used} من 3 اليوم",
   "rewardBackTomorrow": "عد غدًا",
   "rewardPrompt": "سئمت من الإعلانات؟ احصل على 6 ساعات بلا إعلانات",
-  "rewardNotReady": "لا يوجد إعلان جاهز الآن. حاول مرة أخرى بعد قليل."
+  "rewardNotReady": "لا يوجد إعلان جاهز الآن. حاول مرة أخرى بعد قليل.",
+  "allToolsLabel": "كل الأدوات"
 }

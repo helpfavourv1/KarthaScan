@@ -681,5 +681,6 @@
   "rewardStatus": "残り{left} · 本日 3回中{used}回使用",
   "rewardBackTomorrow": "明日また利用できます",
   "rewardPrompt": "広告にうんざり？ 6時間広告なしに",
-  "rewardNotReady": "今は再生できる広告がありません。しばらくしてからもう一度お試しください。"
+  "rewardNotReady": "今は再生できる広告がありません。しばらくしてからもう一度お試しください。",
+  "allToolsLabel": "すべてのツール"
 }

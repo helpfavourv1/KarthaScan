@@ -774,5 +774,6 @@
   "rewardStatus": "{left} jäljellä · {used}/3 käytetty tänään",
   "rewardBackTomorrow": "Takaisin huomenna",
   "rewardPrompt": "Kyllästyitkö mainoksiin? Saat 6 tuntia ilman mainoksia",
-  "rewardNotReady": "Mainosta ei ole juuri nyt valmiina. Yritä hetken kuluttua uudelleen."
+  "rewardNotReady": "Mainosta ei ole juuri nyt valmiina. Yritä hetken kuluttua uudelleen.",
+  "allToolsLabel": "Kaikki työkalut"
 }

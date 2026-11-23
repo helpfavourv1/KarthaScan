@@ -774,5 +774,6 @@
   "rewardStatus": "{left} kvar · {used} av 3 använda i dag",
   "rewardBackTomorrow": "Tillbaka i morgon",
   "rewardPrompt": "Trött på annonser? Få 6 timmar utan annonser",
-  "rewardNotReady": "Ingen annons är redo just nu. Försök igen om en stund."
+  "rewardNotReady": "Ingen annons är redo just nu. Försök igen om en stund.",
+  "allToolsLabel": "Alla verktyg"
 }

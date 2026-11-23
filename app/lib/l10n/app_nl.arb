@@ -774,5 +774,6 @@
   "rewardStatus": "Nog {left} · {used} van 3 vandaag gebruikt",
   "rewardBackTomorrow": "Morgen weer",
   "rewardPrompt": "Genoeg van advertenties? Krijg 6 uur zonder advertenties",
-  "rewardNotReady": "Er is nu geen advertentie klaar. Probeer het zo opnieuw."
+  "rewardNotReady": "Er is nu geen advertentie klaar. Probeer het zo opnieuw.",
+  "allToolsLabel": "Alle hulpmiddelen"
 }

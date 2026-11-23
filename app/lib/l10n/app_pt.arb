@@ -681,5 +681,6 @@
   "rewardStatus": "Restam {left} · {used} de 3 usados hoje",
   "rewardBackTomorrow": "Volte amanhã",
   "rewardPrompt": "Cansado de anúncios? Ganhe 6 horas sem anúncios",
-  "rewardNotReady": "Nenhum anúncio está pronto agora. Tente novamente em instantes."
+  "rewardNotReady": "Nenhum anúncio está pronto agora. Tente novamente em instantes.",
+  "allToolsLabel": "Todas as ferramentas"
 }

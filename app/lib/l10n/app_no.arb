@@ -774,5 +774,6 @@
   "rewardStatus": "{left} igjen · {used} av 3 brukt i dag",
   "rewardBackTomorrow": "Tilbake i morgen",
   "rewardPrompt": "Lei av reklame? Få 6 timer uten reklame",
-  "rewardNotReady": "Ingen reklame er klar akkurat nå. Prøv igjen om litt."
+  "rewardNotReady": "Ingen reklame er klar akkurat nå. Prøv igjen om litt.",
+  "allToolsLabel": "Alle verktøy"
 }

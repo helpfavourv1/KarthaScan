@@ -681,5 +681,6 @@
   "rewardStatus": "剩餘 {left} · 今日已用 {used}/3 次",
   "rewardBackTomorrow": "明天再來",
   "rewardPrompt": "厭倦廣告了？免廣告 6 小時",
-  "rewardNotReady": "目前沒有可播放的廣告，請稍後再試。"
+  "rewardNotReady": "目前沒有可播放的廣告，請稍後再試。",
+  "allToolsLabel": "全部工具"
 }

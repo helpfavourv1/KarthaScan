@@ -681,5 +681,6 @@
   "rewardStatus": "{left} restantes · {used} sur 3 utilisées aujourd'hui",
   "rewardBackTomorrow": "Revenez demain",
   "rewardPrompt": "Marre des pubs ? Profitez de 6 h sans publicité",
-  "rewardNotReady": "Aucune publicité n'est prête pour le moment. Réessayez dans un instant."
+  "rewardNotReady": "Aucune publicité n'est prête pour le moment. Réessayez dans un instant.",
+  "allToolsLabel": "Tous les outils"
 }
