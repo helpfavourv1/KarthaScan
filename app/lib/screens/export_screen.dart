@@ -924,6 +924,16 @@ _scanProvider.updateStampLayer(doc.id, layer.copyWith(placement: np));
     );
   }
 
+
+  final Map<String, Future<Map<CompressionTier, int>>> _sizeCache = <String, Future<Map<CompressionTier, int>>>{};
+
+  String _paperLabel(ExportPageFormat f) => switch (f) {
+        ExportPageFormat.a4 => 'A4',
+        ExportPageFormat.a5 => 'A5',
+        ExportPageFormat.letter => AppLocalizations.of(context).pageFormatLetter,
+        ExportPageFormat.legal => AppLocalizations.of(context).pageFormatLegal,
+      };
+
   Widget _paperButton(Color accent, Color surface, Color textPrimary) {
     final AppLocalizations l10n = AppLocalizations.of(context);
     return Padding(
