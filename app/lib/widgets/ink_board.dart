@@ -1097,7 +1097,7 @@ class OverlayEditControls extends StatelessWidget {
       child: InkWell(
         onTap: onTap,
         borderRadius: BorderRadius.circular(12),
-        child: SizedBox(width: 26, height: 40, child: Center(child: Icon(icon, size: 20))),
+        child: SizedBox(width: 26, height: 36, child: Center(child: Icon(icon, size: 20))),
       ),
     );
   }
@@ -1132,11 +1132,14 @@ class OverlayEditControls extends StatelessWidget {
             children: [
               Icon(icon, size: 20, color: color),
               const SizedBox(height: 2),
-              Text(label,
-                  style: TextStyle(fontSize: 9, fontWeight: FontWeight.w600, color: color),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  textAlign: TextAlign.center),
+              // The label shrinks to fit its button instead of being cut off.
+              FittedBox(
+                fit: BoxFit.scaleDown,
+                child: Text(label,
+                    style: TextStyle(fontSize: 9, fontWeight: FontWeight.w600, color: color),
+                    maxLines: 1,
+                    textAlign: TextAlign.center),
+              ),
             ],
           ),
         ),
@@ -1152,7 +1155,7 @@ class OverlayEditControls extends StatelessWidget {
     final bool hasOpacity = (layerType == LayerType.watermark || layerType == LayerType.text || layerType == LayerType.note || layerType == LayerType.date || layerType == LayerType.checkbox || layerType == LayerType.seal) &&
         opacity != null && onOpacityDown != null && onOpacityUp != null;
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xs, vertical: 2),
+      padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xs),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -1204,7 +1207,7 @@ class InkCompactBar extends StatelessWidget {
   Widget build(BuildContext context) {
     if (!controller.hasInks) {
       return Container(
-        height: 44,
+        height: 40,
         decoration: BoxDecoration(
           color: surface,
           borderRadius: BorderRadius.circular(8),
@@ -1236,7 +1239,7 @@ class InkCompactBar extends StatelessWidget {
     }
 
     return Container(
-      height: 44,
+      height: 40,
       padding: const EdgeInsets.symmetric(horizontal: AppSpacing.sm),
       decoration: BoxDecoration(
         color: surface,

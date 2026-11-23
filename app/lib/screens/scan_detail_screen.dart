@@ -279,6 +279,7 @@ class _ScanDetailScreenState extends State<ScanDetailScreen>
           return Column(
             children: [
               AppBar(
+                toolbarHeight: 48,
                 backgroundColor: bg,
                 elevation: 0,
                 title: GestureDetector(
@@ -324,8 +325,8 @@ class _ScanDetailScreenState extends State<ScanDetailScreen>
                   unselectedLabelColor: textSecondary,
                   indicatorColor: accent,
                   tabs: [
-                    Tab(text: AppLocalizations.of(context).tabImageLabel),
-                    Tab(text: AppLocalizations.of(context).tabOcrTextLabel),
+                    Tab(height: 36, text: AppLocalizations.of(context).tabImageLabel),
+                    Tab(height: 36, text: AppLocalizations.of(context).tabOcrTextLabel),
                   ],
                 ),
               ),
@@ -486,7 +487,7 @@ class _ScanDetailScreenState extends State<ScanDetailScreen>
               // Share and Export sit between the tray and the ad banner, as a buffer.
               if (_tabController.index == 0)
               Container(
-                padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
+                padding: const EdgeInsets.fromLTRB(16, 2, 16, 2),
                 decoration: BoxDecoration(color: bg, border: Border(top: BorderSide(color: border, width: 0.5))),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,

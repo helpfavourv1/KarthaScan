@@ -410,12 +410,16 @@ class _ExportScreenState extends State<ExportScreen> {
                   // --- Options stack (non-scrolling) ---
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md),
-                    child: Column(
+                    // Rows that appear or go with the chosen format animate, and the page area takes what is left.
+                    child: AnimatedSize(
+                      duration: const Duration(milliseconds: 200),
+                      alignment: Alignment.topCenter,
+                      child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        // Format ribbon (56dp, one row)
+                        // Format ribbon (48dp, one row)
                         SizedBox(
-                          height: 56,
+                          height: 48,
                           child: Row(
                             children: [
                               _formatCell(ExportFormat.pdf, 'PDF', Icons.picture_as_pdf_outlined, accent, surface, textPrimary, isDark),
@@ -427,10 +431,10 @@ class _ExportScreenState extends State<ExportScreen> {
                             ],
                           ),
                         ),
-                        const SizedBox(height: AppSpacing.sm),
+                        const SizedBox(height: AppSpacing.xs),
                         // Merged row: Page Size + Signature (48px)
                         SizedBox(
-                          height: 44,
+                          height: 40,
                           child: Row(
                             children: [
                               ConstrainedBox(
@@ -461,7 +465,7 @@ class _ExportScreenState extends State<ExportScreen> {
                         ),
                         // Quality + estimate (conditional JPG/PNG)
                         if (showCompression) ...[
-                          const SizedBox(height: AppSpacing.sm),
+                          const SizedBox(height: AppSpacing.xs),
                           _segmentRow([
                             _seg(_selectedCompression == CompressionTier.small, AppLocalizations.of(context).compressSmall, () => setState(() => _selectedCompression = CompressionTier.small), accent, surface, textPrimary),
                             _seg(_selectedCompression == CompressionTier.medium, AppLocalizations.of(context).compressMedium, () => setState(() => _selectedCompression = CompressionTier.medium), accent, surface, textPrimary),
@@ -472,7 +476,7 @@ class _ExportScreenState extends State<ExportScreen> {
                             builder: (context, snapshot) {
                               if (snapshot.connectionState != ConnectionState.done) {
                                 return Padding(
-                                  padding: const EdgeInsets.only(top: AppSpacing.xs),
+                                  padding: const EdgeInsets.only(top: 2),
                                   child: SizedBox(height: 14, width: 14, child: CircularProgressIndicator(strokeWidth: 2, color: accent)),
                                 );
                               }
@@ -480,7 +484,7 @@ class _ExportScreenState extends State<ExportScreen> {
                               final mb = (snapshot.data! / (1024 * 1024)).toStringAsFixed(2);
                               final l10n = AppLocalizations.of(context);
                               return Padding(
-                                padding: const EdgeInsets.only(top: AppSpacing.xs),
+                                padding: const EdgeInsets.only(top: 2),
                                 child: Text(
                                   l10n.exportEstimatedSize(mb),
                                   style: TextStyle(color: accent, fontSize: 11, fontWeight: FontWeight.w600),
@@ -491,31 +495,13 @@ class _ExportScreenState extends State<ExportScreen> {
                           ),
                           // Target MB row-launch (JPG only, collapsible)
                           if (_selectedFormat == ExportFormat.jpg) ...[
-                            const SizedBox(height: AppSpacing.sm),
+                            const SizedBox(height: AppSpacing.xs),
                             _targetMBRowLaunch(accent, surface, textPrimary, isDark),
-                            if (_targetMB != null && _targetExpanded) ...[
-                              const SizedBox(height: AppSpacing.xs),
-                              Row(
-                                children: [
-                                  Expanded(
-                                    child: Slider(
-                                      value: _targetMB!.toDouble(),
-                                      min: 0.5,
-                                      max: 10,
-                                      divisions: 19,
-                                      label: AppLocalizations.of(context).targetMbLabel(_targetMB!),
-                                      onChanged: (v) => setState(() => _targetMB = v.round()),
-                                    ),
-                                  ),
-                                  Text(AppLocalizations.of(context).targetMbLabel(_targetMB!), style: TextStyle(color: accent, fontSize: 12, fontWeight: FontWeight.w600)),
-                                ],
-                              ),
-                            ],
                           ],
                         ],
                         // Filter pills (conditional on wand toggle)
                         if (_filterRowOpen) ...[
-                          const SizedBox(height: AppSpacing.sm),
+                          const SizedBox(height: AppSpacing.xs),
                           SizedBox(
                             height: 44,
                             child: ListView(
@@ -533,14 +519,15 @@ class _ExportScreenState extends State<ExportScreen> {
                         ],
                         // Word mode (conditional)
                         if (_selectedFormat == ExportFormat.docx) ...[
-                          const SizedBox(height: AppSpacing.sm),
+                          const SizedBox(height: AppSpacing.xs),
                           _segmentRow([
                             _seg(_docxMode == ExportDocxMode.textOnly, AppLocalizations.of(context).docxModeTextOnly, () => setState(() => _docxMode = ExportDocxMode.textOnly), accent, surface, textPrimary),
                             _seg(_docxMode == ExportDocxMode.imageEmbedded, AppLocalizations.of(context).docxModeWithImages, () => setState(() => _docxMode = ExportDocxMode.imageEmbedded), accent, surface, textPrimary),
                           ], height: 32),
                         ],
-                        const SizedBox(height: AppSpacing.sm),
+                        const SizedBox(height: AppSpacing.xs),
                       ],
+                    ),
                     ),
                   ),
                 ],
@@ -899,8 +886,29 @@ _scanProvider.updateStampLayer(doc.id, layer.copyWith(placement: np));
               ),
             ),
             const SizedBox(width: AppSpacing.xs),
-            Text(AppLocalizations.of(context).fitToTargetMbLabel, style: TextStyle(color: textPrimary, fontSize: 12, fontWeight: FontWeight.w500)),
-            const Spacer(),
+            Flexible(
+              child: FittedBox(
+                fit: BoxFit.scaleDown,
+                alignment: AlignmentDirectional.centerStart,
+                child: Text(AppLocalizations.of(context).fitToTargetMbLabel, maxLines: 1, style: TextStyle(color: textPrimary, fontSize: 12, fontWeight: FontWeight.w500)),
+              ),
+            ),
+            if (enabled && _targetExpanded)
+              Expanded(
+                child: SliderTheme(
+                  data: SliderTheme.of(context).copyWith(overlayShape: const RoundSliderOverlayShape(overlayRadius: 12), trackHeight: 3),
+                  child: Slider(
+                    value: _targetMB!.toDouble(),
+                    min: 0.5,
+                    max: 10,
+                    divisions: 19,
+                    label: AppLocalizations.of(context).targetMbLabel(_targetMB!),
+                    onChanged: (v) => setState(() => _targetMB = v.round()),
+                  ),
+                ),
+              )
+            else
+              const Spacer(),
             if (enabled) ...[
               Text(AppLocalizations.of(context).targetMbLabel(_targetMB!), style: TextStyle(color: accent, fontSize: 12, fontWeight: FontWeight.w600)),
               const SizedBox(width: AppSpacing.xs),
@@ -915,15 +923,6 @@ _scanProvider.updateStampLayer(doc.id, layer.copyWith(placement: np));
       ),
     );
   }
-
-  final Map<String, Future<Map<CompressionTier, int>>> _sizeCache = <String, Future<Map<CompressionTier, int>>>{};
-
-  String _paperLabel(ExportPageFormat f) => switch (f) {
-        ExportPageFormat.a4 => 'A4',
-        ExportPageFormat.a5 => 'A5',
-        ExportPageFormat.letter => AppLocalizations.of(context).pageFormatLetter,
-        ExportPageFormat.legal => AppLocalizations.of(context).pageFormatLegal,
-      };
 
   Widget _paperButton(Color accent, Color surface, Color textPrimary) {
     final AppLocalizations l10n = AppLocalizations.of(context);
@@ -952,7 +951,7 @@ _scanProvider.updateStampLayer(doc.id, layer.copyWith(placement: np));
           if (picked != null && mounted) setState(() => _pageFormat = picked);
         },
         child: Container(
-          height: 44,
+          height: 40,
           padding: const EdgeInsets.symmetric(horizontal: 10),
           decoration: BoxDecoration(
             color: surface,
@@ -1053,7 +1052,7 @@ _scanProvider.updateStampLayer(doc.id, layer.copyWith(placement: np));
           _loadPreview(_previewPage, _selectedFilter);
         },
         child: Container(
-          height: 56,
+          height: 48,
           margin: const EdgeInsets.only(right: 4),
           decoration: BoxDecoration(
             color: isSelected ? accent.withValues(alpha: 0.10) : surface,

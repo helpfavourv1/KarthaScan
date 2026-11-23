@@ -258,6 +258,13 @@ class _ScanPreviewCardState extends State<ScanPreviewCard> {
                 pageTransforms: widget.pageTransforms,
               ),
           ),
+          // The control rows grow and shrink smoothly; the page area takes what is left.
+          AnimatedSize(
+            duration: const Duration(milliseconds: 200),
+            alignment: Alignment.topCenter,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
           if (widget.editMode == TrayEditMode.signature && widget.inkController != null)
             _buildSignatureControls(),
           LayerControlPanel(
@@ -269,6 +276,9 @@ class _ScanPreviewCardState extends State<ScanPreviewCard> {
             selectedWatermarkText: _selectedWatermarkText,
             selectedStampId: _selectedStampId,
             onDone: widget.onDoneEditing,
+          ),
+              ],
+            ),
           ),
         ],
       ),
@@ -311,7 +321,7 @@ class PreviewHeaderRow extends StatelessWidget {
   Widget build(BuildContext context) {
     final AppLocalizations l10n = AppLocalizations.of(context);
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: AppSpacing.sm, vertical: AppSpacing.xs),
+      padding: const EdgeInsets.symmetric(horizontal: AppSpacing.sm),
       child: SizedBox(
         width: double.infinity,
         child: FittedBox(

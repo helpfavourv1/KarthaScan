@@ -40,7 +40,7 @@ void main() {
           expect(tester.takeException(), isNull, reason: 'overflow or layout error');
           final Size size = tester.getSize(find.byType(OverlayEditControls));
           // One row of step buttons (40) + one row of actions (44) + padding.
-          expect(size.height, lessThanOrEqualTo(96), reason: 'controls take ${size.height}dp');
+          expect(size.height, lessThanOrEqualTo(82), reason: 'controls take ${size.height}dp');
         });
       }
     }

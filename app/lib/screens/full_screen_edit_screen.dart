@@ -290,79 +290,82 @@ class _FullScreenEditScreenState extends State<FullScreenEditScreen> with Docume
 
           return Column(
             children: [
-              // Header with Share/Export
+              // One slim header row: close, title, page arrows, undo and redo.
               Container(
                 color: bg,
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+                padding: const EdgeInsets.symmetric(horizontal: 4),
                 child: SafeArea(
                   bottom: false,
-                  child: Row(
-                    children: [
-                      IconButton(key: const ValueKey<String>('fullClose'), icon: const Icon(Icons.close), color: textPrimary, onPressed: () { _inkController.showSignatureAdIfPending(); context.pop(); }),
-                      Expanded(
-                        child: Text(
-                          doc.title,
-                          style: TextStyle(color: textPrimary, fontSize: AppTypography.title2Size, fontWeight: FontWeight.w600),
-                          textAlign: TextAlign.center,
-                          overflow: TextOverflow.ellipsis,
+                  child: SizedBox(
+                    height: 48,
+                    child: Row(
+                      children: [
+                        IconButton(key: const ValueKey<String>('fullClose'), icon: const Icon(Icons.close), color: textPrimary, onPressed: () { _inkController.showSignatureAdIfPending(); context.pop(); }),
+                        Expanded(
+                          child: Text(
+                            doc.title,
+                            style: TextStyle(color: textPrimary, fontSize: 16, fontWeight: FontWeight.w600),
+                            textAlign: TextAlign.center,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
                         ),
-                      ),
-                      ListenableBuilder(
-                        listenable: _scanProvider.undoManager.version,
-                        builder: (context, _) => Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            IconButton(
-                              icon: const Icon(Icons.undo, size: 20),
-                              tooltip: AppLocalizations.of(context).undoTooltip,
-                              color: _scanProvider.undoManager.canUndo ? textPrimary : textSecondary.withValues(alpha: 0.4),
-                              onPressed: _scanProvider.undoManager.canUndo
-                                  ? () async {
-                                      await _scanProvider.undoManager.undo();
-                                      _resyncInk();
-                                    }
-                                  : null,
-                            ),
-                            IconButton(
-                              icon: const Icon(Icons.redo, size: 20),
-                              tooltip: AppLocalizations.of(context).redoTooltip,
-                              color: _scanProvider.undoManager.canRedo ? textPrimary : textSecondary.withValues(alpha: 0.4),
-                              onPressed: _scanProvider.undoManager.canRedo
-                                  ? () async {
-                                      await _scanProvider.undoManager.redo();
-                                      _resyncInk();
-                                    }
-                                  : null,
-                            ),
-                          ],
+                        IconButton(
+                          key: const ValueKey<String>('fullPrev'),
+                          visualDensity: VisualDensity.compact,
+                          icon: const Icon(Icons.chevron_left),
+                          color: _currentPageIndex > 0 ? accent : textSecondary,
+                          onPressed: _currentPageIndex > 0 ? () => _goToPage(_currentPageIndex - 1) : null,
                         ),
-                      ),
-                    ],
+                        ConstrainedBox(
+                          constraints: const BoxConstraints(maxWidth: 64),
+                          child: FittedBox(
+                            fit: BoxFit.scaleDown,
+                            child: Text(AppLocalizations.of(context).pageIndicator(_currentPageIndex + 1, doc.pagePaths.length), key: const ValueKey<String>('fullPageLabel'), style: TextStyle(color: textPrimary, fontSize: AppTypography.footnoteSize, fontWeight: FontWeight.w600)),
+                          ),
+                        ),
+                        IconButton(
+                          key: const ValueKey<String>('fullNext'),
+                          visualDensity: VisualDensity.compact,
+                          icon: const Icon(Icons.chevron_right),
+                          color: _currentPageIndex < doc.pagePaths.length - 1 ? accent : textSecondary,
+                          onPressed: _currentPageIndex < doc.pagePaths.length - 1 ? () => _goToPage(_currentPageIndex + 1) : null,
+                        ),
+                        ListenableBuilder(
+                          listenable: _scanProvider.undoManager.version,
+                          builder: (context, _) => Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              IconButton(
+                                visualDensity: VisualDensity.compact,
+                                icon: const Icon(Icons.undo, size: 20),
+                                tooltip: AppLocalizations.of(context).undoTooltip,
+                                color: _scanProvider.undoManager.canUndo ? textPrimary : textSecondary.withValues(alpha: 0.4),
+                                onPressed: _scanProvider.undoManager.canUndo
+                                    ? () async {
+                                        await _scanProvider.undoManager.undo();
+                                        _resyncInk();
+                                      }
+                                    : null,
+                              ),
+                              IconButton(
+                                visualDensity: VisualDensity.compact,
+                                icon: const Icon(Icons.redo, size: 20),
+                                tooltip: AppLocalizations.of(context).redoTooltip,
+                                color: _scanProvider.undoManager.canRedo ? textPrimary : textSecondary.withValues(alpha: 0.4),
+                                onPressed: _scanProvider.undoManager.canRedo
+                                    ? () async {
+                                        await _scanProvider.undoManager.redo();
+                                        _resyncInk();
+                                      }
+                                    : null,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-              ),
-              // Page navigation
-              SizedBox(
-                height: 32,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    IconButton(
-                      key: const ValueKey<String>('fullPrev'),
-                      visualDensity: VisualDensity.compact,
-                      icon: const Icon(Icons.chevron_left),
-                      color: _currentPageIndex > 0 ? accent : textSecondary,
-                      onPressed: _currentPageIndex > 0 ? () => _goToPage(_currentPageIndex - 1) : null,
-                    ),
-                    Text(AppLocalizations.of(context).pageIndicator(_currentPageIndex + 1, doc.pagePaths.length), style: TextStyle(color: textPrimary, fontSize: AppTypography.footnoteSize, fontWeight: FontWeight.w600)),
-                    IconButton(
-                      key: const ValueKey<String>('fullNext'),
-                      visualDensity: VisualDensity.compact,
-                      icon: const Icon(Icons.chevron_right),
-                      color: _currentPageIndex < doc.pagePaths.length - 1 ? accent : textSecondary,
-                      onPressed: _currentPageIndex < doc.pagePaths.length - 1 ? () => _goToPage(_currentPageIndex + 1) : null,
-                    ),
-                  ],
                 ),
               ),
               // Canvas
@@ -413,13 +416,17 @@ class _FullScreenEditScreenState extends State<FullScreenEditScreen> with Docume
               // Bottom stack
               SafeArea(
                 top: false,
-                child: Column(
+                // The control rows grow and shrink smoothly; the page area takes what is left.
+                child: AnimatedSize(
+                  duration: const Duration(milliseconds: 200),
+                  alignment: Alignment.topCenter,
+                  child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     // Signature bar (only in signature mode)
                     if (_editMode == TrayEditMode.signature)
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 3),
+                        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 1),
                         child: SignatureEditorBar(
                           controller: _inkController,
                           pageIndex: _currentPageIndex,
@@ -527,7 +534,7 @@ class _FullScreenEditScreenState extends State<FullScreenEditScreen> with Docume
                     // Share and Export sit between the tray and the ad banner, as a buffer.
                     if (_fillDraft == null)
                       Container(
-                        padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
+                        padding: const EdgeInsets.fromLTRB(16, 2, 16, 2),
                         decoration: BoxDecoration(color: surface, border: Border(top: BorderSide(color: textSecondary.withValues(alpha: 0.2), width: 0.5))),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -550,6 +557,7 @@ class _FullScreenEditScreenState extends State<FullScreenEditScreen> with Docume
                         ),
                       ),
                   ],
+                ),
                 ),
               ),
             ],
