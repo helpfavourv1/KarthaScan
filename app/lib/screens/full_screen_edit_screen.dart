@@ -279,7 +279,7 @@ class _FullScreenEditScreenState extends State<FullScreenEditScreen> with Docume
 
     return Scaffold(
       backgroundColor: bg,
-      bottomNavigationBar: const ConditionalBanner(gap: 0),
+      bottomNavigationBar: const ConditionalBanner(gap: 16),
       body: ListenableBuilder(
         listenable: _scanProvider.documents,
         builder: (context, _) {
@@ -560,7 +560,7 @@ class _FullScreenEditScreenState extends State<FullScreenEditScreen> with Docume
                     // Share and Export sit between the tray and the ad banner, as a buffer.
                     if (_fillDraft == null)
                       Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 16),
+                        padding: const EdgeInsets.fromLTRB(16, 2, 16, 2),
                         decoration: BoxDecoration(color: surface, border: Border(top: BorderSide(color: textSecondary.withValues(alpha: 0.2), width: 0.5))),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
