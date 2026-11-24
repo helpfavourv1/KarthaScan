@@ -370,7 +370,10 @@ class _FullScreenEditScreenState extends State<FullScreenEditScreen> with Docume
               ),
               // Canvas
               Expanded(
-                child: DocumentCanvas(
+                child: Stack(
+                  fit: StackFit.expand,
+                  children: [
+                DocumentCanvas(
                   viewCentre: viewCentre,
                   pagePaths: doc.pagePaths,
                   inkController: _inkController,
@@ -411,6 +414,34 @@ class _FullScreenEditScreenState extends State<FullScreenEditScreen> with Docume
                   fillGhostText: _fillText,
                   fillGhostPctX: _fillGhostPctX,
                   fillGhostPctY: _fillGhostPctY,
+                ),
+                // Fill hint and Done float over the bottom of the page, so they take no height.
+                if (_editMode == TrayEditMode.fill && _fillDraft == null && _selectedStampId == null)
+                  Positioned(
+                    left: 12, right: 12, bottom: 6,
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                            decoration: BoxDecoration(color: surface.withValues(alpha: 0.92), borderRadius: BorderRadius.circular(10)),
+                            child: FittedBox(
+                              fit: BoxFit.scaleDown,
+                              alignment: AlignmentDirectional.centerStart,
+                              child: Text(AppLocalizations.of(context).fillTapHint, style: TextStyle(fontSize: 13, color: textSecondary)),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: 8),
+                        ActionChip(
+                          avatar: const Icon(Icons.check, size: 14),
+                          label: Text(AppLocalizations.of(context).commonDone, style: const TextStyle(fontSize: 11)),
+                          onPressed: closeEditor,
+                        ),
+                      ],
+                    ),
+                  ),
+                  ],
                 ),
               ),
               // Bottom stack
@@ -464,7 +495,8 @@ class _FullScreenEditScreenState extends State<FullScreenEditScreen> with Docume
                       onDone: closeEditor,
                     ),
                     // The Done button lives inside the control rows when they are showing.
-                    if ((_editMode != TrayEditMode.none || _selectedAnnotateId != null || _selectedWatermarkText != null || _selectedStampId != null) &&
+                    if (!(_editMode == TrayEditMode.fill && _fillDraft == null && _selectedStampId == null) &&
+                        (_editMode != TrayEditMode.none || _selectedAnnotateId != null || _selectedWatermarkText != null || _selectedStampId != null) &&
                         !LayerControlPanel.willShow(doc, _currentPageIndex, _editMode) &&
                         !(_editMode == TrayEditMode.signature && SignatureOverlayControls.willShow(_inkController, _currentPageIndex)))
                       Padding(
@@ -477,12 +509,6 @@ class _FullScreenEditScreenState extends State<FullScreenEditScreen> with Docume
                             onPressed: closeEditor,
                           ),
                         ),
-                      ),
-                    // Fill: a hint until a spot is tapped, then the typing bar above the keyboard.
-                    if (_editMode == TrayEditMode.fill && _fillDraft == null && _selectedStampId == null)
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
-                        child: Text(AppLocalizations.of(context).fillTapHint, textAlign: TextAlign.center, style: TextStyle(fontSize: 13, color: textSecondary)),
                       ),
                     if (_fillDraft != null)
                       FillEditorDock(
