@@ -82,6 +82,7 @@ class _EditTrayState extends State<EditTray> with SingleTickerProviderStateMixin
     action();
   }
   late final Animation<double> _entranceAnim;
+  final ValueNotifier<String> _range = ValueNotifier<String>('');
 
   @override
   void initState() {
@@ -106,6 +107,15 @@ class _EditTrayState extends State<EditTray> with SingleTickerProviderStateMixin
     final ScrollPosition p = _scrollController.position;
     if (!p.hasContentDimensions) return;
     _moreRight.value = p.maxScrollExtent - p.pixels > 8;
+    // Which of the 21 tools are in view, as a small counter such as 1-6/21.
+    const int total = 21;
+    final double content = p.maxScrollExtent + p.viewportDimension;
+    if (content > 0) {
+      final double w = content / total;
+      final int first = (p.pixels / w).floor() + 1;
+      final int last = ((p.pixels + p.viewportDimension) / w).round().clamp(first, total);
+      _range.value = '${first.clamp(1, total)}\u2013$last/$total';
+    }
   }
 
   /// First time only: slide the tray a little and back, so it is clear it scrolls.
@@ -202,6 +212,18 @@ class _EditTrayState extends State<EditTray> with SingleTickerProviderStateMixin
                               mainAxisSize: MainAxisSize.min,
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: _buildTrain(coachFill, coachBorder, iconColor, textColor, hubColor, spokeColor, couplerColor),
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          top: 0,
+                          right: 30,
+                          child: IgnorePointer(
+                            child: ValueListenableBuilder<String>(
+                              valueListenable: _range,
+                              builder: (BuildContext context, String r, Widget? _) => r.isEmpty
+                                  ? const SizedBox.shrink()
+                                  : Text(r, key: const ValueKey<String>('trayCounter'), textScaler: TextScaler.noScaling, style: TextStyle(fontSize: 8, fontWeight: FontWeight.w700, color: iconColor.withValues(alpha: 0.75))),
                             ),
                           ),
                         ),

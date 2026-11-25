@@ -188,6 +188,24 @@ void main() {
       await measure('scan-detail-text', texts: <String>[l10n.commonShare, l10n.exportTitle, l10n.commonCopy]);
     }
 
+    // Document screen with tools open (compact tray, control rows under the page).
+    try {
+      await go('/scan/measure_doc');
+      const List<String> detailTypes = <String>['DocumentCanvas', 'ScanPreviewCard', 'EditTray', 'LayerControlPanel', 'OverlayEditControls', 'SignatureEditorBar', 'SignatureOverlayControls'];
+      await measure('detail-plain', types: detailTypes);
+      if (find.text('CONFIDENTIAL').evaluate().isNotEmpty) {
+        await tester.tap(find.text('CONFIDENTIAL').first, warnIfMissed: false);
+        await pumpFor(1000);
+        await measure('detail-watermark-selected', types: detailTypes);
+      } else {
+        note('M-detail-watermark-selected', 'watermark text not found on the page');
+      }
+      await tapTray(l10n.signatureTitle);
+      await measure('detail-signature-mode', types: detailTypes);
+    } catch (e, st) {
+      note('M-error-detail-tools', '$e ${st.toString().split('\n').take(4).join(' / ')}');
+    }
+
     // Full-screen editor.
     await go('/edit/measure_doc');
     await measure('editor-plain', types: editorTypes);
@@ -263,7 +281,7 @@ void main() {
     await pumpFor(400);
     router.push('/export', extra: <String, dynamic>{'ids': <String>['measure_doc'], 'format': 'pdf'});
     await pumpFor(3500);
-    await measure('export-pdf', texts: <String>[l10n.commonShare, l10n.saveToDeviceButton, l10n.compressSmall, l10n.compressMedium, l10n.filterOriginal]);
+    await measure('export-pdf', types: const <String>['AnimatedSize', 'LayoutBuilder'], texts: <String>[l10n.commonShare, l10n.saveToDeviceButton, l10n.compressSmall, l10n.compressMedium, l10n.filterOriginal]);
     router.go('/');
     await pumpFor(400);
     router.push('/export', extra: <String, dynamic>{'ids': <String>['measure_doc'], 'format': 'jpg'});
