@@ -112,9 +112,9 @@ class _EditTrayState extends State<EditTray> with SingleTickerProviderStateMixin
     final double content = p.maxScrollExtent + p.viewportDimension;
     if (content > 0) {
       final double w = content / total;
-      final int first = (p.pixels / w).floor() + 1;
-      final int last = ((p.pixels + p.viewportDimension) / w).round().clamp(first, total);
-      _range.value = '${first.clamp(1, total)}\u2013$last/$total';
+      final int first = ((p.pixels / w).floor() + 1).clamp(1, total);
+      final int last = (((p.pixels + p.viewportDimension) / w).round()).clamp(first, total);
+      _range.value = '$first\u2013$last/$total';
     }
   }
 
