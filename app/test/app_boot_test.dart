@@ -164,10 +164,10 @@ void main() {
       // Watch opens the confirm sheet from the navigator's own context.
       await tester.tap(find.byKey(const ValueKey<String>('rewardChipWatch')));
       await tester.pump(const Duration(milliseconds: 500));
-      expect(find.byType(BottomSheet), findsOneWidget);
+      expect(find.byKey(const ValueKey<String>('rewardSheet')), findsOneWidget);
       expect(find.byKey(const ValueKey<String>('rewardChip')), findsNothing);
       // Close the sheet via its No-thanks button (the last TextButton).
-      await tester.tap(find.descendant(of: find.byType(BottomSheet), matching: find.byType(TextButton)));
+      await tester.tap(find.descendant(of: find.byKey(const ValueKey<String>('rewardSheet')), matching: find.byType(TextButton)));
       await tester.pump(const Duration(milliseconds: 500));
       // Show again and close with the x.
       st.showChip();

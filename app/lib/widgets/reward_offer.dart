@@ -34,6 +34,7 @@ Future<void> startRewardOffer(BuildContext callerContext) async {
       child: Padding(
         padding: const EdgeInsets.fromLTRB(20, 4, 20, 16),
         child: Column(
+          key: const ValueKey<String>('rewardSheet'),
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
