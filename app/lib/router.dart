@@ -22,6 +22,7 @@ final _navigatorKey = GlobalKey<NavigatorState>();
 /// A context that sits below the app's Navigator, for showing sheets from
 /// outside any screen. Null before the first frame.
 BuildContext? rootOverlayContext() => _navigatorKey.currentState?.overlay?.context;
+OverlayState? rootOverlay() => _navigatorKey.currentState?.overlay;
 
 GoRouter buildRouter({String initialLocation = '/'}) {
   // Listen for notification taps

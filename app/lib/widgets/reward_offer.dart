@@ -8,6 +8,7 @@ import '../core/services/ad_consent_service.dart';
 import '../core/services/reward_service.dart';
 import '../core/services/rewarded_ad_service.dart';
 import '../l10n/app_localizations.dart';
+import '../router.dart' show rootOverlay, rootOverlayContext;
 
 String _clock(BuildContext c, DateTime t) =>
     MaterialLocalizations.of(c).formatTimeOfDay(TimeOfDay.fromDateTime(t), alwaysUse24HourFormat: MediaQuery.alwaysUse24HourFormatOf(c));
@@ -19,7 +20,10 @@ String _left(Duration d) {
 }
 
 /// Every entry point goes through here: a clear confirmation first, then the ad.
-Future<void> startRewardOffer(BuildContext context) async {
+Future<void> startRewardOffer(BuildContext callerContext) async {
+  // The prompt listener sits above the app's navigator, so a sheet cannot open from
+  // its own context. Always open from the navigator's own context.
+  final BuildContext context = rootOverlayContext() ?? callerContext;
   final AppLocalizations l10n = AppLocalizations.of(context);
   final ScaffoldMessengerState messenger = ScaffoldMessenger.of(context);
   final bool? yes = await showModalBottomSheet<bool>(
@@ -205,10 +209,10 @@ class RewardPromptListener extends StatefulWidget {
   const RewardPromptListener({super.key, required this.child});
   final Widget child;
   @override
-  State<RewardPromptListener> createState() => _RewardPromptListenerState();
+  State<RewardPromptListener> createState() => RewardPromptListenerState();
 }
 
-class _RewardPromptListenerState extends State<RewardPromptListener> {
+class RewardPromptListenerState extends State<RewardPromptListener> {
   @override
   void initState() {
     super.initState();
@@ -218,6 +222,7 @@ class _RewardPromptListenerState extends State<RewardPromptListener> {
   @override
   void dispose() {
     RewardService.instance.interstitialClosedTick.removeListener(_onClosed);
+    _hideChip();
     super.dispose();
   }
 
@@ -236,13 +241,67 @@ class _RewardPromptListenerState extends State<RewardPromptListener> {
       }
       await r.markPromptShown();
       if (!mounted) return;
-      final AppLocalizations l10n = AppLocalizations.of(context);
-      ScaffoldMessenger.maybeOf(context)?.showSnackBar(SnackBar(
-        content: Text(l10n.rewardPrompt),
-        duration: const Duration(seconds: 6),
-        action: SnackBarAction(label: l10n.rewardWatch, onPressed: () => startRewardOffer(context)),
-      ));
+      _showChip();
     });
+  }
+
+  OverlayEntry? _chip;
+  Timer? _chipTimer;
+
+  void _hideChip() {
+    _chipTimer?.cancel();
+    _chipTimer = null;
+    _chip?.remove();
+    _chip = null;
+  }
+
+  /// A floating chip near the top (clear of Share / Export and the banner). It stays
+  /// about 12 seconds, has a close button, and other messages cannot replace it.
+  void _showChip() => showChip();
+
+  @visibleForTesting
+  void showChip() {
+    final BuildContext? ctx = rootOverlayContext();
+    final OverlayState? overlay = rootOverlay();
+    if (ctx == null || !ctx.mounted || overlay == null) return;
+    _hideChip();
+    final AppLocalizations l10n = AppLocalizations.of(ctx);
+    final double top = MediaQuery.paddingOf(ctx).top + kToolbarHeight + 4;
+    _chip = OverlayEntry(
+      builder: (BuildContext c) => Positioned(
+        top: top,
+        left: 12,
+        right: 12,
+        child: Material(
+          key: const ValueKey<String>('rewardChip'),
+          elevation: 6,
+          borderRadius: BorderRadius.circular(14),
+          color: Theme.of(c).colorScheme.inverseSurface,
+          child: Padding(
+            padding: const EdgeInsetsDirectional.fromSTEB(14, 4, 4, 4),
+            child: Row(children: <Widget>[
+              Expanded(child: Text(l10n.rewardPrompt, style: TextStyle(color: Theme.of(c).colorScheme.onInverseSurface, fontSize: 13))),
+              TextButton(
+                key: const ValueKey<String>('rewardChipWatch'),
+                onPressed: () {
+                  _hideChip();
+                  unawaited(startRewardOffer(c));
+                },
+                child: Text(l10n.rewardWatch),
+              ),
+              IconButton(
+                key: const ValueKey<String>('rewardChipClose'),
+                visualDensity: VisualDensity.compact,
+                icon: Icon(Icons.close, size: 18, color: Theme.of(c).colorScheme.onInverseSurface),
+                onPressed: _hideChip,
+              ),
+            ]),
+          ),
+        ),
+      ),
+    );
+    overlay.insert(_chip!);
+    _chipTimer = Timer(const Duration(seconds: 12), _hideChip);
   }
 
   @override

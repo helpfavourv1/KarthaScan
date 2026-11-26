@@ -23,6 +23,7 @@ import 'package:katharscan/core/services/local_storage.dart';
 import 'package:katharscan/core/services/ocr_service.dart';
 import 'package:katharscan/platform/iap_service.dart';
 import 'package:katharscan/platform/permission_service.dart';
+import 'package:katharscan/widgets/reward_offer.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
@@ -56,7 +57,7 @@ void main() {
   sqfliteFfiInit();
   databaseFactory = databaseFactoryFfi;
 
-  Future<void> boot(WidgetTester tester, {required bool seenOnboarding}) async {
+  Future<void> boot(WidgetTester tester, {required bool seenOnboarding, Future<void> Function()? after}) async {
     final Directory tmp = Directory.systemTemp.createTempSync('katharscan_boot_');
     final TestDefaultBinaryMessenger messenger =
         TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger;
@@ -130,6 +131,8 @@ void main() {
       await tester.pump(const Duration(milliseconds: 300));
     }
 
+    if (after != null) await after();
+
     FlutterError.onError = oldOnError;
     while (tester.takeException() != null) {}
     if (errors.isNotEmpty) {
@@ -144,5 +147,34 @@ void main() {
 
   testWidgets('first launch: onboarding draws without errors', (WidgetTester tester) async {
     await boot(tester, seenOnboarding: false);
+  });
+
+  testWidgets('reward chip: Watch opens the confirm sheet, chip stays, close works', (WidgetTester tester) async {
+    await boot(tester, seenOnboarding: true, after: () async {
+      final RewardPromptListenerState st = tester.state<RewardPromptListenerState>(find.byType(RewardPromptListener));
+      st.showChip();
+      await tester.pump(const Duration(milliseconds: 100));
+      expect(find.byKey(const ValueKey<String>('rewardChip')), findsOneWidget);
+      // It is not covering the bottom of the screen (Share / Export / banner).
+      final double chipTop = tester.getTopLeft(find.byKey(const ValueKey<String>('rewardChip'))).dy;
+      expect(chipTop, lessThan(300));
+      // Still there after 8 seconds (the old message was gone after 6).
+      await tester.pump(const Duration(seconds: 8));
+      expect(find.byKey(const ValueKey<String>('rewardChip')), findsOneWidget);
+      // Watch opens the confirm sheet from the navigator's own context.
+      await tester.tap(find.byKey(const ValueKey<String>('rewardChipWatch')));
+      await tester.pump(const Duration(milliseconds: 500));
+      expect(find.byType(BottomSheet), findsOneWidget);
+      expect(find.byKey(const ValueKey<String>('rewardChip')), findsNothing);
+      // Close the sheet via its No-thanks button (the last TextButton).
+      await tester.tap(find.descendant(of: find.byType(BottomSheet), matching: find.byType(TextButton)));
+      await tester.pump(const Duration(milliseconds: 500));
+      // Show again and close with the x.
+      st.showChip();
+      await tester.pump(const Duration(milliseconds: 100));
+      await tester.tap(find.byKey(const ValueKey<String>('rewardChipClose')));
+      await tester.pump(const Duration(milliseconds: 100));
+      expect(find.byKey(const ValueKey<String>('rewardChip')), findsNothing);
+    });
   });
 }
