@@ -67,8 +67,13 @@ class _EditTrayState extends State<EditTray> with SingleTickerProviderStateMixin
   DateTime? _lastTap;
   // True while more tools are off the right edge, so the chevron shows.
   final ValueNotifier<bool> _moreRight = ValueNotifier<bool>(false);
-  static const String _peekedKey = 'tray.peeked';
+  static const String _scrolledKey = 'tray.scrolled';
+  static const String _peekCountKey = 'tray.peekCount';
   static bool _peekedThisSession = false;
+  // True while our own demo slide runs, so it is not mistaken for the user's scroll.
+  bool _peeking = false;
+  bool _userScrolled = false;
+  int _itemCount = 21;
 
   /// A second tap within this time is ignored. Without it a double tap opened
   /// two sheets (or two export screens) on top of each other.
@@ -92,6 +97,10 @@ class _EditTrayState extends State<EditTray> with SingleTickerProviderStateMixin
     _scrollController.addListener(() {
       _wheelAngle.value = -_scrollController.offset / 5.0;
       _updateMore();
+      if (!_peeking && !_userScrolled && _scrollController.offset > 6) {
+        _userScrolled = true;
+        unawaited(SharedPreferences.getInstance().then((SharedPreferences p) => p.setBool(_scrolledKey, true)).catchError((Object _) => false));
+      }
     });
     WidgetsBinding.instance.addPostFrameCallback((_) => _updateMore());
     
@@ -107,32 +116,58 @@ class _EditTrayState extends State<EditTray> with SingleTickerProviderStateMixin
     final ScrollPosition p = _scrollController.position;
     if (!p.hasContentDimensions) return;
     _moreRight.value = p.maxScrollExtent - p.pixels > 8;
-    // Which of the 21 tools are in view, as a small counter such as 1-6/21.
-    const int total = 21;
+    // Counter of the tools that are fully in view, such as 1-5/20. Tools that are
+    // only partly visible are not counted.
+    final int total = _itemCount;
     final double content = p.maxScrollExtent + p.viewportDimension;
-    if (content > 0) {
-      final double w = content / total;
-      final int first = ((p.pixels / w).floor() + 1).clamp(1, total);
-      final int last = (((p.pixels + p.viewportDimension) / w).round()).clamp(first, total);
+    final double padH = widget.compact ? 8 : 12;
+    final double coupler = widget.compact ? 4 : 6;
+    if (content > 0 && total > 0) {
+      final double pitch = (content - 2 * padH + coupler) / total;
+      int first = ((p.pixels - padH) / pitch).ceil() + 1;
+      int last = ((p.pixels + p.viewportDimension - padH + coupler) / pitch).floor();
+      first = first.clamp(1, total);
+      last = last.clamp(first, total);
       _range.value = '$first\u2013$last/$total';
     }
   }
 
-  /// First time only: slide the tray a little and back, so it is clear it scrolls.
+  /// Scrolls the strip forward by most of a screen of tools.
+  void _scrollForward() {
+    if (!_scrollController.hasClients) return;
+    final ScrollPosition p = _scrollController.position;
+    final double target = (p.pixels + p.viewportDimension * 0.8).clamp(0.0, p.maxScrollExtent);
+    unawaited(_scrollController.animateTo(target, duration: const Duration(milliseconds: 350), curve: Curves.easeOut));
+  }
+
+  /// Slides the tray a little and back so it is clear that it scrolls. It repeats on
+  /// each app start until the user has scrolled it once (at most 6 times).
   Future<void> _maybePeek() async {
     if (_peekedThisSession || !mounted) return;
     _peekedThisSession = true;
     try {
       final SharedPreferences prefs = await SharedPreferences.getInstance();
-      if (prefs.getBool(_peekedKey) == true) return;
+      if (prefs.getBool(_scrolledKey) == true) {
+        _userScrolled = true;
+        return;
+      }
+      final int n = prefs.getInt(_peekCountKey) ?? 0;
+      if (n >= 6) return;
       if (!mounted || !_scrollController.hasClients) return;
       final double max = _scrollController.position.maxScrollExtent;
       if (max <= 0) return;
-      await prefs.setBool(_peekedKey, true);
-      await _scrollController.animateTo(max < 96 ? max : 96, duration: const Duration(milliseconds: 450), curve: Curves.easeInOut);
+      await prefs.setInt(_peekCountKey, n + 1);
+      await Future<void>.delayed(const Duration(milliseconds: 600));
+      if (!mounted || !_scrollController.hasClients || _userScrolled) return;
+      _peeking = true;
+      await _scrollController.animateTo(max < 140 ? max : 140, duration: const Duration(milliseconds: 1000), curve: Curves.easeInOut);
+      await Future<void>.delayed(const Duration(milliseconds: 500));
       if (!mounted || !_scrollController.hasClients) return;
-      await _scrollController.animateTo(0, duration: const Duration(milliseconds: 450), curve: Curves.easeInOut);
-    } catch (_) {}
+      await _scrollController.animateTo(0, duration: const Duration(milliseconds: 1000), curve: Curves.easeInOut);
+    } catch (_) {
+    } finally {
+      _peeking = false;
+    }
   }
 
   @override
@@ -216,8 +251,8 @@ class _EditTrayState extends State<EditTray> with SingleTickerProviderStateMixin
                           ),
                         ),
                         Positioned(
-                          top: 0,
-                          right: 30,
+                          top: widget.compact ? 1 : 2,
+                          right: 34,
                           child: IgnorePointer(
                             child: ValueListenableBuilder<String>(
                               valueListenable: _range,
@@ -228,10 +263,10 @@ class _EditTrayState extends State<EditTray> with SingleTickerProviderStateMixin
                           ),
                         ),
                         Positioned.fill(
-                          child: IgnorePointer(
-                            child: Row(
-                              children: [
-                                Container(
+                          child: Row(
+                            children: [
+                              IgnorePointer(
+                                child: Container(
                                   width: 20,
                                   decoration: BoxDecoration(
                                     borderRadius: const BorderRadius.only(topLeft: Radius.circular(20), bottomLeft: Radius.circular(20)),
@@ -242,30 +277,38 @@ class _EditTrayState extends State<EditTray> with SingleTickerProviderStateMixin
                                     ),
                                   ),
                                 ),
-                                const Spacer(),
-                                // Soft fade plus a chevron while more tools are off to the right.
-                                ValueListenableBuilder<bool>(
-                                  valueListenable: _moreRight,
-                                  builder: (BuildContext context, bool more, Widget? _) => AnimatedOpacity(
+                              ),
+                              const Spacer(),
+                              // Fade plus a chevron button while more tools are off to the right.
+                              // Tapping it scrolls the strip; it never opens the tool underneath.
+                              ValueListenableBuilder<bool>(
+                                valueListenable: _moreRight,
+                                builder: (BuildContext context, bool more, Widget? _) => IgnorePointer(
+                                  ignoring: !more,
+                                  child: AnimatedOpacity(
                                     duration: const Duration(milliseconds: 150),
                                     opacity: more ? 1 : 0,
-                                    child: Container(
+                                    child: GestureDetector(
                                       key: const ValueKey<String>('trayMoreCue'),
-                                      width: 28,
-                                      alignment: Alignment.centerRight,
-                                      decoration: BoxDecoration(
-                                        gradient: LinearGradient(
-                                          begin: Alignment.centerRight,
-                                          end: Alignment.centerLeft,
-                                          colors: [botGrad.withValues(alpha: 1.0), botGrad.withValues(alpha: 0.0)],
+                                      behavior: HitTestBehavior.opaque,
+                                      onTap: _scrollForward,
+                                      child: Container(
+                                        width: 36,
+                                        alignment: Alignment.centerRight,
+                                        decoration: BoxDecoration(
+                                          gradient: LinearGradient(
+                                            begin: Alignment.centerRight,
+                                            end: Alignment.centerLeft,
+                                            colors: [botGrad.withValues(alpha: 1.0), botGrad.withValues(alpha: 0.0)],
+                                          ),
                                         ),
+                                        child: Icon(Icons.chevron_right, size: 22, color: iconColor),
                                       ),
-                                      child: Icon(Icons.chevron_right, size: 18, color: iconColor),
                                     ),
                                   ),
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
                         ),
                       ],
@@ -310,6 +353,7 @@ class _EditTrayState extends State<EditTray> with SingleTickerProviderStateMixin
   List<Widget> _buildTrain(Color coachFill, Color coachBorder, Color iconColor, Color textColor, Color hubColor, Color spokeColor, Color couplerColor) {
     final l10n = AppLocalizations.of(context);
     final items = _items(l10n);
+    _itemCount = items.length;
 
     // Two tools can share a label in a translation; each key must stay unique.
     final Map<String, int> seen = <String, int>{};

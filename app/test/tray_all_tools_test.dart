@@ -80,4 +80,37 @@ void main() {
     await tester.pumpAndSettle();
     expect(opacity(), 0.0);
   });
+
+  testWidgets('chevron scrolls the strip and opens no tool', (WidgetTester tester) async {
+    tester.view.physicalSize = const Size(720, 1600);
+    tester.view.devicePixelRatio = 2;
+    addTearDown(tester.view.reset);
+    final List<String> log = <String>[];
+    await tester.pumpWidget(tray(log: log));
+    await tester.pumpAndSettle();
+    final ScrollableState sc = tester.state<ScrollableState>(find.byType(Scrollable).first);
+    expect(sc.position.pixels, 0);
+    await tester.tap(find.byKey(const ValueKey<String>('trayMoreCue')));
+    await tester.pumpAndSettle();
+    expect(sc.position.pixels, greaterThan(100), reason: 'the chevron scrolls the strip forward');
+    expect(log, isEmpty, reason: 'it must never open the tool underneath');
+  });
+
+  testWidgets('counter counts only fully visible tools and uses the real total', (WidgetTester tester) async {
+    tester.view.physicalSize = const Size(720, 1600);
+    tester.view.devicePixelRatio = 2;
+    addTearDown(tester.view.reset);
+    await tester.pumpWidget(tray(log: <String>[]));
+    await tester.pumpAndSettle();
+    final String t = tester.widget<Text>(find.byKey(const ValueKey<String>('trayCounter'))).data!;
+    final RegExpMatch m = RegExp(r'^1\u2013(\d+)/(\d+)$').firstMatch(t)!;
+    final int last = int.parse(m.group(1)!);
+    final int total = int.parse(m.group(2)!);
+    expect(total, anyOf(20, 21));
+    // Width of the visible strip must hold `last` whole tools but not `last + 1`.
+    final double view = tester.getSize(find.byType(Scrollable).first).width;
+    final double pitch = 60 + 6;
+    expect(last, lessThanOrEqualTo(((view - 12 + 6) / pitch).floor()));
+    expect(last, greaterThanOrEqualTo(((view - 12 + 6) / pitch).floor() - 1));
+  });
 }
