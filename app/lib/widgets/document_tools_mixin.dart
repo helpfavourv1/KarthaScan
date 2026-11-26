@@ -485,6 +485,15 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
     );
   }
 
+  /// The page's layers as a faint picture for the edit sheets (null when the page has none).
+  Future<(Uint8List?, Rect?)> _pageGhost(ScanDocument doc, int idx) async {
+    try {
+      return await ExportService().renderGhost(doc, idx);
+    } catch (_) {
+      return (null, null);
+    }
+  }
+
   // --- Page ops (shared isolates) ---
   Future<void> applyFilterToPage() async {
     final doc = document;
@@ -516,10 +525,12 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
     final doc = document;
     if (doc == null || doc.pagePaths.isEmpty) return;
     final existing = doc.pageTransforms[currentPageIndex] ?? const PageTransform();
+    final (Uint8List? ghostPng, Rect? ghostBox) = await _pageGhost(doc, currentPageIndex);
+    if (!mounted) return;
     final CropResult? res = await showModalBottomSheet<CropResult?>(
       context: context,
       isScrollControlled: true,
-      builder: (context) => PerspectiveCropSheet(imagePath: doc.pagePaths[currentPageIndex], initialQuad: existing.cropQuad, initialAspect: existing.cropAspect),
+      builder: (context) => PerspectiveCropSheet(imagePath: doc.pagePaths[currentPageIndex], initialQuad: existing.cropQuad, initialAspect: existing.cropAspect, ghostPng: ghostPng, ghostBox: ghostBox),
     );
     if (res == null || !mounted) return;
     // A new crop changes the page's size, so an older resize no longer fits.
@@ -570,11 +581,13 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
     final doc = document;
     if (doc == null || doc.pagePaths.isEmpty) return;
 
+    final (Uint8List? ghostPng, Rect? ghostBox) = await _pageGhost(doc, currentPageIndex);
+    if (!mounted) return;
     final strokes = await showModalBottomSheet<List<Map<String, dynamic>>>(
       context: context,
       isScrollControlled: true,
       enableDrag: false,
-      builder: (ctx) => EraserSheet(imagePath: doc.pagePaths[currentPageIndex]),
+      builder: (ctx) => EraserSheet(imagePath: doc.pagePaths[currentPageIndex], ghostPng: ghostPng, ghostBox: ghostBox),
     );
     if (strokes == null || strokes.isEmpty || !mounted) return;
 
@@ -589,12 +602,16 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
     final doc = document;
     if (doc == null || doc.pagePaths.isEmpty) return;
 
+    final (Uint8List? ghostPng, Rect? ghostBox) = await _pageGhost(doc, currentPageIndex);
+    if (!mounted) return;
     final RotateResult? res = await showModalBottomSheet<RotateResult>(
       context: context,
       isScrollControlled: true,
       builder: (ctx) => RotateResizeSheet(
         mode: RotateResizeMode.rotate,
         imagePath: doc.pagePaths[currentPageIndex],
+        ghostPng: ghostPng,
+        ghostBox: ghostBox,
         initialTurns: doc.pageTransforms[currentPageIndex]?.rotationTurns ?? 0,
         initialStraighten: doc.pageTransforms[currentPageIndex]?.straightenDegrees ?? 0,
       ),

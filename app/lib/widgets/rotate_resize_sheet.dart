@@ -12,6 +12,7 @@ import '../core/utils/constants.dart';
 import '../core/utils/smooth_resize.dart' show straightenZoom;
 import 'package:image/image.dart' as img;
 import '../l10n/app_localizations.dart';
+import 'page_layers_ghost.dart';
 
 
 enum RotateResizeMode { rotate, resize }
@@ -31,6 +32,8 @@ class RotateResizeSheet extends StatefulWidget {
     super.key,
     required this.mode,
     required this.imagePath,
+    this.ghostPng,
+    this.ghostBox,
     this.onApplyAll,
     this.initialTurns = 0,
     this.initialStraighten = 0,
@@ -47,6 +50,10 @@ class RotateResizeSheet extends StatefulWidget {
 
   final RotateResizeMode mode;
   final String imagePath;
+
+  /// The page's signatures, drawings and stamps, drawn faintly over the photo.
+  final Uint8List? ghostPng;
+  final Rect? ghostBox;
   final ValueChanged<bool>? onApplyAll;
 
   /// Quarter turns the page already has. The preview starts from this
@@ -250,6 +257,7 @@ class RotateResizeSheetState extends State<RotateResizeSheet> {
                         child: Image.file(File(widget.imagePath), fit: BoxFit.fill),
                       ),
                     ),
+                    PageLayersGhost(png: widget.ghostPng, box: widget.ghostBox),
                     if (_tilt != 0 || _gridOn) IgnorePointer(child: CustomPaint(painter: _GridPainter())),
                   ]),
                 ),

@@ -1,5 +1,6 @@
 import '../core/utils/smooth_resize.dart';
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:flutter/gestures.dart' show DragStartBehavior;
 import 'package:flutter/material.dart';
@@ -7,6 +8,7 @@ import '../core/utils/eraser_fill.dart';
 import '../core/utils/constants.dart';
 import 'package:image/image.dart' as img;
 import '../l10n/app_localizations.dart';
+import 'page_layers_ghost.dart';
 
 class _Stroke {
   _Stroke(this.points, this.colorInt, this.width, [this.isRect = false]);
@@ -17,8 +19,12 @@ class _Stroke {
 }
 
 class EraserSheet extends StatefulWidget {
-  const EraserSheet({super.key, required this.imagePath});
+  const EraserSheet({super.key, required this.imagePath, this.ghostPng, this.ghostBox});
   final String imagePath;
+
+  /// The page's signatures, drawings and stamps, drawn faintly over the photo.
+  final Uint8List? ghostPng;
+  final Rect? ghostBox;
 
   @override
   State<EraserSheet> createState() => _EraserSheetState();
@@ -199,6 +205,7 @@ class _EraserSheetState extends State<EraserSheet> {
                                 child: Stack(
                                   children: [
                                     Image.file(file, fit: BoxFit.fill),
+                                    PageLayersGhost(png: widget.ghostPng, box: widget.ghostBox),
                                     Positioned.fill(
                                       child: CustomPaint(
                                         painter: _EraserPainter(strokes: _strokes, active: _active),

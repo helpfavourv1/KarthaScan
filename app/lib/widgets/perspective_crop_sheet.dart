@@ -27,7 +27,11 @@ List<Offset>? _detectJob(Uint8List bytes) {
 /// Crop with four draggable corners (so a page photographed at an angle is
 /// straightened), a magnifier while dragging, auto-detect and shape presets.
 class PerspectiveCropSheet extends StatefulWidget {
-  const PerspectiveCropSheet({super.key, required this.imagePath, this.initialQuad, this.initialAspect, this.title, this.autoDetect = true, this.showShapes = true});
+  const PerspectiveCropSheet({super.key, required this.imagePath, this.initialQuad, this.initialAspect, this.title, this.autoDetect = true, this.showShapes = true, this.ghostPng, this.ghostBox});
+
+  /// The page's signatures, drawings and stamps, drawn faintly so they stay visible.
+  final Uint8List? ghostPng;
+  final Rect? ghostBox;
 
   /// Heading and confirm-button text; defaults to "Crop".
   final String? title;
@@ -47,6 +51,7 @@ class PerspectiveCropSheet extends StatefulWidget {
 
 class _PerspectiveCropSheetState extends State<PerspectiveCropSheet> {
   ui.Image? _image; // shown picture (downsized)
+  ui.Image? _ghost; // the page's layers, faint
   Uint8List? _bytes;
   double _photoW = 0, _photoH = 0; // real photo size in pixels
   List<Offset> _quad = const <Offset>[]; // photo pixels
@@ -79,6 +84,11 @@ class _PerspectiveCropSheetState extends State<PerspectiveCropSheet> {
         targetHeight: _photoH > _photoW ? math.min(info.height, 1400) : null,
       );
       _image = (await codec.getNextFrame()).image;
+      if (widget.ghostPng != null) {
+        try {
+          _ghost = (await (await ui.instantiateImageCodec(widget.ghostPng!)).getNextFrame()).image;
+        } catch (_) {}
+      }
       _bytes = bytes;
       _quad = widget.initialQuad ?? _inset();
       if (!mounted) return;
@@ -278,7 +288,7 @@ class _PerspectiveCropSheetState extends State<PerspectiveCropSheet> {
                       onPanCancel: _end,
                       child: CustomPaint(
                         size: Size(c.maxWidth, c.maxHeight),
-                        painter: _CropPainter(_image!, fit, <Offset>[for (final Offset o in _quad) _toScreen(o, fit)], _active, _valid, Theme.of(context).colorScheme.primary, _finger, _photoW),
+                        painter: _CropPainter(_image!, _ghost, widget.ghostBox, fit, <Offset>[for (final Offset o in _quad) _toScreen(o, fit)], _active, _valid, Theme.of(context).colorScheme.primary, _finger, _photoW),
                       ),
                     );
                   }),
@@ -330,8 +340,10 @@ class _PerspectiveCropSheetState extends State<PerspectiveCropSheet> {
 }
 
 class _CropPainter extends CustomPainter {
-  _CropPainter(this.image, this.fit, this.pts, this.active, this.valid, this.color, this.finger, this.photoW);
+  _CropPainter(this.image, this.ghost, this.ghostBox, this.fit, this.pts, this.active, this.valid, this.color, this.finger, this.photoW);
   final ui.Image image;
+  final ui.Image? ghost;
+  final Rect? ghostBox;
   final Rect fit;
   final List<Offset> pts;
   final int active;
@@ -344,6 +356,13 @@ class _CropPainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     final Rect srcAll = Rect.fromLTWH(0, 0, image.width.toDouble(), image.height.toDouble());
     canvas.drawImageRect(image, srcAll, fit, Paint()..filterQuality = FilterQuality.medium);
+    // Existing signatures, drawings and stamps, under the dim so they fade outside the crop.
+    final ui.Image? g = ghost;
+    if (g != null) {
+      final Rect b = ghostBox ?? const Rect.fromLTWH(0, 0, 1, 1);
+      final Rect dst = Rect.fromLTWH(fit.left + b.left * fit.width, fit.top + b.top * fit.height, b.width * fit.width, b.height * fit.height);
+      canvas.drawImageRect(g, Rect.fromLTWH(0, 0, g.width.toDouble(), g.height.toDouble()), dst, Paint()..filterQuality = FilterQuality.medium);
+    }
     final Path poly = Path()..addPolygon(pts, true);
     final Path dim = Path.combine(PathOperation.difference, Path()..addRect(fit), poly);
     canvas.drawPath(dim, Paint()..color = const Color(0x99000000));

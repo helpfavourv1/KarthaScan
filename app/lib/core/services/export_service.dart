@@ -511,62 +511,15 @@ class ExportService {
         final double b = pageTransform.brightness, c = pageTransform.contrast;
         decoded = await Isolate.run(() => FilterService.adjust(forAdjust, brightness: b, contrast: c));
       }
-      for (final layer in layers) {
-        final ink = inkMap[layer.inkId];
-        final bytes = ink?.bytes ?? signatureBytes;
-        if (bytes != null) {
-          final sigImage = img.decodePng(bytes);
-          if (sigImage != null) {
-            decoded = _compositeSignature(decoded, sigImage, layer.placement, widthFraction: 0.28);
-          }
-        }
-      }
-      for (final annotate in annotateLayers) {
-        final annotateBytes = await _readBytes(annotate.bytesPath);
-        final annotateImage = img.decodePng(annotateBytes);
-        if (annotateImage != null) {
-          decoded = _compositeSignature(decoded, annotateImage, annotate.placement, widthFraction: 0.28);
-        }
-      }
-      for (final wm in watermarkLayers) {
-        if (wm.isTiled) {
-          decoded = await _compositeWatermarkTiles(decoded, wm);
-          continue;
-        }
-        if (wm.isImage) {
-          final logo = await _readWatermarkLogo(wm);
-          decoded = _compositeSignature(decoded, logo, wm.placement, widthFraction: 0.30, boxHeightFraction: 0.30);
-          continue;
-        }
-        final wmBytes = await _renderWatermarkText(wm, decoded.width);
-        if (wmBytes != null) {
-          final wmImage = img.decodePng(wmBytes);
-          if (wmImage != null) {
-            decoded = _compositeSignature(decoded, wmImage, wm.placement, widthFraction: 0.30, boxHeightFraction: 0.10);
-          }
-        }
-      }
-      for (final st in stampLayers) {
-        final stBytes = st.kind == 'checkbox'
-            ? await _renderCheckbox(st)
-            : (st.kind == 'seal'
-                ? await _renderSeal(st, (decoded.width * 0.25 * st.placement.scale * 1.5).round())
-                : (st.isFlowFill ? await _renderFillText(st, decoded.width) : await _renderStampText(st, decoded.width)));
-        if (stBytes != null) {
-          final stImage = img.decodePng(stBytes);
-          if (stImage != null) {
-            if (st.isFlowFill) {
-              // Fill text keeps its real size: the picture is already the exact size
-              // it has on the page, so it is placed without being fitted into a box.
-              decoded = _compositeSignature(decoded, stImage, st.placement, widthFraction: stImage.width / decoded.width);
-            } else {
-              final frac = st.kind == 'checkbox' ? 0.15 : (st.kind == 'seal' ? 0.25 : 0.30);
-              final boxH = (st.kind == 'checkbox' || st.kind == 'seal') ? null : 0.10;
-              decoded = _compositeSignature(decoded, stImage, st.placement, widthFraction: frac, boxHeightFraction: boxH);
-            }
-          }
-        }
-      }
+      decoded = await _applyLayers(
+        decoded,
+        layers: layers,
+        annotateLayers: annotateLayers,
+        watermarkLayers: watermarkLayers,
+        stampLayers: stampLayers,
+        inkMap: inkMap,
+        signatureBytes: signatureBytes,
+      );
       // Rotate last. Erasing and every layer position are stored in the
       // unrotated page frame (the preview rotates the whole stack together),
       // so they must be applied before the page is turned.
@@ -584,6 +537,127 @@ class ExportService {
       if (error is ExportFailedException) rethrow;
       throw ExportFailedException('Could not render page ${pageIndex + 1} with its edits.');
     }
+  }
+
+  /// Draws every layer of a page (signatures, drawings, watermarks, stamps) onto
+  /// [decoded], in the order the editor stacks them. Shared by the page render and
+  /// the layers-only overlay shown in the edit sheets.
+  Future<img.Image> _applyLayers(
+    img.Image decoded, {
+    required List<SignatureLayer> layers,
+    required List<AnnotateLayer> annotateLayers,
+    required List<WatermarkLayer> watermarkLayers,
+    required List<StampLayer> stampLayers,
+    required Map<String, SignatureInk> inkMap,
+    Uint8List? signatureBytes,
+  }) async {
+    for (final layer in layers) {
+      final ink = inkMap[layer.inkId];
+      final bytes = ink?.bytes ?? signatureBytes;
+      if (bytes != null) {
+        final sigImage = img.decodePng(bytes);
+        if (sigImage != null) {
+          decoded = _compositeSignature(decoded, sigImage, layer.placement, widthFraction: 0.28);
+        }
+      }
+    }
+    for (final annotate in annotateLayers) {
+      final annotateBytes = await _readBytes(annotate.bytesPath);
+      final annotateImage = img.decodePng(annotateBytes);
+      if (annotateImage != null) {
+        decoded = _compositeSignature(decoded, annotateImage, annotate.placement, widthFraction: 0.28);
+      }
+    }
+    for (final wm in watermarkLayers) {
+      if (wm.isTiled) {
+        decoded = await _compositeWatermarkTiles(decoded, wm);
+        continue;
+      }
+      if (wm.isImage) {
+        final logo = await _readWatermarkLogo(wm);
+        decoded = _compositeSignature(decoded, logo, wm.placement, widthFraction: 0.30, boxHeightFraction: 0.30);
+        continue;
+      }
+      final wmBytes = await _renderWatermarkText(wm, decoded.width);
+      if (wmBytes != null) {
+        final wmImage = img.decodePng(wmBytes);
+        if (wmImage != null) {
+          decoded = _compositeSignature(decoded, wmImage, wm.placement, widthFraction: 0.30, boxHeightFraction: 0.10);
+        }
+      }
+    }
+    for (final st in stampLayers) {
+      final stBytes = st.kind == 'checkbox'
+          ? await _renderCheckbox(st)
+          : (st.kind == 'seal'
+              ? await _renderSeal(st, (decoded.width * 0.25 * st.placement.scale * 1.5).round())
+              : (st.isFlowFill ? await _renderFillText(st, decoded.width) : await _renderStampText(st, decoded.width)));
+      if (stBytes != null) {
+        final stImage = img.decodePng(stBytes);
+        if (stImage != null) {
+          if (st.isFlowFill) {
+            // Fill text keeps its real size: the picture is already the exact size
+            // it has on the page, so it is placed without being fitted into a box.
+            decoded = _compositeSignature(decoded, stImage, st.placement, widthFraction: stImage.width / decoded.width);
+          } else {
+            final frac = st.kind == 'checkbox' ? 0.15 : (st.kind == 'seal' ? 0.25 : 0.30);
+            final boxH = (st.kind == 'checkbox' || st.kind == 'seal') ? null : 0.10;
+            decoded = _compositeSignature(decoded, stImage, st.placement, widthFraction: frac, boxHeightFraction: boxH);
+          }
+        }
+      }
+    }
+    return decoded;
+  }
+
+  /// The page's layers alone, on a transparent picture the shape of the page after
+  /// crop and resize (before rotation), [width] px wide. The edit sheets lay it
+  /// over the photo so signatures and marks stay visible while a tool is open.
+  Future<Uint8List?> renderLayersOverlay(ScanDocument document, int pageIndex, {int width = 900}) async {
+    if (pageIndex < 0 || pageIndex >= document.pagePaths.length) return null;
+    final PageTransform? t = document.pageTransforms[pageIndex];
+    final List<SignatureLayer> layers = _findLayersForPage(pageIndex, null, document.signatureLayers);
+    final List<AnnotateLayer> ann = document.annotateLayers.where((l) => l.pageIndex == pageIndex).toList();
+    final List<WatermarkLayer> wms = document.watermarkLayers.where((l) => l.pageIndex == pageIndex).toList();
+    final List<StampLayer> sts = document.stampLayers.where((l) => l.pageIndex == pageIndex).toList();
+    if (layers.isEmpty && ann.isEmpty && wms.isEmpty && sts.isEmpty) return null;
+    double aspect;
+    if (t != null && (t.resizeWidth ?? 0) > 0 && (t.resizeHeight ?? 0) > 0) {
+      aspect = t.resizeWidth! / t.resizeHeight!;
+    } else if (t?.croppedSize != null && t!.croppedSize!.height > 0) {
+      aspect = t.croppedSize!.width / t.croppedSize!.height;
+    } else {
+      final (int, int)? size = _probeImageSize(await _readBytes(document.pagePaths[pageIndex]));
+      if (size == null || size.$2 == 0) return null;
+      aspect = size.$1 / size.$2;
+    }
+    final int height = (width / aspect).round().clamp(1, 4000);
+    try {
+      final img.Image base = img.Image(width: width, height: height, numChannels: 4);
+      final Map<String, SignatureInk> inkMap = <String, SignatureInk>{for (final SignatureInk ink in document.signatureInks) ink.id: ink};
+      final img.Image out = await _applyLayers(base, layers: layers, annotateLayers: ann, watermarkLayers: wms, stampLayers: sts, inkMap: inkMap);
+      return Uint8List.fromList(img.encodePng(out));
+    } catch (error, stackTrace) {
+      _logError('renderLayersOverlay', error, stackTrace);
+      return null;
+    }
+  }
+
+  /// The layers picture plus where the cropped page sits on the uncropped photo
+  /// (fractions of the photo), for the edit sheets that show the whole photo.
+  Future<(Uint8List?, ui.Rect?)> renderGhost(ScanDocument document, int pageIndex) async {
+    final Uint8List? png = await renderLayersOverlay(document, pageIndex);
+    if (png == null) return (null, null);
+    final PageTransform? t = document.pageTransforms[pageIndex];
+    ui.Rect? box;
+    if (t?.cropRect != null) {
+      final (int, int)? size = _probeImageSize(await _readBytes(document.pagePaths[pageIndex]));
+      if (size != null && size.$1 > 0 && size.$2 > 0) {
+        final ui.Rect r = t!.cropRect!;
+        box = ui.Rect.fromLTWH(r.left / size.$1, r.top / size.$2, r.width / size.$1, r.height / size.$2);
+      }
+    }
+    return (png, box);
   }
 
   /// Re-encodes a page as a smaller JPG for PDF output: capped longest side
