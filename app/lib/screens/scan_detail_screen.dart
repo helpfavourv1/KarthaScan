@@ -345,6 +345,12 @@ class _ScanDetailScreenState extends State<ScanDetailScreen>
                           alignment: Alignment.centerRight,
                           child: Row(mainAxisSize: MainAxisSize.min, children: [
                             TextButton.icon(
+                              key: const ValueKey<String>('detailCopyOcr'),
+                              onPressed: () => _copyOcrToClipboard(document.ocrText, l10n),
+                              icon: const Icon(Icons.copy, size: 18),
+                              label: Text(l10n.commonCopy, style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600, color: accent)),
+                            ),
+                            TextButton.icon(
                               key: const ValueKey<String>('detailShareOcr'),
                               onPressed: () => _share(document),
                               icon: const Icon(Icons.ios_share, size: 18),
@@ -420,22 +426,6 @@ class _ScanDetailScreenState extends State<ScanDetailScreen>
                     ),
                     Column(
                       children: [
-                        Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                          decoration: BoxDecoration(
-                            border: Border(bottom: BorderSide(color: border, width: 0.5)),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              TextButton.icon(
-                                onPressed: () => _copyOcrToClipboard(document.ocrText, l10n),
-                                icon: const Icon(Icons.copy, size: 18),
-                                label: Text(AppLocalizations.of(context).commonCopy),
-                              ),
-                            ],
-                          ),
-                        ),
                         Expanded(
                           child: SingleChildScrollView(
                             padding: const EdgeInsets.all(16),

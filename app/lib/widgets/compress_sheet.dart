@@ -96,7 +96,7 @@ class _CompressSheetState extends State<CompressSheet> {
               Text(_label(l10n, t), style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 14)),
               const SizedBox(height: 6),
               if (sizes == null)
-                const SizedBox(width: 16, height: 16, child: CircularProgressIndicator(strokeWidth: 2))
+                SizedBox(width: 24, height: 24, child: CircularProgressIndicator(strokeWidth: 3, color: accent))
               else
                 Text(size == null || size == 0 ? '—' : _mb(size), style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w600)),
               const SizedBox(height: 2),
@@ -142,14 +142,22 @@ class _CompressSheetState extends State<CompressSheet> {
               _card(l10n, CompressionTier.original, accent),
             ]),
             const SizedBox(height: 10),
-            Wrap(spacing: 8, runSpacing: 4, crossAxisAlignment: WrapCrossAlignment.center, children: [
-              Text(l10n.compressTargetLabel, style: const TextStyle(fontSize: 12)),
+            Text(l10n.compressTargetLabel, style: const TextStyle(fontSize: 12)),
+            const SizedBox(height: 4),
+            Row(children: [
               for (final int? mb in <int?>[null, 1, 2, 5])
-                ChoiceChip(
-                  key: ValueKey<String>('compressTarget:${mb ?? 0}'),
-                  label: Text(mb == null ? l10n.compressNoLimit : l10n.targetMbLabel(mb)),
-                  selected: _targetMB == mb,
-                  onSelected: (_) => setState(() => _targetMB = mb),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 2),
+                    child: ChoiceChip(
+                      key: ValueKey<String>('compressTarget:${mb ?? 0}'),
+                      showCheckmark: false,
+                      padding: EdgeInsets.zero,
+                      label: SizedBox(width: double.infinity, child: FittedBox(fit: BoxFit.scaleDown, child: Text(mb == null ? l10n.compressNoLimit : l10n.targetMbLabel(mb), maxLines: 1))),
+                      selected: _targetMB == mb,
+                      onSelected: (_) => setState(() => _targetMB = mb),
+                    ),
+                  ),
                 ),
             ]),
             SwitchListTile(

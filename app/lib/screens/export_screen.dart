@@ -79,7 +79,6 @@ class _ExportScreenState extends State<ExportScreen> {
   int _previewW = 1;
   int _previewH = 1;
   bool _filterRowOpen = false;
-  bool _targetExpanded = false;
   bool _compareMode = false;
   double _compareSplitX = 0.5;
   Uint8List? _originalPreviewBytes;
@@ -350,7 +349,17 @@ class _ExportScreenState extends State<ExportScreen> {
     final textSecondary = isDark ? AppColors.textSecondaryDark : AppColors.textSecondaryLight;
     final accent = isDark ? AppColors.accentDark : AppColors.accentLight;
 
-    final showCompression = _selectedFormat == ExportFormat.jpg || _selectedFormat == ExportFormat.png || _selectedFormat == ExportFormat.pdf;
+    // Paper size only matters for PDF and Word. The signature only shows in files
+    // that carry the page picture (not TXT, CSV or Word "Text Only").
+    final bool showPaper = _selectedFormat == ExportFormat.pdf || _selectedFormat == ExportFormat.docx;
+    final bool showSigner = _isSingleDoc &&
+        (_selectedFormat == ExportFormat.pdf ||
+            _selectedFormat == ExportFormat.jpg ||
+            _selectedFormat == ExportFormat.png ||
+            (_selectedFormat == ExportFormat.docx && _docxMode == ExportDocxMode.imageEmbedded));
+    // PNG is lossless, so Small / Medium change nothing there and are not offered.
+    final showCompression = _selectedFormat == ExportFormat.jpg || _selectedFormat == ExportFormat.pdf;
+    final showEstimate = showCompression || _selectedFormat == ExportFormat.png;
 
     return Scaffold(
       bottomNavigationBar: const ConditionalBanner(gap: 12),
@@ -432,17 +441,17 @@ class _ExportScreenState extends State<ExportScreen> {
                           ),
                         ),
                         const SizedBox(height: AppSpacing.xs),
-                        // Merged row: Page Size + Signature (48px)
-                        SizedBox(
+                        // Merged row: Page Size + Signature (shown only where they apply)
+                        if (showPaper || showSigner) SizedBox(
                           height: 40,
                           child: Row(
                             children: [
-                              ConstrainedBox(
+                              if (showPaper) ConstrainedBox(
                                 constraints: BoxConstraints(maxWidth: MediaQuery.sizeOf(context).width * 0.4),
                                 child: _paperButton(accent, surface, textPrimary),
                               ),
-                              if (_isSingleDoc) ...[
-                                const SizedBox(width: AppSpacing.sm),
+                              if (showSigner) ...[
+                                if (showPaper) const SizedBox(width: AppSpacing.sm),
                                 Expanded(child: InkCompactBar(
                                   controller: _inkController,
                                   accent: accent,
@@ -464,9 +473,9 @@ class _ExportScreenState extends State<ExportScreen> {
                           ),
                         ),
                         // Quality + estimate (conditional JPG/PNG)
-                        if (showCompression) ...[
+                        if (showEstimate) ...[
                           const SizedBox(height: AppSpacing.xs),
-                          _segmentRow([
+                          if (showCompression) _segmentRow([
                             _seg(_selectedCompression == CompressionTier.small, AppLocalizations.of(context).compressSmall, () => setState(() => _selectedCompression = CompressionTier.small), accent, surface, textPrimary),
                             _seg(_selectedCompression == CompressionTier.medium, AppLocalizations.of(context).compressMedium, () => setState(() => _selectedCompression = CompressionTier.medium), accent, surface, textPrimary),
                             _seg(_selectedCompression == CompressionTier.original, AppLocalizations.of(context).filterOriginal, () => setState(() => _selectedCompression = CompressionTier.original), accent, surface, textPrimary),
@@ -493,11 +502,12 @@ class _ExportScreenState extends State<ExportScreen> {
                               );
                             },
                           ),
-                          // Target MB row-launch (JPG only, collapsible)
-                          if (_selectedFormat == ExportFormat.jpg) ...[
-                            const SizedBox(height: AppSpacing.xs),
-                            _targetMBRowLaunch(accent, surface, textPrimary, isDark),
-                          ],
+                          // A size limit chosen in the Compress sheet is shown, not edited, here.
+                          if (_targetMB != null && _selectedFormat == ExportFormat.jpg)
+                            Padding(
+                              padding: const EdgeInsets.only(top: 2),
+                              child: Text(AppLocalizations.of(context).targetMbLabel(_targetMB!), key: const ValueKey<String>('exportTargetNote'), style: TextStyle(color: accent, fontSize: 11, fontWeight: FontWeight.w600)),
+                            ),
                         ],
                         // Filter pills (conditional on wand toggle)
                         if (_filterRowOpen) ...[
@@ -857,74 +867,6 @@ _scanProvider.updateStampLayer(doc.id, layer.copyWith(placement: np));
   }
 
   // Compact signature controls that live in the merged row (multi-ink)
-  // Target MB row-launch: switch + label + value + chevron. Tap row (when ON) toggles expansion.
-  Widget _targetMBRowLaunch(Color accent, Color surface, Color textPrimary, bool isDark) {
-    final enabled = _targetMB != null;
-    return IOSPressable(
-      onTap: enabled ? () => setState(() => _targetExpanded = !_targetExpanded) : null,
-      child: Container(
-        height: 40,
-        padding: const EdgeInsets.symmetric(horizontal: AppSpacing.sm),
-        decoration: BoxDecoration(
-          color: surface,
-          borderRadius: BorderRadius.circular(10),
-          border: Border.all(color: isDark ? AppColors.borderSubtleDark : AppColors.borderSubtleLight, width: 0.5),
-        ),
-        child: Row(
-          children: [
-            SizedBox(
-              width: 36,
-              height: 24,
-              child: Switch(
-                value: enabled,
-                onChanged: (v) {
-                  setState(() {
-                    _targetMB = v ? 2 : null;
-                    if (v) _targetExpanded = true;
-                  });
-                },
-              ),
-            ),
-            const SizedBox(width: AppSpacing.xs),
-            Flexible(
-              child: FittedBox(
-                fit: BoxFit.scaleDown,
-                alignment: AlignmentDirectional.centerStart,
-                child: Text(AppLocalizations.of(context).fitToTargetMbLabel, maxLines: 1, style: TextStyle(color: textPrimary, fontSize: 12, fontWeight: FontWeight.w500)),
-              ),
-            ),
-            if (enabled && _targetExpanded)
-              Expanded(
-                child: SliderTheme(
-                  data: SliderTheme.of(context).copyWith(overlayShape: const RoundSliderOverlayShape(overlayRadius: 12), trackHeight: 3),
-                  child: Slider(
-                    value: _targetMB!.toDouble(),
-                    min: 0.5,
-                    max: 10,
-                    divisions: 19,
-                    label: AppLocalizations.of(context).targetMbLabel(_targetMB!),
-                    onChanged: (v) => setState(() => _targetMB = v.round()),
-                  ),
-                ),
-              )
-            else
-              const Spacer(),
-            if (enabled) ...[
-              Text(AppLocalizations.of(context).targetMbLabel(_targetMB!), style: TextStyle(color: accent, fontSize: 12, fontWeight: FontWeight.w600)),
-              const SizedBox(width: AppSpacing.xs),
-              AnimatedRotation(
-                turns: _targetExpanded ? 0.5 : 0,
-                duration: const Duration(milliseconds: 150),
-                child: Icon(Icons.expand_more, size: 18, color: textPrimary),
-              ),
-            ],
-          ],
-        ),
-      ),
-    );
-  }
-
-
   final Map<String, Future<Map<CompressionTier, int>>> _sizeCache = <String, Future<Map<CompressionTier, int>>>{};
 
   String _paperLabel(ExportPageFormat f) => switch (f) {
@@ -1057,7 +999,7 @@ _scanProvider.updateStampLayer(doc.id, layer.copyWith(placement: np));
         onTap: () {
           setState(() {
             _selectedFormat = format;
-            if (format != ExportFormat.jpg) { _targetMB = null; _targetExpanded = false; }
+            if (format != ExportFormat.jpg) { _targetMB = null; }
           });
           _loadPreview(_previewPage, _selectedFilter);
         },
