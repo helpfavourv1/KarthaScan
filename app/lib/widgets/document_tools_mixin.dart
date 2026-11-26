@@ -498,10 +498,12 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
   Future<void> applyFilterToPage() async {
     final doc = document;
     if (doc == null || doc.pagePaths.isEmpty) return;
+    final (Uint8List? ghostPng, Rect? _) = await _pageGhost(doc, currentPageIndex);
+    if (!mounted) return;
     final chosen = await showModalBottomSheet<FilterChoice>(
       context: context,
       isScrollControlled: true,
-      builder: (ctx) => FilterPreviewSheet(imagePath: doc.pagePaths[currentPageIndex], transform: doc.pageTransforms[currentPageIndex], pageCount: doc.pagePaths.length),
+      builder: (ctx) => FilterPreviewSheet(imagePath: doc.pagePaths[currentPageIndex], transform: doc.pageTransforms[currentPageIndex], pageCount: doc.pagePaths.length, ghostPng: ghostPng),
     );
     if (chosen == null || !mounted) return;
     final List<int> indices = chosen.applyAll ? List<int>.generate(doc.pagePaths.length, (i) => i) : [currentPageIndex];
@@ -643,6 +645,8 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
     final doc = document;
     if (doc == null || doc.pagePaths.isEmpty) return;
 
+    final (Uint8List? ghostPng, Rect? ghostBox) = await _pageGhost(doc, currentPageIndex);
+    if (!mounted) return;
     final result = await showModalBottomSheet<(int, int)>(
       context: context,
       isScrollControlled: true,
@@ -651,6 +655,8 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
         child: RotateResizeSheet(
           mode: RotateResizeMode.resize,
           imagePath: doc.pagePaths[currentPageIndex],
+          ghostPng: ghostPng,
+          ghostBox: ghostBox,
           baseSize: doc.pageTransforms[currentPageIndex]?.croppedSize,
           transform: doc.pageTransforms[currentPageIndex],
         ),

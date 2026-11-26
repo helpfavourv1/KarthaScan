@@ -9,6 +9,7 @@ import '../core/services/export_service.dart' show FilterType;
 import '../core/services/filter_service.dart';
 import '../core/models/page_transform.dart';
 import '../l10n/app_localizations.dart';
+import 'page_layers_ghost.dart';
 import 'document_canvas.dart' show PagePreviewJob, renderPagePreview;
 
 /// What the filter sheet returns: the chosen filter, how strong it is, the
@@ -55,7 +56,10 @@ class _LeftClip extends CustomClipper<Rect> {
 }
 
 class FilterPreviewSheet extends StatefulWidget {
-  const FilterPreviewSheet({super.key, required this.imagePath, this.transform, this.pageCount = 1});
+  const FilterPreviewSheet({super.key, required this.imagePath, this.transform, this.pageCount = 1, this.ghostPng});
+
+  /// The page's signatures, drawings and stamps, drawn over the preview (filters do not touch them).
+  final Uint8List? ghostPng;
   final String imagePath;
 
   /// What the page already has (crop, tilt, filter...). The preview is built from it.
@@ -73,6 +77,7 @@ class _FilterPreviewSheetState extends State<FilterPreviewSheet> {
   bool _applyAll = false;
   bool _again = false;
   double _splitX = 0.5;
+  double _aspect = 1;
 
   @override void initState() { super.initState(); _load(); }
   Future<void> _load() async {
@@ -80,6 +85,10 @@ class _FilterPreviewSheetState extends State<FilterPreviewSheet> {
       final bytes = await File(widget.imagePath).readAsBytes();
       final Uint8List? base = await compute(_previewBaseIsolate, {'bytes': bytes, 'transform': widget.transform ?? const PageTransform()});
       if (base == null) return;
+      try {
+        final img.DecodeInfo? info = img.findDecoderForData(base)?.startDecode(base);
+        if (info != null && info.width > 0 && info.height > 0) _aspect = info.width / info.height;
+      } catch (_) {}
       if (mounted) setState(() { _baseBytes = base; _previewBytes = base; });
       if (mounted) _render();
     } catch (_) {}
@@ -140,6 +149,8 @@ class _FilterPreviewSheetState extends State<FilterPreviewSheet> {
                         children: [
                           Positioned.fill(child: Center(child: Image.memory(_previewBytes!, fit: BoxFit.contain))),
                           Positioned.fill(child: ClipRect(clipper: _LeftClip(_splitX), child: Center(child: Image.memory(_baseBytes!, fit: BoxFit.contain)))),
+                          if (widget.ghostPng != null)
+                            Positioned.fill(child: Center(child: AspectRatio(aspectRatio: _aspect, child: Stack(children: <Widget>[PageLayersGhost(png: widget.ghostPng)])))),
                           Positioned(left: cons.maxWidth * _splitX - 1, top: 0, bottom: 0, child: Container(width: 3, color: const Color(0xFF007AFF))),
                         ],
                       ),

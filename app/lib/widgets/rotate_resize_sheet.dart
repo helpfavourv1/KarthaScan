@@ -317,7 +317,19 @@ class RotateResizeSheetState extends State<RotateResizeSheet> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Expanded(child: Image.file(File(widget.imagePath), fit: BoxFit.contain)),
+        Expanded(
+          child: _originalImage == null
+              ? Image.file(File(widget.imagePath), fit: BoxFit.contain)
+              : Center(
+                  child: AspectRatio(
+                    aspectRatio: _originalImage!.width / _originalImage!.height,
+                    child: Stack(fit: StackFit.expand, children: <Widget>[
+                      Image.file(File(widget.imagePath), fit: BoxFit.fill),
+                      PageLayersGhost(png: widget.ghostPng, box: widget.ghostBox),
+                    ]),
+                  ),
+                ),
+        ),
         const SizedBox(height: 16),
         Text(AppLocalizations.of(context).originalDimensions(origW, origH), style: TextStyle(fontSize: 14, color: textSecondary)),
         const SizedBox(height: 12),

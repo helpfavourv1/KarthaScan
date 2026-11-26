@@ -420,7 +420,11 @@ class _ExportScreenState extends State<ExportScreen> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md),
                     // Rows that appear or go with the chosen format animate, and the page area takes what is left.
-                    child: AnimatedSize(
+                    // At least as tall as the PDF/JPG layout, so the page above does not
+                    // jump in size when the format changes.
+                    child: ConstrainedBox(
+                      constraints: const BoxConstraints(minHeight: 150),
+                      child: AnimatedSize(
                       duration: const Duration(milliseconds: 200),
                       alignment: Alignment.topCenter,
                       child: Column(
@@ -539,6 +543,7 @@ class _ExportScreenState extends State<ExportScreen> {
                       ],
                     ),
                     ),
+                    ),
                   ),
                 ],
               ),
@@ -639,15 +644,14 @@ class _ExportScreenState extends State<ExportScreen> {
                 }
                 double iw = constraints.maxWidth;
                 double ih = iw * (imgH / imgW);
-                double dx = 0, dy = 0;
                 if (ih > constraints.maxHeight) {
                   ih = constraints.maxHeight;
                   iw = ih * (imgW / imgH);
-                  dx = (constraints.maxWidth - iw) / 2;
-                } else {
-                  dy = (constraints.maxHeight - ih) / 2;
                 }
-                return Container(
+                // The frame is exactly the page, so layers are placed from its corner.
+                const double dx = 0, dy = 0;
+                // The frame hugs the page itself, so no grey bars show beside it.
+                return Center(child: SizedBox(width: iw, height: ih, child: Container(
                   decoration: BoxDecoration(
                     color: Colors.black12,
                     borderRadius: BorderRadius.circular(8),
@@ -774,7 +778,7 @@ _scanProvider.updateStampLayer(doc.id, layer.copyWith(placement: np));
                       ],
                     ),
                   ),
-                );
+                )));
               },
             ),
           ),
