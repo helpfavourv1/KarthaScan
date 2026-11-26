@@ -109,8 +109,8 @@ void main() {
     expect(total, anyOf(20, 21));
     // Width of the visible strip must hold `last` whole tools but not `last + 1`.
     final double view = tester.getSize(find.byType(Scrollable).first).width;
-    // The test tray is compact: 52 dp per tool + 4 dp coupler, 8 dp padding each side.
-    final int whole = ((view - 16 + 4) / 56).floor();
+    // The test tray is compact: 48 dp per tool (the touch minimum) + 4 dp coupler, 8 dp padding each side.
+    final int whole = ((view - 16 + 4) / 52).floor();
     expect(last, lessThanOrEqualTo(whole));
     expect(last, greaterThanOrEqualTo(whole - 1));
   });

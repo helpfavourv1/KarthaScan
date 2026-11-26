@@ -71,7 +71,7 @@ void main() {
   });
 
   testWidgets('ghost widget sits inside its box and ignores touches', (WidgetTester tester) async {
-    final Uint8List png = (await ExportService().renderGhost(doc(), 0)).$1!;
+    final Uint8List png = (await tester.runAsync(() => ExportService().renderGhost(doc(), 0)))!.$1!;
     await tester.pumpWidget(MaterialApp(
       home: Center(
         child: SizedBox(
