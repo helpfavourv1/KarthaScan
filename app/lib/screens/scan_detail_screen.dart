@@ -61,6 +61,7 @@ class _ScanDetailScreenState extends State<ScanDetailScreen>
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final doc = _document;
       if (doc != null) _inkController.seed(doc);
+      countAdAction(); // opening a document
     });
   }
 
@@ -208,6 +209,7 @@ class _ScanDetailScreenState extends State<ScanDetailScreen>
 
   void _copyOcrToClipboard(String text, AppLocalizations l10n) {
     Clipboard.setData(ClipboardData(text: text));
+    countAdAction();
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(content: Text(AppLocalizations.of(context).copiedToClipboard), duration: Duration(seconds: 2)),
     );
@@ -255,6 +257,7 @@ class _ScanDetailScreenState extends State<ScanDetailScreen>
                         onPressed: _scanProvider.undoManager.canUndo
                             ? () async {
                                 await _scanProvider.undoManager.undo();
+                                countAdAction();
                                 resyncInkFromDocument();
                               }
                             : null,
@@ -268,6 +271,7 @@ class _ScanDetailScreenState extends State<ScanDetailScreen>
                         onPressed: _scanProvider.undoManager.canRedo
                             ? () async {
                                 await _scanProvider.undoManager.redo();
+                                countAdAction();
                                 resyncInkFromDocument();
                               }
                             : null,
@@ -303,7 +307,7 @@ class _ScanDetailScreenState extends State<ScanDetailScreen>
                   IconButton(
                     icon: Icon(document.isFavorite ? Icons.star : Icons.star_border, color: accent),
                     tooltip: AppLocalizations.of(context).favoriteTooltip,
-                    onPressed: () => _scanProvider.toggleFavorite(document.id),
+                    onPressed: () { _scanProvider.toggleFavorite(document.id); countAdAction(); },
                   ),
                   IconButton(
                     icon: Icon(Icons.drive_file_move_outlined, color: textSecondary),
@@ -382,7 +386,7 @@ class _ScanDetailScreenState extends State<ScanDetailScreen>
                             document: document,
                             pagePaths: document.pagePaths,
                             initialPage: _currentPageIndex,
-                            onPageChanged: (index) { _scanProvider.viewedPage[document.id] = index; setState(() => _currentPageIndex = index); },
+                            onPageChanged: (index) { _scanProvider.viewedPage[document.id] = index; setState(() => _currentPageIndex = index); countAdAction(); },
                             inkController: _inkController,
                             annotateLayers: document.annotateLayers,
                             editMode: _editMode,

@@ -344,6 +344,7 @@ class _FullScreenEditScreenState extends State<FullScreenEditScreen> with Docume
                                 onPressed: _scanProvider.undoManager.canUndo
                                     ? () async {
                                         await _scanProvider.undoManager.undo();
+                                countAdAction();
                                         _resyncInk();
                                       }
                                     : null,
@@ -356,6 +357,7 @@ class _FullScreenEditScreenState extends State<FullScreenEditScreen> with Docume
                                 onPressed: _scanProvider.undoManager.canRedo
                                     ? () async {
                                         await _scanProvider.undoManager.redo();
+                                countAdAction();
                                         _resyncInk();
                                       }
                                     : null,
@@ -408,7 +410,7 @@ class _FullScreenEditScreenState extends State<FullScreenEditScreen> with Docume
                   physics: const NeverScrollableScrollPhysics(),
                   swipeEnabled: _editMode == TrayEditMode.none && _fillDraft == null,
                   initialPage: _currentPageIndex,
-                  onPageChanged: (index) { _scanProvider.viewedPage[widget.documentId] = index; setState(() { _currentPageIndex = index; }); },
+                  onPageChanged: (index) { _scanProvider.viewedPage[widget.documentId] = index; setState(() { _currentPageIndex = index; }); countAdAction(); },
                   pageTransforms: doc.pageTransforms,
                   onFillTap: _editMode == TrayEditMode.fill ? _onFillTap : null,
                   fillGhostText: _fillText,

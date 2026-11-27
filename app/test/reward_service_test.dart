@@ -29,51 +29,68 @@ void main() {
     expect(r.shouldShowCard(now: t0, adsRemoved: false, adsAllowed: true, adLoaded: false), isFalse);
   });
 
-  test('every dismissal hides the card for 2 days, never for good', () async {
+  test('X hides card and chip until 4 more interstitials have shown', () async {
     await setUpService();
     await r.noteInterstitialShown();
-    var t = t0;
-    for (var i = 0; i < 4; i++) {
-      expect(card(t), isTrue);
-      await r.dismissCard(now: t);
-      expect(card(t.add(const Duration(days: 1))), isFalse);
-      t = t.add(const Duration(days: 2, minutes: 1));
+    expect(card(t0), isTrue);
+    await r.dismissCard(now: t0);
+    expect(card(t0), isFalse);
+    for (var i = 0; i < 3; i++) {
+      await r.noteInterstitialShown();
+      expect(card(t0), isFalse, reason: 'after ${i + 1} more');
     }
-    expect(card(t), isTrue);
+    await r.noteInterstitialShown();
+    expect(card(t0), isTrue);
   });
 
-  test('grant gives 6 hours, freezes card, stays away until next day', () async {
+  test('grant gives 1 hour; card is away until the reward ends, then back', () async {
     await setUpService();
     await r.noteInterstitialShown();
     await r.grant(now: t0);
-    expect(r.isActive(t0.add(const Duration(hours: 5, minutes: 59))), isTrue);
-    expect(r.isActive(t0.add(const Duration(hours: 6))), isFalse);
-    expect(card(t0.add(const Duration(hours: 7))), isFalse);
-    expect(card(DateTime(2026, 11, 23, 0, 1)), isTrue);
+    expect(r.isActive(t0.add(const Duration(minutes: 59))), isTrue);
+    expect(r.isActive(t0.add(const Duration(hours: 1))), isFalse);
+    expect(card(t0.add(const Duration(minutes: 30))), isFalse);
+    expect(card(t0.add(const Duration(hours: 1, minutes: 1))), isTrue);
   });
 
-  test('cap of 3 per local day resets at midnight', () async {
+  test('cap of 21 per local day resets at midnight', () async {
     await setUpService();
     await r.noteInterstitialShown();
-    for (var i = 0; i < 3; i++) {
-      await r.grant(now: t0.add(Duration(hours: i * 2)));
+    for (var i = 0; i < 21; i++) {
+      await r.grant(now: t0.add(Duration(minutes: i * 2)));
     }
     final late = t0.add(const Duration(hours: 12));
-    expect(r.claimsUsed(late), 3);
+    expect(r.claimsUsed(late), 21);
     expect(r.capReached(late), isTrue);
-    expect(r.shouldShowCard(now: DateTime(2026, 11, 22, 23, 50), adsRemoved: false, adsAllowed: true, adLoaded: true), isFalse);
+    expect(card(late), isFalse);
     expect(r.claimsUsed(DateTime(2026, 11, 23, 0, 5)), 0);
     expect(r.capReached(DateTime(2026, 11, 23, 0, 5)), isFalse);
   });
 
-  test('prompt shows at most once per day', () async {
+  test('chip shows after the 2nd, 4th, 6th interstitial, once each', () async {
+    await setUpService();
+    bool p() => r.shouldShowPrompt(now: t0, adsRemoved: false, adsAllowed: true, adLoaded: true);
+    await r.noteInterstitialShown();
+    expect(p(), isFalse, reason: '1st');
+    await r.noteInterstitialShown();
+    expect(p(), isTrue, reason: '2nd');
+    await r.markPromptShown();
+    expect(p(), isFalse, reason: 'already shown for the 2nd');
+    await r.noteInterstitialShown();
+    expect(p(), isFalse, reason: '3rd');
+    await r.noteInterstitialShown();
+    expect(p(), isTrue, reason: '4th');
+  });
+
+  test('chip follows the same rules as the card (X, reward, cap)', () async {
     await setUpService();
     await r.noteInterstitialShown();
+    await r.noteInterstitialShown();
     bool p(DateTime t) => r.shouldShowPrompt(now: t, adsRemoved: false, adsAllowed: true, adLoaded: true);
-    expect(p(t0), isTrue);
-    await r.markPromptShown(now: t0);
-    expect(p(t0.add(const Duration(hours: 3))), isFalse);
-    expect(p(DateTime(2026, 11, 23, 9)), isTrue);
+    await r.dismissCard(now: t0);
+    expect(p(t0), isFalse);
+    await r.grant(now: t0);
+    expect(p(t0), isFalse);
   });
 
   test('state survives a restart', () async {
@@ -85,5 +102,6 @@ void main() {
     expect(r2.isActive(t0.add(const Duration(hours: 1))), isTrue);
     expect(r2.claimsUsed(t0), 1);
     expect(r2.interstitialSeen, isTrue);
+    expect(r2.interstitialCount, 1);
   });
 }

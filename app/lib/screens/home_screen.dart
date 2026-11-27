@@ -189,6 +189,7 @@ class _HomeScreenState extends State<HomeScreen> {
     switch (action) {
       case 'favorite':
         _scanProvider.toggleFavorite(document.id);
+        countAdAction();
         break;
       case 'rename':
         _renameDocument(document, l10n);

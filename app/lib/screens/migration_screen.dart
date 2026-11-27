@@ -22,6 +22,7 @@ import 'package:archive/archive.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/foundation.dart' show compute;
 import 'package:flutter/material.dart';
+import '../core/services/interstitial_ad_service.dart';
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
@@ -184,6 +185,7 @@ class _MigrationScreenState extends State<MigrationScreen> {
 
       try {
         await _shareService.shareFiles(filePaths: <String>[outPath]);
+        countAdAction();
       } on ShareFailedException {
         if (!mounted) return;
         // ShareFailedException.message is English, set in
@@ -324,6 +326,7 @@ class _MigrationScreenState extends State<MigrationScreen> {
         _isBusy = false;
         _statusMessage = l10n.importedCount(importedCount);
       });
+      countAdAction();
     } catch (error, stackTrace) {
       debugPrint('[MigrationScreen] import failed: $error\n$stackTrace');
       if (!mounted) return;

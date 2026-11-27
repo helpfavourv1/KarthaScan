@@ -141,7 +141,11 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
         pageTransform: doc.pageTransforms[pageIndex],
       ),
     );
-    if (drawn == null || !mounted) return;
+    if (drawn == null) {
+      countAdAction(); // closed without applying
+      return;
+    }
+    if (!mounted) return;
     final appDir = await getApplicationDocumentsDirectory();
     final annotateDir = Directory(p.join(appDir.path, 'annotate_pages'));
     await annotateDir.create(recursive: true);
@@ -194,7 +198,11 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
       isScrollControlled: true,
       builder: (context) => WatermarkSheet(pages: pages, pageCount: doc.pagePaths.length),
     );
-    if (config == null || !mounted) return;
+    if (config == null) {
+      countAdAction(); // closed without applying
+      return;
+    }
+    if (!mounted) return;
     final int total = doc.pagePaths.length;
     final List<int> targets = pages.value == 'current'
         ? <int>[currentPageIndex]
@@ -218,7 +226,11 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
       isScrollControlled: true,
       builder: (context) => WatermarkSheet(initialConfig: existing),
     );
-    if (config == null || !mounted) return;
+    if (config == null) {
+      countAdAction(); // closed without applying
+      return;
+    }
+    if (!mounted) return;
     await scanProvider.replaceWatermarkLayer(doc.id, existing, applyWatermarkEdit(existing, config));
   }
 
@@ -255,7 +267,11 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
     } else {
       config = await showModalBottomSheet<StampResult>(context: context, isScrollControlled: true, builder: (ctx) => Padding(padding: EdgeInsets.only(bottom: MediaQuery.of(ctx).viewInsets.bottom), child: TextStampSheet(kind: kind)));
     }
-    if (config == null || !mounted) return;
+    if (config == null) {
+      countAdAction(); // closed without applying
+      return;
+    }
+    if (!mounted) return;
 
     final layer = StampLayer(
       id: 'stamp_${DateTime.now().microsecondsSinceEpoch}',
@@ -311,7 +327,11 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
             : TextStampSheet(kind: existing.kind, initial: existing),
       ),
     );
-    if (config == null || !mounted) return;
+    if (config == null) {
+      countAdAction(); // closed without applying
+      return;
+    }
+    if (!mounted) return;
     final updated = existing.copyWith(
       text: config.text,
       fontSize: config.fontSize,
@@ -388,7 +408,11 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
       isScrollControlled: true,
       builder: (context) => PerspectiveCropSheet(imagePath: sourcePath, title: l10n.commonExtract, autoDetect: false, showShapes: false),
     );
-    if (region == null || !mounted) return;
+    if (region == null) {
+      countAdAction(); // closed without applying
+      return;
+    }
+    if (!mounted) return;
 
     try {
       final originalBytes = await File(sourcePath).readAsBytes();
@@ -505,7 +529,11 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
       isScrollControlled: true,
       builder: (ctx) => FilterPreviewSheet(imagePath: doc.pagePaths[currentPageIndex], transform: doc.pageTransforms[currentPageIndex], pageCount: doc.pagePaths.length, ghostPng: ghostPng),
     );
-    if (chosen == null || !mounted) return;
+    if (chosen == null) {
+      countAdAction(); // closed without applying
+      return;
+    }
+    if (!mounted) return;
     final List<int> indices = chosen.applyAll ? List<int>.generate(doc.pagePaths.length, (i) => i) : [currentPageIndex];
     final Map<int, PageTransform> changes = <int, PageTransform>{
       for (final int idx in indices)
@@ -534,7 +562,11 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
       isScrollControlled: true,
       builder: (context) => PerspectiveCropSheet(imagePath: doc.pagePaths[currentPageIndex], initialQuad: existing.cropQuad, initialAspect: existing.cropAspect, ghostPng: ghostPng, ghostBox: ghostBox),
     );
-    if (res == null || !mounted) return;
+    if (res == null) {
+      countAdAction(); // closed without applying
+      return;
+    }
+    if (!mounted) return;
     // A new crop changes the page's size, so an older resize no longer fits.
     final PageTransform updated;
     if (isUprightRect(res.quad) && res.aspect == null) {
@@ -569,7 +601,11 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
         ],
       ),
     );
-    if (confirmed != true || !mounted) return;
+    if (confirmed != true) {
+      countAdAction(); // closed without applying
+      return;
+    }
+    if (!mounted) return;
 
     await scanProvider.revertPageTransform(doc.id, currentPageIndex);
     resyncInkFromDocument();
@@ -591,7 +627,11 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
       enableDrag: false,
       builder: (ctx) => EraserSheet(imagePath: doc.pagePaths[currentPageIndex], ghostPng: ghostPng, ghostBox: ghostBox),
     );
-    if (strokes == null || strokes.isEmpty || !mounted) return;
+    if (strokes == null || strokes.isEmpty) {
+      countAdAction(); // closed without applying
+      return;
+    }
+    if (!mounted) return;
 
     final existing = doc.pageTransforms[currentPageIndex] ?? const PageTransform();
     final updated = existing.copyWith(eraserStrokes: [...existing.eraserStrokes, ...strokes]);
@@ -618,9 +658,16 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
         initialStraighten: doc.pageTransforms[currentPageIndex]?.straightenDegrees ?? 0,
       ),
     );
-    if (res == null || !mounted) return;
+    if (res == null) {
+      countAdAction(); // closed without applying
+      return;
+    }
+    if (!mounted) return;
     final double oldTilt = doc.pageTransforms[currentPageIndex]?.straightenDegrees ?? 0;
-    if (res.turns == 0 && res.straighten == oldTilt) return;
+    if (res.turns == 0 && res.straighten == oldTilt) {
+      countAdAction(); // closed without applying
+      return;
+    }
 
     final List<int> indices = res.applyAll ? List<int>.generate(doc.pagePaths.length, (i) => i) : [currentPageIndex];
     final Map<int, PageTransform> changes = <int, PageTransform>{};
@@ -662,7 +709,11 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
         ),
       ),
     );
-    if (result == null || !mounted) return;
+    if (result == null) {
+      countAdAction(); // closed without applying
+      return;
+    }
+    if (!mounted) return;
 
     final (newW, newH) = result;
     final existing = doc.pageTransforms[currentPageIndex] ?? const PageTransform();
@@ -703,7 +754,11 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
         },
       ),
     );
-    if (result == null || !mounted) return;
+    if (result == null) {
+      countAdAction(); // closed without applying
+      return;
+    }
+    if (!mounted) return;
 
     // Quarter turns are given by position in the new order.
     final Map<int, int> addTurns = <int, int>{
@@ -724,7 +779,11 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
       context: context,
       builder: (ctx) => PrintOptionsDialog(pageCount: doc.pagePaths.length, currentIndex: currentPageIndex),
     );
-    if (choice == null || !mounted) return;
+    if (choice == null) {
+      countAdAction(); // closed without applying
+      return;
+    }
+    if (!mounted) return;
 
     try {
       final bytes = await PrintService.buildPdfBytes(
@@ -741,6 +800,8 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
         onLayout: (PdfPageFormat format) async => bytes,
         name: doc.title,
       );
+      // The print dialog has closed, so the ad cannot cover it.
+      countAdAction();
     } catch (e) {
       if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('${l10n.printFailed}: $e')));
     }
@@ -791,7 +852,11 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
       context: context,
       builder: (ctx) => const EmailOptionsDialog(),
     );
-    if (choice == null || !mounted) return;
+    if (choice == null) {
+      countAdAction(); // closed without applying
+      return;
+    }
+    if (!mounted) return;
 
     // One PDF with every page, not one attachment per page.
     final List<String> paths;
@@ -819,6 +884,7 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
         subject: doc.title,
         text: message.isEmpty ? null : message,
       );
+      countAdAction();
       if (missedLimit && mounted) {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.emailLimitMissed(choice.targetMB!))));
       }
@@ -833,6 +899,7 @@ mixin DocumentTools<T extends StatefulWidget> on State<T> {
     try {
       if (await canLaunchUrl(uri)) {
         await launchUrl(uri, mode: LaunchMode.externalApplication);
+        countAdAction();
         if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.emailAttachmentNotIncluded)));
       } else {
         if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.noEmailAppFound)));
