@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:image/image.dart' as img;
 import '../core/models/scan_document.dart';
 import '../core/models/page_transform.dart';
+import 'page_edge.dart';
 import '../core/services/export_service.dart' show FilterType;
 import '../core/services/filter_service.dart';
 import '../core/utils/constants.dart';
@@ -156,7 +157,7 @@ class _DocumentCanvasState extends State<DocumentCanvas> {
     }
 
     return ColoredBox(
-      color: bg,
+      color: pageBackdropColor(isDark),
       child: PageView.builder(
         controller: _pageController,
         physics: (widget.swipeEnabled && !_zoomed) ? const PageScrollPhysics() : widget.physics,
@@ -549,6 +550,8 @@ widget.onStampLayerUpdate?.call(widget.pageIndex, layer.copyWith(placement: np))
                 },
               ),
             ),
+            // Screen-only: page edge, shadow and a fade over anything past the edge.
+            PageEdgeOverlay(pageSize: Size(visualW, visualH), controller: _transformController),
           ],
         );
       },
