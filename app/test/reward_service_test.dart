@@ -98,8 +98,8 @@ void main() {
     await r.noteInterstitialShown();
     await r.grant(now: t0);
     final r2 = RewardService.forTest();
-    await r2.initialize(now: t0.add(const Duration(hours: 1)));
-    expect(r2.isActive(t0.add(const Duration(hours: 1))), isTrue);
+    await r2.initialize(now: t0.add(const Duration(minutes: 30)));
+    expect(r2.isActive(t0.add(const Duration(minutes: 30))), isTrue);
     expect(r2.claimsUsed(t0), 1);
     expect(r2.interstitialSeen, isTrue);
     expect(r2.interstitialCount, 1);
